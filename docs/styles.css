@@ -261,3 +261,14 @@ svg.field.focused{cursor:default}
 .bar-fade{fill:url(#fade-right);pointer-events:none}
 .swatch.open::before{width:32px;background:linear-gradient(90deg,#b9c3b7 45%,#f3f4ee)}
 .mini i.open{background:linear-gradient(90deg,#b7c2b6 60%,#e6e9df)}
+
+/* Undated earlier roots: a thin lead-in from the axis edge, fading in toward the first dated year. */
+.entry .bar-lead{fill:#b7c2b6;opacity:.75}
+.entry .bar-shape.person ~ .bar-lead,.entry.related .bar-lead{fill:#c9ae6a}
+.entry.selected .bar-lead{fill:#2f6b4f;opacity:.6}
+.entry .bar-lead-fade{fill:url(#fade-left);pointer-events:none}
+.swatch.lead::before{width:30px;height:5px;border-left:0;background:linear-gradient(90deg,#f3f4ee,#b9c3b7)}
+.mini i.lead{height:2px;top:2px;border-left:0;background:linear-gradient(90deg,#eceee6,#b7c2b6)}
+
+/* Labels beside a mark get a paper halo so they stay legible over lead-ins and grid lines. */
+.entry .bar-label.left,.entry .bar-label.right{paint-order:stroke;stroke:#fbfaf4;stroke-width:3px;stroke-linejoin:round}

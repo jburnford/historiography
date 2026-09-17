@@ -244,3 +244,41 @@ test('the pathway overlay route is distinct from the pathway reading page', () =
   assert.equal(readRoute('#path=paradigms_and_limits&node=marx', graph, pathways).path, '', 'an entry page clears the overlay');
   assert.ok(routeHash({path: 'paradigms_and_limits', tab: 'map'}).includes('path=paradigms_and_limits'));
 });
+
+test('undated earlier roots open the start of a mark instead of inventing an origin', () => {
+  const military = parseSpan('Earlier roots · Howard 1961 · Keegan 1976 · multiple paradigms · coverage through 2000');
+  assert.equal(military.start, 1961, 'the first dated year is kept as data');
+  assert.ok(military.openStart, 'but the label states earlier roots');
+  assert.equal(parseSpan('1800s roots · Namier 1929 · coverage through 2000').openStart, false, 'dated roots are a dated start');
+  assert.equal(parseSpan('Ancient roots · Strachey 1918 · coverage through 2000').openStart, true);
+  assert.equal(parseSpan('Comparative programmes · 1960s–90s · earlier resources').openStart, false, 'earlier resources drawn on are not the field’s own roots');
+  const curated = spanOf({date_span: {start: 1961, end: null, start_kind: 'earlier_roots'}, date_label: 'x'});
+  assert.ok(curated.openStart);
+  const view = buildFieldLayout(graph, 1400, null, fieldLayers(graph, {}));
+  const bar = view.bars.find(b => b.node.id === 'military');
+  assert.ok(bar.lead, 'military history enters the timeline as already established');
+  assert.equal(bar.lead.x, view.x0);
+  assert.ok(Math.abs(bar.lead.x + bar.lead.w - bar.x) < 0.5, 'the lead-in meets the first dated year');
+  for (const b of view.bars) if (b.span.openStart) assert.ok(b.lead || b.x - view.x0 <= 4, b.node.id);
+});
+
+test('journals without publication dates fall back to their evidenced venue role, and say so', () => {
+  const jc = graph.journal_catalogue;
+  const undated = jc.nodes.filter(n => n.entry_kind === 'periodical' && !Number.isFinite(n.date_span?.start));
+  const {nodes: journals} = journalNodes(graph);
+  for (const j of journals) {
+    const raw = jc.nodes.find(n => n.id === j.id);
+    if (Number.isFinite(raw.date_span?.start)) {
+      assert.equal(j.date_span.start, raw.date_span.start, 'recorded dates are never replaced');
+      continue;
+    }
+    const roles = jc.edges.filter(e => e.source === j.id).map(e => e.temporal_scope?.start).filter(Number.isFinite);
+    if (!roles.length) { assert.equal(j.date_span, undefined); continue; }
+    assert.equal(j.date_span.start, Math.min(...roles));
+    assert.equal(j.date_span.start_kind, 'venue_role_start');
+    assert.equal(j.date_span.end, null, 'an unverified end is not an ending');
+    assert.match(j.date_label, /unverified/);
+    assert.match(j.date_span.basis, /not the first issue/);
+  }
+  assert.ok(undated.length >= 0);
+});

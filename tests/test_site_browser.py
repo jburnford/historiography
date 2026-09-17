@@ -315,6 +315,12 @@ class AtlasBrowserTests(unittest.TestCase):
         wall = self.page.locator('.coverage-wall').bounding_box()
         self.assertAlmostEqual(bar['x'] + bar['width'], wall['x'], delta=2, msg='Annales must run solid to the 2000 wall')
         expect(self.page.locator('.entry.selected .bar-fade')).to_have_count(1)
+        # "Earlier roots" enters as already established: a lead-in, no start cap, and honest words.
+        self.open('#focus=military')
+        expect(self.page.locator('.entry.selected .bar-lead')).to_have_count(1)
+        expect(self.page.locator('.entry.selected .bar-cap.start')).to_have_count(0)
+        expect(self.page.locator('.datewhy')).to_contain_text('Earlier roots, undated')
+        expect(self.page.locator('.datewhy')).to_contain_text('not its origin')
 
     def test_releasing_a_held_entry(self):
         """Four ways out of a hold: the panel link, the bar itself, empty space, Escape."""

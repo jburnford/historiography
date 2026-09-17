@@ -61,10 +61,14 @@ export function parseSpan(label) {
   if (!found.length) return null;
   const endsExplicitly = /\bended\b|\bends\b|\buntil\b|\bceased\b|\bclosed\b|\bdisbanded\b/i.test(body);
   const continues = coverage !== null || /onward|present|continu|ongoing|later\b/i.test(body);
+  /* "Earlier roots · Howard 1961 …" names undated roots before its first year: the first
+     dated year is a contribution to an established field, not an origin. "1800s roots" is
+     dated and is not open. */
+  const openStart = /^\s*(earlier|ancient|older)\b/i.test(body);
   return {
     start: Math.min(...found.map(f => f[0])), end: Math.max(...found.map(f => f[1])),
     endKind: endsExplicitly ? 'terminus' : continues ? 'coverage_limit' : 'unstated',
-    coverage, precision, curated: false,
+    openStart, coverage, precision, curated: false,
   };
 }
 
@@ -79,6 +83,7 @@ export function spanOf(node) {
       coverage: Number.isFinite(d.coverage_through) ? d.coverage_through : null,
       precision: d.precision || 'year', curated: true,
       basis: d.basis || '', startKind: d.start_kind || '',
+      openStart: ['earlier_roots', 'undated_roots', 'open'].includes(d.start_kind),
     };
   }
   const parsed = parseSpan(node.date_label);
@@ -97,15 +102,28 @@ export function journalNodes(graph) {
   const linked = new Set(edges.map(e => e.source));
   const nodes = [...linked].map(id => {
     const j = byId.get(id), d = j.date_span;
+    const dated = d && Number.isFinite(d.start);
+    /* No publication dates in the catalogue: fall back to the earliest evidenced venue role,
+       say so, and let the mark run to the coverage limit (an unverified end is not an ending). */
+    const roleStart = dated ? null : Math.min(...edges.filter(e => e.source === id)
+      .map(e => e.temporal_scope?.start).filter(Number.isFinite));
+    const viaRole = !dated && Number.isFinite(roleStart);
     return {
       id, label: j.label, layer: JOURNAL_LAYER, entry_kind: 'periodical',
       entry_type: 'Journal or periodical', period: null, hunt_core_paradigm: false,
-      date_label: journalDateLabel(j),
-      date_span: d && Number.isFinite(d.start) ? {
+      date_label: viaRole ? `Publication dates unverified · venue role evidenced from ${roleStart} · coverage through 2000`
+        : journalDateLabel(j),
+      date_span: dated ? {
         start: d.start, end: Number.isFinite(d.end) ? d.end : null,
         precision: d.precision || 'year',
         end_kind: Number.isFinite(d.end) ? d.end_kind : 'coverage_limit',
         start_kind: d.start_kind || '', basis: journalDateBasis(j),
+      } : viaRole ? {
+        start: roleStart, end: null, precision: 'year', end_kind: 'coverage_limit',
+        start_kind: 'venue_role_start',
+        basis: `The catalogue records no publication dates for this title. The mark begins at ${roleStart}, `
+          + 'the earliest evidenced venue role, not the first issue, and runs to the coverage limit '
+          + 'because no cessation is recorded.',
       } : undefined,
       description: j.mapping_note
         || 'A periodical linked to the atlas by an evidenced founding, debate or principal-venue claim.',
@@ -254,17 +272,19 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
       const point = drawEnd === item.span.start;
       const bw = Math.max(point ? 12 : 7, scale(drawEnd) - bx);
       const label = labelOf(item.node);
+      /* Undated roots: a thin lead-in from the axis's left edge to the first dated year. */
+      const lead = item.span.openStart && bx - x0 > 4 ? {x: x0, w: bx - x0} : null;
       const fitsRight = bx + bw + 7 + textW(label) <= x1;
-      const fitsLeft = bx - textW(label) - 9 >= G.padL;
+      const fitsLeft = bx - textW(label) - 9 >= G.padL;   /* a left label may sit over a lead-in */
       const side = fitsRight ? 'right' : fitsLeft ? 'left' : 'inside';
-      const need = side === 'left' ? bx - textW(label) - 9 : bx;
+      const need = lead ? x0 : side === 'left' ? bx - textW(label) - 9 : bx;
       const occupied = side === 'right' ? bx + bw + 7 + textW(label) : bx + bw;
       let r = rowEnds.findIndex(end => end + 16 <= need);
       if (r === -1) { r = rowEnds.length; rowEnds.push(0); }
       rowEnds[r] = occupied;
       const ticks = milestoneYears(item.node)
         .filter(yr => yr > item.span.start && yr <= drawEnd).map(yr => ({yr, x: scale(yr)}));
-      bars.push({...item, shape: 'bar', label, side, contW: 0, open, drawEnd, point, ticks,
+      bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, point, ticks,
         x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
     }
 
