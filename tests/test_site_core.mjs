@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from '../site/core.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
-  JOURNAL_LAYER} from '../site/field.mjs';
+  lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
@@ -281,4 +281,38 @@ test('journals without publication dates fall back to their evidenced venue role
     assert.match(j.date_span.basis, /not the first issue/);
   }
   assert.ok(undated.length >= 0);
+});
+
+test('life dates mark a death and hatch posthumous reception, only for people who carry them', () => {
+  const sheet = JSON.parse(readFileSync(new URL('../data/people-wikidata.json', import.meta.url)));
+  const accepted = new Map(sheet.people.filter(p => p.status === 'accepted').map(p => [p.person_id, p]));
+  assert.ok(accepted.size >= 40);
+  for (const p of accepted.values()) {
+    assert.match(p.wikidata.qid, /^Q\d+$/);
+    assert.ok(p.life.retrieved, 'every date carries a retrieval date');
+    if (p.life.death) assert.ok(p.life.death >= p.life.birth, p.person_id);
+  }
+  // Apply the same overlay the build performs, then lay out.
+  const enriched = {...graph, people: graph.people.map(p => accepted.has(p.id)
+    ? {...p, wikidata: {qid: accepted.get(p.id).wikidata.qid}, life: accepted.get(p.id).life} : p)};
+  const lives = lifeIndex(enriched);
+  assert.equal(lives.get('marc_bloch').death, 1944);
+  assert.equal(lives.get('ivy_pinchbeck').deathPrecision, 'year');
+  assert.equal(lives.get('roger_chartier').death, null, 'living people have no death year');
+  assert.equal(lifeIndex(graph).size, 0, 'the repository dataset carries no life dates');
+  const view = buildFieldLayout(enriched, 1400, null, fieldLayers(enriched, {}));
+  const bloch = view.bars.find(b => b.node.id === 'marc_bloch');
+  assert.equal(bloch.death.yr, 1944);
+  assert.equal(bloch.span.end, 1940, '"Feudal Society 1939–40" ends in 1940, not 1939');
+  assert.equal(bloch.posthumous, null, 'Bloch’s dated works all precede his death');
+  const gramsci = view.bars.find(b => b.node.id === 'gramsci');
+  assert.equal(gramsci.death.yr, 1937);
+  assert.ok(gramsci.posthumous && gramsci.posthumous.w > 0, 'postwar reception of the Notebooks is posthumous');
+  assert.ok(Math.abs(gramsci.posthumous.x + gramsci.posthumous.w - (gramsci.x + gramsci.w)) < 0.5);
+  const derrida = view.bars.find(b => b.node.id === 'derrida');
+  assert.equal(derrida.death, null, 'a death after the coverage limit is not drawn on the axis');
+  assert.equal(parseSpan('Delbrück’s volumes 1900–20').end, 1920);
+  const annales = view.bars.find(b => b.node.id === 'annales');
+  assert.equal(annales.death, null, 'schools and fields never get a death marker');
+  for (const b of view.bars.filter(b => b.death)) assert.equal(b.node.entry_kind, 'person', b.node.id);
 });

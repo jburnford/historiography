@@ -1,0 +1,952 @@
+{
+ "schema_version": "0.1",
+ "title": "Wikidata grounding pilot: the 43 people with their own atlas entry",
+ "generated_on": "2026-09-17",
+ "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0.",
+ "status_values": {
+  "accepted": "match reviewed and accepted",
+  "unmatched": "no item found",
+  "conflict": "candidates disagree; needs a human decision",
+  "rejected": "reviewed and refused"
+ },
+ "not_covered": "The 786 people who appear only in rosters and strands are not in this pilot.",
+ "counts": {
+  "accepted": 42,
+  "unmatched": 1
+ },
+ "people": [
+  {
+   "person_id": "wittgenstein",
+   "node_id": "wittgenstein",
+   "label": "Ludwig Wittgenstein",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q9391",
+    "label": "Ludwig Wittgenstein",
+    "description": "Austrian philosopher and logician (1889–1951)",
+    "query": "Ludwig Wittgenstein philosopher",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1889-04-26",
+    "death": "1951-04-29",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "ryle",
+   "node_id": "ryle",
+   "label": "Gilbert Ryle",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q313386",
+    "label": "Gilbert Ryle",
+    "description": "British philosopher",
+    "query": "Gilbert Ryle philosopher",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1900-08-19",
+    "death": "1976-10-06",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "geertz",
+   "node_id": "geertz",
+   "label": "Clifford Geertz",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q310956",
+    "label": "Clifford Geertz",
+    "description": "American anthropologist",
+    "query": "Clifford Geertz anthropologist",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1926-08-23",
+    "death": "2006-10-30",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "levistrauss",
+   "node_id": "levistrauss",
+   "label": "Claude Lévi-Strauss",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q128126",
+    "label": "Claude Lévi-Strauss",
+    "description": "French anthropologist and ethnologist (1908–2009)",
+    "query": "Claude Lévi-Strauss anthropologist",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1908-11-28",
+    "death": "2009-10-30",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "barthes",
+   "node_id": "barthes",
+   "label": "Roland Barthes",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q179109",
+    "label": "Roland Barthes",
+    "description": "French philosopher and essayist (1915–1980)",
+    "query": "Roland Barthes",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1915-11-12",
+    "death": "1980-03-26",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "lacan",
+   "node_id": "lacan",
+   "label": "Jacques Lacan",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q169906",
+    "label": "Jacques Lacan",
+    "description": "French psychoanalyst and writer (1901–1981)",
+    "query": "Jacques Lacan psychoanalyst",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1901-04-13",
+    "death": "1981-09-09",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "althusser",
+   "node_id": "althusser",
+   "label": "Louis Althusser",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q184169",
+    "label": "Louis Althusser",
+    "description": "French Marxist philosopher (1918–1990)",
+    "query": "Louis Althusser philosopher",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1918-10-16",
+    "death": "1990-10-22",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "nietzsche",
+   "node_id": "nietzsche",
+   "label": "Friedrich Nietzsche",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q9358",
+    "label": "Friedrich Nietzsche",
+    "description": "German philosopher (1844-1900)",
+    "query": "Friedrich Nietzsche",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1844-10-15",
+    "death": "1900-08-25",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "foucault",
+   "node_id": "foucault",
+   "label": "Michel Foucault",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q44272",
+    "label": "Michel Foucault",
+    "description": "French philosopher (1926–1984)",
+    "query": "Michel Foucault philosopher",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1926-10-15",
+    "death": "1984-06-25",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "derrida",
+   "node_id": "derrida",
+   "label": "Jacques Derrida",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q130631",
+    "label": "Jacques Derrida",
+    "description": "French philosopher (1930–2004)",
+    "query": "Jacques Derrida philosopher",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1930-07-15",
+    "death": "2004-10-08",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "white",
+   "node_id": "white",
+   "label": "Hayden White / narrative theory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q434818",
+    "label": "Hayden White",
+    "description": "American historian (1928–2018)",
+    "query": "Hayden White historian Metahistory",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1928-07-12",
+    "death": "2018-03-05",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Entry label is \"Hayden White / narrative theory\"; the item is the person."
+  },
+  {
+   "person_id": "kuhn",
+   "node_id": "kuhn",
+   "label": "Thomas Kuhn",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q184980",
+    "label": "Thomas Kuhn",
+    "description": "American historian, physicist and philosopher (1922 – 1996)",
+    "query": "Thomas Kuhn philosopher of science",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1922-07-18",
+    "death": "1996-06-17",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "latour",
+   "node_id": "latour",
+   "label": "Bruno Latour / laboratory studies",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q355237",
+    "label": "Bruno Latour",
+    "description": "French sociologist and philosopher (1947–2022)",
+    "query": "(returned in the Louis Althusser search)",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1947-06-22",
+    "death": "2022-10-08",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Entry label is \"Bruno Latour / laboratory studies\"; the item is the person. Candidate surfaced in another query; identity unambiguous."
+  },
+  {
+   "person_id": "fanon",
+   "node_id": "fanon",
+   "label": "Frantz Fanon",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q193670",
+    "label": "Frantz Fanon",
+    "description": "French West Indian psychiatrist and philosopher (1925–1961)",
+    "query": "Frantz Fanon",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1925-07-20",
+    "death": "1961-12-06",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "rodney",
+   "node_id": "rodney",
+   "label": "Walter Rodney",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1394990",
+    "label": "Walter Rodney",
+    "description": "Guyanese Marxist, Pan-Afrianist, and historian (1942-1980)",
+    "query": "Walter Rodney Guyanese historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1942-03-23",
+    "death": "1980-06-13",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata holds two death dates: 13 June 1980 (BnF, SNAC) and a bare \"1979\" referenced only to a blackpast.org URL whose slug reads 1942-1979. Rodney was killed in Georgetown on 13 June 1980; the 1980 value is recorded here. Consider marking the 1979 statement deprecated in Wikidata."
+  },
+  {
+   "person_id": "clr_james",
+   "node_id": "clr_james",
+   "label": "C. L. R. James",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q773828",
+    "label": "C. L. R. James",
+    "description": "Trinidadian historian, journalist and Marxist (1901–1989)",
+    "query": "C. L. R. James Trinidadian historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1901-01-04",
+    "death": "1989-05-31",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "eric_williams",
+   "node_id": "eric_williams",
+   "label": "Eric Williams",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1338879",
+    "label": "Eric Williams",
+    "description": "first Prime Minister of Trinidad and Tobago (1911–1981)",
+    "query": "Eric Williams Trinidad historian Capitalism and Slavery",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1911-09-25",
+    "death": "1981-03-29",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata describes him by office, not as a historian; same person (author of Capitalism and Slavery, 1944)."
+  },
+  {
+   "person_id": "gramsci",
+   "node_id": "gramsci",
+   "label": "Antonio Gramsci",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q83003",
+    "label": "Antonio Gramsci",
+    "description": "Italian Marxist philosopher, writer, and politician (1891–1937)",
+    "query": "Antonio Gramsci",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1891-01-22",
+    "death": "1937-04-27",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "A second item \"Antonio Gramsci — Russian-born Italian musician and writer\" is a grandson; not this person."
+  },
+  {
+   "person_id": "elias",
+   "node_id": "elias",
+   "label": "Norbert Elias",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q75812",
+    "label": "Norbert Elias",
+    "description": "German sociologist (1897–1990)",
+    "query": "Norbert Elias sociologist",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1897-06-22",
+    "death": "1990-08-01",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "ivy_pinchbeck",
+   "node_id": "ivy_pinchbeck",
+   "label": "Ivy Pinchbeck",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q15637883",
+    "label": "Ivy Pinchbeck",
+    "description": "economic historian",
+    "query": "Ivy Pinchbeck historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1898",
+    "death": "1982",
+    "birth_precision": "year",
+    "death_precision": "year",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Both dates are year-precision only in Wikidata (GND-sourced)."
+  },
+  {
+   "person_id": "alice_clark",
+   "node_id": "alice_clark",
+   "label": "Alice Clark",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4726150",
+    "label": "Alice Whitcomb Clark",
+    "description": "British historian (1874-1934)",
+    "query": "Alice Clark historian Working Life of Women in the Seventeenth Century",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1874-08-01",
+    "death": "1934-05-11",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata uses the fuller name Alice Whitcomb Clark; same person (1874–1934, Quaker, Clarks of Street). Check the ODNB entry if the full name is to be adopted."
+  },
+  {
+   "person_id": "mary_ritter_beard",
+   "node_id": "mary_ritter_beard",
+   "label": "Mary Ritter Beard",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q6780609",
+    "label": "Mary Ritter Beard",
+    "description": "American historian and women's suffrage activist (1876–1958)",
+    "query": "Mary Ritter Beard historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1876-08-05",
+    "death": "1958-08-14",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Not Mary Beard the classicist (Q458403)."
+  },
+  {
+   "person_id": "lucy_maynard_salmon",
+   "node_id": "lucy_maynard_salmon",
+   "label": "Lucy Maynard Salmon",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q16030694",
+    "label": "Lucy Maynard Salmon",
+    "description": "American historian (1853–1927)",
+    "query": "Lucy Maynard Salmon historian Vassar",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1853-07-27",
+    "death": "1927-02-14",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "eleanor_flexner",
+   "node_id": "eleanor_flexner",
+   "label": "Eleanor Flexner",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5354278",
+    "label": "Eleanor Flexner",
+    "description": "American feminist (1908-1995)",
+    "query": "Eleanor Flexner Century of Struggle",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1908-10-04",
+    "death": "1995-03-25",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "barbara_tuchman",
+   "node_id": "barbara_tuchman",
+   "label": "Barbara W. Tuchman",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q59112",
+    "label": "Barbara W. Tuchman",
+    "description": "American historian and author (1912–1989)",
+    "query": "Barbara W. Tuchman historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1912-01-30",
+    "death": "1989-02-06",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "eileen_power",
+   "node_id": "eileen_power",
+   "label": "Eileen Power",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q274254",
+    "label": "Eileen Power",
+    "description": "British historian (1889–1940)",
+    "query": "Eileen Power medieval historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1889-01-09",
+    "death": "1940-08-08",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "cv_wedgwood",
+   "node_id": "cv_wedgwood",
+   "label": "C. V. Wedgwood",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q546097",
+    "label": "Veronica Wedgwood",
+    "description": "English historian (1910–1997)",
+    "query": "C. V. Wedgwood historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1910-07-20",
+    "death": "1997-03-09",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata label is Veronica Wedgwood (C. V. Wedgwood); same person."
+  },
+  {
+   "person_id": "frances_yates",
+   "node_id": "frances_yates",
+   "label": "Frances A. Yates",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q132105",
+    "label": "Frances Yates",
+    "description": "English historian of the Renaissance (1899–1981)",
+    "query": "Frances Yates historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1899-11-28",
+    "death": "1981-09-29",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "helen_maud_cam",
+   "node_id": "helen_maud_cam",
+   "label": "Helen Maud Cam",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5701986",
+    "label": "Helen Cam",
+    "description": "British historian (1885–1968)",
+    "query": "Helen Maud Cam historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1885-08-22",
+    "death": "1968-02-09",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata label is Helen Cam; same person."
+  },
+  {
+   "person_id": "dorothy_thompson",
+   "node_id": "dorothy_thompson",
+   "label": "Dorothy Thompson",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4460331",
+    "label": "Dorothy Thompson",
+    "description": "social historian (1923-2011)",
+    "query": "Dorothy Thompson British historian Chartism",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1923-10-30",
+    "death": "2011-01-29",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Not the American journalist Dorothy Thompson (Q275545) nor the archaeologist Dorothy Burr Thompson (Q5298334)."
+  },
+  {
+   "person_id": "ep_thompson",
+   "node_id": "ep_thompson",
+   "label": "E. P. Thompson",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q434160",
+    "label": "E. P. Thompson",
+    "description": "British historian & peace activist (1924-1993)",
+    "query": "E. P. Thompson British historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1924-02-03",
+    "death": "1993-08-28",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "marc_bloch",
+   "node_id": "marc_bloch",
+   "label": "Marc Bloch",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q156585",
+    "label": "Marc Bloch",
+    "description": "French historian (1886–1944)",
+    "query": "Marc Bloch French historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1886-07-06",
+    "death": "1944-06-16",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "lucien_febvre",
+   "node_id": "lucien_febvre",
+   "label": "Lucien Febvre",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q156999",
+    "label": "Lucien Febvre",
+    "description": "French historian (1878-1956)",
+    "query": "Lucien Febvre historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1878-07-22",
+    "death": "1956-09-25",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "fernand_braudel",
+   "node_id": "fernand_braudel",
+   "label": "Fernand Braudel",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q185105",
+    "label": "Fernand Braudel",
+    "description": "French historian and leader of the Annales School",
+    "query": "Fernand Braudel historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1902-08-24",
+    "death": "1985-11-27",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "ernest_labrousse",
+   "node_id": "ernest_labrousse",
+   "label": "Ernest Labrousse",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q975777",
+    "label": "Ernest Labrousse",
+    "description": "French historian (1895–1988)",
+    "query": "Ernest Labrousse historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1895-03-16",
+    "death": "1988-05-23",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Not Elisabeth Labrousse (Q534985) or Michel Labrousse (Q3310048)."
+  },
+  {
+   "person_id": "maurice_dobb",
+   "node_id": "maurice_dobb",
+   "label": "Maurice Dobb",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q560942",
+    "label": "Maurice Dobb",
+    "description": "British economist (1900-1976)",
+    "query": "Maurice Dobb economist",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1900-07-24",
+    "death": "1976-08-17",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "rodney_hilton",
+   "node_id": "rodney_hilton",
+   "label": "Rodney Hilton",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2557882",
+    "label": "Rodney Hilton",
+    "description": "British historian (1916-2002)",
+    "query": "(returned in the Walter Rodney search)",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1916-11-17",
+    "death": "2002-06-07",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Candidate surfaced in another query; identity unambiguous."
+  },
+  {
+   "person_id": "dona_torr",
+   "node_id": "dona_torr",
+   "label": "Dona Torr",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5293807",
+    "label": "Dona Torr",
+    "description": "British historian",
+    "query": "Dona Torr Marxist historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1883-04-28",
+    "death": "1957-01-08",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "eric_hobsbawm",
+   "node_id": "eric_hobsbawm",
+   "label": "Eric Hobsbawm",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q34933",
+    "label": "Eric Hobsbawm",
+    "description": "British academic historian and Marxist historiographer (1917–2012)",
+    "query": "Eric Hobsbawm historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1917-06-09",
+    "death": "2012-10-01",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": ""
+  },
+  {
+   "person_id": "christopher_hill",
+   "node_id": "christopher_hill",
+   "label": "Christopher Hill",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q719787",
+    "label": "Christopher Hill",
+    "description": "British historian (1912–2003)",
+    "query": "Christopher Hill historian English Revolution",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1912-02-06",
+    "death": "2003-02-23",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Not the bishop Christopher Hill (Q1086743)."
+  },
+  {
+   "person_id": "r_h_tawney",
+   "node_id": "r_h_tawney",
+   "label": "R. H. Tawney",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2589871",
+    "label": "R. H. Tawney",
+    "description": "English philosopher (1880–1962)",
+    "query": "R. H. Tawney economic historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1880-11-30",
+    "death": "1962-01-16",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Wikidata describes him as a philosopher; same person."
+  },
+  {
+   "person_id": "roger_chartier",
+   "node_id": "roger_chartier",
+   "label": "Roger Chartier",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2466876",
+    "label": "Roger Chartier",
+    "description": "French historian",
+    "query": "Roger Chartier historian",
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+   },
+   "life": {
+    "birth": "1945-12-09",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL, statement values checked where flagged",
+    "retrieved": "2026-09-17"
+   },
+   "notes": "Living; no death date."
+  },
+  {
+   "person_id": "julia_cherry_spruill",
+   "node_id": "julia_cherry_spruill",
+   "label": "Julia Cherry Spruill",
+   "status": "unmatched",
+   "wikidata": null,
+   "life": null,
+   "notes": "Two vector-search queries (\"Julia Cherry Spruill historian\", bare name) returned no item. Probably no Wikidata item exists; do not create a match from another source without review. Known dates (1899–1986) are not recorded here because they are not from a checked source."
+  }
+ ]
+}

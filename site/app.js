@@ -1,5 +1,5 @@
 import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from './core.mjs';
-import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears,
+import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER} from './field.mjs';
 
@@ -20,13 +20,18 @@ const crumbs = items => `<nav class="breadcrumbs" aria-label="Breadcrumb"><a hre
 const layerTag = n => `<span class="layer-tag tone-${layerIndex(n.layer)}">${esc(layerLabel(n.layer))}</span>`;
 const huntTag = n => n.hunt_core_paradigm ? '<span class="hunt-tag">Hunt’s teaching lens</span>' : '';
 const rosterLabel = n => `${n.representative_people?.length || 0} historians & contributors`;
+const lifeSpan = p => {
+  if (!p.life?.birth && !p.life?.death) return '';
+  const y = (v, k) => v ? `${p.life[`${k}_precision`] === 'year' ? 'c. ' : ''}${String(v).slice(0, 4)}` : '';
+  return ` <span class="lifespan">${esc(y(p.life.birth, 'birth'))}–${esc(y(p.life.death, 'death'))}</span>`;
+};
 function personCard(p, rep = null) {
   const contexts = personContexts(graph, p.id);
   const readings = [...new Set(contexts.map(c => c.representative.works).filter(Boolean))];
   const own = nodeById.get(p.node_id);
   const work = rep ? (rep.works || own?.representative_figures_and_works || '') : (readings[0] || own?.representative_figures_and_works || '');
   return `<article class="person-card"><p class="eyebrow">${rep ? esc(PERSON_ROLES[rep.role]) : `${contexts.length} GROUP${contexts.length === 1 ? '' : 'S'}${own ? ' · FULL ENTRY' : ''}`}</p>
-    <h3><a href="${esc(personHref(p.id))}">${esc(p.label)}</a></h3>
+    <h3><a href="${esc(personHref(p.id))}">${esc(p.label)}</a>${lifeSpan(p)}</h3>
     ${rep ? `<p class="person-context">${esc(rep.context)}</p>` : `<p class="person-context">${esc(contexts.map(c => c.node.label).slice(0, 3).join(' · ') || layerLabel(own?.layer))}${contexts.length > 3 ? ' …' : ''}</p>`}
     ${work ? `<p class="person-work">${esc(work)}</p>` : '<p class="person-work fine-print">See the group’s representative works and references.</p>'}
     <a class="entry-open" href="${esc(personHref(p.id))}">Explore this person →</a></article>`;
@@ -66,7 +71,7 @@ function personPage() {
   const parent = nodeById.get(state.node);
   const origin = parent ? `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent.label)}</a>` : '<a href="#tab=people">Historians & contributors</a>';
   const basisLabels = {curated_entry: 'Selection recorded in the curated entry', existing_relationship: 'Selection supported by an existing qualified connection', source_review: 'Selection with a scoped source check', editorial_comparison: 'Editorial comparison across constituent fields'};
-  return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}</h2></div>${own ? `<a class="button-link" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
+  return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
     ${own ? `<p class="profile-introduction">${esc(own.description)}</p>` : '<p class="context-note">Read this person through the works and contexts below. These are selected points of entry, not a complete biography.</p>'}
     <h3>Where to read them</h3><div class="person-contexts">${contexts.map(({node:n, representative:r}) => `<section class="person-affiliation tone-${layerIndex(n.layer)}">${layerTag(n)}<h3><a href="${esc(nodeHref(n.id))}">${esc(n.label)} →</a></h3><span class="role-tag">${esc(PERSON_ROLES[r.role])}</span><p>${esc(r.context)}</p>
       ${r.works ? `<p class="person-work">${esc(r.works)}</p>` : `<p class="fine-print">The current selection names this person without a separate work citation. <a href="${esc(nodeHref(n.id))}">Read the group’s works and references.</a></p>`}
@@ -122,6 +127,7 @@ function fieldLegend() {
     <div class="lg"><strong>The mark</strong>
       <span class="swatch precise">years the label names</span>
       <span class="swatch lead">earlier roots, undated</span>
+      <span class="swatch posthumous">† death · hatched = posthumous reception</span>
       <span class="swatch point">a single dated year</span>
       <span class="swatch fuzzy">decade precision</span>
       <span class="swatch open">continues past the coverage limit</span>
@@ -235,6 +241,11 @@ function fieldSvg(view) {
       ${p.open && p.w > 30 ? `<rect class="bar-fade" x="${xEnd - 22}" y="${p.y - 1}" width="23" height="${p.h + 2}"/>` : ''}
       ${p.ticks.map(t => `<line class="ms" x1="${t.x}" y1="${p.y + 3}" x2="${t.x}" y2="${p.y + p.h - 3}"
         ><title>${t.yr} · a year named in this entry’s date label</title></line>`).join('')}
+      ${p.posthumous ? `<rect class="posthumous" x="${p.posthumous.x}" y="${p.y}" width="${p.posthumous.w}" height="${p.h}" rx="3"
+        ><title>After ${p.death.yr}: posthumous reception</title></rect>` : ''}
+      ${p.death ? `<g class="death-mark"><line x1="${p.death.x}" y1="${p.y - 4}" x2="${p.death.x}" y2="${p.y + p.h + 4}"/>
+        <text x="${p.death.x}" y="${p.y - 5}" text-anchor="middle">†</text>
+        <title>Died ${p.death.yr} (Wikidata)</title></g>` : ''}
       <text class="bar-label ${p.side}" y="${p.y + p.h / 2 + 1}"
         x="${p.side === 'right' ? xEnd + 7 : p.side === 'left' ? p.x - 7 : p.x + 9}"
         ${p.side === 'left' ? 'text-anchor="end"' : ''}>${esc(p.label)}</text>
@@ -248,6 +259,8 @@ function fieldSvg(view) {
     <defs><linearGradient id="fade-right" x1="0" x2="1" y1="0" y2="0">
       <stop offset="0" stop-color="#fbfaf4" stop-opacity="0"/>
       <stop offset="1" stop-color="#fbfaf4" stop-opacity=".92"/></linearGradient>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#fbfaf4" stroke-width="2.2"/></pattern>
     <linearGradient id="fade-left" x1="0" x2="1" y1="0" y2="0">
       <stop offset="0" stop-color="#fbfaf4" stop-opacity=".95"/>
       <stop offset=".55" stop-color="#fbfaf4" stop-opacity=".35"/>
@@ -301,6 +314,23 @@ function fieldDateNote(n, span) {
     : `Read from <code>${esc(n.date_label)}</code> by the site, not curated as numbers. The mark
        says nothing about when the ${periodical ? 'periodical' : 'field'} was most influential.`;
   return `${roots}${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
+}
+
+/* Life dates from Wikidata, when the published people record carries them. */
+function lifeLine(n, span) {
+  const life = lifeIndex(graph).get(n.id);
+  if (!life || (!life.birth && !life.death)) return '';
+  const approx = k => life[`${k}Precision`] === 'year' ? 'c. ' : '';
+  const parts = [];
+  if (life.birth) parts.push(`Born ${approx('birth')}${life.birth}`);
+  parts.push(life.death ? `died ${approx('death')}${life.death}` : 'living at retrieval');
+  const posthumous = life.death && span && life.death < (span.endKind === 'coverage_limit'
+    ? (span.coverage ?? graph.scope.main_period[1]) : span.end);
+  return `<p class="life">${esc(parts.join(' · '))}${life.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(life.qid)}"
+      target="_blank" rel="noopener noreferrer">Wikidata ${esc(life.qid)}</a>` : ''}${
+      life.retrieved ? ` <span class="prov">retrieved ${esc(life.retrieved)}</span>` : ''}${
+      posthumous ? `<br><span class="posthumous-note">The hatched part of the mark, after ${life.death},
+      is reception of the work after the author’s death.</span>` : ''}</p>`;
 }
 
 /* One relationship, with its evidence and references one click away. */
@@ -372,6 +402,7 @@ function fieldPanel() {
     <p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
     <h2 id="field-title" tabindex="-1">${esc(n.label)}</h2>
     <p class="meta">${esc(n.date_label || 'No date label')} · ${esc(fieldTitle(n.layer))}</p>
+    ${lifeLine(n, span)}
     <div class="datewhy">${fieldDateNote(n, span)}</div>
     <p class="claim">${esc(n.description)}</p>
     ${n.scope_note ? `<div class="scope"><strong>Scope &amp; distinctions.</strong>
