@@ -256,8 +256,8 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.datewhy')).to_contain_text('Arrived')
 
     def test_public_contents_allowlist(self):
-        actual = {str(p.relative_to(ROOT / 'site/dist')) for p in (ROOT / 'site/dist').rglob('*') if p.is_file()}
-        self.assertEqual(actual, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'data/graph.json', 'data/pathways.json'})
+        actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
+        self.assertEqual(actual, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'})
         for private_path in ['openalex-api-key.txt', 'MEMORY.md', 'Clifford/', '.git/config']:
             response = self.page.request.get(URL + private_path)
             self.assertEqual(response.status, 404, private_path)

@@ -1,21 +1,21 @@
-name: Build and deploy the atlas
+name: Check the atlas build
+
+# GitHub Pages serves this repository from the `main` branch's `/docs` folder, so the
+# committed `docs/` directory is the published site. This workflow does not deploy; it
+# validates the data, runs the view checks, rebuilds, and fails if the committed `docs/`
+# has drifted from the sources it is built from.
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,26 +25,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      # Data and view checks must pass before anything is published.
       - name: Validate the curated graph
         run: python3 scripts/validate_graph.py
       - name: Data tests
         run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_journal_validation
       - name: View tests
         run: node tests/test_site_core.mjs
-      # The build copies an explicit allowlist; nothing else reaches the public site.
-      - name: Build the allowlisted site
+      - name: Rebuild the allowlisted site into docs/
         run: python3 scripts/build_site.py
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site/dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
+      - name: Committed docs/ must match the sources
+        run: |
+          git status --porcelain docs
+          git diff --exit-code --stat docs || { echo "::error::docs/ is stale. Run python3 scripts/build_site.py and commit docs/."; exit 1; }
