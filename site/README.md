@@ -8,12 +8,12 @@ Run these commands from the project root:
 
 ```bash
 python3 scripts/build_site.py
-python3 -m http.server 4173 --bind 127.0.0.1 --directory site/dist
+python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 ```
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `site/dist`, never the repository root. The build copies exactly six files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `data/graph.json`, and `data/pathways.json`. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
+Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly eight files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
 
 ## How nesting works
 

@@ -6,13 +6,16 @@ import shutil
 from validate_graph import validate
 
 ROOT = Path(__file__).resolve().parents[1]
-DEST = ROOT / 'site' / 'dist'
+# GitHub Pages can serve a branch only from the repository root or `/docs`, so the
+# allowlisted build lands in `docs/` and is committed. Nothing else in the repo is served.
+DEST = ROOT / 'docs'
 PAGE_ASSETS = {
     'site/index.html': 'index.html',
     'site/styles.css': 'styles.css',
     'site/app.js': 'app.js',
     'site/core.mjs': 'core.mjs',
     'site/field.mjs': 'field.mjs',
+    'site/.nojekyll': '.nojekyll',
 }
 DATA_ASSETS = {
     'historiography-1920-2000.json': 'data/graph.json',
@@ -79,7 +82,7 @@ def build():
         out.write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')))
     published = (DEST / 'data' / 'graph.json').stat().st_size / 1024 / 1024
     original = (ROOT / 'historiography-1920-2000.json').stat().st_size / 1024 / 1024
-    print(f'Built {len(ASSETS)} allowlisted files in {DEST}')
+    print(f'Built {len(ASSETS)} allowlisted files in {DEST.relative_to(ROOT)}/')
     print(f'  graph.json published at {published:.2f} MB (dataset is {original:.2f} MB)')
 
 
