@@ -27,8 +27,8 @@ const DIR = {
 };
 export const JOURNAL_LAYER = 'journals_and_venues';
 const BREAK_YEAR = 1900, EARLY_SHARE = 0.2;
-const G = {padL: 18, padR: 26, barH: 19, rowGap: 9, bandGap: 30, ghostH: 4, ghostGap: 3,
-           chipH: 23, chipGap: 6, railW: 300, railCols: 2, railGap: 22};
+const G = {padL: 18, padR: 26, barH: 18, rowGap: 8, bandGap: 30, ghostH: 4, ghostGap: 3,
+           chipH: 22, chipGap: 6, minW: 600};
 
 const titleCase = k => String(k).replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 /* Section headings read as questions; legend chips read as the relationship's own name. */
@@ -173,8 +173,21 @@ export function relationIndex(graph) {
 /* ---------- layout ---------- */
 const textW = (s, px = 11.5) => s.length * px * 0.545;
 const clip = (s, n) => s.length > n ? s.slice(0, n - 1) + '…' : s;
+/* A curated short label wins on the field; the full label stays everywhere else. */
+export const displayLabel = n => n.short_label || n.label;
 
-export function buildFieldLayout(graph, width, focusSet, layerOrder) {
+/* Years named in a date label. Parsed from prose, so they are drawn as unlabelled ticks
+   and described as read by the site, never as curated milestones. */
+export function milestoneYears(node) {
+  const s = (node.date_label || '').replace(/coverage through\s+\d{4}/i, ' ');
+  return [...new Set((s.match(/\b(1[6-9]\d{2}|20[0-2]\d)\b(?!s)/g) || []).map(Number))]
+    .sort((a, b) => a - b);
+}
+
+/* `width` is the width of the box the SVG will actually sit in — measure it, do not guess
+   from the page. `opts.numbering` (Map id → n) prefixes labels for the pathway overlay. */
+export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) {
+  const numbering = opts.numbering || null;
   const nodes = fieldNodes(graph);
   const rows = nodes.map(node => ({node, span: spanOf(node)}));
   const spans = rows.filter(r => r.span).map(r => r.span);
@@ -183,20 +196,22 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder) {
   const coverageYear = graph.scope?.main_period?.[1] ?? 2000;
 
   const undatedTotal = rows.filter(r => !r.span).length;
-  const railW = undatedTotal ? G.railW : 0;
-  const railGap = undatedTotal ? G.railGap : 0;
-  const inner = Math.max(width - 2, 1060);
-  const x0 = G.padL + railW + railGap, x1 = inner - G.padR;
+  const inner = Math.max(Math.floor(width) - 2, G.minW);
+  const x0 = G.padL + 6, x1 = inner - G.padR;
   const W = x1 - x0;
   const early = BREAK_YEAR - minYear, late = maxYear - BREAK_YEAR;
   const scale = yr => yr <= BREAK_YEAR
     ? x0 + (early ? (yr - minYear) / early : 0) * W * EARLY_SHARE
     : x0 + W * EARLY_SHARE + (yr - BREAK_YEAR) / late * W * (1 - EARLY_SHARE);
-  const colW = railW ? (railW - (G.railCols - 1) * G.chipGap) / G.railCols : 0;
+  const labelOf = node => {
+    const base = clip(displayLabel(node), 46);
+    const n = numbering?.get(node.id);
+    return n ? `${n}. ${base}` : base;
+  };
 
   const axisTop = 14;
-  let y = axisTop + 36;
-  const bands = [], bars = [], chips = [], ghosts = [];
+  let y = axisTop + 40;
+  const bands = [], bars = [], chips = [], ghosts = [], captions = [];
 
   for (const layerId of layerOrder) {
     const mine = rows.filter(r => r.node.layer === layerId);
@@ -207,22 +222,35 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder) {
     y += 26;
     const top = y;
 
-    full.filter(r => !r.span).forEach((item, i) => {
-      const col = i % G.railCols, row = Math.floor(i / G.railCols);
-      chips.push({...item, shape: 'chip',
-        label: clip(item.node.label, Math.max(6, Math.floor((colW - 18) / 6.05))),
-        x: G.padL + col * (colW + G.chipGap), y: y + row * (G.chipH + G.chipGap),
-        w: colW, h: G.chipH});
-    });
+    /* Entries with no stated span sit in a wrapping strip at the top of their band, so the
+       time axis keeps the whole width instead of giving a fifth of it to a rail. */
+    const undated = full.filter(r => !r.span);
+    let cx = x0, cy = y, chipRows = 0;
+    if (undated.length) {
+      const caption = `No span stated · ${undated.length}`;
+      captions.push({x: x0, y: cy + G.chipH / 2 + 1, text: caption});
+      cx = x0 + textW(caption, 10) + 14;
+      chipRows = 1;
+    }
+    for (const item of undated) {
+      const label = clip(displayLabel(item.node), 40);
+      const w = Math.min(240, Math.round(textW(label, 11) + 22));
+      if (cx + w > x1 && cx > x0) { cx = x0; cy += G.chipH + G.chipGap; chipRows++; }
+      chips.push({...item, shape: 'chip', label, x: cx, y: cy, w, h: G.chipH});
+      cx += w + G.chipGap;
+    }
+    const chipBlock = chipRows ? chipRows * (G.chipH + G.chipGap) + 4 : 0;
+    const barTop = y + chipBlock;
 
     const rowEnds = [];
     for (const item of full.filter(r => r.span).sort((a, b) =>
         a.span.start - b.span.start || a.node.label.localeCompare(b.node.label))) {
       const bx = scale(item.span.start);
-      const bw = Math.max(7, scale(item.span.end) - bx);
-      const label = clip(item.node.label, 46);
-      const contW = item.span.endKind === 'coverage_limit'
-        ? Math.max(0, scale(item.span.coverage ?? coverageYear) - (bx + bw)) : 0;
+      const point = item.span.start === item.span.end;
+      const bw = Math.max(point ? 12 : 7, scale(item.span.end) - bx);
+      const label = labelOf(item.node);
+      const tailTo = item.span.endKind === 'coverage_limit' ? (item.span.coverage ?? coverageYear) : null;
+      const contW = tailTo !== null ? Math.max(0, scale(tailTo) - (bx + bw)) : 0;
       const fitsRight = bx + bw + contW + 7 + textW(label) <= x1;
       const fitsLeft = bx - textW(label) - 9 >= G.padL;
       const side = fitsRight ? 'right' : fitsLeft ? 'left' : 'inside';
@@ -231,17 +259,19 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder) {
       let r = rowEnds.findIndex(end => end + 16 <= need);
       if (r === -1) { r = rowEnds.length; rowEnds.push(0); }
       rowEnds[r] = occupied;
-      bars.push({...item, shape: 'bar', label, side, contW, x: bx, w: bw, h: G.barH,
-        y: y + r * (G.barH + G.rowGap)});
+      const last = tailTo ?? item.span.end;
+      const ticks = milestoneYears(item.node)
+        .filter(yr => yr > item.span.start && yr <= last).map(yr => ({yr, x: scale(yr)}));
+      bars.push({...item, shape: 'bar', label, side, contW, point, ticks, x: bx, w: bw, h: G.barH,
+        y: barTop + r * (G.barH + G.rowGap)});
     }
 
-    const fullH = Math.max(rowEnds.length * (G.barH + G.rowGap),
-      Math.ceil(full.filter(r => !r.span).length / G.railCols) * (G.chipH + G.chipGap));
+    const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap);
     let gy = y + fullH + (faded.length ? 6 : 0);
     const ghostEnds = [];
     for (const item of faded.sort((a, b) => (a.span?.start ?? 0) - (b.span?.start ?? 0))) {
-      const bx = item.span ? scale(item.span.start) : G.padL;
-      const bw = item.span ? Math.max(5, scale(item.span.end) - bx) : Math.max(40, colW);
+      const bx = item.span ? scale(item.span.start) : x0;
+      const bw = item.span ? Math.max(5, scale(item.span.end) - bx) : 40;
       let r = ghostEnds.findIndex(end => end + 2 <= bx);
       if (r === -1) { r = ghostEnds.length; ghostEnds.push(0); }
       ghostEnds[r] = bx + bw;
@@ -254,7 +284,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder) {
     y += fullH + ghostH + (focusSet ? 18 : G.bandGap);
   }
 
-  return {inner, scale, chips, bars, ghosts, bands, axisTop, x0, x1, railW, G,
+  return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G,
     minYear, maxYear, coverageYear, breakYear: BREAK_YEAR, height: y + 14,
     placed: new Map([...chips, ...bars, ...ghosts].map(p => [p.node.id, p])),
     datedCount: rows.filter(r => r.span).length, undatedCount: undatedTotal};
@@ -271,6 +301,20 @@ export function focusSetFor(graph, id, index) {
   const keep = new Set([id]);
   for (const r of index.get(id) || []) keep.add(r.other);
   return keep;
+}
+
+/* A seminar pathway as a set of field entries, and the relationships recorded among them.
+   Order is a reading sequence, not a genealogy, so no edge is inferred from adjacency. */
+export function pathwaySet(pathway) {
+  return pathway ? new Set(pathway.node_ids) : null;
+}
+export function pathwayEdges(graph, pathway, index) {
+  const set = pathwaySet(pathway);
+  if (!set) return [];
+  const seen = new Set(), out = [];
+  for (const id of pathway.node_ids) for (const r of index.get(id) || [])
+    if (set.has(r.other) && !seen.has(r.edge.id)) { seen.add(r.edge.id); out.push(r.edge); }
+  return out;
 }
 
 /* Matching used by the field's search box: labels, prose, rosters and relationship text. */

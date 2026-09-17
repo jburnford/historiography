@@ -74,6 +74,8 @@ export function readRoute(hash, graph, pathways) {
   const route = {
     tab: ['people', 'pathways', 'about', 'browse'].includes(p.get('tab')) ? p.get('tab') : 'map',
     focus: fieldIds.some(n => n.id === p.get('focus')) ? p.get('focus') : '',
+    /* `path` lays a seminar pathway over the field; `pathway` opens its reading page. */
+    path: valid('path', pathways.pathways),
     node: valid('node', graph.nodes), edge: valid('edge', graph.edges),
     person: valid('person', graph.people || []),
     section: p.get('section') === 'connections' ? 'connections' : '',
@@ -94,8 +96,9 @@ export function readRoute(hash, graph, pathways) {
     route.person = '';
   }
   if (route.kind || route.neighborLayer) route.section = 'connections';
+  if (route.path) { route.pathway = ''; route.person = ''; route.tab = 'map'; }
   if (route.pathway) route.tab = 'pathways';
-  if (route.node) { route.tab = 'map'; route.focus = ''; }
+  if (route.node) { route.tab = 'map'; route.focus = ''; route.path = ''; }
   if (route.focus) { route.tab = 'map'; route.person = ''; }
   if (route.person && !route.node) route.tab = 'people';
   return route;

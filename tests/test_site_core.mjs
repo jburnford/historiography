@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from '../site/core.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
-  relationIndex, buildFieldLayout, focusSetFor, JOURNAL_LAYER} from '../site/field.mjs';
+  relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
+  JOURNAL_LAYER} from '../site/field.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
@@ -175,4 +176,64 @@ test('focus routes to the field and is distinct from an entry page', () => {
   assert.equal(both.focus, '', 'an entry page clears the field focus');
   assert.equal(readRoute('#hide=comparison,critique', graph, pathways).hide, 'comparison,critique');
   assert.equal(readRoute('#hide=<script>', graph, pathways).hide, '', 'hide must be validated');
+});
+
+test('field layout fits the box it is given and never reserves a rail', () => {
+  const order = fieldLayers(graph, {});
+  for (const width of [1400, 940, 780, 640]) {
+    const view = buildFieldLayout(graph, width, null, order);
+    assert.ok(view.inner <= Math.max(width - 2, 600), `layout wider than its box at ${width}`);
+    // Every label placed to the right must end inside the drawable area.
+    for (const b of view.bars) {
+      assert.ok(b.x >= view.x0 - 1 && b.x + b.w <= view.x1 + 1, `${b.node.id} bar outside axis`);
+    }
+    for (const c of view.chips) assert.ok(c.x + c.w <= view.x1 + 1, `${c.node.id} chip outside axis`);
+  }
+  const view = buildFieldLayout(graph, 1400, null, order);
+  if (view.undatedCount) assert.ok(view.captions.length > 0, 'undated strip must be captioned');
+  const point = view.bars.find(b => b.span.start === b.span.end);
+  if (point) assert.ok(point.point && point.w >= 12, 'a single dated arrival is drawn as a mark, not a sliver');
+});
+
+test('milestone ticks come only from years the label actually names, inside the span', () => {
+  assert.deepEqual(milestoneYears({date_label: 'The Order of Things 1966 · Discipline and Punish 1975 · coverage through 2000'}), [1966, 1975]);
+  assert.deepEqual(milestoneYears({date_label: '1950s–70s expansion'}), []);
+  const view = buildFieldLayout(graph, 1400, null, fieldLayers(graph, {}));
+  for (const b of view.bars) for (const t of b.ticks) {
+    assert.ok(t.yr > b.span.start, `${b.node.id} tick at its own start`);
+    assert.ok(t.x > b.x && t.x <= b.x + b.w + b.contW + 0.5, `${b.node.id} tick outside its mark`);
+  }
+});
+
+test('a pathway overlay is a set of entries and only their recorded relationships', () => {
+  const p = pathways.pathways.find(p => p.id === 'paradigms_and_limits');
+  const set = pathwaySet(p);
+  assert.equal(set.size, p.node_ids.length);
+  const index = relationIndex(graph);
+  const edges = pathwayEdges(graph, p, index);
+  assert.ok(edges.length > 0);
+  for (const e of edges) assert.ok(set.has(e.source) && set.has(e.target), `${e.id} leaves the pathway`);
+  assert.equal(new Set(edges.map(e => e.id)).size, edges.length, 'no edge is drawn twice');
+  assert.equal(pathwaySet(null), null);
+  assert.deepEqual(pathwayEdges(graph, null, index), []);
+  // Numbered labels follow reading order, and the overlay ghosts everything else.
+  const numbering = new Map(p.node_ids.map((id, i) => [id, i + 1]));
+  const view = buildFieldLayout(graph, 1400, set, fieldLayers(graph, {}), {numbering});
+  const annales = view.bars.find(b => b.node.id === 'annales');
+  assert.ok(annales.label.startsWith(`${numbering.get('annales')}. `));
+  assert.equal(view.ghosts.length, fieldNodes(graph).length - set.size);
+});
+
+test('the pathway overlay route is distinct from the pathway reading page', () => {
+  graph.__fieldNodes = fieldNodes(graph);
+  const r = readRoute('#path=paradigms_and_limits', graph, pathways);
+  assert.equal(r.path, 'paradigms_and_limits');
+  assert.equal(r.tab, 'map', 'an overlay is a field view');
+  assert.equal(r.pathway, '', 'the reading page is a separate route');
+  assert.equal(readRoute('#path=not-real', graph, pathways).path, '');
+  const held = readRoute('#path=paradigms_and_limits&focus=annales', graph, pathways);
+  assert.equal(held.focus, 'annales');
+  assert.equal(held.path, 'paradigms_and_limits', 'holding an entry keeps the pathway as context');
+  assert.equal(readRoute('#path=paradigms_and_limits&node=marx', graph, pathways).path, '', 'an entry page clears the overlay');
+  assert.ok(routeHash({path: 'paradigms_and_limits', tab: 'map'}).includes('path=paradigms_and_limits'));
 });
