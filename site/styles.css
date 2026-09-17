@@ -272,3 +272,15 @@ svg.field.focused{cursor:default}
 
 /* Labels beside a mark get a paper halo so they stay legible over lead-ins and grid lines. */
 .entry .bar-label.left,.entry .bar-label.right{paint-order:stroke;stroke:#fbfaf4;stroke-width:3px;stroke-linejoin:round}
+
+/* Deaths and posthumous reception (Wikidata life dates on the published people records) */
+.entry .posthumous{fill:url(#hatch);pointer-events:none;opacity:.9}
+.entry .death-mark line{stroke:#5a3d33;stroke-width:1.4}
+.entry .death-mark text{font:10px var(--serif);fill:#5a3d33;dominant-baseline:auto}
+.entry.dimmed .death-mark{opacity:.15}
+.swatch.posthumous::before{background:repeating-linear-gradient(45deg,#b9c3b7 0 3px,#f3f4ee 3px 5px);border-left:1.4px solid #5a3d33;width:30px}
+.field-panel .life{font-size:12px;color:#4a564e;margin:-8px 0 12px}
+.field-panel .life .prov{color:#8a938b;font-size:10.5px}
+.field-panel .posthumous-note{font-size:11px;color:var(--muted)}
+.lifespan{font:400 13px var(--sans);color:var(--muted);margin-left:8px;white-space:nowrap}
+.person-profile h2 .lifespan{font-size:16px}

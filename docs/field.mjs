@@ -58,9 +58,15 @@ export function parseSpan(label) {
     precision = 'decade';
   }
   for (const y of body.match(/\b(1[6-9]\d{2}|20[0-2]\d)\b(?!s)/g) || []) found.push([+y, +y]);
+  /* "1939–40", "1900–20": a two-digit end shares the start's century. */
+  for (let m, re = /\b(1[6-9]\d{2}|20[0-2]\d)\s*[–—-]\s*(\d{2})\b(?!\d)/g; (m = re.exec(body));) {
+    const a = +m[1], b = Math.floor(a / 100) * 100 + +m[2];
+    if (b > a) found.push([a, b]);
+  }
   if (!found.length) return null;
   const endsExplicitly = /\bended\b|\bends\b|\buntil\b|\bceased\b|\bclosed\b|\bdisbanded\b/i.test(body);
-  const continues = coverage !== null || /onward|present|continu|ongoing|later\b/i.test(body);
+  /* "expanding postwar reception" and the like say the thing carried on. */
+  const continues = coverage !== null || /onward|present|continu|ongoing|later\b|expanding|reception/i.test(body);
   /* "Earlier roots · Howard 1961 …" names undated roots before its first year: the first
      dated year is a contribution to an established field, not an origin. "1800s roots" is
      dated and is not open. */
@@ -229,6 +235,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     return n ? `${n}. ${base}` : base;
   };
 
+  const lives = lifeIndex(graph);
   const axisTop = 14;
   let y = axisTop + 40;
   const bands = [], bars = [], chips = [], ghosts = [], captions = [];
@@ -284,8 +291,15 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
       rowEnds[r] = occupied;
       const ticks = milestoneYears(item.node)
         .filter(yr => yr > item.span.start && yr <= drawEnd).map(yr => ({yr, x: scale(yr)}));
+      /* Death within the axis: a marker, and the part of the mark after it is posthumous. */
+      const life = lives.get(item.node.id) || null;
+      /* Drawn only inside the coverage limit; a later death is stated in the panel instead. */
+      const death = life?.death && life.death >= minYear && life.death <= coverageYear
+        ? {yr: life.death, x: scale(life.death)} : null;
+      const posthumous = death && death.x < bx + bw
+        ? {x: Math.max(bx, death.x), w: bx + bw - Math.max(bx, death.x)} : null;
       bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, point, ticks,
-        x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
+        life, death, posthumous, x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
     }
 
     const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap);
@@ -325,6 +339,21 @@ export function focusSetFor(graph, id, index) {
   const keep = new Set([id]);
   for (const r of index.get(id) || []) keep.add(r.other);
   return keep;
+}
+
+/* Life dates for people who have their own entry, keyed by entry id. Only present when the
+   published people records carry `life` (see scripts/build_site.py). A death year lets the
+   field separate an author's lifetime from the posthumous reception of their work. */
+export function lifeIndex(graph) {
+  const index = new Map();
+  for (const p of graph.people || []) {
+    if (!p.node_id || !p.life) continue;
+    const year = v => Number.isFinite(+String(v || '').slice(0, 4)) && v ? +String(v).slice(0, 4) : null;
+    index.set(p.node_id, {birth: year(p.life.birth), death: year(p.life.death),
+      birthPrecision: p.life.birth_precision || null, deathPrecision: p.life.death_precision || null,
+      retrieved: p.life.retrieved || null, qid: p.wikidata?.qid || null});
+  }
+  return index;
 }
 
 /* A seminar pathway as a set of field entries, and the relationships recorded among them.

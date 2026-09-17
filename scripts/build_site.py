@@ -54,6 +54,38 @@ def slim_journal_catalogue(catalogue):
     return slim
 
 
+def overlay_people_wikidata(payload):
+    """Add accepted Wikidata identities and life dates to the published people records.
+
+    `data/people-wikidata.json` is the reviewed grounding sheet. Only entries with
+    status `accepted` are applied, and only onto the published copy: the repository
+    dataset is not modified. Each applied record carries its own provenance.
+    """
+    sheet = ROOT / 'data' / 'people-wikidata.json'
+    if not sheet.exists():
+        return 0
+    rows = json.loads(sheet.read_text())
+    accepted = {r['person_id']: r for r in rows.get('people', []) if r.get('status') == 'accepted'}
+    applied = 0
+    for person in payload.get('people', []):
+        row = accepted.get(person['id'])
+        if not row:
+            continue
+        person['wikidata'] = {'qid': row['wikidata']['qid'], 'label': row['wikidata']['label']}
+        if row.get('life'):
+            person['life'] = {k: row['life'][k] for k in
+                              ('birth', 'death', 'birth_precision', 'death_precision', 'retrieved')}
+        applied += 1
+    if applied:
+        payload.setdefault('published_enrichment', []).append({
+            'fields': ['people[].wikidata', 'people[].life'],
+            'source': 'data/people-wikidata.json',
+            'note': 'Applied at build time to the published copy only; the repository dataset '
+                    'does not carry these fields. Wikidata content is CC0.',
+            'count': applied})
+    return applied
+
+
 def build():
     graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
     pathways = json.loads((ROOT / 'seminar-pathways.json').read_text())
@@ -79,6 +111,10 @@ def build():
         payload = json.loads((ROOT / source).read_text())
         if 'journal_catalogue' in payload:
             payload['journal_catalogue'] = slim_journal_catalogue(payload['journal_catalogue'])
+        if 'people' in payload:
+            enriched = overlay_people_wikidata(payload)
+            if enriched:
+                print(f'  {enriched} people carry Wikidata identities and life dates in the published copy')
         out.write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')))
     published = (DEST / 'data' / 'graph.json').stat().st_size / 1024 / 1024
     original = (ROOT / 'historiography-1920-2000.json').stat().st_size / 1024 / 1024
