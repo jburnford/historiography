@@ -309,6 +309,33 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#focus=annales')
         expect(self.page.locator('.datewhy')).to_contain_text('Arrived')
 
+    def test_releasing_a_held_entry(self):
+        """Four ways out of a hold: the panel link, the bar itself, empty space, Escape."""
+        total = self.page.locator('.entry, .chip')
+        self.open('#focus=annales')
+        expect(self.page.locator('.entry.selected')).to_have_count(1)
+        self.page.locator('.field-panel .release').click()
+        expect(self.page.locator('.entry.selected')).to_have_count(0)
+        self.assertEqual(self.page.locator('.ghost').count(), 0)
+        self.assertNotIn('focus=', self.page.url)
+
+        self.open('#focus=annales')
+        self.page.locator('.entry.selected .bar-shape').click()
+        expect(self.page.locator('.entry.selected')).to_have_count(0)
+
+        self.open('#focus=annales')
+        # Chart chrome (the coverage caption) is empty space as far as holding is concerned.
+        self.page.locator('.coverage-label').click()
+        expect(self.page.locator('.entry.selected')).to_have_count(0)
+
+        self.open('#focus=annales&path=paradigms_and_limits')
+        self.page.keyboard.press('Escape')
+        expect(self.page.locator('.entry.selected')).to_have_count(0)
+        expect(self.page.locator('.path-panel')).to_be_visible()
+        self.assertIn('path=paradigms_and_limits', self.page.url)
+        self.page.locator('.band-release text').first.click()
+        expect(self.page.locator('.ghost')).to_have_count(0)
+
     def test_hero_compacts_off_the_field(self):
         self.open()
         self.assertEqual(self.page.evaluate('document.body.dataset.compact'), '')

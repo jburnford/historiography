@@ -84,6 +84,9 @@ const fieldTitle = id => FIELD_TITLES[id]
   || String(id).replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 const hiddenKinds = () => new Set(state.hide ? state.hide.split(',') : []);
 const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: ''});
+/* Releasing a held entry keeps any pathway overlay and search; it only lets go of the hold. */
+const releaseHref = () => href({focus: '', node: '', person: '', edge: '', page: 0, section: ''});
+const releaseLink = () => `<a class="release" href="${esc(releaseHref())}">← Show everything</a>`;
 const activePathway = () => state.path ? pathways.pathways.find(p => p.id === state.path) : null;
 const pathNumbering = () => {
   const p = activePathway();
@@ -170,8 +173,10 @@ function fieldSvg(view) {
   const bands = view.bands.map(b => `<line class="band-rule" x1="${view.G.padL}"
       y1="${b.labelY - 13}" x2="${view.x1}" y2="${b.labelY - 13}"/>
     <text class="band-label" x="${view.x0}" y="${b.labelY}">${esc(fieldTitle(b.layerId))}</text>
-    <text class="band-count" x="${view.x1}" y="${b.labelY}" text-anchor="end">${
-      b.faded ? `${b.full} shown · ${b.faded} set aside` : `${b.full} entries`}</text>`).join('');
+    ${b.faded ? `<a class="band-release" href="${esc(state.focus ? releaseHref() : href({path: ''}))}"
+        aria-label="Show all ${b.full + b.faded} entries in this band"><text class="band-count" x="${view.x1}" y="${b.labelY}" text-anchor="end">${
+        b.full} shown · ${b.faded} set aside · show all</text></a>`
+      : `<text class="band-count" x="${view.x1}" y="${b.labelY}" text-anchor="end">${b.full} entries</text>`}`).join('');
   const captions = view.captions.map(c => `<text class="chip-caption" x="${c.x}" y="${c.y}"
       >${esc(c.text)}</text>`).join('');
 
@@ -199,9 +204,11 @@ function fieldSvg(view) {
     return on.join(' ');
   };
 
+  const markHref = p => p.node.id === state.focus ? releaseHref() : focusHref(p.node.id);
+  const heldNote = p => p.node.id === state.focus ? ' Held; activate again to release.' : '';
   const chips = view.chips.map(p => `<a class="chip ${cls(p)}" data-id="${esc(p.node.id)}"
-      href="${esc(focusHref(p.node.id))}"
-      aria-label="${esc(p.node.label)}, no date span stated">
+      href="${esc(markHref(p))}"
+      aria-label="${esc(p.node.label)}, no date span stated.${heldNote(p)}">
       <rect class="chip-shape" x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"/>
       <text class="chip-label" x="${p.x + 10}" y="${p.y + p.h / 2 + 1}">${esc(p.label)}</text>
     </a>`).join('');
@@ -213,8 +220,8 @@ function fieldSvg(view) {
     const fuzzy = p.span.precision === 'decade';
     const xEnd = p.x + p.w;
     return `<a class="entry end-${esc(p.span.endKind)} ${cls(p)}" data-id="${esc(p.node.id)}"
-      href="${esc(focusHref(p.node.id))}"
-      aria-label="${esc(p.node.label)}, ${esc(p.node.date_label)}">
+      href="${esc(markHref(p))}"
+      aria-label="${esc(p.node.label)}, ${esc(p.node.date_label)}.${heldNote(p)}">
       ${p.contW > 2 ? `<path class="bar-tail" d="M${xEnd},${p.y}
         L${xEnd + p.contW},${p.y + (p.h - 2.5) / 2} L${xEnd + p.contW},${p.y + (p.h + 2.5) / 2}
         L${xEnd},${p.y + p.h} Z"/>` : ''}
@@ -320,6 +327,8 @@ function fieldPanel() {
     <p>A mark shows when something <strong>arrived and was most influential</strong> — not how
     long it lasted. The left cap is its arrival; the tapering tail means it carried on, less
     prominently, to the edge of what this atlas covers. Open a relationship to read its evidence.</p>
+    <p class="fine-print">To let go of a held entry, click it again, click empty space in the chart,
+    press Escape, or use “Show everything” at the top of this panel.</p>
     <p class="fine-print">${fieldCatalogue.unlinked.toLocaleString()} catalogued periodicals
     are not shown: they have no evidenced founding, debate or principal-venue claim yet.</p></div>`;
   }
@@ -330,7 +339,8 @@ function fieldPanel() {
   const atlas = graph.nodes.some(x => x.id === id);
   const groups = [...new Set(rels.map(r => r.edge.relationship_kind))];
   const seq = p ? p.node_ids.indexOf(id) : -1;
-  return `${p ? `<p class="path-strip">${seq >= 0 ? `Entry ${seq + 1} of ${p.node_ids.length} in` : 'Outside'}
+  return `${state.focus && !hoverId ? `<p class="panel-release">${releaseLink()}</p>` : ''}
+    ${p ? `<p class="path-strip">${seq >= 0 ? `Entry ${seq + 1} of ${p.node_ids.length} in` : 'Outside'}
       the pathway <a href="${esc(href({focus: ''}))}">${esc(p.title)}</a>.</p>` : ''}
     <p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
     <h2 id="field-title" tabindex="-1">${esc(n.label)}</h2>
@@ -434,6 +444,10 @@ function drawField() {
   svg.addEventListener('focusin', e => preview(e.target));
   svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
   svg.addEventListener('mouseover', e => emphasise(svg, e.target));
+  /* Clicking empty chart space lets go of the held entry. */
+  svg.addEventListener('click', e => {
+    if (state.focus && !e.target.closest('a')) change({focus: ''});
+  });
   if (state.focus && state.focus !== scrolledFocus) {
     scrolledFocus = state.focus;
     const held = svg.querySelector('.entry.selected, .chip.selected');
@@ -687,6 +701,10 @@ async function start() {
     journalSourceById = new Map((graph.journal_catalogue?.sources || []).map(s => [s.id, s]));
     atlasEdgeIds = new Set(graph.edges.map(e => e.id));
     window.addEventListener('resize', onResize);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && state.focus && document.querySelector('svg.field')
+          && !e.target.closest('input, select, textarea')) change({focus: ''});
+    });
     fieldIndex = relationIndex(graph);
     fieldNodeById = new Map(fieldNodes(graph).map(n => [n.id, n]));
     graph.__fieldNodes = fieldNodes(graph);

@@ -247,3 +247,12 @@ details.rel .dir{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;col
 .hold-link{display:inline-block;font-size:11px;margin:0 0 8px 12px}
 @media(max-width:1200px){.field-legend .lg{flex-wrap:wrap;white-space:normal}
   .field-legend .lg.right{margin-left:0}}
+
+/* Letting go of a held entry */
+.panel-release{margin:0 0 10px}
+.release{display:inline-block;font-size:11.5px;text-decoration:none;border:1px solid var(--line);
+  background:#fffdf7;border-radius:4px;padding:4px 10px}
+.release:hover{background:#e9eee4}
+.band-release .band-count{fill:#2f6b4f;text-decoration:underline;cursor:pointer}
+.band-release:hover .band-count{fill:#1d4432}
+svg.field.focused{cursor:default}
