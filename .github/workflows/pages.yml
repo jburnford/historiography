@@ -28,7 +28,8 @@ jobs:
       - name: Validate the curated graph
         run: python3 scripts/validate_graph.py
       - name: Data tests
-        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_journal_validation
+        # test_journal_validation needs the gitignored raw catalogue inputs, so it runs locally only.
+        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation
       - name: View tests
         run: node tests/test_site_core.mjs
       - name: Rebuild the allowlisted site into docs/
