@@ -121,6 +121,7 @@ function fieldLegend() {
         ><i></i>${esc(kindChip(k))} <em>${counts.get(k) || 0}</em></a>`).join('')}</div>
     <div class="lg"><strong>The mark</strong>
       <span class="swatch precise">years the label names</span>
+      <span class="swatch lead">earlier roots, undated</span>
       <span class="swatch point">a single dated year</span>
       <span class="swatch fuzzy">decade precision</span>
       <span class="swatch open">continues past the coverage limit</span>
@@ -222,11 +223,13 @@ function fieldSvg(view) {
     return `<a class="entry end-${esc(p.span.endKind)} ${cls(p)}" data-id="${esc(p.node.id)}"
       href="${esc(markHref(p))}"
       aria-label="${esc(p.node.label)}, ${esc(p.node.date_label)}.${heldNote(p)}">
+      ${p.lead ? `<rect class="bar-lead" x="${p.lead.x}" y="${p.y + 5}" width="${p.lead.w}" height="${p.h - 10}" rx="2"/>
+        <rect class="bar-lead-fade" x="${p.lead.x}" y="${p.y + 4}" width="${p.lead.w}" height="${p.h - 8}"/>` : ''}
       <rect class="bar-shape${p.point ? ' point' : ''}${p.node.entry_kind === 'person' ? ' person' : ''}${
         p.node.entry_kind === 'periodical' ? ' periodical' : ''}"
         x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"
         ${fuzzy && !p.point ? 'fill-opacity="0.62"' : ''} rx="3"/>
-      <line class="bar-cap start" x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + p.h}"/>
+      ${p.lead ? '' : `<line class="bar-cap start" x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + p.h}"/>`}
       ${p.span.endKind === 'terminus'
         ? `<line class="bar-cap end" x1="${xEnd}" y1="${p.y}" x2="${xEnd}" y2="${p.y + p.h}"/>` : ''}
       ${p.open && p.w > 30 ? `<rect class="bar-fade" x="${xEnd - 22}" y="${p.y - 1}" width="23" height="${p.h + 2}"/>` : ''}
@@ -244,7 +247,11 @@ function fieldSvg(view) {
       role="group" aria-label="Historiography on a time axis. Each mark is a link; a text list of the same entries is available under View · List.">
     <defs><linearGradient id="fade-right" x1="0" x2="1" y1="0" y2="0">
       <stop offset="0" stop-color="#fbfaf4" stop-opacity="0"/>
-      <stop offset="1" stop-color="#fbfaf4" stop-opacity=".92"/></linearGradient></defs>
+      <stop offset="1" stop-color="#fbfaf4" stop-opacity=".92"/></linearGradient>
+    <linearGradient id="fade-left" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#fbfaf4" stop-opacity=".95"/>
+      <stop offset=".55" stop-color="#fbfaf4" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#fbfaf4" stop-opacity="0"/></linearGradient></defs>
     <g class="chrome">${washes}${grid}
       <line class="axis-line" x1="${view.x0}" y1="${view.axisTop + 22}" x2="${view.x1}"
         y2="${view.axisTop + 22}"/>${bands}${captions}</g>
@@ -260,9 +267,14 @@ function fieldDateNote(n, span) {
   const periodical = n.entry_kind === 'periodical';
   const precision = span.precision === 'decade' ? ' (decade precision)' : '';
   let opening, ending;
+  const roots = span.openStart ? `<strong>Earlier roots, undated.</strong> The label’s first dated
+    year is ${span.start}; that dates a contribution to an already established
+    ${periodical ? 'periodical' : 'field'}, not its origin, so the mark runs in from the left edge
+    without a starting cap. ` : '';
   if (span.endKind === 'coverage_limit') {
     opening = periodical
       ? `<strong>First issue ${span.start}</strong>, drawn to ${wall}.`
+      : span.openStart ? `Drawn solid from ${span.start} to ${wall}.`
       : `<strong>From ${span.start}</strong>${precision}, drawn to ${wall}.`;
     ending = `${wall} is the limit of this atlas’s coverage, not an ending: the mark fades into
       the wall because the ${periodical ? 'periodical' : 'field'} continues beyond what is mapped here.`;
@@ -288,7 +300,7 @@ function fieldDateNote(n, span) {
     ? `From the curated <code>date_span</code>. ${esc(span.basis || '')}`
     : `Read from <code>${esc(n.date_label)}</code> by the site, not curated as numbers. The mark
        says nothing about when the ${periodical ? 'periodical' : 'field'} was most influential.`;
-  return `${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
+  return `${roots}${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
 }
 
 /* One relationship, with its evidence and references one click away. */
@@ -337,10 +349,11 @@ function fieldPanel() {
     if (p) return pathwayPanel(p);
     return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
     <h2>Hover to light up an argument. Click to hold it.</h2>
-    <p>A mark runs across <strong>the years an entry’s date label names</strong>. The left cap
-    is the earliest dated year. A bar that fades into the dashed wall at 2000 continues beyond
-    what this atlas covers: the wall is a limit of the map, not an ending. Ticks mark other
-    years the label names. Open a relationship to read its evidence.</p>
+    <p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
+    the earliest dated year; a thin lead-in from the left edge means the label states earlier,
+    undated roots. A bar that fades into the dashed wall at 2000 continues beyond what this atlas
+    covers: the wall is a limit of the map, not an ending. Ticks mark other years the label names.
+    Open a relationship to read its evidence.</p>
     <p class="fine-print">To let go of a held entry, click it again, click empty space in the chart,
     press Escape, or use “Show everything” at the top of this panel.</p>
     <p class="fine-print">${fieldCatalogue.unlinked.toLocaleString()} catalogued periodicals
@@ -389,7 +402,7 @@ function fieldList() {
     if (!span) return '';
     const open = span.endKind === 'coverage_limit';
     const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (span.coverage ?? hi) : span.end));
-    return `<span class="mini" aria-hidden="true"><i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
+    return `<span class="mini" aria-hidden="true">${span.openStart ? `<i class="lead" style="left:0;width:${a}%"></i>` : ''}<i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
   };
   return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
       Dates describe arrival and influence, not a lifespan.</p>` +
