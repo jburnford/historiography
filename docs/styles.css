@@ -256,3 +256,8 @@ details.rel .dir{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;col
 .band-release .band-count{fill:#2f6b4f;text-decoration:underline;cursor:pointer}
 .band-release:hover .band-count{fill:#1d4432}
 svg.field.focused{cursor:default}
+
+/* Open ends fade into the coverage wall instead of tapering. */
+.bar-fade{fill:url(#fade-right);pointer-events:none}
+.swatch.open::before{width:32px;background:linear-gradient(90deg,#b9c3b7 45%,#f3f4ee)}
+.mini i.open{background:linear-gradient(90deg,#b7c2b6 60%,#e6e9df)}

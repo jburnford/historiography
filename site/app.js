@@ -1,5 +1,5 @@
 import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from './core.mjs';
-import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex,
+import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER} from './field.mjs';
 
@@ -120,10 +120,10 @@ function fieldLegend() {
         title="${hidden.has(k) ? 'Show' : 'Hide'} ${esc(kindChip(k).toLowerCase())}"
         ><i></i>${esc(kindChip(k))} <em>${counts.get(k) || 0}</em></a>`).join('')}</div>
     <div class="lg"><strong>The mark</strong>
-      <span class="swatch precise">arrival &amp; high influence</span>
-      <span class="swatch point">single dated arrival</span>
-      <span class="swatch fuzzy">decade only</span>
-      <span class="swatch open">continues after</span>
+      <span class="swatch precise">years the label names</span>
+      <span class="swatch point">a single dated year</span>
+      <span class="swatch fuzzy">decade precision</span>
+      <span class="swatch open">continues past the coverage limit</span>
       <span class="swatch axis-note">pre-1900 compressed</span></div>
     <div class="lg right"><strong>View</strong>
       <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
@@ -222,9 +222,6 @@ function fieldSvg(view) {
     return `<a class="entry end-${esc(p.span.endKind)} ${cls(p)}" data-id="${esc(p.node.id)}"
       href="${esc(markHref(p))}"
       aria-label="${esc(p.node.label)}, ${esc(p.node.date_label)}.${heldNote(p)}">
-      ${p.contW > 2 ? `<path class="bar-tail" d="M${xEnd},${p.y}
-        L${xEnd + p.contW},${p.y + (p.h - 2.5) / 2} L${xEnd + p.contW},${p.y + (p.h + 2.5) / 2}
-        L${xEnd},${p.y + p.h} Z"/>` : ''}
       <rect class="bar-shape${p.point ? ' point' : ''}${p.node.entry_kind === 'person' ? ' person' : ''}${
         p.node.entry_kind === 'periodical' ? ' periodical' : ''}"
         x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"
@@ -232,11 +229,11 @@ function fieldSvg(view) {
       <line class="bar-cap start" x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + p.h}"/>
       ${p.span.endKind === 'terminus'
         ? `<line class="bar-cap end" x1="${xEnd}" y1="${p.y}" x2="${xEnd}" y2="${p.y + p.h}"/>` : ''}
+      ${p.open && p.w > 30 ? `<rect class="bar-fade" x="${xEnd - 22}" y="${p.y - 1}" width="23" height="${p.h + 2}"/>` : ''}
       ${p.ticks.map(t => `<line class="ms" x1="${t.x}" y1="${p.y + 3}" x2="${t.x}" y2="${p.y + p.h - 3}"
         ><title>${t.yr} · a year named in this entry’s date label</title></line>`).join('')}
       <text class="bar-label ${p.side}" y="${p.y + p.h / 2 + 1}"
-        x="${p.side === 'right' ? xEnd + Math.max(p.contW, 0) + 7
-            : p.side === 'left' ? p.x - 7 : p.x + 9}"
+        x="${p.side === 'right' ? xEnd + 7 : p.side === 'left' ? p.x - 7 : p.x + 9}"
         ${p.side === 'left' ? 'text-anchor="end"' : ''}>${esc(p.label)}</text>
     </a>`;
   }).join('');
@@ -245,6 +242,9 @@ function fieldSvg(view) {
   return `<svg class="field ${emphasised ? 'focused' : ''}"
       width="${view.inner}" height="${view.height}" viewBox="0 0 ${view.inner} ${view.height}"
       role="group" aria-label="Historiography on a time axis. Each mark is a link; a text list of the same entries is available under View · List.">
+    <defs><linearGradient id="fade-right" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#fbfaf4" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fbfaf4" stop-opacity=".92"/></linearGradient></defs>
     <g class="chrome">${washes}${grid}
       <line class="axis-line" x1="${view.x0}" y1="${view.axisTop + 22}" x2="${view.x1}"
         y2="${view.axisTop + 22}"/>${bands}${captions}</g>
@@ -256,26 +256,39 @@ function fieldDateNote(n, span) {
   if (!span) return `<strong>No span stated.</strong> <code>${esc(n.date_label)}</code> names
     people or methods rather than years, so it sits in the band’s strip rather than being given a
     date it does not claim.`;
-  const opening = n.entry_kind === 'periodical'
-    ? `<strong>First issue ${span.start}</strong>${span.end > span.start
-        ? `, running to ${span.end}` : ''}.`
-    : `<strong>Arrived ${span.start}</strong>${span.end > span.start
-        ? `, most influential through ${span.end}` : ' — a single dated arrival'}${span.precision === 'decade'
-        ? ' (decade precision)' : ''}.`;
-  const ending = span.endKind === 'terminus'
-    ? 'An ending is recorded, so the mark is capped.'
-    : span.endKind === 'title_change'
-      ? 'The title changed here. The periodical did not cease; it continued under a new name.'
-      : span.endKind === 'coverage_limit'
-        ? `The tail runs to ${span.coverage ?? graph.scope.main_period[1]}, where this atlas
-           stops — not to an ending. ${n.entry_kind === 'periodical'
-             ? 'No cessation is recorded for this periodical.'
-             : 'The field continues beyond what is mapped here.'}`
-        : 'The record simply stops here. The soft edge claims no ending.';
+  const wall = span.coverage ?? graph.scope.main_period[1];
+  const periodical = n.entry_kind === 'periodical';
+  const precision = span.precision === 'decade' ? ' (decade precision)' : '';
+  let opening, ending;
+  if (span.endKind === 'coverage_limit') {
+    opening = periodical
+      ? `<strong>First issue ${span.start}</strong>, drawn to ${wall}.`
+      : `<strong>From ${span.start}</strong>${precision}, drawn to ${wall}.`;
+    ending = `${wall} is the limit of this atlas’s coverage, not an ending: the mark fades into
+      the wall because the ${periodical ? 'periodical' : 'field'} continues beyond what is mapped here.`;
+  } else if (span.end > span.start) {
+    opening = periodical
+      ? `<strong>Published ${span.start}–${span.end}</strong>.`
+      : `<strong>Dated ${span.start}–${span.end}</strong> by its label${precision}.`;
+    ending = span.endKind === 'terminus'
+      ? 'An ending is recorded, so the mark is capped.'
+      : span.endKind === 'title_change'
+        ? 'The title changed here. The periodical did not cease; it continued under a new name.'
+        : 'The label stops here without recording an ending, so the mark has no closing cap.';
+  } else {
+    opening = `<strong>Dated ${span.start}</strong> by its label${precision}.`;
+    ending = span.endKind === 'terminus'
+      ? 'An ending is recorded in the same year.'
+      : 'A single year is all the label names, so the mark is a single mark, not a span.';
+  }
+  const ticks = milestoneYears(n).filter(y => y > span.start).length;
+  const tickNote = ticks ? ` The ${ticks === 1 ? 'other year' : `${ticks} other years`} the label
+    names ${ticks === 1 ? 'is' : 'are'} ticked on the bar.` : '';
   const prov = span.curated
     ? `From the curated <code>date_span</code>. ${esc(span.basis || '')}`
-    : `Read from <code>${esc(n.date_label)}</code> by the site, not curated as numbers.`;
-  return `${opening} ${ending}<br><span class="prov">${prov}</span>`;
+    : `Read from <code>${esc(n.date_label)}</code> by the site, not curated as numbers. The mark
+       says nothing about when the ${periodical ? 'periodical' : 'field'} was most influential.`;
+  return `${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
 }
 
 /* One relationship, with its evidence and references one click away. */
@@ -324,9 +337,10 @@ function fieldPanel() {
     if (p) return pathwayPanel(p);
     return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
     <h2>Hover to light up an argument. Click to hold it.</h2>
-    <p>A mark shows when something <strong>arrived and was most influential</strong> — not how
-    long it lasted. The left cap is its arrival; the tapering tail means it carried on, less
-    prominently, to the edge of what this atlas covers. Open a relationship to read its evidence.</p>
+    <p>A mark runs across <strong>the years an entry’s date label names</strong>. The left cap
+    is the earliest dated year. A bar that fades into the dashed wall at 2000 continues beyond
+    what this atlas covers: the wall is a limit of the map, not an ending. Ticks mark other
+    years the label names. Open a relationship to read its evidence.</p>
     <p class="fine-print">To let go of a held entry, click it again, click empty space in the chart,
     press Escape, or use “Show everything” at the top of this panel.</p>
     <p class="fine-print">${fieldCatalogue.unlinked.toLocaleString()} catalogued periodicals
@@ -373,10 +387,9 @@ function fieldList() {
   const pct = yr => Math.max(0, Math.min(100, (yr - lo) / (hi - lo) * 100));
   const mini = span => {
     if (!span) return '';
-    const a = pct(span.start), b = Math.max(a + 1.5, pct(span.end));
-    const tail = span.endKind === 'coverage_limit' ? pct(span.coverage ?? hi) : b;
-    return `<span class="mini" aria-hidden="true"><i style="left:${a}%;width:${b - a}%"></i>${
-      tail > b ? `<i class="tail" style="left:${b}%;width:${tail - b}%"></i>` : ''}</span>`;
+    const open = span.endKind === 'coverage_limit';
+    const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (span.coverage ?? hi) : span.end));
+    return `<span class="mini" aria-hidden="true"><i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
   };
   return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
       Dates describe arrival and influence, not a lifespan.</p>` +
@@ -415,7 +428,7 @@ function fieldPage() {
     <p class="fine-print">${state.view === 'list'
       ? 'Text view. Switch to Field for the visual arrangement.'
       : 'A text list of the same entries is available under View · List.'}
-      Bars are editorial readings of approximate dates, not verified chronology.</p>
+      Bars follow the years each date label names; they are editorial readings, not verified chronology or measures of influence.</p>
   </div>`;
 }
 

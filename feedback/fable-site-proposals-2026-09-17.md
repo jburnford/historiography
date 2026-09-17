@@ -55,6 +55,9 @@ At 390 px the field becomes a 154-row table with a full-width hero above it. Gro
 
 ### 9. Single-year marks read as nothing
 
+*Revised after review on 2026-09-17.* The original mark drew a short solid "arrival" at the first dated year and a pale tail to 2000, and the panel described the solid part as when an entry was "most influential". Nothing in the data supports that, and it made Annales look like a 1929 stub. The renderer now draws a label such as "1929 onward · coverage through 2000" solid from 1929 to the coverage wall with an open, fading end, keeps other dated years as ticks, and the panel describes the label rather than influence. The remaining point below still stands for labels that name only one year.
+
+
 47 of 145 spans parse to a single year (Annales 1929, Kuhn 1962, Latour 1979, Ranke 1824), so the mark is a 7 px sliver plus a tail; 66 more are decade precision. Draw the single-year arrival as a distinct glyph (cap with a short lead-in) and explain it in the legend. The real fix is curated `date_span` in the data; see the note to Astra.
 
 ### 10. Two diagrams for the same neighbourhood

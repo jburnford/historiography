@@ -4,10 +4,12 @@
    Two ideas do the work:
    1. Focus re-lays out. Holding an entry collapses everything unrelated to a thin ghost
       mark so the entry and its relations expand into the freed space.
-   2. Dates stay honest. Spans say when something arrived and was influential, not how long
-      it lasted. A curated `date_span` always wins over the prose parse, and the panel says
-      which was used. See scope.notes: "Dates describe approximate emergence or expansion,
-      not termination." */
+   2. Dates stay honest. A mark runs across the years its date label names. A label that
+      says "onward" or "coverage through 2000" is drawn solid to the atlas's coverage wall
+      with an open, fading end: the wall is a limit of the map, never an ending. Nothing in
+      the drawing claims a period of peak influence. A curated `date_span` always wins over
+      the prose parse, and the panel says which was used. See scope.notes: "Dates describe
+      approximate emergence or expansion, not termination." */
 
 export const BASE_KINDS = ['critique', 'contribution', 'influence', 'comparison'];
 export const KIND_SECTION = {
@@ -246,24 +248,24 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     for (const item of full.filter(r => r.span).sort((a, b) =>
         a.span.start - b.span.start || a.node.label.localeCompare(b.node.label))) {
       const bx = scale(item.span.start);
-      const point = item.span.start === item.span.end;
-      const bw = Math.max(point ? 12 : 7, scale(item.span.end) - bx);
+      /* An open-ended label is drawn solid to the coverage wall; the wall is the map's limit. */
+      const open = item.span.endKind === 'coverage_limit';
+      const drawEnd = open ? (item.span.coverage ?? coverageYear) : item.span.end;
+      const point = drawEnd === item.span.start;
+      const bw = Math.max(point ? 12 : 7, scale(drawEnd) - bx);
       const label = labelOf(item.node);
-      const tailTo = item.span.endKind === 'coverage_limit' ? (item.span.coverage ?? coverageYear) : null;
-      const contW = tailTo !== null ? Math.max(0, scale(tailTo) - (bx + bw)) : 0;
-      const fitsRight = bx + bw + contW + 7 + textW(label) <= x1;
+      const fitsRight = bx + bw + 7 + textW(label) <= x1;
       const fitsLeft = bx - textW(label) - 9 >= G.padL;
       const side = fitsRight ? 'right' : fitsLeft ? 'left' : 'inside';
       const need = side === 'left' ? bx - textW(label) - 9 : bx;
-      const occupied = side === 'right' ? bx + bw + contW + 7 + textW(label) : bx + bw + contW;
+      const occupied = side === 'right' ? bx + bw + 7 + textW(label) : bx + bw;
       let r = rowEnds.findIndex(end => end + 16 <= need);
       if (r === -1) { r = rowEnds.length; rowEnds.push(0); }
       rowEnds[r] = occupied;
-      const last = tailTo ?? item.span.end;
       const ticks = milestoneYears(item.node)
-        .filter(yr => yr > item.span.start && yr <= last).map(yr => ({yr, x: scale(yr)}));
-      bars.push({...item, shape: 'bar', label, side, contW, point, ticks, x: bx, w: bw, h: G.barH,
-        y: barTop + r * (G.barH + G.rowGap)});
+        .filter(yr => yr > item.span.start && yr <= drawEnd).map(yr => ({yr, x: scale(yr)}));
+      bars.push({...item, shape: 'bar', label, side, contW: 0, open, drawEnd, point, ticks,
+        x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
     }
 
     const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap);
@@ -271,7 +273,9 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     const ghostEnds = [];
     for (const item of faded.sort((a, b) => (a.span?.start ?? 0) - (b.span?.start ?? 0))) {
       const bx = item.span ? scale(item.span.start) : x0;
-      const bw = item.span ? Math.max(5, scale(item.span.end) - bx) : 40;
+      const ghostEnd = item.span?.endKind === 'coverage_limit'
+        ? (item.span.coverage ?? coverageYear) : item.span?.end;
+      const bw = item.span ? Math.max(5, scale(ghostEnd) - bx) : 40;
       let r = ghostEnds.findIndex(end => end + 2 <= bx);
       if (r === -1) { r = ghostEnds.length; ghostEnds.push(0); }
       ghostEnds[r] = bx + bw;

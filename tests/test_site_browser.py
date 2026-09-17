@@ -305,9 +305,16 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertGreater(self.page.locator('details.band-list').count(), 1)
         self.assertEqual(self.page.locator('.field-table tbody tr').count(), drawn)
 
-        # Dates are described as arrival, not as a lifespan.
+        # Dates describe the label, never influence; an open-ended label runs to the coverage wall.
         self.open('#focus=annales')
-        expect(self.page.locator('.datewhy')).to_contain_text('Arrived')
+        note = self.page.locator('.datewhy')
+        expect(note).to_contain_text('From 1929')
+        expect(note).to_contain_text('limit of this atlas')
+        expect(note).not_to_contain_text('influential through')
+        bar = self.page.locator('.entry.selected .bar-shape').bounding_box()
+        wall = self.page.locator('.coverage-wall').bounding_box()
+        self.assertAlmostEqual(bar['x'] + bar['width'], wall['x'], delta=2, msg='Annales must run solid to the 2000 wall')
+        expect(self.page.locator('.entry.selected .bar-fade')).to_have_count(1)
 
     def test_releasing_a_held_entry(self):
         """Four ways out of a hold: the panel link, the bar itself, empty space, Escape."""
