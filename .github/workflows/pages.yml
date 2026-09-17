@@ -1,0 +1,50 @@
+name: Build and deploy the atlas
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      # Data and view checks must pass before anything is published.
+      - name: Validate the curated graph
+        run: python3 scripts/validate_graph.py
+      - name: Data tests
+        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_journal_validation
+      - name: View tests
+        run: node tests/test_site_core.mjs
+      # The build copies an explicit allowlist; nothing else reaches the public site.
+      - name: Build the allowlisted site
+        run: python3 scripts/build_site.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

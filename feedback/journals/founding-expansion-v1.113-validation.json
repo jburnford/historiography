@@ -1,0 +1,54 @@
+{
+  "revision": "1.113",
+  "checked_on": "2026-09-16",
+  "python_tests": 57,
+  "python_result": "passed",
+  "javascript_core_suite": "passed",
+  "structural_errors": 0,
+  "structural_warnings": [
+    "edge_369",
+    "edge_610",
+    "edge_662",
+    "edge_685"
+  ],
+  "warnings_unchanged": true,
+  "preservation_and_offline_rebuild": "passed",
+  "preservation_script": "scripts/audit_journal_founding_expansion.py",
+  "public_assets": [
+    {
+      "path": "index.html",
+      "source": "site/index.html",
+      "sha256": "fdc7923a21098c45dfd03a7142ef99fc067d3599e77fb0f320bc8efeb88faa95"
+    },
+    {
+      "path": "styles.css",
+      "source": "site/styles.css",
+      "sha256": "ab9b7d886d21962654312794d2c2cb2fd044c63864c40ff6416d8a2dd7688682"
+    },
+    {
+      "path": "app.js",
+      "source": "site/app.js",
+      "sha256": "d8053619397f47390998839f490ef7f8d0e92d3f877a2fbbf7e196b6885e24f4"
+    },
+    {
+      "path": "core.mjs",
+      "source": "site/core.mjs",
+      "sha256": "8e84f2e1b0acf16bbbee8be4bcffa1c53b57b2ce18ae092142257f7738457298"
+    },
+    {
+      "path": "data/graph.json",
+      "source": "historiography-1920-2000.json",
+      "sha256": "cedca666e0570839b1a762236d1a403058ec330a2c836fcee522295feeb8b905"
+    },
+    {
+      "path": "data/pathways.json",
+      "source": "seminar-pathways.json",
+      "sha256": "8da0c779f9371100000e2e93e19e94397fd854ce4818fb73db5cb0f0f0b4f79a"
+    }
+  ],
+  "exact_six_file_allowlist": true,
+  "public_assets_match_inputs": true,
+  "deployed": false,
+  "frontend_design_changed": false,
+  "openalex_requests": 0
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A selective, interactive map of historiography, 1920–2000 with earlier roots, for reading and discussion alongside Lynn Hunt.">
+  <title>Historiography · A seminar atlas</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to exploration</a>
+  <header class="masthead">
+    <a class="wordmark" href="#"><span class="brand-mark" aria-hidden="true">h.</span> THE HISTORIOGRAPHY ATLAS</a>
+    <span class="edition">A seminar companion <span> / </span> <span id="edition-label">Curated draft</span> <span class="beta">Beta</span></span>
+  </header>
+  <main>
+    <section class="introduction" aria-labelledby="page-title">
+      <div><p class="eyebrow">1920–2000 · WITH EARLIER ROOTS</p>
+        <h1 id="page-title">How do we explain the past?</h1>
+        <p class="deck">See the whole field on one time axis, hold an entry to read its arguments, then follow the disagreements.<br> A selective, contestable map for reading alongside Lynn Hunt’s <cite>Writing History in the Global Era</cite>.</p>
+      </div>
+      <div class="scope-stamp"><strong id="total-entries">—</strong><span>entries in conversation<br>across four layers</span></div>
+    </section>
+    <nav class="main-nav" aria-label="Explore the atlas">
+      <a href="#" data-tab="field">The field</a>
+      <a href="#tab=browse" data-tab="browse">Browse entries</a>
+      <a href="#tab=people" data-tab="people">Historians & contributors</a>
+      <a href="#tab=pathways" data-tab="pathways">Seminar pathways <span>13</span></a>
+      <a href="#tab=about" data-tab="about">Reading this map</a>
+      <a href="#" class="reset">Reset view ↺</a>
+    </nav>
+    <div class="toolbar" id="toolbar">
+      <label class="search-label"><span>Find an entry or work</span><input id="search" type="search" placeholder="Try “Thompson”, “agency”, “Metahistory”…" autocomplete="off"></label>
+      <label><span>Layer</span><select id="layer-filter"><option value="">All four layers</option></select></label>
+      <label><span>Period grouping</span><select id="period-filter"><option value="">All periods</option></select></label>
+      <label class="check-label"><input id="hunt-filter" type="checkbox"> Hunt’s four paradigms</label>
+    </div>
+    <div id="notice" role="status"></div>
+    <div id="workspace" tabindex="-1"><p class="loading">Opening the atlas…</p></div>
+    <p class="sr-only" id="announcement" aria-live="polite" aria-atomic="true"></p>
+  </main>
+  <footer><span>A teaching interpretation, open to question.</span><span>Primarily Western academic historiography, with selected independent and critical traditions.</span></footer>
+  <noscript>This interactive atlas needs JavaScript. You can download the <a href="data/graph.json">curated graph</a> and <a href="data/pathways.json">seminar pathways</a>.</noscript>
+</body>
+</html>

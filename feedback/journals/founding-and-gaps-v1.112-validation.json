@@ -1,0 +1,49 @@
+{
+  "revision": "1.112",
+  "structural_errors": 0,
+  "unchanged_structural_warnings": 4,
+  "python_tests_passed": 54,
+  "python_command": "python3 -m unittest tests.test_journal_venue_merge tests.test_journal_validation tests.test_journal_metadata_merge tests.test_journal_subject_merge tests.test_journal_batch_validation tests.test_graph_validation tests.test_people_validation",
+  "javascript_command": "node --test tests/test_site_core.mjs",
+  "javascript_passed": true,
+  "offline_rebuild_and_preservation_audit": "founding-and-gaps-v1.112.json",
+  "public_assets": [
+    {
+      "source": "site/index.html",
+      "output": "index.html",
+      "sha256": "fdc7923a21098c45dfd03a7142ef99fc067d3599e77fb0f320bc8efeb88faa95",
+      "byte_equal": true
+    },
+    {
+      "source": "site/styles.css",
+      "output": "styles.css",
+      "sha256": "ab9b7d886d21962654312794d2c2cb2fd044c63864c40ff6416d8a2dd7688682",
+      "byte_equal": true
+    },
+    {
+      "source": "site/app.js",
+      "output": "app.js",
+      "sha256": "d8053619397f47390998839f490ef7f8d0e92d3f877a2fbbf7e196b6885e24f4",
+      "byte_equal": true
+    },
+    {
+      "source": "site/core.mjs",
+      "output": "core.mjs",
+      "sha256": "8e84f2e1b0acf16bbbee8be4bcffa1c53b57b2ce18ae092142257f7738457298",
+      "byte_equal": true
+    },
+    {
+      "source": "historiography-1920-2000.json",
+      "output": "data/graph.json",
+      "sha256": "7de0f2dc10bee02c01a41db1097d3cf2b3aedecea0eb4812decac3c620dc4d0d",
+      "byte_equal": true
+    },
+    {
+      "source": "seminar-pathways.json",
+      "output": "data/pathways.json",
+      "sha256": "8da0c779f9371100000e2e93e19e94397fd854ce4818fb73db5cb0f0f0b4f79a",
+      "byte_equal": true
+    }
+  ],
+  "deployed": false
+}

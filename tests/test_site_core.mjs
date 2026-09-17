@@ -1,0 +1,178 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from '../site/core.mjs';
+import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
+  relationIndex, buildFieldLayout, focusSetFor, JOURNAL_LAYER} from '../site/field.mjs';
+
+const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
+const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
+
+test('arrows never turn legacy links or comparisons into influence', () => {
+  const legacy = {source:'a',target:'b',type:'connection'};
+  assert.equal(edgeKind(legacy), 'unclassified');
+  assert.equal(hasArrow(legacy), false);
+  assert.ok(graph.edges.some(e => edgeKind(e) === 'comparison'));
+  for (const e of graph.edges) {
+    if (!e.relationship_kind || e.relationship_kind === 'comparison') assert.equal(hasArrow(e), false, e.id);
+    else assert.equal(hasArrow(e), true, e.id);
+  }
+});
+test('a person can span groups while critic and resource roles remain distinct', () => {
+  const hobsbawm = graph.people.find(p => p.label === 'Eric Hobsbawm');
+  assert.ok(personContexts(graph, hobsbawm.id).length > 1);
+  assert.ok(filterPeople(graph, {query:'Hobsbawm'}).some(p => p.id === hobsbawm.id));
+  const eley = graph.people.find(p => p.label === 'Geoff Eley');
+  assert.equal(personContexts(graph,eley.id).find(c=>c.node.id==='bielefeld').representative.role,'critic');
+  assert.equal(personContexts(graph,'geertz').find(c=>c.node.id==='culture').representative.role,'contributor');
+  assert.ok(filterNodes(graph.nodes,{query:'Geoff Eley'},graph.people).some(n=>n.id==='bielefeld'));
+  assert.ok(filterNodes(graph.nodes,{query:'E. P. Thompson'},graph.people).some(n=>n.id==='culture'));
+});
+test('every edge is reachable once in its correct directional lane', () => {
+  for (const n of graph.nodes) {
+    const rows=neighborhood(graph,n.id);
+    const lanes=partitionNeighborhood(rows,n.id);
+    assert.equal(Object.values(lanes).flat().length, rows.length);
+    for (const r of lanes.incoming) { assert.equal(r.edge.target,n.id); assert.ok(hasArrow(r.edge)); }
+    for (const r of lanes.outgoing) { assert.equal(r.edge.source,n.id); assert.ok(hasArrow(r.edge)); }
+    for (const r of lanes.associated) assert.equal(hasArrow(r.edge),false);
+  }
+});
+test('search includes works and preserves distinct Marx IDs', () => {
+  assert.ok(filterNodes(graph.nodes, {query: 'Metahistory'}).some(n => n.id === 'white'));
+  assert.ok(filterNodes(graph.nodes, {query: 'Pinchbeck'}).some(n => n.id === 'ivy_pinchbeck'));
+  assert.notEqual(graph.nodes.find(n => n.id === 'karl').label, graph.nodes.find(n => n.id === 'marx').label);
+  assert.equal(filterNodes(graph.nodes, {hunt: true}).length, 4);
+  assert.equal(filterNodes(graph.nodes, {query: 'no-such-entry-xyz'}).length, 0);
+});
+test('period browsing retains unassigned entries and filters compose', () => {
+  const unknown = graph.nodes.filter(n => !n.period);
+  for (const p of graph.periods) {
+    const rows = filterNodes(graph.nodes, {period: p.id});
+    for (const n of unknown) assert.ok(rows.includes(n));
+    assert.ok(rows.every(n => !n.period || n.period === p.id));
+  }
+  assert.equal(filterNodes(graph.nodes, {period: 'unassigned'}).length, unknown.length);
+  assert.ok(filterNodes(graph.nodes, {layer: 'intellectual_connections', query: 'women'}).every(n => n.layer === 'intellectual_connections'));
+});
+test('every relationship remains reachable from both endpoint neighborhoods', () => {
+  for (const n of graph.nodes) {
+    const rows = neighborhood(graph, n.id);
+    assert.equal(rows.length, graph.edges.filter(e => e.source === n.id || e.target === n.id).length);
+    for (const {edge, node} of rows) {
+      assert.notEqual(node.id, n.id);
+      assert.ok([edge.source, edge.target].includes(node.id));
+    }
+  }
+});
+test('direct URLs resolve edges, reject unknown IDs, and preserve pathway context', () => {
+  const e = graph.edges.find(e => e.relationship_kind === 'comparison');
+  const route = readRoute(`#edge=${e.id}`, graph, pathways);
+  assert.equal(route.node, e.source);
+  assert.equal(route.edge, e.id);
+  const invalid = readRoute('#node=missing&layer=bad&period=bad&kind=bad&page=-3', graph, pathways);
+  assert.equal(invalid.node, ''); assert.equal(invalid.page, 0); assert.equal(invalid.kind, '');
+  const state = readRoute('#node=annales&pathway=paradigms_and_limits&view=list&query=a%26b', graph, pathways);
+  assert.deepEqual(readRoute(routeHash(state), graph, pathways), state);
+  assert.ok(routeHash({...state, view: 'map'}).includes('view=map'), 'mobile needs an explicit map override');
+});
+
+test('central contributors have directional links and field branches are searchable', () => {
+  for (const [person, field] of [['kuhn','science'],['marc_bloch','annales'],['maurice_dobb','marx']]) {
+    assert.ok(neighborhood(graph,field).some(r=>r.node.id===person && hasArrow(r.edge)));
+  }
+  assert.ok(filterNodes(graph.nodes,{query:'cliometrics'},graph.people).some(n=>n.id==='economic'));
+  assert.ok(filterNodes(graph.nodes,{query:'Labrousse'},graph.people).some(n=>n.id==='annales'));
+});
+
+test('new public, medical and urban fields resolve in search, routes and shared person contexts', () => {
+  for (const [query, id] of [['Public history','publichistory'], ['Curing Their Ills','medicalhistory'], ['Streetcar Suburbs','urbanhistory']]) {
+    assert.ok(filterNodes(graph.nodes, {query}, graph.people).some(n => n.id === id));
+    assert.equal(readRoute(`#node=${id}`, graph, pathways).node, id);
+    assert.ok(neighborhood(graph,id).length > 0);
+  }
+  const hayden = personContexts(graph,'dolores_hayden').map(c => c.node.id);
+  assert.ok(hayden.includes('publichistory') && hayden.includes('urbanhistory'));
+  assert.ok(personContexts(graph,'roy_porter').some(c => c.node.id === 'medicalhistory'));
+  assert.equal(personContexts(graph,'dorothy_porter_wesley').some(c => c.node.id === 'medicalhistory'), false);
+  const comparison = neighborhood(graph,'medicalhistory').find(r => r.node.id === 'science');
+  assert.equal(hasArrow(comparison.edge), false);
+});
+
+test('spatial, intellectual, labour and ethnohistory remain distinct and navigable', () => {
+  for (const [query, id] of [['HGIS','spatialhistory'], ['history of ideas','intellectualhistory'], ['labor','labourhistory'], ['Ethnohistory','ethnohistory']]) {
+    assert.ok(filterNodes(graph.nodes, {query}, graph.people).some(n => n.id === id), query);
+    assert.equal(readRoute(`#node=${id}`, graph, pathways).node, id);
+  }
+  const thompson = personContexts(graph, 'ep_thompson').map(c => c.node.id);
+  assert.ok(thompson.includes('marx') && thompson.includes('labourhistory'));
+  const skinner = personContexts(graph, 'quentin_skinner').map(c => c.node.id);
+  assert.ok(skinner.includes('context') && skinner.includes('intellectualhistory'));
+  const ethno = neighborhood(graph, 'ethnohistory');
+  assert.equal(hasArrow(ethno.find(r => r.node.id === 'indigenous').edge), false);
+  assert.equal(personContexts(graph, 'angela_cavender_wilson').find(c => c.node.id === 'ethnohistory').representative.role, 'critic');
+});
+
+
+test('field dates: spans read arrival, never a coverage limit as an ending', () => {
+  // "coverage through 2000" is a statement about the atlas, not about the field.
+  const q = parseSpan('1950s–70s expansion · coverage through 2000');
+  assert.equal(q.start, 1950);
+  assert.equal(q.end, 1979, 'the coverage year must not become the span end');
+  assert.equal(q.coverage, 2000);
+  assert.equal(q.endKind, 'coverage_limit');
+  assert.equal(parseSpan('Ranke · archives · philology'), null, 'no years means no span');
+  assert.equal(parseSpan('Journal ran 1916 until 1929').endKind, 'terminus');
+  // A curated date_span wins, and a null end continues rather than stopping.
+  const curated = spanOf({date_span: {start: 1967, end: null, precision: 'year'}, date_label: 'x'});
+  assert.ok(curated.curated);
+  assert.equal(curated.endKind, 'coverage_limit', 'an unverified end is not an ending');
+});
+
+test('field taxonomy is derived from the data, so new layers and kinds cannot vanish', () => {
+  const nodes = fieldNodes(graph);
+  const ids = new Set(nodes.map(n => n.id));
+  for (const n of graph.nodes) assert.ok(ids.has(n.id), `${n.id} missing from the field`);
+  const {nodes: journals, edges: jEdges, unlinked} = journalNodes(graph);
+  assert.equal(nodes.length, graph.nodes.length + journals.length);
+  // Every promoted journal carries at least one evidenced edge; the rest stay counted.
+  const linked = new Set(jEdges.flatMap(e => [e.source, e.target]));
+  for (const j of journals) assert.ok(linked.has(j.id), `${j.id} promoted without an edge`);
+  assert.ok(unlinked >= 0);
+  if (journals.length) assert.ok(fieldLayers(graph, {}).includes(JOURNAL_LAYER));
+  // Kinds beyond the curated four are surfaced rather than dropped.
+  const kinds = fieldKinds(graph);
+  for (const e of fieldEdges(graph)) assert.ok(kinds.includes(e.relationship_kind), e.relationship_kind);
+});
+
+test('field layout places every entry it counts', () => {
+  const order = fieldLayers(graph, {});
+  const view = buildFieldLayout(graph, 1400, null, order);
+  const total = fieldNodes(graph).length;
+  assert.equal(view.placed.size, total, 'a counted entry must also be drawn');
+  assert.equal(view.datedCount + view.undatedCount, total);
+  // Focus keeps the focused entry and its neighbours full size, ghosting the rest.
+  const index = relationIndex(graph);
+  const busiest = fieldNodes(graph)
+    .map(n => [n.id, (index.get(n.id) || []).length]).sort((a, b) => b[1] - a[1])[0][0];
+  const focused = buildFieldLayout(graph, 1400, focusSetFor(graph, busiest, index), order);
+  assert.equal(focused.placed.size, total, 'ghosted entries stay addressable');
+  assert.ok(focused.ghosts.length > 0, 'unrelated entries should be set aside');
+  assert.ok(focused.height < view.height, 'focus must reclaim vertical space');
+});
+
+test('focus routes to the field and is distinct from an entry page', () => {
+  graph.__fieldNodes = fieldNodes(graph);
+  const journal = journalNodes(graph).nodes[0];
+  if (journal) {
+    const r = readRoute(`#focus=${journal.id}`, graph, pathways);
+    assert.equal(r.focus, journal.id, 'a linked journal must be addressable in the field');
+    assert.equal(r.node, '', 'a journal is not an atlas entry page');
+  }
+  assert.equal(readRoute('#focus=not-a-real-id', graph, pathways).focus, '');
+  const both = readRoute('#focus=annales&node=marx', graph, pathways);
+  assert.equal(both.node, 'marx');
+  assert.equal(both.focus, '', 'an entry page clears the field focus');
+  assert.equal(readRoute('#hide=comparison,critique', graph, pathways).hide, 'comparison,critique');
+  assert.equal(readRoute('#hide=<script>', graph, pathways).hide, '', 'hide must be validated');
+});

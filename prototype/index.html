@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Field · Historiography prototype</title>
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="field.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#field">Skip to the field</a>
+
+<header class="bar">
+  <div class="bar-left">
+    <span class="mark" aria-hidden="true">h.</span>
+    <div>
+      <h1>The Field</h1>
+      <p>Historiography, 1880–2000 · <span id="rev">prototype</span></p>
+    </div>
+  </div>
+  <div class="bar-right">
+    <label class="find"><span class="sr-only">Search entries, people, and relationships</span>
+      <input id="q" type="search" placeholder="Search entries, historians, relationships…" autocomplete="off">
+    </label>
+    <button id="reset" type="button">Clear</button>
+  </div>
+</header>
+
+<section class="legend-bar" aria-label="How to read this view">
+  <div class="lg" id="kind-legend"><strong>Relationships</strong></div>
+  <div class="lg">
+    <strong>The mark</strong>
+    <span class="swatch precise" title="Arrival, then the period of high influence">arrival &amp; high influence</span>
+    <span class="swatch fuzzy" title="Only a decade is stated">decade only</span>
+    <span class="swatch open" title="Continues past the stated span, at lower salience">continues after</span>
+    <span class="swatch ends" title="The label states an ending">recorded end</span>
+  </div>
+  <div class="lg">
+    <strong>Axis</strong>
+    <span class="swatch axis-note">pre-1900 compressed</span>
+  </div>
+  <div class="lg right">
+    <label class="tog"><input id="show-all" type="checkbox"> Draw every relationship at once</label>
+  </div>
+</section>
+
+<p id="notice" role="status" hidden></p>
+<main>
+  <div id="field" tabindex="-1" class="field-wrap">
+    <p class="loading">Reading the graph…</p>
+  </div>
+  <aside id="panel" class="panel" aria-live="polite">
+    <div class="panel-empty">
+      <p class="eyebrow">Nothing selected</p>
+      <h2>Hover to light up an argument. Click to hold it.</h2>
+      <p>A mark shows when a field <strong>arrived and was most influential</strong> — not how long it lasted. The left cap is its arrival; the tapering tail means it carried on, less prominently, to the edge of what this atlas covers.</p>
+      <p class="note">Entries whose date label states no span sit in the rail at the left of their own band, so their relationships stay inside the picture. They are waiting on curated <code>date_span</code> values rather than being given a date they do not claim.</p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <span>Prototype of a time-spined field view. The curated JSON is authoritative; spans are parsed from its prose date labels at load.</span>
+  <span id="counts"></span>
+</footer>
+</body>
+</html>
