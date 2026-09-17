@@ -191,8 +191,15 @@ test('field layout fits the box it is given and never reserves a rail', () => {
   }
   const view = buildFieldLayout(graph, 1400, null, order);
   if (view.undatedCount) assert.ok(view.captions.length > 0, 'undated strip must be captioned');
-  const point = view.bars.find(b => b.span.start === b.span.end);
-  if (point) assert.ok(point.point && point.w >= 12, 'a single dated arrival is drawn as a mark, not a sliver');
+  // "onward · coverage through 2000" is drawn solid to the wall and marked open, never as a stub.
+  const annales = view.bars.find(b => b.node.id === 'annales');
+  assert.ok(annales.open && !annales.point);
+  assert.ok(Math.abs(annales.x + annales.w - view.scale(view.coverageYear)) < 0.5, 'open ends reach the coverage wall');
+  for (const b of view.bars.filter(b => b.span.endKind === 'coverage_limit'))
+    assert.ok(Math.abs(b.x + b.w - view.scale(b.span.coverage ?? view.coverageYear)) < 0.5, b.node.id);
+  // A label naming one year, with no "onward", is a single mark of readable width.
+  const point = view.bars.find(b => b.point);
+  if (point) assert.ok(point.w >= 12 && point.span.endKind !== 'coverage_limit', 'a single dated year is drawn as a mark, not a sliver');
 });
 
 test('milestone ticks come only from years the label actually names, inside the span', () => {
