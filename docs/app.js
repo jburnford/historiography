@@ -1,7 +1,7 @@
 import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from './core.mjs';
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
-  BASE_KINDS, JOURNAL_LAYER} from './field.mjs';
+  pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER} from './field.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -76,13 +76,28 @@ function personPage() {
 }
 
 /* ---------------- The field: every entry on one time axis ---------------- */
-let fieldIndex, fieldNodeById, fieldCatalogue, hoverId = null;
+let fieldIndex, fieldNodeById, fieldCatalogue, journalSourceById, atlasEdgeIds;
+let hoverId = null, fieldWidth = 0, scrolledFocus = '';
 
 const FIELD_TITLES = {...LAYER_TITLES, [JOURNAL_LAYER]: 'Journals & venues'};
 const fieldTitle = id => FIELD_TITLES[id]
   || String(id).replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 const hiddenKinds = () => new Set(state.hide ? state.hide.split(',') : []);
 const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: ''});
+const activePathway = () => state.path ? pathways.pathways.find(p => p.id === state.path) : null;
+const pathNumbering = () => {
+  const p = activePathway();
+  return p ? new Map(p.node_ids.map((id, i) => [id, i + 1])) : null;
+};
+/* Focus wins over a pathway overlay; the pathway stays in the URL as context. */
+function fieldFocusSet() {
+  if (state.focus) return focusSetFor(graph, state.focus, fieldIndex);
+  return pathwaySet(activePathway());
+}
+function fieldView(width) {
+  return buildFieldLayout(graph, width, fieldFocusSet(), fieldLayers(graph, FIELD_TITLES),
+    {numbering: state.focus ? null : pathNumbering()});
+}
 
 function fieldLegend() {
   const kinds = fieldKinds(graph);
@@ -97,25 +112,33 @@ function fieldLegend() {
   };
   return `<div class="field-legend">
     <div class="lg"><strong>Relationships</strong>${kinds.map(k =>
-      `<a class="kind k-${esc(k)}${BASE_KINDS.includes(k) ? '' : ' k-extra'}"
+      `<a class="kind k-${esc(k)}${BASE_KINDS.includes(k) ? '' : ' k-extra'}" role="button"
         href="${esc(toggle(k))}" aria-pressed="${!hidden.has(k)}"
         title="${hidden.has(k) ? 'Show' : 'Hide'} ${esc(kindChip(k).toLowerCase())}"
         ><i></i>${esc(kindChip(k))} <em>${counts.get(k) || 0}</em></a>`).join('')}</div>
     <div class="lg"><strong>The mark</strong>
       <span class="swatch precise">arrival &amp; high influence</span>
+      <span class="swatch point">single dated arrival</span>
       <span class="swatch fuzzy">decade only</span>
       <span class="swatch open">continues after</span>
       <span class="swatch axis-note">pre-1900 compressed</span></div>
     <div class="lg right"><strong>View</strong>
-      <a class="view-link" href="${esc(href({view: 'map'}))}"
+      <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
         aria-pressed="${state.view !== 'list'}">Field</a>
-      <a class="view-link" href="${esc(href({view: 'list'}))}"
+      <a class="view-link" role="button" href="${esc(href({view: 'list'}))}"
         aria-pressed="${state.view === 'list'}">List</a></div>
   </div>`;
 }
 
-function fieldSvg(view) {
+/* The relationships the field is currently showing: a held entry's, or a pathway's own. */
+function activeFieldEdges() {
   const hidden = hiddenKinds();
+  const edges = state.focus ? (fieldIndex.get(state.focus) || []).map(r => r.edge)
+    : pathwayEdges(graph, activePathway(), fieldIndex);
+  return edges.filter(e => !hidden.has(e.relationship_kind));
+}
+
+function fieldSvg(view) {
   const bottom = view.height;
   const washes = graph.periods.map((per, i) => {
     const nums = (per.label.match(/\b(1[89]\d{2}|20\d{2})\b/g) || []).map(Number);
@@ -144,36 +167,32 @@ function fieldSvg(view) {
       >curated coverage ends ${view.coverageYear}</text>
     <line class="scale-break" x1="${bx}" y1="${view.axisTop + 16}" x2="${bx}" y2="${bottom}"/>`;
 
-  const rail = view.railW ? `<text class="rail-head" x="${view.G.padL}" y="${view.axisTop + 13}"
-      >No span stated · ${view.undatedCount}</text>
-    <line class="rail-rule" x1="${view.x0 - view.G.railGap / 2}" y1="${view.axisTop + 14}"
-      x2="${view.x0 - view.G.railGap / 2}" y2="${bottom}"/>` : '';
-
   const bands = view.bands.map(b => `<line class="band-rule" x1="${view.G.padL}"
       y1="${b.labelY - 13}" x2="${view.x1}" y2="${b.labelY - 13}"/>
     <text class="band-label" x="${view.x0}" y="${b.labelY}">${esc(fieldTitle(b.layerId))}</text>
     <text class="band-count" x="${view.x1}" y="${b.labelY}" text-anchor="end">${
       b.faded ? `${b.full} shown · ${b.faded} set aside` : `${b.full} entries`}</text>`).join('');
+  const captions = view.captions.map(c => `<text class="chip-caption" x="${c.x}" y="${c.y}"
+      >${esc(c.text)}</text>`).join('');
 
-  const edges = (state.focus ? fieldIndex.get(state.focus) || [] : [])
-    .filter(r => !hidden.has(r.edge.relationship_kind))
-    .map(r => {
-      const a = view.placed.get(r.edge.source), b = view.placed.get(r.edge.target);
-      if (!a || !b) return '';
-      const kind = BASE_KINDS.includes(r.edge.relationship_kind)
-        ? r.edge.relationship_kind : 'extra-kind';
-      return `<path class="edge ${kind}" data-edge="${esc(r.edge.id)}"
-        d="${esc(edgePath(anchor(a), anchor(b)))}"/>`;
-    }).join('');
+  const shown = activeFieldEdges();
+  const edges = shown.map(e => {
+    const a = view.placed.get(e.source), b = view.placed.get(e.target);
+    if (!a || !b) return '';
+    const kind = BASE_KINDS.includes(e.relationship_kind) ? e.relationship_kind : 'extra-kind';
+    return `<path class="edge ${kind}" data-edge="${esc(e.id)}"
+      d="${esc(edgePath(anchor(a), anchor(b)))}"/>`;
+  }).join('');
 
   const related = new Set();
-  if (state.focus) for (const r of fieldIndex.get(state.focus) || [])
-    if (!hidden.has(r.edge.relationship_kind)) related.add(r.other);
+  if (state.focus) for (const e of shown) related.add(e.source === state.focus ? e.target : e.source);
+  else for (const id of pathwaySet(activePathway()) || []) related.add(id);
+  const emphasised = Boolean(state.focus || state.path);
   const cls = p => {
     const on = [];
     if (p.node.id === state.focus) on.push('selected');
     else if (related.has(p.node.id)) on.push('related');
-    else if (state.focus) on.push('dimmed');
+    else if (emphasised) on.push('dimmed');
     if (state.query && !fieldMatches(graph, fieldIndex, personNames, p.node.id, state.query))
       on.push('dimmed');
     else if (state.query) on.push('hit');
@@ -199,13 +218,15 @@ function fieldSvg(view) {
       ${p.contW > 2 ? `<path class="bar-tail" d="M${xEnd},${p.y}
         L${xEnd + p.contW},${p.y + (p.h - 2.5) / 2} L${xEnd + p.contW},${p.y + (p.h + 2.5) / 2}
         L${xEnd},${p.y + p.h} Z"/>` : ''}
-      <rect class="bar-shape ${p.node.entry_kind === 'person' ? 'person' : ''}${
+      <rect class="bar-shape${p.point ? ' point' : ''}${p.node.entry_kind === 'person' ? ' person' : ''}${
         p.node.entry_kind === 'periodical' ? ' periodical' : ''}"
         x="${p.x}" y="${p.y}" width="${p.w}" height="${p.h}"
-        ${fuzzy ? 'fill-opacity="0.62"' : ''} rx="3"/>
+        ${fuzzy && !p.point ? 'fill-opacity="0.62"' : ''} rx="3"/>
       <line class="bar-cap start" x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + p.h}"/>
       ${p.span.endKind === 'terminus'
         ? `<line class="bar-cap end" x1="${xEnd}" y1="${p.y}" x2="${xEnd}" y2="${p.y + p.h}"/>` : ''}
+      ${p.ticks.map(t => `<line class="ms" x1="${t.x}" y1="${p.y + 3}" x2="${t.x}" y2="${p.y + p.h - 3}"
+        ><title>${t.yr} · a year named in this entry’s date label</title></line>`).join('')}
       <text class="bar-label ${p.side}" y="${p.y + p.h / 2 + 1}"
         x="${p.side === 'right' ? xEnd + Math.max(p.contW, 0) + 7
             : p.side === 'left' ? p.x - 7 : p.x + 9}"
@@ -213,25 +234,26 @@ function fieldSvg(view) {
     </a>`;
   }).join('');
 
-  return `<div class="field-scroll"><svg class="field ${state.focus ? 'focused' : ''}"
+  /* role=group, not img: the marks inside are links and must stay reachable. */
+  return `<svg class="field ${emphasised ? 'focused' : ''}"
       width="${view.inner}" height="${view.height}" viewBox="0 0 ${view.inner} ${view.height}"
-      role="img" aria-label="Historiography on a time axis. A text list of the same entries is available.">
+      role="group" aria-label="Historiography on a time axis. Each mark is a link; a text list of the same entries is available under View · List.">
     <g class="chrome">${washes}${grid}
       <line class="axis-line" x1="${view.x0}" y1="${view.axisTop + 22}" x2="${view.x1}"
-        y2="${view.axisTop + 22}"/>${rail}${bands}</g>
+        y2="${view.axisTop + 22}"/>${bands}${captions}</g>
     <g class="ghosts">${ghosts}</g><g class="edges">${edges}</g>${chips}${bars}
-  </svg></div>`;
+  </svg>`;
 }
 
 function fieldDateNote(n, span) {
   if (!span) return `<strong>No span stated.</strong> <code>${esc(n.date_label)}</code> names
-    people or methods rather than years, so it waits in the rail rather than being given a
+    people or methods rather than years, so it sits in the band’s strip rather than being given a
     date it does not claim.`;
   const opening = n.entry_kind === 'periodical'
     ? `<strong>First issue ${span.start}</strong>${span.end > span.start
         ? `, running to ${span.end}` : ''}.`
     : `<strong>Arrived ${span.start}</strong>${span.end > span.start
-        ? `, most influential through ${span.end}` : ''}${span.precision === 'decade'
+        ? `, most influential through ${span.end}` : ' — a single dated arrival'}${span.precision === 'decade'
         ? ' (decade precision)' : ''}.`;
   const ending = span.endKind === 'terminus'
     ? 'An ending is recorded, so the mark is capped.'
@@ -249,22 +271,68 @@ function fieldDateNote(n, span) {
   return `${opening} ${ending}<br><span class="prov">${prov}</span>`;
 }
 
+/* One relationship, with its evidence and references one click away. */
+function relRow(r) {
+  const e = r.edge, kind = e.relationship_kind;
+  const other = fieldNodeById.get(r.other);
+  const tone = BASE_KINDS.includes(kind) ? kind : 'extra-kind';
+  const atlasEdge = atlasEdgeIds.has(e.id);
+  const sources = atlasEdge ? sourceList(e.source_ids) : sourceList(e.source_ids, journalSourceById);
+  const scope = e.temporal_scope?.start ? `<p class="fine-print">Dated ${e.temporal_scope.start}${
+    e.temporal_scope.end && e.temporal_scope.end !== e.temporal_scope.start ? `–${e.temporal_scope.end}` : ''}${
+    e.temporal_scope.meaning ? ` · ${esc(String(e.temporal_scope.meaning).replace(/_/g, ' '))}` : ''}.</p>` : '';
+  return `<details class="rel ${tone}" data-edge="${esc(e.id)}"><summary>
+      <span class="dir">${esc(dirWord(kind, r.dir))}</span>
+      <span class="who">${esc(other.label)}</span>
+      <span class="what">${esc(e.relationship)}</span></summary>
+    <div class="rel-body">
+      ${e.evidence_note ? `<p class="evidence"><strong>Evidence.</strong> ${esc(e.evidence_note)}</p>`
+        : '<p class="evidence fine-print">No evidence note is recorded for this relationship.</p>'}${scope}
+      <details class="rel-sources"><summary>References · ${e.source_ids?.length || 0}</summary>${sources}</details>
+      <p class="rel-links"><a href="${esc(focusHref(r.other))}">Hold ${esc(other.label)} →</a>${
+        atlasEdge ? `<a href="#edge=${esc(e.id)}">Inspect this relationship →</a>` : ''}</p>
+    </div></details>`;
+}
+
+function pathwayPanel(p) {
+  const among = pathwayEdges(graph, p, fieldIndex).length;
+  return `<div class="path-panel"><p class="eyebrow">Seminar pathway · ${p.node_ids.length} entries</p>
+    <h2 id="field-title" tabindex="-1">${esc(p.title)}</h2>
+    <p class="meta">Numbered in reading order. The order is a suggested sequence, not a claim of
+      influence; only the ${among} relationship${among === 1 ? '' : 's'} recorded among these
+      entries ${among === 1 ? 'is' : 'are'} drawn.</p>
+    <ol>${p.node_ids.map(id => `<li><a href="${esc(focusHref(id))}">${esc(nodeById.get(id).label)}</a></li>`).join('')}</ol>
+    <section class="sec"><h3>Questions to work with</h3><ol class="questions">${
+      p.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ol>
+      <div class="exercise"><p class="eyebrow">Try this</p><p>${esc(p.exercise)}</p></div></section>
+    <p class="panel-more"><a class="button-link" href="#pathway=${esc(p.id)}">Reading page for this pathway →</a>
+      <a class="text-link" href="${esc(href({path: ''}))}">Clear the overlay</a></p>
+    <p class="fine-print">Editorial teaching prompts, not quotations from Hunt.</p></div>`;
+}
+
 function fieldPanel() {
   const id = hoverId || state.focus;
-  if (!id) return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
+  const p = activePathway();
+  if (!id) {
+    if (p) return pathwayPanel(p);
+    return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
     <h2>Hover to light up an argument. Click to hold it.</h2>
     <p>A mark shows when something <strong>arrived and was most influential</strong> — not how
     long it lasted. The left cap is its arrival; the tapering tail means it carried on, less
-    prominently, to the edge of what this atlas covers.</p>
+    prominently, to the edge of what this atlas covers. Open a relationship to read its evidence.</p>
     <p class="fine-print">${fieldCatalogue.unlinked.toLocaleString()} catalogued periodicals
     are not shown: they have no evidenced founding, debate or principal-venue claim yet.</p></div>`;
+  }
   const n = fieldNodeById.get(id);
   const span = spanOf(n);
   const hidden = hiddenKinds();
   const rels = (fieldIndex.get(id) || []).filter(r => !hidden.has(r.edge.relationship_kind));
   const atlas = graph.nodes.some(x => x.id === id);
   const groups = [...new Set(rels.map(r => r.edge.relationship_kind))];
-  return `<p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
+  const seq = p ? p.node_ids.indexOf(id) : -1;
+  return `${p ? `<p class="path-strip">${seq >= 0 ? `Entry ${seq + 1} of ${p.node_ids.length} in` : 'Outside'}
+      the pathway <a href="${esc(href({focus: ''}))}">${esc(p.title)}</a>.</p>` : ''}
+    <p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
     <h2 id="field-title" tabindex="-1">${esc(n.label)}</h2>
     <p class="meta">${esc(n.date_label || 'No date label')} · ${esc(fieldTitle(n.layer))}</p>
     <div class="datewhy">${fieldDateNote(n, span)}</div>
@@ -274,18 +342,14 @@ function fieldPanel() {
     ${groups.map(kind => {
       const items = rels.filter(r => r.edge.relationship_kind === kind);
       return `<section class="sec"><h3>${esc(kindLabel(kind))} · ${items.length}</h3>${
-        items.map(r => `<a class="rel ${esc(BASE_KINDS.includes(kind) ? kind : 'extra-kind')}"
-          href="${esc(focusHref(r.other))}" data-edge="${esc(r.edge.id)}">
-          <span class="dir">${esc(dirWord(kind, r.dir))}</span>
-          <span class="who">${esc(fieldNodeById.get(r.other).label)}</span>
-          <span class="what">${esc(r.edge.relationship)}</span></a>`).join('')}</section>`;
+        items.map(relRow).join('')}</section>`;
     }).join('')}
     ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}"
       >Full entry, people &amp; references →</a></p>` : `<p class="panel-more fine-print">
       A catalogued periodical. Its atlas links are listed above; it has no entry page.</p>`}`;
 }
 
-/* The accessible equivalent of the field: the same entries, in time order, as text. */
+/* The accessible equivalent of the field: the same entries, in time order, grouped by band. */
 function fieldList() {
   const rows = fieldNodes(graph).map(n => ({n, span: spanOf(n)}))
     .filter(r => !state.query || fieldMatches(graph, fieldIndex, personNames, r.n.id, state.query))
@@ -293,35 +357,51 @@ function fieldList() {
       || a.n.label.localeCompare(b.n.label));
   if (!rows.length) return `<div class="empty"><h3>No entries match “${esc(state.query)}”.</h3>
     <a href="${esc(href({query: ''}))}">Clear the search →</a></div>`;
-  return `<table class="field-table"><caption>All ${rows.length} entries in time order.
-      Dates describe arrival and influence, not a lifespan.</caption>
-    <thead><tr><th scope="col">Dates</th><th scope="col">Entry</th><th scope="col">Kind</th>
-      <th scope="col">Relationships</th></tr></thead><tbody>${rows.map(({n, span}) => {
-      const rels = (fieldIndex.get(n.id) || []).length;
-      return `<tr><td class="td-date">${esc(span ? `${span.start}${span.end > span.start
-          ? `–${span.end}` : ''}` : 'not stated')}</td>
-        <td><a href="${esc(focusHref(n.id))}">${esc(n.label)}</a>
-          <span class="td-note">${esc(n.date_label)}</span></td>
-        <td>${esc(fieldTitle(n.layer))}</td>
-        <td class="td-num">${rels}</td></tr>`;
-    }).join('')}</tbody></table>`;
+  const starts = rows.filter(r => r.span).map(r => r.span.start);
+  const lo = Math.floor(Math.min(1900, ...starts) / 10) * 10;
+  const hi = Math.max(graph.scope?.main_period?.[1] ?? 2000, ...rows.filter(r => r.span).map(r => r.span.end));
+  const pct = yr => Math.max(0, Math.min(100, (yr - lo) / (hi - lo) * 100));
+  const mini = span => {
+    if (!span) return '';
+    const a = pct(span.start), b = Math.max(a + 1.5, pct(span.end));
+    const tail = span.endKind === 'coverage_limit' ? pct(span.coverage ?? hi) : b;
+    return `<span class="mini" aria-hidden="true"><i style="left:${a}%;width:${b - a}%"></i>${
+      tail > b ? `<i class="tail" style="left:${b}%;width:${tail - b}%"></i>` : ''}</span>`;
+  };
+  return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
+      Dates describe arrival and influence, not a lifespan.</p>` +
+    fieldLayers(graph, FIELD_TITLES).map(layerId => {
+      const mine = rows.filter(r => r.n.layer === layerId);
+      if (!mine.length) return '';
+      /* Narrow screens open one band at a time; the summary carries the count. */
+      return `<details class="band-list" ${matchMedia('(max-width: 700px)').matches ? '' : 'open'}><summary>${esc(fieldTitle(layerId))}<span>${mine.length}</span></summary>
+      <table class="field-table"><caption>${esc(fieldTitle(layerId))}</caption>
+      <thead><tr><th scope="col">Dates</th><th scope="col">Entry</th><th scope="col">Kind</th>
+        <th scope="col">Relationships</th></tr></thead><tbody>${mine.map(({n, span}) => {
+        const rels = (fieldIndex.get(n.id) || []).length;
+        return `<tr><td class="td-date">${esc(span ? `${span.start}${span.end > span.start
+            ? `–${span.end}` : ''}` : 'not stated')}${mini(span)}</td>
+          <td><a href="${esc(focusHref(n.id))}">${esc(n.label)}</a>
+            <span class="td-note">${esc(n.date_label)}</span></td>
+          <td>${esc(n.entry_type || fieldTitle(n.layer))}</td>
+          <td class="td-num">${rels}</td></tr>`;
+      }).join('')}</tbody></table></details>`;
+    }).join('');
 }
 
 function fieldPage() {
-  const width = $('workspace').clientWidth || 1200;
-  const view = buildFieldLayout(graph, width,
-    focusSetFor(graph, state.focus, fieldIndex), fieldLayers(graph, FIELD_TITLES));
+  const counts = fieldView(1200);   /* counts do not depend on width; the SVG is drawn after measuring */
   const body = state.view === 'list' ? `<div class="field-listing">${fieldList()}</div>`
-    : fieldSvg(view);
+    : '<div class="field-scroll" aria-busy="true"></div>';
   return `<div class="field-page">
     <div class="section-heading"><div><p class="eyebrow">01 / THE WHOLE FIELD</p>
       <h2>Historiography on one time axis</h2></div>
-      <p class="field-summary">${view.datedCount} placed in time${view.undatedCount
-        ? ` · ${view.undatedCount} without a stated span` : ''} ·
+      <p class="field-summary">${counts.datedCount} placed in time${counts.undatedCount
+        ? ` · ${counts.undatedCount} without a stated span` : ''} ·
         ${fieldEdges(graph).length} relationships</p></div>
     ${fieldLegend()}
     <div class="field-split">${body}
-      <aside class="field-panel" aria-live="polite">${fieldPanel()}</aside></div>
+      <aside class="field-panel">${fieldPanel()}</aside></div>
     <p class="fine-print">${state.view === 'list'
       ? 'Text view. Switch to Field for the visual arrangement.'
       : 'A text list of the same entries is available under View · List.'}
@@ -329,29 +409,61 @@ function fieldPage() {
   </div>`;
 }
 
-function wireField() {
-  const svg = document.querySelector('svg.field');
-  if (!svg) return;
+/* Draw the SVG into the box it will occupy, at the box's real width. Redrawn on resize. */
+function drawField() {
+  const box = document.querySelector('.field-scroll');
+  if (!box) return;
+  fieldWidth = box.clientWidth || 1000;
+  box.innerHTML = fieldSvg(fieldView(fieldWidth));
+  box.removeAttribute('aria-busy');
+  const svg = box.querySelector('svg.field');
   const panel = document.querySelector('.field-panel');
   const paint = () => { panel.innerHTML = fieldPanel(); };
-  svg.addEventListener('mouseover', e => {
-    const g = e.target.closest('.entry, .chip');
+  const preview = target => {
+    const g = target.closest?.('.entry, .chip');
     const id = g ? g.dataset.id : null;
     if (id === hoverId) return;
     hoverId = id;
     svg.classList.toggle('previewing', Boolean(id));
     paint();
-  });
-  svg.addEventListener('mouseleave', () => { hoverId = null; svg.classList.remove('previewing'); paint(); });
-  for (const box of [svg, panel]) {
-    box.addEventListener('mouseover', e => {
-      const row = e.target.closest('[data-edge]');
-      for (const path of svg.querySelectorAll('.edge')) {
-        path.classList.toggle('emph', Boolean(row) && path.dataset.edge === row.dataset.edge);
-        path.classList.toggle('mute', Boolean(row) && path.dataset.edge !== row.dataset.edge);
-      }
-    });
+  };
+  const clear = () => { if (hoverId === null) return; hoverId = null; svg.classList.remove('previewing'); paint(); };
+  svg.addEventListener('mouseover', e => preview(e.target));
+  svg.addEventListener('mouseleave', clear);
+  /* Keyboard users get the same preview as hover. */
+  svg.addEventListener('focusin', e => preview(e.target));
+  svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
+  svg.addEventListener('mouseover', e => emphasise(svg, e.target));
+  if (state.focus && state.focus !== scrolledFocus) {
+    scrolledFocus = state.focus;
+    const held = svg.querySelector('.entry.selected, .chip.selected');
+    held?.scrollIntoView({block: 'center',
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
+  if (!state.focus) scrolledFocus = '';
+}
+function emphasise(svg, target) {
+  const row = target.closest?.('[data-edge]');
+  for (const path of svg.querySelectorAll('.edge')) {
+    path.classList.toggle('emph', Boolean(row) && path.dataset.edge === row.dataset.edge);
+    path.classList.toggle('mute', Boolean(row) && path.dataset.edge !== row.dataset.edge);
+  }
+}
+function wireField() {
+  drawField();
+  const panel = document.querySelector('.field-panel');
+  panel?.addEventListener('mouseover', e => {
+    const svg = document.querySelector('svg.field');
+    if (svg) emphasise(svg, e.target);
+  });
+}
+let resizeTimer;
+function onResize() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    const box = document.querySelector('.field-scroll');
+    if (box && Math.abs(box.clientWidth - fieldWidth) > 4) drawField();
+  }, 150);
 }
 
 function change(patch, replace = false) {
@@ -387,7 +499,7 @@ function overview() {
         .map(p => ({...p, count: members.filter(n => p.id === 'unassigned' ? !n.period : n.period === p.id).length})).filter(p => p.count);
       return `<article class="layer-card tone-${i}"><div class="card-top"><span class="layer-number">0${i + 1}</span><span>${members.length} entries</span></div>
         <h3><a href="#layer=${layer.id}">${esc(layerLabel(layer.id))}<span aria-hidden="true">↗</span></a></h3><p>${notes[i]}</p>
-        <div class="nested-groups">${groups.map(p => `<a href="#layer=${layer.id}&period=${p.id}" class="period-row"><span>${esc(p.label)}</span><strong>${p.count}</strong></a>`).join('')}</div>
+        ${groups.some(p => p.id !== 'unassigned') ? `<div class="nested-groups">${groups.map(p => `<a href="#layer=${layer.id}&period=${p.id}" class="period-row"><span>${esc(p.label)}</span><strong>${p.count}</strong></a>`).join('')}</div>` : ''}
         <div class="sample-entries"><span>Starting points</span>${examples.map(id => linkNode(id)).join('')}</div>
       </article>`;
     }).join('')}</section>
@@ -410,11 +522,11 @@ function directory() {
     ${state.hunt ? '<p class="context-note">These four entries form Hunt’s teaching lens, not a universal ranking of significance.</p>' : ''}
     ${rows.length ? `<div class="entry-grid">${pageSlice(rows, 12).map(n => `<article class="entry-card tone-${layerIndex(n.layer)}">${layerTag(n)}<h3>${linkNode(n.id)}</h3><p class="date">${esc(n.date_label || 'Date not recorded')}</p><p class="entry-excerpt">${esc(n.description)}</p>${huntTag(n)}<a class="entry-open" href="${esc(nodeHref(n.id))}" aria-label="Explore ${esc(n.label)}">${n.representative_people?.length ? rosterLabel(n) + ' →' : 'Explore connections →'}</a></article>`).join('')}</div>${pagination(rows.length, 12)}` : '<div class="empty"><h3>No entries match these filters.</h3><p>Try a shorter search or choose a broader layer or period.</p><a href="#">Clear all filters →</a></div>'}`;
 }
-function sourceList(ids) {
+function sourceList(ids, byId = sourceById) {
   if (!ids?.length) return '<p class="context-note">No relationship-specific references recorded. An entry’s bibliography does not establish this connection.</p>';
   const statuses = {not_checked: 'Not checked', bibliographic_metadata_checked: 'Bibliographic metadata checked', supporting_page_checked: 'Supporting page checked'};
   return `<ul class="sources">${ids.map(id => {
-    const s = sourceById.get(id);
+    const s = byId.get(id);
     if (!s) return '';
     const citation = esc(s.citation || s.title);
     const url = /^https?:\/\//.test(s.url || '') ? s.url : null;
@@ -425,7 +537,7 @@ function sourceList(ids) {
 }
 function nodeDetail(n) {
   const memberPaths = pathways.pathways.filter(p => p.node_ids.includes(n.id));
-  return `<div class="reading-header"><p class="eyebrow">THE ENTRY</p><h2 id="detail-title" tabindex="-1">${esc(n.label)}</h2>${layerTag(n)}${huntTag(n)}</div>
+  return `<div class="reading-header"><p class="eyebrow">THE ENTRY</p><h2 id="detail-title" tabindex="-1">${esc(n.label)}</h2>${layerTag(n)}${huntTag(n)}<a class="hold-link" href="#focus=${esc(n.id)}">Hold in the field →</a></div>
     <p class="date">${esc(n.date_label || 'Date not recorded')}</p><p class="period-note">${esc(periodLabel(n.period))}</p>
     ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}<h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
     <details class="bibliography" open><summary>References <span>${n.source_ids?.length || 0}</span></summary><p class="fine-print">References offer context; a metadata check does not certify every interpretation.</p>${sourceList(n.source_ids)}</details>
@@ -498,7 +610,7 @@ function pathwayPage() {
   if (!p) return `${crumbs(['<span aria-current="page">Seminar pathways</span>'])}<div class="section-heading"><div><p class="eyebrow">FOLLOW A QUESTION</p><h2>Read across the map.</h2></div><p>Thirteen routes into historical explanation.</p></div><p class="context-note">${esc(pathways.interpretation_note)}</p><div class="pathway-grid">${pathways.pathways.map((p, i) => `<a class="pathway-card" href="#pathway=${p.id}"><span class="eyebrow">PATHWAY ${String(i + 1).padStart(2, '0')} · ${p.node_ids.length} ENTRIES</span><h3>${esc(p.title)}</h3><p>${esc(p.questions[0])}</p><span class="text-link">Begin reading →</span></a>`).join('')}</div>`;
   return `${crumbs(['<a href="#tab=pathways">Seminar pathways</a>', `<span aria-current="page">${esc(p.title)}</span>`])}
     <div class="section-heading"><div><p class="eyebrow">SEMINAR PATHWAY · ${p.node_ids.length} ENTRIES</p><h2>${esc(p.title)}</h2></div></div>
-    <div class="pathway-layout"><section><p class="context-note">A suggested reading sequence, not a claim of influence. Open an entry to examine its connections.</p><ol class="reading-sequence">${p.node_ids.map((id, i) => {
+    <div class="pathway-layout"><section><p class="context-note">A suggested reading sequence, not a claim of influence. Open an entry to examine its connections, or <a href="#path=${esc(p.id)}">see these entries together on the field →</a></p><ol class="reading-sequence">${p.node_ids.map((id, i) => {
       const n = nodeById.get(id);
       return `<li><span class="sequence-number">${String(i + 1).padStart(2, '0')}</span><div>${layerTag(n)}<h3>${linkNode(id)}</h3><p>${esc(n.description)}</p></div></li>`;
     }).join('')}</ol></section><aside class="seminar-panel"><p class="eyebrow">BRING TO THE SEMINAR</p><h3>Questions to work with</h3><ol class="questions">${p.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ol><div class="exercise"><p class="eyebrow">TRY THIS</p><p>${esc(p.exercise)}</p></div><details><summary>Compare explanations</summary><ul>${pathways.comparison_axes.map(a => `<li>${esc(a)}</li>`).join('')}</ul></details><p class="fine-print">Editorial teaching prompts, not quotations from Hunt.</p></aside></div>`;
@@ -541,6 +653,7 @@ function render() {
   });
   const onField = state.tab === 'map' && !state.node && !state.person;
   document.body.dataset.view = onField ? 'field' : '';
+  document.body.dataset.compact = onField ? '' : '1';
   $('workspace').innerHTML = state.person ? personPage()
     : state.node ? (nodeById.get(state.node).representative_people?.length && state.section !== 'connections' ? schoolPeople() : focused())
     : onField ? fieldPage()
@@ -552,6 +665,7 @@ function render() {
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
   $('announcement').textContent = state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
+       : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
     : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : 'Reading this map.';
   const resetLanes = {page:0};
@@ -570,6 +684,9 @@ async function start() {
     personById = new Map(graph.people.map(p => [p.id, p]));
     personNames = new Map(graph.people.map(p => [p.id, p.label]));
     fieldCatalogue = journalNodes(graph);
+    journalSourceById = new Map((graph.journal_catalogue?.sources || []).map(s => [s.id, s]));
+    atlasEdgeIds = new Set(graph.edges.map(e => e.id));
+    window.addEventListener('resize', onResize);
     fieldIndex = relationIndex(graph);
     fieldNodeById = new Map(fieldNodes(graph).map(n => [n.id, n]));
     graph.__fieldNodes = fieldNodes(graph);

@@ -13,6 +13,7 @@ from playwright.sync_api import sync_playwright, expect
 ROOT = Path(__file__).resolve().parents[1]
 GRAPH = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
 PATHWAYS = json.loads((ROOT / 'seminar-pathways.json').read_text())
+GRAPH_LABELS = {n['id']: n['label'] for n in GRAPH['nodes']}
 URL = os.environ.get('HISTORIOGRAPHY_SITE_URL', 'http://127.0.0.1:4173/')
 
 
@@ -231,7 +232,30 @@ class AtlasBrowserTests(unittest.TestCase):
         placed = int(summary.split()[0]) + int(summary.split('·')[1].split()[0]) \
             if 'without' in summary else int(summary.split()[0])
         self.assertEqual(drawn, placed, f'drew {drawn} but claimed {placed}')
+        # The chart is laid out for the column it sits in: no horizontal scroll, no clipped labels.
+        box = self.page.locator('.field-scroll')
+        self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'))
+        clipped = self.page.evaluate("""() => { const r = document.querySelector('.field-scroll').getBoundingClientRect();
+            return [...document.querySelectorAll('.bar-label')].filter(t => { const b = t.getBoundingClientRect(); return b.right > r.right + 1 || b.left < r.left - 1; }).length }""")
+        self.assertEqual(clipped, 0, 'labels must stay inside the visible chart')
+        self.assertEqual(self.page.locator('svg.field').get_attribute('role'), 'group')
         self.page.screenshot(path=str(self.artifacts / 'field-desktop.png'), full_page=True)
+
+        # The panel travels with the reader: hovering deep in the chart keeps it on screen.
+        # A bar in the last full band, well below the first screen; the panel must still be in view.
+        last = self.page.locator('.entry[data-id="micro"]')
+        last.scroll_into_view_if_needed()
+        bb = last.locator('.bar-shape').bounding_box()
+        self.page.mouse.move(bb['x'] + bb['width'] / 2, bb['y'] + bb['height'] / 2)
+        self.page.wait_for_timeout(200)
+        panel = self.page.locator('.field-panel').bounding_box()
+        self.assertGreaterEqual(panel['y'], 0)
+        self.assertLess(panel['y'], 400)
+        expect(self.page.locator('.field-panel h2')).to_have_text(last.get_attribute('aria-label').split(',')[0])
+        # Keyboard focus previews like hover does.
+        self.page.mouse.move(0, 0)
+        self.page.locator('.entry[data-id="annales"]').focus()
+        expect(self.page.locator('.field-panel h2')).to_have_text('Annales')
 
         # Holding an entry reclaims space and draws only its relationships.
         self.open('#focus=annales')
@@ -242,18 +266,60 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.entry.selected')).to_have_count(1)
         self.page.screenshot(path=str(self.artifacts / 'field-focus-desktop.png'), full_page=True)
 
+        # Every relationship opens to its evidence and references without leaving the field.
+        rows = self.page.locator('details.rel')
+        self.assertEqual(rows.count(), sum(1 for e in GRAPH['edges'] if 'annales' in (e['source'], e['target']))
+                         + sum(1 for e in GRAPH['journal_catalogue']['edges'] if e['target'] == 'annales'))
+        first = rows.first
+        edge_id = first.get_attribute('data-edge')
+        first.locator('> summary').click()
+        edge = next(e for e in GRAPH['edges'] + GRAPH['journal_catalogue']['edges'] if e['id'] == edge_id)
+        expect(first.locator('.evidence')).to_contain_text(edge['evidence_note'][:60])
+        first.locator('.rel-sources > summary').click()
+        expect(first.locator('.sources li')).to_have_count(len(edge['source_ids']))
+
         # Hiding a kind is shareable and actually removes those edges.
         self.open('#focus=annales&hide=comparison')
         self.assertLess(self.page.locator('.edge').count(), edges)
 
-        # The list view is the accessible equivalent and carries every entry.
+        # A pathway can be laid over the field: numbered members, only their own edges.
+        pathway = next(p for p in PATHWAYS['pathways'] if p['id'] == 'paradigms_and_limits')
+        self.open('#path=paradigms_and_limits')
+        expect(self.page.locator('.field-panel h2')).to_have_text(pathway['title'])
+        expect(self.page.locator('.entry.related, .chip.related')).to_have_count(len(pathway['node_ids']))
+        labels = self.page.locator('.entry.related .bar-label').evaluate_all('els => els.map(e => e.textContent)')
+        self.assertTrue(all(l.split('.')[0].isdigit() for l in labels), labels)
+        members = set(pathway['node_ids'])
+        for e in GRAPH['edges']:
+            drawn_edge = self.page.locator(f'.edge[data-edge="{e["id"]}"]').count() == 1
+            self.assertEqual(drawn_edge, e['source'] in members and e['target'] in members, e['id'])
+        self.page.locator('.path-panel ol a').first.click()
+        expect(self.page.locator('.field-panel h2')).to_have_text(GRAPH_LABELS[pathway['node_ids'][0]])
+        expect(self.page.locator('.path-strip')).to_contain_text('Entry 1 of')
+        self.open('#pathway=paradigms_and_limits')
+        self.page.get_by_role('link', name='see these entries together on the field', exact=False).click()
+        expect(self.page.locator('.path-panel')).to_be_visible()
+
+        # The list view is the accessible equivalent and carries every entry, grouped by band.
         self.open('#view=list')
-        expect(self.page.locator('.field-table')).to_be_visible()
+        self.assertGreater(self.page.locator('details.band-list').count(), 1)
         self.assertEqual(self.page.locator('.field-table tbody tr').count(), drawn)
 
         # Dates are described as arrival, not as a lifespan.
         self.open('#focus=annales')
         expect(self.page.locator('.datewhy')).to_contain_text('Arrived')
+
+    def test_hero_compacts_off_the_field(self):
+        self.open()
+        self.assertEqual(self.page.evaluate('document.body.dataset.compact'), '')
+        expect(self.page.locator('.deck')).to_be_visible()
+        for fragment in ['#node=marx', '#tab=browse', '#person=eric_hobsbawm', '#tab=pathways']:
+            self.open(fragment)
+            self.assertEqual(self.page.evaluate('document.body.dataset.compact'), '1', fragment)
+            expect(self.page.locator('.deck')).to_be_hidden()
+        self.open('#node=marx')
+        self.page.get_by_role('link', name='Hold in the field', exact=False).click()
+        expect(self.page.locator('.entry.selected')).to_have_count(1)
 
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
