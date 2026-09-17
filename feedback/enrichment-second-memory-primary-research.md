@@ -1,0 +1,15 @@
+# Memory primary passages, revision 1.99
+
+Revision 1.99 completes followup 045 with documented limits. Original Halbwachs concluding passages and a Young adapted extract provide primary support for changing traditions and contested memorial production. Two sources and two approaches added; two existing memory selections expanded. No new people, selections or edges. Young’s original book chapter remains unread.
+
+Current totals: 109 entries, 708 relationships, 794 sources, 790 people, 1222 selections and 677 approaches across 66 groups. All 109 first-pass entries and 70 original work blanks complete. Forty-five questions completed during the fixed second pass, five before capture; 190 remain pending. Followups 001–043, 045 and 232 completed; 044 already completed before capture; 218 partially progressed. Next: 046 remembering projects, including a pre-2000 non-European case and distinct Rousso/Yerushalmi inquiries.
+
+Validation: zero errors, four reviewed warnings, 14 Python tests, eight JavaScript checks and exact six-file build. Prior IDs, sources, approaches, edges and original descriptions preserved. Two memory rosters retain old text/references with additions; other prior records exact. Frozen baseline hash matches 1.59 snapshot. No frontend design, visual review, deployment or OpenAlex. Manifest: `feedback/enrichment-second-memory-primary-v1.99.json`. Both 1.99 scripts complete; do not rerun. No active process. No 1.100 mutation/snapshot.
+
+Halbwachs: digital pages 205–211 of the UQAM French edition based on 1952, including complete final concluding subsection beginning on 206; not original 1925 pagination, full book or first-edition collation. Young: all six pages of the Gerz-hosted 1994 extract read, with notes and adaptation credits; begins mid-discussion. The Texture of Memory chapter itself remains unread. Public Scribd 1992 article preview exposed only cover metadata; FASPE PDF text exposed reading-list citation but no usable Young body. The adapted primary extract is the bounded substitute, with no claim of complete chapter reading. No independent council archives or visitor research consulted; no universal account of remembrance asserted.
+
+Halbwachs PDF/text: `/tmp/historiography-halbwachs-cadres.pdf` and `.txt`. Digital final subsection read from its opening on 206 through FIN DU LIVRE on 211; preceding 205–206 also read. Bibliographic basis from UQAM index. No screenshot collation.
+
+Young: https://jochengerz.s3.eu-central-1.amazonaws.com/James-E.Young-1994.pdf ; six-page web PDF text read including notes; opening fragment, not entire essay. Note 3 and closing credits identify adaptation and 1994 copyright. The Saarbrücken narrative concerns then-contemporary dispute; no present-day officeholder or legal claim. The separate Oglethorpe-hosted Memory and Counter-Memory PDF was opened but only its initial page excerpt encountered; not used. FASPE2010 local PDF/text contains Young citation in reading list, not usable chapter text in extraction. Original Texture book chapter access remains a documented limit.
+
+Substantive progress this turn; no blocker. Next 046.

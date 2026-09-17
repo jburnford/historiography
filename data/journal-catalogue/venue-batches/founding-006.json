@@ -1,0 +1,238 @@
+{
+  "batch_id": "gap-fields-1.117",
+  "operation": "venue_correction",
+  "reviewed_on": "2026-09-16",
+  "expected_catalogue_fingerprint": "43a062fb04ff9ffadf783bc33c0d7b036d834d91a9e83a380c4911c6c0ae3ecb",
+  "withdrawals": [],
+  "added_sources": [
+    {
+      "id": "journal_source_gap117_ncph_journal_history_2012",
+      "title": "Bob Weyeneth and John Dichtl, “Update on the Journal,” NCPH, 1 May 2012.",
+      "url": "https://ncph.org/history-at-work/update-on-the-journal/",
+      "checked_on": "2026-09-16",
+      "verification": "scoped_historical_review",
+      "note": "Institutional account read: UCSB launch in 1978 and continuing editorial home, university/society/publisher partnership. A participant account of institutional continuity; it is not a quantified content survey or evidence for global representativeness."
+    },
+    {
+      "id": "journal_source_gap117_kelley_public_1978",
+      "title": "Robert Kelley, “Public History: Its Origins, Nature, and Prospects,” The Public Historian 1(1) (1978), 16–28.",
+      "url": "https://eclass.uowm.gr/modules/document/file.php/ELED278/Kelley%20public%20history%201978%20PH.pdf",
+      "checked_on": "2026-09-16",
+      "verification": "scoped_historical_review",
+      "note": "Downloaded scan; read pp. 16–20, including externally posed questions, museums, government, preservation, consultancy and Kelley/Johnson’s 1975 training discussion. Later pages unread. His claims for policy benefits are advocacy, not independent evaluation; this is a US professional formulation, not the origin of all public historical practice."
+    },
+    {
+      "id": "journal_source_gap117_shm_chairs_2020",
+      "title": "Social History of Medicine editors, “Chairs’ Choices Anniversary Virtual Issue” (2020).",
+      "url": "https://academic.oup.com/shm/pages/chairs-choices-anniversary-vi",
+      "checked_on": "2026-09-16",
+      "verification": "scoped_historical_review",
+      "note": "Read introduction and dated pre-2001 selections: journal began in 1988 after the Society’s Bulletin; articles span public health, clinical records and medical knowledge through 2000. Editors attribute choices to teaching, reception and personal experience. Later examples are not backdated; a commemorative selection is not a representative content census."
+    },
+    {
+      "id": "journal_source_gap117_urban_history_anniversary",
+      "title": "Cambridge University Press, Urban History: 50th Anniversary Collection, selected pre-2001 extracts and abstracts.",
+      "url": "https://www.cambridge.org/core/journals/urban-history/50th-anniversary-collection",
+      "checked_on": "2026-09-16",
+      "verification": "scoped_historical_review",
+      "note": "Read extracts of 1974 editorial, Reeder’s 1979 Dyos appreciation and Rodger’s 1992 retrospect; abstract of Lees (1994) and Lilley (2000). Publisher dates distinguish issue years from 2009 digitization. Full articles unread. Supports institutional continuity and varied approaches, not a uniform school or global census."
+    },
+    {
+      "id": "journal_source_gap117_urban_titles",
+      "title": "Cambridge: Urban History past titles",
+      "url": "https://www.cambridge.org/core/journals/urban-history/information/about-this-journal/past-titles",
+      "checked_on": "2026-09-16",
+      "verification": "publisher_title_history_read",
+      "note": "Publisher lists Urban History Yearbook volumes 1 (1974)–18 (1991); Rodger’s volume 19 (1992) extract confirms the succeeding journal. Digitization dates are not publication origins."
+    }
+  ],
+  "added_nodes": [
+    {
+      "id": "journal_68059c6f3fc86951",
+      "entry_kind": "periodical",
+      "label": "Urban History Yearbook",
+      "aliases": [
+        "Urban History Yearbook"
+      ],
+      "source_ids": [
+        "journal_source_gap117_urban_titles",
+        "journal_source_gap117_urban_history_anniversary"
+      ],
+      "occurrences": [
+        {
+          "source_id": "journal_source_gap117_urban_titles",
+          "row": "urban_history_yearbook_1974",
+          "title": "Urban History Yearbook"
+        }
+      ],
+      "urls": [
+        "https://www.cambridge.org/core/journals/urban-history/information/about-this-journal/past-titles"
+      ],
+      "publication_role": "research_journal",
+      "identity_status": "publisher_metadata_checked",
+      "issns": [],
+      "publication_start": 1974,
+      "publication_end": 1991,
+      "publication_status": "title_changed",
+      "chronology_note": "Title phase before Urban History (1992 onward); not cessation of the continuing serial.",
+      "languages": [],
+      "publisher_country": null,
+      "date_span": {
+        "start": 1974,
+        "end": 1991,
+        "precision": "year",
+        "start_kind": "publication_start",
+        "end_kind": "title_change",
+        "open_end": false,
+        "basis": "source_check",
+        "source_ids": [
+          "journal_source_gap117_urban_titles"
+        ]
+      }
+    }
+  ],
+  "added_edges": [
+    {
+      "id": "journal_venue_public_historian_publichistory_principal",
+      "source": "journal_d990835e95820881",
+      "target": "publichistory",
+      "relationship_kind": "principal_venue",
+      "basis": "editorial_longitudinal_review",
+      "directed": true,
+      "relationship": "A continuing professional forum for public history.",
+      "evidence_note": "Kelley’s initial programme and NCPH’s institutional account establish its continuing UCSB and society role.",
+      "selection_note": "Selected for the US professional community; institutional continuity supports the interval, without a complete article census or global priority claim.",
+      "source_ids": [
+        "journal_source_gap117_ncph_journal_history_2012",
+        "journal_source_gap117_kelley_public_1978"
+      ],
+      "temporal_scope": {
+        "start": 1978,
+        "end": 2000,
+        "precision": "year",
+        "meaning": "reviewed_role_interval",
+        "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+      },
+      "checked_on": "2026-09-16"
+    },
+    {
+      "id": "journal_venue_social_medicine_medicalhistory_principal",
+      "source": "journal_6d9388bf4f2e1a99",
+      "target": "medicalhistory",
+      "relationship_kind": "principal_venue",
+      "basis": "editorial_longitudinal_review",
+      "directed": true,
+      "relationship": "A society forum for social histories of medicine.",
+      "evidence_note": "The anniversary review places successive pre-2001 articles within the journal’s continuing programme.",
+      "selection_note": "One important social-history venue within a broader field; the 1988 journal launch does not found medical history.",
+      "source_ids": [
+        "journal_source_gap117_shm_chairs_2020"
+      ],
+      "temporal_scope": {
+        "start": 1988,
+        "end": 2000,
+        "precision": "year",
+        "meaning": "reviewed_role_interval",
+        "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+      },
+      "checked_on": "2026-09-16"
+    },
+    {
+      "id": "journal_venue_urban_yearbook_urbanhistory_principal",
+      "source": "journal_68059c6f3fc86951",
+      "target": "urbanhistory",
+      "relationship_kind": "principal_venue",
+      "basis": "editorial_longitudinal_review",
+      "directed": true,
+      "relationship": "A sustained forum organizing urban historical inquiry.",
+      "evidence_note": "The 1974 programme, 1979 appreciation and 1992 retrospective establish the Yearbook’s institutional role.",
+      "selection_note": "Title phase of a continuing forum; broader urban historiography predates it.",
+      "source_ids": [
+        "journal_source_gap117_urban_history_anniversary",
+        "journal_source_gap117_urban_titles"
+      ],
+      "temporal_scope": {
+        "start": 1974,
+        "end": 1991,
+        "precision": "year",
+        "meaning": "reviewed_role_interval",
+        "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+      },
+      "checked_on": "2026-09-16"
+    },
+    {
+      "id": "journal_venue_urban_history_urbanhistory_principal",
+      "source": "journal_97cc033e49a4f22b",
+      "target": "urbanhistory",
+      "relationship_kind": "principal_venue",
+      "basis": "editorial_longitudinal_review",
+      "directed": true,
+      "relationship": "A continuing forum for urban historical research and debate.",
+      "evidence_note": "Rodger’s 1992 retrospect, Lees’s 1994 intervention and Lilley’s 2000 study document continuation and variety.",
+      "selection_note": "Selected within the wider field; the journal is not identical with one national school.",
+      "source_ids": [
+        "journal_source_gap117_urban_history_anniversary",
+        "journal_source_gap117_urban_titles"
+      ],
+      "temporal_scope": {
+        "start": 1992,
+        "end": 2000,
+        "precision": "year",
+        "meaning": "reviewed_role_interval",
+        "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+      },
+      "checked_on": "2026-09-16"
+    }
+  ],
+  "added_title_relationships": [
+    {
+      "id": "title_history_ac1a7b70f4bdd5ab",
+      "predecessor": "journal_68059c6f3fc86951",
+      "successor": "journal_97cc033e49a4f22b",
+      "changed_in": 1992,
+      "change_kind": "title_change",
+      "source_ids": [
+        "journal_source_gap117_urban_titles",
+        "journal_source_gap117_urban_history_anniversary"
+      ],
+      "evidence_note": "Publisher title listing and the contemporary 1992 retrospective agree; existing Urban History chronology remains unchanged."
+    }
+  ],
+  "research_venue_checks": [
+    {
+      "journal_id": "journal_d990835e95820881",
+      "expected_node_fingerprint": "c6e983980efbcd3e4903fbd09f377a846ceac3a2869a69f61776e3e95148ee59",
+      "source_ids": [
+        "journal_source_gap117_ncph_journal_history_2012",
+        "journal_source_gap117_kelley_public_1978"
+      ],
+      "reason": "Scoped historical venue role; preserve identity, chronology and bibliography."
+    },
+    {
+      "journal_id": "journal_6d9388bf4f2e1a99",
+      "expected_node_fingerprint": "647c2c2eb3cc8e72158d11e965e02679b8548c237495477c41496d2fea6e4dc3",
+      "source_ids": [
+        "journal_source_gap117_shm_chairs_2020"
+      ],
+      "reason": "Scoped historical venue role; preserve identity, chronology and bibliography."
+    },
+    {
+      "journal_id": "journal_68059c6f3fc86951",
+      "expected_node_fingerprint": "35bab9052a2999d0f552e6597cb183bd8b39ecb34cf3c79adfe07a54c761dfaf",
+      "source_ids": [
+        "journal_source_gap117_urban_history_anniversary",
+        "journal_source_gap117_urban_titles"
+      ],
+      "reason": "Scoped historical venue role; preserve identity, chronology and bibliography."
+    },
+    {
+      "journal_id": "journal_97cc033e49a4f22b",
+      "expected_node_fingerprint": "04b81d42d7a64bc1538ee51b5100139e6eed07e7c81322e3839776261608162f",
+      "source_ids": [
+        "journal_source_gap117_urban_history_anniversary",
+        "journal_source_gap117_urban_titles"
+      ],
+      "reason": "Scoped historical venue role; preserve identity, chronology and bibliography."
+    }
+  ]
+}

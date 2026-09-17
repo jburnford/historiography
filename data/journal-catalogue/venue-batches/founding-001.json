@@ -1,0 +1,166 @@
+{
+  "id": "founding-001",
+  "checked_on": "2026-09-15",
+  "source_revision": "1.111",
+  "policy": "Reviewed founding programmes only, applied after immutable bibliographic imports. Preserve all earlier chronology and claims. Atlas historical coverage ends in 2000 with earlier roots.",
+  "expected_node_fingerprints": {
+    "journal_b2aca6e2c5b0a211": "6a042b438a7e5ce53b68693e7b31aac20487cdc71553823eb04cb69a27b9469a",
+    "journal_38e479e715d9523d": "f6dcc02fed41c116a9a1570a55d707691531e3ad6eb65c976c0d3652f9f3bdde",
+    "journal_77695299ceedc9b2": "b6b7e8e6bff8dd57a767286e493bc8925278cb11f9bc1e9eaa9b57ddc73e2da7",
+    "journal_a67e93621de863b1": "c3e8446313748f7a1a65a1a9310d8caac6976189111fdb8e3e60c032d694f531",
+    "journal_1c7b5476f23090dc": "d9cfc4b513d79ae6a57a03e91729d6069aeedebe4f012de248bf6c4e1a39823f"
+  },
+  "sources": [
+    {
+      "id": "journal_source_pp_editors_250",
+      "title": "Past & Present editorial team, Celebrating the 250th Issue (2021)",
+      "url": "https://pastandpresent.org.uk/celebrating-the-250th-issue-of-past-present/",
+      "checked_on": "2026-09-15",
+      "verification": "supporting_page_read",
+      "note": "Read the institutional extract of Hilton and Walsham’s anniversary introduction: founding generalist, international and accessible ambitions. Retrospective account, not the 1952 editorial or a full longitudinal assessment."
+    },
+    {
+      "id": "journal_source_pp_ihr_marxist_history",
+      "title": "Dave Renton, Marxist History, IHR Making History (2008)",
+      "url": "https://archives.history.ac.uk/makinghistory/resources/articles/marxist_history.html",
+      "checked_on": "2026-09-15",
+      "verification": "supporting_page_read",
+      "note": "Read discussion of the 1952 foundation, British Marxist historians and coalition-building on the early board. Used for the broad institutional connection, not every biographical or political label in this retrospective."
+    },
+    {
+      "id": "journal_source_technology_kranzberg_memorial",
+      "title": "SHOT, Melvin Kranzberg: participant recollections from Technology and Culture (1996)",
+      "url": "https://www.historyoftechnology.org/memorials/melvin-kranzberg-2/",
+      "checked_on": "2026-09-15",
+      "verification": "supporting_page_read",
+      "note": "Read Robert P. Multhauf’s account of the January 1958 decision to establish SHOT and its journal, and the Case Years section quoting the interdisciplinary purpose in Kranzberg’s first-issue At the Start. First issue 1959 agrees with the accepted library record. Retrospective testimony; its sweeping claim that one man invented the field is not adopted."
+    },
+    {
+      "id": "journal_source_jwh_1989_announcement",
+      "title": "World History Association announcement, AHA Perspectives (1 October 1989)",
+      "url": "https://www.historians.org/perspectives-article/affiliated-societies-october-1989/",
+      "checked_on": "2026-09-15",
+      "verification": "contemporary_announcement_read",
+      "note": "Read contemporary announcement: new journal to encourage systematic world-historical research from a global perspective, publication beginning 1990, Jerry Bentley editor. WHA founded 1982; journal launch is not the origin of world history."
+    },
+    {
+      "id": "journal_source_gg_founders_preface",
+      "title": "Helmut Berding, Wolfgang J. Mommsen, Hans-Jürgen Puhle and Hans-Ulrich Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft 1 (1975), 5–7; reprinted in Die Bielefelder Sozialgeschichte (2010), 91–94.",
+      "url": "https://doi.org/10.1515/9783839415214-005",
+      "checked_on": "2026-09-13",
+      "verification": "prior_primary_source_review_reused",
+      "note": "Reused the atlas’s existing gg_founders_preface check and bielefeld/journal_programme reading. Complete primary foreword read in reproduced 2010 reader OCR at https://dokumen.pub/die-bielefelder-sozialgeschichte-klassische-texte-zu-einem-geschichtswissenschaftlichen-programm-und-seinen-kontroversen-1-aufl-9783839415214.html . Author heading names all four contributors; original publication footnote distinguishes 1975 original pages 5–7 from reprint 91–94. Includes final cooperation appeal. Publisher chapter direct access failed; no original-image collation. Programme and intended discussion/thematic-issue mechanisms are documented, not an audit of their practical success or entire editorial history. Later reader introduction is not backdated."
+    },
+    {
+      "id": "journal_source_jnh_first_volume_reception",
+      "title": "The Journal of Negro History 1 (1916), first-issue masthead and April reception notices, Gutenberg transcription",
+      "url": "https://www.gutenberg.org/files/13642/13642-h/13642-h.htm",
+      "checked_on": "2026-09-15",
+      "verification": "contemporary_reception_read",
+      "note": "Read January masthead identifying Woodson and ASNLH, and April How the Public Received the Journal of Negro History: reproduced reviews describe the new journal’s document-preservation and historical-recovery aims. These are contemporaneous reception notices reproduced by the journal, not a signed founding editorial. No original-page collation."
+    }
+  ],
+  "edges": [
+    {
+      "id": "journal_venue_past_present_founding_programme",
+      "source": "journal_b2aca6e2c5b0a211",
+      "target": "marx",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Founded in 1952 through a coalition involving British Marxist historians to advance historical research for readers across periods, regions and specialisms.",
+      "basis": "sourced_founding_programme",
+      "temporal_scope": {
+        "start": 1952,
+        "end": 1952,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_pp_editors_250",
+        "journal_source_pp_ihr_marxist_history"
+      ],
+      "evidence_note": "The link locates a journal-building initiative within Marxist social history while retaining its generalist purpose and participation beyond Marxism. It does not identify the journal as exclusively Marxist, date the birth of social history to 1952, or replace its separate narrative-debate edge.",
+      "checked_on": "2026-09-15"
+    },
+    {
+      "id": "journal_venue_technology_culture_founding_programme",
+      "source": "journal_38e479e715d9523d",
+      "target": "technology",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Launched in 1959 following the joint planning of SHOT and its journal, with a programme of bringing disciplines together in the history of technology.",
+      "basis": "sourced_founding_programme",
+      "temporal_scope": {
+        "start": 1959,
+        "end": 1959,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_technology_kranzberg_memorial"
+      ],
+      "evidence_note": "Participant recollections connect the 1958 institutional decision to the first-issue programme. The edge records institutional consolidation and interdisciplinary intent; older histories of technology are not erased and subsequent practice is not inferred from the manifesto.",
+      "checked_on": "2026-09-15"
+    },
+    {
+      "id": "journal_venue_world_history_founding_programme",
+      "source": "journal_77695299ceedc9b2",
+      "target": "global",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Launched in 1990 as the World History Association’s research journal to develop historical inquiry from a global perspective.",
+      "basis": "sourced_founding_programme",
+      "temporal_scope": {
+        "start": 1990,
+        "end": 1990,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_jwh_1989_announcement"
+      ],
+      "evidence_note": "The 1989 announcement directly states purpose and scheduled start; the accepted 1990 title record corroborates the launch. This is one institutional project within the atlas’s wider world/global/connected-history umbrella, not its unique origin or every later connected-history approach.",
+      "checked_on": "2026-09-15"
+    },
+    {
+      "id": "journal_venue_gg_founding_programme",
+      "source": "journal_a67e93621de863b1",
+      "target": "bielefeld",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Launched in 1975 with a programme connecting historical inquiry and social-scientific analysis through thematic issues, research reports and discussion.",
+      "basis": "primary_founding_editorial",
+      "temporal_scope": {
+        "start": 1975,
+        "end": 1975,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_gg_founders_preface"
+      ],
+      "evidence_note": "Uses the already reviewed four-author founding foreword. Historical social science is broader than Sonderweg; neither all later journal contents nor every contributor is assigned to a single doctrine. The announced editorial mechanisms are not an audit of implementation.",
+      "checked_on": "2026-09-15"
+    },
+    {
+      "id": "journal_venue_negro_history_founding_programme",
+      "source": "journal_1c7b5476f23090dc",
+      "target": "black",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Launched in 1916 under Carter G. Woodson and ASNLH to preserve, publish and expand knowledge of Black historical experience and contributions.",
+      "basis": "sourced_founding_programme",
+      "temporal_scope": {
+        "start": 1916,
+        "end": 1916,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_jnh_first_volume_reception"
+      ],
+      "evidence_note": "Contemporary reception reproduced in volume 1 describes the recovery and documentation programme. This institutional milestone falls within the atlas’s earlier roots; Black historical thought predates the journal. The 1916 original title remains distinct from the 2002 Journal of African American History title.",
+      "checked_on": "2026-09-15"
+    }
+  ]
+}

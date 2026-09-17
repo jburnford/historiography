@@ -1,0 +1,371 @@
+{
+  "id": "founding-003",
+  "operation": "venue_correction",
+  "checked_on": "2026-09-16",
+  "source_revision": "1.113",
+  "expected_catalogue_fingerprint": "8078fba5fd9f029740f96057013677062a7a40b46b484dd42c352e8f8392c432",
+  "policy": "A founding relation needs evidence of the journal’s constitutive role in an emerging field or school. A launch mission or later consolidation alone is insufficient. Title histories are separate bibliography.",
+  "withdrawals": [
+    {
+      "edge": {
+        "id": "journal_venue_environment_history_founding_programme",
+        "source": "journal_25b3b25c0672ff34",
+        "target": "environment",
+        "relationship_kind": "founded_for",
+        "directed": true,
+        "relationship": "Launched in 1995 to broaden environmental history’s geographical and disciplinary conversation, including work on Africa, Asia and other regions alongside Europe and North America.",
+        "basis": "primary_founding_editorial",
+        "temporal_scope": {
+          "start": 1995,
+          "end": 1995,
+          "precision": "year",
+          "meaning": "founding_event"
+        },
+        "source_ids": [
+          "journal_source_environment_history_foundation"
+        ],
+        "evidence_note": "An expansion and consolidation project in an already established field. Its explicit geographical ambitions provide evidence against treating North American environmental-history venues as the field’s whole institutional history.",
+        "checked_on": "2026-09-16"
+      },
+      "decision": "rejected",
+      "reason": "User correction confirmed by Grove’s 1995 editorial: Environment and History complements an already existing field and its journals. It is not the field-forming journal requested. Replaced by Environmental Review (1976), linked to the institutional emergence of US environmental history."
+    }
+  ],
+  "added_sources": [
+    {
+      "id": "journal_source_aseh_founding_history",
+      "title": "American Society for Environmental History, History of ASEH",
+      "url": "https://aseh.org/history",
+      "checked_on": "2026-09-16",
+      "verification": "supporting_page_read",
+      "note": "Institutional history read: joint journal/association organizing effort in 1976, journal launch in 1976 and society formation in 1977. Evidence of field-building, not merely a publisher remit. Earlier intellectual roots and traditions outside the US are not erased."
+    },
+    {
+      "id": "journal_source_jstor_environmental_title_family",
+      "title": "JSTOR, Environmental History: title history",
+      "url": "https://www.jstor.org/journal/envihist",
+      "checked_on": "2026-09-16",
+      "verification": "supporting_page_read",
+      "note": "User-supplied page and complete-title-history export checked. Family contains overlapping environmental and forest-history branches, not one succession chain. Listed modern-title coverage ends in 2020; page links current issues elsewhere. Coverage endpoints are not cessation dates."
+    },
+    {
+      "id": "journal_source_oup_environmental_merger",
+      "title": "Oxford Academic, Environmental History Review: About the Journal",
+      "url": "https://academic.oup.com/envihistrevi/pages/About",
+      "checked_on": "2026-09-16",
+      "verification": "supporting_page_read",
+      "note": "Publisher record read: Environmental Review 1976–1989 continues as Environmental History Review 1990–1995, which merges with Forest & Conservation History in 1996 to form Environmental History. The archive’s 2006 endpoint is not cessation."
+    },
+    {
+      "id": "journal_source_arizona_forest_title_history",
+      "title": "Arizona State Library, Periodicals: forest-history title continuation",
+      "url": "https://azlibrary.gov/starl/az-collection/periodicals",
+      "checked_on": "2026-09-16",
+      "verification": "supporting_page_read",
+      "note": "Library record identifies Journal of Forest History as continued by Forest and Conservation History. Combined coverage is not treated as the precise start of this title. JSTOR’s 1990 successor run dates the title transition."
+    }
+  ],
+  "added_nodes": [
+    {
+      "id": "journal_919d0c14e01dd6ed",
+      "entry_kind": "periodical",
+      "label": "Environmental Review",
+      "aliases": [
+        "Environmental Review"
+      ],
+      "source_ids": [
+        "journal_source_jstor_environmental_title_family",
+        "journal_source_oup_environmental_merger",
+        "journal_source_aseh_founding_history"
+      ],
+      "occurrences": [
+        {
+          "source_id": "journal_source_jstor_environmental_title_family",
+          "row": "envirevier",
+          "title": "Environmental Review"
+        }
+      ],
+      "urls": [
+        "https://www.jstor.org/journal/envirevier"
+      ],
+      "publication_role": "research_journal",
+      "identity_status": "publisher_metadata_checked",
+      "issns": [
+        "0147-2496",
+        "2325-582X"
+      ],
+      "publication_start": 1976,
+      "publication_end": 1989,
+      "publication_status": "title_changed",
+      "chronology_note": "Named title run; end marks a title change or merger, not cessation of the continuing publication.",
+      "languages": [],
+      "publisher_country": null,
+      "archive_coverage": {
+        "start": 1976,
+        "end": 1989,
+        "precision": "year",
+        "source_ids": [
+          "journal_source_jstor_environmental_title_family"
+        ],
+        "note": "JSTOR archive coverage; not a founding/cessation claim."
+      },
+      "date_span": {
+        "start": 1976,
+        "end": 1989,
+        "precision": "year",
+        "start_kind": "publication_start",
+        "end_kind": "title_change",
+        "open_end": false,
+        "basis": "source_check",
+        "source_ids": [
+          "journal_source_oup_environmental_merger"
+        ]
+      }
+    },
+    {
+      "id": "journal_57a3505b8688a2ce",
+      "entry_kind": "periodical",
+      "label": "Environmental History Review",
+      "aliases": [
+        "Environmental History Review"
+      ],
+      "source_ids": [
+        "journal_source_jstor_environmental_title_family",
+        "journal_source_oup_environmental_merger"
+      ],
+      "occurrences": [
+        {
+          "source_id": "journal_source_jstor_environmental_title_family",
+          "row": "envihistrevi",
+          "title": "Environmental History Review"
+        }
+      ],
+      "urls": [
+        "https://www.jstor.org/journal/envihistrevi"
+      ],
+      "publication_role": "periodical_candidate",
+      "identity_status": "publisher_metadata_checked",
+      "issns": [
+        "1053-4180",
+        "2325-5811"
+      ],
+      "publication_start": 1990,
+      "publication_end": 1995,
+      "publication_status": "title_changed",
+      "chronology_note": "Named title run; end marks a title change or merger, not cessation of the continuing publication.",
+      "languages": [],
+      "publisher_country": null,
+      "archive_coverage": {
+        "start": 1990,
+        "end": 1995,
+        "precision": "year",
+        "source_ids": [
+          "journal_source_jstor_environmental_title_family"
+        ],
+        "note": "JSTOR archive coverage; not a founding/cessation claim."
+      },
+      "date_span": {
+        "start": 1990,
+        "end": 1995,
+        "precision": "year",
+        "start_kind": "publication_start",
+        "end_kind": "title_change",
+        "open_end": false,
+        "basis": "source_check",
+        "source_ids": [
+          "journal_source_oup_environmental_merger"
+        ]
+      }
+    },
+    {
+      "id": "journal_f33abcd156e85bc9",
+      "entry_kind": "periodical",
+      "label": "Journal of Forest History",
+      "aliases": [
+        "Journal of Forest History"
+      ],
+      "source_ids": [
+        "journal_source_jstor_environmental_title_family",
+        "journal_source_oup_environmental_merger",
+        "journal_source_arizona_forest_title_history"
+      ],
+      "occurrences": [
+        {
+          "source_id": "journal_source_jstor_environmental_title_family",
+          "row": "jforesthistory",
+          "title": "Journal of Forest History"
+        }
+      ],
+      "urls": [
+        "https://www.jstor.org/journal/jforesthistory"
+      ],
+      "publication_role": "periodical_candidate",
+      "identity_status": "publisher_metadata_checked",
+      "issns": [
+        "0094-5080",
+        "2325-579X"
+      ],
+      "publication_start": null,
+      "publication_end": null,
+      "publication_status": "unknown",
+      "chronology_note": "JSTOR groups this title’s archive as 1974–1989. Precise title-start chronology remains unverified; earlier Forest History/Newsletter naming requires separate reconciliation.",
+      "languages": [],
+      "publisher_country": null,
+      "archive_coverage": {
+        "start": 1974,
+        "end": 1989,
+        "precision": "year",
+        "source_ids": [
+          "journal_source_jstor_environmental_title_family"
+        ],
+        "note": "JSTOR archive coverage; not a founding/cessation claim."
+      }
+    },
+    {
+      "id": "journal_02eec3b72cd5349d",
+      "entry_kind": "periodical",
+      "label": "Forest & Conservation History",
+      "aliases": [
+        "Forest & Conservation History"
+      ],
+      "source_ids": [
+        "journal_source_jstor_environmental_title_family",
+        "journal_source_oup_environmental_merger"
+      ],
+      "occurrences": [
+        {
+          "source_id": "journal_source_jstor_environmental_title_family",
+          "row": "foreconshist",
+          "title": "Forest & Conservation History"
+        }
+      ],
+      "urls": [
+        "https://www.jstor.org/journal/foreconshist"
+      ],
+      "publication_role": "periodical_candidate",
+      "identity_status": "publisher_metadata_checked",
+      "issns": [
+        "1046-7009",
+        "2325-5803"
+      ],
+      "publication_start": 1990,
+      "publication_end": 1995,
+      "publication_status": "title_changed",
+      "chronology_note": "Named title run; end marks a title change or merger, not cessation of the continuing publication.",
+      "languages": [],
+      "publisher_country": null,
+      "archive_coverage": {
+        "start": 1990,
+        "end": 1995,
+        "precision": "year",
+        "source_ids": [
+          "journal_source_jstor_environmental_title_family"
+        ],
+        "note": "JSTOR archive coverage; not a founding/cessation claim."
+      },
+      "date_span": {
+        "start": 1990,
+        "end": 1995,
+        "precision": "year",
+        "start_kind": "publication_start",
+        "end_kind": "title_change",
+        "open_end": false,
+        "basis": "source_check",
+        "source_ids": [
+          "journal_source_oup_environmental_merger"
+        ]
+      }
+    }
+  ],
+  "added_edges": [
+    {
+      "id": "journal_venue_environmental_review_field_formation",
+      "source": "journal_919d0c14e01dd6ed",
+      "target": "environment",
+      "relationship_kind": "founded_for",
+      "directed": true,
+      "relationship": "Launched in 1976 as part of the organizing effort that established an institutional community for environmental history in the United States and produced ASEH in 1977.",
+      "basis": "sourced_founding_programme",
+      "temporal_scope": {
+        "start": 1976,
+        "end": 1976,
+        "precision": "year",
+        "meaning": "founding_event"
+      },
+      "source_ids": [
+        "journal_source_aseh_founding_history",
+        "journal_source_oup_environmental_merger"
+      ],
+      "evidence_note": "The journal and society were planned together to organize an emerging field. This institutional formation is distinct from the later 1990 renaming, 1996 merger and the separate Environment and History launched in 1995. It does not make US institutionalization the origin of all environmental historical thought.",
+      "checked_on": "2026-09-16"
+    }
+  ],
+  "added_title_relationships": [
+    {
+      "id": "title_history_1dbe774e099c454d",
+      "predecessor": "journal_919d0c14e01dd6ed",
+      "successor": "journal_57a3505b8688a2ce",
+      "changed_in": 1990,
+      "change_kind": "title_change",
+      "source_ids": [
+        "journal_source_oup_environmental_merger"
+      ],
+      "evidence_note": "Renaming within the environmental-history branch."
+    },
+    {
+      "id": "title_history_6d0e47777d09991e",
+      "predecessor": "journal_f33abcd156e85bc9",
+      "successor": "journal_02eec3b72cd5349d",
+      "changed_in": 1990,
+      "change_kind": "title_change",
+      "source_ids": [
+        "journal_source_arizona_forest_title_history",
+        "journal_source_jstor_environmental_title_family"
+      ],
+      "evidence_note": "Continuation within the forest-history branch, separately from Environmental Review."
+    },
+    {
+      "id": "title_history_e5070420166fca63",
+      "predecessor": "journal_57a3505b8688a2ce",
+      "successor": "journal_b8bc3aaecbd1501f",
+      "changed_in": 1996,
+      "change_kind": "merger",
+      "source_ids": [
+        "journal_source_oup_environmental_merger"
+      ],
+      "evidence_note": "One of two publications merged to form Environmental History; the other is Forest & Conservation History."
+    },
+    {
+      "id": "title_history_24e92275be8898c2",
+      "predecessor": "journal_02eec3b72cd5349d",
+      "successor": "journal_b8bc3aaecbd1501f",
+      "changed_in": 1996,
+      "change_kind": "merger",
+      "source_ids": [
+        "journal_source_oup_environmental_merger"
+      ],
+      "evidence_note": "One of two publications merged to form Environmental History; the other is Environmental History Review."
+    }
+  ],
+  "source_corrections": [
+    {
+      "before": {
+        "id": "journal_source_environment_history_foundation",
+        "title": "Richard Grove, Editorial, Environment and History 1(1) (1995), 1–2",
+        "url": "https://www.environmentandsociety.org/sites/default/files/key_docs/Grove-1-1.pdf",
+        "checked_on": "2026-09-16",
+        "verification": "primary_editorial_read",
+        "note": "Complete two-page founding editorial read. Describes planning with Ramachandra Guha, connections to history from below and material culture, and a geographically broad programme complementing existing North American venues. An incidental erroneous Silent Spring date is not used."
+      },
+      "after": {
+        "id": "journal_source_environment_history_foundation",
+        "title": "Richard Grove, Editorial, Environment and History 1(1) (1995), 1–2",
+        "url": "https://www.environmentandsociety.org/sites/default/files/key_docs/Grove-1-1.pdf",
+        "checked_on": "2026-09-16",
+        "verification": "primary_editorial_read",
+        "note": "Complete two-page founding editorial read. Describes planning with Ranajit Guha, connections to history from below and material culture, and a geographically broad programme complementing existing North American venues. An incidental erroneous Silent Spring date is not used."
+      },
+      "reason": "Correct the person named in Grove’s editorial: Ranajit Guha, not Ramachandra Guha. Retain the source for the rejected founding claim’s audit trail."
+    }
+  ]
+}

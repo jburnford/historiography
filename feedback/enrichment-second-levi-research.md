@@ -1,0 +1,13 @@
+# Levi follow-up, revision 1.95
+
+Revision 1.95 completes followup 040 with documented limits. Levi’s primary methodological writing supports bounded agency and qualified criticism of Geertz and Darnton. One source, two approaches and two critiques added; Levi’s existing microhistory selection expanded. No new people or roster selections.
+
+Current totals: 109 entries, 708 relationships, 785 sources, 785 people, 1217 selections and 668 approaches across 66 groups. All 109 first-pass entries and 70 original work blanks complete. Forty-one questions completed during the fixed second pass, five before capture; 194 remain pending. Followups 001–040 and 232 completed; 218 partially progressed. Next: 041 Revel and González, then 042–043 oral history.
+
+Validation: zero errors, four reviewed warnings, 14 Python tests, eight JavaScript checks and exact six-file build. Prior IDs, sources, approaches, edges and original description prose preserved. Levi’s microhistory selection retains old text/references with additions; other old rosters exact. Frozen baseline hash matches 1.59 snapshot. No frontend design, visual review, deployment or OpenAlex. Manifest: `feedback/enrichment-second-levi-v1.95.json`. Both 1.95 scripts complete; do not rerun. No active process. No 1.96 mutation/snapshot.
+
+Complete Portuguese translation of the 1985 critique read, História Social 6 (1999), 137–146, including notes; Italian body not collated. Darnton quotations use a 1996 Brazilian edition. This is evidence of Levi’s intervention, not an independent adjudication. The separate primary-method subpart reuses the complete 1989 biography essay already read in 1.40, with its existing OCR limitations; no new full-book reading claimed. Grendi’s 1977 essay remains mediated by Ginzburg. A downloaded 1993 Levi interview remains unread beyond an indexed snippet and is not cited. No philosophical influence arrows inferred from Levi’s speculative genealogy.
+
+Primary: https://ojs.ifch.unicamp.br/index.php/rhs/article/download/182/174 ; local `/tmp/historiography-levi-geertz1999.pdf` and `.txt`. Translator Henrique Espada R. Lima Filho, technical reviewers Alessandra El Far and Fraya Frehse. Original Italian JSTOR stable 43777309 yielded no body. Pages 140 and 146 qualify philosophical genealogy and the polemical selection of Darnton’s work. No original-image collation performed. Existing biography source retains its complete 1989 article reading scope.
+
+Unused interview PDF and extracted text: `/tmp/historiography-levi-interview1993.pdf` and `.txt`, from https://ddd.uab.cat/pub/manuscrits/manuscrits_a1993n11/manuscrits_a1993n11p15.pdf . Body remains unread. No need to pursue this to complete 040. Next is 041.

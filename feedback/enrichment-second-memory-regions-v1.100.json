@@ -1,0 +1,938 @@
+{
+  "revision": "1.100",
+  "batch": "second-memory-regions-1",
+  "phase": "bounded_second_pass",
+  "changes": {
+    "nodes": {
+      "added": [],
+      "modified": [
+        {
+          "id": "memory",
+          "before": {
+            "id": "memory",
+            "label": "Memory studies",
+            "date_label": "1980s–90s; older roots",
+            "layer": "historiographical_developments",
+            "period": "period_3",
+            "hunt_core_paradigm": false,
+            "description": "Studies remembering, commemoration and forgetting through social relations, narratives, bodies and cultural forms. Recollection is evidence requiring interpretation; memory and history are connected in different, contested ways.",
+            "representative_figures_and_works": "Maurice Halbwachs (1925) as a precursor; Pierre Nora, Les Lieux de mémoire (1984–92).",
+            "source_ids": [
+              "language",
+              "halbwachs_memory",
+              "nora_memory_history",
+              "connerton_remember",
+              "assmann_collective",
+              "aleida_erinnerungsraeume",
+              "winter_sites",
+              "young_texture",
+              "workshop_memory",
+              "passerini_fascism",
+              "passerini_retrospect",
+              "alexander_becoming",
+              "yates_memory_primary",
+              "combe_archives_metadata",
+              "derrida_archive_primary",
+              "hayden_power_place",
+              "halbwachs_cadres_conclusion",
+              "young_vanishing_extract"
+            ],
+            "entry_kind": "group",
+            "representative_people": [
+              {
+                "person_id": "maurice_halbwachs",
+                "role": "precursor",
+                "context": "Social frameworks make remembering a relational process; later English selections are distinct from the original French works. The original French conclusion also addresses changes in traditions through relations between groups.",
+                "works": "Les cadres sociaux de la mémoire (1925); On Collective Memory, ed. and trans. Lewis Coser (1992 selections)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "halbwachs_cadres_conclusion"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "pierre_nora",
+                "role": "historian",
+                "context": "Studies sites where remembrance and historical reconstruction interact; his memory/history distinction is a situated argument.",
+                "works": "Les Lieux de mémoire (1984–92); “Between Memory and History” (English 1989)",
+                "source_ids": [
+                  "nora_memory_history"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "paul_connerton",
+                "role": "contributor",
+                "context": "Brings habitual bodily practices into the study of social remembering.",
+                "works": "How Societies Remember (1989)",
+                "source_ids": [
+                  "connerton_remember"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jan_assmann",
+                "role": "contributor",
+                "context": "Distinguishes everyday communication from institutionally maintained cultural memory while acknowledging collaboration with Aleida Assmann.",
+                "works": "“Collective Memory and Cultural Identity” (German 1988; English 1995)",
+                "source_ids": [
+                  "assmann_collective"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "aleida_assmann",
+                "role": "contributor",
+                "context": "Studies the media and uses of cultural remembering; her contribution is visible beside their collaborative work.",
+                "works": "Erinnerungsräume (1999)",
+                "source_ids": [
+                  "aleida_erinnerungsraeume",
+                  "assmann_collective"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jay_winter",
+                "role": "historian",
+                "context": "Examines mourning after the Great War and questions a clean break between older and modern cultural forms.",
+                "works": "Sites of Memory, Sites of Mourning (1995)",
+                "source_ids": [
+                  "winter_sites"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "james_e_young",
+                "role": "historian",
+                "context": "Examines Holocaust memorials and museums as historically situated forms of remembrance. A 1994 adapted extract examines memorial production, political disagreement and public participation.",
+                "works": "The Texture of Memory (1993)",
+                "source_ids": [
+                  "young_texture",
+                  "young_vanishing_extract"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "raphael_samuel",
+                "role": "historian",
+                "context": "Treats popular historical practices as part of the production of historical knowledge.",
+                "works": "Theatres of Memory, vol. 1 (1994)",
+                "source_ids": [
+                  "workshop_memory"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "luisa_passerini",
+                "role": "historian",
+                "context": "Interprets recollections of daily life under fascism without equating memory with either transparent evidence or resistance.",
+                "works": "Fascism in Popular Memory (English 1987)",
+                "source_ids": [
+                  "passerini_fascism",
+                  "passerini_retrospect"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "sally_alexander",
+                "role": "historian",
+                "context": "Brings feminist questions of subjectivity and the unconscious into historical work.",
+                "works": "Becoming a Woman (UK 1994; US 1995)",
+                "source_ids": [
+                  "alexander_becoming"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "frances_yates",
+                "role": "comparison",
+                "context": "Mnemonic techniques and their historical transformations provide a comparison with social frameworks and commemoration, without a founding claim.",
+                "works": "The Art of Memory (1966), preface and concluding chapter",
+                "source_ids": [
+                  "yates_memory_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "sonia_combe",
+                "role": "historian",
+                "context": "Studies archival access and historical authority; Derrida explicitly credits her investigation. Included as an archival-history interlocutor, without identifying archives with all collective memory.",
+                "works": "Archives interdites: les peurs françaises face à l’histoire contemporaine (1994), as cited in Archive Fever, p. 4 note 1",
+                "source_ids": [
+                  "combe_archives_metadata",
+                  "derrida_archive_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "derrida",
+                "role": "contributor",
+                "context": "Examines institutions, inscription and preservation/destruction while distinguishing an archive from spontaneous recollection. A conceptual contribution, not proof that all memory historians adopted it.",
+                "works": "Archive Fever (lecture 1994; English book 1996), opening and selected exergue",
+                "source_ids": [
+                  "derrida_archive_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "dolores_hayden",
+                "role": "historian",
+                "context": "Connects public memory with urban landscapes through collaborative historical work.",
+                "works": "The Power of Place (1995)",
+                "source_ids": [
+                  "hayden_power_place"
+                ],
+                "basis": "source_review"
+              }
+            ],
+            "entry_type": "Research field",
+            "scope_note": "Halbwachs’s social frameworks, Nora’s commemorative sites, and Samuel’s popular uses of the past are distinct projects. Communicative and cultural memory are the Assmann project’s distinctions, not a universal taxonomy. War mourning, Holocaust memorials and feminist subjectivity require different historical explanations; this selection remains weighted toward European debates.",
+            "strands": [
+              {
+                "id": "social_frameworks",
+                "title": "Social frameworks of remembering",
+                "person_ids": [
+                  "maurice_halbwachs"
+                ],
+                "focus": "Family, religious and class contexts organize recollection; a collective framework is not proof of one identical group memory.",
+                "works": "Les cadres sociaux de la mémoire (1925); English selections (1992)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "assmann_collective"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "sites",
+                "title": "Sites of memory and historical reconstruction",
+                "person_ids": [
+                  "pierre_nora"
+                ],
+                "focus": "Sites combine material, symbolic and functional dimensions, extending beyond monuments alone.",
+                "works": "“Between Memory and History” (1989)",
+                "source_ids": [
+                  "nora_memory_history"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "embodied",
+                "title": "Habit, bodies and ceremony",
+                "person_ids": [
+                  "paul_connerton"
+                ],
+                "focus": "Remembering includes bodily competence, not only recalled propositions or pictures.",
+                "works": "How Societies Remember (1989), “Bodily practices”",
+                "source_ids": [
+                  "connerton_remember"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "communicative_cultural",
+                "title": "Communication and cultural objectivation",
+                "person_ids": [
+                  "jan_assmann",
+                  "aleida_assmann"
+                ],
+                "focus": "Everyday recollection and durable cultural forms operate differently; Assmann revises rather than merely repeats Halbwachs.",
+                "works": "Jan Assmann (1988/1995); Aleida Assmann (1999)",
+                "source_ids": [
+                  "assmann_collective",
+                  "aleida_erinnerungsraeume"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "media",
+                "title": "Media and uses of cultural memory",
+                "person_ids": [
+                  "aleida_assmann"
+                ],
+                "focus": "Writing, images and monuments organize what can be stored and recalled.",
+                "works": "Erinnerungsräume (1999)",
+                "source_ids": [
+                  "aleida_erinnerungsraeume"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "war_mourning",
+                "title": "Mourning and cultural continuities after war",
+                "person_ids": [
+                  "jay_winter"
+                ],
+                "focus": "Traditional and modern forms overlap in Great War mourning; this is not a template for every subsequent catastrophe.",
+                "works": "Sites of Memory, Sites of Mourning (1995)",
+                "source_ids": [
+                  "winter_sites"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "holocaust_memorials",
+                "title": "Holocaust memorials and their contexts",
+                "person_ids": [
+                  "james_e_young"
+                ],
+                "focus": "Memorial forms and meanings vary across places and institutions.",
+                "works": "The Texture of Memory (1993)",
+                "source_ids": [
+                  "young_texture"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "popular_pasts",
+                "title": "Popular practices of historical knowledge",
+                "person_ids": [
+                  "raphael_samuel"
+                ],
+                "focus": "Family research, images and reenactment make historical work visible outside professional writing.",
+                "works": "Theatres of Memory (1994)",
+                "source_ids": [
+                  "workshop_memory"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "subjectivity",
+                "title": "Life histories, gender and subjectivity",
+                "person_ids": [
+                  "luisa_passerini",
+                  "sally_alexander"
+                ],
+                "focus": "Fascist everyday life and feminist psychoanalytic inquiry are distinct routes into interpreted recollection.",
+                "works": "Passerini (1987); Alexander (1994)",
+                "source_ids": [
+                  "passerini_fascism",
+                  "passerini_retrospect",
+                  "alexander_becoming"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "archive_authority",
+                "title": "Archival authority, access and inscription",
+                "focus": "Combe’s inquiry into access supplies a named resource to Derrida. His account differentiates archives from spontaneous memory and examines institutional authority and technical inscription.",
+                "person_ids": [
+                  "sonia_combe",
+                  "derrida"
+                ],
+                "works": "Archives interdites (1994); Archive Fever (1994/1996)",
+                "source_ids": [
+                  "combe_archives_metadata",
+                  "derrida_archive_primary"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "urban_landscape_practice",
+                "title": "Urban landscapes and public memory",
+                "focus": "Hayden’s collaborative practice links historical interpretation to lived places.",
+                "person_ids": [
+                  "dolores_hayden"
+                ],
+                "works": "The Power of Place (1995)",
+                "source_ids": [
+                  "hayden_power_place"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "traditions_in_contact",
+                "title": "Traditions in contact and conflict",
+                "focus": "Halbwachs explains revisions of collective remembering through contact with other groups and their traditions; social frameworks are not an assurance of a unanimous or unchanging past.",
+                "person_ids": [
+                  "maurice_halbwachs"
+                ],
+                "works": "Les cadres sociaux de la mémoire (1925), final concluding subsection",
+                "source_ids": [
+                  "halbwachs_cadres_conclusion"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "memorial_production",
+                "title": "Memorial production and public disagreement",
+                "focus": "Young’s Saarbrücken account follows a covert art project into public controversy and political recognition. His interpretation makes the memorial’s production and reception part of its meaning.",
+                "person_ids": [
+                  "james_e_young"
+                ],
+                "works": "Germany’s vanishing Holocaust monuments (1994), adapted extract",
+                "source_ids": [
+                  "young_vanishing_extract"
+                ],
+                "basis": "editorial_distinction"
+              }
+            ]
+          },
+          "after": {
+            "id": "memory",
+            "label": "Memory studies",
+            "date_label": "1980s–90s; older roots",
+            "layer": "historiographical_developments",
+            "period": "period_3",
+            "hunt_core_paradigm": false,
+            "description": "Studies remembering, commemoration and forgetting through social relations, narratives, bodies and cultural forms. Recollection is evidence requiring interpretation; memory and history are connected in different, contested ways.",
+            "representative_figures_and_works": "Maurice Halbwachs (1925) as a precursor; Pierre Nora, Les Lieux de mémoire (1984–92).",
+            "source_ids": [
+              "language",
+              "halbwachs_memory",
+              "nora_memory_history",
+              "connerton_remember",
+              "assmann_collective",
+              "aleida_erinnerungsraeume",
+              "winter_sites",
+              "young_texture",
+              "workshop_memory",
+              "passerini_fascism",
+              "passerini_retrospect",
+              "alexander_becoming",
+              "yates_memory_primary",
+              "combe_archives_metadata",
+              "derrida_archive_primary",
+              "hayden_power_place",
+              "halbwachs_cadres_conclusion",
+              "young_vanishing_extract",
+              "jelin_memory_1994",
+              "rousso_apres_vichy",
+              "yerushalmi_zakhor_scoped"
+            ],
+            "entry_kind": "group",
+            "representative_people": [
+              {
+                "person_id": "maurice_halbwachs",
+                "role": "precursor",
+                "context": "Social frameworks make remembering a relational process; later English selections are distinct from the original French works. The original French conclusion also addresses changes in traditions through relations between groups.",
+                "works": "Les cadres sociaux de la mémoire (1925); On Collective Memory, ed. and trans. Lewis Coser (1992 selections)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "halbwachs_cadres_conclusion"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "pierre_nora",
+                "role": "historian",
+                "context": "Studies sites where remembrance and historical reconstruction interact; his memory/history distinction is a situated argument.",
+                "works": "Les Lieux de mémoire (1984–92); “Between Memory and History” (English 1989)",
+                "source_ids": [
+                  "nora_memory_history"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "paul_connerton",
+                "role": "contributor",
+                "context": "Brings habitual bodily practices into the study of social remembering.",
+                "works": "How Societies Remember (1989)",
+                "source_ids": [
+                  "connerton_remember"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jan_assmann",
+                "role": "contributor",
+                "context": "Distinguishes everyday communication from institutionally maintained cultural memory while acknowledging collaboration with Aleida Assmann.",
+                "works": "“Collective Memory and Cultural Identity” (German 1988; English 1995)",
+                "source_ids": [
+                  "assmann_collective"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "aleida_assmann",
+                "role": "contributor",
+                "context": "Studies the media and uses of cultural remembering; her contribution is visible beside their collaborative work.",
+                "works": "Erinnerungsräume (1999)",
+                "source_ids": [
+                  "aleida_erinnerungsraeume",
+                  "assmann_collective"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jay_winter",
+                "role": "historian",
+                "context": "Examines mourning after the Great War and questions a clean break between older and modern cultural forms.",
+                "works": "Sites of Memory, Sites of Mourning (1995)",
+                "source_ids": [
+                  "winter_sites"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "james_e_young",
+                "role": "historian",
+                "context": "Examines Holocaust memorials and museums as historically situated forms of remembrance. A 1994 adapted extract examines memorial production, political disagreement and public participation.",
+                "works": "The Texture of Memory (1993)",
+                "source_ids": [
+                  "young_texture",
+                  "young_vanishing_extract"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "raphael_samuel",
+                "role": "historian",
+                "context": "Treats popular historical practices as part of the production of historical knowledge.",
+                "works": "Theatres of Memory, vol. 1 (1994)",
+                "source_ids": [
+                  "workshop_memory"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "luisa_passerini",
+                "role": "historian",
+                "context": "Interprets recollections of daily life under fascism without equating memory with either transparent evidence or resistance.",
+                "works": "Fascism in Popular Memory (English 1987)",
+                "source_ids": [
+                  "passerini_fascism",
+                  "passerini_retrospect"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "sally_alexander",
+                "role": "historian",
+                "context": "Brings feminist questions of subjectivity and the unconscious into historical work.",
+                "works": "Becoming a Woman (UK 1994; US 1995)",
+                "source_ids": [
+                  "alexander_becoming"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "frances_yates",
+                "role": "comparison",
+                "context": "Mnemonic techniques and their historical transformations provide a comparison with social frameworks and commemoration, without a founding claim.",
+                "works": "The Art of Memory (1966), preface and concluding chapter",
+                "source_ids": [
+                  "yates_memory_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "sonia_combe",
+                "role": "historian",
+                "context": "Studies archival access and historical authority; Derrida explicitly credits her investigation. Included as an archival-history interlocutor, without identifying archives with all collective memory.",
+                "works": "Archives interdites: les peurs françaises face à l’histoire contemporaine (1994), as cited in Archive Fever, p. 4 note 1",
+                "source_ids": [
+                  "combe_archives_metadata",
+                  "derrida_archive_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "derrida",
+                "role": "contributor",
+                "context": "Examines institutions, inscription and preservation/destruction while distinguishing an archive from spontaneous recollection. A conceptual contribution, not proof that all memory historians adopted it.",
+                "works": "Archive Fever (lecture 1994; English book 1996), opening and selected exergue",
+                "source_ids": [
+                  "derrida_archive_primary"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "dolores_hayden",
+                "role": "historian",
+                "context": "Connects public memory with urban landscapes through collaborative historical work.",
+                "works": "The Power of Place (1995)",
+                "source_ids": [
+                  "hayden_power_place"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "elizabeth_jelin",
+                "role": "contributor",
+                "context": "Studies contested remembrance and human-rights politics in Argentina through a CEDES research project.",
+                "works": "The Politics of Memory (1994)",
+                "source_ids": [
+                  "jelin_memory_1994"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "pablo_azcarate",
+                "role": "contributor",
+                "context": "Credited with active participation in preparing Jelin’s article; the credit does not identify him as its coauthor.",
+                "works": "Research contribution to The Politics of Memory (1994)",
+                "source_ids": [
+                  "jelin_memory_1994"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "henry_rousso",
+                "role": "historian",
+                "context": "Investigates Vichy’s changing political and cultural remembrance and historians’ position within that history of representations.",
+                "works": "Le Syndrome de Vichy (1987; revised 1990); Pour une histoire de la mémoire collective (1991), opening",
+                "source_ids": [
+                  "rousso_apres_vichy"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "yosef_hayim_yerushalmi",
+                "role": "historian",
+                "context": "Distinguishes Jewish remembering from professional historiography; his separate essay on forgetting is explicitly used by Jelin.",
+                "works": "Zakhor (1982); Reflexiones sobre el olvido (Spanish 1989), as cited by Jelin",
+                "source_ids": [
+                  "yerushalmi_zakhor_scoped",
+                  "jelin_memory_1994"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "nicole_loraux",
+                "role": "contributor",
+                "context": "Jelin explicitly uses her analysis of amnesty and mourning as a comparative resource; that essay has not been independently read here.",
+                "works": "De la amnistía y su contrario, in Usos del olvido (Spanish 1989), as cited by Jelin",
+                "source_ids": [
+                  "jelin_memory_1994"
+                ],
+                "basis": "source_review"
+              }
+            ],
+            "entry_type": "Research field",
+            "scope_note": "Halbwachs’s social frameworks, Nora’s commemorative sites, and Samuel’s popular uses of the past are distinct projects. Communicative and cultural memory are the Assmann project’s distinctions, not a universal taxonomy. War mourning, Holocaust memorials and feminist subjectivity require different historical explanations; this selection remains weighted toward European debates. Jelin’s Argentina project adds a pre-2000 case beyond Europe; it does not represent all Latin American memory work.",
+            "strands": [
+              {
+                "id": "social_frameworks",
+                "title": "Social frameworks of remembering",
+                "person_ids": [
+                  "maurice_halbwachs"
+                ],
+                "focus": "Family, religious and class contexts organize recollection; a collective framework is not proof of one identical group memory.",
+                "works": "Les cadres sociaux de la mémoire (1925); English selections (1992)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "assmann_collective"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "sites",
+                "title": "Sites of memory and historical reconstruction",
+                "person_ids": [
+                  "pierre_nora"
+                ],
+                "focus": "Sites combine material, symbolic and functional dimensions, extending beyond monuments alone.",
+                "works": "“Between Memory and History” (1989)",
+                "source_ids": [
+                  "nora_memory_history"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "embodied",
+                "title": "Habit, bodies and ceremony",
+                "person_ids": [
+                  "paul_connerton"
+                ],
+                "focus": "Remembering includes bodily competence, not only recalled propositions or pictures.",
+                "works": "How Societies Remember (1989), “Bodily practices”",
+                "source_ids": [
+                  "connerton_remember"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "communicative_cultural",
+                "title": "Communication and cultural objectivation",
+                "person_ids": [
+                  "jan_assmann",
+                  "aleida_assmann"
+                ],
+                "focus": "Everyday recollection and durable cultural forms operate differently; Assmann revises rather than merely repeats Halbwachs.",
+                "works": "Jan Assmann (1988/1995); Aleida Assmann (1999)",
+                "source_ids": [
+                  "assmann_collective",
+                  "aleida_erinnerungsraeume"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "media",
+                "title": "Media and uses of cultural memory",
+                "person_ids": [
+                  "aleida_assmann"
+                ],
+                "focus": "Writing, images and monuments organize what can be stored and recalled.",
+                "works": "Erinnerungsräume (1999)",
+                "source_ids": [
+                  "aleida_erinnerungsraeume"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "war_mourning",
+                "title": "Mourning and cultural continuities after war",
+                "person_ids": [
+                  "jay_winter"
+                ],
+                "focus": "Traditional and modern forms overlap in Great War mourning; this is not a template for every subsequent catastrophe.",
+                "works": "Sites of Memory, Sites of Mourning (1995)",
+                "source_ids": [
+                  "winter_sites"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "holocaust_memorials",
+                "title": "Holocaust memorials and their contexts",
+                "person_ids": [
+                  "james_e_young"
+                ],
+                "focus": "Memorial forms and meanings vary across places and institutions.",
+                "works": "The Texture of Memory (1993)",
+                "source_ids": [
+                  "young_texture"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "popular_pasts",
+                "title": "Popular practices of historical knowledge",
+                "person_ids": [
+                  "raphael_samuel"
+                ],
+                "focus": "Family research, images and reenactment make historical work visible outside professional writing.",
+                "works": "Theatres of Memory (1994)",
+                "source_ids": [
+                  "workshop_memory"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "subjectivity",
+                "title": "Life histories, gender and subjectivity",
+                "person_ids": [
+                  "luisa_passerini",
+                  "sally_alexander"
+                ],
+                "focus": "Fascist everyday life and feminist psychoanalytic inquiry are distinct routes into interpreted recollection.",
+                "works": "Passerini (1987); Alexander (1994)",
+                "source_ids": [
+                  "passerini_fascism",
+                  "passerini_retrospect",
+                  "alexander_becoming"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "archive_authority",
+                "title": "Archival authority, access and inscription",
+                "focus": "Combe’s inquiry into access supplies a named resource to Derrida. His account differentiates archives from spontaneous memory and examines institutional authority and technical inscription.",
+                "person_ids": [
+                  "sonia_combe",
+                  "derrida"
+                ],
+                "works": "Archives interdites (1994); Archive Fever (1994/1996)",
+                "source_ids": [
+                  "combe_archives_metadata",
+                  "derrida_archive_primary"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "urban_landscape_practice",
+                "title": "Urban landscapes and public memory",
+                "focus": "Hayden’s collaborative practice links historical interpretation to lived places.",
+                "person_ids": [
+                  "dolores_hayden"
+                ],
+                "works": "The Power of Place (1995)",
+                "source_ids": [
+                  "hayden_power_place"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "traditions_in_contact",
+                "title": "Traditions in contact and conflict",
+                "focus": "Halbwachs explains revisions of collective remembering through contact with other groups and their traditions; social frameworks are not an assurance of a unanimous or unchanging past.",
+                "person_ids": [
+                  "maurice_halbwachs"
+                ],
+                "works": "Les cadres sociaux de la mémoire (1925), final concluding subsection",
+                "source_ids": [
+                  "halbwachs_cadres_conclusion"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "memorial_production",
+                "title": "Memorial production and public disagreement",
+                "focus": "Young’s Saarbrücken account follows a covert art project into public controversy and political recognition. His interpretation makes the memorial’s production and reception part of its meaning.",
+                "person_ids": [
+                  "james_e_young"
+                ],
+                "works": "Germany’s vanishing Holocaust monuments (1994), adapted extract",
+                "source_ids": [
+                  "young_vanishing_extract"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "argentina_rights",
+                "title": "Argentina: rights, remembrance and generations",
+                "focus": "Jelin examines competing public memories and tensions within human-rights activism. Her conclusion questions both political forgetting and repetition that prevents younger generations from reinterpreting the past.",
+                "person_ids": [
+                  "elizabeth_jelin",
+                  "pablo_azcarate"
+                ],
+                "works": "The Politics of Memory (1994), selected sections",
+                "source_ids": [
+                  "jelin_memory_1994"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "vichy_representations",
+                "title": "Vichy’s afterlife and historical inquiry",
+                "focus": "Rousso distinguishes memory as an object of research, as a preliminary examination of inherited representations, and as a way to extend an event’s historical study into its aftermath.",
+                "person_ids": [
+                  "henry_rousso"
+                ],
+                "works": "Pour une histoire de la mémoire collective (1991), 163–166",
+                "source_ids": [
+                  "rousso_apres_vichy"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "jewish_memory_historiography",
+                "title": "Jewish remembrance and historiography",
+                "focus": "Yerushalmi’s prologue asks why concern with historical meaning and remembrance need not give professional historical writing the central role. This is a situated historical question, not a timeless definition of Jewish people.",
+                "person_ids": [
+                  "yosef_hayim_yerushalmi"
+                ],
+                "works": "Zakhor (1982), selected prologue passages",
+                "source_ids": [
+                  "yerushalmi_zakhor_scoped"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "forgetting_resources",
+                "title": "Resources for studying forgetting",
+                "focus": "Jelin’s 1994 analysis explicitly draws on Yerushalmi’s transmission argument and Loraux’s treatment of amnesty and mourning. Their Spanish 1989 essays are distinct from Zakhor.",
+                "person_ids": [
+                  "elizabeth_jelin",
+                  "yosef_hayim_yerushalmi",
+                  "nicole_loraux"
+                ],
+                "works": "Usos del olvido essays (1989), as used by Jelin (1994)",
+                "source_ids": [
+                  "jelin_memory_1994"
+                ],
+                "basis": "editorial_distinction"
+              }
+            ]
+          }
+        }
+      ],
+      "removed": []
+    },
+    "edges": {
+      "added": [],
+      "modified": [],
+      "removed": []
+    },
+    "people": {
+      "added": [
+        {
+          "id": "elizabeth_jelin",
+          "label": "Elizabeth Jelin"
+        },
+        {
+          "id": "pablo_azcarate",
+          "label": "Pablo Azcárate"
+        },
+        {
+          "id": "henry_rousso",
+          "label": "Henry Rousso"
+        },
+        {
+          "id": "yosef_hayim_yerushalmi",
+          "label": "Yosef Hayim Yerushalmi"
+        },
+        {
+          "id": "nicole_loraux",
+          "label": "Nicole Loraux"
+        }
+      ],
+      "modified": [],
+      "removed": []
+    },
+    "sources": {
+      "added": [
+        {
+          "id": "jelin_memory_1994",
+          "title": "Elizabeth Jelin, “The Politics of Memory: The Human Rights Movement and the Construction of Democracy in Argentina,” Latin American Perspectives 21/2 (1994), 38–58.",
+          "citation": "Elizabeth Jelin, “The Politics of Memory: The Human Rights Movement and the Construction of Democracy in Argentina,” Latin American Perspectives 21/2 (1994), 38–58.",
+          "url": "https://doi.org/10.1177/0094582X9402100204",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Read opening 38–40, complete “Memory, Truth, and Justice” section 46–52 and conclusion 52–53, notes 8–21 and selected references in a public PDF at https://citeseerx.ist.psu.edu/document?doi=0ec22d7e72d056057c62274abfb8b19dc4e26063&repid=rep1&type=pdf . Intervening 41–46 not fully read. Author credit names CEDES project and Pablo Azcárate’s participation. Yerushalmi and Loraux are cited resources, not independently read here; interviews not independently checked. This is the 1994 analysis, not subsequent legal outcomes or evidence that remembering guarantees non-recurrence."
+          }
+        },
+        {
+          "id": "rousso_apres_vichy",
+          "title": "Henry Rousso, “Pour une histoire de la mémoire collective : l’après-Vichy,” Les Cahiers de l’Institut d’histoire du temps présent 18 (1991), 163–176.",
+          "citation": "Henry Rousso, “Pour une histoire de la mémoire collective : l’après-Vichy,” Les Cahiers de l’Institut d’histoire du temps présent 18 (1991), 163–176.",
+          "url": "https://www.persee.fr/doc/ihtp_0769-4504_1991_num_18_1_2199",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Read pages 163–166 in public page OCR, including all three methodological cases on 165–166. Remaining 167–176 and Le Syndrome de Vichy book unread. Opening and note 1 identify the 1987 book and revised 1990 edition; this is the author’s account of its project. PDF download returned 403; public HTML pages remained accessible. No scan collation or detailed check of his periodization."
+          }
+        },
+        {
+          "id": "yerushalmi_zakhor_scoped",
+          "title": "Yosef Hayim Yerushalmi, Zakhor: Jewish History and Jewish Memory (1982; later editions).",
+          "citation": "Yosef Hayim Yerushalmi, Zakhor: Jewish History and Jewish Memory (1982; later editions).",
+          "url": "https://uwapress.uw.edu/book/9780295975191/zakhor/",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Publisher contents and 1996 edition checked; University of Washington finding-aid indexed entry separately records 1982/1996 copyright (https://static.lib.uw.edu/static/public/specialcollections/findingaids/02-019.pdf). Read legible prologue passages and selected opening-chapter lines in garbled public OCR at https://www.scribd.com/document/1010391836/Vdoc-pub-Zakhor-Jewish-History-and-Jewish-Memory . Supports only the stated distinction between historical meaning, remembering and historiography. No complete chapter, reliable scan collation, or reconstruction of missing OCR. Later prefaces not backdated; book-wide historical generalizations not adopted."
+          }
+        }
+      ],
+      "modified": [],
+      "removed": []
+    }
+  },
+  "outcomes": [
+    {
+      "followup_id": "followup_046",
+      "entry_id": "memory",
+      "status": "resolved_with_documented_limit",
+      "revision": "1.100",
+      "checked_on": "2026-09-13",
+      "record": "feedback/enrichment-second-memory-regions-v1.100.json",
+      "finding": "Added a researched pre-2000 Argentina project, distinguished Rousso and Yerushalmi, and recorded named collaboration and specific conceptual resources with bounded evidence.",
+      "source_ids": [
+        "jelin_memory_1994",
+        "rousso_apres_vichy",
+        "yerushalmi_zakhor_scoped"
+      ],
+      "research_limit": "Jelin 1994: opening 38–40, complete Memory/Truth/Justice section 46–52 and conclusion 52–53, notes 8–21 and selected references read; intervening body incomplete. Original interviews and cited Yerushalmi/Loraux essays not independently checked. Rousso 1991: public page OCR 163–166, including three methodological cases; later pages and book unread. Yerushalmi: publisher contents/edition metadata and selected legible prologue/early chapter OCR read; transcription substantially garbled, no complete chapter or first-edition collation. UW finding-aid indexed entry supports 1982/1996 copyright distinction. No general claim about all Latin American or Jewish remembering, no contemporary legal extrapolation, and no identity between Zakhor and the 1989 essay Jelin cites."
+    }
+  ],
+  "validation": {
+    "structural": "0 errors; 4 previously reviewed warnings",
+    "python": "14 passed",
+    "javascript": "8 passed",
+    "preservation": "All prior people, sources, edges, approaches, roster selections and original descriptions preserved exactly. Memory scope retains its original prefix. Frozen baseline hash matches 1.59 snapshot.",
+    "build": "Exactly six allowlisted files, byte-identical to sources.",
+    "scope": "Data only; no frontend design, visual review, deployment or OpenAlex."
+  }
+}

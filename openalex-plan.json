@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "curated_dataset": "historiography-1920-2000.json",
+  "extension_period": [2001, 2026],
+  "notes": [
+    "Discovery queries are editorial proposals, not established schools or verified memberships.",
+    "The pilot is an English-language convenience sample, not a representative survey.",
+    "Seed title matches require review of author, original publication, edition, translation, and work type.",
+    "2026 is a partial publication year; indexing and citation accumulation are also incomplete."
+  ],
+  "seeds": [
+    {"id": "hunt_global_era", "title": "Writing History in the Global Era", "author": "Lynn Hunt", "original_year": 2014, "node_ids": ["global", "identity", "modern", "annales", "marx"]},
+    {"id": "thompson_making", "title": "The Making of the English Working Class", "author": "E. P. Thompson", "original_year": 1963, "node_ids": ["marx", "social"]},
+    {"id": "scott_gender", "title": "Gender: A Useful Category of Historical Analysis", "author": "Joan W. Scott", "original_year": 1986, "node_ids": ["gender", "women"]},
+    {"id": "chakrabarty_provincializing", "title": "Provincializing Europe", "author": "Dipesh Chakrabarty", "original_year": 2000, "node_ids": ["post", "global"]},
+    {"id": "smith_decolonizing", "title": "Decolonizing Methodologies", "author": "Linda Tuhiwai Smith", "original_year": 1999, "node_ids": ["indigenous"]},
+    {"id": "ginzburg_cheese", "title": "The Cheese and the Worms", "author": "Carlo Ginzburg", "original_year": 1976, "node_ids": ["micro"]},
+    {"id": "white_metahistory", "title": "Metahistory", "author": "Hayden White", "original_year": 1973, "node_ids": ["language"]},
+    {"id": "geertz_interpretation", "title": "The Interpretation of Cultures", "author": "Clifford Geertz", "original_year": 1973, "node_ids": ["geertz", "culture"]}
+  ],
+  "discovery_lanes": [
+    {"id": "global_connected", "label": "Global, transnational, and connected histories", "node_ids": ["global", "post"], "search": "(\"global history\" OR \"connected history\" OR \"transnational history\") AND historiography"},
+    {"id": "decolonial_indigenous", "label": "Decolonial and Indigenous historical methods", "node_ids": ["indigenous", "post", "subaltern"], "search": "(decolonial OR Indigenous) AND (historiography OR \"historical methods\")"},
+    {"id": "climate_anthropocene", "label": "Climate, Anthropocene, and planetary history", "node_ids": ["environment", "global"], "search": "(Anthropocene OR \"climate history\") AND (historiography OR \"historical writing\")"},
+    {"id": "digital_computational", "label": "Digital and computational history", "node_ids": ["quant"], "search": "(\"digital history\" OR \"computational history\") AND (methods OR historiography)"},
+    {"id": "emotions_experience", "label": "Emotions, experience, and the historical self", "node_ids": ["culture", "gender"], "search": "\"history of emotions\" AND (methods OR historiography)"},
+    {"id": "material_nonhuman", "label": "Material culture and nonhuman histories", "node_ids": ["culture", "environment"], "search": "(\"material turn\" OR \"animal history\" OR \"multispecies history\") AND (history OR historiography)"},
+    {"id": "race_empire_capitalism", "label": "Race, empire, and capitalism", "node_ids": ["black", "gender", "economic", "anticolonial"], "search": "\"racial capitalism\" AND (history OR historiography)"},
+    {"id": "memory_public_pasts", "label": "Memory, public history, and contested pasts", "node_ids": ["memory", "oral", "indigenous"], "search": "(\"public history\" OR \"memory studies\") AND (historiography OR decolonization)"}
+  ]
+}

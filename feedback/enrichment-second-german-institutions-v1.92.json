@@ -1,0 +1,592 @@
+{
+  "revision": "1.92",
+  "batch": "second-german-institutions-1",
+  "phase": "bounded_second_pass",
+  "changes": {
+    "nodes": {
+      "added": [],
+      "modified": [
+        {
+          "id": "bielefeld",
+          "before": {
+            "id": "bielefeld",
+            "label": "West German historical social science / Sonderweg",
+            "date_label": "Wehler · Kocka · critics and extensions · 1960s–90s",
+            "layer": "historiographical_developments",
+            "period": "period_2",
+            "hunt_core_paradigm": false,
+            "description": "Historical social science investigates German politics through social and economic structures. Wehler’s Empire interpretation, Kocka’s industrial and bourgeois research, and Frevert’s gender history address different questions. Blackbourn/Eley contest Sonderweg assumptions; Kocka revises parts while defending comparison. Lüdtke questions structural priorities through everyday practices. Fischer’s war-aims controversy is a related precursor.",
+            "representative_figures_and_works": "Hans-Ulrich Wehler, Das deutsche Kaiserreich (1973); Jürgen Kocka; Geschichte und Gesellschaft (1975); David Blackbourn and Geoff Eley, The Peculiarities of German History (1984). Fritz Fischer’s 1961 intervention is a related precursor.",
+            "source_ids": [
+              "blackbourn_eley",
+              "wehler_kaiserreich",
+              "kocka_industrial",
+              "kocka_sonderweg",
+              "fischer_aims",
+              "frevert_women",
+              "ludtke_synchrony"
+            ],
+            "entry_kind": "group",
+            "representative_people": [
+              {
+                "person_id": "hans_ulrich_wehler",
+                "role": "historian",
+                "context": "Explains Imperial German politics through social and economic power structures; his interpretation provokes criticism and revision.",
+                "works": "Das deutsche Kaiserreich 1871–1918 (1973; English 1985)",
+                "source_ids": [
+                  "wehler_kaiserreich",
+                  "kocka_sonderweg"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jurgen_kocka",
+                "role": "historian",
+                "context": "Studies industrial organization and bourgeois society using Marx and Weber; revises parts of Sonderweg while defending a qualified comparison.",
+                "works": "Industrial Culture and Bourgeois Society in Modern Germany (1999); “German History before Hitler” (1988)",
+                "source_ids": [
+                  "kocka_industrial",
+                  "kocka_sonderweg"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "david_blackbourn",
+                "role": "critic",
+                "context": "Critic of the Sonderweg thesis, not represented as its adherent. Questions the comparative model and identifies bourgeois transformations beyond a conventional liberal revolution.",
+                "works": "The Peculiarities of German History (1984), with Geoff Eley",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "curated_entry"
+              },
+              {
+                "person_id": "geoff_eley",
+                "role": "critic",
+                "context": "Critic of the Sonderweg thesis, not represented as its adherent. Questions the comparative model and identifies bourgeois transformations beyond a conventional liberal revolution.",
+                "works": "The Peculiarities of German History (1984), with David Blackbourn",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "curated_entry"
+              },
+              {
+                "person_id": "fritz_fischer",
+                "role": "precursor",
+                "context": "Related precursor whose documented challenge over German First World War aims helped unsettle established accounts; distinct from the later Historikerstreit.",
+                "works": "Griff nach der Weltmacht (1961); Germany’s Aims in the First World War (English 1967)",
+                "source_ids": [
+                  "fischer_aims",
+                  "wehler_kaiserreich"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "ute_frevert",
+                "role": "historian",
+                "context": "Bielefeld-trained contributor connecting women’s lives, rights and bourgeois society; not selected as an adherent of every Sonderweg claim.",
+                "works": "Women in German History (English 1989)",
+                "source_ids": [
+                  "frevert_women"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "alf_ludtke",
+                "role": "critic",
+                "context": "Alltagsgeschichte critic of structural priorities, including a specific limit of Kocka’s Siemens study; also draws productively on comparative sociology.",
+                "works": "“Polymorphous Synchrony” (1993)",
+                "source_ids": [
+                  "ludtke_synchrony"
+                ],
+                "basis": "source_review"
+              }
+            ],
+            "strands": [
+              {
+                "id": "school",
+                "title": "Historical social science",
+                "person_ids": [
+                  "hans_ulrich_wehler",
+                  "jurgen_kocka"
+                ],
+                "focus": "Wehler’s structural political explanation and Kocka’s organizational/social comparisons differ within a broader programme.",
+                "works": "Wehler, Das deutsche Kaiserreich (1973); Kocka, Industrial Culture (1999)",
+                "source_ids": [
+                  "wehler_kaiserreich",
+                  "kocka_industrial"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "critics",
+                "title": "Sonderweg criticism",
+                "person_ids": [
+                  "david_blackbourn",
+                  "geoff_eley",
+                  "jurgen_kocka"
+                ],
+                "focus": "Critics contest the western yardstick and bourgeois-failure thesis; Kocka accepts revisions while defending qualified comparison.",
+                "works": "Blackbourn/Eley (1984); Kocka’s response (1988)",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "war_aims",
+                "title": "War aims and a related controversy",
+                "person_ids": [
+                  "fritz_fischer"
+                ],
+                "focus": "An archival intervention about First World War aims supplies context for later revisionist questions.",
+                "works": "Fischer, Griff nach der Weltmacht (1961)",
+                "source_ids": [
+                  "fischer_aims",
+                  "wehler_kaiserreich"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "gender_society",
+                "title": "Gender, rights and bourgeois society",
+                "person_ids": [
+                  "ute_frevert"
+                ],
+                "focus": "Women’s opportunities and restrictions enter the history of German society and its political arrangements.",
+                "works": "Frevert, Women in German History (1989)",
+                "source_ids": [
+                  "frevert_women"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "everyday",
+                "title": "Everyday practices and structural priorities",
+                "person_ids": [
+                  "alf_ludtke",
+                  "jurgen_kocka"
+                ],
+                "focus": "A specific critical exchange about workplace relations keeps actors’ practices visible alongside structures.",
+                "works": "Lüdtke, “Polymorphous Synchrony” (1993), note 27 on Kocka",
+                "source_ids": [
+                  "ludtke_synchrony"
+                ],
+                "basis": "editorial_distinction"
+              }
+            ],
+            "entry_type": "Teaching umbrella",
+            "scope_note": "A teaching umbrella spanning a research programme, a contested German-path argument and critics. Historical social science is broader than Sonderweg; neither is synonymous with the later Historikerstreit. Long-term conditions are not inevitable causes of Nazism, and gender history broadens the programme without making all contributors doctrinal adherents."
+          },
+          "after": {
+            "id": "bielefeld",
+            "label": "West German historical social science / Sonderweg",
+            "date_label": "Wehler · Kocka · critics and extensions · 1960s–90s",
+            "layer": "historiographical_developments",
+            "period": "period_2",
+            "hunt_core_paradigm": false,
+            "description": "Historical social science investigates German politics through social and economic structures. Wehler’s Empire interpretation, Kocka’s industrial and bourgeois research, and Frevert’s gender history address different questions. Blackbourn/Eley contest Sonderweg assumptions; Kocka revises parts while defending comparison. Lüdtke questions structural priorities through everyday practices. Fischer’s war-aims controversy is a related precursor.",
+            "representative_figures_and_works": "Hans-Ulrich Wehler, Das deutsche Kaiserreich (1973); Jürgen Kocka; Geschichte und Gesellschaft (1975); David Blackbourn and Geoff Eley, The Peculiarities of German History (1984). Fritz Fischer’s 1961 intervention is a related precursor.",
+            "source_ids": [
+              "blackbourn_eley",
+              "wehler_kaiserreich",
+              "kocka_industrial",
+              "kocka_sonderweg",
+              "fischer_aims",
+              "frevert_women",
+              "ludtke_synchrony",
+              "gg_founders_preface",
+              "schieder_structures_primary",
+              "wehler_1999_interview",
+              "schulze_helm_ott_debate"
+            ],
+            "entry_kind": "group",
+            "representative_people": [
+              {
+                "person_id": "hans_ulrich_wehler",
+                "role": "historian",
+                "context": "Explains Imperial German politics through social and economic power structures; his interpretation provokes criticism and revision.",
+                "works": "Das deutsche Kaiserreich 1871–1918 (1973; English 1985)",
+                "source_ids": [
+                  "wehler_kaiserreich",
+                  "kocka_sonderweg"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "jurgen_kocka",
+                "role": "historian",
+                "context": "Studies industrial organization and bourgeois society using Marx and Weber; revises parts of Sonderweg while defending a qualified comparison.",
+                "works": "Industrial Culture and Bourgeois Society in Modern Germany (1999); “German History before Hitler” (1988)",
+                "source_ids": [
+                  "kocka_industrial",
+                  "kocka_sonderweg"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "david_blackbourn",
+                "role": "critic",
+                "context": "Critic of the Sonderweg thesis, not represented as its adherent. Questions the comparative model and identifies bourgeois transformations beyond a conventional liberal revolution.",
+                "works": "The Peculiarities of German History (1984), with Geoff Eley",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "curated_entry"
+              },
+              {
+                "person_id": "geoff_eley",
+                "role": "critic",
+                "context": "Critic of the Sonderweg thesis, not represented as its adherent. Questions the comparative model and identifies bourgeois transformations beyond a conventional liberal revolution.",
+                "works": "The Peculiarities of German History (1984), with David Blackbourn",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "curated_entry"
+              },
+              {
+                "person_id": "fritz_fischer",
+                "role": "precursor",
+                "context": "Related precursor whose documented challenge over German First World War aims helped unsettle established accounts; distinct from the later Historikerstreit.",
+                "works": "Griff nach der Weltmacht (1961); Germany’s Aims in the First World War (English 1967)",
+                "source_ids": [
+                  "fischer_aims",
+                  "wehler_kaiserreich"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "ute_frevert",
+                "role": "historian",
+                "context": "Bielefeld-trained contributor connecting women’s lives, rights and bourgeois society; not selected as an adherent of every Sonderweg claim.",
+                "works": "Women in German History (English 1989)",
+                "source_ids": [
+                  "frevert_women"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "alf_ludtke",
+                "role": "critic",
+                "context": "Alltagsgeschichte critic of structural priorities, including a specific limit of Kocka’s Siemens study; also draws productively on comparative sociology.",
+                "works": "“Polymorphous Synchrony” (1993)",
+                "source_ids": [
+                  "ludtke_synchrony"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "helmut_berding",
+                "role": "contributor",
+                "context": "Coauthor of the founding journal programme, which proposed interdisciplinary research, thematic issues and open methodological discussion.",
+                "works": "With Berding, Mommsen, Puhle and Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft (1975)",
+                "source_ids": [
+                  "gg_founders_preface"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "wolfgang_j_mommsen",
+                "role": "contributor",
+                "context": "Coauthor of the founding journal programme, which proposed interdisciplinary research, thematic issues and open methodological discussion.",
+                "works": "With Berding, Mommsen, Puhle and Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft (1975)",
+                "source_ids": [
+                  "gg_founders_preface"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "hans_jurgen_puhle",
+                "role": "contributor",
+                "context": "Coauthor of the founding journal programme, which proposed interdisciplinary research, thematic issues and open methodological discussion.",
+                "works": "With Berding, Mommsen, Puhle and Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft (1975)",
+                "source_ids": [
+                  "gg_founders_preface"
+                ],
+                "basis": "source_review"
+              },
+              {
+                "person_id": "theodor_schieder",
+                "role": "precursor",
+                "context": "An earlier methodological and teaching resource for Wehler; this connection includes contested Nazi-era commitments and postwar silences, not a clean political break.",
+                "works": "“Strukturen und Persönlichkeiten in der Geschichte” (1968 edition); teaching recalled by Wehler (1999)",
+                "source_ids": [
+                  "schieder_structures_primary",
+                  "wehler_1999_interview",
+                  "schulze_helm_ott_debate"
+                ],
+                "basis": "source_review"
+              }
+            ],
+            "strands": [
+              {
+                "id": "school",
+                "title": "Historical social science",
+                "person_ids": [
+                  "hans_ulrich_wehler",
+                  "jurgen_kocka"
+                ],
+                "focus": "Wehler’s structural political explanation and Kocka’s organizational/social comparisons differ within a broader programme.",
+                "works": "Wehler, Das deutsche Kaiserreich (1973); Kocka, Industrial Culture (1999)",
+                "source_ids": [
+                  "wehler_kaiserreich",
+                  "kocka_industrial"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "critics",
+                "title": "Sonderweg criticism",
+                "person_ids": [
+                  "david_blackbourn",
+                  "geoff_eley",
+                  "jurgen_kocka"
+                ],
+                "focus": "Critics contest the western yardstick and bourgeois-failure thesis; Kocka accepts revisions while defending qualified comparison.",
+                "works": "Blackbourn/Eley (1984); Kocka’s response (1988)",
+                "source_ids": [
+                  "blackbourn_eley",
+                  "kocka_sonderweg"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "war_aims",
+                "title": "War aims and a related controversy",
+                "person_ids": [
+                  "fritz_fischer"
+                ],
+                "focus": "An archival intervention about First World War aims supplies context for later revisionist questions.",
+                "works": "Fischer, Griff nach der Weltmacht (1961)",
+                "source_ids": [
+                  "fischer_aims",
+                  "wehler_kaiserreich"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "gender_society",
+                "title": "Gender, rights and bourgeois society",
+                "person_ids": [
+                  "ute_frevert"
+                ],
+                "focus": "Women’s opportunities and restrictions enter the history of German society and its political arrangements.",
+                "works": "Frevert, Women in German History (1989)",
+                "source_ids": [
+                  "frevert_women"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "everyday",
+                "title": "Everyday practices and structural priorities",
+                "person_ids": [
+                  "alf_ludtke",
+                  "jurgen_kocka"
+                ],
+                "focus": "A specific critical exchange about workplace relations keeps actors’ practices visible alongside structures.",
+                "works": "Lüdtke, “Polymorphous Synchrony” (1993), note 27 on Kocka",
+                "source_ids": [
+                  "ludtke_synchrony"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "journal_programme",
+                "title": "A journal as a research and discussion venue",
+                "focus": "The four authors of the 1975 foreword proposed combining historical interpretation with social-scientific analysis. Thematic issues, research reports and a discussion forum would connect specialists and wider readers. This is an announced programme, not proof that all editorial practice fulfilled it.",
+                "person_ids": [
+                  "helmut_berding",
+                  "wolfgang_j_mommsen",
+                  "hans_jurgen_puhle",
+                  "hans_ulrich_wehler"
+                ],
+                "works": "Geschichte und Gesellschaft, founding foreword (1975)",
+                "source_ids": [
+                  "gg_founders_preface"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "inherited_structure_questions",
+                "title": "Structural questions within inherited historical methods",
+                "focus": "Schieder reads Ranke, Droysen and other earlier historians as already addressing relations between individuals and larger forces. His call to revise inherited methods complicates an absolute divide between traditional history and structural inquiry; his portraits of rival traditions remain contestable.",
+                "person_ids": [
+                  "theodor_schieder"
+                ],
+                "works": "Strukturen und Persönlichkeiten, section I (1968 edition)",
+                "source_ids": [
+                  "schieder_structures_primary"
+                ],
+                "basis": "editorial_distinction"
+              },
+              {
+                "id": "mentorship_accountability",
+                "title": "Mentorship and political accountability",
+                "focus": "Wehler’s retrospective account combines intellectual gratitude to Schieder with discussion of Nazi-era writings and silence. The 1999 scholarly debate examines postwar continuities and the limits of earlier scrutiny. Methodological innovation and a liberal teaching style do not by themselves settle political responsibility.",
+                "person_ids": [
+                  "theodor_schieder",
+                  "hans_ulrich_wehler",
+                  "jurgen_kocka"
+                ],
+                "works": "Wehler interview; Schulze, Helm and Ott on the historians’ debate (1999)",
+                "source_ids": [
+                  "wehler_1999_interview",
+                  "schulze_helm_ott_debate"
+                ],
+                "basis": "editorial_distinction"
+              }
+            ],
+            "entry_type": "Teaching umbrella",
+            "scope_note": "A teaching umbrella spanning a research programme, a contested German-path argument and critics. Historical social science is broader than Sonderweg; neither is synonymous with the later Historikerstreit. Long-term conditions are not inevitable causes of Nazism, and gender history broadens the programme without making all contributors doctrinal adherents. Innovation also coexisted with inherited teaching relationships and politically contested continuities across 1945; the 1998–1999 debate over historians’ Nazi pasts is a distinct episode."
+          }
+        }
+      ],
+      "removed": []
+    },
+    "edges": {
+      "added": [],
+      "modified": [
+        {
+          "id": "edge_218",
+          "before": {
+            "id": "edge_218",
+            "source": "bielefeld",
+            "target": "ranke",
+            "relationship": "Wehler’s structural interpretation challenges political explanation detached from social and economic power",
+            "type": "critique",
+            "directed": true,
+            "relationship_kind": "critique",
+            "source_ids": [
+              "blackbourn_eley",
+              "wehler_kaiserreich"
+            ],
+            "evidence_note": "Targets later disciplinary priorities associated with the tradition, not source criticism itself or every aspect of Ranke’s scholarship. The checked publisher describes his analysis and Fischer-controversy setting. Direct reception of Ranke’s original work remains unproven.",
+            "map_label": "Wehler: social structures in political explanation"
+          },
+          "after": {
+            "id": "edge_218",
+            "source": "bielefeld",
+            "target": "ranke",
+            "relationship": "Wehler’s structural interpretation challenges political explanation detached from social and economic power",
+            "type": "critique",
+            "directed": true,
+            "relationship_kind": "critique",
+            "source_ids": [
+              "blackbourn_eley",
+              "wehler_kaiserreich",
+              "gg_founders_preface",
+              "schieder_structures_primary"
+            ],
+            "evidence_note": "Targets later disciplinary priorities associated with the tradition, not source criticism itself or every aspect of Ranke’s scholarship. The checked publisher describes his analysis and Fischer-controversy setting. Direct reception of Ranke’s original work remains unproven. The 1975 journal programme explicitly combines historical-hermeneutic and social-scientific approaches. Schieder’s earlier section on structures and personalities also claims resources within older historiography. These primary texts qualify any reading of this criticism as an absolute methodological rupture; they do not verify direct Wehler reception of Ranke.",
+            "map_label": "Wehler: social structures in political explanation"
+          }
+        }
+      ],
+      "removed": []
+    },
+    "people": {
+      "added": [
+        {
+          "id": "helmut_berding",
+          "label": "Helmut Berding"
+        },
+        {
+          "id": "wolfgang_j_mommsen",
+          "label": "Wolfgang J. Mommsen"
+        },
+        {
+          "id": "hans_jurgen_puhle",
+          "label": "Hans-Jürgen Puhle"
+        },
+        {
+          "id": "theodor_schieder",
+          "label": "Theodor Schieder"
+        }
+      ],
+      "modified": [],
+      "removed": []
+    },
+    "sources": {
+      "added": [
+        {
+          "id": "gg_founders_preface",
+          "title": "Helmut Berding, Wolfgang J. Mommsen, Hans-Jürgen Puhle and Hans-Ulrich Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft 1 (1975), 5–7; reprinted in Die Bielefelder Sozialgeschichte (2010), 91–94.",
+          "citation": "Helmut Berding, Wolfgang J. Mommsen, Hans-Jürgen Puhle and Hans-Ulrich Wehler, “Vorwort der Herausgeber,” Geschichte und Gesellschaft 1 (1975), 5–7; reprinted in Die Bielefelder Sozialgeschichte (2010), 91–94.",
+          "url": "https://doi.org/10.1515/9783839415214-005",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Complete primary foreword read in reproduced 2010 reader OCR at https://dokumen.pub/die-bielefelder-sozialgeschichte-klassische-texte-zu-einem-geschichtswissenschaftlichen-programm-und-seinen-kontroversen-1-aufl-9783839415214.html . Author heading names all four contributors; original publication footnote distinguishes 1975 original pages 5–7 from reprint 91–94. Includes final cooperation appeal. Publisher chapter direct access failed; no original-image collation. Programme and intended discussion/thematic-issue mechanisms are documented, not an audit of their practical success or entire editorial history. Later reader introduction is not backdated."
+          }
+        },
+        {
+          "id": "schieder_structures_primary",
+          "title": "Theodor Schieder, “Strukturen und Persönlichkeiten in der Geschichte,” in Geschichte als Wissenschaft, second revised edition (1968), 157–194 and notes 230–233; reprinted in Die Bielefelder Sozialgeschichte (2010), selected section I.",
+          "citation": "Theodor Schieder, “Strukturen und Persönlichkeiten in der Geschichte,” in Geschichte als Wissenschaft, second revised edition (1968), 157–194 and notes 230–233; reprinted in Die Bielefelder Sozialgeschichte (2010), selected section I.",
+          "url": "https://dokumen.pub/die-bielefelder-sozialgeschichte-klassische-texte-zu-einem-geschichtswissenschaftlichen-programm-und-seinen-kontroversen-1-aufl-9783839415214.html",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Complete primary section I read on reprint 137–144, ending before section II. Reprint attribution identifies the 1968 edition, not the essay’s first publication. Sections II onward and endnotes unread; no scan collation or verification of all embedded quotations. The account of earlier historians and sociology is Schieder’s interpretation, including his polemical characterizations of Marx and Durkheim. Does not establish that his students adopted every argument."
+          }
+        },
+        {
+          "id": "wehler_1999_interview",
+          "title": "Hans-Ulrich Wehler, interview on the development of German historical scholarship in the 1950s–1960s, conducted by Hacke and Schäfer, Berlin, 4 February 1999.",
+          "citation": "Hans-Ulrich Wehler, interview on the development of German historical scholarship in the 1950s–1960s, conducted by Hacke and Schäfer, Berlin, 4 February 1999.",
+          "url": "https://hsozkult.geschichte.hu-berlin.de/beitrag/intervie/wehler.htm",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Primary transcript read selectively: Schieder mentorship and political differences, teaching limits, Weber/young-Marx seminars, and discussion of Schieder’s Nazi-era writings and silence, through end of part 1. Opening biography and closing interview credits/date checked. No full reading of part 2 or independent archive verification. Statements of personal knowledge, tolerance, political change and earlier failure to investigate are participant testimony, not exoneration or a complete history of the discipline."
+          }
+        },
+        {
+          "id": "schulze_helm_ott_debate",
+          "title": "Winfried Schulze, Gerd Helm and Thomas Ott, “Deutsche Historiker im Nationalsozialismus: Beobachtungen und Überlegungen zu einer Debatte” (1999).",
+          "citation": "Winfried Schulze, Gerd Helm and Thomas Ott, “Deutsche Historiker im Nationalsozialismus: Beobachtungen und Überlegungen zu einer Debatte” (1999).",
+          "url": "https://hsozkult.geschichte.hu-berlin.de/beitrag/intervie/fischer/hins.htm",
+          "verification": {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-13",
+            "note": "Scholarly discussion of the 1998 Historikertag debate read in its contemporary web reproduction: opening and complete section I, plus selected section II passages on postwar continuity and the Wehler/Kocka interventions. Remaining discussion, cited chapters and archival documents not fully read. Coauthors distinguish prior investigations from the 1998 debate and refuse a final verdict. Their summaries of other contributors are attributed reception, not a new reading of those chapters. No independent verification of every biographical or institutional claim."
+          }
+        }
+      ],
+      "modified": [],
+      "removed": []
+    }
+  },
+  "outcomes": [
+    {
+      "followup_id": "followup_038",
+      "entry_id": "bielefeld",
+      "status": "resolved_with_documented_limit",
+      "revision": "1.92",
+      "checked_on": "2026-09-13",
+      "record": "feedback/enrichment-second-german-institutions-v1.92.json",
+      "finding": "Complete 1975 founding foreword documents the journal as a concrete interdisciplinary discussion venue and identifies four collaborators. Schieder’s primary methodological section and Wehler’s teaching testimony show antecedents within older scholarship. Contemporary scholarly debate qualifies postwar renewal with political continuities, delayed scrutiny and contested mentor assessments. The journal/Schieder option resolves the bounded question; Rosenberg is not added from an unverified search lead.",
+      "source_ids": [
+        "gg_founders_preface",
+        "schieder_structures_primary",
+        "wehler_1999_interview",
+        "schulze_helm_ott_debate"
+      ],
+      "research_limit": "Foreword read fully in 2010 reprint OCR, 91–94, with original 1975 pages 5–7 attributed. Programme is not proof of its implementation across journal history. Schieder section I read fully on reprint 137–144; later sections/endnotes unread and original edition not collated. His account of earlier authors remains an attributed interpretation. Wehler transcript selected mentoring, political-difference, teaching and Nazi-past passages read through the end of part 1; part 2 not fully read. Interview credits identify Hacke and Schäfer, 4 February 1999. Schulze/Helm/Ott opening and complete section I, selected section II and print citation read; remaining sections and underlying archives/chapters unread. Print citation confirms Deutsche Historiker im Nationalsozialismus (1999), 11–48. No independent audit of memoir claims, no exoneration through methodological novelty, and no conflation of 1998 debate with Historikerstreit. No image collation."
+    }
+  ],
+  "validation": {
+    "structural": "0 errors; 4 previously reviewed warnings",
+    "python": "14 passed",
+    "javascript": "8 passed",
+    "preservation": "All old IDs, sources, rosters, approaches and original description prose preserved. Bielefeld scope appended; edge 218 note/references appended, other edges exact. Frozen baseline hash matches 1.59 snapshot.",
+    "build": "Exactly six allowlisted files, byte-identical to sources.",
+    "scope": "Data only; no frontend design, visual review, deployment or OpenAlex."
+  }
+}

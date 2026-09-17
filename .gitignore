@@ -1,0 +1,35 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.cache/
+openalex-api-key.txt
+site/dist/
+site/test-results/
+prototype/dist/
+
+# Research intermediates and snapshots: large, regenerable or archival rather than
+# needed to run the site. Kept on disk; archive separately (e.g. a data deposit with a DOI)
+# rather than in the teaching repository.
+data/journal-catalogue/library-metadata/
+data/journal-catalogue/openalex-metadata-staging/
+data/journal-catalogue/metadata-review-2026-09-15/
+data/journal-catalogue/jstor-title-history/
+data/journal-catalogue/metadata-batches/
+data/journal-catalogue/raw/
+data/journals/
+drafts/
+Clifford/
+
+# Downloaded scholarly PDFs: third-party copyright. Cite and link them; do not republish.
+*.pdf
+
+# Saved third-party payloads: publisher, library and API responses are other people's
+# content. Keep the provenance record (URL, retrieval date, hash) and the paraphrased
+# reading note; do not republish the response itself.
+data/journal-catalogue/library-api-samples/
+*.xml
+*.epub
+*.docx
+*.htm
