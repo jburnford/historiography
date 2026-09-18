@@ -1,0 +1,9 @@
+PREFIX marcrel: <http://id.loc.gov/vocabulary/relators/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+SELECT ?authority ?label ?birth WHERE { VALUES ?authority { <http://www.idref.fr/027086917/id> <http://www.idref.fr/027129446/id> <http://www.idref.fr/027157784/id> <http://www.idref.fr/027162028/id> <http://www.idref.fr/027197298/id> <http://www.idref.fr/02849542X/id> <http://www.idref.fr/028754514/id> <http://www.idref.fr/028923391/id> }
+ ?authority skos:prefLabel ?label . OPTIONAL { ?authority bio:event ?event . ?event a bio:Birth; bio:date ?birth }
+} ORDER BY ?authority ?label ?birth LIMIT 9999

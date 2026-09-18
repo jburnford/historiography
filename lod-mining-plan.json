@@ -1,0 +1,37 @@
+{
+  "version": "0.1",
+  "status": "source-observation staging only",
+  "start_year": 2020,
+  "end_year": 2026,
+  "authors_per_theme": 30,
+  "selection_seed": "historiography-lod-pilot-1",
+  "row_limit": 20001,
+  "request_budget": 160,
+  "themes": {
+    "environmental_history": ["environmental_history"],
+    "labour_history": ["labour_history"],
+    "gender_history_and_adjacent": ["gender_history", "gender_adjacent"]
+  },
+  "discovery_fields": {
+    "environmental_history": ["Q1561862"],
+    "labour_history": ["Q59029"],
+    "gender_history": ["Q1517835", "Q1279400", "Q3656236"],
+    "gender_adjacent": ["Q1662673", "Q35069"]
+  },
+  "controls": {
+    "Q112545811": {"label": "Jim Clifford", "theme": "environmental_history", "basis": "user-provided Wikidata item"},
+    "Q291798": {"label": "Joan Wallach Scott", "theme": "gender_history_and_adjacent", "basis": "checked case study; absent explicit gender field is retained"},
+    "Q266185": {"label": "Natalie Zemon Davis", "theme": "gender_history_and_adjacent", "basis": "user-provided comparison record; not an asserted gender-field classification"}
+  },
+  "bibliographic_roles": ["aut", "edt", "pbd", "trl", "aui"],
+  "limits": [
+    "Discovery cohorts are current classification candidates, not dated field memberships.",
+    "Broad gender/women's studies discovery additionally requires the exact historian occupation Q201788.",
+    "Authority links remain unreviewed candidates; IdRef names and birth values are retained for review.",
+    "Bibliographic sampling is deterministic by hashed QID and includes available controls; it is not a representative sample of the profession.",
+    "Only Sudoc resources with the specified contribution roles are harvested; theses and other linked corpora are out of scope.",
+    "All publication years are retained for sampled authorities; recent exports use exact structured years, never years parsed from titles.",
+    "A 2026 year is catalogued metadata, not verification that a publication has already appeared.",
+    "No source subject becomes an author specialism, approach or influence claim. No first-publication dates are inferred."
+  ]
+}

@@ -1,0 +1,10 @@
+PREFIX marcrel: <http://id.loc.gov/vocabulary/relators/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+SELECT DISTINCT ?doc ?subject ?label WHERE {
+ VALUES ?doc { <http://www.sudoc.fr/242543472/id> <http://www.sudoc.fr/243277059/id> <http://www.sudoc.fr/243308825/id> <http://www.sudoc.fr/243310161/id> <http://www.sudoc.fr/24504762X/id> <http://www.sudoc.fr/248493957/id> <http://www.sudoc.fr/248840800/id> <http://www.sudoc.fr/250493292/id> <http://www.sudoc.fr/250799952/id> <http://www.sudoc.fr/252657071/id> <http://www.sudoc.fr/25326510X/id> <http://www.sudoc.fr/253403375/id> <http://www.sudoc.fr/253968003/id> <http://www.sudoc.fr/254082165/id> <http://www.sudoc.fr/254200230/id> <http://www.sudoc.fr/254403468/id> <http://www.sudoc.fr/254823750/id> <http://www.sudoc.fr/256059896/id> <http://www.sudoc.fr/256830967/id> <http://www.sudoc.fr/257788670/id> <http://www.sudoc.fr/258485108/id> <http://www.sudoc.fr/258750421/id> <http://www.sudoc.fr/25896426X/id> <http://www.sudoc.fr/260368512/id> <http://www.sudoc.fr/260733970/id> <http://www.sudoc.fr/261152920/id> <http://www.sudoc.fr/261615114/id> <http://www.sudoc.fr/26222738X/id> <http://www.sudoc.fr/26245324X/id> <http://www.sudoc.fr/262825848/id> <http://www.sudoc.fr/262961547/id> <http://www.sudoc.fr/263249662/id> <http://www.sudoc.fr/263518256/id> <http://www.sudoc.fr/263549232/id> <http://www.sudoc.fr/263655423/id> } ?doc dct:subject ?subject .
+ OPTIONAL { ?subject skos:prefLabel ?label }
+} ORDER BY ?doc ?subject ?label LIMIT 9999

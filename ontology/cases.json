@@ -1,0 +1,795 @@
+{
+  "schema_version": "0.1",
+  "fixture_only": true,
+  "entities": [
+    {
+      "id": "person:joan_wallach_scott",
+      "label": "Joan Wallach Scott",
+      "type": "person",
+      "legacy_id": "joan_wallach_scott"
+    },
+    {
+      "id": "person:natalie_zemon_davis",
+      "label": "Natalie Zemon Davis",
+      "type": "person",
+      "legacy_id": "natalie_zemon_davis"
+    },
+    {
+      "id": "person:jim_clifford",
+      "label": "Jim Clifford",
+      "type": "person"
+    },
+    {
+      "id": "person:carlo_ginzburg",
+      "label": "Carlo Ginzburg",
+      "type": "person",
+      "legacy_id": "carlo_ginzburg"
+    },
+    {
+      "id": "person:rodney_hilton",
+      "label": "Rodney Hilton",
+      "type": "person",
+      "legacy_id": "rodney_hilton"
+    },
+    {
+      "id": "person:john_tedeschi",
+      "label": "John Tedeschi",
+      "type": "person"
+    },
+    {
+      "id": "person:anne_tedeschi",
+      "label": "Anne C. Tedeschi",
+      "type": "person"
+    },
+    {
+      "id": "person:stephen_twilley",
+      "label": "Stephen Twilley",
+      "type": "person"
+    },
+    {
+      "id": "entry:gender",
+      "label": "Gender & racial formation",
+      "type": "atlas_entry",
+      "legacy_id": "gender"
+    },
+    {
+      "id": "entry:annales",
+      "label": "Annales",
+      "type": "atlas_entry",
+      "legacy_id": "annales"
+    },
+    {
+      "id": "field:gender_history",
+      "label": "Gender history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ]
+    },
+    {
+      "id": "field:environmental_history",
+      "label": "Environmental history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ]
+    },
+    {
+      "id": "field:cultural_history",
+      "label": "Cultural history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ]
+    },
+    {
+      "id": "field:social_history",
+      "label": "Social history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ]
+    },
+    {
+      "id": "occupation:labor_historian",
+      "label": "Labour historian",
+      "type": "concept",
+      "concept_kind": [
+        "occupation"
+      ]
+    },
+    {
+      "id": "period:modern",
+      "label": "Modern period",
+      "type": "concept",
+      "concept_kind": [
+        "period"
+      ]
+    },
+    {
+      "id": "period:sixteenth_century",
+      "label": "Sixteenth century",
+      "type": "concept",
+      "concept_kind": [
+        "period"
+      ]
+    },
+    {
+      "id": "topic:environment",
+      "label": "Environment",
+      "type": "concept",
+      "concept_kind": [
+        "topic"
+      ]
+    },
+    {
+      "id": "school:annales",
+      "label": "Annales",
+      "type": "concept",
+      "concept_kind": [
+        "school"
+      ]
+    },
+    {
+      "id": "work:scott_gender_1986",
+      "label": "Gender: A Useful Category of Historical Analysis",
+      "type": "work"
+    },
+    {
+      "id": "work:cheese",
+      "label": "The Cheese and the Worms",
+      "type": "work"
+    },
+    {
+      "id": "publication:cheese_2026",
+      "label": "The Cheese and the Worms: Fiftieth Anniversary Edition",
+      "type": "publication"
+    },
+    {
+      "id": "publication:west_ham_sudoc",
+      "label": "West Ham and the River Lea: publication described by Sudoc 242227821",
+      "type": "publication"
+    }
+  ],
+  "source_records": [
+    {
+      "id": "seed_audit",
+      "provider": "Wikidata via QLever",
+      "snapshot_path": "pilot-evidence/seed_audit.json",
+      "url": "https://qlever.dev/api/wikidata",
+      "observed_at": "2026-09-18T02:08:25.147103+00:00",
+      "derived_from": [],
+      "note": "Saved query snapshot; truthy projection, not a full reference audit."
+    },
+    {
+      "id": "user_example",
+      "provider": "Wikidata via QLever",
+      "snapshot_path": "pilot-evidence/user_example.json",
+      "url": "https://qlever.dev/api/wikidata",
+      "observed_at": "2026-09-18T02:10:52.552616+00:00",
+      "derived_from": [],
+      "note": "Saved query snapshot; truthy projection, not a full reference audit."
+    },
+    {
+      "id": "clifford_subjects",
+      "provider": "Abes IdRef/Sudoc",
+      "snapshot_path": "pilot-evidence/clifford_subjects.json",
+      "url": "https://data.idref.fr/sparql",
+      "observed_at": "2026-09-18T02:08:58.778732+00:00",
+      "derived_from": [],
+      "note": "Saved query snapshot; truthy projection, not a full reference audit."
+    },
+    {
+      "id": "legacy",
+      "provider": "Existing curated atlas",
+      "snapshot_path": "legacy-evidence.json",
+      "url": null,
+      "observed_at": "2026-09-18T02:33:45.955994+00:00",
+      "derived_from": [],
+      "note": "Inherited scoped editorial evidence; not freshly reread or recertified."
+    },
+    {
+      "id": "publisher",
+      "provider": "Johns Hopkins University Press",
+      "snapshot_path": "publisher-evidence.json",
+      "url": "https://www.press.jhu.edu/books/title/53948/cheese-and-worms",
+      "observed_at": "2026-09-18T02:33:45.955994+00:00",
+      "derived_from": [],
+      "note": "Publisher product metadata and description only; no book text examined."
+    }
+  ],
+  "identity_mappings": [
+    {
+      "entity_id": "person:joan_wallach_scott",
+      "scheme": "Wikidata",
+      "value": "Q291798",
+      "source_record_id": "seed_audit",
+      "review": {
+        "status": "needs_review",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Exact source identifier retained; this fixture is not an identity-acceptance ledger."
+      }
+    },
+    {
+      "entity_id": "person:jim_clifford",
+      "scheme": "Wikidata",
+      "value": "Q112545811",
+      "source_record_id": "seed_audit",
+      "review": {
+        "status": "needs_review",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Exact source identifier retained; this fixture is not an identity-acceptance ledger."
+      }
+    },
+    {
+      "entity_id": "person:natalie_zemon_davis",
+      "scheme": "Wikidata",
+      "value": "Q266185",
+      "source_record_id": "user_example",
+      "review": {
+        "status": "needs_review",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Exact source identifier retained; this fixture is not an identity-acceptance ledger."
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "scott_occupation",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "recorded_occupation",
+      "object": "occupation:labor_historian",
+      "attributed_to": "Wikidata via QLever",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "seed_audit",
+          "locator": "Q291798 / P106 / Q40468055",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "scott_gender",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "research_connection",
+      "object": "field:gender_history",
+      "attributed_to": "Existing curated atlas",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "sources[scott_gender_1986]; nodes[gender].representative_people[joan_wallach_scott]",
+          "support": "Inherited interpretation supported by the existing scoped Scott essay assessment; fixture acceptance only.",
+          "scope": "inherited_editorial"
+        }
+      ],
+      "review": {
+        "status": "accepted",
+        "reviewer": "ontology-fixture author",
+        "reviewed_on": "2026-09-18",
+        "rationale": "Inherited interpretation supported by the existing scoped Scott essay assessment; fixture acceptance only."
+      },
+      "valid_time": null,
+      "qualification": "Contribution through gender as historical analysis, not exclusive affiliation."
+    },
+    {
+      "id": "scott_authored",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "authored",
+      "object": "work:scott_gender_1986",
+      "attributed_to": "Existing curated atlas",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "sources[scott_gender_1986].citation",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "scott_entry",
+      "subject": "entry:gender",
+      "predicate": "entry_includes",
+      "object": "person:joan_wallach_scott",
+      "attributed_to": "Existing curated atlas",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "nodes[gender].representative_people[joan_wallach_scott]",
+          "support": "Preserve an existing teaching selection.",
+          "scope": "inherited_editorial"
+        }
+      ],
+      "review": {
+        "status": "accepted",
+        "reviewer": "ontology-fixture author",
+        "reviewed_on": "2026-09-18",
+        "rationale": "Preserve an existing teaching selection."
+      },
+      "valid_time": null,
+      "qualification": "role=historian; gender as historical analysis"
+    },
+    {
+      "id": "scott_first",
+      "subject": "work:scott_gender_1986",
+      "predicate": "first_published",
+      "object": {
+        "value": "1986",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "Existing curated atlas",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "sources[scott_gender_1986].citation",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "davis_cultural",
+      "subject": "person:natalie_zemon_davis",
+      "predicate": "recorded_field_of_work",
+      "object": "field:cultural_history",
+      "attributed_to": "Wikidata via QLever",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "user_example",
+          "locator": "Q266185 / P101 / Q858517",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "davis_social",
+      "subject": "person:natalie_zemon_davis",
+      "predicate": "recorded_field_of_work",
+      "object": "field:social_history",
+      "attributed_to": "Wikidata via QLever",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "user_example",
+          "locator": "Q266185 / P101 / Q908604",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "davis_period",
+      "subject": "person:natalie_zemon_davis",
+      "predicate": "recorded_field_of_work",
+      "object": "period:modern",
+      "attributed_to": "Wikidata via QLever",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "user_example",
+          "locator": "Q266185 / P101 / Q3281534",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "clifford_field",
+      "subject": "person:jim_clifford",
+      "predicate": "recorded_field_of_work",
+      "object": "field:environmental_history",
+      "attributed_to": "Wikidata via QLever",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "seed_audit",
+          "locator": "Q112545811 / P101 / Q1561862",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "source_statement"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "clifford_subject",
+      "subject": "publication:west_ham_sudoc",
+      "predicate": "catalogued_subject",
+      "object": "topic:environment",
+      "attributed_to": "Abes IdRef/Sudoc",
+      "basis": "catalogue_assignment",
+      "evidence": [
+        {
+          "source_record_id": "clifford_subjects",
+          "locator": "Sudoc 242227821 / dcterms:subject / IdRef 027772616",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "catalogue_subject"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "ginzburg_author",
+      "subject": "person:carlo_ginzburg",
+      "predicate": "authored",
+      "object": "work:cheese",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Author credit",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "cheese_first",
+      "subject": "work:cheese",
+      "predicate": "first_published",
+      "object": {
+        "value": "1976",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "Existing curated atlas",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "nodes[micro].representative_people[carlo_ginzburg].works",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "cheese_edition",
+      "subject": "publication:cheese_2026",
+      "predicate": "edition_of",
+      "object": "work:cheese",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Edition statement",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "cheese_publication",
+      "subject": "publication:cheese_2026",
+      "predicate": "published_on",
+      "object": {
+        "value": "2026-04-28",
+        "precision": "day",
+        "approximate": false
+      },
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Book Details / Publication Date",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "cheese_subject_period",
+      "subject": "work:cheese",
+      "predicate": "studies_period",
+      "object": "period:sixteenth_century",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Publisher description",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null
+    },
+    {
+      "id": "translation_credit_john_tedeschi",
+      "subject": "publication:cheese_2026",
+      "predicate": "credited_translation",
+      "object": "person:john_tedeschi",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Byline / translated by",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null,
+      "qualification": "Named in this edition’s translation credit; extent and original date of contribution unresolved."
+    },
+    {
+      "id": "translation_credit_anne_tedeschi",
+      "subject": "publication:cheese_2026",
+      "predicate": "credited_translation",
+      "object": "person:anne_tedeschi",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Byline / translated by",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null,
+      "qualification": "Named in this edition’s translation credit; extent and original date of contribution unresolved."
+    },
+    {
+      "id": "translation_credit_stephen_twilley",
+      "subject": "publication:cheese_2026",
+      "predicate": "credited_translation",
+      "object": "person:stephen_twilley",
+      "attributed_to": "Johns Hopkins University Press",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "publisher",
+          "locator": "Byline / translated by",
+          "support": "Selected observation retained for ontology testing.",
+          "scope": "bibliographic_metadata"
+        }
+      ],
+      "review": {
+        "status": "unreviewed",
+        "reviewer": null,
+        "reviewed_on": null,
+        "rationale": "Observed source assertion; no independent scholarly verification."
+      },
+      "valid_time": null,
+      "qualification": "Named in this edition’s translation credit; extent and original date of contribution unresolved."
+    },
+    {
+      "id": "hilton_selection",
+      "subject": "entry:annales",
+      "predicate": "entry_includes",
+      "object": "person:rodney_hilton",
+      "attributed_to": "Existing curated atlas",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "nodes[annales].representative_people[rodney_hilton]",
+          "support": "Carry forward the existing qualified editorial selection.",
+          "scope": "inherited_editorial"
+        }
+      ],
+      "review": {
+        "status": "accepted",
+        "reviewer": "ontology-fixture author",
+        "reviewed_on": "2026-09-18",
+        "rationale": "Carry forward the existing qualified editorial selection."
+      },
+      "valid_time": null,
+      "qualification": "role=contributor; exchange, not membership"
+    },
+    {
+      "id": "hilton_exchange",
+      "subject": "person:rodney_hilton",
+      "predicate": "interlocutor_with_school",
+      "object": "school:annales",
+      "attributed_to": "Existing curated atlas",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "nodes[annales].representative_people[rodney_hilton]",
+          "support": "Reads Bloch and Duby productively while contesting specific emphases; scoped inherited evidence.",
+          "scope": "inherited_editorial"
+        }
+      ],
+      "review": {
+        "status": "accepted",
+        "reviewer": "ontology-fixture author",
+        "reviewed_on": "2026-09-18",
+        "rationale": "Reads Bloch and Duby productively while contesting specific emphases; scoped inherited evidence."
+      },
+      "valid_time": null,
+      "qualification": "British interlocutor; no school membership inferred"
+    },
+    {
+      "id": "hilton_rejected_association",
+      "subject": "person:rodney_hilton",
+      "predicate": "school_association",
+      "object": "school:annales",
+      "attributed_to": "Existing curated atlas",
+      "basis": "inference",
+      "evidence": [
+        {
+          "source_record_id": "legacy",
+          "locator": "hilton_rejected_association",
+          "support": "Roster inclusion alone does not support the proposed association; rejection is not a negative membership fact.",
+          "scope": "inherited_editorial"
+        }
+      ],
+      "review": {
+        "status": "rejected",
+        "reviewer": "ontology-fixture author",
+        "reviewed_on": "2026-09-18",
+        "rationale": "Roster inclusion alone does not support the proposed association; rejection is not a negative membership fact."
+      },
+      "valid_time": null,
+      "qualification": "Proposed membership inferred solely from editorial inclusion.",
+      "premises": [
+        "hilton_selection"
+      ],
+      "rule_id": "roster_implies_membership"
+    }
+  ],
+  "cases": [
+    {
+      "id": "scott",
+      "claim_ids": [
+        "scott_occupation",
+        "scott_gender",
+        "scott_entry"
+      ],
+      "question": "Can sourced gender analysis coexist with an incomplete external occupational classification?"
+    },
+    {
+      "id": "davis",
+      "claim_ids": [
+        "davis_cultural",
+        "davis_social",
+        "davis_period"
+      ],
+      "question": "Can P101 include a period without coercing it into a research field?"
+    },
+    {
+      "id": "clifford",
+      "claim_ids": [
+        "clifford_field",
+        "clifford_subject"
+      ],
+      "question": "Can environmental history remain distinct from a book subject named environment?"
+    },
+    {
+      "id": "translation",
+      "claim_ids": [
+        "cheese_first",
+        "cheese_edition",
+        "cheese_publication",
+        "translation_credit_stephen_twilley"
+      ],
+      "question": "Can a contemporary translated edition remain distinct from the older work and unresolved version?"
+    },
+    {
+      "id": "affiliation",
+      "claim_ids": [
+        "hilton_selection",
+        "hilton_exchange",
+        "hilton_rejected_association"
+      ],
+      "question": "Can exchange be retained without inferring school membership?"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+SELECT DISTINCT ?person ?field ?occupation ?route ?label WHERE {
+ VALUES ?field { wd:Q59029 }
+ { ?person wdt:P101 ?field . BIND("field_of_work" AS ?route) }
+ UNION { ?person wdt:P106 ?occupation . ?occupation wdt:P425 ?field . BIND("occupation_field" AS ?route) }
+ ?person wdt:P31 wd:Q5 . 
+ OPTIONAL { ?person rdfs:label ?label FILTER(LANG(?label)="en") }
+} ORDER BY ?person ?field ?occupation ?route LIMIT 20001

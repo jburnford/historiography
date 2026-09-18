@@ -1,0 +1,59 @@
+{
+  "endpoint": "https://data.idref.fr/sparql",
+  "retrieved_at": "2026-09-18T02:08:58.778732+00:00",
+  "query": "PREFIX marcrel: <http://id.loc.gov/vocabulary/relators/>\nPREFIX dcterms: <http://purl.org/dc/terms/>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nSELECT DISTINCT ?doc ?citation ?subject ?subjectLabel WHERE {\n ?doc marcrel:aut <http://www.idref.fr/242228119/id> .\n OPTIONAL { ?doc dcterms:bibliographicCitation ?citation }\n ?doc dcterms:subject ?subject . OPTIONAL { ?subject skos:prefLabel ?subjectLabel }\n} LIMIT 100",
+  "response": {
+    "head": {
+      "link": [],
+      "vars": [
+        "doc",
+        "citation",
+        "subject",
+        "subjectLabel"
+      ]
+    },
+    "results": {
+      "distinct": false,
+      "ordered": true,
+      "bindings": [
+        {
+          "doc": {
+            "type": "uri",
+            "value": "http://www.sudoc.fr/242227821/id"
+          },
+          "citation": {
+            "type": "literal",
+            "value": "West Ham and the River Lea  : a social and environmental history of London's industrialized marshland, 1839-1914  / Jim Clifford  ; foreword by Graeme Wynn / Vancouver : UBC Press"
+          },
+          "subject": {
+            "type": "uri",
+            "value": "http://www.idref.fr/027772616/id"
+          },
+          "subjectLabel": {
+            "type": "literal",
+            "xml:lang": "fr",
+            "value": "Environnement"
+          }
+        },
+        {
+          "doc": {
+            "type": "uri",
+            "value": "http://www.sudoc.fr/242227821/id"
+          },
+          "citation": {
+            "type": "literal",
+            "value": "West Ham and the River Lea  : a social and environmental history of London's industrialized marshland, 1839-1914  / Jim Clifford  ; foreword by Graeme Wynn / Vancouver : UBC Press"
+          },
+          "subject": {
+            "type": "uri",
+            "value": "http://www.idref.fr/03408956X/id"
+          },
+          "subjectLabel": {
+            "type": "literal",
+            "value": "Londres (GB) -- Quartier de West Ham"
+          }
+        }
+      ]
+    }
+  }
+}

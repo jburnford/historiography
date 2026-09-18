@@ -1,0 +1,2342 @@
+{
+  "endpoint": "https://qlever.dev/api/wikidata",
+  "retrieved_at": "2026-09-18T02:10:52.552616+00:00",
+  "query": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX wikibase: <http://wikiba.se/ontology#>\nSELECT ?p ?o ?label WHERE { wd:Q266185 ?p ?o . FILTER(STRSTARTS(STR(?p),STR(wdt:)) || ?p=rdfs:label) FILTER(!isLiteral(?o) || LANG(?o)=\"en\" || LANG(?o)=\"\") OPTIONAL { ?o rdfs:label ?label FILTER(LANG(?label)=\"en\") } }",
+  "response": {
+    "head": {
+      "vars": [
+        "p",
+        "o",
+        "label"
+      ]
+    },
+    "results": {
+      "bindings": [
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P213"
+          },
+          "o": {
+            "type": "literal",
+            "value": "0000000120259894"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7024"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000000657"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1368"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000026674"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P949"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000037470"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3280"
+          },
+          "o": {
+            "type": "literal",
+            "value": "0000378444"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8547"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000050841"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8980"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000091377"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1375"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000265048"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4619"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000562690"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P349"
+          },
+          "o": {
+            "type": "literal",
+            "value": "00437370"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6178"
+          },
+          "o": {
+            "type": "literal",
+            "value": "013416134011.51"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6178"
+          },
+          "o": {
+            "type": "literal",
+            "value": "014423213261.39"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P269"
+          },
+          "o": {
+            "type": "literal",
+            "value": "026814102"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7184"
+          },
+          "o": {
+            "type": "literal",
+            "value": "05jwjm"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1006"
+          },
+          "o": {
+            "type": "literal",
+            "value": "073643831"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1670"
+          },
+          "o": {
+            "type": "literal",
+            "value": "1023H0141"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2163"
+          },
+          "o": {
+            "type": "literal",
+            "value": "102520"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P11496"
+          },
+          "o": {
+            "type": "literal",
+            "value": "1140000791733388928"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P268"
+          },
+          "o": {
+            "type": "literal",
+            "value": "118988329"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P13049"
+          },
+          "o": {
+            "type": "literal",
+            "value": "119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P13183"
+          },
+          "o": {
+            "type": "literal",
+            "value": "119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P227"
+          },
+          "o": {
+            "type": "literal",
+            "value": "119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7902"
+          },
+          "o": {
+            "type": "literal",
+            "value": "119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9964"
+          },
+          "o": {
+            "type": "literal",
+            "value": "119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9247"
+          },
+          "o": {
+            "type": "literal",
+            "value": "1194242"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1315"
+          },
+          "o": {
+            "type": "literal",
+            "value": "1281248"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10553"
+          },
+          "o": {
+            "type": "literal",
+            "value": "133358968"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P12458"
+          },
+          "o": {
+            "type": "literal",
+            "value": "13844"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P11249"
+          },
+          "o": {
+            "type": "literal",
+            "value": "13950884"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4369"
+          },
+          "o": {
+            "type": "literal",
+            "value": "14134"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1005"
+          },
+          "o": {
+            "type": "literal",
+            "value": "1455629"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9661"
+          },
+          "o": {
+            "type": "literal",
+            "value": "145746"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8951"
+          },
+          "o": {
+            "type": "literal",
+            "value": "146-12296"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4539"
+          },
+          "o": {
+            "type": "literal",
+            "value": "15193"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3987"
+          },
+          "o": {
+            "type": "literal",
+            "value": "153449"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P906"
+          },
+          "o": {
+            "type": "literal",
+            "value": "183503"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3630"
+          },
+          "o": {
+            "type": "literal",
+            "value": "186129"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5695"
+          },
+          "o": {
+            "type": "literal",
+            "value": "21847"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9081"
+          },
+          "o": {
+            "type": "literal",
+            "value": "22270"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8849"
+          },
+          "o": {
+            "type": "literal",
+            "value": "22565733"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9178"
+          },
+          "o": {
+            "type": "literal",
+            "value": "22692"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P13051"
+          },
+          "o": {
+            "type": "literal",
+            "value": "2320"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7444"
+          },
+          "o": {
+            "type": "literal",
+            "value": "26523"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1607"
+          },
+          "o": {
+            "type": "literal",
+            "value": "2713367"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2732"
+          },
+          "o": {
+            "type": "literal",
+            "value": "273200"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4012"
+          },
+          "o": {
+            "type": "literal",
+            "value": "2797536"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P13951"
+          },
+          "o": {
+            "type": "literal",
+            "value": "311873"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6722"
+          },
+          "o": {
+            "type": "literal",
+            "value": "31726"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6868"
+          },
+          "o": {
+            "type": "literal",
+            "value": "3250358674"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10400"
+          },
+          "o": {
+            "type": "literal",
+            "value": "32623"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3368"
+          },
+          "o": {
+            "type": "literal",
+            "value": "3388243"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2188"
+          },
+          "o": {
+            "type": "literal",
+            "value": "35683"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P409"
+          },
+          "o": {
+            "type": "literal",
+            "value": "36540607"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2381"
+          },
+          "o": {
+            "type": "literal",
+            "value": "38155"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4985"
+          },
+          "o": {
+            "type": "literal",
+            "value": "38496"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P14750"
+          },
+          "o": {
+            "type": "literal",
+            "value": "3BB4-2C0D-6A24-3375-C2ED"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9179"
+          },
+          "o": {
+            "type": "literal",
+            "value": "43029"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8795"
+          },
+          "o": {
+            "type": "literal",
+            "value": "43116"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8034"
+          },
+          "o": {
+            "type": "literal",
+            "value": "495/306844"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8034"
+          },
+          "o": {
+            "type": "literal",
+            "value": "495/309406"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P214"
+          },
+          "o": {
+            "type": "literal",
+            "value": "54146444"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10387"
+          },
+          "o": {
+            "type": "literal",
+            "value": "59720"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3987"
+          },
+          "o": {
+            "type": "literal",
+            "value": "603280"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9037"
+          },
+          "o": {
+            "type": "literal",
+            "value": "6128ec40-1fb5-4438-b6ac-201bb639100a"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8947"
+          },
+          "o": {
+            "type": "literal",
+            "value": "64275"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5587"
+          },
+          "o": {
+            "type": "literal",
+            "value": "75kmmjmr5q05gt0"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P4012"
+          },
+          "o": {
+            "type": "literal",
+            "value": "83005454"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3348"
+          },
+          "o": {
+            "type": "literal",
+            "value": "84548"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5739"
+          },
+          "o": {
+            "type": "literal",
+            "value": "85943"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3846"
+          },
+          "o": {
+            "type": "literal",
+            "value": "87097968244560"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5731"
+          },
+          "o": {
+            "type": "literal",
+            "value": "88545"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2963"
+          },
+          "o": {
+            "type": "literal",
+            "value": "88762"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1015"
+          },
+          "o": {
+            "type": "literal",
+            "value": "90401643"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10844"
+          },
+          "o": {
+            "type": "literal",
+            "value": "93958"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1280"
+          },
+          "o": {
+            "type": "literal",
+            "value": "9424227"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5378"
+          },
+          "o": {
+            "type": "literal",
+            "value": "9475"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P14225"
+          },
+          "o": {
+            "type": "literal",
+            "value": "981005778222809366"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P11686"
+          },
+          "o": {
+            "type": "literal",
+            "value": "981058525435306706"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9984"
+          },
+          "o": {
+            "type": "literal",
+            "value": "981058525435306706"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7293"
+          },
+          "o": {
+            "type": "literal",
+            "value": "9810613564305606"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8189"
+          },
+          "o": {
+            "type": "literal",
+            "value": "987007260259605171"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1695"
+          },
+          "o": {
+            "type": "literal",
+            "value": "a0000002901455"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3065"
+          },
+          "o": {
+            "type": "literal",
+            "value": "A000047238"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1580"
+          },
+          "o": {
+            "type": "literal",
+            "value": "a1014827"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6394"
+          },
+          "o": {
+            "type": "literal",
+            "value": "a11432056"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6394"
+          },
+          "o": {
+            "type": "literal",
+            "value": "a11432068"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1017"
+          },
+          "o": {
+            "type": "literal",
+            "value": "ADV12061204"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1017"
+          },
+          "o": {
+            "type": "literal",
+            "value": "ADV12093006"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10608"
+          },
+          "o": {
+            "type": "literal",
+            "value": "agent/gnd_119167093"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1417"
+          },
+          "o": {
+            "type": "literal",
+            "value": "biography/Natalie-Zemon-Davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P396"
+          },
+          "o": {
+            "type": "literal",
+            "value": "CFIV040683"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P271"
+          },
+          "o": {
+            "type": "literal",
+            "value": "DA00225521"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9430"
+          },
+          "o": {
+            "type": "literal",
+            "value": "davis-natalie"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5019"
+          },
+          "o": {
+            "type": "literal",
+            "value": "davis-natalie-zemon"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P2734"
+          },
+          "o": {
+            "type": "literal",
+            "value": "DavisNatalieZemon"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P10832"
+          },
+          "o": {
+            "type": "literal",
+            "value": "E39PBJhGWhdqGkhp9jF7qx6tKd"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P14178"
+          },
+          "o": {
+            "type": "literal",
+            "value": "jn19990001652"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P691"
+          },
+          "o": {
+            "type": "literal",
+            "value": "jn19990001652"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5034"
+          },
+          "o": {
+            "type": "literal",
+            "value": "KAC201001490"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7699"
+          },
+          "o": {
+            "type": "literal",
+            "value": "LNB:e9C;=BH"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P646"
+          },
+          "o": {
+            "type": "literal",
+            "value": "/m/05jwjm"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P244"
+          },
+          "o": {
+            "type": "literal",
+            "value": "n82156876"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1207"
+          },
+          "o": {
+            "type": "literal",
+            "value": "n93120325"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P7578"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1477"
+          },
+          "o": {
+            "type": "literal",
+            "value": "Natalie Zemon",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P12214"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3222"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3365"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5419"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5657"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6594"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8568"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P866"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5502"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemondavis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P373"
+          },
+          "o": {
+            "type": "literal",
+            "value": "Natalie Zemon Davis"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.w3.org/2000/01/rdf-schema#label"
+          },
+          "o": {
+            "type": "literal",
+            "value": "Natalie Zemon Davis",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1559"
+          },
+          "o": {
+            "type": "literal",
+            "value": "Natalie Zemon Davis",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5617"
+          },
+          "o": {
+            "type": "literal",
+            "value": "natalie-zemon-davis-29154"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P8179"
+          },
+          "o": {
+            "type": "literal",
+            "value": "ncf10408682"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P345"
+          },
+          "o": {
+            "type": "literal",
+            "value": "nm0954790"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P648"
+          },
+          "o": {
+            "type": "literal",
+            "value": "OL63755A"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9322"
+          },
+          "o": {
+            "type": "literal",
+            "value": "p0079691-Davis-Natalie-Zemon-19282023"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P9918"
+          },
+          "o": {
+            "type": "literal",
+            "value": "PE00158867"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P13591"
+          },
+          "o": {
+            "type": "literal",
+            "value": "person/946c3c84-24b9-4a89-9b51-948b0c425a8e"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P3430"
+          },
+          "o": {
+            "type": "literal",
+            "value": "w6fj3bvv"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P950"
+          },
+          "o": {
+            "type": "literal",
+            "value": "XX1056163"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P723"
+          },
+          "o": {
+            "type": "literal",
+            "value": "zemo001"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P18"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Natalie%20Zemon%20Davis%20%28cropped%29.jpg"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P109"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://commons.wikimedia.org/wiki/Special:FilePath/Natalie%20Zemon%20Davis%20signature.tif"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P973"
+          },
+          "o": {
+            "type": "uri",
+            "value": "https://www.smith.edu/news-events/news/peoples-historian"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P973"
+          },
+          "o": {
+            "type": "uri",
+            "value": "https://www.universityaffairs.ca/features/feature-article/becoming-natalie-davis/"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P569"
+          },
+          "o": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "1928-11-08T00:00:00Z"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P570"
+          },
+          "o": {
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "type": "literal",
+            "value": "2023-10-21T00:00:00Z"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5008"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q106703387"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Wikiproject:Islamic Courts & Canons",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1343"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q106787730"
+          },
+          "label": {
+            "type": "literal",
+            "value": "American Women Writers",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P509"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12078"
+          },
+          "label": {
+            "type": "literal",
+            "value": "cancer",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P734"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12386976"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Davis",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P19"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q12439"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Detroit",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q126416227"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the University of Paris 1 Pantheon-Sorbonne",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q126416268"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate from University of Lyon-II",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q126416281"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the University of Toulouse-II",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1316544"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Guggenheim Fellowship",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P69"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q13371"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Harvard University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P735"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q14899148"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Natalie",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q15278107"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Companion of the Order of Canada",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1571938"
+          },
+          "label": {
+            "type": "literal",
+            "value": "National Humanities Medal",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P27"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q16"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Canada",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1622272"
+          },
+          "label": {
+            "type": "literal",
+            "value": "university teacher",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1624297"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Holberg International Memorial Prize",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P108"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q168756"
+          },
+          "label": {
+            "type": "literal",
+            "value": "University of California, Berkeley",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P20"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q172"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Toronto",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P108"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q180865"
+          },
+          "label": {
+            "type": "literal",
+            "value": "University of Toronto",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1412"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1860"
+          },
+          "label": {
+            "type": "literal",
+            "value": "English",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P6886"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1860"
+          },
+          "label": {
+            "type": "literal",
+            "value": "English",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q201788"
+          },
+          "label": {
+            "type": "literal",
+            "value": "historian",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q21476518"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the University of Edinburgh",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P108"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q21578"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Princeton University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q22968061"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Paul Oskar Kristeller Lifetime Achievement Award",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P69"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q230492"
+          },
+          "label": {
+            "type": "literal",
+            "value": "University of Michigan",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P108"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q273518"
+          },
+          "label": {
+            "type": "literal",
+            "value": "School for Advanced Studies in the Social Sciences",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28389"
+          },
+          "label": {
+            "type": "literal",
+            "value": "screenwriter",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28692502"
+          },
+          "label": {
+            "type": "literal",
+            "value": "women's rights activist",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q28861731"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the Hebrew University of Jerusalem",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P27"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q30"
+          },
+          "label": {
+            "type": "literal",
+            "value": "United States",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q309"
+          },
+          "label": {
+            "type": "literal",
+            "value": "history",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3281534"
+          },
+          "label": {
+            "type": "literal",
+            "value": "modern period",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q336370"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Aby Warburg Prize",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q36180"
+          },
+          "label": {
+            "type": "literal",
+            "value": "writer",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1196"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q3739104"
+          },
+          "label": {
+            "type": "literal",
+            "value": "natural causes",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q39384825"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of Harvard University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q41488586"
+          },
+          "label": {
+            "type": "literal",
+            "value": "The Smith College Medal",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q41795465"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate from the University of Cambridge",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q41795590"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate from Columbia University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q42171927"
+          },
+          "label": {
+            "type": "literal",
+            "value": "doctor honoris causa from the Paris-Sorbonne University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q42309226"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate from Princeton University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P463"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q463303"
+          },
+          "label": {
+            "type": "literal",
+            "value": "American Academy of Arts and Sciences",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P463"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q464915"
+          },
+          "label": {
+            "type": "literal",
+            "value": "American Historical Association",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P463"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q466089"
+          },
+          "label": {
+            "type": "literal",
+            "value": "American Philosophical Society",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P108"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q49112"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Yale University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P69"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q49124"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Radcliffe College",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P69"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q49204"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Smith College",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P31"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5"
+          },
+          "label": {
+            "type": "literal",
+            "value": "human",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P26"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q5071161"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Chandler Davis",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q56293505"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Toynbee Prize",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q56509472"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate of the University of Basel",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q57082824"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Honorary doctorate from University of Toronto",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P5008"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q60687720"
+          },
+          "label": {
+            "type": "literal",
+            "value": "gender gap on Dutch Wikipedia",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q63072267"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the University of Chicago",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q63072513"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of Yale University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P21"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q6581072"
+          },
+          "label": {
+            "type": "literal",
+            "value": "female",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q68659268"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctor of the Northwestern University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P800"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q81330696"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P800"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q81330724"
+          },
+          "label": {
+            "type": "literal",
+            "value": "The Return of Martin Guerre",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q858517"
+          },
+          "label": {
+            "type": "literal",
+            "value": "cultural history",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P166"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q86458856"
+          },
+          "label": {
+            "type": "literal",
+            "value": "honorary doctorate of Concordia University",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P1343"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q88584931"
+          },
+          "label": {
+            "type": "literal",
+            "value": "American Women Historians, 1700s-1990s: A Biographical Dictionary",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P69"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q906437"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Cranbrook Educational Community",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q908604"
+          },
+          "label": {
+            "type": "literal",
+            "value": "social history",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P463"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q94301"
+          },
+          "label": {
+            "type": "literal",
+            "value": "Royal Society of Canada",
+            "xml:lang": "en"
+          }
+        }
+      ]
+    },
+    "meta": {
+      "query-time-ms": 50,
+      "result-size-total": 199
+    }
+  }
+}

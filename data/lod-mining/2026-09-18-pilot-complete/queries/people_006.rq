@@ -1,0 +1,10 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+SELECT ?person ?prop ?value ?label ?defaultLabel WHERE {
+ VALUES ?person { wd:Q112563813 wd:Q112564413 wd:Q112565013 wd:Q112567198 wd:Q112650314 wd:Q112669179 wd:Q113004334 wd:Q113148194 wd:Q1132140 wd:Q113303813 wd:Q113360502 wd:Q113370620 wd:Q113382641 wd:Q113536084 wd:Q113565058 wd:Q113579380 wd:Q113642672 wd:Q113673908 wd:Q113680066 wd:Q113717968 wd:Q11373589 wd:Q113737515 wd:Q113739172 wd:Q113770298 wd:Q113778296 wd:Q113779907 wd:Q113783515 wd:Q113783886 wd:Q113785644 wd:Q113801775 }
+ VALUES ?prop { wdt:P269 wdt:P227 wdt:P268 wdt:P214 wdt:P244 wdt:P213 wdt:P101 wdt:P106 wdt:P569 wdt:P570 } ?person ?prop ?value .
+ OPTIONAL { ?person rdfs:label ?label FILTER(LANG(?label)="en") }
+ OPTIONAL { ?person rdfs:label ?defaultLabel FILTER(LANG(?defaultLabel)="mul") }
+} ORDER BY ?person ?prop ?value LIMIT 20001
