@@ -30,7 +30,12 @@ Clifford/
 # content. Keep the provenance record (URL, retrieval date, hash) and the paraphrased
 # reading note; do not republish the response itself.
 data/journal-catalogue/library-api-samples/
+# Raw LOD endpoint responses stay local; staged exports retain query/hash provenance.
+data/lod-mining/*/raw/
 *.xml
 *.epub
 *.docx
 *.htm
+
+# Incomplete diagnostic run; completed staged harvest is retained.
+data/lod-mining/2026-09-18-pilot/

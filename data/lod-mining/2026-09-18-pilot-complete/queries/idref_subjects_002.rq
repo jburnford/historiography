@@ -1,0 +1,10 @@
+PREFIX marcrel: <http://id.loc.gov/vocabulary/relators/>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bio: <http://purl.org/vocab/bio/0.1/>
+SELECT DISTINCT ?doc ?subject ?label WHERE {
+ VALUES ?doc { <http://www.sudoc.fr/282239405/id> <http://www.sudoc.fr/28233226X/id> <http://www.sudoc.fr/282505075/id> <http://www.sudoc.fr/283368063/id> <http://www.sudoc.fr/283415975/id> <http://www.sudoc.fr/284170208/id> <http://www.sudoc.fr/285725823/id> <http://www.sudoc.fr/28573105X/id> <http://www.sudoc.fr/286645890/id> <http://www.sudoc.fr/289389143/id> <http://www.sudoc.fr/292110189/id> <http://www.sudoc.fr/292362137/id> <http://www.sudoc.fr/29253941X/id> <http://www.sudoc.fr/293922276/id> <http://www.sudoc.fr/295187344/id> <http://www.sudoc.fr/297674617/id> <http://www.sudoc.fr/298848945/id> } ?doc dct:subject ?subject .
+ OPTIONAL { ?subject skos:prefLabel ?label }
+} ORDER BY ?doc ?subject ?label LIMIT 9999

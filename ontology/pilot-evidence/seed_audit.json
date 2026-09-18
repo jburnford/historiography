@@ -1,0 +1,329 @@
+{
+  "endpoint": "https://qlever.dev/api/wikidata",
+  "retrieved_at": "2026-09-18T02:08:25.147103+00:00",
+  "query": "PREFIX wd: <http://www.wikidata.org/entity/>\nPREFIX wdt: <http://www.wikidata.org/prop/direct/>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX wikibase: <http://wikiba.se/ontology#>\nSELECT ?s ?p ?o ?label WHERE { VALUES ?s { wd:Q112545811 wd:Q291798 } VALUES ?p { wdt:P106 wdt:P101 wdt:P227 wdt:P268 wdt:P269 wdt:P214 wdt:P244 wdt:P213 wdt:P496 } ?s ?p ?o . OPTIONAL { ?o rdfs:label ?label FILTER(LANG(?label)=\"en\") } }",
+  "response": {
+    "head": {
+      "vars": [
+        "s",
+        "p",
+        "o",
+        "label"
+      ]
+    },
+    "results": {
+      "bindings": [
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P213"
+          },
+          "o": {
+            "type": "literal",
+            "value": "0000000114755824"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P496"
+          },
+          "o": {
+            "type": "literal",
+            "value": "0000-0003-2004-5161"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P213"
+          },
+          "o": {
+            "type": "literal",
+            "value": "000000049908897X"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P269"
+          },
+          "o": {
+            "type": "literal",
+            "value": "027129446"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P214"
+          },
+          "o": {
+            "type": "literal",
+            "value": "110149841973602842467"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P227"
+          },
+          "o": {
+            "type": "literal",
+            "value": "114256679X"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P268"
+          },
+          "o": {
+            "type": "literal",
+            "value": "11924218v"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P227"
+          },
+          "o": {
+            "type": "literal",
+            "value": "123192331"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P269"
+          },
+          "o": {
+            "type": "literal",
+            "value": "242228119"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P214"
+          },
+          "o": {
+            "type": "literal",
+            "value": "79035504"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P244"
+          },
+          "o": {
+            "type": "literal",
+            "value": "n85806133"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1561862"
+          },
+          "label": {
+            "type": "literal",
+            "value": "environmental history",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1622272"
+          },
+          "label": {
+            "type": "literal",
+            "value": "university teacher",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q1622272"
+          },
+          "label": {
+            "type": "literal",
+            "value": "university teacher",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q201788"
+          },
+          "label": {
+            "type": "literal",
+            "value": "historian",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q201788"
+          },
+          "label": {
+            "type": "literal",
+            "value": "historian",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q36180"
+          },
+          "label": {
+            "type": "literal",
+            "value": "writer",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q291798"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P106"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q40468055"
+          },
+          "label": {
+            "type": "literal",
+            "value": "labor historian",
+            "xml:lang": "en"
+          }
+        },
+        {
+          "s": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q112545811"
+          },
+          "p": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/prop/direct/P101"
+          },
+          "o": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q59950"
+          },
+          "label": {
+            "type": "literal",
+            "value": "urbanism",
+            "xml:lang": "en"
+          }
+        }
+      ]
+    },
+    "meta": {
+      "query-time-ms": 59,
+      "result-size-total": 19
+    }
+  }
+}
