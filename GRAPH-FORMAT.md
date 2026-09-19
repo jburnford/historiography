@@ -1,6 +1,18 @@
 # Teaching graph format, schema 1.4
 
-## Journal extension (current editorial revision 1.118)
+For an illustrated explanation, read [ONTOLOGY.md](ONTOLOGY.md). The [entry-kind proposal](ONTOLOGY-PROPOSAL.md) recommends replacing the historical `group` browsing bucket with explicit category codes; it is **not implemented** and does not change this schema's current requirements.
+
+## Production promotion extension (revision 1.119)
+
+Current data: **124 entries (73 groups, 51 people), 761 teaching relationships, 840 sources and 829 shared people**. Eight existing people gain entries; earlier records and the journal catalogue are preserved. Fable owns the website rebuild. See [acceptance and renderer handoff](data/production-batches/promotions-01/README.md).
+
+Optional `claim_catalogue` schema 1.0 adds a bounded production entity/claim store using vocabulary 0.2, distinct from frozen staging fixtures. Entities distinguish people, works, concepts and entry presentations; works retain all author IDs. Claims contain exact subject/predicate/object, statement, qualification, intervention year, nullable historical validity, review/history and evidence joins. Each citation carries source-record ID, locator, support, scope, check status/date and limitation. Acceptance never upgrades a description or abstract into a checked body passage.
+
+The catalogue has seven works and eighteen historical claims (seventeen accepted, one provisional), plus nine authorship and eight presentation claims. These overlap the nine new teaching connections; counts are not additive. Node `work_ids` and `claim_ids` reference the catalogue. Edge `claim_ids`, `claim_projection` and optional compound `target_strand` preserve the precise relationship behind a teaching view. `review_status: needs_review` requires a visibly provisional label. Claims remain queryable without promoting every participant. New sources use `claim_source_record_id` and `scope_note` rather than source-wide verification.
+
+Revision 1.119 has 63 influence, 479 contribution, 121 critique and 98 comparison teaching edges. Earlier counts below describe their named revisions, not current totals.
+
+## Journal extension (editorial revision 1.118)
 
 The optional top-level `journal_catalogue` has its own schema `1.3`. It adds a separate venue graph without changing the IDs, chronology or relationship semantics of the historical entries (116 after revision 1.118). The journal inventory extends through discovery in 2026; this does not extend substantive historiographical coverage beyond 2000. See [journal data documentation](data/journal-catalogue/README.md).
 

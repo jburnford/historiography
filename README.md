@@ -8,11 +8,13 @@ kind. Hold an entry and everything unrelated collapses to a thin mark so its arg
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Curated revision **1.118** (schema 1.4): 116 entries,
-752 relationships, 833 bibliography records, 829
+Production data revision **1.119** (schema 1.4): 124 entries,
+761 teaching relationships, 840 bibliography records, 829
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
+
+The public build still shows revision 1.118; Fable is rebuilding the website. The [production handoff](data/production-batches/promotions-01/README.md) covers eight promoted people and eighteen work-specific historical claims, including one explicitly provisional connection.
 
 ## How to read the map
 
@@ -46,6 +48,8 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 
 ## Project files
 
+- `ONTOLOGY.md`: illustrated guide to entries, people, approaches, historical relationships, journal classifications and roles, evidence, and dates.
+- `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
 - `historiography-1920-2000.json`: current draft, 116 entries, 752 interpretive relationships, 833 bibliography records, and 829 people.
