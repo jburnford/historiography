@@ -389,7 +389,11 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
-        self.assertEqual(actual, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'})
+        expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'}
+        published = json.loads((ROOT / 'docs/data/graph.json').read_text())
+        if published.get('scope', {}).get('extension', {}).get('baseline_asset'):
+            expected.add('data/graph-2000.json')   # the exact 2000 baseline, published only with an extension
+        self.assertEqual(actual, expected)
         for private_path in ['openalex-api-key.txt', 'MEMORY.md', 'Clifford/', '.git/config']:
             response = self.page.request.get(URL + private_path)
             self.assertEqual(response.status, 404, private_path)

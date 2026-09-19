@@ -12,9 +12,11 @@ baseline, slimmed like the main graph, as `data/graph-2000.json`, and records th
 the published `scope.extension.baseline_asset` so the site can offer an exact 2000 view.
 """
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import shutil
+import subprocess
 
 from validate_graph import validate
 
@@ -101,6 +103,36 @@ def overlay_people_wikidata(payload):
     return applied
 
 
+def load_baseline(extension, override=None):
+    """Return (graph, origin) for the archived baseline the extension scope pins, or (None, None).
+
+    The scope names a file (often under gitignored drafts/) and its sha256. If the file is
+    absent, as on a clean checkout, the same bytes are recovered from git history: the first
+    commit of the dataset whose content matches the pinned hash. Either way the hash is checked,
+    so the published 2000 view is exactly the accepted baseline and never an approximation.
+    """
+    want = extension.get('baseline_sha256')
+    path = Path(override) if override else (ROOT / extension['baseline_graph'] if extension.get('baseline_graph') else None)
+    if path and path.is_file():
+        data = path.read_bytes()
+        if want and hashlib.sha256(data).hexdigest() != want:
+            raise SystemExit(f'Baseline graph {path} does not match the pinned sha256 {want}')
+        return json.loads(data), str(path.relative_to(ROOT) if path.is_absolute() and path.is_relative_to(ROOT) else path)
+    if not want:
+        return None, None
+    try:
+        commits = subprocess.run(['git', 'log', '--format=%H', '--', 'historiography-1920-2000.json'],
+                                 cwd=ROOT, check=True, capture_output=True, text=True).stdout.split()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None, None
+    for commit in commits:
+        data = subprocess.run(['git', 'show', f'{commit}:historiography-1920-2000.json'],
+                              cwd=ROOT, check=True, capture_output=True).stdout
+        if hashlib.sha256(data).hexdigest() == want:
+            return json.loads(data), f'git history ({commit[:7]}, sha256 verified)'
+    return None, None
+
+
 def publish_graph(payload):
     """Slim the journal catalogue and overlay accepted Wikidata identities; returns the payload."""
     if 'journal_catalogue' in payload:
@@ -141,15 +173,13 @@ def build(graph_path=None, dest=None, baseline_path=None):
     extension = graph.get('scope', {}).get('extension')
     baseline = None
     if extension:
-        candidate = Path(baseline_path) if baseline_path else (
-            ROOT / extension['baseline_graph'] if extension.get('baseline_graph') else None)
-        if candidate and candidate.is_file():
-            baseline = json.loads(candidate.read_text())
+        baseline, origin = load_baseline(extension, baseline_path)
+        if baseline:
             b_errors, _ = validate(baseline, pathways)
             if b_errors:
                 raise SystemExit('Baseline graph fails validation:\n' + '\n'.join(b_errors))
-        elif candidate:
-            print(f'  Baseline graph {candidate} not found; no 2000 view will be published')
+        else:
+            print('  No baseline graph available; no 2000 view will be published')
     published = 0
     for source, target in DATA_ASSETS.items():
         out = dest / target
@@ -164,7 +194,7 @@ def build(graph_path=None, dest=None, baseline_path=None):
     if baseline:
         baseline_out.write_text(json.dumps(publish_graph(baseline), ensure_ascii=False, separators=(',', ':')))
         published += 1
-        print(f'  2000 baseline published from {candidate.relative_to(ROOT) if candidate.is_relative_to(ROOT) else candidate}')
+        print(f'  2000 baseline published from {origin}')
     elif baseline_out.exists():
         baseline_out.unlink()
     size = (dest / 'data' / 'graph.json').stat().st_size / 1024 / 1024
