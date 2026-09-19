@@ -972,8 +972,11 @@ function rangeControls() {
   const eyebrow = $('scope-eyebrow');
   if (!ext) { toggle.hidden = true; eyebrow.textContent = `${production.scope.main_period[0]}–${production.scope.main_period[1]} · WITH EARLIER ROOTS`; return; }
   const [a, b] = production.scope.main_period, end = ext.proposed_view_period?.[1];
-  const partial = `${a}–${b} · earlier roots · selected interventions to ${ext.latest_selected_publication || end} · partial · ${(ext.status || '').replace(/_/g, ' ')}`;
+  const status = /accepted/.test(ext.status || '') ? 'partial release' : (ext.status || '').replace(/_/g, ' ');
+  const partial = `${a}–${b} · earlier roots · selected interventions to ${ext.latest_selected_publication || end} · ${status}`;
   eyebrow.textContent = (state.range === '2000' ? `${a}–${b} · WITH EARLIER ROOTS · EXACT ${b} VIEW` : partial).toUpperCase();
+  $('edition-label').textContent = state.range === '2000' && ext.baseline_revision
+    ? `Draft ${ext.baseline_revision} · ${b} view` : `Draft ${production.revision_history.at(-1).version}`;
   if (!ext.baseline_asset) { toggle.hidden = true; return; }
   toggle.hidden = false;
   toggle.innerHTML = `<span>Coverage</span><a href="${esc(href({range: '2000'}))}" aria-pressed="${state.range === '2000'}">Through ${b}</a><a href="${esc(href({range: ''}))}" aria-pressed="${state.range !== '2000'}">Through ${end} · partial</a>`;
