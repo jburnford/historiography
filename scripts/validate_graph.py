@@ -14,6 +14,12 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def validate(graph, pathways):
     errors, warnings = [], []
+    if 'claim_catalogue' in graph:
+        try:
+            from .validate_claim_catalogue import validate_catalogue as validate_claims
+        except ImportError:
+            from validate_claim_catalogue import validate_catalogue as validate_claims
+        errors.extend(validate_claims(graph['claim_catalogue'], graph))
     if 'journal_catalogue' in graph:
         errors.extend(validate_catalogue(graph['journal_catalogue'], graph['nodes']))
     identifiers = {}

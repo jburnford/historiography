@@ -1,0 +1,2078 @@
+{
+  "schema_version": "0.1",
+  "fixture_only": true,
+  "status": "staging_only",
+  "production_graph_imports": 0,
+  "as_of": "2026-09-18",
+  "contract_path": "ontology/contract.json",
+  "entities": [
+    {
+      "id": "person:joan_wallach_scott",
+      "label": "Joan Wallach Scott",
+      "type": "person",
+      "legacy_id": "joan_wallach_scott"
+    },
+    {
+      "id": "person:natalie_zemon_davis",
+      "label": "Natalie Zemon Davis",
+      "type": "person",
+      "legacy_id": "natalie_zemon_davis"
+    },
+    {
+      "id": "person:susan_stryker",
+      "label": "Susan Stryker",
+      "type": "person",
+      "legacy_id": "susan_stryker"
+    },
+    {
+      "id": "person:durba_ghosh",
+      "label": "Durba Ghosh",
+      "type": "person",
+      "identity_status": "local_research_candidate"
+    },
+    {
+      "id": "person:afsaneh_najmabadi",
+      "label": "Afsaneh Najmabadi",
+      "type": "person",
+      "identity_status": "local_research_candidate"
+    },
+    {
+      "id": "entry:gender",
+      "label": "Gender & racial formation",
+      "type": "atlas_entry",
+      "legacy_id": "gender"
+    },
+    {
+      "id": "field:gender_history",
+      "label": "Gender history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ]
+    },
+    {
+      "id": "field:trans_history",
+      "label": "Trans history",
+      "type": "concept",
+      "concept_kind": [
+        "research_field"
+      ],
+      "candidate_ledger_id": "trans_history"
+    },
+    {
+      "id": "approach:gender_analysis",
+      "label": "Historically situated gender analysis",
+      "type": "concept",
+      "concept_kind": [
+        "approach"
+      ]
+    },
+    {
+      "id": "approach:genealogy",
+      "label": "Genealogical analysis of historically changing concepts",
+      "type": "concept",
+      "concept_kind": [
+        "approach"
+      ]
+    },
+    {
+      "id": "approach:historical_ethnography",
+      "label": "Combined historical and ethnographic inquiry",
+      "type": "concept",
+      "concept_kind": [
+        "approach"
+      ]
+    },
+    {
+      "id": "work:scott_gender_2010",
+      "label": "Gender: Still a Useful Category of Analysis?",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:scott_gender_2010",
+      "label": "Gender: Still a Useful Category of Analysis? — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "work:scott_secularism_2017",
+      "label": "Sex and Secularism",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:scott_secularism_2017",
+      "label": "Sex and Secularism — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "work:scott_judgment_2020",
+      "label": "On the Judgment of History",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:scott_judgment_2020",
+      "label": "On the Judgment of History — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "work:ghosh_family_2006",
+      "label": "Sex and the Family in Colonial India: The Making of Empire",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:ghosh_family_2006",
+      "label": "Sex and the Family in Colonial India: The Making of Empire — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "work:najmabadi_professing_selves",
+      "label": "Professing Selves: Transsexuality and Same-Sex Desire in Contemporary Iran",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:najmabadi_professing_selves",
+      "label": "Professing Selves: Transsexuality and Same-Sex Desire in Contemporary Iran — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "work:stryker_transgender_history",
+      "label": "Transgender History",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "work:davis_languages_2022",
+      "label": "Listening to the Languages of the People: Lazare Sainéan on Romanian, Yiddish, and French",
+      "type": "work",
+      "identity_status": "research_local_work_identity"
+    },
+    {
+      "id": "publication:davis_languages_2022",
+      "label": "Listening to the Languages of the People: Lazare Sainéan on Romanian, Yiddish, and French — inspected publication metadata",
+      "type": "publication"
+    },
+    {
+      "id": "version:stryker_transgender_history_2017",
+      "label": "Transgender History — 2017 revised text",
+      "type": "version",
+      "version_scope": "Publisher identifies a revised edition; textual changes not collated."
+    },
+    {
+      "id": "publication:stryker_transgender_history_2017",
+      "label": "Transgender History — 2017 Seal Press edition",
+      "type": "publication",
+      "isbn": "9781580056892"
+    },
+    {
+      "id": "version:stryker_transgender_history_2026",
+      "label": "Transgender History — 2026 revised text",
+      "type": "version",
+      "version_scope": "Publisher identifies a revised edition; textual changes not collated."
+    },
+    {
+      "id": "publication:stryker_transgender_history_2026",
+      "label": "Transgender History — 2026 Seal Press edition",
+      "type": "publication",
+      "isbn": "9781541605886"
+    },
+    {
+      "id": "subject:idref_027257681",
+      "label": "Philosophie de l’histoire (IdRef subject)",
+      "type": "concept",
+      "concept_kind": [
+        "topic"
+      ],
+      "external_uri": "http://www.idref.fr/027257681/id"
+    }
+  ],
+  "source_records": [
+    {
+      "id": "source:gender_batch:scott_2010",
+      "provider": "SAGE / Diogenes",
+      "url": "https://journals.sagepub.com/doi/10.1177/0392192110369316",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search1.txt",
+      "snapshot_sha256": "e612706dc521b5d5908e8d2346b595d31a7659ce1361b651dc5543f81fa4ac92",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:scott_ias",
+      "provider": "Institute for Advanced Study",
+      "url": "https://www.ias.edu/sss/faculty/scott",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources1.txt",
+      "snapshot_sha256": "9dfe25d5aaf8461e0c4635c74437d06ebf4b401d975064bca750dd5af7fba1ba",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:scott_2017",
+      "provider": "Princeton University Press",
+      "url": "https://assets.press.princeton.edu/chapters/i11126.pdf",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources2.txt",
+      "snapshot_sha256": "caaa4872975a6ef5f3aa3af5c96badcc8dcd2b33acfd1dda763acf1eeda3e936",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": "Introduction, printed pp. 3–7; selected passages, not whole-book reading."
+    },
+    {
+      "id": "source:gender_batch:scott_2020",
+      "provider": "Columbia University Press",
+      "url": "https://cup.columbia.edu/book/on-the-judgment-of-history/9780231551908/",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources3.txt",
+      "snapshot_sha256": "312abfce45fa57b6bba0042a66c26064dd4dfe9f6447bcc1732c7fb382e7d0d2",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:ghosh_book",
+      "provider": "Cambridge University Press",
+      "url": "https://www.cambridge.org/core/product/identifier/CBO9781139878418A003/type/BOOK_PART",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search1.txt",
+      "snapshot_sha256": "e612706dc521b5d5908e8d2346b595d31a7659ce1361b651dc5543f81fa4ac92",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:ghosh_author",
+      "provider": "Durba Ghosh / Cambridge University Press",
+      "url": "https://cambridgeblog.org/2022/05/sex-and-the-family-in-colonial-india-the-making-of-empire/",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources2.txt",
+      "snapshot_sha256": "caaa4872975a6ef5f3aa3af5c96badcc8dcd2b33acfd1dda763acf1eeda3e936",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": "Author retrospective dated 11 May 2022; body paragraphs 4–9, extracted lines 108–117; not a 2006 book passage."
+    },
+    {
+      "id": "source:gender_batch:ghosh_profile",
+      "provider": "Cornell University / Durba Ghosh",
+      "url": "https://history.cornell.edu/durba-ghosh",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources4.txt",
+      "snapshot_sha256": "877e5e62d07a96201b7eab426b2d82d353bff719354c0d62b0424c5298da1f06",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:najmabadi",
+      "provider": "Duke University Press",
+      "url": "https://dukeupress.edu/professing-selves",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search2.txt",
+      "snapshot_sha256": "3f3f4c35cceafe543a3f29529f28ed153fdc04e0e08a5482706d57dd45be1d03",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:najmabadi_copyright",
+      "provider": "JSTOR / Duke University Press",
+      "url": "https://www.jstor.org/stable/j.ctv11vc8md",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search1.txt",
+      "snapshot_sha256": "e612706dc521b5d5908e8d2346b595d31a7659ce1361b651dc5543f81fa4ac92",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": "Copyright 2014 is retained separately from the publisher release listing December 2013."
+    },
+    {
+      "id": "source:gender_batch:stryker_2017",
+      "provider": "Hachette UK / Seal Press",
+      "url": "https://www.littlebrown.co.uk/titles/susan-stryker/transgender-history-second-edition/9781580056892/",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search1.txt",
+      "snapshot_sha256": "e612706dc521b5d5908e8d2346b595d31a7659ce1361b651dc5543f81fa4ac92",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:stryker_2026",
+      "provider": "Hachette Book Group / Seal Press",
+      "url": "https://www.hachettebookgroup.com/titles/susan-stryker/transgender-history-third-edition/9781541605886/?lens=seal-press",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_search2.txt",
+      "snapshot_sha256": "3f3f4c35cceafe543a3f29529f28ed153fdc04e0e08a5482706d57dd45be1d03",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": "Lists 3 February 2026 but also stale preorder wording; author website separately reports actual release."
+    },
+    {
+      "id": "source:gender_batch:stryker_author",
+      "provider": "Susan Stryker",
+      "url": "https://www.susanstryker.net/writing",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources4.txt",
+      "snapshot_sha256": "877e5e62d07a96201b7eab426b2d82d353bff719354c0d62b0424c5298da1f06",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:davis_2022",
+      "provider": "Amsterdam University Press / CEU Press",
+      "url": "https://www.aup.nl/en/book/9789633865934/listening-to-the-languages-of-the-people",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources3.txt",
+      "snapshot_sha256": "312abfce45fa57b6bba0042a66c26064dd4dfe9f6447bcc1732c7fb382e7d0d2",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:scott_issue",
+      "provider": "Duke University Press",
+      "url": "https://www.dukeupress.edu/psychoanalysis-and-history",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "snapshot_path": "data/extension-2026/gender-integration/raw/gender_sources3.txt",
+      "snapshot_sha256": "312abfce45fa57b6bba0042a66c26064dd4dfe9f6447bcc1732c7fb382e7d0d2",
+      "capture_kind": "web_tool_search_or_extraction_response_not_original_HTML",
+      "locator_note": ""
+    },
+    {
+      "id": "source:gender_batch:lod_people",
+      "provider": "Saved Wikidata QLever → IdRef/Sudoc pilot",
+      "snapshot_path": "data/lod-mining/2026-09-18-pilot-complete/people.json",
+      "snapshot_sha256": "8ca24c161fd44ec4341bb9ae1c33124bd65d2120ec6a920a42d06e98c5ba950b",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "observation_note": "Local inspection time; original endpoint retrieval times remain in the immutable LOD manifest and observations.",
+      "capture_kind": "prior_staging_export_not_new_endpoint_check"
+    },
+    {
+      "id": "source:gender_batch:lod_identity-review",
+      "provider": "Saved Wikidata QLever → IdRef/Sudoc pilot",
+      "snapshot_path": "data/lod-mining/2026-09-18-pilot-complete/identity-review.json",
+      "snapshot_sha256": "37ab650c7affe50814d279918dd888a83d36d3d2f0dd21f3d599949d60352db8",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "observation_note": "Local inspection time; original endpoint retrieval times remain in the immutable LOD manifest and observations.",
+      "capture_kind": "prior_staging_export_not_new_endpoint_check"
+    },
+    {
+      "id": "source:gender_batch:lod_bibliographic-resources",
+      "provider": "Saved Wikidata QLever → IdRef/Sudoc pilot",
+      "snapshot_path": "data/lod-mining/2026-09-18-pilot-complete/bibliographic-resources.json",
+      "snapshot_sha256": "dd537c9e4c5e240d3ab9f44ef261b8411b12a2800aabcea8f0c47fb9b209ebba",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "observation_note": "Local inspection time; original endpoint retrieval times remain in the immutable LOD manifest and observations.",
+      "capture_kind": "prior_staging_export_not_new_endpoint_check"
+    },
+    {
+      "id": "source:gender_batch:lod_subjects",
+      "provider": "Saved Wikidata QLever → IdRef/Sudoc pilot",
+      "snapshot_path": "data/lod-mining/2026-09-18-pilot-complete/subjects.json",
+      "snapshot_sha256": "77671e900dc2dd6d2643a393ded65881af8b05c418496206e5da84910e08a67c",
+      "observed_at": "2026-09-18T22:55:56.551995+00:00",
+      "observation_note": "Local inspection time; original endpoint retrieval times remain in the immutable LOD manifest and observations.",
+      "capture_kind": "prior_staging_export_not_new_endpoint_check"
+    }
+  ],
+  "identity_mappings": [
+    {
+      "entity_id": "person:joan_wallach_scott",
+      "scheme": "Wikidata",
+      "value": "Q291798",
+      "source_record_id": "source:gender_batch:lod_people",
+      "review": {
+        "status": "needs_review",
+        "rationale": "Candidate join retained from the saved control records; compatible labels and bibliography are not an accepted authority merge. Precision-aware date review remains pending."
+      }
+    },
+    {
+      "entity_id": "person:joan_wallach_scott",
+      "scheme": "IdRef",
+      "value": "027129446",
+      "source_record_id": "source:gender_batch:lod_identity-review",
+      "review": {
+        "status": "needs_review",
+        "rationale": "Candidate join retained from the saved control records; compatible labels and bibliography are not an accepted authority merge. Precision-aware date review remains pending."
+      }
+    },
+    {
+      "entity_id": "person:natalie_zemon_davis",
+      "scheme": "Wikidata",
+      "value": "Q266185",
+      "source_record_id": "source:gender_batch:lod_people",
+      "review": {
+        "status": "needs_review",
+        "rationale": "Candidate join retained from the saved control records; compatible labels and bibliography are not an accepted authority merge. Precision-aware date review remains pending."
+      }
+    },
+    {
+      "entity_id": "person:natalie_zemon_davis",
+      "scheme": "IdRef",
+      "value": "026814102",
+      "source_record_id": "source:gender_batch:lod_identity-review",
+      "review": {
+        "status": "needs_review",
+        "rationale": "Candidate join retained from the saved control records; compatible labels and bibliography are not an accepted authority merge. Precision-aware date review remains pending."
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim:gender_batch:scott_gender_2010_authored",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "authored",
+      "object": "work:scott_gender_2010",
+      "attributed_to": "source:gender_batch:scott_2010",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2010",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_gender_2010_edition",
+      "subject": "publication:scott_gender_2010",
+      "predicate": "edition_of",
+      "object": "work:scott_gender_2010",
+      "attributed_to": "source:gender_batch:scott_2010",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2010",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_gender_2010_year",
+      "subject": "publication:scott_gender_2010",
+      "predicate": "published_on",
+      "object": {
+        "value": "2010",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:scott_2010",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2010",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2010; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_secularism_2017_authored",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "authored",
+      "object": "work:scott_secularism_2017",
+      "attributed_to": "source:gender_batch:scott_ias",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_ias",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_secularism_2017_edition",
+      "subject": "publication:scott_secularism_2017",
+      "predicate": "edition_of",
+      "object": "work:scott_secularism_2017",
+      "attributed_to": "source:gender_batch:scott_ias",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_ias",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_secularism_2017_year",
+      "subject": "publication:scott_secularism_2017",
+      "predicate": "published_on",
+      "object": {
+        "value": "2017",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:scott_ias",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_ias",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2017; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_judgment_2020_authored",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "authored",
+      "object": "work:scott_judgment_2020",
+      "attributed_to": "source:gender_batch:scott_2020",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2020",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_judgment_2020_edition",
+      "subject": "publication:scott_judgment_2020",
+      "predicate": "edition_of",
+      "object": "work:scott_judgment_2020",
+      "attributed_to": "source:gender_batch:scott_2020",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2020",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies joan wallach scott as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_judgment_2020_year",
+      "subject": "publication:scott_judgment_2020",
+      "predicate": "published_on",
+      "object": {
+        "value": "2020",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:scott_2020",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2020",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2020; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:ghosh_family_2006_authored",
+      "subject": "person:durba_ghosh",
+      "predicate": "authored",
+      "object": "work:ghosh_family_2006",
+      "attributed_to": "source:gender_batch:ghosh_book",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_book",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies durba ghosh as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:ghosh_family_2006_first",
+      "subject": "work:ghosh_family_2006",
+      "predicate": "first_published",
+      "object": {
+        "value": "2006",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:ghosh_author",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_author",
+          "locator": "Opening bibliographic/retrospective statement",
+          "support": "Author identifies the original work with 2006; later editions are separate.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:ghosh_family_2006_edition",
+      "subject": "publication:ghosh_family_2006",
+      "predicate": "edition_of",
+      "object": "work:ghosh_family_2006",
+      "attributed_to": "source:gender_batch:ghosh_book",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_book",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies durba ghosh as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:ghosh_family_2006_year",
+      "subject": "publication:ghosh_family_2006",
+      "predicate": "published_on",
+      "object": {
+        "value": "2006",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:ghosh_book",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_book",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2006; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:najmabadi_professing_selves_authored",
+      "subject": "person:afsaneh_najmabadi",
+      "predicate": "authored",
+      "object": "work:najmabadi_professing_selves",
+      "attributed_to": "source:gender_batch:najmabadi",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:najmabadi",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies afsaneh najmabadi as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:najmabadi_professing_selves_edition",
+      "subject": "publication:najmabadi_professing_selves",
+      "predicate": "edition_of",
+      "object": "work:najmabadi_professing_selves",
+      "attributed_to": "source:gender_batch:najmabadi",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:najmabadi",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies afsaneh najmabadi as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:najmabadi_professing_selves_year",
+      "subject": "publication:najmabadi_professing_selves",
+      "predicate": "published_on",
+      "object": {
+        "value": "2013",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:najmabadi",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:najmabadi",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2013; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_authored",
+      "subject": "person:susan_stryker",
+      "predicate": "authored",
+      "object": "work:stryker_transgender_history",
+      "attributed_to": "source:gender_batch:stryker_author",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_author",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies susan stryker as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_first",
+      "subject": "work:stryker_transgender_history",
+      "predicate": "first_published",
+      "object": {
+        "value": "2008",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:stryker_author",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_author",
+          "locator": "Opening bibliographic/retrospective statement",
+          "support": "Author identifies the original work with 2008; later editions are separate.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:davis_languages_2022_authored",
+      "subject": "person:natalie_zemon_davis",
+      "predicate": "authored",
+      "object": "work:davis_languages_2022",
+      "attributed_to": "source:gender_batch:davis_2022",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:davis_2022",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies natalie zemon davis as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:davis_languages_2022_edition",
+      "subject": "publication:davis_languages_2022",
+      "predicate": "edition_of",
+      "object": "work:davis_languages_2022",
+      "attributed_to": "source:gender_batch:davis_2022",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:davis_2022",
+          "locator": "Title, author and bibliographic information",
+          "support": "Identifies natalie zemon davis as author of this work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:davis_languages_2022_year",
+      "subject": "publication:davis_languages_2022",
+      "predicate": "published_on",
+      "object": {
+        "value": "2022",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:davis_2022",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:davis_2022",
+          "locator": "Bibliographic publication date",
+          "support": "Source lists publication in 2022; no automatic earliest-edition inference.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2017_realizes",
+      "subject": "version:stryker_transgender_history_2017",
+      "predicate": "realizes",
+      "object": "work:stryker_transgender_history",
+      "attributed_to": "source:gender_batch:stryker_2017",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2017",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2017 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2017_embodies",
+      "subject": "publication:stryker_transgender_history_2017",
+      "predicate": "embodies",
+      "object": "version:stryker_transgender_history_2017",
+      "attributed_to": "source:gender_batch:stryker_2017",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2017",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2017 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2017_edition",
+      "subject": "publication:stryker_transgender_history_2017",
+      "predicate": "edition_of",
+      "object": "work:stryker_transgender_history",
+      "attributed_to": "source:gender_batch:stryker_2017",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2017",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2017 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2017_year",
+      "subject": "publication:stryker_transgender_history_2017",
+      "predicate": "published_on",
+      "object": {
+        "value": "2017",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:stryker_2017",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2017",
+          "locator": "Publication/on-sale date",
+          "support": "Publisher lists a 2017 edition.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2026_realizes",
+      "subject": "version:stryker_transgender_history_2026",
+      "predicate": "realizes",
+      "object": "work:stryker_transgender_history",
+      "attributed_to": "source:gender_batch:stryker_2026",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2026",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2026 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2026_embodies",
+      "subject": "publication:stryker_transgender_history_2026",
+      "predicate": "embodies",
+      "object": "version:stryker_transgender_history_2026",
+      "attributed_to": "source:gender_batch:stryker_2026",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2026",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2026 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2026_edition",
+      "subject": "publication:stryker_transgender_history_2026",
+      "predicate": "edition_of",
+      "object": "work:stryker_transgender_history",
+      "attributed_to": "source:gender_batch:stryker_2026",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2026",
+          "locator": "Edition title and description",
+          "support": "Publisher identifies the 2026 revised edition of Stryker’s work.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:stryker_transgender_history_2026_year",
+      "subject": "publication:stryker_transgender_history_2026",
+      "predicate": "published_on",
+      "object": {
+        "value": "2026",
+        "precision": "year",
+        "approximate": false
+      },
+      "attributed_to": "source:gender_batch:stryker_2026",
+      "basis": "source_assertion",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_2026",
+          "locator": "Publication/on-sale date",
+          "support": "Publisher lists a 2026 edition.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        },
+        {
+          "source_record_id": "source:gender_batch:stryker_author",
+          "locator": "Writing: Transgender History paragraph",
+          "support": "Author reports that the third edition came out in February 2026.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Confirms reported release; no whole-book reading or assessment of reception."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    },
+    {
+      "id": "claim:gender_batch:scott_gender_connection",
+      "subject": "person:joan_wallach_scott",
+      "predicate": "research_connection",
+      "object": "field:gender_history",
+      "attributed_to": "project editorial proposal",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_ias",
+          "locator": "Scholarship and fields paragraphs",
+          "support": "Institutional biography explicitly identifies women’s and gender history.",
+          "scope": "explicit_field_statement",
+          "check_status": "explicit_statement_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Does not date the entire affiliation interval or establish every book as gender history."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Explicit scholarly connection; does not equate the gender/racial-formation teaching umbrella with a single field."
+    },
+    {
+      "id": "claim:gender_batch:scott_2010_approach",
+      "subject": "work:scott_gender_2010",
+      "predicate": "uses_approach",
+      "object": "approach:gender_analysis",
+      "attributed_to": "project interpretation of Scott’s abstract",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2010",
+          "locator": "Abstract",
+          "support": "Scott retains gender as critical analysis when it questions how sex categories acquire meaning.",
+          "scope": "abstract",
+          "check_status": "abstract_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Abstract only; not evidence of subsequent uptake or full argument."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Renewal of a critical question rather than proof of a new school founded in 2010."
+    },
+    {
+      "id": "claim:gender_batch:scott_2017_genealogy",
+      "subject": "work:scott_secularism_2017",
+      "predicate": "uses_approach",
+      "object": "approach:genealogy",
+      "attributed_to": "project interpretation of Scott’s introduction",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:scott_2017",
+          "locator": "Introduction, printed pp. 4–7",
+          "support": "Scott explicitly identifies a genealogical inquiry into changing uses of secularism and challenges an inevitable progress toward gender equality.",
+          "scope": "passage",
+          "check_status": "passage_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Selected introduction passages only; author’s programme, not independent proof of its historical generalizations."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "A method explicitly described by Scott; the broader critique and reception require separately represented claims."
+    },
+    {
+      "id": "claim:gender_batch:ghosh_gender_connection",
+      "subject": "person:durba_ghosh",
+      "predicate": "research_connection",
+      "object": "field:gender_history",
+      "attributed_to": "project editorial proposal",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_profile",
+          "locator": "Overview and Research Focus",
+          "support": "Author’s institutional profile connects her historical research to gender and colonialism.",
+          "scope": "explicit_field_statement",
+          "check_status": "explicit_statement_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Connection is substantive but not an exclusive disciplinary identity."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Gender analysis within colonial South Asian history; regional specificity must remain visible."
+    },
+    {
+      "id": "claim:gender_batch:ghosh_2006_approach",
+      "subject": "work:ghosh_family_2006",
+      "predicate": "uses_approach",
+      "object": "approach:gender_analysis",
+      "attributed_to": "project interpretation of Ghosh’s retrospective",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:ghosh_author",
+          "locator": "11 May 2022 author retrospective, paragraphs 4–9 / extracted lines 108–117",
+          "support": "Ghosh describes family relations as sites of racial and class distinctions and explains archival erasure of Indian women.",
+          "scope": "passage",
+          "check_status": "passage_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "2022 author account of a 2006 book; original book passages and independent reception remain to check."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Interprets a 2006 contribution from an explicitly dated 2022 retrospective; source date does not redate the original intervention."
+    },
+    {
+      "id": "claim:gender_batch:najmabadi_approach",
+      "subject": "work:najmabadi_professing_selves",
+      "predicate": "uses_approach",
+      "object": "approach:historical_ethnography",
+      "attributed_to": "project proposal based on publisher description",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:najmabadi",
+          "locator": "Publisher description",
+          "support": "Publisher describes a combination of historical and ethnographic research on gender/sexual classifications in Iran.",
+          "scope": "publisher_description",
+          "check_status": "description_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Promotional description, not a checked book passage; no universal trans chronology is inferred."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Iranian institutional and lived contexts; retain specificity rather than applying US periodization."
+    },
+    {
+      "id": "claim:gender_batch:stryker_trans_connection",
+      "subject": "person:susan_stryker",
+      "predicate": "research_connection",
+      "object": "field:trans_history",
+      "attributed_to": "project editorial proposal",
+      "basis": "editorial_interpretation",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:stryker_author",
+          "locator": "Writing: Transgender History paragraph",
+          "support": "Author describes a historical account of the US trans movement in a longer international history.",
+          "scope": "explicit_field_statement",
+          "check_status": "explicit_statement_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Author statement supports a research connection; field origins and wider influence remain separate questions."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ],
+      "qualification": "Trans history remains separately addressable, with possible relationships to gender and queer history requiring their own evidence."
+    },
+    {
+      "id": "claim:gender_batch:scott_judgment_catalogue_subject",
+      "subject": "publication:scott_judgment_2020",
+      "predicate": "catalogued_subject",
+      "object": "subject:idref_027257681",
+      "attributed_to": "source:gender_batch:lod_bibliographic-resources",
+      "basis": "catalogue_assignment",
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/256830967/id → subjects",
+          "support": "Saved catalogue record assigns this heading; attribution to the proposed publication remains contingent on manifestation reconciliation.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "review": {
+        "status": "needs_review",
+        "rationale": "Evidence inspected for this bounded research batch; production acceptance and broader interpretation remain pending."
+      },
+      "valid_time": null,
+      "history": [
+        {
+          "date": "2026-09-18",
+          "event": "research_proposal",
+          "note": "Not a production addition."
+        }
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "question": "Can the seven recent control records retain authorship, foreword, series and issue roles?",
+      "claim_ids": []
+    },
+    {
+      "question": "Can original work and revised edition chronology remain separate?",
+      "claim_ids": [
+        "claim:gender_batch:stryker_transgender_history_authored",
+        "claim:gender_batch:stryker_transgender_history_first",
+        "claim:gender_batch:stryker_transgender_history_2017_realizes",
+        "claim:gender_batch:stryker_transgender_history_2017_embodies",
+        "claim:gender_batch:stryker_transgender_history_2017_edition",
+        "claim:gender_batch:stryker_transgender_history_2017_year",
+        "claim:gender_batch:stryker_transgender_history_2026_realizes",
+        "claim:gender_batch:stryker_transgender_history_2026_embodies",
+        "claim:gender_batch:stryker_transgender_history_2026_edition",
+        "claim:gender_batch:stryker_transgender_history_2026_year"
+      ]
+    },
+    {
+      "question": "Can field connections have source-scoped evidence without equating them with an atlas umbrella?",
+      "claim_ids": [
+        "claim:gender_batch:scott_gender_connection",
+        "claim:gender_batch:scott_2010_approach",
+        "claim:gender_batch:scott_2017_genealogy",
+        "claim:gender_batch:ghosh_gender_connection",
+        "claim:gender_batch:ghosh_2006_approach",
+        "claim:gender_batch:najmabadi_approach",
+        "claim:gender_batch:stryker_trans_connection"
+      ]
+    },
+    {
+      "question": "Can book subject and author field remain different propositions?",
+      "claim_ids": [
+        "claim:gender_batch:scott_judgment_catalogue_subject"
+      ]
+    }
+  ],
+  "record_reviews": [
+    {
+      "record_uri": "http://www.sudoc.fr/271458526/id",
+      "candidate_person_id": "person:joan_wallach_scott",
+      "classification": "coedited_journal_issue",
+      "review_scope": "publisher_metadata_corroborated",
+      "work_candidate_id": null,
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/271458526/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2022"
+        ],
+        "citations": [
+          "Psychoanalysis and history  / Brian Connolly and Joan Wallach Scott,special issue editors / [Durham (North Carolina)] : Duke University Press , 2022"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/027129446/id",
+            "role": "http://id.loc.gov/vocabulary/relators/pbd"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027230600/id",
+          "http://www.idref.fr/027241505/id",
+          "http://www.idref.fr/027241564/id",
+          "http://www.idref.fr/027261794/id",
+          "http://www.idref.fr/027412288/id",
+          "http://www.idref.fr/027455238/id",
+          "http://www.idref.fr/027583570/id",
+          "http://www.idref.fr/122706463/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2022
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/271458526/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        },
+        {
+          "source_record_id": "source:gender_batch:scott_issue",
+          "locator": "Title/author/editor and bibliographic block",
+          "support": "Publisher metadata corroborates the named contribution role.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Publisher confirms History of the Present 12(1), April 2022, co-edited with Brian Connolly. No sole-authored work inferred.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/256830967/id",
+      "candidate_person_id": "person:joan_wallach_scott",
+      "classification": "authored_monograph",
+      "review_scope": "publisher_metadata_corroborated",
+      "work_candidate_id": "work:scott_judgment_2020",
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/256830967/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2020"
+        ],
+        "citations": [
+          "On the judgment of history  / Joan Wallach Scott / New York : Columbia University Press , 2020"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/027129446/id",
+            "role": "http://id.loc.gov/vocabulary/relators/aut"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027257681/id",
+          "http://www.idref.fr/027261794/id",
+          "http://www.idref.fr/027303365/id",
+          "http://www.idref.fr/027341690/id",
+          "http://www.idref.fr/027401863/id",
+          "http://www.idref.fr/061612723/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2020
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/256830967/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        },
+        {
+          "source_record_id": "source:gender_batch:scott_2020",
+          "locator": "Title/author/editor and bibliographic block",
+          "support": "Publisher metadata corroborates the named contribution role.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Title, author, publisher and year agree; exact Sudoc manifestation/ISBN still unresolved. Do not label every Scott work gender history.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/263655423/id",
+      "candidate_person_id": "person:joan_wallach_scott",
+      "classification": "authored_monograph_catalogue_lead",
+      "review_scope": "saved_catalogue_only",
+      "work_candidate_id": null,
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/263655423/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2020"
+        ],
+        "citations": [
+          "In the name of history  / Joan Wallach Scott / Budapest : Central European university press , 2020"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/027129446/id",
+            "role": "http://id.loc.gov/vocabulary/relators/aut"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027257681/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2020
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/263655423/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Retain separately from On the Judgment of History; overlapping lectures/titles do not establish identical works. Publisher/version comparison deferred.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/261615114/id",
+      "candidate_person_id": "person:natalie_zemon_davis",
+      "classification": "reissue_or_composite_edition_lead",
+      "review_scope": "saved_catalogue_only",
+      "work_candidate_id": null,
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/261615114/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2022"
+        ],
+        "citations": [
+          "Le retour de Martin Guerre  / Natalie Zemon Davis  / Alexandre Dumas  ; préface de Carlo Ginzburg / Paris : Tallandier , DL 2022"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/026814102/id",
+            "role": "http://id.loc.gov/vocabulary/relators/aut"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027263517/id",
+          "http://www.idref.fr/027312747/id",
+          "http://www.idref.fr/02766435X/id",
+          "http://www.idref.fr/028491971/id",
+          "http://www.idref.fr/050621246/id",
+          "http://www.idref.fr/050622463/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2022
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/261615114/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Catalogue includes Davis, Dumas and Ginzburg; review component works and credits before normalizing this 2022 publication.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/26222738X/id",
+      "candidate_person_id": "person:natalie_zemon_davis",
+      "classification": "foreword_credit",
+      "review_scope": "saved_catalogue_only",
+      "work_candidate_id": null,
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/26222738X/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2022"
+        ],
+        "citations": [
+          "Œuvres  / [Louise] Labé  ; présentation, notes, dossier, index et bibliographie de Michèle Clément et Michel Jourde  ; [avant-propos de Natalie Zemon Davis]/ [Nouvelle édition] / Paris : Flammarion , DL 2022"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/026814102/id",
+            "role": "http://id.loc.gov/vocabulary/relators/aui"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027843203/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2022
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/26222738X/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Davis supplies an avant-propos to Louise Labé’s work; no Davis authorship of the whole edition. Component identity/date deferred.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/277050014/id",
+      "candidate_person_id": "person:natalie_zemon_davis",
+      "classification": "authored_monograph",
+      "review_scope": "publisher_metadata_corroborated",
+      "work_candidate_id": "work:davis_languages_2022",
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/277050014/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2022"
+        ],
+        "citations": [
+          "Listening to the languages of the people  : Lazare Sainéan on Romanian, Yiddish, and French  / Natalie Zemon Davis / Budapest : Central European University Press , 2022"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/026814102/id",
+            "role": "http://id.loc.gov/vocabulary/relators/aut"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027281558/id",
+          "http://www.idref.fr/028501748/id",
+          "http://www.idref.fr/031764630/id",
+          "http://www.idref.fr/050555537/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2022
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/277050014/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        },
+        {
+          "source_record_id": "source:gender_batch:davis_2022",
+          "locator": "Title/author/editor and bibliographic block",
+          "support": "Publisher metadata corroborates the named contribution role.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Publisher corroborates title, author and 2022 year. A history of linguistic scholarship is not automatically a gender-history work.",
+      "checked_on": "2026-09-18"
+    },
+    {
+      "record_uri": "http://www.sudoc.fr/252657071/id",
+      "candidate_person_id": "person:natalie_zemon_davis",
+      "classification": "series_editorial_board_credit",
+      "review_scope": "saved_catalogue_only",
+      "work_candidate_id": null,
+      "publication_identity_status": "needs_review",
+      "raw_record": {
+        "uri": "http://www.sudoc.fr/252657071/id",
+        "entity_status": "bibliographic_resource_not_resolved_work",
+        "dates": [
+          "2020"
+        ],
+        "citations": [
+          "Early Modern Cultural Studies  / editorial board; Stephen J. Campbell, Brian Cummings, Natalie Zemon Davis, ... [et 12 al.] / Turnhout : Brepols , 2020-"
+        ],
+        "contributions": [
+          {
+            "authority": "http://www.idref.fr/026814102/id",
+            "role": "http://id.loc.gov/vocabulary/relators/pbd"
+          }
+        ],
+        "subjects": [
+          "http://www.idref.fr/027231429/id"
+        ],
+        "date_status": "catalogued_year_in_window",
+        "window_years": [
+          2020
+        ]
+      },
+      "evidence": [
+        {
+          "source_record_id": "source:gender_batch:lod_bibliographic-resources",
+          "locator": "http://www.sudoc.fr/252657071/id",
+          "support": "Inspect citation, contribution role and structured date; original record retained.",
+          "scope": "metadata",
+          "check_status": "metadata_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Metadata check only; no full-text or reception inference."
+        }
+      ],
+      "decision_note": "Continuing series record with editorial-board role; no new Davis book or continuously dated affiliation inferred.",
+      "checked_on": "2026-09-18"
+    }
+  ],
+  "date_observations": [
+    {
+      "entity_id": "work:najmabadi_professing_selves",
+      "observations": [
+        {
+          "value": "2013-12",
+          "meaning": "publisher release month",
+          "source_record_id": "source:gender_batch:najmabadi"
+        },
+        {
+          "value": "2014",
+          "meaning": "JSTOR copyright year",
+          "source_record_id": "source:gender_batch:najmabadi_copyright"
+        }
+      ],
+      "disposition": "Keep distinct date meanings; 2013 publication proposal follows Duke. Exact manifestation chronology not fully reconciled."
+    },
+    {
+      "entity_id": "publication:ghosh_family_2006",
+      "observations": [
+        {
+          "value": "2006",
+          "meaning": "print publication year",
+          "source_record_id": "source:gender_batch:ghosh_book"
+        },
+        {
+          "value": "2014-08-05",
+          "meaning": "Cambridge online publication of frontmatter",
+          "source_record_id": "source:gender_batch:ghosh_book"
+        }
+      ],
+      "disposition": "Online frontmatter date does not redate the 2006 printed work."
+    },
+    {
+      "entity_id": "publication:stryker_transgender_history_2026",
+      "observations": [
+        {
+          "value": "2026-02-03",
+          "meaning": "publisher on-sale date with inconsistent preorder boilerplate",
+          "source_record_id": "source:gender_batch:stryker_2026"
+        },
+        {
+          "value": "2026-02",
+          "meaning": "author reports actual third-edition release",
+          "source_record_id": "source:gender_batch:stryker_author"
+        }
+      ],
+      "disposition": "Record both witnesses; support for release comes from author as well as publisher date."
+    }
+  ],
+  "catalogue_subject_witness": {
+    "uri": "http://www.idref.fr/027257681/id",
+    "labels": [
+      "Philosophie de l'histoire"
+    ]
+  },
+  "limits": [
+    "All claims and external identity mappings remain needs_review; no production export.",
+    "Seven selected works do not constitute a field survey or representative global coverage.",
+    "Davis is an identity/publication control; this batch asserts no new Davis–gender connection.",
+    "No work-to-work influence or critique predicates have been invented to bypass the current contract.",
+    "Scott’s critique of Charles Taylor and her stated relation to Foucault/Asad are reading leads, not accepted influence edges.",
+    "The older extension packets remain immutable inputs; their witness/publication and claim-predicate differences are logged in schema-crosswalk.json.",
+    "2020–2026 coverage is partial; 2026 Stryker revisions are not evidence of a new field or whole-book reception."
+  ]
+}

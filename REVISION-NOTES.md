@@ -1,3 +1,9 @@
+# Revision 1.119: eight pre-2000 promotions
+
+Promoted Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith and Daston from existing shared identities. Added nine qualified teaching connections and seven source witnesses. The optional production claim catalogue preserves seven shared works and eighteen exact historical claims independently of promotion: seventeen accepted within their recorded passage/abstract scope, Davis comparative biography explicitly provisional with description-only support. Nine authorship and eight presentation links are not extra historical relationships.
+
+Current totals: 124 entries, 761 teaching relationships, 840 sources, 829 people. Earlier graph records, roster/strand contexts, journal catalogue and snapshots are intact; no new QID or gender assertion accepted. [Acceptance/handoff](data/production-batches/promotions-01/README.md); `audit_promotion_import.py` reconstructs the import. Twenty production/graph/people tests pass. Fable owns the website rebuild; website source and public assets remain at their previous state. No deployment or OpenAlex work.
+
 # Revision 1.118: four requested enduring fields
 
 Added Spatial history / Historical geography, Intellectual history, Labour history and Ethnohistory as dedicated group entries. There are 28 new approaches, 56 contextual person selections, 18 new shared identities, 29 specific map connections and 14 new sources. Current totals: 116 entries, 752 relationships, 833 sources, 829 people, 1,309 selections and 731 approaches across 73 groups.

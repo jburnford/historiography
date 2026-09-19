@@ -1,0 +1,359 @@
+{
+  "version": "0.2",
+  "entity_types": [
+    "person",
+    "concept",
+    "atlas_entry",
+    "work",
+    "version",
+    "publication",
+    "organization"
+  ],
+  "concept_kinds": [
+    "research_field",
+    "approach",
+    "school",
+    "tradition",
+    "occupation",
+    "topic",
+    "period",
+    "place",
+    "method"
+  ],
+  "bases": [
+    "source_assertion",
+    "catalogue_assignment",
+    "editorial_interpretation",
+    "inference"
+  ],
+  "review_statuses": [
+    "unreviewed",
+    "needs_review",
+    "accepted",
+    "rejected"
+  ],
+  "enabled_inference_rules": [],
+  "predicates": {
+    "recorded_field_of_work": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "allowed_bases": [
+        "source_assertion"
+      ]
+    },
+    "recorded_occupation": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "allowed_bases": [
+        "source_assertion"
+      ]
+    },
+    "research_connection": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "object_concept_kinds": [
+        "research_field",
+        "approach",
+        "tradition",
+        "method"
+      ],
+      "requires_qualification": true,
+      "allowed_bases": [
+        "editorial_interpretation",
+        "inference"
+      ]
+    },
+    "interlocutor_with_school": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "object_concept_kinds": [
+        "school"
+      ],
+      "requires_qualification": true,
+      "allowed_bases": [
+        "editorial_interpretation"
+      ]
+    },
+    "school_association": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "object_concept_kinds": [
+        "school"
+      ],
+      "requires_qualification": true
+    },
+    "member_of": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "organization"
+      ],
+      "requires_qualification": true
+    },
+    "authored": {
+      "subject_types": [
+        "person"
+      ],
+      "object_types": [
+        "work"
+      ]
+    },
+    "edition_of": {
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "work"
+      ]
+    },
+    "realizes": {
+      "subject_types": [
+        "version"
+      ],
+      "object_types": [
+        "work"
+      ]
+    },
+    "embodies": {
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "version"
+      ]
+    },
+    "credited_translation": {
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "person"
+      ],
+      "requires_qualification": true
+    },
+    "catalogued_subject": {
+      "subject_types": [
+        "publication",
+        "version",
+        "work"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "allowed_bases": [
+        "catalogue_assignment"
+      ]
+    },
+    "uses_approach": {
+      "subject_types": [
+        "work"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "object_concept_kinds": [
+        "approach",
+        "method"
+      ],
+      "requires_qualification": true,
+      "allowed_bases": [
+        "editorial_interpretation"
+      ]
+    },
+    "entry_includes": {
+      "subject_types": [
+        "atlas_entry"
+      ],
+      "object_types": [
+        "person",
+        "concept",
+        "work"
+      ],
+      "requires_qualification": true
+    },
+    "entry_presents": {
+      "subject_types": [
+        "atlas_entry"
+      ],
+      "object_types": [
+        "person",
+        "concept"
+      ],
+      "requires_qualification": true
+    },
+    "exact_match": {
+      "subject_types": [
+        "concept"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "requires_qualification": true,
+      "allowed_bases": [
+        "editorial_interpretation"
+      ]
+    },
+    "related_concept": {
+      "subject_types": [
+        "concept"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "requires_qualification": true
+    },
+    "first_published": {
+      "subject_types": [
+        "work"
+      ],
+      "object_types": [
+        "date"
+      ]
+    },
+    "published_on": {
+      "subject_types": [
+        "publication"
+      ],
+      "object_types": [
+        "date"
+      ]
+    },
+    "studies_period": {
+      "subject_types": [
+        "work"
+      ],
+      "object_types": [
+        "concept"
+      ],
+      "object_concept_kinds": [
+        "period"
+      ]
+    },
+    "critiques": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "revises": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "contributes_to": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "qualifies": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "assesses_scope": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "proposes_programme": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    },
+    "defines_scope": {
+      "subject_types": [
+        "person",
+        "work"
+      ],
+      "object_types": [
+        "work",
+        "concept"
+      ],
+      "allowed_bases": [
+        "editorial_interpretation"
+      ],
+      "requires_qualification": true,
+      "requires_statement": true
+    }
+  },
+  "status": "research_staging_extension"
+}
