@@ -1,0 +1,949 @@
+{
+ "schema_version": "0.1",
+ "title": "Wikidata grounding: the 75 topic entries (schools, fields, traditions and debates)",
+ "generated_on": "2026-09-18",
+ "method": "Every entry whose entry_kind is \"group\" in historiography-1920-2000.json has one row. Candidates were found only with the WikidataMCP semantic search (search_items), never the REST name search, using the entry’s label, description and scope_note to phrase the query. Each candidate’s class was then checked with a SPARQL query over P31/P279 and accepted only where the class is an academic discipline, field of study, school of thought, branch of history or comparable concept. No entry is mapped to a person or to a book. Where an entry fuses two or more things and no single item covers it, the row is unmatched and the partial candidates are named in the notes. Wikidata content is CC0.",
+ "status_values": {
+  "accepted": "match reviewed and accepted",
+  "unmatched": "no item found, or only a narrower or partial item that would misdescribe the entry",
+  "conflict": "candidates disagree; needs a human decision",
+  "rejected": "reviewed and refused"
+ },
+ "match_kinds": {
+  "same_concept": "the Wikidata item is the school, field or tradition itself",
+  "broader_concept": "only a wider item exists; the notes say what the entry covers that the item does not"
+ },
+ "counts": {
+  "total": 75,
+  "accepted": 54,
+  "unmatched": 21,
+  "same_concept": 33,
+  "broader_concept": 21
+ },
+ "entries": [
+  {
+   "node_id": "saussure",
+   "label": "Structural linguistics",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2466334",
+    "label": "structural linguistics",
+    "description": "view of linguistics",
+    "query": "structural linguistics Saussurean tradition in linguistics",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Subclass of linguistics and of structuralism. The entry is an umbrella over several later linguistic programmes as well as Saussure; the Wikidata item is the tradition itself."
+  },
+  {
+   "node_id": "epistemology",
+   "label": "Historical epistemology",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q30748859",
+    "label": "historical epistemology",
+    "description": "study of the historical conditions of, and changes in, different kinds of knowledge",
+    "query": "oral history method of historical research recorded interviews (candidate surfaced); confirmed in \"philosophy of history analytic debates about historical explanation and objectivity\"",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of school of thought and of philosophical schools and traditions; subclass of epistemology. The Wikidata item is generic and does not state the French Bachelard-Canguilhem lineage the entry specifies, so it may also cover Anglophone uses of the term."
+  },
+  {
+   "node_id": "ranke",
+   "label": "Critical historical scholarship",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "Source criticism (Q2122746) exists but is subclassed under information science as the general evaluation of information sources, not the historians’ critical tradition of philology, diplomatics, archives and seminar training that the entry describes; historiography (Q50675) is far too broad. No item fits."
+  },
+  {
+   "node_id": "karl",
+   "label": "Historical materialism",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q190004",
+    "label": "historical materialism",
+    "description": "Marxist theory of historiography that material and economic conditions drive societal structure and historical change",
+    "query": "historical materialism Marxist theory of history",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of theory of history and branch of philosophy."
+  },
+  {
+   "node_id": "durkheim",
+   "label": "Social facts & collective life",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for a Durkheimian school or tradition. Searches returned Émile Durkheim the person (out of scope for a topic row), collective representations (Q65089822) and The Rules of Sociological Method (Q588341) — single concepts and a book, not the tradition the entry groups."
+  },
+  {
+   "node_id": "weber",
+   "label": "Interpretive historical sociology",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q582437",
+    "label": "antipositivism",
+    "description": "a theoretical stance that proposes that the social realm cannot be studied with the scientific method of investigation applied to Nature",
+    "query": "antipositivism interpretive social science tradition of understanding meaning",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of school of thought. Wikidata has no item for interpretive or Weberian historical sociology; antipositivism is the wider interpretive tradition it belongs to. Verstehen (Q2297282) and ideal type (Q1052882) exist only as single concepts, and the person item for Weber is out of scope for a topic row."
+  },
+  {
+   "node_id": "historicalecon",
+   "label": "Historical economics",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1366712",
+    "label": "historical school of economics",
+    "description": "approach to academic economics and to public administration that emerged in the 19th century in Germany",
+    "query": "historical school of economics German Schmoller Roscher economics tradition",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of school of economic thought. Covers the German programmes named in the entry; the British disciplinary formation and the empirical price research the entry also groups are not part of this item."
+  },
+  {
+   "node_id": "economictheory",
+   "label": "Political economy & economic theory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q47555",
+    "label": "political economics",
+    "description": "study of production, buying, and selling, and their relations with law, custom, and government",
+    "query": "political economy discipline studying economics and politics together",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline and field of study. Wider than the entry, which is a selective set of classical and neoclassical resources for historians."
+  },
+  {
+   "node_id": "geography",
+   "label": "Geography & environmental inquiry",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1071",
+    "label": "geography",
+    "description": "science that studies the terrestrial surface, the societies that inhabit it and the territories, landscapes, places or regions that form it",
+    "query": "historical geography discipline studying geographies of the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline. The entry fuses geography with environmental inquiry (Marsh, Leopold) and is a selective set of resources, not the discipline as a whole."
+  },
+  {
+   "node_id": "oldculture",
+   "label": "Earlier cultural history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q858517",
+    "label": "cultural history",
+    "description": "study of cultural activity and evolution of traditions over time",
+    "query": "cultural history branch of history studying culture mentalities and representations",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of history. The entry is a teaching grouping of earlier projects (Burckhardt, Huizinga, Lamprecht, the Warburg setting); Wikidata has no item for that grouping, and history of mentalities (Q1920942) covers only one strand. Shares this QID with the New cultural history entry."
+  },
+  {
+   "node_id": "lifetradition",
+   "label": "Biographical & literary traditions",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A bundle of life-writing practices from Plutarch to Strachey. Wikidata has biography in literature (Q4914889, used for the separate Biography entry), memoir (Q112983) and biographical novel (Q4914883), but no item for this grouping of biographical and literary traditions."
+  },
+  {
+   "node_id": "wartradition",
+   "label": "Strategic & military scholarship",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q192386",
+    "label": "military science",
+    "description": "theory, method, and practice of producing military capability",
+    "query": "military science and strategic studies scholarship on war Clausewitz Jomini",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline. Wider than, and not identical to, the entry, which groups strategic reasoning with critical campaign scholarship and the editing of military texts."
+  },
+  {
+   "node_id": "anthropology",
+   "label": "Anthropology & ethnography",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q21505779",
+    "label": "social and cultural anthropology",
+    "description": "social and cultural anthropology that focuses on the social and cultural (socio-cultural) variations of humans",
+    "query": "theory of practice in sociology and anthropology, practice turn (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline. The entry is an explicitly selective teaching map of sociocultural anthropology and ethnography, not the discipline entire."
+  },
+  {
+   "node_id": "nationaltradition",
+   "label": "National & imperial narratives",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A teaching umbrella over national and imperial narrative history (Michelet, Macaulay, Bancroft) together with colonial hierarchies and their critics. Nationalistic historiography (Q2248740) covers only the nationalist half and carries a pejorative framing; no single item fits."
+  },
+  {
+   "node_id": "economic",
+   "label": "Economic history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q47398",
+    "label": "economic history",
+    "description": "history studies focused on economics",
+    "query": "economic history study of economies in the past academic discipline",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and branch of history."
+  },
+  {
+   "node_id": "military",
+   "label": "Military history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q192781",
+    "label": "military history",
+    "description": "field of history concerned with the military and warfare",
+    "query": "military history discipline studying armed conflict in the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and branch of history."
+  },
+  {
+   "node_id": "political",
+   "label": "Political history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1147507",
+    "label": "political history",
+    "description": "type of history which analyzes political events",
+    "query": "political history branch of history dealing with states politics and government",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of aspect of history, subclass of study of history."
+  },
+  {
+   "node_id": "biography",
+   "label": "Biography / life writing",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4914889",
+    "label": "biography in literature",
+    "description": "branch of literature",
+    "query": "biography genre of writing about a person’s life, life writing",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of literature. Wikidata treats biography as a literary branch rather than as the historical genre and set of methods the entry describes; biographical novel and biographical film are separate, narrower items."
+  },
+  {
+   "node_id": "annales",
+   "label": "Annales",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q336241",
+    "label": "Annales school",
+    "description": "group of historians",
+    "query": "Annales school French historiography movement",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of school of thought and school of history — the clearest same-concept match in the set."
+  },
+  {
+   "node_id": "marx",
+   "label": "Marxist social history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q3657013",
+    "label": "Marxist historiography",
+    "description": "school of historiography",
+    "query": "Marxist historiography social history written by Marxist historians",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of historiography. Wider than the entry, which is specifically Marxist social history; historical materialism (Q190004) is used for the separate theory entry."
+  },
+  {
+   "node_id": "black",
+   "label": "Black history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q162881",
+    "label": "African American history",
+    "description": "Black American history",
+    "query": "African American history as a field of historical scholarship, Black history",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of aspect of history, subclass of history of the United States. Wikidata frames this as subject matter rather than as a field, and scopes it to the United States; the entry emphasises community scholarship and independent institutions and is not formally US-only. African American studies (Q383968) is the adjacent academic-field item."
+  },
+  {
+   "node_id": "anticolonial",
+   "label": "Anti-colonial histories",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A grouping of distinct projects (James, Williams, Césaire, Fanon, Cabral, Rodney). Anti-colonial nationalism (Q126173887) and anti-imperialism (Q1144178) are political movements, not the historical scholarship the entry describes."
+  },
+  {
+   "node_id": "women",
+   "label": "Women’s history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1279400",
+    "label": "women's history",
+    "description": "women's role throughout history",
+    "query": "gender history field of history studying gender relations in the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline, subclass of study of history. Distinct from the gender history entry, which uses Q1517835."
+  },
+  {
+   "node_id": "modern",
+   "label": "Modernization theory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q856122",
+    "label": "modernization theory",
+    "description": "explanation for the process of modernization within societies",
+    "query": "modernization theory Rostow stages of economic growth development sociology theory",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of sociological theory. Distinct from modernization (Q878526), which is the process rather than the theory."
+  },
+  {
+   "node_id": "social",
+   "label": "New social history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q908604",
+    "label": "social history",
+    "description": "field of history",
+    "query": "labor history as a subfield of social history studying workers and the labour movement (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of history and field of study. Wikidata has no item for the new social history of the 1950s-1970s specifically; this is the wider field."
+  },
+  {
+   "node_id": "identity",
+   "label": "Identity histories",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "Explicitly a teaching shorthand for Hunt’s “identity politics” grouping, not a school. Searches surface identity politics as a political phenomenon, which would misrepresent a historiographical entry."
+  },
+  {
+   "node_id": "oral",
+   "label": "Oral history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q558929",
+    "label": "oral history",
+    "description": "historical discipline of the collection and study of historical information about individuals, families, important events, or everyday life using audiotapes, videotapes, or transcriptions of planned interviews",
+    "query": "oral history method of historical research recorded interviews",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and field of study."
+  },
+  {
+   "node_id": "quant",
+   "label": "Quantitative history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q369848",
+    "label": "Quantitative history",
+    "description": "method of historical research",
+    "query": "oral history method of historical research recorded interviews (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Subclass of study of history; matches the entry, which is a method rather than a field."
+  },
+  {
+   "node_id": "context",
+   "label": "Contextual intellectual history / Cambridge School",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for the Cambridge School of intellectual history. Searches returned Skinner’s The Foundations of Modern Political Thought (Q24935399), the Cambridge Texts series (Q55523978) and the Cambridge History of Political Thought (Q23891283) — works and series, never the school. Mapping to a book is out of scope."
+  },
+  {
+   "node_id": "dependency",
+   "label": "Dependency / world-systems",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "The entry’s own scope note treats dependency theories and Wallerstein’s world-system as related but distinct. World-systems theory (Q1061896) exists and is typed as an international relations theory, but no dependency theory item was returned, so linking Q1061896 would silently narrow the entry to one of its two halves."
+  },
+  {
+   "node_id": "culture",
+   "label": "New cultural history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q858517",
+    "label": "cultural history",
+    "description": "study of cultural activity and evolution of traditions over time",
+    "query": "cultural history branch of history studying culture mentalities and representations",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of history. Wikidata has no item for the new cultural history as a movement, so this is the wider field. Shares this QID with the Earlier cultural history entry, which is a limitation of the mapping rather than a claim that the two entries are the same thing."
+  },
+  {
+   "node_id": "language",
+   "label": "Linguistic turn / poststructuralism",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "The entry groups narrative theory, structuralist inheritances and poststructuralist critique, and its scope note insists these differ. Post-structuralism (Q267932, a philosophical movement) covers one component; Wikidata has no item for the linguistic turn. Linking Q267932 alone would misdescribe the entry."
+  },
+  {
+   "node_id": "micro",
+   "label": "Microhistory / everyday life",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1140541",
+    "label": "microhistory",
+    "description": "intensive historical investigation of a well-defined smaller unit of research",
+    "query": "microhistory intensive study of small unit everyday life Alltagsgeschichte",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of science, subclass of study of history. The entry fuses microhistory with everyday-life history; Alltagsgeschichte is a separate item (Q1425623) described there as a form of microhistory, so the two halves of the label are not covered by one item."
+  },
+  {
+   "node_id": "environment",
+   "label": "Environmental history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1561862",
+    "label": "environmental history",
+    "description": "specialisation of history",
+    "query": "environmental history academic discipline study of human interaction with nature over time",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and aspect of history."
+  },
+  {
+   "node_id": "subaltern",
+   "label": "Subaltern Studies",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2299330",
+    "label": "Subaltern Studies",
+    "description": "group of South Asian scholars of postcolonial and post-imperial underclasses",
+    "query": "Subaltern Studies South Asian historiography group",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of school of thought."
+  },
+  {
+   "node_id": "gender",
+   "label": "Gender history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1517835",
+    "label": "gender history",
+    "description": "sub-field of history and gender studies",
+    "query": "gender history field of history studying gender relations in the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Subclass of study of history and of gender studies."
+  },
+  {
+   "node_id": "queer",
+   "label": "Sexuality & queer history",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "The entry pairs the history of sexuality with queer history. LGBTQ history (Q17897) is typed as an aspect of history and subclassed under history of human sexuality — subject matter narrower than the entry, not the research field; queer studies (Q98929208) is not a historical field. Linking either would misdescribe the entry."
+  },
+  {
+   "node_id": "post",
+   "label": "Postcolonial history / critique",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q265425",
+    "label": "postcolonialism",
+    "description": "academic discipline",
+    "query": "postcolonialism critical theory of colonial legacies",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline (also typed as ideology, which is a Wikidata inconsistency). The entry is a teaching umbrella over postcolonial history and postcolonial critique; this item is the critique as a field."
+  },
+  {
+   "node_id": "memory",
+   "label": "Memory studies",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for memory studies as a research field. Collective memory (Q254217) and social memory (Q22337586) are the objects studied, and Memory Studies (Q6815693) is a journal."
+  },
+  {
+   "node_id": "global",
+   "label": "World / global / connected history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q6457238",
+    "label": "world history",
+    "description": "field of historical study",
+    "query": "global history world history connected history as a field of historical scholarship",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline, subclass of study of history. Wikidata has no separate items for global or connected history as fields; crossed history (Q1620729) exists as a thin item for histoire croisée only."
+  },
+  {
+   "node_id": "indigenous",
+   "label": "Indigenous history & decolonizing methods",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q108352346",
+    "label": "indigenous studies",
+    "description": "academic field studying indigenous cultures",
+    "query": "decolonization of knowledge indigenous research methodologies indigenous studies field",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline, subclass of area studies. Wider than the entry, which is specifically Indigenous history plus decolonizing research methods; Indigenous decolonization (Q6024675) covers the second half only."
+  },
+  {
+   "node_id": "freud",
+   "label": "Freudian psychoanalysis",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q41630",
+    "label": "psychoanalysis",
+    "description": "psychological theory that was founded in 1890 by the Viennese neurologist Sigmund Freud",
+    "query": "psychoanalysis Freudian theory of the unconscious clinical tradition",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of field of study and of therapy, which matches the entry’s framing as a clinical practice and a family of theories. Freud’s psychoanalytic theories (Q15279398) is a narrower sibling covering the theories alone. The entry is a tradition entry, not a person node."
+  },
+  {
+   "node_id": "science",
+   "label": "History of science",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q201486",
+    "label": "history of science",
+    "description": "study of the historical development of science and scientific knowledge",
+    "query": "history of technology academic field study of invention and technical change (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and field of study."
+  },
+  {
+   "node_id": "ssk",
+   "label": "Sociology of scientific knowledge / SSK",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q981008",
+    "label": "sociology of scientific knowledge",
+    "description": "study of science as a social activity",
+    "query": "sociology of scientific knowledge study of science as social construction",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of branch of sociology, subclass of sociology of knowledge and sociology of science. The Strong programme (Q1132740) is the narrower Edinburgh item within it."
+  },
+  {
+   "node_id": "sts",
+   "label": "Science and technology studies / STS",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2445082",
+    "label": "science and technology studies",
+    "description": "field of study in which society, politics and culture are studied in how scientific research and technological innovation affect them",
+    "query": "science and technology studies interdisciplinary field STS",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline."
+  },
+  {
+   "node_id": "conceptual",
+   "label": "Conceptual history / Begriffsgeschichte",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q257663",
+    "label": "conceptual history",
+    "description": "study of the history of concepts",
+    "query": "Begriffsgeschichte conceptual history Koselleck history of concepts",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of aspect of history; the German Begriffsgeschichte is given as an alias in the item."
+  },
+  {
+   "node_id": "psychohistory",
+   "label": "Psychohistory / psychoanalytic history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q764526",
+    "label": "psychohistory",
+    "description": "study of the psychological motivations of historical events",
+    "query": "intellectual history study of ideas and thinkers in their historical context (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline. Not to be confused with the fictional discipline of the same name in Asimov."
+  },
+  {
+   "node_id": "historicism",
+   "label": "Historicism & idealist philosophies of history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q460501",
+    "label": "historicism",
+    "description": "philosophy",
+    "query": "historicism idealist philosophy of history German tradition Dilthey Meinecke",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of philosophical movement, subclass of philosophy — but the same item is also typed as an architectural style and an art genre, so Wikidata conflates the philosophy of history with nineteenth-century revival architecture. Accepted for the philosophical sense only; the entry’s idealist philosophies of history are not separately itemised."
+  },
+  {
+   "node_id": "philhistory",
+   "label": "Explanation & objectivity debates",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A debate entry bundling covering-law explanation, understanding of action, historical facts and objectivity. Theory of history (Q127374077) and historiography (Q50675) are both too broad, and the participants do not form a school."
+  },
+  {
+   "node_id": "frankfurt",
+   "label": "Frankfurt School / critical theory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q151843",
+    "label": "Frankfurt School",
+    "description": "school of neo-Marxist interdisciplinary social theory",
+    "query": "Frankfurt School critical theory Institute for Social Research",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of school of thought. The Institute for Social Research (Q820216) is the separate institutional item."
+  },
+  {
+   "node_id": "practice",
+   "label": "Practice theory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q7237364",
+    "label": "Practice theory",
+    "description": "Body within anthropology and sociology",
+    "query": "theory of practice in sociology and anthropology, practice turn",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of social theory and sociological concept."
+  },
+  {
+   "node_id": "culturalstudies",
+   "label": "British cultural studies",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1143546",
+    "label": "cultural studies",
+    "description": "academic field of critical theory and literary criticism",
+    "query": "Birmingham Centre for Contemporary Cultural Studies British cultural studies Hall Hoggart Williams",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline. Wikidata has no item for British cultural studies as a school; the Centre for Contemporary Cultural Studies (Q632550) exists but is the Birmingham research centre, an institution rather than the intellectual movement."
+  },
+  {
+   "node_id": "progressive",
+   "label": "Progressive & consensus historiography (US)",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "The entry is a paired comparison of two contrasting US interpretations. Consensus history (Q18206156) exists as an item but covers only one side, so linking it would make the entry look like consensus historiography alone; no item for Progressive historiography was returned."
+  },
+  {
+   "node_id": "newleft",
+   "label": "New Left & radical history (US)",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for the US New Left and radical history in historiography. Searches returned political movements, the journal Studies on the Left (Q7628094) and Radical History Review (Q3416479), not the historians’ grouping."
+  },
+  {
+   "node_id": "historyworkshop",
+   "label": "History Workshop movement",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "The movement has no item. History workshop (Q1517779) is a generic type of historical society and History Workshop Journal (Q5774776) is the journal; Ruskin College (Q1627864) is the institution. None of these is the movement."
+  },
+  {
+   "node_id": "demography",
+   "label": "Historical demography & history of the family",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q580130",
+    "label": "historical demography",
+    "description": "quantitative study of human population in the past",
+    "query": "memory studies academic field studying how societies remember the past (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline, subclass of demography and of study of history. The entry fuses historical demography with the history of the family; the latter has no matching item here."
+  },
+  {
+   "node_id": "revival",
+   "label": "Revival of narrative / debate over quantification",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A contemporary debate between Stone’s diagnosis and Hobsbawm’s reply. Wikidata has no item for it, and narrative-related items belong to White’s different question."
+  },
+  {
+   "node_id": "historicalsociology",
+   "label": "Comparative historical sociology",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1620918",
+    "label": "historical sociology",
+    "description": "branch of sociology focusing on how societies develop through history",
+    "query": "oral history method of historical research recorded interviews (candidate surfaced); confirmed across later searches",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of sociology. Wikidata has no item for comparative historical sociology specifically; this is the wider branch."
+  },
+  {
+   "node_id": "bielefeld",
+   "label": "West German historical social science / Sonderweg",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for the Bielefeld School, Gesellschaftsgeschichte or the Sonderweg debate was returned; searches produced only the historians Wehler (Q66155) and Kocka (Q65770), who are people and out of scope for a topic row."
+  },
+  {
+   "node_id": "holocaust",
+   "label": "Holocaust historiography",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for Holocaust historiography. Functionalism versus intentionalism (Q994570) is one debate inside the field, the Holocaust (Q2763) is the event, and the rest are journals and institutes."
+  },
+  {
+   "node_id": "nationalismstudies",
+   "label": "Nationalism studies",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4314780",
+    "label": "nationalism studies",
+    "description": "interdisciplinary academic field devoted to the study of nationalism and related issues",
+    "query": "nationalism studies academic field theories of nations and nationalism",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline. Nationalistic historiography (Q2248740) is a different thing — history written on nationalist principles, not the study of nationalism."
+  },
+  {
+   "node_id": "africanhist",
+   "label": "African history: postwar institutional expansion",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for the postwar institutional expansion of African history. The Ibadan School (Q5983598) is an item for one component (the study of Nigerian history), and history of Africa (Q149813) is the subject matter rather than the field-building the entry is about."
+  },
+  {
+   "node_id": "atlantic",
+   "label": "Atlantic & diaspora histories",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "No item for Atlantic history as a field. Transatlantic studies (Q7833793) is about economic, cultural and political linkages between modern Atlantic countries, not the historians’ Atlantic and diaspora scholarship the entry describes."
+  },
+  {
+   "node_id": "technology",
+   "label": "History of technology",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q465352",
+    "label": "history of technology",
+    "description": "history of the invention of tools and techniques",
+    "query": "history of technology academic field study of invention and technical change",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of aspect of history, subclass of history of science and technology."
+  },
+  {
+   "node_id": "consumption",
+   "label": "Consumption & material culture",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2143054",
+    "label": "material culture",
+    "description": "physical aspect of culture in the objects and architecture that surround people",
+    "query": "material culture studies consumption of goods historical study of objects",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline. Covers the material-culture half of the entry; the consumption, demand and provisioning strand (McKendrick, de Vries, Mintz) is not covered, and consumer culture (Q28455593) is a separate item."
+  },
+  {
+   "node_id": "truthdebate",
+   "label": "Historians’ responses to postmodernism",
+   "status": "unmatched",
+   "wikidata": null,
+   "match_kind": null,
+   "notes": "A debate entry gathering defences of historical knowledge, postmodern arguments and revisions of cultural history. These are competing positions, not one concept; no item fits."
+  },
+  {
+   "node_id": "publichistory",
+   "label": "Public history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q441989",
+    "label": "public history",
+    "description": "broad range of activities undertaken by people with some training in the discipline of history who are generally working outside of specialized academic settings",
+    "query": "political history branch of history dealing with states politics and government (candidate surfaced)",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline, subclass of history."
+  },
+  {
+   "node_id": "medicalhistory",
+   "label": "Medical & health history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q380274",
+    "label": "history of medicine",
+    "description": "study of the development of medicine over time",
+    "query": "history of medicine field studying medicine health and disease in the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of academic discipline, subclass of history of science. The entry pairs medicine with health history; Wikidata’s item is framed around medicine."
+  },
+  {
+   "node_id": "urbanhistory",
+   "label": "Urban history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1569011",
+    "label": "urban history",
+    "description": "branch of history studying urban life and cities",
+    "query": "urban history field studying the history of cities and towns",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and aspect of history."
+  },
+  {
+   "node_id": "spatialhistory",
+   "label": "Spatial history / Historical geography",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q384001",
+    "label": "historical geography",
+    "description": "branch of geography",
+    "query": "historical geography discipline studying geographies of the past",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "broader_concept",
+   "notes": "Instance of branch of geography, subclass of human geography. Wikidata has no item for spatial history as a historians’ approach; historical geography is the established adjacent field the entry names."
+  },
+  {
+   "node_id": "intellectualhistory",
+   "label": "Intellectual history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1195695",
+    "label": "intellectual history",
+    "description": "historiography of major ideas and thinkers",
+    "query": "intellectual history study of ideas and thinkers in their historical context",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and aspect of history. History of ideas (Q570018) is the adjacent, partly overlapping item."
+  },
+  {
+   "node_id": "labourhistory",
+   "label": "Labour history",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q59029",
+    "label": "labor history",
+    "description": "study of labour relations and workers’ social movements",
+    "query": "labor history as a subfield of social history studying workers and the labour movement",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of aspect of history, subclass of social history and economic history."
+  },
+  {
+   "node_id": "ethnohistory",
+   "label": "Ethnohistory",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2181985",
+    "label": "ethnohistory",
+    "description": "academic discipline studying human cultures and indigenous peoples’ customs by examining historical records",
+    "query": "ethnohistory method combining anthropology and documentary history of indigenous peoples",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of academic discipline and branch of history, subclass of social anthropology and study of history."
+  },
+  {
+   "node_id": "racial_formation",
+   "label": "Racial formation",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q7279582",
+    "label": "racial formation theory",
+    "description": "sociological tool analyzing race as a fluid social construct",
+    "query": "racial formation theory Omi and Winant racial categories socially constructed",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of theory, in the domain of sociology — the Omi and Winant programme the entry describes."
+  },
+  {
+   "node_id": "intersectionality",
+   "label": "Intersectional analysis",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q1516555",
+    "label": "intersectionality",
+    "description": "theoretical framework of multidimensional oppression",
+    "query": "intersectionality analytical framework race gender class overlapping oppression Crenshaw",
+    "basis": "WikidataMCP vector search (search_items) for discovery; class checked with a SPARQL query over P31/P279 of the candidate QID (the same statements get_statements returns), and the item accepted only where that class is a discipline, field, school of thought or comparable concept"
+   },
+   "match_kind": "same_concept",
+   "notes": "Instance of sociological theory and academic discipline, subclass of gender studies and jurisprudence."
+  }
+ ]
+}
