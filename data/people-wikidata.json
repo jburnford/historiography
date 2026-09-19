@@ -1,8 +1,8 @@
 {
  "schema_version": "0.1",
- "title": "Wikidata grounding pilot: the 43 people with their own atlas entry",
- "generated_on": "2026-09-17",
- "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0.",
+ "title": "Wikidata grounding: the people with their own atlas entry",
+ "generated_on": "2026-09-18",
+ "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0. Second pass, 2026-09-18: eight further person entries (Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith, Daston) were searched the same way, each candidate verified with get_statements before acceptance, and their dates fetched in one SPARQL query over P569/P570 with time precision; Daston's competing birth dates were resolved with get_statement_values on rank. Julia Cherry Spruill was re-tried and remains unmatched.",
  "status_values": {
   "accepted": "match reviewed and accepted",
   "unmatched": "no item found",
@@ -11,7 +11,7 @@
  },
  "not_covered": "The 786 people who appear only in rosters and strands are not in this pilot.",
  "counts": {
-  "accepted": 42,
+  "accepted": 50,
   "unmatched": 1
  },
  "people": [
@@ -946,7 +946,183 @@
    "status": "unmatched",
    "wikidata": null,
    "life": null,
-   "notes": "Two vector-search queries (\"Julia Cherry Spruill historian\", bare name) returned no item. Probably no Wikidata item exists; do not create a match from another source without review. Known dates (1899–1986) are not recorded here because they are not from a checked source."
+   "notes": "Re-tried 2026-09-18 with three further vector-search queries (\"Julia Cherry Spruill historian of colonial American women, Women's Life and Work in the Southern Colonies\"; \"Spruill author Women's Life and Work in the Southern Colonies 1938 University of North Carolina\"; \"Julia Cherry Spruill American woman historian southern colonies women's history pioneer 1938 book\"). No candidate returned bore her name; results were unrelated American suffragists and clubwomen. Still unmatched: no Wikidata item appears to exist. Do not create a match from another source without review. Known dates (1899–1986) are not recorded here because they are not from a checked source."
+  },
+  {
+   "person_id": "joan_wallach_scott",
+   "node_id": "joan_wallach_scott",
+   "label": "Joan Wallach Scott",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q291798",
+    "label": "Joan Wallach Scott",
+    "description": "American academic and historian",
+    "query": "Joan Wallach Scott American historian gender and the politics of history",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1941-12-18",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, occupation historian and labor historian, US citizen, doctoral advisor Charles Tilly — the gender-theory historian of the 1986 intervention."
+  },
+  {
+   "person_id": "natalie_zemon_davis",
+   "node_id": "natalie_zemon_davis",
+   "label": "Natalie Zemon Davis",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q266185",
+    "label": "Natalie Zemon Davis",
+    "description": "Canadian-American historian (1928-2023)",
+    "query": "Natalie Zemon Davis Canadian American historian of early modern France",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1928-11-08",
+    "death": "2023-10-21",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, historian, fields social and cultural history, notable work The Return of Martin Guerre."
+  },
+  {
+   "person_id": "lynn_hunt",
+   "node_id": "lynn_hunt",
+   "label": "Lynn Hunt",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2613433",
+    "label": "Lynn Hunt",
+    "description": "American historian",
+    "query": "Lynn Hunt American historian of the French Revolution, new cultural history",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1945-11-16",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, historian, field of work French Revolution, cultural history and historiography — not the namesake historian Louis Clair Hunter."
+  },
+  {
+   "person_id": "catherine_hall",
+   "node_id": "catherine_hall",
+   "label": "Catherine Hall",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4952089",
+    "label": "Catherine Hall",
+    "description": "British feminist historian",
+    "query": "Catherine Hall British historian of empire, gender and the Victorian middle class",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1946",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, British, historian and feminist, UCL, notable work Legacies of British Slave-ownership. Distinguished from Q47542231 (Catherine Hall, English novelist). Birth date has year precision only."
+  },
+  {
+   "person_id": "leonore_davidoff",
+   "node_id": "leonore_davidoff",
+   "label": "Leonore Davidoff",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q18738721",
+    "label": "Leonore Davidoff",
+    "description": "American historian and sociologist (1932-2014)",
+    "query": "Leonore Davidoff British sociologist historian Family Fortunes",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1932-01-31",
+    "death": "2014-10-19",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, historian and sociologist, UK and US citizenship, University of Essex, fields gender studies and history of feminism — the co-author of Family Fortunes."
+  },
+  {
+   "person_id": "evelyn_brooks_higginbotham",
+   "node_id": "evelyn_brooks_higginbotham",
+   "label": "Evelyn Brooks Higginbotham",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q24049032",
+    "label": "Evelyn Brooks Higginbotham",
+    "description": "American professor",
+    "query": "Evelyn Brooks Higginbotham American historian of African American religion, Harvard, Righteous Discontent",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1945-06-04",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, academic, employer Harvard University, National Humanities Medal, on the African diaspora focus list. The Wikidata description is thin (\"American professor\", no occupation historian statement); accepted on employer, award and focus-list evidence, which together fit the author of the 1992 intervention on race."
+  },
+  {
+   "person_id": "linda_tuhiwai_smith",
+   "node_id": "linda_tuhiwai_smith",
+   "label": "Linda Tuhiwai Smith",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q16885749",
+    "label": "Linda Tuhiwai Smith",
+    "description": "New Zealand professor of indigenous education",
+    "query": "Linda Tuhiwai Smith Maori scholar Decolonizing Methodologies indigenous education New Zealand",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1950",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, Māori, professor of indigenous education, notable work Decolonizing Methodologies (Q105095646). Birth date has year precision only."
+  },
+  {
+   "person_id": "lorraine_daston",
+   "node_id": "lorraine_daston",
+   "label": "Lorraine Daston",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q529094",
+    "label": "Lorraine Daston",
+    "description": "American historian of science",
+    "query": "Lorraine Daston historian of science Max Planck Institute objectivity",
+    "basis": "WikidataMCP vector search (search_items); candidate verified with get_statements for instance of human, occupation and citizenship against the entry description"
+   },
+   "life": {
+    "birth": "1951-06-09",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via SPARQL",
+    "retrieved": "2026-09-18"
+   },
+   "notes": "Verified: human, occupation historian of science, field history of science, spouse Gerd Gigerenzer. Two birth dates are stated; the preferred-rank value (9 June 1951, sourced to the MPG ID) is recorded, the normal-rank GND value is 6 June 1951."
   }
  ]
 }
