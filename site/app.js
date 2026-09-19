@@ -2,6 +2,7 @@ import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filter
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER} from './field.mjs';
+import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -58,12 +59,138 @@ function schoolPeople() {
       ${strandGuide(n)}<div class="people-grid">${pageSlice(reps, 12).map(rep => personCard(personById.get(rep.person_id), rep)).join('')}</div>${pagination(reps.length, 12)}</section>
       <aside class="reading-panel" aria-label="Entry details">${nodeDetail(n)}</aside></div>`;
 }
-function peopleDirectory() {
-  const people = filterPeople(graph, state);
-  return `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>Find a historian. Follow their work.</h2></div><span class="count">${people.length} of ${graph.people.length} people</span></div>
-    <p class="context-note">People can appear in several schools, fields, or debates, with a different role in each. Layer and period filters refer to the entries in which they appear, not to a person’s lifespan.</p>
-    ${people.length ? `<div class="people-directory">${pageSlice(people, 12).map(p => personCard(p)).join('')}</div>${pagination(people.length, 12)}` : '<div class="empty"><h3>No people match these filters.</h3><a href="#tab=people">Clear filters →</a></div>'}`;
+/* ---------------- Historians & contributors: the company they keep ---------------- */
+let companyHover = null, companyWidth = 0, companyBound = false;
+const holdHref = id => href({hold: id, letter: '', page: 0});
+const ROLE_SHORT = {historian: 'historian', contributor: 'resource', precursor: 'earlier resource', critic: 'critic', comparison: 'comparison'};
+const filtersOn = () => Boolean(state.query || state.layer || state.period || state.hunt);
+const nameMark = label => { const {surname} = sortName(label); const i = label.indexOf(surname);
+  return i < 0 ? esc(label) : `${esc(label.slice(0, i))}<strong>${esc(surname)}</strong>${esc(label.slice(i + surname.length))}`; };
+function companySvg(L, matched, allowed) {
+  const t = id => layerIndex(nodeById.get(id).layer);
+  const own = id => Boolean(personById.get(id)?.node_id);
+  const spokes = L.people.filter(p => !p.single).flatMap(p => p.entries.map(g => { const a = L.anchors.find(x => x.id === g);
+    return `<line class="spoke" data-p="${p.id}" data-g="${g}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${a.x.toFixed(1)}" y2="${a.y.toFixed(1)}"/>`; })).join('');
+  const dots = L.people.map(p => {
+    const label = personById.get(p.id).label;
+    const cls = ['dot', p.single ? `tone-${layerIndex(p.layer)}` : 'bridge', own(p.id) ? 'own' : '', p.roles.includes('critic') ? 'critic' : '',
+      p.roles.includes('historian') || own(p.id) ? '' : 'resource', matched && !matched.has(p.id) ? 'mute' : '', state.hold === p.id ? 'selected' : ''].filter(Boolean).join(' ');
+    const r = own(p.id) ? L.size * 0.0033 + 1.6 : L.size * 0.0021 + 1;
+    const body = `<title>${esc(label)} · ${p.entries.length} entr${p.entries.length === 1 ? 'y' : 'ies'}</title>
+      ${p.roles.includes('critic') ? `<circle class="ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(r + 1.6).toFixed(1)}"/>` : ''}
+      <circle class="core" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}"/>
+      ${own(p.id) && p.entries.length >= 4 ? `<text class="dot-label" x="${(p.x + r + 3).toFixed(1)}" y="${(p.y + 3.5).toFixed(1)}">${esc(label)}</text>` : ''}`;
+    return own(p.id) ? `<a class="${cls}" data-id="${p.id}" href="${esc(holdHref(p.id))}" aria-label="${esc(label)}: light up their entries">${body}</a>` : `<g class="${cls}" data-id="${p.id}">${body}</g>`;
+  }).join('');
+  const anchors = L.anchors.map(a => {
+    const deg = a.angle * 180 / Math.PI, flip = ((deg % 360) + 360) % 360 > 90 && ((deg % 360) + 360) % 360 < 270;
+    const lx = L.cx + (L.R + 16) * Math.cos(a.angle), ly = L.cy + (L.R + 16) * Math.sin(a.angle);
+    /* Fit the label to the space outside the ring: first drop a subtitle after a slash or
+       colon, then cut on a word boundary. The full label stays in the accessible name. */
+    const max = Math.floor(L.labelSpace / 6); let label = a.label;
+    if (label.length > max) label = label.split(/\s[/:]\s|:\s/)[0];
+    if (label.length > max) label = `${label.slice(0, max - 1).replace(/\s+\S*$/, '')}…`;
+    const cls = ['anchor', `tone-${t(a.id)}`, allowed && !allowed.has(a.id) ? 'mute' : '', state.hold === a.id ? 'selected' : ''].filter(Boolean).join(' ');
+    return `<a class="${cls}" data-id="${a.id}" href="${esc(holdHref(a.id))}" aria-label="${esc(a.label)}, ${a.count} people"><circle cx="${a.x.toFixed(1)}" cy="${a.y.toFixed(1)}" r="${(L.size * 0.0045 + 2).toFixed(1)}"/>
+      <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" transform="rotate(${(flip ? deg + 180 : deg).toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})" text-anchor="${flip ? 'end' : 'start'}" dominant-baseline="middle">${esc(label)} <tspan>${a.count}</tspan></text></a>`;
+  }).join('');
+  return `<svg class="company${state.hold ? ' held' : ''}" viewBox="0 0 ${L.size} ${L.size}" width="${L.size}" height="${L.size}" role="group" aria-label="People placed between the entries that name them">
+    <g class="spokes">${spokes}</g><g class="dots">${dots}</g><g class="anchors">${anchors}</g></svg>`;
 }
+function companyPanel(L) {
+  const id = companyHover || state.hold;
+  const release = state.hold && !companyHover ? `<p class="panel-release"><a class="release" href="${esc(href({hold: ''}))}">← Show everyone</a></p>` : '';
+  if (!id) {
+    const top = bridges(graph, L.byPerson, 8);
+    return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
+      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
+      <p>Each of the ${L.anchors.length} entries sits on the ring with the number of people it names. A person named in one entry gathers at that entry, in its colour. A person named in several entries moves inward, between them, in ink. The bigger dots are the ${graph.people.filter(p => p.node_id).length} people who also have an entry of their own.</p>
+      <ul class="company-legend"><li><span class="lg lg-hist"></span>named as historian</li><li><span class="lg lg-res"></span>named as resource or comparison</li><li><span class="lg lg-crit"></span>critical intervention</li><li><span class="lg lg-own"></span>has own entry</li></ul>
+      <div class="sec"><p class="eyebrow">Named in the most entries</p><ol class="bridge-list">${top.map(b => `<li><a href="${esc(holdHref(b.id))}" aria-label="${esc(b.label)}: light up their entries">${esc(b.label)}</a><span>${b.count}</span></li>`).join('')}</ol></div>
+      <p class="fine-print">Sharing an entry is shared context, not influence: no line is drawn between two people, and a roster place is not an edge. Placement is the plain mean of an entry’s positions, not a force layout.</p></div>`;
+  }
+  if (personById.has(id)) {
+    const p = personById.get(id); const rows = L.byPerson.get(id) || []; const own = nodeById.get(p.node_id);
+    return `${release}<p class="eyebrow">${rows.length ? `Named in ${new Set(rows.map(r => r.id)).size} entr${new Set(rows.map(r => r.id)).size === 1 ? 'y' : 'ies'}` : 'Own entry only'}${own ? ' · has own entry' : ''}</p>
+      <h2>${esc(p.label)}${lifeSpan(p)}</h2>${own ? `<p class="claim">${esc(own.description)}</p>` : ''}
+      <ul class="panel-entries">${rows.map(r => `<li><a href="${esc(holdHref(r.id))}">${esc(nodeById.get(r.id).label)}</a><span class="role-tag">${esc(PERSON_ROLES[r.role])}</span></li>`).join('')}</ul>
+      <p class="panel-more"><a class="button-link" href="${esc(personHref(id))}">Profile: where to read them →</a>${own ? ` <a class="button-link" href="${esc(nodeHref(own.id))}">Full entry →</a>` : ''}</p>`;
+  }
+  const n = nodeById.get(id); const rows = L.byEntry.get(id) || [];
+  const groups = ['historian', 'contributor', 'critic', 'precursor', 'comparison'].map(role => [role, rows.filter(r => r.role === role)]).filter(([, r]) => r.length);
+  return `${release}<p class="eyebrow">${esc(layerLabel(n.layer))} · ${rows.length} people</p><h2>${esc(n.label)}</h2><p class="meta">${esc(n.date_label || '')}</p>
+    ${groups.map(([role, r]) => `<div class="sec"><p class="eyebrow">${esc(PERSON_ROLES[role])}${r.length > 1 ? `s · ${r.length}` : ''}</p><p class="panel-names">${r.map(x => `<a href="${esc(holdHref(x.id))}">${esc(personById.get(x.id).label)}</a>`).join(' · ')}</p></div>`).join('')}
+    <p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}">Open the entry →</a></p>`;
+}
+function register(L) {
+  const matched = filterPeople(graph, state);
+  const letters = new Set(matched.map(p => sortName(p.label).initial));
+  let rows, title, note = '';
+  if (state.hold && personById.has(state.hold)) { rows = [personById.get(state.hold)]; title = 'Held'; }
+  else if (state.hold && nodeById.has(state.hold)) { const ids = new Set((L.byEntry.get(state.hold) || []).map(r => r.id)); rows = matched.filter(p => ids.has(p.id)); title = `Named in ${nodeById.get(state.hold).label}`; }
+  else if (filtersOn()) { rows = matched; title = `${matched.length} people match`; }
+  else if (state.letter) { rows = matched.filter(p => sortName(p.label).initial === state.letter); title = `Surnames beginning with ${state.letter}`; }
+  else { rows = matched.filter(p => p.node_id); title = 'People with an entry of their own'; note = 'Everyone else is one letter away. Sorted by surname; particles such as “de” and “von” follow the given name in the sort.'; }
+  rows = [...rows].sort(bySurname);
+  const rail = `<nav class="letter-rail" aria-label="Register by surname"><a href="${esc(href({letter: '', hold: '', page: 0}))}" ${!state.letter && !state.hold && !filtersOn() ? 'aria-current="page"' : ''}>Own entries</a>${'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map(l => letters.has(l)
+    ? `<a href="${esc(href({letter: l, hold: '', page: 0}))}" ${state.letter === l && !state.hold && !filtersOn() ? 'aria-current="page"' : ''}>${l}</a>` : `<span class="off" aria-hidden="true">${l}</span>`).join('')}</nav>`;
+  const row = p => { const rs = L.byPerson.get(p.id) || []; const own = nodeById.get(p.node_id);
+    return `<li class="reg-row"><a class="reg-name" href="${esc(personHref(p.id))}">${nameMark(p.label)}</a><span class="reg-life">${lifeSpan(p) || ''}</span>
+      <span class="reg-entries">${rs.map(r => `<a href="${esc(nodeHref(r.id))}">${esc(nodeById.get(r.id).label)}</a><small>${esc(ROLE_SHORT[r.role])}</small>`).join(' · ') || (own ? esc(layerLabel(own.layer)) : '')}</span>
+      <span class="reg-more">${own ? `<a href="${esc(nodeHref(own.id))}">Full entry →</a>` : `<a href="${esc(holdHref(p.id))}">Light up →</a>`}</span></li>`; };
+  return `${rail}<div class="register-head"><h3>${esc(title)}</h3><span class="count">${rows.length} of ${graph.people.length} people${note ? '' : ''}</span></div>${note ? `<p class="context-note">${esc(note)}</p>` : ''}
+    ${rows.length ? `<ol class="register">${rows.map(row).join('')}</ol>` : '<div class="empty"><h3>No people match.</h3><a href="#tab=people">Clear filters →</a></div>'}`;
+}
+function peopleDirectory() {
+  const L = companyLayout(graph, 1000);
+  return `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} entries that name them</span></div>
+    <p class="context-note">Every person in this atlas is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. Roles distinguish historians from intellectual resources and critics; being named together is shared context, not influence.</p>
+    <div class="company-split"><div class="company-chart" aria-busy="true"></div><aside class="field-panel company-panel" aria-label="Selection details">${companyPanel(L)}</aside></div>
+    <section class="register-section" aria-label="Register of people">${register(L)}</section>`;
+}
+function drawCompany() {
+  const box = document.querySelector('.company-chart');
+  if (!box) return;
+  companyWidth = box.clientWidth || 0;
+  if (!companyWidth) return;   /* hidden on narrow screens; the register carries the content */
+  const L = companyLayout(graph, companyWidth);
+  const matched = filtersOn() ? new Set(filterPeople(graph, state).map(p => p.id)) : null;
+  const allowed = filtersOn() ? new Set(filterNodes(graph.nodes, {...state, query: ''}).map(n => n.id)) : null;
+  box.innerHTML = companySvg(L, matched, allowed);
+  box.removeAttribute('aria-busy');
+  const svg = box.querySelector('svg.company');
+  const panel = document.querySelector('.company-panel');
+  const paint = () => { panel.innerHTML = companyPanel(L); };
+  const light = id => {
+    const related = new Set();
+    if (id && L.byPerson.has(id)) for (const r of L.byPerson.get(id)) related.add(r.id);
+    if (id && L.byEntry.has(id)) for (const r of L.byEntry.get(id)) related.add(r.id);
+    svg.classList.toggle('previewing', Boolean(id));
+    for (const el of svg.querySelectorAll('[data-id]')) el.classList.toggle('hi', el.dataset.id === id || related.has(el.dataset.id));
+    for (const sp of svg.querySelectorAll('.spoke')) sp.classList.toggle('hi', sp.dataset.p === id || sp.dataset.g === id);
+  };
+  const preview = target => {
+    const id = target.closest?.('[data-id]')?.dataset.id || null;
+    if (id === companyHover) return;
+    companyHover = id; light(id || state.hold || null); paint();
+  };
+  const clear = () => { if (companyHover === null) return; companyHover = null; light(state.hold || null); paint(); };
+  svg.addEventListener('mouseover', e => preview(e.target));
+  svg.addEventListener('mouseleave', clear);
+  svg.addEventListener('focusin', e => preview(e.target));
+  svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
+  svg.addEventListener('click', e => {
+    const dot = e.target.closest?.('g.dot');
+    if (dot) { change({hold: state.hold === dot.dataset.id ? '' : dot.dataset.id, letter: ''}); return; }
+    if (!e.target.closest('a') && state.hold) change({hold: ''});
+  });
+  if (state.hold) light(state.hold);
+  if (!companyBound) {
+    companyBound = true;
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.hold && state.tab === 'people' && !state.person) change({hold: ''}); });
+  }
+}
+
 function personPage() {
   const p = personById.get(state.person);
   const contexts = personContexts(graph, p.id);
@@ -534,6 +661,8 @@ function onResize() {
   resizeTimer = setTimeout(() => {
     const box = document.querySelector('.field-scroll');
     if (box && Math.abs(box.clientWidth - fieldWidth) > 4) drawField();
+    const company = document.querySelector('.company-chart');
+    if (company && Math.abs(company.clientWidth - companyWidth) > 4) drawCompany();
   }, 150);
 }
 
@@ -733,6 +862,7 @@ function render() {
     : state.tab === 'pathways' ? pathwayPage()
     : state.layer || state.query || state.period || state.hunt ? directory() : overview();
   if (onField) wireField();
+  if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
   $('announcement').textContent = state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`

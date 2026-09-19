@@ -13,7 +13,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly eight files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
+Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly nine files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
 
 ## The field view (front door)
 
@@ -25,6 +25,15 @@ Every entry sits on one time axis, banded by layer, with linked journals in a fi
 - **Deaths and posthumous reception.** People with their own entry carry Wikidata identities and life dates in the published copy (`people[].wikidata`, `people[].life`), applied at build time from the reviewed sheet `data/people-wikidata.json`; the repository dataset is untouched and a `published_enrichment` note records the overlay. A person's mark gets a † at the death year when it falls inside the coverage limit, and the part of the mark after it is hatched as posthumous reception; the panel states birth, death, QID and retrieval date, and later deaths are stated there rather than drawn. Schools and fields never get a death marker. People cards and profiles show the life span under the name. See `feedback/wikidata-people-pilot-2026-09-17.md`.
 - **The text view** (`View · List`) groups the same entries by band, with a small time mark per row. Bands are open on wide screens and collapsed on narrow ones.
 - The hero is shown in full on the field and compressed to one line on every other view.
+
+## Historians & contributors: the company they keep
+
+`#tab=people` places every shared person between the entries that name them. The entries with rosters sit on a ring, grouped by layer and ordered so that neighbours share people; the number after each label is its roster size. A person named in one entry gathers at that entry in the layer's colour. A person named in several entries is drawn at the plain mean of those entries' positions, pulled toward the ring so pairs do not collapse onto the centre, in ink. Bigger dots are the people who also have an entry of their own. A filled dot is named as a historian somewhere; an open dot only as a resource, precursor or comparison; a red ring marks a critical intervention. No line is ever drawn between two people: sharing an entry is shared context, not influence, and placement is not a force layout.
+
+- **Hover** previews a person or entry in the sticky panel and lights their spokes; keyboard focus on an entry or own-entry dot does the same. **Click** holds (`#hold=<person or entry id>`); click again, click empty space, press Escape or use “Show everyone” to release. The panel lists a held person's entries with roles, or a held entry's roster grouped by role.
+- The shared search and layer/period filters dim everyone who does not match; they still refer to the entries a person appears in.
+- **The register** below the chart is the accessible route to all people. It opens on the people with their own entry, sorted by surname; the letter rail selects a surname initial (`#letter=B`); a search or a held entry lists exactly the matching people. `people.mjs` derives the surname (`sortName`) with a small editorial list for labels written surname first (Wang Feng, Lu Gwei-djen …) and compound surnames (Vidal de la Blache); lowercase particles follow the given name in the sort. A `sort_name` field on people records would replace that list.
+- Under 760 px the chart is not drawn and the register carries the page.
 
 ## How nesting works
 
