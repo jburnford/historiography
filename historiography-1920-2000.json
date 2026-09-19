@@ -24,7 +24,30 @@
       "Revision 1.4 distinguishes women as producers of historical knowledge from women’s history as a field. Women historians appear across economic, political, military, intellectual, and other inquiries; belonging to the profession does not imply a shared feminist method or a linear succession of feminist waves.",
       "Schema 1.3 adds shared people records, explicit group/person entry kinds, and qualified representative_people rosters. Roster inclusion is not a new influence edge or a claim of formal school membership. Most rosters normalize existing curated prose; their inherited references are not new individual affiliation verification.",
       "Directional neighborhood views place incoming directed relationships on the left and outgoing ones on the right. Comparisons and unclassified links sit separately. Thompson’s cultural contribution and feminist historians’ productive inheritance coexist with their criticisms; no uniform succession from class to culture is implied."
-    ]
+    ],
+    "extension": {
+      "status": "partial_accepted",
+      "baseline_period": [
+        1920,
+        2000
+      ],
+      "proposed_view_period": [
+        1920,
+        2026
+      ],
+      "research_cutoff": "2026-09-18",
+      "latest_selected_publication": 2025,
+      "field_ids": [
+        "medicalhistory",
+        "spatialhistory"
+      ],
+      "fully_reviewed_fields": 0,
+      "note": "Selected post-2000 interventions only. The 2026 cutoff is not a publication date or a claim of field completeness.",
+      "baseline_graph": "drafts/historiography-1920-2000.v1.121.json",
+      "baseline_revision": "1.121",
+      "baseline_sha256": "5fe82ffc101f1bef12e36a99f565eba40c0627eda5cde5397c86309d110935a9",
+      "acceptance_record": "data/production-batches/extension-1.122/acceptance.json"
+    }
   },
   "layers": [
     {
@@ -26773,7 +26796,10 @@
         "dorothy_porter_health_state",
         "duden_woman_skin",
         "vaughan_curing_ills",
-        "feierman_janzen_healing"
+        "feierman_janzen_healing",
+        "healthgeo05_rogaski_hygienic_2004",
+        "healthgeo05_mccallum_health_2017",
+        "healthgeo05_wynter_et_al_persistence_2025"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -26844,6 +26870,66 @@
           "works": "The Social Basis of Health and Healing in Africa (1992)",
           "source_ids": [
             "feierman_janzen_healing"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "ruth_rogaski",
+          "role": "historian",
+          "context": "Rogaski traces changes in weisheng through imperial encounters, state power and racialized standards of modernity. Rogaski uses Tianjin to connect bodily practice, the built environment and projects of national modernity. Selected introduction only; retain the changing Chinese concept rather than equating it with timeless Western hygiene. Introduction pp. 1–3; one treaty-port inquiry, not a proxy for all Chinese or Asian medical historiography.",
+          "works": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China",
+          "source_ids": [
+            "healthgeo05_rogaski_hygienic_2004"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "mary_jane_logan_mccallum",
+          "role": "historian",
+          "context": "McCallum examines how scholarship on starvation, experimentation, segregation and trauma sharpens the analysis of colonialism in Canadian Indigenous health history. Author abstract only; this is a historiographical framing, not new clinical evidence or a universal model of Indigenous experience.",
+          "works": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History",
+          "source_ids": [
+            "healthgeo05_mccallum_health_2017"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "rebecca_wynter",
+          "role": "historian",
+          "context": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions. Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures. Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+          "works": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "source_ids": [
+            "healthgeo05_wynter_et_al_persistence_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "niyah_campbell",
+          "role": "historian",
+          "context": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions. Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures. Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+          "works": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "source_ids": [
+            "healthgeo05_wynter_et_al_persistence_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "sarah_chaney",
+          "role": "historian",
+          "context": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions. Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures. Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+          "works": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "source_ids": [
+            "healthgeo05_wynter_et_al_persistence_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "sarah_marks",
+          "role": "historian",
+          "context": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions. Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures. Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+          "works": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "source_ids": [
+            "healthgeo05_wynter_et_al_persistence_2025"
           ],
           "basis": "source_review"
         }
@@ -26929,8 +27015,112 @@
             "feierman_janzen_healing"
           ],
           "basis": "editorial_distinction"
+        },
+        {
+          "id": "extension05_rogaski_hygienic_2004",
+          "title": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China",
+          "focus": "Rogaski traces changes in weisheng through imperial encounters, state power and racialized standards of modernity. Rogaski uses Tianjin to connect bodily practice, the built environment and projects of national modernity. Selected introduction only; retain the changing Chinese concept rather than equating it with timeless Western hygiene. Introduction pp. 1–3; one treaty-port inquiry, not a proxy for all Chinese or Asian medical historiography.",
+          "person_ids": [
+            "ruth_rogaski"
+          ],
+          "works": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China",
+          "source_ids": [
+            "healthgeo05_rogaski_hygienic_2004"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:rogaski_meanings",
+            "claim:healthgeo05:rogaski_city"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2004,
+          "work_ids": [
+            "work:rogaski_hygienic_2004"
+          ]
+        },
+        {
+          "id": "extension05_mccallum_health_2017",
+          "title": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History",
+          "focus": "McCallum examines how scholarship on starvation, experimentation, segregation and trauma sharpens the analysis of colonialism in Canadian Indigenous health history. Author abstract only; this is a historiographical framing, not new clinical evidence or a universal model of Indigenous experience.",
+          "person_ids": [
+            "mary_jane_logan_mccallum"
+          ],
+          "works": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History",
+          "source_ids": [
+            "healthgeo05_mccallum_health_2017"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:mccallum_colonialism"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2017,
+          "work_ids": [
+            "work:mccallum_health_2017"
+          ]
+        },
+        {
+          "id": "extension05_wynter_et_al_persistence_2025",
+          "title": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "focus": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions. Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures. Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+          "person_ids": [
+            "rebecca_wynter",
+            "niyah_campbell",
+            "sarah_chaney",
+            "sarah_marks"
+          ],
+          "works": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+          "source_ids": [
+            "healthgeo05_wynter_et_al_persistence_2025"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:wynter_categories",
+            "claim:healthgeo05:wynter_participants"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2025,
+          "work_ids": [
+            "work:wynter_et_al_persistence_2025"
+          ]
         }
-      ]
+      ],
+      "work_ids": [
+        "work:rogaski_hygienic_2004",
+        "work:mccallum_health_2017",
+        "work:wynter_et_al_persistence_2025"
+      ],
+      "claim_ids": [
+        "claim:healthgeo05:rogaski_meanings",
+        "claim:healthgeo05:rogaski_city",
+        "claim:healthgeo05:mccallum_colonialism",
+        "claim:healthgeo05:wynter_categories",
+        "claim:healthgeo05:wynter_participants"
+      ],
+      "extension_coverage": {
+        "status": "partial_accepted",
+        "baseline_through": 2000,
+        "research_cutoff": "2026-09-18",
+        "field_review_complete": false,
+        "publication_years": [
+          2004,
+          2017,
+          2025
+        ],
+        "work_ids": [
+          "work:rogaski_hygienic_2004",
+          "work:mccallum_health_2017",
+          "work:wynter_et_al_persistence_2025"
+        ],
+        "claim_ids": [
+          "claim:healthgeo05:rogaski_meanings",
+          "claim:healthgeo05:rogaski_city",
+          "claim:healthgeo05:mccallum_colonialism",
+          "claim:healthgeo05:wynter_categories",
+          "claim:healthgeo05:wynter_participants"
+        ],
+        "acceptance_record": "data/production-batches/extension-1.122/acceptance.json"
+      }
     },
     {
       "id": "urbanhistory",
@@ -27148,7 +27338,13 @@
         "hwj_spatial_1995",
         "hayden_power_place",
         "carter_botany_1987",
-        "gbhgis_1998"
+        "gbhgis_1998",
+        "healthgeo05_harris_native_space_2002",
+        "healthgeo05_mckittrick_demonic_2006",
+        "healthgeo05_gregory_healey_hgis_2007",
+        "healthgeo05_machado_gomes_geografia_2013",
+        "healthgeo05_silveira_brazil_2024",
+        "healthgeo05_legg_et_al_translation_2025"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -27261,6 +27457,116 @@
             "gbhgis_1998"
           ],
           "basis": "source_review"
+        },
+        {
+          "person_id": "cole_harris",
+          "role": "historian",
+          "context": "Harris reads competing colonial land policies as spatial arrangements with different consequences for Indigenous lives. Publisher chapter pp. 8–10 only; analysis of Merivale and imperial policy is not Indigenous testimony or an exhaustive account of Indigenous territorial knowledge.",
+          "works": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+          "source_ids": [
+            "healthgeo05_harris_native_space_2002"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "katherine_mckittrick",
+          "role": "historian",
+          "context": "McKittrick treats racial and sexual domination as spatial processes while preserving Black women’s geographic knowledge and contestation. McKittrick explicitly develops a geographic reading of Sylvia Wynter’s critique of the overrepresentation of Man. Chapter 5 pp. 121–123 only, read in the authorized 2020 reprint. Not a new 2020 programme or a whole-book reading. Chapter 5 pp. 122–123; bounded account of her stated use of Wynter. No generalized genealogy or claim of first reception.",
+          "works": "Demonic Grounds: Black Women and the Cartographies of Struggle",
+          "source_ids": [
+            "healthgeo05_mckittrick_demonic_2006"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "richard_g_healey",
+          "role": "historian",
+          "context": "Gregory and Healey describe historical GIS as extending from quantitative into qualitative inquiry and across disciplinary boundaries. Author abstract only; GIS is one method within historical geography, not its beginning or its synonym.",
+          "works": "Historical GIS: structuring, mapping and analysing geographies of the past",
+          "source_ids": [
+            "healthgeo05_gregory_healey_hgis_2007"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "monica_sampaio_machado",
+          "role": "historian",
+          "context": "Machado and Gomes distinguish Abreu’s urban-historical work from Moraes’s inquiries into geopolitics and territorial management in Brazilian historical geography. Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders.",
+          "works": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes",
+          "source_ids": [
+            "healthgeo05_machado_gomes_geografia_2013"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "angela_nunes_damasceno_gomes",
+          "role": "historian",
+          "context": "Machado and Gomes distinguish Abreu’s urban-historical work from Moraes’s inquiries into geopolitics and territorial management in Brazilian historical geography. Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders.",
+          "works": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes",
+          "source_ids": [
+            "healthgeo05_machado_gomes_geografia_2013"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "patricia_gomes_da_silveira",
+          "role": "historian",
+          "context": "Gomes da Silveira calls for historical geography to include Brazilian and other southern sites of knowledge production beyond an English-speaking canon. Indexed publisher abstract only; named networks and institutional history require body-text review. Regional coverage remains partial.",
+          "works": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives",
+          "source_ids": [
+            "healthgeo05_silveira_brazil_2024"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "stephen_legg",
+          "role": "historian",
+          "context": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "yannan_ding",
+          "role": "historian",
+          "context": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "federico_ferretti",
+          "role": "historian",
+          "context": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "karen_morin",
+          "role": "historian",
+          "context": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "andre_reyes_novaes",
+          "role": "historian",
+          "context": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "source_review"
         }
       ],
       "entry_type": "Research field",
@@ -27362,8 +27668,190 @@
             "gbhgis_1998"
           ],
           "basis": "editorial_distinction"
+        },
+        {
+          "id": "extension05_harris_native_space_2002",
+          "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+          "focus": "Harris reads competing colonial land policies as spatial arrangements with different consequences for Indigenous lives. Publisher chapter pp. 8–10 only; analysis of Merivale and imperial policy is not Indigenous testimony or an exhaustive account of Indigenous territorial knowledge.",
+          "person_ids": [
+            "cole_harris"
+          ],
+          "works": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+          "source_ids": [
+            "healthgeo05_harris_native_space_2002"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:harris_land"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2002,
+          "work_ids": [
+            "work:harris_native_space_2002"
+          ]
+        },
+        {
+          "id": "extension05_mckittrick_demonic_2006",
+          "title": "Demonic Grounds: Black Women and the Cartographies of Struggle",
+          "focus": "McKittrick treats racial and sexual domination as spatial processes while preserving Black women’s geographic knowledge and contestation. McKittrick explicitly develops a geographic reading of Sylvia Wynter’s critique of the overrepresentation of Man. Chapter 5 pp. 121–123 only, read in the authorized 2020 reprint. Not a new 2020 programme or a whole-book reading. Chapter 5 pp. 122–123; bounded account of her stated use of Wynter. No generalized genealogy or claim of first reception.",
+          "person_ids": [
+            "katherine_mckittrick"
+          ],
+          "works": "Demonic Grounds: Black Women and the Cartographies of Struggle",
+          "source_ids": [
+            "healthgeo05_mckittrick_demonic_2006"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:mckittrick_struggle",
+            "claim:healthgeo05:mckittrick_wynter"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2006,
+          "work_ids": [
+            "work:mckittrick_demonic_2006"
+          ]
+        },
+        {
+          "id": "extension05_gregory_healey_hgis_2007",
+          "title": "Historical GIS: structuring, mapping and analysing geographies of the past",
+          "focus": "Gregory and Healey describe historical GIS as extending from quantitative into qualitative inquiry and across disciplinary boundaries. Author abstract only; GIS is one method within historical geography, not its beginning or its synonym.",
+          "person_ids": [
+            "ian_gregory",
+            "richard_g_healey"
+          ],
+          "works": "Historical GIS: structuring, mapping and analysing geographies of the past",
+          "source_ids": [
+            "healthgeo05_gregory_healey_hgis_2007"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:gregory_healey_methods"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2007,
+          "work_ids": [
+            "work:gregory_healey_hgis_2007"
+          ]
+        },
+        {
+          "id": "extension05_machado_gomes_geografia_2013",
+          "title": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes",
+          "focus": "Machado and Gomes distinguish Abreu’s urban-historical work from Moraes’s inquiries into geopolitics and territorial management in Brazilian historical geography. Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders.",
+          "person_ids": [
+            "monica_sampaio_machado",
+            "angela_nunes_damasceno_gomes"
+          ],
+          "works": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes",
+          "source_ids": [
+            "healthgeo05_machado_gomes_geografia_2013"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:machado_gomes_traditions"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2013,
+          "work_ids": [
+            "work:machado_gomes_geografia_2013"
+          ]
+        },
+        {
+          "id": "extension05_silveira_brazil_2024",
+          "title": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives",
+          "focus": "Gomes da Silveira calls for historical geography to include Brazilian and other southern sites of knowledge production beyond an English-speaking canon. Indexed publisher abstract only; named networks and institutional history require body-text review. Regional coverage remains partial.",
+          "person_ids": [
+            "patricia_gomes_da_silveira"
+          ],
+          "works": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives",
+          "source_ids": [
+            "healthgeo05_silveira_brazil_2024"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:silveira_polyphony"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2024,
+          "work_ids": [
+            "work:silveira_brazil_2024"
+          ]
+        },
+        {
+          "id": "extension05_legg_et_al_translation_2025",
+          "title": "Historical geographies: Translating times and spaces",
+          "focus": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation. Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+          "person_ids": [
+            "stephen_legg",
+            "yannan_ding",
+            "federico_ferretti",
+            "karen_morin",
+            "andre_reyes_novaes"
+          ],
+          "works": "Historical geographies: Translating times and spaces",
+          "source_ids": [
+            "healthgeo05_legg_et_al_translation_2025"
+          ],
+          "basis": "editorial_distinction",
+          "claim_ids": [
+            "claim:healthgeo05:legg_translation"
+          ],
+          "review_status": "needs_review",
+          "intervention_year": 2025,
+          "work_ids": [
+            "work:legg_et_al_translation_2025"
+          ]
         }
-      ]
+      ],
+      "work_ids": [
+        "work:harris_native_space_2002",
+        "work:mckittrick_demonic_2006",
+        "work:gregory_healey_hgis_2007",
+        "work:machado_gomes_geografia_2013",
+        "work:silveira_brazil_2024",
+        "work:legg_et_al_translation_2025"
+      ],
+      "claim_ids": [
+        "claim:healthgeo05:harris_land",
+        "claim:healthgeo05:mckittrick_struggle",
+        "claim:healthgeo05:mckittrick_wynter",
+        "claim:healthgeo05:gregory_healey_methods",
+        "claim:healthgeo05:machado_gomes_traditions",
+        "claim:healthgeo05:silveira_polyphony",
+        "claim:healthgeo05:legg_translation"
+      ],
+      "extension_coverage": {
+        "status": "partial_accepted",
+        "baseline_through": 2000,
+        "research_cutoff": "2026-09-18",
+        "field_review_complete": false,
+        "publication_years": [
+          2002,
+          2006,
+          2007,
+          2013,
+          2024,
+          2025
+        ],
+        "work_ids": [
+          "work:harris_native_space_2002",
+          "work:mckittrick_demonic_2006",
+          "work:gregory_healey_hgis_2007",
+          "work:machado_gomes_geografia_2013",
+          "work:silveira_brazil_2024",
+          "work:legg_et_al_translation_2025"
+        ],
+        "claim_ids": [
+          "claim:healthgeo05:harris_land",
+          "claim:healthgeo05:mckittrick_struggle",
+          "claim:healthgeo05:mckittrick_wynter",
+          "claim:healthgeo05:gregory_healey_methods",
+          "claim:healthgeo05:machado_gomes_traditions",
+          "claim:healthgeo05:silveira_polyphony",
+          "claim:healthgeo05:legg_translation"
+        ],
+        "acceptance_record": "data/production-batches/extension-1.122/acceptance.json"
+      }
     },
     {
       "id": "intellectualhistory",
@@ -49901,6 +50389,78 @@
       "citation": "Manchester University Press, 1999; Warwick Research Archive Portal bibliographic record.",
       "url": "https://wrap.warwick.ac.uk/id/eprint/38873/",
       "scope_note": "Author-institution repository metadata checked for both editors, title and year; no full-volume reading. One Google Books edition returned an unrelated Conservative-women description and was not used as argument evidence."
+    },
+    {
+      "id": "healthgeo05_rogaski_hygienic_2004",
+      "title": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China — consulted witness",
+      "url": "https://warwick.ac.uk/fac/arts/history/chm/calendar/ruth_rogaski_hygiene_modernity-_meanings_of_health_and_disease_in_treaty-port_china_introduction.pdf",
+      "citation": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China (2004).",
+      "scope_note": "Selected introduction only; retain the changing Chinese concept rather than equating it with timeless Western hygiene. Introduction pp. 1–3; one treaty-port inquiry, not a proxy for all Chinese or Asian medical historiography. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:rogaski_hygienic_2004"
+    },
+    {
+      "id": "healthgeo05_mccallum_health_2017",
+      "title": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History — consulted witness",
+      "url": "https://www.researchgate.net/publication/315371195_Starvation_Experimentation_Segregation_and_Trauma_Words_for_Reading_Indigenous_Health_History",
+      "citation": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History (2017).",
+      "scope_note": "Author abstract only; this is a historiographical framing, not new clinical evidence or a universal model of Indigenous experience. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:mccallum_health_2017"
+    },
+    {
+      "id": "healthgeo05_wynter_et_al_persistence_2025",
+      "title": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020 — consulted witness",
+      "url": "https://pure-oai.bham.ac.uk/ws/portalfiles/portal/268545804/wynter-et-al-2025-the-persistence-of-history-racism-anti-blackness-and-the-causes-of-mental-ill-health-c-1800-2020.pdf",
+      "citation": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020 (2025).",
+      "scope_note": "Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories. Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025"
+    },
+    {
+      "id": "healthgeo05_harris_native_space_2002",
+      "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia — consulted witness",
+      "url": "https://www.ubcpress.ca/making-native-space",
+      "citation": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia (2002).",
+      "scope_note": "Publisher chapter pp. 8–10 only; analysis of Merivale and imperial policy is not Indigenous testimony or an exhaustive account of Indigenous territorial knowledge. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:harris_native_space_2002"
+    },
+    {
+      "id": "healthgeo05_mckittrick_demonic_2006",
+      "title": "Demonic Grounds: Black Women and the Cartographies of Struggle — consulted witness",
+      "url": "https://escholarship.org/content/qt2bz2s32r/qt2bz2s32r.pdf",
+      "citation": "Demonic Grounds: Black Women and the Cartographies of Struggle (2006).",
+      "scope_note": "Chapter 5 pp. 121–123 only, read in the authorized 2020 reprint. Not a new 2020 programme or a whole-book reading. Chapter 5 pp. 122–123; bounded account of her stated use of Wynter. No generalized genealogy or claim of first reception. Authorship does not establish demographic identity, whole-work reading or wider influence. Only chapter 5; original printed page numbers retained; 2026 paratext not read.",
+      "claim_source_record_id": "source:healthgeo05:mckittrick_demonic_2006"
+    },
+    {
+      "id": "healthgeo05_gregory_healey_hgis_2007",
+      "title": "Historical GIS: structuring, mapping and analysing geographies of the past — consulted witness",
+      "url": "https://eprints.lancs.ac.uk/id/eprint/19845/",
+      "citation": "Historical GIS: structuring, mapping and analysing geographies of the past (2007).",
+      "scope_note": "Author abstract only; GIS is one method within historical geography, not its beginning or its synonym. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:gregory_healey_hgis_2007"
+    },
+    {
+      "id": "healthgeo05_machado_gomes_geografia_2013",
+      "title": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes — consulted witness",
+      "url": "https://www.e-publicacoes.uerj.br/index.php/geouerj/article/view/6913/0",
+      "citation": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes (2013).",
+      "scope_note": "Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:machado_gomes_geografia_2013"
+    },
+    {
+      "id": "healthgeo05_silveira_brazil_2024",
+      "title": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives — consulted witness",
+      "url": "https://compass.onlinelibrary.wiley.com/doi/abs/10.1111/gec3.70000",
+      "citation": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives (2024).",
+      "scope_note": "Indexed publisher abstract only; named networks and institutional history require body-text review. Regional coverage remains partial. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:silveira_brazil_2024"
+    },
+    {
+      "id": "healthgeo05_legg_et_al_translation_2025",
+      "title": "Historical geographies: Translating times and spaces — consulted witness",
+      "url": "https://cris.unibo.it/retrieve/8093f033-bc4f-4559-876f-f06bb421b838/Ferretti%20Historical%20geographies%20definitivo.pdf",
+      "citation": "Historical geographies: Translating times and spaces (2025).",
+      "scope_note": "Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved. Authorship does not establish demographic identity, whole-work reading or wider influence.",
+      "claim_source_record_id": "source:healthgeo05:legg_et_al_translation_2025"
     }
   ],
   "revision_history": [
@@ -54468,6 +55028,12 @@
         "berg_clifford_consumers_1999"
       ],
       "acceptance_record": "data/production-batches/roster-corrections-1.121/acceptance.json"
+    },
+    {
+      "version": "1.122",
+      "date": "2026-09-18",
+      "acceptance_record": "data/production-batches/extension-1.122/acceptance.json",
+      "summary": "First partial post-2000 release: nine medical-history and historical-geography works, twelve scoped historical claims, eighteen author credits and one reprint assertion. Nine strands and seventeen shared people; no new teaching edges. Exact revision 1.121 retained as the 2000 view; neither field is completely reviewed through 2026."
     }
   ],
   "people": [
@@ -57853,6 +58419,91 @@
     {
       "id": "helen_clifford",
       "label": "Helen Clifford"
+    },
+    {
+      "id": "ruth_rogaski",
+      "label": "Ruth Rogaski",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "mary_jane_logan_mccallum",
+      "label": "Mary Jane Logan McCallum",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "rebecca_wynter",
+      "label": "Rebecca Wynter",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "niyah_campbell",
+      "label": "Niyah Campbell",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "sarah_chaney",
+      "label": "Sarah Chaney",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "sarah_marks",
+      "label": "Sarah Marks",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "cole_harris",
+      "label": "Cole Harris",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "katherine_mckittrick",
+      "label": "Katherine McKittrick",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "richard_g_healey",
+      "label": "Richard G. Healey",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "monica_sampaio_machado",
+      "label": "Mônica Sampaio Machado",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "angela_nunes_damasceno_gomes",
+      "label": "Angela Nunes Damasceno Gomes",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "patricia_gomes_da_silveira",
+      "label": "Patrícia Gomes da Silveira",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "stephen_legg",
+      "label": "Stephen Legg",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "yannan_ding",
+      "label": "Yannan Ding",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "federico_ferretti",
+      "label": "Federico Ferretti",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "karen_morin",
+      "label": "Karen Morin",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
+    },
+    {
+      "id": "andre_reyes_novaes",
+      "label": "André Reyes Novaes",
+      "identity_note": "Local author identity; no external authority or demographic assertion."
     }
   ],
   "journal_catalogue": {
@@ -538264,6 +538915,336 @@
           "cohen_queer_1997"
         ],
         "identity_status": "Local work identity; editions and external authorities not conflated"
+      },
+      {
+        "id": "person:ruth_rogaski",
+        "label": "Ruth Rogaski",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "ruth_rogaski"
+      },
+      {
+        "id": "person:mary_jane_logan_mccallum",
+        "label": "Mary Jane Logan McCallum",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "mary_jane_logan_mccallum"
+      },
+      {
+        "id": "person:rebecca_wynter",
+        "label": "Rebecca Wynter",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "rebecca_wynter"
+      },
+      {
+        "id": "person:niyah_campbell",
+        "label": "Niyah Campbell",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "niyah_campbell"
+      },
+      {
+        "id": "person:sarah_chaney",
+        "label": "Sarah Chaney",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "sarah_chaney"
+      },
+      {
+        "id": "person:sarah_marks",
+        "label": "Sarah Marks",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "sarah_marks"
+      },
+      {
+        "id": "person:cole_harris",
+        "label": "Cole Harris",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "cole_harris"
+      },
+      {
+        "id": "person:katherine_mckittrick",
+        "label": "Katherine McKittrick",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "katherine_mckittrick"
+      },
+      {
+        "id": "person:richard_g_healey",
+        "label": "Richard G. Healey",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "richard_g_healey"
+      },
+      {
+        "id": "person:monica_sampaio_machado",
+        "label": "Mônica Sampaio Machado",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "monica_sampaio_machado"
+      },
+      {
+        "id": "person:angela_nunes_damasceno_gomes",
+        "label": "Angela Nunes Damasceno Gomes",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "angela_nunes_damasceno_gomes"
+      },
+      {
+        "id": "person:patricia_gomes_da_silveira",
+        "label": "Patrícia Gomes da Silveira",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "patricia_gomes_da_silveira"
+      },
+      {
+        "id": "person:stephen_legg",
+        "label": "Stephen Legg",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "stephen_legg"
+      },
+      {
+        "id": "person:yannan_ding",
+        "label": "Yannan Ding",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "yannan_ding"
+      },
+      {
+        "id": "person:federico_ferretti",
+        "label": "Federico Ferretti",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "federico_ferretti"
+      },
+      {
+        "id": "person:karen_morin",
+        "label": "Karen Morin",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "karen_morin"
+      },
+      {
+        "id": "person:andre_reyes_novaes",
+        "label": "André Reyes Novaes",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "andre_reyes_novaes"
+      },
+      {
+        "id": "person:ian_gregory",
+        "label": "Ian N. Gregory",
+        "type": "person",
+        "identity_status": "existing_local_person",
+        "legacy_person_id": "ian_gregory"
+      },
+      {
+        "id": "concept:healthgeo05:medicine",
+        "type": "concept",
+        "label": "Historical methods and programmes in medical and health history",
+        "concept_kind": [
+          "topic"
+        ],
+        "field_navigation_ids": [
+          "medicalhistory"
+        ],
+        "classification_status": "provisional"
+      },
+      {
+        "id": "concept:healthgeo05:weisheng",
+        "type": "concept",
+        "label": "Historically changing meanings of weisheng",
+        "concept_kind": [
+          "topic"
+        ],
+        "field_navigation_ids": [
+          "medicalhistory"
+        ],
+        "classification_status": "provisional"
+      },
+      {
+        "id": "concept:healthgeo05:psychiatry",
+        "type": "concept",
+        "label": "Historical explanations of race, racism and mental illness",
+        "concept_kind": [
+          "topic"
+        ],
+        "field_navigation_ids": [
+          "medicalhistory"
+        ],
+        "classification_status": "provisional"
+      },
+      {
+        "id": "concept:healthgeo05:geography",
+        "type": "concept",
+        "label": "Methods and scope of historical geography",
+        "concept_kind": [
+          "topic"
+        ],
+        "field_navigation_ids": [
+          "spatialhistory"
+        ],
+        "classification_status": "provisional"
+      },
+      {
+        "id": "concept:healthgeo05:black_geographies",
+        "type": "concept",
+        "label": "Black women’s spatial histories and geographic knowledge",
+        "concept_kind": [
+          "topic"
+        ],
+        "field_navigation_ids": [
+          "spatialhistory"
+        ],
+        "classification_status": "provisional"
+      },
+      {
+        "id": "version:mckittrick_demonic_ch5_reprint_2020",
+        "type": "version",
+        "label": "Authorized 2020 reprint of Demonic Grounds chapter 5",
+        "work_id": "work:mckittrick_demonic_2006",
+        "version_year": 2020,
+        "source_record_id": "source:healthgeo05:mckittrick_demonic_2006",
+        "scope_note": "Only chapter 5; original printed page numbers retained; 2026 paratext not read."
+      },
+      {
+        "id": "work:rogaski_hygienic_2004",
+        "type": "work",
+        "label": "Hygienic Modernity: Meanings of Health and Disease in Treaty-Port China",
+        "author_ids": [
+          "person:ruth_rogaski"
+        ],
+        "publication_year_observation": 2004,
+        "date_note": "2004 title/copyright page in consulted introduction.",
+        "language": "en",
+        "field_navigation_ids": [
+          "medicalhistory"
+        ]
+      },
+      {
+        "id": "work:mccallum_health_2017",
+        "type": "work",
+        "label": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History",
+        "author_ids": [
+          "person:mary_jane_logan_mccallum"
+        ],
+        "publication_year_observation": 2017,
+        "date_note": "Canadian Historical Review 98(1), March 2017, 96–113; DOI 10.3138/chr.98.1.McCallum.",
+        "language": "en",
+        "field_navigation_ids": [
+          "medicalhistory"
+        ]
+      },
+      {
+        "id": "work:wynter_et_al_persistence_2025",
+        "type": "work",
+        "label": "The persistence of history: Racism, anti-Blackness, and the causes of mental ill health, c.1800–2020",
+        "author_ids": [
+          "person:rebecca_wynter",
+          "person:niyah_campbell",
+          "person:sarah_chaney",
+          "person:sarah_marks"
+        ],
+        "publication_year_observation": 2025,
+        "date_note": "Early online 20 June 2025; consulted version-of-record pagination 1–27. Do not use earlier accepted manuscript author order; c.1800–2020 is the studied period.",
+        "language": "en",
+        "field_navigation_ids": [
+          "medicalhistory"
+        ]
+      },
+      {
+        "id": "work:harris_native_space_2002",
+        "type": "work",
+        "label": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+        "author_ids": [
+          "person:cole_harris"
+        ],
+        "publication_year_observation": 2002,
+        "date_note": "Original 2002 copyright in university title-page scan; current publisher formats dated 2003 paperback and 2007 ebook are not new works.",
+        "language": "en",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
+      },
+      {
+        "id": "work:mckittrick_demonic_2006",
+        "type": "work",
+        "label": "Demonic Grounds: Black Women and the Cartographies of Struggle",
+        "author_ids": [
+          "person:katherine_mckittrick"
+        ],
+        "publication_year_observation": 2006,
+        "date_note": "2006 original; consulted chapter reprint 2020 is a separate version. 2026 anniversary edition and new paratext not read.",
+        "language": "en",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
+      },
+      {
+        "id": "work:gregory_healey_hgis_2007",
+        "type": "work",
+        "label": "Historical GIS: structuring, mapping and analysing geographies of the past",
+        "author_ids": [
+          "person:ian_gregory",
+          "person:richard_g_healey"
+        ],
+        "publication_year_observation": 2007,
+        "date_note": "Progress in Human Geography 31(5), 638–653, October 2007; not the separate Gregory/Ell book.",
+        "language": "en",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
+      },
+      {
+        "id": "work:machado_gomes_geografia_2013",
+        "type": "work",
+        "label": "Exemplos brasileiros de geografia histórica: considerações sobre as obras de Maurício Abreu e Antonio Carlos Robert Moraes",
+        "author_ids": [
+          "person:monica_sampaio_machado",
+          "person:angela_nunes_damasceno_gomes"
+        ],
+        "publication_year_observation": 2013,
+        "date_note": "DOI 10.12957/geouerj.2013.6913; issue year 2013. Search crawl age not publication date. Body retrieval failed.",
+        "language": "pt",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
+      },
+      {
+        "id": "work:silveira_brazil_2024",
+        "type": "work",
+        "label": "Historical Geography in Brazil: Examining Backgrounds and New Perspectives",
+        "author_ids": [
+          "person:patricia_gomes_da_silveira"
+        ],
+        "publication_year_observation": 2024,
+        "date_note": "First published 3 October 2024; Geography Compass 18(10), e70000. English-language regional survey, not Portuguese body evidence.",
+        "language": "en",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
+      },
+      {
+        "id": "work:legg_et_al_translation_2025",
+        "type": "work",
+        "label": "Historical geographies: Translating times and spaces",
+        "author_ids": [
+          "person:stephen_legg",
+          "person:yannan_ding",
+          "person:federico_ferretti",
+          "person:karen_morin",
+          "person:andre_reyes_novaes"
+        ],
+        "publication_year_observation": 2025,
+        "date_note": "May online / June 2025 issue. Editorial programme, not evidence that its inclusion aims have been achieved.",
+        "language": "en",
+        "field_navigation_ids": [
+          "spatialhistory"
+        ]
       }
     ],
     "source_records": [
@@ -538364,6 +539345,96 @@
         "access_note": "Selected pages read via OCR; p. 441 visually checked. Critique addresses named tendencies in queer politics, not every sexuality historian.",
         "reading_notes_path": "data/production-batches/gender-split-1.120/EVIDENCE.md",
         "download_sha256": "fa261ca536c85d3baf9b55a062fa100547819d0ded1f889fdc4ce5be4e358bc5"
+      },
+      {
+        "id": "source:healthgeo05:rogaski_hygienic_2004",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://warwick.ac.uk/fac/arts/history/chm/calendar/ruth_rogaski_hygiene_modernity-_meanings_of_health_and_disease_in_treaty-port_china_introduction.pdf",
+        "describes_work": "work:rogaski_hygienic_2004",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/rogaski-extract.txt",
+        "snapshot_sha256": "d8ae669b8481953c8a7bddce3c778784d5ca97bd84c50a8712b3108e6438145b",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:mccallum_health_2017",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://www.researchgate.net/publication/315371195_Starvation_Experimentation_Segregation_and_Trauma_Words_for_Reading_Indigenous_Health_History",
+        "describes_work": "work:mccallum_health_2017",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/passages.json",
+        "snapshot_sha256": "ed129ab7e6691290da6ee8879350717055a44de59d38a2840bdf71de7f2c28af",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:wynter_et_al_persistence_2025",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://pure-oai.bham.ac.uk/ws/portalfiles/portal/268545804/wynter-et-al-2025-the-persistence-of-history-racism-anti-blackness-and-the-causes-of-mental-ill-health-c-1800-2020.pdf",
+        "describes_work": "work:wynter_et_al_persistence_2025",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/recovery.json",
+        "snapshot_sha256": "a956b8f5aed1e38485dfbf472aa4f815b19522082f64d3b56d527d361debd95b",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:harris_native_space_2002",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://www.ubcpress.ca/making-native-space",
+        "describes_work": "work:harris_native_space_2002",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/passages.json",
+        "snapshot_sha256": "ed129ab7e6691290da6ee8879350717055a44de59d38a2840bdf71de7f2c28af",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:mckittrick_demonic_2006",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://escholarship.org/content/qt2bz2s32r/qt2bz2s32r.pdf",
+        "describes_work": "work:mckittrick_demonic_2006",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/passages.json",
+        "snapshot_sha256": "ed129ab7e6691290da6ee8879350717055a44de59d38a2840bdf71de7f2c28af",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:gregory_healey_hgis_2007",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://eprints.lancs.ac.uk/id/eprint/19845/",
+        "describes_work": "work:gregory_healey_hgis_2007",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/passages.json",
+        "snapshot_sha256": "ed129ab7e6691290da6ee8879350717055a44de59d38a2840bdf71de7f2c28af",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:machado_gomes_geografia_2013",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://www.e-publicacoes.uerj.br/index.php/geouerj/article/view/6913/0",
+        "describes_work": "work:machado_gomes_geografia_2013",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/metadata.json",
+        "snapshot_sha256": "6f99091565302a49c7518591b9e595a820849c28d16315c4e87b4e38f6477d61",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:silveira_brazil_2024",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://compass.onlinelibrary.wiley.com/doi/abs/10.1111/gec3.70000",
+        "describes_work": "work:silveira_brazil_2024",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/metadata.json",
+        "snapshot_sha256": "6f99091565302a49c7518591b9e595a820849c28d16315c4e87b4e38f6477d61",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
+      },
+      {
+        "id": "source:healthgeo05:legg_et_al_translation_2025",
+        "provider": "Publisher, author or university repository; actual access recorded per citation",
+        "url": "https://cris.unibo.it/retrieve/8093f033-bc4f-4559-876f-f06bb421b838/Ferretti%20Historical%20geographies%20definitivo.pdf",
+        "describes_work": "work:legg_et_al_translation_2025",
+        "snapshot_path": "data/extension-2026/health-geography-05/raw/legg-extract.txt",
+        "snapshot_sha256": "25ebf0834513bf91cfe539939459b9656146668f8da40f9f8d93e3a2c8ca8a4b",
+        "observed_at": "2026-09-19T01:51:56+00:00",
+        "capture_scope": "Selected extraction or indexed record; actual reading scope on each citation."
       }
     ],
     "claims": [
@@ -540337,6 +541408,1437 @@
             "checked_on": "2026-09-18",
             "support_assessment": "supports_scoped_statement",
             "limitation": "Selected opening only; no full case-law review or claim to invent earlier Black feminist analysis. Her specific single-axis critique is separate from Scott’s experience argument; it does not reject all collective identification."
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:rogaski_meanings",
+        "subject": "work:rogaski_hygienic_2004",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:weisheng",
+        "statement": "Rogaski traces changes in weisheng through imperial encounters, state power and racialized standards of modernity.",
+        "qualification": "Selected introduction only; retain the changing Chinese concept rather than equating it with timeless Western hygiene.",
+        "intervention_year": 2004,
+        "attributed_to": "work:rogaski_hygienic_2004",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Introduction pp. 1–2 explicitly traces changed meanings, imperialism, state power and racial standards. Accept this attributed conceptual history, not a universal model of hygiene."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:rogaski_hygienic_2004",
+            "locator": "Introduction, printed pp. 1–3",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Rogaski traces changes in weisheng through imperial encounters, state power and racialized standards of modernity.",
+            "limitation": "Selected introduction only; retain the changing Chinese concept rather than equating it with timeless Western hygiene.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:rogaski_city",
+        "subject": "work:rogaski_hygienic_2004",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:medicine",
+        "statement": "Rogaski uses Tianjin to connect bodily practice, the built environment and projects of national modernity.",
+        "qualification": "Introduction pp. 1–3; one treaty-port inquiry, not a proxy for all Chinese or Asian medical historiography.",
+        "intervention_year": 2004,
+        "attributed_to": "work:rogaski_hygienic_2004",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Introduction p. 3 explicitly links the Tianjin setting, political encounters, everyday health practices and national projects. The city is a case, not a regional proxy."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:rogaski_hygienic_2004",
+            "locator": "Introduction, printed pp. 1–3",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Rogaski uses Tianjin to connect bodily practice, the built environment and projects of national modernity.",
+            "limitation": "Introduction pp. 1–3; one treaty-port inquiry, not a proxy for all Chinese or Asian medical historiography.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:mccallum_colonialism",
+        "subject": "work:mccallum_health_2017",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:medicine",
+        "statement": "McCallum examines how scholarship on starvation, experimentation, segregation and trauma sharpens the analysis of colonialism in Canadian Indigenous health history.",
+        "qualification": "Author abstract only; this is a historiographical framing, not new clinical evidence or a universal model of Indigenous experience.",
+        "intervention_year": 2017,
+        "attributed_to": "work:mccallum_health_2017",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "The reproduced author abstract explicitly names all four terms and the analysis of race/colonialism. The USask Indigenous Studies Portal independently corroborates author, issue and pages; it does not supply missing body text."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mccallum_health_2017",
+            "locator": "Author abstract reproduced on ResearchGate; publisher body unavailable",
+            "check_status": "abstract_checked",
+            "scope": "abstract",
+            "support": "McCallum examines how scholarship on starvation, experimentation, segregation and trauma sharpens the analysis of colonialism in Canadian Indigenous health history.",
+            "limitation": "Author abstract only; this is a historiographical framing, not new clinical evidence or a universal model of Indigenous experience.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:wynter_categories",
+        "subject": "work:wynter_et_al_persistence_2025",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:psychiatry",
+        "statement": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions.",
+        "qualification": "Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories.",
+        "intervention_year": 2025,
+        "attributed_to": "work:wynter_et_al_persistence_2025",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Version-of-record pp. 2–3 explicitly contrasts historically situated meanings with persistence. Historical categories are attributed objects of study, never endorsed medical classifications."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Version of record, article pp. 2–3 (PDF pp. 3–4), lines 88–135",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Wynter, Campbell, Chaney and Marks historicize changing explanations of mental illness while tracing the persistence of racialized assumptions.",
+            "limitation": "Version-of-record opening pp. 2–3 checked; attribution to this historical analysis, not clinical guidance or endorsement of historical racial categories.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:wynter_participants",
+        "subject": "work:wynter_et_al_persistence_2025",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:medicine",
+        "statement": "Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures.",
+        "qualification": "Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+        "intervention_year": 2025,
+        "attributed_to": "work:wynter_et_al_persistence_2025",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Version-of-record pp. 2–3 names Hickling, Burke and Fernando and the aim to widen histories beyond Fanon/Lambo. Keep the four article authors distinct from these research subjects."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Version of record, article pp. 2–3 (PDF pp. 3–4), lines 88–135",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Wynter and coauthors widen the history of antiracist psychiatry by examining Frederick Hickling, Aggrey Burke and Suman Fernando alongside better-known figures.",
+            "limitation": "Selected programme passage pp. 2–3; clinicians are subjects of the 2025 study, not its coauthors. Their careers are not dated 2025.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:harris_land",
+        "subject": "work:harris_native_space_2002",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "Harris reads competing colonial land policies as spatial arrangements with different consequences for Indigenous lives.",
+        "qualification": "Publisher chapter pp. 8–10 only; analysis of Merivale and imperial policy is not Indigenous testimony or an exhaustive account of Indigenous territorial knowledge.",
+        "intervention_year": 2002,
+        "attributed_to": "work:harris_native_space_2002",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Publisher chapter pp. 8–10 describes rival land arrangements and the contradictions of humanitarian colonial policy. The claim concerns Harris’s analysis, not direct Indigenous testimony."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:harris_native_space_2002",
+            "locator": "Publisher sample chapter, The Imperial Background, printed pp. 8–10; extracted lines 168–250",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Harris reads competing colonial land policies as spatial arrangements with different consequences for Indigenous lives.",
+            "limitation": "Publisher chapter pp. 8–10 only; analysis of Merivale and imperial policy is not Indigenous testimony or an exhaustive account of Indigenous territorial knowledge.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:mckittrick_struggle",
+        "subject": "work:mckittrick_demonic_2006",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:black_geographies",
+        "statement": "McKittrick treats racial and sexual domination as spatial processes while preserving Black women’s geographic knowledge and contestation.",
+        "qualification": "Chapter 5 pp. 121–123 only, read in the authorized 2020 reprint. Not a new 2020 programme or a whole-book reading.",
+        "intervention_year": 2006,
+        "attributed_to": "work:mckittrick_demonic_2006",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Original pp. 121–122 describe domination and spatial contestation together. The 2020 reprint preserves a 2006 intervention; a new 2026 edition is outside the reading scope."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mckittrick_demonic_2006",
+            "locator": "Chapter 5, original printed pp. 121–123, in 2020 authorized reprint; PDF pp. 4–6",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "McKittrick treats racial and sexual domination as spatial processes while preserving Black women’s geographic knowledge and contestation.",
+            "limitation": "Chapter 5 pp. 121–123 only, read in the authorized 2020 reprint. Not a new 2020 programme or a whole-book reading.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:mckittrick_wynter",
+        "subject": "work:mckittrick_demonic_2006",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "McKittrick explicitly develops a geographic reading of Sylvia Wynter’s critique of the overrepresentation of Man.",
+        "qualification": "Chapter 5 pp. 122–123; bounded account of her stated use of Wynter. No generalized genealogy or claim of first reception.",
+        "intervention_year": 2006,
+        "attributed_to": "work:mckittrick_demonic_2006",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Original pp. 122–123 explicitly explains the geographic use of Sylvia Wynter. Exact conceptual target retained; no author-to-author influence edge invented."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mckittrick_demonic_2006",
+            "locator": "Original printed pp. 122–123, reprint PDF pp. 5–6; lines 131–187",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "McKittrick explicitly develops a geographic reading of Sylvia Wynter’s critique of the overrepresentation of Man.",
+            "limitation": "Chapter 5 pp. 122–123; bounded account of her stated use of Wynter. No generalized genealogy or claim of first reception.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:gregory_healey_methods",
+        "subject": "work:gregory_healey_hgis_2007",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "Gregory and Healey describe historical GIS as extending from quantitative into qualitative inquiry and across disciplinary boundaries.",
+        "qualification": "Author abstract only; GIS is one method within historical geography, not its beginning or its synonym.",
+        "intervention_year": 2007,
+        "attributed_to": "work:gregory_healey_hgis_2007",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "The author-deposited abstract explicitly states quantitative origins, qualitative extension and cross-disciplinary reach. Accept that bounded self-description, not the unseen evaluation or a claim that GIS defines geography."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:gregory_healey_hgis_2007",
+            "locator": "Author-deposited abstract; repository explicitly has no full text",
+            "check_status": "abstract_checked",
+            "scope": "abstract",
+            "support": "Gregory and Healey describe historical GIS as extending from quantitative into qualitative inquiry and across disciplinary boundaries.",
+            "limitation": "Author abstract only; GIS is one method within historical geography, not its beginning or its synonym.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:machado_gomes_traditions",
+        "subject": "work:machado_gomes_geografia_2013",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "Machado and Gomes distinguish Abreu’s urban-historical work from Moraes’s inquiries into geopolitics and territorial management in Brazilian historical geography.",
+        "qualification": "Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders.",
+        "intervention_year": 2013,
+        "attributed_to": "work:machado_gomes_geografia_2013",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "The Portuguese Resumo identifies Abreu’s urban history/policy and Moraes’s geopolitics/territorial management. English paraphrase checked against Portuguese; no founding or national-exhaustiveness inference."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:machado_gomes_geografia_2013",
+            "locator": "Portuguese Resumo in indexed primary journal record",
+            "check_status": "abstract_checked",
+            "scope": "abstract",
+            "support": "Machado and Gomes distinguish Abreu’s urban-historical work from Moraes’s inquiries into geopolitics and territorial management in Brazilian historical geography.",
+            "limitation": "Portuguese abstract read; English research paraphrase. Their two examples do not exhaust Brazilian scholarship or establish unique founders.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:silveira_polyphony",
+        "subject": "work:silveira_brazil_2024",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "Gomes da Silveira calls for historical geography to include Brazilian and other southern sites of knowledge production beyond an English-speaking canon.",
+        "qualification": "Indexed publisher abstract only; named networks and institutional history require body-text review. Regional coverage remains partial.",
+        "intervention_year": 2024,
+        "attributed_to": "work:silveira_brazil_2024",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "The indexed publisher abstract explicitly advocates a polyphonic account including southern knowledge. Its institutional and generational detail remains outside the accepted scope."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:silveira_brazil_2024",
+            "locator": "Indexed publisher ABSTRACT",
+            "check_status": "abstract_checked",
+            "scope": "abstract",
+            "support": "Gomes da Silveira calls for historical geography to include Brazilian and other southern sites of knowledge production beyond an English-speaking canon.",
+            "limitation": "Indexed publisher abstract only; named networks and institutional history require body-text review. Regional coverage remains partial.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:legg_translation",
+        "subject": "work:legg_et_al_translation_2025",
+        "predicate": "assesses_scope",
+        "object": "concept:healthgeo05:geography",
+        "statement": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation.",
+        "qualification": "Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+        "intervention_year": 2025,
+        "attributed_to": "work:legg_et_al_translation_2025",
+        "basis": "editorial_interpretation",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Editorial pp. 5–6 explicitly proposes a plural, multilingual reviews section and translation reflection. This is a programme, not evidence that inclusion has been achieved."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Journal of Historical Geography 88, pp. 5–6, opening and translation discussion",
+            "check_status": "passage_checked",
+            "scope": "passage",
+            "support": "Legg and coauthors propose multilingual reviews and reflection on translation to broaden historical geography’s disciplinary conversation.",
+            "limitation": "Editorial pp. 5–6; proposed journal practice, not evidence of completed decolonization. All five author credits preserved.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:rogaski_hygienic_2004:ruth_rogaski",
+        "subject": "person:ruth_rogaski",
+        "predicate": "authored",
+        "object": "work:rogaski_hygienic_2004",
+        "attributed_to": "source:healthgeo05:rogaski_hygienic_2004",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:rogaski_hygienic_2004",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:mccallum_health_2017:mary_jane_logan_mccallum",
+        "subject": "person:mary_jane_logan_mccallum",
+        "predicate": "authored",
+        "object": "work:mccallum_health_2017",
+        "attributed_to": "source:healthgeo05:mccallum_health_2017",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mccallum_health_2017",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:wynter_et_al_persistence_2025:rebecca_wynter",
+        "subject": "person:rebecca_wynter",
+        "predicate": "authored",
+        "object": "work:wynter_et_al_persistence_2025",
+        "attributed_to": "source:healthgeo05:wynter_et_al_persistence_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:wynter_et_al_persistence_2025:niyah_campbell",
+        "subject": "person:niyah_campbell",
+        "predicate": "authored",
+        "object": "work:wynter_et_al_persistence_2025",
+        "attributed_to": "source:healthgeo05:wynter_et_al_persistence_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:wynter_et_al_persistence_2025:sarah_chaney",
+        "subject": "person:sarah_chaney",
+        "predicate": "authored",
+        "object": "work:wynter_et_al_persistence_2025",
+        "attributed_to": "source:healthgeo05:wynter_et_al_persistence_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:wynter_et_al_persistence_2025:sarah_marks",
+        "subject": "person:sarah_marks",
+        "predicate": "authored",
+        "object": "work:wynter_et_al_persistence_2025",
+        "attributed_to": "source:healthgeo05:wynter_et_al_persistence_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:wynter_et_al_persistence_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:harris_native_space_2002:cole_harris",
+        "subject": "person:cole_harris",
+        "predicate": "authored",
+        "object": "work:harris_native_space_2002",
+        "attributed_to": "source:healthgeo05:harris_native_space_2002",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:harris_native_space_2002",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:mckittrick_demonic_2006:katherine_mckittrick",
+        "subject": "person:katherine_mckittrick",
+        "predicate": "authored",
+        "object": "work:mckittrick_demonic_2006",
+        "attributed_to": "source:healthgeo05:mckittrick_demonic_2006",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mckittrick_demonic_2006",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:gregory_healey_hgis_2007:ian_gregory",
+        "subject": "person:ian_gregory",
+        "predicate": "authored",
+        "object": "work:gregory_healey_hgis_2007",
+        "attributed_to": "source:healthgeo05:gregory_healey_hgis_2007",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:gregory_healey_hgis_2007",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:gregory_healey_hgis_2007:richard_g_healey",
+        "subject": "person:richard_g_healey",
+        "predicate": "authored",
+        "object": "work:gregory_healey_hgis_2007",
+        "attributed_to": "source:healthgeo05:gregory_healey_hgis_2007",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:gregory_healey_hgis_2007",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:machado_gomes_geografia_2013:monica_sampaio_machado",
+        "subject": "person:monica_sampaio_machado",
+        "predicate": "authored",
+        "object": "work:machado_gomes_geografia_2013",
+        "attributed_to": "source:healthgeo05:machado_gomes_geografia_2013",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:machado_gomes_geografia_2013",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:machado_gomes_geografia_2013:angela_nunes_damasceno_gomes",
+        "subject": "person:angela_nunes_damasceno_gomes",
+        "predicate": "authored",
+        "object": "work:machado_gomes_geografia_2013",
+        "attributed_to": "source:healthgeo05:machado_gomes_geografia_2013",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:machado_gomes_geografia_2013",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:silveira_brazil_2024:patricia_gomes_da_silveira",
+        "subject": "person:patricia_gomes_da_silveira",
+        "predicate": "authored",
+        "object": "work:silveira_brazil_2024",
+        "attributed_to": "source:healthgeo05:silveira_brazil_2024",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:silveira_brazil_2024",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:legg_et_al_translation_2025:stephen_legg",
+        "subject": "person:stephen_legg",
+        "predicate": "authored",
+        "object": "work:legg_et_al_translation_2025",
+        "attributed_to": "source:healthgeo05:legg_et_al_translation_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:legg_et_al_translation_2025:yannan_ding",
+        "subject": "person:yannan_ding",
+        "predicate": "authored",
+        "object": "work:legg_et_al_translation_2025",
+        "attributed_to": "source:healthgeo05:legg_et_al_translation_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:legg_et_al_translation_2025:federico_ferretti",
+        "subject": "person:federico_ferretti",
+        "predicate": "authored",
+        "object": "work:legg_et_al_translation_2025",
+        "attributed_to": "source:healthgeo05:legg_et_al_translation_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:legg_et_al_translation_2025:karen_morin",
+        "subject": "person:karen_morin",
+        "predicate": "authored",
+        "object": "work:legg_et_al_translation_2025",
+        "attributed_to": "source:healthgeo05:legg_et_al_translation_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:authored:legg_et_al_translation_2025:andre_reyes_novaes",
+        "subject": "person:andre_reyes_novaes",
+        "predicate": "authored",
+        "object": "work:legg_et_al_translation_2025",
+        "attributed_to": "source:healthgeo05:legg_et_al_translation_2025",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:legg_et_al_translation_2025",
+            "locator": "Named author byline or bibliographic heading in the cited witness",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Named author credit for this work.",
+            "limitation": "Authorship does not establish demographic identity, whole-work reading or wider influence.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:healthgeo05:realizes:mckittrick_demonic_ch5_reprint_2020",
+        "subject": "version:mckittrick_demonic_ch5_reprint_2020",
+        "predicate": "realizes",
+        "object": "work:mckittrick_demonic_2006",
+        "attributed_to": "source:healthgeo05:mckittrick_demonic_2006",
+        "basis": "source_assertion",
+        "valid_time": null,
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-09-18",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept the recorded bibliographic credit/version identity; no intellectual influence inferred."
+        },
+        "history": [
+          {
+            "date": "2026-09-18",
+            "action": "proposed",
+            "reason": "User-prioritized coverage and identity review"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "recommended_for_bounded_release",
+            "decision_record": "data/extension-2026/release-candidate-06/review-decisions.json"
+          },
+          {
+            "date": "2026-09-18",
+            "action": "accepted_into_production",
+            "revision": "1.122",
+            "decision_record": "data/production-batches/extension-1.122/acceptance.json"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:healthgeo05:mckittrick_demonic_2006",
+            "locator": "Publication/version heading",
+            "check_status": "metadata_checked",
+            "scope": "metadata",
+            "support": "Authorized 2020 reprint of Demonic Grounds chapter 5",
+            "limitation": "Only chapter 5; original printed page numbers retained; 2026 paratext not read.",
+            "checked_on": "2026-09-18",
+            "support_assessment": "supports_bounded_attribution"
           }
         ]
       }

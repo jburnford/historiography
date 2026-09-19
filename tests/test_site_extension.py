@@ -18,6 +18,7 @@ import threading
 import unittest
 
 from playwright.sync_api import sync_playwright, expect
+from scripts import accept_extension_release as release
 
 ROOT = Path(__file__).resolve().parents[1]
 RC = ROOT / 'data/extension-2026/release-candidate-06'
@@ -25,15 +26,21 @@ PREVIEW = Path('/tmp/historiography-extension-06-preview.json')
 
 
 class ExtensionViewTests(unittest.TestCase):
+    ACCEPTED = False
+
     @classmethod
     def setUpClass(cls):
         if not (RC / 'candidate.json').exists():
             raise unittest.SkipTest('release candidate not present')
-        subprocess.run(['python3', 'scripts/build_extension_release_candidate.py', '--check', '--preview', str(PREVIEW)],
+        subprocess.run(['python3', 'scripts/accept_extension_release.py', '--candidate-preview', str(PREVIEW)],
                        cwd=ROOT, check=True, capture_output=True)
+        if cls.ACCEPTED:
+            delta, _ = release.checked_candidate()
+            accepted = release.transform(release.read(release.baseline_path()), delta)
+            PREVIEW.write_text(release.serial(accepted))
         cls.dest = Path(tempfile.mkdtemp(prefix='historiography-ext-', dir='/tmp'))
         subprocess.run(['python3', 'scripts/build_site.py', '--graph', str(PREVIEW), '--dest', str(cls.dest),
-                        '--baseline', 'historiography-1920-2000.json'], cwd=ROOT, check=True, capture_output=True)
+                        '--baseline', str(release.baseline_path())], cwd=ROOT, check=True, capture_output=True)
         handler = lambda *a, **k: http.server.SimpleHTTPRequestHandler(*a, directory=str(cls.dest), **k)
         cls.server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), handler)
         cls.server.RequestHandlerClass.log_message = lambda *a: None
@@ -41,12 +48,13 @@ class ExtensionViewTests(unittest.TestCase):
         cls.url = f'http://127.0.0.1:{cls.server.server_address[1]}/'
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(headless=True)
-        cls.baseline = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
+        cls.baseline = release.read(release.baseline_path())
         cls.candidate = json.loads((RC / 'candidate.json').read_text())
 
     @classmethod
     def tearDownClass(cls):
-        cls.browser.close(); cls.playwright.stop(); cls.server.shutdown(); shutil.rmtree(cls.dest, ignore_errors=True)
+        cls.browser.close(); cls.playwright.stop(); cls.server.shutdown(); cls.server.server_close()
+        shutil.rmtree(cls.dest, ignore_errors=True)
 
     def setUp(self):
         self.page = self.browser.new_page(viewport={'width': 1440, 'height': 1050})
@@ -91,7 +99,8 @@ class ExtensionViewTests(unittest.TestCase):
         expect(card.locator('.work-authors')).not_to_contain_text('Sylvia')
         for subject in ['Hickling', 'Burke', 'Fernando']:
             expect(card.locator('.work-authors')).not_to_contain_text(subject)
-        expect(self.page.locator('.extension .badge.status-release_candidate')).to_be_visible()
+        status = 'partial_accepted' if self.ACCEPTED else 'release_candidate'
+        expect(self.page.locator(f'.extension .badge.status-{status}')).to_be_visible()
         mccallum = self.page.locator('.extension .work-card', has_text='Starvation')
         mccallum.locator('.claim-evidence summary').first.click()
         expect(mccallum.locator('.evidence-list .badge').first).to_have_text('Abstract only checked')
@@ -110,7 +119,7 @@ class ExtensionViewTests(unittest.TestCase):
         expect(machado.locator('.work-meta')).to_contain_text('language: pt')
         expect(self.page.locator('.extension .claim-card')).to_have_count(7)
         for status in self.page.locator('.extension .claim-card .badge[class*=status-]').all_inner_texts():
-            self.assertEqual(status.lower(), 'needs review')
+            self.assertEqual(status.lower(), 'accepted' if self.ACCEPTED else 'needs review')
 
     def test_existing_person_gains_new_work_through_strand(self):
         self.open('#person=ian_gregory')
@@ -128,6 +137,21 @@ class ExtensionViewTests(unittest.TestCase):
         self.assertFalse(any('extension-2026' in u or '/raw/' in u for u in fetched), fetched)
         published = json.loads((self.dest / 'data/graph.json').read_text())
         self.assertNotIn('snapshot_path', json.dumps(published['claim_catalogue'].get('claims', [])))
+
+
+class AcceptedExtensionViewTests(ExtensionViewTests):
+    ACCEPTED = True
+
+    def test_mobile_evidence_and_baseline(self):
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        self.open('#node=medicalhistory')
+        expect(self.page.locator('.extension .badge.status-partial_accepted')).to_be_visible()
+        self.page.locator('.extension .claim-evidence summary').first.click()
+        expect(self.page.locator('.extension .evidence-list').first).to_be_visible()
+        self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 390)
+        self.open('#node=medicalhistory&range=2000')
+        expect(self.page.locator('.extension')).to_have_count(0)
+        expect(self.page.locator('#scope-eyebrow')).to_contain_text('EXACT 2000 VIEW')
 
 
 if __name__ == '__main__':
