@@ -78,6 +78,10 @@ export function readRoute(hash, graph, pathways) {
     path: valid('path', pathways.pathways),
     node: valid('node', graph.nodes), edge: valid('edge', graph.edges),
     person: valid('person', graph.people || []),
+    /* `hold` keeps a person or an entry lit in the people constellation; `letter` opens a
+       register letter. Neither leaves the people tab. */
+    hold: (graph.people || []).some(x => x.id === p.get('hold')) || graph.nodes.some(n => n.id === p.get('hold')) ? p.get('hold') : '',
+    letter: /^[A-Z]$/.test(p.get('letter') || '') ? p.get('letter') : '',
     section: p.get('section') === 'connections' ? 'connections' : '',
     pathway: valid('pathway', pathways.pathways), layer: valid('layer', graph.layers),
     period: p.get('period') === 'unassigned' ? 'unassigned' : valid('period', graph.periods),
@@ -101,6 +105,7 @@ export function readRoute(hash, graph, pathways) {
   if (route.node) { route.tab = 'map'; route.focus = ''; route.path = ''; }
   if (route.focus) { route.tab = 'map'; route.person = ''; }
   if (route.person && !route.node) route.tab = 'people';
+  if ((route.hold || route.letter) && !route.node && !route.person && !route.pathway) route.tab = 'people';
   return route;
 }
 export function routeHash(state) {

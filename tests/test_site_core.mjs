@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from '../site/core.mjs';
+import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from '../site/people.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
@@ -315,4 +316,25 @@ test('life dates mark a death and hatch posthumous reception, only for people wh
   const annales = view.bars.find(b => b.node.id === 'annales');
   assert.equal(annales.death, null, 'schools and fields never get a death marker');
   for (const b of view.bars.filter(b => b.death)) assert.equal(b.node.entry_kind, 'person', b.node.id);
+});
+
+test('the people register sorts by surname and the constellation places everyone once', () => {
+  assert.equal(sortName('Ferdinand de Saussure').initial, 'S');
+  assert.equal(sortName('Wang Feng').surname, 'Wang');
+  assert.equal(sortName('Paul Vidal de la Blache').surname, 'Vidal de la Blache');
+  assert.equal(sortName('John F. Guilmartin, Jr.').surname, 'Guilmartin');
+  const sorted = [{label: 'Eric Hobsbawm'}, {label: 'Marc Bloch'}, {label: 'Ferdinand de Saussure'}].sort(bySurname).map(p => p.label);
+  assert.deepEqual(sorted, ['Marc Bloch', 'Eric Hobsbawm', 'Ferdinand de Saussure']);
+  const {byPerson, byEntry} = membership(graph);
+  const order = ringOrder(graph, byEntry);
+  assert.equal(new Set(order).size, byEntry.size, 'every entry with a roster is on the ring once');
+  const L = companyLayout(graph, 1000);
+  assert.equal(L.people.length, byPerson.size);
+  for (const p of L.people) assert.ok(p.x > 0 && p.x < L.size && p.y > 0 && p.y < L.size, p.id);
+  const inner = L.people.filter(p => !p.single).every(p => Math.hypot(p.x - L.cx, p.y - L.cy) < L.R);
+  assert.ok(inner, 'people named in several entries sit inside the ring');
+  assert.ok(bridges(graph, byPerson, 3)[0].count >= 3);
+  const route = readRoute('#hold=women&letter=B', graph, {pathways: []});
+  assert.equal(route.tab, 'people'); assert.equal(route.hold, 'women'); assert.equal(route.letter, 'B');
+  assert.equal(readRoute('#hold=nobody&letter=bb', graph, {pathways: []}).hold, '');
 });

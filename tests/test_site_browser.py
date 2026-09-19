@@ -42,7 +42,7 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def open(self, fragment=''):
         self.page.goto(URL + fragment)
-        expect(self.page.locator('.field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .about, .empty').first).to_be_visible()
+        expect(self.page.locator('.field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .register-section, .about, .empty').first).to_be_visible()
 
     def test_overview_search_filters_keyboard_and_reset(self):
         self.open('#tab=browse')
@@ -389,7 +389,7 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
-        self.assertEqual(actual, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'})
+        self.assertEqual(actual, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'})
         for private_path in ['openalex-api-key.txt', 'MEMORY.md', 'Clifford/', '.git/config']:
             response = self.page.request.get(URL + private_path)
             self.assertEqual(response.status, 404, private_path)

@@ -15,6 +15,7 @@ PAGE_ASSETS = {
     'site/app.js': 'app.js',
     'site/core.mjs': 'core.mjs',
     'site/field.mjs': 'field.mjs',
+    'site/people.mjs': 'people.mjs',
     'site/.nojekyll': '.nojekyll',
 }
 DATA_ASSETS = {

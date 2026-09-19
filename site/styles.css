@@ -284,3 +284,47 @@ svg.field.focused{cursor:default}
 .field-panel .posthumous-note{font-size:11px;color:var(--muted)}
 .lifespan{font:400 13px var(--sans);color:var(--muted);margin-left:8px;white-space:nowrap}
 .person-profile h2 .lifespan{font-size:16px}
+
+/* Historians & contributors: the company they keep */
+.company-split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;margin-top:6px}
+.company-chart{min-width:0}.company-chart svg{display:block;width:100%;height:auto}
+.company-panel{background:#fffdf7;border:1px solid var(--line);border-radius:7px;font-size:13px}
+.company .spoke{stroke:#223831;stroke-opacity:.07;stroke-width:.8}
+.company.previewing .spoke:not(.hi){stroke-opacity:.015}
+.company .spoke.hi{stroke:#284f41;stroke-opacity:.85;stroke-width:1.5}
+.company .dot{cursor:pointer;--accent:#223831}
+.company .dot circle.core{fill:var(--accent);stroke:var(--accent);stroke-width:1.1;opacity:.85}
+.company .dot.resource circle.core{fill:#f6f4ed}
+.company .dot circle.ring{fill:none;stroke:#a15643;stroke-width:1.1}
+.company .dot.own circle.core{opacity:1}
+.company.previewing .dot:not(.hi){opacity:.1}
+.company .dot.mute,.company .anchor.mute{opacity:.12}
+.company .dot.hi circle.core{stroke:#fffdf7;stroke-width:1.6;paint-order:stroke}
+.company .dot.selected circle.core{stroke:#284f41;stroke-width:3;paint-order:stroke}
+.company .dot-label{font:10.5px var(--serif);fill:#223831;pointer-events:none}
+.company.previewing .dot:not(.hi) .dot-label{display:none}
+.company .anchor{cursor:pointer}.company .anchor circle{fill:var(--accent)}
+.company .anchor text{font:11px var(--sans);fill:#223831}.company .anchor text tspan{fill:#8a948c;font-size:9.5px}
+.company .anchor:hover text,.company .anchor.hi text,.company .anchor.selected text{font-weight:650;fill:var(--accent)}
+.company.previewing .anchor:not(.hi){opacity:.3}
+.company-legend{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11px;color:#4a564e}
+.company-legend li{display:flex;align-items:center;gap:8px}.lg{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.2px solid #223831;flex:none}
+.lg-hist{background:#223831}.lg-res{background:#f6f4ed}.lg-crit{background:#f6f4ed;border-color:#a15643;box-shadow:0 0 0 2px #fff,0 0 0 3px #a15643}.lg-own{width:14px;height:14px;background:#223831}
+.bridge-list{padding-left:20px;margin:0;font-size:13px}.bridge-list li{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px solid #eceee5}.bridge-list a{text-decoration:none}.bridge-list a:hover{text-decoration:underline}.bridge-list span{color:var(--muted);font-size:11px}
+.panel-entries{list-style:none;padding:0;margin:8px 0 0}.panel-entries li{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid #eceee5;font-size:13px}.panel-entries a{text-decoration:none}.panel-entries a:hover{text-decoration:underline}.panel-entries .role-tag{margin:0;flex:none}
+.panel-names{font-size:13px;line-height:1.9}.panel-names a{text-decoration:none}.panel-names a:hover{text-decoration:underline}
+.register-section{margin-top:34px}
+.letter-rail{display:flex;flex-wrap:wrap;gap:4px;margin:0 0 16px}
+.letter-rail a,.letter-rail .off{font-size:12px;padding:5px 8px;border-radius:4px;min-width:30px;text-align:center}
+.letter-rail a{border:1px solid var(--line);text-decoration:none;background:#fffdf7}.letter-rail a:hover{background:#e9eee4}
+.letter-rail a[aria-current]{background:var(--green);color:#fff;border-color:var(--green)}
+.letter-rail .off{color:#b9c0b6}
+.register-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:6px}.register-head h3{margin:0;font-size:22px}
+.register{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
+.reg-row{display:grid;grid-template-columns:minmax(200px,.85fr) 108px minmax(0,1.7fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid #e5e7dd}
+.reg-name{font:18px/1.3 var(--serif);text-decoration:none}.reg-name:hover{text-decoration:underline}.reg-name strong{font-weight:600}
+.reg-life{font-size:11.5px;color:var(--muted);white-space:nowrap}
+.reg-entries{font-size:12px;color:#4a564e;line-height:1.7}.reg-entries a{text-decoration:none;color:var(--ink)}.reg-entries a:hover{text-decoration:underline}.reg-entries small{font-size:9.5px;color:#7d877f;margin-left:3px}
+.reg-more{font-size:11px;white-space:nowrap}
+@media(max-width:1000px){.company-split{grid-template-columns:1fr}.company-panel{position:static;max-height:none}}
+@media(max-width:760px){.company-chart{display:none}.reg-row{grid-template-columns:1fr;gap:3px}.company-legend{grid-template-columns:1fr}}
