@@ -1,0 +1,56 @@
+{
+  "status": "pending_fable_implementation_and_browser_verification",
+  "preview_command": "python3 scripts/build_extension_release_candidate.py --check --preview /tmp/historiography-extension-06-preview.json",
+  "cases": [
+    {
+      "id": "baseline_exact",
+      "given": "Select the 2000 baseline view",
+      "expected": "Original 126 nodes, 765 edges, 833 people and 846 sources; original rosters/strands and source scopes. No candidate additions merely hidden behind earlier dates."
+    },
+    {
+      "id": "partial_domain",
+      "given": "Select the extension view",
+      "expected": "Canvas can include 2026, with research cutoff 2026-09-18 and latest selected publication 2025 shown distinctly. Only the two selected fields have extension work; unrelated entries are not marked reviewed through 2026."
+    },
+    {
+      "id": "medical_four_authors",
+      "given": "Open the 2025 persistence-of-history work",
+      "expected": "Rebecca Wynter, Niyah Campbell, Sarah Chaney and Sarah Marks all credited. Hickling, Burke and Fernando are research subjects; Sylvia Wynter is not confused with Rebecca Wynter."
+    },
+    {
+      "id": "geography_five_authors",
+      "given": "Open the 2025 translation editorial",
+      "expected": "Legg, Ding, Ferretti, Morin and Novaes all credited; the programme is not displayed as a completed decolonization outcome."
+    },
+    {
+      "id": "reprint_date",
+      "given": "Open Demonic Grounds and its evidence",
+      "expected": "Intervention 2006, consulted chapter version 2020, original pp. 121–123. No 2020 or 2026 re-dating of the original argument."
+    },
+    {
+      "id": "abstract_scope",
+      "given": "Open McCallum, Gregory/Healey, Machado/Gomes or Gomes da Silveira claims",
+      "expected": "Abstract evidence explicitly labelled; no whole-text or passage verification implied. Portuguese-source and English-paraphrase distinction preserved for Machado/Gomes."
+    },
+    {
+      "id": "existing_person_new_work",
+      "given": "Open Ian Gregory’s profile",
+      "expected": "Original roster context preserved and new 2007 work with Richard G. Healey discoverable through the new strand."
+    },
+    {
+      "id": "exact_claims",
+      "given": "Inspect each of the twelve historical claims",
+      "expected": "Exact work/concept endpoints, statement, qualification, year and citation locators remain visible. Roster memberships produce no influence arrows."
+    },
+    {
+      "id": "candidate_and_publication",
+      "given": "Load this unaccepted preview",
+      "expected": "Needs-review/release-candidate state visible; no claim that production has accepted it. Release build happens only after acceptance against the current baseline."
+    },
+    {
+      "id": "research_is_not_assets",
+      "given": "Inspect the public build allowlist",
+      "expected": "No research captures, candidate delta, raw files, local keys or unrelated workspace files deployed; browser does not fetch audit snapshot paths."
+    }
+  ]
+}

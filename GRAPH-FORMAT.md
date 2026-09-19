@@ -1,5 +1,13 @@
 # Teaching graph format, schema 1.4
 
+## Partial post-2000 extension (revision 1.122)
+
+Current totals: **126 entries, 765 teaching relationships, 855 sources and 850 shared people**. Nine works, twelve historical claims, eighteen author credits and a separate reprint assertion extend medical history and historical geography. Nine strands are additive; no new teaching edges. See the [acceptance record](data/production-batches/extension-1.122/README.md). Earlier counts below are historical.
+
+`scope.main_period` remains `[1920, 2000]`. Optional `scope.extension` now has `status: partial_accepted`, the display period in `proposed_view_period`, `research_cutoff`, `latest_selected_publication`, `field_ids`, `fully_reviewed_fields: 0` and a hash-pinned `baseline_graph` archive. The public builder publishes that baseline separately and adds `baseline_asset`. The exact 2000 view uses that graph, not a publication-year filter.
+
+Node `extension_coverage` records selected publication years, work/claim IDs and `field_review_complete: false`. New strands carry `intervention_year`, `work_ids` and `claim_ids`. Intervention marks belong to selected works; they do not move field origins or stretch old marks to 2026. Original work and reprint dates stay separate. Acceptance preserves each citation's check scope and limitation; no automatic upgrade from abstract to passage or whole-work verification.
+
 ## Field separation (current revision 1.120)
 
 Current totals: **126 entries (75 groups, 51 people), 765 teaching relationships, 841 sources, 830 shared people and 733 strands**. `gender` is now Gender history; `racial_formation` is a separate programme and `intersectionality` a separate approach. `queer` remains the independent Sexuality & queer history field. See [revision handoff](data/production-batches/gender-split-1.120/README.md).
