@@ -117,9 +117,13 @@ function companyPanel(L) {
       <p class="panel-more"><a class="button-link" href="${esc(personHref(id))}">Profile: where to read them →</a>${own ? ` <a class="button-link" href="${esc(nodeHref(own.id))}">Full entry →</a>` : ''}</p>`;
   }
   const n = nodeById.get(id); const rows = L.byEntry.get(id) || [];
+  const reps = new Map((n.representative_people || []).map(r => [r.person_id, r]));
   const groups = ['historian', 'contributor', 'critic', 'precursor', 'comparison'].map(role => [role, rows.filter(r => r.role === role)]).filter(([, r]) => r.length);
+  /* One person per line with the work the entry cites, so a long roster can be scanned. */
+  const line = x => { const rep = reps.get(x.id); const work = (rep?.works || '').split(';')[0].trim();
+    return `<li><a href="${esc(holdHref(x.id))}">${esc(personById.get(x.id).label)}</a>${lifeSpan(personById.get(x.id))}${work ? `<span class="panel-work">${esc(work.length > 70 ? `${work.slice(0, 69)}…` : work)}</span>` : ''}</li>`; };
   return `${release}<p class="eyebrow">${esc(layerLabel(n.layer))} · ${rows.length} people</p><h2>${esc(n.label)}</h2><p class="meta">${esc(n.date_label || '')}</p>
-    ${groups.map(([role, r]) => `<div class="sec"><p class="eyebrow">${esc(PERSON_ROLES[role])}${r.length > 1 ? `s · ${r.length}` : ''}</p><p class="panel-names">${r.map(x => `<a href="${esc(holdHref(x.id))}">${esc(personById.get(x.id).label)}</a>`).join(' · ')}</p></div>`).join('')}
+    ${groups.map(([role, r]) => `<div class="sec"><p class="eyebrow">${esc(PERSON_ROLES[role])}${r.length > 1 ? `s · ${r.length}` : ''}</p><ul class="panel-roster">${[...r].sort((a, b) => bySurname(personById.get(a.id), personById.get(b.id))).map(line).join('')}</ul></div>`).join('')}
     <p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}">Open the entry →</a></p>`;
 }
 function register(L) {
