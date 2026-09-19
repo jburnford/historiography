@@ -3,6 +3,7 @@
 This checks the declared structural/semantic contract, never historical truth.
 """
 import datetime as dt
+import hashlib
 import json
 from pathlib import Path
 
@@ -86,8 +87,17 @@ def validate(data, contract, base=ROOT):
             errors.append(f'{identifier}: invalid observation time')
         if source.get('snapshot_path'):
             path = (base / source['snapshot_path']).resolve()
-            require(path.is_relative_to(base.resolve()) and path.is_file(),
-                    f'{identifier}: missing or out-of-scope snapshot')
+            require(path.is_relative_to(base.resolve()), f'{identifier}: out-of-scope snapshot')
+            if path.is_file():
+                if source.get('snapshot_sha256'):
+                    require(hashlib.sha256(path.read_bytes()).hexdigest() == source['snapshot_sha256'],
+                            f'{identifier}: snapshot hash mismatch')
+            else:
+                # Third-party captures such as PDFs stay out of the repository by policy
+                # (.gitignore), so on a clean checkout the file is absent. The record must
+                # then carry provenance: the source URL or the capture's sha256.
+                require(bool(source.get('url')) or bool(source.get('snapshot_sha256')),
+                        f'{identifier}: missing snapshot without recorded url or sha256')
         for upstream in source.get('derived_from', []):
             require(upstream in sources and upstream != identifier, f'{identifier}: invalid upstream source')
 

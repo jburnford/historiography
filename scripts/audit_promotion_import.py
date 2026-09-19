@@ -37,9 +37,11 @@ def audit():
     assert warnings==validate(before,read(ROOT/'seminar-pathways.json'))[1], warnings
     # Research manifests remain historical. Resolve their graph/browser inputs
     # against preserved baseline bytes, never rewrite their hashes to this release.
+    # Code fixes after acceptance are logged in acceptance['amendments'] with both hashes.
+    amended={m['file']:m['amended_sha256'] for m in acceptance.get('amendments',[])}
     for name,expected in read(PACKET/'manifest.json')['files'].items():
         actual=ROOT/acceptance['baseline'] if name=='historiography-1920-2000.json' else ROOT/name
-        assert sha(actual)==expected, name
+        assert sha(actual) in {expected, amended.get(name)}, name
     baseline=read(ROOT/'data/extension-2026/baseline.json')
     for name,expected in baseline['browser_asset_hashes'].items():
         actual=ROOT/acceptance['browser_baseline_archive']/Path(name).relative_to('docs')
