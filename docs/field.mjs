@@ -212,13 +212,38 @@ export function milestoneYears(node) {
 
 /* `width` is the width of the box the SVG will actually sit in — measure it, do not guess
    from the page. `opts.numbering` (Map id → n) prefixes labels for the pathway overlay. */
+/* Selected interventions after the coverage limit. The atlas's curated marks stop at their own
+   recorded coverage; an extension adds dated points for the works a later release selected,
+   on the entry's own row, and stretches only the axis. Nothing else is extended. */
+export function extensionOf(graph) {
+  const ext = graph.scope?.extension;
+  if (!ext?.proposed_view_period) return null;
+  const cutoff = ext.research_cutoff ? (() => { const d = new Date(ext.research_cutoff);
+    return d.getUTCFullYear() + (d.getUTCMonth() + 0.5) / 12; })() : null;
+  const covered = graph.nodes.filter(n => n.extension_coverage?.publication_years?.length);
+  /* The axis runs to the end of the year that holds the research cutoff, so the cutoff is drawn
+     where it falls rather than clipped to the view period. */
+  const end = Math.max(ext.proposed_view_period[1], cutoff ? Math.ceil(cutoff) : 0);
+  return {end, start: graph.scope.main_period[1], cutoff,
+    latest: ext.latest_selected_publication ?? null, status: ext.status || 'release_candidate',
+    fieldIds: ext.field_ids || covered.map(n => n.id), covered: covered.length,
+    complete: ext.fully_reviewed_fields || 0};
+}
+export function interventionsOf(node) {
+  const c = node.extension_coverage;
+  if (!c?.publication_years?.length) return [];
+  return [...new Set(c.publication_years)].sort((a, b) => a - b);
+}
+
 export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) {
   const numbering = opts.numbering || null;
+  const extension = opts.extension || null;
   const nodes = fieldNodes(graph);
   const rows = nodes.map(node => ({node, span: spanOf(node)}));
   const spans = rows.filter(r => r.span).map(r => r.span);
   const minYear = Math.min(1900, Math.floor(Math.min(...spans.map(s => s.start)) / 10) * 10);
-  const maxYear = Math.max(2000, Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10);
+  const maxYear = Math.max(extension ? extension.end : 2000,
+    Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10);
   const coverageYear = graph.scope?.main_period?.[1] ?? 2000;
 
   const undatedTotal = rows.filter(r => !r.span).length;
@@ -298,8 +323,12 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
         ? {yr: life.death, x: scale(life.death)} : null;
       const posthumous = death && death.x < bx + bw
         ? {x: Math.max(bx, death.x), w: bx + bw - Math.max(bx, death.x)} : null;
+      /* Dated interventions after the wall, on this entry's row, separate from the mark. */
+      const interventions = extension ? interventionsOf(item.node)
+        .filter(yr => yr > coverageYear && yr <= extension.end).map(yr => ({yr, x: scale(yr)})) : [];
+      if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
       bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, point, ticks,
-        life, death, posthumous, x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
+        life, death, posthumous, interventions, x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
     }
 
     const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap);
@@ -322,7 +351,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     y += fullH + ghostH + (focusSet ? 18 : G.bandGap);
   }
 
-  return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G,
+  return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G, extension,
     minYear, maxYear, coverageYear, breakYear: BREAK_YEAR, height: y + 14,
     placed: new Map([...chips, ...bars, ...ghosts].map(p => [p.node.id, p])),
     datedCount: rows.filter(r => r.span).length, undatedCount: undatedTotal};

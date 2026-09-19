@@ -329,3 +329,31 @@ svg.field.focused{cursor:default}
 .reg-more{font-size:11px;white-space:nowrap}
 @media(max-width:1000px){.company-split{grid-template-columns:1fr}.company-panel{position:static;max-height:none}}
 @media(max-width:760px){.company-chart{display:none}.reg-row{grid-template-columns:1fr;gap:3px}.company-legend{grid-template-columns:1fr}}
+
+/* Coverage range and the post-2000 extension */
+.range-toggle{display:inline-flex;align-items:center;gap:4px;margin-left:auto;font-size:11px}.range-toggle>span{color:var(--muted);margin-right:6px;letter-spacing:.6px;text-transform:uppercase;font-size:9.5px}
+.range-toggle a{text-decoration:none;padding:5px 9px;border:1px solid var(--line);border-radius:4px;background:#fffdf7}.range-toggle a[aria-pressed=true]{background:var(--green);color:#fff;border-color:var(--green)}
+.range-toggle:not([hidden])+.reset{margin-left:14px}
+.field .ext-zone{fill:#e7ead8;fill-opacity:.45}.field .ext-label{font:600 9.5px var(--sans);fill:#5b6a4c;letter-spacing:.3px}
+.field .cutoff{stroke:#7a6a3a;stroke-width:1;stroke-dasharray:2 4}.field .cutoff-label,.field .latest-label{font:9px var(--sans);fill:#7a6a3a}
+.field .intervention{fill:#b0853a;stroke:#fffdf7;stroke-width:1}.entry.dimmed .intervention{opacity:.25}.entry.selected .intervention,.entry.related .intervention{fill:#7c5a1e}
+.swatch.intervention{color:#8a6a2a}
+.ext-note{font-size:12.5px;background:#eef0e3;border-left:3px solid #b0853a;padding:8px 10px;border-radius:3px;margin:10px 0}
+.badge{display:inline-block;font:600 9.5px/1.4 var(--sans);letter-spacing:.4px;text-transform:uppercase;padding:3px 7px;border-radius:3px;background:#e9ece3;color:#3e4a42;margin-right:8px;vertical-align:middle}
+.badge.status-needs_review,.badge.status-release_candidate{background:#f3e6c9;color:#6b5218}.badge.status-accepted,.badge.status-partial_accepted,.badge.status-accepted_partial{background:#dfe9dd;color:#2f5140}.badge.status-provisional{background:#efe3d8;color:#7a4a2a}.badge.status-rejected{background:#eddcdc;color:#7a2f2f}
+.badge.check-passage_checked{background:#dfe9dd;color:#2f5140}.badge.check-abstract_checked,.badge.check-description_checked{background:#f3e6c9;color:#6b5218}.badge.check-metadata_checked{background:#e6e8ee;color:#3d4a66}.badge.check-not_checked{background:#eddcdc;color:#7a2f2f}
+.extension{margin-top:28px;padding:20px 22px;border:1px solid #d8d3b8;border-left:4px solid #b0853a;border-radius:6px;background:#fbf8ef}
+.ext-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.ext-head .eyebrow{margin:0}
+.work-card{margin-top:18px;padding-top:14px;border-top:1px solid #e3ddc6}.work-card h4{font:20px/1.3 var(--serif);margin:0 0 6px}
+.work-meta,.work-authors,.work-version{font-size:12.5px;margin:0 0 8px;color:#3e4a42}.work-title{font-style:italic}
+.claim-list{list-style:none;padding:0;margin:8px 0 0}.claim-card{background:#fffdf7;border:1px solid var(--line);border-radius:5px;padding:14px 16px;margin-bottom:10px;font-size:13px}
+.claim-head{display:flex;gap:10px;align-items:center;margin:0 0 8px;flex-wrap:wrap}.claim-year{font-size:11px;color:var(--muted)}
+.claim-endpoints{font-size:12.5px;color:#4a564e;margin:0 0 8px}.claim-endpoints em{font-style:normal;color:var(--muted);padding:0 4px}.claim-endpoints a{text-decoration:none}.claim-endpoints a:hover{text-decoration:underline}.concept{font-style:italic}
+.claim-statement{font:15px/1.6 var(--serif);margin:0 0 8px}.claim-qual{font-size:12px;color:#5a685f;margin:0 0 8px}
+.claim-evidence>summary{font-size:12px;cursor:pointer}.evidence-list{list-style:none;padding:0;margin:10px 0 0}.evidence-list li{border-top:1px solid #eceee5;padding:10px 0;font-size:12px}.evidence-list p{margin:0 0 6px}
+.ev-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.ev-scope{font-size:10.5px;color:var(--muted)}.ev-limit{color:#6b5218}
+.strand-year{display:inline-block;margin-left:10px;font-size:11px;color:#8a6a2a;font-weight:600}.strand-meta{font-size:12px;margin:6px 0 10px}.strand-claims>summary{font-size:12px}
+.strand-extension>summary{border-left:3px solid #b0853a;padding-left:8px}
+.entry-claims{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}.entry-claims>summary{font:18px var(--serif)}
+.strand-title{font-size:13px;margin:0 0 8px}
+@media(max-width:700px){.range-toggle{width:100%;margin:0 0 6px}.range-toggle a{font-size:10px;padding:4px 7px}}

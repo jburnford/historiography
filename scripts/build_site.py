@@ -1,4 +1,17 @@
-"""Build only explicitly approved public assets; never serve the repository root."""
+"""Build only explicitly approved public assets; never serve the repository root.
+
+Usage:
+  python3 scripts/build_site.py                      # production build into docs/
+  python3 scripts/build_site.py --graph P --dest D   # local preview of another graph file
+                                                     # (D must be under /tmp; never docs/)
+  python3 scripts/build_site.py --baseline P         # override the 2000 baseline graph file
+
+When the graph carries `scope.extension` and names an archived baseline graph in
+`scope.extension.baseline_graph` (or --baseline is given), the build also publishes that
+baseline, slimmed like the main graph, as `data/graph-2000.json`, and records the asset in
+the published `scope.extension.baseline_asset` so the site can offer an exact 2000 view.
+"""
+import argparse
 import json
 from pathlib import Path
 import shutil
@@ -22,6 +35,7 @@ DATA_ASSETS = {
     'historiography-1920-2000.json': 'data/graph.json',
     'seminar-pathways.json': 'data/pathways.json',
 }
+BASELINE_ASSET = 'data/graph-2000.json'   # published only when an archived baseline exists
 ASSETS = {**PAGE_ASSETS, **DATA_ASSETS}
 
 
@@ -87,41 +101,84 @@ def overlay_people_wikidata(payload):
     return applied
 
 
-def build():
-    graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
+def publish_graph(payload):
+    """Slim the journal catalogue and overlay accepted Wikidata identities; returns the payload."""
+    if 'journal_catalogue' in payload:
+        payload['journal_catalogue'] = slim_journal_catalogue(payload['journal_catalogue'])
+    if 'people' in payload:
+        enriched = overlay_people_wikidata(payload)
+        if enriched:
+            print(f'  {enriched} people carry Wikidata identities and life dates in the published copy')
+    return payload
+
+
+def build(graph_path=None, dest=None, baseline_path=None):
+    graph_path = Path(graph_path) if graph_path else ROOT / 'historiography-1920-2000.json'
+    dest = Path(dest).resolve() if dest else DEST
+    preview = dest != DEST
+    if preview and not str(dest).startswith('/tmp/'):
+        raise SystemExit('Preview builds must go under /tmp; docs/ is the production build only.')
+    graph = json.loads(graph_path.read_text())
     pathways = json.loads((ROOT / 'seminar-pathways.json').read_text())
     errors, _ = validate(graph, pathways)
     if errors:
         raise SystemExit('\n'.join(errors))
     # Refuse unexpected contents rather than silently publishing or deleting them.
-    if DEST.is_symlink():
+    if dest.is_symlink():
         raise SystemExit('Build directory must not be a symlink.')
-    existing = list(DEST.rglob('*')) if DEST.exists() else []
+    existing = list(dest.rglob('*')) if dest.exists() else []
     if any(p.is_symlink() for p in existing):
         raise SystemExit('Build output must not contain symlinks.')
-    unexpected = {str(p.relative_to(DEST)) for p in existing if p.is_file()} - set(ASSETS.values())
+    allowed = set(ASSETS.values()) | {BASELINE_ASSET}
+    unexpected = {str(p.relative_to(dest)) for p in existing if p.is_file()} - allowed
     if unexpected:
         raise SystemExit(f'Unexpected build contents; review before continuing: {sorted(unexpected)}')
     for source, target in PAGE_ASSETS.items():
-        out = DEST / target
+        out = dest / target
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / source, out)
+    # The 2000 baseline: an archived graph file, never a date filter over the current one.
+    extension = graph.get('scope', {}).get('extension')
+    baseline = None
+    if extension:
+        candidate = Path(baseline_path) if baseline_path else (
+            ROOT / extension['baseline_graph'] if extension.get('baseline_graph') else None)
+        if candidate and candidate.is_file():
+            baseline = json.loads(candidate.read_text())
+            b_errors, _ = validate(baseline, pathways)
+            if b_errors:
+                raise SystemExit('Baseline graph fails validation:\n' + '\n'.join(b_errors))
+        elif candidate:
+            print(f'  Baseline graph {candidate} not found; no 2000 view will be published')
+    published = 0
     for source, target in DATA_ASSETS.items():
-        out = DEST / target
+        out = dest / target
         out.parent.mkdir(parents=True, exist_ok=True)
-        payload = json.loads((ROOT / source).read_text())
-        if 'journal_catalogue' in payload:
-            payload['journal_catalogue'] = slim_journal_catalogue(payload['journal_catalogue'])
-        if 'people' in payload:
-            enriched = overlay_people_wikidata(payload)
-            if enriched:
-                print(f'  {enriched} people carry Wikidata identities and life dates in the published copy')
+        payload = graph if target == 'data/graph.json' else json.loads((ROOT / source).read_text())
+        payload = publish_graph(json.loads(json.dumps(payload)))
+        if target == 'data/graph.json' and extension:
+            payload['scope']['extension'] = {**extension, 'baseline_asset': BASELINE_ASSET if baseline else None}
         out.write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')))
-    published = (DEST / 'data' / 'graph.json').stat().st_size / 1024 / 1024
-    original = (ROOT / 'historiography-1920-2000.json').stat().st_size / 1024 / 1024
-    print(f'Built {len(ASSETS)} allowlisted files in {DEST.relative_to(ROOT)}/')
-    print(f'  graph.json published at {published:.2f} MB (dataset is {original:.2f} MB)')
+        published += 1
+    baseline_out = dest / BASELINE_ASSET
+    if baseline:
+        baseline_out.write_text(json.dumps(publish_graph(baseline), ensure_ascii=False, separators=(',', ':')))
+        published += 1
+        print(f'  2000 baseline published from {candidate.relative_to(ROOT) if candidate.is_relative_to(ROOT) else candidate}')
+    elif baseline_out.exists():
+        baseline_out.unlink()
+    size = (dest / 'data' / 'graph.json').stat().st_size / 1024 / 1024
+    original = graph_path.stat().st_size / 1024 / 1024
+    print(f'Built {len(PAGE_ASSETS) + published} allowlisted files in {dest if preview else DEST.relative_to(ROOT)}/')
+    print(f'  graph.json published at {size:.2f} MB (dataset is {original:.2f} MB)')
 
 
 if __name__ == '__main__':
-    build()
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--graph', help='graph file to build from (preview only; requires --dest under /tmp)')
+    ap.add_argument('--dest', help='output directory for a preview build (must be under /tmp)')
+    ap.add_argument('--baseline', help='archived baseline graph to publish as data/graph-2000.json')
+    args = ap.parse_args()
+    if bool(args.graph) != bool(args.dest):
+        ap.error('--graph and --dest go together')
+    build(args.graph, args.dest, args.baseline)

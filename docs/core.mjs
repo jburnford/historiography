@@ -82,6 +82,8 @@ export function readRoute(hash, graph, pathways) {
        register letter. Neither leaves the people tab. */
     hold: (graph.people || []).some(x => x.id === p.get('hold')) || graph.nodes.some(n => n.id === p.get('hold')) ? p.get('hold') : '',
     letter: /^[A-Z]$/.test(p.get('letter') || '') ? p.get('letter') : '',
+    /* `range=2000` opens the exact archived baseline graph instead of the current one. */
+    range: p.get('range') === '2000' ? '2000' : '',
     section: p.get('section') === 'connections' ? 'connections' : '',
     pathway: valid('pathway', pathways.pathways), layer: valid('layer', graph.layers),
     period: p.get('period') === 'unassigned' ? 'unassigned' : valid('period', graph.periods),
