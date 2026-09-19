@@ -13,7 +13,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly nine files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
+Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly nine files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`, plus `data/graph-2000.json` when an archived baseline graph is available for the extension view. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
 
 ## The field view (front door)
 
@@ -25,6 +25,17 @@ Every entry sits on one time axis, banded by layer, with linked journals in a fi
 - **Deaths and posthumous reception.** People with their own entry carry Wikidata identities and life dates in the published copy (`people[].wikidata`, `people[].life`), applied at build time from the reviewed sheet `data/people-wikidata.json`; the repository dataset is untouched and a `published_enrichment` note records the overlay. A person's mark gets a † at the death year when it falls inside the coverage limit, and the part of the mark after it is hatched as posthumous reception; the panel states birth, death, QID and retrieval date, and later deaths are stated there rather than drawn. Schools and fields never get a death marker. People cards and profiles show the life span under the name. See `feedback/wikidata-people-pilot-2026-09-17.md`.
 - **The text view** (`View · List`) groups the same entries by band, with a small time mark per row. Bands are open on wide screens and collapsed on narrow ones.
 - The hero is shown in full on the field and compressed to one line on every other view.
+
+## Coverage after 2000: the extension view
+
+The atlas's curated coverage ends in 2000. When the dataset carries `scope.extension`, the site offers two views of the same page, switched in the navigation bar and by `#range=2000`:
+
+- **Through 2000** loads `data/graph-2000.json`, an archived copy of the pre-release graph published by the build from the file named in `scope.extension.baseline_graph` (or `--baseline`). It is the exact baseline, never a date filter over the current graph, so the candidate's people, sources and strands are absent, not hidden.
+- **Through 2026 · partial** is the current graph. The field's axis stretches to `proposed_view_period[1]`; every mark keeps its own recorded coverage and still fades into the 2000 wall. Beyond the wall, a shaded zone names how many entries have selected interventions, a dashed line marks the research cutoff (a date of reading, not an ending), and the latest selected publication is labelled. Entries with `extension_coverage` get one ◆ per selected publication year on their own row, apart from the original mark. Nothing else is extended.
+
+On an entry with `extension_coverage`, a section "After 2000 · selected interventions" states the status (release candidate or accepted), the years, the cutoff and that the field is not reviewed through it, then one card per work: every credited author, the consulted version with its own year (the intervention keeps its original date), and each historical claim from the claim catalogue with review status, exact subject and object, statement, qualification, intervention year and its evidence joins: locator, check status (passage, abstract only, description, metadata), support, limitation and the witness URL. Capture paths stay in the repository and are never fetched. Work-based strands show their intervention year and claims; a person's profile lists the approaches that name them, so a legacy roster record and a later work sit side by side. Edges with `claim_ids` show their underlying claim, exact endpoints and, where the target is a strand, which strand.
+
+`tests/test_site_extension.py` builds a preview of the release candidate, serves it, and checks the renderer cases: exact baseline counts, the partial domain, four and five coauthors, 2006 versus a 2020 reprint, abstract-only evidence labelled as such, Ian Gregory's 2007 strand, and no research captures in the public build.
 
 ## Historians & contributors: the company they keep
 
