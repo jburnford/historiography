@@ -20,7 +20,7 @@ class PeopleValidationTests(unittest.TestCase):
 
     def test_every_group_has_resolving_qualified_representatives(self):
         self.assertEqual(self.errors(), [])
-        self.assertEqual(sum(n['entry_kind'] == 'group' for n in self.graph['nodes']), 75)
+        self.assertEqual(sum(n['entry_kind'] == 'group' for n in self.graph['nodes']), 77)
 
     def test_unknown_people_and_duplicate_memberships_are_rejected(self):
         self.group['representative_people'].append(copy.deepcopy(self.group['representative_people'][0]))

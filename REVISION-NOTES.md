@@ -1,3 +1,11 @@
+# Revision 1.123: revised digital/web selection accepted
+
+Added Digital history and Web history / Archived-web research from the reviewed candidate after the user identified overcorrection in the earlier digital selection. Substantive practitioner contributions, projects, computational methods and public history sit alongside retained critical scholarship; no demographic quota or inferred gender classification. Thomas's own contribution and Leon's specific critique coexist. All coauthors, evidence limits and publication/reception/version distinctions survive.
+
+Seventeen selected works, twenty-seven historical claims (twenty-three passage/four abstract), thirty-one author credits, two version links, twenty contextual strands and twenty-six new shared people. Current totals: **128 entries, 765 edges, 885 sources, 876 people and 767 strands**. Zero structural errors, four existing endpoint/type warnings and two expected unconnected new entries. No new teaching arrows. Thirty-eight Python tests and the JavaScript core suite pass; the unchanged site builder rebuilt the allowlisted local assets. No remote deployment.
+
+Exact 1.122 graph and prior public graph archived; frozen research and previous graph objects preserved. The exact 2000 view remains 1.121, alongside the accepted medical/geographical selection from 1.122. See [acceptance and handoff](data/production-batches/extension-1.123/README.md). Neither new field is comprehensively reviewed through 2026; the coverage ledger now tracks 77 current topics and the unchanged 37 discovery candidates.
+
 # Revision 1.121: requested historian and field connections
 
 Added Geoff Eley to New social history with Keith Nield's coauthor credit; E. A. Wrigley to Economic history; Maxine Berg to Consumption & material culture with Helen Clifford's coeditor credit; and new shared person Paul E. Lovejoy to African and Atlantic/diaspora histories. Wallerstein's existing world-systems context now uses the historian/practitioner role. Other contexts, existing strands and qualifications survive; Lovejoy is distinct from Arthur O. Lovejoy.

@@ -1,0 +1,246 @@
+[
+  {
+    "entity_id": "candidate-concept:digital_history",
+    "action": "retain_digital07_concept_record",
+    "previous_breadth_record": {
+      "id": "candidate-concept:digital_history",
+      "label": "Digital history",
+      "type": "concept",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "candidate_ledger_ids": [
+        "digital_history"
+      ],
+      "existing_entry_id": null,
+      "qualification": "Digital history, computational history and digital humanities remain separate candidate identities; their relations require historical argument."
+    },
+    "retained_record": {
+      "id": "candidate-concept:digital_history",
+      "label": "Digital history",
+      "type": "concept",
+      "concept_kind": [
+        "topic"
+      ],
+      "candidate_ledger_id": "digital_history",
+      "classification_status": "provisional"
+    }
+  },
+  {
+    "entity_id": "candidate-concept:web_history",
+    "action": "retain_digital07_concept_record",
+    "previous_breadth_record": {
+      "id": "candidate-concept:web_history",
+      "label": "Web history",
+      "type": "concept",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "candidate_ledger_ids": [
+        "web_history"
+      ],
+      "existing_entry_id": null,
+      "qualification": "Distinguish histories using archived web evidence from histories of the web itself; neither is interchangeable with all digital history."
+    },
+    "retained_record": {
+      "id": "candidate-concept:web_history",
+      "type": "concept",
+      "label": "Web history and source criticism of archived web evidence",
+      "concept_kind": [
+        "topic"
+      ],
+      "candidate_ledger_id": "web_history",
+      "classification_status": "provisional"
+    }
+  },
+  {
+    "entity_id": "work:romein_2020",
+    "action": "add_author_date_navigation_metadata",
+    "previous_record": {
+      "id": "work:romein_2020",
+      "label": "State of the Field: Digital History",
+      "type": "work",
+      "identity_status": "work_candidate_not_authority_merge",
+      "selected_survey_id": "romein_2020",
+      "reuse_note": "Unresolved work proposal",
+      "intervention_year_observation": 2020,
+      "date_note": null,
+      "doi_lead": "10.1111/1468-229X.12969"
+    }
+  },
+  {
+    "entity_id": "work:milligan_2022",
+    "action": "add_author_date_navigation_metadata",
+    "previous_record": {
+      "id": "work:milligan_2022",
+      "label": "The Transformation of Historical Research in the Digital Age",
+      "type": "work",
+      "identity_status": "work_candidate_not_authority_merge",
+      "selected_survey_id": "milligan_2022",
+      "reuse_note": "Unresolved work proposal",
+      "intervention_year_observation": 2022,
+      "date_note": null,
+      "doi_lead": null
+    }
+  },
+  {
+    "entity_id": "work:milligan_2019",
+    "action": "add_author_date_navigation_metadata",
+    "previous_record": {
+      "id": "work:milligan_2019",
+      "label": "History in the Age of Abundance? How the Web Is Transforming Historical Research",
+      "type": "work",
+      "identity_status": "work_candidate_not_authority_merge",
+      "selected_survey_id": "milligan_2019",
+      "reuse_note": "Unresolved work proposal",
+      "intervention_year_observation": 2019,
+      "date_note": null,
+      "doi_lead": null
+    }
+  },
+  {
+    "entity_id": "work:brugger_2018",
+    "action": "add_author_date_navigation_metadata",
+    "previous_record": {
+      "id": "work:brugger_2018",
+      "label": "The Archived Web: Doing History in the Digital Age",
+      "type": "work",
+      "identity_status": "work_candidate_not_authority_merge",
+      "selected_survey_id": "brugger_2018",
+      "reuse_note": "Unresolved work proposal",
+      "intervention_year_observation": 2018,
+      "date_note": null,
+      "doi_lead": null
+    }
+  },
+  {
+    "entity_id": "work:thomas_computing_2004",
+    "action": "add_author_date_navigation_metadata",
+    "previous_record": {
+      "id": "work:thomas_computing_2004",
+      "label": "Computing and the Historical Imagination",
+      "type": "work",
+      "identity_status": "local_work_proposal",
+      "reuse_note": "No external identity accepted"
+    }
+  },
+  {
+    "claim_id": "claim:breadth:milligan_2022",
+    "action": "append_evidence_without_rewriting_prior_claim",
+    "previous_record": {
+      "id": "claim:breadth:milligan_2022",
+      "subject": "work:milligan_2022",
+      "predicate": "assesses_scope",
+      "object": "candidate-concept:digital_history",
+      "statement": "Milligan treats search, digitization and online scholarly practice as changes affecting ordinary historical research, not only specialist computational projects.",
+      "attributed_to": "work:milligan_2022",
+      "basis": "editorial_interpretation",
+      "qualification": "Source-specific assessment, not a definition of the whole field. Digital history, computational history and digital humanities remain separate candidate identities; their relations require historical argument.",
+      "intervention_year": 2022,
+      "valid_time": null,
+      "review": {
+        "status": "needs_review",
+        "rationale": "First breadth reading; external identity, argument and reception review incomplete."
+      },
+      "history": [
+        {
+          "date": "2026-09-18",
+          "action": "proposed",
+          "reason": "Selected evidence; no graph admission"
+        }
+      ],
+      "evidence": [
+        {
+          "source_record_id": "source:breadth:milligan_2022",
+          "locator": "Publisher summary",
+          "scope": "metadata",
+          "support": "Milligan treats search, digitization and online scholarly practice as changes affecting ordinary historical research, not only specialist computational projects.",
+          "check_status": "description_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Limited to description checked; inspect the relevant body text before a stronger claim. No reception inferred.",
+          "support_assessment": "not_established"
+        }
+      ]
+    }
+  },
+  {
+    "claim_id": "claim:breadth:milligan_2019",
+    "action": "append_evidence_without_rewriting_prior_claim",
+    "previous_record": {
+      "id": "claim:breadth:milligan_2019",
+      "subject": "work:milligan_2019",
+      "predicate": "assesses_scope",
+      "object": "candidate-concept:web_history",
+      "statement": "Milligan develops research questions around large web archives and the problems created by abundant born-digital evidence.",
+      "attributed_to": "work:milligan_2019",
+      "basis": "editorial_interpretation",
+      "qualification": "Source-specific assessment, not a definition of the whole field. Distinguish histories using archived web evidence from histories of the web itself; neither is interchangeable with all digital history.",
+      "intervention_year": 2019,
+      "valid_time": null,
+      "review": {
+        "status": "needs_review",
+        "rationale": "First breadth reading; external identity, argument and reception review incomplete."
+      },
+      "history": [
+        {
+          "date": "2026-09-18",
+          "action": "proposed",
+          "reason": "Selected evidence; no graph admission"
+        }
+      ],
+      "evidence": [
+        {
+          "source_record_id": "source:breadth:milligan_2019",
+          "locator": "Publisher-distributor description",
+          "scope": "metadata",
+          "support": "Milligan develops research questions around large web archives and the problems created by abundant born-digital evidence.",
+          "check_status": "description_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Limited to description checked; inspect the relevant body text before a stronger claim. No reception inferred.",
+          "support_assessment": "not_established"
+        }
+      ]
+    }
+  },
+  {
+    "claim_id": "claim:breadth:romein_2020",
+    "action": "append_evidence_without_rewriting_prior_claim",
+    "previous_record": {
+      "id": "claim:breadth:romein_2020",
+      "subject": "work:romein_2020",
+      "predicate": "assesses_scope",
+      "object": "candidate-concept:digital_history",
+      "statement": "Romein and colleagues distinguish successive computing practices and stress that corpus composition and changing meanings constrain quantitative text analysis.",
+      "attributed_to": "work:romein_2020",
+      "basis": "editorial_interpretation",
+      "qualification": "Source-specific assessment, not a definition of the whole field. Digital history, computational history and digital humanities remain separate candidate identities; their relations require historical argument.",
+      "intervention_year": 2020,
+      "valid_time": null,
+      "review": {
+        "status": "needs_review",
+        "rationale": "First breadth reading; external identity, argument and reception review incomplete."
+      },
+      "history": [
+        {
+          "date": "2026-09-18",
+          "action": "proposed",
+          "reason": "Selected evidence; no graph admission"
+        }
+      ],
+      "evidence": [
+        {
+          "source_record_id": "source:breadth:romein_2020",
+          "locator": "Opening chronology and Quantitative Text Analysis, extracted lines 326–334",
+          "scope": "passage",
+          "support": "Romein and colleagues distinguish successive computing practices and stress that corpus composition and changing meanings constrain quantitative text analysis.",
+          "check_status": "passage_checked",
+          "checked_on": "2026-09-18",
+          "limitation": "Only the indicated passages were checked; not a complete review or proof of reception.",
+          "support_assessment": "bounded_proposal"
+        }
+      ]
+    }
+  }
+]
