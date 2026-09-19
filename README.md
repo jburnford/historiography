@@ -3,13 +3,13 @@
 **Public beta.** An interactive, deliberately contestable map of historiography, 1920–2000 with
 earlier roots and a partial post-2000 extension, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
-The site opens on **the field**: all 126 entries on a single time axis, banded by
+The site opens on **the field**: all 128 entries on a single time axis, banded by
 kind. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.122** (schema 1.4): 126 entries,
-765 teaching relationships, 855 bibliography records, 850
+Production data revision **1.123** (schema 1.4): 128 entries,
+765 teaching relationships, 885 bibliography records, 876
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
@@ -18,11 +18,13 @@ Fable owns the website rebuild. The [latest data handoff](data/production-batche
 
 The [first partial post-2000 release](data/production-batches/extension-1.122/README.md) accepts nine medical-history and historical-geography works, twelve scoped historical claims and all coauthor credits. Fable's extension display and exact 2000 baseline view have passed browser checks. The local production build is ready; this integration has not been remotely deployed. The wider 2026 phase remains incomplete.
 
+The [digital/web release](data/production-batches/extension-1.123/README.md) adds two field entries, seventeen selected works and twenty-seven historical claims. The revised selection includes practitioners' projects, computational methods, public history and critical scholarship. All coauthors, evidence limits and distinct publication/reception dates remain visible. The exact 2000 view still uses revision 1.121; none of the four extended fields is comprehensively reviewed through 2026.
+
 ## How to read the map
 
-- **Marks show arrival and influence, not a lifespan.** A left cap is the arrival; a tapering
-  tail means the field carried on, less prominently, to the edge of what the atlas covers.
-  A bar that stops at 1979 is not a claim that anything ended in 1979.
+- **Marks show the dated milestones or qualified spans stated in each entry.** Selected
+  publication dates do not establish a field's origin or endpoint. Earlier roots can remain
+  open; a fading end does not measure declining influence.
 - **Colour is the kind of relationship**, not the kind of entry. Critique, contribution,
   influence and comparison are distinguished, and only directed claims get arrows.
 - **The dashed wall at 2000** marks the original coverage boundary. Selected later interventions
@@ -54,7 +56,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current draft, 126 entries, 765 interpretive relationships, 855 bibliography records, and 850 people.
+- `historiography-1920-2000.json`: current graph, 128 entries, 765 interpretive relationships, 885 bibliography records, and 876 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.

@@ -1,5 +1,13 @@
 # Teaching graph format, schema 1.4
 
+## Digital/web extension (revision 1.123)
+
+Current totals: **128 entries (77 groups, 51 people), 765 teaching relationships, 885 sources, 876 shared people and 767 strands**. Two new fields add seventeen selected works, twenty-seven historical claims, thirty-one author credits and two version links. See the [acceptance record](data/production-batches/extension-1.123/README.md). Existing records are unchanged; no new teaching arrows were inferred.
+
+`scope.extension.acceptance_record` names the latest integration, while optional `acceptance_records` retains both release records. The exact-2000 `baseline_graph`, `baseline_revision` and `baseline_sha256` still point to **1.121**; the pre-integration archive **1.122** serves a different purpose. Never replace the historical-view baseline with a later partial-extension snapshot.
+
+New entry `date_label` and curated `date_span.basis` explicitly identify selected publication milestones with earlier roots open, not field origins or endpoints. New strand `work_publication_year` retains the work date while `intervention_year` can identify its later documented reception. Accepted coverage remains partial; all four extended fields have `field_review_complete: false`.
+
 ## Partial post-2000 extension (revision 1.122)
 
 Current totals: **126 entries, 765 teaching relationships, 855 sources and 850 shared people**. Nine works, twelve historical claims, eighteen author credits and a separate reprint assertion extend medical history and historical geography. Nine strands are additive; no new teaching edges. See the [acceptance record](data/production-batches/extension-1.122/README.md). Earlier counts below are historical.

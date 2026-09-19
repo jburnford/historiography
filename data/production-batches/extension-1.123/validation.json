@@ -1,0 +1,62 @@
+{
+  "revision": "1.123",
+  "checked_on": "2026-09-19",
+  "structural_errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Unconnected node: digital_history",
+    "Unconnected node: web_history"
+  ],
+  "python_tests": {
+    "passed": 38,
+    "skipped_after_acceptance": 0,
+    "suite": "tests.test_digital_acceptance tests.test_digital_acceptance_browser tests.test_extension_acceptance tests.test_graph_validation tests.test_people_validation",
+    "execution_note": "37 cases in the post-import suite passed; the subsequently added coverage-ledger case passed separately. Six accepted-browser cases included; no post-import skips.",
+    "resolved_test_issue": "Initial badge-status assertion expected title case; browser text is uppercase. Normalized case in the assertion and reran successfully."
+  },
+  "javascript_core": "node --test tests/test_site_core.mjs passed",
+  "production_checks": {
+    "current_acceptance": "exact 1.123 reconstruction passed",
+    "previous_acceptance": "archived exact 1.122 reconstruction passed",
+    "frozen_candidate": "exact archived graph and public-build pin resolution passed"
+  },
+  "counts": {
+    "nodes": 128,
+    "groups": 77,
+    "edges": 765,
+    "sources": 885,
+    "people": 876,
+    "strands": 767
+  },
+  "build": {
+    "allowlisted_file_count": 10,
+    "changed_files": [
+      "docs/data/graph.json"
+    ],
+    "matches_browser_checked_preview": true,
+    "public_hashes": {
+      "docs/.nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "docs/app.js": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+      "docs/core.mjs": "a618aaba92bd241ce420c170c661251740ae5d2503f2ce656bf69b0f7efab3af",
+      "docs/data/graph-2000.json": "1114aeb78445d46d6537bef07b30118670b2754b1c5398cb1fe6be6031d52364",
+      "docs/data/graph.json": "9b9624ee580e842bd7e4a219abba3e866c166ab29a2dcd97dc76dfd6bc3a83c7",
+      "docs/data/pathways.json": "24cf4a39b4628fa51f2198dedb036cd107a6e46edde71c68921e7de67283f63c",
+      "docs/field.mjs": "5641ac55f2f6f5138461312b19fbec1678fd09d35371b7507adb648a4b845702",
+      "docs/index.html": "ba389df9c1d94aee4a9112f90fc49dab625160f62b868d851f16b8818239090e",
+      "docs/people.mjs": "43d32fb27565eec1db26c1e5698a3d0298138e94144cb972488f89a2b8158641",
+      "docs/styles.css": "b85d27aac52be4bb68ef9a10fd56fb857f9e9923a9f520e63e64365d4ecf6bd4"
+    },
+    "raw_research_in_output": false
+  },
+  "preservation": {
+    "prior_nodes_exact": true,
+    "prior_edges_exact": true,
+    "exact_2000_revision": "1.121",
+    "website_source_and_builder_unchanged": true,
+    "research_packets_and_manifests_unchanged": true
+  },
+  "remote_deployment": false
+}

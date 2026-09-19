@@ -22,6 +22,12 @@ def baseline_path():
     return BASE if BASE.exists() else GRAPH
 
 
+def accepted_path():
+    """A later release preserves 1.122 as an archive; check that exact accepted state."""
+    archive = ROOT / 'drafts/historiography-1920-2000.v1.122.json'
+    return archive if archive.exists() else GRAPH
+
+
 def verify_frozen():
     """Resolve the old live-graph pin to its exact archive after acceptance."""
     for manifest in (candidate.OUT / 'baseline.json', candidate.OUT / 'manifest.json',
@@ -147,9 +153,9 @@ def main():
     for name, digest in record['frozen_inputs'].items():
         if sha(ROOT / name) != digest:
             raise ValueError('Accepted input changed: ' + name)
-    if sha(BASE) != record['baseline_sha256'] or sha(GRAPH) != record['production_sha256']:
+    if sha(BASE) != record['baseline_sha256'] or sha(accepted_path()) != record['production_sha256']:
         raise ValueError('Accepted graph or archive hash differs')
-    verify_accepted(read(GRAPH), expected)
+    verify_accepted(read(accepted_path()), expected)
     errors, warnings = candidate.validate(expected, read(ROOT / 'seminar-pathways.json'))
     print(serial(dict(revision='1.122', errors=errors, warnings=warnings,
                      totals={k: len(expected[k]) for k in ('nodes', 'edges', 'sources', 'people')})), end='')

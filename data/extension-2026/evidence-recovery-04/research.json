@@ -1,0 +1,392 @@
+{
+  "schema_version": "recovery_recipe_1",
+  "cutoff": "2026-09-18",
+  "assembled_at": "2026-09-19T01:42:32+00:00",
+  "base_packet": "data/extension-2026/earth-indigenous-03/batch.json",
+  "sources": [
+    {
+      "id": "source:recovery04:kearns_body",
+      "capture": "raw/kearns-body.json",
+      "url": "https://www.researchgate.net/publication/392725253_Everyday_Climates_Household_Archaeologies_and_the_Politics_of_Scale",
+      "provider": "MDPI-supplied author article; selected body paragraphs",
+      "describes_work": "work:kearns_2025"
+    },
+    {
+      "id": "source:recovery04:plumwood",
+      "capture": "raw/recoveries.json",
+      "url": "https://australianhumanitiesreview.org/2007/08/01/a-review-of-deborah-bird-roses-reports-from-a-wild-country-ethics-for-decolonisation/",
+      "provider": "Australian Humanities Review; author's review",
+      "describes_work": "work:plumwood_rose_review_2007"
+    },
+    {
+      "id": "source:recovery04:watts",
+      "capture": "raw/recoveries.json",
+      "url": "https://ikdll.nau.edu/id/eprint/80/1/titusland,%2BWatts%2BFinal.pdf",
+      "provider": "Northern Arizona University repository; published article",
+      "describes_work": "work:watts_place_thought_2013"
+    },
+    {
+      "id": "source:recovery04:watts_reception",
+      "capture": "raw/gallini-davis-passages.json",
+      "url": "https://warwick.ac.uk/fac/arts/english/currentstudents/postgraduate/masters/modules/en9b5worldlitanthropocene/davis_and_todd-decolonising_the_anthropocene.pdf",
+      "provider": "Warwick-hosted ACME article, explicit use of Watts",
+      "describes_work": "work:davis_todd_2017"
+    },
+    {
+      "id": "source:recovery04:whyte_draft",
+      "capture": "raw/whyte-manuscript.json",
+      "url": "https://www.researchgate.net/publication/314114488_Indigenous_Climate_Change_Studies_Indigenizing_Futures_Decolonizing_the_Anthropocene",
+      "provider": "Author-uploaded February 2017 manuscript; final version not collated",
+      "describes_work": "work:whyte_climate_studies_2017",
+      "describes_version": "version:whyte_climate_studies_2017_february"
+    },
+    {
+      "id": "source:recovery04:whyte_metadata",
+      "capture": "raw/discovery.json",
+      "url": "https://doi.org/10.1215/00138282-55.1-2.153",
+      "provider": "Indexed Duke publisher metadata, separate from manuscript",
+      "describes_work": "work:whyte_climate_studies_2017"
+    },
+    {
+      "id": "source:recovery04:gallini",
+      "capture": "raw/gallini-full.json",
+      "url": "https://dialnet.unirioja.es/descarga/articulo/5508109.pdf",
+      "provider": "University of La Rioja repository; published Spanish article",
+      "describes_work": "work:gallini_environment_2009"
+    },
+    {
+      "id": "source:recovery04:rose_cv",
+      "capture": "raw/rose-catalogue.json",
+      "url": "https://unsw.academia.edu/DeborahRose/CurriculumVitae",
+      "provider": "CV on author's profile, title metadata only",
+      "describes_work": "work:rose_2004"
+    },
+    {
+      "id": "source:recovery04:gallini_frontmatter",
+      "capture": "raw/gallini-frontmatter.json",
+      "url": "https://dialnet.unirioja.es/descarga/articulo/5508109.pdf",
+      "provider": "Published Nómadas article title page in university repository",
+      "describes_work": "work:gallini_environment_2009"
+    }
+  ],
+  "people": [
+    {
+      "id": "person:val_plumwood",
+      "type": "person",
+      "label": "Val Plumwood",
+      "identity_status": "local_candidate_no_external_match",
+      "gender": {
+        "value": null,
+        "status": "not_researched"
+      }
+    },
+    {
+      "id": "person:vanessa_watts",
+      "type": "person",
+      "label": "Vanessa Watts",
+      "identity_status": "local_candidate_no_external_match",
+      "gender": {
+        "value": null,
+        "status": "not_researched"
+      }
+    },
+    {
+      "id": "person:kyle_whyte",
+      "type": "person",
+      "label": "Kyle Whyte",
+      "identity_status": "local_candidate_no_external_match",
+      "gender": {
+        "value": null,
+        "status": "not_researched"
+      }
+    },
+    {
+      "id": "person:stefania_gallini",
+      "type": "person",
+      "label": "Stefania Gallini",
+      "identity_status": "local_candidate_no_external_match",
+      "gender": {
+        "value": null,
+        "status": "not_researched"
+      }
+    }
+  ],
+  "works": [
+    {
+      "id": "work:plumwood_rose_review_2007",
+      "type": "work",
+      "label": "A review of Deborah Bird Rose’s ‘Reports from a Wild Country: Ethics for Decolonisation’",
+      "publication_year_observation": 2007,
+      "author_ids": [
+        "person:val_plumwood"
+      ],
+      "identity_status": "local_work_proposal",
+      "source": "source:recovery04:plumwood",
+      "date_note": "AHR 42 (August 2007); source URL dated 1 August. Review is an independent reception witness, not Rose's book.",
+      "language": "en",
+      "field_navigation_ids": [
+        "environment",
+        "indigenous"
+      ],
+      "candidate_navigation_ids": [],
+      "credit_locator": "Review byline and closing Issue 42 link; HTML lines 2–3, 30–41"
+    },
+    {
+      "id": "work:watts_place_thought_2013",
+      "type": "work",
+      "label": "Indigenous place-thought & agency amongst humans and non-humans (First Woman and Sky Woman go on a European world tour!)",
+      "publication_year_observation": 2013,
+      "author_ids": [
+        "person:vanessa_watts"
+      ],
+      "identity_status": "local_work_proposal",
+      "source": "source:recovery04:watts",
+      "date_note": "Decolonization: Indigeneity, Education & Society 2(1), 20–34 (2013); repository deposit in 2025 does not redate the work.",
+      "language": "en",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "more_than_human"
+      ],
+      "credit_locator": "Published PDF p. 20, title and byline"
+    },
+    {
+      "id": "work:whyte_climate_studies_2017",
+      "type": "work",
+      "label": "Indigenous Climate Change Studies: Indigenizing Futures, Decolonizing the Anthropocene",
+      "publication_year_observation": 2017,
+      "author_ids": [
+        "person:kyle_whyte"
+      ],
+      "identity_status": "local_work_proposal",
+      "source": "source:recovery04:whyte_draft",
+      "date_note": "Published ELN 55(1–2), 153–162 (2017), DOI 10.1215/00138282-55.1-2.153; readings use the author's February 2017 manuscript, not final pagination.",
+      "language": "en",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "climate"
+      ],
+      "credit_locator": "Manuscript p. 1, byline; rendered lines 43–49"
+    },
+    {
+      "id": "work:gallini_environment_2009",
+      "type": "work",
+      "label": "Historia, ambiente, política: el camino de la historia ambiental en América Latina",
+      "publication_year_observation": 2009,
+      "author_ids": [
+        "person:stefania_gallini"
+      ],
+      "identity_status": "local_work_proposal",
+      "source": "source:recovery04:gallini",
+      "date_note": "Nómadas 30 (April 2009), 92–102; author is identified on article p. 92.",
+      "language": "es",
+      "field_navigation_ids": [
+        "environment"
+      ],
+      "candidate_navigation_ids": [],
+      "credit_locator": "PDF p. 92 title/byline; metadata independently present in discovery.json"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "concept:recovery04:place_thought",
+      "type": "concept",
+      "label": "Place-Thought in Watts's Haudenosaunee and Anishnaabe account",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "more_than_human"
+      ]
+    },
+    {
+      "id": "concept:recovery04:human_only_agency",
+      "type": "concept",
+      "label": "Restriction of social agency to humans in the frame criticized by Watts",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "more_than_human"
+      ]
+    },
+    {
+      "id": "concept:recovery04:indigenous_climate_studies",
+      "type": "concept",
+      "label": "Whyte's provisional Indigenous climate change studies programme",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "climate"
+      ]
+    },
+    {
+      "id": "concept:recovery04:colonial_climate_vulnerability",
+      "type": "concept",
+      "label": "Climate vulnerability interpreted through continuing colonial disruption",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "field_navigation_ids": [
+        "indigenous",
+        "environment"
+      ],
+      "candidate_navigation_ids": [
+        "climate"
+      ]
+    },
+    {
+      "id": "concept:recovery04:latin_american_environmental_practice",
+      "type": "concept",
+      "label": "Environmental historical practice in Gallini's Latin American review",
+      "concept_kind": [
+        "topic"
+      ],
+      "classification_status": "provisional",
+      "field_navigation_ids": [
+        "environment"
+      ],
+      "candidate_navigation_ids": []
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim:recovery04:plumwood_rose_reception",
+      "subject": "work:plumwood_rose_review_2007",
+      "predicate": "assesses_scope",
+      "object": "work:rose_2004",
+      "statement": "Plumwood appraises Rose’s book as offering a dialogical, recuperative approach to culture and ecological sustainability.",
+      "qualification": "A specific published reception in 2007. This supports Plumwood's reading, not a first-hand check of Rose's book or field-wide influence.",
+      "intervention_year": 2007,
+      "source_record_id": "source:recovery04:plumwood",
+      "attributed_to": "work:plumwood_rose_review_2007",
+      "locator": "Review HTML lines 11–18"
+    },
+    {
+      "id": "claim:recovery04:watts_place_thought",
+      "subject": "work:watts_place_thought_2013",
+      "predicate": "defines_scope",
+      "object": "concept:recovery04:place_thought",
+      "statement": "Watts defines Place-Thought through the inseparability of land and thought, with human and non-human agency arising within those relations.",
+      "qualification": "Read as Watts's Haudenosaunee and Anishnaabe framing; she expressly says the diagram is not a universal model of all Indigenous peoples.",
+      "intervention_year": 2013,
+      "source_record_id": "source:recovery04:watts",
+      "attributed_to": "work:watts_place_thought_2013",
+      "locator": "pp. 21–23; PDF pages 2–4; lines 41–63, 83–101"
+    },
+    {
+      "id": "claim:recovery04:watts_agency_critique",
+      "subject": "work:watts_place_thought_2013",
+      "predicate": "critiques",
+      "object": "concept:recovery04:human_only_agency",
+      "statement": "Watts challenges colonial framings that separate theory from place and diminish the agency of non-human beings.",
+      "qualification": "Specific contrast developed in this article; not rejection of every Western thinker or equivalence of all Indigenous philosophies.",
+      "intervention_year": 2013,
+      "source_record_id": "source:recovery04:watts",
+      "attributed_to": "work:watts_place_thought_2013",
+      "locator": "pp. 22–24; PDF pages 3–5; lines 73–87, 102–141"
+    },
+    {
+      "id": "claim:recovery04:watts_davis_todd_uptake",
+      "subject": "work:watts_place_thought_2013",
+      "predicate": "contributes_to",
+      "object": "work:davis_todd_2017",
+      "statement": "Davis and Todd explicitly draw their connection of flesh and land from Watts and use Place-Thought against separating knowledge from the geosphere and biosphere.",
+      "qualification": "Documented use in this particular 2017 coauthored article, not influence inferred from a citation count or a link to all Anthropocene scholarship.",
+      "intervention_year": 2017,
+      "source_record_id": "source:recovery04:watts_reception",
+      "attributed_to": "work:davis_todd_2017",
+      "locator": "p. 767 note 7 and pp. 769–770; PDF pages 7, 9–10; lines 266–267, 327–352"
+    },
+    {
+      "id": "claim:recovery04:whyte_programme",
+      "subject": "work:whyte_climate_studies_2017",
+      "predicate": "proposes_programme",
+      "object": "concept:recovery04:indigenous_climate_studies",
+      "statement": "Whyte provisionally names a programme connecting Indigenous histories and knowledge renewal with self-determined climate planning and future-making.",
+      "qualification": "Author's February 2017 manuscript; a scholarly programme crossing several practices, not an accepted new historiographical school. Final published wording remains uncollated.",
+      "intervention_year": 2017,
+      "source_record_id": "source:recovery04:whyte_draft",
+      "attributed_to": "work:whyte_climate_studies_2017",
+      "locator": "Manuscript p. 1; rendered lines 52–120"
+    },
+    {
+      "id": "claim:recovery04:whyte_colonial_history",
+      "subject": "work:whyte_climate_studies_2017",
+      "predicate": "assesses_scope",
+      "object": "concept:recovery04:colonial_climate_vulnerability",
+      "statement": "Whyte situates Indigenous climate vulnerability within continuing colonial environmental disruptions rather than an exclusively future crisis.",
+      "qualification": "Attribution to this manuscript's historical argument; does not substitute a general description for evidence about each community.",
+      "intervention_year": 2017,
+      "source_record_id": "source:recovery04:whyte_draft",
+      "attributed_to": "work:whyte_climate_studies_2017",
+      "locator": "Manuscript pp. 2–4; rendered lines 136–163 and 310–330"
+    },
+    {
+      "id": "claim:recovery04:gallini_scope",
+      "subject": "work:gallini_environment_2009",
+      "predicate": "assesses_scope",
+      "object": "concept:recovery04:latin_american_environmental_practice",
+      "statement": "Gallini distinguishes theoretical-methodological, cultural, and world-economy approaches in environmental history produced in Latin America.",
+      "qualification": "English research paraphrase of Spanish text. The survey stresses recent Colombian production and disclaims exhaustive coverage; it is a 2009 interpretation.",
+      "intervention_year": 2009,
+      "source_record_id": "source:recovery04:gallini",
+      "attributed_to": "work:gallini_environment_2009",
+      "locator": "p. 94; PDF page 3; lines 151–186"
+    },
+    {
+      "id": "claim:recovery04:gallini_archives_scale",
+      "subject": "work:gallini_environment_2009",
+      "predicate": "qualifies",
+      "object": "concept:recovery04:latin_american_environmental_practice",
+      "statement": "Gallini notes that state-organized archives and the costs of transnational research can keep environmental histories within national analytical units.",
+      "qualification": "English research paraphrase of Spanish pp. 95–96; this diagnoses practical constraints without declaring all regional research nationally bounded.",
+      "intervention_year": 2009,
+      "source_record_id": "source:recovery04:gallini",
+      "attributed_to": "work:gallini_environment_2009",
+      "locator": "pp. 95–96; PDF pages 4–5; lines 277–345"
+    }
+  ],
+  "evidence_updates": [
+    {
+      "claim_id": "claim:earth:kearns_programme",
+      "source_record_id": "source:recovery04:kearns_body",
+      "locator": "Article pp. 2–3, introduction; rendered lines 326–453",
+      "qualification": "Selected introduction passages checked in the publisher-supplied reproduction, including gendered production and the limits of household evidence. Not a whole-article reading or a reception claim.",
+      "reason": "Body passage now checked; retain prior abstract citation and exact claim ID."
+    }
+  ],
+  "metadata_reviews": [
+    {
+      "entity_id": "work:rose_2004",
+      "source_record_ids": [
+        "source:recovery04:rose_cv",
+        "source:recovery04:plumwood"
+      ],
+      "finding": "The author's CV and Plumwood's 2007 review both use Ethics for Decolonisation. Retain this working subtitle; the publisher's 'of' variant survives in the original record. Physical title page remains unchecked.",
+      "status": "metadata_corroborated_title_page_pending"
+    }
+  ]
+}

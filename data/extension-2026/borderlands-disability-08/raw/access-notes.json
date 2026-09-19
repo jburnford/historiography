@@ -1,0 +1,48 @@
+{
+  "reading_scope": "Selected excerpts only; downloaded PDFs stay in /tmp. Stored text is pdftotext -layout output, with form-feed page boundaries.",
+  "downloads": [
+    {
+      "url": "https://www.clacso.org/wp-content/uploads/2022/07/Historia-transnacional-discapacidad.pdf",
+      "sha256": "9c483600139049159f95178da0bd660d53ac4d17047e4df2bf8fdf1c883098d5",
+      "pdf_pages": 666,
+      "retained": "frontmatter PDF pp. 5–8; Ferrante pp. 10–15 = printed 9–14; Brégain pp. 18–25 = printed 17–24"
+    },
+    {
+      "url": "https://www.pure.ed.ac.uk/ws/portalfiles/portal/68762405/MIDDELL_19_CH_19_edited_tc.pdf",
+      "sha256": "a9d5fc27f48e1404aaf583a943056f23978f263814437daddea10548625f5507",
+      "retained": "PDF pp. 1–5, including repository cover; article manuscript pages unnumbered"
+    },
+    {
+      "url": "https://dialnet.unirioja.es/descarga/articulo/9274289.pdf",
+      "sha256": "9a69fa6c48e0cc917b8e30b0ae73d1f1c0159c45171822189a6bb8cc19cee3a6",
+      "retained": "PDF pp. 1–4 and 15–16 = printed pp. 101–104 and 115–116"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "target": "Consuegra PDF download",
+      "result": "First curl timed out with partial bytes; retry completed. Partial file not used."
+    },
+    {
+      "target": "Nugent research.ed.ac.uk original endpoint",
+      "result": "Web 403; equivalent pure.ed.ac.uk institutional endpoint downloaded successfully."
+    },
+    {
+      "target": "Kaufman publisher body",
+      "result": "403. Author abstract visible in indexed primary publisher result; no full-body claim."
+    },
+    {
+      "target": "Anand direct chapter HTML",
+      "result": "Direct page exposed footer only; indexed primary author abstract read. Body unread."
+    },
+    {
+      "target": "2026 Latin American disability volume",
+      "result": "Primary indexed publisher description and contents only; no chapter body recovered."
+    },
+    {
+      "target": "2026 African borderlands handbook",
+      "result": "Publisher contents/date plus author essay recovered; handbook chapters remain unread."
+    }
+  ],
+  "incidental_discovery_note": "General web search returned an OpenAlex result; it was not opened or used as evidence. OpenAlex investigation remains paused."
+}

@@ -1,0 +1,28 @@
+{
+  "checked_on": "2026-09-19",
+  "production_imports": 0,
+  "candidate_graph_errors": 0,
+  "candidate_graph_warnings": [
+    "Four existing repeated endpoint/type combinations",
+    "Two new entries intentionally have no teaching edges"
+  ],
+  "tests": {
+    "candidate_graph_people": {
+      "test_cases_passed": 20,
+      "command": "python3 -m unittest tests.test_digital_release_candidate tests.test_graph_validation tests.test_people_validation"
+    },
+    "browser": {
+      "test_cases_passed": 4,
+      "command": "python3 -m unittest tests.test_digital_release_browser",
+      "environment_note": "Initial browser run passed; a later combined run was blocked creating the localhost server in the sandbox. Explicit escalated browser rerun passed all four cases."
+    }
+  },
+  "build": {
+    "destination_scope": "/tmp only",
+    "allowlisted_files": 10,
+    "source_assets_unchanged": true,
+    "exact_2000_baseline_revision": "1.121",
+    "candidate_delta_baseline_revision": "1.122"
+  },
+  "preservation": "Baseline pins and exact generated-output reproduction verified; old packets, production graph and site/docs/build preserved."
+}
