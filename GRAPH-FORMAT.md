@@ -1,5 +1,13 @@
 # Teaching graph format, schema 1.4
 
+## Field separation (current revision 1.120)
+
+Current totals: **126 entries (75 groups, 51 people), 765 teaching relationships, 841 sources, 830 shared people and 733 strands**. `gender` is now Gender history; `racial_formation` is a separate programme and `intersectionality` a separate approach. `queer` remains the independent Sexuality & queer history field. See [revision handoff](data/production-batches/gender-split-1.120/README.md).
+
+Optional `strand_redirects` records old and current compound addresses (`from`, `to`, `revision`, `reason`). Old addresses must no longer be active; each target must resolve to a current strand. The two relocated strand records are unchanged. Renderers should resolve old bookmarks/references through these redirects. Exact catalogue concepts may reference `legacy_entry_id` or `legacy_strand_address`; this is navigational mapping, not an equivalence between every concept in an entry.
+
+Intersectional connections to gender and racial formation are conceptual comparisons without arrows. Cohen’s specific critique has an exact queer-strand target. Comparison claims set `intervention_year: null` and separately record their editorial comparison date; publication or check dates must not invent a historical exchange. The prior claim catalogue remains intact, with three new works and twelve claims (four authorship, eight substantive); total 47 claims. Earlier sections below retain their revision-specific counts.
+
 For an illustrated explanation, read [ONTOLOGY.md](ONTOLOGY.md). The [entry-kind proposal](ONTOLOGY-PROPOSAL.md) recommends replacing the historical `group` browsing bucket with explicit category codes; it is **not implemented** and does not change this schema's current requirements.
 
 ## Production promotion extension (revision 1.119)

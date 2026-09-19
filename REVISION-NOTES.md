@@ -1,3 +1,17 @@
+# Revision 1.121: requested historian and field connections
+
+Added Geoff Eley to New social history with Keith Nield's coauthor credit; E. A. Wrigley to Economic history; Maxine Berg to Consumption & material culture with Helen Clifford's coeditor credit; and new shared person Paul E. Lovejoy to African and Atlantic/diaspora histories. Wallerstein's existing world-systems context now uses the historian/practitioner role. Other contexts, existing strands and qualifications survive; Lovejoy is distinct from Arthur O. Lovejoy.
+
+Seven roster additions, five strands, three people and five sources; no new nodes or influence edges. Totals: **126 nodes, 765 edges, 846 sources, 833 people and 738 strands.** Prior edges, claim/journal catalogues and pathways remain intact. Evidence limits and exact old Wallerstein record are preserved in the [acceptance and Fable handoff](data/production-batches/roster-corrections-1.121/README.md). Twenty-five focused tests pass; zero structural errors/four existing warnings. No website edits, deployment or OpenAlex work.
+
+Separate [medical/geographical research drafts](data/extension-2026/health-geography-05/README.md) contain sixteen works and eighteen substantive proposals, plus authorship/version assertions. All remain staging; this revision does not import those post-2000 claims.
+
+# Revision 1.120: independent fields connected by intersectional analysis
+
+Retained `gender` as Gender history; separated `racial_formation` and `intersectionality` while retaining the independent Sexuality & queer history field. Moved the Omi/Winant and Crenshaw strands intact with compound-address redirects. All gender-incident edges reviewed; Scott’s identity critique is separated from Crenshaw’s, with exact before/after records. Four added connections distinguish conceptual comparison from Cohen’s specifically sourced queer-political critique. Added Cohen as a shared person, with no full node, demographic inference or external authority acceptance.
+
+The claim catalogue adds three works and twelve claims (four authorship, eight substantive). Existing claims/witness hashes, prior queer contexts, unrelated entries and the journal catalogue are preserved. Updated the seminar pathway’s obsolete split question. Totals: 126 nodes, 765 edges, 841 sources, 830 people, 733 strands across 75 groups. Twenty-three data tests pass; zero structural errors/four unchanged warnings. [Evidence and Fable handoff](data/production-batches/gender-split-1.120/README.md). No website changes or deployment; OpenAlex remains paused.
+
 # Revision 1.119: eight pre-2000 promotions
 
 Promoted Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith and Daston from existing shared identities. Added nine qualified teaching connections and seven source witnesses. The optional production claim catalogue preserves seven shared works and eighteen exact historical claims independently of promotion: seventeen accepted within their recorded passage/abstract scope, Davis comparative biography explicitly provisional with description-only support. Nine authorship and eight presentation links are not extra historical relationships.
