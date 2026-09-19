@@ -37,6 +37,17 @@ def validate(graph, pathways):
             errors.append(f"Unknown period in {node['id']}")
         if not node.get("source_ids"):
             warnings.append(f"No supporting sources for {node['id']}")
+    addresses={n['id']+'/'+s['id'] for n in graph['nodes'] for s in n.get('strands',[])}
+    old_addresses=set()
+    for redirect in graph.get('strand_redirects',[]):
+        origin,target=redirect.get('from'),redirect.get('to')
+        if not isinstance(origin,str) or '/' not in origin or origin in addresses or origin in old_addresses:
+            errors.append('Invalid or duplicate old strand address')
+        if target not in addresses:
+            errors.append('Strand redirect must resolve to a current strand')
+        old_addresses.add(origin)
+        if not redirect.get('revision') or not redirect.get('reason'):
+            errors.append('Strand redirect needs revision and reason')
     pairs = set()
     for edge in graph["edges"]:
         for key in ("source", "target"):

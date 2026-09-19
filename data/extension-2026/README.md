@@ -1,11 +1,14 @@
 # Research staging for the extension through 2026
 
-Research began against revision 1.118, through 2000 with earlier roots. The user subsequently authorized [production import of the eight-person promotion packet as revision 1.119](../production-batches/promotions-01/README.md). Original packets and manifests remain unchanged historical records; other packets are still staging-only. Fable owns the website rebuild. OpenAlex remains paused.
+Research began against revision 1.118, through 2000 with earlier roots. The user subsequently authorized [production import of the eight-person promotion packet as revision 1.119](../production-batches/promotions-01/README.md), followed by the field separation in revision 1.120 and [requested roster corrections in revision 1.121](../production-batches/roster-corrections-1.121/README.md). Original packets and manifests remain unchanged historical records; other packets are still staging-only. Fable owns the website rebuild. OpenAlex remains paused.
 
 | Artifact | Scope |
 | --- | --- |
+| [Medical/geographical batch 05](health-geography-05/README.md) | Sixteen works, eighteen substantive proposals, twenty-seven authorship credits and two version links; four entry drafts. All staging. Latest 75-topic/37-candidate coverage view retains its 1.120 baseline; separate crosswalk maps identities accepted in 1.121. |
+| [Evidence recovery 04](evidence-recovery-04/README.md) | Cumulative overlay of batch 03: four new works/eight substantive proposals, Kearns body evidence, explicit Watts reception, Whyte manuscript and Gallini's Spanish survey. Eleven cumulative works/nineteen substantive proposals; do not add these totals to batch 03. Earlier 75-topic/37-candidate coverage view. |
+| [Environmental and Indigenous batch 03](earth-indigenous-03/README.md) | Seven works, 2004–2026; eleven substantive proposals and seven authorship credits. Eight proposals passage-checked; remaining limits explicit. Current coverage view adds the two new topic IDs while preserving all original ledger rows. |
 | `baseline.json` | Authoritative graph and browser hashes before extension research. |
-| [First pre-2000 promotion proposals](promotions-01/README.md) | Eight concrete node drafts, seven shared works and eighteen scoped historical proposals; citation-specific checks, preserved roster contexts and nine validation tests. Not yet imported. |
+| [First pre-2000 promotion proposals](promotions-01/README.md) | Frozen eight-person research packet; subsequently imported through the separate production acceptance batch in revision 1.119. |
 | [Fable audit and independent reproduction](representation-audit-2026-09-18/REPRODUCTION.md) | Preserved supplied packet, exact 829-row replay, corrected priority/URI/Butler findings, and structural review of 65 user-supplied names. |
 | [Representation recovery readings](recovery-02/README.md) | Eight scoped historical proposals, explicit reception evidence, and a deferred talk/book distinction; staging only. |
 | `existing-topics.json` / `.csv` | All 73 existing topics; partial pilots are not completed field reviews. |
@@ -22,6 +25,6 @@ The subsequent `breadth-01/legacy-bridge.json` now adapts that crosswalk's recor
 
 The [representation policy](../../REPRESENTATION-REVIEW.md) requires auditing discovery, selection and substantive graph connections across all fields. Model recall and Wikipedia/catalogue visibility are not the selection baseline. Current demographic counts are unestablished; unknowns remain explicit.
 
-Do not add the two validators’ claim counts and present the result as a count of historical relationships: the new packet includes bibliographic and catalogue assertions as well as seven interpretive proposals. No new claim or identity mapping has been accepted into production.
+Do not add the validators’ claim counts and present the result as a count of historical relationships: packets include bibliographic assertions and repeated work referents. Only the separate production acceptance batches establish accepted imports; other research packets remain staging-only.
 
 Use coverage gaps to choose the next research batch. Keep the overview balanced across fields; source volume, degree and catalogue yield must not determine importance. Maintain separate evidence limits for publisher metadata, author abstracts, selected passages and whole-work readings. Current research uses the cutoff 18 September 2026, not a claim to cover the whole unfinished year.

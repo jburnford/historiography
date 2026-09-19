@@ -8,13 +8,13 @@ kind. Hold an entry and everything unrelated collapses to a thin mark so its arg
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.119** (schema 1.4): 124 entries,
-761 teaching relationships, 840 bibliography records, 829
+Production data revision **1.121** (schema 1.4): 126 entries,
+765 teaching relationships, 846 bibliography records, 833
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
 
-The public build still shows revision 1.118; Fable is rebuilding the website. The [production handoff](data/production-batches/promotions-01/README.md) covers eight promoted people and eighteen work-specific historical claims, including one explicitly provisional connection.
+Fable owns the website rebuild. The [latest data handoff](data/production-batches/roster-corrections-1.121/README.md) adds the requested Eley, Wrigley, Lovejoy and Berg field connections and clarifies Wallerstein’s practitioner role. The [preceding field separation](data/production-batches/gender-split-1.120/README.md) separates Gender history, Racial formation and Intersectional analysis while preserving independent queer history. The [previous promotion handoff](data/production-batches/promotions-01/README.md) records the eight promoted people and their evidence limits.
 
 ## How to read the map
 
@@ -52,7 +52,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current draft, 116 entries, 752 interpretive relationships, 833 bibliography records, and 829 people.
+- `historiography-1920-2000.json`: current draft, 126 entries, 765 interpretive relationships, 846 bibliography records, and 833 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.
