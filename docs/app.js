@@ -414,11 +414,18 @@ function fieldSvg(view) {
   const ext = view.extension;
   if (ext) {
     const ex = view.scale(ext.end);
+    /* The zone is narrow: footnotes are clipped to it and the axis notes hang from the right edge. */
+    const fitTo = px => s => { const room = Math.max(4, Math.floor((ex - wx - 10) / px));
+      return s.length > room ? s.slice(0, room - 1) + '…' : s; };
+    const fit = fitTo(6), fitSmall = fitTo(5);   /* bold 9.5px footnote vs 9px axis note */
     grid += `<rect class="ext-zone" x="${wx}" y="${view.axisTop + 16}" width="${Math.max(0, ex - wx)}" height="${bottom - view.axisTop - 16}"/>
-      <text class="ext-label" x="${wx + 6}" y="${bottom - 6}">after ${view.coverageYear}: ${ext.covered} of ${graph.nodes.filter(n => n.entry_kind === 'group').length} entries have selected interventions · ${esc(ext.status.replace(/_/g, ' '))}</text>`;
+      <text class="ext-label" x="${wx + 6}" y="${bottom - (ext.latest ? 42 : 30)}">${
+        [`after ${view.coverageYear}`, ext.status.replace(/_/g, ' '),
+         `${ext.covered} of ${graph.nodes.filter(n => n.entry_kind === 'group').length} entries`]
+          .map((s, i) => `<tspan x="${wx + 6}" dy="${i ? 12 : 0}">${esc(fit(s))}</tspan>`).join('')}${
+        ext.latest ? `<tspan class="latest-label" x="${wx + 6}" dy="12">${esc(fit(`latest selected ${ext.latest}`))}</tspan>` : ''}</text>`;
     if (ext.cutoff && ext.cutoff <= ext.end) grid += `<line class="cutoff" x1="${view.scale(ext.cutoff)}" y1="${view.axisTop + 16}" x2="${view.scale(ext.cutoff)}" y2="${bottom}"/>
-      <text class="cutoff-label" x="${view.scale(ext.cutoff) - 4}" y="${view.axisTop + 46}" text-anchor="end">research cutoff ${esc(graph.scope.extension.research_cutoff)}</text>`;
-    if (ext.latest) grid += `<text class="latest-label" x="${view.scale(ext.latest)}" y="${view.axisTop + 58}" text-anchor="middle">latest selected publication ${ext.latest}</text>`;
+      <text class="cutoff-label" x="${view.scale(ext.cutoff) - 4}" y="${view.axisTop + 13}" text-anchor="end">${esc(fitSmall(`research cutoff ${graph.scope.extension.research_cutoff}`))}</text>`;
   }
 
   const bands = view.bands.map(b => `<line class="band-rule" x1="${view.G.padL}"
