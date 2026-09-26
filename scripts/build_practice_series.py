@@ -83,7 +83,7 @@ def main():
                      THEN 'research_proxy' ELSE 'other' END, m.journal_key
          FROM xr.records r JOIN xr.memberships m USING (record_id) JOIN journal_subjects js USING (journal_key)
          WHERE NOT coalesce(r.is_test_record, false)""")
-    bands = q("SELECT length_band, count(*) FROM xr.records GROUP BY 1 ORDER BY 2 DESC").fetchall()
+    bands = q("SELECT length_band, count(*) FROM xr.records GROUP BY 1 ORDER BY 2 DESC, 1").fetchall()
 
     # Map items to crosswalk targets.
     # Journal-level themes: the atlas's curated journal->entry links plus `journal_title` crosswalk
@@ -150,11 +150,11 @@ def main():
     # Review corpora only (comparable units): theme targets ranked, atlas vs none.
     themes = q("""SELECT target, any_value(target_label), count(DISTINCT item) AS n,
                   count(DISTINCT item) FILTER (WHERE year >= 2010) AS since_2010
-                  FROM mapped WHERE source IN ('hnet', 'rih') AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC""").fetchall()
+                  FROM mapped WHERE source IN ('hnet', 'rih') AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC, 1""").fetchall()
     regions = q("""SELECT target, count(DISTINCT item) FROM mapped WHERE source IN ('hnet', 'rih') AND axis = 'region'
-                   GROUP BY 1 ORDER BY 2 DESC""").fetchall()
+                   GROUP BY 1 ORDER BY 2 DESC, 1""").fetchall()
     jthemes = q("""SELECT target, any_value(target_label), count(DISTINCT item) FILTER (WHERE kind = 'research_proxy')
-                   FROM mapped WHERE source = 'journal' AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC""").fetchall()
+                   FROM mapped WHERE source = 'journal' AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC, 1""").fetchall()
     entries = {n["id"]: n["label"] for n in g["nodes"] if n.get("entry_kind") == "group"}
     evidenced = {t for t, *_ in themes} | {t for t, *_ in jthemes}
     summary = {
@@ -178,6 +178,17 @@ def main():
     tmp = Path(str(out) + ".building")
     tmp.mkdir(parents=True, exist_ok=True)
     q(f"COPY series TO {lit(tmp / 'series.csv')} (HEADER)")
+    # Per-item themes for downstream analyses (e.g. clusters); rollups excluded, so a broader
+    # field never co-occurs with its own sub-fields by construction.
+    q(f"""COPY (SELECT DISTINCT source, item, source_label, target FROM mapped
+               WHERE source IN ('hnet', 'rih') AND axis = 'theme' AND status <> 'rollup' ORDER BY ALL)
+          TO {lit(tmp / 'review_themes.csv')} (HEADER)""")
+    q(f"""COPY (SELECT DISTINCT journal_key, target, 'journal_level' AS via FROM journal_theme_map
+               UNION
+               SELECT DISTINCT js.journal_key, c.target, 'subject' FROM journal_subjects js
+               JOIN cw c ON c.source = 'journal' AND c.source_label = js.label AND c.axis = 'theme'
+               WHERE js.journal_key NOT IN (SELECT journal_key FROM journal_theme_map)
+               ORDER BY ALL) TO {lit(tmp / 'journal_themes.csv')} (HEADER)""")
     (tmp / "summary.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
     tmp.rename(out)
     print(json.dumps({k: summary[k] for k in ("per_source",)}, indent=1, default=str))
