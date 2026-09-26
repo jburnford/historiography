@@ -7,11 +7,17 @@ Builds on, and does not replace, the preservation rules in
 
 ## Status (2026-09-26)
 
-Done: step 0 (commits 2035c44, e7e3673); step 1, 2.1, 2.2 and 2.5 in
-[data/person-registry](data/person-registry/README.md). Registry v2 has 22,491
-established individuals (6,156 with a QID). Next: 2.3 (book authorities) and 2.4
-(ORCID self-claimed works), then review the 3,257 legacy bridge candidates.
-Decisions 1 and 4 were accepted with the plan; 2 and 3 are still open.
+Done: step 0 (commits 2035c44, e7e3673); steps 1, 2.1, 2.2, 2.5; and steps 2.3-2.4 via
+Open Library work authors and ORCID claimed works (LCNAF/VIAF headings not yet used).
+Step 3 has a first benchmark. See [data/person-registry](data/person-registry/README.md).
+Registry v5 has 22,992 strict established individuals and 51,841 including the probable
+tier. Sampled precision is about 97.5% for Open Library → QID; the ORCID routes had no
+errors in their samples.
+
+Next: review queues (legacy bridges 3,609, OL-ambiguous 555, QID clashes), a larger
+stratified benchmark before promoting any probable route, then plan step 4 (scoring the
+remainder) and the atlas roster (step 5). Decisions 1 and 4 were accepted; 2 and 3 are
+still open.
 
 ## Diagnosis
 

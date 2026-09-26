@@ -78,6 +78,32 @@ def harvest(pid, out):
             "endpoint": ENDPOINT, "filter": "wdt:P31 wd:Q5 (truthy)"}
 
 
+def harvest_lifespans(out):
+    """Birth/death years for humans carrying an Open Library or ORCID ID (plausibility gate)."""
+    body = ("{ ?h wdt:P31 wd:Q5 . { ?h wdt:P648 [] } UNION { ?h wdt:P496 [] } } "
+            "OPTIONAL { ?h wdt:P569 ?b } OPTIONAL { ?h wdt:P570 ?d }")
+    select = "SELECT ?h (MIN(YEAR(?b)) AS ?by) (MAX(YEAR(?d)) AS ?dy) WHERE { " + body + " } GROUP BY ?h"
+    with post(f"SELECT (COUNT(DISTINCT ?h) AS ?n) WHERE {{ {body} }}", 600) as r:
+        expected = int(r.read().decode().strip().splitlines()[-1])
+    rows = 0
+    tmp = out / "lifespans.tsv.gz.part"
+    with post(select) as r, gzip.open(tmp, "wt", encoding="utf-8") as w:
+        r.readline()
+        w.write("qid\tbirth_year\tdeath_year\n")
+        for raw in r:
+            parts = raw.decode("utf-8").rstrip("\n").split("\t")
+            if len(parts) < 3:
+                continue
+            year = lambda v: v.split('"')[1] if v.startswith('"') else v
+            w.write(f"{parts[0].strip('<>').rsplit('/', 1)[-1]}\t{year(parts[1])}\t{year(parts[2])}\n")
+            rows += 1
+    if rows != expected:
+        raise RuntimeError(f"lifespans: {rows} rows, live count {expected}; kept {tmp}")
+    tmp.rename(out / "lifespans.tsv.gz")
+    return {"rows": rows, "retrieved": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "filter": "humans with P648 or P496; min birth year, max death year"}
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", type=Path, default=Path("data/person-registry/generated/wikidata-authorities"))
@@ -95,6 +121,10 @@ def main():
         manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
         print(f"{pid}: {manifest[pid]['rows']} rows in {time.time() - t:.0f}s", flush=True)
         time.sleep(2)
+    lifespan_path = args.out / "lifespans-manifest.json"
+    if not (args.out / "lifespans.tsv.gz").exists():
+        lifespan_path.write_text(json.dumps(harvest_lifespans(args.out), indent=2) + "\n")
+        print("lifespans:", json.loads(lifespan_path.read_text())["rows"], "rows", flush=True)
 
 
 if __name__ == "__main__":
