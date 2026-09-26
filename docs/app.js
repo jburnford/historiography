@@ -57,7 +57,7 @@ const huntTag = n => n.hunt_core_paradigm ? '<span class="hunt-tag">Hunt’s tea
 const rosterLabel = n => `${n.representative_people?.length || 0} historians & contributors`;
 const lifeSpan = p => {
   if (!p.life?.birth && !p.life?.death) return '';
-  const y = (v, k) => v ? `${p.life[`${k}_precision`] === 'year' ? 'c. ' : ''}${String(v).slice(0, 4)}` : '';
+  const y = (v, k) => v ? `${['year', 'decade', 'century'].includes(p.life[`${k}_precision`]) ? 'c. ' : ''}${String(v).slice(0, 5).replace(/-$/, '')}` : '';
   return ` <span class="lifespan">${esc(y(p.life.birth, 'birth'))}–${esc(y(p.life.death, 'death'))}</span>`;
 };
 /* ---------------- Claim catalogue: exact claims and their evidence ---------------- */
@@ -578,7 +578,7 @@ function fieldDateNote(n, span) {
 function lifeLine(n, span) {
   const life = lifeIndex(graph).get(n.id);
   if (!life || (!life.birth && !life.death)) return '';
-  const approx = k => life[`${k}Precision`] === 'year' ? 'c. ' : '';
+  const approx = k => ['year', 'decade', 'century'].includes(life[`${k}Precision`]) ? 'c. ' : '';
   const parts = [];
   if (life.birth) parts.push(`Born ${approx('birth')}${life.birth}`);
   parts.push(life.death ? `died ${approx('death')}${life.death}` : 'living at retrieval');

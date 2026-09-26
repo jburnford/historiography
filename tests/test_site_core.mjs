@@ -288,10 +288,13 @@ test('life dates mark a death and hatch posthumous reception, only for people wh
   const sheet = JSON.parse(readFileSync(new URL('../data/people-wikidata.json', import.meta.url)));
   const accepted = new Map(sheet.people.filter(p => p.status === 'accepted').map(p => [p.person_id, p]));
   assert.ok(accepted.size >= 40);
+  const yearOf = v => { const m = String(v ?? '').match(/^-?\d+/); return m ? +m[0] : null; };
   for (const p of accepted.values()) {
     assert.match(p.wikidata.qid, /^Q\d+$/);
+    if (!p.life) continue;  // accepted identity without Wikidata dates
     assert.ok(p.life.retrieved, 'every date carries a retrieval date');
-    if (p.life.death) assert.ok(p.life.death >= p.life.birth, p.person_id);
+    // Numeric years: string comparison misorders BCE dates ('-495' < '-543').
+    if (p.life.death && p.life.birth) assert.ok(yearOf(p.life.death) >= yearOf(p.life.birth), p.person_id);
   }
   // Apply the same overlay the build performs, then lay out.
   const enriched = {...graph, people: graph.people.map(p => accepted.has(p.id)

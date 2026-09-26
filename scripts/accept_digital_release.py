@@ -33,10 +33,14 @@ def frozen_path(name):
 
 def frozen_errors():
     errors = []
+    # Post-acceptance code/build changes are logged in acceptance['amendments'] with both
+    # hashes (same convention as audit_promotion_import.py); either hash is accepted.
+    record = OUT/'acceptance.json'
+    amended = {m['file']: m['amended_sha256'] for m in (read(record).get('amendments', []) if record.exists() else [])}
     for manifest in (candidate.OUT/'baseline.json', candidate.OUT/'manifest.json'):
         for name, expected in read(manifest)['files'].items():
             path = frozen_path(name)
-            if not path.is_file() or sha(path) != expected:
+            if not path.is_file() or sha(path) not in {expected, amended.get(name)}:
                 errors.append('Pinned input changed: '+name)
     return errors
 

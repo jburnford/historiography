@@ -355,9 +355,13 @@ def build(db, paths, auth_manifest):
         wd = row.get("wikidata") or {}
         q("INSERT INTO people VALUES (?, ?, ?, 'atlas', ?)",
           [pid, row["label"], wd.get("qid") if row["status"] == "accepted" else None, row["status"]])
-        q("INSERT INTO identity_links VALUES (?, ?, ?, 'atlas_wikidata_sheet', ?, ?, ?, NULL)",
-          ["atlas:person:" + row["person_id"], pid,
-           "accepted" if row["status"] == "accepted" else "unresolved",
+        # Bulk roster matches are displayed by the site but were not individually reviewed:
+        # the registry records them one tier down.
+        bulk = bool(wd.get("method"))
+        status = ("probable" if bulk else "accepted") if row["status"] == "accepted" else "unresolved"
+        q("INSERT INTO identity_links VALUES (?, ?, ?, ?, ?, ?, ?, NULL)",
+          ["atlas:person:" + row["person_id"], pid, status,
+           "atlas_bulk_roster_match" if bulk else "atlas_wikidata_sheet",
            wd.get("basis"), "data/people-wikidata.json", atlas_wd.get("generated_on")])
     pilot = json.loads(paths["pilot_decisions"].read_text())
     for p in pilot["people"]:
