@@ -21,6 +21,7 @@ import duckdb
 
 ROOT = Path(__file__).resolve().parents[1]
 CROSSWALK = ROOT / "data/evidence-layer/practice-crosswalk.csv"
+HIERARCHY = ROOT / "data/evidence-layer/practice-hierarchy.csv"
 HNET = ROOT / "data/hnet-graph/generated/graph.sqlite"
 UNIFIED = ROOT / "data/unified-graph/generated"
 CROSSREF = ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb"
@@ -43,7 +44,7 @@ def main():
     out = ROOT / "data/evidence-layer/generated" / args.version
     if out.exists():
         raise SystemExit(f"{out} exists; choose a new --version")
-    inputs = {"crosswalk": CROSSWALK, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
+    inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
               "unified_links": UNIFIED / "links.csv", "crossref_catalog": CROSSREF, "selected_journals": SELECTED,
               "atlas_graph": GRAPH}
     before = {k: sha(p) for k, p in inputs.items()}
@@ -57,13 +58,13 @@ def main():
     # Items: one row per (source, item, source_label, year).
     q("""CREATE TABLE items AS
          SELECT 'hnet' AS source, r.id AS item, coalesce(n.label, '(no network)') AS source_label,
-                TRY_CAST(left(r.date_month, 4) AS INT) AS year, 'review' AS kind
+                TRY_CAST(left(r.date_month, 4) AS INT) AS year, 'review' AS kind, NULL::VARCHAR AS journal_key
          FROM hn.reviews r LEFT JOIN hn.nodes n ON n.id = r.network_id""")
     q(f"""CREATE TEMP VIEW un AS SELECT * FROM read_csv({lit(UNIFIED / 'nodes.csv')}, all_varchar=true, max_line_size=20000000)""")
     q(f"""CREATE TEMP VIEW ul AS SELECT * FROM read_csv({lit(UNIFIED / 'links.csv')}, all_varchar=true, max_line_size=20000000)""")
     q("""INSERT INTO items
          SELECT 'rih', r.id, coalesce(s.label, '(no subject)'),
-                TRY_CAST(left(json_extract_string(r.data, '$.metadata.date_month'), 4) AS INT), 'review'
+                TRY_CAST(left(json_extract_string(r.data, '$.metadata.date_month'), 4) AS INT), 'review', NULL
          FROM un r LEFT JOIN ul l ON l.subject = r.id AND l.predicate = 'classified_under'
          LEFT JOIN un s ON s.id = l.object
          WHERE r.kind = 'review_record' AND r.origin = 'reviews_in_history'""")
@@ -78,14 +79,53 @@ def main():
     q("""INSERT INTO items
          SELECT DISTINCT 'journal', r.record_id, js.label, TRY_CAST(r.publication_year AS INT),
                 CASE WHEN r.record_id IN (SELECT record_id FROM xr.research_candidates_by_length)
-                     THEN 'research_proxy' ELSE 'other' END
+                     THEN 'research_proxy' ELSE 'other' END, m.journal_key
          FROM xr.records r JOIN xr.memberships m USING (record_id) JOIN journal_subjects js USING (journal_key)
          WHERE NOT coalesce(r.is_test_record, false)""")
     bands = q("SELECT length_band, count(*) FROM xr.records GROUP BY 1 ORDER BY 2 DESC").fetchall()
 
     # Map items to crosswalk targets.
-    q("""CREATE TABLE mapped AS SELECT i.*, c.axis, c.target, c.target_label, c.status
-         FROM items i LEFT JOIN cw c ON c.source = i.source AND c.source_label = i.source_label""")
+    # Journal-level themes: the atlas's curated journal->entry links plus `journal_title` crosswalk
+    # rows. Where a journal has any, they replace its subject-derived themes (region and period
+    # still come from subjects): directory subjects are too coarse to separate e.g. business,
+    # economic and labour history, or to name approaches.
+    g = json.loads(GRAPH.read_text())
+    entry_labels = {n["id"]: n["label"] for n in g["nodes"]}
+    key_by_label = {j["label"]: j["journal_key"] for j in sel}
+    selected_keys = set(key_by_label.values())
+    jt = []
+    for r in q("SELECT source_label, target, target_label, status FROM cw WHERE source = 'journal_title'").fetchall():
+        if r[0] not in key_by_label:
+            raise SystemExit(f"journal_title row names an unselected journal: {r[0]}")
+        if not r[1].startswith("none:") and r[1] not in entry_labels:
+            raise SystemExit(f"journal_title row targets an unknown atlas entry: {r[1]}")
+        jt.append((key_by_label[r[0]], "theme", r[1], r[2], r[3], "crosswalk_journal_title"))
+    for e in g["journal_catalogue"]["edges"]:
+        if e["source"] in selected_keys and e["target"] in entry_labels:
+            jt.append((e["source"], "theme", e["target"], entry_labels[e["target"]], "curated",
+                       "atlas_journal_edge:" + e["relationship_kind"]))
+    q("""CREATE TABLE journal_theme_map (journal_key VARCHAR, axis VARCHAR, target VARCHAR, target_label VARCHAR,
+         status VARCHAR, basis VARCHAR)""")
+    db.executemany("INSERT INTO journal_theme_map VALUES (?, ?, ?, ?, ?, ?)", sorted(set(jt)))
+    q("""CREATE TABLE mapped AS
+         SELECT i.source, i.item, i.source_label, i.year, i.kind, c.axis, c.target, c.target_label, c.status
+         FROM items i LEFT JOIN cw c ON c.source = i.source AND c.source_label = i.source_label
+         WHERE NOT (i.source = 'journal' AND c.axis = 'theme'
+                    AND i.journal_key IN (SELECT journal_key FROM journal_theme_map))
+         UNION ALL
+         SELECT DISTINCT i.source, i.item, 'journal-level', i.year, i.kind, t.axis, t.target, t.target_label, t.status
+         FROM items i JOIN journal_theme_map t USING (journal_key) WHERE i.source = 'journal'""")
+    # Sub-field rollup (practice-hierarchy.csv): a theme item also counts, once, for its broader
+    # field. The narrower target keeps its own series.
+    q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true)")
+    bad = q("""SELECT narrower FROM hierarchy WHERE narrower NOT LIKE 'none:%' AND narrower NOT IN
+               (SELECT UNNEST(?::VARCHAR[]))""", [list(entry_labels)]).fetchall()
+    if bad:
+        raise SystemExit(f"hierarchy names unknown atlas entries: {bad}")
+    q("""INSERT INTO mapped
+         SELECT DISTINCT m.source, m.item, m.source_label, m.year, m.kind, 'theme', h.broader,
+                'No atlas entry: ' || replace(substr(h.broader, 6), '_', ' '), 'rollup'
+         FROM mapped m JOIN hierarchy h ON h.narrower = m.target WHERE m.axis = 'theme'""")
     q("""CREATE TABLE series AS SELECT source, kind, axis, target, any_value(target_label) AS target_label, year,
          count(DISTINCT item) AS items FROM mapped WHERE axis IS NOT NULL GROUP BY ALL ORDER BY ALL""")
 
@@ -114,7 +154,6 @@ def main():
                    GROUP BY 1 ORDER BY 2 DESC""").fetchall()
     jthemes = q("""SELECT target, any_value(target_label), count(DISTINCT item) FILTER (WHERE kind = 'research_proxy')
                    FROM mapped WHERE source = 'journal' AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC""").fetchall()
-    g = json.loads(GRAPH.read_text())
     entries = {n["id"]: n["label"] for n in g["nodes"] if n.get("entry_kind") == "group"}
     evidenced = {t for t, *_ in themes} | {t for t, *_ in jthemes}
     summary = {
@@ -128,6 +167,9 @@ def main():
         "atlas_entries_with_practice_evidence": sorted(e for e in entries if e in evidenced),
         "atlas_entries_without_practice_evidence": sorted(f"{e} ({entries[e]})" for e in entries if e not in evidenced),
         "crossref_length_bands": bands,
+        "journal_level_themes": {"journals": len({x[0] for x in jt}),
+                                 "curated_atlas_edges": sum(1 for x in jt if x[5].startswith("atlas_journal_edge")),
+                                 "crosswalk_title_rows": sum(1 for x in jt if x[5] == "crosswalk_journal_title")},
     }
     after = {k: sha(p) for k, p in inputs.items()}
     if after != before:
