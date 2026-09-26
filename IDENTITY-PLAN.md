@@ -5,6 +5,14 @@ Builds on, and does not replace, the preservation rules in
 [REPAIR-PLAN](data/grounding-audit-2026-09-21/REPAIR-PLAN.md) and the book route in
 [AUTHOR-FIRST-PLAN](data/grounding-repair/AUTHOR-FIRST-PLAN.md).
 
+## Status (2026-09-26)
+
+Done: step 0 (commits 2035c44, e7e3673); step 1, 2.1, 2.2 and 2.5 in
+[data/person-registry](data/person-registry/README.md). Registry v2 has 22,491
+established individuals (6,156 with a QID). Next: 2.3 (book authorities) and 2.4
+(ORCID self-claimed works), then review the 3,257 legacy bridge candidates.
+Decisions 1 and 4 were accepted with the plan; 2 and 3 are still open.
+
 ## Diagnosis
 
 **1. We have several identity ledgers but no shared authority.** Each corpus has its
