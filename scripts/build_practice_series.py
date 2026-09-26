@@ -53,7 +53,8 @@ def main():
     q("INSTALL sqlite; LOAD sqlite")
     q(f"ATTACH {lit(HNET)} AS hn (TYPE sqlite, READ_ONLY)")
     q(f"ATTACH {lit(CROSSREF)} AS xr (READ_ONLY)")
-    q(f"CREATE TABLE cw AS SELECT * FROM read_csv({lit(CROSSWALK)}, header=true, all_varchar=true)")
+    q(f"CREATE TABLE cw AS SELECT * FROM read_csv({lit(CROSSWALK)}, header=true, all_varchar=true) "
+      "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
 
     # Items: one row per (source, item, source_label, year).
     q("""CREATE TABLE items AS
