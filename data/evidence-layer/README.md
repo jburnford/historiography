@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1), current build v10 (2026-09-26)
+## Field as practice (component 1), current build v11 (2026-09-26)
 
 ```bash
-python3 scripts/build_practice_series.py --version v11   # refuses an existing version; ~12 s
-python3 scripts/render_practice_chart.py --version v11   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v12   # refuses an existing version; ~12 s
+python3 scripts/render_practice_chart.py --version v12   # writes field-practice.html beside it
 ```
 
 ### Editorial inputs (the authorities; edit, then rebuild)
@@ -22,7 +22,7 @@ python3 scripts/render_practice_chart.py --version v11   # writes field-practice
   - `journal_title` rows give **journal-level themes** where a directory subject is too
     coarse (for example, "Business, labor and economics" cannot separate the three fields).
   - Six H-Net networks remain `uncertain` (H-Nilas, H-TGS, H-GAGCS, H-AMCA, H-HOAC, H-CLC).
-- **[practice-hierarchy.csv](practice-hierarchy.csv)**: sub-field → broader field. A theme
+- **[practice-hierarchy.csv](practice-hierarchy.csv)**: sub-field → broader field (an atlas entry or a `none:` field). A theme
   item also counts, once, for its broader field; the sub-field keeps its own series.
 - **The atlas's curated journal links** (`journal_catalogue.edges`, e.g. *Past & Present* →
   Marxist social history) are read directly from the graph as journal-level themes (status
@@ -147,6 +147,10 @@ and compare with historians' own field taxonomies before any cluster enters the 
 - **Social science history is a distinct field.** *Social Science History* maps to it. The
   grab-bag directory subject "Social sciences" is now `general`, with its journals carried
   by journal-level rows and curated links.
+- **Socialism / left politics is a sub-field of political history** (hierarchy row; rolls up
+  without double counting). Labour-focused journals keep their labour tag. It is distinct from
+  the atlas's Marxist social history and New Left entries, which concern historians' approaches.
+  Political history rises from 1,366 to 1,586 reviews and from 2,400 to 4,139 journal items.
 - **Social science history is an umbrella.** Quantitative, demographic and economic history,
   historical sociology and historical geography are sub-fields (reviewed). The Bielefeld
   school and historical economics are proposed sub-fields.

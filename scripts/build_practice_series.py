@@ -119,13 +119,20 @@ def main():
     # Sub-field rollup (practice-hierarchy.csv): a theme item also counts, once, for its broader
     # field. The narrower target keeps its own series.
     q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true)")
+    q("CREATE TEMP TABLE entry_names (id VARCHAR, label VARCHAR)")
+    db.executemany("INSERT INTO entry_names VALUES (?, ?)", sorted(entry_labels.items()))
+    unknown = q("""SELECT broader FROM hierarchy WHERE broader NOT LIKE 'none:%'
+                   AND broader NOT IN (SELECT id FROM entry_names)""").fetchall()
+    if unknown:
+        raise SystemExit(f"hierarchy broader field is not an atlas entry: {unknown}")
     bad = q("""SELECT narrower FROM hierarchy WHERE narrower NOT LIKE 'none:%' AND narrower NOT IN
                (SELECT UNNEST(?::VARCHAR[]))""", [list(entry_labels)]).fetchall()
     if bad:
         raise SystemExit(f"hierarchy names unknown atlas entries: {bad}")
     q("""INSERT INTO mapped
          SELECT DISTINCT m.source, m.item, m.source_label, m.year, m.kind, 'theme', h.broader,
-                'No atlas entry: ' || replace(substr(h.broader, 6), '_', ' '), 'rollup'
+                CASE WHEN h.broader LIKE 'none:%' THEN 'No atlas entry: ' || replace(substr(h.broader, 6), '_', ' ')
+                     ELSE (SELECT label FROM entry_names e WHERE e.id = h.broader) END, 'rollup'
          FROM mapped m JOIN hierarchy h ON h.narrower = m.target WHERE m.axis = 'theme'""")
     q("""CREATE TABLE series AS SELECT source, kind, axis, target, any_value(target_label) AS target_label, year,
          count(DISTINCT item) AS items FROM mapped WHERE axis IS NOT NULL GROUP BY ALL ORDER BY ALL""")
