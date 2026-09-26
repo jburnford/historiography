@@ -1,5 +1,29 @@
 # Teaching graph format, schema 1.4
 
+## Unified Ladybug research graph
+
+The [unified graph](data/unified-graph/README.md) joins source-preserving atlas,
+H-Net, Reviews in History and saved Wikidata records in a separate Ladybug database. Its `Entity`
+and `Link` tables retain original IDs in namespaced identifiers and payloads,
+evidence, qualifications, relationship direction and review status. Accepted
+person identity, broader conceptual correspondence and unreviewed name matches
+are distinct predicates; never treat generic reachability as equivalence.
+Reviews in History uses separate source IDs and response records. Activity
+counts distinguish publication credits, reviewer credits and source records;
+equal-name totals remain provisional. This layer does
+not modify the teaching schema, production data or public assets.
+
+## Separate H-Net bibliographic graph
+
+The [H-Net graph](data/hnet-graph/README.md) has its own schema 1.0 and generated
+SQLite/JSONL outputs under `data/hnet-graph/generated/`. It records review-item,
+item-credit and review-network relationships, retaining separate person-name
+occurrences. Name buckets, atlas-person matches and network-field correspondences
+are candidates, not accepted identities or teaching arrows. It does not change
+this teaching schema, production revision, existing IDs or public assets. Read
+its documentation before consuming its relationships; especially, never render
+`name_candidate` as a confirmed person or candidate correspondence as membership.
+
 ## Digital/web extension (revision 1.123)
 
 Current totals: **128 entries (77 groups, 51 people), 765 teaching relationships, 885 sources, 876 shared people and 767 strands**. Two new fields add seventeen selected works, twenty-seven historical claims, thirty-one author credits and two version links. See the [acceptance record](data/production-batches/extension-1.123/README.md). Existing records are unchanged; no new teaching arrows were inferred.

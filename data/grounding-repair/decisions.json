@@ -1,0 +1,3682 @@
+{
+  "schema_version": "grounding-repair-1.0",
+  "baseline_manifest_sha256": "d5e1049a9d69d16e95a0e40c2b008bec4b95f7565b1230a8eeb5e91e447701b5",
+  "scope": "Ten-name pilot; accepted decisions are individual credits; unresolved assignments remain provisional.",
+  "people": [
+    {
+      "id": "peter-schaefer-judaist",
+      "label": "Peter Schäfer",
+      "preferred_qid": "Q97091",
+      "evidence": [
+        "schaefer-judeophobia",
+        "wd-pilot"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "joerg-arnold-historian",
+      "label": "Jörg Arnold",
+      "preferred_qid": "Q95266163",
+      "evidence": [
+        "arnold-gnd",
+        "arnold-bio",
+        "wd-pilot"
+      ],
+      "alternate_qids": [
+        {
+          "qid": "Q112434101",
+          "status": "suspected_duplicate_not_accepted_equivalence"
+        }
+      ]
+    },
+    {
+      "id": "anika-walke",
+      "label": "Anika Walke",
+      "preferred_qid": "Q130815595",
+      "evidence": [
+        "walke-gnd",
+        "walke-bio",
+        "wd-pilot"
+      ],
+      "alternate_qids": [
+        {
+          "qid": "Q130598476",
+          "status": "suspected_duplicate_not_accepted_equivalence"
+        }
+      ]
+    },
+    {
+      "id": "julia-angster",
+      "label": "Julia Angster",
+      "preferred_qid": "Q95193358",
+      "evidence": [
+        "angster-gnd",
+        "angster-bio",
+        "wd-pilot"
+      ],
+      "alternate_qids": [
+        {
+          "qid": "Q112475577",
+          "status": "suspected_duplicate_not_accepted_equivalence"
+        }
+      ]
+    },
+    {
+      "id": "guido-mueller-historian",
+      "label": "Guido Müller",
+      "preferred_qid": "Q95242932",
+      "evidence": [
+        "mueller-gnd",
+        "mueller-book",
+        "wd-pilot"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "richard-b-bernstein",
+      "label": "Richard B. Bernstein",
+      "preferred_qid": "Q7323841",
+      "evidence": [
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "sumit-ganguly",
+      "label": "Sumit Ganguly",
+      "preferred_qid": "Q17090449",
+      "evidence": [
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "michael-mann-historian",
+      "label": "Michael Mann (South Asia historian)",
+      "preferred_qid": "Q1928511",
+      "evidence": [
+        "mann-history",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "michael-mann-sociologist",
+      "label": "Michael Mann (sociologist)",
+      "preferred_qid": "Q1425193",
+      "evidence": [
+        "mann-sociology",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "ute-schneider-book-historian",
+      "label": "Ute Schneider (book historian)",
+      "preferred_qid": "Q93972366",
+      "evidence": [
+        "schneider-mainz",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "ute-schneider-cultural-historian",
+      "label": "Ute Schneider (cultural historian)",
+      "preferred_qid": "Q16295137",
+      "evidence": [
+        "schneider-essen",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "mark-harrison-economist",
+      "label": "Mark Harrison (economist)",
+      "preferred_qid": "Q110009814",
+      "evidence": [
+        "harrison-warwick",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    },
+    {
+      "id": "mark-harrison-medical-historian",
+      "label": "Mark Harrison (medical historian)",
+      "preferred_qid": "Q56434388",
+      "evidence": [
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "alternate_qids": []
+    }
+  ],
+  "evidence": [
+    {
+      "id": "source-credit",
+      "url": null,
+      "checked_on": "2026-09-21",
+      "locator": "Occurrence-specific locator in occurrences.json",
+      "note": "Each decision is tied to its individual saved source header and catalog occurrence by JSON, raw HTML, and extraction fingerprints.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "wd-pilot",
+      "url": "https://www.wikidata.org/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Saved entity claims distinguish birth dates and GND identifiers; QID descriptions alone do not establish a credit.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/wikidata-entities.json",
+      "snapshot_sha256": "911b3aae9e0bdf0b59ca9bcbed64b1fe08d601c148c0dbf95b3133246b7bf41a"
+    },
+    {
+      "id": "wd-controls",
+      "url": "https://www.wikidata.org/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Saved entity records distinguish the two Manns, Schneiders and Harrisons and identify Bernstein and Ganguly.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/wikidata-controls.json",
+      "snapshot_sha256": "b84cf2d9a010d0f02cd2ec87e3b7c5e925a67a94534ff71e272d8d4dabde4a5e"
+    },
+    {
+      "id": "arnold-gnd",
+      "url": "https://lobid.org/gnd/1026192242",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "GND identity fields and authority links checked against the source institution/book and saved Wikidata GND statement.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/grounding-arnold-gnd.json",
+      "snapshot_sha256": "6195ff66b586a385fd94886b90431b97a483a6ea743a42d02d18a68688cd936a"
+    },
+    {
+      "id": "walke-gnd",
+      "url": "https://lobid.org/gnd/118784215X",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "GND identity fields and authority links checked against the source institution/book and saved Wikidata GND statement.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/grounding-walke-gnd.json",
+      "snapshot_sha256": "6b2143654dac72af88cea10a652dab7d6f5d394aeaac5fbb6c68cbbec3994f58"
+    },
+    {
+      "id": "angster-gnd",
+      "url": "https://lobid.org/gnd/1022103326",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "GND identity fields and authority links checked against the source institution/book and saved Wikidata GND statement.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/grounding-angster-gnd.json",
+      "snapshot_sha256": "dcdc2c73a3a7d61254e6999a04537d6667c4363bf9ca6a33f29a1af713f9990b"
+    },
+    {
+      "id": "mueller-gnd",
+      "url": "https://lobid.org/gnd/115598553",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "GND identity fields and authority links checked against the source institution/book and saved Wikidata GND statement.",
+      "scope": "Identity/bibliography only; not review-argument analysis.",
+      "snapshot_path": "generated/evidence/grounding-mueller-gnd.json",
+      "snapshot_sha256": "f50d99f58ce8d2a6544577c406214270989fa56d7aecd34132b5fbcc07e7b0de"
+    },
+    {
+      "id": "schaefer-judeophobia",
+      "url": "https://www.suhrkamp.de/buch/peter-schaefer-judenhass-und-judenfurcht-t-9783458710288",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Publisher links Judeophobia to Judaic scholar born 1943; excludes the historian born 1931.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "schaefer-mysticism",
+      "url": "https://www.mohrsiebeck.com/buch/the-origins-of-jewish-mysticism-9783161499319/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Publisher connects exact title with Judaic scholar born 1943 at Berlin/Princeton.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "schaefer-bar",
+      "url": "https://www.mohrsiebeck.com/buch/the-bar-kokhba-war-reconsidered-9783161587948/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Publisher identifies editor Peter Schäfer and supplies biography, born 1943. Source occurrence retains its less specific recorded role.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "arnold-bio",
+      "url": "https://uni-freiburg.de/frias/dr-jorg-arnold/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "University biography links Freiburg and Nottingham appointments and lists Luftkrieg with Süß and Thießen.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "walke-bio",
+      "url": "https://history.wustl.edu/people/anika-walke",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Washington University profile lists Pioneers and Partisans; GND independently records the same institution.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "angster-bio",
+      "url": "https://www.phil.uni-mannheim.de/neuere-und-neueste-geschichte/team/julia-angster/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Mannheim profile, born 1968, lists Konsenskapitalismus and Erdbeeren und Piraten. Catalog subtitle end-year differs; bibliographic discrepancy retained.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "mueller-book",
+      "url": "https://www.kulturkaufhaus.de/de/detail/ISBN-9783486577365/M%C3%BCller-Guido/Europ%C3%A4ische-Gesellschaftsbeziehungen-nach-dem-Ersten-Weltkrieg",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Book biography identifies historian born 1957, Aachen/Stuttgart; incompatible with geographer born 1937.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "mueller-preface",
+      "url": "https://api.pageplace.de/preview/DT0400.9783486713763_A23143836/preview-9783486713763_A23143836.pdf",
+      "checked_on": "2026-09-21",
+      "locator": "Introduction, footnote 1",
+      "note": "Author preface cites his edited international-relations volume with Conze/Lappenküper and his 2001 review of Loth/Osterhammel.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "bernstein-jefferson",
+      "url": "https://digitalcommons.nyls.edu/fac_books/61/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "NYLS repository identifies Richard B. Bernstein as author of Thomas Jefferson and records institutional affiliation.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "bernstein-founders",
+      "url": "https://digitalcommons.nyls.edu/fac_books/47/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "NYLS repository identifies Richard B. Bernstein as author of The Founding Fathers Reconsidered.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "ganguly-bio",
+      "url": "https://polisci.indiana.edu/about/emeriti-faculty/ganguly-sumit.html",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Indiana profile identifies Tagore Chair and lists Deadly Impasse and Ascending India with Thompson.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "ganguly-future",
+      "url": "https://manchesteruniversitypress.co.uk/9781526155139/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Publisher identifies Future of U.S.-India Security Cooperation editor as Indiana/Tagore Chair; confirms Šumit spelling variant.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "ganguly-hallowed",
+      "url": "https://academic.oup.com/book/2336",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "OUP lists editors Fair and Ganguly, identifying the latter with Indiana and the Tagore Chair. Confirms comma-and credit extraction.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "mann-history",
+      "url": "https://www.projekt-mida.de/staff/michael-mann/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Historian born 1959, Humboldt/Fernuniversität career; bibliography lists Geschichte Indiens, Sinnvolle Geschichte, Geschichte Südasiens, Bauernwiderstand, Beyond the Line and Civilizing Mission. Catalog wording differences are retained.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "mann-sociology",
+      "url": "https://soc.ucla.edu/person/michael-mann/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "UCLA profile identifies sociologist born 1942 and lists Fascists and The Dark Side of Democracy.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "schneider-mainz",
+      "url": "https://zeithistorische-forschungen.de/autoren/ute-schneider-0",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Journal author profile identifies Mainz book historian and lists Der unsichtbare Zweite.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "schneider-ullstein",
+      "url": "https://www.degruyterbrill.com/document/doi/10.1515/9783110337211/html?lang=de",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Publisher lists Oels and Schneider, both Mainz, as editors of the Ullstein volume.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "schneider-essen",
+      "url": "https://www.uni-due.de/geschichte/ute_schneider.php",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Institutional bibliography explicitly lists Die Macht der Karten, Kartenwelten, Dimensionen der Moderne and Handbuch Moderneforschung for the Essen historian.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "harrison-warwick",
+      "url": "https://warwick.ac.uk/fac/soc/economics/staff/mharrison/public/",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Warwick economist bibliography lists The Economics of World War II and The Economics of World War I; separate from Oxford medical historian.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "harrison-oxford",
+      "url": "https://www.history.ox.ac.uk/people/professor-mark-harrison",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Institutional biography identifies Oxford professor of history of medicine, matching RiH reviewer affiliations.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "harrison-annual",
+      "url": "https://wuhmo.web.ox.ac.uk/sites/default/files/wuhmo/documents/media/complete_annual_report_2002-2003.pdf",
+      "checked_on": "2026-09-21",
+      "locator": "Page numbered 27, Mark Harrison publications",
+      "note": "Oxford unit report lists Medicine and Victory and Disease and the Modern World under Mark Harrison.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "harrison-commerce",
+      "url": "https://academic.oup.com/book/7242",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "OUP attaches the exact book to Oxford professor of history of medicine.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    },
+    {
+      "id": "harrison-social",
+      "url": "https://global.history.ox.ac.uk/symplectic/publications/list/2364241/74413216/119941/?filter_types-2364241%5B%5D=&page-2364241=3&widget_limit_to_favourites-2364241=0&widget_max_publications_to_display-2364241=5&widget_page_title-2364241=Professor+Mark+Harrison&widget_show_author_and_editor_names-2364241=0",
+      "checked_on": "2026-09-21",
+      "locator": "Bibliographic entry / biography",
+      "note": "Oxford publication list associates the Pati/Harrison edited volume with the medical historian.",
+      "scope": "Identity/bibliography only; not review-argument analysis."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "pilot-20260921-0198b04c016716a56791ddc2",
+      "occurrence_id": "hnet:mention:0198b04c016716a56791ddc2",
+      "occurrence_fingerprint": "077ec6d011259521e4fc38f616505c476e3f6f3dc98819c5771cd0a638ebf4b4",
+      "source_json_sha256": "b9c14cdbe72b2802b582d8f5c16d9a67d560762388efe9095261d852b933e544",
+      "source_raw_sha256": "1a90bebd9a0ca100a04e888caee277b8ff7d9133f0be56e7445f39fe96a5dcbf",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [
+        "Q1425193"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-03227ddc66930f8b7d571f9b",
+      "occurrence_id": "hnet:mention:03227ddc66930f8b7d571f9b",
+      "occurrence_fingerprint": "04449184164737e96a15b62de0780238681c00cd63a5a2edecec6544d0070fb5",
+      "source_json_sha256": "603633aab517a05d10a174069853625d8296a0b5e3d1f0fc96c4ff0155471f0c",
+      "source_raw_sha256": "f3d3c76dc8fa5eeb3d0a9b9e60bd1e2fc0a3f9a2ecd6b540a572454ab13303c1",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-056812e12f1e8bad8ee2ec0c",
+      "occurrence_id": "hnet:mention:056812e12f1e8bad8ee2ec0c",
+      "occurrence_fingerprint": "70deeff036a6a295953fa52a9b0635c0dec47757ee36bb63f8f7dafec22dc120",
+      "source_json_sha256": "3c75b8d8606a2587a9dd915ef3eb4f3f0fdb4d173cfb8fca9eac29c6442dee35",
+      "source_raw_sha256": "dae0dbf7a91a3bf9fda1190fac0927d600019b7ce191f78b655250fd3f4e9288",
+      "status": "accepted",
+      "person_id": "anika-walke",
+      "legacy_qid": "Q130815595",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "walke-bio",
+        "walke-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-058327fbfe2a40bb7f3ce594",
+      "occurrence_id": "hnet:mention:058327fbfe2a40bb7f3ce594",
+      "occurrence_fingerprint": "37b4d708350b32993c11097e940444c9346169cc04fa0660e3fd66ef3097c912",
+      "source_json_sha256": "b2aec628d76681c8e7251bf160f97d99119c661675ffc24286e05de3d52c874b",
+      "source_raw_sha256": "a85f7443760308abeabe3a0a43bcf63ce0158d43069b3ab1c0157309ab27fdc5",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-095ec7d6886f3614b6ee7352",
+      "occurrence_id": "hnet:mention:095ec7d6886f3614b6ee7352",
+      "occurrence_fingerprint": "b15332e7f0af28360290122526eb3f45097318eb1ac02637e99258dbf76cd0dd",
+      "source_json_sha256": "c8ab8265efc2afa6a26fefa85fbda0cbfa3ccf2ba48d915a2d2299cdc66cfe24",
+      "source_raw_sha256": "4234ed20ec1cd1d25f63de442b7dedb1adc4deb9aacd6679c4a28df4d45f287b",
+      "status": "accepted",
+      "person_id": "peter-schaefer-judaist",
+      "legacy_qid": "Q15840155",
+      "rejected_qids": [
+        "Q15840155"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schaefer-judeophobia",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-098c6d565bb011eb4b6b16aa",
+      "occurrence_id": "hnet:mention:098c6d565bb011eb4b6b16aa",
+      "occurrence_fingerprint": "db7a3334216536341d54b701852a130c6d8ef72a0626cb78cd68a3c18962feee",
+      "source_json_sha256": "1c1ace85cf548aea56e9754e80021dd80265805d8c1d31baa0df293aee47643c",
+      "source_raw_sha256": "fd111cb9dded79653c3c65aa8490bcadbfa89f11d641bc0a93134568ecce2de0",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-0ad44b68c346828b104fc333",
+      "occurrence_id": "hnet:mention:0ad44b68c346828b104fc333",
+      "occurrence_fingerprint": "e81b47dda3fab33758d33d74bb13a834b6874d42788d29e2349a660bf20a0ea7",
+      "source_json_sha256": "a23fcf3f7662960821dfa7803be36ff1a92850cfb203bf3bc65f7f52dc94c88a",
+      "source_raw_sha256": "97f9ff8cb3c0311d9cbbd3c088b3107deaadccef28f2b5ae9daaa676bc117a3a",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-0ba70fd5f7210c53ca42f4a1",
+      "occurrence_id": "hnet:mention:0ba70fd5f7210c53ca42f4a1",
+      "occurrence_fingerprint": "962a92a26d3d712175141afe4926c6630096aa7bd0055676153e03405dbdbf5e",
+      "source_json_sha256": "573d45a3c29251fb24793bf7b1dadb047294f81338700f5d59e75852a417f28f",
+      "source_raw_sha256": "d438586e5f45c547e8711855fc7d41f2281a450c64ff2b493459d8755685e0ad",
+      "status": "accepted",
+      "person_id": "michael-mann-sociologist",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-sociology",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-0cffe01f4dd6c61f54654765",
+      "occurrence_id": "hnet:mention:0cffe01f4dd6c61f54654765",
+      "occurrence_fingerprint": "84b0f91cfabb127769546f8c872d6cf3c07c51473bea1cfae47d7a71a2b6055c",
+      "source_json_sha256": "04b6692cc6dabe0baef8e36e1aec2d37a197ce590ff47ede41c19270e1e7d023",
+      "source_raw_sha256": "5d4fdc0bc5a564b1263ae3ca0edd92f999c7c669eb0434132ad840c3c8c66a25",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-0fb12164f374da38c86aaab7",
+      "occurrence_id": "hnet:mention:0fb12164f374da38c86aaab7",
+      "occurrence_fingerprint": "1772a88763177aaabff5c755ff00b040a6276631dd61a9188c16254b176d6414",
+      "source_json_sha256": "f517fb8c2811168ce007c467f77f194ee1d06e1dbaa3cbf1eb918d5c096c3bdf",
+      "source_raw_sha256": "0905ca89728a9b775b6de3b3ee6e4e9ae00c114e9f7c7125fc982c92d7fb6240",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q93972366",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-108f0623098ca7ec8deb85f1",
+      "occurrence_id": "hnet:mention:108f0623098ca7ec8deb85f1",
+      "occurrence_fingerprint": "157aa56e723cb758a816ccfab59acb86794cf44a0930a619b2d5ee7c180a3b4a",
+      "source_json_sha256": "2b39a0513a2479efae57723e2cda1fd47791150423ebff0a8e994a5fced24289",
+      "source_raw_sha256": "8bf0ac55e82815df8894a5131d89297d440050987d8e97829f54dd66abb3e0d4",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-109ea41ff9b7b2013d3eeef4",
+      "occurrence_id": "hnet:mention:109ea41ff9b7b2013d3eeef4",
+      "occurrence_fingerprint": "bd412da29d07013ce6f419f8e23cee9a102832942b2b3eca1ca92a9a6e8d8530",
+      "source_json_sha256": "7fb006d1e0b21af7da970bec3684f83f16aa9a5bf670ec9df7d1497c472bfaf2",
+      "source_raw_sha256": "8215a1ebd1b3c8ff4313b451aa33edb114c485f1cfbe0746ae98d067eed871a3",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "Recorded name and Indiana affiliation/Tagore Chair match the institutional identity.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-110cf31b600d57c6e961ac4f",
+      "occurrence_id": "hnet:mention:110cf31b600d57c6e961ac4f",
+      "occurrence_fingerprint": "c77dd32cd88e84b911c5edb2da7e77472bab77710b1512aa3de49b1a57d5385c",
+      "source_json_sha256": "eb213c46909aa77a7b2f2fe1e5806626291a247a959b4f462c4418e1fa7a7ec9",
+      "source_raw_sha256": "0207b5860b85f98dc97b9fb0dae81c6e0b842b47cf11102c7c444c88131b4039",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95193358",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-1731d470c66f080eb877f92d",
+      "occurrence_id": "hnet:mention:1731d470c66f080eb877f92d",
+      "occurrence_fingerprint": "b1d46065a02b7854a2501a4a839f33cb1f10b2c78fd95ccaca496cdf949d8ff0",
+      "source_json_sha256": "70522bb8218164cfdcef821b4382afbdfa8707395578d705e4ca32f0fb4a5d79",
+      "source_raw_sha256": "06a4385df2979e4433b7a96b5643587094ea1cee138c55758b3e4c5752c1620c",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-1940a12385ff0348c4ed6523",
+      "occurrence_id": "hnet:mention:1940a12385ff0348c4ed6523",
+      "occurrence_fingerprint": "49a026e24ff665dce919c34146f28feb4162e03909b234a6bcf64da229b5edfb",
+      "source_json_sha256": "8d18cc5f67f808afaba8ca1b9c249756887f8c12c38c86214e813aa28ee90bff",
+      "source_raw_sha256": "c3eb042bf6f30c1fcdbbb52a292c77f47885ed51d323c5ed877764ddb5ed6fe9",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-1d0300698a1f19ddc64aedb0",
+      "occurrence_id": "hnet:mention:1d0300698a1f19ddc64aedb0",
+      "occurrence_fingerprint": "22795f741cfc404149aa37514d30b024956e5267d9789c807dc82fc2fa8f74bf",
+      "source_json_sha256": "4d18edbfaf1feee1d7e61800bc6fa688035abdeb82e9c93fa8e6eb2f69fb4579",
+      "source_raw_sha256": "7784df66a20344b0deefbf67ae69ccd224380c689d62494515f90c2940e533fd",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-1f312b4bc8dd71bebf360f46",
+      "occurrence_id": "hnet:mention:1f312b4bc8dd71bebf360f46",
+      "occurrence_fingerprint": "9b2d747eaca941c523432538b21cf2666377e2a662e1e366e41b30041d8c3b4c",
+      "source_json_sha256": "f5f86a213ea698b2314e2d816dfe06a2b47310dcfbf173c745a29e3c5db86ce4",
+      "source_raw_sha256": "d52f15bc9cbede869a30f549be2028c21384354c585e82c0e8eea1b9d7ce9c73",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-1f671f60107f4f28b03eecbf",
+      "occurrence_id": "hnet:mention:1f671f60107f4f28b03eecbf",
+      "occurrence_fingerprint": "8c325381ff3b56be2b10de29c0438a08167efce2891ef6885e7498cd56c26f33",
+      "source_json_sha256": "c4d87bf34723dece4609240efa5913c67e86e2393f2e0754342684ddd4d12e87",
+      "source_raw_sha256": "12a597301a997f350fd1d2fbbcc99f963865878e182932685503a39c718c5143",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-20274017d88adf3f015b1de0",
+      "occurrence_id": "hnet:mention:20274017d88adf3f015b1de0",
+      "occurrence_fingerprint": "1fef0e4080f1587965561896e01df05394077e7d0fce04b22707f59724213cdd",
+      "source_json_sha256": "66926b48d34245d344d09c74190ee00277c8d214dbe7ce6f6cb8ff6a30412596",
+      "source_raw_sha256": "96e3bdf316997fcb259250e56de580b00d878451f8b698a06ccd3de783a454c0",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-22166b731d950f1c024adc41",
+      "occurrence_id": "hnet:mention:22166b731d950f1c024adc41",
+      "occurrence_fingerprint": "b9bbe7d026ecb9e9e446ae2fe46fddebe47182cf14c9de222dec3809a0a2a5a6",
+      "source_json_sha256": "cfd797bb7c9c87bcef40f713a079ad3c4c9d8e7fe39f99b6fa4d2d0c04993911",
+      "source_raw_sha256": "611b2633569ca56939c12dd4db11940babd0ceaab010ae441b8b0edac8f27b53",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "ganguly-hallowed",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-244f831a06598bb7bf3c38d2",
+      "occurrence_id": "hnet:mention:244f831a06598bb7bf3c38d2",
+      "occurrence_fingerprint": "c2e142402da44a1f4b45279dce2caa6cf95a5df503742818f4f9f525ba6aa602",
+      "source_json_sha256": "d2699500e810e65982b9f54e299d64a0a8bacf897730a01f291ac20e145b7de1",
+      "source_raw_sha256": "4bf556dec1808e4319153b7bd96921c74253b26cc9cc317b788a3376688bc01c",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-25e15d5ed9b9dee4658238a5",
+      "occurrence_id": "hnet:mention:25e15d5ed9b9dee4658238a5",
+      "occurrence_fingerprint": "5d767c2326920905887f39607b66504f1ff7b1d66eb40b8db22b32033b089fc4",
+      "source_json_sha256": "a3fd06b43ec7a3d6b79e3c0a3788e04e4b3d6b322dd19ea1648d06e33c8f9947",
+      "source_raw_sha256": "042e3736fa610969ec79d36004f4023dd9983521ea8ce07a76b656a368f312b1",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95193358",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-27cb9a09fd55ee46ce8d58da",
+      "occurrence_id": "hnet:mention:27cb9a09fd55ee46ce8d58da",
+      "occurrence_fingerprint": "831e8c8bf59457d2f0d347ee996747b14c1f51814a88560981a3dc8f0ff059fb",
+      "source_json_sha256": "1304612359cbf9b5e0191815c777eb7b45bec848d61873b9ca9aa2bdeae7615b",
+      "source_raw_sha256": "752a7d004086166b4f59034b7b87fb91c3d1e97f3f971e315d3348d5b3dfb39e",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-annual",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-2bed928094bbf248794289a6",
+      "occurrence_id": "hnet:mention:2bed928094bbf248794289a6",
+      "occurrence_fingerprint": "bea17698a86589e91d1919258d3fe6db021b76c3a5329fdab3c374662cddf6bd",
+      "source_json_sha256": "c71fef87d941b0e710ee345ad7dd40e1cff874c8151d8add294f7230e4029553",
+      "source_raw_sha256": "bd4b1e79abfbe20d71a998525bed79fa2079fb803910583941f042815b2dd21a",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-2d2f27705c2baa9ed6945c58",
+      "occurrence_id": "hnet:mention:2d2f27705c2baa9ed6945c58",
+      "occurrence_fingerprint": "3c70b7d6f7152655d43e805a7621934ad205fc75fda6854a4e3997f69374b58d",
+      "source_json_sha256": "25908aca04cc422b92f9fe9d3627323b05d4f2e174af952a819cafde1525093f",
+      "source_raw_sha256": "79d5f4d8f4c7f0393588b6c39884efda454bc6a128ba26afe316d99c23fc92ff",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-2d5eceaf8c8f69fa1b2e5df1",
+      "occurrence_id": "hnet:mention:2d5eceaf8c8f69fa1b2e5df1",
+      "occurrence_fingerprint": "1f6e74e88dc848e9026841db240eb7b845fe66a046a5fcef3a8f006d16c32992",
+      "source_json_sha256": "59281b3f96511915ee9526faa0b252cec3f66c2b61101a66a0672a449fd51082",
+      "source_raw_sha256": "2bd19f046d1a7a83920de593266d35bf2b371b5fd42d198dd91bf1eb9baa442e",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-2ee4ebdc5fa893064770a917",
+      "occurrence_id": "hnet:mention:2ee4ebdc5fa893064770a917",
+      "occurrence_fingerprint": "944bfd97a7cba5fe29dd3d7611a4b77d3d5a67d342d969ce632d166636d658c0",
+      "source_json_sha256": "bf7936bd5164b29317f7f35bdb3fad3c46011810273cb22d4a42431698e3c9eb",
+      "source_raw_sha256": "1651eeb556d9028ceb8c050e2c28a22c8b0ca8e6987248ef8bbc6a54f8bd6f00",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-2fb3b0d05444a202dc9f721e",
+      "occurrence_id": "hnet:mention:2fb3b0d05444a202dc9f721e",
+      "occurrence_fingerprint": "d49acec17321e04d9426c3020a79b492447099907abc6101cc9846b288d555b5",
+      "source_json_sha256": "329f9d10c9d3ca14a58cd801ffb927b73ca7dafb210bfbf6ba6a0a0f7e4705af",
+      "source_raw_sha256": "d243aea5c17e8d0a2b110c52d67d11df3e72875b527116177345a257c8441adf",
+      "status": "accepted",
+      "person_id": "guido-mueller-historian",
+      "legacy_qid": "Q112521261",
+      "rejected_qids": [
+        "Q112521261"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mueller-preface",
+        "mueller-gnd",
+        "mueller-book",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-33fbe46c9e3eca6748e63801",
+      "occurrence_id": "hnet:mention:33fbe46c9e3eca6748e63801",
+      "occurrence_fingerprint": "74a8cdcc8e9ab8f6adb77cb031bbc7117437c5ab14e66c88c676a1c84d61cfb5",
+      "source_json_sha256": "8980cc2392bc3826405ddcde75ff4396ec3a56685e8d4bc819dea08ecfa6f3ad",
+      "source_raw_sha256": "68aa1f1e989399c92eb019386136db97809bb72c0e8197d5fbf29da0e9defea8",
+      "status": "accepted",
+      "person_id": "guido-mueller-historian",
+      "legacy_qid": "Q112521261",
+      "rejected_qids": [
+        "Q112521261"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mueller-book",
+        "mueller-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-34cb6eb1bc58ba3042e96e54",
+      "occurrence_id": "hnet:mention:34cb6eb1bc58ba3042e96e54",
+      "occurrence_fingerprint": "b37ec4ab088dc4f0ab3af4f3486c6915882f38094a2a5450f814550011aa614e",
+      "source_json_sha256": "d584eb8c97f450885ccf42cfd3fd190eab3c878a39168dba0125086bbb0387e1",
+      "source_raw_sha256": "f279832b77b9a579c000291f32adb4ade5544bb52cb918e36923e63010986197",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-35ccfecb96510fd0e24f8939",
+      "occurrence_id": "hnet:mention:35ccfecb96510fd0e24f8939",
+      "occurrence_fingerprint": "76e1cc60506198fc42b9d0a5a741852d99732b17fbc29aea6a339c730f732c4e",
+      "source_json_sha256": "e23b2322722ba3f644efb1a01f14fed5c27ace7570dcc6db11139ec23002cf81",
+      "source_raw_sha256": "7740a17d5a14910b0c51d16bad975d66252a26694d0e1597fb9b3c05bee41609",
+      "status": "accepted",
+      "person_id": "ute-schneider-book-historian",
+      "legacy_qid": "Q16295137",
+      "rejected_qids": [
+        "Q16295137"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-mainz",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-39531642b98f28f0cab79b19",
+      "occurrence_id": "hnet:mention:39531642b98f28f0cab79b19",
+      "occurrence_fingerprint": "1e0e1691549bc8eb1508caecadfb1757929b5cdddadd9d27d839b3cabbd9f4ff",
+      "source_json_sha256": "4a5d420897b27603546e200731ae813690bef1140bb6991cd77b5faa0b2f1f44",
+      "source_raw_sha256": "2aaa5afa3017d57b16ed4a6265c1abdccacbf94fb2aae4d3c3cccfa90de1c00b",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q95266163",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3a1faeeaccbe7ecd442ffff5",
+      "occurrence_id": "hnet:mention:3a1faeeaccbe7ecd442ffff5",
+      "occurrence_fingerprint": "8bb6018ba9de78f1845d00d50a1b75296acddb68d3c60f2943641e453b6cfa7f",
+      "source_json_sha256": "11015d6945dd8e3e4f798664d68754180242074a232196e3c476a19c1058248b",
+      "source_raw_sha256": "a4c8e64dd7fe6205c2de84646e445c6fee1020e2ebdf0b9b6b772a8d5c6437fe",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3a3f4a66c0914efc7117fb41",
+      "occurrence_id": "hnet:mention:3a3f4a66c0914efc7117fb41",
+      "occurrence_fingerprint": "b3e23f39c35e9f421c390614afa6ad0a95eee2ed91bbcdd01c848e38b6b462b8",
+      "source_json_sha256": "024e7205cae9428246a602b106b3cbbfc1cb264e90efba97215dcbd8dc628b22",
+      "source_raw_sha256": "73658e428b8f6303e8192bba6c53a030d1e6627c74dd00f122493900e4d9ab89",
+      "status": "accepted",
+      "person_id": "mark-harrison-economist",
+      "legacy_qid": "Q110009814",
+      "rejected_qids": [],
+      "rationale": "Source explicitly names Warwick Economics. Preserve distinction from the Oxford medical historian.",
+      "evidence": [
+        "source-credit",
+        "harrison-warwick",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3c364936c97e55bc81ada0c6",
+      "occurrence_id": "hnet:mention:3c364936c97e55bc81ada0c6",
+      "occurrence_fingerprint": "a4766af648e1e297c6ad15387b3fed076a8b8e06b5309e9a5a2d767d6cf7fd93",
+      "source_json_sha256": "36d043ec8dc7f67efb7e619e269634bde0480fbc7b8cad1ab1ea7d8d79dee0d0",
+      "source_raw_sha256": "a2ba934d540a25e169b995257cec246a6561b97ad09c55b053f6ec01484688f7",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3d24b2c3d3845c2a22fcc3a6",
+      "occurrence_id": "hnet:mention:3d24b2c3d3845c2a22fcc3a6",
+      "occurrence_fingerprint": "1815d6b1cf97aca39169668aee90786ac5701af6eb08a63d3beea907d582f107",
+      "source_json_sha256": "80c04bc79757be2950d8a3df94263e963210d2aa5283dc619ba36a2751f5cebe",
+      "source_raw_sha256": "70627ec22c695190c88c0bbdee832b314301e6e3518eb42ddb17c09cc63151c9",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3e65743e40f187a6ba82c9a4",
+      "occurrence_id": "hnet:mention:3e65743e40f187a6ba82c9a4",
+      "occurrence_fingerprint": "df8fa20b48053c6b355fc88e648a103e22c6049f5b4bce7820e8064df2dbbfb0",
+      "source_json_sha256": "f36bc4b07f293bd880315a09836c94719eab06879d9c5ce4c984bfa0201a8f1a",
+      "source_raw_sha256": "54af8ca05f1475f4cc2546c1b1a37144055612b8e0c03d266d8e03e4fb633fad",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "Recorded name and Indiana affiliation/Tagore Chair match the institutional identity.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3ea81c6e5fba1bcf4f78924b",
+      "occurrence_id": "hnet:mention:3ea81c6e5fba1bcf4f78924b",
+      "occurrence_fingerprint": "1ed05e82b48706844c166c149c8b17e9116bf55fd211d9519f310a902a8f1558",
+      "source_json_sha256": "c0b9c97bf859d70e3ebae8134acf6ab64da0d3af0e419e4f13b06de1e55232b9",
+      "source_raw_sha256": "20ff47b46187340b7fef2a5f9a0070aa58df6034daf2a9a1747f657edf481108",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-3fb725a08cd9287952d88310",
+      "occurrence_id": "hnet:mention:3fb725a08cd9287952d88310",
+      "occurrence_fingerprint": "8ead431c096df0ea31748880fe3bf0a89acc715c17f972535646cbcdb8cacfc4",
+      "source_json_sha256": "72b34eeb1805717c68da4e85081bd6f511eea988210e02fcf753663a7ae59643",
+      "source_raw_sha256": "e6a33f27abe23ba45021cf339d39d62830ac91e5ac87051f1a387901d911496c",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-4004b976bef8d2bad716a64b",
+      "occurrence_id": "hnet:mention:4004b976bef8d2bad716a64b",
+      "occurrence_fingerprint": "71227aa20e7afb1b63ca5a5cdbd2e4d89254aa6fc1cfc595ec9a6785e76e0901",
+      "source_json_sha256": "c846e68cc7a27b4191c5e6233830fe429e43410780be7a0e9e6a3f14f7b66026",
+      "source_raw_sha256": "5f9cc24cfaf0e2b09e1826c6ba7610aa5adb567137f5383084173b4fcc983c0d",
+      "status": "accepted",
+      "person_id": "peter-schaefer-judaist",
+      "legacy_qid": "Q97091",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schaefer-mysticism",
+        "schaefer-judeophobia",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-427a303fdba3aa7169defe02",
+      "occurrence_id": "hnet:mention:427a303fdba3aa7169defe02",
+      "occurrence_fingerprint": "88e0882ddd3244e01186184682d94e346a4a952de72884d6a5eddb562d422679",
+      "source_json_sha256": "c839f44b6b830b7ab04a7be29aa4e78f22908e4c8a173c72dc3b97ad5e25ec2b",
+      "source_raw_sha256": "a0e1b8437be44d0ce94d20f438de78b59ee975d2601671bcf3e5a3c39156a8c7",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-4389fda18f6541abcb01d5db",
+      "occurrence_id": "hnet:mention:4389fda18f6541abcb01d5db",
+      "occurrence_fingerprint": "76db74741c150b39445ef4948e20aa2dd69d98f3682ecf847995c5db13783943",
+      "source_json_sha256": "ed61f6db6dd06c2a63a5ff6f22f76d6e2748557ac80305d87b6257c2a3acbc70",
+      "source_raw_sha256": "69482cc301c468fa17b027ebab5bd418b4960ec5f5e8f83f04d210eb9dd3bed1",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-43be43942592d566aa67d82f",
+      "occurrence_id": "hnet:mention:43be43942592d566aa67d82f",
+      "occurrence_fingerprint": "145acb9b39d1010705b192d21cdbf83ad7c521c8ae029a0ae4cac267d55d0642",
+      "source_json_sha256": "c7cf5a89473377688c7707f1295b5cc8082ef420ae9e755f24aed33e62dd4690",
+      "source_raw_sha256": "9259af6469b70fb91a116cf376c5430304d77b0348d2a3adc4c883d08cf6d380",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-47aac1966650f6ccf392c0ce",
+      "occurrence_id": "hnet:mention:47aac1966650f6ccf392c0ce",
+      "occurrence_fingerprint": "723ef06483645c334ba3173412969d7ac5420f49592ccde30a1c454249244a89",
+      "source_json_sha256": "9b690bd206dc2246da807b1aec0efc563d47344e730ed8bb0239b8cf6afd8611",
+      "source_raw_sha256": "ae20e1f776c8bf7c205737042cdeac9dd135c337a80589b0eecfacaf7e96446a",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [
+        "Q1425193"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-489e9e4bfc89979b4a77d0c4",
+      "occurrence_id": "hnet:mention:489e9e4bfc89979b4a77d0c4",
+      "occurrence_fingerprint": "3f4ea8ede1db02ee3acfa494e05e64276ebbd2054b4e70bea27e8b66a2a60458",
+      "source_json_sha256": "7c45dc3ebb5b6e3cfd4510a0a9c0e9f3b4766908aad24f738f5dff51b1cb0c52",
+      "source_raw_sha256": "5a832ab5b21bd2a1e5e0d6aa816bb892089fc178bc5b5882aee06d71ba1a025c",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "ganguly-future",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-48cb43d2e433d4187f1c5faa",
+      "occurrence_id": "hnet:mention:48cb43d2e433d4187f1c5faa",
+      "occurrence_fingerprint": "bb1c83d29f87c772cb9b426e22ce058fe172ab9239370152d9bbc83559822f68",
+      "source_json_sha256": "300ac743e7f8a0a49d483c2e6427193f046093a12a2928191b8cbb14c3879d06",
+      "source_raw_sha256": "4a1e383de9f9229f3418964fb7422af36d6c36c86c9026d3b3b3a572e62b20cc",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-4b0a5af6feca9468b4e38ee9",
+      "occurrence_id": "hnet:mention:4b0a5af6feca9468b4e38ee9",
+      "occurrence_fingerprint": "6a5d046c470e7430dc74891c86769ce31da27500741df52228b09b39b50a2238",
+      "source_json_sha256": "1e1cc0a198ff439f84af8d25e6ee5fecff566b20b151f696fb29a071200caacb",
+      "source_raw_sha256": "704135ae7938c376f60939da731462642c3a8802453e8898f2c69fbcfda23d09",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-4e0b7cfc7c405f12698f9e2d",
+      "occurrence_id": "hnet:mention:4e0b7cfc7c405f12698f9e2d",
+      "occurrence_fingerprint": "6585b77e2b01440e5c4c49412ed1ca669e0de39bf30288c7011395d5da176449",
+      "source_json_sha256": "92aa9e3d945ff6871d69786d35067e60a55b2c3ff5486ca04fb98db289a58b2e",
+      "source_raw_sha256": "36b31019dc26f51d3a652a31ce6896c43513d60c7300be9727ac2f53a8b8a56b",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-51a83b8a2e11b6cb05f107b4",
+      "occurrence_id": "hnet:mention:51a83b8a2e11b6cb05f107b4",
+      "occurrence_fingerprint": "56b0eb9145cd6a26f16ed7175a464b7fec20e59dae2e04d3aef2dc419ce04872",
+      "source_json_sha256": "ec0f570d69768fd4cc2cae0734658b9d1776e2972b6c940f26a916f5170edf4b",
+      "source_raw_sha256": "19f5a1716143e4d6ef0d02586d53a99cd27d36ffd7013b5b626bf5bdf02d6f97",
+      "status": "accepted",
+      "person_id": "ute-schneider-cultural-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-essen",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-52368cb5605a6116629c9f82",
+      "occurrence_id": "hnet:mention:52368cb5605a6116629c9f82",
+      "occurrence_fingerprint": "80e87fdbea006d512d88f3d1fc9222810c12ea0bc38a545b876e9721101b51dc",
+      "source_json_sha256": "50f1e5e819b65d3c8e383e9de15d83f4f5e6078695e5e4afc3f8f655c54ef9d7",
+      "source_raw_sha256": "89db9a9eb302518ced9a383f83d52932daadbaa01b071c365892f1f8053f35a9",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-52631019b77f8af284a6e4ba",
+      "occurrence_id": "hnet:mention:52631019b77f8af284a6e4ba",
+      "occurrence_fingerprint": "1bcf7cb9a804cb3405ed80b4a39d9b0b7b64ee523e8b2ae56fba604586a14476",
+      "source_json_sha256": "6af56804318dd4fb421d275baef9a919827a1b49845042ab1b79aba2b70636d4",
+      "source_raw_sha256": "0f4cbdb42b03b5c5d60da763e18a0204f8cc9784cc13bcd197464e8462adc060",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-5668f464145d345888fc0220",
+      "occurrence_id": "hnet:mention:5668f464145d345888fc0220",
+      "occurrence_fingerprint": "d8323f42cfc1c2e9a63dd6dabfe3e1b985fbf9724b4dec7a413dc4cd6377164b",
+      "source_json_sha256": "a597c25c6dfd099340fd5d0bc7ea64cd0f0c86bb3c9d690d3a67ad13f9552e4e",
+      "source_raw_sha256": "61f593035f2ca2cbebeb666143a1b717523c14459590b1bd9a9fd2ba84889705",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-57c1d5e72cedcbe77ebdf229",
+      "occurrence_id": "hnet:mention:57c1d5e72cedcbe77ebdf229",
+      "occurrence_fingerprint": "62d01f806b7b681c62fbca709521362819ef42a5470d6e5772ae08d9bf7c23fb",
+      "source_json_sha256": "cc4ae7832a623ddd4406a49e9a475845bcad41bc9d038f3025527aa94c1f62b5",
+      "source_raw_sha256": "e96249ff1c721e41bfb33219ca64061912ea6f2e4afd845f0f32d81cd1dbb86e",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-585204f1c77549d1fb933575",
+      "occurrence_id": "hnet:mention:585204f1c77549d1fb933575",
+      "occurrence_fingerprint": "618cb32e45792402ecae478f2e581fabdfb369a71c50eee06d17815a640d343a",
+      "source_json_sha256": "4bb5488ad9cdf91bf935304db120d5eb656e5e367675043f86ff6d4b53756193",
+      "source_raw_sha256": "7d7faff24f7352fdaab5d3c60d3791454481f6a8e3df1c4e3ebb527993ea1b92",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-595aca5c0d15a3acff9b3166",
+      "occurrence_id": "hnet:mention:595aca5c0d15a3acff9b3166",
+      "occurrence_fingerprint": "b3ed8ab940896e23eddb9440f2133a1aa5fe5e981f86ac1a7a354a3dbc0647c1",
+      "source_json_sha256": "351cb8c573ad0a0446f2ede4be18b405385fef1a0ee667cfc7190be81247c51c",
+      "source_raw_sha256": "787aaf197f9d155363d616408b4d09f8d750e613e5d9a8a7b80ff170c06acf75",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-59d2aebee0746cf509020035",
+      "occurrence_id": "hnet:mention:59d2aebee0746cf509020035",
+      "occurrence_fingerprint": "6e695e29229c666a85f288aa5b4109f6dc5867b6c020fdc2028966e633adaeff",
+      "source_json_sha256": "6d4be936741c333c65aa57e93fb6094357e86a35789475692fca4128051b39f0",
+      "source_raw_sha256": "c2710f4c534364d5a4ef80994c08ddfa70dcc36cf0a68bee9379b4d45750e5dc",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-5a9684347a7ecacb5bb6f826",
+      "occurrence_id": "hnet:mention:5a9684347a7ecacb5bb6f826",
+      "occurrence_fingerprint": "8db3b231804dc11d19cfc5d5694cd0bee1a1d9775b4e4e6fd02f2581b0959a98",
+      "source_json_sha256": "48cb98db3dbe731439e73a7bcb790a9d39d59549e7070dbeae5de70b8f584fba",
+      "source_raw_sha256": "cb489bc8c0766e06876bb3cb5d4af88b42c9caee5cf46796f826e00e8040e64a",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "Recorded name and Indiana affiliation/Tagore Chair match the institutional identity.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-5d4acbf6deee03ae4253d868",
+      "occurrence_id": "hnet:mention:5d4acbf6deee03ae4253d868",
+      "occurrence_fingerprint": "01a3a1b717d9a28a09e23e193b9754de6721e0e4d9723909dd842d839e524157",
+      "source_json_sha256": "2ef2d9a27a77327e877be02c296da901cdf33a0edb01a5c698d6c06e9c3370fb",
+      "source_raw_sha256": "a77ff27a796faf29bc6b8ae78f1b05141d1adeeae8442dc0ec332964c4c10c13",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-5e9888ff61f202c884787231",
+      "occurrence_id": "hnet:mention:5e9888ff61f202c884787231",
+      "occurrence_fingerprint": "8f55ad0adf937fa0a3b4554aedded51bde635ea0aefb5d693b8343ede6438342",
+      "source_json_sha256": "a8721dfe0a182850b1b8eaefdc2b6d15260c15070fd6fc0b0acbbaba41a8c59a",
+      "source_raw_sha256": "067f63e6d32f9d668d0b370a17a11420cf00c24933109f8049a5c8a167bfc873",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-5ebca8641f62c3533dbbff9e",
+      "occurrence_id": "hnet:mention:5ebca8641f62c3533dbbff9e",
+      "occurrence_fingerprint": "85e67ddf6a6849a1b37672e973da53d9267f5a699af1587e2dc9d9bb4762cd5d",
+      "source_json_sha256": "b2aec628d76681c8e7251bf160f97d99119c661675ffc24286e05de3d52c874b",
+      "source_raw_sha256": "a85f7443760308abeabe3a0a43bcf63ce0158d43069b3ab1c0157309ab27fdc5",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-social",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-60ac789d43fd4c45a145dfe3",
+      "occurrence_id": "hnet:mention:60ac789d43fd4c45a145dfe3",
+      "occurrence_fingerprint": "c4ed95416f76c250da9c171654cf5f77800723079b85ce0623386f4ac87cd17b",
+      "source_json_sha256": "b74d17fccf8680b8a10220ae5499f7c4fb9c07a6c046e377dc17f2182ebd778f",
+      "source_raw_sha256": "6192bf6a2576c37d4f4ce5367af24c35e70aff213413e514387b2a587bd37b1d",
+      "status": "accepted",
+      "person_id": "mark-harrison-economist",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-warwick",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-612830c988657bd136bf4cff",
+      "occurrence_id": "hnet:mention:612830c988657bd136bf4cff",
+      "occurrence_fingerprint": "c3530daca9d38a9856998cd2981de4bad3e0fe8f875dcd3a744838e72d882904",
+      "source_json_sha256": "c813bf1480a2573f848352b91f7328a223e49ab10b00dff96c7d5eb82205ad9d",
+      "source_raw_sha256": "5e1c6ab4e4bf63228761a0c30a4258a2cffe2eb44bfd5b0e324b47ceb8255351",
+      "status": "accepted",
+      "person_id": "ute-schneider-cultural-historian",
+      "legacy_qid": "Q16295137",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-essen",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6534c51b592f30be4d1ab866",
+      "occurrence_id": "hnet:mention:6534c51b592f30be4d1ab866",
+      "occurrence_fingerprint": "b034d3656bc8cff2d10267f307087b5fb96eaff85ddda49ab9e1add919bb50ca",
+      "source_json_sha256": "64a85f9d2640506cd472e76ac2ce6ace726155de94abd0f705e0404574b3e550",
+      "source_raw_sha256": "b893a5472c14a49135addc491752193fd96ff196daa2cd9072206879a439470b",
+      "status": "accepted",
+      "person_id": "peter-schaefer-judaist",
+      "legacy_qid": "Q97091",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schaefer-bar",
+        "schaefer-judeophobia",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6667e8f95a9fd1b58982658e",
+      "occurrence_id": "hnet:mention:6667e8f95a9fd1b58982658e",
+      "occurrence_fingerprint": "a775f666043629fd51df2f8b3c46ca551ddc78a3943c600ad9c172938874aeb3",
+      "source_json_sha256": "e6a3d760e4416a9f2d15e9b52997484dfaa35f06eec9927a5ae9e52d594a2cb8",
+      "source_raw_sha256": "7632a6f58ca233a877c48c5bb9dd22d1b6c6998bdf37bf8386d4f708806d7ace",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-666afbccf32ebd711dfd44fb",
+      "occurrence_id": "hnet:mention:666afbccf32ebd711dfd44fb",
+      "occurrence_fingerprint": "383289dae46d600a6064bdf1fe4db202c3534b86f09a90eb6b6379db42fe135c",
+      "source_json_sha256": "dfeeabdad83266a03770c1a56c4f3c58706005d99dc1317f638e22ad0f21d9b6",
+      "source_raw_sha256": "5ffa2eec76699237bf62f5814c041387ed0c741063144733f94cec025fa5e73b",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-670aee24b7ee4773cf1a30f9",
+      "occurrence_id": "hnet:mention:670aee24b7ee4773cf1a30f9",
+      "occurrence_fingerprint": "b44ab447d742cb544703bd921590cc102719386bfa907a786f234b35fcb5ad68",
+      "source_json_sha256": "1d44a38095c3762ed2eddeb468d5c1dec9fd8b6249078bd74f3241579854369d",
+      "source_raw_sha256": "35cc4d4e0f5b1ef4b8d58a051440c4ba248db3dd259cfac093483e34af8ab461",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-commerce",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-670cf097d921ec90a6a824d0",
+      "occurrence_id": "hnet:mention:670cf097d921ec90a6a824d0",
+      "occurrence_fingerprint": "4e1b21aac1a11acbb43b113f8d41f40ef1b604eb1cad39068c83f3b3948b87f8",
+      "source_json_sha256": "a30cd7ea52af27e31ad9ef58705000d87dc89d0c9830426092ee0bd9e289f2a5",
+      "source_raw_sha256": "12ccc993261edb62644c4d3598a7eda979ed5f5bd4506933c76f18675b7b0ad9",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-694b6b17117f60af33c95687",
+      "occurrence_id": "hnet:mention:694b6b17117f60af33c95687",
+      "occurrence_fingerprint": "a2406a2408bd1c3219fc3216d2dd1dfbf79345800caf2fa43da53157ebbde3e4",
+      "source_json_sha256": "6e5c82bf882dfec69ce03a28be9e94afd545da8afd62da4eb9e3aba0e5710881",
+      "source_raw_sha256": "d876fa39f76a731e7c7a048c4f681027b34c73102f4a1bf6668ee72818db433b",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-694c4b2dd89389999ebfaa85",
+      "occurrence_id": "hnet:mention:694c4b2dd89389999ebfaa85",
+      "occurrence_fingerprint": "cebd6d8728f0d3ac0e1f2b5e80a025c3c41e4525d533f106bd5a9e3541b471dc",
+      "source_json_sha256": "91db92e1c94e832591293be9b121f640a40a8928b4c6e0eb69f968c3d1d75b4d",
+      "source_raw_sha256": "26712b6f9cb203c90823bcb09187c7bd7c388e5b928760f80af5ab6505a1b246",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6979ba19d4a978609828de36",
+      "occurrence_id": "hnet:mention:6979ba19d4a978609828de36",
+      "occurrence_fingerprint": "f44b83110ca4e288d74da8eff223a53d6d8f0cb8593b5351b6a5b60192cc1b82",
+      "source_json_sha256": "bb048d8dc5886ac9c841604d2e7f2816f6affdfa2b0a75fa69df240a33959b60",
+      "source_raw_sha256": "dcac896c845f40b0193f6464ddfd055fabe60551cc46477e81e7c1e27a33f49d",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6cd4838109ed9ebb96889136",
+      "occurrence_id": "hnet:mention:6cd4838109ed9ebb96889136",
+      "occurrence_fingerprint": "12e8df6dfd9005b3a01226d8ecead94b191145d1a443be8dce954b4c4949336f",
+      "source_json_sha256": "0368bcba70f44830143c8fd10809ecf877cd45be6694d2227374610dc4e29b7a",
+      "source_raw_sha256": "ba1f9e438420d8afefa2acc36b22324b226388f9e0d83af4309f1335c201e030",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6e534256edb6a79199813827",
+      "occurrence_id": "hnet:mention:6e534256edb6a79199813827",
+      "occurrence_fingerprint": "12004f7c9bf1b52fa035bc738425e10f210e91f9fb386a7b15c47a1a9919269f",
+      "source_json_sha256": "85d223aac0f9f0034290e7ac02d5f2ef3c1dffa3ce0d1193e67da7b25865ffa4",
+      "source_raw_sha256": "10c921602204bae5cfeb9e8700b3a828ee079077871c2ced43f510009a11af96",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-6fcef16f178e451bee8508fd",
+      "occurrence_id": "hnet:mention:6fcef16f178e451bee8508fd",
+      "occurrence_fingerprint": "6ddc1e7e4a879c678eae466ad4ecf81fbdc1b2acd3f92334413e6304fac59382",
+      "source_json_sha256": "85bba6d75e1443e89911e27d8a9ef474181962373dbd0d0466709327723d9cc9",
+      "source_raw_sha256": "383637937162e53db99b5dbc922f0bec9e94c4a309739af2bd5d2fde7397f604",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-72415cee4827394a027efc4f",
+      "occurrence_id": "hnet:mention:72415cee4827394a027efc4f",
+      "occurrence_fingerprint": "760161cba7195cb98ef4b1243e3ed6e6dd8bd5082c0d931165f6b070e0630f48",
+      "source_json_sha256": "22f6899f8f4cd24b118727d0fa225c79397d094013ec885bed6992d9f0eee193",
+      "source_raw_sha256": "a6d2ea11aae1e685d7a67c13e58cc7a13c6fc7cae5618257eebe966a640cf9a7",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-7339a8f9fb6f63a5b2fce0a5",
+      "occurrence_id": "hnet:mention:7339a8f9fb6f63a5b2fce0a5",
+      "occurrence_fingerprint": "40d960437b0b9c9af5b59b2101884bc8c179ac24f8df0e6c57e7917344c2f34d",
+      "source_json_sha256": "21affa14b4b53723b0f5ea9b0b80a43ba5a570398f2ab98a589d6c8ea5373a81",
+      "source_raw_sha256": "b99a5cdecbc50e182fc9109cc4303e53a92a72f5b25e8c5c5f6dd98b3dc89208",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-756d84271e770b10198755c6",
+      "occurrence_id": "hnet:mention:756d84271e770b10198755c6",
+      "occurrence_fingerprint": "01a064b4194575aade12b064e45d9def9869f3fe0b72c2bdfefad4bb0186f9b4",
+      "source_json_sha256": "115a95f81eb9d386d60e026b4af0b1a3c34ac0ec32d0476491586114cd35cf55",
+      "source_raw_sha256": "f08e30a4d2ae15f452540560cd3c5be374941065403c68ff532c48ecfc73510e",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-75b518ff1432bd0369216afa",
+      "occurrence_id": "hnet:mention:75b518ff1432bd0369216afa",
+      "occurrence_fingerprint": "74228b2bb697bd3f51842f617eb64982a490d619959d5a72540a59f9212a2a0c",
+      "source_json_sha256": "ff38f0274c3f7a16bc458b89aceeab32fdd103bf30aa42fe5a88deb6a8dddf5f",
+      "source_raw_sha256": "682890c07b3154c3c9a4b2a9e9b0b8382b981191f7420757064c34047049b675",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-7c4261c41a7192f39d29b130",
+      "occurrence_id": "hnet:mention:7c4261c41a7192f39d29b130",
+      "occurrence_fingerprint": "5540c2c2721b4fc97be049d1e89abe1bf386fd3109be5c0225b3357ec4043f50",
+      "source_json_sha256": "9c15b8340eae95fc628fcfc4c90959ca054272e7fd7cb24ddcd39e915ee12e92",
+      "source_raw_sha256": "9060ac6b65d8d268cb012c8110ecc1aa2f378dcc7297c2ccf3570dbecf325ad2",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-7d704cf770c0f5bc9ec07241",
+      "occurrence_id": "hnet:mention:7d704cf770c0f5bc9ec07241",
+      "occurrence_fingerprint": "fc5fd55f3c739f3984bc4ecd549fb59d620c48346f9ca566cb5e40deed6f8fdb",
+      "source_json_sha256": "dfd19411dc5ca83209da9e69e0229b6ec29a6e79a38c23aad72baa2dd8e32f53",
+      "source_raw_sha256": "d20a439255d42e04ecc6c4b8c943c2b4497220c2fb72bb7f0af193938f88223f",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-7ed157ad268e0d3c5e4ca4b1",
+      "occurrence_id": "hnet:mention:7ed157ad268e0d3c5e4ca4b1",
+      "occurrence_fingerprint": "c072108d76bc661a7efabf33cce983fc31db4f3ff3be566f0bf5058a616a6d73",
+      "source_json_sha256": "bc399c4fada8c4980ce04002c2d587b8ea9b91e6eaa62def7eb931a301a6ef37",
+      "source_raw_sha256": "48b45033f104fa8f652b4589e7a54b496413d98b93cb28a19b96108357f1b047",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-80ac9157f69bdfdd7aa522a9",
+      "occurrence_id": "hnet:mention:80ac9157f69bdfdd7aa522a9",
+      "occurrence_fingerprint": "d61ae3c273af77f319c79933b2bf9cc45e6703bc261786a282aaf325ecb3aa4a",
+      "source_json_sha256": "82c5fa9c7fe2b85bce83a2913381356120d2f0c596e78754c40537dae534ff9f",
+      "source_raw_sha256": "8dccc4986c6609da70fb19b2697143e9dd079deb43471c99219db491700b1bf7",
+      "status": "accepted",
+      "person_id": "anika-walke",
+      "legacy_qid": "Q130598476",
+      "rejected_qids": [],
+      "rationale": "Source reviewer institution agrees with university and GND records. Use the authority-linked Q130815595; preserve alternate QID as a suspected duplicate.",
+      "evidence": [
+        "source-credit",
+        "walke-bio",
+        "walke-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-8464331570ef413ebb3e5a63",
+      "occurrence_id": "hnet:mention:8464331570ef413ebb3e5a63",
+      "occurrence_fingerprint": "0bf265c18252eb9cfd1ec50acd6a9b748e1219db1f8bf802359475defbc9a77f",
+      "source_json_sha256": "f9f2505adc653c243c971701e36e83277b6666ea04f135f753b3c01cba36ea04",
+      "source_raw_sha256": "6eb27ccb652f8dd931df9ce49fefbc9f9aebb107b6297016790415b624feebe4",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-85f810a9347c4b84b678eb33",
+      "occurrence_id": "hnet:mention:85f810a9347c4b84b678eb33",
+      "occurrence_fingerprint": "777345f124ff7a35d4098ef79c8381f80413da5ec2a4537ab19623cafd8fba36",
+      "source_json_sha256": "8f427c9c9ba7ab034b27ff73184fd766831fa308a20e0b713e8d313e1f399366",
+      "source_raw_sha256": "d72aa2228f7ebe49c16f45b479d2466dcdc959847dd434cc880e5efaaad04351",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-86dd043bbb1b680882df1474",
+      "occurrence_id": "hnet:mention:86dd043bbb1b680882df1474",
+      "occurrence_fingerprint": "1679652b116cf8e577ec657dfab47632a3b6cc36428876dc1bf2be7dc248137e",
+      "source_json_sha256": "a53547ae7b72ee7bef0da4209faad8f2559404c06f2aa1a14096f93324ed0abf",
+      "source_raw_sha256": "17e7a48bdc99c2c897dd9df381ef53a144df8327758ab91ecb4b34e5da25b833",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-8dfe6b9dbc36ef3d2f6c08f7",
+      "occurrence_id": "hnet:mention:8dfe6b9dbc36ef3d2f6c08f7",
+      "occurrence_fingerprint": "6033f9b4c76dcf665c95f0f33665f27cd6ed1956f0069c286ee2695bc5083b3e",
+      "source_json_sha256": "e0d29b98db070178c1098ab47d219f672033034712039aa37a183da88f653c22",
+      "source_raw_sha256": "f6e9005255752f789bb5fa1631208137615e80124f8b1968940727e7ffac4645",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-8e0c5acea8d728ba445f76d9",
+      "occurrence_id": "hnet:mention:8e0c5acea8d728ba445f76d9",
+      "occurrence_fingerprint": "87b788db1cf4652b54739ca98f73d8726bf00b1ede1a34902759a8d78a0a9735",
+      "source_json_sha256": "38372ac0a0b4c0a88784267190f3cb4ae7bbcc1cf911edac91f5ec30fd818bf6",
+      "source_raw_sha256": "16386b117025e07f394d5adb354a8148656ab96e022ae2875d71e5bf1253bab4",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-8ebf4fece123388ce15ff06f",
+      "occurrence_id": "hnet:mention:8ebf4fece123388ce15ff06f",
+      "occurrence_fingerprint": "261dec44ea8bb64210f37462853293c85d207ef88de36dc7d0800c93e1a1be7f",
+      "source_json_sha256": "aa33057d21201cadc478e756f3c08e9d9a3401843e3720e6399666cee96357bb",
+      "source_raw_sha256": "2a31bd188f2c8f549d8ce0bb91ffc6cf8126c519ce741d64b86d297bbe354c78",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Recorded historical institution matches the university career and GND biography. Use GND-linked Q95266163; alternate QID remains a suspected duplicate, not an asserted Wikidata merge.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-8fddfaf90625818871ad0485",
+      "occurrence_id": "hnet:mention:8fddfaf90625818871ad0485",
+      "occurrence_fingerprint": "e127cfdbead91aeaef427327ad46f65edb5ebb391960d20b1947349ce13f74d1",
+      "source_json_sha256": "38db3b7a9105dc3e8ef08570ee3bfb687dcc4dbc09011bbd3e13b71ca8ca657f",
+      "source_raw_sha256": "be92a25438e8a0c1d1fd5d3eb8c4c19a267b3752cbca1b5b0f51e908e6bd1edf",
+      "status": "accepted",
+      "person_id": "guido-mueller-historian",
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "The historian cites this exact Loth/Osterhammel review in his own book introduction; stronger than topic/name agreement.",
+      "evidence": [
+        "source-credit",
+        "mueller-preface",
+        "mueller-gnd",
+        "mueller-book",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-90efe5997af5ddc050954e8e",
+      "occurrence_id": "hnet:mention:90efe5997af5ddc050954e8e",
+      "occurrence_fingerprint": "a21b7760580728174d202285f8a1bca467b3ffe4d87a9bf538e7db3ffe9dbe94",
+      "source_json_sha256": "acf50602bfa05a52baa43bb39ff1fa2a187e0edaec175bce27269ba71c36f04f",
+      "source_raw_sha256": "4c1687ac8d4383f3d1099acfccd5184e3df9e5e7bf493f51e620b668476b5359",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-93c77f071fe66cc3abc65477",
+      "occurrence_id": "hnet:mention:93c77f071fe66cc3abc65477",
+      "occurrence_fingerprint": "f6bb2e1ba151c84b31ec5a71e2de72740a25edfd44a6254dfc74e0ee43245da2",
+      "source_json_sha256": "250450b96beb76b073efc94680807ca57525d44910b6fe6f4006932ce69932c8",
+      "source_raw_sha256": "21e348de0fb1ec4fd54636fcd4029f368efba2230c365fb67461b70ad09daece",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-94334196bdc928595622f044",
+      "occurrence_id": "hnet:mention:94334196bdc928595622f044",
+      "occurrence_fingerprint": "2499196bf3719fb9da6d7c35fc4a5b821633ed3d4d2a780cf2833ca14ec9ce8f",
+      "source_json_sha256": "9e4d1cf6e39e346187f41063d461ca07e6a6f60a39e041ecb586d393a7e29940",
+      "source_raw_sha256": "08983cdf6abbcf3a983a1ed9c0c522b8db53bf1aa94e9cae700af4969150eaa6",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-95eb0178f6d8110dd43201ee",
+      "occurrence_id": "hnet:mention:95eb0178f6d8110dd43201ee",
+      "occurrence_fingerprint": "d977894aafc05c7f8c66c6c3715f6698c60fbbc1695cbfb7361b58fc87b41178",
+      "source_json_sha256": "bc066c954f5d8eb9b71423e2fe4529237165e841d9876603d1461a556c13a248",
+      "source_raw_sha256": "6ad6e27f9a3e819c305fd308e9f74b9b6e7a81975c8128e7d485a1d24d970605",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Recorded historical institution matches the university career and GND biography. Use GND-linked Q95266163; alternate QID remains a suspected duplicate, not an asserted Wikidata merge.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-967f1390570ce72fdb2dae87",
+      "occurrence_id": "hnet:mention:967f1390570ce72fdb2dae87",
+      "occurrence_fingerprint": "6d111541b85f70f7e51e91d7824974237ae10f797069ed6d32f5165f26e60a60",
+      "source_json_sha256": "5ec6bd129fe07aea4ad99fbdce2dcb9332da8d805034428395ae9e2a78c659b9",
+      "source_raw_sha256": "9c385561b7392fbd4095c4b52d42b8c7121a82f2d5716033551607714913cf42",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-99ae33b1a08d5a8ecdf5bbc0",
+      "occurrence_id": "hnet:mention:99ae33b1a08d5a8ecdf5bbc0",
+      "occurrence_fingerprint": "bff407d912b06be40cf6c9710c4cace75f0d7d9fb87d6478c62a26ab1a560e06",
+      "source_json_sha256": "8c69b7f5eb8a5c3f98e276fbce0ac86c993d864b9344e4540b7f05785be1fa76",
+      "source_raw_sha256": "ee1bd985d0cb5e5e453583e29c5c0993c4b06483bceb2448b4b77615438d49f6",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9a2bae5557b9eb7d94472d60",
+      "occurrence_id": "hnet:mention:9a2bae5557b9eb7d94472d60",
+      "occurrence_fingerprint": "4e9b564ed07966a6961836ef8b982cba8a81d29eb52b6efdeb4f9ca6e5dbb930",
+      "source_json_sha256": "7aa5abfc7fc9e3d273382675bac175e837c34e5e2c80bf16cd679c107c687d48",
+      "source_raw_sha256": "c039a37264bbb6b6c5a9f764436a17871e51e36fbacdd33821d9bdb61b3dea56",
+      "status": "accepted",
+      "person_id": "guido-mueller-historian",
+      "legacy_qid": "Q112521261",
+      "rejected_qids": [
+        "Q112521261"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mueller-preface",
+        "mueller-gnd",
+        "mueller-book",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9d8e68f51c80b087a64fb9b7",
+      "occurrence_id": "hnet:mention:9d8e68f51c80b087a64fb9b7",
+      "occurrence_fingerprint": "2db1edfadfc4a8e063ffc808a50f46ccebd7845b5a47c39ccb4f2b3af93fc1bf",
+      "source_json_sha256": "1efa43b8cfaeef30f0e55b9648600c76bc35871f3f373f75e537240a454554f7",
+      "source_raw_sha256": "1b8d0235f84c692db7fd0dcdba665cfae27269607692b350650a41853a3e6d63",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9da0d30f7c39cbad7f4fe7ac",
+      "occurrence_id": "hnet:mention:9da0d30f7c39cbad7f4fe7ac",
+      "occurrence_fingerprint": "8169d18ad8f626e56352e7c18dee9b00860fc079b608427dc6049d51879e00d1",
+      "source_json_sha256": "0017c14670a3d894e00f1f6fd964cff891e2463654694f9d9db84878e886b830",
+      "source_raw_sha256": "b61222716945f0cf119ae739ff08763a355da94691181b9fb4bd98c9b57664b9",
+      "status": "accepted",
+      "person_id": "michael-mann-sociologist",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-sociology",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9e09d3b409f2d6c9987deb77",
+      "occurrence_id": "hnet:mention:9e09d3b409f2d6c9987deb77",
+      "occurrence_fingerprint": "ff9fde54046ee4582ab4b22016ea1ae4d2789cacb49d637d1c6768e7e4b7308f",
+      "source_json_sha256": "b6b7462ed471071de5536bc8efb60a563e4357d1fb5e1273fe392223cdc3b2f5",
+      "source_raw_sha256": "4511642a61af0c042378e98e4baf2c422ce67e53f0a979fa44860e0280954a06",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9e95363a70acbce2f49fa157",
+      "occurrence_id": "hnet:mention:9e95363a70acbce2f49fa157",
+      "occurrence_fingerprint": "2bfac39811b69e155295e445e0eb00367d6c5ce2a9531cabbfadf97405434d6b",
+      "source_json_sha256": "0b311fde4bacec74a50e0ae81cbf5f41a3f82179673e4d526a47b456755b39f4",
+      "source_raw_sha256": "1db0a01341702ced28a0a13eee5b7c2a635f9e6f6afe09a5545ef48e8ffb7a21",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95193358",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9f2e717cc274eb8dfa1bd488",
+      "occurrence_id": "hnet:mention:9f2e717cc274eb8dfa1bd488",
+      "occurrence_fingerprint": "61c868454d44198e720c3ee5b693529c7436e8a2ebbde3fac5264b532ee4e46c",
+      "source_json_sha256": "284e49d1641aa22773c962e6f5d9f7047cbcd31093d090cfc5d4286ebd66f479",
+      "source_raw_sha256": "9d4dc12debd9d212479bfdb7bb50a0fcdd94b6c88271bc533b51efadd1a39560",
+      "status": "accepted",
+      "person_id": "julia-angster",
+      "legacy_qid": "Q112475577",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "angster-bio",
+        "angster-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-9fb93843de4a4994904f5d62",
+      "occurrence_id": "hnet:mention:9fb93843de4a4994904f5d62",
+      "occurrence_fingerprint": "297a95391ad176e414195d80849edfd4742ea6e948bbb07917505a603bd68608",
+      "source_json_sha256": "a94681cea2743bf5733886b674074d5f7e125c7574813cfa28514236fefeb199",
+      "source_raw_sha256": "eaf572e2e8a8f120880f4d7e9853f5f14ff04511f5edc1d07a7589a7af875937",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a08e55b09c4cc8f0a7b1c738",
+      "occurrence_id": "hnet:mention:a08e55b09c4cc8f0a7b1c738",
+      "occurrence_fingerprint": "1f27c73c9ab424d83ee7ea4c54df09c06b9df0b66b6e13348ccf9f91e60bf87d",
+      "source_json_sha256": "12f6ceb2eb119119ea401b06fbfd4ecaebfd22456ba5c17a794ede9ad54d0c5c",
+      "source_raw_sha256": "ea7866d26627a0e88e75acb388ef0c011d0548f29f5b964542ebccadb7516082",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a131a4d229a8280b14fa453b",
+      "occurrence_id": "hnet:mention:a131a4d229a8280b14fa453b",
+      "occurrence_fingerprint": "f6a37448a1b95eca19676986da1f06c297a630b37beeb8fd338da02830ce9098",
+      "source_json_sha256": "ab2e7d30e0aab627f0e38f2f461adfeb3a6b382051d68411ea3a3cb856849b0f",
+      "source_raw_sha256": "d608d732260e9137a29678dab6aee771b5925c340424eab2fa7e3241045513c0",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a4384c4e09f82852bfafb044",
+      "occurrence_id": "hnet:mention:a4384c4e09f82852bfafb044",
+      "occurrence_fingerprint": "f38cb81afe2c329be56713934ed2c37dd56d3d8e8bb5beba8017f4939e5525e9",
+      "source_json_sha256": "2ea7cc84024769dd2b7a374ec7707aef72c02f37b4a7c2b60143b87ec090365a",
+      "source_raw_sha256": "f8e41693a946870c2c05c946e52817f30faa122bcdeb6f1350192ccefe4ad1b5",
+      "status": "accepted",
+      "person_id": "mark-harrison-economist",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-warwick",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a587d49465b973bbcfa756e1",
+      "occurrence_id": "hnet:mention:a587d49465b973bbcfa756e1",
+      "occurrence_fingerprint": "2b14335bb1debac1ca4800764c5128a57311b3adea3e31fb848ed408aa999a53",
+      "source_json_sha256": "c61b4bbf297e80ced1df55eb5ef7590fd9c16786f6058c86bb16f736534dbf91",
+      "source_raw_sha256": "9041f78ea28e42351ae9739c0daedc787da96c6b08517e34b608fb462e2baf55",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a59f370c6731ea7c1b697425",
+      "occurrence_id": "hnet:mention:a59f370c6731ea7c1b697425",
+      "occurrence_fingerprint": "a5cf69536756357bca7ce5f68ff0c5c84ca8d3d8f1d98e89c9ef14c758859b6f",
+      "source_json_sha256": "3c73ac805da0ca7e0aded877e0e2f416a3bf1e47a93a69486dd0677acc20a24c",
+      "source_raw_sha256": "723558c3ae28c12ca4ef5e654a0a122043a05e008619bab74267b6ffa5f30943",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a7d29105c46649a1cbfa4337",
+      "occurrence_id": "hnet:mention:a7d29105c46649a1cbfa4337",
+      "occurrence_fingerprint": "067ad0fe8d02d2ded37e04c4f37291f0f1a9d65e41057277b975d929210a9b15",
+      "source_json_sha256": "7a19ca8cc1513cfb3b1d1d07a0dc8aaf44f9c0fd9eadd464e8879df6921c74ff",
+      "source_raw_sha256": "a7f15233fc1d742fd4ccf3d214909740f97fc3c70964b518e8892e167f335465",
+      "status": "accepted",
+      "person_id": "michael-mann-sociologist",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-sociology",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-a86216c920993306b1aa225f",
+      "occurrence_id": "hnet:mention:a86216c920993306b1aa225f",
+      "occurrence_fingerprint": "d0817b3c44b056512909c51a979fd56e716195ea128bc82720d4462cb0005e71",
+      "source_json_sha256": "a3979fc02111dae6cf5e54f63f53dd8d188c2cc35a733af4c8912e75bf7b3f92",
+      "source_raw_sha256": "55c2019a29cd972aa31a4759f3ae23dc11eb78879fba0e887a4bd7358d40b350",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-abc61986ad727548c6004823",
+      "occurrence_id": "hnet:mention:abc61986ad727548c6004823",
+      "occurrence_fingerprint": "a7283883ff70d6457f87daaf11e149a8d5afe170c40dfbfe89a0bdfa613c5d73",
+      "source_json_sha256": "6def1484c896b8a66f99473fe2bb5912e595d42deefd77069e8c12ca90eac7a2",
+      "source_raw_sha256": "2858911ad28f1c617cfe0277e6bf7178951f1ae16e43e5cd82b0ba0c5451c455",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-ada642219d94a264f2dd65c0",
+      "occurrence_id": "hnet:mention:ada642219d94a264f2dd65c0",
+      "occurrence_fingerprint": "a8e3def76f7b1f59f7180a67891c6d13d11fa6dc22e04d0161c8f1d8383ff757",
+      "source_json_sha256": "6a9e2b8d94f2cbfc27b6c517e34c3d920cf69e3e3d8cacb6bee001008380161a",
+      "source_raw_sha256": "00ed001c8f1b7994b93dbe9f6640035cfc5c223d7001bd53093eb17795ecac57",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-aebf58438f2df9b7924dc7dd",
+      "occurrence_id": "hnet:mention:aebf58438f2df9b7924dc7dd",
+      "occurrence_fingerprint": "dcd9ba1d6e8a1431ffb4607b316564f75c4508b45c930100159abb4fe6aedd73",
+      "source_json_sha256": "ee44deab21492aab41d8a214857389025467e690571720f1cda285ffd9be5bc3",
+      "source_raw_sha256": "7f2cd8669f7b6f7af25cf355a52ad4bff817f437602be2d65a0a15d29256c325",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q93972366",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-b062cd5b9f67bf018adce52c",
+      "occurrence_id": "hnet:mention:b062cd5b9f67bf018adce52c",
+      "occurrence_fingerprint": "2646163ec35707b7223a1a374746fa50cf3cad80726115b22460b74072502350",
+      "source_json_sha256": "f83707bd6b5618ce164f939a373703d95297a919bab926375f71a8e4c4720cd0",
+      "source_raw_sha256": "1d26b34ca5a3220d885ff7aeefe17bfa067849b7d805d6c14a5289f1bcfe0231",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Recorded historical institution matches the university career and GND biography. Use GND-linked Q95266163; alternate QID remains a suspected duplicate, not an asserted Wikidata merge.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-b2ea0e9d487cf73a0c86c477",
+      "occurrence_id": "hnet:mention:b2ea0e9d487cf73a0c86c477",
+      "occurrence_fingerprint": "947385abd250a33e8a96bec3603c213a872bac0ee199227241f8a6968a7153a2",
+      "source_json_sha256": "cc63fa0a88857e43c516726a8ac453cf7d91c35bb6355bd6d87200272750b594",
+      "source_raw_sha256": "d6dd7972268cb2e73adebe78e9b1c23f61f2af136fd566ff772ef17de151c8a9",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "Recorded name and Indiana affiliation/Tagore Chair match the institutional identity.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-b575ee19c70345ef9e2e9e0d",
+      "occurrence_id": "hnet:mention:b575ee19c70345ef9e2e9e0d",
+      "occurrence_fingerprint": "e02b8afe28a62900851868d9cf7c7d414e2bcc1dbd1fe6486ccfede09346bc51",
+      "source_json_sha256": "114efdea15c450f1949bdf0a029afb184fecab27b440c2e147c859c1bf30a0a5",
+      "source_raw_sha256": "5fe5796e3c59a6f98d0335191ea15eb0eae319ed18a5b257cd285440b70b13d7",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-b78fdf4246b5312a76454dfd",
+      "occurrence_id": "hnet:mention:b78fdf4246b5312a76454dfd",
+      "occurrence_fingerprint": "032f40e619299b4f88e6a723c9cb6aece3b4750b2a50e87370c70e4aba0ba3bb",
+      "source_json_sha256": "30947169206024fbde41f0f33688437ae449eef786e91e9275508ada16e89d32",
+      "source_raw_sha256": "1f99b229c545c9d97c2f7eed330108b2f790a9870f0af4f49c8decfa10dc26c6",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-b8151c7a9fbe11f6a91921a2",
+      "occurrence_id": "hnet:mention:b8151c7a9fbe11f6a91921a2",
+      "occurrence_fingerprint": "ee01c78b4d6e8d0d3ff751b869e281e8a8202fac4908277a6e07d3876c3afed6",
+      "source_json_sha256": "af0f7172ef604f8e94ddcd0a3126984d3b4e78b6f9c6575a17b86568b8e95dd1",
+      "source_raw_sha256": "172f6011a732958486be8e42d98b4734351e5f551ed54ae15eaf5f073669ccf0",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [
+        "Q1425193"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-bb4be9501278d8176f46f45f",
+      "occurrence_id": "hnet:mention:bb4be9501278d8176f46f45f",
+      "occurrence_fingerprint": "dd0cad555798da186edf186acdb92801bb418875a7741b625148cc569da7f70a",
+      "source_json_sha256": "6abf1d48feec18c3b8a56e5e6fb4b579e3c0d7cadd62f2ca5e022d593193f2da",
+      "source_raw_sha256": "280486969bfbd79e96a102544ea9701e6fc6a61031f6533cc7177b86068eeebd",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-bc5459a525d4573563ce3f6b",
+      "occurrence_id": "hnet:mention:bc5459a525d4573563ce3f6b",
+      "occurrence_fingerprint": "9892989ffabcab7145543d38fe77463e418ab856f55008e9dc694a664d6ab4de",
+      "source_json_sha256": "304fb9cb567a83021c55b9985ebac16545105053c4ac8a902d99785effda4bd3",
+      "source_raw_sha256": "0629f42d424692b29042985ec92fbc3b9f3d4217a6c2dcf72b2a0ad15590428b",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-bcd502d617a6d9e682c6d331",
+      "occurrence_id": "hnet:mention:bcd502d617a6d9e682c6d331",
+      "occurrence_fingerprint": "e958240c2a20a53ae221571f2076d23147b44ffd0066aae1337b47540096635e",
+      "source_json_sha256": "dab734157483f5dd9215784bea021201f15a3cb69a9638581f5a8627fda3b284",
+      "source_raw_sha256": "eb2705dc3dab9efa16598101c6146ff76e4a4bd60939a6fba4c34cba5b66245a",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-bd92499bd1238ce1b98f45ad",
+      "occurrence_id": "hnet:mention:bd92499bd1238ce1b98f45ad",
+      "occurrence_fingerprint": "5b76e4fc759d0ac9654c514d77e953068135a24eb03d6a1ee3bf6b1a40b7c7b3",
+      "source_json_sha256": "a675b418f4bd769369d7fd5dd1e26534e4174c4ce2f768c472266303f029c02c",
+      "source_raw_sha256": "4bdd6a6844730e78bb085494b5a0695efad7013d899db9690ea0f87bf6bd06b8",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "bernstein-founders",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-bf7334c550f879629ee40940",
+      "occurrence_id": "hnet:mention:bf7334c550f879629ee40940",
+      "occurrence_fingerprint": "afa26e4744ed831a729b3ef51fe41053da0e3f10673efd6484dfb29225b7dd1f",
+      "source_json_sha256": "8b7bab9d2841d63e6d303be9f2daa68ada01252236dc4c6fb335cf9d37300627",
+      "source_raw_sha256": "9845724c4224e4c6a1d25d3a9e88ca952c125d5e23e8d774cc29780a9472710c",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c1429b2c790b2a250b125c75",
+      "occurrence_id": "hnet:mention:c1429b2c790b2a250b125c75",
+      "occurrence_fingerprint": "9757f1c15d0340c935c8b37b3afca1d521f7bf4b37c8fe349cf698b297e979c5",
+      "source_json_sha256": "a30851c06aebcfecf6e472bd5459b251832acd109171fb83269e2ab3c5cc26f4",
+      "source_raw_sha256": "bce2e32213153bcaa17cb61440537c37c60d1c18715f65220ad72786bd401fb3",
+      "status": "accepted",
+      "person_id": "ute-schneider-cultural-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-essen",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c1ba9fc0b03790a2de2e67ba",
+      "occurrence_id": "hnet:mention:c1ba9fc0b03790a2de2e67ba",
+      "occurrence_fingerprint": "f0f3b3a6adc5b05bf52c2b6532b378388a3c0f0d680e91cda8fafecfdc143ece",
+      "source_json_sha256": "962b082f805c8e8e4433bf2e0ddf9bae034764135d831020775c3e5f23c8b391",
+      "source_raw_sha256": "95807e99374c5dd63ab6d903389bcb55d339a9b23a4398b1f2c906295c5a7cf8",
+      "status": "accepted",
+      "person_id": "ute-schneider-book-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-ullstein",
+        "schneider-mainz",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c1c5f288880ee2c74f0f7a0a",
+      "occurrence_id": "hnet:mention:c1c5f288880ee2c74f0f7a0a",
+      "occurrence_fingerprint": "51cd1af89e1a468395242d7d2bfa98ae804c39794a300d6a2bb37bcedf646ebd",
+      "source_json_sha256": "da8e3bda59c0ad164d242b0e25603b446758b96a9de9a1747618d2614bc2c6f9",
+      "source_raw_sha256": "dd87221bf8484f029725a6a6886f141767dca4656750d53fa00d5f027f575cd9",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c5bb80f970a7da6e0087327a",
+      "occurrence_id": "hnet:mention:c5bb80f970a7da6e0087327a",
+      "occurrence_fingerprint": "2f16d3e265487045431ad49b2d6eb0d4cc6841d1a82b66cf2b8524582fd45d93",
+      "source_json_sha256": "cadaf644b0cf8d74faeddd28a4ddc83ce2907c534f0179a1a1480f6de5733b2f",
+      "source_raw_sha256": "6d0865fcdffd24de29f3d30b017bd88d59326367d23fc2554b41b4ea4a7fb2dc",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c6c1cdc91914cf6c85e10e39",
+      "occurrence_id": "hnet:mention:c6c1cdc91914cf6c85e10e39",
+      "occurrence_fingerprint": "91f14556c8462961574979935356eca4f1a5a4e2aaa4d07e50c6eac79d5f41e9",
+      "source_json_sha256": "b7f55870b8f76c2dac62a4b055bd26932901b2abd549010cece85e86eb46428f",
+      "source_raw_sha256": "30c19651edf6de2db5814a797c8149424bf4fb78ecdb8fac99fbc491db9b8a75",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-c9a79e4430c9234b60b9f1df",
+      "occurrence_id": "hnet:mention:c9a79e4430c9234b60b9f1df",
+      "occurrence_fingerprint": "8167d43505d52cc93f71e3d82b351bc33971b3aa609a7eb6503db838a1ea6cf5",
+      "source_json_sha256": "aad4b32a86b901bfe97f365b067546427aa88257bffa887f480a1dcbbca8a8cb",
+      "source_raw_sha256": "81c10ab2c92e8a95f299d6d598e6bd340a0fa5c46202f0db19bafb82a55315b5",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": null,
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "harrison-annual",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-caa9858563ffbc72fc4573d6",
+      "occurrence_id": "hnet:mention:caa9858563ffbc72fc4573d6",
+      "occurrence_fingerprint": "e4a29d777b1b05e64cdf7b3946c05e5d12067fc3c40d334fc2f8c9a0de05ff03",
+      "source_json_sha256": "9bcaf2a9e396d49abb7dcb4ddb51057032a76274ac4a6b6bb165019bb3ab2bc9",
+      "source_raw_sha256": "cf42e26d236dd10dca2bfa6b9a5f4c9f1391563bf5544086606250962e8ec9f0",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-cc2a55bacdd6f087e1241045",
+      "occurrence_id": "hnet:mention:cc2a55bacdd6f087e1241045",
+      "occurrence_fingerprint": "09268a8a722487fa3b7f3a0ea0dcf47f878f036b6993b1457585636df735535e",
+      "source_json_sha256": "5fdbff9eaf99aaa17210b5f21b10af6333c18d75b9e0785584fb58c35a041a2f",
+      "source_raw_sha256": "9b46809fe7b193bd4f39cf04da9cd64dd5b1a0e2633dae7ffb97e1b298e283ff",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-cd6c28b3f3cad08602630d1d",
+      "occurrence_id": "hnet:mention:cd6c28b3f3cad08602630d1d",
+      "occurrence_fingerprint": "5ae304c201840ae3c301e83fb5ff901efaf2969b290633048c4f6fb4ba352e98",
+      "source_json_sha256": "92dbd07c43ac99a5eff39bb85e600a799a3d47b1dd93895026a888fb8fe26e4c",
+      "source_raw_sha256": "ce6ddc4fc43b0b110175afceb5e24e3fe662a29e198f87681032d78e218f1a41",
+      "status": "accepted",
+      "person_id": "ute-schneider-cultural-historian",
+      "legacy_qid": "Q16295137",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "schneider-essen",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-ce7d6aa09d8828bdbed3713d",
+      "occurrence_id": "hnet:mention:ce7d6aa09d8828bdbed3713d",
+      "occurrence_fingerprint": "cbb74493f34c2c59a66e77c1858e8919d9d460d6f986d2a31cf2ea6da5c3d527",
+      "source_json_sha256": "bd543968667f8b4c04246fb6522420cec57f2276003cbff871f6b2eb8be6944e",
+      "source_raw_sha256": "0f5dc62114e19804266be9bbd41b3d2ed3badf67ff04941b06cedda68e40d45d",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q130598476",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-cfd061b7064e659093495734",
+      "occurrence_id": "hnet:mention:cfd061b7064e659093495734",
+      "occurrence_fingerprint": "a412e6b77aefcd8eabff8b19f2c83c8821401fc26792384fce4746fab4793bd7",
+      "source_json_sha256": "a266cad2bdda2765b6948b8f1e485f0c01d17b023fc52f81084441ce32d516e9",
+      "source_raw_sha256": "13f5a6516d693f251b08ec4d67ad69839e1e6a2677f7004022a30b5f1deff876",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Recorded historical institution matches the university career and GND biography. Use GND-linked Q95266163; alternate QID remains a suspected duplicate, not an asserted Wikidata merge.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-d184962e63ec14f3cb9172f1",
+      "occurrence_id": "hnet:mention:d184962e63ec14f3cb9172f1",
+      "occurrence_fingerprint": "371c45bdad91603a36d4be60752faecf923ae76ccf0996447d974020b38dd331",
+      "source_json_sha256": "2b58c032c72539edd52f1f59985ef0c84c85571b4dc0f0547ff74ba60d0eaf07",
+      "source_raw_sha256": "88c930041e7d3efb4ad0f77c96fbb19356b701bec29022eb75cbc642f7379de9",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-d1c77bc300cfb70f7eb59c19",
+      "occurrence_id": "hnet:mention:d1c77bc300cfb70f7eb59c19",
+      "occurrence_fingerprint": "28513d42e8342500eecf5a37bd749a17734fbd43ab350f9f48f23980933a7150",
+      "source_json_sha256": "4c6811041850674dae7bcaa634bdacea66902ecdd7ef12624827c4bdd2538092",
+      "source_raw_sha256": "807da44774737c2c52c32ad534efdcb93c7a726aa6e29955cd62846a344e35db",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-d316f0c2d9086375f9faa375",
+      "occurrence_id": "hnet:mention:d316f0c2d9086375f9faa375",
+      "occurrence_fingerprint": "db81a4188358d8e50c9774b90ec7b018f1c617de217cc3d80fab5c40217b1589",
+      "source_json_sha256": "526b91c2b6d8190244c0bf2cae6e49221f234cf3e2cf3219733d0b35b9625760",
+      "source_raw_sha256": "958d396ea3e218ade611d1bf18daf1b04620b6e23cfade5dd45d8202c5e7d868",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-d54caf0396a23c86b747608c",
+      "occurrence_id": "hnet:mention:d54caf0396a23c86b747608c",
+      "occurrence_fingerprint": "d4c8a89f3e92295eacf10bd1b38670a53c4554614ff661cd7bc0bd797bd11c32",
+      "source_json_sha256": "0ca1450d9ad1dc3d79d05930978a5067072536e52f1b155f71f6fd7193c654ce",
+      "source_raw_sha256": "357e1ad44cb9eb76739d1f1f3b00bae99eca580b9a2a3bd5ca074eed5d1c8481",
+      "status": "accepted",
+      "person_id": "julia-angster",
+      "legacy_qid": "Q112475577",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "angster-bio",
+        "angster-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-d877b98113bbf829aa0d1e8e",
+      "occurrence_id": "hnet:mention:d877b98113bbf829aa0d1e8e",
+      "occurrence_fingerprint": "07e3c8545a8a07116a2cd333260b4dfea1884c883a8545390b2bc36331f52add",
+      "source_json_sha256": "67850cee3a459fdacfec852c9dc708c2f8ac5c38e693d6d6705ced2f0460a729",
+      "source_raw_sha256": "81fb008ff9e62d7ebca15e2175dab1c1dbc81f7ca584459d9c01934efe1f8f3a",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-db8d394f0ce08c5888c6e0a0",
+      "occurrence_id": "hnet:mention:db8d394f0ce08c5888c6e0a0",
+      "occurrence_fingerprint": "754b50a3616a44e820aea22cabbc0dbfeb5a2f61ddb9fdb418c298d2f9e999bd",
+      "source_json_sha256": "c0c9dced2515ad931f67ae08cd99920b15a6f3d1c30b1676ef8c19aa020779fa",
+      "source_raw_sha256": "add71e5aa18c3445ecfe7ab20ded173c06fd27fddf4ffdee5789ff9d85da0cc8",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-dbeb91f2a1f2b17715eb470b",
+      "occurrence_id": "hnet:mention:dbeb91f2a1f2b17715eb470b",
+      "occurrence_fingerprint": "3e2455d9c359265bb9ce737b771518c4a4fc495e3ff6334c7378443c61dc3859",
+      "source_json_sha256": "56b4a858843c3862b667a2284f7bfd5a7b514df539e815aa4fde4d1f877ede0a",
+      "source_raw_sha256": "885c8c50aebf495a8c5972ef8bf4eff95ae4e644857605dd40948a1bbb851849",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e2f822262601771b00894d38",
+      "occurrence_id": "hnet:mention:e2f822262601771b00894d38",
+      "occurrence_fingerprint": "0b867ecb5622715ee375f989771e8ecb714f6e9641a0ab83f6c1a3c821fa60ff",
+      "source_json_sha256": "a8b709fb08f81486262becb92713a0685de603429712d161dc5bb1015c63d87c",
+      "source_raw_sha256": "e0b02d180c32e0954bc234b28555ab11a8994c5c379ee0ff23bde6d92b254671",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e803ec39833aecf75d1cde43",
+      "occurrence_id": "hnet:mention:e803ec39833aecf75d1cde43",
+      "occurrence_fingerprint": "b752f62892a7483be804dd42c1a4afb39af60c20cec59a66b7a7cbe2fb1eb2c3",
+      "source_json_sha256": "c65c82348851fa9830f853cdfde464b2fb4f63035c39fa9ece0c01b276bde65e",
+      "source_raw_sha256": "fd08b323be21bca8ba3aaa91d990ebad9bc9fbf44c0ad9c8e0fed1289c8f7214",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e85744ab4063ea526d81aee9",
+      "occurrence_id": "hnet:mention:e85744ab4063ea526d81aee9",
+      "occurrence_fingerprint": "4a4405c43c79a4e8c22f587e298f7ed0842f799e7c88dc500383a386252815a3",
+      "source_json_sha256": "d59c996736f1c6cf8cbaed4d963830c5bdfbab778cb1bc98d93daf5bf575734a",
+      "source_raw_sha256": "5c382ef98f24328830d6f90850812362d7e4be17b838158e4fbe0aa8f7edcb3a",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e95517c16ecb2743c8712626",
+      "occurrence_id": "hnet:mention:e95517c16ecb2743c8712626",
+      "occurrence_fingerprint": "2a8da914f0262574084b36c6a1c6d2efed7a606cdae2d147457961ed4a9bfa09",
+      "source_json_sha256": "4177140a398d55224eca1b54bce7546badd2dd4f263e43b052c61a8727da5fe6",
+      "source_raw_sha256": "407fc90e9cb47d1746d3bafb31df1968128ddf78356b4d71c4de0b534654a939",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e9e8be2290d478b1545c7e5e",
+      "occurrence_id": "hnet:mention:e9e8be2290d478b1545c7e5e",
+      "occurrence_fingerprint": "00a4ae808a740c4f27b557a7d598341d4db08f4b60aac10faed3aad9bed51abf",
+      "source_json_sha256": "98924893cc5861a8834a216afc27165bdf06ea3a96c191f8ec0c7f1b8c17a01f",
+      "source_raw_sha256": "38b0a5e86ebf0b2fb083d4d83f75811f92c0ead76c8c5554b86999d04ba5aca9",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-eb7302a70ff23142a0085bf7",
+      "occurrence_id": "hnet:mention:eb7302a70ff23142a0085bf7",
+      "occurrence_fingerprint": "bd239bcc41b37b39f50cbd728e9355d382ef4cae05291de5761180f255031e1c",
+      "source_json_sha256": "c04c9c3249703e3556f76ba6dd0e322ee05beed84f1f8e7aef4cfb98ef7355c1",
+      "source_raw_sha256": "65e98f9440f312d6f0e5658a14cb2794b094b7620cec5d6667fb48d0a6ed7846",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q95242932",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-ed426ff5a9ca91cb27459a1f",
+      "occurrence_id": "hnet:mention:ed426ff5a9ca91cb27459a1f",
+      "occurrence_fingerprint": "802bb2212fcd713ec8fdee9f66086f9696a78e1bb0a263d976d652c1bb0d1751",
+      "source_json_sha256": "7b0c270c274b92e12c72701c44fa6919511306bf8744a342b9d75f4af27884ec",
+      "source_raw_sha256": "ed84245dd17c4e52d046c1baaa4a0f6d3413d20a3a87d5bbd4d078db667732ba",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-eebd227e69335d860038a707",
+      "occurrence_id": "hnet:mention:eebd227e69335d860038a707",
+      "occurrence_fingerprint": "fae5ad986f90e8379fa922e11bf028302c37e9a6f80e761494bb66e502339cff",
+      "source_json_sha256": "2f47cd117b052d82103bacc8ae195b39a646e0e39f39376cfcb5687c452142cf",
+      "source_raw_sha256": "37759783b4de8e3c04663f31de6b09cc297a080458d660ef63f4f4b91bb843e4",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-efee0e8537c5f8f3e38c5c8d",
+      "occurrence_id": "hnet:mention:efee0e8537c5f8f3e38c5c8d",
+      "occurrence_fingerprint": "a33412eb8c635e7a85690316eefb7f4ddc92d6715fcb0a32cf2b6795fae5b28e",
+      "source_json_sha256": "6ee02bd02b81718db218d0d7541557c7e7f88492e4d91042915155430ecd1063",
+      "source_raw_sha256": "70aeda8216d4cdc4eb1bf5155f421e3775170f04f0987cf0eada2849b57471d5",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [
+        "Q1425193"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f1f0c3485869bb0ef99a3a4a",
+      "occurrence_id": "hnet:mention:f1f0c3485869bb0ef99a3a4a",
+      "occurrence_fingerprint": "961f530b8c264a2df7319fc930d1ae91590d78be060a683e01c93b78fdf3b40e",
+      "source_json_sha256": "17b0726a85477f9948a860f4b4741c8c49f6447e6283696e03ffdc376aebea4c",
+      "source_raw_sha256": "2821752dbc677f0ff424bd552171e311615502673c10d86529bd2fbcd17fe449",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f27a3374bb673471a6515565",
+      "occurrence_id": "hnet:mention:f27a3374bb673471a6515565",
+      "occurrence_fingerprint": "d3c50d31a349afe95e152cf5665da411d6cead93d423d62f14e5b26bea568f8b",
+      "source_json_sha256": "3d37131f88a719b9846468a5d90c7a8824a9aa5c5b163e5653f7e7287ca8fbbf",
+      "source_raw_sha256": "51daf1911daf74e897eb484ab4e854b0b7ae7762cc4f21ebd3c882b801ba0168",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f322f5e9114ec9cb084b4f74",
+      "occurrence_id": "hnet:mention:f322f5e9114ec9cb084b4f74",
+      "occurrence_fingerprint": "29709c55e6006b64b6bd7b53f22cf2696cea150d80c900c65ed757421dcac702",
+      "source_json_sha256": "e60f0c2ea864b2215413d3aa39eccb52623e92682c47d18d24eba12fdd331204",
+      "source_raw_sha256": "73116e38b721ec759f4987e2fba7eb3793e704831bbe87eb534f4175030b7bc9",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f3bbda5242dc49a0ecde8b48",
+      "occurrence_id": "hnet:mention:f3bbda5242dc49a0ecde8b48",
+      "occurrence_fingerprint": "0009f8741e08bd425980338664592ff6d60a8a89d7edf9f52627cdd207538388",
+      "source_json_sha256": "b357cc98aa7fb017a8a5c7954d5fd1a0198cfe19655e2bc696476245dc68afe2",
+      "source_raw_sha256": "a79bd79ae497fc9d34043b0dcd4a49139947d4e3be83be25c0cca91c080ee930",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f4627dbfaa42123cdeece1b4",
+      "occurrence_id": "hnet:mention:f4627dbfaa42123cdeece1b4",
+      "occurrence_fingerprint": "620812240d091de619313ff69ced7d7d0e0fe1f5cf4cfd1d00010f24276d7fbe",
+      "source_json_sha256": "7c8222e5851ff93aeebc882b93f297c5c52f645b6134b215b5aa404643e28de7",
+      "source_raw_sha256": "a9c7cbf431644d94d7fba5e59374ce1530e4de00a077e63eb3bd7b687f4490d8",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f462c95495d0e5becd690c28",
+      "occurrence_id": "hnet:mention:f462c95495d0e5becd690c28",
+      "occurrence_fingerprint": "36f90a126b53adbeaa86993c5c11224819247139f2a91e4037119db307feb932",
+      "source_json_sha256": "d8e0c5d0996973be089718a103c52002780019361a6c3721e81112d60a402a63",
+      "source_raw_sha256": "bd6cdfe9b36fe19fe7e683eb75260f989cd654e6fd073d8d501556623eb75b58",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f52d2381003cc456c0bcec7d",
+      "occurrence_id": "hnet:mention:f52d2381003cc456c0bcec7d",
+      "occurrence_fingerprint": "8982e667dbc15326025f929da5e5732a5002f36a1352871fb4a294e85cda2d93",
+      "source_json_sha256": "7a456082d83eb6ec8fcfd489841dd1b255f21ac8c7d3591b9c620b99946c0059",
+      "source_raw_sha256": "68e46cfc17328fb092a7aaf81d59849aeb06a75c592c4d3e1f3b0d7746cb63e1",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f72ef5c0d69b715570ce4d04",
+      "occurrence_id": "hnet:mention:f72ef5c0d69b715570ce4d04",
+      "occurrence_fingerprint": "e04741c6378f9cd034223bd6b2e0a52d809f69f9f85f87941c42a86a6d79480a",
+      "source_json_sha256": "8f251edbca986750038d0051cdef639268a36fbfbf50a694e51ca945e11d7ff6",
+      "source_raw_sha256": "1b69d773ad648bd4dc631abd7ef6ebaa185a49777e370cd46715216036ec2ceb",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f7a5c259cc1181dd1db15ae0",
+      "occurrence_id": "hnet:mention:f7a5c259cc1181dd1db15ae0",
+      "occurrence_fingerprint": "3e6d448e66c2e925ae0be5bf2780f3eace03a2a365d78431eb85f90cf6c39334",
+      "source_json_sha256": "6e55c6c4bb8d10120b80161d3e200f2e2aded046d36ac757f51f1d4381606aff",
+      "source_raw_sha256": "7277b7c86f624b39d3ce68a2712dbaf55f7519745f5047e5e7a4e3f73341152c",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f83af623117effcdc222c10e",
+      "occurrence_id": "hnet:mention:f83af623117effcdc222c10e",
+      "occurrence_fingerprint": "67d5e0692afd5994c803e8034fceed71f0dd3059b91946ebbe41a28d61bd0698",
+      "source_json_sha256": "93f65618ed6461fdf2dfebfdde230c602bf0b87323d32cf60e5dd0716dce19e3",
+      "source_raw_sha256": "2ab5f11dace8cde823a1886a26909216365cdbb8135a5e6d6f09e4fdbc73df1e",
+      "status": "accepted",
+      "person_id": "sumit-ganguly",
+      "legacy_qid": "Q17090449",
+      "rejected_qids": [],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "ganguly-bio",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f84d23af65fe217d3dd8329d",
+      "occurrence_id": "hnet:mention:f84d23af65fe217d3dd8329d",
+      "occurrence_fingerprint": "6835938a03a6dfcd5f9eea9db1bd430f21755ea2483043827d8387178fe6918a",
+      "source_json_sha256": "3e80ccb321ba1e234303adc6852e8e5a9c46af9cf2c3bba355385295cab5a62b",
+      "source_raw_sha256": "e1eb219dbf0c0748ce76aab7b5598fc0f0fa85ea7422f7a03a1ac295c6813f3b",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f9af2651c89d9e35aa4d9529",
+      "occurrence_id": "hnet:mention:f9af2651c89d9e35aa4d9529",
+      "occurrence_fingerprint": "845be5f326fcab7a677875c1045302a31b13f051d194cf1d734518659c92ef0f",
+      "source_json_sha256": "aeedff0bf461892da352f028bd6a52c687c6e0009ec69badd9558d23befe4433",
+      "source_raw_sha256": "578629296fbb287df26cc02637ccc9a34727c84e3d129ea8534018ad2a7460c2",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-fa2d37e4165aa0c1344b1d3b",
+      "occurrence_id": "hnet:mention:fa2d37e4165aa0c1344b1d3b",
+      "occurrence_fingerprint": "0bdbb8d4313ed8d4e3d9ad284f7b3c4cda7ba87a94c84fe75f56e6970db962d1",
+      "source_json_sha256": "eb40b01ad1c6cd6c9077abbdb173228509a889b36a0617d4777171ec645abb18",
+      "source_raw_sha256": "ab1ef03956a4f66c85a4bd38c5181c8720bdaf85131d94671a27241dccf965eb",
+      "status": "accepted",
+      "person_id": "richard-b-bernstein",
+      "legacy_qid": "Q7323841",
+      "rejected_qids": [],
+      "rationale": "Recorded reviewer name and New York Law School affiliation match the institutional author identity; this exact occurrence is accepted.",
+      "evidence": [
+        "source-credit",
+        "bernstein-jefferson",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-faebf4c8a49a6eb48e4ee9a1",
+      "occurrence_id": "hnet:mention:faebf4c8a49a6eb48e4ee9a1",
+      "occurrence_fingerprint": "66886ee1350023ec379ab9afaab5f0313420295676e4f2ff3d9126f3a8931747",
+      "source_json_sha256": "2140c3447ddf274987000b549e92139ca7ae0bb3f39f3db3ca2b16328047b611",
+      "source_raw_sha256": "f94ef87986aa7e661d0a47c4d5fc8fbdcadbbc59c1cd0350652e5d758651360e",
+      "status": "accepted",
+      "person_id": "michael-mann-historian",
+      "legacy_qid": "Q1425193",
+      "rejected_qids": [
+        "Q1425193"
+      ],
+      "rationale": "The source names this contributor on this particular book. Checked bibliography/biography connects the book to this person; authority identity checked separately. Decision is scoped to this occurrence.",
+      "evidence": [
+        "source-credit",
+        "mann-history",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-fb2ef5f29e02fcb75d807600",
+      "occurrence_id": "hnet:mention:fb2ef5f29e02fcb75d807600",
+      "occurrence_fingerprint": "0120a364d00be32310bece33f88aaa735625085b5f7cc820bd938860cd123ce0",
+      "source_json_sha256": "908a5939cc4260765c94ba8edb870dd6f0807d6d69d2ce70b585905bccd4f142",
+      "source_raw_sha256": "368f48d4ec57d4abbcdccab66c322f3de7c14d0046dc20cbf0526b1e380dde42",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q1928511",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-fbc84068fd9f0535a6d5208d",
+      "occurrence_id": "hnet:mention:fbc84068fd9f0535a6d5208d",
+      "occurrence_fingerprint": "e07fe16f18117d30e2d9a2797a2ba10fc7ae6ec759a53c2081c61948d1b81f61",
+      "source_json_sha256": "260afe2faaff6586a238a3183d89e4facdf5f2031d870ac8ba4f7def02a76f6f",
+      "source_raw_sha256": "f3fd8f5fb85caab51e4eb51a4a2748703a9f230c082d22c986a81b984ae43b2d",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q93972366",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-fc5b5147bc59cd4e1de700a8",
+      "occurrence_id": "hnet:mention:fc5b5147bc59cd4e1de700a8",
+      "occurrence_fingerprint": "7d19319cfb9e30d55cd6defe62e584ae13d90cb6d54b7173464b388b472d57a2",
+      "source_json_sha256": "914cb557bdc8592f83efe03f3ebf5c46e3468c0189f8d0d4a085a7f31c9ffbe8",
+      "source_raw_sha256": "5e1a2972de673ab2c5e54c23ac6eebd4be35bd58973248445c75bd8a5ce444ad",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-fdd2d66f23ffcb97bb54d150",
+      "occurrence_id": "hnet:mention:fdd2d66f23ffcb97bb54d150",
+      "occurrence_fingerprint": "119a16c275dff4344a78727717a68fd9f82c3b6032bc5aaf49402d8c5d8bf7d6",
+      "source_json_sha256": "13e493b0c26d761fc646dcc15f2899e2ea26d1778143a06825ab8c46eb77c0ee",
+      "source_raw_sha256": "07fa181e16a4a1cc3c375a4f12912a08e91f869c35e531f61ec6ac7a0203cd1c",
+      "status": "accepted",
+      "person_id": "anika-walke",
+      "legacy_qid": "Q130598476",
+      "rejected_qids": [],
+      "rationale": "Source reviewer institution agrees with university and GND records. Use the authority-linked Q130815595; preserve alternate QID as a suspected duplicate.",
+      "evidence": [
+        "source-credit",
+        "walke-bio",
+        "walke-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-ffd3dbb573307648a2a04c16",
+      "occurrence_id": "hnet:mention:ffd3dbb573307648a2a04c16",
+      "occurrence_fingerprint": "c4a6c4352568884050e382ffbfb3bd0d763f7b986bd72a7d0d30abd1b704afb0",
+      "source_json_sha256": "d551ac69ecd98642ad35ab29cb46bc6948f89375744a1292b259e0a502bde056",
+      "source_raw_sha256": "ea09d047ece8c28e575e6930fa89f54db977b458cf26ed682378b8ef2d70dc21",
+      "status": "unresolved",
+      "person_id": null,
+      "legacy_qid": "Q112434101",
+      "rejected_qids": [],
+      "rationale": "Credit reviewed, but no institution or independent exact-review attribution established in this pilot. Name and topic alone do not justify acceptance. Retain the old QID only as an unverified suggestion.",
+      "evidence": [
+        "source-credit"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-ad3932e225680a4f20b31a3e",
+      "occurrence_id": "rih:mention:ad3932e225680a4f20b31a3e",
+      "occurrence_fingerprint": "1f572c1b844ef95aa6a6260e3dc1d1e96e3628dfecddf476787f39770ea58f0d",
+      "source_json_sha256": "08e7fe461729c07692c965fd2f20736db88ff79afd81cb4ef46cd3d7236fda7e",
+      "source_raw_sha256": "c8c3fdae95e805e02155204bb4a0c76ee6a941b92d805e68390e34844b69a108",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": "Q56434388",
+      "rejected_qids": [],
+      "rationale": "Source explicitly names Oxford; matches medical historian and is distinct from the Warwick economist.",
+      "evidence": [
+        "source-credit",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-e1b9e4028c82abfba90d7ccb",
+      "occurrence_id": "rih:mention:e1b9e4028c82abfba90d7ccb",
+      "occurrence_fingerprint": "92036100bfcb60b86ebffaea10a0caefe8b10772a999c873770a15001bac895d",
+      "source_json_sha256": "233ace2347085464505184dfbf073943e81dc50bb41b3c90dfb36ad1d88d9925",
+      "source_raw_sha256": "3d9421ffd7e12121c66a289b51d91b817c4b9963a95d4733134d5ff9fb7e1753",
+      "status": "accepted",
+      "person_id": "joerg-arnold-historian",
+      "legacy_qid": "Q95266163",
+      "rejected_qids": [],
+      "rationale": "Recorded historical institution matches the university career and GND biography. Use GND-linked Q95266163; alternate QID remains a suspected duplicate, not an asserted Wikidata merge.",
+      "evidence": [
+        "source-credit",
+        "arnold-bio",
+        "arnold-gnd",
+        "wd-pilot"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    },
+    {
+      "id": "pilot-20260921-f9eed26bf9c4efeadbf852a3",
+      "occurrence_id": "rih:mention:f9eed26bf9c4efeadbf852a3",
+      "occurrence_fingerprint": "1b28f75dfcf6e74e2183824c526a01093cc486777bf049b5ae1a518f438de032",
+      "source_json_sha256": "a8cc8fefea106334317ff30732a458a5f91cb04b96196a03e2b857d928c7b438",
+      "source_raw_sha256": "15eae2b0d895e3348ea9f56310aed73405c190ec6d0c400b21726937682136d9",
+      "status": "accepted",
+      "person_id": "mark-harrison-medical-historian",
+      "legacy_qid": "Q56434388",
+      "rejected_qids": [],
+      "rationale": "Source explicitly names Oxford; matches medical historian and is distinct from the Warwick economist.",
+      "evidence": [
+        "source-credit",
+        "harrison-oxford",
+        "wd-controls"
+      ],
+      "reviewed_on": "2026-09-21",
+      "reviewer": "Codex; source-checked pilot",
+      "supersedes": []
+    }
+  ]
+}

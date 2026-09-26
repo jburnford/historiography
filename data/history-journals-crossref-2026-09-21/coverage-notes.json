@@ -1,0 +1,32 @@
+{
+  "checked_on": "2026-09-22",
+  "scope": "Bounded observations from completed ISSN harvests; not full publication-census verification",
+  "observations": [
+    {
+      "journal_key": "annales_1929",
+      "finding": "The 207 Crossref records returned for ISSN 0003-441X have deposited publication years 1929–1932. Cambridge identifies the historical title run as 1929–1938, so completing the API cursor does not establish complete title-run coverage.",
+      "source": "https://www.cambridge.org/core/journals/annales-histoire-sciences-sociales",
+      "harvest_manifest": "generated/harvests/annales_1929/manifest.json"
+    },
+    {
+      "journal_key": "annales_french",
+      "finding": "The shared French ISSN query spans deposited publication years 1946–2026, but 17,949 of 18,010 records use the modern Annales. Histoire, Sciences Sociales container title. Container title alone cannot reliably assign the historical ESC/HSS phase.",
+      "harvest_manifest": "generated/harvests/annales_french/manifest.json"
+    },
+    {
+      "journal_key": "american_history",
+      "finding": "The Journal of American History ISSN query includes records dated as early as 1914, despite using the later journal title. The separately harvested Mississippi Valley Historical Review predecessor must not be assumed disjoint at the publication level merely because its ISSN differs.",
+      "harvest_manifest": "generated/harvests/american_history/manifest.json"
+    },
+    {
+      "journal_key": "canadian_historical_review",
+      "finding": "The query returns 9,343 University of Toronto Press records and 1,025 Project MUSE records, with two title forms. Distinct DOI counts are source representations, not an assertion that publisher-platform representations describe distinct publications.",
+      "harvest_manifest": "generated/harvests/canadian_historical_review/manifest.json"
+    },
+    {
+      "journal_key": "quaderni_storici",
+      "finding": "Checked print ISSN 0301-6307 and online ISSN 2612-1972 return zero Crossref works. Publisher journal existence and DOI-bearing publications do not establish registration with Crossref rather than another agency.",
+      "sources": ["https://www.rivisteweb.it/issn/0301-6307", "https://portal.issn.org/resource/ISSN/2612-1972"]
+    }
+  ]
+}

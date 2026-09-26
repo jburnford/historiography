@@ -1,5 +1,707 @@
 # Project memory and visualization handoff
 
+## Completed: full 405-context metadata harvest and audit — 2026-09-22
+
+User requested “continue with the metadata mining” after the restart. Completed
+all 405 approved journal/title contexts (576 distinct ISSNs) at the common
+publication cutoff 2026-09-22, without an ORCID or lower-date filter. Resumed
+single-worker session 60208 recovered all interrupted cursors and exited 0.
+All 405 complete: 342 with records, 63 zero-result Crossref coverage checks.
+1,006,589 source occurrences in 1,614 hashed pages produce **988,579 distinct
+DOI rows** and **1,125,060 unreviewed contributor occurrences**. The 18,010
+repeated DOI occurrences are the overlapping Annales title contexts. Twenty
+metadata variants differ only in Crossref indexed timestamps; bibliographic
+and contributor fields agree (`metadata-variant-review.json`).
+
+Collection: `data/history-journals-full-2026-09-22/README.md`.
+Frozen DB: `generated/v1/catalog.duckdb`, SHA-256
+`5ef652510f06bb86895091c40e4ad8fde1b9e14dad4d970f56d52a9a8a20b7a2`.
+Matching records/contributors/memberships/journals Parquet and source JSONL,
+per-journal summaries, pagination and title/year coverage exports are complete.
+29,394 records carry 22,431 raw ORCID IDs; **22,430 non-demo candidates** in
+`data/history-journals-full-2026-09-22/orcid-candidates.csv`. All 22,429 earlier
+approved-journal candidates remain; new deposited ID `0009-0000-3831-402x`
+is credited to Amélie Lemanceau on DOI `10.4000/16tne`, still unreviewed.
+The known Carberry demonstration ID appears on 89 selected full-snapshot
+records and is excluded from the candidate list; two inherited quality flags
+are preserved. `orcid-credits.csv` retains unfiltered deposited evidence.
+200,598 records have affiliations; 744,417 have calculated page lengths;
+211,201 at-least-ten-page journal-article candidates remain unclassified.
+One source test DOI is flagged and excluded from article views.
+
+During the run user asked for the ORCID file path; supplied the earlier file
+`data/history-journal-profession-review-2026-09-22/orcid-candidates.csv`
+(22,429 candidates). It remains intact. The fresh full-collection candidate
+file above is now available with the same columns and one additional candidate.
+No identities were accepted or reviewer groundings updated.
+
+Builder and independent offline audit passed: selection hash/exact contexts,
+all source/page hashes, exact queries/cursor chains/empty terminal pages,
+stable totals, all 1,006,589 deposited ISSN matches, unique keys, source
+memberships, raw contributor occurrences, all four Parquet/database tables,
+frozen export hashes and unchanged source DB. Four focused collection/audit
+tests pass (including detection of altered contributor exports). Reusable audit:
+`scripts/audit_history_journals_crossref.py --work data/history-journals-full-2026-09-22`.
+`data/history-journals-full-2026-09-22/summarize.py` produced the additional
+metadata summary and candidate CSV, and refuses to overwrite completed outputs.
+`audit.json`, `metadata-summary.json`, `report.json` and `harvest-run-status.json`
+are final reports; `restart-status.json` remains a historical interim snapshot.
+
+No active harvest or build remains. Earlier snapshots and graph IDs preserved;
+no browser assets, graph import, deployment, book grounding or OpenAlex work.
+The 405-context scope remains fixed. Crossref coverage is not a full publication
+census, DOI rows are not deduplicated publications, and ORCIDs/genres are unreviewed.
+The restart instructions immediately below are historical and superseded by this
+completed handoff. Continue using **one Crossref worker only** in future queries.
+
+## Restart handoff: full 405-journal harvest unfinished — 2026-09-22
+
+User requested memory update before restarting the computer; resume on their
+return. At **2026-09-22 19:52:35 UTC**, the checkpoint inventory showed **56
+completed journal contexts, 5 in progress, 344 not started**, with **88,488
+checkpointed source-record occurrences in 176 pages**. These are interim source
+counts, not final unique DOIs. Exact per-journal status is saved in
+`data/history-journals-full-2026-09-22/restart-status.json`. The active worker may
+have advanced after that inventory; rescan manifests on return.
+
+**Critical rate-limit correction:** the initial four-worker run hit HTTP429.
+Actual Crossref response headers reported public-array pool, **1 request/second
+and 1 concurrent request**. Resume with **`--workers 1` only**, not four; do not
+start simultaneous journal/network jobs against Crossref. Official documentation:
+https://www.crossref.org/documentation/retrieve-metadata/rest-api/access-and-authentication/
+and July2026 update https://community.crossref.org/t/refining-rest-api-limits-for-improved-stability-and-reliability/16137.
+The existing one-second inter-page delay supports single-worker operation.
+
+The old long-running tool session was **48847**. Sending Ctrl-C via its non-PTY
+stdin did not establish termination. An escalated exact-process `pkill -TERM`
+request was **aborted by the user** before confirmation of execution; do not
+claim the workers stopped. A machine restart should terminate them. Ensure old
+workers are gone before resuming; never run two harvests against the same files.
+The failed group `journal_fd43dbc3fb2de149` (Analecta Hibernica) must be retried;
+its incomplete manifest is preserved. No completed run-status report or final
+DuckDB build is yet available.
+
+After restart, from `/home/jic823/historiography`:
+
+```sh
+python3 scripts/harvest_history_journals_crossref.py --work data/history-journals-full-2026-09-22 --workers 1
+```
+
+Completed groups validate hashes and skip fetching. Incomplete groups resume
+saved cursor/page checkpoints, including a validated uncheckpointed page left by
+a crash. If Crossref rejects an old cursor after the restart, preserve that
+partial harvest in an archive and restart only that journal from a fresh cursor;
+do not delete or mix the old partial pages into the new completed query. Leave
+successful journal harvests intact. Network worked inside the sandbox during
+this run; no network escalation was needed. Six focused tests passed, including
+parallel failure isolation, source-overlap handling and pagination. The new
+parallel option remains in the script but is not suitable for this public pool.
+
+## Authorized task: complete metadata harvest for all 405 journals — 2026-09-22
+
+User clarified that the ORCID-only expansion was insufficient and explicitly
+instructed “do it now”: harvest all available Crossref review/article metadata
+for the agreed 405 journal/title contexts, including records without ORCIDs.
+Active collection: `data/history-journals-full-2026-09-22/selection.json`, pinned
+to the exact accepted selection; 576 distinct ISSNs, publication dates through
+2026-09-22, no lower-date or ORCID filter. Fresh common-cutoff harvest also refreshes
+the initial 63-group collection (dated 2026-09-21); older snapshots remain intact.
+
+`scripts/harvest_history_journals_crossref.py` now supports `--workers 1..4` for
+independent journal queries and aggregates failure reports while completing other
+groups. Pages, hashes and cursor checkpoints remain resumable. Run with `--work
+data/history-journals-full-2026-09-22 --workers 1`; inspect manifests and retry
+failed groups with `--only` before building. See the restart handoff above.
+Once all 405 manifests complete, build a new `generated/v1/catalog.duckdb` with
+`scripts/build_history_journals_crossref.py --work data/history-journals-full-2026-09-22`.
+Validate all source counts/hashes/ISSNs, keys, credits, pagination and exports;
+report actual Crossref coverage including zero-result contexts. Do not claim a
+complete journal publication census from Crossref coverage alone. Genre and person
+identities remain unreviewed; full texts/abstracts/reference lists excluded.
+Current task is full metadata harvest, superseding the optional matching-vs-harvest
+clarification above. No further journal expansion, book grounding or OpenAlex work.
+
+## Latest: selected journal ORCIDs matched to reviewer candidates — 2026-09-22
+
+User said “continue” after accepting the 405-journal scope. Continued with a
+reviewer/ORCID crosswalk against current upstream `is_real` reviews; an optional
+clarification about matching vs full metadata received no answer during this pass.
+No journal expansion. User's book grounding remains independent.
+
+`data/history-orcid-reviewer-matches-2026-09-22/README.md`: 49,520 review records
+screened; 3,914 have candidates, 3,959 review–ORCID pairs, 1,725 distinct ORCIDs.
+993 previously ungrounded reviews (580 distinct name strings) have candidates;
+230 reviews (166 name strings) also share an affiliation phrase with selected
+journal metadata. 45 reviews have multiple ORCIDs; 29 reviews across 11 name strings
+have a saved QID disagreement, including namesakes and possible alternate QIDs.
+These are not 29 confirmed upstream errors. Three review records carry prior pilot
+decisions, attached intact to the queue. Every pair is `candidate_unreviewed`.
+
+`affiliation-supported-ungrounded.csv` is the concrete 230-pair next-review list;
+local/Git-ignored `reviewer-orcid-candidates.csv` contains all candidates;
+generated publication and saved authority evidence retain source IDs, DOIs, titles,
+dates and affiliations. `summary.json` pins all inputs, including both DuckDBs,
+the selected journals, saved Wikidata/ORCID CSV and prior pilot ledgers.
+
+Six pairs spot-checked in `spot-checks.json`: supported candidates for Sowards
+(Idaho, review32495), Tomkins (Keele,23006), Seipp (Texas A&M,23087), and Warwick
+economist Mark Harrison (8242, ORCID0000-0002-7020-9761). Recommended rejecting
+the Oxford Mark Harrison ORCID0000-0001-7108-1256 for that Warwick review, and
+Sydney Anna Clark ORCID0000-0003-1003-9673 for Minnesota reviewer7080. Preserve
+the prior Mark Harrison pilot identity. Recommendations are occurrence-specific,
+source-linked and unapplied; no propagation by name. Publisher metadata may be
+the same source as Crossref, not an independent identity registry.
+
+Builder `scripts/match_history_orcids_to_reviewers.py` refuses completed outputs;
+use new `--out` for reruns. Both DBs opened read-only; all input hashes unchanged.
+Unique candidates and selected-only evidence checks pass; three focused tests
+pass. Unicode/accents/initials/name order preserved; affiliation phrase overlap
+is a clue, not institution resolution. No source DB edits, person acceptance,
+graph import, book-author matching or OpenAlex restart. No active process.
+
+## Current direction: 405-journal scope accepted — 2026-09-22
+
+User confirmed “405 is enough for our purposes.” Use the existing 405 retained
+journal/title contexts as the agreed working scope, with 22,429 ORCID candidates.
+Stop further journal expansion; do not pursue mixed/excluded venues or unresolved
+ISSNs unless the user changes direction. This accepts collection scope, not person
+groundings or proof of contributor occupations. Preserve the broader raw harvest.
+
+## Latest: historian-focused journal screen completed — 2026-09-22
+
+User challenged the breadth of the 819-context fanout and explicitly excluded
+archaeology, politics/political-science and general area-studies journals. User
+then clarified **British Studies is overwhelmingly history**: Journal of British
+Studies is retained explicitly; regional focus or “Studies” in a title is not an
+area-studies exclusion. Dedicated regional, political and diplomatic history
+remain eligible, along with historical social sciences and dedicated histories
+of art, law, science, medicine and education.
+
+Derived review: `data/history-journal-profession-review-2026-09-22/README.md`.
+All 819 numbered titles and available qualified catalogue subjects screened
+editorially, with targeted publisher/editor scope checks. **Provisional venue
+screen, not an exhaustive publisher audit or author self-identification census.**
+405 retained contexts (235 yield non-demo ORCIDs), 121 mixed, 2 uncertain,
+291 excluded. Explicit overlapping policy flags: 42 archaeology, 44 politics,
+133 area studies; 205 distinct contexts across those flags, plus 86 other-primary-
+community exclusions. Mixed/uncertain are omitted from the working selection.
+
+**22,429 distinct ORCID candidates** supported by retained venues, excluding the
+known fictional demo ID; 20,385 have selected evidence dated 2020 or later.
+JBS contributes 825 IDs, the largest retained venue count. 2,366 selected IDs
+also appear outside core; 40,066 broad-pool IDs have no selected evidence.
+Counts denote deposited identifiers, not verified professional historians.
+Two pre-existing multi-surname quality flags are preserved; all identities remain
+unreviewed. Publication genres and distinction signals remain unclassified.
+
+`journal-review.csv/json` records every decision, rationale, evidence level and
+policy flag; `selected-journals.csv/json` is the working list; local/Git-ignored
+`orcid-candidates.csv` contains selected-only names/counts/date evidence and flags;
+`generated/selected-orcid-evidence.csv` preserves underlying credits/source IDs.
+`decisions.py` holds explicit numbered decisions; `build_review.py` reproduces
+exports from the read-only frozen fanout database. `summary.json` records hashes,
+overlaps and validation. All 819 assigned once, exact source keys/order preserved,
+candidate membership equals selected evidence, demo and policy exclusions pass,
+JBS retained, source DB SHA-256 unchanged. Original broad collection is preserved.
+
+Some conservative boundaries remain reviewable, notably Modern Italy, JOTSA and
+Quaestio Rossica excluded as broader regional/interdisciplinary venues; J Modern
+Italian Studies retained on its publisher's explicitly historical focus. Do not
+claim proven contributor majorities. No new harvesting, person grounding, graph
+imports, book-grounding work, deployment or OpenAlex restart. No active process.
+
+## Latest: history-journal expansion and ORCID index completed — 2026-09-22
+
+User asked to add EHR, Canadian Historical Review, Past & Present, Annales and
+other leading journals, using the graph list as nonexclusive, then explicitly
+asked to continue fanning out to capture the current profession's ORCIDs.
+Completed two separate metadata collections; no person groundings or graph
+imports accepted. User continues book grounding independently. Broader OpenAlex
+citation work remains paused. No article/review bodies, abstracts, PDFs or
+reference lists fetched; no publisher crawler or external contact.
+
+**Full initial collection:** `data/history-journals-crossref-2026-09-21/README.md`.
+63 journal/title/edition queries, 61 with records and two zero-result coverage
+checks. 550,327 DOI records, 664,328 contributor occurrences. 6,258 records carry
+5,315 distinct deposited ORCID IDs. Reuses frozen AHR and covers all Crossref
+publication dates through 2026-09-21. DuckDB: `generated/v1/catalog.duckdb`, with
+records/contributors/memberships/journals Parquet and JSONL. Page lengths, titles,
+affiliations and ORCID exports retained. All counts/source hashes/unique keys/
+deposited ISSN matches and DuckDB–Parquet rows validated. No overlapping DOIs
+across initial query groups, but different-DOI publication duplicates remain.
+
+**Broad ORCID pass:** `data/history-orcid-fanout-2026-09-22/README.md`.
+819 venue/title contexts, 1,167 known ISSNs, 30 completed `has-orcid:true` batches,
+all publication dates through 2026-09-22. 95,926 batch occurrences deduplicate,
+with baseline evidence, to 70,232 DOI records and 90,918 ORCID-bearing credits.
+62,496 distinct deposited IDs, **57,181 more than the initial collection**;
+515 venue contexts yield ORCIDs. 56,325 IDs have publication evidence dated 2020
+or later; 6,439 have at least one depositor-authenticated flag. Those are source
+assertions, not verified employment/occupation or independently authenticated
+identities. The broad catalogue includes archaeology, heritage, politics,
+geography, literary studies and other neighbouring disciplines; **62,496 is
+not a count of professional historians**.
+
+Frozen index: `data/history-orcid-fanout-2026-09-22/generated/v1/orcid-index.duckdb`.
+Tables: records, orcid_evidence, record_sources, journal_memberships, journals;
+view orcid_identifiers. Parquet/JSONL exports match row hashes. All source hashes,
+metadata allowlists, batch counts and foreign references pass; every ORCID string
+passes checksum, zero unmatched venues and zero differing metadata versions in
+this snapshot. Changed credit assertions would remain separate evidence; tests
+cover duplicate batches, shared title contexts and changed ORCID assertions.
+
+**Actual quality issue:** `0000-0002-1825-0097` is ORCID's fictional Josiah Carberry
+demo account, confirmed from its official public profile. Deposits reuse it on
+90 records with 53 family-name strings, mainly Anuario de Historia de la Iglesia.
+Raw evidence is preserved; `orcid-identifiers-for-review.csv` excludes this ID
+and has **62,495 candidates**. `orcid-quality-flags.csv` / `quality-review.json`
+also flag two other IDs with five surname variants each, still unreviewed (could
+be transliteration/name variants). **Use the review-candidate export and quality
+flags before any grounding; never treat checksum validity as attribution proof.**
+Only this demonstration profile was checked, not bulk ORCID profiles/employment.
+
+`identifier-coverage.json` records **823 still-deferred catalogue periodicals**
+without resolved ISSNs. The original catalogue has 830 no-ISSN nodes; seven were
+covered through checked initial-collection ISSNs. Frozen fanout selection's
+`deferred_no_issn` preserves that original list; consult the newer coverage ledger
+for the actual remainder. Further work can resolve those identifiers, add new
+venues outside the catalogue, and prioritize history-specific venue evidence.
+No next task is running and no exhaustive profession census is claimed.
+
+Scripts: harvest_history_journals_crossref.py, probe_history_journals_crossref.py,
+build_history_journals_crossref.py, history_journals_collection.py,
+harvest_history_orcids.py, build_history_orcid_index.py, audit_history_orcid_index.py.
+Builders refuse to overwrite frozen version directories. Generated data and
+large fanout identifier/credit CSVs are local/Git-ignored. Some canonical initial
+harvest directories are relative symlinks to completed staged batches; preserve
+or dereference those links when copying. All network jobs and builds finished.
+Original AHR scripts/snapshot, catalogue/graph IDs, public atlas and H-Net/RiH are
+unchanged. The earlier `orcid-interim.json` is an explicitly incomplete snapshot,
+superseded by completed counts above.
+
+## Latest: full AHR Crossref harvest and pagination completed — 2026-09-21
+
+User authorized “grab all of this data,” emphasizing AHR research publication
+as a distinction signal and asking about page numbers. Downloaded all 134,576
+metadata records for either AHR ISSN through 2026-09-21, in 136 hashed cursor
+pages (including the terminating empty page), matching a stable API count.
+Separate corpus: `data/ahr-crossref-2026-09-21/README.md`; DuckDB at
+`generated/v1/catalog.duckdb`, record/contributor Parquet and JSONL alongside it.
+134,576 distinct DOIs, 187,456 unreviewed contributor occurrences. These are
+source records, not deduplicated publications/people. No abstracts, review text,
+PDFs or reference lists fetched. H-Net/RiH, user's book grounding, graph and
+public atlas unchanged. Large generated files are local and Git-ignored.
+
+82,389 Oxford article records: 82,112 have page data; 80,473 (97.7%) have usable
+calculated lengths. 74,247 are 1–3 pages; 2,355 are 4–9; 1,589 are 10–19;
+1,913 are 20–39; 369 are 40–200; 1,916 unknown/flagged. Exported 3,871
+at-least-ten-page items to `research-candidates-by-length.csv`. Length is a
+screening aid, not a genre acceptance; all records remain unclassified. Views:
+`oxford_articles`, `research_candidates_by_length`, `short_item_candidates`.
+Single locators (e.g. JSTOR's `522`) do NOT imply one-page length; explicit
+`522-523` gives two. Unusual/reversed/implausible ranges retain raw text and flags.
+
+User then asked ORCID coverage: 548 publication records have 558 ORCID-bearing
+credits, representing 525 distinct normalized ORCID IDs. All are Oxford records.
+59 ten-or-more-page candidates have ORCIDs (66 distinct IDs). All deposited
+`authenticated-orcid` flags are false; identities remain unverified. Recorded in
+`orcid-coverage.json` and corpus README.
+
+Scripts: `scripts/harvest_ahr_crossref.py` (resumable, metadata allowlist) and
+`scripts/build_ahr_crossref.py` (separate DuckDB/Parquet build). Four pagination
+tests passed plus small end-to-end build. Full source hashes, unique keys,
+raw-metadata hashes, contributor referential integrity and DuckDB/Parquet row
+equality validated; see `validation.json`. Next potential work is DOI-matched
+OpenAlex supplementation, duplicate reconciliation and evidence-backed genre/
+person identification before research-publication counts. No further task is
+running; broader citation and native graph work remain outside scope.
+
+## Latest: Crossref AHR metadata checked — 2026-09-21
+
+User asked to check what can be done with Crossref, retaining metadata only.
+Completed `data/ahr-crossref-audit-2026-09-21/README.md` with bounded public API
+queries, a 314-DOI comparison, JSON evidence, CSV comparisons and offline summary.
+All requests selected bibliographic fields; no abstracts, descriptions, review
+bodies, PDFs or reference lists were requested or saved. No publisher scraping,
+corpus import, identity acceptance or competing book-grounding run was started.
+
+Either AHR ISSN (0002-8762 / 1937-5239), publication dates through 2026-09-21:
+134,576 records = 82,725 Oxford + 51,850 JSTOR + one test record. Oxford has
+82,389 journal-article records and 336 issue records. All 55,290 affiliation-
+bearing records belong to Oxford articles; JSTOR deposits have none. Overall
+548 records have ORCID, zero affiliation ROR, one relation (has-preprint on a
+research article, not a reviewed-book link). Print ISSN alone omits 48 records.
+Counts include research articles and duplicate DOI representations, not unique
+reviews. Exclude test DOI `10.50505/mrtest_ahr` from any corpus.
+
+All 314 sampled OpenAlex DOIs resolve in Crossref. In the 200 older book-review
+sample: titles/pages on 200, names 198, affiliations 168, no ISBN/relations; all
+typed journal-article. OpenAlex has affiliations on 194 of these (26 additional).
+Ten selected recent records all have names/affiliations/pages; two have ORCID.
+Oxford deposits separate Finley/Tushnet reviewer names from the book author in
+the title, but JSTOR deposits already conflate Finley/Kagan and Tushnet/Kull as
+coauthors. Crossref supplies useful raw affiliations without OpenAlex's mistaken
+institution links, yet does not solve review classification or book parsing.
+
+Practical next step if requested: Oxford member 286 metadata as the initial
+collection, DOI-matched OpenAlex raw-affiliation supplementation, review candidate
+classification/book-credit parsing, then reconcile JSTOR alternate records.
+Crossref owner-prefix filtering is not literal DOI-prefix filtering: 10.1086
+backfile records are now in Oxford's ownership group. Preserve all provenance.
+User continues book grounding independently. Broad OpenAlex citation work and
+native graph integration remain outside this bounded investigation.
+
+## Latest task: AHR review metadata in OpenAlex — 2026-09-21
+
+Follow-up: user wants **metadata only, not review text**, and asked whether the
+publisher permits mining. See audit `ACCESS-NOTES.md`: Oxford's 3 September 2026
+terms broadly restrict scraping and have no explicit metadata-only exemption;
+its standard reuse page has a more permissive noncommercial TDM statement but
+links to the qualified current terms. Crossref offers an explicit public
+metadata API route; next assess needed AHR fields there alongside OpenAlex.
+Future fetches should exclude abstracts/extracts/review bodies. No publisher
+crawler or external contact has been initiated. Earlier availability samples
+included OpenAlex abstract fields before this clarification.
+
+User is working independently on book grounding; do not duplicate that run.
+They explicitly resumed OpenAlex for a bounded investigation of American
+Historical Review review metadata. Completed audit:
+`data/ahr-openalex-audit-2026-09-21/README.md`, with cached API responses,
+reproducible summaries/year counts and sample records. This authorization was
+specific to AHR coverage, not a restart of the broader paused citation project.
+
+Source S197437610, ISSNs 0002-8762/1937-5239: 134,847 primary-source records dated
+through 2026-09-21, indexed years 1895–2026. 35,516 labeled book-review; 97,199
+article. Among book-review-labeled records: 35,496 DOI, 35,085 authorship, 31,215
+indexed institution, 32,370 abstract field, zero indexed references. These are
+availability counts, not verified unique reviews or identities. 200-record
+book-review sample: 198 raw names, 194 raw affiliations, 194 volume/issue/page,
+142 any OpenAlex author ID, 20 any ORCID. Many abstract fields are citation
+fragments or boilerplate rather than actual abstracts/review text.
+
+Only three 2020–2026 records have book-review type. Nine selected publisher-
+confirmed March 2025 reviews are present but all typed article. Confirmed
+duplicate Chicago/JSTOR representations of Finley reviewing Kagan and Tushnet
+reviewing Kull: JSTOR versions conflate reviewer and reviewed author as authors.
+Finley's raw Jesus College, Cambridge affiliation is mapped incorrectly to Jesus
+University, Korea. Preserve raw data and verify identities/roles. Different
+reviews can start on the same page; page alone cannot deduplicate them.
+
+Promising AHR source for reviewer + dated affiliation + reviewed book metadata.
+Any import should retrieve all types, classify reviews, reconcile duplicate DOI
+records and separate review authorship from book authorship. No full journal
+harvest, catalog edits, grounding acceptance, graph import or public change was
+performed. Existing credential used safely via headers only. Older 127,272
+count used 1920 onward and an earlier cutoff. No archive-completeness estimate
+or exact unique-review total is established. Native graph gate remains open.
+
+## Latest direction: authors first, using books — 2026-09-21
+
+User rejected the broad work estimate/queue-first approach: author name plus
+book title supplies stronger identity evidence than a reviewer name alone.
+Revised plan: `data/grounding-repair/AUTHOR-FIRST-PLAN.md`. Resolve book/edition →
+individual contributor → authority person → optional Wikidata QID. Use supported
+author identities as reviewer candidates only; reviewer links still require
+specific attribution evidence. Prioritize reviewer affiliations/profiles and
+leave unsupported name-only credits unresolved.
+
+Fresh read-only inspection shows upstream has advanced since the pilot: new
+`books` (45,180 records), `review_book` and book columns on `reviews`. There are
+38,117 normalized ISBNs (38,045 pass ISBN-13 checksum; 72 do not), 36,398 book
+records with author text, and 223 linked Open Library works. 300 book records
+have the placeholder title `Reviews in History`. Of 49,520 `is_real` reviews,
+25,964 have reviewer affiliation text. These are metadata availability counts,
+not verified identities. Reuse the book-enrichment work; do not overwrite the
+new upstream catalog with the older pilot DB. Reconcile pilot decisions into a
+fresh frozen baseline. Existing enrichment saves book IDs but not author IDs;
+its first-hit ISBN and loose title-search acceptances need validation before
+driving accepted person links.
+
+Next proposed milestone: reproducible 500-book benchmark, independent checks
+of up to 200 proposed accepted credits, route-specific coverage/precision and
+measured processing/exception effort. Then scale authors and separately enrich
+reviewers. The earlier 4–9 day estimate is superseded pending that measurement.
+Plan updated only in this turn; no new full-corpus grounding run started.
+OpenAlex and native graph restrictions remain unchanged.
+
+## Grounding repair pilot implemented — 2026-09-21
+
+After the repair plan, user said “ok”; implemented its first milestone in an
+isolated working DuckDB. Read `data/grounding-repair/README.md` for outcomes and
+rebuild instructions. External `/home/jic823/hnet-reviews` remains unchanged.
+`generated/pilot-v3/catalog.duckdb` contains all 53,691 original catalog records
+plus occurrence/people/identifier/decision/evidence tables. The ten-name pilot
+covers 170 credits in 169 catalog rows: 81 accepted identities, 89 unresolved,
+13 local people. Changed 32 QIDs (10 wrong-person corrections, 8 preferred-ID
+reconciliations, 14 gaps filled) and corrected seven two-author counts. Complete
+catalog diff: 96 cells in 69 rows, including status/count changes.
+
+`decisions.json` is the reviewed authority; `pilot-review.csv` exposes evidence
+and rationales, and `unresolved-queue.csv` identifies remaining attribution work.
+Unresolved credits retain old QIDs as unaccepted proposals: filter occurrence
+status `accepted` for reviewed identity. Do not propagate by name. Arnold/Walke/
+Angster alternate QIDs are suspected duplicates, not confirmed equivalences.
+Michael Mann, Ute Schneider, and Mark Harrison namesakes remain distinct.
+Review 10938 is multi-book: leave its flat author-QID column intact and consult
+the structured credits. All 1,303 extracted occurrence IDs/source fingerprints
+match the existing portable graph. No graph ledger import has been applied.
+
+Builder: `scripts/repair_groundings.py`; regression tests:
+`tests/test_grounding_repair.py` (12 tests). Frozen input/code/evidence hashes,
+source-field and intended-change checks, complete DuckDB/Parquet row comparison,
+and independent rebuild verification protect the pilot. Generated databases and
+source snapshots are local, Git-ignored artifacts. Do not rerun the explicitly
+reviewed pilot ledger generator over future edits; append superseding decisions.
+The baseline DuckDB SHA-256 is
+`2706025f125c761c5169a688c0f9da59a430838b790c0208f50ded7646beaac0`.
+
+Next: adjudicate the remaining known candidate queues and unresolved pilot
+credits; then perform the planned stratified sample before claiming broader
+accuracy. The full repair plan is not complete. Native Ladybug traversal/count
+validation remains open, the public atlas is unchanged, and OpenAlex is paused.
+
+## Grounding quality spot check — 2026-09-21
+
+User requested spot checks for the same person inconsistently grounded. Completed
+read-only audit in `data/grounding-audit-2026-09-21/README.md`, with reproducible
+candidate scan, input hashes, database fingerprint, catalog examples and live
+Wikidata API evidence. Of 53,691 catalog rows, 49,520 have upstream `is_real`.
+Reconstructing the current name dictionaries and MCP overlays produces zero
+reviewer/author mismatches against stored IDs. Across selected rows, **15
+normalized-name groups have multiple QIDs, 184 have grounded and ungrounded
+variants/roles**; these are overlapping candidate counts, not confirmed errors.
+
+Confirmed Peter Schafer/Judeophobia wrong-person QID (Q15840155 instead of Judaic
+scholar Q97091); strong same-person splits for Jörg Arnold (Q112434101/Q95266163)
+and Anika Walke (Q130598476/Q130815595), likely duplicate Wikidata items; probable
+Julia Angster duplicate/split. Guido Müller's author assignment points to an
+Austrian geographer instead of the international-relations historian. Confirmed
+cross-role gap for R. B. Bernstein's Thomas Jefferson and spelling gap for
+Sumit/Šumit Ganguly. Some multi-QID groups are real homonyms (Mark Harrison).
+Michael Mann and Ute Schneider demonstrate mixed authors under one exact name:
+the current author dictionary assigns a single QID to books by different people.
+Do not blanket-merge same names or consider MCP high confidence verified.
+
+No upstream changes or identity corrections applied; no graph import. Next use
+the report to review individual credits, distinguish duplicate Wikidata items
+from homonyms/wrong-person assignments, and retain provenance. Spot checks do not
+estimate the overall error rate. Ladybug traversal/count concern remains open;
+OpenAlex remains paused.
+
+## Upstream DuckDB Wikidata grounding added with Opus — 2026-09-21
+
+User reports working with Opus to add Wikidata IDs to many historians in the
+external DuckDB catalog. Read-only inspection confirms
+`/home/jic823/hnet-reviews/data/export/catalog.duckdb` now has **53,691 rows**
+in `reviews` (51,224 `hnet`, 2,467 `reviews_in_history`). This supersedes the
+historical description below of this export as a stale 5,224-row catalog.
+These are all catalog rows, not a count filtered for valid review content.
+
+New columns: `reviewer_qid`, `reviewer_wd_status`, `author_qids`, `n_authors`,
+and `n_authors_grounded`. **25,905 rows** have reviewer QIDs (**10,637 distinct
+reviewer QIDs**); **23,210 rows** have at least one author QID. Across both roles
+there are **23,266 distinct syntactically valid QIDs**, not independently
+verified distinct historians. Reviewer status row counts: matched 23,982,
+mcp_high 1,447, mcp_medium 476, ambiguous 1,634, unmatched 21,547, null 4,605.
+
+External `integrate_grounding.py` documents the join: exact reviewer-name strings,
+split author names, base `data/grounding/reviewer_grounding.csv` and
+`author_grounding.csv`, with non-low-confidence decisions from
+`data/grounding/mcp_results/*.csv` overlaid. `author_qids` is pipe-separated and
+omits unmatched authors, so its positions must not be assumed to align with all
+original author names. Consult the per-name grounding evidence when importing.
+This inspection confirms stored assignments and counts, not identity accuracy.
+
+No upstream files were changed and these assignments have not been imported
+into this repository's pinned Ladybug snapshot or identity ledger. Future work
+should account for this upstream identity work instead of assuming no review
+credits have Wikidata grounding. The unresolved native traversal/count issue
+below remains open; OpenAlex remains paused.
+
+## Latest handoff / unresolved count validation — 2026-09-21
+
+User explicitly requested **update memory**. The RiH import and activity-count
+implementation below are present, but **do not treat the current activity CSV
+or native traversal results as verified**. A final real-data spot check exposed
+an inconsistency not caught by small fixtures or aggregate import counts.
+
+Reproduction against `data/unified-graph/generated/graph.lbdb`:
+
+- Roy Rosenzweig's candidate group has two credited items, but the exported
+  `reviews_received` is zero. Direct item-specific traversal correctly finds
+  review `hnet:review:classic:11482` → item
+  `hnet:item:c8cdfa7f54fd6aeea1103986` and another reviewed item from review 8736.
+- A broad native traversal filtered by `r.kind='review_record'` and
+  `e.predicate='reviews_item'` returns **52,504** links. Removing the node-kind
+  filter returns **55,045**, all reported as originating from `review_record`.
+  The validated staging/export predicate count is **55,049**. An item-specific
+  filtered query finds an edge omitted by the broad traversal.
+- Thus this is not just a display/CSV arithmetic issue: native query paths
+  disagree. Root cause is **not established**. Investigate Ladybug 0.15.3 query
+  planning and/or repeated COPY/checkpoint ingestion. Do not assert engine
+  corruption or claim a fix without reproducing and checking it.
+
+**Next necessary work:** compare native full traversals by predicate and endpoint
+against the portable CSV/staging data, with and without node filters. Try a
+separate test database loaded with batched Entity COPY and a single Link COPY
+(the buffer-full failure happened during Entity COPY), or another bounded import
+strategy. Preserve the current source snapshots and reports. Add a realistic
+regression that crosses multiple import/vector batches and checks actual IDs,
+not only total counts. Only after native traversal agreement is established,
+regenerate `activity-by-name.csv`, its manifest, previews and integration report.
+The current 37-test pass and aggregate/hash checks are insufficient for this
+newly discovered concern. User was told an inconsistency was found and was being
+checked; it remains unresolved at this memory handoff.
+
+Latest source locations, RiH extraction coverage and import totals below remain
+useful input/staging facts. Latest user questions about activity counts and
+Wikidata file location remain recorded below. No external datasets changed.
+
+## Reviews in History integrated; participation counts — 2026-09-19
+
+User confirmed Reviews in History is available and asked for counts of books
+reviewed and reviews written by historians. Completed integration and count
+export. Current unified Ladybug snapshot: **478,683 nodes, 514,279 links**,
+including **49,257 review records** = prior H-Net **46,798** + RiH **2,459**.
+The newer user-reported 47,059 H-Net catalog is still NOT this pinned H-Net graph
+input. Public atlas remains 1.123; OpenAlex paused; no deployment or source edits.
+
+RiH adapter `scripts/import_reviews_in_history.py` reads the external
+`/home/jic823/hnet-reviews/data/rih` JSON/HTML pairs, with an input hash inventory.
+Of **2,467 files**, six empty records and two archive landing pages (901, 1213)
+are excluded. Both Drupal (1,838) and WordPress (621) layouts supported; desktop
+and mobile duplicate headers are not counted twice. Saved HTML recovers the
+book-credit and review-date fields absent from upstream JSON, and proper review
+titles where upstream captured the generic site heading. Imported **2,523 reviewed
+publication occurrences**, **6,310 person-name occurrences**, **102 source
+classification nodes**, and **931 separately identified author responses**.
+Short responses are retained even when upstream length thresholds said absent.
+2,450 reviews have parsed dates, **May 1996–September 2025**; nine remain unparsed.
+Posted response timestamps are not assumed to be original publication dates.
+
+RiH has its own `rih:*` namespace and `reviews_in_history` origin. Book credits
+retain explicit editor roles or otherwise unspecified contributor roles;
+reviewers and respondents remain distinct. Candidate name preparation strips
+leading honorifics but does not resolve identities. **1,544** cross-corpus name
+links and **331** shared-valid-ISBN publication links are candidates only; no
+new accepted person merges. Person previews now include both review corpora.
+RiH identity decisions require both JSON and raw HTML fingerprints. Author
+responses and source taxonomy headings do not become reviews or school membership.
+No full review/response bodies or interpretive mention edges exported.
+
+New `scripts/count_review_activity.py` produces provisional exact-normalized-name
+aggregates across corpora. `data/unified-graph/generated/activity-by-name.csv`
+has **57,732 candidate name groups**, not distinct historians. Metrics:
+`books_reviewed` (distinct credited publication records, including editors),
+`reviews_written`, `reviews_received`, plus separate author/editor/translator/
+unspecified-credit columns. Responses never increase these counts. Same review
+covering two credited books counts once as a review; editions, retained duplicate
+captures and unreviewed cross-source work matches can remain separate. Homonyms
+may combine and variants may split. `--identity accepted` counts only individually
+resolved occurrences and is initially empty; atlas–Wikidata authority links alone
+do not resolve review credits. Counts measure corpus participation, not prestige.
+Use `--name Hobsbawm`, `--sort books_reviewed`, or `--csv <path>`; default sorts
+reviews written. Generated `activity-manifest.json` pins the CSV to this DB hash.
+
+Validated **37 graph tests**, native output hashes/counts, and unchanged teaching
+release checks (zero errors, six existing warnings). Larger single-COPY import
+hit the old buffer ceiling; native COPY now runs in **25,000-row transactions**
+with checkpoints. Full successful build **127.95 seconds**, **602,268 KiB peak
+RSS (~588 MiB)**, one worker, 512 MiB buffer. Historical three-source report is
+preserved; new report `data/unified-graph/build-report-rih-2026-09-19.json`.
+Current source documentation: `data/unified-graph/README.md`.
+
+User asked where Wikidata files are. Main corpus:
+`data/wikidata/historians-qlever-2026-09-17/historians-with-date-evidence.jsonl.gz`
+(152,640 discovery rows); easier spreadsheet `historians-with-dates.csv` alongside.
+Reviewed mappings remain `data/people-wikidata.json` and
+`data/entries-wikidata.json`. Windows folder:
+`\\wsl.localhost\Ubuntu\home\jic823\historiography\data\wikidata\historians-qlever-2026-09-17`.
+
+Next: person/publication disambiguation and eventual refresh from upstream H-Net
+snapshot after ingestion settles. Italics/book-mention extraction is still a
+proposed future layer, not implemented. Earlier entries below are historical.
+
+## Unified Ladybug graph built — 2026-09-19
+
+User selected **Ladybug** after asking how to unite the earlier atlas, H-Net and
+Wikidata material. Completed `scripts/build_unified_graph.py` and
+`scripts/query_unified_graph.py`; see `data/unified-graph/README.md`. Native
+`data/unified-graph/generated/graph.lbdb` contains **459,823 nodes and 483,415
+links**. Generated artifacts are ignored. Portable CSV exports, source hashes,
+an 18-row identity-review seed queue and a source-linked Hobsbawm HTML preview
+are available in the same directory. This is a local research graph and preview,
+not a deployed visualization or change to the public teaching graph.
+
+Inputs: unchanged atlas **1.123**, completed H-Net **46,798-record** snapshot,
+152,640 saved Wikidata discovery rows plus authority-sheet-only records, and the
+existing person/field authority sheets. There are **50 accepted atlas–Wikidata
+person identities**, 33 exact conceptual correspondences and 21 broader ones.
+14,000 H-Net-name/Wikidata links remain candidates; no H-Net person occurrence
+has been automatically resolved. Preserve name occurrences, editions, source
+qualifications, deprecated statements and comparison direction. Identity ledger
+`data/unified-graph/identity-decisions.json` is empty and supports individual,
+evidenced, source-hash-pinned acceptance/rejection. Original IDs survive in source
+payloads and namespaced graph IDs; H-Net atlas pointers have explicit links to
+actual atlas identities. Neither same names nor generic reachability establish
+identity, membership or influence. No review-argument analysis performed.
+
+Validation: **32 tests passed** across the H-Net and unified graph suites;
+native graph output hashes/counts and endpoint/evidence checks pass. Teaching
+release check still has zero errors and six existing warnings. Full native build
+took **53.31 seconds**, peak RSS **705,088 KiB (~689 MiB)**, one worker and a
+512 MiB database buffer. An initial 256 MiB buffer stopped safely during native
+COPY with a buffer-full exception; use the new 512 MiB default. SQLite is only a
+temporary staging index, not the united graph backend. Dated report:
+`data/unified-graph/build-report-2026-09-19.json`.
+
+**Upstream user update:** Reviews in History is being downloaded into
+`/home/jic823/hnet-reviews/data/rih` (location now checked). User will merge it
+into the source catalog as `source='reviews_in_history'`, alongside **47,059
+H-Net reviews** (user-reported latest source total). User said download healthy,
+no action needed; do not interfere with or duplicate ingestion. Neither that
+updated H-Net catalog nor Reviews in History is included in this completed
+unified snapshot. Next add a distinct adapter when ready, keyed by source plus
+review ID; retain author responses separately and do not invent H-Net networks
+for RiH. OpenAlex remains paused.
+
+User asked whether italics could identify other books mentioned in reviews.
+Read-only inspection confirmed saved `.html.gz` retains `<em>`/`<i>` in both
+corpora, while parsed `body_text` loses formatting. RiH parser uses get_text;
+review 10 mentions *The Royal French State 1460–1610* without italic markup,
+while many italicized titles occur in its separate `#author-response` section.
+Italics can seed candidate work mentions, supplemented by known titles and
+citation context; they are neither exhaustive nor specific to books. Proposed
+future review→mentions→work layer must retain passage, source, section/speaker,
+and candidate identity, separate from reviews_item and interpretive claims.
+No mention extractor implemented or new mention edges imported yet.
+
+Commands: `python3 scripts/build_unified_graph.py --check`;
+`python3 scripts/query_unified_graph.py person 'Eric Hobsbawm'`;
+add `--html data/unified-graph/generated/hobsbawm.html` for an offline preview.
+Hobsbawm preview currently shows one accepted Wikidata identity, six atlas
+contexts and three explicitly unconfirmed H-Net credits.
+
+## H-Net basic bibliographic graph built — 2026-09-19
+
+Latest user update: roughly **5,000 reviews remain missing**, and source recovery must wait for the H-Net website to come back online. This is the user's current estimate, not the earlier empty-file count or an independently verified deficit. The basic graph of available records has already been built; do not imply construction is waiting for those missing reviews. Its current deliverable is a queryable database and graph exports, not a new browser visualization.
+
+User subsequently confirmed that the separate source project is recovering empty records and extracting reviews from their email archive **from 2016 onward** (confirmed correction of “1216”). Treat the graph as an interim snapshot until ingestion settles, then rebuild and reconcile overlapping email/web review records using source review IDs and bibliographic metadata while retaining both provenances. This is context about work underway elsewhere, not a request to access the user's mailbox or duplicate that ingestion here.
+
+**Current user direction:** use H-Net as a graph of books/publications, credited contributors, reviewers and network/field contexts. **Do not analyse review arguments or reviewers' judgments now**; other analysis is deferred. This supersedes the earlier suggestion to start with passage-supported review interpretations. Person disambiguation is the central unresolved task, not a reason to merge equal names automatically.
+
+Built the separate local graph described in `data/hnet-graph/README.md`, using `scripts/build_hnet_graph.py`; inspect it with `scripts/query_hnet_graph.py`. Outputs are SQLite plus node/edge JSONL, provenance inventory and identity/ISBN/duplicate/issue queues under git-ignored `data/hnet-graph/generated/`. No review bodies are exported. Production teaching graph stays **1.123**, and public assets are unchanged. OpenAlex remains paused. No remote deployment.
+
+Completed snapshot enumerated **48,252 source files**, included **46,798 review/report records**, and excluded 1,454 empty records. It contains **44,706 bibliographic/reviewed items** (37,586 ISBN-bearing citation groups and 7,120 items of unresolved type), **176 networks**, **105,223 person-name occurrences**, **55,221 unresolved name groups**, 252,694 total nodes and 309,229 edges. These are not distinct-person, distinct-essay or exclusively book counts. Raw citation-header recovery found multiple reviewed items in **2,402 records**; 600 exact text/metadata duplicate groups remain source-preserving candidates. Reviewer/publication headers terminate citation extraction even if reviewer is missing, preventing footer/essay words becoming book credits.
+
+Identity handling: every credit occurrence is retained separately; only Unicode composition, case and whitespace normalize candidate name keys. Accents, initials, punctuation and name order are preserved. **No automatically resolved people**. Same-name people and career moves remain distinguishable through source contexts/affiliations. There are 2,420 candidate name groups with multiple recorded affiliations and 254 candidate matches to existing atlas people. `decisions.json` provides 18 provisional network-field correspondences and an initially empty, source-hash-pinned person-resolution ledger. Plain bibliographic names use contributor_unspecified; explicit editors/translators retain their roles; ambiguous and corporate strings remain unsplit credit statements.
+
+User asked about emails/person IDs. In a sample of 307 raw classic pages, no reviewer-header mailto links or ORCID/VIAF/ISNI links were found; common mailto and /people/ links were shared contacts/navigation, not reviewer identities. This is a sample, not a corpus-wide absence claim. The corpus now also includes a parsed email source with affiliation metadata but no dedicated person identifier; it retains a separate source namespace.
+
+Validation: **20 focused tests passed**, including multi-book extraction, missing-byline/footer exclusion, name collisions, editor credits, ISBN checks, date anomalies, source identity, reversible/pinned person resolution, duplicate detection, deterministic graph exports and query paths. Full output hashes, SQLite integrity and foreign keys pass. Final full build used about **197 MiB peak RSS** and 113 seconds. Dated report: `data/hnet-graph/build-report-2026-09-19.json`.
+
+**External corpus is actively changing independently.** The final build found 344 newly added files at completion, with no enumerated records changed after reading. A later read-only check found 644 new paths since enumeration, including one nonempty classic/35961.json, outside this recorded snapshot. Do not present earlier audit/file totals as current completeness. Rebuild when the source update settles; the builder records its exact enumerated provenance and live-directory drift. Do not edit the external source or rebuild its stale DuckDB export as part of this graph task. Next improve the bibliographic identity queue or rebuild from the updated corpus; no review-content analysis, automatic teaching edges, or numerical prestige rankings are authorized.
+
 ## New local H-Net source — inspected 2026-09-19
 
 Date audit of nonempty bodies: credible recorded review-publication range **August 1993–September 2026**, with endpoint headers checked against local raw HTML. Most coverage is 1995–2016; 98 records are dated 2026. Exclude 35 apparent epoch/default-date anomalies (33 December 1969, two January 1970) from chronological analysis pending correction; one 1970-dated review describes a 2004 book and the bad date is present in the source HTML. Another 1,111 nonempty records lack a parseable review year. These are review dates, not reviewed-book dates or archive-capture dates.

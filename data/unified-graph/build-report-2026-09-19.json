@@ -1,0 +1,152 @@
+{
+  "schema_version": "1.0",
+  "backend": "ladybug",
+  "backend_version": "0.15.3",
+  "started_at": "2026-09-19T23:02:27.821165+00:00",
+  "built_at": "2026-09-19T23:03:19.880238+00:00",
+  "buffer_mib": 512,
+  "threads": 1,
+  "inputs": {
+    "atlas": {
+      "path": "/home/jic823/historiography/historiography-1920-2000.json",
+      "sha256": "934a78738c319eb1b3dd189c70c069e5456c42216818cc5c12c98d5d7fe9a17a"
+    },
+    "hnet": {
+      "path": "/home/jic823/historiography/data/hnet-graph/generated/graph.sqlite",
+      "sha256": "6f9844df1d0987c32e6114fcde2a4161466f15c91ceb4091cae828b07005d2b4"
+    },
+    "wikidata": {
+      "path": "/home/jic823/historiography/data/wikidata/historians-qlever-2026-09-17/historians-with-date-evidence.jsonl.gz",
+      "sha256": "dd88aeecbf493f88a65f2d481ac17fe7c1bb16e88db5b2336c724b80493bf58b"
+    },
+    "people_authority": {
+      "path": "/home/jic823/historiography/data/people-wikidata.json",
+      "sha256": "589baa4cd1611152f018ae29753a300b2e65a3804163ac3559c5f892351895f9"
+    },
+    "field_authority": {
+      "path": "/home/jic823/historiography/data/entries-wikidata.json",
+      "sha256": "6217c477196440ba88fb259f8c5663309085351d23a0f1e6c30d51623a6b46ea"
+    },
+    "identity_decisions": {
+      "path": "/home/jic823/historiography/data/unified-graph/identity-decisions.json",
+      "sha256": "2094b18afe6f8d661a12ad59fbfa6c40796390db04def756f22d1169762370b5"
+    }
+  },
+  "builder_sha256": "00b207443a3378db4d6aa7fd1169d0b5f70a9ace72ac6a12125f20c289ef444d",
+  "counts": {
+    "nodes": 459823,
+    "links": 483415,
+    "node_kinds": {
+      "atlas_entry": 128,
+      "atlas_field_reference": 18,
+      "atlas_person_reference": 254,
+      "atlas_strand": 767,
+      "bibliographic_item": 37586,
+      "catalogue_atlas_entry": 8,
+      "catalogue_concept": 27,
+      "catalogue_person": 63,
+      "catalogue_version": 3,
+      "catalogue_work": 38,
+      "credit_statement": 298,
+      "name_candidate": 55221,
+      "network": 176,
+      "periodical": 1638,
+      "person": 876,
+      "person_mention": 105223,
+      "publication_subject": 140,
+      "review_record": 46798,
+      "reviewed_item": 7120,
+      "source_record": 50730,
+      "wikidata_concept": 54,
+      "wikidata_item": 152657
+    },
+    "predicates": {
+      "candidate_atlas_identity": 648,
+      "candidate_field_correspondence": 18,
+      "candidate_publication_of": 1,
+      "candidate_wikidata_identity": 14000,
+      "claim_assesses_scope": 23,
+      "claim_authored": 62,
+      "claim_contributes_to": 21,
+      "claim_critiques": 4,
+      "claim_entry_presents": 8,
+      "claim_proposes_programme": 9,
+      "claim_qualifies": 6,
+      "claim_realizes": 3,
+      "claim_related_concept": 2,
+      "classified_under": 2006,
+      "contextual_person": 1526,
+      "credited_to": 58843,
+      "entry_context": 4,
+      "founded_for": 9,
+      "has_credit_statement": 298,
+      "has_name_candidate": 105223,
+      "has_strand": 767,
+      "historical_comparison": 100,
+      "historical_contribution": 479,
+      "historical_critique": 123,
+      "historical_influence": 63,
+      "local_entry_reference": 26,
+      "local_person_reference": 316,
+      "maps_to_broader_concept": 21,
+      "maps_to_same_concept": 33,
+      "occupation": 152650,
+      "presents_person": 51,
+      "principal_venue": 42,
+      "published_on": 45687,
+      "reviewed_by": 46380,
+      "reviews_item": 52526,
+      "same_person": 50,
+      "selects_person": 1365,
+      "site_of_debate": 3,
+      "strand_context": 8,
+      "title_successor": 11
+    },
+    "link_statuses": {
+      "accepted": 253,
+      "accepted_local_reference": 405,
+      "candidate_only": 119890,
+      "checked": 951,
+      "curated": 806,
+      "curated_selection": 2891,
+      "curated_structure": 767,
+      "deprecated": 35,
+      "needs_review": 2,
+      "provisional": 684,
+      "source_recorded": 356731
+    },
+    "origins": {
+      "atlas": 6162,
+      "authority": 2,
+      "hnet": 300946,
+      "reconciliation": 1,
+      "wikidata": 152712
+    }
+  },
+  "validation": {
+    "dangling_endpoints": 0,
+    "missing_evidence": 0,
+    "candidate_status_errors": 0,
+    "test_suite": "python3 -m unittest tests.test_unified_graph tests.test_hnet_graph: 32 passed",
+    "teaching_release": "accept_digital_release.py --check: zero errors, six existing warnings"
+  },
+  "files": {
+    "graph.lbdb": "86bacbdf46fb99dc3bb0e4ad7ef119b006b51a19879e9c20e153f1f8ccb60760",
+    "nodes.csv": "f25ddd46fa0c6d901e82a91d2fbeae9a03d4f0b06767cf12263b842af6e73714",
+    "links.csv": "f1c87b97f692b25111169cbc3ceb6c4a208c6b0fc394e3b0584538fcf373585f",
+    "issues.csv": "bd91babcfec71fe4dcd1cb92a5d6bfc33161f9425391906594506b940eabdfa0",
+    "identity-review-seeds.csv": "b37d6d1b5514c6c518d9628163cce16dbbce5d679ffd7a7daeca255443f0e488"
+  },
+  "scope": "Unified source graph; no H-Net review-argument analysis and no automatic person merges.",
+  "resources": {
+    "elapsed_seconds": 53.31,
+    "peak_rss_kib": 705088,
+    "note": "512 MiB buffer; preceding 256 MiB attempt stopped at native COPY buffer limit."
+  },
+  "upstream_update": {
+    "hnet_review_count_user_reported": 47059,
+    "reviews_in_history_path": "/home/jic823/hnet-reviews/data/rih",
+    "reviews_in_history_status": "User downloading and merging catalog as source=reviews_in_history; not in this snapshot."
+  },
+  "identity_review_seed_rows": 18
+}

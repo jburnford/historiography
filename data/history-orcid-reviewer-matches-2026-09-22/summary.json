@@ -1,0 +1,52 @@
+{
+  "scope": "Reviewer credits in current is_real H-Net/RiH catalog; selected 405-journal ORCIDs only. No book-author matching or person acceptance.",
+  "review_records_inspected": 49520,
+  "review_records_with_candidates": 3914,
+  "review_records_without_candidates": 45606,
+  "candidate_pairs": 3959,
+  "distinct_candidate_orcids": 1725,
+  "distinct_reviewer_name_strings_with_candidates": 1756,
+  "candidate_pair_routes": {
+    "name_only": 2315,
+    "existing_qid_only": 311,
+    "name_and_existing_qid": 1333
+  },
+  "review_records_without_existing_qid_with_candidates": 993,
+  "review_records_with_affiliation_phrase_clue": 770,
+  "ungrounded_review_records_with_affiliation_phrase_clue": 230,
+  "review_records_with_multiple_candidate_orcids": 45,
+  "review_records_with_existing_qid_disagreement": 29,
+  "review_records_with_prior_pilot_decisions": 3,
+  "review_records_with_quality_flagged_orcid": 0,
+  "priority_pair_counts": {
+    "0_check_conflict_or_prior_decision": 32,
+    "1_disambiguate_multiple_orcids": 77,
+    "2_name_or_qid_with_affiliation_clue": 747,
+    "3_name_and_existing_qid": 1145,
+    "4_needs_independent_attribution": 1958
+  },
+  "input_sha256": {
+    "/home/jic823/hnet-reviews/data/export/catalog.duckdb": "4aaaabdfd5df541bb0dfbcc6def15c197a7a79e5d4e7c7d4df90d79eb2826b39",
+    "/home/jic823/historiography/data/history-orcid-fanout-2026-09-22/generated/v1/orcid-index.duckdb": "7898f6090a23674fd3a6ebd7cadee6940174c060901092897aced4c6c50a31b6",
+    "/home/jic823/historiography/data/orcid-2026-09-21/historians-orcid-enriched.csv": "91a2d3c5518b1213657713e15d09c39f79d731ffe565532853edf3003e61504d",
+    "/home/jic823/historiography/data/history-journal-profession-review-2026-09-22/selected-journals.json": "924f767f9ce588a9940df2a0483d6b43b8912395a27713774e115890a6848918",
+    "/home/jic823/historiography/data/history-journal-profession-review-2026-09-22/orcid-candidates.csv": "c0e4fedb1caa0705ca232b2dd16854ce9db8fb43e1559f2a645f53f70a4c78c8",
+    "/home/jic823/historiography/data/grounding-repair/decisions.json": "8d55f226721fd2714457500f47c56a4886129920abe469816c8c4cb2f46b7a45",
+    "/home/jic823/historiography/data/grounding-repair/occurrences.json": "c56e77a454b68c8d69e7e2de3b2ec7ca42f37ee333ebd35b84d73ca810c00e2e"
+  },
+  "script_sha256": "8ef6ba66be77e2bc0b09fe5dd8d612d119e15525f20db2851259f74f4e34c71d",
+  "validation": {
+    "inputs_unchanged": true,
+    "unique_review_orcid_pairs": true,
+    "only_selected_orcids": true,
+    "all_candidates_unaccepted": true
+  },
+  "limitations": [
+    "No normalized full-name match establishes identity.",
+    "Existing reviewer QIDs and saved Wikidata/ORCID links are source assertions, not independent verification.",
+    "Affiliation phrase overlap is a clue; department strings, institutional changes and dates need review.",
+    "Dates and titles are bibliographic context; reviewed-book author credits are not matched.",
+    "Catalog row IDs and metadata fingerprints are retained; these are not graph occurrence IDs.",
+    "Incomplete name normalization deliberately misses accents, initials and reordered names."
+  ]
+}

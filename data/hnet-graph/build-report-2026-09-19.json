@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "started_at": "2026-09-19T19:04:50.196792+00:00",
+  "built_at": "2026-09-19T19:06:42.355193+00:00",
+  "source_root": "/home/jic823/hnet-reviews/data",
+  "source_fingerprint": "e0e5e68f94fce70973a55c3ded527caae2e78c4d8c9c7bc4f0c3343164e3753a",
+  "source_inventory": {
+    "enumerated_files": 48252,
+    "files_at_end": 48596,
+    "added_during_build": 344,
+    "removed_during_build": 0,
+    "changed_after_read": 0,
+    "note": "Graph records the enumerated source snapshot; later files require a rebuild."
+  },
+  "atlas_sha256": "934a78738c319eb1b3dd189c70c069e5456c42216818cc5c12c98d5d7fe9a17a",
+  "policy_sha256": "9f4e8820df5d34698e60e3397ab403eca96c425a29f32d456acb24afb5ce3368",
+  "builder_sha256": "8d0ff1ba59ceed397fcb4696f603c6fa1a774e81afca0a5d0f9b6582a07f32e1",
+  "counts": {
+    "sources": 48252,
+    "nodes": 252694,
+    "edges": 309229,
+    "reviews": 46798,
+    "items": 44706,
+    "mentions": 105223,
+    "atlas_matches": 254,
+    "node_kinds": {
+      "atlas_field_reference": 18,
+      "atlas_person_reference": 254,
+      "bibliographic_item": 37586,
+      "credit_statement": 298,
+      "name_candidate": 55221,
+      "network": 176,
+      "person_mention": 105223,
+      "review_record": 46798,
+      "reviewed_item": 7120
+    },
+    "edge_types": {
+      "candidate_atlas_identity": 254,
+      "candidate_field_correspondence": 18,
+      "credited_to": 58843,
+      "has_credit_statement": 298,
+      "has_name_candidate": 105223,
+      "published_on": 45687,
+      "reviewed_by": 46380,
+      "reviews_item": 52526
+    },
+    "exclusions": {
+      "empty_body": 1454
+    },
+    "issues": {
+      "ambiguous_comma_or_name_order": 242,
+      "complex_or_corporate_credit": 56,
+      "invalid_isbn": 11,
+      "missing_item_credit": 6727,
+      "missing_network": 1111,
+      "missing_or_unparsed": 1111,
+      "missing_raw_html": 1,
+      "missing_reviewer": 420,
+      "multiple_reviewed_items_recovered": 2402,
+      "no_reviewed_item": 2,
+      "possible_name_encoding_issue": 256,
+      "suspect_default_date": 35
+    },
+    "duplicate_review_groups": 600,
+    "multiple_affiliation_name_candidates": 2420
+  },
+  "validation": {
+    "structural_errors": [],
+    "foreign_keys": "passed",
+    "sqlite_integrity": "passed"
+  },
+  "person_policy": "Occurrences and name candidates; no automatic person merges.",
+  "interpretation": "Bibliographic participation only; no review-argument analysis.",
+  "files": {
+    "atlas-person-candidates.csv": "4f343990df88fd81d58301131e492043df99440393161d8cda27217598e4d6c0",
+    "duplicate-review-candidates.csv": "654592695789c66941610f31c3e471512d9f11cdade384eb90c2234daae44206",
+    "edges.jsonl": "1d0e2a36c440e4e226c367211ec7a2438f79cb1d38c72fe61a2389945249135e",
+    "graph.sqlite": "6f9844df1d0987c32e6114fcde2a4161466f15c91ceb4091cae828b07005d2b4",
+    "identity-candidates.csv": "82b0e4b5bb5a07c6aabd8646205aabbb4915216ffc85723b6fbf1b479bfbde5f",
+    "isbn-reconciliation.csv": "b065c00dd3ef87aec031212cfaf5df88cdc0917f449330fa97388bdb34033bd1",
+    "issues.csv": "17ab00679ef50f6866121d86015e6e87caefcb09787445aa01e39906a69bc09a",
+    "network-coverage.csv": "0e674720ca7a4f9642f6b0fc151dbf0d123a38267b1ffac3bd2dce5719edb8ed",
+    "nodes.jsonl": "f2a7c1ea2a364de30f4572fcf936beb41f0f7b877103ab135a3bde799f9c20d5",
+    "sources.csv": "9ecc89864875a3e52cdc96c081cc44ac18f0d6bae7668db50c6fd1931bb77ad8"
+  },
+  "verification": {
+    "focused_tests": {
+      "command": "python3 -m unittest tests.test_hnet_graph",
+      "passed": 20
+    },
+    "output_check": "python3 scripts/build_hnet_graph.py --check passed",
+    "teaching_graph_check": "python3 scripts/accept_digital_release.py --check passed; revision 1.123, zero errors",
+    "public_build": "All ten recorded public-asset hashes unchanged",
+    "runtime_seconds": 113.48,
+    "peak_resident_kib": 201148,
+    "source_followup": {
+      "new_paths_since_enumeration": 644,
+      "nonempty_new_records": 1,
+      "example": "json/classic/35961.json",
+      "note": "Observed after build; external source remains active."
+    },
+    "manual_checks": [
+      "Multi-book record 43146 contains both Berry and Gold items",
+      "43146 and 43147 share duplicate fingerprints after excluding URL-bearing footers",
+      "No Citation: URL: name nodes remain",
+      "Person, network and review query commands return source-linked results"
+    ]
+  }
+}

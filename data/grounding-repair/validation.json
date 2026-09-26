@@ -1,0 +1,42 @@
+{
+  "checked_on": "2026-09-21",
+  "primary_build": "generated/pilot-v3",
+  "independent_replay": "generated/pilot-v4",
+  "upstream_catalog_sha256": "2706025f125c761c5169a688c0f9da59a430838b790c0208f50ded7646beaac0",
+  "upstream_unchanged": true,
+  "identical_artifacts": {
+    "report.json": true,
+    "catalog-diff.json": true,
+    "occurrence-diff.json": true,
+    "projection-issues.json": true,
+    "person-occurrences.json": true,
+    "person-identifiers.json": true,
+    "graph-decisions-candidate.json": true,
+    "builder.py": true
+  },
+  "review_rows_checked": 53691,
+  "all_review_rows_identical_between_builds": true,
+  "structured_tables_identical_rows": {
+    "person_occurrences": 1303,
+    "people": 13,
+    "person_identifiers": 16,
+    "identity_decisions": 170,
+    "grounding_evidence": 30
+  },
+  "occurrence_parquet_matches_database": true,
+  "regression_tests": {
+    "command": "python3 -m unittest discover -s tests -p test_grounding_repair.py",
+    "passed": 12,
+    "failed": 0
+  },
+  "portable_graph_compatibility": {
+    "extracted": 1303,
+    "existing_graph_ids": 1303,
+    "missing_ids": [],
+    "stale_ids": []
+  },
+  "native_graph_validation": "Not performed; existing traversal discrepancy remains open.",
+  "builder_sha256": "cdc4877099c047a31174ebe1bc29fad0feba81cb6fe47b753ed689cc74ad866b",
+  "ledger_sha256": "8d55f226721fd2714457500f47c56a4886129920abe469816c8c4cb2f46b7a45",
+  "assignment_digest": "47a200fe1a511ba7e9129c06b8424fd9864506398b425ada11db9a7d4a67745d"
+}
