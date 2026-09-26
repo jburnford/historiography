@@ -6,8 +6,9 @@ no requests. One row per ORCID work group, keeping every external identifier acr
 group's summaries. A claim is added to a record by the person or by a client they
 authorised. It is self-attributed, not independently verified.
 
-Also writes `orcid-names.parquet`: given, family, credit and other names per ORCID, for
-name-compatibility gates.
+Also writes `orcid-names.parquet` (given, family, credit and other names per ORCID, for
+name-compatibility gates) and `orcid-affiliations.parquet` (employment, education,
+qualification and invited-position entries, with organisation and start/end years).
 """
 import argparse
 import glob
@@ -73,6 +74,32 @@ def works_rows(orcid, record):
         }
 
 
+AFFILIATION_SECTIONS = ("employments", "educations", "qualifications", "invited-positions")
+
+
+def affiliation_rows(orcid, record):
+    """Dated organisational affiliations asserted on the record (plan: reviewer route)."""
+    acts = record.get("activities-summary") or {}
+    for section in AFFILIATION_SECTIONS:
+        for g in val(acts, section, "affiliation-group") or []:
+            for wrapper in g.get("summaries") or []:
+                s = next(iter(wrapper.values()), None) if isinstance(wrapper, dict) else None
+                if not isinstance(s, dict):
+                    continue
+                org = s.get("organization") or {}
+                year = lambda k: val(s, k, "year", "value")
+                yield {
+                    "orcid": orcid, "section": section.rstrip("s"),
+                    "org": org.get("name"), "department": s.get("department-name"), "role": s.get("role-title"),
+                    "city": val(org, "address", "city"), "country": val(org, "address", "country"),
+                    "org_id": val(org, "disambiguated-organization", "disambiguated-organization-identifier"),
+                    "org_id_source": val(org, "disambiguated-organization", "disambiguation-source"),
+                    "start_year": int(year("start-date")) if year("start-date") else None,
+                    "end_year": int(year("end-date")) if year("end-date") else None,
+                    "self_asserted": val(s, "source", "source-orcid", "path") == orcid,
+                }
+
+
 def name_row(orcid, record):
     p = record.get("person") or {}
     others = [val(o, "content") for o in val(p, "other-names", "other-name") or []]
@@ -89,7 +116,7 @@ def main():
     ap.add_argument("--out", type=Path, default=Path("data/person-registry/generated/orcid-claims"))
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
-    works, names, bad = [], [], []
+    works, names, affs, bad = [], [], [], []
     for path in sorted(glob.glob(str(args.records / "*.json"))):
         orcid = Path(path).stem.upper()
         try:
@@ -102,9 +129,11 @@ def main():
             continue
         works.extend(works_rows(orcid, record))
         names.append(name_row(orcid, record))
+        affs.extend(affiliation_rows(orcid, record))
     con = duckdb.connect()
     pd.DataFrame(works).to_parquet(args.out / "claimed-works.parquet", index=False)
     pd.DataFrame(names).to_parquet(args.out / "orcid-names.parquet", index=False)
+    pd.DataFrame(affs).to_parquet(args.out / "orcid-affiliations.parquet", index=False)
     summary = con.execute(f"""SELECT count(*), count(DISTINCT orcid),
         count(*) FILTER (WHERE type IN ('book', 'edited-book')),
         count(*) FILTER (WHERE type = 'book-review'),
@@ -112,7 +141,9 @@ def main():
         count(*) FILTER (WHERE len(isbns) > 0)
         FROM '{args.out / "claimed-works.parquet"}'""").fetchone()
     keys = ["works", "orcids", "books", "book_reviews", "hnet_review_links", "rih_review_links", "with_isbn"]
-    report = dict(zip(keys, summary), unreadable_records=len(bad), records=len(names))
+    report = dict(zip(keys, summary), unreadable_records=len(bad), records=len(names),
+                  affiliations=len(affs), affiliation_orcids=len({a["orcid"] for a in affs}),
+                  dated_affiliations=sum(1 for a in affs if a["start_year"] or a["end_year"]))
     (args.out / "summary.json").write_text(json.dumps(report, indent=2) + "\n")
     print(report)
 

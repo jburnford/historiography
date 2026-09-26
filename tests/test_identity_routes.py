@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from identity_routes import compatible, compatible_any, isbn13, title_key, variants
+from identity_routes import compatible, compatible_any, isbn13, org_match, title_key, variants
 
 
 class NameGateTests(unittest.TestCase):
@@ -39,6 +39,21 @@ class IsbnTitleTests(unittest.TestCase):
         self.assertIsNone(title_key("Kennedy"))
         self.assertEqual(title_key("Family, Dependence, and the Origins of the Welfare State: Britain"),
                          "family dependence and the origins of the welfare state")
+
+
+class OrgMatchTests(unittest.TestCase):
+    def test_same_institution(self):
+        self.assertTrue(org_match("Candler School of Theology and Graduate Division of Religion, Emory University",
+                                  "Emory University"))
+        self.assertTrue(org_match("Department of History, University of York, York, UK", "University of York"))
+        self.assertTrue(org_match("Universität Freiburg", "Albert-Ludwigs-Universität Freiburg"))
+
+    def test_sibling_and_unrelated_institutions(self):
+        self.assertFalse(org_match("Ohio State University", "Ohio University"))
+        self.assertFalse(org_match("University of Washington", "Washington State University"))
+        self.assertFalse(org_match("Emory University", "Stanford University"))
+        self.assertFalse(org_match("Department of History", "University of York"))
+        self.assertFalse(org_match("", "University of York"))
 
 
 if __name__ == "__main__":

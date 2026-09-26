@@ -10,8 +10,8 @@ Builds on, and does not replace, the preservation rules in
 Done: step 0 (commits 2035c44, e7e3673); steps 1, 2.1, 2.2, 2.5; and steps 2.3-2.4 via
 Open Library work authors and ORCID claimed works (LCNAF/VIAF headings not yet used).
 Step 3 has a first benchmark. See [data/person-registry](data/person-registry/README.md).
-Registry v5 has 22,992 strict established individuals and 51,841 including the probable
-tier. Sampled precision is about 97.5% for Open Library → QID; the ORCID routes had no
+A reviewer affiliation route (v6) adds 2,025 mostly reviewer credits. Registry v6 has
+22,992 strict established individuals and 52,032 including the probable tier. Sampled precision is about 97.5% for Open Library → QID; the ORCID routes had no
 errors in their samples.
 
 Next: review queues (legacy bridges 3,609, OL-ambiguous 555, QID clashes), a larger
