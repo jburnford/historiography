@@ -84,6 +84,24 @@ ORCID-linked item beside an older one), 1 was plausibly right with a sloppy desc
 and 1 was unclear. Duplicate-item candidates are a useful by-product for Wikidata
 curation.
 
+## Review queues
+
+`python3 scripts/export_registry_queues.py data/person-registry/generated/v6` writes
+`queues/*.csv` beside the database (ignored by Git), with evidence side by side:
+
+| Queue | v6 rows | What to decide |
+| --- | ---: | --- |
+| `legacy-bridges` | 3,209 (347 with a credit affiliation) | Is the credit the ORCID-anchored person whose QID upstream proposed? Affiliations shown for both. |
+| `openlibrary-ambiguous` | 555 | Which of several compatible Open Library authors wrote this credit |
+| `resolution-conflicts` | 11 | Which individual the credit belongs to |
+| `orcid-multi-qid` | 102 | Probable duplicate Wikidata items sharing one ORCID |
+| `shared-credit-qid-clashes` | 4 | OL author and ORCID holder share a credit but carry different QIDs |
+| `openlibrary-multi-orcid` | 2 | OL record conflating namesakes (e.g. Hannah Barker) |
+| `lifespan-blocked` | 243 | P648 links refused on dates; possibly wrong P648 statements on Wikidata |
+| `legacy-name-conflicts` | 13 | Upstream names with conflicting QIDs (the audit's known cases) |
+
+Decisions belong in a reviewed ledger (as with the pilot's `decisions.json`), never in these exports.
+
 ## v5 results (2026-09-26)
 
 | Corpus | Credits | Accepted | Anchored | Probable | No identity evidence |
