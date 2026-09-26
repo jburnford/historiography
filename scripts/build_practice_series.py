@@ -22,6 +22,7 @@ import duckdb
 ROOT = Path(__file__).resolve().parents[1]
 CROSSWALK = ROOT / "data/evidence-layer/practice-crosswalk.csv"
 HIERARCHY = ROOT / "data/evidence-layer/practice-hierarchy.csv"
+FOLDS = ROOT / "data/evidence-layer/approach-folds.csv"
 HNET = ROOT / "data/hnet-graph/generated/graph.sqlite"
 UNIFIED = ROOT / "data/unified-graph/generated"
 CROSSREF = ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb"
@@ -44,7 +45,7 @@ def main():
     out = ROOT / "data/evidence-layer/generated" / args.version
     if out.exists():
         raise SystemExit(f"{out} exists; choose a new --version")
-    inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
+    inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "folds": FOLDS, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
               "unified_links": UNIFIED / "links.csv", "crossref_catalog": CROSSREF, "selected_journals": SELECTED,
               "atlas_graph": GRAPH}
     before = {k: sha(p) for k, p in inputs.items()}
@@ -164,6 +165,38 @@ def main():
                    FROM mapped WHERE source = 'journal' AND axis = 'theme' GROUP BY 1 ORDER BY 3 DESC, 1""").fetchall()
     entries = {n["id"]: n["label"] for n in g["nodes"] if n.get("entry_kind") == "group"}
     evidenced = {t for t, *_ in themes} | {t for t, *_ in jthemes}
+    # Folds (approach-folds.csv): an entry without direct evidence is shown as practised within
+    # other fields. Chains resolve (e.g. freud -> psychohistory -> culture); a fold never lends
+    # items to the entry as its own evidence, and entries with direct evidence are not folded.
+    with open(FOLDS) as f:
+        folds = [r for r in csv.DictReader(f) if r["status"] != "rejected"]
+    for r in folds:
+        for key in ("entry", "folds_into"):
+            if not r[key].startswith("none:") and r[key] not in entries:
+                raise SystemExit(f"approach-folds.csv names an unknown atlas entry: {r[key]}")
+    fold_map = {}
+    for r in folds:
+        fold_map.setdefault(r["entry"], []).append(r)
+
+    def resolve(e, seen=()):
+        if e in evidenced or e.startswith("none:"):
+            return {e}
+        if e in seen or e not in fold_map:
+            return set()
+        return set().union(*(resolve(r["folds_into"], seen + (e,)) for r in fold_map[e]))
+
+    folded = {}
+    for e in sorted(entries):
+        if e in evidenced or e not in fold_map:
+            continue
+        targets = sorted(resolve(e))
+        n = lambda src_filter: q(f"""SELECT count(DISTINCT item) FROM mapped WHERE axis = 'theme' AND {src_filter}
+                                     AND target IN (SELECT UNNEST(?::VARCHAR[]))""", [targets]).fetchone()[0]
+        folded[e] = {"label": entries[e], "practised_within": targets,
+                     "relations": [{"into": r["folds_into"], "relation": r["relation"], "status": r["status"]}
+                                   for r in fold_map[e]],
+                     "reviews": n("source IN ('hnet', 'rih')"),
+                     "journal_research_items": n("source = 'journal' AND kind = 'research_proxy'")}
     summary = {
         "built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "inputs": {k: {"path": str(p.relative_to(ROOT)), "sha256": before[k]} for k, p in inputs.items()},
@@ -174,6 +207,9 @@ def main():
         "journal_themes_research_proxy": [{"target": t, "label": l, "items": n} for t, l, n in jthemes],
         "atlas_entries_with_practice_evidence": sorted(e for e in entries if e in evidenced),
         "atlas_entries_without_practice_evidence": sorted(f"{e} ({entries[e]})" for e in entries if e not in evidenced),
+        "atlas_entries_folded": folded,
+        "atlas_entries_unaccounted": sorted(f"{e} ({entries[e]})" for e in entries
+                                            if e not in evidenced and e not in folded),
         "crossref_length_bands": bands,
         "journal_level_themes": {"journals": len({x[0] for x in jt}),
                                  "curated_atlas_edges": sum(1 for x in jt if x[5].startswith("atlas_journal_edge")),
@@ -202,8 +238,8 @@ def main():
     print("top review themes:", [(x["label"], x["reviews"]) for x in summary["review_themes"][:25]])
     print("regions:", summary["review_regions"][:16])
     print("journal research-proxy themes:", [(x["label"], x["items"]) for x in summary["journal_themes_research_proxy"][:15]])
-    print("atlas entries without evidence:", len(summary["atlas_entries_without_practice_evidence"]),
-          "of", len(entries))
+    print("atlas entries without direct evidence:", len(summary["atlas_entries_without_practice_evidence"]),
+          "of", len(entries), "| folded:", len(folded), "| unaccounted:", summary["atlas_entries_unaccounted"])
 
 
 if __name__ == "__main__":

@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1), current build v11 (2026-09-26)
+## Field as practice (component 1), current build v12 (2026-09-26)
 
 ```bash
-python3 scripts/build_practice_series.py --version v12   # refuses an existing version; ~12 s
-python3 scripts/render_practice_chart.py --version v12   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v13   # refuses an existing version; ~12 s
+python3 scripts/render_practice_chart.py --version v13   # writes field-practice.html beside it
 ```
 
 ### Editorial inputs (the authorities; edit, then rebuild)
@@ -24,6 +24,11 @@ python3 scripts/render_practice_chart.py --version v12   # writes field-practice
   - Six H-Net networks remain `uncertain` (H-Nilas, H-TGS, H-GAGCS, H-AMCA, H-HOAC, H-CLC).
 - **[practice-hierarchy.csv](practice-hierarchy.csv)**: sub-field → broader field (an atlas entry or a `none:` field). A theme
   item also counts, once, for its broader field; the sub-field keeps its own series.
+- **[approach-folds.csv](approach-folds.csv)**: atlas entries with no direct signal (approaches,
+  schools, theoretical traditions) folded into the fields they are practised within. Relations:
+  `subfield`, `method_within`, `tradition_used_in`. Chains resolve (Freud → psychohistory →
+  cultural history). A folded entry shows its parents' practice as context, **never as its own
+  evidence**; entries with direct evidence are not folded.
 - **The atlas's curated journal links** (`journal_catalogue.edges`, e.g. *Past & Present* →
   Marxist social history) are read directly from the graph as journal-level themes (status
   `curated`).
@@ -81,7 +86,11 @@ come from its subjects. The builder refuses unknown journals and atlas entries.
   | Conceptual history | *Contributions to the History of Concepts* | 193 |
 
   These count a venue's articles, not articles practising the approach: an institutional
-  home, not practice. **31 of 77 atlas fields still have no signal.** Microhistory's
+  home, not practice. **All 77 atlas fields are now accounted for (v12)**: 47 have direct
+  evidence, including Identity histories through its umbrella, and 30 are folded
+  (`approach-folds.csv`; user: "the 31 are all subfields or labels we can fold into other
+  categories"). `summary.json` → `atlas_entries_folded` lists each with the fields it is
+  practised within. Microhistory's
   venue *Quaderni Storici* has no Crossref records at all, so its absence is a coverage gap.
 - **Regions** (reviews): North America 4,580; German-speaking Central Europe 3,148;
   Britain and Ireland 2,230; Africa 1,323; Asia 842; Latin America and Caribbean 829.
@@ -151,6 +160,9 @@ and compare with historians' own field taxonomies before any cluster enters the 
   without double counting). Labour-focused journals keep their labour tag. It is distinct from
   the atlas's Marxist social history and New Left entries, which concern historians' approaches.
   Political history rises from 1,366 to 1,586 reviews and from 2,400 to 4,139 journal items.
+- **Identity histories is an umbrella** (proposed) over women's, Black, gender, queer, race
+  and ethnic history. **Indigenous history is deliberately excluded** pending user decision,
+  though the atlas entry cites Tuhiwai Smith.
 - **Social science history is an umbrella.** Quantitative, demographic and economic history,
   historical sociology and historical geography are sub-fields (reviewed). The Bielefeld
   school and historical economics are proposed sub-fields.
