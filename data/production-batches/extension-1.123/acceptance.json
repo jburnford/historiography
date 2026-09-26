@@ -2612,5 +2612,47 @@
     "data/extension-2026/digital-release-10/candidate.json": "c5a484ba3b8c786df76a6e7a70fd773efbb35693cf703c11958507312ddc7748",
     "data/extension-2026/digital-release-10/review-decisions.json": "e1620063be0fecb836bac6c605b3e744ca69a9270fb5b99117e723dec3f1aab5",
     "seminar-pathways.json": "14711d4fcd9c58005f7266233fd85428a7f00dd58cdabefed1691147880c8f6e"
-  }
+  },
+  "amendments": [
+    {
+      "file": "docs/app.js",
+      "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+      "amended_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d",
+      "date": "2026-09-26",
+      "reason": "Rebuilt from site/app.js after the change above.",
+      "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "docs/data/graph-2000.json",
+      "accepted_sha256": "35cc0084864a0225167abe0cc9f72eb45a1eacd27dcf01ab3a9f9f02e89ec61c",
+      "amended_sha256": "71ad3d87243566ab313e98093c98197e89b8ac0108ae515cf36479a5999ec7f0",
+      "date": "2026-09-26",
+      "reason": "Rebuilt: build-time people overlay now applies 543 bulk roster Wikidata identities (data/people-wikidata.json, method bulk_roster_match_2026-09-22).",
+      "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "docs/field.mjs",
+      "accepted_sha256": "5641ac55f2f6f5138461312b19fbec1678fd09d35371b7507adb648a4b845702",
+      "amended_sha256": "1ac796601c5eda96761d0e80d3343399b28e4f8ad81ebdd127f0bbbc72cd6af1",
+      "date": "2026-09-26",
+      "reason": "Rebuilt from site/field.mjs after the change above.",
+      "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "site/app.js",
+      "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+      "amended_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d",
+      "date": "2026-09-26",
+      "reason": "Lifespan labels mark decade/century precision as approximate and keep BCE years intact.",
+      "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "site/field.mjs",
+      "accepted_sha256": "5641ac55f2f6f5138461312b19fbec1678fd09d35371b7507adb648a4b845702",
+      "amended_sha256": "1ac796601c5eda96761d0e80d3343399b28e4f8ad81ebdd127f0bbbc72cd6af1",
+      "date": "2026-09-26",
+      "reason": "lifeIndex parses signed (BCE) years instead of slicing four characters.",
+      "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+    }
+  ]
 }
