@@ -92,3 +92,32 @@ def title_key(title):
 
 def folded_text(s):
     return " ".join(re.split(r"[^a-z0-9]+", fold(s))).strip()
+
+
+# Words that name a kind of institution or unit rather than a particular one.
+ORG_GENERIC = {
+    "university", "universitat", "universite", "universidad", "universita", "universiteit", "universidade",
+    "uniwersytet", "univ", "college", "school", "institute", "institut", "instituto", "istituto", "department",
+    "dept", "faculty", "fakultat", "of", "the", "and", "for", "at", "in", "de", "der", "des", "di", "du", "da",
+    "del", "la", "le", "les", "und", "fur", "et", "e", "y", "history", "historical", "historisches", "geschichte",
+    "studies", "center", "centre", "research", "graduate", "program", "programme", "division", "seminar",
+    "seminary", "lehrstuhl", "chair", "professor", "emeritus", "independent", "scholar", "sciences", "science",
+    "humanities", "social", "arts", "art", "campus", "academy", "akademie", "national", "royal", "st", "saint",
+    "area", "unit", "office", "library", "museum",
+}
+# Tokens that distinguish sibling institutions and must agree when either side has them.
+ORG_DIVIDERS = {"state", "technical", "technology", "polytechnic", "medical", "community", "north", "south",
+                "east", "west", "northern", "southern", "eastern", "western", "central", "new", "old"}
+
+
+def org_tokens(s):
+    return {t for t in re.split(r"[^a-z]+", fold(s)) if len(t) > 1 and t not in ORG_GENERIC}
+
+
+def org_match(affiliation, organisation):
+    """Same institution: one side's distinctive tokens contain the other's, and divider words
+    (State, Technical, North ...) agree. Conservative; cross-language names will not match."""
+    a, o = org_tokens(affiliation), org_tokens(organisation)
+    if not a or not o or not (o <= a or a <= o):
+        return False
+    return (a & ORG_DIVIDERS) == (o & ORG_DIVIDERS)

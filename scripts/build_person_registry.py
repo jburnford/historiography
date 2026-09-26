@@ -92,6 +92,7 @@ def inputs(args):
         "upstream_author_grounding": UPSTREAM / "data/grounding/author_grounding.csv",
         "orcid_claimed_works": GENERATED / "orcid-claims/claimed-works.parquet",
         "orcid_names": GENERATED / "orcid-claims/orcid-names.parquet",
+        "orcid_affiliations": GENERATED / "orcid-claims/orcid-affiliations.parquet",
         "openlibrary_work_authors": GENERATED / "openlibrary/work-authors.tsv.gz",
     }
     for f in sorted((UPSTREAM / "data/grounding/mcp_results").glob("*.csv")):
@@ -221,6 +222,32 @@ def routes(db, paths):
          FROM ol_hits h WHERE h.occurrence_id IN (SELECT occurrence_id FROM ol_hits GROUP BY 1 HAVING count(*) = 1)""")
     q("""CREATE TABLE ol_ambiguous AS SELECT occurrence_id, list(author_key) AS author_keys FROM ol_hits
          GROUP BY 1 HAVING count(*) > 1""")
+
+    # R6: reviewer (or any) credit whose printed affiliation names the institution where a
+    # name-compatible ORCID holder was at the time of the review. Institutions come from dated
+    # ORCID affiliations (range, 1 year slack before, 2 after) and Crossref deposits (+-5 years).
+    db.create_function("org_match", ir.org_match, [str, str], bool)
+    q(f"""CREATE TEMP TABLE orcid_aff AS
+          SELECT orcid, org, start_year, end_year, 'orcid_' || section AS source
+          FROM read_parquet({lit(paths['orcid_affiliations'])}) WHERE org IS NOT NULL
+          UNION ALL
+          SELECT DISTINCT substr(l.person_id, 7), o.affiliation, TRY_CAST(o.record_date AS INT) - 4,
+                 TRY_CAST(o.record_date AS INT) + 3, 'crossref_deposit'
+          FROM identity_links l JOIN occurrences o USING (occurrence_id)
+          WHERE l.basis LIKE 'crossref_deposit%' AND o.affiliation IS NOT NULL AND o.affiliation <> ''""")
+    q("""INSERT INTO route_links SELECT DISTINCT cr.occurrence_id, 'orcid:' || a.orcid, 'probable', 'affiliation_match',
+         a.source || ': "' || a.org || '" ' || coalesce(CAST(a.start_year AS VARCHAR), '?') || '-' ||
+           coalesce(CAST(a.end_year AS VARCHAR), '?') || ' vs credit "' || cr.affiliation || '" ' || coalesce(CAST(cr.y AS VARCHAR), '?')
+         FROM (SELECT occurrence_id, name, affiliation, TRY_CAST(left(record_date, 4) AS INT) AS y,
+                      string_split(end_tokens(name), ' ') AS ends
+               FROM occurrences WHERE corpus IN ('hnet', 'rih') AND affiliation IS NOT NULL AND affiliation <> '') cr
+         JOIN orcid_family f ON list_contains(cr.ends, f.fam)
+         JOIN orcid_aff a ON a.orcid = f.orcid
+         WHERE (cr.y IS NULL OR ((a.start_year IS NULL OR cr.y >= a.start_year - 1)
+                                 AND (a.end_year IS NULL OR cr.y <= a.end_year + 2)))
+           AND orcid_ok(a.orcid)
+           AND a.orcid NOT IN (SELECT upper(orcid_id) FROM orcid_flags WHERE exclude_from_person_grounding = 'True')
+           AND orcid_compat(cr.name, a.orcid) AND org_match(cr.affiliation, a.org)""")
 
     # ORCID holders reached only through their records become people too.
     q("""INSERT INTO people SELECT DISTINCT r.person_id, NULL, NULL, 'orcid_record', NULL FROM route_links r
