@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1): first pass, 2026-09-26 (current build v4)
+## Field as practice (component 1): first pass, 2026-09-26 (current build v5)
 
 ```bash
-python3 scripts/build_practice_series.py --version v4   # refuses an existing version; ~11 s
-python3 scripts/render_practice_chart.py --version v4   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v5   # refuses an existing version; ~11 s
+python3 scripts/render_practice_chart.py --version v5   # writes field-practice.html beside it
 ```
 
 - **[practice-crosswalk.csv](practice-crosswalk.csv)** (editorial; rows are `proposed`, `uncertain`, or
@@ -28,7 +28,7 @@ python3 scripts/render_practice_chart.py --version v4   # writes field-practice.
   catalog's `research_candidates_by_length` view (at least ten pages) is a provisional
   research-article proxy.
 
-### First findings (v4)
+### First findings (v5)
 
 - **H-Net is 46% general.** 21,614 of 46,798 reviews come from general networks, mostly
   H-Soz-u-Kult (21,448), and carry no theme.
@@ -68,6 +68,13 @@ python3 scripts/render_practice_chart.py --version v4   # writes field-practice.
   `pedagogy` axis at user direction. It is the discipline's pedagogy, not a research field,
   so it no longer counts as a field the atlas lacks. History of education remains a research
   theme with no atlas entry (reviewed).
+- **2026-09-26, ethnic vs migration history:** the lumped `none:ethnic_migration_history`
+  was split at user direction. *Ethnic history* (H-Ethnic, H-ItAm, "Ethnic and racial
+  studies" journals) covers communities, often within a national frame. *Migration
+  history* (H-Migration, "Diaspora and migration" journals) covers movement across borders.
+  Migration history matches batch 09's proposed candidate and relates to, without
+  equalling, its Transnational history draft; remap if either reaches production. Volumes:
+  reviews 52 and 24; journal research-length items about 3,600 and 850.
 
 ### Limits
 
