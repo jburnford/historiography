@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1), current build v7 (2026-09-26)
+## Field as practice (component 1), current build v10 (2026-09-26)
 
 ```bash
-python3 scripts/build_practice_series.py --version v8   # refuses an existing version; ~12 s
-python3 scripts/render_practice_chart.py --version v8   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v11   # refuses an existing version; ~12 s
+python3 scripts/render_practice_chart.py --version v11   # writes field-practice.html beside it
 ```
 
 ### Editorial inputs (the authorities; edit, then rebuild)
@@ -39,6 +39,8 @@ come from its subjects. The builder refuses unknown journals and atlas entries.
 - `summary.json`: per-source axis shares, ranked themes and regions, atlas entries with and
   without signal, and counts of journal-level themes.
 - `field-practice.html`: the overview chart.
+- `review_themes.csv`, `journal_themes.csv`: per-item themes (rollups excluded) for downstream
+  analyses. Rankings break ties deterministically; two builds are byte-identical.
 - Journal items are Crossref records of the selected journals. The catalog's
   `research_candidates_by_length` view (at least ten pages) is the provisional
   research-article proxy.
@@ -84,18 +86,62 @@ come from its subjects. The builder refuses unknown journals and atlas entries.
 - **Regions** (reviews): North America 4,580; German-speaking Central Europe 3,148;
   Britain and Ireland 2,230; Africa 1,323; Asia 842; Latin America and Caribbean 829.
 
+### Candidate clusters (`build_practice_clusters.py`, clusters-v2)
+
+```bash
+python3 scripts/build_practice_clusters.py --series v10 --registry v7 --version clusters-v3
+```
+
+**Hypotheses for editorial review, not groupings.** They describe how practice is organised
+(co-tagging, people working across themes), not intellectual lineage.
+
+- **Signals.**
+  - Registry individuals whose credits span themes: 27,630 people.
+  - Reviews in History multi-heading reviews: 2,140.
+  - A pair counts only when its two themes come from *different* networks, headings or
+    journals. clusters-v1 lacked this rule for people, and single journals carrying several
+    themes (e.g. *Past & Present*) produced artifact clusters.
+- **Method, fixed in advance.**
+  - Edge weights: NPMI (Bouma 2009); a pair needs ≥ 10 co-occurrences and a theme ≥ 30 units.
+  - Clustering: Louvain (Blondel et al. 2008), resolution 1.0, seed 0.
+  - Stability: 200 bootstrap resamples.
+  - Validation: cross-signal hold-out.
+- **Validation.**
+  - The two signals agree (adjusted Rand index 0.74).
+  - Within-cluster pairs score higher in the held-out signal than between-cluster pairs, in
+    both directions (NPMI 0.15 vs 0.10; 0.13 vs 0.09).
+  - Stability is weak overall: resolution 0.8 and 1.2 give ARI 0.59 and 0.75, and many
+    members fall below 0.5.
+- **Only 37 themes have enough co-occurrence** to cluster.
+
+| Candidate | Members | Stability |
+| --- | --- | --- |
+| Economic / social-science | economic, business, quantitative, social science history, rural/agrarian, consumption | robust (0.88; consumption 0.54) |
+| Military–international–imperial | military, diplomatic/international, imperial/colonial, maritime, world/global (Atlantic 0.46, environment 0.32, technology 0.22 weakly attached) | fairly robust (~0.69) |
+| Gender–body–medicine | gender, women's, sexuality, demography/family, science, medicine, disability | tentative (0.36–0.54) |
+| Ideas and radical historiography | intellectual, religious, explanation debates, *Past & Present* traditions, History Workshop, new social history | tentative (0.17–0.57) |
+| Urban–cultural–political | urban, cultural, political, legal, art, local, nationalism, critical scholarship | unstable (0.23–0.45) |
+
+**Against expectation:** social history (0.25) and political history (0.35) do not anchor
+clusters. Both behave as hubs pairing across clusters, consistent with umbrella fields
+rather than peers (cf. social science history). Next: add the review-text signal if approved,
+and compare with historians' own field taxonomies before any cluster enters the hierarchy.
+
 ### Crosswalk revisions (user direction, 2026-09-26)
 
 - **Popular culture → cultural history.** H-PCAACA maps to New cultural history and British
   cultural studies; the atlas's cultural-history entry cites Burke's *Popular Culture in
   Early Modern Europe*.
 - **Indigenous history is not folded into a settler-state region.** H-AmIndian keeps
-  Indigenous history and loses its North America row. Its ethnohistory row awaits the
-  Indigenous-history research (see `data/field-research/`).
+  Indigenous history and loses its North America row. 
 - **Teaching history ≠ history of education.** Teaching moved to a `pedagogy` axis; the
   history of education stays a research theme.
 - **Ethnic history ≠ migration history.** Migration history matches the transnational/mobility
   batch's proposed candidate and relates to its Transnational history draft.
+- **Ethnohistory ≠ Indigenous history** (following `data/field-research/indigenous-ethnohistory-2026-09-26.md`):
+  H-AmIndian → ethnohistory is rejected (kept as provenance; the builder skips rejected rows).
+  The journal *Ethnohistory* maps to Ethnohistory at journal level; the atlas's curated
+  Indigenous-history link remains, with its caveat.
 - **Business history ≠ economic history.** H-Business and the business journals map to
   business history; the combined journal subject is resolved journal by journal.
 - **Social science history is a distinct field.** *Social Science History* maps to it. The
