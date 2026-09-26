@@ -1,0 +1,106 @@
+{
+  "scope": {
+    "source_id": "S197437610",
+    "issns": [
+      "0002-8762",
+      "1937-5239"
+    ],
+    "through_date": "2026-09-21",
+    "location_filter": "primary_location.source.id",
+    "year_min": 1895,
+    "year_max": 2026
+  },
+  "indexed_records": 134847,
+  "types": {
+    "article": 97199,
+    "book": 1,
+    "book-review": 35516,
+    "conference-abstract": 3,
+    "editorial": 22,
+    "erratum": 96,
+    "letter": 1094,
+    "other": 2,
+    "paratext": 912,
+    "review": 1,
+    "supplementary-materials": 1
+  },
+  "book_review_field_counts": {
+    "total": 35516,
+    "doi": 35496,
+    "authors": 35085,
+    "institutions": 31215,
+    "references": 0,
+    "abstracts": 32370,
+    "open-access": 75
+  },
+  "samples": {
+    "book-review-sample": {
+      "n": 200,
+      "present": {
+        "doi": 200,
+        "title": 200,
+        "raw_name": 198,
+        "any_author_id": 142,
+        "any_orcid": 20,
+        "raw_affiliation": 194,
+        "institution": 183,
+        "volume_issue_first_page": 194,
+        "abstract_field": 185,
+        "references": 0
+      },
+      "authorship_counts": {
+        "0": 2,
+        "1": 197,
+        "2": 1
+      }
+    },
+    "article-sample": {
+      "n": 100,
+      "present": {
+        "doi": 100,
+        "title": 100,
+        "raw_name": 94,
+        "any_author_id": 86,
+        "any_orcid": 20,
+        "raw_affiliation": 36,
+        "institution": 35,
+        "volume_issue_first_page": 97,
+        "abstract_field": 47,
+        "references": 1
+      },
+      "authorship_counts": {
+        "2": 40,
+        "1": 50,
+        "0": 6,
+        "3": 3,
+        "4": 1
+      }
+    }
+  },
+  "publisher_selected_reviews": {
+    "count": 9,
+    "types": {
+      "article": 9
+    },
+    "source": "https://academic.oup.com/ahr/issue/130/1",
+    "dois": [
+      "https://doi.org/10.1093/ahr/rhae637",
+      "https://doi.org/10.1093/ahr/rhae494",
+      "https://doi.org/10.1093/ahr/rhae504",
+      "https://doi.org/10.1093/ahr/rhae501",
+      "https://doi.org/10.1093/ahr/rhae511",
+      "https://doi.org/10.1093/ahr/rhae508",
+      "https://doi.org/10.1093/ahr/rhae509",
+      "https://doi.org/10.1093/ahr/rhae499",
+      "https://doi.org/10.1093/ahr/rhae505"
+    ]
+  },
+  "limitations": [
+    "Indexed records are not deduplicated review counts.",
+    "Book-review type misses confirmed reviews, particularly recent ones.",
+    "Authorships can mix reviewer and reviewed author; IDs are not verified identities.",
+    "Abstract-field presence does not establish an abstract or review-text availability.",
+    "Institution mappings can be wrong; preserve raw affiliation text.",
+    "No publisher-archive completeness denominator was measured."
+  ]
+}

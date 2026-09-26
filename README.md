@@ -52,6 +52,8 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 
 ## Project files
 
+- [Unified Ladybug research graph](data/unified-graph/README.md): atlas, H-Net, Reviews in History and saved Wikidata in a queryable local property graph, with source-linked person previews, provisional book/reviewer counts and a separate identity-review queue.
+- [H-Net bibliographic graph](data/hnet-graph/README.md): local books/contributors/reviewers/network graph, with occurrence-level identities and candidate matches; separate from the public teaching graph.
 - `ONTOLOGY.md`: illustrated guide to entries, people, approaches, historical relationships, journal classifications and roles, evidence, and dates.
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.

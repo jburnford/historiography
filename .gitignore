@@ -39,3 +39,40 @@ data/lod-mining/*/raw/
 
 # Incomplete diagnostic run; completed staged harvest is retained.
 data/lod-mining/2026-09-18-pilot/
+
+# Local H-Net bibliographic graph; reproducible from the external corpus.
+data/hnet-graph/generated/
+data/unified-graph/generated/
+data/grounding-repair/generated/
+data/ahr-crossref-2026-09-21/generated/
+
+data/history-journals-crossref-2026-09-21/generated/
+
+data/history-orcid-fanout-2026-09-22/generated/
+
+data/history-orcid-fanout-2026-09-22/orcid-credits.csv
+data/history-orcid-fanout-2026-09-22/orcid-identifiers.csv
+data/history-orcid-fanout-2026-09-22/orcid-identifiers-for-review.csv
+
+data/history-journal-profession-review-2026-09-22/generated/
+data/history-journal-profession-review-2026-09-22/orcid-candidates.csv
+
+data/history-orcid-reviewer-matches-2026-09-22/generated/
+data/history-orcid-reviewer-matches-2026-09-22/reviewer-orcid-candidates.csv
+
+data/history-journals-full-2026-09-22/generated/
+data/history-journals-full-2026-09-22/orcid-credits.csv
+data/history-journals-full-2026-09-22/orcid-candidates.csv
+
+# ORCID mine (2026-09-21): raw API caches (multi-GB) and the large works export.
+# Small derived crosswalks/queues in this dir remain committable.
+data/orcid-2026-09-21/records/
+data/orcid-2026-09-21/works/
+data/orcid-2026-09-21/vector-cache/
+data/orcid-2026-09-21/journal-works.csv
+# Personal-data aggregates from ORCID profiles / deposited ORCID credits (public repo).
+data/orcid-2026-09-21/journal-profiles.csv
+data/orcid-2026-09-21/historians-orcid-enriched.csv
+data/orcid-2026-09-21/journal-orcids-*.csv
+data/orcid-2026-09-21/orcid-name-mismatch-qa.csv
+data/history-journals-crossref-2026-09-21/orcid-credits.csv
