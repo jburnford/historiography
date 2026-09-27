@@ -1,8 +1,9 @@
-import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from './core.mjs';
+import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH} from './core.mjs';
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf} from './field.mjs';
 import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
+import {VIEWS, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -11,7 +12,7 @@ let graph, pathways, state, nodeById, sourceById, personById, personNames;
    for the exact baseline view. `catalogue` indexes the claim catalogue of whichever is shown. */
 let production, baselineGraph = null, catalogue = {entities: new Map(), claims: new Map(), records: new Map()};
 /* The evidence layer (data/evidence.json): aggregates from reviews and journal metadata, shown
-   beside an entry's interpretation and never merged into it. Loaded after first render. */
+   beside an entry's interpretation and never merged into it. Loaded with the graph; the landing needs it. */
 let evidence = null;
 const revision = () => graph.revision_history.at(-1).version;
 const activeExtension = () => state?.range === '2000' ? null : extensionOf(graph);
@@ -717,6 +718,50 @@ function fieldList() {
     }).join('');
 }
 
+/* ---------------- Landing: families, the atlas beside the record ---------------- */
+let landingWidth = 0;
+const AXIS_LABEL = '1880–2024';
+const recordView = () => state.record || 'all';
+/* Landing links clear the mobile list default (view) so the family page applies its own default. */
+const familyHref = id => href({family: id, view: ''});
+function stripBar(segments, cls, unclaimed = null) {
+  const seg = (s, extra = '') => `<span class="seg${extra}" style="flex-basis:${(s.share * 100).toFixed(2)}%" title="${esc(`${s.label}: ${Math.round(s.share * 100)}%`)}">${s.share >= 0.07 ? esc(`${s.short} ${Math.round(s.share * 100)}%`) : ''}</span>`;
+  const rest = unclaimed === null ? '' : seg({label: 'General, regional and period journals that no family claims', short: 'general, regional & period', share: unclaimed}, ' unclaimed');
+  return `<div class="strip-bar ${cls}" role="img" aria-label="${esc(segments.map(s => `${s.label} ${Math.round(s.share * 100)}%`).join(', ') + (unclaimed === null ? '' : `, unclaimed ${Math.round(unclaimed * 100)}%`))}">${segments.map(s => seg(s)).join('')}${rest}</div>`;
+}
+function landingPage() {
+  const block = evidence.families, view = recordView(), strip = stripSegments(block, graph);
+  const toggles = Object.entries(VIEWS).map(([k, label]) =>
+    `<a class="view-link" href="${esc(href({...OVERVIEW_PATCH, record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
+  const viewNote = view === 'established'
+    ? `Only the ${block.established_journals} journals publishing research in both 1970–74 and 2015–19. Old journals are slow to take up new fields.`
+    : view === 'reviews' ? 'Share of all book reviews in H-Net and Reviews in History in each five-year period.'
+    : 'Share of all research articles in each five-year period, across every journal in the collection.';
+  return `<div class="landing-page">
+    <div class="section-heading"><div><p class="eyebrow">01 / THE ATLAS AND THE RECORD · ${AXIS_LABEL}</p>
+      <h2>Eleven families of historical writing</h2></div></div>
+    <p class="lede"><b class="atlas">Orange</b>: where this atlas dates its schools and fields. <b class="record">Green</b>: each family’s share of what historians published. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
+    <p class="eyebrow">THE GAP IN ONE LINE</p>
+    <div class="strip"><span>Share of atlas entries</span>${stripBar(strip.atlas, 'atlas')}
+      <span>Share of research, ${strip.period[0]}–${strip.period[1]}</span>${stripBar(strip.record, 'record', strip.unclaimed)}</div>
+    <div class="landing-controls"><p class="eyebrow">OVER TIME</p><div class="view-links" role="group" aria-label="Record view">${toggles}</div></div>
+    <p class="fine-print">${esc(viewNote)} ${esc(block.note)}</p>
+    <div class="landing-rows" aria-busy="true"></div>
+    ${cardsHtml({block, graph, view, href: familyHref})}
+    <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
+    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. ${esc(evidence.caveats.join(' '))}
+      <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
+  </div>`;
+}
+function drawLanding() {
+  const box = document.querySelector('.landing-rows');
+  if (!box) return;
+  landingWidth = box.clientWidth || 1000;
+  /* Rows are native SVG links (Enter, middle-click and no-JS all work), so no handlers here. */
+  box.innerHTML = rowsSvg({block: evidence.families, graph, view: recordView(), width: landingWidth, href: familyHref});
+  box.removeAttribute('aria-busy');
+}
+
 function fieldPage() {
   const counts = fieldView(1200);   /* counts do not depend on width; the SVG is drawn after measuring */
   const body = state.view === 'list' ? `<div class="field-listing">${fieldList()}</div>`
@@ -797,6 +842,8 @@ function onResize() {
     if (box && Math.abs(box.clientWidth - fieldWidth) > 4) drawField();
     const company = document.querySelector('.company-chart');
     if (company && Math.abs(company.clientWidth - companyWidth) > 4) drawCompany();
+    const rows = document.querySelector('.landing-rows');
+    if (rows && Math.abs(rows.clientWidth - landingWidth) > 4) drawLanding();
   }, 150);
 }
 
@@ -1038,7 +1085,10 @@ function rangeControls() {
 }
 function render() {
   rangeControls();
-  $('toolbar').hidden = !['map','people','browse'].includes(state.tab) || Boolean(state.node || state.person);
+  const onField = state.tab === 'map' && !state.node && !state.person;
+  /* Without the evidence asset the front door falls back to the full field view. */
+  const onLanding = onField && state.overview && Boolean(evidence?.families);
+  $('toolbar').hidden = !['map','people','browse'].includes(state.tab) || Boolean(state.node || state.person) || onLanding;
   $('search').value = state.query;
   $('layer-filter').value = state.layer;
   $('period-filter').value = state.period;
@@ -1048,20 +1098,20 @@ function render() {
       : state.tab === 'map' ? 'field' : state.tab;
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  const onField = state.tab === 'map' && !state.node && !state.person;
   document.body.dataset.view = onField ? 'field' : '';
   document.body.dataset.compact = onField ? '' : '1';
   $('workspace').innerHTML = state.person ? personPage()
     : state.node ? (nodeById.get(state.node).representative_people?.length && state.section !== 'connections' ? schoolPeople() : focused())
-    : onField ? fieldPage()
+    : onLanding ? landingPage() : onField ? fieldPage()
     : state.tab === 'people' ? peopleDirectory()
     : state.tab === 'about' ? about()
     : state.tab === 'pathways' ? pathwayPage()
     : state.layer || state.query || state.period || state.hunt ? directory() : overview();
-  if (onField) wireField();
+  if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
-  $('announcement').textContent = state.tab === 'map' && !state.node && !state.person
+  $('announcement').textContent = onLanding ? 'Eleven families of historical writing: the atlas beside the record.'
+    : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
@@ -1072,6 +1122,7 @@ function render() {
 }
 async function start() {
   try {
+    const evidenceLoad = fetch('data/evidence.json').then(r => r.ok ? r.json() : null).catch(() => null);
     [production, pathways] = await Promise.all(['data/graph.json', 'data/pathways.json'].map(async url => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
@@ -1094,12 +1145,9 @@ async function start() {
       if (matchMedia('(max-width: 700px)').matches && !new URLSearchParams(location.hash.slice(1)).has('view')) next.view = 'list';
       return next;
     };
+    evidence = await evidenceLoad;
     state = await routeFor();
     render();
-    fetch('data/evidence.json').then(r => r.ok ? r.json() : null).then(d => {
-      evidence = d;
-      if (d && state?.node) render();
-    }).catch(() => {});
     window.addEventListener('hashchange', async () => {
       const focusedId = document.activeElement?.id;
       const old = state;

@@ -42,7 +42,26 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def open(self, fragment=''):
         self.page.goto(URL + fragment)
-        expect(self.page.locator('.field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .register-section, .about, .empty').first).to_be_visible()
+        expect(self.page.locator('.landing-page, .field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .register-section, .about, .empty').first).to_be_visible()
+
+    def test_landing_families_strip_and_record_views(self):
+        """The front door: eleven families, the atlas's dating beside the record's share."""
+        self.open()
+        expect(self.page.locator('.landing-page')).to_be_visible()
+        expect(self.page.locator('svg.landing-svg .family-row')).to_have_count(11)
+        expect(self.page.locator('.strip-bar.atlas .seg')).to_have_count(11)
+        expect(self.page.locator('.strip-bar.record .seg')).to_have_count(12)
+        expect(self.page.locator('.strip-bar.record .seg.unclaimed')).to_contain_text('%')
+        expect(self.page.locator('.landing-page')).to_contain_text('must not be summed')
+        self.assertTrue(self.page.locator('#toolbar').is_hidden())
+        box = self.page.locator('.landing-rows')
+        self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'))
+        self.page.get_by_role('link', name='Established journals only', exact=True).click()
+        expect(self.page.get_by_role('link', name='Established journals only', exact=True)).to_have_attribute('aria-pressed', 'true')
+        self.assertIn('record=established', self.page.url)
+        self.page.locator('details.landing-table > summary').click()
+        expect(self.page.locator('details.landing-table tbody tr')).to_have_count(11)
+        self.page.screenshot(path=str(self.artifacts / 'landing-desktop.png'), full_page=True)
 
     def test_overview_search_filters_keyboard_and_reset(self):
         self.open('#tab=browse')

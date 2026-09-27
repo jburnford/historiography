@@ -94,6 +94,10 @@ export function readRoute(hash, graph, pathways) {
     page: Math.max(0, Math.min(1000, Number.parseInt(p.get('page'), 10) || 0)),
     hide: (p.get('hide') || '').split(',').filter(Boolean)
       .filter(k => /^[a-z_]{3,30}$/.test(k)).join(','),
+    /* `family` opens one editorial family's fields ('all' = every entry on one axis);
+       `record` picks the landing's record view. */
+    family: /^[a-z0-9-]{2,60}$/.test(p.get('family') || '') ? p.get('family') : '',
+    record: ['established', 'reviews'].includes(p.get('record')) ? p.get('record') : '',
   };
   if (route.edge) {
     const e = graph.edges.find(e => e.id === route.edge);
@@ -108,12 +112,21 @@ export function readRoute(hash, graph, pathways) {
   if (route.focus) { route.tab = 'map'; route.person = ''; }
   if (route.person && !route.node) route.tab = 'people';
   if ((route.hold || route.letter) && !route.node && !route.person && !route.pathway) route.tab = 'people';
+  /* The bare front door is the families overview. Any value that names a detailed field state
+     (and the exact 2000 view) opens the detailed field instead, so old links keep working.
+     Values, not key presence: routeHash always writes view=map, so only view=list is a detail. */
+  const detail = route.family || route.focus || route.path || p.get('view') === 'list' || route.query
+    || route.layer || route.period || route.hunt || route.hide || route.range;
+  route.overview = route.tab === 'map' && !route.node && !route.person && !detail;
   return route;
 }
 export function routeHash(state) {
   const p = new URLSearchParams();
   for (const [k, v] of Object.entries(state)) {
-    if (v && !(k === 'tab' && v === 'map')) p.set(k, v === true ? '1' : String(v));
+    if (v && k !== 'overview' && !(k === 'tab' && v === 'map')) p.set(k, v === true ? '1' : String(v));
   }
   return p.size ? `#${p}` : '#';
 }
+/* Patch for links back to the families overview: clears every detail state (and the mobile
+   list default), keeping only `record`. */
+export const OVERVIEW_PATCH = {family: '', focus: '', path: '', node: '', person: '', edge: '', pathway: '', view: '', query: '', layer: '', period: '', hunt: false, hide: '', page: 0, section: '', range: '', kind: '', neighborLayer: ''};
