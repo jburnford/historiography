@@ -43,6 +43,29 @@ class EvidenceAssetTests(unittest.TestCase):
         self.assertTrue(any("not influence" in c for c in self.asset["caveats"]))
         self.assertIn("reviews", self.asset["coverage"])
 
+    def test_families_place_every_field_once_and_in_order(self):
+        fams = self.asset["families"]["families"]
+        self.assertEqual(len(fams), 11)
+        self.assertEqual(fams[0]["label"], "Social history")
+        self.assertEqual(len({f["id"] for f in fams}), 11)
+        primary = [m["id"] for f in fams for m in f["members"] if m["primary"]]
+        self.assertEqual(sorted(primary), sorted(self.groups), "every atlas field has exactly one primary family")
+
+    def test_family_series_are_shares_of_a_real_total_ending_2024(self):
+        block = self.asset["families"]
+        for f in block["families"]:
+            self.assertEqual(set(f["series"]), {"all", "established", "reviews"})
+            for view, rows in f["series"].items():
+                for b, items, total in rows:
+                    self.assertLessEqual(items, total, (f["id"], view, b))
+                    self.assertTrue(1900 <= b <= 2020 and b % 5 == 0, (f["id"], view, b))
+
+    def test_strip_sums_to_one_and_names_its_unclaimed_share(self):
+        s = self.asset["families"]["strip"]
+        self.assertAlmostEqual(sum(s["shares"].values()) + s["unclaimed"], 1.0, places=2)
+        self.assertEqual(s["period"], [2000, 2024])
+        self.assertIn("not be summed", self.asset["families"]["note"])
+
 
 if __name__ == "__main__":
     unittest.main()

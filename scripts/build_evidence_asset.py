@@ -6,7 +6,7 @@ committed derivative instead, and CI can rebuild docs/ from tracked files alone.
 aggregates only: counts per atlas entry, fold relations, method signals, review-invocation
 lifts, plus corpus coverage. No review, abstract or article text, and no personal data.
 
-    python3 scripts/build_evidence_asset.py --series v16 --methods methods-v3 --mentions mentions-v2
+    python3 scripts/build_evidence_asset.py --series v17 --methods methods-v3 --mentions mentions-v2
 """
 import argparse
 import csv
@@ -45,6 +45,34 @@ def label_of(target, entries, cw_labels):
     words = key.replace("_", " ")
     words = words if any(w in words for w in ("history", "studies")) else words + " history"
     return words[:1].upper() + words[1:]
+
+
+def families_block(fam, entries, cw_labels):
+    """Landing data: editorial families and their share-of-period record series (aggregates only)."""
+    ids = {d["label"]: d["id"] for d in fam["definitions"]}
+    out = []
+    for d in fam["definitions"]:
+        series = {}
+        for view in ("all", "established", "reviews"):
+            v = fam["views"][view]
+            got = v["families"].get(d["label"], {})
+            series[view] = [[int(b), got.get(b, 0), v["totals"][b]] for b in sorted(v["totals"], key=int)]
+        out.append({"id": d["id"], "label": d["label"],
+                    "members": [{"id": m["id"], "primary": m["primary"]} for m in d["members"]
+                                if m["kind"] == "atlas_entry"],
+                    "record_only": [{"id": m["id"], "label": label_of(m["id"], entries, cw_labels),
+                                     "primary": m["primary"]} for m in d["members"] if m["kind"] == "record_only"],
+                    "series": series})
+    s = fam["strip"]
+    n = max(s["items"], 1)
+    return {"note": "Families are editorial groupings. A field that bridges two families counts in both, so family "
+                    "shares overlap and must not be summed. The headline strip is the exception: it splits each "
+                    "item across its primary families.",
+            "established_journals": fam["established_journals"], "bins": fam["bins"],
+            "strip": {"period": s["period"], "items": s["items"],
+                      "shares": {ids[k]: round(v / n, 4) for k, v in s["families"].items()},
+                      "unclaimed": round(s["unclaimed"] / n, 4)},
+            "families": out}
 
 
 def main():
@@ -132,6 +160,7 @@ def main():
             "and Crossref coverage is uneven.",
         ],
         "fields_the_atlas_lacks": lacks,
+        "families": families_block(series["families"], entries, cw_labels),
         "entries": out_entries,
     }
     OUT.write_text(json.dumps(asset, ensure_ascii=False, indent=1) + "\n")
