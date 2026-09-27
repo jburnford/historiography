@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1), current build v12 (2026-09-26)
+## Field as practice (component 1), current build v14 (2026-09-26)
 
 ```bash
-python3 scripts/build_practice_series.py --version v13   # refuses an existing version; ~12 s
-python3 scripts/render_practice_chart.py --version v13   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v15   # refuses an existing version; ~12 s
+python3 scripts/render_practice_chart.py --version v15   # writes field-practice.html beside it
 ```
 
 ### Editorial inputs (the authorities; edit, then rebuild)
@@ -163,6 +163,9 @@ and compare with historians' own field taxonomies before any cluster enters the 
 - **Identity histories is an umbrella** (proposed) over women's, Black, gender, queer, race
   and ethnic history. **Indigenous history is deliberately excluded** pending user decision,
   though the atlas entry cites Tuhiwai Smith.
+- ***Historical Methods*** (supplement collection) includes social science history methods and
+  digital history methods: mapped to quantitative history, social science history and digital
+  history (all reviewed). The *Journal of Digital History* maps to digital history.
 - **Social science history is an umbrella.** Quantitative, demographic and economic history,
   historical sociology and historical geography are sub-fields (reviewed). The Bielefeld
   school and historical economics are proposed sub-fields.
