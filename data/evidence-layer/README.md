@@ -136,6 +136,41 @@ clusters. Both behave as hubs pairing across clusters, consistent with umbrella 
 rather than peers (cf. social science history). Next: add the review-text signal if approved,
 and compare with historians' own field taxonomies before any cluster enters the hierarchy.
 
+### Method signals (`build_method_signals.py`, methods-v2)
+
+User: "my digital history is spread out in articles about other things … I expect this is
+common." Venue and subject tags cannot see methods, so each method gets two separate
+measures, never merged, over 211,780 research items (both Crossref collections).
+
+- **Title lexicon: a lower bound.** Whole-word, case-aware, multilingual; topic words (computers,
+  the internet, AI, cartography) are excluded. Precision is audited on 30 seeded title hits per
+  method, and after revision on a fresh seed ([audits/](audits/)):
+
+  | Method | Audit v1 | Revision | Audit v2 (fresh seed) | Title hits (v2) |
+  | --- | --- | --- | --- | ---: |
+  | Digital history | 25/30 | none (misses are "digital" as subject) | — | 414 |
+  | Quantitative | 20/30 | require method phrases, not bare "statistic*" | 22/30 (history of quantification remains) | 295 |
+  | Oral history | 16/30 | drop "interview" (interviews *with* historians) | 27/30 | 259 |
+  | Spatial history | 24/30 | exclude "spatial planning" / "spatial mobility" | 28/30 | 390 |
+  | Microhistory | 30/30 | none | — | 119 |
+
+- **Practitioners: an upper-bound kind of measure.** People whose own ORCID claims, or whose
+  credits in our collections, include the method's venues, plus the atlas roster of the
+  method's entry. We then count their research articles and where they appear:
+
+  | Method | Practitioners | Their research items | In method venues | **Elsewhere** |
+  | --- | ---: | ---: | ---: | ---: |
+  | Digital history | 414 | 1,216 | 312 | **74%** |
+  | Quantitative | 979 | 3,193 | 1,025 | **68%** |
+  | Spatial history | 493 | 1,329 | 438 | **67%** |
+  | Oral history | 111 | 239 | 0 | 100% (no oral-history venue in our collections) |
+  | Microhistory | 71 | 210 | 0 | 100% (*Quaderni Storici* absent from Crossref) |
+
+  **Finding:** two-thirds to three-quarters of method practitioners' research appears in
+  journals organised by topic, region or period, confirming the user's expectation.
+  Caveat: not every article by a practitioner uses the method, so this is an upper bound,
+  and title hits a lower bound.
+
 ### Crosswalk revisions (user direction, 2026-09-26)
 
 - **Popular culture → cultural history.** H-PCAACA maps to New cultural history and British
