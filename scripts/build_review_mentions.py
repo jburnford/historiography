@@ -46,7 +46,10 @@ APPROACHES = {  # target -> patterns (case-insensitive unless (?-i:...))
     "marx": [r"marxis[mt]\w*", r"historical materialism", r"historischer materialismus"],
     "global": [r"global history", r"globalgeschicht\w*", r"connected histor\w*", r"entangled histor\w*",
                r"verflechtungsgeschicht\w*", r"histoire crois[ée]e"],
-    "none:transnational_history": [r"transnational\w*"],
+    # v1 audit ~5/12: bare "transnational" is mostly an ordinary adjective; v2 keeps approach phrases.
+    "none:transnational_history": [r"transnational(?:e|en)? (?:histor\w*|geschicht\w*|approach\w*|perspective\w*|turn|methods?)",
+                                   r"histoire transnationale"],
+    # v2 audit 7/12: "Transnationalisierung" usually names the historical process, so it is dropped after v2.
     "intersectionality": [r"intersectional\w*", r"intersektional\w*"],
     "spatialhistory": [r"spatial turn", r"(?-i:GIS)\b", r"geographic information system\w*"],
     "oral": [r"oral histor\w*"],
@@ -55,7 +58,9 @@ APPROACHES = {  # target -> patterns (case-insensitive unless (?-i:...))
                         r"topic model\w*"],
     "conceptual": [r"begriffsgeschicht\w*", r"conceptual history", r"history of concepts"],
     "historyworkshop": [r"(?-i:History Workshop)"],
-    "psychohistory": [r"psychohistor\w*", r"psychoanaly\w*"],
+    # v1 audit ~1/12: "psychoanaly*" mostly caught the history of psychoanalysis as subject.
+    "psychohistory": [r"psychohistor\w*", r"psychoanalytic (?:interpretation|reading|approach|perspective|lens)\w*",
+                      r"psychoanalytische\w* (?:deutung|interpretation|ansatz|perspektive)\w*"],
     "memory": [r"memory studies", r"lieux de m[ée]moire", r"collective memory", r"ged[äa]chtnisgeschicht\w*",
                r"erinnerungskultur\w*"],
     "gender": [r"gender history", r"geschlechtergeschicht\w*"],
@@ -71,9 +76,10 @@ APPROACHES = {  # target -> patterns (case-insensitive unless (?-i:...))
     "none:history_of_emotions": [r"history of emotions", r"emotionsgeschicht\w*", r"geschichte der gef[üu]hle"],
 }
 # Surnames distinctive enough to count alone (otherwise full names only).
+# v1 audit removed Kuhn (0/12: other Kuhns), Pinchbeck, Tuchman, Ryle and Dobb (other bearers of the surname).
 SURNAMES = ["Foucault", "Braudel", "Febvre", "Labrousse", "Geertz", "Derrida", "Barthes", "Lacan", "Althusser",
-            "Nietzsche", "Wittgenstein", "Kuhn", "Latour", "Fanon", "Gramsci", "Hobsbawm", "Tawney", "Chartier",
-            "Davidoff", "Higginbotham", "Daston", "Pinchbeck", "Tuchman", "Ryle", "Dobb", "Lévi-Strauss", "Lukács"]
+            "Nietzsche", "Wittgenstein", "Latour", "Fanon", "Gramsci", "Hobsbawm", "Tawney", "Chartier",
+            "Davidoff", "Higginbotham", "Daston", "Lévi-Strauss", "Lukács"]
 
 
 def lit(p):
@@ -213,10 +219,19 @@ def main():
                           ORDER BY 1, 3 DESC""").fetchall()
     persons_total = db.execute("""SELECT target, count(DISTINCT item) FROM tags WHERE kind = 'person'
                                   GROUP BY 1 ORDER BY 2 DESC, 1 LIMIT 40""").fetchall()
+    # Lift: share of a theme's scanned reviews invoking the approach, over the approach's overall share.
+    db.execute("CREATE TABLE scanned AS SELECT DISTINCT item FROM tags UNION SELECT UNNEST(?::VARCHAR[])",
+               [[f"hnet:review:{e}:{r}" if src == "hnet" else f"rih:review:{r}" for src, e, r, _, _ in reviews]])
+    theme_size = dict(db.execute("""SELECT theme, count(DISTINCT item) FROM themes WHERE item IN (SELECT item FROM scanned)
+                                    GROUP BY 1""").fetchall())
+    scanned_n = len(reviews) if reviews else total
+    overall = {t: n / scanned_n for t, n in appr}
     theme_top = defaultdict(list)
-    for t, th, n in by_theme:
-        if len(theme_top[t]) < 6:
-            theme_top[t].append({"theme": th, "reviews": n})
+    for t, th, n in sorted(by_theme, key=lambda r: -(r[2] / max(theme_size.get(r[1], 1), 1))):
+        if n >= 15 and len(theme_top[t]) < 6 and overall.get(t):
+            share = n / theme_size[th]
+            theme_top[t].append({"theme": th, "reviews": n, "theme_reviews": theme_size[th],
+                                 "lift": round(share / overall[t], 2)})
     summary = {
         "inputs": {"upstream_catalog_sha256": up_sha, "series": args.series, "registry": args.registry},
         "reviews_scanned": len(reviews) if reviews else total,
