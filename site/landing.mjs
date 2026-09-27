@@ -47,7 +47,8 @@ export function familyBySlug(block, slug) {
 }
 
 /* The field view for one family: its fields (bridges included), the person entries linked to
-   them, and only the relationships among those. Journals follow via journalNodes. */
+   them, and only the relationships among those. Journals follow via journalNodes.
+   `__fieldNodes` is reset so a subgraph never inherits a cache built from the full graph. */
 export function familyGraph(graph, family) {
   const keep = new Set(family.members.map(m => m.id));
   const kind = new Map(graph.nodes.map(n => [n.id, n.entry_kind]));
@@ -57,14 +58,28 @@ export function familyGraph(graph, family) {
     if (keep.has(e.target) && kind.get(e.source) === 'person') ids.add(e.source);
   }
   return {...graph, nodes: graph.nodes.filter(n => ids.has(n.id)),
-    edges: graph.edges.filter(e => ids.has(e.source) && ids.has(e.target))};
+    edges: graph.edges.filter(e => ids.has(e.source) && ids.has(e.target)),
+    __fieldNodes: undefined};
 }
 
 const peakOf = (block, view) => Math.max(0.01, ...block.families.flatMap(f => recordShares(f, view).map(s => s.share)));
 
-/* Paired rows on one axis. `width` is the measured width of the box the SVG sits in. */
-export function rowsSvg({block, graph, view = 'all', width = 1000}) {
-  const labelW = Math.min(250, Math.max(150, width * 0.24));
+/* Long family labels wrap at the space nearest the middle rather than overflow the left
+   edge; ' ›' always stays on the last line. ~7px/character at the label's 14px serif. */
+function labelLines(label, labelW) {
+  if (label.length * 7 + 12 <= labelW) return [`${label} ›`];
+  const mid = label.length / 2;
+  const spaces = [...label].map((c, i) => c === ' ' ? i : -1).filter(i => i >= 0);
+  if (!spaces.length) return [`${label} ›`];
+  const at = spaces.reduce((best, i) => Math.abs(i - mid) < Math.abs(best - mid) ? i : best);
+  return [label.slice(0, at), `${label.slice(at + 1)} ›`];
+}
+
+/* Paired rows on one axis. `width` is the measured width of the box the SVG sits in. Each
+   row is a native SVG `<a>` (not a `<g>` with a synthetic role): middle-click, Enter and
+   no-JS all work without app.js wiring a click handler. */
+export function rowsSvg({block, graph, view = 'all', width = 1000, href}) {
+  const labelW = Math.min(280, Math.max(160, width * 0.26));
   const x0 = labelW + 16, x1 = width - 16, rowH = 58, top = 26, foot = 26, barMax = 26;
   const x = y => x0 + (Math.max(y, AXIS.start) - AXIS.start) / (AXIS.end + 1 - AXIS.start) * (x1 - x0);
   const peak = peakOf(block, view);
@@ -74,24 +89,33 @@ export function rowsSvg({block, graph, view = 'all', width = 1000}) {
     `<text class="tick" x="${x(y).toFixed(1)}" y="${H - 9}" text-anchor="middle">${y}</text>`).join('');
   const rows = block.families.map((f, i) => {
     const t = atlasTrack(graph, f), shares = recordShares(f, view);
-    const y0 = top + i * rowH, base = y0 + rowH - 6;
+    const y0 = top + i * rowH, base = y0 + rowH - 6, cy = y0 + rowH / 2;
     const dots = t.dots.map(d => `<circle class="atlas-dot" cx="${x(d.year).toFixed(1)}" cy="${y0 + 13}" r="4"><title>${esc(d.node.label)} · ${d.year}</title></circle>`).join('');
-    const early = t.early.length ? `<text class="early-mark" x="${x0 - 3}" y="${y0 + 17}">◂<title>${esc(`Dated before ${AXIS.start}: ${t.early.map(e => `${e.node.label} (${e.year})`).join('; ')}`)}</title></text>` : '';
+    const early = t.early.length ? `<text class="early-mark" x="${x0 - 3}" y="${y0 + 17}" text-anchor="end">◂<title>${esc(`Dated before ${AXIS.start}: ${t.early.map(e => `${e.node.label} (${e.year})`).join('; ')}`)}</title></text>` : '';
     const bars = shares.filter(s => s.items).map(s => {
       const h = s.share / peak * barMax;
       return `<rect class="record-bar" x="${x(s.bin).toFixed(1)}" y="${(base - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}"><title>${s.bin}–${s.bin + 4}: ${pct(s.share)} (${s.items.toLocaleString('en')} of ${s.total.toLocaleString('en')})</title></rect>`;
     }).join('');
     const dated = t.dots.length + t.early.length;
     const label = `${f.label}: ${dated} dated atlas entr${dated === 1 ? 'y' : 'ies'}${t.undated.length ? `, ${t.undated.length} undated` : ''}; share of the record in ${shares.at(-1)?.bin ?? '—'}–${AXIS.end}: ${pct(shares.at(-1)?.share || 0)}. Open its fields.`;
-    return `<g class="family-row" data-family="${esc(f.id)}" tabindex="0" role="link" aria-label="${esc(label)}">` +
+    /* Undated members are not dropped from the row; they surface in its tooltip. */
+    const undatedTitle = t.undated.length
+      ? `<title>${esc(`Undated: ${t.undated.map(n => n.label).join('; ')}`)}</title>` : '';
+    const lines = labelLines(f.label, labelW);
+    const labelEl = lines.length > 1
+      ? `<text class="family-label" x="${labelW}" y="${(cy - 3).toFixed(1)}" text-anchor="end">` +
+        lines.map((l, li) => `<tspan x="${labelW}" dy="${li === 0 ? 0 : 15}">${esc(l)}</tspan>`).join('') +
+        `${undatedTitle}</text>`
+      : `<text class="family-label" x="${labelW}" y="${(cy + 5).toFixed(1)}" text-anchor="end">${esc(lines[0])}${undatedTitle}</text>`;
+    return `<a class="family-row" href="${esc(href(f.id))}" data-family="${esc(f.id)}" aria-label="${esc(label)}">` +
       `<rect class="row-hit" x="0" y="${y0}" width="${width}" height="${rowH}"/>` +
-      `<text class="family-label" x="${labelW}" y="${y0 + rowH / 2 + 5}" text-anchor="end">${esc(f.label)} ›</text>` +
+      labelEl +
       `<line class="row-base" x1="${x0}" x2="${x1}" y1="${base + 0.5}" y2="${base + 0.5}"/>${bars}${dots}${early}` +
-      (bars ? '' : `<text class="row-empty" x="${x1}" y="${base - 4}" text-anchor="end">no items in this view</text>`) + `</g>`;
+      (bars ? '' : `<text class="row-empty" x="${x1}" y="${base - 4}" text-anchor="end">no items in this view</text>`) + `</a>`;
   }).join('');
   const cx = x(AXIS.coverage).toFixed(1);
   const wall = `<line class="coverage-line" x1="${cx}" x2="${cx}" y1="${top - 6}" y2="${H - foot}"/>` +
-    `<text class="coverage-label" x="${(+cx + 5).toFixed(1)}" y="${top - 10}">atlas coverage ends ${AXIS.coverage}</text>`;
+    `<text class="coverage-label" x="${(+cx - 5).toFixed(1)}" y="${top - 10}" text-anchor="end">atlas coverage ends ${AXIS.coverage}</text>`;
   return `<svg class="landing-svg" viewBox="0 0 ${width} ${H}" width="${width}" height="${H}" role="group" aria-label="Families of historical writing: atlas dating and share of the record, ${AXIS.start}–${AXIS.end}">${grid}${wall}${rows}</svg>`;
 }
 
@@ -103,17 +127,19 @@ export function cardsHtml({block, graph, view = 'all', href}) {
     const bars = s.map((b, i) => { const h = b.share / peak * 28; return `<rect x="${i * 9}" y="${(30 - h).toFixed(1)}" width="8" height="${h.toFixed(1)}"/>`; }).join('');
     const first = [...t.early, ...t.dots].map(d => d.year).sort((a, b) => a - b)[0];
     const n = t.dots.length + t.early.length + t.undated.length;
+    /* A decade-derived early year would misstate precision the atlas doesn't claim. */
+    const firstText = first == null ? '' : first < AXIS.start ? `, earliest before ${AXIS.start}` : `, earliest ${first}`;
     return `<li><a class="family-card" href="${esc(href(f.id))}"><h3>${esc(f.label)}</h3>` +
-      `<p><strong>${n}</strong> atlas entr${n === 1 ? 'y' : 'ies'}${first ? `, earliest ${first}` : ''}</p>` +
-      `<svg class="card-bars" viewBox="0 0 ${Math.max(9, s.length * 9)} 31" preserveAspectRatio="none" role="img" aria-label="${esc(`Share of the record from 1950: ${s.map(b => `${b.bin} ${pct(b.share)}`).join(', ')}`)}">${bars}</svg>` +
+      `<p><strong>${n}</strong> atlas entr${n === 1 ? 'y' : 'ies'}${firstText}</p>` +
+      `<svg class="card-bars" viewBox="0 0 ${Math.max(9, s.length * 9)} 31" preserveAspectRatio="none" aria-hidden="true">${bars}</svg>` +
       `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record` : 'No record in this view'}</p></a></li>`;
   }).join('')}</ol>`;
 }
 
-/* The same numbers as text. */
+/* The same numbers as text: every bin the chart draws, not a truncated recent slice. */
 export function tableHtml({block, graph, view = 'all'}) {
   const bins = [...new Set(block.families.flatMap(f => recordShares(f, view).map(s => s.bin)))]
-    .filter(b => b >= 1920).sort((a, b) => a - b);
+    .sort((a, b) => a - b);
   const head = `<tr><th scope="col">Family</th><th scope="col">Atlas entries</th><th scope="col">Undated</th>${bins.map(b => `<th scope="col">${b}–${String(b + 4).slice(2)}</th>`).join('')}</tr>`;
   const rows = block.families.map(f => {
     const t = atlasTrack(graph, f), by = new Map(recordShares(f, view).map(s => [s.bin, s]));

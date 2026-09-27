@@ -127,3 +127,6 @@ export function routeHash(state) {
   }
   return p.size ? `#${p}` : '#';
 }
+/* Patch for links back to the families overview: clears every detail state (and the mobile
+   list default), keeping only `record`. */
+export const OVERVIEW_PATCH = {family: '', focus: '', path: '', node: '', person: '', edge: '', pathway: '', view: '', query: '', layer: '', period: '', hunt: false, hide: '', page: 0, section: '', range: '', kind: '', neighborLayer: ''};
