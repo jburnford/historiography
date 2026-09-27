@@ -5,6 +5,8 @@ Optional URL: HISTORIOGRAPHY_SITE_URL=http://127.0.0.1:4173/
 """
 import json
 import os
+import re
+from urllib.parse import parse_qs
 from pathlib import Path
 import unittest
 
@@ -404,6 +406,26 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#person=julia_cherry_spruill')
         expect(self.page.locator('.person-profile h2 .lifespan')).to_have_count(0)
 
+    @staticmethod
+    def family_scope(slug):
+        """The family field's entries and relationships, by the rule in landing.mjs familyGraph:
+        its members, person entries adjacent by any edge, and journals linked to those."""
+        evidence = json.loads((ROOT / 'docs/data/evidence.json').read_text())
+        graph = json.loads((ROOT / 'docs/data/graph.json').read_text())   # the published graph the page reads
+        family = next(f for f in evidence['families']['families'] if f['id'] == slug)
+        keep = {m['id'] for m in family['members']}
+        kind = {n['id']: n.get('entry_kind') for n in graph['nodes']}
+        ids = set(keep)
+        for e in graph['edges']:
+            if e['source'] in keep and kind.get(e['target']) == 'person': ids.add(e['target'])
+            if e['target'] in keep and kind.get(e['source']) == 'person': ids.add(e['source'])
+        ids &= set(kind)
+        edges = [e for e in graph['edges'] if e['source'] in ids and e['target'] in ids]
+        jc = graph.get('journal_catalogue') or {'nodes': [], 'edges': []}
+        journal_ids = {n['id'] for n in jc['nodes']}
+        journal_edges = [e for e in jc.get('edges', []) if e['source'] in journal_ids and e['target'] in ids]
+        return len(ids) + len({e['source'] for e in journal_edges}), len(edges) + len(journal_edges)
+
     def test_family_drilldown_filters_the_field(self):
         self.open()
         self.page.locator('.family-row[data-family="annales"]').focus()
@@ -412,6 +434,27 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertIn('family=annales', self.page.url)
         expect(self.page.locator('svg.field .entry[data-id="annales"]')).to_have_count(1)
         expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(0)
+        entries, relationships = self.family_scope('annales')
+        summary = self.page.locator('.field-summary').inner_text()
+        placed = int(summary.split()[0]) + (int(summary.split('·')[1].split()[0]) if 'without' in summary else 0)
+        self.assertEqual(placed, entries, summary)
+        self.assertIn(f'{relationships} relationships', summary)
+        expect(self.page.locator('.family-note')).to_have_count(0)   # Annales has nothing shared, bridged or missing
+        self.open('#family=annales&view=list')
+        expect(self.page.locator('.field-table tbody tr')).to_have_count(entries)
+        expect(self.page.locator('.field-table thead').first).to_contain_text('All relationships')
+        # Holding an entry the family does not draw leaves the family for the full field.
+        self.open('#family=annales&focus=annales')
+        row = self.page.locator('.field-panel details.rel').filter(has=self.page.locator('.outside-tag')).first
+        row.locator('> summary').click()
+        link = row.get_by_role('link', name=re.compile('in the full field'))
+        target = parse_qs(link.get_attribute('href').lstrip('#'))['focus'][0]
+        link.click()
+        expect(self.page).not_to_have_url(re.compile('family='))
+        expect(self.page.locator(f'svg.field [data-id="{target}"].selected')).to_have_count(1)
+        self.open('#family=annales&focus=military')
+        expect(self.page.locator('.field-page .section-heading h2')).to_have_text('Historiography on one time axis')
+        expect(self.page.locator('svg.field .entry.selected[data-id="military"]')).to_have_count(1)
         self.open('#family=social-history')
         expect(self.page.locator('.family-note')).to_contain_text('Cultural & intellectual history')   # bridges named
         expect(self.page.locator('svg.field .entry[data-id="women"]')).to_have_count(1)
@@ -419,8 +462,11 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.landing-page')).to_be_visible()
         self.open('#family=all')
         expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(1)
-        self.open('#family=nosuch')
-        expect(self.page.locator('.field-page')).to_be_visible()   # unknown family: the full field, not an error
+        self.open('#family=annales')
+        self.open('#family=nosuch')   # unknown family: the full field, not an error
+        expect(self.page.locator('.field-page .section-heading h2')).to_have_text('Historiography on one time axis')
+        expect(self.page.locator('.family-crumbs')).to_have_count(0)
+        expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(1)
 
     def test_landing_cards_on_mobile(self):
         self.page.set_viewport_size({'width': 390, 'height': 844})
@@ -428,9 +474,10 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.family-cards li')).to_have_count(11)
         self.assertTrue(self.page.locator('.landing-rows').is_hidden())
         self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
-        self.page.locator('.family-card').filter(has_text='Environment').click()
-        self.assertIn('family=environment', self.page.url)
         self.page.screenshot(path=str(self.artifacts / 'landing-mobile.png'), full_page=True)
+        self.page.locator('.family-card').filter(has_text='Environment').click()
+        expect(self.page).to_have_url(re.compile('family=environment'))
+        self.page.screenshot(path=str(self.artifacts / 'family-mobile.png'), full_page=True)
         # On narrow screens the router defaults to the list view; landing links must still stay on the landing.
         self.open()
         self.page.get_by_role('button', name='Reviews', exact=True).click()
