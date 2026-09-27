@@ -41,6 +41,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GEN = ROOT / "data/evidence-layer/generated"
 REGISTRY = ROOT / "data/person-registry/generated"
 CROSSREF = ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb"
+SUPPLEMENT = ROOT / "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb"
 CROSSWALK = ROOT / "data/evidence-layer/practice-crosswalk.csv"
 MIN_PAIR, MIN_THEME, BOOTSTRAPS, RESOLUTION, SEED, STABLE = 10, 30, 200, 1.0, 0, 0.5
 
@@ -56,6 +57,8 @@ def people_units(series, registry):
     db = duckdb.connect()
     db.execute(f"ATTACH {lit(registry / 'registry.duckdb')} AS rg (READ_ONLY)")
     db.execute(f"ATTACH {lit(CROSSREF)} AS xr (READ_ONLY)")
+    db.execute(f"ATTACH {lit(SUPPLEMENT)} AS xs (READ_ONLY)")
+    db.execute("CREATE TEMP VIEW x_memberships AS SELECT * FROM xr.memberships UNION ALL SELECT * FROM xs.memberships")
     db.execute(f"CREATE TEMP VIEW rt AS SELECT * FROM read_csv({lit(series / 'review_themes.csv')}, header=true)")
     db.execute(f"CREATE TEMP VIEW jt AS SELECT * FROM read_csv({lit(series / 'journal_themes.csv')}, header=true)")
     rows = db.execute("""
@@ -66,7 +69,7 @@ def people_units(series, registry):
         FROM cred c JOIN rt ON rt.item = c.record_id WHERE c.corpus IN ('hnet', 'rih')
         UNION
         SELECT DISTINCT c.individual_id, jt.target, 'journal:' || m.journal_key FROM cred c
-        JOIN xr.memberships m ON m.record_id = c.record_id JOIN jt USING (journal_key)
+        JOIN x_memberships m ON m.record_id = c.record_id JOIN jt USING (journal_key)
         WHERE c.corpus = 'crossref'""").fetchall()
     units = defaultdict(lambda: defaultdict(set))
     for ind, t, src in rows:
