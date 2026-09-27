@@ -2,7 +2,7 @@
   "schema_version": "0.1",
   "title": "Wikidata grounding: atlas people",
   "generated_on": "2026-09-26",
-  "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0. Second pass, 2026-09-18: eight further person entries (Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith, Daston) were searched the same way, each candidate verified with get_statements before acceptance, and their dates fetched in one SPARQL query over P569/P570 with time precision; Daston's competing birth dates were resolved with get_statement_values on rank. Julia Cherry Spruill was re-tried and remains unmatched. Third pass, 2026-09-26: the 543 roster people in tiers accept_glance and recovered of data/orcid-2026-09-21/roster-grounding-master.csv were applied in bulk by user decision without individual review (wikidata.method = bulk_roster_match_2026-09-22), so that errors show up in the site. Dates were fetched from QLever with rank and precision. The remaining 282 roster people (namesake_risk, disambiguate, manual) are not included.",
+  "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0. Second pass, 2026-09-18: eight further person entries (Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith, Daston) were searched the same way, each candidate verified with get_statements before acceptance, and their dates fetched in one SPARQL query over P569/P570 with time precision; Daston's competing birth dates were resolved with get_statement_values on rank. Julia Cherry Spruill was re-tried and remains unmatched. Third pass, 2026-09-26: the 543 roster people in tiers accept_glance and recovered of data/orcid-2026-09-21/roster-grounding-master.csv were applied in bulk by user decision without individual review (wikidata.method = bulk_roster_match_2026-09-22), so that errors show up in the site. Dates were fetched from QLever with rank and precision. The remaining 282 roster people (namesake_risk, disambiguate, manual) are not included. Fourth pass, 2026-09-26: namesake_risk roster rows whose QID carries an ORCID resolving to a person-registry individual with history credits were applied (wikidata.method = roster_orcid_corroborated_2026-09-26).",
   "status_values": {
     "accepted": "match reviewed and accepted",
     "unmatched": "no item found",
@@ -11,7 +11,7 @@
   },
   "not_covered": "282 roster people remain ungrounded: 69 namesake_risk, 121 disambiguate, 92 manual (see roster-grounding-master.csv).",
   "counts": {
-    "accepted": 593,
+    "accepted": 600,
     "unmatched": 1
   },
   "people": [
@@ -13041,6 +13041,139 @@
         "retrieved": "2026-09-26"
       },
       "notes": "Tier recovered; 0 Wikipedia sitelinks; match source vector+gate."
+    },
+    {
+      "person_id": "cameron_campbell",
+      "node_id": "cameron_campbell",
+      "label": "Cameron Campbell",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q42837402",
+        "label": "Cameron Dougall Campbell",
+        "description": "researcher",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0001-6277-1941 resolves to a registry individual with 8 history credits (crossref). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": null,
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "ian_milligan",
+      "node_id": "ian_milligan",
+      "label": "Ian Milligan",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q57416604",
+        "label": "Ian Milligan",
+        "description": "researcher, University of Waterloo, ORCID id 0000-0002-1470-7723",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0002-1470-7723 resolves to a registry individual with 6 history credits (crossref, hnet, rih). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": {
+        "birth": "1983",
+        "death": null,
+        "birth_precision": "year",
+        "death_precision": null,
+        "source": "Wikidata P569/P570 via QLever SPARQL (best rank)",
+        "retrieved": "2026-09-26"
+      },
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "ian_gregory",
+      "node_id": "ian_gregory",
+      "label": "Ian N. Gregory",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q56480391",
+        "label": "Ian N. Gregory",
+        "description": "researcher",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0001-8745-2242 resolves to a registry individual with 12 history credits (crossref, hnet). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": {
+        "birth": "1970",
+        "death": null,
+        "birth_precision": "year",
+        "death_precision": null,
+        "source": "Wikidata P569/P570 via QLever SPARQL (best rank)",
+        "retrieved": "2026-09-26"
+      },
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "pamela_riney_kehrberg",
+      "node_id": "pamela_riney_kehrberg",
+      "label": "Pamela Riney-Kehrberg",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q130610315",
+        "label": "Pamela Riney-Kehrberg",
+        "description": "historian (born 1963)",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0002-9448-9649 resolves to a registry individual with 3 history credits (hnet). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": {
+        "birth": "1963-01-23",
+        "death": null,
+        "birth_precision": "day",
+        "death_precision": null,
+        "source": "Wikidata P569/P570 via QLever SPARQL (best rank)",
+        "retrieved": "2026-09-26"
+      },
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "sarah_chaney",
+      "node_id": "sarah_chaney",
+      "label": "Sarah Chaney",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q59151433",
+        "label": "Sarah Chaney",
+        "description": "researcher ORCID ID = 0000-0003-0335-9863",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0003-0335-9863 resolves to a registry individual with 4 history credits (crossref). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": null,
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "shawn_graham",
+      "node_id": "shawn_graham",
+      "label": "Shawn Graham",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q55195298",
+        "label": "Shawn Graham",
+        "description": "archaeologist",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0002-2887-3554 resolves to a registry individual with 3 history credits (crossref, rih). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": null,
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
+    },
+    {
+      "person_id": "stephen_legg",
+      "node_id": "stephen_legg",
+      "label": "Stephen Legg",
+      "status": "accepted",
+      "wikidata": {
+        "qid": "Q58158903",
+        "label": "Stephen Legg",
+        "description": "geographer",
+        "method": "roster_orcid_corroborated_2026-09-26",
+        "basis": "Roster namesake_risk match corroborated: Wikidata P496 ORCID 0000-0002-9548-9763 resolves to a registry individual with 8 history credits (crossref, hnet). Applied 2026-09-26; not individually reviewed."
+      },
+      "life": {
+        "birth": "1978",
+        "death": null,
+        "birth_precision": "year",
+        "death_precision": null,
+        "source": "Wikidata P569/P570 via QLever SPARQL (best rank)",
+        "retrieved": "2026-09-26"
+      },
+      "notes": "Tier namesake_risk upgraded by ORCID corroboration (v9)."
     }
   ]
 }
