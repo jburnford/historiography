@@ -171,6 +171,26 @@ measures, never merged, over 211,780 research items (both Crossref collections).
   Caveat: not every article by a practitioner uses the method, so this is an upper bound,
   and title hits a lower bound.
 
+**Abstracts** (methods-v3; user lifted the "no abstracts" rule, 2026-09-26).
+`harvest_crossref_abstracts.py` fetched 105,470 publisher-deposited abstracts (DOI + abstract
+only; local, gitignored, never published) from 231 of 407 journals. They cover 81,227 research
+items (38%), with a strong publisher skew: *Annales*, *JEH* and *Historical Journal* are well
+covered; Taylor & Francis and *Isis* have none. The lexicons were re-audited on 20 seeded
+abstract-only hits each ([audits/method-abstracts-methods-v3.csv](audits/method-abstracts-methods-v3.csv),
+DOIs and judgements only):
+
+| Method | Title hits | Abstract hits not in title | Abstract precision |
+| --- | ---: | ---: | --- |
+| Digital | 414 | 495 | 11/20 ("digital age/culture/platforms" as subject; *numérique* = numerical) |
+| Quantitative | 295 | 1,135 | 15/20 |
+| Oral | 259 | 720 | 19/20 |
+| Spatial | 390 | 957 | 15/20 |
+| Microhistory | 119 | 224 | not audited |
+
+Even after discounting by precision, abstracts roughly double the method uses visible in
+titles. Method use is mostly invisible at title level, confirming the user's point from
+another direction.
+
 ### Crosswalk revisions (user direction, 2026-09-26)
 
 - **Popular culture → cultural history.** H-PCAACA maps to New cultural history and British
