@@ -191,6 +191,56 @@ Even after discounting by precision, abstracts roughly double the method uses vi
 titles. Method use is mostly invisible at title level, confirming the user's point from
 another direction.
 
+### Review-text mentions (`build_review_mentions.py`, mentions-v2)
+
+Research use of the 49,520 locally held H-Net and RiH review texts (user approval,
+2026-09-26). Only per-review tags and aggregates are kept (`review_tags.parquet`, ignored);
+no text leaves the machine or enters Git. Audits record item IDs and judgements only
+([audits/review-mentions.csv](audits/review-mentions.csv)).
+
+- **Approaches invoked.** A multilingual lexicon (English, German, French) is mapped to atlas
+  entries. Audit judgements:
+  - Microhistory and *Alltagsgeschichte*: 12/12.
+  - Annales: 12/12.
+  - Memory: 11/12.
+  - Psychohistory: 1/12 in v1, where "psychoanaly*" caught the history of psychoanalysis; 12/12
+    in v2 with approach phrases.
+  - Transnational: 5/12 in v1, where bare "transnational" was an ordinary adjective; 7/12 in v2,
+    where *Transnationalisierung* often names the process. That term is dropped for the next
+    run, so v2's 894 is an upper bound.
+- **People invoked.** All 876 atlas roster names by full name, plus a whitelist of distinctive
+  surnames. A person is not counted in reviews of their own books, or reviews they wrote.
+  Surname checks removed Kuhn (0/12 were Thomas Kuhn), Pinchbeck, Tuchman, Ryle and Dobb.
+- **Most invoked approaches** (reviews):
+  - Marxist 2,215
+  - postcolonial 2,193
+  - memory 2,151
+  - oral history 1,526
+  - global 1,378
+  - linguistic turn 1,284
+  - microhistory 1,259
+  - Bielefeld / *Gesellschaftsgeschichte* 1,109
+  - environmental 1,035
+  - Annales 760
+  - Subaltern Studies 620
+  - conceptual history 492
+- **Operational canon** (reviews invoking, by decade). Foucault leads every decade, then
+  Weber, Marx, Nietzsche, Benjamin, Bourdieu and Habermas. Koselleck, Said and Latour rise
+  in the 2010s; Latour, Fanon, Haraway and Cronon rank high in the 2020s. Wehler ranks high
+  in the 2000s (the German corpus).
+- **Folds tested** (lift = over-representation in reviews of a theme):
+  - Subaltern Studies: imperial/colonial 6.1, gender 5.0, social 2.8. Supports its fold.
+  - Postcolonial critique: imperial/colonial 5.1, global 3.1. Supports its fold.
+  - Linguistic turn: explanation debates 6.1, intellectual 4.7. Supports the intellectual-history
+    half of its fold more than the cultural half.
+  - Microhistory: lifts near 1 everywhere (imperial 1.5, social 1.4, religious 1.2, cultural
+    1.1). It is invoked across fields rather than inside social and cultural history, which is
+    worth weighing against its fold.
+  - Oral history is most over-represented in Indigenous (3.2), education (2.9) and women's
+    history (2.8).
+- **Limits.** Theme lifts use themed reviews only, so H-Soz-u-Kult (general) is excluded.
+  Mention is not endorsement. The approach lexicon under-counts implicit practice.
+
 ### Crosswalk revisions (user direction, 2026-09-26)
 
 - **Popular culture → cultural history.** H-PCAACA maps to New cultural history and British
