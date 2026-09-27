@@ -325,20 +325,33 @@ const FIELD_TITLES = {...LAYER_TITLES, [JOURNAL_LAYER]: 'Journals & venues'};
 const fieldTitle = id => FIELD_TITLES[id]
   || String(id).replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 const hiddenKinds = () => new Set(state.hide ? state.hide.split(',') : []);
-const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: ''});
+/* Holding an entry the family view does not draw leaves the family for the full field. */
+const outsideFamily = id => { const ids = shownIds(); return Boolean(ids) && !ids.has(id); };
+const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: '',
+  ...(state.family && state.family !== 'all' && (!activeFamily() || outsideFamily(id)) ? {family: ''} : {})});
 /* Releasing a held entry keeps any pathway overlay and search; it only lets go of the hold. */
 const releaseHref = () => href({focus: '', node: '', person: '', edge: '', page: 0, section: ''});
 const releaseLink = () => `<a class="release" href="${esc(releaseHref())}">← Show everything</a>`;
 const activePathway = () => state.path ? pathways.pathways.find(p => p.id === state.path) : null;
 /* One editorial family's fields ('all' or an unknown slug shows everything). */
-const activeFamily = () => state.family && state.family !== 'all' ? familyBySlug(evidence?.families, state.family) : null;
 let shownMemo = {};
-function shownGraph() {
-  const f = activeFamily();
-  if (!f) return graph;
-  if (shownMemo.id !== f.id || shownMemo.base !== graph) shownMemo = {id: f.id, base: graph, g: familyGraph(graph, f)};
-  return shownMemo.g;
+function familyShown(f) {
+  if (shownMemo.id !== f.id || shownMemo.base !== graph) {
+    const g = familyGraph(graph, f), nodes = fieldNodes(g);
+    shownMemo = {id: f.id, base: graph, g, nodes, ids: new Set(nodes.map(n => n.id))};
+  }
+  return shownMemo;
 }
+/* A pathway overlay, or a held entry the family does not draw, falls back to the full field. */
+function activeFamily() {
+  if (!state.family || state.family === 'all' || state.path) return null;
+  const f = familyBySlug(evidence?.families, state.family);
+  if (!f || (state.focus && !familyShown(f).ids.has(state.focus))) return null;
+  return f;
+}
+function shownGraph() { const f = activeFamily(); return f ? familyShown(f).g : graph; }
+/* The ids the family view draws, or null when the full field is shown. */
+function shownIds() { const f = activeFamily(); return f ? familyShown(f).ids : null; }
 const pathNumbering = () => {
   const p = activePathway();
   return p ? new Map(p.node_ids.map((id, i) => [id, i + 1])) : null;
@@ -391,8 +404,8 @@ function activeFieldEdges() {
   const hidden = hiddenKinds();
   const edges = state.focus ? (fieldIndex.get(state.focus) || []).map(r => r.edge)
     : pathwayEdges(graph, activePathway(), fieldIndex);
-  const shown = new Set(fieldNodes(shownGraph()).map(n => n.id));
-  return edges.filter(e => !hidden.has(e.relationship_kind) && shown.has(e.source) && shown.has(e.target));
+  const ids = shownIds();
+  return edges.filter(e => !hidden.has(e.relationship_kind) && (!ids || (ids.has(e.source) && ids.has(e.target))));
 }
 
 function fieldSvg(view) {
@@ -615,15 +628,16 @@ function relRow(r) {
   const scope = e.temporal_scope?.start ? `<p class="fine-print">Dated ${e.temporal_scope.start}${
     e.temporal_scope.end && e.temporal_scope.end !== e.temporal_scope.start ? `–${e.temporal_scope.end}` : ''}${
     e.temporal_scope.meaning ? ` · ${esc(String(e.temporal_scope.meaning).replace(/_/g, ' '))}` : ''}.</p>` : '';
+  const outside = outsideFamily(r.other);
   return `<details class="rel ${tone}" data-edge="${esc(e.id)}"><summary>
       <span class="dir">${esc(dirWord(kind, r.dir))}</span>
-      <span class="who">${esc(other.label)}</span>
+      <span class="who">${esc(other.label)}${outside ? ' <span class="outside-tag">outside this family</span>' : ''}</span>
       <span class="what">${esc(e.relationship)}</span></summary>
     <div class="rel-body">
       ${e.evidence_note ? `<p class="evidence"><strong>Evidence.</strong> ${esc(e.evidence_note)}</p>`
         : '<p class="evidence fine-print">No evidence note is recorded for this relationship.</p>'}${scope}
       <details class="rel-sources"><summary>References · ${e.source_ids?.length || 0}</summary>${sources}</details>
-      <p class="rel-links"><a href="${esc(focusHref(r.other))}">Hold ${esc(other.label)} →</a>${
+      <p class="rel-links"><a href="${esc(focusHref(r.other))}">Hold ${esc(other.label)}${outside ? ' in the full field' : ''} →</a>${
         atlasEdge ? `<a href="#edge=${esc(e.id)}">Inspect this relationship →</a>` : ''}</p>
     </div></details>`;
 }
@@ -707,8 +721,10 @@ function fieldList() {
     const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (span.coverage ?? hi) : span.end));
     return `<span class="mini" aria-hidden="true">${span.openStart ? `<i class="lead" style="left:0;width:${a}%"></i>` : ''}<i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
   };
+  const fam = activeFamily();
   return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
-      Dates describe arrival and influence, not a lifespan.</p>` +
+      Dates describe arrival and influence, not a lifespan.${fam
+        ? ' Relationship counts include relationships with entries outside this family.' : ''}</p>` +
     fieldLayers(shownGraph(), FIELD_TITLES).map(layerId => {
       const mine = rows.filter(r => r.n.layer === layerId);
       if (!mine.length) return '';
@@ -716,7 +732,7 @@ function fieldList() {
       return `<details class="band-list" ${matchMedia('(max-width: 700px)').matches ? '' : 'open'}><summary>${esc(fieldTitle(layerId))}<span>${mine.length}</span></summary>
       <table class="field-table"><caption>${esc(fieldTitle(layerId))}</caption>
       <thead><tr><th scope="col">Dates</th><th scope="col">Entry</th><th scope="col">Kind</th>
-        <th scope="col">Relationships</th></tr></thead><tbody>${mine.map(({n, span}) => {
+        <th scope="col">${fam ? 'All relationships' : 'Relationships'}</th></tr></thead><tbody>${mine.map(({n, span}) => {
         const rels = (fieldIndex.get(n.id) || []).length;
         return `<tr><td class="td-date">${esc(span ? `${span.start}${span.end > span.start
             ? `–${span.end}` : ''}` : 'not stated')}${mini(span)}</td>
@@ -772,16 +788,29 @@ function drawLanding() {
   box.removeAttribute('aria-busy');
 }
 
+/* Crumbs, then a note pairing each shared or bridged entry with its other families. */
 function familyHeading(f) {
-  const bridged = f.members.filter(m => !m.primary).map(m => nodeById.get(m.id)?.label).filter(Boolean);
-  const primaryOf = id => evidence.families.families.find(x => x.members.some(m => m.id === id && m.primary))?.label;
-  const shared = f.members.filter(m => m.primary && evidence.families.families.some(x => x.id !== f.id && x.members.some(y => y.id === m.id)))
-    .map(m => nodeById.get(m.id)?.label).filter(Boolean);
-  const bridgeFamilies = [...new Set(f.members.filter(m => !m.primary).map(m => primaryOf(m.id)).filter(Boolean))];
+  const all = evidence.families.families;
+  const label = id => nodeById.get(id)?.label;
+  const primaryOf = id => all.find(x => x.members.some(m => m.id === id && m.primary))?.label;
+  /* Bridges, grouped by the family that claims them: "A, B (from F); C (from G)". */
+  const byHome = new Map();
+  for (const m of f.members.filter(m => !m.primary && label(m.id))) {
+    const home = primaryOf(m.id) || 'no primary family';
+    byHome.set(home, [...(byHome.get(home) || []), label(m.id)]);
+  }
+  const bridged = [...byHome].map(([home, names]) => `${names.join(', ')} (from ${home})`);
+  const shared = f.members.filter(m => m.primary && label(m.id)).map(m => {
+    const others = all.filter(x => x.id !== f.id && x.members.some(y => y.id === m.id)).map(x => x.label);
+    return others.length ? `${label(m.id)} (also in ${others.join(', ')})` : '';
+  }).filter(Boolean);
   const lacks = f.record_only.map(x => x.label);
+  const note = [shared.length ? `Shared with other families: ${shared.join('; ')}.` : '',
+    bridged.length ? `Also drawn here: ${bridged.join('; ')}.` : '',
+    lacks.length ? `In the record but not in the atlas: ${lacks.join(', ')}.` : ''].filter(Boolean).join(' ');
   return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href(OVERVIEW_PATCH))}">← All families</a>
       <a href="${esc(href({family: 'all', focus: '', path: ''}))}">All entries on one axis</a></nav>
-    <p class="family-note">${shared.length ? `Shared with other families: ${esc(shared.join(', '))}. ` : ''}${bridged.length ? `Also drawn here from ${esc(bridgeFamilies.join(', '))}: ${esc(bridged.join(', '))}. ` : ''}${lacks.length ? `In the record but not in the atlas: ${esc(lacks.join(', '))}.` : ''}</p>`;
+    ${note ? `<p class="family-note">${esc(note)}</p>` : ''}`;
 }
 
 function fieldPage() {
@@ -1138,7 +1167,7 @@ function render() {
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
-       : activeFamily() ? `${activeFamily().label}. ${fieldNodes(shownGraph()).length} entries on a time axis.`
+       : activeFamily() ? `${activeFamily().label}. ${shownIds().size} entries on a time axis.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
     : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : 'Reading this map.';
   const resetLanes = {page:0};
