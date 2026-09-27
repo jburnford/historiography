@@ -1,5 +1,73 @@
 # Project memory and visualization handoff
 
+## Context-reset handoff — 2026-09-27 (Claude Opus session, 2026-09-25 to 27)
+
+All work below is committed locally on `main` (about 28 commits ahead of origin) and
+**not pushed**. Pushing deploys the public site (Pages serves `main:/docs`) and needs the
+user's explicit yes.
+
+**Identity work** ([IDENTITY-PLAN.md](IDENTITY-PLAN.md), [data/person-registry/README.md](data/person-registry/README.md)).
+- **The registry.** A DuckDB registry is the single identity authority across the atlas,
+  H-Net, RiH and Crossref. The latest build is **v9**: about 24.6k strict and 53.9k probable
+  individuals.
+- **Routes.** Each ties a credit to a person through a shared work, then gates on name
+  compatibility: deposited ORCID; ORCID-claimed DOI, ISBN, title or review; Open Library
+  author, with a lifespan gate on its Wikidata link; and dated affiliations for reviewers.
+  Benchmarks are in `data/person-registry/benchmark-2026-09-26.csv`.
+- **Roster QIDs on the site.**
+  - 543 bulk roster matches, applied unreviewed by user decision. The registry records them
+    as probable.
+  - 7 ORCID-corroborated `namesake_risk` matches (Milligan, Gregory, Legg, …), added by
+    `scripts/apply_roster_corroborated.py`.
+- **The upstream name-level MCP loop is STOPPED.** Banners are in the hnet-reviews README and
+  LOOP_INSTRUCTIONS.
+- **Journal supplement.** `data/history-journals-supplement-2026-09-26` adds Historical
+  Methods (the user's journal) and the Journal of Digital History.
+
+**Evidence layer** ([EVIDENCE-LAYER-PLAN.md](EVIDENCE-LAYER-PLAN.md), [data/evidence-layer/README.md](data/evidence-layer/README.md)).
+- **Editorial files:**
+  - `practice-crosswalk.csv`: networks, headings and journal subjects mapped to atlas
+    entries and `none:` fields.
+  - `practice-hierarchy.csv`: sub-field rollups (social science history umbrella, socialism
+    under political history).
+  - `approach-folds.csv`: approaches folded into fields, and `roots_in` for microhistory.
+  - `families-draft.csv`: landing families (draft).
+- **Current builds:**
+  - practice series **v16**
+  - method signals **methods-v3** (titles, abstracts and practitioners, audited)
+  - review mentions **mentions-v2** (operational canon, approach lifts)
+  - clusters **clusters-v2**
+- **Site panel.** Every field entry shows "What the record shows", loaded from
+  `docs/data/evidence.json`. To regenerate, run `scripts/build_evidence_asset.py`, which
+  writes the tracked `data/evidence-layer/site-evidence.json`, then `scripts/build_site.py`.
+- **Principles the user set.** Record every decision as a `reviewed` crosswalk row.
+  - Popular culture is cultural history.
+  - Indigenous history is never folded into settler-state regions or broader frames.
+  - Teaching history is pedagogy, distinct from the history of education.
+  - Ethnic history is distinct from migration history.
+  - Business history is not economic history.
+  - Social science history is an umbrella for quantitative, demographic, economic and
+    historical-geography work.
+  - Socialism and the left sit under political history.
+  - Historical Methods covers social science history and digital history.
+  - Microhistory is a cross-field method rooted in social and cultural history.
+  - The 30 approaches without direct signal are folded into the fields where they are
+    practised.
+- **Data rules.** Abstracts (105k) and review text stay local; no text goes into Git.
+
+**In progress: landing redesign.** See [specs/2026-09-27-landing-redesign-design.md](specs/2026-09-27-landing-redesign-design.md),
+a draft awaiting approval. The user chose to pair narrative with practice; families are
+drafted; the record track uses share-of-period by default, with established journals as a
+non-default toggle; 2025–26 is left out. Next: get layout approval (headline strip plus paired
+rows), resolve the open placements, finish the spec, then write a plan and implement.
+
+**Validation.**
+- Site core 22/22 tests pass, and the site-browser, digital-acceptance and evidence-asset
+  tests pass.
+- Older release tests (1.122 and earlier batches) were already failing before this session
+  because of pinned hashes.
+- Changes to pinned files are logged as revision 1.123 `acceptance.json['amendments']`.
+
 ## Completed: full 405-context metadata harvest and audit — 2026-09-22
 
 User requested “continue with the metadata mining” after the restart. Completed
