@@ -50,6 +50,10 @@ class LoadFamiliesTests(unittest.TestCase):
             "unknown bridge": ("Social history,social,atlas_entry,Nowhere,proposed,\n", {"social"}),
             "bad kind": ("Social history,social,school,,proposed,\n", {"social"}),
             "record_only not none:": ("Social history,social,atlas_entry,,proposed,\nSocial history,rural,record_only,,proposed,\n", {"social"}),
+            "bad status": ("Social history,social,atlas_entry,,rejeced,\n", {"social"}),
+            "bridges to its own family": ("Social history,social,atlas_entry,Social history,proposed,\n", {"social"}),
+            "two families share a slug": ("Social history,social,atlas_entry,,proposed,\n"
+                                          "Social  History!,culture,atlas_entry,,proposed,\n", {"social", "culture"}),
         }
         for name, (text, groups) in cases.items():
             with self.subTest(name), self.assertRaises(SystemExit):
@@ -71,6 +75,7 @@ class FamilySeriesTests(unittest.TestCase):
             ("journal", "b", "s", 2017, "research_proxy", "j2"), ("journal", "c", "s", 2018, "research_proxy", "j2"),
             ("journal", "d", "s", 1972, "research_proxy", "j1"), ("journal", "e", "s", 2016, "other", "j2"),
             ("journal", "x", "s", 2016, "research_proxy", "j1"), ("journal", "z", "s", 2026, "research_proxy", "j2"),
+            ("journal", "w", "s", 2019, "research_proxy", "j2"),  # untagged at theme level; only a region tag
             ("hnet", "r1", "net", 2001, "review", None),
         ]
         db.executemany("INSERT INTO items VALUES (?, ?, ?, ?, ?, ?)", items)
@@ -78,10 +83,12 @@ class FamilySeriesTests(unittest.TestCase):
             ("journal", "a", "s", 2016, "research_proxy", "theme", "social", "", "proposed"),
             ("journal", "b", "s", 2017, "research_proxy", "theme", "social", "", "proposed"),
             ("journal", "b", "s", 2017, "research_proxy", "theme", "culture", "", "proposed"),
+            ("journal", "c", "s", 2018, "research_proxy", "theme", "culture", "", "proposed"),
             ("journal", "d", "s", 1972, "research_proxy", "theme", "economic", "", "proposed"),
             ("journal", "e", "s", 2016, "other", "theme", "social", "", "proposed"),
             ("journal", "x", "s", 2016, "research_proxy", "theme", "social", "", "rollup"),
             ("journal", "z", "s", 2026, "research_proxy", "theme", "social", "", "proposed"),
+            ("journal", "w", "s", 2019, "research_proxy", "region", "social", "", "proposed"),
             ("hnet", "r1", "net", 2001, "review", "theme", "culture", "", "proposed"),
             ("hnet", "r1", "net", 2001, "review", "region", "europe", "", "proposed"),
         ]
@@ -92,9 +99,10 @@ class FamilySeriesTests(unittest.TestCase):
 
     def test_share_of_period_counts_distinct_items_over_all_items(self):
         allv = self.got["views"]["all"]
-        self.assertEqual(allv["totals"][2015], 4)          # a, b, c, x; e is not research; z is past 2024
-        self.assertEqual(allv["families"]["Social"][2015], 2)   # a, b once (bridge not double counted); x is a rollup
-        self.assertEqual(allv["families"]["Cultural"][2015], 1)
+        self.assertEqual(allv["totals"][2015], 5)          # a, b, c, x, w; e is not research; z is past 2024
+        self.assertEqual(allv["families"]["Social"][2015], 3)   # a, b, c (culture bridges c into Social); w is
+        # tagged only on the region axis, so it raises the total but not Social's count; x is a rollup
+        self.assertEqual(allv["families"]["Cultural"][2015], 2)  # b, c (c is now Cultural-primary)
         self.assertEqual(allv["families"]["Economy"][1970], 1)
         self.assertNotIn(2025, allv["totals"])
         self.assertEqual(self.got["bins"][-1], 2020)
@@ -113,8 +121,10 @@ class FamilySeriesTests(unittest.TestCase):
 
     def test_strip_splits_items_across_primary_families_and_sums_to_total(self):
         s = self.got["strip"]
-        self.assertEqual(s["items"], 4)
-        self.assertEqual(s["families"], {"Cultural": 0.5, "Social": 1.5})
+        self.assertEqual(s["items"], 5)              # a, b, c, x, w, all in bin >= 2000
+        self.assertEqual(s["families"], {"Cultural": 1.5, "Social": 1.5})
+        # a: 1/1 Social; b: 1/2 Social + 1/2 Cultural; c: 1/1 Cultural (primary; its Social tag is a bridge,
+        # not primary); x is a rollup and w is untagged at theme level, so both fall to unclaimed.
         self.assertAlmostEqual(s["unclaimed"], 2.0)
         self.assertAlmostEqual(sum(s["families"].values()) + s["unclaimed"], s["items"])
 

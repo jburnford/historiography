@@ -7,14 +7,16 @@ runs inside build_practice_series.py's DuckDB session, over its `items` and `map
 Counting rules: a family's series counts distinct items tagged at theme level (hierarchy
 rollups excluded) with any of its members, bridges included, so family series overlap and must
 not be summed. The denominator is every item in the view and bin, tagged or not. The headline
-strip splits each item equally across its primary families, so strip shares plus the unclaimed
-share sum to one.
+strip splits each item equally across its primary families, so the strip's family counts plus
+the unclaimed count sum to the item count. A record listed under two selected journals joins
+the established view if either journal is established, and carries both journals' themes.
 """
 import csv
 import re
 from collections import Counter
 
 KINDS = {"atlas_entry", "record_only"}
+STATUSES = {"proposed", "reviewed", "needs_decision", "rejected"}
 VIEWS = ("all", "established", "reviews")
 FIRST_YEAR, LAST_YEAR, BIN = 1900, 2024, 5
 STRIP_FROM = 2000
@@ -28,9 +30,10 @@ def slug(label):
 def load_families(path, group_ids, crosswalk_targets):
     """Families in file order; each member once as primary, optionally again as a bridge."""
     with open(path, newline="") as f:
-        rows = [r for r in csv.DictReader(f) if r["status"] != "rejected"]
+        all_rows = list(csv.DictReader(f))
+    errors = [f"{r['member']}: unknown status {r['status']!r}" for r in all_rows if r["status"] not in STATUSES]
+    rows = [r for r in all_rows if r["status"] != "rejected"]
     order = list(dict.fromkeys(r["family"] for r in rows))
-    errors = []
     for r in rows:
         m = r["member"]
         if r["member_kind"] not in KINDS:
