@@ -178,6 +178,13 @@ def routes(db, paths):
     q("""INSERT INTO route_links SELECT DISTINCT ci.occurrence_id, 'orcid:' || cl.orcid, 'anchored',
          'orcid_claim_isbn', cl.type || ' put-code ' || cl.put_code || ' ISBN ' || cl.isbn || ': ' || coalesce(cl.title, '')
          FROM credit_isbn ci JOIN claim_isbn cl USING (isbn) WHERE orcid_compat(ci.name, cl.orcid)""")
+    # R2b: the ORCID holder claims this exact DOI on their record; credit name compatible. Covers
+    # the many Crossref credits whose publisher did not deposit the author's ORCID.
+    q("""INSERT INTO route_links SELECT DISTINCT o.occurrence_id, 'orcid:' || c.orcid, 'anchored',
+         'orcid_claim_doi', c.type || ' put-code ' || c.put_code || ' DOI ' || c.doi
+         FROM (SELECT orcid, put_code, type, lower(unnest(dois)) AS doi FROM cw) c
+         JOIN occurrences o ON o.corpus = 'crossref' AND lower(o.item_id) = c.doi
+         WHERE orcid_compat(o.name, c.orcid)""")
     # R3: claimed book with the same main title, year within three; credit name compatible.
     q("""INSERT INTO route_links SELECT DISTINCT cb.occurrence_id, 'orcid:' || c.orcid, 'probable',
          'orcid_claim_book_title', c.type || ' put-code ' || c.put_code || ': ' || coalesce(c.title, '')
