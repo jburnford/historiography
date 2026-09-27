@@ -31,6 +31,7 @@ PAGE_ASSETS = {
     'site/core.mjs': 'core.mjs',
     'site/field.mjs': 'field.mjs',
     'site/people.mjs': 'people.mjs',
+    'site/landing.mjs': 'landing.mjs',
     'site/.nojekyll': '.nojekyll',
 }
 DATA_ASSETS = {

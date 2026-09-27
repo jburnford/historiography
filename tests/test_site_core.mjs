@@ -6,9 +6,11 @@ import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
+import {AXIS, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
+const families = JSON.parse(readFileSync(new URL('../data/evidence-layer/site-evidence.json', import.meta.url))).families;
 
 test('arrows never turn legacy links or comparisons into influence', () => {
   const legacy = {source:'a',target:'b',type:'connection'};
@@ -340,4 +342,72 @@ test('the people register sorts by surname and the constellation places everyone
   const route = readRoute('#hold=women&letter=B', graph, {pathways: []});
   assert.equal(route.tab, 'people'); assert.equal(route.hold, 'women'); assert.equal(route.letter, 'B');
   assert.equal(readRoute('#hold=nobody&letter=bb', graph, {pathways: []}).hold, '');
+});
+
+test('landing: every family member is dated, early or undated, never dropped', () => {
+  const ids = new Set(graph.nodes.map(n => n.id));
+  for (const f of families.families) {
+    const t = atlasTrack(graph, f);
+    assert.equal(t.dots.length + t.early.length + t.undated.length, f.members.filter(m => ids.has(m.id)).length, f.id);
+    for (const d of t.dots) assert.ok(d.year >= AXIS.start, f.id);
+    for (const d of t.early) assert.ok(d.year < AXIS.start, f.id);
+  }
+});
+test('landing: record shares are items over the bin total and stop at 2024', () => {
+  for (const f of families.families) for (const view of ['all', 'established', 'reviews']) {
+    for (const s of recordShares(f, view)) {
+      assert.ok(s.share >= 0 && s.share <= 1, `${f.id} ${view} ${s.bin}`);
+      assert.equal(s.share, s.total ? s.items / s.total : 0);
+      assert.ok(s.bin + 4 <= AXIS.end);
+    }
+  }
+});
+test('landing: both strip bars sum to one', () => {
+  const s = stripSegments(families, graph);
+  assert.ok(Math.abs(s.atlas.reduce((a, x) => a + x.share, 0) - 1) < 1e-9);
+  assert.ok(Math.abs(s.record.reduce((a, x) => a + x.share, 0) + s.unclaimed - 1) < 0.01);
+  assert.equal(s.atlas.length, 11);
+});
+test('landing: a family subgraph holds its fields, their person entries, and internal edges only', () => {
+  const annales = familyBySlug(families, 'annales');
+  assert.ok(annales);
+  assert.equal(familyBySlug(families, 'nosuch'), null);
+  const sub = familyGraph(graph, annales);
+  const ids = new Set(sub.nodes.map(n => n.id));
+  assert.ok(ids.has('annales'));
+  for (const n of sub.nodes) assert.ok(n.id === 'annales' || n.entry_kind === 'person', n.id);
+  for (const e of sub.edges) assert.ok(ids.has(e.source) && ids.has(e.target), e.id);
+});
+test('landing: rows, cards and table render one item per family', () => {
+  const svg = rowsSvg({block: families, graph, view: 'all', width: 1100});
+  assert.equal((svg.match(/class="family-row"/g) || []).length, 11);
+  assert.match(svg, /data-family="annales"/);
+  assert.match(svg, /class="coverage-line"/);
+  /* Environment has no items in the established-journals view: its row says so rather than looking broken. */
+  const est = rowsSvg({block: families, graph, view: 'established', width: 1100});
+  const envRow = est.split('data-family="environment"')[1].split('</g>')[0];
+  assert.match(envRow, /no items in this view/);
+  const cards = cardsHtml({block: families, graph, view: 'reviews', href: id => `#family=${id}`});
+  assert.equal((cards.match(/class="family-card"/g) || []).length, 11);
+  const table = tableHtml({block: families, graph, view: 'established'});
+  assert.equal((table.match(/<tr>/g) || []).length, 12);
+});
+test('routes: the bare front door is the overview; deep links still open the detail views', () => {
+  assert.equal(readRoute('', graph, pathways).overview, true);
+  assert.equal(readRoute('#record=reviews', graph, pathways).overview, true);
+  assert.equal(readRoute('#view=map', graph, pathways).overview, true);   // routeHash always writes view=map
+  assert.equal(readRoute('#record=reviews', graph, pathways).record, 'reviews');
+  assert.equal(readRoute('#record=bogus', graph, pathways).record, '');
+  const detail = ['#family=annales', '#family=all', '#focus=marx', '#path=paradigms_and_limits', '#view=list',
+                  '#range=2000', '#query=thompson', '#node=marx', '#tab=people'];
+  for (const h of detail) assert.equal(readRoute(h, graph, pathways).overview, false, h);
+  assert.equal(readRoute('#family=annales', graph, pathways).family, 'annales');
+  assert.equal(readRoute('#family=Not%20A%20Slug!', graph, pathways).family, '');
+  /* Links the site writes must land where they were written from. */
+  for (const h of ['', '#record=established', ...detail]) {
+    const r = readRoute(h, graph, pathways), hash = routeHash(r);
+    assert.doesNotMatch(hash, /overview/, h);
+    assert.equal(readRoute(hash, graph, pathways).overview, r.overview, h);
+  }
+  assert.match(routeHash(readRoute('#family=annales&record=reviews', graph, pathways)), /family=annales&record=reviews/);
 });
