@@ -63,3 +63,45 @@ def load_families(path, group_ids, crosswalk_targets):
             "membership": [(f["label"], m["id"], m["primary"]) for f in families for m in f["members"]],
             "record_only_without_rows": sorted(r["member"] for r in rows if r["member_kind"] == "record_only"
                                                and r["member"] not in crosswalk_targets)}
+
+
+def family_series(db, membership):
+    """Share-of-period series per family and record view, plus the headline strip."""
+    q = db.execute
+    q("CREATE OR REPLACE TEMP TABLE fam_members (family VARCHAR, target VARCHAR, is_primary BOOLEAN)")
+    db.executemany("INSERT INTO fam_members VALUES (?, ?, ?)", membership)
+    (a0, a1), (b0, b1) = ESTABLISHED
+    q(f"""CREATE OR REPLACE TEMP TABLE fam_established AS
+          SELECT journal_key FROM items WHERE source = 'journal' AND kind = 'research_proxy'
+          GROUP BY 1 HAVING count(*) FILTER (WHERE year BETWEEN {a0} AND {a1}) > 0
+                        AND count(*) FILTER (WHERE year BETWEEN {b0} AND {b1}) > 0""")
+    q(f"""CREATE OR REPLACE TEMP TABLE fam_universe AS
+          SELECT DISTINCT v.rv, i.source || ':' || i.item AS uid, i.year // {BIN} * {BIN} AS bin
+          FROM items i CROSS JOIN (VALUES ('all'), ('established'), ('reviews')) v(rv)
+          WHERE i.year BETWEEN {FIRST_YEAR} AND {LAST_YEAR} AND CASE v.rv
+            WHEN 'all' THEN i.source = 'journal' AND i.kind = 'research_proxy'
+            WHEN 'established' THEN i.source = 'journal' AND i.kind = 'research_proxy'
+                                    AND i.journal_key IN (SELECT journal_key FROM fam_established)
+            ELSE i.source IN ('hnet', 'rih') AND i.kind = 'review' END""")
+    q("""CREATE OR REPLACE TEMP TABLE fam_tagged AS
+         SELECT DISTINCT m.source || ':' || m.item AS uid, f.family, f.is_primary
+         FROM mapped m JOIN fam_members f ON f.target = m.target
+         WHERE m.axis = 'theme' AND coalesce(m.status, '') <> 'rollup'""")
+    views = {v: {"totals": {}, "families": {}} for v in VIEWS}
+    for v, b, n in q("SELECT rv, bin, count(DISTINCT uid) FROM fam_universe GROUP BY ALL").fetchall():
+        views[v]["totals"][b] = n
+    for v, fam, b, n in q("""SELECT u.rv, t.family, u.bin, count(DISTINCT u.uid) FROM fam_universe u
+                             JOIN (SELECT DISTINCT uid, family FROM fam_tagged) t USING (uid)
+                             GROUP BY ALL""").fetchall():
+        views[v]["families"].setdefault(fam, {})[b] = n
+    strip_items = q(f"SELECT count(DISTINCT uid) FROM fam_universe WHERE rv = 'all' AND bin >= {STRIP_FROM}").fetchone()[0]
+    strip = dict(q(f"""WITH u AS (SELECT DISTINCT uid FROM fam_universe WHERE rv = 'all' AND bin >= {STRIP_FROM}),
+                            p AS (SELECT DISTINCT uid, family FROM fam_tagged WHERE is_primary),
+                            k AS (SELECT uid, count(*) AS n FROM p GROUP BY 1)
+                       SELECT p.family, sum(1.0 / k.n) FROM u JOIN p USING (uid) JOIN k USING (uid)
+                       GROUP BY 1""").fetchall())
+    return {"bins": list(range(FIRST_YEAR, LAST_YEAR - BIN + 2, BIN)), "views": views,
+            "strip": {"period": [STRIP_FROM, LAST_YEAR], "items": strip_items,
+                      "families": {f: round(float(x), 4) for f, x in sorted(strip.items())},
+                      "unclaimed": round(strip_items - float(sum(strip.values())), 4)},
+            "established_journals": q("SELECT count(*) FROM fam_established").fetchone()[0]}
