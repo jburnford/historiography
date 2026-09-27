@@ -128,6 +128,26 @@ def main():
                OR (m.journal_key IN (SELECT UNNEST(?::VARCHAR[])) AND r.record_type = 'journal-article'))
         GROUP BY 1, 2, 3, 4""", [sorted(BORN_DIGITAL)]).fetchall()
     compiled = {m: compile_method(s) for m, s in METHODS.items()}
+    # Abstracts (harvest_crossref_abstracts.py), if present: a separate measure with its coverage,
+    # never used to correct the title count. HTML/JATS tags are stripped before matching.
+    abstracts = {}
+    adir = GEN / "abstracts"
+    if (adir / "manifest.json").exists():
+        import gzip
+        for fpath in adir.glob("*.jsonl.gz"):
+            with gzip.open(fpath, "rt", encoding="utf-8") as f:
+                for line in f:
+                    r = json.loads(line)
+                    abstracts[r["doi"]] = re.sub(r"<[^>]+>", " ", r["abstract"] or "")
+    abstract_hits = defaultdict(set)
+    with_abstract = 0
+    for rid, doi, title, year, journal, jkey in items:
+        a = abstracts.get(doi)
+        if a:
+            with_abstract += 1
+            for m, pats in compiled.items():
+                if any(p.search(a) for p in pats):
+                    abstract_hits[m].add(rid)
     hits = []
     for rid, doi, title, year, journal, jkey in items:
         for m, pats in compiled.items():
@@ -182,8 +202,13 @@ def main():
                     per_year[y][0 if venue_match(spec, item_journal[r]) else 1] += 1
             prac_rows.append((m, ind, "|".join(sorted(bases)), len(rids), v))
         mh = [h for h in hits if h[0] == m]
+        title_ids = {h[1] for h in mh}
         summary[m] = {
             "title_hits_research_items": len(mh),
+            "abstract": {"research_items_with_abstract": with_abstract,
+                         "abstract_hits": len(abstract_hits[m]),
+                         "abstract_hits_not_in_title": len(abstract_hits[m] - title_ids),
+                         "title_or_abstract_hits": len(title_ids | abstract_hits[m])} if abstracts else None,
             "title_hits_by_decade": {f"{d}s": sum(1 for h in mh if h[3] and h[3] // 10 * 10 == d)
                                      for d in range(1950, 2030, 10)},
             "practitioners": len(pr),
