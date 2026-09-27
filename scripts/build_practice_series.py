@@ -197,6 +197,29 @@ def main():
             return set()
         return set().union(*(resolve(r["folds_into"], seen + (e,)) for r in fold_map[e]))
 
+    def latest(prefix):
+        runs = sorted((p for p in (ROOT / "data/evidence-layer/generated").glob(prefix + "-v*") if (p / "summary.json").exists()),
+                      key=lambda p: int(p.name.rsplit("-v", 1)[1]) if p.name.rsplit("-v", 1)[1].isdigit() else -1)
+        return (runs[-1].name, json.loads((runs[-1] / "summary.json").read_text())) if runs else (None, None)
+
+    methods_run, methods_summary = latest("methods")
+    mentions_run, mentions_summary = latest("mentions")
+
+    def direct_evidence(e):
+        out = {}
+        if methods_summary and e in methods_summary["methods"]:
+            m = methods_summary["methods"][e]
+            out[methods_run] = {k: m[k] for k in ("title_hits_research_items", "practitioners",
+                                                 "practitioner_research_items", "share_elsewhere") if k in m}
+            if m.get("abstract"):
+                out[methods_run]["abstract_hits_not_in_title"] = m["abstract"]["abstract_hits_not_in_title"]
+        if mentions_summary:
+            hit = next((x for x in mentions_summary["approach_invocations"] if x["target"] == e), None)
+            if hit:
+                out[mentions_run] = {"reviews_invoking": hit["reviews"],
+                                     "top_theme_lifts": mentions_summary["approach_top_themes"].get(e, [])[:4]}
+        return out
+
     folded = {}
     for e in sorted(entries):
         if e in evidenced or e not in fold_map:
@@ -204,11 +227,20 @@ def main():
         targets = sorted(resolve(e))
         n = lambda src_filter: q(f"""SELECT count(DISTINCT item) FROM mapped WHERE axis = 'theme' AND {src_filter}
                                      AND target IN (SELECT UNNEST(?::VARCHAR[]))""", [targets]).fetchone()[0]
-        folded[e] = {"label": entries[e], "practised_within": targets,
+        roots_only = all(r["relation"] == "roots_in" for r in fold_map[e])
+        folded[e] = {"label": entries[e],
+                     # roots_in = intellectual lineage, not current practice; such entries are methods used
+                     # across fields and are measured directly (build_method_signals / build_review_mentions).
+                     "status": "cross_field_method_with_roots" if roots_only else "folded",
+                     "practised_within" if not roots_only else "roots_in": targets,
                      "relations": [{"into": r["folds_into"], "relation": r["relation"], "status": r["status"]}
                                    for r in fold_map[e]],
-                     "reviews": n("source IN ('hnet', 'rih')"),
-                     "journal_research_items": n("source = 'journal' AND kind = 'research_proxy'")}
+                     # For roots-only entries the parents' counts are context, never the entry's own practice.
+                     ("parent_context_reviews" if roots_only else "reviews"): n("source IN ('hnet', 'rih')"),
+                     ("parent_context_journal_items" if roots_only else "journal_research_items"):
+                         n("source = 'journal' AND kind = 'research_proxy'")}
+        if roots_only:
+            folded[e]["direct_evidence"] = direct_evidence(e)
     summary = {
         "built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "inputs": {k: {"path": str(p.relative_to(ROOT)), "sha256": before[k]} for k, p in inputs.items()},
