@@ -1,0 +1,69 @@
+{
+  "scope": "Selected history journals: full Crossref bibliographic metadata through 2026-09-26",
+  "metrics": {
+    "harvest_groups": 2,
+    "records": 1238,
+    "contributors": 1908,
+    "source_memberships": 1238,
+    "records_with_multiple_metadata_versions": 0,
+    "membership_issn_status": {
+      "matching_deposited_issn": 1238
+    },
+    "records_with_orcid": 109,
+    "distinct_orcids": 225
+  },
+  "journals": [
+    {
+      "journal_key": "journal_441b0f0646ad10f8",
+      "label": "Historical Methods",
+      "records": 1200,
+      "article_records": 1200,
+      "with_page_field": 1200,
+      "with_calculated_length": 1194,
+      "length_at_least_10": 541,
+      "records_with_orcid": 72,
+      "orcid_credits": 189,
+      "distinct_orcids": 171,
+      "records_with_affiliation": 306,
+      "earliest_deposited_year": 1967,
+      "latest_deposited_year": 2026,
+      "test_records": 0
+    },
+    {
+      "journal_key": "journal_supplement_journal_of_digital_history",
+      "label": "Journal of Digital History",
+      "records": 38,
+      "article_records": 38,
+      "with_page_field": 6,
+      "with_calculated_length": 6,
+      "length_at_least_10": 6,
+      "records_with_orcid": 37,
+      "orcid_credits": 63,
+      "distinct_orcids": 56,
+      "records_with_affiliation": 38,
+      "earliest_deposited_year": 2021,
+      "latest_deposited_year": 2025,
+      "test_records": 0
+    }
+  ],
+  "manifest_sha256": "c0c3c9b8ee8234fcd49430c65741082f264d288d70af223b56db21b6cf33739b",
+  "validation": {
+    "page_hashes_checked": 5,
+    "metadata_allowlist_checked": true,
+    "unique_record_credit_membership_keys": true,
+    "record_credit_membership_duckdb_parquet_row_hashes_match": true,
+    "source_occurrences_match_per_journal": true,
+    "contributor_orphans": 0,
+    "membership_orphans": 0
+  },
+  "limitations": [
+    "Crossref coverage is not a complete publication census; publication years are as deposited.",
+    "One DOI row is not one unique publication; different DOIs and translated editions remain unreconciled.",
+    "For DOIs repeated across harvest groups, the first selection-order version supplies normalized fields; all source variants and hashes are retained.",
+    "All genres and person identities remain unreviewed. Contributor arrays may conflate reviewers and book authors.",
+    "Page length is a screening aid. Single page locators do not establish one-page length.",
+    "Journal selection is expandable editorial coverage, not an exclusive list or prestige ranking."
+  ],
+  "builder_sha256": "420c3cfd9c3bc2fb6e6dd8084afadc13bbbb8356f5a8cb71abeb4dba81243064",
+  "helpers_sha256": "b9f999a9a10791d30783650b97f2e8ec88783869eaad995fe50ee6b2f59b6c26"
+}

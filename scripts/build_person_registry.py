@@ -86,6 +86,7 @@ def inputs(args):
         "hnet_graph": ROOT / "data/hnet-graph/generated/graph.sqlite",
         "unified_nodes": ROOT / "data/unified-graph/generated/nodes.csv",
         "crossref_catalog": ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb",
+        "crossref_supplement": ROOT / "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb",
         "orcid_flags": ROOT / "data/history-orcid-fanout-2026-09-22/orcid-quality-flags.csv",
         "upstream_catalog": UPSTREAM / "data/export/catalog.duckdb",
         "upstream_reviewer_grounding": UPSTREAM / "data/grounding/reviewer_grounding.csv",
@@ -270,6 +271,11 @@ def routes(db, paths):
 def build(db, paths, auth_manifest):
     q = db.execute
     q(f"ATTACH {lit(paths['crossref_catalog'])} AS xr (READ_ONLY)")
+    q(f"ATTACH {lit(paths['crossref_supplement'])} AS xs (READ_ONLY)")
+    # The 405-context collection plus the 2026-09-26 supplement (Historical Methods, Journal of
+    # Digital History), read as one Crossref collection.
+    q("CREATE TEMP VIEW x_contributors AS SELECT * FROM xr.contributors UNION ALL SELECT * FROM xs.contributors")
+    q("CREATE TEMP VIEW x_records AS SELECT * FROM xr.records UNION ALL SELECT * FROM xs.records")
     q(f"ATTACH {lit(paths['upstream_catalog'])} AS up (READ_ONLY)")
     q("INSTALL sqlite; LOAD sqlite")
     q(f"ATTACH {lit(paths['hnet_graph'])} AS hn (TYPE sqlite, READ_ONLY)")
@@ -305,7 +311,7 @@ def build(db, paths, auth_manifest):
          SELECT c.credit_id, 'crossref', c.record_id, c.doi, c.role_array, c.name, c.given_name,
                 c.family_name, json_extract_string(c.affiliation_json, '$[0].name'),
                 CAST(r.publication_year AS VARCHAR), r.container_title, r.metadata_sha256
-         FROM xr.contributors c JOIN xr.records r USING (record_id) WHERE NOT coalesce(r.is_test_record, false)""")
+         FROM x_contributors c JOIN x_records r USING (record_id) WHERE NOT coalesce(r.is_test_record, false)""")
 
     # ---- Wikidata authority crosswalk --------------------------------------------------
     q("CREATE TABLE authority_ids (qid VARCHAR, scheme VARCHAR, value VARCHAR)")
@@ -322,7 +328,7 @@ def build(db, paths, auth_manifest):
     db.create_function("orcid_id", orcid_id, [str], str, null_handling="special")
     q("""INSERT INTO claims SELECT credit_id, 'orcid', orcid_id(orcid), 'crossref_deposit', NULL,
          coalesce(TRY_CAST(json_extract(raw_credit_json, '$."authenticated-orcid"') AS BOOLEAN), false),
-         record_id FROM xr.contributors WHERE orcid IS NOT NULL""")
+         record_id FROM x_contributors WHERE orcid IS NOT NULL""")
     # Legacy upstream QIDs. Reviewer QIDs are stored per review row: exact attachment.
     q("""INSERT INTO claims SELECT o.occurrence_id, 'wikidata', u.reviewer_qid, 'upstream_reviewer_row',
          u.reviewer_wd_status, NULL, 'up.reviews:' || u.source || ':' || u.era || ':' || u.review_id

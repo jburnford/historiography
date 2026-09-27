@@ -26,6 +26,10 @@ FOLDS = ROOT / "data/evidence-layer/approach-folds.csv"
 HNET = ROOT / "data/hnet-graph/generated/graph.sqlite"
 UNIFIED = ROOT / "data/unified-graph/generated"
 CROSSREF = ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb"
+SUPPLEMENT = ROOT / "data/history-journals-supplement-2026-09-26"
+# Born-digital journals deposit no page ranges, so the page-length proxy cannot see their research
+# articles; for these, every journal-article record counts as a research item.
+BORN_DIGITAL = {"journal_supplement_journal_of_digital_history"}
 SELECTED = ROOT / "data/history-journal-profession-review-2026-09-22/selected-journals.json"
 GRAPH = ROOT / "historiography-1920-2000.json"
 
@@ -47,6 +51,8 @@ def main():
         raise SystemExit(f"{out} exists; choose a new --version")
     inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "folds": FOLDS, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
               "unified_links": UNIFIED / "links.csv", "crossref_catalog": CROSSREF, "selected_journals": SELECTED,
+              "crossref_supplement": SUPPLEMENT / "generated/v1/catalog.duckdb",
+              "supplement_selection": SUPPLEMENT / "selection.json",
               "atlas_graph": GRAPH}
     before = {k: sha(p) for k, p in inputs.items()}
     db = duckdb.connect()
@@ -54,6 +60,11 @@ def main():
     q("INSTALL sqlite; LOAD sqlite")
     q(f"ATTACH {lit(HNET)} AS hn (TYPE sqlite, READ_ONLY)")
     q(f"ATTACH {lit(CROSSREF)} AS xr (READ_ONLY)")
+    q(f"ATTACH {lit(SUPPLEMENT / 'generated/v1/catalog.duckdb')} AS xs (READ_ONLY)")
+    q("CREATE TEMP VIEW x_records AS SELECT * FROM xr.records UNION ALL SELECT * FROM xs.records")
+    q("CREATE TEMP VIEW x_memberships AS SELECT * FROM xr.memberships UNION ALL SELECT * FROM xs.memberships")
+    q("""CREATE TEMP VIEW x_research AS SELECT record_id FROM xr.research_candidates_by_length
+         UNION SELECT record_id FROM xs.research_candidates_by_length""")
     q(f"CREATE TABLE cw AS SELECT * FROM read_csv({lit(CROSSWALK)}, header=true, all_varchar=true) "
       "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
 
@@ -70,7 +81,7 @@ def main():
          FROM un r LEFT JOIN ul l ON l.subject = r.id AND l.predicate = 'classified_under'
          LEFT JOIN un s ON s.id = l.object
          WHERE r.kind = 'review_record' AND r.origin = 'reviews_in_history'""")
-    sel = json.loads(SELECTED.read_text())["journals"]
+    sel = json.loads(SELECTED.read_text())["journals"] + json.loads((SUPPLEMENT / "selection.json").read_text())["journals"]
     subj = {n["id"]: n["label"] for n in json.loads(GRAPH.read_text())["journal_catalogue"]["nodes"]
             if n.get("entry_kind") == "publication_subject"}
     q("CREATE TEMP TABLE journal_subjects (journal_key VARCHAR, label VARCHAR, journal_label VARCHAR)")
@@ -80,11 +91,12 @@ def main():
                    + [(j["journal_key"], "(no subject)", j["label"]) for j in sel if not j.get("subject_classifications")])
     q("""INSERT INTO items
          SELECT DISTINCT 'journal', r.record_id, js.label, TRY_CAST(r.publication_year AS INT),
-                CASE WHEN r.record_id IN (SELECT record_id FROM xr.research_candidates_by_length)
+                CASE WHEN r.record_id IN (SELECT record_id FROM x_research)
+                       OR (m.journal_key IN (SELECT UNNEST(?::VARCHAR[])) AND r.record_type = 'journal-article')
                      THEN 'research_proxy' ELSE 'other' END, m.journal_key
-         FROM xr.records r JOIN xr.memberships m USING (record_id) JOIN journal_subjects js USING (journal_key)
-         WHERE NOT coalesce(r.is_test_record, false)""")
-    bands = q("SELECT length_band, count(*) FROM xr.records GROUP BY 1 ORDER BY 2 DESC, 1").fetchall()
+         FROM x_records r JOIN x_memberships m USING (record_id) JOIN journal_subjects js USING (journal_key)
+         WHERE NOT coalesce(r.is_test_record, false)""", [sorted(BORN_DIGITAL)])
+    bands = q("SELECT length_band, count(*) FROM x_records GROUP BY 1 ORDER BY 2 DESC, 1").fetchall()
 
     # Map items to crosswalk targets.
     # Journal-level themes: the atlas's curated journal->entry links plus `journal_title` crosswalk
