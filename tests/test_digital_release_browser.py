@@ -56,7 +56,7 @@ class DigitalBrowserTests(unittest.TestCase):
         expect(self.page.locator('#total-entries')).not_to_have_text('—')
 
     def test_new_entries_and_exact_baseline(self):
-        self.open()
+        self.open('#family=all')
         for field in m.FIELDS:
             expect(self.page.locator(f'svg.field .entry[data-id="{field}"]')).to_have_count(1)
         expect(self.page.locator('.latest-label')).to_contain_text('2026')
@@ -99,6 +99,7 @@ class DigitalBrowserTests(unittest.TestCase):
         files = {str(p.relative_to(self.site)) for p in self.site.rglob('*') if p.is_file()}
         expected = {'index.html','styles.css','app.js','core.mjs','field.mjs','people.mjs','.nojekyll',
             'data/graph.json','data/pathways.json','data/graph-2000.json'}
+        expected.add('landing.mjs')  # landing redesign (2026-09-27): page module
         if (Path(__file__).resolve().parents[1]/'data/evidence-layer/site-evidence.json').exists():
             expected.add('data/evidence.json')  # evidence layer (2026-09-27), aggregates only
         self.assertEqual(files, expected)

@@ -78,7 +78,7 @@ class ExtensionViewTests(unittest.TestCase):
         expect(self.page.locator('.ext-zone')).to_have_count(0)
         self.open('#tab=people&range=2000')
         expect(self.page.locator('.register-head .count')).to_contain_text(f"of {len(self.baseline['people'])} people")
-        self.open('')
+        self.open('#family=all')
         ext = self.candidate['extension_scope']
         years = sum(len(set(n['node']['extension_coverage']['publication_years'])) for n in self.candidate['updated_nodes'])
         expect(self.page.locator('svg.field .intervention')).to_have_count(years)
@@ -131,6 +131,7 @@ class ExtensionViewTests(unittest.TestCase):
         files = {str(p.relative_to(self.dest)) for p in self.dest.rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll',
                     'data/graph.json', 'data/pathways.json', 'data/graph-2000.json'}
+        expected.add('landing.mjs')  # landing redesign (2026-09-27): page module
         if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-evidence.json').exists():
             expected.add('data/evidence.json')  # evidence-layer aggregates (2026-09-27); no research captures
         self.assertEqual(files, expected)

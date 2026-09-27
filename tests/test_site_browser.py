@@ -98,7 +98,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.keyboard.press('Enter')
         expect(self.page.locator('.school-layout')).to_be_visible()
         self.page.locator('.reset').click()
-        expect(self.page.locator('.field-page')).to_be_visible()
+        expect(self.page.locator('.landing-page')).to_be_visible()
         self.open('#tab=browse')
         expect(self.page.locator('.layer-card')).to_have_count(4)
         self.assertEqual(self.page.locator('#search').input_value(), '')
@@ -148,7 +148,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.get_by_role('link', name='Back to pathway', exact=True).click()
         expect(self.page.locator('.pathway-layout')).to_be_visible()
         self.open('#node=missing&edge=missing')
-        expect(self.page.locator('.field-page')).to_be_visible()
+        expect(self.page.locator('.landing-page')).to_be_visible()
 
     def test_every_entry_and_missing_source_metadata(self):
         # Ensures long labels, null chronology, and inherited references all render.
@@ -254,7 +254,7 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def test_field_view_focus_list_and_filters(self):
         """The field is the front door: it must draw what it counts, in both views."""
-        self.open()
+        self.open('#family=all')
         expect(self.page.locator('svg.field')).to_be_visible()
         drawn = self.page.locator('.entry, .chip').count()
         summary = self.page.locator('.field-summary').inner_text()
@@ -404,6 +404,42 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#person=julia_cherry_spruill')
         expect(self.page.locator('.person-profile h2 .lifespan')).to_have_count(0)
 
+    def test_family_drilldown_filters_the_field(self):
+        self.open()
+        self.page.locator('.family-row[data-family="annales"]').focus()
+        self.page.keyboard.press('Enter')
+        expect(self.page.locator('.field-page .section-heading h2')).to_have_text('Annales')
+        self.assertIn('family=annales', self.page.url)
+        expect(self.page.locator('svg.field .entry[data-id="annales"]')).to_have_count(1)
+        expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(0)
+        self.open('#family=social-history')
+        expect(self.page.locator('.family-note')).to_contain_text('Cultural & intellectual history')   # bridges named
+        expect(self.page.locator('svg.field .entry[data-id="women"]')).to_have_count(1)
+        self.page.get_by_role('link', name='← All families').click()
+        expect(self.page.locator('.landing-page')).to_be_visible()
+        self.open('#family=all')
+        expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(1)
+        self.open('#family=nosuch')
+        expect(self.page.locator('.field-page')).to_be_visible()   # unknown family: the full field, not an error
+
+    def test_landing_cards_on_mobile(self):
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        self.open()
+        expect(self.page.locator('.family-cards li')).to_have_count(11)
+        self.assertTrue(self.page.locator('.landing-rows').is_hidden())
+        self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
+        self.page.locator('.family-card').filter(has_text='Environment').click()
+        self.assertIn('family=environment', self.page.url)
+        self.page.screenshot(path=str(self.artifacts / 'landing-mobile.png'), full_page=True)
+        # On narrow screens the router defaults to the list view; landing links must still stay on the landing.
+        self.open()
+        self.page.get_by_role('button', name='Reviews', exact=True).click()
+        expect(self.page.locator('.family-cards li')).to_have_count(11)
+        self.assertIn('record=reviews', self.page.url)
+        self.open('#family=annales&query=thompson')
+        self.page.get_by_role('link', name='← All families').click()
+        expect(self.page.locator('.landing-page')).to_be_visible()
+
     def test_hero_compacts_off_the_field(self):
         self.open()
         self.assertEqual(self.page.evaluate('document.body.dataset.compact'), '')
@@ -419,6 +455,7 @@ class AtlasBrowserTests(unittest.TestCase):
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'}
+        expected.add('landing.mjs')   # landing redesign (2026-09-27): page module
         published = json.loads((ROOT / 'docs/data/graph.json').read_text())
         if published.get('scope', {}).get('extension', {}).get('baseline_asset'):
             expected.add('data/graph-2000.json')   # the exact 2000 baseline, published only with an extension
