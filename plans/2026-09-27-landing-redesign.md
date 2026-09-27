@@ -30,7 +30,7 @@ Spec: [specs/2026-09-27-landing-redesign-design.md](../specs/2026-09-27-landing-
 - Person entries stay off the overview and appear on drill-down.
 
 **Data and publishing:**
-- No new public file. Families go in `data/evidence.json`, and the allowlists stay unchanged.
+- Families go in the existing `data/evidence.json`. The only new public file is the page module `landing.mjs`, which the three allowlist tests expect (added in Task 7).
 - Aggregates and metadata only. No review, abstract or article text, and no personal data.
 - Existing deep links (`focus=`, `path=`, `node=`, `view=list`, `range=2000`, `query=`, `layer=`, `period=`, `hunt=`, `hide=`) keep opening the detailed views.
 
@@ -231,12 +231,12 @@ Expected: 4 tests, OK.
 
 - [ ] **Step 5: Place the two unplaced atlas entries and fold Identity histories**
 
-The real file currently leaves `freud` and `revival` unplaced, so the loader would reject it. Append two rows as `proposed`, with the assistant's recommendation. The user may move them: this is a data edit only.
+The real file currently leaves `freud` and `revival` unplaced, so the loader would reject it. Append two rows as `reviewed` (the user approved these placements on 2026-09-27).
 
 ```bash
 cat >> data/evidence-layer/families-draft.csv <<'EOF'
-Cultural & intellectual history,freud,atlas_entry,,proposed,"Assistant recommendation 2026-09-27: Freudian psychoanalysis is used by psychohistory (approach-folds.csv), which sits in cultural & intellectual history. Awaiting user confirmation."
-Theory & method,revival,atlas_entry,Economy & social science history,proposed,"Assistant recommendation 2026-09-27: the revival of narrative is a debate about how history is written (Stone 1979, Hobsbawm 1980); it bridges social science history because it was a debate over quantification. Awaiting user confirmation."
+Cultural & intellectual history,freud,atlas_entry,,reviewed,"User 2026-09-27 approved the assistant recommendation: Freudian psychoanalysis is used by psychohistory (approach-folds.csv), which sits in cultural & intellectual history."
+Theory & method,revival,atlas_entry,Economy & social science history,reviewed,"User 2026-09-27 approved the assistant recommendation: the revival of narrative is a debate about how history is written (Stone 1979, Hobsbawm 1980); it bridges social science history because it was a debate over quantification."
 EOF
 ```
 
@@ -282,9 +282,8 @@ Expected: `11 ['social-history', 'cultural-and-intellectual-history', 'annales',
 
 ```bash
 git add scripts/practice_families.py tests/test_practice_families.py data/evidence-layer/families-draft.csv data/evidence-layer/approach-folds.csv
-git commit -m "Families: validated loader; place freud and revival (proposed); fold Identity histories into social and cultural history"
+git commit -m "Families: validated loader; place freud and revival (user-approved); fold Identity histories into social and cultural history"
 ```
-
 ---
 
 ### Task 2: Family series (share of period, established journals, reviews, strip)
@@ -437,7 +436,6 @@ Expected: 8 tests, OK.
 git add scripts/practice_families.py tests/test_practice_families.py
 git commit -m "Families: share-of-period series, established-journal and review views, headline strip"
 ```
-
 ---
 
 ### Task 3: Wire the family stage into the practice series build
@@ -450,6 +448,23 @@ git commit -m "Families: share-of-period series, established-journal and review 
 - Produces:
   - `data/evidence-layer/generated/v17/family_series.csv`, with columns `view,family,bin,items,total`
   - `summary.json["families"]`: `family_series` output plus `definitions` (the `load_families()["families"]` list), `record_only_without_rows` and `counting`
+
+- [ ] **Step 0 (added after the Task 1–2 review): Honour rejected hierarchy rows**
+
+`scripts/build_practice_series.py` loads `practice-hierarchy.csv` without filtering on `status`, so the six rows the user rejected (`women|black|gender|queer|racial_formation|none:ethnic_history -> identity`) still roll items up into `identity`. That keeps `identity` in the evidenced set and defeats the new Identity-histories folds. Change the line
+
+```python
+    q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true)")
+```
+
+to
+
+```python
+    q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true) "
+      "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
+```
+
+After the Step 3 build, confirm in Step 4 that `identity` is in `atlas_entries_folded` (status `folded`, practised within `social` and `culture`) and is **not** in `atlas_entries_with_practice_evidence`.
 
 - [ ] **Step 1: Add the input and the import**
 
@@ -528,7 +543,7 @@ import json
 s = json.load(open('data/evidence-layer/generated/v17/summary.json'))
 f = s['families']
 print(len(f['definitions']), f['established_journals'], f['strip'])
-print('identity' in s['atlas_entries_folded'], s['atlas_entries_unaccounted'])
+print('identity' in s['atlas_entries_folded'], 'identity' in s['atlas_entries_with_practice_evidence'], s['atlas_entries_unaccounted'])
 EOF
 head -3 data/evidence-layer/generated/v17/family_series.csv
 ```
@@ -542,7 +557,6 @@ Expected:
 git add scripts/build_practice_series.py
 git commit -m "Practice series v17: editorial family series (share of period, established journals, reviews)"
 ```
-
 ---
 
 ### Task 4: Families in the site evidence asset
@@ -661,7 +675,6 @@ Expected: only `docs/data/evidence.json` changed.
 git add scripts/build_evidence_asset.py tests/test_evidence_asset.py data/evidence-layer/site-evidence.json docs/data/evidence.json
 git commit -m "Evidence asset: editorial families with share-of-period series and headline strip (series v17)"
 ```
-
 ---
 
 ### Task 5: Pure landing builders and route keys
@@ -737,6 +750,10 @@ test('landing: rows, cards and table render one item per family', () => {
   assert.equal((svg.match(/class="family-row"/g) || []).length, 11);
   assert.match(svg, /data-family="annales"/);
   assert.match(svg, /class="coverage-line"/);
+  /* Environment has no items in the established-journals view: its row says so rather than looking broken. */
+  const est = rowsSvg({block: families, graph, view: 'established', width: 1100});
+  const envRow = est.split('data-family="environment"')[1].split('</g>')[0];
+  assert.match(envRow, /no items in this view/);
   const cards = cardsHtml({block: families, graph, view: 'reviews', href: id => `#family=${id}`});
   assert.equal((cards.match(/class="family-card"/g) || []).length, 11);
   const table = tableHtml({block: families, graph, view: 'established'});
@@ -859,7 +876,8 @@ export function rowsSvg({block, graph, view = 'all', width = 1000}) {
     return `<g class="family-row" data-family="${esc(f.id)}" tabindex="0" role="link" aria-label="${esc(label)}">` +
       `<rect class="row-hit" x="0" y="${y0}" width="${width}" height="${rowH}"/>` +
       `<text class="family-label" x="${labelW}" y="${y0 + rowH / 2 + 5}" text-anchor="end">${esc(f.label)} ›</text>` +
-      `<line class="row-base" x1="${x0}" x2="${x1}" y1="${base + 0.5}" y2="${base + 0.5}"/>${bars}${dots}${early}</g>`;
+      `<line class="row-base" x1="${x0}" x2="${x1}" y1="${base + 0.5}" y2="${base + 0.5}"/>${bars}${dots}${early}` +
+      (bars ? '' : `<text class="row-empty" x="${x1}" y="${base - 4}" text-anchor="end">no items in this view</text>`) + `</g>`;
   }).join('');
   const cx = x(AXIS.coverage).toFixed(1);
   const wall = `<line class="coverage-line" x1="${cx}" x2="${cx}" y1="${top - 6}" y2="${H - foot}"/>` +
@@ -941,7 +959,6 @@ Expected: all tests pass (`# fail 0`).
 git add site/landing.mjs site/core.mjs scripts/build_site.py tests/test_site_core.mjs
 git commit -m "Landing builders (strip, paired rows, cards, table) and family/record/overview routes"
 ```
-
 ---
 
 ### Task 6: Render the landing
@@ -996,7 +1013,7 @@ Expected: FAIL. `.landing-page` is not visible.
 
 - [ ] **Step 3: Load the evidence eagerly**
 
-In `site/app.js`, add this import after the `./people.mjs` import:
+In `site/app.js`, add `OVERVIEW_PATCH` to the existing named import from `./core.mjs` (Task 5's review follow-up exports it: a patch that clears every detail state and the mobile list default, keeping `record`). Then add this import after the `./people.mjs` import:
 
 ```js
 import {VIEWS, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
@@ -1036,15 +1053,17 @@ In `site/app.js`, add this block immediately above `function fieldPage() {`:
 let landingWidth = 0;
 const AXIS_LABEL = '1880–2024';
 const recordView = () => state.record || 'all';
+/* Landing links clear the mobile list default (view) so the family page applies its own default. */
+const familyHref = id => href({family: id, view: ''});
 function stripBar(segments, cls, unclaimed = null) {
   const seg = (s, extra = '') => `<span class="seg${extra}" style="flex-basis:${(s.share * 100).toFixed(2)}%" title="${esc(`${s.label}: ${Math.round(s.share * 100)}%`)}">${s.share >= 0.07 ? esc(`${s.short} ${Math.round(s.share * 100)}%`) : ''}</span>`;
-  const rest = unclaimed === null ? '' : seg({label: 'General journals no family claims', short: 'general / unclaimed', share: unclaimed}, ' unclaimed');
+  const rest = unclaimed === null ? '' : seg({label: 'General, regional and period journals that no family claims', short: 'general, regional & period', share: unclaimed}, ' unclaimed');
   return `<div class="strip-bar ${cls}" role="img" aria-label="${esc(segments.map(s => `${s.label} ${Math.round(s.share * 100)}%`).join(', ') + (unclaimed === null ? '' : `, unclaimed ${Math.round(unclaimed * 100)}%`))}">${segments.map(s => seg(s)).join('')}${rest}</div>`;
 }
 function landingPage() {
   const block = evidence.families, view = recordView(), strip = stripSegments(block, graph);
   const toggles = Object.entries(VIEWS).map(([k, label]) =>
-    `<a class="view-link" href="${esc(href({record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
+    `<a class="view-link" href="${esc(href({...OVERVIEW_PATCH, record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
   const viewNote = view === 'established'
     ? `Only the ${block.established_journals} journals publishing research in both 1970–74 and 2015–19. Old journals are slow to take up new fields.`
     : view === 'reviews' ? 'Share of all book reviews in H-Net and Reviews in History in each five-year period.'
@@ -1059,26 +1078,19 @@ function landingPage() {
     <div class="landing-controls"><p class="eyebrow">OVER TIME</p><div class="view-links" role="group" aria-label="Record view">${toggles}</div></div>
     <p class="fine-print">${esc(viewNote)} ${esc(block.note)}</p>
     <div class="landing-rows" aria-busy="true"></div>
-    ${cardsHtml({block, graph, view, href: id => href({family: id})})}
+    ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
     <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. ${esc(evidence.caveats.join(' '))}
-      <a href="${esc(href({family: 'all'}))}">All entries on one axis →</a></p>
+      <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
   </div>`;
 }
 function drawLanding() {
   const box = document.querySelector('.landing-rows');
   if (!box) return;
   landingWidth = box.clientWidth || 1000;
-  box.innerHTML = rowsSvg({block: evidence.families, graph, view: recordView(), width: landingWidth});
+  /* Rows are native SVG links (Enter, middle-click and no-JS all work), so no handlers here. */
+  box.innerHTML = rowsSvg({block: evidence.families, graph, view: recordView(), width: landingWidth, href: familyHref});
   box.removeAttribute('aria-busy');
-  const open = row => { if (row) location.hash = href({family: row.dataset.family}); };
-  const svg = box.querySelector('svg');
-  svg.addEventListener('click', e => open(e.target.closest('.family-row')));
-  svg.addEventListener('keydown', e => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    e.preventDefault();
-    open(e.target.closest('.family-row'));
-  });
 }
 ```
 
@@ -1146,6 +1158,7 @@ Append to `site/styles.css`:
 .landing-svg .atlas-dot{fill:var(--atlas)}.landing-svg .record-bar{fill:var(--record)}
 .landing-svg .early-mark{fill:var(--atlas);font-size:13px;text-anchor:end}
 .landing-svg .family-label{font:14px var(--serif);fill:var(--ink)}
+.landing-svg .row-empty{font-size:10px;fill:var(--muted);font-style:italic}
 .landing-svg .row-hit{fill:transparent}.family-row{cursor:pointer;outline:none}
 .family-row:hover .row-hit,.family-row:focus-visible .row-hit{fill:#eef0e5}
 .family-row:focus-visible .row-hit{stroke:#a8572f;stroke-width:2}
@@ -1183,7 +1196,6 @@ Expected: PASS. Open `site/test-results/landing-desktop.png` and check it agains
 git add site/app.js site/styles.css site/index.html tests/test_site_browser.py docs/
 git commit -m "Landing: eleven families with headline strip, paired atlas/record rows, record views and table"
 ```
-
 ---
 
 ### Task 7: Family drill-down and front-door test updates
@@ -1237,7 +1249,17 @@ Add these tests:
         self.page.locator('.family-card').filter(has_text='Environment').click()
         self.assertIn('family=environment', self.page.url)
         self.page.screenshot(path=str(self.artifacts / 'landing-mobile.png'), full_page=True)
+        # On narrow screens the router defaults to the list view; landing links must still stay on the landing.
+        self.open()
+        self.page.get_by_role('button', name='Reviews', exact=True).click()
+        expect(self.page.locator('.family-cards li')).to_have_count(11)
+        self.assertIn('record=reviews', self.page.url)
+        self.open('#family=annales&query=thompson')
+        self.page.get_by_role('link', name='← All families').click()
+        expect(self.page.locator('.landing-page')).to_be_visible()
 ```
+
+**Allowlists (found while doing Task 6):** `scripts/build_site.py` now publishes `landing.mjs`, a new public page module, so the public-file allowlist tests must expect it. Add `'landing.mjs'` to the `expected` set in `test_public_contents_allowlist` (tests/test_site_browser.py, around line 411) and to the corresponding `expected` sets in tests/test_site_extension.py (around line 132) and tests/test_digital_release_browser.py (around line 100). Comment it as `# landing redesign (2026-09-27): page module`.
 
 In `tests/test_site_extension.py`, the extension marks live on the full field. Change `self.open('')` (line 81) to `self.open('#family=all')`. Make the same change to the `open()` locator list there if it lacks `.landing-page`.
 
@@ -1298,7 +1320,7 @@ function familyHeading(f) {
     .map(m => nodeById.get(m.id)?.label).filter(Boolean);
   const bridgeFamilies = [...new Set(f.members.filter(m => !m.primary).map(m => primaryOf(m.id)).filter(Boolean))];
   const lacks = f.record_only.map(x => x.label);
-  return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href({family: '', focus: '', path: ''}))}">← All families</a>
+  return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href(OVERVIEW_PATCH))}">← All families</a>
       <a href="${esc(href({family: 'all', focus: '', path: ''}))}">All entries on one axis</a></nav>
     <p class="family-note">${shared.length ? `Shared with other families: ${esc(shared.join(', '))}. ` : ''}${bridged.length ? `Also drawn here from ${esc(bridgeFamilies.join(', '))}: ${esc(bridged.join(', '))}. ` : ''}${lacks.length ? `In the record but not in the atlas: ${esc(lacks.join(', '))}.` : ''}</p>`;
 }
@@ -1340,7 +1362,6 @@ Expected: all pass, with no page errors (each browser test's `tearDown` asserts 
 git add site/app.js site/styles.css tests/test_site_browser.py tests/test_site_extension.py tests/test_digital_release_browser.py docs/
 git commit -m "Landing: family drill-down filters the field; full field at #family=all; front-door tests follow"
 ```
-
 ---
 
 ### Task 8: Amendments, docs, full verification, handoff
@@ -1375,8 +1396,9 @@ why = {
  'docs/landing.mjs': 'Rebuilt from site/landing.mjs.', 'docs/styles.css': 'Rebuilt from site/styles.css.',
  'docs/index.html': 'Rebuilt from site/index.html.',
  'docs/data/evidence.json': 'Rebuilt: evidence asset adds the families block (series v17).',
- 'tests/test_site_extension.py': 'Extension marks are checked on the full field (#family=all); the bare URL is now the families landing.',
- 'tests/test_digital_release_browser.py': 'Digital-release entries are checked on the full field (#family=all).',
+ 'tests/test_site_extension.py': 'Extension marks are checked on the full field (#family=all); the bare URL is now the families landing; allowlist expects landing.mjs.',
+ 'tests/test_digital_release_browser.py': 'Digital-release entries are checked on the full field (#family=all); allowlist expects landing.mjs.',
+ 'tests/test_site_browser.py': 'Landing, family drill-down and mobile-card tests; front-door tests move to #family=all; allowlist expects landing.mjs.',
 }
 def sha_bytes(b): return hashlib.sha256(b).hexdigest()
 for f, reason in why.items():
@@ -1419,7 +1441,7 @@ python3 scripts/build_site.py && git status --short docs
 python3 -m unittest tests.test_site_browser tests.test_site_extension tests.test_digital_release_browser -v
 ```
 Expected:
-- everything passes
+- everything passes, except `tests.test_digital_release_browser`. That suite has errored in setUpClass (`ValueError: ID collision: digital_history` from scripts/build_digital_release_candidate.py) since fbdc2e4, when revision 1.123 accepted those entries. Confirm that same error and report it as pre-existing. Do not try to fix it.
 - `docs/` is clean after the rebuild, so CI's stale check would pass
 
 Report failures verbatim. Do not claim success without this output.
@@ -1438,3 +1460,4 @@ Send the user `site/test-results/landing-desktop.png` and `landing-mobile.png`. 
 - the two proposed placements (`freud`, `revival`) awaiting their call
 - the two record-only members with no crosswalk rows (`none:history_of_knowledge`, `none:transnational_history`)
 - the actual established-journal count and unclaimed share
+- the pre-existing digital-release suite failure

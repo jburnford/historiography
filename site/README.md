@@ -15,6 +15,22 @@ Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard l
 
 Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly nine files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`, plus `data/graph-2000.json` when an archived baseline graph is available for the extension view. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
 
+## Landing
+
+The bare URL opens a families overview: eleven editorial families, each row pairing the
+atlas's dating (orange dots) with the family's share of the record (green bars) under a
+one-line headline strip. `#family=<slug>` opens today's field view filtered to one family;
+`#family=all` opens the full field, unfiltered. `#record=established|reviews` switches the
+record view under either route; the default is `all`. Person entries stay off the overview
+and appear only on drill-down. Existing deep links (`focus=`, `path=`, `node=`, `view=list`,
+`range=2000`, `query=`, `layer=`, `period=`, `hunt=`, `hide=`) still open the detailed views
+they always have, from either route.
+
+The landing reads `families` from `docs/data/evidence.json` (see
+[data/evidence-layer/README.md](../data/evidence-layer/README.md)), built by
+`site/landing.mjs`. Without that asset — an older build, or a fetch failure — the page falls
+back to the full field, unfiltered.
+
 ## The field view (front door)
 
 Every entry sits on one time axis, banded by layer, with linked journals in a fifth band. The chart is drawn at the width of the column it occupies and redrawn on resize, so nothing needs a horizontal scrollbar; entries with no stated span sit in a captioned strip at the top of their band. A mark runs across the years an entry's date label names: a label that says "onward" or "coverage through 2000" is drawn solid to the coverage wall with an open, fading end, because the wall is a limit of the map and not an ending. A label that opens with undated roots ("Earlier roots · Howard 1961 …") is open at the start: a thin lead-in runs from the axis edge to the first dated year, which is drawn without a starting cap because it dates a contribution to an established field, not an origin. A label naming a single year is a single mark. Other years the label names appear as ticks and are described as read from the label, never as curated milestones. Nothing in the drawing or the panel claims a period of peak influence.

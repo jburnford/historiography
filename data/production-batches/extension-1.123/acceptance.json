@@ -2712,6 +2712,126 @@
       "date": "2026-09-27",
       "reason": "Public-file allowlist now also expects data/evidence.json when the evidence layer is built.",
       "scope": "Test expectation for a new allowlisted asset; release checks otherwise unchanged."
+    },
+    {
+      "file": "site/app.js",
+      "accepted_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+      "amended_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+      "date": "2026-09-27",
+      "reason": "Landing page of eleven editorial families (headline strip, paired atlas/record rows, record views, table, mobile cards); field view filtered by family; evidence asset loaded with the graph.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/core.mjs",
+      "accepted_sha256": "a618aaba92bd241ce420c170c661251740ae5d2503f2ce656bf69b0f7efab3af",
+      "amended_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+      "date": "2026-09-27",
+      "reason": "Route keys family, record and the derived overview flag; routeHash never writes overview.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/landing.mjs",
+      "accepted_sha256": null,
+      "amended_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+      "date": "2026-09-27",
+      "reason": "New pure module: landing strip, rows, cards and table builders; family subgraph.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/styles.css",
+      "accepted_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+      "amended_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+      "date": "2026-09-27",
+      "reason": "Landing and family-heading styles.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/index.html",
+      "accepted_sha256": "ba389df9c1d94aee4a9112f90fc49dab625160f62b868d851f16b8818239090e",
+      "amended_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+      "date": "2026-09-27",
+      "reason": "Deck copy introduces the families landing.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "scripts/build_site.py",
+      "accepted_sha256": "5533df1cb687426346f016dfcf8be23d167644d3977e593b344e4ff0b88ac22b",
+      "amended_sha256": "7f99206adbf6f500cb91bec042535dbc6d96cb3f1943cbe9b009156ff9d6e070",
+      "date": "2026-09-27",
+      "reason": "Publishes site/landing.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/app.js",
+      "accepted_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+      "amended_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/app.js.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/core.mjs",
+      "accepted_sha256": "a618aaba92bd241ce420c170c661251740ae5d2503f2ce656bf69b0f7efab3af",
+      "amended_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/core.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/landing.mjs",
+      "accepted_sha256": null,
+      "amended_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/landing.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/styles.css",
+      "accepted_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+      "amended_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/styles.css.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/index.html",
+      "accepted_sha256": "ba389df9c1d94aee4a9112f90fc49dab625160f62b868d851f16b8818239090e",
+      "amended_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/index.html.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/data/evidence.json",
+      "accepted_sha256": "78ac02e6f7fbf7d3710a5829d5c8ee9c5c530a2462faf094e38d4aaa33c0e92a",
+      "amended_sha256": "642534cd70c3e12b81caac850d85cb70d29601251ff54fc9c479ccb37b910c67",
+      "date": "2026-09-27",
+      "reason": "Rebuilt: evidence asset adds the families block (series v17).",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "tests/test_site_extension.py",
+      "accepted_sha256": "c4fb0f0d2f567de57c2404b36373caa3dfa606e3cec7e4db3126fe33ad7332a3",
+      "amended_sha256": "ea3ffedc21709eceb96c03dbbde36eca547a09105ab3ba5f2f603841f56fa872",
+      "date": "2026-09-27",
+      "reason": "Extension marks are checked on the full field (#family=all); the bare URL is now the families landing; allowlist expects landing.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "tests/test_digital_release_browser.py",
+      "accepted_sha256": "b819e9d5e384bec63e028fb1a4dd0a3d4e9e1cfa6b0cb36e8b3c94af7df3f12f",
+      "amended_sha256": "4bc694395f2797b6b910c707879b7101bf2b7f0494430e30c75cd305b395cf80",
+      "date": "2026-09-27",
+      "reason": "Digital-release entries are checked on the full field (#family=all); allowlist expects landing.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "tests/test_site_browser.py",
+      "accepted_sha256": "e120a184530ff22a490b0467e881c2c4dd0b75ee1375901ae2c5b3ac6fd13c73",
+      "amended_sha256": "7679e4059e991ad7caf0a1da954563ae5af5e2384d1716f2d7b43c5bf32f67c9",
+      "date": "2026-09-27",
+      "reason": "Landing, family drill-down and mobile-card tests; front-door tests move to #family=all; allowlist expects landing.mjs.",
+      "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
     }
   ]
 }
