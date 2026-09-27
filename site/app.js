@@ -330,6 +330,15 @@ const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0
 const releaseHref = () => href({focus: '', node: '', person: '', edge: '', page: 0, section: ''});
 const releaseLink = () => `<a class="release" href="${esc(releaseHref())}">← Show everything</a>`;
 const activePathway = () => state.path ? pathways.pathways.find(p => p.id === state.path) : null;
+/* One editorial family's fields ('all' or an unknown slug shows everything). */
+const activeFamily = () => state.family && state.family !== 'all' ? familyBySlug(evidence?.families, state.family) : null;
+let shownMemo = {};
+function shownGraph() {
+  const f = activeFamily();
+  if (!f) return graph;
+  if (shownMemo.id !== f.id || shownMemo.base !== graph) shownMemo = {id: f.id, base: graph, g: familyGraph(graph, f)};
+  return shownMemo.g;
+}
 const pathNumbering = () => {
   const p = activePathway();
   return p ? new Map(p.node_ids.map((id, i) => [id, i + 1])) : null;
@@ -340,15 +349,15 @@ function fieldFocusSet() {
   return pathwaySet(activePathway());
 }
 function fieldView(width) {
-  return buildFieldLayout(graph, width, fieldFocusSet(), fieldLayers(graph, FIELD_TITLES),
+  return buildFieldLayout(shownGraph(), width, fieldFocusSet(), fieldLayers(shownGraph(), FIELD_TITLES),
     {numbering: state.focus ? null : pathNumbering(), extension: activeExtension()});
 }
 
 function fieldLegend() {
-  const kinds = fieldKinds(graph);
+  const kinds = fieldKinds(shownGraph());
   const hidden = hiddenKinds();
   const counts = new Map();
-  for (const e of fieldEdges(graph))
+  for (const e of fieldEdges(shownGraph()))
     counts.set(e.relationship_kind, (counts.get(e.relationship_kind) || 0) + 1);
   const toggle = k => {
     const next = new Set(hidden);
@@ -382,7 +391,8 @@ function activeFieldEdges() {
   const hidden = hiddenKinds();
   const edges = state.focus ? (fieldIndex.get(state.focus) || []).map(r => r.edge)
     : pathwayEdges(graph, activePathway(), fieldIndex);
-  return edges.filter(e => !hidden.has(e.relationship_kind));
+  const shown = new Set(fieldNodes(shownGraph()).map(n => n.id));
+  return edges.filter(e => !hidden.has(e.relationship_kind) && shown.has(e.source) && shown.has(e.target));
 }
 
 function fieldSvg(view) {
@@ -681,7 +691,7 @@ function fieldPanel() {
 
 /* The accessible equivalent of the field: the same entries, in time order, grouped by band. */
 function fieldList() {
-  const rows = fieldNodes(graph).map(n => ({n, span: spanOf(n)}))
+  const rows = fieldNodes(shownGraph()).map(n => ({n, span: spanOf(n)}))
     .filter(r => !state.query || fieldMatches(graph, fieldIndex, personNames, r.n.id, state.query))
     .sort((a, b) => (a.span?.start ?? 9999) - (b.span?.start ?? 9999)
       || a.n.label.localeCompare(b.n.label));
@@ -699,7 +709,7 @@ function fieldList() {
   };
   return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
       Dates describe arrival and influence, not a lifespan.</p>` +
-    fieldLayers(graph, FIELD_TITLES).map(layerId => {
+    fieldLayers(shownGraph(), FIELD_TITLES).map(layerId => {
       const mine = rows.filter(r => r.n.layer === layerId);
       if (!mine.length) return '';
       /* Narrow screens open one band at a time; the summary carries the count. */
@@ -762,16 +772,30 @@ function drawLanding() {
   box.removeAttribute('aria-busy');
 }
 
+function familyHeading(f) {
+  const bridged = f.members.filter(m => !m.primary).map(m => nodeById.get(m.id)?.label).filter(Boolean);
+  const primaryOf = id => evidence.families.families.find(x => x.members.some(m => m.id === id && m.primary))?.label;
+  const shared = f.members.filter(m => m.primary && evidence.families.families.some(x => x.id !== f.id && x.members.some(y => y.id === m.id)))
+    .map(m => nodeById.get(m.id)?.label).filter(Boolean);
+  const bridgeFamilies = [...new Set(f.members.filter(m => !m.primary).map(m => primaryOf(m.id)).filter(Boolean))];
+  const lacks = f.record_only.map(x => x.label);
+  return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href(OVERVIEW_PATCH))}">← All families</a>
+      <a href="${esc(href({family: 'all', focus: '', path: ''}))}">All entries on one axis</a></nav>
+    <p class="family-note">${shared.length ? `Shared with other families: ${esc(shared.join(', '))}. ` : ''}${bridged.length ? `Also drawn here from ${esc(bridgeFamilies.join(', '))}: ${esc(bridged.join(', '))}. ` : ''}${lacks.length ? `In the record but not in the atlas: ${esc(lacks.join(', '))}.` : ''}</p>`;
+}
+
 function fieldPage() {
+  const fam = activeFamily();
   const counts = fieldView(1200);   /* counts do not depend on width; the SVG is drawn after measuring */
   const body = state.view === 'list' ? `<div class="field-listing">${fieldList()}</div>`
     : '<div class="field-scroll" aria-busy="true"></div>';
   return `<div class="field-page">
-    <div class="section-heading"><div><p class="eyebrow">01 / THE WHOLE FIELD</p>
-      <h2>Historiography on one time axis</h2></div>
+    ${fam ? familyHeading(fam) : ''}
+    <div class="section-heading"><div><p class="eyebrow">${fam ? '01 / ONE FAMILY OF HISTORICAL WRITING' : '01 / THE WHOLE FIELD'}</p>
+      <h2>${fam ? esc(fam.label) : 'Historiography on one time axis'}</h2></div>
       <p class="field-summary">${counts.datedCount} placed in time${counts.undatedCount
         ? ` · ${counts.undatedCount} without a stated span` : ''} ·
-        ${fieldEdges(graph).length} relationships${activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
+        ${fieldEdges(shownGraph()).length} relationships${activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
     ${fieldLegend()}
     <div class="field-split">${body}
       <aside class="field-panel">${fieldPanel()}</aside></div>
@@ -1114,6 +1138,7 @@ function render() {
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
+       : activeFamily() ? `${activeFamily().label}. ${fieldNodes(shownGraph()).length} entries on a time axis.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
     : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : 'Reading this map.';
   const resetLanes = {page:0};
