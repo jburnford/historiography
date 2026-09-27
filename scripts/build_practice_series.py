@@ -135,7 +135,7 @@ def main():
     # Sub-field rollup (practice-hierarchy.csv): a theme item also counts, once, for its broader
     # field. The narrower target keeps its own series.
     q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true) "
-      "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
+      "WHERE coalesce(status, '') <> 'rejected'")  # rejected rows stay in the file as provenance
     q("CREATE TEMP TABLE entry_names (id VARCHAR, label VARCHAR)")
     db.executemany("INSERT INTO entry_names VALUES (?, ?)", sorted(entry_labels.items()))
     unknown = q("""SELECT broader FROM hierarchy WHERE broader NOT LIKE 'none:%'

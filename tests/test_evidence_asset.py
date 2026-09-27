@@ -66,6 +66,28 @@ class EvidenceAssetTests(unittest.TestCase):
         self.assertEqual(s["period"], [2000, 2024])
         self.assertIn("not be summed", self.asset["families"]["note"])
 
+    def test_family_series_are_populated_consistent_and_minimal(self):
+        block = self.asset["families"]
+        self.assertLessEqual(set(block), {"note", "established_journals", "bins", "strip", "families"})
+        bins = block["bins"]
+        totals_by = {}
+        for f in block["families"]:
+            self.assertLessEqual(set(f), {"id", "label", "members", "record_only", "series"}, f["id"])
+            for m in f["members"]:
+                self.assertLessEqual(set(m), {"id", "primary"}, (f["id"], m))
+            for r in f["record_only"]:
+                self.assertLessEqual(set(r), {"id", "label", "primary"}, (f["id"], r))
+                self.assertTrue(r["label"], (f["id"], r))
+                self.assertFalse(r["label"].startswith("none:"), (f["id"], r))
+            self.assertTrue(any(items for _, items, _ in f["series"]["all"]), f["id"])
+            for view in ("all", "established"):
+                self.assertEqual([b for b, _, _ in f["series"][view]], bins, (f["id"], view))
+            for view, rows in f["series"].items():
+                for b, _items, total in rows:
+                    self.assertEqual(totals_by.setdefault((view, b), total), total, (f["id"], view, b))
+        s = block["strip"]
+        self.assertLessEqual(set(s), {"period", "items", "shares", "unclaimed"})
+
 
 if __name__ == "__main__":
     unittest.main()
