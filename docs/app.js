@@ -726,13 +726,13 @@ const recordView = () => state.record || 'all';
 const familyHref = id => href({family: id, view: ''});
 function stripBar(segments, cls, unclaimed = null) {
   const seg = (s, extra = '') => `<span class="seg${extra}" style="flex-basis:${(s.share * 100).toFixed(2)}%" title="${esc(`${s.label}: ${Math.round(s.share * 100)}%`)}">${s.share >= 0.07 ? esc(`${s.short} ${Math.round(s.share * 100)}%`) : ''}</span>`;
-  const rest = unclaimed === null ? '' : seg({label: 'General, regional and period journals that no family claims', short: 'general, regional & period', share: unclaimed}, ' unclaimed');
+  const rest = unclaimed === null ? '' : seg({label: 'Items no family claims, mostly in general, regional and period journals', short: 'general, regional & period', share: unclaimed}, ' unclaimed');
   return `<div class="strip-bar ${cls}" role="img" aria-label="${esc(segments.map(s => `${s.label} ${Math.round(s.share * 100)}%`).join(', ') + (unclaimed === null ? '' : `, unclaimed ${Math.round(unclaimed * 100)}%`))}">${segments.map(s => seg(s)).join('')}${rest}</div>`;
 }
 function landingPage() {
   const block = evidence.families, view = recordView(), strip = stripSegments(block, graph);
   const toggles = Object.entries(VIEWS).map(([k, label]) =>
-    `<a class="view-link" href="${esc(href({...OVERVIEW_PATCH, record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
+    `<a class="view-link" role="button" href="${esc(href({...OVERVIEW_PATCH, record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
   const viewNote = view === 'established'
     ? `Only the ${block.established_journals} journals publishing research in both 1970–74 and 2015–19. Old journals are slow to take up new fields.`
     : view === 'reviews' ? 'Share of all book reviews in H-Net and Reviews in History in each five-year period.'
@@ -749,7 +749,7 @@ function landingPage() {
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. ${esc(evidence.caveats.join(' '))}
+    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. ${esc(evidence.caveats.join(' '))}
       <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
   </div>`;
 }
@@ -1110,7 +1110,7 @@ function render() {
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
-  $('announcement').textContent = onLanding ? 'Eleven families of historical writing: the atlas beside the record.'
+  $('announcement').textContent = onLanding ? `Eleven families of historical writing: the atlas beside the record. Record view: ${VIEWS[recordView()]}.`
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
@@ -1122,7 +1122,7 @@ function render() {
 }
 async function start() {
   try {
-    const evidenceLoad = fetch('data/evidence.json').then(r => r.ok ? r.json() : null).catch(() => null);
+    const evidenceLoad = fetch('data/evidence.json', {signal: AbortSignal.timeout(8000)}).then(r => r.ok ? r.json() : null).catch(() => null);
     [production, pathways] = await Promise.all(['data/graph.json', 'data/pathways.json'].map(async url => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
@@ -1157,7 +1157,7 @@ async function start() {
       else if (focusedId && $(focusedId) && !$(focusedId).closest('[hidden]')) $(focusedId).focus({preventScroll: true});
       else {
         $('workspace').focus({preventScroll: true});
-        if (state.node !== old.node || state.person !== old.person || state.section !== old.section || state.tab !== old.tab || state.pathway !== old.pathway) $('workspace').scrollIntoView({block: 'start'});
+        if (state.node !== old.node || state.person !== old.person || state.section !== old.section || state.tab !== old.tab || state.pathway !== old.pathway || state.family !== old.family || state.overview !== old.overview) $('workspace').scrollIntoView({block: 'start'});
       }
     });
     $('search').addEventListener('input', e => change({query: e.target.value, node: '', person: '', edge: '', page: 0}, true));
