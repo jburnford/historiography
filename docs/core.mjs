@@ -94,9 +94,10 @@ export function readRoute(hash, graph, pathways) {
     page: Math.max(0, Math.min(1000, Number.parseInt(p.get('page'), 10) || 0)),
     hide: (p.get('hide') || '').split(',').filter(Boolean)
       .filter(k => /^[a-z_]{3,30}$/.test(k)).join(','),
-    /* `family` opens one editorial family's fields ('all' = every entry on one axis);
-       `record` picks the landing's record view. */
-    family: /^[a-z0-9-]{2,60}$/.test(p.get('family') || '') ? p.get('family') : '',
+    /* `family` opens one editorial family's fields ('all' = every entry on one axis; a
+       malformed slug, like an unknown one, opens the full field); `record` picks the
+       landing's record view. */
+    family: !p.get('family') ? '' : /^[a-z0-9-]{2,60}$/.test(p.get('family')) ? p.get('family') : 'all',
     record: ['established', 'reviews'].includes(p.get('record')) ? p.get('record') : '',
   };
   if (route.edge) {

@@ -2832,6 +2832,70 @@
       "date": "2026-09-27",
       "reason": "Landing, family drill-down and mobile-card tests; front-door tests move to #family=all; allowlist expects landing.mjs.",
       "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/app.js",
+      "accepted_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+      "amended_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+      "date": "2026-09-27",
+      "reason": "Landing fine print notes the 200-item minimum period; family page carries the record-fields caveat; AXIS_LABEL derived from landing.mjs AXIS.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/core.mjs",
+      "accepted_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+      "amended_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+      "date": "2026-09-27",
+      "reason": "readRoute: a malformed family slug opens the full field ('all'), as an unknown one does.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/styles.css",
+      "accepted_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+      "amended_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+      "date": "2026-09-27",
+      "reason": "Caption style for the landing table's new headline-strip table.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "site/README.md",
+      "accepted_sha256": "0fc04446dee04e9f89cc2ab3ea5c70b49a91056741604089bbf52edf5fbf3556",
+      "amended_sha256": "1ee423febe9a6675257872e96b95bccefd9663a0d1ecbd3548fc1eb1785b5f65",
+      "date": "2026-09-27",
+      "reason": "Landing section and build file list (landing.mjs, data/evidence.json, eleven files); #record= kept across the family route; 200-item minimum period. Covers the 2cadb59 edit, which had no amendment.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/app.js",
+      "accepted_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+      "amended_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+      "date": "2026-09-27",
+      "reason": "Built copy of site/app.js: landing fine print notes the 200-item minimum period; family page carries the record-fields caveat; AXIS_LABEL derived from landing.mjs AXIS.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/core.mjs",
+      "accepted_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+      "amended_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+      "date": "2026-09-27",
+      "reason": "Built copy of site/core.mjs: readRoute: a malformed family slug opens the full field ('all'), as an unknown one does.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "docs/styles.css",
+      "accepted_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+      "amended_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+      "date": "2026-09-27",
+      "reason": "Built copy of site/styles.css: caption style for the landing table's new headline-strip table.",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+    },
+    {
+      "file": "tests/test_site_browser.py",
+      "accepted_sha256": "7679e4059e991ad7caf0a1da954563ae5af5e2384d1716f2d7b43c5bf32f67c9",
+      "amended_sha256": "547dfc51d5a2b1c834312233d879c7a1dbc412f717dc8f59f801c1725d347098",
+      "date": "2026-09-27",
+      "reason": "Landing table check counts the per-period table only, and checks the new headline-strip table (11 families + unclaimed).",
+      "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
     }
   ]
 }

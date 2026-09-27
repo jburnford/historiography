@@ -62,7 +62,9 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.get_by_role('button', name='Established journals only', exact=True)).to_have_attribute('aria-pressed', 'true')
         self.assertIn('record=established', self.page.url)
         self.page.locator('details.landing-table > summary').click()
-        expect(self.page.locator('details.landing-table tbody tr')).to_have_count(11)
+        expect(self.page.locator('details.landing-table table:not(.strip-table) tbody tr')).to_have_count(11)
+        # The headline strip as text (its labels are hidden on mobile): 11 families + unclaimed.
+        expect(self.page.locator('details.landing-table table.strip-table tbody tr')).to_have_count(12)
         self.page.screenshot(path=str(self.artifacts / 'landing-desktop.png'), full_page=True)
         # Opening a family from low on the page brings its field view into view.
         self.page.evaluate('window.scrollTo(0, document.body.scrollHeight)')

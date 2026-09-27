@@ -25,8 +25,11 @@ export function atlasTrack(graph, family) {
   return {dots, early, undated};
 }
 
+/* A period with fewer items than this is too thin to set a share (or the view's shared scale). */
+export const MIN_BIN_TOTAL = 200;
+
 export function recordShares(family, view) {
-  return (family.series[view] || []).filter(([bin]) => bin + 4 <= AXIS.end)
+  return (family.series[view] || []).filter(([bin, , total]) => bin + 4 <= AXIS.end && total >= MIN_BIN_TOTAL)
     .map(([bin, items, total]) => ({bin, items, total, share: total ? items / total : 0}));
 }
 
@@ -148,5 +151,11 @@ export function tableHtml({block, graph, view = 'all'}) {
       return `<td${s ? ` title="${s.items.toLocaleString('en')} of ${s.total.toLocaleString('en')}"` : ''}>${s ? pct(s.share) : '—'}</td>`;
     }).join('')}</tr>`;
   }).join('');
-  return `<div class="table-scroll"><table><caption class="sr-only">Atlas entries and share of the record (${esc(VIEWS[view])}) per family and five-year period</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+  /* The headline strip as text: its segment labels are hidden on narrow screens. */
+  const strip = stripSegments(block, graph), rec = new Map(strip.record.map(r => [r.id, r.share]));
+  const stripRows = strip.atlas.map(a => `<tr><th scope="row">${esc(a.label)}</th><td>${pct(a.share)}</td><td>${pct(rec.get(a.id) || 0)}</td></tr>`).join('') +
+    `<tr><th scope="row">Items no family claims (general, regional &amp; period journals)</th><td>—</td><td>${pct(strip.unclaimed || 0)}</td></tr>`;
+  const period = `${strip.period[0]}–${strip.period[1]}`;
+  return `<div class="table-scroll"><table><caption class="sr-only">Atlas entries and share of the record (${esc(VIEWS[view])}) per family and five-year period</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>` +
+    `<div class="table-scroll"><table class="strip-table"><caption>The gap in one line: share of atlas entries and share of research, ${esc(period)}</caption><thead><tr><th scope="col">Family</th><th scope="col">Share of atlas entries</th><th scope="col">Share of research, ${esc(period)}</th></tr></thead><tbody>${stripRows}</tbody></table></div>`;
 }

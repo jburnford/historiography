@@ -55,9 +55,10 @@ first see the big trends, then drill down to the nuance.
 
    The remaining 87 rows stay `proposed`. They are the draft the user saw and did not object
    to, and they can be corrected at any time without code changes. Two atlas entries were
-   unplaced in the draft. The plan adds them as `proposed` pending the user's call: Freudian
-   psychoanalysis goes under Cultural & intellectual history (via psychohistory), and the
-   revival of narrative goes under Theory & method, bridging Economy & social science history.
+   unplaced in the draft. The plan added them as `proposed`, and the user approved both on
+   2026-09-27; they are `reviewed` in `families-draft.csv`. Freudian psychoanalysis goes under
+   Cultural & intellectual history (via psychohistory), and the revival of narrative goes
+   under Theory & method, bridging Economy & social science history.
 4. **Bridges count in each family.** A bridging member appears in both families on
    drill-down, and its items count in both families' series. Family shares therefore overlap
    and do not sum to 100%. The page says so wherever shares are shown. The headline strip is
@@ -124,6 +125,9 @@ See [recommended-landing.png](../data/evidence-layer/sketches/recommended-landin
   - Per record view (all journals, established journals, reviews), per family, per five-year
     bin: distinct items, the bin's denominator, and the share.
   - Primary-only counts for the headline strip.
+  - The site omits any bin whose denominator is below 200 items (`MIN_BIN_TOTAL` in
+    `landing.mjs`), so a thin period cannot set a view's shared scale. Today that drops only
+    Reviews 1990–94 (20 reviews), whose 35% share for one family had set the Reviews peak.
   - Checks: every atlas field entry is placed exactly once as a primary member, and every
     bridge names a known family. The build fails on an unknown entry, a duplicate or an
     unplaced entry. A `none:` member with no crosswalk rows (currently
