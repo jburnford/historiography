@@ -4,11 +4,11 @@ Derived, rebuildable evidence about historical *practice*, shown beside the atla
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
 a site asset yet.
 
-## Field as practice (component 1), current build v14 (2026-09-26)
+## Field as practice (component 1), current build v16 (2026-09-27)
 
 ```bash
-python3 scripts/build_practice_series.py --version v15   # refuses an existing version; ~12 s
-python3 scripts/render_practice_chart.py --version v15   # writes field-practice.html beside it
+python3 scripts/build_practice_series.py --version v17   # refuses an existing version; ~12 s
+python3 scripts/render_practice_chart.py --version v17   # writes field-practice.html beside it
 ```
 
 ### Editorial inputs (the authorities; edit, then rebuild)
@@ -26,7 +26,10 @@ python3 scripts/render_practice_chart.py --version v15   # writes field-practice
   item also counts, once, for its broader field; the sub-field keeps its own series.
 - **[approach-folds.csv](approach-folds.csv)**: atlas entries with no direct signal (approaches,
   schools, theoretical traditions) folded into the fields they are practised within. Relations:
-  `subfield`, `method_within`, `tradition_used_in`. Chains resolve (Freud → psychohistory →
+  `subfield`, `method_within`, `tradition_used_in`, `roots_in`. `roots_in` records intellectual
+  lineage, not current practice. An entry with only `roots_in` relations is reported as a
+  **cross-field method with roots**, with its parents' counts renamed `parent_context_*` and its
+  own `direct_evidence` taken from the latest method-signal and review-mention builds. Chains resolve (Freud → psychohistory →
   cultural history). A folded entry shows its parents' practice as context, **never as its own
   evidence**; entries with direct evidence are not folded.
 - **The atlas's curated journal links** (`journal_catalogue.edges`, e.g. *Past & Present* →
@@ -234,8 +237,9 @@ no text leaves the machine or enters Git. Audits record item IDs and judgements 
   - Linguistic turn: explanation debates 6.1, intellectual 4.7. Supports the intellectual-history
     half of its fold more than the cultural half.
   - Microhistory: lifts near 1 everywhere (imperial 1.5, social 1.4, religious 1.2, cultural
-    1.1). It is invoked across fields rather than inside social and cultural history, which is
-    worth weighing against its fold.
+    1.1). It is invoked across fields rather than inside social and cultural history. User,
+    2026-09-27: "Microhistory has become a method but its roots are in social and cultural
+    history." Its folds are now `roots_in` (reviewed), and it is reported as a cross-field method.
   - Oral history is most over-represented in Indigenous (3.2), education (2.9) and women's
     history (2.8).
 - **Limits.** Theme lifts use themed reviews only, so H-Soz-u-Kult (general) is excluded.
