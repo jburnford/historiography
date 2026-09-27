@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash} from '../site/core.mjs';
+import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH} from '../site/core.mjs';
 import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from '../site/people.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
@@ -376,21 +376,51 @@ test('landing: a family subgraph holds its fields, their person entries, and int
   const ids = new Set(sub.nodes.map(n => n.id));
   assert.ok(ids.has('annales'));
   for (const n of sub.nodes) assert.ok(n.id === 'annales' || n.entry_kind === 'person', n.id);
+  assert.ok(sub.nodes.some(n => n.entry_kind === 'person'));
   for (const e of sub.edges) assert.ok(ids.has(e.source) && ids.has(e.target), e.id);
 });
 test('landing: rows, cards and table render one item per family', () => {
-  const svg = rowsSvg({block: families, graph, view: 'all', width: 1100});
+  const svg = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`});
   assert.equal((svg.match(/class="family-row"/g) || []).length, 11);
   assert.match(svg, /data-family="annales"/);
+  assert.match(svg, /href="#family=annales"/);
   assert.match(svg, /class="coverage-line"/);
   /* Environment has no items in the established-journals view: its row says so rather than looking broken. */
-  const est = rowsSvg({block: families, graph, view: 'established', width: 1100});
-  const envRow = est.split('data-family="environment"')[1].split('</g>')[0];
+  const est = rowsSvg({block: families, graph, view: 'established', width: 1100, href: id => `#family=${id}`});
+  const envRow = est.split('data-family="environment"')[1].split('</a>')[0];
   assert.match(envRow, /no items in this view/);
   const cards = cardsHtml({block: families, graph, view: 'reviews', href: id => `#family=${id}`});
   assert.equal((cards.match(/class="family-card"/g) || []).length, 11);
   const table = tableHtml({block: families, graph, view: 'established'});
   assert.equal((table.match(/<tr>/g) || []).length, 12);
+});
+test('landing: a long family label wraps onto two lines rather than overflow the row', () => {
+  const svg = rowsSvg({block: families, graph, view: 'all', width: 700, href: id => `#family=${id}`});
+  const row = svg.split('data-family="political-national-and-international"')[1].split('</a>')[0];
+  assert.equal((row.match(/<tspan/g) || []).length, 2);
+  assert.match(row, /›/);
+});
+test('landing: undated members are named in the row tooltip', () => {
+  const g = {nodes: [{id: 'x', label: 'Undated Field', entry_kind: 'group', date_label: 'undated'}], edges: []};
+  assert.equal(spanOf(g.nodes[0]), null, 'the fixture must actually be undated');
+  const fam = {id: 'synth', label: 'Synthetic', members: [{id: 'x', primary: true}],
+    series: {all: [], established: [], reviews: []}};
+  const block = {families: [fam], strip: {shares: {}, unclaimed: 0, period: [2000, 2024]}};
+  const svg = rowsSvg({block, graph: g, view: 'all', width: 1000, href: id => `#family=${id}`});
+  assert.match(svg, /Undated: Undated Field/);
+});
+test('landing: family labels are escaped, never raw markup, in every renderer', () => {
+  const label = `A<b>&"c'`, escaped = 'A&lt;b&gt;&amp;&quot;c&#39;';
+  const g = {nodes: [{id: 'x', label: 'X', entry_kind: 'group', date_label: '1990'}], edges: []};
+  const fam = {id: 'esc', label, members: [{id: 'x', primary: true}],
+    series: {all: [[1990, 1, 10]], established: [], reviews: []}};
+  const block = {families: [fam], strip: {shares: {esc: 1}, unclaimed: 0, period: [2000, 2024]}};
+  const svg = rowsSvg({block, graph: g, view: 'all', width: 1000, href: id => `#family=${id}`});
+  assert.ok(svg.includes(escaped), 'rowsSvg'); assert.ok(!svg.includes('<b>'), 'rowsSvg');
+  const cards = cardsHtml({block, graph: g, view: 'all', href: id => `#family=${id}`});
+  assert.ok(cards.includes(escaped), 'cardsHtml'); assert.ok(!cards.includes('<b>'), 'cardsHtml');
+  const table = tableHtml({block, graph: g, view: 'all'});
+  assert.ok(table.includes(escaped), 'tableHtml'); assert.ok(!table.includes('<b>'), 'tableHtml');
 });
 test('routes: the bare front door is the overview; deep links still open the detail views', () => {
   assert.equal(readRoute('', graph, pathways).overview, true);
@@ -399,7 +429,9 @@ test('routes: the bare front door is the overview; deep links still open the det
   assert.equal(readRoute('#record=reviews', graph, pathways).record, 'reviews');
   assert.equal(readRoute('#record=bogus', graph, pathways).record, '');
   const detail = ['#family=annales', '#family=all', '#focus=marx', '#path=paradigms_and_limits', '#view=list',
-                  '#range=2000', '#query=thompson', '#node=marx', '#tab=people'];
+                  '#range=2000', '#query=thompson', '#node=marx', '#tab=people',
+                  '#layer=' + graph.layers[0].id, '#hunt=1', '#hide=critique',
+                  '#person=' + graph.people[0].id, '#pathway=' + pathways.pathways[0].id];
   for (const h of detail) assert.equal(readRoute(h, graph, pathways).overview, false, h);
   assert.equal(readRoute('#family=annales', graph, pathways).family, 'annales');
   assert.equal(readRoute('#family=Not%20A%20Slug!', graph, pathways).family, '');
@@ -410,4 +442,19 @@ test('routes: the bare front door is the overview; deep links still open the det
     assert.equal(readRoute(hash, graph, pathways).overview, r.overview, h);
   }
   assert.match(routeHash(readRoute('#family=annales&record=reviews', graph, pathways)), /family=annales&record=reviews/);
+});
+test('landing links survive the mobile view=list override', () => {
+  /* app.js's routeFor sets state.view = 'list' on narrow screens whenever the hash names no
+     view; every href(patch) built from that state must still resolve back to the overview. */
+  const s = readRoute('', graph, pathways);
+  s.view = 'list';
+  assert.equal(readRoute(routeHash({...s, ...OVERVIEW_PATCH, record: 'established'}), graph, pathways).overview, true);
+  assert.equal(readRoute(routeHash({...s, ...OVERVIEW_PATCH}), graph, pathways).overview, true);
+
+  const s2 = readRoute('#family=annales&query=thompson&layer=' + graph.layers[0].id, graph, pathways);
+  s2.view = 'list';
+  assert.equal(readRoute(routeHash({...s2, ...OVERVIEW_PATCH}), graph, pathways).overview, true);
+  const r = readRoute(routeHash({...s2, family: 'annales', view: ''}), graph, pathways);
+  assert.equal(r.overview, false);
+  assert.equal(r.family, 'annales');
 });
