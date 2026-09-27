@@ -129,8 +129,11 @@ class ExtensionViewTests(unittest.TestCase):
 
     def test_public_build_has_no_research_captures(self):
         files = {str(p.relative_to(self.dest)) for p in self.dest.rglob('*') if p.is_file()}
-        self.assertEqual(files, {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll',
-                                 'data/graph.json', 'data/pathways.json', 'data/graph-2000.json'})
+        expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll',
+                    'data/graph.json', 'data/pathways.json', 'data/graph-2000.json'}
+        if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-evidence.json').exists():
+            expected.add('data/evidence.json')  # evidence-layer aggregates (2026-09-27); no research captures
+        self.assertEqual(files, expected)
         self.open('#node=spatialhistory')
         self.page.locator('.extension .claim-evidence summary').first.click()
         fetched = {u.replace(self.url, '') for u in self.requests}

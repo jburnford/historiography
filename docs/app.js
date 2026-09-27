@@ -10,6 +10,9 @@ let graph, pathways, state, nodeById, sourceById, personById, personNames;
 /* `production` is the current graph; `baselineGraph` the archived 2000 graph, loaded on demand
    for the exact baseline view. `catalogue` indexes the claim catalogue of whichever is shown. */
 let production, baselineGraph = null, catalogue = {entities: new Map(), claims: new Map(), records: new Map()};
+/* The evidence layer (data/evidence.json): aggregates from reviews and journal metadata, shown
+   beside an entry's interpretation and never merged into it. Loaded after first render. */
+let evidence = null;
 const revision = () => graph.revision_history.at(-1).version;
 const activeExtension = () => state?.range === '2000' ? null : extensionOf(graph);
 function adopt(g) {
@@ -870,10 +873,55 @@ function nodeDetail(n) {
   const memberPaths = pathways.pathways.filter(p => p.node_ids.includes(n.id));
   return `<div class="reading-header"><p class="eyebrow">THE ENTRY</p><h2 id="detail-title" tabindex="-1">${esc(n.label)}</h2>${layerTag(n)}${huntTag(n)}<a class="hold-link" href="#focus=${esc(n.id)}">Hold in the field →</a></div>
     <p class="date">${esc(n.date_label || 'Date not recorded')}</p><p class="period-note">${esc(periodLabel(n.period))}</p>
-    ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}<h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
+    ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}${recordPanel(n)}<h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
     ${n.representative_people?.length ? '' : extensionSection(n)}${n.entry_kind === 'person' && n.claim_ids?.length ? `<details class="entry-claims"><summary>Exact claims behind this entry · ${n.claim_ids.length}</summary><p class="fine-print">Catalogue claims with their own review status and evidence scope; authorship credits are metadata, not influence.</p>${claimCards(n.claim_ids)}</details>` : ''}
     <details class="bibliography" open><summary>References <span>${n.source_ids?.length || 0}</span></summary><p class="fine-print">References offer context; a metadata check does not certify every interpretation.</p>${sourceList(n.source_ids)}</details>
     ${memberPaths.length ? `<h3>Read in a pathway</h3><ul class="related-pathways">${memberPaths.map(p => `<li><a href="#pathway=${p.id}">${esc(p.title)} →</a></li>`).join('')}</ul>` : ''}`;
+}
+/* A small bar chart of counts per five-year bin: one series, so the heading names it and no
+   legend is needed; values are in the accessible label and each bar's tooltip. */
+const RECORD_END = 2026;  // collections run to September 2026, so the last bin is partial
+function recordBars(bins, first, last, noun) {
+  const years = [];
+  for (let y = first; y <= last; y += 5) years.push(y);
+  const span = y => y + 4 > RECORD_END ? `${y}–${RECORD_END} (partial)` : `${y}–${y + 4}`;
+  const values = years.map(y => bins[y] || 0);
+  const max = Math.max(1, ...values);
+  const w = 300, h = 54, gap = 2, bw = (w - gap * (years.length - 1)) / years.length;
+  const bars = years.map((y, i) => {
+    const bh = values[i] ? Math.max(2, Math.round(values[i] / max * (h - 6))) : 0;
+    return `<rect x="${(i * (bw + gap)).toFixed(1)}" y="${h - bh}" width="${bw.toFixed(1)}" height="${bh}" rx="1.5"><title>${span(y)}: ${values[i].toLocaleString()} ${noun}</title></rect>`;
+  }).join('');
+  const label = years.filter((y, i) => values[i]).map(y => `${span(y)}: ${bins[y]}`).join('; ');
+  return `<svg class="record-bars" viewBox="0 0 ${w} ${h + 14}" role="img" aria-label="${esc(noun)} per five years. ${esc(label || 'none')}">${bars}<line x1="0" x2="${w}" y1="${h + .5}" y2="${h + .5}"/><text x="0" y="${h + 12}">${first}</text><text x="${w}" y="${h + 12}" text-anchor="end">${Math.min(last + 4, RECORD_END)}</text></svg>`;
+}
+function recordPanel(n) {
+  const e = evidence?.entries?.[n.id];
+  if (!e) return '';
+  const fmt = v => Number(v || 0).toLocaleString();
+  const entryLink = x => nodeById.has(x.id) ? linkNode(x.id) : esc(x.label);
+  const parts = [];
+  if (e.status === 'direct') {
+    parts.push(e.reviews_total ? `<p><strong>${fmt(e.reviews_total)}</strong> reviews in networks and headings mapped to this field</p>${recordBars(e.reviews_by_5yr, 1990, 2025, 'reviews')}` : '<p>No reviews in networks or headings mapped to this field.</p>');
+    parts.push(e.journal_items_total ? `<p><strong>${fmt(e.journal_items_total)}</strong> research articles in journals tagged with this field</p>${recordBars(e.journal_items_by_5yr, 1950, 2025, 'research articles')}` : '<p>No journals in the collection are tagged with this field.</p>');
+  } else if (e.status === 'cross_field_method_with_roots') {
+    parts.push(`<p>A method used across fields, with roots in ${e.roots_in.map(entryLink).join(' and ')}.</p>`);
+  } else {
+    parts.push(`<p>No direct signal: networks, subject headings and journals do not name this ${n.entry_type ? 'entry' : 'approach'}. In the record it is practised within ${e.practised_within.map(entryLink).join(', ')}.</p>`);
+  }
+  if (e.method) {
+    const m = e.method;
+    const where = m.practitioner_items_in_method_venues
+      ? `, ${Math.round(m.share_elsewhere * 100)}% of whose research appears outside method journals`
+      : '; no journals devoted to the method are in the collection';
+    parts.push(`<p>Articles naming the method in their title: <strong>${fmt(m.title_hits)}</strong>${m.abstract_hits_not_in_title ? `; abstracts name it in ${fmt(m.abstract_hits_not_in_title)} more` : ''} (lower bounds). ${fmt(m.practitioners)} practitioners${where}.</p>`);
+  }
+  if (e.invoked_in_reviews) {
+    const most = (e.invoked_most_in || []).map(x => `${entryLink(x)} (×${x.lift})`).join(', ');
+    parts.push(`<p>Invoked by name in <strong>${fmt(e.invoked_in_reviews)}</strong> reviews${most ? `; most over-represented in ${most}` : ''}.</p>`);
+  }
+  return `<details class="record-panel" open><summary>What the record shows <span>evidence layer</span></summary>${parts.join('')}
+    <details class="record-about"><summary>About these counts</summary><p class="fine-print">${esc(evidence.coverage.reviews)}; ${esc(evidence.coverage.journals)}. ${evidence.caveats.map(esc).join(' ')}</p></details></details>`;
 }
 function edgeDetail(e) {
   const kind = edgeKind(e);
@@ -1048,6 +1096,10 @@ async function start() {
     };
     state = await routeFor();
     render();
+    fetch('data/evidence.json').then(r => r.ok ? r.json() : null).then(d => {
+      evidence = d;
+      if (d && state?.node) render();
+    }).catch(() => {});
     window.addEventListener('hashchange', async () => {
       const focusedId = document.activeElement?.id;
       const old = state;

@@ -1,8 +1,28 @@
 # Evidence layer
 
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
-interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md). Nothing here is
-a site asset yet.
+interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
+
+## On the site (2026-09-27)
+
+Each field entry's reading panel has a **"What the record shows"** panel, loaded lazily from
+`docs/data/evidence.json`. What it shows depends on the entry:
+- **Direct entries:** reviews and journal research articles per five years.
+- **Folded entries:** the fields they are practised within.
+- **Cross-field methods:** their roots.
+
+Where available it adds the method signals and the review-invocation lifts; an entry's own
+theme is excluded from the lifts. Coverage and caveats sit under "About these counts".
+
+- **Build.** `python3 scripts/build_evidence_asset.py --series v16 --methods methods-v3 --mentions mentions-v2`
+  writes the tracked [site-evidence.json](site-evidence.json): aggregates only, 34 KB. Then
+  `python3 scripts/build_site.py` publishes it. CI can rebuild `docs/` from tracked files.
+- **Tests.** `tests/test_evidence_asset.py` checks that every atlas field is present, that folded
+  entries carry no borrowed counts, and that the file holds counts only. The three public-file
+  allowlists expect the asset when it is built.
+- **Acceptance record.** Revision 1.123 records the changed site and test files as amendments.
+  The 1.122 validation check was already failing before this change; it also pins
+  `tests/test_site_extension.py`.
 
 ## Field as practice (component 1), current build v16 (2026-09-27)
 

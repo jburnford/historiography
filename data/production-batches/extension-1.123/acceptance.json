@@ -2662,6 +2662,56 @@
       "reason": "Rebuilt: overlay adds 7 ORCID-corroborated roster identities (method roster_orcid_corroborated_2026-09-26).",
       "scope": "Build-time people overlay only; no graph entries, relationships or accepted claims changed.",
       "supersedes_amendment_sha256": "cca6aef534fd6d64f9fb463a5b24b2ce05c495959f8047df4a060d057909bba5"
+    },
+    {
+      "file": "docs/app.js",
+      "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+      "amended_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/app.js.",
+      "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed.",
+      "supersedes_amendment_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d"
+    },
+    {
+      "file": "docs/styles.css",
+      "accepted_sha256": "b85d27aac52be4bb68ef9a10fd56fb857f9e9923a9f520e63e64365d4ecf6bd4",
+      "amended_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+      "date": "2026-09-27",
+      "reason": "Rebuilt from site/styles.css.",
+      "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "scripts/build_site.py",
+      "accepted_sha256": "ab0930e052c034742e65affeaef72305b512e30edefd61089a46dbdb7ae03be6",
+      "amended_sha256": "5533df1cb687426346f016dfcf8be23d167644d3977e593b344e4ff0b88ac22b",
+      "date": "2026-09-27",
+      "reason": "Publishes the allowlisted evidence asset data/evidence.json (aggregates only).",
+      "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "site/app.js",
+      "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+      "amended_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+      "date": "2026-09-27",
+      "reason": "Evidence-layer panel (\"What the record shows\") on entry pages, loaded lazily from data/evidence.json.",
+      "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed.",
+      "supersedes_amendment_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d"
+    },
+    {
+      "file": "site/styles.css",
+      "accepted_sha256": "b85d27aac52be4bb68ef9a10fd56fb857f9e9923a9f520e63e64365d4ecf6bd4",
+      "amended_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+      "date": "2026-09-27",
+      "reason": "Styles for the evidence-layer panel and its bar charts.",
+      "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+    },
+    {
+      "file": "tests/test_digital_release_browser.py",
+      "accepted_sha256": "f62a285efcc4ae72d59cbfd999fcbd3b5588ece0d172473b447cfef3e34b0547",
+      "amended_sha256": "b819e9d5e384bec63e028fb1a4dd0a3d4e9e1cfa6b0cb36e8b3c94af7df3f12f",
+      "date": "2026-09-27",
+      "reason": "Public-file allowlist now also expects data/evidence.json when the evidence layer is built.",
+      "scope": "Test expectation for a new allowlisted asset; release checks otherwise unchanged."
     }
   ]
 }

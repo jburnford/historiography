@@ -89,7 +89,14 @@ Build-time, allowlisted evidence files loaded on demand, following the pattern o
 Wikidata overlay; `graph.json` stays small. Each view carries corpus coverage and
 provenance.
 
-## Status
+## Status (2026-09-27)
+
+Components 1-4 have first passes: field-as-practice crosswalk and series, candidate clusters,
+approach folds, method signals (titles, abstracts, practitioners) and review-text mentions.
+Component 5 is started: entry pages show a "What the record shows" panel from
+`docs/data/evidence.json`. Not yet published: the commits are local and unpushed.
+
+## Earlier status
 
 Step 1 first pass done (2026-09-26): crosswalk, yearly series and an overview chart in
 [data/evidence-layer](data/evidence-layer/README.md). Next: review the crosswalk, then per-entry

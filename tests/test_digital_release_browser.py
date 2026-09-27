@@ -97,8 +97,11 @@ class DigitalBrowserTests(unittest.TestCase):
         expect(self.page.locator('.extension .evidence-list').first).to_be_visible()
         self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'),390)
         files = {str(p.relative_to(self.site)) for p in self.site.rglob('*') if p.is_file()}
-        self.assertEqual(files,{'index.html','styles.css','app.js','core.mjs','field.mjs','people.mjs','.nojekyll',
-            'data/graph.json','data/pathways.json','data/graph-2000.json'})
+        expected = {'index.html','styles.css','app.js','core.mjs','field.mjs','people.mjs','.nojekyll',
+            'data/graph.json','data/pathways.json','data/graph-2000.json'}
+        if (Path(__file__).resolve().parents[1]/'data/evidence-layer/site-evidence.json').exists():
+            expected.add('data/evidence.json')  # evidence layer (2026-09-27), aggregates only
+        self.assertEqual(files, expected)
         graph = json.loads((self.site/'data/graph.json').read_text())
         self.assertNotIn('snapshot_path',json.dumps(graph['claim_catalogue']['claims']))
 

@@ -393,6 +393,8 @@ class AtlasBrowserTests(unittest.TestCase):
         published = json.loads((ROOT / 'docs/data/graph.json').read_text())
         if published.get('scope', {}).get('extension', {}).get('baseline_asset'):
             expected.add('data/graph-2000.json')   # the exact 2000 baseline, published only with an extension
+        if (ROOT / 'data/evidence-layer/site-evidence.json').exists():
+            expected.add('data/evidence.json')     # evidence-layer aggregates, published when built
         self.assertEqual(actual, expected)
         for private_path in ['openalex-api-key.txt', 'MEMORY.md', 'Clifford/', '.git/config']:
             response = self.page.request.get(URL + private_path)
