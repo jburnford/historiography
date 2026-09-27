@@ -13,15 +13,19 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly nine files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `.nojekyll`, `data/graph.json`, and `data/pathways.json`, plus `data/graph-2000.json` when an archived baseline graph is available for the extension view. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
+Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly eleven files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `landing.mjs`, `.nojekyll`, `data/graph.json`, `data/pathways.json`, and `data/evidence.json` (published from `data/evidence-layer/site-evidence.json` when it exists), plus `data/graph-2000.json` when an archived baseline graph is available for the extension view. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
 
 ## Landing
 
 The bare URL opens a families overview: eleven editorial families, each row pairing the
 atlas's dating (orange dots) with the family's share of the record (green bars) under a
 one-line headline strip. `#family=<slug>` opens today's field view filtered to one family;
-`#family=all` opens the full field, unfiltered. `#record=established|reviews` switches the
-record view under either route; the default is `all`. Person entries stay off the overview
+`#family=all` opens the full field, unfiltered, as does an unknown or malformed slug.
+`#record=established|reviews` switches the record view on the landing and is kept across the
+family route, so returning to the overview restores it; the default is `all`. Five-year
+periods with fewer than 200 items (`MIN_BIN_TOTAL` in `landing.mjs`; today only Reviews
+1990–94, with 20) are omitted from the bars, cards and table, so a thin period cannot set the
+shared scale. Person entries stay off the overview
 and appear only on drill-down. Existing deep links (`focus=`, `path=`, `node=`, `view=list`,
 `range=2000`, `query=`, `layer=`, `period=`, `hunt=`, `hide=`) still open the detailed views
 they always have, from either route.

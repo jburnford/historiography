@@ -6,7 +6,7 @@ import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
-import {AXIS, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
+import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
@@ -362,6 +362,15 @@ test('landing: record shares are items over the bin total and stop at 2024', () 
     }
   }
 });
+test('landing: thin periods are dropped so they cannot set the shared scale', () => {
+  for (const f of families.families) {
+    const reviews = recordShares(f, 'reviews');
+    assert.ok(!reviews.some(s => s.bin === 1990), `${f.id}: Reviews 1990–94 has only 20 items`);
+    for (const view of ['all', 'established', 'reviews']) {
+      for (const s of recordShares(f, view)) assert.ok(s.total >= MIN_BIN_TOTAL, `${f.id} ${view} ${s.bin}`);
+    }
+  }
+});
 test('landing: both strip bars sum to one', () => {
   const s = stripSegments(families, graph);
   assert.ok(Math.abs(s.atlas.reduce((a, x) => a + x.share, 0) - 1) < 1e-9);
@@ -391,8 +400,14 @@ test('landing: rows, cards and table render one item per family', () => {
   assert.match(envRow, /no items in this view/);
   const cards = cardsHtml({block: families, graph, view: 'reviews', href: id => `#family=${id}`});
   assert.equal((cards.match(/class="family-card"/g) || []).length, 11);
+  /* Two tables: the per-period table (header + 11 families = 12 rows), then the headline
+     strip as text (header + 11 families + the unclaimed row = 13 rows). */
   const table = tableHtml({block: families, graph, view: 'established'});
-  assert.equal((table.match(/<tr>/g) || []).length, 12);
+  const [main, strip] = table.split('class="strip-table"');
+  assert.equal((main.match(/<tr>/g) || []).length, 12);
+  assert.equal((strip.match(/<tr>/g) || []).length, 13);
+  assert.match(strip, /Items no family claims/);
+  assert.equal((table.match(/<tr>/g) || []).length, 25);
 });
 test('landing: a long family label wraps onto two lines rather than overflow the row', () => {
   const svg = rowsSvg({block: families, graph, view: 'all', width: 700, href: id => `#family=${id}`});
@@ -413,7 +428,7 @@ test('landing: family labels are escaped, never raw markup, in every renderer', 
   const label = `A<b>&"c'`, escaped = 'A&lt;b&gt;&amp;&quot;c&#39;';
   const g = {nodes: [{id: 'x', label: 'X', entry_kind: 'group', date_label: '1990'}], edges: []};
   const fam = {id: 'esc', label, members: [{id: 'x', primary: true}],
-    series: {all: [[1990, 1, 10]], established: [], reviews: []}};
+    series: {all: [[1990, 1, 1000]], established: [], reviews: []}};
   const block = {families: [fam], strip: {shares: {esc: 1}, unclaimed: 0, period: [2000, 2024]}};
   const svg = rowsSvg({block, graph: g, view: 'all', width: 1000, href: id => `#family=${id}`});
   assert.ok(svg.includes(escaped), 'rowsSvg'); assert.ok(!svg.includes('<b>'), 'rowsSvg');
@@ -434,7 +449,11 @@ test('routes: the bare front door is the overview; deep links still open the det
                   '#person=' + graph.people[0].id, '#pathway=' + pathways.pathways[0].id];
   for (const h of detail) assert.equal(readRoute(h, graph, pathways).overview, false, h);
   assert.equal(readRoute('#family=annales', graph, pathways).family, 'annales');
-  assert.equal(readRoute('#family=Not%20A%20Slug!', graph, pathways).family, '');
+  /* A malformed slug opens the full field, as an unknown one does (spec, Routes). */
+  const bad = readRoute('#family=Not%20A%20Slug!', graph, pathways);
+  assert.equal(bad.family, 'all');
+  assert.equal(bad.overview, false);
+  assert.equal(readRoute('#family=', graph, pathways).overview, true);
   /* Links the site writes must land where they were written from. */
   for (const h of ['', '#record=established', ...detail]) {
     const r = readRoute(h, graph, pathways), hash = routeHash(r);

@@ -3,7 +3,7 @@ import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relat
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf} from './field.mjs';
 import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
-import {VIEWS, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
+import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
@@ -746,7 +746,7 @@ function fieldList() {
 
 /* ---------------- Landing: families, the atlas beside the record ---------------- */
 let landingWidth = 0;
-const AXIS_LABEL = '1880–2024';
+const AXIS_LABEL = `${AXIS.start}–${AXIS.end}`;
 const recordView = () => state.record || 'all';
 /* Landing links clear the mobile list default (view) so the family page applies its own default. */
 const familyHref = id => href({family: id, view: ''});
@@ -775,7 +775,7 @@ function landingPage() {
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. ${esc(evidence.caveats.join(' '))}
+    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
       <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
   </div>`;
 }
@@ -810,7 +810,8 @@ function familyHeading(f) {
     lacks.length ? `In the record but not in the atlas: ${lacks.join(', ')}.` : ''].filter(Boolean).join(' ');
   return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href(OVERVIEW_PATCH))}">← All families</a>
       <a href="${esc(href({family: 'all', focus: '', path: ''}))}">All entries on one axis</a></nav>
-    ${note ? `<p class="family-note">${esc(note)}</p>` : ''}`;
+    ${note ? `<p class="family-note">${esc(note)}</p>` : ''}
+    <p class="fine-print family-caveat">Record fields come from journal-level tags and subject headings; counts measure participation, not influence.</p>`;
 }
 
 function fieldPage() {

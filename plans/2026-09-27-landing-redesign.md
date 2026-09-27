@@ -6,7 +6,7 @@
 
 **Architecture:**
 - **Builder.** A new module, `scripts/practice_families.py`, validates `data/evidence-layer/families-draft.csv`. It computes share-of-period family series inside `build_practice_series.py`'s DuckDB session.
-- **Asset.** `build_evidence_asset.py` copies those aggregates into a `families` block in the existing tracked `data/evidence-layer/site-evidence.json`, published as `docs/data/evidence.json`. No new public file.
+- **Asset.** `build_evidence_asset.py` copies those aggregates into a `families` block in the existing tracked `data/evidence-layer/site-evidence.json`, published as `docs/data/evidence.json`. The only new public file is the `landing.mjs` page module.
 - **Site.** A new pure module, `site/landing.mjs`, builds the strip, the rows SVG, the mobile cards and the table. `site/core.mjs` gains the `family`, `record` and derived `overview` route keys. `site/app.js` renders the landing and filters the field view to a family.
 
 **Tech Stack:**
@@ -1457,7 +1457,7 @@ git commit -m "Landing redesign: revision 1.123 amendments and docs"
 
 Send the user `site/test-results/landing-desktop.png` and `landing-mobile.png`. Report:
 - the unpushed commit count
-- the two proposed placements (`freud`, `revival`) awaiting their call
+- the two placements (`freud`, `revival`), approved by the user 2026-09-27
 - the two record-only members with no crosswalk rows (`none:history_of_knowledge`, `none:transnational_history`)
 - the actual established-journal count and unclaimed share
 - the pre-existing digital-release suite failure
