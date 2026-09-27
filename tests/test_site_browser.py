@@ -56,12 +56,22 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertTrue(self.page.locator('#toolbar').is_hidden())
         box = self.page.locator('.landing-rows')
         self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'))
-        self.page.get_by_role('link', name='Established journals only', exact=True).click()
-        expect(self.page.get_by_role('link', name='Established journals only', exact=True)).to_have_attribute('aria-pressed', 'true')
+        self.page.get_by_role('button', name='Established journals only', exact=True).click()
+        expect(self.page.get_by_role('button', name='Established journals only', exact=True)).to_have_attribute('aria-pressed', 'true')
         self.assertIn('record=established', self.page.url)
         self.page.locator('details.landing-table > summary').click()
         expect(self.page.locator('details.landing-table tbody tr')).to_have_count(11)
         self.page.screenshot(path=str(self.artifacts / 'landing-desktop.png'), full_page=True)
+        # Opening a family from low on the page brings its field view into view.
+        self.page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
+        self.page.locator('svg.landing-svg .family-row').last.click()
+        self.page.wait_for_function('() => location.hash.includes("family=")')
+        self.page.wait_for_function('''() => new Promise(done => {
+            let last = window.scrollY, still = 0;
+            const tick = () => { still = window.scrollY === last ? still + 1 : 0; last = window.scrollY;
+                                 still >= 5 ? done(true) : requestAnimationFrame(tick); };
+            tick(); })''')
+        self.assertLess(self.page.evaluate('window.scrollY'), 700)
 
     def test_overview_search_filters_keyboard_and_reset(self):
         self.open('#tab=browse')

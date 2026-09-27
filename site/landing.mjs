@@ -132,7 +132,7 @@ export function cardsHtml({block, graph, view = 'all', href}) {
     return `<li><a class="family-card" href="${esc(href(f.id))}"><h3>${esc(f.label)}</h3>` +
       `<p><strong>${n}</strong> atlas entr${n === 1 ? 'y' : 'ies'}${firstText}</p>` +
       `<svg class="card-bars" viewBox="0 0 ${Math.max(9, s.length * 9)} 31" preserveAspectRatio="none" aria-hidden="true">${bars}</svg>` +
-      `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record` : 'No record in this view'}</p></a></li>`;
+      `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record (bars from 1950)` : 'No record in this view'}</p></a></li>`;
   }).join('')}</ol>`;
 }
 
