@@ -19,10 +19,13 @@ from pathlib import Path
 
 import duckdb
 
+import practice_families
+
 ROOT = Path(__file__).resolve().parents[1]
 CROSSWALK = ROOT / "data/evidence-layer/practice-crosswalk.csv"
 HIERARCHY = ROOT / "data/evidence-layer/practice-hierarchy.csv"
 FOLDS = ROOT / "data/evidence-layer/approach-folds.csv"
+FAMILIES = ROOT / "data/evidence-layer/families-draft.csv"
 HNET = ROOT / "data/hnet-graph/generated/graph.sqlite"
 UNIFIED = ROOT / "data/unified-graph/generated"
 CROSSREF = ROOT / "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb"
@@ -49,7 +52,7 @@ def main():
     out = ROOT / "data/evidence-layer/generated" / args.version
     if out.exists():
         raise SystemExit(f"{out} exists; choose a new --version")
-    inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "folds": FOLDS, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
+    inputs = {"crosswalk": CROSSWALK, "hierarchy": HIERARCHY, "folds": FOLDS, "families": FAMILIES, "hnet_graph": HNET, "unified_nodes": UNIFIED / "nodes.csv",
               "unified_links": UNIFIED / "links.csv", "crossref_catalog": CROSSREF, "selected_journals": SELECTED,
               "crossref_supplement": SUPPLEMENT / "generated/v1/catalog.duckdb",
               "supplement_selection": SUPPLEMENT / "selection.json",
@@ -131,7 +134,8 @@ def main():
          FROM items i JOIN journal_theme_map t USING (journal_key) WHERE i.source = 'journal'""")
     # Sub-field rollup (practice-hierarchy.csv): a theme item also counts, once, for its broader
     # field. The narrower target keeps its own series.
-    q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true)")
+    q(f"CREATE TABLE hierarchy AS SELECT * FROM read_csv({lit(HIERARCHY)}, header=true, all_varchar=true) "
+      "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
     q("CREATE TEMP TABLE entry_names (id VARCHAR, label VARCHAR)")
     db.executemany("INSERT INTO entry_names VALUES (?, ?)", sorted(entry_labels.items()))
     unknown = q("""SELECT broader FROM hierarchy WHERE broader NOT LIKE 'none:%'
@@ -241,6 +245,13 @@ def main():
                          n("source = 'journal' AND kind = 'research_proxy'")}
         if roots_only:
             folded[e]["direct_evidence"] = direct_evidence(e)
+
+    # Editorial families (landing redesign): definitions validated against the atlas and crosswalk.
+    fam_defs = practice_families.load_families(
+        FAMILIES, set(entries), {t for (t,) in q("SELECT DISTINCT target FROM cw WHERE target IS NOT NULL").fetchall()})
+    families = practice_families.family_series(db, fam_defs["membership"])
+    families.update(definitions=fam_defs["families"], record_only_without_rows=fam_defs["record_only_without_rows"],
+                    counting=practice_families.__doc__.split("Counting rules:")[1].strip())
     summary = {
         "built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "inputs": {k: {"path": str(p.relative_to(ROOT)), "sha256": before[k]} for k, p in inputs.items()},
@@ -258,6 +269,7 @@ def main():
         "journal_level_themes": {"journals": len({x[0] for x in jt}),
                                  "curated_atlas_edges": sum(1 for x in jt if x[5].startswith("atlas_journal_edge")),
                                  "crosswalk_title_rows": sum(1 for x in jt if x[5] == "crosswalk_journal_title")},
+        "families": families,
     }
     after = {k: sha(p) for k, p in inputs.items()}
     if after != before:
@@ -265,6 +277,13 @@ def main():
     tmp = Path(str(out) + ".building")
     tmp.mkdir(parents=True, exist_ok=True)
     q(f"COPY series TO {lit(tmp / 'series.csv')} (HEADER)")
+    with open(tmp / "family_series.csv", "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["view", "family", "bin", "items", "total"])
+        for view, d in families["views"].items():
+            for fam, bins in sorted(d["families"].items()):
+                for b in sorted(bins):
+                    w.writerow([view, fam, b, bins[b], d["totals"][b]])
     # Per-item themes for downstream analyses (e.g. clusters); rollups excluded, so a broader
     # field never co-occurs with its own sub-fields by construction.
     q(f"""COPY (SELECT DISTINCT source, item, source_label, target FROM mapped
@@ -284,6 +303,9 @@ def main():
     print("journal research-proxy themes:", [(x["label"], x["items"]) for x in summary["journal_themes_research_proxy"][:15]])
     print("atlas entries without direct evidence:", len(summary["atlas_entries_without_practice_evidence"]),
           "of", len(entries), "| folded:", len(folded), "| unaccounted:", summary["atlas_entries_unaccounted"])
+    print("families:", {v: sum(len(b) for b in d["families"].values()) for v, d in families["views"].items()},
+          "| established journals:", families["established_journals"],
+          "| strip unclaimed share:", round(families["strip"]["unclaimed"] / max(families["strip"]["items"], 1), 3))
 
 
 if __name__ == "__main__":
