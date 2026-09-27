@@ -1,9 +1,9 @@
 # Landing redesign: the atlas and the record, 1920–2024
 
-Status: **approved 2026-09-27.** The user approved the recommended layout, the open placements
-and the bridge-counting rule ("looks good"). Next step: the implementation plan in
-[plans/2026-09-27-landing-redesign.md](../plans/2026-09-27-landing-redesign.md). No site code has
-been changed yet.
+Status: **approved and implemented 2026-09-27 (unpushed).** The user approved the recommended
+layout, the open placements and the bridge-counting rule ("looks good"). Implementation
+followed the plan in
+[plans/2026-09-27-landing-redesign.md](../plans/2026-09-27-landing-redesign.md).
 
 ## Problem
 
@@ -80,7 +80,7 @@ See [recommended-landing.png](../data/evidence-layer/sketches/recommended-landin
 
 - **Headline strip ("the gap in one line").** Two 100% bars. The first is the share of atlas
   entries by family. The second is the share of research articles, 2000–2024, by family. A
-  grey segment shows items no family claims (about 23%). To make the bars genuinely sum to
+  grey segment shows items no family claims: about 38% in the v17 build. Nearly all are in general journals or journals defined only by region or period; under 3% carry a theme no family covers (history of education, sport, archaeology, travel). To make the bars genuinely sum to
   100%, the strip counts atlas entries by their primary family only. Each item is split
   equally across the primary families its tags point to: an article tagged with social and
   economic history counts half to each. Labels sit
@@ -130,8 +130,8 @@ See [recommended-landing.png](../data/evidence-layer/sketches/recommended-landin
     `none:history_of_knowledge` and `none:transnational_history`) is reported and counts
     nothing until the crosswalk maps it.
 - **Site asset.** Family definitions and series are added as a `families` block in the
-  existing `data/evidence.json`, which currently weighs 25 KB. No new public file is created,
-  so the allowlists do not change. The landing loads `evidence.json` eagerly, while the entry
+  existing `data/evidence.json` (42 KB published with families). The only new public file is the
+  page module `landing.mjs`, which the three public-file allowlist tests now expect. The landing loads `evidence.json` eagerly, while the entry
   panel keeps using the same cached copy.
 - **Hierarchy consistency.**
   - The six Identity-histories rollup rows in `practice-hierarchy.csv` are marked `rejected`

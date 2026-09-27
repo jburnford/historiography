@@ -60,6 +60,8 @@ atlas's *interpretation*.
   - the region × period map of the record, set against the atlas's approach map
 - **Checks.** Totals reconcile with corpus counts; unassigned shares are reported;
   multi-mapped sources are not double-counted in any total.
+- 2026-09-27: landing redesign pairs the atlas with family-level record shares (spec and plan
+  in specs/ and plans/).
 
 ### 2. People across the record
 A page for anyone in the registry, not only atlas people: books reviewed (with reviews

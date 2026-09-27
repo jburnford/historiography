@@ -299,6 +299,47 @@ no text leaves the machine or enters Git. Audits record item IDs and judgements 
   historical sociology and historical geography are sub-fields (reviewed). The Bielefeld
   school and historical economics are proposed sub-fields.
 
+### Editorial families (landing), current build v17 (2026-09-27)
+
+The landing page pairs the atlas's own dating with each family's share of the record. Eleven
+editorial families group the atlas's fields (and, where the atlas has no entry, `none:`
+targets) for that pairing; a member can bridge into a second family.
+
+- **[families-draft.csv](families-draft.csv)**, columns: `family`, `member` (an atlas entry id,
+  or a `none:` crosswalk target for `record_only` members), `member_kind`
+  (`atlas_entry` or `record_only`), `bridge_family` (a second family this member also counts
+  toward, if any), `status` (`proposed`, `reviewed`, `needs_decision` or `rejected`), `note`.
+  `freud` and `revival` were the two placements awaiting a call; the user approved both
+  2026-09-27 (`freud` into Cultural & intellectual history; `revival` into Theory & method,
+  bridging Economy & social science history), so both now read `reviewed`. Two `record_only`
+  members have no crosswalk rows at all: `none:history_of_knowledge` and
+  `none:transnational_history`.
+- **`scripts/practice_families.py`** (`slug`, `load_families`, `family_series`) validates the
+  draft against the atlas and the crosswalk, then runs inside `build_practice_series.py`'s
+  DuckDB session. Counting rules, from its docstring:
+
+  > Counting rules: a family's series counts distinct items tagged at theme level (hierarchy
+  > rollups excluded) with any of its members, bridges included, so family series overlap and
+  > must not be summed. The denominator is every item in the view and bin, tagged or not. The
+  > headline strip splits each item equally across its primary families, so the strip's family
+  > counts plus the unclaimed count sum to the item count. A record listed under two selected
+  > journals joins the established view if either journal is established, and carries both
+  > journals' themes.
+
+- **Outputs**, added to `generated/<version>/` and `summary.json["families"]`:
+  `generated/v17/family_series.csv` (`view, family, bin, items, total`, one row per view ×
+  family × five-year bin) and the strip, established-journal count and unaccounted
+  `record_only` members under `summary.json["families"]`.
+- **Findings (v17).** 80 established journals (in both 1970–74 and 2015–19). The 2000–24
+  headline strip's unclaimed share is 0.379: nearly all of it is general, regional and period
+  journals, and under 3% carries themes no family covers (history of education, sport,
+  archaeology, travel).
+- **Rebuilding**: `build_practice_series.py --version vNN` (refuses an existing version) calls
+  the family stage and writes `family_series.csv` and `summary.json["families"]`; then
+  `build_evidence_asset.py --series vNN --methods methods-v3 --mentions mentions-v2` copies the
+  families block into the tracked `site-evidence.json`; then `build_site.py` publishes it as
+  `docs/data/evidence.json`.
+
 ### Proposals for the curated atlas (editorial; not applied)
 
 The graph is editorially owned, so these are recorded here rather than made:
