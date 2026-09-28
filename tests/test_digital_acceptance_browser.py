@@ -24,7 +24,17 @@ class AcceptedDigitalBrowserTests(frozen.DigitalBrowserTests):
     def test_production_build_matches_checked_preview(self):
         if not (release.OUT/'acceptance.json').exists():
             self.skipTest('Before local acceptance/build')
+        # A later accepted revision (1.124 onward) republishes the graph. The release's other
+        # public files must still match its checked preview; the graph must be that later revision.
+        current = release.read(release.GRAPH)
+        superseded = release.candidate.fingerprint(current) != release.read(release.OUT/'acceptance.json')['production_sha256']
+        if superseded:
+            later = current['revision_history'][-1]
+            self.assertTrue((release.ROOT/later['acceptance_record']).is_file(), later['version'])
         for path in self.site.rglob('*'):
             if path.is_file():
-                public = release.ROOT/'docs'/path.relative_to(self.site)
+                rel = path.relative_to(self.site)
+                if superseded and rel.as_posix() == 'data/graph.json':
+                    continue
+                public = release.ROOT/'docs'/rel
                 self.assertEqual(public.read_bytes(),path.read_bytes(),str(public))

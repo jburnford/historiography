@@ -1,3 +1,20 @@
+# Revision 1.124: fifteen figures missing from their fields
+
+The user noticed that New cultural history "doesn't really capture the significance of Foucault": the entry named Geertz as its influence, as Wikipedia's Cultural history article does, while Hunt's *The New Cultural History* (1989) opens its "Models for Cultural History" with O'Brien on Foucault. The [figure-gaps audit](data/evidence-layer/audits/figure-gaps-2026-09-27/README.md) looked for the same pattern across the graph: people the review record ties to a field but whom the entry never names. The user approved all fifteen likely omissions.
+
+- **New cultural history:** Foucault is added as a contributor, with a contribution edge and a strand, "Discourse, power and the critique of social history". The figures line now names all four of Hunt's models. Biersack's chapter is added to Geertz's record.
+- **Postcolonial history:** Gyan Prakash (historian), Stuart Hall and Paul Gilroy.
+- **Linguistic turn:** Richard Rorty, whose 1967 anthology gave the turn its name. This records the name's source, not a lineage.
+- **Frankfurt School:** Lukács as a precursor; Kracauer from the Frankfurt milieu, never a member of the Institute.
+- **Microhistory / everyday life:** Natalie Zemon Davis and Martin Broszat.
+- **Urban history:** Harvey, Benjamin and de Certeau, with a strand, "Space, capital and the cultural city".
+- **Women's history:** Leonore Davidoff, with her coauthor Catherine Hall, and Elizabeth Fox-Genovese.
+- **Memory studies:** Aby Warburg as a precursor.
+
+Sixteen roster additions, twelve sources, one edge, two strands and one source-verification upgrade; no new people, full person nodes or influence arrows. Current totals: **128 entries, 766 edges, 897 sources, 876 people and 769 strands**. The graph validates with zero structural errors and the same six warnings. Each source states its verification scope: Crossref and OpenLibrary records, or, for the two Hunt chapters, the JSTOR chapter openings the user supplied. No book or article body was reread.
+
+`scripts/apply_figure_gaps.py --check` reconstructs the graph exactly from the protected 1.123 snapshot and verifies the saved evidence. See [acceptance](data/production-batches/figure-gaps-1.124/README.md). The audit's 47 critic and interlocutor candidates are not included.
+
 # Revision 1.123: revised digital/web selection accepted
 
 Added Digital history and Web history / Archived-web research from the reviewed candidate after the user identified overcorrection in the earlier digital selection. Substantive practitioner contributions, projects, computational methods and public history sit alongside retained critical scholarship; no demographic quota or inferred gender classification. Thomas's own contribution and Leon's specific critique coexist. All coauthors, evidence limits and publication/reception/version distinctions survive.

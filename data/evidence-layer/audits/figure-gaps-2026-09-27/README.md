@@ -60,6 +60,8 @@ Likely omissions, all awaiting the user's editorial review:
 | Women's history | Elizabeth Fox-Genovese | *Within the Plantation Household* (1988) |
 | Memory studies | Aby Warburg | Social memory, *Mnemosyne* |
 
+**Applied:** the user approved all fifteen on 2026-09-28, and they entered the graph in [revision 1.124](../../../production-batches/figure-gaps-1.124/README.md).
+
 Urban history shows the same shape as New cultural history. Its people are all social-science urban historians, and the spatial and cultural turn (Harvey, Benjamin, de Certeau) is missing.
 
 Judgements are the assistant's historiographical readings. Like the Foucault case, each should be checked against the field's own defining texts before a revision batch changes the curated graph.
