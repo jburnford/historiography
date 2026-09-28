@@ -9069,7 +9069,7 @@
       "period": "period_0",
       "hunt_core_paradigm": false,
       "description": "Studies women as historical actors and examines work, family, politics, and structures of power. Earlier scholarship, activism, teaching, and documentary collecting precede the field’s expansion alongside later feminist movements. Recovery, institutional growth, rediscovery, and methodological disagreement overlap; this is not a field created from nothing in the 1960s or one account of a shared female experience.",
-      "representative_figures_and_works": "Lucy Maynard Salmon, Domestic Service (1897); Alice Clark (1919); Ivy Pinchbeck (1930); Julia Cherry Spruill (1938); Mary Ritter Beard (1946); Eleanor Flexner (1959); Eileen Power; Dorothy Thompson; later work by Gerda Lerner and Sheila Rowbotham. Individual entries distinguish contributions and approaches.",
+      "representative_figures_and_works": "Lucy Maynard Salmon, Domestic Service (1897); Alice Clark (1919); Ivy Pinchbeck (1930); Julia Cherry Spruill (1938); Mary Ritter Beard (1946); Eleanor Flexner (1959); Eileen Power; Dorothy Thompson; later work by Gerda Lerner and Sheila Rowbotham. Individual entries distinguish contributions and approaches. Leonore Davidoff and Catherine Hall: Family Fortunes (1987); Elizabeth Fox-Genovese: Within the Plantation Household (1988).",
       "source_ids": [
         "women",
         "salmon_works",
@@ -9123,7 +9123,9 @@
         "marianne_weber_ndb",
         "taylor_thompson_gender",
         "vickery_elegance_primary",
-        "weatherill_consumer_primary"
+        "weatherill_consumer_primary",
+        "family_fortunes",
+        "fox_genovese_plantation_1988"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -9617,6 +9619,36 @@
           "works": "The Gentleman’s Daughter (1998), selected “Elegance” passages",
           "source_ids": [
             "vickery_elegance_primary"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "leonore_davidoff",
+          "role": "historian",
+          "context": "With Catherine Hall, analyses gender, family and class in the English middle class; a standard work of women’s and gender history. Hall’s coauthor credit is retained.",
+          "works": "With Catherine Hall, Family Fortunes (1987)",
+          "source_ids": [
+            "family_fortunes"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "catherine_hall",
+          "role": "historian",
+          "context": "Coauthor with Leonore Davidoff of Family Fortunes; both credits are retained. Her imperial-history contexts remain distinct.",
+          "works": "With Leonore Davidoff, Family Fortunes (1987)",
+          "source_ids": [
+            "family_fortunes"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "elizabeth_fox_genovese",
+          "role": "historian",
+          "context": "Within the Plantation Household examines Black and white women of the Old South; a standard work of Southern women’s history. Her exchange with Stone on narrative is recorded elsewhere.",
+          "works": "Within the Plantation Household (1988)",
+          "source_ids": [
+            "fox_genovese_plantation_1988"
           ],
           "basis": "source_review"
         }
@@ -12497,7 +12529,7 @@
       "period": "period_2",
       "hunt_core_paradigm": false,
       "description": "Meaning, symbols, rituals, representation, and practices help constitute social life. Draws on anthropology and multiple historical traditions.",
-      "representative_figures_and_works": "Natalie Zemon Davis; Clifford Geertz as an influence; Lynn Hunt, The New Cultural History (1989).",
+      "representative_figures_and_works": "Natalie Zemon Davis; Lynn Hunt, ed., The New Cultural History (1989), whose “Models for Cultural History” are Foucault (O’Brien), Thompson and Davis (Desan), Geertz (Biersack), and White and LaCapra (Kramer).",
       "source_ids": [
         "culture",
         "james_culture",
@@ -12521,7 +12553,10 @@
         "lacapra_rethinking",
         "clunas_superfluous_primary",
         "geary_sacred_commodities",
-        "levi_geertzism_1985"
+        "levi_geertzism_1985",
+        "obrien_foucault_1989",
+        "foucault",
+        "biersack_geertz_1989"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -12570,7 +12605,8 @@
           "works": "The Interpretation of Cultures (1973)",
           "source_ids": [
             "culture",
-            "geertz"
+            "geertz",
+            "biersack_geertz_1989"
           ],
           "basis": "curated_entry"
         },
@@ -12777,6 +12813,19 @@
             "geary_sacred_commodities"
           ],
           "basis": "source_review"
+        },
+        {
+          "person_id": "foucault",
+          "role": "contributor",
+          "context": "Hunt’s The New Cultural History (1989) opens its “Models for Cultural History” with O’Brien’s chapter on Foucault, which reads his work as an alternative model for the history of culture and a critique of Marxist, Annaliste and social-historical analysis. A model offered to cultural historians, not membership of a school; his discourse, genealogy and power contexts in other entries remain distinct.",
+          "works": "Histoire de la folie (1961); Discipline and Punish (1975); The History of Sexuality I (1976)",
+          "source_ids": [
+            "obrien_foucault_1989",
+            "culture",
+            "foucault"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_766"
         }
       ],
       "entry_type": "Research field",
@@ -12919,6 +12968,21 @@
             "clunas_superfluous_primary"
           ],
           "basis": "editorial_distinction"
+        },
+        {
+          "id": "foucault_model",
+          "title": "Discourse, power and the critique of social history",
+          "person_ids": [
+            "foucault",
+            "roger_chartier",
+            "joan_wallach_scott"
+          ],
+          "focus": "O’Brien presents Foucault’s history of culture as an alternative to Marxist, Annaliste and social-historical analysis. Chartier’s appropriation of his account of discourse and Scott’s use of his conception of power are recorded as separate relationships; this strand does not make them Foucauldians.",
+          "works": "Patricia O’Brien, “Michel Foucault’s History of Culture” (1989)",
+          "source_ids": [
+            "obrien_foucault_1989"
+          ],
+          "basis": "editorial_distinction"
         }
       ]
     },
@@ -12930,7 +12994,7 @@
       "period": "period_2",
       "hunt_core_paradigm": false,
       "description": "Examines how language, narrative, discourse, and power shape historical knowledge and subject formation. Narrative theory, structuralist inheritances, and poststructuralist critiques overlap but are not interchangeable. This node groups debates rather than identifying one school.",
-      "representative_figures_and_works": "Michel Foucault; Jacques Derrida; Hayden White, Metahistory (1973).",
+      "representative_figures_and_works": "Michel Foucault; Jacques Derrida; Hayden White, Metahistory (1973). Richard Rorty, ed.: The Linguistic Turn (1967).",
       "source_ids": [
         "language",
         "white",
@@ -12965,7 +13029,8 @@
         "joyce_visions",
         "toews_experience_metadata",
         "white_metahistory_primary",
-        "canning_experience"
+        "canning_experience",
+        "rorty_linguistic_turn_1967"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -13245,6 +13310,16 @@
           "works": "“Feminist History after the Linguistic Turn” (1994), 374–379",
           "source_ids": [
             "canning_experience"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "richard_rorty",
+          "role": "contributor",
+          "context": "Rorty’s anthology of analytic philosophers’ essays on philosophical method gave the phrase “the linguistic turn” wide currency. Historians’ linguistic turn drew mainly on other, often French, resources, so this records the name’s source, not a lineage.",
+          "works": "The Linguistic Turn (1967), ed.",
+          "source_ids": [
+            "rorty_linguistic_turn_1967"
           ],
           "basis": "source_review"
         }
@@ -13531,7 +13606,7 @@
       "period": "period_2",
       "hunt_core_paradigm": false,
       "description": "Italian microstoria reconstructs relations and tests categories through close inquiry; German Alltagsgeschichte studies everyday practices and power. Neither is defined by small places alone, and their intellectual exchanges do not erase their differences.",
-      "representative_figures_and_works": "Carlo Ginzburg, The Cheese and the Worms (1976); Giovanni Levi; Alf Lüdtke.",
+      "representative_figures_and_works": "Carlo Ginzburg, The Cheese and the Worms (1976); Giovanni Levi; Alf Lüdtke. Natalie Zemon Davis: The Return of Martin Guerre (1983); Martin Broszat et al.: Bayern in der NS-Zeit (1977–83).",
       "source_ids": [
         "micro",
         "ludtke_everyday",
@@ -13547,7 +13622,9 @@
         "levi_biography_uses",
         "revel_scale_primary",
         "gonzalez_pueblo_primary",
-        "arias_pueblo_reception"
+        "arias_pueblo_reception",
+        "davis_martin_guerre_1983",
+        "broszat_bayern_1977"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -13675,6 +13752,26 @@
           "works": "Private archive and household expense notebooks used in Pueblo en vilo",
           "source_ids": [
             "gonzalez_pueblo_primary"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "natalie_zemon_davis",
+          "role": "historian",
+          "context": "The Return of Martin Guerre reconstructs a sixteenth-century village imposture case and is a standard example of microhistory in English. Her cultural and women’s-history contexts remain.",
+          "works": "The Return of Martin Guerre (1983)",
+          "source_ids": [
+            "davis_martin_guerre_1983"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "martin_broszat",
+          "role": "historian",
+          "context": "Led the Institut für Zeitgeschichte’s Bayern in der NS-Zeit project, a founding programme for the history of everyday life under National Socialism. His structuralist interpretation of the regime is a separate context.",
+          "works": "Bayern in der NS-Zeit (1977–1983), ed. with others",
+          "source_ids": [
+            "broszat_bayern_1977"
           ],
           "basis": "source_review"
         }
@@ -15548,7 +15645,7 @@
       "period": "period_3",
       "hunt_core_paradigm": false,
       "description": "Questions imperial knowledge, Eurocentric universals, and the assumption that all societies follow Europe’s historical path.",
-      "representative_figures_and_works": "Edward Said, Orientalism (1978); Gayatri Spivak (1988); Dipesh Chakrabarty, Provincializing Europe (2000).",
+      "representative_figures_and_works": "Edward Said, Orientalism (1978); Gayatri Spivak (1988); Dipesh Chakrabarty, Provincializing Europe (2000). Gyan Prakash: “Writing Post-Orientalist Histories of the Third World” (1990); Stuart Hall: “When Was ‘the Post-colonial’?” (1996); Paul Gilroy: The Black Atlantic (1993).",
       "source_ids": [
         "post",
         "fanon_colonial",
@@ -15561,7 +15658,12 @@
         "stoler_desire",
         "cohn_knowledge",
         "driver_geography_empire",
-        "guha_deep_ecology_1989"
+        "guha_deep_ecology_1989",
+        "prakash_post_orientalist_1990",
+        "prakash_subaltern_postcolonial_1994",
+        "hall_diaspora",
+        "hall_postcolonial_1996",
+        "gilroy"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -15653,6 +15755,38 @@
           "works": "“Orientalist Constructions of India” (1986), especially442, through Guha (1989)",
           "source_ids": [
             "guha_deep_ecology_1989"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "gyan_prakash",
+          "role": "historian",
+          "context": "Historian whose essays set out postcolonial historiography from Indian historiography and read Subaltern Studies as postcolonial criticism. His Subaltern Studies context remains distinct.",
+          "works": "“Writing Post-Orientalist Histories of the Third World” (1990); “Subaltern Studies as Postcolonial Criticism” (1994)",
+          "source_ids": [
+            "prakash_post_orientalist_1990",
+            "prakash_subaltern_postcolonial_1994"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "stuart_hall",
+          "role": "contributor",
+          "context": "Cultural theorist whose essays on diasporic identity and on the category of the “post-colonial” are standard resources in postcolonial critique. His cultural-studies context remains separate.",
+          "works": "“Cultural Identity and Diaspora” (1990); “When Was ‘the Post-colonial’? Thinking at the Limit” (1996)",
+          "source_ids": [
+            "hall_diaspora",
+            "hall_postcolonial_1996"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "paul_gilroy",
+          "role": "contributor",
+          "context": "The Black Atlantic criticizes national and racial closure and reads modernity through the Black Atlantic; a standard postcolonial and diaspora text for historians. His Atlantic and diaspora contexts remain.",
+          "works": "The Black Atlantic (1993)",
+          "source_ids": [
+            "gilroy"
           ],
           "basis": "source_review"
         }
@@ -15775,7 +15909,7 @@
       "period": "period_3",
       "hunt_core_paradigm": false,
       "description": "Studies remembering, commemoration and forgetting through social relations, narratives, bodies and cultural forms. Recollection is evidence requiring interpretation; memory and history are connected in different, contested ways.",
-      "representative_figures_and_works": "Maurice Halbwachs (1925) as a precursor; Pierre Nora, Les Lieux de mémoire (1984–92).",
+      "representative_figures_and_works": "Maurice Halbwachs (1925) as a precursor; Pierre Nora, Les Lieux de mémoire (1984–92). Aby Warburg: Bilderatlas Mnemosyne (1924–29), as precursor.",
       "source_ids": [
         "language",
         "halbwachs_memory",
@@ -15797,7 +15931,8 @@
         "young_vanishing_extract",
         "jelin_memory_1994",
         "rousso_apres_vichy",
-        "yerushalmi_zakhor_scoped"
+        "yerushalmi_zakhor_scoped",
+        "warburg_institution_history"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -15994,6 +16129,17 @@
           "works": "De la amnistía y su contrario, in Usos del olvido (Spanish 1989), as cited by Jelin",
           "source_ids": [
             "jelin_memory_1994"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "aby_warburg",
+          "role": "precursor",
+          "context": "Jan Assmann discusses Warburg with Halbwachs as an early theorist of social and cultural memory, alongside the Warburg Institute’s own account of his library. A precursor in Assmann’s account, not a founder of memory studies as a field.",
+          "works": "Bilderatlas Mnemosyne (1924–29, unfinished)",
+          "source_ids": [
+            "assmann_collective",
+            "warburg_institution_history"
           ],
           "basis": "source_review"
         }
@@ -19970,7 +20116,7 @@
       "period": null,
       "hunt_core_paradigm": false,
       "description": "Critical theorists draw differently on Marx, Weber, and Freud to examine domination, culture, and rationality. Benjamin’s reflections on historical time and Habermas’s public sphere offer distinct resources for historians. Benjamin’s association with the Institute and Habermas’s later work should not imply a single institutional position or doctrine.",
-      "representative_figures_and_works": "Benjamin, “On the Concept of History” (1940); Horkheimer and Adorno, Dialectic of Enlightenment (1944/47); Habermas, The Structural Transformation of the Public Sphere (1962; English 1989).",
+      "representative_figures_and_works": "Benjamin, “On the Concept of History” (1940); Horkheimer and Adorno, Dialectic of Enlightenment (1944/47); Habermas, The Structural Transformation of the Public Sphere (1962; English 1989). Georg Lukács: History and Class Consciousness (1923), as precursor; Siegfried Kracauer.",
       "source_ids": [
         "critical_theory",
         "habermas",
@@ -19986,7 +20132,9 @@
         "marcuse_eros_preface",
         "jay_institute_primary",
         "fromm_freedom_publisher",
-        "hohendahl_sphere_primary"
+        "hohendahl_sphere_primary",
+        "lukacs_orthodox_primary",
+        "jay_kracauer_extraterritorial"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -20213,6 +20361,26 @@
           "works": "Nations, Publics, and Political Cultures, cited by Fraser (1990), note 5",
           "source_ids": [
             "fraser_sphere_primary"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "georg_lukacs",
+          "role": "precursor",
+          "context": "History and Class Consciousness (1923), with its account of reification and of Marxism as method, is the standard precursor of critical theory. Lukács was not a member of the Institute, and his later positions diverge from it.",
+          "works": "History and Class Consciousness (1923)",
+          "source_ids": [
+            "lukacs_orthodox_primary"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "siegfried_kracauer",
+          "role": "contributor",
+          "context": "Critic and essayist of the Frankfurt milieu, close to Adorno and Benjamin but never a member of the Institute. His microhistory context, where Ginzburg records a retrospective affinity, remains distinct.",
+          "works": "Das Ornament der Masse (1963; essays from the 1920s)",
+          "source_ids": [
+            "jay_kracauer_extraterritorial"
           ],
           "basis": "source_review"
         }
@@ -27137,7 +27305,7 @@
       "period": null,
       "hunt_core_paradigm": false,
       "description": "Studies cities and urbanization through institutions, populations, built environments and connections beyond city boundaries. Local reconstruction, quantitative mobility research, colonial spatial analysis and histories of segregation or public landscapes form different approaches.",
-      "representative_figures_and_works": "H. J. Dyos: Urban History Yearbook programme (1974); Sam Bass Warner Jr.: Streetcar Suburbs (1962; second edition 1978); Stephan Thernstrom: Poverty and Progress (1964); Thomas J. Sugrue: The Origins of the Urban Crisis (1996); Anthony D. King: Colonial Urban Development (1976); William Cronon: Nature’s Metropolis (1991); Dolores Hayden: The Power of Place (1995); Lynn Hollen Lees: “The challenge of political change” (1994).",
+      "representative_figures_and_works": "H. J. Dyos: Urban History Yearbook programme (1974); Sam Bass Warner Jr.: Streetcar Suburbs (1962; second edition 1978); Stephan Thernstrom: Poverty and Progress (1964); Thomas J. Sugrue: The Origins of the Urban Crisis (1996); Anthony D. King: Colonial Urban Development (1976); William Cronon: Nature’s Metropolis (1991); Dolores Hayden: The Power of Place (1995); Lynn Hollen Lees: “The challenge of political change” (1994). David Harvey: Social Justice and the City (1973); Walter Benjamin: Das Passagen-Werk (1982); Michel de Certeau: “Walking in the City” (1980).",
       "source_ids": [
         "urban_history_anniversary",
         "warner_streetcar",
@@ -27145,7 +27313,11 @@
         "sugrue_urban_crisis",
         "king_colonial_urban",
         "cronon_urban_reception",
-        "hayden_power_place"
+        "hayden_power_place",
+        "harvey_social_justice_1973",
+        "harvey_place_tradition",
+        "benjamin_arcades_project",
+        "certeau"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -27226,6 +27398,37 @@
           "works": "“The challenge of political change” (1994)",
           "source_ids": [
             "urban_history_anniversary"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "david_harvey",
+          "role": "contributor",
+          "context": "Geographer whose urban political economy and historical studies of the city are standard resources for urban historians. A contributor from geography, not a school member.",
+          "works": "Social Justice and the City (1973); The Condition of Postmodernity (1989)",
+          "source_ids": [
+            "harvey_social_justice_1973",
+            "harvey_place_tradition"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "walter_benjamin",
+          "role": "contributor",
+          "context": "The unfinished Passagen-Werk on nineteenth-century Paris is a central resource for cultural histories of the city, its arcades and commodities. His Frankfurt and memory contexts remain.",
+          "works": "Das Passagen-Werk (1982); The Arcades Project (1999)",
+          "source_ids": [
+            "benjamin_arcades_project"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "michel_de_certeau",
+          "role": "contributor",
+          "context": "“Walking in the City” gives urban historians a vocabulary of spatial practice and everyday use. His practice-theory context remains.",
+          "works": "The Practice of Everyday Life (1980; English 1984)",
+          "source_ids": [
+            "certeau"
           ],
           "basis": "source_review"
         }
@@ -27322,6 +27525,23 @@
           "works": "The Power of Place (1995)",
           "source_ids": [
             "hayden_power_place"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "space_capital_culture",
+          "title": "Space, capital and the cultural city",
+          "person_ids": [
+            "david_harvey",
+            "walter_benjamin",
+            "michel_de_certeau"
+          ],
+          "focus": "Urban political economy (Harvey), the city of arcades and commodities (Benjamin) and spatial practice (de Certeau) supply the spatial and cultural turn in urban history, beside the entry’s social-science programme. They are resources from geography, criticism and theory, not a school.",
+          "works": "Social Justice and the City (1973); Das Passagen-Werk (1982); The Practice of Everyday Life (1980/84)",
+          "source_ids": [
+            "harvey_social_justice_1973",
+            "benjamin_arcades_project",
+            "certeau"
           ],
           "basis": "editorial_distinction"
         }
@@ -42166,6 +42386,22 @@
         "object": "concept:identity_single_axis",
         "note": "Qualified teaching view; read the exact claim endpoints and evidence."
       }
+    },
+    {
+      "id": "edge_766",
+      "source": "foucault",
+      "target": "culture",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "O’Brien presents Foucault’s history of culture as a model for the new cultural history",
+      "map_label": "Foucault’s history of culture as a model for cultural history (O’Brien in Hunt 1989)",
+      "evidence_note": "Hunt’s volume opens its “Models for Cultural History” with O’Brien’s chapter (pp. 25–46), whose opening calls Foucault’s writing “an alternative model for writing the history of culture, a model that embodies a fundamental critique of Marxist and Annaliste analysis, of social history itself.” Checked from the JSTOR chapter preview; the chapter body is unread. This records a model the volume proposes, not uniform adoption by cultural historians.",
+      "source_ids": [
+        "obrien_foucault_1989",
+        "culture"
+      ],
+      "classification_basis": "editorial_review"
     }
   ],
   "sources": [
@@ -42688,9 +42924,16 @@
       "citation": "Michel de Certeau, The Practice of Everyday Life, trans. Steven Rendall (University of California Press, 1984; French original 1980).",
       "url": null,
       "verification": {
-        "status": "not_checked",
-        "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
-      }
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work records checked (raw/certeau_1984.openlibrary.json): de Certeau, Arts de faire / The Practice of Everyday Life, University of California Press. Bibliographic identity only; text unread."
+      },
+      "verification_history": [
+        {
+          "status": "not_checked",
+          "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+        }
+      ]
     },
     {
       "id": "elias",
@@ -51702,6 +51945,138 @@
       "url": "https://dhdebates.gc.cuny.edu/read/untitled/section/4555da10-0561-42c1-9e34-112f0695f523",
       "claim_source_record_id": "source:digital10:blevins_qualification",
       "scope_note": "An attributed 2016 disciplinary assessment, not a field-wide quantitative audit. His later discussion explicitly recognizes interpretation in public-history projects; the distinction concerns organizing priorities, not an absence of arguments."
+    },
+    {
+      "id": "obrien_foucault_1989",
+      "title": "Patricia O’Brien, “Michel Foucault’s History of Culture,” in Lynn Hunt, ed., The New Cultural History (1989), 25–46.",
+      "citation": "Patricia O’Brien, “Michel Foucault’s History of Culture,” in Lynn Hunt, ed., The New Cultural History (University of California Press, 1989), 25–46.",
+      "url": "https://www.jstor.org/stable/10.1525/j.ctt1ppfh6.5",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-28",
+        "note": "JSTOR contents and chapter-opening preview (p. 25) supplied by the user on 2026-09-27; Crossref chapter record 10.1525/9780520908925-003 confirms title and pages. First of the volume’s four “Models for Cultural History”. The opening calls Foucault’s writing “an alternative model for writing the history of culture, a model that embodies a fundamental critique of Marxist and Annaliste analysis, of social history itself.” Chapter body unread; O’Brien’s reading is attributed, not Foucault’s self-description."
+      }
+    },
+    {
+      "id": "biersack_geertz_1989",
+      "title": "Aletta Biersack, “Local Knowledge, Local History: Geertz and Beyond,” in Lynn Hunt, ed., The New Cultural History (1989), 72–96.",
+      "citation": "Aletta Biersack, “Local Knowledge, Local History: Geertz and Beyond,” in Lynn Hunt, ed., The New Cultural History (University of California Press, 1989), 72–96.",
+      "url": "https://www.jstor.org/stable/10.1525/j.ctt1ppfh6.7",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-28",
+        "note": "JSTOR contents and chapter-opening preview (p. 72) supplied by the user on 2026-09-27; Crossref chapter record 10.1525/9780520908925-005 confirms title and pages. Third of the volume’s four models; the opening says historians acknowledge Lévi-Strauss, Turner, Douglas and “in particular, Clifford Geertz”. Chapter body unread."
+      }
+    },
+    {
+      "id": "prakash_post_orientalist_1990",
+      "title": "Gyan Prakash, “Writing Post-Orientalist Histories of the Third World: Perspectives from Indian Historiography,” Comparative Studies in Society and History 32(2) (1990): 383–408.",
+      "citation": "Comparative Studies in Society and History 32(2) (1990): 383–408. DOI 10.1017/S0010417500016534.",
+      "url": "https://doi.org/10.1017/S0010417500016534",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "Crossref record checked (raw/prakash_1990.crossref.json): author, title, journal, volume, issue, pages, April 1990. Body unread; used for authorship and programme title only."
+      }
+    },
+    {
+      "id": "prakash_subaltern_postcolonial_1994",
+      "title": "Gyan Prakash, “Subaltern Studies as Postcolonial Criticism,” American Historical Review 99(5) (1994): 1475–1490.",
+      "citation": "American Historical Review 99(5) (1994): 1475–1490. DOI 10.2307/2168385.",
+      "url": "https://doi.org/10.2307/2168385",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "Crossref records checked (raw/prakash_1994.crossref.json): author, title, AHR 99(5), 1475–1490, December 1994. Body unread."
+      }
+    },
+    {
+      "id": "hall_postcolonial_1996",
+      "title": "Stuart Hall, “When Was ‘the Post-colonial’? Thinking at the Limit” (1996).",
+      "citation": "Stuart Hall, “When Was ‘the Post-colonial’? Thinking at the Limit,” in Iain Chambers and Lidia Curti, eds., The Post-colonial Question (Routledge, 1996); reprinted in Hall, Selected Writings on Marxism (Duke University Press, 2021), 293–315.",
+      "url": "https://doi.org/10.1215/9781478002154-015",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "Crossref records for the 2021 Duke reprint checked (raw/hall_1996.crossref.json), one dating the essay [1996]. The 1996 Chambers and Curti volume was not found in OpenLibrary; its pagination is not asserted. Body unread."
+      }
+    },
+    {
+      "id": "rorty_linguistic_turn_1967",
+      "title": "Richard Rorty, ed., The Linguistic Turn: Recent Essays in Philosophical Method (University of Chicago Press, 1967).",
+      "citation": "Richard Rorty, ed., The Linguistic Turn: Recent Essays in Philosophical Method (University of Chicago Press, 1967).",
+      "url": "https://openlibrary.org/works/OL2018374W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/rorty_1967.openlibrary.json): editor, title, 1967, University of Chicago Press. Introduction and essays unread; supports the anthology and its title, not a lineage to historians’ usage."
+      }
+    },
+    {
+      "id": "jay_kracauer_extraterritorial",
+      "title": "Martin Jay, “The Extraterritorial Life of Siegfried Kracauer.”",
+      "citation": "Martin Jay, “The Extraterritorial Life of Siegfried Kracauer,” first published in Salmagundi (1975–76); collected in Jay, Permanent Exiles (Columbia University Press, 1985); reprinted 2016.",
+      "url": "https://doi.org/10.2307/jj.2353881.17",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "Crossref records of the 2016 reprint checked (raw/jay_kracauer_1975.crossref.json) and OpenLibrary record of Permanent Exiles (1985, raw/jay_permanent_1985.openlibrary.json). The original Salmagundi issue and the essay text were not checked."
+      }
+    },
+    {
+      "id": "davis_martin_guerre_1983",
+      "title": "Natalie Zemon Davis, The Return of Martin Guerre (Harvard University Press, 1983).",
+      "citation": "Natalie Zemon Davis, The Return of Martin Guerre (Harvard University Press, 1983); related French edition with Jean-Claude Carrière and Daniel Vigne, 1982.",
+      "url": "https://openlibrary.org/works/OL771624W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/davis_1983.openlibrary.json): Davis, title, earliest 1982 edition with the film’s screenwriters. Book unread; the English 1983 Harvard edition is cited from the standard bibliography, not collated."
+      }
+    },
+    {
+      "id": "broszat_bayern_1977",
+      "title": "Martin Broszat et al., eds., Bayern in der NS-Zeit (Oldenbourg, 1977–1983).",
+      "citation": "Martin Broszat, Elke Fröhlich, Falk Wiesemann et al., eds., Bayern in der NS-Zeit, 6 vols. (Oldenbourg, 1977–1983).",
+      "url": "https://openlibrary.org/works/OL22590590W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary records checked (raw/broszat_1977.openlibrary.json): Bayern in der NS-Zeit, Broszat and Wiesemann, Oldenbourg, 1977. The six-volume extent and later volumes are not checked here; no volume read."
+      }
+    },
+    {
+      "id": "harvey_social_justice_1973",
+      "title": "David Harvey, Social Justice and the City (Johns Hopkins University Press, 1973).",
+      "citation": "David Harvey, Social Justice and the City (Edward Arnold / Johns Hopkins University Press, 1973).",
+      "url": "https://openlibrary.org/works/OL3232636W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/harvey_1973.openlibrary.json): Harvey, title, 1973, Johns Hopkins. Book unread."
+      }
+    },
+    {
+      "id": "benjamin_arcades_project",
+      "title": "Walter Benjamin, Das Passagen-Werk (1982); The Arcades Project, trans. Howard Eiland and Kevin McLaughlin (Harvard University Press, 1999).",
+      "citation": "Walter Benjamin, Das Passagen-Werk, ed. Rolf Tiedemann (Suhrkamp, 1982); The Arcades Project (Belknap Press of Harvard University Press, 1999).",
+      "url": "https://openlibrary.org/works/OL156207W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/benjamin_1999.openlibrary.json): Benjamin, Passagen-Werk, Belknap/Harvard among publishers. Unfinished work; editions not collated and text unread."
+      }
+    },
+    {
+      "id": "fox_genovese_plantation_1988",
+      "title": "Elizabeth Fox-Genovese, Within the Plantation Household: Black and White Women of the Old South (University of North Carolina Press, 1988).",
+      "citation": "Elizabeth Fox-Genovese, Within the Plantation Household: Black and White Women of the Old South (University of North Carolina Press, 1988).",
+      "url": "https://openlibrary.org/works/OL2801662W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/fox_genovese_1988.openlibrary.json): author, title, 1988, University of North Carolina Press. Book unread."
+      }
     }
   ],
   "revision_history": [
@@ -56281,6 +56656,30 @@
       "date": "2026-09-19",
       "acceptance_record": "data/production-batches/extension-1.123/acceptance.json",
       "summary": "Accept the revised digital/web selection: two research-field entries, seventeen selected works, twenty-seven historical claims, thirty-one author credits, two version links, twenty contextual strands and twenty-six shared people. Practitioner contributions and critical scholarship coexist; no new teaching arrows. Exact 2000 baseline remains 1.121; no field-completeness claim."
+    },
+    {
+      "version": "1.124",
+      "date": "2026-09-28",
+      "summary": "Figure gaps: fifteen figures the review record ties to fields the atlas never named, approved by the user. Foucault joins New cultural history as the first of Hunt’s 1989 models, with a contribution edge and a strand; Prakash, Hall and Gilroy join postcolonial history; Rorty the linguistic turn; Lukács (precursor) and Kracauer the Frankfurt School; Davis and Broszat microhistory; Harvey, Benjamin and de Certeau urban history, with a strand; Davidoff (with coauthor Catherine Hall) and Fox-Genovese women’s history; Warburg (precursor) memory studies. No new people or full person nodes; no post-2000 imports.",
+      "added_source_ids": [
+        "obrien_foucault_1989",
+        "biersack_geertz_1989",
+        "prakash_post_orientalist_1990",
+        "prakash_subaltern_postcolonial_1994",
+        "hall_postcolonial_1996",
+        "rorty_linguistic_turn_1967",
+        "jay_kracauer_extraterritorial",
+        "davis_martin_guerre_1983",
+        "broszat_bayern_1977",
+        "harvey_social_justice_1973",
+        "benjamin_arcades_project",
+        "fox_genovese_plantation_1988"
+      ],
+      "added_edge_ids": [
+        "edge_766"
+      ],
+      "audit": "data/evidence-layer/audits/figure-gaps-2026-09-27/README.md",
+      "acceptance_record": "data/production-batches/figure-gaps-1.124/acceptance.json"
     }
   ],
   "people": [
