@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-12, revision 1.128):** 155 entries, 889
-relationships, 1,470 sources, 1,188 shared people. Revision 1.128 adds eighteen
+**Current implementation (2026-10-13, revision 1.129):** 158 entries, 897
+relationships, 1,486 sources, 1,188 shared people. Revision 1.129 adds person entries for
+McKay, Innis and Wolfe and links Thompson and Scott to the Canadian fields
+([acceptance](data/production-batches/canadian-person-links-1.129/README.md)). Revision 1.128 adds eighteen
 entries for historiography in Canada and a twelfth landing family
 ([acceptance](data/production-batches/canadian-1.128/README.md)). The family landing, journal
 venues and exact-2000 baseline are implemented. The student beta adds deferred

@@ -109,7 +109,7 @@ def build():
             if r.get('roster_row'):
                 roster_edges.append(dict(node=r['roster_row'], person_id=d['node']['id'], proposal_id=r['proposal_id']))
         sources += [s for s in d['new_sources'] if s['id'] not in {x['id'] for x in sources}]
-        for sid, note in (d.get('source_addenda') or {}).items():  # plain notes of pages read
+        for sid, note in {**(d.get('source_addenda') or {}), **(d.get('proposed_source_addenda') or {})}.items():  # pages read
             add = note if isinstance(note, dict) else dict(status='supporting_page_checked', checked_on=DAY,
                                                            note=note.removeprefix(f'Addendum {DAY} (Claude): '))
             if sid in addenda:

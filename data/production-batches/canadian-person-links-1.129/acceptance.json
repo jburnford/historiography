@@ -1,0 +1,1997 @@
+{
+  "revision": "1.129",
+  "date": "2026-10-13",
+  "authorization": "User, 2026-10-13: add the top three person entries by Canadian PhD uptake (Scott, Hall, Thompson) and Patrick Wolfe; each edge needs checked pre-2000 evidence.",
+  "baseline": "drafts/historiography-1920-2000.v1.128.json",
+  "baseline_sha256": "96dbf6b07032215ee681fa66e86bea54afb5e2a2f437acee03bad0c2afe7b17e",
+  "packet": "data/extension-2026/canadian-person-links-2026-10-13/release/editorial-additions.json",
+  "packet_sha256": "5c8abf37811598b925a6897c6d5f4332ef5748f9019afdb295f3ace2d83448d2",
+  "production_sha256": "dbc60b010e1a48b35c9a90aa7d9976a6d0993cfcef20d322ae34263a4880e31e",
+  "previous_table_lengths": {
+    "nodes": 155,
+    "people": 1188,
+    "edges": 889,
+    "sources": 1470,
+    "revision_history": 128
+  },
+  "prior_records": {
+    "people": {
+      "patrick_wolfe": {
+        "id": "patrick_wolfe",
+        "label": "Patrick Wolfe",
+        "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+      },
+      "harold_a_innis": {
+        "id": "harold_a_innis",
+        "label": "Harold A. Innis",
+        "identity_note": "Canadian historiography revision 1.128 participant. Roster inclusion does not establish external identity resolution; any Wikidata match is recorded separately."
+      },
+      "ian_mckay": {
+        "id": "ian_mckay",
+        "label": "Ian McKay",
+        "identity_note": "Canadian historiography revision 1.128 participant. Roster inclusion does not establish external identity resolution; any Wikidata match is recorded separately."
+      }
+    },
+    "edges": {
+      "edge_886": {
+        "id": "edge_886",
+        "source": "marx",
+        "target": "cdn_working_class",
+        "relationship": "Thompsonian class and culture in Canadian labour history",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "wcreq_mcnaught_1981",
+          "wcreq_kealey_1981"
+        ],
+        "evidence_note": "McNaught’s 1981 title frames the decade’s Canadian labour writing as ‘E. P. Thompson vs Harold Logan’, and Kealey’s 1981 essay strongly defends class analysis and the study of working-class culture. A contribution of resources to the ‘new labour history: class, culture and community’ strand; no claim that Canadian historians adopted one Marxist theory. PhD context: E. P. Thompson is cited by 106 PhDs 2009–2026, The Making of the English Working Class by 56.",
+        "classification_basis": "editorial_review",
+        "map_label": "Thompson and the new labour history",
+        "target_strand": "cdn_working_class/class_culture_community",
+        "proposal_id": "wcreq_rel_01"
+      }
+    },
+    "sources": {
+      "cdng_mckay_2000_region": {
+        "id": "cdng_mckay_2000_region",
+        "title": "Ian McKay, \"A Note on 'Region' in Writing the History of Atlantic Canada,\" Acadiensis 29, no. 2 (Spring 2000): 89–101.",
+        "url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10784",
+        "citation": "Ian McKay, \"A Note on 'Region' in Writing the History of Atlantic Canada,\" Acadiensis 29, no. 2 (Spring 2000): 89–101.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Pages 89–90 read: a 1997 workshop programme dominated by gender, ethnicity and community rather than \"regional underdevelopment, class conflict and the position of the Atlantic Provinces within Confederation\"; this pluralism continues \"the social-history revolution of the 1960s and 1970s\" but \"places a question mark over the very concept of an 'Atlantic Canada'\". Checked against: UNB Libraries Acadiensis article page and PDF (citation line on p. 89)."
+        },
+        "scope_note": "A critique of region as a container for the new histories."
+      },
+      "cdng_salmon_1997": {
+        "id": "cdng_salmon_1997",
+        "title": "M. Stephen Salmon, \"A Bull Market: The Recent Historiography of Canadian Economic Development,\" Archivaria (1997): 180–188.",
+        "url": "https://archivaria.ca/index.php/archivaria/article/view/12182",
+        "citation": "M. Stephen Salmon, \"A Bull Market: The Recent Historiography of Canadian Economic Development,\" Archivaria (1997): 180–188.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Opening read: Innis's Fur Trade was \"for a generation the most influential English Canadian historical work\"; its staple thesis \"provided an economic rationale for Canadian political development\"; Creighton \"simplified and expanded Innis' thesis by making the English and Scots merchants of early nineteenth-century Montreal the spiritual fathers of Confederation.\" Salmon dates Fur Trade to 1929 (catalogues give 1930). Volume number not checked. Checked against: Archivaria article page metadata (citation_date 1997, pp. 180–188); opening text via OpenAlex W1511360148."
+        },
+        "scope_note": "Innis-to-Creighton line of the Laurentian interpretation; Creighton's political turn."
+      },
+      "cdnsrc_parr_1995": {
+        "id": "cdnsrc_parr_1995",
+        "title": "Joy Parr, \"Gender History and Historical Practice,\" Canadian Historical Review 76, no. 3 (1995): 354–376.",
+        "url": "https://doi.org/10.3138/chr-076-03-03",
+        "citation": "Joy Parr, \"Gender History and Historical Practice,\" Canadian Historical Review 76, no. 3 (1995): 354–376.",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-12",
+          "note": "Metadata checked; only the opening paragraph (on the elusiveness of \"definitive\" history) was read, which does not yet state the argument about gender. Treated as title-level for the argument. Checked against: Crossref DOI record; opening text via OpenAlex."
+        },
+        "scope_note": "Opening paragraph only."
+      },
+      "wcreq_bercuson_1981": {
+        "id": "wcreq_bercuson_1981",
+        "title": "David J. Bercuson, “Through the Looking-Glass of Culture: An Essay on the New Labour History and Working-Class Culture in Recent Canadian Historical Writing,” Labour/Le Travailleur 7 (1981): 95–112.",
+        "url": "https://doi.org/10.2307/25140023",
+        "citation": "David J. Bercuson, “Through the Looking-Glass of Culture: An Essay on the New Labour History and Working-Class Culture in Recent Canadian Historical Writing,” Labour/Le Travailleur 7 (1981): 95–112.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Abstract read: an analysis of “the concept of working-class culture as applied by some practitioners of the new labour history in Canada”; questions “the validity of using such a general framework” — the evidence at times supports working-class culture as an important determinant and at other times does not; argues that to insist history be studied “from the bottom up” is “as predeterministic as the notion that it should be studied ‘from the top down.’” Published in the issue’s Critiques section; Kealey replies in the same issue (wcreq_kealey_1981). Checked against: Labour/Le Travail article page with abstract, https://lltjournal.ca/index.php/llt/article/view/2658 (read 2026-10-12); Crossref DOI record (JSTOR); answers/verification.json Q29."
+        },
+        "scope_note": "Bercuson’s 1981 critique of working-class culture as an explanatory framework (abstract)."
+      },
+      "wcreq_kealey_1981": {
+        "id": "wcreq_kealey_1981",
+        "title": "Gregory S. Kealey, “Labour and Working-Class History in Canada: Prospects in the 1980s,” Labour/Le Travailleur 7 (1981): 67–94.",
+        "url": "https://doi.org/10.2307/25140022",
+        "citation": "Gregory S. Kealey, “Labour and Working-Class History in Canada: Prospects in the 1980s,” Labour/Le Travailleur 7 (1981): 67–94.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Abstract read: a contribution to the debate on the direction of social and working-class history, commenting on periodization, regionalism, ethnicity and culture; class analysis and the utility of culture for the study of Canadian workers are strongly defended. End page inferred from Bercuson’s start page; confirm. Checked against: Crossref DOI record; OpenAlex abstract (English and French)."
+        },
+        "scope_note": "Kealey’s defence of class analysis and culture in the 1981 exchange."
+      }
+    },
+    "nodes": {
+      "cdn_national_tradition": {
+        "id": "cdn_national_tradition",
+        "label": "Laurentian & national tradition",
+        "date_label": "Staple studies 1923–40 · Creighton 1937 · Lower 1946 · Careless 1954 · Centenary Series volumes 1964–85 · Berger's analysis 1976 · coverage through 2000",
+        "layer": "historiographical_developments",
+        "period": "period_0",
+        "hunt_core_paradigm": false,
+        "description": "English-Canadian historical writing that took the transcontinental nation-state as its frame, from the interwar years to the centennial. Its economic core is the staple approach: Innis's studies of the fur trade (1930) and cod fisheries (1940) read Canada's development through exports to imperial centres, an approach Watkins later called Canada's most distinctive contribution to political economy. Creighton's Commercial Empire of the St. Lawrence (1937) simplified and expanded Innis's thesis, making Montreal's merchants the 'spiritual fathers' of Confederation; his Macdonald biography followed. Liberal nationalists such as Lower and Underhill and conservative nationalists such as Creighton and Stacey disagreed politically while sharing the nation-state as the frame of reference. Careless offered a metropolitan interpretation (1954), which Donald Davis (1985) found indeterminate, and Morton asked in 1946 on what critical premises the established interpretations rested. The Canadian Centenary Series, from 1964, gathered national syntheses, including translated volumes by the Quebec historians Trudel and Ouellet. Cook's and Careless's 'limited identities' (1967, 1969) and the new regional history of Acadiensis (1971) challenged the frame, and Berger's Writing of Canadian History (1976) analysed the English-Canadian tradition as a historiographical subject. French-Canadian historians such as Michel Brunet pursued a rival national vision, treated under Quebec historiography.",
+        "representative_figures_and_works": "Mackintosh, \"Economic Factors in Canadian History\" (1923); Innis, The Fur Trade in Canada (1930) and The Cod Fisheries (1940); Creighton, The Commercial Empire of the St. Lawrence (1937) and John A. Macdonald (1952, 1955); Lower, Colony to Nation (1946); Underhill, In Search of Canadian Liberalism (1960); Careless, \"Frontierism, Metropolitanism, and Canadian History\" (1954); Morton, \"Clio in Canada\" (1946) and The Kingdom of Canada (1963); Canadian Centenary Series volumes by Morton (1964), Neatby (1966), Trudel (1973), Brown and Cook (1974), Ouellet (1980). Restatement: Watkins (1963). Analysis: Berger, The Writing of Canadian History (1976, 1986); Buckner (2000); Miville (2016). Critics: Cook (1967), Careless (1969), Buckner (1971), Davis (1985).",
+        "source_ids": [
+          "cic_berger_1976",
+          "cdng_brown_cook_1974",
+          "cdng_buckner_2000",
+          "cdng_careless_1954",
+          "cdng_careless_1969",
+          "cdng_cook_1967",
+          "cdng_creighton_1937",
+          "cdng_creighton_macdonald",
+          "cdng_davis_1985",
+          "cdng_innis_1930",
+          "cdng_innis_1940",
+          "cdng_lower_1938",
+          "cdng_lower_1946",
+          "cdng_mackintosh_1923",
+          "cdng_miville_2016",
+          "cdng_morton_1946",
+          "cdng_morton_1963",
+          "cdng_morton_1964",
+          "cdng_neatby_1966",
+          "cdng_ouellet_1980",
+          "cdng_salmon_1997",
+          "cdng_stanley_1936",
+          "cdng_thompson_seager_1985",
+          "cdng_trudel_1973",
+          "cdng_underhill_1960",
+          "cdng_watkins_1963"
+        ],
+        "entry_kind": "group",
+        "entry_type": "Teaching umbrella",
+        "scope_note": "A teaching umbrella, not one school. The staple approach (political economy), Creighton's Laurentian narrative, liberal and conservative nationalisms, metropolitanism and the Centenary Series are distinct projects; roster inclusion is not membership. The label avoids 'Laurentian school': no checked source uses that phrase. French-Canadian and Quebec national historiography belongs to Quebec historiography: Trudel and Ouellet are named only in the Centenary Series strand, and the Creighton–Brunet comparison is carried by the relationship note, not the roster. Stacey (official history, external policy) is placed in Canadian military history and Political, international & national history; Stanley appears as a secondary row for The Birth of Western Canada. Critics appear as critics.",
+        "date_span": {
+          "start": 1923,
+          "start_kind": "selected_milestone",
+          "end": 2000,
+          "end_kind": "coverage_limit",
+          "precision": "year",
+          "basis": "Selected publication milestones only. 1923 is an early economic interpretation, not the tradition's origin; the tradition has no end date, and its works remain in use (Fur Trade cited by 49 PhDs, 2009–2026). Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        },
+        "representative_people": [
+          {
+            "person_id": "w_a_mackintosh",
+            "role": "precursor",
+            "context": "An interwar economic interpretation of Canadian history in the CHR (1923); title-level only, not a founding claim for the staple approach.",
+            "works": "\"Economic Factors in Canadian History\" (1923)",
+            "source_ids": [
+              "cdng_mackintosh_1923"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "harold_a_innis",
+            "role": "historian",
+            "context": "Watkins calls him \"the leading innovator\" of the staple approach, whose fur-trade and cod-fishery studies \"stamped the 'school'\"; Salmon calls The Fur Trade \"for a generation the most influential English Canadian historical work\". Books unread here.",
+            "works": "The Fur Trade in Canada (1930); The Cod Fisheries (1940)",
+            "source_ids": [
+              "cdng_innis_1930",
+              "cdng_innis_1940",
+              "cdng_watkins_1963",
+              "cdng_salmon_1997"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "donald_creighton",
+            "role": "historian",
+            "context": "Salmon: Creighton \"simplified and expanded Innis' thesis\" by making Montreal's merchants the \"spiritual fathers of Confederation\"; Buckner lists him as a conservative nationalist. Biographer of Macdonald. Miville compares him with Michel Brunet as a public intellectual.",
+            "works": "The Commercial Empire of the St. Lawrence (1937); John A. Macdonald (1952, 1955)",
+            "source_ids": [
+              "cdng_creighton_1937",
+              "cdng_creighton_macdonald",
+              "cdng_salmon_1997",
+              "cdng_buckner_2000",
+              "cdng_miville_2016"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "a_r_m_lower",
+            "role": "historian",
+            "context": "Named by Buckner (2000) as a liberal nationalist who, like conservative nationalists, took the Canadian nation-state as the frame of reference. Also wrote on the forest trade (1938).",
+            "works": "The North American Assault on the Canadian Forest (1938); Colony to Nation (1946)",
+            "source_ids": [
+              "cdng_lower_1938",
+              "cdng_lower_1946",
+              "cdng_buckner_2000"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "frank_h_underhill",
+            "role": "historian",
+            "context": "A liberal nationalist in Buckner's account, quoted on Canadians' ability \"to do great things together in the future\". Essays unread.",
+            "works": "In Search of Canadian Liberalism (1960)",
+            "source_ids": [
+              "cdng_underhill_1960",
+              "cdng_buckner_2000"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "j_m_s_careless",
+            "role": "historian",
+            "context": "A metropolitan interpretation (1954; article unread) and, in 1969, the popular statement of \"limited identities\" that turned the tradition toward region, culture and class (Buckner 2000). Donald Davis (1985) later questioned metropolitan theses.",
+            "works": "\"Frontierism, Metropolitanism, and Canadian History\" (1954); \"'Limited Identities' in Canada\" (1969)",
+            "source_ids": [
+              "cdng_careless_1954",
+              "cdng_careless_1969",
+              "cdng_buckner_2000",
+              "cdng_davis_1985"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "w_l_morton",
+            "role": "historian",
+            "context": "Asked in 1946 \"upon what critical premises\" the established interpretations of Canadian history rested (abstract); wrote a one-volume national history and a Centenary Series volume.",
+            "works": "\"Clio in Canada\" (1946); The Kingdom of Canada (1963); The Critical Years (1964)",
+            "source_ids": [
+              "cdng_morton_1946",
+              "cdng_morton_1963",
+              "cdng_morton_1964"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "george_f_g_stanley",
+            "role": "historian",
+            "context": "Secondary row (editorial decision, 2026-10-12), kept so that the Riel interpretation of The Birth of Western Canada (1936) is represented; it remains among the most-cited national-era works in the PhD corpus (24 PhDs, 2009–2026). Interpretation not checked here.",
+            "works": "The Birth of Western Canada (1936)",
+            "source_ids": [
+              "cdng_stanley_1936"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "hilda_neatby",
+            "role": "historian",
+            "context": "Author of the Centenary Series volume on Quebec after the Conquest (1966); catalogue level only.",
+            "works": "Quebec: The Revolutionary Age, 1760–1791 (1966)",
+            "source_ids": [
+              "cdng_neatby_1966"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robert_craig_brown",
+            "role": "historian",
+            "context": "Co-author of the Centenary Series volume Canada 1896–1921 (1974), the most-cited national synthesis in this set (34 PhDs, 2009–2026), and Borden's biographer.",
+            "works": "Canada 1896–1921: A Nation Transformed (1974, with Ramsay Cook)",
+            "source_ids": [
+              "cdng_brown_cook_1974"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ramsay_cook",
+            "role": "contributor",
+            "context": "Co-author of a Centenary Series volume (1974) and, by Buckner's account, the coiner of \"limited identities\" (1967), which reoriented the national frame.",
+            "works": "Canada 1896–1921 (1974, with Brown); \"Canadian Centennial Cerebrations\" (1967)",
+            "source_ids": [
+              "cdng_brown_cook_1974",
+              "cdng_cook_1967",
+              "cdng_buckner_2000"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "melville_h_watkins",
+            "role": "contributor",
+            "context": "Restated the staple approach as a theory of economic growth (1963) and described it as Canada's \"most distinctive contribution to political economy\".",
+            "works": "\"A Staple Theory of Economic Growth\" (1963)",
+            "source_ids": [
+              "cdng_watkins_1963"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "carl_berger",
+            "role": "historian",
+            "context": "Analyses the English-Canadian tradition in The Writing of Canadian History (1976; 2nd ed. 1986), cited by 48 PhDs (2009–2026). Book unread; its subtitle limits the subject to English-Canadian writing.",
+            "works": "The Writing of Canadian History (1976, 1986)",
+            "source_ids": [
+              "cic_berger_1976"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "donald_f_davis",
+            "role": "critic",
+            "context": "Argues there is no single metropolitan thesis and that urban historians should abandon the metropolitan approach (1985, abstract).",
+            "works": "\"The 'Metropolitan Thesis' and the Writing of Canadian Urban History\" (1985)",
+            "source_ids": [
+              "cdng_davis_1985"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "strands": [
+          {
+            "id": "staples",
+            "title": "The staple approach",
+            "focus": "Development read through the export of raw materials. Watkins names Innis the innovator of a Canadian \"school\" whose approach was \"technological history writ large\" rather than growth theory; Mackintosh 1923 is an earlier economic interpretation (title only).",
+            "person_ids": [
+              "w_a_mackintosh",
+              "harold_a_innis",
+              "melville_h_watkins",
+              "a_r_m_lower"
+            ],
+            "works": "W. A. Mackintosh, \"Economic Factors in Canadian History,\" Canadian Historical Review 4, no. 1 (1923): 12–25.; Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930; rev. ed. Toronto: University of Toronto Press, 1956).; Harold A. Innis, The Cod Fisheries: The History of an International Economy (New Haven: Yale University Press; Toronto: Ryerson Press, for the Carnegie Endowment for International Peace, 1940).; A. R. M. Lower, The North American Assault on the Canadian Forest (Toronto: Ryerson Press; New Haven: Yale University Press, 1938).; Melville H. Watkins, \"A Staple Theory of Economic Growth,\" Canadian Journal of Economics and Political Science 29, no. 2 (1963): 141–158.",
+            "source_ids": [
+              "cdng_mackintosh_1923",
+              "cdng_innis_1930",
+              "cdng_innis_1940",
+              "cdng_lower_1938",
+              "cdng_watkins_1963"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "laurentian",
+            "title": "The Laurentian narrative",
+            "focus": "Salmon: Creighton simplified and expanded Innis by making Montreal merchants the founders of Confederation, so that politics remained the centre of the historiography. Creighton's Macdonald biography follows.",
+            "person_ids": [
+              "donald_creighton",
+              "harold_a_innis"
+            ],
+            "works": "Donald Creighton, The Commercial Empire of the St. Lawrence, 1760–1850 (Toronto: Ryerson Press; New Haven: Yale University Press, 1937); reissued as The Empire of the St. Lawrence (1956; Toronto: University of Toronto Press, 2002).; Donald Creighton, John A. Macdonald, 2 vols. (Toronto: Macmillan, 1952, 1955); vol. 2, The Old Chieftain (1955).; M. Stephen Salmon, \"A Bull Market: The Recent Historiography of Canadian Economic Development,\" Archivaria (1997): 180–188.",
+            "source_ids": [
+              "cdng_creighton_1937",
+              "cdng_creighton_macdonald",
+              "cdng_salmon_1997"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "liberal_conservative_nationalists",
+            "title": "Liberal and conservative nationalists",
+            "focus": "Buckner (2000): Lower and Underhill (liberal) and Creighton and Stacey (conservative) differed politically while accepting the nation-state as the frame; he likens the approach to the US consensus school. Stacey is named as Buckner names him; his roster rows are in Canadian military history and Political, international & national history.",
+            "person_ids": [
+              "a_r_m_lower",
+              "frank_h_underhill",
+              "donald_creighton"
+            ],
+            "works": "A. R. M. Lower, Colony to Nation: A History of Canada (Toronto: Longmans, Green, 1946).; Frank H. Underhill, In Search of Canadian Liberalism (Toronto: Macmillan, 1960).; P. A. Buckner, \"'Limited Identities' Revisited: Regionalism and Nationalism in Canadian History,\" Acadiensis 30, no. 1 (Autumn 2000): 4–15.",
+            "source_ids": [
+              "cdng_lower_1946",
+              "cdng_underhill_1960",
+              "cdng_buckner_2000"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "metropolitanism",
+            "title": "Metropolitanism and its critics",
+            "focus": "Careless's metropolitan interpretation (1954; unread) and Davis's argument (1985) that metropolitan theses are several, indeterminate about class, and best abandoned by urban historians.",
+            "person_ids": [
+              "j_m_s_careless",
+              "donald_f_davis"
+            ],
+            "works": "J. M. S. Careless, \"Frontierism, Metropolitanism, and Canadian History,\" Canadian Historical Review 35, no. 1 (1954): 1–21.; Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+            "source_ids": [
+              "cdng_careless_1954",
+              "cdng_davis_1985"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "premises",
+            "title": "Questioning the premises",
+            "focus": "Morton (1946) asks on what critical premises the established interpretations of Canadian history rest and what their effect has been (abstract only; the interpretations he means are not named there).",
+            "person_ids": [
+              "w_l_morton"
+            ],
+            "works": "W. L. Morton, \"Clio in Canada: The Interpretation of Canadian History,\" University of Toronto Quarterly 15, no. 3 (1946): 227–234.; W. L. Morton, The Kingdom of Canada: A General History from Earliest Times (Toronto: McClelland and Stewart; Indianapolis: Bobbs-Merrill, 1963).",
+            "source_ids": [
+              "cdng_morton_1946",
+              "cdng_morton_1963"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "centenary_series",
+            "title": "The Canadian Centenary Series",
+            "focus": "A multi-volume national history (volumes 1964–85 selected here) whose catalogue records show translated volumes by Marcel Trudel (1973) and Fernand Ouellet (1980) beside English-Canadian authors. Trudel and Ouellet are named here for those volumes only; both are placed in Quebec historiography, not on this roster. Editorial direction not checked.",
+            "person_ids": [
+              "w_l_morton",
+              "hilda_neatby",
+              "robert_craig_brown",
+              "ramsay_cook"
+            ],
+            "works": "W. L. Morton, The Critical Years: The Union of British North America, 1857–1873, Canadian Centenary Series (Toronto: McClelland and Stewart, 1964).; Hilda Neatby, Quebec: The Revolutionary Age, 1760–1791, Canadian Centenary Series 6 (Toronto: McClelland and Stewart, 1966).; Marcel Trudel, The Beginnings of New France, 1524–1663, trans. Patricia Claxton, Canadian Centenary Series 2 (Toronto: McClelland and Stewart, 1973).; Robert Craig Brown and Ramsay Cook, Canada 1896–1921: A Nation Transformed, Canadian Centenary Series 14 (Toronto: McClelland and Stewart, 1974).; Fernand Ouellet, Lower Canada, 1791–1840: Social Change and Nationalism, trans. and adapted by Patricia Claxton, Canadian Centenary Series (Toronto: McClelland and Stewart, 1980).; John Herd Thompson with Allen Seager, Canada 1922–1939: Decades of Discord, Canadian Centenary Series 15 (Toronto: McClelland and Stewart, 1985).",
+            "source_ids": [
+              "cdng_morton_1964",
+              "cdng_neatby_1966",
+              "cdng_trudel_1973",
+              "cdng_brown_cook_1974",
+              "cdng_ouellet_1980",
+              "cdng_thompson_seager_1985"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "analysing_tradition",
+            "title": "The tradition as historiography",
+            "focus": "Berger's Writing of Canadian History (1976) makes the English-Canadian tradition an object of study; Miville (2016) compares Creighton with Michel Brunet (placed in Quebec historiography; the comparison is carried by edge_799); Buckner (2000) reconstructs the pre-1960s consensus and its unravelling into limited identities.",
+            "person_ids": [
+              "carl_berger",
+              "donald_creighton",
+              "ramsay_cook",
+              "j_m_s_careless"
+            ],
+            "works": "Carl Berger, The Writing of Canadian History: Aspects of English-Canadian Historical Writing, 1900–1970 (Toronto: Oxford University Press, 1976); 2nd ed., … since 1900 (Toronto: University of Toronto Press, 1986).; Serge Miville, \"L'historien dans la cité: l'œuvre intellectuelle de Donald Creighton et de Michel Brunet\" (PhD dissertation, York University, 2016).; P. A. Buckner, \"'Limited Identities' Revisited: Regionalism and Nationalism in Canadian History,\" Acadiensis 30, no. 1 (Autumn 2000): 4–15.; Ramsay Cook, \"Canadian Centennial Cerebrations,\" International Journal 22, no. 4 (1967): 659–663.; J. M. S. Careless, \"'Limited Identities' in Canada,\" Canadian Historical Review 50, no. 1 (1969): 1–10.",
+            "source_ids": [
+              "cic_berger_1976",
+              "cdng_miville_2016",
+              "cdng_buckner_2000",
+              "cdng_cook_1967",
+              "cdng_careless_1969"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      },
+      "cdn_intellectual_cultural": {
+        "id": "cdn_intellectual_cultural",
+        "label": "English-Canadian intellectual & cultural history",
+        "date_label": "Berger 1970, 1976 · McKillop 1979 · Owram 1980, 1986 · cultural turn: McKay 1994, Vance 1997, Nelles 1999 · coverage through 2000; selected later readings",
+        "layer": "historiographical_developments",
+        "period": "period_2",
+        "hunt_core_paradigm": false,
+        "description": "English-Canadian intellectual and cultural history studies how Canadians thought about empire, nation, religion, science and the state, and later how traditions, myths and public memories were made. Carl Berger's The Sense of Power (1970) examined imperialist ideas of Canadian character and mission and argued that Canadian imperialism was one form of Canadian nationalism; his The Writing of Canadian History (1976) made English-Canadian historical writing itself a subject. A. B. McKillop, Marlene Shore and Doug Owram followed ideas into the university, social science, western expansion and the interwar 'service state'. Ramsay Cook's The Regenerators (1985) joined the field to religious history. Critics charged it with what Clarence Karr (1989) called a 'narrow, elitist, biographical methodology': group biographies of academics, journalists and clergy that said little about what most Canadians thought. Susan Mann Trofimenkoff (1979) had argued that a field anchored to nationalism left women almost invisible. From the 1990s a cultural history of invention and memory developed alongside it. Ian McKay's The Quest of the Folk (1994) showed tourism promoters and cultural producers refashioning Nova Scotians as a simple folk. Daniel Francis wrote on the 'imaginary Indian' and national myths, and Jonathan Vance on the memory of the First World War. H. V. Nelles, Keith Walden, E. A. Heaman and Ian Radforth studied pageants, exhibitions and royal tours, and Colin Coates and Cecilia Morgan the commemoration of heroines. Yvan Lamonde's social history of ideas in Quebec runs on a separate francophone track.",
+        "representative_figures_and_works": "Berger, The Sense of Power (1970), The Writing of Canadian History (1976; 1986), Science, God, and Nature in Victorian Canada (1983); Cook, The Maple Leaf Forever (1971), The Regenerators (1985); McKillop, A Disciplined Intelligence (1979), Matters of Mind (1994); Owram, Promise of Eden (1980), The Government Generation (1986); Shore, The Science of Social Redemption (1987); Litt (1992); Vipond (1992); Francis, The Imaginary Indian (1992), National Dreams (1997); McKay, The Quest of the Folk (1994); Vance, Death So Noble (1997); Walden (1997); Heaman, The Inglorious Arts of Peace (1999); Nelles, The Art of Nation-Building (1999); Coates and Morgan, Heroines and History (2002); Radforth, Royal Spectacle (2004); Igartua (2006). Critiques: Trofimenkoff, “Nationalism, Feminism & Canadian Intellectual History” (1979); Karr, “What Happened to Canadian Intellectual History?” (1989). Comparisons: Lamonde, Histoire sociale des idées au Québec (2000); Lears, No Place of Grace (1981).",
+        "source_ids": [
+          "cic_berger_1970",
+          "cic_berger_1976",
+          "cic_berger_1983",
+          "cic_coates_morgan_2002",
+          "cic_cook_1971",
+          "crr_cook_1985",
+          "cic_francis_1992",
+          "cic_francis_1997",
+          "crr_gauvreau_1991",
+          "cic_heaman_1999",
+          "cic_igartua_2006",
+          "cic_karr_1989",
+          "cic_lamonde_2000",
+          "cic_lamonde_2001",
+          "cic_lears_1981",
+          "cic_litt_1992",
+          "cic_mckay_1994",
+          "cic_mckay_bates_2010",
+          "cic_mckillop_1979",
+          "cic_mckillop_1994",
+          "cic_mckillop_1999",
+          "lof_mcnairn_2009",
+          "cic_morgan_2016",
+          "cic_nelles_1999",
+          "cic_owram_1980",
+          "cic_owram_1986",
+          "cic_radforth_2004",
+          "cic_shore_1987",
+          "cic_trofimenkoff_1979",
+          "cic_vance_1997",
+          "cic_vipond_1992",
+          "cic_walden_1997"
+        ],
+        "entry_kind": "group",
+        "entry_type": "Research field",
+        "scope_note": "English-Canadian by design; Quebec's histoire sociale des idées is a comparison (Lamonde). Intellectual history (ideas, intellectuals, the university) and cultural history (spectacle, myth, memory) are distinct strands with different methods. The religious strand is shared with Religion, social reform & secularization in Canada, postwar identity with Canada’s 1960s. Editorial observation, not a sourced claim: Indigenous people appear in this field mostly as settler representations (Francis, Heaman), which is a limit to flag in teaching. PhD evidence (2009–2026): engagement with the field's anchor scholars is steady (ratio 1.02; 1.14 in a fixed panel of 14 universities), while its older works are cited less; the classics are ageing, not the field. Owram's 'Intellectual History in the Land of Limited Identities' (JCS 24:3, 1989; abstract checked, not cited as a source) is a practitioner's self-assessment that also notes the field's nationalist roots and the differing methods of francophone and anglophone writers; it is not treated as a critique.",
+        "date_span": {
+          "start": 1970,
+          "start_kind": "earlier_roots",
+          "end": 2000,
+          "end_kind": "coverage_limit",
+          "precision": "year",
+          "basis": "Selected publication milestones only. Earlier histories of Canadian ideas belong partly to the national tradition; 1970 is the first selected work and 2016 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        },
+        "representative_people": [
+          {
+            "person_id": "carl_berger",
+            "role": "historian",
+            "context": "Studies the ideas of Canadian imperialists (character, mission, loyalism, militarism), which he argued were one form of Canadian nationalism, and makes English-Canadian historical writing itself a subject.",
+            "works": "The Sense of Power (1970); The Writing of Canadian History (1976; 2nd ed. 1986); Science, God, and Nature in Victorian Canada (1983)",
+            "source_ids": [
+              "cic_berger_1970",
+              "cic_berger_1976",
+              "cic_berger_1983"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ramsay_cook",
+            "role": "historian",
+            "context": "Essays on nationalism and politics, and an intellectual history of late Victorian social criticism that joins the field to religious history; Gauvreau reassesses his account.",
+            "works": "The Maple Leaf Forever (1971); The Regenerators (1985)",
+            "source_ids": [
+              "cic_cook_1971",
+              "crr_cook_1985",
+              "crr_gauvreau_1991"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "a_b_mckillop",
+            "role": "historian",
+            "context": "Victorian critical inquiry and the Ontario university; in 1999 answered Granatstein's charges against academic history.",
+            "works": "A Disciplined Intelligence (1979); Matters of Mind (1994); “Who Killed Canadian History? A View from the Trenches” (1999)",
+            "source_ids": [
+              "cic_mckillop_1979",
+              "cic_mckillop_1994",
+              "cic_mckillop_1999"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marlene_shore",
+            "role": "historian",
+            "context": "McGill, the Chicago School and the origins of Canadian social research; title-level only.",
+            "works": "The Science of Social Redemption (1987)",
+            "source_ids": [
+              "cic_shore_1987"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "doug_owram",
+            "role": "historian",
+            "context": "Expansionist ideas of the West, and the intellectuals and social scientists who moved into the \"service state\" and wartime economic management. His later baby-boom history is placed in Canada's 1960s.",
+            "works": "Promise of Eden (1980); The Government Generation (1986)",
+            "source_ids": [
+              "cic_owram_1980",
+              "cic_owram_1986"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ian_mckay",
+            "role": "historian",
+            "context": "Shows tourism promoters and cultural producers refashioning Nova Scotians as an antimodern folk, and later the making of the province's public past.",
+            "works": "The Quest of the Folk (1994); In the Province of History (2010), with Robin Bates",
+            "source_ids": [
+              "cic_mckay_1994",
+              "cic_mckay_bates_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "h_v_nelles",
+            "role": "historian",
+            "context": "The 1908 Quebec tercentenary as pageantry, \"the politics of memory and the theatrics of history\".",
+            "works": "The Art of Nation-Building (1999)",
+            "source_ids": [
+              "cic_nelles_1999"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "daniel_francis",
+            "role": "historian",
+            "context": "Popular historian of the \"imaginary Indian\" in Canadian culture and of national myths; title-level only here.",
+            "works": "The Imaginary Indian (1992); National Dreams (1997)",
+            "source_ids": [
+              "cic_francis_1992",
+              "cic_francis_1997"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jonathan_vance",
+            "role": "historian",
+            "context": "Canada's collective memory of the First World War as cultural rather than military history, and its implications for nationalism.",
+            "works": "Death So Noble (1997)",
+            "source_ids": [
+              "cic_vance_1997"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "colin_m_coates",
+            "role": "historian",
+            "context": "With Cecilia Morgan, the representation of Madeleine de Verchères and Laura Secord; title-level only.",
+            "works": "Heroines and History (2002), with Cecilia Morgan",
+            "source_ids": [
+              "cic_coates_morgan_2002"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "cecilia_morgan",
+            "role": "historian",
+            "context": "Heroines and commemoration; metadata only here.",
+            "works": "Heroines and History (2002), with Colin M. Coates; Commemorating Canada (2016)",
+            "source_ids": [
+              "cic_coates_morgan_2002",
+              "cic_morgan_2016"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "elsbeth_heaman",
+            "role": "historian",
+            "context": "Nineteenth-century exhibitions as politics, economic development, culture and commodification, including exhibitions of First Nations.",
+            "works": "The Inglorious Arts of Peace (1999)",
+            "source_ids": [
+              "cic_heaman_1999"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "keith_walden",
+            "role": "historian",
+            "context": "The Toronto Industrial Exhibition and the shaping of a late Victorian urban culture.",
+            "works": "Becoming Modern in Toronto (1997)",
+            "source_ids": [
+              "cic_walden_1997"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ian_radforth",
+            "role": "historian",
+            "context": "The 1860 royal tour as public spectacle, colonial and national identity, and Britishness.",
+            "works": "Royal Spectacle (2004)",
+            "source_ids": [
+              "cic_radforth_2004"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paul_litt",
+            "role": "historian",
+            "context": "Culture, mass culture and the Massey Commission; title-level only.",
+            "works": "The Muses, the Masses, and the Massey Commission (1992)",
+            "source_ids": [
+              "cic_litt_1992"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "mary_vipond",
+            "role": "historian",
+            "context": "The first decade of Canadian broadcasting; metadata only.",
+            "works": "Listening In (1992)",
+            "source_ids": [
+              "cic_vipond_1992"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jose_igartua",
+            "role": "contributor",
+            "context": "Traces the dissolution of English Canada's British self-definition into a civic, rights-based identity, 1945–71.",
+            "works": "The Other Quiet Revolution (2006)",
+            "source_ids": [
+              "cic_igartua_2006"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "yvan_lamonde",
+            "role": "comparison",
+            "context": "Francophone counterpart: a social history of ideas in Quebec, presented as intellectual history in Mens.",
+            "works": "Histoire sociale des idées au Québec (2000); “L’histoire sociale des idées comme histoire intellectuelle” (2001)",
+            "source_ids": [
+              "cic_lamonde_2000",
+              "cic_lamonde_2001"
+            ],
+            "basis": "editorial_comparison"
+          },
+          {
+            "person_id": "t_j_jackson_lears",
+            "role": "comparison",
+            "context": "American comparison for the antimodernism strand: middle- and upper-class Americans' search for authentic experience, which in his account accommodated them to corporate capitalism. Heavily co-cited with McKay's Quest of the Folk in Canadian PhDs; McKay's own use of Lears is unchecked.",
+            "works": "No Place of Grace (1981)",
+            "source_ids": [
+              "cic_lears_1981"
+            ],
+            "basis": "editorial_comparison"
+          },
+          {
+            "person_id": "clarence_karr",
+            "role": "critic",
+            "context": "Faults English-Canadian intellectual history for seeking a national mind, framing everything as crisis, and a 'narrow, elitist, biographical methodology' centred on academics, journalists and clergy.",
+            "works": "“What Happened to Canadian Intellectual History?” (1989)",
+            "source_ids": [
+              "cic_karr_1989"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "susan_mann_trofimenkoff",
+            "role": "critic",
+            "context": "Feminist critique: a field anchored to nationalism and present-minded concern with national unity implied that women were 'virtually non-existent'.",
+            "works": "“Nationalism, Feminism & Canadian Intellectual History” (1979)",
+            "source_ids": [
+              "cic_trofimenkoff_1979"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "strands": [
+          {
+            "id": "empire_and_nation",
+            "title": "Ideas of empire, nation and history",
+            "focus": "Imperialist and nationalist thought (Berger reads imperialism as one form of Canadian nationalism), and English-Canadian historical writing as an object of study.",
+            "person_ids": [
+              "carl_berger",
+              "ramsay_cook"
+            ],
+            "works": "Berger (1970, 1976); Cook, The Maple Leaf Forever (1971)",
+            "source_ids": [
+              "cic_berger_1970",
+              "cic_berger_1976",
+              "cic_cook_1971"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "victorian_thought",
+            "title": "Victorian thought, science, religion and the university",
+            "focus": "Critical inquiry, science and faith, the university and social criticism in Victorian Canada; the religious strand continues in Religion, social reform & secularization in Canada.",
+            "person_ids": [
+              "a_b_mckillop",
+              "carl_berger",
+              "ramsay_cook"
+            ],
+            "works": "McKillop (1979, 1994); Berger (1983); Cook (1985); Gauvreau (1991)",
+            "source_ids": [
+              "cic_mckillop_1979",
+              "cic_berger_1983",
+              "crr_cook_1985",
+              "cic_mckillop_1994",
+              "crr_gauvreau_1991"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "intellectuals_and_state",
+            "title": "Intellectuals, social science and the state",
+            "focus": "Expansionist ideas, the social sciences and the intellectuals who entered the \"service state\", the Rowell-Sirois inquiry and wartime economic management.",
+            "person_ids": [
+              "doug_owram",
+              "marlene_shore"
+            ],
+            "works": "Owram (1980, 1986); Shore (1987)",
+            "source_ids": [
+              "cic_owram_1980",
+              "cic_owram_1986",
+              "cic_shore_1987"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "antimodernism_folk",
+            "title": "Antimodernism and the invented folk",
+            "focus": "Tourism, folklore and handicrafts refashion a region as an antimodern folk; later, the making of a public past and its cultural politics of whiteness. Comparison: American antimodernism (Lears).",
+            "person_ids": [
+              "ian_mckay",
+              "t_j_jackson_lears"
+            ],
+            "works": "McKay (1994); McKay and Bates (2010); comparison: Lears, No Place of Grace (1981)",
+            "source_ids": [
+              "cic_mckay_1994",
+              "cic_mckay_bates_2010",
+              "cic_lears_1981"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "spectacle_exhibition",
+            "title": "Exhibition, pageant and royal tour",
+            "focus": "Public spectacle as politics, commerce and identity: exhibitions, the 1908 tercentenary, the 1860 royal tour.",
+            "person_ids": [
+              "elsbeth_heaman",
+              "keith_walden",
+              "h_v_nelles",
+              "ian_radforth"
+            ],
+            "works": "Walden (1997); Heaman (1999); Nelles (1999); Radforth (2004)",
+            "source_ids": [
+              "cic_walden_1997",
+              "cic_heaman_1999",
+              "cic_nelles_1999",
+              "cic_radforth_2004"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "myth_memory",
+            "title": "Myth, image, memory and commemoration",
+            "focus": "National myths, the image of the \"Indian\", war memory and commemorated heroines.",
+            "person_ids": [
+              "daniel_francis",
+              "jonathan_vance",
+              "colin_m_coates",
+              "cecilia_morgan"
+            ],
+            "works": "Francis (1992, 1997); Vance (1997); Coates and Morgan (2002); Morgan (2016)",
+            "source_ids": [
+              "cic_francis_1992",
+              "cic_francis_1997",
+              "cic_vance_1997",
+              "cic_coates_morgan_2002",
+              "cic_morgan_2016"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "culture_media_state",
+            "title": "Culture, media and the state",
+            "focus": "Broadcasting and the Massey Commission: high, mass and national culture as policy questions. Title-level only.",
+            "person_ids": [
+              "paul_litt",
+              "mary_vipond"
+            ],
+            "works": "Litt (1992); Vipond (1992)",
+            "source_ids": [
+              "cic_litt_1992",
+              "cic_vipond_1992"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "postwar_identity",
+            "title": "Postwar national identity",
+            "focus": "The end of British Canada and the rise of a civic, rights-based identity; continues in Canada's 1960s.",
+            "person_ids": [
+              "jose_igartua"
+            ],
+            "works": "Igartua (2006)",
+            "source_ids": [
+              "cic_igartua_2006"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "francophone_counterpart",
+            "title": "Francophone counterpart: histoire sociale des idées",
+            "focus": "Quebec's social history of ideas runs on a separate track with its own journal (Mens); a comparison, not a branch of the English-Canadian field.",
+            "person_ids": [
+              "yvan_lamonde"
+            ],
+            "works": "Lamonde (2000, 2001)",
+            "source_ids": [
+              "cic_lamonde_2000",
+              "cic_lamonde_2001"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "critiques",
+            "title": "Critiques of the field",
+            "focus": "Feminist and methodological critiques of English-Canadian intellectual history: nationalism and the absence of women (Trofimenkoff), an elitist group-biography method and a search for the national mind (Karr). Rarely cited in recent PhDs.",
+            "person_ids": [
+              "susan_mann_trofimenkoff",
+              "clarence_karr"
+            ],
+            "works": "Trofimenkoff (1979); Karr (1989)",
+            "source_ids": [
+              "cic_trofimenkoff_1979",
+              "cic_karr_1989"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      },
+      "liberal_order_framework": {
+        "id": "liberal_order_framework",
+        "label": "Liberal order framework",
+        "date_label": "State-formation roots: Curtis 1988, Greer and Radforth 1992 · McKay’s prospectus Dec. 2000 · debate volume 2009 · coverage through 2000; selected later readings",
+        "layer": "historiographical_developments",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "A proposal to write Canadian history as the history of a liberal project of rule. Ian McKay's prospectus in the Canadian Historical Review (2000) offered a way past the impasse between socio-cultural and national-political history: map 'Canada' as the project through which liberal order (in Fecteau's paraphrase, an individualism of liberty, equality and property) became common sense in northern North America from the 1840s. Commentators identify Gramsci's hegemony and Fernande Roy's study of francophone business liberalism as its sources and link it to earlier state-formation research: Bruce Curtis on schooling and the census, and Allan Greer and Ian Radforth's Colonial Leviathan (1992). Constant and Ducharme's Liberalism and Hegemony (2009) tested it on rights, municipalities, conservation, families, women and racialized people, and First Nations. This entry reads the framework as closer to a history of capitalism than to moral regulation: its subject is how property, the individual and market relations became the terms of rule. In his 2009 reply McKay held that liberal order and capitalism cannot be conflated, yet after the 1840s could not easily be separated. Earlier social histories of seigneurial Quebec (Greer 1985) and Montreal's wage-earning families (Bradbury 1993) are read alongside it. Critics answered: Bryan Palmer argued that the framework sidesteps capitalism's changing structures. Jerry Bannister proposed a loyalist order before 1840. Ruth Sandwell found a-liberal families, and Nancy Christie faulted its neglect of religion and of women. Later histories of land, enclosure and taxation (Weaver, Greer, Heaman) carry its questions further.",
+        "representative_figures_and_works": "Roots: Curtis, Building the Educational State (1988), True Government by Choice Men? (1992), The Politics of Population (2001); Greer and Radforth, eds., Colonial Leviathan (1992). Prospectus: McKay, “The Liberal Order Framework” (CHR, 2000), drawing on Roy, Progrès, harmonie, liberté (1988). Debate: Sandwell (2003); Constant and Ducharme, eds., Liberalism and Hegemony (2009), with Bannister, Heaman, Curtis, Sandwell, Perry, Brownlie and McKay’s reply; the Underhill Review round table (Ajzenstat, Christie, Fecteau, Pâquet) and Palmer (2009). Liberty: Ducharme (2010), McNairn (2000). Transition to capitalism (read alongside): Greer, Peasant, Lord, and Merchant (1985); Bradbury, Working Families (1993). Property and capitalism: Weaver (2003), Greer (2012, 2018), Heaman (2017). Left history: McKay (2005, 2008).",
+        "source_ids": [
+          "lof_ajzenstat_2009",
+          "lof_bannister_2009",
+          "lof_bradbury_1993",
+          "lof_brownlie_2009",
+          "lof_christie_2009",
+          "lof_constant_ducharme_2009",
+          "lof_curtis_1988",
+          "lof_curtis_1992",
+          "lof_curtis_2001",
+          "lof_curtis_2009",
+          "lof_curtis_2012",
+          "lof_ducharme_2010",
+          "lof_ducharme_constant_2009",
+          "lof_fecteau_2009",
+          "lof_greer_1985",
+          "lof_greer_2012",
+          "lof_greer_2018",
+          "lof_greer_radforth_1992",
+          "lof_heaman_2009",
+          "lof_heaman_2017",
+          "lof_levy_2017",
+          "lof_mckay_2000",
+          "lof_mckay_2005",
+          "lof_mckay_2008",
+          "lof_mckay_2009",
+          "lof_mcnairn_2000",
+          "lof_mcnairn_2009",
+          "lof_palmer_2009",
+          "lof_paquet_2009",
+          "lof_parnaby_2019",
+          "lof_perry_2009",
+          "lof_roy_1988",
+          "lof_sandwell_2003",
+          "lof_sandwell_2009",
+          "lof_valverde_1991",
+          "lof_weaver_2003"
+        ],
+        "entry_kind": "group",
+        "entry_type": "Approach / theoretical programme",
+        "scope_note": "A programme and its debate rather than a school: roster inclusion is not adoption. Curtis, Greer and Radforth wrote its roots before it was named; Christie, Palmer, Sandwell, Fecteau and Ajzenstat appear as critics; Bannister proposes a loyalist order for 1750–1840 (chapter title), its relation to McKay not characterized. Kept separate from moral regulation by the user (2026-10-12) as \"a different project closer to history of capitalism\"; that reading is editorial and is stated as such in the description. The overlap with histories of capitalism is noted in the description; it is not drawn as a link, because the fields have not connected (user, 2026-10-12). Greer (1985) and Bradbury (1993) are read alongside the framework, not as its roots or applications.",
+        "date_span": {
+          "start": 1988,
+          "start_kind": "earlier_roots",
+          "end": 2000,
+          "end_kind": "coverage_limit",
+          "precision": "year",
+          "basis": "Selected publication milestones only. 1988 and 1992 are state-formation roots, not the framework's origin; the prospectus (2000) is the naming milestone; 2009 the debate volume; 2018 the latest selected property work. Neither endpoint bounds the programme. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        },
+        "representative_people": [
+          {
+            "person_id": "ian_mckay",
+            "role": "historian",
+            "context": "Proposes the framework: Canada as a project of liberal rule and liberal hegemony; in his 2009 reply holds that liberal order and capitalism cannot be conflated yet after the 1840s could not easily be separated; continues it through a history of the Canadian left as a counter-project.",
+            "works": "“The Liberal Order Framework” (2000); “Canada as a Long Liberal Revolution” (2009); Rebels, Reds, Radicals (2005); Reasoning Otherwise (2008)",
+            "source_ids": [
+              "lof_mckay_2000",
+              "lof_mckay_2009",
+              "lof_fecteau_2009",
+              "lof_mckay_2005",
+              "lof_mckay_2008",
+              "lof_palmer_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "bruce_curtis",
+            "role": "historian",
+            "context": "Historical sociologist of state formation through schooling, inspection and the census; Christie credits him with recasting the liberal order as governmentality. A root of the framework, not a follower of it.",
+            "works": "Building the Educational State (1988); True Government by Choice Men? (1992); The Politics of Population (2001); “After ‘Canada’” (2009); Ruling by Schooling Quebec (2012)",
+            "source_ids": [
+              "lof_curtis_1988",
+              "lof_curtis_1992",
+              "lof_curtis_2001",
+              "lof_curtis_2009",
+              "lof_curtis_2012",
+              "lof_christie_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "allan_greer",
+            "role": "historian",
+            "context": "Studies a feudal, largely self-sufficient habitant society in rural Quebec before 1840; coedits the state-formation collection Colonial Leviathan; later work on commons, enclosure and \"property formation\" carries the questions toward property and dispossession.",
+            "works": "Peasant, Lord, and Merchant (1985); Colonial Leviathan (1992), ed. with Ian Radforth; “Commons and Enclosure” (2012); Property and Dispossession (2018)",
+            "source_ids": [
+              "lof_greer_1985",
+              "lof_greer_radforth_1992",
+              "lof_greer_2012",
+              "lof_greer_2018"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ian_radforth",
+            "role": "contributor",
+            "context": "Coeditor of Colonial Leviathan.",
+            "works": "Colonial Leviathan (1992), ed. with Allan Greer",
+            "source_ids": [
+              "lof_greer_radforth_1992"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "fernande_roy",
+            "role": "precursor",
+            "context": "Her study of Montreal's francophone business liberalism is named by Pâquet as one of the prospectus's two explicit sources, with Gramsci.",
+            "works": "Progrès, harmonie, liberté (1988)",
+            "source_ids": [
+              "lof_roy_1988",
+              "lof_paquet_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michel_ducharme",
+            "role": "historian",
+            "context": "Coedits the debate volume; his intellectual history of liberty in the two Canadas distinguishes republican and \"modern\" liberty before 1838.",
+            "works": "Liberalism and Hegemony (2009), ed. with Jean-François Constant; Le concept de liberté au Canada (2010; trans. 2014)",
+            "source_ids": [
+              "lof_constant_ducharme_2009",
+              "lof_ducharme_constant_2009",
+              "lof_ducharme_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jean_francois_constant",
+            "role": "contributor",
+            "context": "Coeditor of the debate volume and coauthor of its introduction; editorial credit only.",
+            "works": "Liberalism and Hegemony (2009), ed. with Michel Ducharme",
+            "source_ids": [
+              "lof_constant_ducharme_2009",
+              "lof_ducharme_constant_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "elsbeth_heaman",
+            "role": "contributor",
+            "context": "Tests the framework through rights talk (read by Christie as doubting that liberalism was ever hegemonic); her history of taxation sets \"the propertied versus the people\" at the centre of Canadian political history.",
+            "works": "“Rights Talk and the Liberal Order Framework” (2009); Tax, Order, and Good Government (2017)",
+            "source_ids": [
+              "lof_heaman_2009",
+              "lof_christie_2009",
+              "lof_heaman_2017"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jeffrey_l_mcnairn",
+            "role": "contributor",
+            "context": "Intellectual historian of public opinion in Upper Canada who answers the framework from intellectual history; his chapter is title-level only here.",
+            "works": "The Capacity to Judge (2000); “In Hope and Fear” (2009)",
+            "source_ids": [
+              "lof_mcnairn_2000",
+              "lof_mcnairn_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jerry_bannister",
+            "role": "contributor",
+            "context": "Proposes a \"loyalist order framework\" for 1750–1840 (chapter title); how it relates to McKay's liberal order is not characterized here.",
+            "works": "“Canada as Counter-Revolution” (2009)",
+            "source_ids": [
+              "lof_bannister_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ruth_w_sandwell",
+            "role": "critic",
+            "context": "Finds \"a-liberal\" values persisting in families into the twentieth century and treats the family as a site where liberal order was contested.",
+            "works": "“The Limits of Liberalism” (2003); “Missing Canadians: Reclaiming the A-Liberal Past” (2009)",
+            "source_ids": [
+              "lof_sandwell_2003",
+              "lof_sandwell_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "adele_perry",
+            "role": "contributor",
+            "context": "Places women and racialized people in the making of liberal order; chapter read at title level only.",
+            "works": "“Women, Racialized People, and the Making of the Liberal Order in Northern North America” (2009)",
+            "source_ids": [
+              "lof_perry_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robin_jarvis_brownlie",
+            "role": "contributor",
+            "context": "Names First Nations' relation to liberal order \"a persistent antagonism\"; title-level only. Published as Robin Brownlie (1994) and Robin Jarvis Brownlie (2009); the University of Manitoba profile gives Jarvis Brownlie (he).",
+            "works": "“A Persistent Antagonism: First Nations and the Liberal Order” (2009)",
+            "source_ids": [
+              "lof_brownlie_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "nancy_christie",
+            "role": "critic",
+            "context": "Accepts the framework's synthesizing value but faults its timing, its statism and its property-based individual, and asks for religion, voluntary associations and the family.",
+            "works": "“Revisiting Canada’s Project of Liberal Rule” (2009)",
+            "source_ids": [
+              "lof_christie_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "bryan_d_palmer",
+            "role": "critic",
+            "context": "Marxist critique: as an elastic, trans-historical category liberal order lets historians avoid naming capitalism.",
+            "works": "“Radical Reasoning” (2009)",
+            "source_ids": [
+              "lof_palmer_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jean_marie_fecteau",
+            "role": "critic",
+            "context": "Round-table commentator who reconstructs McKay's separation of liberalism from capitalism and argues that liberty, equality and property are not a stable, unitary set.",
+            "works": "“Towards a Theory of Possible History?” (2009)",
+            "source_ids": [
+              "lof_fecteau_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "janet_ajzenstat",
+            "role": "critic",
+            "context": "Political scientist who, by her own account, reads Canadian constitutional \"great texts\" such as the Durham Report; objects that the framework rests on summaries of others' work rather than primary sources.",
+            "works": "“Historians in Search of a Framework” (2009)",
+            "source_ids": [
+              "lof_ajzenstat_2009"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "bettina_bradbury",
+            "role": "comparison",
+            "context": "Follows Montreal working-class families as wage labour and industrial capitalism remade family survival; read alongside the framework in PhD bibliographies, not an adherent.",
+            "works": "Working Families (1993)",
+            "source_ids": [
+              "lof_bradbury_1993"
+            ],
+            "basis": "editorial_comparison"
+          },
+          {
+            "person_id": "john_c_weaver",
+            "role": "comparison",
+            "context": "Comparative history of land appropriation and the emergence of property rights with the market economy; adjacent to the framework's property questions, not an adherent.",
+            "works": "The Great Land Rush and the Making of the Modern World (2003)",
+            "source_ids": [
+              "lof_weaver_2003"
+            ],
+            "basis": "editorial_comparison"
+          },
+          {
+            "person_id": "mariana_valverde",
+            "role": "comparison",
+            "context": "Marks the boundary with moral regulation, which the user decided is a different project; her moral-reform study is heavily co-cited with McKay's prospectus.",
+            "works": "The Age of Light, Soap, and Water (1991)",
+            "source_ids": [
+              "lof_valverde_1991"
+            ],
+            "basis": "editorial_comparison"
+          }
+        ],
+        "strands": [
+          {
+            "id": "state_formation_roots",
+            "title": "State formation before the framework",
+            "focus": "Schooling, inspection, the census and the \"colonial Leviathan\" of the 1840s–60s studied as state formation. Curtis (1988) and Greer and Radforth (1992) predate the prospectus; Curtis's later books (2001, 2012) continue that work, and their relation to the framework is not checked here.",
+            "person_ids": [
+              "bruce_curtis",
+              "allan_greer",
+              "ian_radforth"
+            ],
+            "works": "Curtis, Building the Educational State (1988); Greer and Radforth, eds., Colonial Leviathan (1992); Curtis, True Government by Choice Men? (1992); Curtis, The Politics of Population (2001); Curtis, Ruling by Schooling Quebec (2012)",
+            "source_ids": [
+              "lof_curtis_1988",
+              "lof_greer_radforth_1992",
+              "lof_curtis_1992",
+              "lof_curtis_2001",
+              "lof_curtis_2012"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "prospectus",
+            "title": "The prospectus: Canada as a project of liberal rule",
+            "focus": "McKay proposes mapping Canada as liberal hegemony to get past the social versus national-political impasse. Pâquet names Gramsci and Fernande Roy as its explicit sources.",
+            "person_ids": [
+              "ian_mckay",
+              "fernande_roy"
+            ],
+            "works": "McKay, “The Liberal Order Framework” (2000); Roy, Progrès, harmonie, liberté (1988)",
+            "source_ids": [
+              "lof_mckay_2000",
+              "lof_paquet_2009",
+              "lof_roy_1988",
+              "lof_parnaby_2019"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "property_and_capitalism",
+            "title": "Property, market society and capitalism",
+            "focus": "The editorial reason for separating this entry from moral regulation: the framework's individual is a property-holder, and its later work runs to land, enclosure and taxation. McKay distinguishes liberal order from capitalism; Palmer replies that the distinction lets historians avoid capitalism.",
+            "person_ids": [
+              "ian_mckay",
+              "allan_greer",
+              "elsbeth_heaman",
+              "john_c_weaver",
+              "bryan_d_palmer",
+              "jean_marie_fecteau"
+            ],
+            "works": "McKay, “Canada as a Long Liberal Revolution” (2009); Weaver, The Great Land Rush (2003); Greer, “Commons and Enclosure” (2012) and Property and Dispossession (2018); Heaman, Tax, Order, and Good Government (2017)",
+            "source_ids": [
+              "lof_fecteau_2009",
+              "lof_mckay_2009",
+              "lof_palmer_2009",
+              "lof_weaver_2003",
+              "lof_greer_2012",
+              "lof_greer_2018",
+              "lof_heaman_2017",
+              "lof_christie_2009"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "liberty_and_liberalisms",
+            "title": "Liberty, public opinion and francophone liberalisms",
+            "focus": "Intellectual histories of liberty and deliberation that test whether \"liberalism\" was one thing: republican against modern liberty in the two Canadas, public opinion in Upper Canada, francophone business liberalism.",
+            "person_ids": [
+              "michel_ducharme",
+              "jeffrey_l_mcnairn",
+              "fernande_roy"
+            ],
+            "works": "Ducharme, Le concept de liberté au Canada (2010); McNairn, The Capacity to Judge (2000) and “In Hope and Fear” (2009); Roy (1988)",
+            "source_ids": [
+              "lof_ducharme_2010",
+              "lof_mcnairn_2000",
+              "lof_mcnairn_2009",
+              "lof_roy_1988"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "debate_2009",
+            "title": "Debating the Canadian liberal revolution",
+            "focus": "The 2009 volume tests the framework across rights, municipalities, conservation, the family, women and racialized people, First Nations and British Columbia; McKay replies with a long liberal revolution of the 1840s–1940s.",
+            "person_ids": [
+              "michel_ducharme",
+              "jean_francois_constant",
+              "elsbeth_heaman",
+              "bruce_curtis",
+              "adele_perry",
+              "robin_jarvis_brownlie",
+              "ian_mckay"
+            ],
+            "works": "Constant and Ducharme, eds., Liberalism and Hegemony (2009)",
+            "source_ids": [
+              "lof_constant_ducharme_2009",
+              "lof_ducharme_constant_2009",
+              "lof_heaman_2009",
+              "lof_curtis_2009",
+              "lof_perry_2009",
+              "lof_brownlie_2009",
+              "lof_mckay_2009"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "critiques",
+            "title": "Critiques",
+            "focus": "a-liberal families (Sandwell); religion, gender and governmentality (Christie); capitalism avoided (Palmer); an unstable definition (Fecteau); thin primary evidence (Ajzenstat).",
+            "person_ids": [
+              "ruth_w_sandwell",
+              "nancy_christie",
+              "bryan_d_palmer",
+              "jean_marie_fecteau",
+              "janet_ajzenstat"
+            ],
+            "works": "Sandwell (2003, 2009); Bannister (2009); the Underhill Review round table (2009): Ajzenstat, Christie, Fecteau, Pâquet; Palmer (2009)",
+            "source_ids": [
+              "lof_bannister_2009",
+              "lof_sandwell_2003",
+              "lof_sandwell_2009",
+              "lof_christie_2009",
+              "lof_palmer_2009",
+              "lof_fecteau_2009",
+              "lof_ajzenstat_2009"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "left_counter_project",
+            "title": "The left as counter-project",
+            "focus": "McKay's history of Canadian socialist and left \"formations\" measures the left by how far it pushed liberal order \"to its definitional limits\" (as Palmer quotes him).",
+            "person_ids": [
+              "ian_mckay",
+              "bryan_d_palmer"
+            ],
+            "works": "McKay, Rebels, Reds, Radicals (2005); Reasoning Otherwise (2008)",
+            "source_ids": [
+              "lof_mckay_2005",
+              "lof_mckay_2008",
+              "lof_palmer_2009"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "transition_to_capitalism",
+            "title": "Rural society, wage labour and the transition to capitalism",
+            "focus": "Social histories on either side of the transition, read alongside the framework in Canadian PhDs (Bradbury: 13 of 44 citing PhDs also cite McKay 2000, lift 4.0; Greer: 5 of 16, lift 4.2). Greer finds habitant society in the Lower Richelieu, 1740–1840, organized around a feudal order with household self-sufficiency; Bradbury follows Montreal working-class families as wage labour and industrial capitalism remade family survival. Both predate the prospectus and are not checked as responses to it.",
+            "person_ids": [
+              "allan_greer",
+              "bettina_bradbury"
+            ],
+            "works": "Greer, Peasant, Lord, and Merchant (1985); Bradbury, Working Families (1993)",
+            "source_ids": [
+              "lof_greer_1985",
+              "lof_bradbury_1993"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      },
+      "settler_colonialism": {
+        "id": "settler_colonialism",
+        "label": "Settler colonialism",
+        "date_label": "Earlier settler-society studies 1983–95 · Wolfe 1999 · coverage through 2000; selected later readings: Wolfe 2006, Veracini 2010, journal 2011, critiques 2013–20; field chronology unresolved",
+        "layer": "historiographical_developments",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Historical inquiry into colonial formations in which newcomers came to stay, acquired land and claimed sovereignty over Indigenous territories. Patrick Wolfe's account of settler colonialism as a structure rather than an event treats invasion as a continuing relation rather than a completed frontier past. Lorenzo Veracini's work and the journal Settler Colonial Studies (2011) distinguished settler colonial from colonial phenomena. Comparative studies of settler capitalism and settler societies, and decolonization-era uses of the term, came earlier. In Canadian historical writing the framework meets an older historiography of dispossession, reserves, gender and the state in the West and British Columbia. It also meets Indigenous political theory of recognition, sovereignty and resurgence. Its uses extend to labour, science, memory and settler identity. The field is contested from several directions. Indigenous scholars ask whether it recentres settlers and displaces Indigenous studies and Indigenous-authored histories. Historians question its structural inevitability and its fit across regions and periods, proposing other modes such as commercial penetration and extractivism. Black studies scholars question how it places slavery. Settler colonialism overlaps with Indigenous history, postcolonial critique and historical geography without being equivalent to any of them.",
+        "representative_figures_and_works": "Earlier: Denoon, Settler Capitalism (1983); Stasiulis and Yuval-Davis, eds., Unsettling Settler Societies (1995). Wolfe, Settler Colonialism and the Transformation of Anthropology (1999) and “Settler Colonialism and the Elimination of the Native” (2006); Elkins and Pedersen, eds. (2005); Veracini, Settler Colonialism (2010) and Settler Colonial Studies (2011). Read with Coulthard (2014), A. Simpson (2014), L. B. Simpson (2011, 2017), Byrd (2011) and Tuck and Yang (2012). Canadian historiography: Carter (1990, 2008), Harris (2002, 2004, 2020), Perry (2001), Regan (2010), Daschuk (2013), Battell Lowman and Barker (2015), Burrill (2019). Critiques: Macoun and Strakosch (2013), Rowse (2014), Kauanui (2016), Greer (2019), Shoemaker (2019), Konishi (2019), Garba and Sorentino (2020).",
+        "source_ids": [
+          "screq_denoon_1983",
+          "screq_stasiulis_yuval_davis_1995",
+          "screq_wolfe_1999",
+          "screq_elkins_pedersen_2005",
+          "screq_wolfe_2001",
+          "screq_wolfe_2006",
+          "screq_veracini_2008",
+          "screq_veracini_2010",
+          "screq_veracini_2011",
+          "screq_veracini_2013",
+          "screq_veracini_2015",
+          "screq_wolfe_2016",
+          "screq_cavanagh_veracini_2017",
+          "screq_hixson_2013",
+          "screq_hoxie_2008",
+          "screq_byrd_2011",
+          "screq_l_simpson_2011",
+          "screq_tuck_yang_2012",
+          "screq_coulthard_2014",
+          "screq_a_simpson_2014",
+          "screq_kauanui_2016",
+          "screq_l_simpson_2017",
+          "screq_carter_1990",
+          "screq_harris_1997",
+          "screq_perry_2001",
+          "screq_harris_2002",
+          "screq_razack_2002",
+          "screq_harris_2004",
+          "screq_carter_2008",
+          "screq_regan_2010",
+          "screq_daschuk_2013",
+          "screq_battell_lowman_barker_2015",
+          "screq_burrill_2019",
+          "screq_harris_2020",
+          "screq_mamdani_2001",
+          "screq_belich_2009",
+          "screq_jacobs_2009",
+          "screq_ford_2010",
+          "screq_mamdani_2020",
+          "screq_cote_2019",
+          "screq_macoun_strakosch_2013",
+          "screq_rowse_2014",
+          "screq_snelgrove_dhamoon_corntassel_2014",
+          "screq_sexton_2016",
+          "screq_greer_2019_wmq",
+          "screq_greer_2019_jcha",
+          "screq_ostler_shoemaker_2019",
+          "screq_shoemaker_2019",
+          "screq_konishi_2019",
+          "screq_king_2019",
+          "screq_garba_sorentino_2020"
+        ],
+        "entry_kind": "group",
+        "entry_type": "Research field",
+        "scope_note": "A selective research field whose theoretical consolidation came mostly after 2000; the entry covers its roots through 2000 and cites selected later works as readings. Settler-colonial theory, Indigenous political thought, Canadian histories of dispossession and comparative imperial history have different genealogies. Roster inclusion is not adoption of the paradigm: Carter, Perry, Harris and Daschuk wrote earlier or beside it. No single founder, origin or Canadian consensus is asserted. Critics appear as critics. Francophone uptake in the PhD corpus is near zero.",
+        "date_span": {
+          "start": 1983,
+          "start_kind": "earlier_roots",
+          "end": 2000,
+          "end_kind": "coverage_limit",
+          "precision": "year",
+          "basis": "Selected publication milestones only. 1983 and 1995 are earlier settler-society witnesses, not the field's origin; Wolfe 1999 is the only selected milestone inside 1920–2000. The term itself has decolonization-era usage (Veracini 2013); the field's theoretical consolidation falls after 2000; neither endpoint bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        },
+        "representative_people": [
+          {
+            "person_id": "patrick_wolfe",
+            "role": "contributor",
+            "context": "Formulates settler colonialism as a continuing structure of dispossession; the 'structure, not an event' phrasing is attested through Kauanui's abstract. Already a comparison participant in Indigenous history.",
+            "works": "Settler Colonialism and the Transformation of Anthropology (1999); “Settler Colonialism and the Elimination of the Native” (2006)",
+            "source_ids": [
+              "screq_wolfe_1999",
+              "screq_wolfe_2006",
+              "screq_kauanui_2016"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lorenzo_veracini",
+            "role": "contributor",
+            "context": "Distinguishes settler colonial from colonial phenomena and introduces Settler Colonial Studies (2011); traces the concept's earlier career.",
+            "works": "Settler Colonialism: A Theoretical Overview (2010); “Introducing: Settler Colonial Studies” (2011); “‘Settler Colonialism’: Career of a Concept” (2013)",
+            "source_ids": [
+              "screq_veracini_2010",
+              "screq_veracini_2011",
+              "screq_veracini_2013"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "caroline_elkins",
+            "role": "contributor",
+            "context": "Coeditor of a comparative twentieth-century collection; volume contents unread.",
+            "works": "Settler Colonialism in the Twentieth Century (2005), ed. with Susan Pedersen",
+            "source_ids": [
+              "screq_elkins_pedersen_2005"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "susan_pedersen",
+            "role": "contributor",
+            "context": "Coeditor of the same collection; editorial credit only.",
+            "works": "Settler Colonialism in the Twentieth Century (2005), ed. with Caroline Elkins",
+            "source_ids": [
+              "screq_elkins_pedersen_2005"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "glen_coulthard",
+            "role": "contributor",
+            "context": "Indigenous political theory rejecting the colonial politics of recognition; contributes to, rather than belongs to, settler-colonial studies. Metadata-level only.",
+            "works": "Red Skin, White Masks (2014)",
+            "source_ids": [
+              "screq_coulthard_2014"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "audra_simpson",
+            "role": "contributor",
+            "context": "Mohawk political life across the borders of settler states; metadata-level only.",
+            "works": "Mohawk Interruptus (2014)",
+            "source_ids": [
+              "screq_a_simpson_2014"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "leanne_betasamosake_simpson",
+            "role": "contributor",
+            "context": "Nishnaabeg resurgence and radical resistance; metadata-level only.",
+            "works": "Dancing on Our Turtle's Back (2011); As We Have Always Done (2017)",
+            "source_ids": [
+              "screq_l_simpson_2011",
+              "screq_l_simpson_2017"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "eve_tuck",
+            "role": "contributor",
+            "context": "Coauthor of a widely cited argument against metaphorical uses of decolonization; argument read only through a critic's abstract.",
+            "works": "With K. Wayne Yang, “Decolonization Is Not a Metaphor” (2012)",
+            "source_ids": [
+              "screq_tuck_yang_2012",
+              "screq_garba_sorentino_2020"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "k_wayne_yang",
+            "role": "contributor",
+            "context": "Coauthor; see Eve Tuck.",
+            "works": "With Eve Tuck, “Decolonization Is Not a Metaphor” (2012)",
+            "source_ids": [
+              "screq_tuck_yang_2012"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jodi_a_byrd",
+            "role": "contributor",
+            "context": "Indigenous critiques of colonialism; metadata-level only.",
+            "works": "The Transit of Empire (2011)",
+            "source_ids": [
+              "screq_byrd_2011"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "j_kehaulani_kauanui",
+            "role": "critic",
+            "context": "Argues that engagement with Wolfe's structure thesis demands rethinking indigeneity and Native American and Indigenous Studies; a critical interlocutor rather than an adherent.",
+            "works": "“‘A Structure, Not an Event’” (2016)",
+            "source_ids": [
+              "screq_kauanui_2016"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "cole_harris",
+            "role": "historian",
+            "context": "Explains British Columbia's reserve system as geographical dispossession and later reflects on the boundaries of settler colonialism. Preserves his existing historical-geography and Indigenous-history profiles.",
+            "works": "Making Native Space (2002); “How Did Colonialism Dispossess?” (2004); A Bounded Land (2020)",
+            "source_ids": [
+              "screq_harris_2002",
+              "screq_harris_2004",
+              "screq_harris_2020"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sarah_carter",
+            "role": "historian",
+            "context": "Prairie reserve agriculture, government policy, marriage and nation-building; this work predates or runs beside the paradigm and is not assigned to it.",
+            "works": "Lost Harvests (1990); The Importance of Being Monogamous (2008)",
+            "source_ids": [
+              "screq_carter_1990",
+              "screq_carter_2008"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "adele_perry",
+            "role": "historian",
+            "context": "Gender, race and colonial British Columbia; metadata and chapter titles only.",
+            "works": "On the Edge of Empire (2001)",
+            "source_ids": [
+              "screq_perry_2001"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "james_daschuk",
+            "role": "comparison",
+            "context": "Disease, starvation policy and the loss of Indigenous life on the Plains; strongly co-cited with Wolfe and Veracini, but whether the book uses the framework is unchecked.",
+            "works": "Clearing the Plains (2013)",
+            "source_ids": [
+              "screq_daschuk_2013"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "emma_battell_lowman",
+            "role": "contributor",
+            "context": "Settler identity in contemporary Canada; catalogue-level only.",
+            "works": "With Adam J. Barker, Settler: Identity and Colonialism in 21st Century Canada (2015)",
+            "source_ids": [
+              "screq_battell_lowman_barker_2015"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "adam_j_barker",
+            "role": "contributor",
+            "context": "Coauthor; see Emma Battell Lowman.",
+            "works": "With Emma Battell Lowman, Settler (2015)",
+            "source_ids": [
+              "screq_battell_lowman_barker_2015"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paulette_regan",
+            "role": "contributor",
+            "context": "Residential schools, truth telling and the 'peacemaker myth'; contents page only.",
+            "works": "Unsettling the Settler Within (2010)",
+            "source_ids": [
+              "screq_regan_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sherene_razack",
+            "role": "contributor",
+            "context": "Editor of a collection unmapping a white settler society; metadata-level only.",
+            "works": "Race, Space, and the Law (2002), ed.",
+            "source_ids": [
+              "screq_razack_2002"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "fred_burrill",
+            "role": "historian",
+            "context": "Proposes a settler order framework for Canadian working-class history.",
+            "works": "“The Settler Order Framework” (2019)",
+            "source_ids": [
+              "screq_burrill_2019"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "mahmood_mamdani",
+            "role": "comparison",
+            "context": "Settler and native as political identities in African and comparative contexts.",
+            "works": "“Beyond Settler and Native as Political Identities” (2001); Neither Settler nor Native (2020)",
+            "source_ids": [
+              "screq_mamdani_2001",
+              "screq_mamdani_2020"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "donald_denoon",
+            "role": "precursor",
+            "context": "Earlier comparative study of settler capitalism; title-level only.",
+            "works": "Settler Capitalism (1983)",
+            "source_ids": [
+              "screq_denoon_1983"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "daiva_stasiulis",
+            "role": "precursor",
+            "context": "Coeditor of an earlier settler-societies collection on gender, race, ethnicity and class.",
+            "works": "Unsettling Settler Societies (1995), ed. with Nira Yuval-Davis",
+            "source_ids": [
+              "screq_stasiulis_yuval_davis_1995"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "nira_yuval_davis",
+            "role": "precursor",
+            "context": "Coeditor of the same collection; her existing gender and nationalism contexts are preserved.",
+            "works": "Unsettling Settler Societies (1995), ed. with Daiva Stasiulis",
+            "source_ids": [
+              "screq_stasiulis_yuval_davis_1995"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "allan_greer",
+            "role": "critic",
+            "context": "Holds that settler colonialism dominates some periods and regions of northern North America and fades in others; proposes imperial/commercial penetration and extractivism as further modes.",
+            "works": "“Settler Colonialism and Beyond” (2019); “Settler Colonialism and Empire in Early America” (2019)",
+            "source_ids": [
+              "screq_greer_2019_jcha",
+              "screq_greer_2019_wmq"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "nancy_shoemaker",
+            "role": "critic",
+            "context": "Asks whether the theory is universal or an English heritage, and proposes testing it on early modern origins.",
+            "works": "“Settler Colonialism: Universal Theory or English Heritage?” (2019)",
+            "source_ids": [
+              "screq_shoemaker_2019",
+              "screq_ostler_shoemaker_2019"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "tim_rowse",
+            "role": "critic",
+            "context": "Criticises a teleology of elimination that obscures diverse Indigeneities in Australian history.",
+            "works": "“Indigenous Heterogeneity” (2014)",
+            "source_ids": [
+              "screq_rowse_2014"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "shino_konishi",
+            "role": "critic",
+            "context": "Surveys how Indigenous scholars advocate, interrogate and challenge settler colonial studies; advocates extra-colonial Indigenous-authored histories. Roster inclusion is not an identity classification.",
+            "works": "“First Nations Scholars, Settler Colonial Studies, and Indigenous History” (2019)",
+            "source_ids": [
+              "screq_konishi_2019"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alissa_macoun",
+            "role": "critic",
+            "context": "Coauthor of a critique of the theory's structural inevitability, written from within the theory.",
+            "works": "With Elizabeth Strakosch, “The Ethical Demands of Settler Colonial Theory” (2013)",
+            "source_ids": [
+              "screq_macoun_strakosch_2013"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "elizabeth_strakosch",
+            "role": "critic",
+            "context": "Coauthor; see Alissa Macoun.",
+            "works": "With Alissa Macoun (2013)",
+            "source_ids": [
+              "screq_macoun_strakosch_2013"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "tapji_garba",
+            "role": "critic",
+            "context": "Coauthor of a Black-studies critique of Tuck and Yang's settler–native–slave triad.",
+            "works": "With Sara-Maria Sorentino, “Slavery Is a Metaphor” (2020)",
+            "source_ids": [
+              "screq_garba_sorentino_2020"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sara_maria_sorentino",
+            "role": "critic",
+            "context": "Coauthor; see Tapji Garba.",
+            "works": "With Tapji Garba (2020)",
+            "source_ids": [
+              "screq_garba_sorentino_2020"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jared_sexton",
+            "role": "critic",
+            "context": "Argues that decolonial sovereignty claims can circumvent Black radicalism and the abolition of slavery.",
+            "works": "“The Vel of Slavery” (2016)",
+            "source_ids": [
+              "screq_sexton_2016"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "strands": [
+          {
+            "id": "structure_and_elimination",
+            "title": "Structure, not event",
+            "focus": "Wolfe's account treats invasion and elimination as a continuing structure. Kauanui's abstract attests the formulation and its critique; Wolfe's own pages are not checked here.",
+            "person_ids": [
+              "patrick_wolfe",
+              "j_kehaulani_kauanui"
+            ],
+            "works": "Patrick Wolfe, Settler Colonialism and the Transformation of Anthropology: The Politics and Poetics of an Ethnographic Event (London and New York: Cassell, 1999). Writing Past Colonialism series.; Patrick Wolfe, \"Land, Labor, and Difference: Elementary Structures of Race,\" American Historical Review 106, no. 3 (2001): 866–905.; Patrick Wolfe, \"Settler Colonialism and the Elimination of the Native,\" Journal of Genocide Research 8, no. 4 (2006): 387–409.; J. Kēhaulani Kauanui, \"'A Structure, Not an Event': Settler Colonialism and Enduring Indigeneity,\" Lateral 5, no. 1 (2016).",
+            "source_ids": [
+              "screq_wolfe_1999",
+              "screq_wolfe_2001",
+              "screq_wolfe_2006",
+              "screq_kauanui_2016"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "theory_and_field",
+            "title": "Settler colonial theory and field formation",
+            "focus": "Veracini disentangles settler colonial from colonial phenomena and introduces a dedicated journal (2011); a 2013 essay traces the concept's earlier career. Field-making, not a claim of single origin.",
+            "person_ids": [
+              "lorenzo_veracini"
+            ],
+            "works": "Lorenzo Veracini, \"Settler Collective, Founding Violence and Disavowal: The Settler Colonial Situation,\" Journal of Intercultural Studies 29, no. 4 (2008): 363–379.; Lorenzo Veracini, Settler Colonialism: A Theoretical Overview (Basingstoke: Palgrave Macmillan, 2010).; Lorenzo Veracini, \"Introducing: Settler Colonial Studies,\" Settler Colonial Studies 1, no. 1 (2011): 1–12.; Lorenzo Veracini, \"'Settler Colonialism': Career of a Concept,\" Journal of Imperial and Commonwealth History 41, no. 2 (2013): 313–333.; Edward Cavanagh and Lorenzo Veracini, eds., The Routledge Handbook of the History of Settler Colonialism (London: Routledge, 2017).",
+            "source_ids": [
+              "screq_veracini_2008",
+              "screq_veracini_2010",
+              "screq_veracini_2011",
+              "screq_veracini_2013",
+              "screq_cavanagh_veracini_2017"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "earlier_settler_societies",
+            "title": "Settler capitalism and settler societies in comparison",
+            "focus": "Comparative settler economies (1983) and gender, race, ethnicity and class in settler societies (1995) are earlier comparative scholarship, before the field's theoretical consolidation; Veracini's history of the concept records decolonization-era usage of the term itself.",
+            "person_ids": [
+              "donald_denoon",
+              "daiva_stasiulis",
+              "nira_yuval_davis"
+            ],
+            "works": "Donald Denoon, Settler Capitalism: The Dynamics of Dependent Development in the Southern Hemisphere (Oxford: Clarendon Press, 1983).; Daiva Stasiulis and Nira Yuval-Davis, eds., Unsettling Settler Societies: Articulations of Gender, Race, Ethnicity and Class (London: SAGE, 1995).; Lorenzo Veracini, \"'Settler Colonialism': Career of a Concept,\" Journal of Imperial and Commonwealth History 41, no. 2 (2013): 313–333.",
+            "source_ids": [
+              "screq_denoon_1983",
+              "screq_stasiulis_yuval_davis_1995",
+              "screq_veracini_2013"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "comparative_twentieth_century",
+            "title": "Comparative and twentieth-century settler colonies",
+            "focus": "Comparative collections and studies beyond the British settler dominions, including African settler and native political identities.",
+            "person_ids": [
+              "caroline_elkins",
+              "susan_pedersen",
+              "mahmood_mamdani"
+            ],
+            "works": "Caroline Elkins and Susan Pedersen, eds., Settler Colonialism in the Twentieth Century: Projects, Practices, Legacies (New York: Routledge, 2005).; Mahmood Mamdani, \"Beyond Settler and Native as Political Identities: Overcoming the Political Legacy of Colonialism,\" Comparative Studies in Society and History 43, no. 4 (2001): 651–664.; Mahmood Mamdani, Neither Settler nor Native: The Making and Unmaking of Permanent Minorities (Cambridge, MA: Harvard University Press, 2020).",
+            "source_ids": [
+              "screq_elkins_pedersen_2005",
+              "screq_mamdani_2001",
+              "screq_mamdani_2020"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "recognition_refusal_resurgence",
+            "title": "Indigenous critiques of recognition, sovereignty and resurgence",
+            "focus": "Indigenous political theory read alongside the paradigm. These works have their own genealogies in Indigenous thought and are not a subset of settler-colonial studies. Open question: these may belong in Indigenous history instead.",
+            "person_ids": [
+              "glen_coulthard",
+              "audra_simpson",
+              "leanne_betasamosake_simpson",
+              "jodi_a_byrd",
+              "eve_tuck",
+              "k_wayne_yang"
+            ],
+            "works": "Glen Sean Coulthard, Red Skin, White Masks: Rejecting the Colonial Politics of Recognition (Minneapolis: University of Minnesota Press, 2014). Foreword by Taiaiake Alfred.; Audra Simpson, Mohawk Interruptus: Political Life Across the Borders of Settler States (Durham: Duke University Press, 2014).; Leanne Simpson [Leanne Betasamosake Simpson], Dancing on Our Turtle's Back: Stories of Nishnaabeg Re-Creation, Resurgence and a New Emergence (Winnipeg: Arbeiter Ring, 2011).; Leanne Betasamosake Simpson, As We Have Always Done: Indigenous Freedom through Radical Resistance (Minneapolis: University of Minnesota Press, 2017).; Jodi A. Byrd, The Transit of Empire: Indigenous Critiques of Colonialism (Minneapolis: University of Minnesota Press, 2011).; Eve Tuck and K. Wayne Yang, \"Decolonization Is Not a Metaphor,\" Decolonization: Indigeneity, Education & Society 1, no. 1 (2012).",
+            "source_ids": [
+              "screq_coulthard_2014",
+              "screq_a_simpson_2014",
+              "screq_l_simpson_2011",
+              "screq_l_simpson_2017",
+              "screq_byrd_2011",
+              "screq_tuck_yang_2012"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "dispossession_reserves_geography",
+            "title": "Dispossession, reserves and colonial geography in Canada",
+            "focus": "Harris explains reserve-making as geographical dispossession, backed by state power, capital and settlers, and later reflects on the framework's boundaries. Carter's prairie reserve agriculture predates the paradigm.",
+            "person_ids": [
+              "cole_harris",
+              "sarah_carter"
+            ],
+            "works": "Cole Harris, The Resettlement of British Columbia: Essays on Colonialism and Geographical Change (Vancouver: UBC Press, 1997).; Cole Harris, Making Native Space: Colonialism, Resistance, and Reserves in British Columbia (Vancouver: UBC Press, 2002).; Cole Harris, \"How Did Colonialism Dispossess? Comments from an Edge of Empire,\" Annals of the Association of American Geographers 94, no. 1 (2004): 165–182.; Cole Harris, A Bounded Land: Reflections on Settler Colonialism in Canada (Vancouver: UBC Press, 2020).; Sarah Carter, Lost Harvests: Prairie Indian Reserve Farmers and Government Policy (Montreal and Kingston: McGill-Queen's University Press, 1990).",
+            "source_ids": [
+              "screq_harris_1997",
+              "screq_harris_2002",
+              "screq_harris_2004",
+              "screq_harris_2020",
+              "screq_carter_1990"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "gender_family_nation",
+            "title": "Gender, family and colonial nation-making",
+            "focus": "Gender, race, marriage and child removal in colonial British Columbia, the Prairie West, the American West and Australia. Metadata level only.",
+            "person_ids": [
+              "adele_perry",
+              "sarah_carter"
+            ],
+            "works": "Adele Perry, On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849–1871 (Toronto: University of Toronto Press, 2001).; Sarah Carter, The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915 (Edmonton: University of Alberta Press / Athabasca University Press, 2008).; Margaret D. Jacobs, White Mother to a Dark Race: Settler Colonialism, Maternalism, and the Removal of Indigenous Children in the American West and Australia, 1880–1940 (Lincoln: University of Nebraska Press, 2009).",
+            "source_ids": [
+              "screq_perry_2001",
+              "screq_carter_2008",
+              "screq_jacobs_2009"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "settler_identity_reconciliation",
+            "title": "Settler identity, truth telling and reconciliation",
+            "focus": "Settler self-examination after residential schools and in contemporary Canada; Regan's contents page names the 'peacemaker myth'.",
+            "person_ids": [
+              "paulette_regan",
+              "emma_battell_lowman",
+              "adam_j_barker",
+              "sherene_razack"
+            ],
+            "works": "Paulette Regan, Unsettling the Settler Within: Indian Residential Schools, Truth Telling, and Reconciliation in Canada (Vancouver: UBC Press, 2010). Foreword by Taiaiake Alfred.; Emma Battell Lowman and Adam J. Barker, Settler: Identity and Colonialism in 21st Century Canada (Halifax and Winnipeg: Fernwood, 2015).; Sherene H. Razack, ed., Race, Space, and the Law: Unmapping a White Settler Society (Toronto: Between the Lines, 2002).",
+            "source_ids": [
+              "screq_regan_2010",
+              "screq_battell_lowman_barker_2015",
+              "screq_razack_2002"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "health_starvation",
+            "title": "Health, starvation and state policy",
+            "focus": "Co-citation places Daschuk's Plains history next to Wolfe and Veracini (19 of 58 Wolfe/Veracini-citing PhDs). Its own framing is unchecked, so this is a comparison strand.",
+            "person_ids": [
+              "james_daschuk"
+            ],
+            "works": "James Daschuk, Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life (Regina: University of Regina Press, 2013).",
+            "source_ids": [
+              "screq_daschuk_2013"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "labour_settler_order",
+            "title": "Labour and the settler order",
+            "focus": "Integrates settler workers' ongoing appropriation of Indigenous land into Canadian working-class history.",
+            "person_ids": [
+              "fred_burrill"
+            ],
+            "works": "Fred Burrill, \"The Settler Order Framework: Rethinking Canadian Working-Class History,\" Labour/Le Travail 83 (2019): 173–197.",
+            "source_ids": [
+              "screq_burrill_2019"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "critiques_and_limits",
+            "title": "Critiques: structure, region and period",
+            "focus": "Structural inevitability (Macoun and Strakosch), a teleology of elimination (Rowse), regional and periodic fit with other modes of colonialism (Greer), universal theory or English heritage (Shoemaker).",
+            "person_ids": [
+              "alissa_macoun",
+              "elizabeth_strakosch",
+              "tim_rowse",
+              "allan_greer",
+              "nancy_shoemaker"
+            ],
+            "works": "Alissa Macoun and Elizabeth Strakosch, \"The Ethical Demands of Settler Colonial Theory,\" Settler Colonial Studies 3, nos. 3–4 (2013): 426–443.; Tim Rowse, \"Indigenous Heterogeneity,\" Australian Historical Studies 45, no. 3 (2014): 297–310.; Allan Greer, \"Settler Colonialism and Beyond,\" Journal of the Canadian Historical Association / Revue de la Société historique du Canada 30, no. 1 (2019): 61–86.; Allan Greer, \"Settler Colonialism and Empire in Early America,\" William and Mary Quarterly 76, no. 3 (2019): 383–390.; Nancy Shoemaker, \"Settler Colonialism: Universal Theory or English Heritage?\" William and Mary Quarterly 76, no. 3 (2019): 369–374.; Jeffrey Ostler and Nancy Shoemaker, \"Settler Colonialism in Early American History: Introduction,\" William and Mary Quarterly 76, no. 3 (2019): 361–368.",
+            "source_ids": [
+              "screq_macoun_strakosch_2013",
+              "screq_rowse_2014",
+              "screq_greer_2019_jcha",
+              "screq_greer_2019_wmq",
+              "screq_shoemaker_2019",
+              "screq_ostler_shoemaker_2019"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "indigenous_scholars_critique",
+            "title": "Indigenous scholars on settler colonial studies",
+            "focus": "Whether the field recentres settlers and displaces Indigenous studies and Indigenous-authored histories.",
+            "person_ids": [
+              "shino_konishi",
+              "j_kehaulani_kauanui"
+            ],
+            "works": "Shino Konishi, \"First Nations Scholars, Settler Colonial Studies, and Indigenous History,\" Australian Historical Studies 50, no. 3 (2019): 285–304.; J. Kēhaulani Kauanui, \"'A Structure, Not an Event': Settler Colonialism and Enduring Indigeneity,\" Lateral 5, no. 1 (2016).; Corey Snelgrove, Rita Kaur Dhamoon and Jeff Corntassel, \"Unsettling Settler Colonialism: The Discourse and Politics of Settlers, and Solidarity with Indigenous Nations,\" Decolonization: Indigeneity, Education & Society 3, no. 2 (2014): 1–32.",
+            "source_ids": [
+              "screq_konishi_2019",
+              "screq_kauanui_2016",
+              "screq_snelgrove_dhamoon_corntassel_2014"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "slavery_black_studies",
+            "title": "Slavery and Black studies critiques",
+            "focus": "How settler-colonial and decolonial frameworks place slavery and Black people.",
+            "person_ids": [
+              "tapji_garba",
+              "sara_maria_sorentino",
+              "jared_sexton"
+            ],
+            "works": "Tapji Garba and Sara-Maria Sorentino, \"Slavery Is a Metaphor: A Critical Commentary on Eve Tuck and K. Wayne Yang's 'Decolonization Is Not a Metaphor',\" Antipode 52, no. 3 (2020): 764–782.; Jared Sexton, \"The Vel of Slavery: Tracking the Figure of the Unsovereign,\" Critical Sociology 42, nos. 4–5 (2016): 583–597.; Tiffany Lethabo King, The Black Shoals: Offshore Formations of Black and Native Studies (Durham: Duke University Press, 2019).",
+            "source_ids": [
+              "screq_garba_sorentino_2020",
+              "screq_sexton_2016",
+              "screq_king_2019"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      }
+    }
+  },
+  "deferred": [
+    {
+      "proposal_id": "pl129_rel_03",
+      "source": "catherine_hall",
+      "target": "cdn_women_gender",
+      "reason": "There is no checked pre-2000 passage in which a Canadian women's or gender historian engages Family Fortunes or Hall. The available pre-2000 items are metadata-level reviews and one family-history abstract whose citation of Family Fortunes is visible only in its reference list. The edge as drafted (an undirected comparison) is for a later extension release once Parr's 1993 review, Morgan's 1996 introduction or 1998 review, or a 1990s separate-spheres article is read. A contribution supported only by post-2000 publications (e.g. Perry 2001; Hall 2002; Christie, ed., Households of Faith, 2002) requires the extension workflow; a checked 1990s passage could support an ordinary in-period edge."
+    }
+  ],
+  "counts": {
+    "new_person_entries": 3,
+    "new_edges": 8,
+    "new_sources": 16,
+    "revised_edges": 1,
+    "source_addenda": 5
+  }
+}

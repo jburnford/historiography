@@ -1,6 +1,28 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.128 (2026-10-12)
+## Current revision 1.129 (2026-10-13)
+
+**158 entries (95 groups, 63 person entries), 897 teaching relationships, 1,486 sources and
+1,188 shared people.**
+
+A family map draws a person entry only when an edge joins it to a member field. Revision
+1.129 adds those edges for the Canada family:
+- **New person entries:** Ian McKay, Harold A. Innis and Patrick Wolfe. Each person
+  record gains its `node_id`.
+- **Edges from existing entries:** E. P. Thompson → Canadian working-class history and
+  Joan Wallach Scott → Canadian women's and gender history.
+
+Every edge rests on a checked pre-2000 text. Roster rows that correspond to a new edge
+carry its `edge_id`. `edge_886` (Marxist social history → working-class history) no longer
+carries Thompson's name, and Catherine Hall's edge is deferred because no passage is
+checked.
+
+Person entries are for thinkers whose frameworks students meet across fields (user
+principle, 2026-10-13). Readership dispersion across co-citation fields is in
+`data/field-research/dissertation-citations-2026-10-11/summary/idea-vs-content.csv`.
+See the [acceptance record](data/production-batches/canadian-person-links-1.129/README.md).
+
+## Historical revision 1.128 (2026-10-12)
 
 **155 entries (95 groups, 60 person entries), 889 teaching relationships,
 1,470 sources, 1,188 shared people and 948 approaches.** Eighteen group entries teach
