@@ -49,6 +49,34 @@ def records(path):
     return [r for k in ('records', 'proposed_source_records', 'reused_records') for r in data.get(k) or [] if isinstance(r, dict)]
 
 
+STRENGTH = {'supporting_page_checked': 2, 'bibliographic_metadata_checked': 1}
+
+
+def merge_source(sources, r, gid):
+    """One record per id. When drafts check the same id differently, keep the stronger check as the
+    base and carry the other draft's documented check in the note, so no check is lost."""
+    if r['id'] not in sources:
+        sources[r['id']] = dict(r, drafts=[gid])
+        return
+    have = sources[r['id']]
+    have['drafts'].append(gid)
+    hv, rv = have.get('verification', {}), r.get('verification', {})
+    if rv.get('note') and rv['note'] in (hv.get('note') or ''):
+        return
+    if STRENGTH.get(rv.get('status'), 0) > STRENGTH.get(hv.get('status'), 0):
+        base, other = dict(r, drafts=have['drafts']), have
+    else:
+        base, other = have, r
+    ov = other.get('verification', {})
+    extra = (ov.get('note') or '').strip()
+    if ov.get('checked_against'):
+        extra = f"{extra} Checked against: {ov['checked_against']}.".strip()
+    if extra:
+        base['verification'] = dict(base['verification'])
+        base['verification']['note'] = f"{base['verification'].get('note', '')} Also checked in another draft ({ov.get('status')}, {ov.get('checked_on')}): {extra}".strip()
+    sources[r['id']] = base
+
+
 def main():
     spec = json.loads((HERE / 'groups.json').read_text())
     order = [g['id'] for g in spec['groups']]
@@ -65,7 +93,7 @@ def main():
             people.setdefault(p['id'], dict(p, drafts=[]))['drafts'].append(gid)
         for r in records(dirs[gid] / 'literature.json') + (e.get('proposed_source_records') or []):
             if 'id' in r and r.get('verification', {}).get('status') != 'unverified':
-                sources.setdefault(r['id'], dict(r, drafts=[]))['drafts'].append(gid)
+                merge_source(sources, r, gid)
         for r in e.get('proposed_relationships') or []:
             rels[r['proposal_id']] = dict(r, draft=gid)
     log = []

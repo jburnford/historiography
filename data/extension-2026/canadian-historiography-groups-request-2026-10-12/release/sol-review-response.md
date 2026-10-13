@@ -30,3 +30,17 @@ How the fixes were made:
 | 16 | minor | Fecteau 1999 is cited as 641–66. The note records that Crossref's 641–692 overlaps Palmer's article (676–86) in the same issue, and that 641–66 follows the RHAF 2000 bibliography, an indexed extract. |
 | 17 | minor | The strand is now "Settler capitalism and settler societies in comparison". The two works are "earlier comparative scholarship, before the field's theoretical consolidation", and the term's decolonization-era usage is noted. |
 | 18 | minor | cdng_wk_rel_07 now reads "concurrent, separate debates with limited, one-way textual engagement (Dumont's 1999 review cites Ferretti and Létourneau)". |
+
+## Second round, after Sol's verification pass (`sol-verify-1.128.md`)
+
+| Item | Action |
+| --- | --- |
+| 1 and 19: policy | **Changed.** Every directed relationship evidenced only by works published after 2000 is now **deferred**, not annotated. The packet keeps it, with its reason, in `deferred_relationships` for a later extension release that registers works and claims. There are ten: crr_rel_04, 05 and 07; lof_rel_02, 07 and 10; and screq_rel_02, 04, 06 and 07. Publication years now come from each record's own `year`, or else from the last year in the citation (the imprint), never from a subject date in a title. Prose that pointed at a deferred edge has that clause dropped. |
+| 3 | The `native_newcomer` scope note now says "whether any adopts it was not checked". |
+| 4 | The label is now "Innis’s fur trade and later fur-trade history compared". |
+| 9 | The Black history sentence has a main verb again: "… gave the field book-length studies; Walker's put Black community at the centre …". |
+| 12 | Bannister's role is now contributor. |
+| 13 | Careless's row now reads: "Donald Davis (1985) later questioned metropolitan theses." |
+| 14 | `build_consolidated.py` now merges same-id records across drafts. The stronger check becomes the base, and the other draft's documented check is carried in the note. This keeps the working-class draft's jacket description for `lof_mckay_2008`. |
+| 17 | The settler date-span note now records the term's decolonization-era usage (Veracini 2013), and places only the theoretical consolidation after 2000. |
+| 20: edits 168, 176, 190 and 198 | The cleaning rules are narrowed. A parenthetical that also holds figures keeps them ("39% and lift 3.0 on a narrower definition"). A drafter clause goes, but the "Title-level" qualifier before it stays. A "(groups.json scope)" tag goes, but the sentence stays. Paths of the form "in drafts/…" go. Proposal ids in prose become final edge ids, and ids of defunct proposals are dropped. |

@@ -24,7 +24,7 @@ TEXT = [  # (finding, draft, old, new): applied to every string in entry-draft.j
     (4, 'native_newcomer', 'Contribution of a subject and evidence base, not influence on the field’s interpretations.',
      'Comparison only: shared subject matter. How Ray engaged Innis is not checked (catalogue level).'),
     (4, 'native_newcomer', 'Innis’s fur trade as a resource reworked by later historians',
-     'Innis’s fur trade compared with its later reworking'),
+     'Innis’s fur trade and later fur-trade history compared'),  # wording revised after Sol's verification pass
     (5, 'who_killed_debate', "Reviewed Who Killed Canadian History? in RHAF (1998; title level, text unread);",
      "Reviewed Who Killed Canadian History? in RHAF (1998; title level, text unread, position not checked);"),
     (5, 'who_killed_debate', "Reviewed Who Killed Canadian History? in the Bulletin d'histoire politique (1999; title level, text unread).",
@@ -34,8 +34,8 @@ TEXT = [  # (finding, draft, old, new): applied to every string in entry-draft.j
     (7, 'cdn_intellectual_cultural', 'An intellectual historian answers Granatstein',
      "An intellectual historian criticizes Granatstein's national history"),
     (8, 'cdn_regional', "In 1971 Buckner founded Acadiensis, complaining that historians remained 'obsessed with the great \"national\" themes'.",
-     "Acadiensis was revived in 1971 on Ken Windsor's initiative, with Buckner as its editor; his first editorial complained "
-     "that historians remained 'obsessed with the great \"national\" themes'."),
+     "Acadiensis was revived in 1971 (Windsor's initiative; Buckner editor), its first editorial faulting historians "
+     "'obsessed with the great \"national\" themes'."),  # trimmed for length after the first pass
     (8, 'cdn_regional', "Founded Acadiensis (1971) against historians \"obsessed with the great 'national' themes\"",
      "Editor of the revived Acadiensis (1971), whose first editorial faulted historians \"obsessed with the great 'national' themes\""),
     (9, 'cdn_black_history',
@@ -57,12 +57,22 @@ TEXT = [  # (finding, draft, old, new): applied to every string in entry-draft.j
     (18, 'who_killed_debate', 'concurrent, separate debates linked through a few people, not texts;',
      "concurrent, separate debates with limited, one-way textual engagement (Dumont's 1999 review cites Ferretti and Létourneau);"),
 ]
+TEXT += [  # Sol verification pass, 2026-10-12
+    (3, 'native_newcomer', 'most works here predate that framework and do not adopt it,',
+     'most works here predate that framework, and whether any adopts it was not checked;'),
+    (9, 'cdn_black_history', "and James Walker's The Black Loyalists (1976), which put Black community at the centre; Winks credited it",
+     "and James Walker's The Black Loyalists (1976) gave the field book-length studies; Walker's put Black community at the centre, and Winks credited it"),
+    (13, 'cdn_national_tradition', 'Urban historians later questioned metropolitan theses (Davis 1985).',
+     'Donald Davis (1985) later questioned metropolitan theses.'),
+]
+ROLES_2 = {('liberal_order_framework', 'jerry_bannister'): 'contributor'}
 SOURCE_NOTES = {  # record id -> passage appended to its verification note, wherever the record lives
     'cdng_buckner_2000': (8, ' Paragraphs 4–6 read on 2026-10-12 after the Sol review: Ken Windsor "initiated and eloquently '
                              'defended the creation of a journal"; David Earl showed it would be viable; Buckner "agreed to become '
                              'the editor"; the title was revived from David Russell Jack\'s journal (1901–08).'),
 }
-ROLES = {('who_killed_debate', 'bernard_dionne'): 'contributor', ('who_killed_debate', 'nadia_fahmy_eid'): 'contributor'}
+ROLES = {('who_killed_debate', 'bernard_dionne'): 'contributor', ('who_killed_debate', 'nadia_fahmy_eid'): 'contributor',
+         ('liberal_order_framework', 'jerry_bannister'): 'contributor'}
 RELS = {  # proposal id -> field updates (findings 4 and 7)
     'nnreq_rel_05': dict(relationship_kind='comparison', directed=False, type='connection'),
     'cic_rel_10': dict(relationship_kind='critique', directed=True, type='critique'),

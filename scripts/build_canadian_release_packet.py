@@ -41,12 +41,12 @@ NOT_SAME_WORK = {frozenset(('qcreq_fecteau_1995', 'qcreq_rudin_1995'))}  # two 1
 IDENTITY_NOTE = ('Canadian historiography revision 1.128 participant. Roster inclusion does not establish '
                  'external identity resolution; any Wikidata match is recorded separately.')
 EXTENSION_POLICY = ('The new entries cover 1920–2000 with earlier roots; their spans end at the 2000 coverage limit. '
-                    'Later works appear as cited readings, historiographical sources and strand works. A teaching '
-                    'relationship evidenced only by later work says so in its evidence note ("Later intervention") '
-                    'and is never drawn as a timeline mark. No post-2000 extension coverage or claims are registered, '
-                    'and no field is reviewed through 2026.')
-LATER_NOTE = (' Later intervention (first evidenced {year}): after the 2000 coverage limit; a teaching relationship, '
-              'not a timeline mark.')
+                    'Later works appear only as cited readings, historiographical sources and strand works. A directed '
+                    'relationship evidenced only by works published after 2000 is deferred (deferred_relationships) to a '
+                    'later extension release that registers works and claims. No post-2000 extension coverage or claims '
+                    'are registered, and no field is reviewed through 2026.')
+DEFER_REASON = ('Evidenced only by works published after 2000 (earliest {year}). GRAPH-FORMAT registers later '
+                'interventions through an extension release with work and claim provenance; deferred to that release.')
 FAMILY = 'Historiography in Canada'
 BRIDGES = {  # user decision 2026-10-12: Canadian entries in a Canada family, bridged to their thematic family
     'cdn_national_tradition': 'Political, national & international',
@@ -106,13 +106,23 @@ OTHER_FAMILIES = {'settler_colonialism': ('Empire, colonialism & the global', 'I
 END = r'[.!?](?=\s|$)'          # a sentence end, not a decimal point or an initial
 CLEAN = [
     (r'\s*\[Merged with \w+ from [^:\]]+: ', ' '), (r'\]$', ''),
-    (r'\s*\([^()]*\bQ\d{1,2}\b[^()]*\)', ''),
-    (r'\s*\(candidates\.csv\)', ''),
-    (r'\s*Target is proposed\.', ''),
+    (r' on the Q46 definition', ' on a narrower definition'),
+    (r'\s*\((?:answer to |see |user decision[^()]*?)?Q\d{1,2}(?:[,;]? ?(?:and )?Q\d{1,2})*\)', ''),
+    (r'[;,]\s*Q\d{1,2}\b(?=[);,])', ''), (r'\(Q\d{1,2}[;,]\s*', '('),
+    (r'\s*\((?=[^()]{0,40}\))[^()]*\b(?:answers|research) Q\d{1,2}\)', ''),
+    (r'\s*\((?:candidates\.csv|groups\.json scope)\)', ''),
+    (r'\s*in drafts/[\w]+', ''),
+    (r'\s*Target is proposed\.', ''), (r';\s*target is proposed\.', '.'),
+    (r'\s*Both endpoints (?:are )?proposed(?: entries| or new)?\.', ''), (r';\s*both endpoints proposed(?: or new)?\.', '.'),
+    (r'\s*Source endpoint is a proposed entry\.', ''),
+    (r'\bthe proposed ([^.;,()]*?) entry', r'the \1 entry'), (r'is a separate proposed entry', 'is a separate entry'),
+    (r'\bare proposed as\b', 'are'), (r'\bboth drafts\b', 'both entries'),
+    (r'(^|(?<=[.!?]))\s*The relationship edge for Burrill is.*?' + END + r'(?:\s*[^.!?]*?wcreq_rel_05[^.!?]*' + END + ')?', r'\1'),
+    (r';\s*the [^;.!?]*?\bdrafter\b.*?' + END, '.'),
     (r'Primary placement[^;.]*?; (shown|kept|listed)', lambda m: m.group(1).capitalize()),
     (r'(^|(?<=[.!?]))\s*Primary placement.*?' + END, r'\1'),
     (r'[;,]\s*(?:also |and )?primary placement.*?(' + END + ')', r'\1'),
-    (r'(^|(?<=[.!?]))\s*[^.!?]*?\b(?:drafter|groups\.json|screq_rel_\d+|wcreq_rel_\d+)\b.*?' + END, r'\1'),
+    (r'(^|(?<=[.!?]))\s*[^.!?]*?\b(?:drafter|groups\.json)\b.*?' + END, r'\1'),
     (r'[;,]\s*the [\w-]+ draft proposes.*?(' + END + ')', r'\1'),
     (r'\s*\(volumes (\d{4}–\d{2,4}) in this draft\)', r' (volumes \1 selected here)'),
     (r'\bin this draft\b', 'here'), (r'\bthis draft\b', 'this entry'),
@@ -344,23 +354,32 @@ def main():
     endpoints = atlas_nodes | {n['id'] for n in nodes}
     cited = {x['id']: x for x in graph['sources'] + sources}
 
+    record_year = {x['id']: x.get('year') for x in req['sources'] if x.get('year')}
+
     def work_year(sid):
+        """Publication year: the record's own year, else the last year in its citation (the imprint),
+        never a subject date inside a title."""
+        sid_years = [record_year.get(k) for k, v in canon.items() if v == sid and record_year.get(k)]
+        if record_year.get(sid) or sid_years:
+            return record_year.get(sid) or max(sid_years)
         rec = cited.get(sid, {})
         found = re.findall(r'\b(1[6-9]\d\d|20[0-2]\d)\b', rec.get('citation') or rec.get('title') or '')
-        return int(found[0]) if found else None
+        return int(found[-1]) if found else None
     strand_addresses = {f"{n['id']}/{st['id']}" for n in graph['nodes'] + nodes for st in n.get('strands') or []}
-    for i, r in enumerate(sorted(rels, key=lambda r: r['proposal_id']), start=last + 1):
+    deferred = []
+    for r in sorted(rels, key=lambda r: r['proposal_id']):
         if r['source'] not in endpoints or r['target'] not in endpoints:
             raise SystemExit(f"Bad endpoint in {r['proposal_id']}")
-        edge = dict(id=f'edge_{i:03d}', **{k: r[k] for k in EDGE_KEYS if k in r})
+        edge = dict(id=None, **{k: r[k] for k in EDGE_KEYS if k in r})
         edge['source_ids'] = remap(r.get('source_ids'), canon)
         for k in ('relationship', 'evidence_note', 'map_label'):
             if k in edge:
                 edge[k] = clean(edge[k], f"{r['proposal_id']}.{k}", edits)
         years = [work_year(i) for i in edge['source_ids']]
         if edge['directed'] and years and all(y and y > 2000 for y in years):
-            edge['evidence_note'] += LATER_NOTE.format(year=min(years))
-            adjusted.append(f"{r['proposal_id']}: later intervention ({min(years)})")
+            deferred.append(dict(edge, proposal_id=r['proposal_id'], reason=DEFER_REASON.format(year=min(years))))
+            adjusted.append(f"{r['proposal_id']}: deferred, later intervention ({min(years)})")
+            continue
         strand = (r.get('target_strand') or '').strip()
         if strand:
             if strand in strand_addresses and strand.startswith(r['target'] + '/'):
@@ -370,6 +389,34 @@ def main():
         edge['proposal_id'] = r['proposal_id']
         dropped['edge'].update(set(r) - set(EDGE_KEYS) - {'proposal_id', 'target_strand'})
         edges.append(edge)
+    for i, edge in enumerate(edges, start=last + 1):
+        edge['id'] = f'edge_{i:03d}'
+    for d in deferred:
+        d.pop('id', None)
+    # Proposal ids left in prose become final edge ids (or a note that the relationship is deferred).
+    final = {e['proposal_id']: e['id'] for e in edges}
+    final.update({d['proposal_id']: 'a deferred relationship' for d in deferred})
+
+    def proposal_ids(text, where):
+        out = re.sub(r'\s*\((?:[^()]*?\s)?([a-z]+(?:_[a-z]+)*_rel_\d{2})\)', lambda m: m.group(0) if m.group(1) in final else '', text)
+        out = re.sub(r';\s*see ([a-z]+(?:_[a-z]+)*_rel_\d{2})(?=[.;])', lambda m: m.group(0) if m.group(1) in final else '', out)
+        for pid in {d['proposal_id'] for d in deferred}:  # clauses pointing at a deferred edge go
+            out = re.sub(r',?\s*(?:reached|linked) from here by (?:the \w+ edge )?' + pid, '', out)
+            out = re.sub(r',?\s*which also proposes the specific contribution ' + pid + r" into [^.;]*", '', out)
+        out = re.sub(r'\b[a-z]+(?:_[a-z]+)*_rel_\d{2}\b', lambda m: final.get(m.group(0), m.group(0)), out)
+        if out != text:
+            edits.append(dict(where=where, before=text, after=out))
+        return out
+    for n in nodes:
+        for k in ('description', 'scope_note', 'representative_figures_and_works'):
+            if k in n:
+                n[k] = proposal_ids(n[k], f"{n['id']}.{k}")
+        for row in n['representative_people']:
+            row['context'] = proposal_ids(row['context'], f"{n['id']}.row.{row['person_id']}.context")
+        for st in n['strands']:
+            st['focus'] = proposal_ids(st['focus'], f"{n['id']}.strand.{st['id']}.focus")
+    for e in edges + deferred:
+        e['evidence_note'] = proposal_ids(e['evidence_note'], f"{e['proposal_id']}.evidence_note")
 
     families = [dict(family=FAMILY, member=gid, member_kind='atlas_entry', bridge_family=b, status='reviewed',
                      note='User decision 2026-10-12: the Canada family is the primary home, bridged to the thematic family.')
@@ -397,12 +444,12 @@ def main():
         extension_policy=EXTENSION_POLICY,
         nodes=nodes, people=people, sources=sources, edges=edges,
         source_id_merges={k: v for k, v in sorted(canon.items()) if k != v},
-        people_wikidata=wikidata, families=families, approach_folds=folds, crosswalk_rows=crosswalk,
+        people_wikidata=wikidata, families=families, deferred_relationships=deferred, approach_folds=folds, crosswalk_rows=crosswalk,
         dropped_drafting_fields={k: sorted(v) for k, v in sorted(dropped.items())}, adjustments=adjusted, publication_edits=edits,
         counts=dict(nodes=len(nodes), people=len(people), sources=len(sources), edges=len(edges),
                     roster_rows=sum(len(n['representative_people']) for n in nodes),
                     strands=sum(len(n['strands']) for n in nodes), merged_source_ids=sum(k != v for k, v in canon.items()),
-                    people_wikidata=len(wikidata), publication_edits=len(edits), folds=len(folds), crosswalk_rows=len(crosswalk)))
+                    people_wikidata=len(wikidata), deferred_relationships=len(deferred), publication_edits=len(edits), folds=len(folds), crosswalk_rows=len(crosswalk)))
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps(packet['counts']))
