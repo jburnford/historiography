@@ -30,7 +30,7 @@ class EvidenceAssetTests(unittest.TestCase):
 
     def test_counts_only_no_text_or_people(self):
         allowed = {"status", "reviews_by_5yr", "journal_items_by_5yr", "reviews_total", "journal_items_total",
-                   "practised_within", "roots_in", "relations", "method", "invoked_in_reviews", "invoked_most_in"}
+                   "practised_within", "roots_in", "relations", "method", "invoked_in_reviews", "invoked_most_in", "coverage"}
         for eid, e in self.asset["entries"].items():
             self.assertLessEqual(set(e), allowed, eid)
         self.assertLess(ASSET.stat().st_size, 200_000)
@@ -54,7 +54,7 @@ class EvidenceAssetTests(unittest.TestCase):
     def test_family_series_are_shares_of_a_real_total_ending_2024(self):
         block = self.asset["families"]
         for f in block["families"]:
-            self.assertEqual(set(f["series"]), {"all", "established", "reviews"})
+            self.assertEqual(set(f["series"]), {"all", "established", "reviews", "deposited"})
             for view, rows in f["series"].items():
                 for b, items, total in rows:
                     self.assertLessEqual(items, total, (f["id"], view, b))

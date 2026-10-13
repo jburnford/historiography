@@ -1,0 +1,102 @@
+{
+  "version": "v18",
+  "inputs": {
+    "crosswalk": {
+      "path": "data/evidence-layer/practice-crosswalk.csv",
+      "sha256": "2a9f3fe22e895524ef62313cf5f3233f350d8fc25624324d7e74c170c31a19d0"
+    },
+    "hierarchy": {
+      "path": "data/evidence-layer/practice-hierarchy.csv",
+      "sha256": "1340c700963367d39ef85e6f14f95335f241919ff6a689fb89e1a824ba1991f0"
+    },
+    "folds": {
+      "path": "data/evidence-layer/approach-folds.csv",
+      "sha256": "0d57a19e881756ad959b7f092473a9aa5ec4e7026a87cc88dbbbf4ee0280cf8d"
+    },
+    "families": {
+      "path": "data/evidence-layer/families-draft.csv",
+      "sha256": "75752482cfbb954ccb0fd3428a2e9b78328824f85cef8757fa638960e8611cf4"
+    },
+    "hnet_graph": {
+      "path": "data/hnet-graph/generated/graph.sqlite",
+      "sha256": "6f9844df1d0987c32e6114fcde2a4161466f15c91ceb4091cae828b07005d2b4"
+    },
+    "unified_nodes": {
+      "path": "data/unified-graph/generated/nodes.csv",
+      "sha256": "427d7bba857f20621038af0f41d299c26a8e7060f7cd749a197461e62dd3c5a9"
+    },
+    "unified_links": {
+      "path": "data/unified-graph/generated/links.csv",
+      "sha256": "6f5e7f5cf5df44a2f9e6c7d40181cc32fce652d7d286f8bb7e9a7cd95e46fd27"
+    },
+    "crossref_catalog": {
+      "path": "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb",
+      "sha256": "5ef652510f06bb86895091c40e4ad8fde1b9e14dad4d970f56d52a9a8a20b7a2"
+    },
+    "selected_journals": {
+      "path": "data/history-journal-profession-review-2026-09-22/selected-journals.json",
+      "sha256": "924f767f9ce588a9940df2a0483d6b43b8912395a27713774e115890a6848918"
+    },
+    "crossref_supplement": {
+      "path": "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb",
+      "sha256": "6bbc3c8d1e125099421cd3bcfa4efdf833b2bb3bf1f30a7c02f8e534e2838dcd"
+    },
+    "supplement_selection": {
+      "path": "data/history-journals-supplement-2026-09-26/selection.json",
+      "sha256": "84266871bf9a62785a90b0e640b871555ab909e3a24ec92582fa4e9bf8ef2b54"
+    },
+    "atlas_graph": {
+      "path": "historiography-1920-2000.json",
+      "sha256": "f39987e5e906058af1763e5a3ee32c13a50a660fd36ebf822adc2102d6944ddf"
+    },
+    "journal_input:data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb": {
+      "path": "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb",
+      "sha256": "5ef652510f06bb86895091c40e4ad8fde1b9e14dad4d970f56d52a9a8a20b7a2"
+    },
+    "journal_input:data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb": {
+      "path": "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb",
+      "sha256": "6bbc3c8d1e125099421cd3bcfa4efdf833b2bb3bf1f30a7c02f8e534e2838dcd"
+    },
+    "journal_input:data/history-journals-recovery-2026-10-10/generated/v1/catalog.duckdb": {
+      "path": "data/history-journals-recovery-2026-10-10/generated/v1/catalog.duckdb",
+      "sha256": "9472a77f233707643dee0f54419ff1f93fde0da2d15b1f8680d9819294629d62"
+    },
+    "journal_input:data/history-journal-profession-review-2026-09-22/selected-journals.json": {
+      "path": "data/history-journal-profession-review-2026-09-22/selected-journals.json",
+      "sha256": "924f767f9ce588a9940df2a0483d6b43b8912395a27713774e115890a6848918"
+    },
+    "journal_input:data/history-journals-supplement-2026-09-26/selection.json": {
+      "path": "data/history-journals-supplement-2026-09-26/selection.json",
+      "sha256": "84266871bf9a62785a90b0e640b871555ab909e3a24ec92582fa4e9bf8ef2b54"
+    },
+    "journal_input:data/history-journals-recovery-2026-10-10/selection.json": {
+      "path": "data/history-journals-recovery-2026-10-10/selection.json",
+      "sha256": "735bb108ef590aa7603e6b6225049ed46939444dc66e7c6ef03664020cd6195b"
+    },
+    "journal_input:data/evidence-layer/repairs/2026-10-10/page-ranges.csv": {
+      "path": "data/evidence-layer/repairs/2026-10-10/page-ranges.csv",
+      "sha256": "ba793bc1061180272abdb3d5bea6dddf78306f183567a4f0d697f4e5bfb2b822"
+    },
+    "journal_input:data/evidence-layer/repairs/2026-10-10/additional-page-ranges.csv": {
+      "path": "data/evidence-layer/repairs/2026-10-10/additional-page-ranges.csv",
+      "sha256": "042b2337018bd531f1bd92983b2f024183e3ea3aabef4b1f8bd361dece73ed21"
+    },
+    "journal_input:data/evidence-layer/repairs/2026-10-10/additional-pagination-witness.json": {
+      "path": "data/evidence-layer/repairs/2026-10-10/additional-pagination-witness.json",
+      "sha256": "fb1b67e6b998b8b481940d1e9529d8a6a03f941c2aed2956ef82a580d1bd0283"
+    },
+    "journal_input:scripts/evidence_inputs.py": {
+      "path": "scripts/evidence_inputs.py",
+      "sha256": "b5bf2de4dc4ba3279c11dac02e679fe510092e10d88fc827ef28617cd17049f4"
+    },
+    "builder": {
+      "path": "scripts/build_practice_series.py",
+      "sha256": "17a1cbbc552ae8515265705f8b5a30200aab0940358e47780485865a330f62a9"
+    },
+    "family_builder": {
+      "path": "scripts/practice_families.py",
+      "sha256": "2015272c6a093df3bddb42cc2e328cdf8d88cafb1210f76eca76461fb2ffc1f8"
+    }
+  },
+  "summary_sha256": "2fdbff7f1de20aab3d2798359e488e2c4d71c74d00eb4c3eeb06455144a2f549"
+}

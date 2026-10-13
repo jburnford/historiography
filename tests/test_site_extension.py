@@ -131,6 +131,9 @@ class ExtensionViewTests(unittest.TestCase):
         files = {str(p.relative_to(self.dest)) for p in self.dest.rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll',
                     'data/graph.json', 'data/pathways.json', 'data/graph-2000.json'}
+        expected.update({'records.mjs', 'data/overview.json'})
+        if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-people.json').exists():
+            expected.add('data/people-records.json')
         expected.add('landing.mjs')  # landing redesign (2026-09-27): page module
         if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-evidence.json').exists():
             expected.add('data/evidence.json')  # evidence-layer aggregates (2026-09-27); no research captures

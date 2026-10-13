@@ -3,7 +3,42 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## On the site (2026-09-27)
+## Current local build (2026-10-10)
+
+Practice **v18**, methods **methods-v6** and **mentions-v5** serve graph 1.127.
+The [publication-evidence repairs](repairs/2026-10-10/README.md) preserve the prior
+audit and correct bounded title and pagination gaps. The subsequent
+[Indigenous-history deep dive](../field-research/indigenous-deep-dive-2026-10-10/README.md)
+expands the atlas roster; a fresh mention scan searches the new names. Venue
+counts include outside scholarship and cannot classify Indigenous authorship or
+date the origin of historical knowledge. Registry v9 and the eight-profile pilot
+remain unchanged. The subsequent [foundations revision](../field-research/indigenous-foundations-2026-10-10/README.md) adds community and academic collaborations. Its fresh scan covers 49,520 reviews; approach aggregates and theme lifts match mentions-v4. Method results match methods-v5. The source-title locator correction is explicitly reconciled in the [batch provenance](../production-batches/indigenous-1.127/README.md). Earlier builds and counts below are historical snapshots.
+
+```bash
+python3 scripts/build_evidence_asset.py --series v18 --methods methods-v6 --mentions mentions-v5
+python3 scripts/build_site.py
+```
+
+## Student beta (2026-10-10)
+
+The subsequent [project-wide coverage audit](audits/coverage-2026-10-10/README.md)
+checks all eleven families, 77 entries, 407 selected contexts and the wider catalogue.
+It finds two selected-title alias failures, untagged predecessors and substantial
+backfile/page-length limits. Its 18-item correction queue preserves selection
+decisions and frozen outputs; **practice v17 and the public counts are unchanged**.
+Reproducing bins alone does not verify completeness or historical representativeness.
+
+The [landing sensitivity audit](audits/landing-2026-10-10/README.md) is complete
+as a metadata/aggregate comparison. Its 54-item genre screen remains unreviewed.
+The site exposes proxy and classification limits; accepted mapping decisions
+are unchanged. An eight-person `site-people.json` pilot supplies 84 source-credit
+rows from registry v9, separate from this aggregate asset. It preserves source
+links and the weaker atlas/source-credit identity tier, without full text or
+personal-profile data. Rebuild it with `scripts/build_people_records_asset.py`
+when the frozen source databases are available; input hashes are in
+[audits/people-records-2026-10-10.json](audits/people-records-2026-10-10.json).
+
+## On the site (2026-09-27; current builds below)
 
 Each field entry's reading panel has a **"What the record shows"** panel, loaded lazily from
 `docs/data/evidence.json`. What it shows depends on the entry:

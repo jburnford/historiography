@@ -1,19 +1,42 @@
-import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH} from './core.mjs';
+import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH, isOverviewHash} from './core.mjs';
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf} from './field.mjs';
 import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
-import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
+import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
+import {recordPanel as publicationPanel} from './records.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 let graph, pathways, state, nodeById, sourceById, personById, personNames;
 /* `production` is the current graph; `baselineGraph` the archived 2000 graph, loaded on demand
    for the exact baseline view. `catalogue` indexes the claim catalogue of whichever is shown. */
-let production, baselineGraph = null, catalogue = {entities: new Map(), claims: new Map(), records: new Map()};
+let production, productionRequest, baselineGraph = null, catalogue = {entities: new Map(), claims: new Map(), records: new Map()};
+async function loadProduction() {
+  if (!production.overview_only) return;
+  if (!productionRequest) productionRequest = fetch('data/graph.json', {signal: AbortSignal.timeout(30000)})
+    .then(r => { if (!r.ok) throw new Error('Could not load the detailed atlas'); return r.json(); })
+    .catch(error => { productionRequest = null; throw error; });
+  production = await productionRequest;
+  if (graph.overview_only) adopt(production);
+}
 /* The evidence layer (data/evidence.json): aggregates from reviews and journal metadata, shown
    beside an entry's interpretation and never merged into it. Loaded with the graph; the landing needs it. */
 let evidence = null;
+let peopleRecords, peopleRecordsRequest;
+const RECORD_PILOT = new Set(['paul_e_lovejoy', 'geoff_eley', 'serge_noiret', 'lorraine_daston', 'jay_winter', 'peter_galison', 'ida_altman', 'joel_mokyr']);
+async function loadPeopleRecords() {
+  if (!state?.person || !RECORD_PILOT.has(state.person)) return;
+  if (!peopleRecordsRequest) peopleRecordsRequest = fetch('data/people-records.json', {signal: AbortSignal.timeout(8000)})
+    .then(r => { if (!r.ok) throw new Error('Profile records unavailable'); return r.json(); })
+    .then(asset => { peopleRecords = asset; })
+    .catch(() => { peopleRecordsRequest = null; });
+  await peopleRecordsRequest;
+  const box = document.querySelector('[data-person-records]');
+  if (!box || box.dataset.personRecords !== state.person) return;
+  box.innerHTML = peopleRecords ? publicationPanel(peopleRecords, state.person)
+    : '<p class="fine-print">Publication records could not be loaded. <button type="button" data-retry-records>Try again</button></p>';
+}
 const revision = () => graph.revision_history.at(-1).version;
 const activeExtension = () => state?.range === '2000' ? null : extensionOf(graph);
 function adopt(g) {
@@ -140,9 +163,14 @@ function schoolTabs(n) {
   return `<nav class="school-tabs" aria-label="Explore this entry"><a href="${esc(href({section: '', edge: '', page: 0, kind: '', neighborLayer: '', person: ''}))}" ${state.section !== 'connections' ? 'aria-current="page"' : ''}>Historians & contributors <span>${n.representative_people.length}</span></a>
     <a href="${esc(href({section: 'connections', person: '', page: 0}))}" ${state.section === 'connections' ? 'aria-current="page"' : ''}>Connections <span>${neighborhood(graph, n.id).length}</span></a></nav>`;
 }
+function strandCredits(branch) {
+  const credits = branch.participant_credits || [];
+  return `${credits.length ? `<p class="fine-print"><strong>Community knowledge contributors.</strong> ${credits.map(c => `${esc(c.name)} (${esc(c.role)}; ${esc(c.locator)})`).join(' · ')}</p>` : ''}${branch.citation_note ? `<p class="fine-print">${esc(branch.citation_note)}</p>` : ''}`;
+}
+
 function strandGuide(n) {
   if (!n.strands?.length) return '';
-  return `<section class="strand-guide" aria-label="Approaches within this entry"><h3>Different approaches within this entry</h3><p class="fine-print">Overlapping approaches and debates, not a sequence of schools replacing one another.</p>${n.strands.map(branch => `<details class="strand${branch.intervention_year ? ' strand-extension' : ''}"><summary>${esc(branch.title)}${branch.intervention_year ? `<span class="strand-year">${esc(branch.intervention_year)}</span>` : ''}</summary>${branch.intervention_year ? `<p class="strand-meta">Selected intervention · ${esc(branch.intervention_year)} ${reviewBadge(branch.review_status)}<span class="fine-print"> A work's year is not the field's origin or a career boundary.</span></p>` : ''}<p>${esc(branch.focus)}</p><p class="strand-people">${branch.person_ids.map(id => `<a href="${esc(personHref(id))}">${esc(personById.get(id)?.label || id)}</a>`).join(' · ')}</p><p class="person-work">${esc(branch.works)}</p>${branch.claim_ids?.length ? `<details class="strand-claims"><summary>Exact claims · ${branch.claim_ids.length}</summary>${claimCards(branch.claim_ids)}</details>` : ''}<details><summary>Reading references</summary><p class="fine-print">These readings have different scopes; see their source notes.</p>${sourceList(branch.source_ids)}</details></details>`).join('')}</section>`;
+  return `<section class="strand-guide" aria-label="Approaches within this entry"><h3>Different approaches within this entry</h3><p class="fine-print">Overlapping approaches and debates, not a sequence of schools replacing one another.</p>${n.strands.map(branch => `<details class="strand${branch.intervention_year ? ' strand-extension' : ''}"><summary>${esc(branch.title)}${branch.intervention_year ? `<span class="strand-year">${esc(branch.intervention_year)}</span>` : ''}</summary>${branch.intervention_year ? `<p class="strand-meta">Selected intervention · ${esc(branch.intervention_year)} ${reviewBadge(branch.review_status)}<span class="fine-print"> A work's year is not the field's origin or a career boundary.</span></p>` : ''}<p>${esc(branch.focus)}</p><p class="strand-people">${branch.person_ids.map(id => `<a href="${esc(personHref(id))}">${esc(personById.get(id)?.label || id)}</a>`).join(' · ')}</p><p class="person-work">${esc(branch.works)}</p>${strandCredits(branch)}${branch.claim_ids?.length ? `<details class="strand-claims"><summary>Exact claims · ${branch.claim_ids.length}</summary>${claimCards(branch.claim_ids)}</details>` : ''}<details><summary>Reading references</summary><p class="fine-print">These readings have different scopes; see their source notes.</p>${sourceList(branch.source_ids)}</details></details>`).join('')}</section>`;
 }
 function corePeople(n) {
   if (!n.representative_people?.length) return '';
@@ -298,7 +326,8 @@ function personPage() {
   const contexts = personContexts(graph, p.id);
   const own = nodeById.get(p.node_id);
   const parent = nodeById.get(state.node);
-  const origin = parent ? `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent.label)}</a>` : '<a href="#tab=people">Historians & contributors</a>';
+  const family = familyBySlug(evidence?.families, state.family);
+  const origin = parent ? `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent.label)}</a>` : family ? `<a href="${esc(href({tab: 'map', person: '', node: '', edge: '', focus: '', query: '', view: 'approaches'}))}">${esc(family.label)}</a>` : '<a href="#tab=people">Historians & contributors</a>';
   const basisLabels = {curated_entry: 'Selection recorded in the curated entry', existing_relationship: 'Selection supported by an existing qualified connection', source_review: 'Selection with a scoped source check', editorial_comparison: 'Editorial comparison across constituent fields'};
   return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
     ${own ? `<p class="profile-introduction">${esc(own.description)}</p>` : '<p class="context-note">Read this person through the works and contexts below. These are selected points of entry, not a complete biography.</p>'}
@@ -307,6 +336,7 @@ function personPage() {
       <details class="person-evidence"><summary>References & basis for inclusion</summary><p class="fine-print">${esc(basisLabels[r.basis])}. Group references provide context; they do not certify every affiliation or interpretation.</p>${r.edge_id ? `<a class="text-link" href="#edge=${r.edge_id}">Inspect the existing relationship →</a>` : ''}${sourceList(r.source_ids)}</details></section>`).join('')}</div>
     ${!contexts.length && own ? `<p>No group roster currently includes this person. Their individual entry provides the selected works and connections.</p><section class="reading-panel"><h3>Representative figures & works</h3><p>${esc(own.representative_figures_and_works)}</p><details class="bibliography" open><summary>References</summary>${sourceList(own.source_ids)}</details></section>` : ''}
     ${strandContexts(p)}
+    ${RECORD_PILOT.has(p.id) ? `<div data-person-records="${esc(p.id)}" aria-live="polite">${peopleRecords ? publicationPanel(peopleRecords,p.id) : '<p class="fine-print">Loading publication records…</p>'}</div>` : ''}
     </article>`;
 }
 /* Approaches (strands) that name a person, including works added after the roster record. */
@@ -314,7 +344,7 @@ function strandContexts(p) {
   const hits = graph.nodes.flatMap(n => (n.strands || []).filter(s => s.person_ids?.includes(p.id)).map(strand => ({n, strand})));
   if (!hits.length) return '';
   return `<h3>Approaches that name them</h3><p class="fine-print">Named within an approach or work-based strand of an entry. A later work here does not re-date the roster record above.</p><div class="person-contexts">${hits.map(({n, strand}) => `<section class="person-affiliation tone-${layerIndex(n.layer)}">${layerTag(n)}<h3><a href="${esc(nodeHref(n.id))}">${esc(n.label)} →</a></h3><p class="strand-title">${esc(strand.title)}${strand.intervention_year ? ` <span class="strand-year">${esc(strand.intervention_year)}</span>` : ''}${reviewBadge(strand.review_status)}</p>
-    ${strand.works ? `<p class="person-work">${esc(strand.works)}</p>` : ''}${strand.claim_ids?.length ? `<details class="strand-claims"><summary>Exact claims · ${strand.claim_ids.length}</summary>${claimCards(strand.claim_ids)}</details>` : ''}</section>`).join('')}</div>`;
+    ${strand.works ? `<p class="person-work">${esc(strand.works)}</p>` : ''}${strandCredits(strand)}${strand.claim_ids?.length ? `<details class="strand-claims"><summary>Exact claims · ${strand.claim_ids.length}</summary>${claimCards(strand.claim_ids)}</details>` : ''}</section>`).join('')}</div>`;
 }
 
 /* ---------------- The field: every entry on one time axis ---------------- */
@@ -327,7 +357,7 @@ const fieldTitle = id => FIELD_TITLES[id]
 const hiddenKinds = () => new Set(state.hide ? state.hide.split(',') : []);
 /* Holding an entry the family view does not draw leaves the family for the full field. */
 const outsideFamily = id => { const ids = shownIds(); return Boolean(ids) && !ids.has(id); };
-const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: '',
+const focusHref = id => href({focus: id, node: '', person: '', edge: '', page: 0, section: '', view: 'map',
   ...(state.family && state.family !== 'all' && (!activeFamily() || outsideFamily(id)) ? {family: ''} : {})});
 /* Releasing a held entry keeps any pathway overlay and search; it only lets go of the hold. */
 const releaseHref = () => href({focus: '', node: '', person: '', edge: '', page: 0, section: ''});
@@ -760,23 +790,25 @@ function landingPage() {
   const toggles = Object.entries(VIEWS).map(([k, label]) =>
     `<a class="view-link" role="button" href="${esc(href({...OVERVIEW_PATCH, record: k === 'all' ? '' : k}))}" aria-pressed="${k === view}">${esc(label)}</a>`).join('');
   const viewNote = view === 'established'
-    ? `Only the ${block.established_journals} journals publishing research in both 1970–74 and 2015–19. Old journals are slow to take up new fields.`
+    ? `Only the ${block.established_journals} selected title contexts with qualifying research candidates in both 1970–74 and 2015–19. This holds the selected venues constant.`
+    : view === 'deposited' ? 'All deposited journal-article records, including reviews and short items. This view exposes older metadata that lack page ranges; it does not establish research-article genre.'
     : view === 'reviews' ? 'Share of all book reviews in H-Net and Reviews in History in each five-year period.'
-    : 'Share of all research articles in each five-year period, across every journal in the collection.';
+    : 'Share of research candidates in each five-year period, across the selected journals.';
   return `<div class="landing-page">
     <div class="section-heading"><div><p class="eyebrow">01 / THE ATLAS AND THE RECORD · ${AXIS_LABEL}</p>
       <h2>Eleven families of historical writing</h2></div></div>
-    <p class="lede"><b class="atlas">Orange</b>: where this atlas dates its schools and fields. <b class="record">Green</b>: each family’s share of what historians published. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
+    <p class="lede"><b class="atlas">Orange</b>: where this atlas dates its schools and fields. <b class="record">Green</b>: each family’s share of this publication record. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
     <p class="eyebrow">THE GAP IN ONE LINE</p>
     <div class="strip"><span>Share of atlas entries</span>${stripBar(strip.atlas, 'atlas')}
-      <span>Share of research, ${strip.period[0]}–${strip.period[1]}</span>${stripBar(strip.record, 'record', strip.unclaimed)}</div>
+      <span>Share of research candidates, ${strip.period[0]}–${strip.period[1]}</span>${stripBar(strip.record, 'record', strip.unclaimed)}</div>
     <div class="landing-controls"><p class="eyebrow">OVER TIME</p><div class="view-links" role="group" aria-label="Record view">${toggles}</div></div>
-    <p class="fine-print">${esc(viewNote)} ${esc(block.note)}</p>
+    <p class="fine-print">${esc(viewNote)} ${esc(block.note)} Blank bars can reflect selection limits, missing deposits, incomplete pagination or mapping gaps; they do not date a field’s beginning.</p>
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags, and research articles are records of at least ten pages. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
+    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
       <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
+    ${evidence.sensitivity ? `<details class="landing-audit"><summary>How sensitive is this comparison?</summary><p class="fine-print">${esc(evidence.sensitivity.note)}</p><p class="fine-print">${esc(evidence.sensitivity.pagination_note)}</p></details>` : ''}
   </div>`;
 }
 function drawLanding() {
@@ -814,8 +846,49 @@ function familyHeading(f) {
     <p class="fine-print family-caveat">Record fields come from journal-level tags and subject headings; counts measure participation, not influence.</p>`;
 }
 
+function familyNavigation(exploring) {
+  return `<nav class="family-views" aria-label="Family view">${[
+    ['approaches', 'Approaches & people'], ['map', 'Timeline'], ['list', 'List']
+  ].map(([view, label]) => `<a href="${esc(href({view, focus: '', page: 0}))}" ${
+    (exploring ? view === 'approaches' : state.view === view) ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav>`;
+}
+
+function familyExplorer(fam) {
+  const allowed = new Set(filterNodes(graph.nodes, {...state, query: ''}, graph.people).map(n => n.id));
+  const content = familyContent(graph, fam, state.query, allowed);
+  const {fields, approaches, people, connections, approachCount, peopleCount} = content;
+  const grouped = fields.map(field => {
+    const rows = approaches.filter(r => r.field.id === field.id);
+    if (!rows.length) return '';
+    return `<section class="family-approach-group" aria-label="${esc(field.label)} approaches">
+      <div class="family-group-heading"><h3>${esc(field.label)}</h3><a href="${esc(nodeHref(field.id))}">Full field entry →</a></div>
+      <div class="family-approach-grid">${rows.map(({strand:s}) => `<article class="family-approach" data-approach="${esc(field.id + '/' + s.id)}">
+        <h4>${esc(s.title)}${s.intervention_year ? ` <span class="strand-year">${esc(s.intervention_year)}</span>` : ''}</h4>
+        <p>${esc(s.focus)}</p><p class="person-work">${esc(s.works)}</p>
+        <ul class="family-participants">${(s.person_ids || []).map(id => `<li><a href="${esc(personHref(id))}">${esc(personById.get(id)?.label || id)}</a></li>`).join('')}</ul>
+        ${strandCredits(s)}${s.claim_ids?.length ? `<details class="strand-claims"><summary>Exact claims · ${s.claim_ids.length}</summary>${claimCards(s.claim_ids)}</details>` : ''}
+        <details class="family-approach-sources"><summary>Sources & reading limits</summary>${sourceList(s.source_ids)}</details>
+      </article>`).join('')}</div></section>`;
+  }).join('');
+  return `<div class="field-page family-explorer">${familyHeading(fam)}
+    <div class="section-heading"><div><p class="eyebrow">ONE FAMILY OF HISTORICAL WRITING</p><h2>${esc(fam.label)}</h2></div>
+      <p class="family-content-summary">${approachCount} approaches · ${peopleCount} historians & contributors · ${fields.length} fields</p></div>
+    ${familyNavigation(true)}<p class="family-introduction">Explore the practices, works and collaborations within these fields. People appear through their recorded contributions; open a source to see what supports the selection.</p>
+    ${state.query ? `<p class="family-results">${approaches.length} matching approaches · ${people.length} matching people <a href="${esc(href({query: ''}))}">Clear search</a></p>` : ''}
+    <div class="family-explorer-split"><div>${grouped || '<p class="empty">No approaches match these filters.</p>'}</div>
+      <aside class="family-people" aria-label="People in this family"><h3>Historians & contributors <span>${people.length}</span></h3>
+        <p class="fine-print">Shared people appear once, with their roles in each field.</p><ul>${people.map(({person, contexts}) => `<li data-person="${esc(person.id)}"><a href="${esc(personHref(person.id))}">${esc(person.label)}</a>
+          ${contexts.map(({field, row}) => `<p class="fine-print">${esc(PERSON_ROLES[row.role] || row.role)} · ${esc(field.label)}</p>`).join('')}</li>`).join('')}</ul></aside></div>
+    <section class="family-boundaries" aria-label="Connections with related fields"><h3>Connections with related fields</h3>
+      <div class="family-connection-grid">${connections.map(({edge:e, source, target}) => `<article class="family-boundary-card" data-edge="${esc(e.id)}">
+        <p class="eyebrow">${esc(kindChip(e.relationship_kind))}</p><h4>${esc(source.label)} ${hasArrow(e) ? '→' : '·'} ${esc(target.label)}</h4>
+        <p>${esc(e.relationship)}</p><a href="${esc(href({edge: e.id, node: e.source, person: '', focus: '', query: '', section: 'connections', page: 0}))}">Read the relationship & evidence →</a>
+      </article>`).join('') || '<p>No related-field relationships recorded for this selection.</p>'}</div></section></div>`;
+}
+
 function fieldPage() {
   const fam = activeFamily();
+  if (fam && !state.focus && state.view === 'approaches') return familyExplorer(fam);
   const counts = fieldView(1200);   /* counts do not depend on width; the SVG is drawn after measuring */
   const body = state.view === 'list' ? `<div class="field-listing">${fieldList()}</div>`
     : '<div class="field-scroll" aria-busy="true"></div>';
@@ -826,7 +899,7 @@ function fieldPage() {
       <p class="field-summary">${counts.datedCount} placed in time${counts.undatedCount
         ? ` · ${counts.undatedCount} without a stated span` : ''} ·
         ${fieldEdges(shownGraph()).length} relationships${activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
-    ${fieldLegend()}
+    ${fam ? familyNavigation(false) : ''}${fieldLegend()}
     <div class="field-split">${body}
       <aside class="field-panel">${fieldPanel()}</aside></div>
     <p class="fine-print">${state.view === 'list'
@@ -1003,19 +1076,24 @@ function recordPanel(n) {
   const entryLink = x => nodeById.has(x.id) ? linkNode(x.id) : esc(x.label);
   const parts = [];
   if (e.status === 'direct') {
-    parts.push(e.reviews_total ? `<p><strong>${fmt(e.reviews_total)}</strong> reviews in networks and headings mapped to this field</p>${recordBars(e.reviews_by_5yr, 1990, 2025, 'reviews')}` : '<p>No reviews in networks or headings mapped to this field.</p>');
-    parts.push(e.journal_items_total ? `<p><strong>${fmt(e.journal_items_total)}</strong> research articles in journals tagged with this field</p>${recordBars(e.journal_items_by_5yr, 1950, 2025, 'research articles')}` : '<p>No journals in the collection are tagged with this field.</p>');
+    parts.push(e.reviews_total ? `<p><strong>${fmt(e.reviews_total)}</strong> reviews in networks and headings mapped to this field</p>${recordBars(e.reviews_by_5yr, 1990, 2025, 'reviews')}` : '<p>No mapped reviews in the selected collections for this field.</p>');
+    parts.push(e.journal_items_total ? `<p><strong>${fmt(e.journal_items_total)}</strong> research candidates in journals tagged with this field</p>${recordBars(e.journal_items_by_5yr, 1900, 2025, 'research candidates')}` : '<p>No qualifying journal records in this collection for this field.</p>');
   } else if (e.status === 'cross_field_method_with_roots') {
-    parts.push(`<p>A method used across fields, with roots in ${e.roots_in.map(entryLink).join(' and ')}.</p>`);
+    parts.push(`<p>Editorial method grouping, with proposed roots in ${e.roots_in.map(entryLink).join(' and ')}.</p>`);
   } else {
-    parts.push(`<p>No direct signal: networks, subject headings and journals do not name this ${n.entry_type ? 'entry' : 'approach'}. In the record it is practised within ${e.practised_within.map(entryLink).join(', ')}.</p>`);
+    parts.push(`<p>This entry has no direct theme mapping in the selected evidence. Editorial context: ${e.practised_within.map(entryLink).join(', ')}.</p>`);
   }
+  if (e.coverage) parts.push(`<p class="fine-print">${esc(e.coverage.note)}${e.coverage.first_deposit ? ` Earliest collected record: ${e.coverage.first_deposit}; earliest qualifying candidate: ${e.coverage.first_candidate || 'none'}.` : ''}</p>`);
   if (e.method) {
     const m = e.method;
     const where = m.practitioner_items_in_method_venues
       ? `, ${Math.round(m.share_elsewhere * 100)}% of whose research appears outside method journals`
-      : '; no journals devoted to the method are in the collection';
-    parts.push(`<p>Articles naming the method in their title: <strong>${fmt(m.title_hits)}</strong>${m.abstract_hits_not_in_title ? `; abstracts name it in ${fmt(m.abstract_hits_not_in_title)} more` : ''} (lower bounds). ${fmt(m.practitioners)} practitioners${where}.</p>`);
+      : '; no matching method-venue credits were found';
+    parts.push(`<p>Candidate title matches for the method: <strong>${fmt(m.title_hits)}</strong>${m.abstract_hits_not_in_title ? `; abstracts name it in ${fmt(m.abstract_hits_not_in_title)} more` : ''} (incomplete search proxies). ${fmt(m.practitioners)} candidate practitioners${where}. Venue credits, ORCID claims and atlas rosters identify candidates; their other articles do not demonstrate use of the method.</p>`);
+  }
+  if (e.method?.identity_tiers_by_basis) {
+    const tiers = Object.entries(e.method.identity_tiers_by_basis).map(([basis, counts]) => `${basis.replaceAll('_', ' ')}: ${fmt(counts.probable)} probable identity candidates`).join('; ');
+    parts.push(`<p class="fine-print">${esc(tiers)}. Routes overlap; these counts must not be added together.</p>`);
   }
   if (e.invoked_in_reviews) {
     const most = (e.invoked_most_in || []).map(x => `${entryLink(x)} (×${x.lift})`).join(', ');
@@ -1168,17 +1246,22 @@ function render() {
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
-       : activeFamily() ? `${activeFamily().label}. ${shownIds().size} entries on a time axis.`
+       : activeFamily() ? state.view === 'approaches'
+         ? `${activeFamily().label}. Approaches, works and contributors.`
+         : `${activeFamily().label}. ${shownIds().size} entries on a time axis.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
     : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : 'Reading this map.';
   const resetLanes = {page:0};
   $('kind-filter')?.addEventListener('change', e => change({kind: e.target.value, ...resetLanes}));
   $('neighbor-layer')?.addEventListener('change', e => change({neighborLayer: e.target.value, ...resetLanes}));
+  if (state.person) loadPeopleRecords();
+  $('workspace').dataset.route = location.hash;
+  $('workspace').setAttribute('aria-busy', 'false');
 }
 async function start() {
   try {
     const evidenceLoad = fetch('data/evidence.json', {signal: AbortSignal.timeout(8000)}).then(r => r.ok ? r.json() : null).catch(() => null);
-    [production, pathways] = await Promise.all(['data/graph.json', 'data/pathways.json'].map(async url => {
+    [production, pathways] = await Promise.all([isOverviewHash(location.hash) ? 'data/overview.json' : 'data/graph.json', 'data/pathways.json'].map(async url => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
       return response.json();
@@ -1194,10 +1277,18 @@ async function start() {
     $('period-filter').insertAdjacentHTML('beforeend', graph.periods.map(p => `<option value="${p.id}">${esc(p.label)}</option>`).join('') + '<option value="unassigned">No assigned period</option>');
     /* Parse once to learn which graph the route wants, adopt it, then parse against that graph. */
     const routeFor = async () => {
+      const routeHash = location.hash;
+      try {
+        if (!isOverviewHash(location.hash) || !evidence?.families) await loadProduction();
+      } catch (error) {
+        if (routeHash !== location.hash) return routeFor();
+        throw error;
+      }
       const wanted = readRoute(location.hash, production, pathways).range;
       await ensureRange(wanted);
+      if (routeHash !== location.hash) return routeFor();
       const next = readRoute(location.hash, graph, pathways);
-      if (matchMedia('(max-width: 700px)').matches && !new URLSearchParams(location.hash.slice(1)).has('view')) next.view = 'list';
+      if (next.view !== 'approaches' && matchMedia('(max-width: 700px)').matches && !new URLSearchParams(location.hash.slice(1)).has('view')) next.view = 'list';
       return next;
     };
     evidence = await evidenceLoad;
@@ -1206,7 +1297,15 @@ async function start() {
     window.addEventListener('hashchange', async () => {
       const focusedId = document.activeElement?.id;
       const old = state;
-      state = await routeFor();
+      $('workspace').setAttribute('aria-busy', 'true');
+      if (production.overview_only && !isOverviewHash(location.hash)) $('notice').textContent = 'Loading the detailed atlas…';
+      try { state = await routeFor(); }
+      catch (error) {
+        $('workspace').setAttribute('aria-busy', 'false');
+        $('notice').innerHTML = `${esc(error.message)}. <button type="button" data-retry-navigation>Try again</button>`;
+        return;
+      }
+      $('notice').textContent = '';
       render();
       if (state.edge && state.edge !== old.edge) $('detail-title')?.focus({preventScroll: !matchMedia('(max-width: 1000px)').matches});
       else if (focusedId && $(focusedId) && !$(focusedId).closest('[hidden]')) $(focusedId).focus({preventScroll: true});
@@ -1215,6 +1314,7 @@ async function start() {
         if (state.node !== old.node || state.person !== old.person || state.section !== old.section || state.tab !== old.tab || state.pathway !== old.pathway || state.family !== old.family || state.overview !== old.overview) $('workspace').scrollIntoView({block: 'start'});
       }
     });
+    $('notice').addEventListener('click', e => { if (e.target.closest('[data-retry-navigation]')) window.dispatchEvent(new HashChangeEvent('hashchange')); });
     $('search').addEventListener('input', e => change({query: e.target.value, node: '', person: '', edge: '', page: 0}, true));
     $('layer-filter').addEventListener('change', e => change({layer: e.target.value, page: 0}));
     $('period-filter').addEventListener('change', e => change({period: e.target.value, page: 0}));
@@ -1222,6 +1322,7 @@ async function start() {
     $('workspace').addEventListener('click', e => {
       const button = e.target.closest('button');
       if (!button) return;
+      if (button.hasAttribute('data-retry-records')) loadPeopleRecords();
       if (button.dataset.page !== undefined) change({page: Number(button.dataset.page)});
       if (button.dataset.view) change({view: button.dataset.view});
       if (button.id === 'clear-neighbor-filters') change({kind: '', neighborLayer: '', page: 0});

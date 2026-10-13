@@ -44,6 +44,7 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def open(self, fragment=''):
         self.page.goto(URL + fragment)
+        self.page.wait_for_function("() => document.getElementById('workspace').dataset.route === location.hash")
         expect(self.page.locator('.landing-page, .field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .register-section, .about, .empty').first).to_be_visible()
 
     def test_landing_families_strip_and_record_views(self):
@@ -58,8 +59,8 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertTrue(self.page.locator('#toolbar').is_hidden())
         box = self.page.locator('.landing-rows')
         self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'))
-        self.page.get_by_role('button', name='Established journals only', exact=True).click()
-        expect(self.page.get_by_role('button', name='Established journals only', exact=True)).to_have_attribute('aria-pressed', 'true')
+        self.page.get_by_role('button', name='Established title contexts', exact=True).click()
+        expect(self.page.get_by_role('button', name='Established title contexts', exact=True)).to_have_attribute('aria-pressed', 'true')
         self.assertIn('record=established', self.page.url)
         self.page.locator('details.landing-table > summary').click()
         expect(self.page.locator('details.landing-table table:not(.strip-table) tbody tr')).to_have_count(11)
@@ -434,6 +435,8 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.keyboard.press('Enter')
         expect(self.page.locator('.field-page .section-heading h2')).to_have_text('Annales')
         self.assertIn('family=annales', self.page.url)
+        expect(self.page.locator('.family-explorer')).to_be_visible()
+        self.page.locator('.family-views').get_by_role('link', name='Timeline', exact=True).click()
         expect(self.page.locator('svg.field .entry[data-id="annales"]')).to_have_count(1)
         expect(self.page.locator('svg.field .entry[data-id="military"]')).to_have_count(0)
         entries, relationships = self.family_scope('annales')
@@ -457,7 +460,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#family=annales&focus=military')
         expect(self.page.locator('.field-page .section-heading h2')).to_have_text('Historiography on one time axis')
         expect(self.page.locator('svg.field .entry.selected[data-id="military"]')).to_have_count(1)
-        self.open('#family=social-history')
+        self.open('#family=social-history&view=map')
         expect(self.page.locator('.family-note')).to_contain_text('Cultural & intellectual history')   # bridges named
         expect(self.page.locator('svg.field .entry[data-id="women"]')).to_have_count(1)
         self.page.get_by_role('link', name='← All families').click()
@@ -504,6 +507,9 @@ class AtlasBrowserTests(unittest.TestCase):
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'}
+        expected.update({'records.mjs', 'data/overview.json'})
+        if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-people.json').exists():
+            expected.add('data/people-records.json')
         expected.add('landing.mjs')   # landing redesign (2026-09-27): page module
         published = json.loads((ROOT / 'docs/data/graph.json').read_text())
         if published.get('scope', {}).get('extension', {}).get('baseline_asset'):

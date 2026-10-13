@@ -1,6 +1,11 @@
 # Historiography atlas prototype
 
-A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG. The curated JSON remains authoritative. Current editorial revision **1.118**, schema 1.4, contains **116 graph entries, 752 relationships, 833 sources, 829 shared people and 13 pathways**, with **731 approaches across 73 groups**. Existing views load the four new spatial, intellectual, labour and ethnohistory entries. The journal catalogue is present in data but its venue relationships are not yet rendered. Source code and design are unchanged by this data revision.
+A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
+The curated JSON remains authoritative. Current revision **1.127**, schema 1.4,
+contains **137 entries, 777 relationships, 940 sources, 909 shared people and
+13 pathways**. The eleven-family landing pairs atlas dating with a selected
+publication record. Detailed views render evidenced journal venues and five
+partially extended fields. The exact-2000 view remains revision 1.121.
 
 ## Preview
 
@@ -13,13 +18,33 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `docs/`, never the repository root. GitHub Pages serves a branch only from the root or `/docs`, so the build writes there and `docs/` is committed. The build copies exactly eleven files: `index.html`, `styles.css`, `app.js`, `core.mjs`, `field.mjs`, `people.mjs`, `landing.mjs`, `.nojekyll`, `data/graph.json`, `data/pathways.json`, and `data/evidence.json` (published from `data/evidence-layer/site-evidence.json` when it exists), plus `data/graph-2000.json` when an archived baseline graph is available for the extension view. It validates the graph and refuses unexpected existing output files or symlinks. Tests, screenshots, documentation, credentials, and unrelated workspace files stay outside the build. Hosting has not been selected and no deployment has occurred.
+Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
+pushing requires the user's explicit approval. The current build publishes 15
+allowlisted files: HTML, CSS, `.nojekyll`, six JavaScript modules (`app`, `core`,
+`field`, `people`, `landing`, `records`) and six JSON assets (`graph`, `graph-2000`,
+`overview`, `pathways`, `evidence`, `people-records`). The builder validates graphs
+and refuses unexpected output files or symlinks. Tests, captures, credentials and
+unrelated files stay outside the build. This beta has not been deployed.
+
+The landing downloads the reduced overview and aggregates; detail routes load
+the full 3.17 MB graph once. Selected profiles lazily load the separate record
+pilot once. Failed downloads have retries. The pilot retains the weaker atlas
+and source-credit identity link and distinguishes journal items, books reviewed
+and reviews written. See [student trial](../STUDENT-TESTING.md) and
+[landing audit](../data/evidence-layer/audits/landing-2026-10-10/README.md).
+
+After building, run `python3 tests/run_site_checks.py`. It creates and closes its
+own localhost server; Playwright Chromium must already be installed. CI runs
+data, evidence/family, JavaScript and browser checks, then checks build drift.
+Research rebuilds additionally require frozen local databases; the public site
+build uses tracked metadata assets and requires no database.
 
 ## Landing
 
 The bare URL opens a families overview: eleven editorial families, each row pairing the
 atlas's dating (orange dots) with the family's share of the record (green bars) under a
-one-line headline strip. `#family=<slug>` opens today's field view filtered to one family;
+one-line headline strip. `#family=<slug>` opens an explorer of that family’s approaches, works and roster contributors;
+`#family=<slug>&view=map` keeps its timeline and `view=list` its entry list.
 `#family=all` opens the full field, unfiltered, as does an unknown or malformed slug.
 `#record=established|reviews` switches the record view on the landing and is kept across the
 family route, so returning to the overview restores it; the default is `all`. Five-year
@@ -35,7 +60,7 @@ The landing reads `families` from `docs/data/evidence.json` (see
 `site/landing.mjs`. Without that asset — an older build, or a fetch failure — the page falls
 back to the full field, unfiltered.
 
-## The field view (front door)
+## The detailed field view
 
 Every entry sits on one time axis, banded by layer, with linked journals in a fifth band. The chart is drawn at the width of the column it occupies and redrawn on resize, so nothing needs a horizontal scrollbar; entries with no stated span sit in a captioned strip at the top of their band. A mark runs across the years an entry's date label names: a label that says "onward" or "coverage through 2000" is drawn solid to the coverage wall with an open, fading end, because the wall is a limit of the map and not an ending. A label that opens with undated roots ("Earlier roots · Howard 1961 …") is open at the start: a thin lead-in runs from the axis edge to the first dated year, which is drawn without a starting cap because it dates a contribution to an established field, not an origin. A label naming a single year is a single mark. Other years the label names appear as ticks and are described as read from the label, never as curated milestones. Nothing in the drawing or the panel claims a period of peak influence.
 

@@ -1,6 +1,21 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-09-16, revision 1.118 / schema 1.4):** The atlas has 116 entries, 829 shared people, 73 group rosters, 752 explicitly classified relationships and 731 internal approaches. The four latest entries are Spatial history / Historical geography, Intellectual history, Labour history and Ethnohistory. Existing code displays them through the same people, approaches and complete relationship views. The separate journal catalogue has 54 accepted venue edges but no renderer. No frontend design changes in this revision. See `MEMORY.md`, `GRAPH-FORMAT.md` and `feedback/four-fields-v1.118.md`. The design ideas and counts below describe earlier stages.
+**Current implementation (2026-10-10, revision 1.127):** 137 entries, 777
+relationships, 940 sources, 909 shared people. The family landing, journal
+venues and exact-2000 baseline are implemented. The student beta adds deferred
+loading, an eight-profile publication pilot, sensitivity notes and browser CI.
+[Student trial](STUDENT-TESTING.md) is next. Historical design directions below
+do not override the user's current request to prepare the beta.
+
+The [Indigenous-history expansion](data/field-research/indigenous-deep-dive-2026-10-10/README.md)
+adds earlier witnesses and regional contributions with distinct source limits.
+Indigenous history now has 49 roster participants and 33 approaches, with ten
+standalone entries. Family pages expose their approaches and all roster contributors
+directly, with search, source links and existing connections to related fields.
+The Indigenous-histories family combines this entry with ethnohistory: 40 approaches
+and 57 distinct roster people. The timeline remains a separate view.
+
+**Historical implementation (2026-09-16, revision 1.118 / schema 1.4):** The atlas has 116 entries, 829 shared people, 73 group rosters, 752 explicitly classified relationships and 731 internal approaches. The four latest entries are Spatial history / Historical geography, Intellectual history, Labour history and Ethnohistory. Existing code displays them through the same people, approaches and complete relationship views. The separate journal catalogue has 54 accepted venue edges but no renderer. No frontend design changes in this revision. See `MEMORY.md`, `GRAPH-FORMAT.md` and `feedback/four-fields-v1.118.md`. The design ideas and counts below describe earlier stages.
 
 **User direction, 2026-09-12:** No further frontend design. Finish when the two documented data passes and data checks are complete. Historical design ideas below are not remaining requirements.
 
@@ -104,3 +119,26 @@ An initial static website can serve the dataset without a database. Hosting and 
 - Search, filters, entry selection, relationship selection, reset, and direct links work together, including empty results and missing chronology.
 - The site is usable on narrow screens and with keyboard navigation; essential information is available outside the graphical map.
 - The interface accurately communicates draft status, approximate dates, selective connections, and the dataset's geographic scope.
+
+### Publication-evidence repair — 2026-10-10
+
+The local beta now uses practice v18, methods-v4 and mentions-v3; graph 1.125 and
+exact-2000 baseline 1.121 are unchanged. Three read-only journal catalogues and
+DOI-linked publisher range supplements are assembled by `scripts/evidence_inputs.py`.
+The default candidate proxy is preserved alongside a deposited journal-articles view.
+Cards and field panels include data from 1900, and coverage states accompany field
+counts. The established-view number counts title contexts. See the
+[repair report](data/evidence-layer/repairs/2026-10-10/README.md) for source limits,
+reproduction commands, the correction queue and validation. No deployment occurred.
+
+
+### Indigenous history foundations — 2026-10-10
+
+The local 1.127 graph represents community and university contributions within
+shared approaches rather than promoting new individual founders. A selected 2010
+article supplies a fifth partially extended field with its own dated intervention;
+the exact-2000 snapshot remains unchanged. Authorship, mentorship, knowledge
+contribution and documented citation are distinct. See the
+[foundations report](data/field-research/indigenous-foundations-2026-10-10/README.md).
+Student tasks now ask readers to interpret these roles and separate planning,
+first-class, publication and upload dates. No frontend redesign or deployment.

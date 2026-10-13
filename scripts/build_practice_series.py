@@ -20,6 +20,7 @@ from pathlib import Path
 import duckdb
 
 import practice_families
+import evidence_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 CROSSWALK = ROOT / "data/evidence-layer/practice-crosswalk.csv"
@@ -57,17 +58,17 @@ def main():
               "crossref_supplement": SUPPLEMENT / "generated/v1/catalog.duckdb",
               "supplement_selection": SUPPLEMENT / "selection.json",
               "atlas_graph": GRAPH}
+    inputs.update({"journal_input:"+str(p.relative_to(ROOT)):p for p in evidence_inputs.input_paths()})
+    inputs["builder"]=Path(__file__)
+    inputs["family_builder"]=Path(practice_families.__file__)
     before = {k: sha(p) for k, p in inputs.items()}
+    print("Inputs pinned; loading immutable catalogues",flush=True)
     db = duckdb.connect()
     q = db.execute
-    q("INSTALL sqlite; LOAD sqlite")
+    q("LOAD sqlite")
     q(f"ATTACH {lit(HNET)} AS hn (TYPE sqlite, READ_ONLY)")
-    q(f"ATTACH {lit(CROSSREF)} AS xr (READ_ONLY)")
-    q(f"ATTACH {lit(SUPPLEMENT / 'generated/v1/catalog.duckdb')} AS xs (READ_ONLY)")
-    q("CREATE TEMP VIEW x_records AS SELECT * FROM xr.records UNION ALL SELECT * FROM xs.records")
-    q("CREATE TEMP VIEW x_memberships AS SELECT * FROM xr.memberships UNION ALL SELECT * FROM xs.memberships")
-    q("""CREATE TEMP VIEW x_research AS SELECT record_id FROM xr.research_candidates_by_length
-         UNION SELECT record_id FROM xs.research_candidates_by_length""")
+    print("H-Net attached; preparing journal inputs",flush=True)
+    evidence_inputs.attach_catalogues(db)
     q(f"CREATE TABLE cw AS SELECT * FROM read_csv({lit(CROSSWALK)}, header=true, all_varchar=true) "
       "WHERE status <> 'rejected'")  # rejected rows stay in the file as provenance
 
@@ -84,7 +85,7 @@ def main():
          FROM un r LEFT JOIN ul l ON l.subject = r.id AND l.predicate = 'classified_under'
          LEFT JOIN un s ON s.id = l.object
          WHERE r.kind = 'review_record' AND r.origin = 'reviews_in_history'""")
-    sel = json.loads(SELECTED.read_text())["journals"] + json.loads((SUPPLEMENT / "selection.json").read_text())["journals"]
+    sel = evidence_inputs.selected_journals()
     subj = {n["id"]: n["label"] for n in json.loads(GRAPH.read_text())["journal_catalogue"]["nodes"]
             if n.get("entry_kind") == "publication_subject"}
     q("CREATE TEMP TABLE journal_subjects (journal_key VARCHAR, label VARCHAR, journal_label VARCHAR)")
@@ -96,9 +97,10 @@ def main():
          SELECT DISTINCT 'journal', r.record_id, js.label, TRY_CAST(r.publication_year AS INT),
                 CASE WHEN r.record_id IN (SELECT record_id FROM x_research)
                        OR (m.journal_key IN (SELECT UNNEST(?::VARCHAR[])) AND r.record_type = 'journal-article')
-                     THEN 'research_proxy' ELSE 'other' END, m.journal_key
+                     THEN 'research_proxy' WHEN r.record_type='journal-article' THEN 'journal_article_other' ELSE 'other' END, m.journal_key
          FROM x_records r JOIN x_memberships m USING (record_id) JOIN journal_subjects js USING (journal_key)
          WHERE NOT coalesce(r.is_test_record, false)""", [sorted(BORN_DIGITAL)])
+    print("Items loaded; applying reviewed and proposed mappings",flush=True)
     bands = q("SELECT length_band, count(*) FROM x_records GROUP BY 1 ORDER BY 2 DESC, 1").fetchall()
 
     # Map items to crosswalk targets.
@@ -109,7 +111,7 @@ def main():
     g = json.loads(GRAPH.read_text())
     entry_labels = {n["id"]: n["label"] for n in g["nodes"]}
     key_by_label = {j["label"]: j["journal_key"] for j in sel}
-    selected_keys = set(key_by_label.values())
+    selected_aliases = evidence_inputs.venue_keys(sel)
     jt = []
     for r in q("SELECT source_label, target, target_label, status FROM cw WHERE source = 'journal_title'").fetchall():
         if r[0] not in key_by_label:
@@ -118,9 +120,10 @@ def main():
             raise SystemExit(f"journal_title row targets an unknown atlas entry: {r[1]}")
         jt.append((key_by_label[r[0]], "theme", r[1], r[2], r[3], "crosswalk_journal_title"))
     for e in g["journal_catalogue"]["edges"]:
-        if e["source"] in selected_keys and e["target"] in entry_labels:
-            jt.append((e["source"], "theme", e["target"], entry_labels[e["target"]], "curated",
-                       "atlas_journal_edge:" + e["relationship_kind"]))
+        if e["target"] in entry_labels:
+            for key in selected_aliases.get(e["source"], []):
+                jt.append((key, "theme", e["target"], entry_labels[e["target"]], "curated",
+                           "atlas_journal_edge:" + e["relationship_kind"]))
     q("""CREATE TABLE journal_theme_map (journal_key VARCHAR, axis VARCHAR, target VARCHAR, target_label VARCHAR,
          status VARCHAR, basis VARCHAR)""")
     db.executemany("INSERT INTO journal_theme_map VALUES (?, ?, ?, ?, ?, ?)", sorted(set(jt)))
@@ -252,6 +255,32 @@ def main():
     families = practice_families.family_series(db, fam_defs["membership"])
     families.update(definitions=fam_defs["families"], record_only_without_rows=fam_defs["record_only_without_rows"],
                     counting=practice_families.__doc__.split("Counting rules:")[1].strip())
+    q("""CREATE TEMP TABLE selected_themes AS
+        SELECT DISTINCT journal_key,target FROM journal_theme_map
+        UNION SELECT DISTINCT js.journal_key,c.target FROM journal_subjects js
+        JOIN cw c ON c.source='journal' AND c.source_label=js.label AND c.axis='theme'
+        WHERE js.journal_key NOT IN (SELECT journal_key FROM journal_theme_map)""")
+    print("Series computed; collecting coverage diagnostics",flush=True)
+    journal_coverage = []
+    for j in sel:
+        stats = q("""SELECT count(DISTINCT r.record_id),
+            count(DISTINCT r.record_id) FILTER(WHERE r.record_type='journal-article'),
+            count(DISTINCT r.record_id) FILTER(WHERE r.record_type='journal-article' AND r.effective_page_count IS NULL),
+            min(r.publication_year),min(r.publication_year) FILTER(WHERE r.record_id IN (SELECT record_id FROM x_research)),
+            count(DISTINCT r.record_id) FILTER(WHERE r.record_id IN (SELECT record_id FROM x_research))
+            FROM x_effective_records r JOIN x_memberships m USING(record_id)
+            WHERE m.journal_key=? AND NOT coalesce(r.is_test_record,false)""",[j['journal_key']]).fetchone()
+        journal_coverage.append(dict(journal_key=j['journal_key'],label=j['label'],
+            **dict(zip(['records','journal_articles','missing_length','first_deposit','first_length_candidate','length_candidates'],stats)),
+            themes=[t for (t,) in q('SELECT target FROM selected_themes WHERE journal_key=? ORDER BY target',[j['journal_key']]).fetchall()]))
+    entry_coverage = {}
+    for e in entries:
+        contexts=[j for j in journal_coverage if e in j['themes']]
+        raw=q("SELECT min(year),count(DISTINCT item) FROM mapped WHERE source='journal' AND axis='theme' AND target=? AND year BETWEEN 1900 AND 2026",[e]).fetchone()
+        proxy=q("SELECT min(year),count(DISTINCT item) FROM mapped WHERE source='journal' AND axis='theme' AND target=? AND kind='research_proxy' AND year BETWEEN 1900 AND 2026",[e]).fetchone()
+        entry_coverage[e]=dict(mapped_title_contexts=len(contexts),deposited_records=raw[1],
+            first_deposit=raw[0],first_candidate=proxy[0],qualifying_records=proxy[1],
+            missing_length=sum(j['missing_length'] for j in contexts))
     summary = {
         "built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "inputs": {k: {"path": str(p.relative_to(ROOT)), "sha256": before[k]} for k, p in inputs.items()},
@@ -270,6 +299,9 @@ def main():
                                  "curated_atlas_edges": sum(1 for x in jt if x[5].startswith("atlas_journal_edge")),
                                  "crosswalk_title_rows": sum(1 for x in jt if x[5] == "crosswalk_journal_title")},
         "families": families,
+        "selected_title_contexts":len(sel),
+        "journal_coverage":journal_coverage,
+        "entry_coverage":entry_coverage,
     }
     after = {k: sha(p) for k, p in inputs.items()}
     if after != before:
@@ -295,6 +327,8 @@ def main():
                JOIN cw c ON c.source = 'journal' AND c.source_label = js.label AND c.axis = 'theme'
                WHERE js.journal_key NOT IN (SELECT journal_key FROM journal_theme_map)
                ORDER BY ALL) TO {lit(tmp / 'journal_themes.csv')} (HEADER)""")
+    with (tmp / 'journal_coverage.csv').open('w',newline='') as f:
+        w=csv.DictWriter(f,fieldnames=list(journal_coverage[0]));w.writeheader();w.writerows(journal_coverage)
     (tmp / "summary.json").write_text(json.dumps(summary, indent=2, default=str) + "\n")
     tmp.rename(out)
     print(json.dumps({k: summary[k] for k in ("per_source",)}, indent=1, default=str))

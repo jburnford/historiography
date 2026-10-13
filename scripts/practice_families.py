@@ -17,7 +17,7 @@ from collections import Counter
 
 KINDS = {"atlas_entry", "record_only"}
 STATUSES = {"proposed", "reviewed", "needs_decision", "rejected"}
-VIEWS = ("all", "established", "reviews")
+VIEWS = ("all", "established", "reviews", "deposited")
 FIRST_YEAR, LAST_YEAR, BIN = 1900, 2024, 5
 STRIP_FROM = 2000
 ESTABLISHED = ((1970, 1974), (2015, 2019))
@@ -80,8 +80,9 @@ def family_series(db, membership):
                         AND count(*) FILTER (WHERE year BETWEEN {b0} AND {b1}) > 0""")
     q(f"""CREATE OR REPLACE TEMP TABLE fam_universe AS
           SELECT DISTINCT v.rv, i.source || ':' || i.item AS uid, i.year // {BIN} * {BIN} AS bin
-          FROM items i CROSS JOIN (VALUES ('all'), ('established'), ('reviews')) v(rv)
+          FROM items i CROSS JOIN (VALUES ('all'), ('established'), ('reviews'), ('deposited')) v(rv)
           WHERE i.year BETWEEN {FIRST_YEAR} AND {LAST_YEAR} AND CASE v.rv
+            WHEN 'deposited' THEN i.source = 'journal' AND i.kind IN ('research_proxy','journal_article_other')
             WHEN 'all' THEN i.source = 'journal' AND i.kind = 'research_proxy'
             WHEN 'established' THEN i.source = 'journal' AND i.kind = 'research_proxy'
                                     AND i.journal_key IN (SELECT journal_key FROM fam_established)

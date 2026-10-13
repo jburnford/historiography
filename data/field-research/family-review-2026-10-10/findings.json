@@ -1,0 +1,238 @@
+{
+  "baseline_revision": "1.127",
+  "applied": false,
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "P0",
+      "families": [
+        "all"
+      ],
+      "status": "confirmed display gap",
+      "observation": "Existing source scope notes and catalogue witnesses omitted from source panels.",
+      "action": "Render source scope and witness status without treating checked metadata as read body.",
+      "acceptance": "Scoped sources display their exact limits; legacy and catalogue statuses remain distinct.",
+      "evidence": "site/app.js sourceList; browser-review.json"
+    },
+    {
+      "id": "F02",
+      "priority": "P0",
+      "families": [
+        "all"
+      ],
+      "status": "confirmed display gap",
+      "observation": "Member sections omit existing type, date label and scope note.",
+      "action": "Expose compact context for each member entry and use member-entry terminology where appropriate.",
+      "acceptance": "Partial extension and regional scope readable from family view.",
+      "evidence": "inventory/entries.csv; browser-review.json"
+    },
+    {
+      "id": "F03",
+      "priority": "P1",
+      "families": [
+        "cultural-and-intellectual-history",
+        "social-history",
+        "economy-and-social-science-history"
+      ],
+      "status": "confirmed navigation gap",
+      "observation": "Very long phone pages delay access to people and relationships.",
+      "action": "Add field index and in-family filtering or optional collapsible sections.",
+      "acceptance": "Student can reach a named field or people section without scrolling every approach.",
+      "evidence": "browser-review.json"
+    },
+    {
+      "id": "F04",
+      "priority": "P1",
+      "families": [
+        "all"
+      ],
+      "status": "confirmed display gap",
+      "observation": "Existing internal group relationships are not exposed in the approach explorer.",
+      "action": "Surface existing qualified internal links near relevant member sections.",
+      "acceptance": "Critique/comparison/direction and exact targets preserved; no inferred edges.",
+      "evidence": "inventory/family-inventory.json; site/app.js familyExplorer"
+    },
+    {
+      "id": "F05",
+      "priority": "P1",
+      "families": [
+        "social-history",
+        "theory-and-method"
+      ],
+      "status": "existing content link gap",
+      "observation": "Eleven oral-history roster participants lack direct oral approach assignments.",
+      "action": "Build source-bounded collaborative approaches from already scoped method sources.",
+      "acceptance": "Distinct elders, interviewers, editors and collective roles; passage locators; no automatic identity claims.",
+      "evidence": "inventory/roster-without-approach.csv entry oral; Cruikshank browser search"
+    },
+    {
+      "id": "F06",
+      "priority": "P1",
+      "families": [
+        "theory-and-method"
+      ],
+      "status": "proposed research gap",
+      "observation": "Digital and web selected interventions all postdate 2000.",
+      "action": "Verify earlier computing, record linkage and electronic publishing, connecting existing quantitative/spatial practice.",
+      "acceptance": "Pre-2000 witnesses with collaborators and separate conference/constitution dates; exact-2000 snapshot unchanged.",
+      "evidence": "inventory/approach-evidence.json entries digital_history and web_history"
+    },
+    {
+      "id": "F07",
+      "priority": "P1",
+      "families": [
+        "political-national-and-international"
+      ],
+      "status": "proposed research gap",
+      "observation": "Diplomatic/international methods sparsely distinguished within a broad family.",
+      "action": "Verify archival diplomacy, war responsibility, revisionism and later cultural/non-state approaches.",
+      "acceptance": "Specific pre-2000 works and exchanges; no keyword-based influence.",
+      "evidence": "inventory/approach-evidence.json entry political; family-inventory record_only"
+    },
+    {
+      "id": "F08",
+      "priority": "P1",
+      "families": [
+        "social-history",
+        "cultural-and-intellectual-history"
+      ],
+      "status": "proposed research gap",
+      "observation": "Racial formation and intersectionality have very small approach selections.",
+      "action": "Review Black feminist foundations and historical applications, reusing Collins candidate referent.",
+      "acceptance": "Original editions and passages checked; Combahee mentions not upgraded into original-text readings.",
+      "evidence": "inventory/entries.csv; existing Smith catalogue referent and source context"
+    },
+    {
+      "id": "F09",
+      "priority": "P1",
+      "families": [
+        "empire-colonialism-and-the-global"
+      ],
+      "status": "confirmed framing limit",
+      "observation": "Broad family label can obscure independent African and anti-colonial programmes.",
+      "action": "Expose independent questions and institutional histories within approved membership.",
+      "acceptance": "No implied derivation from imperial historians or common global origin.",
+      "evidence": "inventory/entries.csv entries africanhist and anticolonial"
+    },
+    {
+      "id": "F10",
+      "priority": "P1",
+      "families": [
+        "empire-colonialism-and-the-global"
+      ],
+      "status": "candidate awaiting source review",
+      "observation": "Ade Ajayi absent from relevant shared roster despite Ibadan institutional story.",
+      "action": "Review institutional role and a bounded methodological work with collaborators.",
+      "acceptance": "Passages establish method; memorial supports institution only.",
+      "evidence": "University of Ibadan memorial; inventory/approach-evidence.json entry africanhist"
+    },
+    {
+      "id": "F11",
+      "priority": "P2",
+      "families": [
+        "cultural-and-intellectual-history"
+      ],
+      "status": "candidate awaiting source review",
+      "observation": "Independent Indian intellectual historiography thin alongside European programmes.",
+      "action": "Investigate Thapar historical questions and evidence without assigning Cambridge descent.",
+      "acceptance": "Specific original works read and contextualized; biography alone supplies no method transmission.",
+      "evidence": "JNU CV; inventory/entries.csv"
+    },
+    {
+      "id": "F12",
+      "priority": "P2",
+      "families": [
+        "war-and-the-military"
+      ],
+      "status": "proposed research gap",
+      "observation": "European/Anglophone weight and nine Holocaust bridge cards within 25 approaches.",
+      "action": "Expose selection scope; review Pacific and colonial warfare methods, beginning with Dower.",
+      "acceptance": "Keep approved Holocaust bridge; check 1986/1999 works before adding historical claims.",
+      "evidence": "inventory/family-inventory.json; MIT bibliography"
+    },
+    {
+      "id": "F13",
+      "priority": "P2",
+      "families": [
+        "economy-and-social-science-history"
+      ],
+      "status": "existing content link gap",
+      "observation": "Business history record-only despite existing Chandler approach; mixed methods and traditions in counts.",
+      "action": "Cross-link existing business and economic debates and distinguish theoretical resources.",
+      "acceptance": "Existing work reused; no missing-field claim based solely on publication classification.",
+      "evidence": "inventory/approach-evidence.json entry economic; family-inventory.json"
+    },
+    {
+      "id": "F14",
+      "priority": "P2",
+      "families": [
+        "empire-colonialism-and-the-global"
+      ],
+      "status": "existing content link gap",
+      "observation": "Some postcolonial roster roles have relevant approaches elsewhere.",
+      "action": "Review precise Cohn/Prakash/Hall/Gilroy cross-links before new arrows.",
+      "acceptance": "Specific work/approach target and role; no blanket influence.",
+      "evidence": "inventory/roster-without-approach.csv entry post"
+    },
+    {
+      "id": "F15",
+      "priority": "P2",
+      "families": [
+        "science-technology-and-medicine"
+      ],
+      "status": "proposed research gap",
+      "observation": "Medical field warrants patient/clinical/psychiatric institutional method review; disability record-only.",
+      "action": "Review pre-2000 practices and regional examples; distinguish Fleck roster presence from checked method.",
+      "acceptance": "Primary passages and applications; no later selected work claimed to fill earlier coverage.",
+      "evidence": "inventory/entries.csv; approach-evidence.json entry medicalhistory"
+    },
+    {
+      "id": "F16",
+      "priority": "P2",
+      "families": [
+        "environment"
+      ],
+      "status": "candidate awaiting source review",
+      "observation": "Detailed Dust Bowl sequence exceeds breadth of regional comparative approaches.",
+      "action": "Review Dean Brazilian forest inquiry alongside existing Indian/South African/Mexican approaches.",
+      "acceptance": "1995 first edition distinct from 1997 paperback; method read; retain Bullard and earlier geography.",
+      "evidence": "UC Press description; inventory/approach-evidence.json entry environment"
+    },
+    {
+      "id": "F17",
+      "priority": "P2",
+      "families": [
+        "theory-and-method"
+      ],
+      "status": "proposed research gap",
+      "observation": "Public-history institutions before the professional university movement are thin.",
+      "action": "Review museum/archive/government/community practice with specific institutions and collaboration.",
+      "acceptance": "Earlier practice distinct from movement dates and NCPH organization date.",
+      "evidence": "NCPH field account; inventory/approach-evidence.json entry publichistory"
+    },
+    {
+      "id": "F18",
+      "priority": "P2",
+      "families": [
+        "all"
+      ],
+      "status": "existing content link gap",
+      "observation": "25 record-only topics do not correspond one-to-one to absent teaching fields.",
+      "action": "Build subject-to-existing-approach crosswalk before considering new entries.",
+      "acceptance": "Each topic labeled existing approach / genuine research gap / publication-only / unresolved.",
+      "evidence": "inventory/family-inventory.json"
+    },
+    {
+      "id": "F19",
+      "priority": "P3",
+      "families": [
+        "annales"
+      ],
+      "status": "preservation and corpus follow-up",
+      "observation": "Interwar foundations present after prior repair; early publication-backfile gaps separate.",
+      "action": "Preserve approved Annales family and chronology; track corpus acquisition independently.",
+      "acceptance": "No fabricated founder gap or inference from deposited publication dates.",
+      "evidence": "inventory/approach-evidence.json entry annales"
+    }
+  ]
+}
