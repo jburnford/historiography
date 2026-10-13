@@ -1,0 +1,596 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-12",
+ "unit": "dissertations (strict History PhDs completed 2009-2026, in_analysis: true); never citation counts",
+ "inputs": {
+  "graph": "data/field-research/dissertation-citations-2026-10-11/graph.json",
+  "identity": "canadian-historiography-scholars-request-2026-10-12/candidates.csv and identity-decisions.csv (namesake works removed); non-candidates by graph person keys listed per person",
+  "script": "computed with a scratch script mirroring groups_evidence.py (person_works with identity decisions); not committed"
+ },
+ "caveats": [
+  "Bibliographies list works consulted, not influence or endorsement.",
+  "Engagement = cites works by at least two roster people; rosters differ from groups.json anchors, so shares differ from ../evidence.json.",
+  "Francophone universities = montreal, uqam, sherbrooke, laval (179 of 1303 PhDs; Laval is thin, 9). Ottawa is bilingual and not counted.",
+  "Graph person keys for non-candidates are not identity-reviewed; variant keys may be missed, so small counts are lower bounds.",
+  "Years are mostly repository issued dates."
+ ],
+ "roster_engagement": {
+  "roster_people": 21,
+  "engaged_phds": 161,
+  "of": 1303,
+  "share": 0.1236,
+  "early": {
+   "window": "2009-2014",
+   "engaged": 48,
+   "of": 410,
+   "share": 0.1171
+  },
+  "late": {
+   "window": "2020-2026",
+   "engaged": 53,
+   "of": 405,
+   "share": 0.1309
+  },
+  "francophone_univ_engaged": 65,
+  "francophone_univ_all": 179,
+  "francophone_share_of_engaged": 0.4037,
+  "universities": 22,
+  "people": {
+   "lionel_groulx": {
+    "label": "Lionel Groulx",
+    "identity": "graph person keys: P:groulx|lionel h; P:groulx lionel",
+    "phds_2009_2026": 29,
+    "francophone_univ_phds": 14,
+    "universities": 13,
+    "top_works": [
+     "Mes mémoires (1970; 5)",
+     "Histoire du Canada français depuis la découverte (1960; 5)",
+     "La naissance d’une race (1919; 3)",
+     "Notre maître, le passé (1924; 3)"
+    ],
+    "top_work_ids": [
+     "W:groulx|mes memoires",
+     "W:groulx|histoire du canada francais depuis la decouverte",
+     "W:groulx|naissance dune race",
+     "W:groulx|notre maitre le passe"
+    ]
+   },
+   "maurice_seguin": {
+    "label": "Maurice Séguin",
+    "identity": "graph person keys: P:seguin|maurice",
+    "phds_2009_2026": 7,
+    "francophone_univ_phds": 7,
+    "universities": 3,
+    "top_works": [
+     "La Conquête et la vie économique des Canadiens (1946; 2)",
+     "Histoire de deux nationalismes au Canada (1997; 2)",
+     "Le régime seigneurial au pays de Québec, 1760-1854 (1er article) (1947; 2)",
+     "La nation canadienne et l’agriculture (1760-1850), Essai d’histoire économique (1970; 1)"
+    ],
+    "top_work_ids": [
+     "W:seguin|conquete et la vie economique des canadiens|a",
+     "W:seguin|histoire de deux nationalismes au canada",
+     "W:seguin|regime seigneurial au pays du quebec 1760 1854 2e article|a",
+     "W:seguin|nation canadienne et lagriculture 1760 1850 essai dhistoire economique"
+    ]
+   },
+   "guy_fregault": {
+    "label": "Guy Frégault",
+    "identity": "graph person keys: P:fregault|guy; P:fregault guy",
+    "phds_2009_2026": 16,
+    "francophone_univ_phds": 9,
+    "universities": 9,
+    "top_works": [
+     "La civilisation de la Nouvelle-France, 1713-1744 (1969; 6)",
+     "La guerre de la conquête (1955; 5)",
+     "Lionel Groulx tel qu’en lui-même (1978; 3)",
+     "François Bigot, administrateur français (1948; 3)"
+    ],
+    "top_work_ids": [
+     "W:fregault|civilisation de la nouvelle france",
+     "W:fregault|guerre de la conquete",
+     "W:fregault|lionel groulx tel quen lui meme",
+     "W:fregault|francois bigot administrateur francais"
+    ]
+   },
+   "michel_brunet": {
+    "label": "Michel Brunet",
+    "identity": "graph person keys: P:brunet|michel",
+    "phds_2009_2026": 12,
+    "francophone_univ_phds": 6,
+    "universities": 9,
+    "top_works": [
+     "Les Canadiens après la conquête 1759-1775 : de la révolution canadienne à la révolution américaine (1969; 5)",
+     "La présence anglaise et les Canadiens. Études sur l'histoire et la pensée des deux Canadas (1958; 3)",
+     "Canadians et Canadiens : études sur l’histoire et la pensée des deux Canadas (1979; 2)",
+     "Trois dominantes de la pensée canadienne-francaise : l'agriculturisme, l'antiétatisme et le messianisme (1958; 2)"
+    ],
+    "top_work_ids": [
+     "W:brunet|canadiens apres la conquete",
+     "W:brunet|presence anglaise et les canadiens",
+     "W:brunet|canadians et canadiens",
+     "W:brunet|trois dominantes de la pensee canadienne francaise|a"
+    ]
+   },
+   "fernand_ouellet": {
+    "label": "Fernand Ouellet",
+    "identity": "graph person keys: P:ouellet|fernand",
+    "phds_2009_2026": 40,
+    "francophone_univ_phds": 15,
+    "universities": 16,
+    "top_works": [
+     "Histoire économique et sociale du Québec, 1760-1850 (1966; 12)",
+     "Lower Canada, 1791-1840: Social Change and Nationalism (1980; 5)",
+     "Economic and Social History of Quebec, 1760-1850: Structures and Conjunctures (1980; 5)",
+     "Economy, Class, and Nation in Quebec: Interpretive Essays (1991; 3)"
+    ],
+    "top_work_ids": [
+     "W:ouellet|histoire economique et sociale",
+     "W:ouellet|lower canada 1791 1840",
+     "W:ouellet|economic and social history of quebec 1760 1850",
+     "W:ouellet|economy class nation in quebec"
+    ]
+   },
+   "jean_hamelin": {
+    "label": "Jean Hamelin",
+    "identity": "candidates.csv: Hamelin, Jean",
+    "phds_2009_2026": 63,
+    "francophone_univ_phds": 30,
+    "universities": 13,
+    "top_works": [
+     "Histoire du catholicisme québécois (1984; 14)",
+     "La presse québécoise des origines à nos jours (1973; 12)",
+     "Histoire économique du Québec, 1851-1896 (1971; 9)",
+     "Idéologies au Canada français, 1900-1929 (1978; 6)"
+    ],
+    "top_work_ids": [
+     "W:hamelin|histoire de catholicisme quebecois",
+     "W:beaulieu|presse quebecoise des origines a nos jours",
+     "W:hamelin|histoire economique du quebec 1851 1896",
+     "W:dumont|ideologies au canada francais"
+    ]
+   },
+   "louise_dechene": {
+    "label": "Louise Dechêne",
+    "identity": "graph person keys: P:dechene|louise; P:dechene louise",
+    "phds_2009_2026": 40,
+    "francophone_univ_phds": 16,
+    "universities": 13,
+    "top_works": [
+     "Habitants et marchands de Montréal au XVIIe siècle (1974; 15)",
+     "Le Peuple, l’État et la Guerre au Canada sous le Régime français (2008; 12)",
+     "Habitants and Merchants in Seventeenth-Century Montreal (1992; 10)",
+     "Le partage des subsistances au Canada sous le régime français (1994; 8)"
+    ],
+    "top_work_ids": [
+     "W:dechene|habitants et marchands de montreal au 17e siecle",
+     "W:dechene|peuple letat et la guerre au canada sous le regimefrancais",
+     "W:dechene|habitants andmerchants in seventeenth century montreal",
+     "W:dechene|partage de i subsistances au canada sous le regime francai"
+    ]
+   },
+   "jean_pierre_wallot": {
+    "label": "Jean-Pierre Wallot",
+    "identity": "graph person keys: P:wallot|jeanpierre",
+    "phds_2009_2026": 27,
+    "francophone_univ_phds": 20,
+    "universities": 10,
+    "top_works": [
+     "Un Québec moderne, 1760-1840. Essai d’histoire économique et sociale (2007; 6)",
+     "Un Québec qui bougeait. Trame socio-politique au tournant du XIX' siècle (1973; 5)",
+     "Groupes sociaux et pouvoir : le cas canadien au tournant du XIXe siècle (1974; 4)",
+     "Révolution et réformisme dans le Bas-Canada (1777–1815) (1973; 2)"
+    ],
+    "top_work_ids": [
+     "W:paquet|quebec moderne 1760 1840",
+     "W:wallot|quebec qui bougeait",
+     "W:paquet|groupes sociaux et pouvoir|a",
+     "W:wallot|revolution et reformisme dans le bas canada 1773 1815|a"
+    ]
+   },
+   "paul_andre_linteau": {
+    "label": "Paul-André Linteau",
+    "identity": "candidates.csv: Linteau, Paul-André",
+    "phds_2009_2026": 76,
+    "francophone_univ_phds": 36,
+    "universities": 18,
+    "top_works": [
+     "Histoire du Québec contemporain (1989; 28)",
+     "Histoire de Montréal depuis la Confédération (1992; 19)",
+     "Quebec Since 1930 (1991; 10)",
+     "Quebec: A History, 1867-1929 (1983; 5)"
+    ],
+    "top_work_ids": [
+     "W:linteau|histoire du quebec",
+     "W:linteau|histoire de montreal",
+     "W:linteau|quebec since 1930",
+     "W:linteau|quebec"
+    ]
+   },
+   "rene_durocher": {
+    "label": "René Durocher",
+    "identity": "graph person keys: P:durocher|rene",
+    "phds_2009_2026": 48,
+    "francophone_univ_phds": 22,
+    "universities": 14,
+    "top_works": [
+     "Histoire du Québec contemporain (1989; 28)",
+     "Quebec Since 1930 (1991; 10)",
+     "Quebec: A History, 1867-1929 (1983; 5)",
+     "Henri Bourassa, les évêques et la guerre de 1914-1918 (1971; 3)"
+    ],
+    "top_work_ids": [
+     "W:linteau|histoire du quebec",
+     "W:linteau|quebec since 1930",
+     "W:linteau|quebec",
+     "W:durocher|henri bourassa les eveques et la guerre de 1914 1918|a"
+    ]
+   },
+   "jean_claude_robert": {
+    "label": "Jean-Claude Robert",
+    "identity": "graph person keys: P:robert|jeanclaude",
+    "phds_2009_2026": 61,
+    "francophone_univ_phds": 33,
+    "universities": 18,
+    "top_works": [
+     "Histoire du Québec contemporain (1989; 28)",
+     "Quebec Since 1930 (1991; 10)",
+     "Quebec: A History, 1867-1929 (1983; 5)",
+     "Atlas historique de Montréal (1994; 3)"
+    ],
+    "top_work_ids": [
+     "W:linteau|histoire du quebec",
+     "W:linteau|quebec since 1930",
+     "W:linteau|quebec",
+     "W:robert|atlas historique de montreal"
+    ]
+   },
+   "michael_d_behiels": {
+    "label": "Michael D. Behiels",
+    "identity": "graph person keys: P:behiels|michael d",
+    "phds_2009_2026": 42,
+    "francophone_univ_phds": 6,
+    "universities": 17,
+    "top_works": [
+     "Prelude to Quebec’s Quiet Revolution: Liberalism Versus Neo-Nationalism, 1945-1960 (1985; 27)",
+     "Canada’s Francophone Minority Communities: Constitutional Renewal and the Winning of School Governance (2004; 6)",
+     "The Commission Des Écoles Catholiques de Montréal and the Neo-Canadian Question : 1947-63 (1986; 3)",
+     "Nation, Ideas, Identities: Essays in Honour of Ramsay Cook (2000; 3)"
+    ],
+    "top_work_ids": [
+     "W:behiels|prelude to quebecs quiet revolution",
+     "W:behiels|canadas francophone minority communities",
+     "W:behiels|commission des ecoles catholiques de montreal and the neo canadian question|a",
+     "W:behiels|nation ideas identities"
+    ]
+   },
+   "micheline_dumont": {
+    "label": "Micheline Dumont",
+    "identity": "graph person keys: P:dumont|micheline",
+    "phds_2009_2026": 33,
+    "francophone_univ_phds": 20,
+    "universities": 12,
+    "top_works": [
+     "Les couventines : l’éducation des filles au Québec dans les congrégations religieuses enseignantes, 1840-1960 (1986; 8)",
+     "Brève histoire des institutrices au Québec, de la Nouvelle-France à nos jours (2004; 5)",
+     "La pensée féministe au Québec. Anthologie, 1900-1985 (2003; 5)",
+     "Le féminisme québécois raconté à Camille (2008; 4)"
+    ],
+    "top_work_ids": [
+     "W:dumont|couventines",
+     "W:dufour|breve histoire des institutrices",
+     "W:dumont|pensee feministe au quebec",
+     "W:dumont|feminisme quebecois raconte a camille"
+    ]
+   },
+   "denyse_baillargeon": {
+    "label": "Denyse Baillargeon",
+    "identity": "candidates.csv: Baillargeon, Denyse",
+    "phds_2009_2026": 68,
+    "francophone_univ_phds": 25,
+    "universities": 21,
+    "top_works": [
+     "Brève histoire des femmes au Québec (2012; 15)",
+     "Un Québec en mal d’enfants. La médicalisation de la maternité, 1910-1970 (2004; 15)",
+     "Making Do: Women, Family and Home in Montreal during the Great Depression (1999; 14)",
+     "Babies for the Nation: The Medicalization of Motherhood in Quebec, 1910-1970 (2009; 13)"
+    ],
+    "top_work_ids": [
+     "W:baillargeon|breve histoire des femmes au quebec",
+     "W:baillargeon|quebec en mal denfant",
+     "W:baillargeon|making do",
+     "W:baillargeon|babies for the nation"
+    ]
+   },
+   "john_a_dickinson": {
+    "label": "John A. Dickinson",
+    "identity": "candidates.csv: Dickinson, John A",
+    "phds_2009_2026": 61,
+    "francophone_univ_phds": 27,
+    "universities": 18,
+    "top_works": [
+     "A Short History of Quebec (2003; 14)",
+     "Brève histoire socio-économique du Québec (2009; 14)",
+     "Les Sulpiciens de Montréal: une histoire de pouvoir et de discrétion, 1657-2007 (2007; 11)",
+     "Les exclus de la terre en France et au Québec, XVIIe-XXe siècles : la reproduction familiale dans la différence (1998; 3)"
+    ],
+    "top_work_ids": [
+     "W:dickinson|short history ofquebec",
+     "W:dickinson|breve histoire socio",
+     "W:deslandres|sulpiciens de montreal",
+     "W:bouchard|exclus de la terre en france et au quebec xviie"
+    ]
+   },
+   "brian_young": {
+    "label": "Brian Young",
+    "identity": "candidates.csv: Young, Brian",
+    "phds_2009_2026": 62,
+    "francophone_univ_phds": 25,
+    "universities": 18,
+    "top_works": [
+     "A Short History of Quebec (2003; 14)",
+     "Brève histoire socio-économique du Québec (2009; 14)",
+     "Patrician Families and the Making of Quebec: The Taschereaus and McCords (2014; 10)",
+     "The Politics of Codification: The Lower Canadian Civil Code of 1866 (1994; 8)"
+    ],
+    "top_work_ids": [
+     "W:dickinson|short history ofquebec",
+     "W:dickinson|breve histoire socio",
+     "W:young|patrician families and the making of quebec",
+     "W:young|politics ofcodification"
+    ]
+   },
+   "ronald_rudin": {
+    "label": "Ronald Rudin",
+    "identity": "candidates.csv: Rudin, Ronald",
+    "phds_2009_2026": 59,
+    "francophone_univ_phds": 16,
+    "universities": 16,
+    "top_works": [
+     "Making History in Twentieth-Century Quebec (1997; 20)",
+     "Founding Fathers: The Celebration of Champlain and Laval in the Streets of Quebec, 1878-1908 (2003; 10)",
+     "Faire de l'histoire au Québec (1998; 8)",
+     "Remembering and Forgetting in Acadie: A Historian’s Journey through Public Memory (2009; 6)"
+    ],
+    "top_work_ids": [
+     "W:rudin|making history in twentieth century ouebec",
+     "W:rudin|founding fathers",
+     "W:rudin|faire de jhistoire au quebec",
+     "W:rudin|remembering and forgetting in acadie"
+    ]
+   },
+   "jean_marie_fecteau": {
+    "label": "Jean-Marie Fecteau",
+    "identity": "graph person keys: P:fecteau|jeanmarie",
+    "phds_2009_2026": 39,
+    "francophone_univ_phds": 25,
+    "universities": 11,
+    "top_works": [
+     "La liberté du pauvre : crime et pauvreté au XIXe siècle québécois (2004; 19)",
+     "Un nouvel ordre des choses (1989; 6)",
+     "Écrire l'histoire de l'État? (2007; 3)",
+     "et al (1998; 3)"
+    ],
+    "top_work_ids": [
+     "W:fecteau|liberte du pauvre",
+     "W:fecteau|nouvel ordre des choses",
+     "W:fecteau|ecrire lhistoire de letat|a",
+     "W:fecteau|et al|a"
+    ]
+   },
+   "gerard_bouchard": {
+    "label": "Gérard Bouchard",
+    "identity": "candidates.csv: Bouchard, Gérard",
+    "phds_2009_2026": 58,
+    "francophone_univ_phds": 29,
+    "universities": 17,
+    "top_works": [
+     "Genèse des nations et cultures du Nouveau Monde (2000; 12)",
+     "Quelques arpents d’Amérique: population, économie, famille au Saguenay, 1838-1971 (1996; 12)",
+     "Les Deux Chanoines: Contradiction et ambivalence dans la pensée de Lionel Groulx (2003; 10)",
+     "La pensée impuissante. Échecs et mythes nationaux canadiens-français (1850-1960) (2004; 7)"
+    ],
+    "top_work_ids": [
+     "W:bouchard|genese des nations et culture du nouveau monde",
+     "W:bouchard|quelques arpent damerique",
+     "W:bouchard|deux chanoines",
+     "W:bouchard|pensee impuissante"
+    ]
+   },
+   "yvan_lamonde": {
+    "label": "Yvan Lamonde",
+    "identity": "candidates.csv: Lamonde, Yvan",
+    "phds_2009_2026": 53,
+    "francophone_univ_phds": 25,
+    "universities": 15,
+    "top_works": [
+     "Histoire sociale des idées au Québec (2000; 25)",
+     "La modernité au Québec. Tome I : la crise de l’homme et de l’esprit (2011; 7)",
+     "L’histoire culturelle comme domaine historiographique au Québec (1997; 4)",
+     "Québécois et Américains: la culture québécoise aux XIXe et XXe siècles (1995; 4)"
+    ],
+    "top_work_ids": [
+     "W:lamonde|histoire sociale des idees",
+     "W:lamonde|modernite au quebec",
+     "W:lamonde|lhistoire culturelle comme domaine historiographique au quebec|a",
+     "W:bouchard|quebecois et americains"
+    ]
+   },
+   "marcel_martel": {
+    "label": "Marcel Martel",
+    "identity": "candidates.csv: Martel, Marcel",
+    "phds_2009_2026": 51,
+    "francophone_univ_phds": 9,
+    "universities": 18,
+    "top_works": [
+     "Le deuil d'un pays imaginé: rêves, luttes et déroute du Canada français (1997; 14)",
+     "Speaking Up: A History of Language and Politics in Canada and Quebec (2012; 9)",
+     "’They smell bad, have diseases, and are lazy’: RCMP Officers Reporting on Hippies in the Late Sixties (2009; 8)",
+     "Langue et politique au Canada et au Québec. Une synthèse historique (2010; 8)"
+    ],
+    "top_work_ids": [
+     "W:martel|deuil dun pays imagine",
+     "W:martel|speaking up",
+     "W:martel|they smell bad have disease and are lazy|a",
+     "W:martel|langue et politique au canada et au quebec"
+    ]
+   }
+  }
+ },
+ "groups_json_anchor_engagement": [
+  {
+   "id": "quebec_historiography",
+   "label": "Quebec historiography",
+   "anchors": 13,
+   "engaged_phds": 204,
+   "share": 0.1566,
+   "share_ci95": [
+    0.1378,
+    0.1773
+   ],
+   "share_2009_14": 0.1415,
+   "share_2020_26": 0.1605,
+   "trend": "steady",
+   "universities": 24,
+   "anchor_counts": {
+    "Linteau, Paul-André": 76,
+    "Rudin, Ronald": 59,
+    "Bouchard, Gérard": 58,
+    "Lamonde, Yvan": 53,
+    "Hamelin, Jean": 63,
+    "Dickinson, John A": 61,
+    "Young, Brian": 62,
+    "Baillargeon, Denyse": 68,
+    "Martel, Marcel": 51,
+    "Gauvreau, Michael": 107,
+    "Greer, Allan": 119,
+    "Igartua, José": 67,
+    "Fahrni, Magda": 78
+   },
+   "top_works": [
+    "The Other Quiet Revolution: National Identities in English Canada, 1945-71 (2006; 60)",
+    "Household Politics: Montreal Families and Postwar Reconstruction (2005; 32)",
+    "The Catholic Origins of Quebec’s Quiet Revolution, 1931-1970 (2005; 31)",
+    "A Full-Orbed Christianity: The Protestant Churches and Social Welfare in Canada, 1900-1940 (1996; 29)",
+    "Histoire du Québec contemporain (1989; 28)",
+    "Colonial Leviathan: State Formation in Mid-Nineteenth-Century Canada (1992; 26)",
+    "Histoire sociale des idées au Québec (2000; 25)",
+    "Creating Postwar Canada: Community, Diversity, and Dissent, 1945-75 (2008; 21)"
+   ]
+  }
+ ],
+ "francophone_note": "Of the 161 PhDs engaging this roster, 65 (40%) are from francophone universities (Montréal, UQAM, Sherbrooke, Laval), which hold 179 of the 1303 PhDs (14%). The older schools are cited mostly by francophone PhDs: Séguin 7 of 7, Wallot 20 of 27, Groulx 14 of 29.",
+ "cross_group_overlap_2009_2026": {
+  "native_newcomer": {
+   "overlap": 47,
+   "expected": 27.1,
+   "lift": 1.74
+  },
+  "cdn_working_class": {
+   "overlap": 79,
+   "expected": 34.6,
+   "lift": 2.28
+  },
+  "cdn_military": {
+   "overlap": 53,
+   "expected": 26.9,
+   "lift": 1.97
+  }
+ },
+ "answers_applied_2026_10_12": {
+  "note": "Roster engagement above was computed for the 21-person roster and was not recomputed for the 26-person roster. Figures below: answers/data-answers.json and scratch counts on the citation graph (denominator 1,303 strict History PhDs 2009–2026; francophone = montreal, uqam, laval, sherbrooke).",
+  "Q63_trudel": {
+   "phds": 39,
+   "francophone_univ_phds": 15,
+   "share_2009_14": 0.0195,
+   "share_2020_26": 0.0444,
+   "histoire_de_la_nouvelle_france": {
+    "phds": 8,
+    "universities": 8,
+    "francophone": 4
+   },
+   "esclavage_1960": {
+    "phds": 6,
+    "universities": 5,
+    "francophone": 2
+   }
+  },
+  "Q04_brunet": {
+   "phds": 12,
+   "francophone_univ_phds": 6
+  },
+  "Q59_groulx": {
+   "phds": 29,
+   "francophone_univ_phds": 14,
+   "note": "Most-cited: Mes mémoires (5 PhDs) and Histoire du Canada français (5)."
+  },
+  "Q12_catholic_action_literature": {
+   "phds": 85,
+   "francophone_univ_phds": 36,
+   "share_2009_14": 0.0585,
+   "share_2020_26": 0.0765,
+   "engaging_quebec_historiography": {
+    "share": 0.882,
+    "lift": 5.64
+   },
+   "engaging_cdn_religion_reform": {
+    "share": 0.588,
+    "lift": 5.72
+   },
+   "works": {
+    "meunier_warren_2002": {
+     "phds": 20,
+     "universities": 8,
+     "francophone": 9
+    },
+    "bienvenue_2003": {
+     "phds": 20,
+     "universities": 9,
+     "francophone": 12
+    },
+    "gauvreau_2005_english": {
+     "phds": 32,
+     "universities": 11,
+     "francophone": 4
+    },
+    "gauvreau_2008_french": {
+     "phds": 16,
+     "universities": 7,
+     "francophone": 12
+    }
+   }
+  },
+  "Q38_quebec_womens_history": {
+   "phds": 34,
+   "francophone_univ_phds": 27,
+   "share_2009_14": 0.0341,
+   "share_2020_26": 0.0247,
+   "engaging_quebec_historiography": {
+    "share": 0.912,
+    "lift": 5.82
+   },
+   "engaging_cdn_women_gender": {
+    "share": 0.794,
+    "lift": 3.15
+   },
+   "works": {
+    "levesque_1989": {
+     "phds": 6,
+     "francophone": 4
+    },
+    "levesque_1997": {
+     "phds": 3,
+     "francophone": 2
+    },
+    "baillargeon_2012": {
+     "phds": 15,
+     "francophone": 11
+    }
+   }
+  },
+  "Q60_titles": {
+   "quebec": 59,
+   "french_canada_outside_quebec": 11
+  }
+ }
+}

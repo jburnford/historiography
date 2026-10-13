@@ -1,0 +1,464 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-12",
+ "unit": "dissertations (strict History PhDs completed 2009-2026, in_analysis: true); never citation counts",
+ "inputs": {
+  "graph": "data/field-research/dissertation-citations-2026-10-11/graph.json",
+  "identity": "canadian-historiography-scholars-request-2026-10-12/candidates.csv and identity-decisions.csv (namesake works removed); non-candidates by graph person keys listed per person",
+  "script": "computed with a scratch script mirroring groups_evidence.py (person_works with identity decisions); not committed"
+ },
+ "caveats": [
+  "Bibliographies list works consulted, not influence or endorsement.",
+  "Engagement = cites works by at least two roster people; rosters differ from groups.json anchors, so shares differ from ../evidence.json.",
+  "Francophone universities = montreal, uqam, sherbrooke, laval (179 of 1303 PhDs; Laval is thin, 9). Ottawa is bilingual and not counted.",
+  "Graph person keys for non-candidates are not identity-reviewed; variant keys may be missed, so small counts are lower bounds.",
+  "Years are mostly repository issued dates."
+ ],
+ "roster_engagement": {
+  "roster_people": 19,
+  "engaged_phds": 218,
+  "of": 1303,
+  "share": 0.1673,
+  "early": {
+   "window": "2009-2014",
+   "engaged": 78,
+   "of": 410,
+   "share": 0.1902
+  },
+  "late": {
+   "window": "2020-2026",
+   "engaged": 46,
+   "of": 405,
+   "share": 0.1136
+  },
+  "francophone_univ_engaged": 14,
+  "francophone_univ_all": 179,
+  "francophone_share_of_engaged": 0.0642,
+  "universities": 26,
+  "people": {
+   "archer_fortescue_duguid": {
+    "label": "A. Fortescue Duguid",
+    "identity": "graph person keys: P:duguid|archer; P:duguid|fortescue a",
+    "phds_2009_2026": 12,
+    "francophone_univ_phds": 0,
+    "universities": 7,
+    "top_works": [
+     "Official History of the Canadian Forces in the Great War, 1914-1919 (1938; 10)",
+     "History of the Grenadier Guards 1760-1964 (1965; 1)",
+     "History Of The Canadian Grenadier Guards, 1760-1964 (1965; 1)",
+     "A Question of Confidence: The Ross Rifle in the Trenches (2000; 1)"
+    ],
+    "top_work_ids": [
+     "W:duguid|official history of the canadian forces in the great war",
+     "W:duguid|history of the grenadier guards 1760 1964",
+     "W:duguid|history of the canadian grenadier guards 1760 1964",
+     "W:duguid|question of confidence"
+    ]
+   },
+   "c_p_stacey": {
+    "label": "C. P. Stacey",
+    "identity": "candidates.csv: Stacey, C.P",
+    "phds_2009_2026": 87,
+    "francophone_univ_phds": 2,
+    "universities": 20,
+    "top_works": [
+     "Canada and the Age of Conflict (1981; 34)",
+     "Arms, Men and Governments: The War Policies of Canada, 1939-1945 (1970; 28)",
+     "The Half-Million: The Canadians in Britain, 1939-1946 (1987; 9)",
+     "A Date with History: Memoirs of a Canadian Historian (1983; 9)"
+    ],
+    "top_work_ids": [
+     "W:stacey|canada and the age ofconflict",
+     "W:stacey|am men and government",
+     "W:stacey|half million",
+     "W:stacey|date with history"
+    ]
+   },
+   "g_w_l_nicholson": {
+    "label": "G. W. L. Nicholson",
+    "identity": "graph person keys: P:nicholson|g",
+    "phds_2009_2026": 33,
+    "francophone_univ_phds": 0,
+    "universities": 12,
+    "top_works": [
+     "Canadian Expeditionary Force, 1914-1919: Official History of the Canadian Army in the First World War (1962; 12)",
+     "Official History of the Canadian Army in the First World War: Canadian Expeditionary Force, 1914-1919 (1962; 6)",
+     "The Gunners Of Canada: The History Of The Royal Regiment Of Canadian Artillery Volume II, 1919-1967 (1967; 6)",
+     "The Canadians in Italy: Official History of the Canadian Army in the Second World War, Volume II (1956; 3)"
+    ],
+    "top_work_ids": [
+     "W:nicholson|canadian expeditionary force",
+     "W:nicholson|official history ofthe canadian army in the first world war",
+     "W:nicholson|gunners of canada",
+     "W:nicholson|canadians in italy"
+    ]
+   },
+   "george_f_g_stanley": {
+    "label": "George F. G. Stanley",
+    "identity": "candidates.csv: Stanley, George F.G",
+    "phds_2009_2026": 56,
+    "francophone_univ_phds": 0,
+    "universities": 16,
+    "top_works": [
+     "The Birth of Western Canada: A History of the Riel Rebellions (1961; 24)",
+     "Louis Riel (1963; 6)",
+     "Canada’s Soldiers: The Military History of an Unmilitary People (1974; 5)",
+     "Canada’s Soldiers, 1604-1954: The Military History of an Unmilitary People (1954; 4)"
+    ],
+    "top_work_ids": [
+     "W:stanley|birth of western canada",
+     "W:stanley|louis riel",
+     "W:stanley|canadas soldiers",
+     "W:stanley|canadas soldiers 1601 1954"
+    ]
+   },
+   "s_f_wise": {
+    "label": "S. F. Wise",
+    "identity": "graph person keys: P:wise|s; P:wise|syd f; P:wise|sydney f",
+    "phds_2009_2026": 27,
+    "francophone_univ_phds": 2,
+    "universities": 14,
+    "top_works": [
+     "God's Peculiar Peoples: Essays on Political Culture in Nineteenth-Century Canada (1993; 6)",
+     "The Valour and the Horror Revisited (1994; 3)",
+     "Sport and Class Values in Old Ontario and Quebec (1989; 3)",
+     "The War of 1812 in Popular History (1991; 2)"
+    ],
+    "top_work_ids": [
+     "W:wise|gods pecular people",
+     "W:bercuson|valour and the horror revisited",
+     "W:wise|sport and class values in old ontario and quebec|a",
+     "W:wise|war of 1812 in popular history|a"
+    ]
+   },
+   "j_l_granatstein": {
+    "label": "J. L. Granatstein",
+    "identity": "candidates.csv: Granatstein, J.L",
+    "phds_2009_2026": 161,
+    "francophone_univ_phds": 11,
+    "universities": 24,
+    "top_works": [
+     "The Ottawa Men: The Civil Service Mandarins, 1935-1957 (1982; 35)",
+     "Broken Promises: A History of Conscription in Canada (1977; 27)",
+     "Canada’s Army: Waging War and Keeping the Peace (2002; 24)",
+     "Canada’s War: The Politics of the Mackenzie King Government, 1939-1945 (1975; 24)"
+    ],
+    "top_work_ids": [
+     "W:granatstein|ottawa me",
+     "W:granatstein|broken promises",
+     "W:granatstein|canadas army",
+     "W:granatstein|canadas war"
+    ]
+   },
+   "j_mackay_hitsman": {
+    "label": "J. Mackay Hitsman",
+    "identity": "graph person keys: P:hitsman|j; P:hitsman|mackay",
+    "phds_2009_2026": 30,
+    "francophone_univ_phds": 1,
+    "universities": 16,
+    "top_works": [
+     "Broken Promises: A History of Conscription in Canada (1977; 27)",
+     "The Incredible War of 1812: A Military History (1999; 2)",
+     "Safeguarding Canada, 1763-1871 (1968; 2)",
+     "Military Inspection Services in Canada, 1855-1950 (1962; 1)"
+    ],
+    "top_work_ids": [
+     "W:granatstein|broken promises",
+     "W:hitsman|incredible war of 1812",
+     "W:hitsman|safeguarding canada 1763 1871",
+     "W:hitsman|military inspection services in canada 1855 1950"
+    ]
+   },
+   "desmond_morton": {
+    "label": "Desmond Morton",
+    "identity": "candidates.csv: Morton, Desmond",
+    "phds_2009_2026": 124,
+    "francophone_univ_phds": 6,
+    "universities": 23,
+    "top_works": [
+     "A Military History of Canada (2007; 35)",
+     "Fight or Pay: Soldiers’ Families in the Great War (2004; 25)",
+     "Winning the Second Battle: Canadian Veterans and the Return to Civilian Life, 1915-1930 (1987; 23)",
+     "When Your Number’s Up: The Canadian Soldier in the First World War (1993; 20)"
+    ],
+    "top_work_ids": [
+     "W:morton|military history of canada",
+     "W:morton|fight or pay",
+     "W:morton|winning the second battle",
+     "W:morton|when you numbers up"
+    ]
+   },
+   "terry_copp": {
+    "label": "Terry Copp",
+    "identity": "candidates.csv: Copp, Terry",
+    "phds_2009_2026": 54,
+    "francophone_univ_phds": 10,
+    "universities": 18,
+    "top_works": [
+     "Battle Exhaustion: Soldiers and Psychiatrists in the Canadian Army, 1939-1945 (1990; 13)",
+     "Cinderella Army: The Canadians in Northwest Europe, 1944-1945 (2006; 11)",
+     "Fields of Fire: The Canadians in Normandy (2003; 10)",
+     "The Anatomy of Poverty: The Condition of the Working Class in Montreal, 1897-1929 (1974; 9)"
+    ],
+    "top_work_ids": [
+     "W:copp|battle exhaustion",
+     "W:copp|cinderella army",
+     "W:copp|fields of fire",
+     "W:copp|anatomy ofpovert"
+    ]
+   },
+   "david_bercuson": {
+    "label": "David J. Bercuson",
+    "identity": "candidates.csv: Bercuson, David",
+    "phds_2009_2026": 73,
+    "francophone_univ_phds": 0,
+    "universities": 16,
+    "top_works": [
+     "True Patriot: The Life of Brooke Claxton, 1898-1960 (1993; 13)",
+     "Confrontation at Winnipeg: Labour, Industrial Relations, and the General Strike (1974; 12)",
+     "Fools and Wise Men: The Rise and Fall of the One Big Union (1978; 10)",
+     "Blood on the Hills: The Canadian Army in the Korean War (1999; 7)"
+    ],
+    "top_work_ids": [
+     "W:bercuson|true patriot",
+     "W:bercuson|confrontation at winnipeg",
+     "W:bercuson|fools and wise men",
+     "W:bercuson|blood on the hills"
+    ]
+   },
+   "pierre_berton": {
+    "label": "Pierre Berton",
+    "identity": "candidates.csv: Berton, Pierre",
+    "phds_2009_2026": 54,
+    "francophone_univ_phds": 0,
+    "universities": 18,
+    "top_works": [
+     "Vimy (1986; 9)",
+     "1967: The Last Good Year (1997; 7)",
+     "The National Dream: The Great Railway, 1871-1881 (1970; 5)",
+     "The Mysterious North (1956; 4)"
+    ],
+    "top_work_ids": [
+     "W:berton|vimy",
+     "W:berton|1967",
+     "W:berton|national dream",
+     "W:berton|mysterious north"
+    ]
+   },
+   "ruth_roach_pierson": {
+    "label": "Ruth Roach Pierson",
+    "identity": "candidates.csv: Pierson, Ruth Roach",
+    "phds_2009_2026": 51,
+    "francophone_univ_phds": 2,
+    "universities": 15,
+    "top_works": [
+     "“They’re Still Women After All”: The Second World War and Canadian Womanhood (1986; 19)",
+     "They’re Still Women After All (1986; 7)",
+     "Canadian Women’s Issues (1993; 5)",
+     "Gender and the Unemployment Insurance Debates in Canada, 1934-1940 (1990; 4)"
+    ],
+    "top_work_ids": [
+     "W:pierson|theyre sill women after all",
+     "W:pierson|theyre still women after all|a",
+     "W:pierson|canadian womens issue",
+     "W:pierson|gender and the unemployment insurance debates in canada 1934 1940|a"
+    ]
+   },
+   "jean_pierre_gagnon": {
+    "label": "Jean-Pierre Gagnon",
+    "identity": "graph person keys: P:gagnon|jeanpierre",
+    "phds_2009_2026": 5,
+    "francophone_univ_phds": 0,
+    "universities": 3,
+    "top_works": [
+     "Le 22e Bataillon (canadien-français), 1914-1919: étude socio-militaire (1986; 5)",
+     "Les Historiens canadiens français et la participation canadienne française à la Deuxième Guerre mondiale (1995; 1)"
+    ],
+    "top_work_ids": [
+     "W:gagnon|22e bataillon canadien francais 1914 1919",
+     "W:gagnon|historiens canadiens francais et la participation canadienne francaise a la deux|a"
+    ]
+   },
+   "jean_pariseau": {
+    "label": "Jean Pariseau",
+    "identity": "graph person keys: P:pariseau|jean",
+    "phds_2009_2026": 3,
+    "francophone_univ_phds": 0,
+    "universities": 2,
+    "top_works": [
+     "Les Canadiens français et le bilinguisme dans les Forces armées canadiennes (1987; 2)",
+     "French Canadians and Bilingualism in the Canadian Armed Forces. Vol. I 1763-1969: The Fear of a Parallel Army (1988; 1)",
+     "La Participation Des Canadien Français À L’Effort Des Deux Guerres Mondiales: Démarche De Ré-Interprétation (1983; 1)"
+    ],
+    "top_work_ids": [
+     "W:pariseau|canadiens francais et le bilinguisme dans les forces armees canadiennes",
+     "W:pariseau|french canadians and bilingualism in the canadian armed forces",
+     "W:pariseau|participation des canadien francais a leffort des deux guerres mondiales|a"
+    ]
+   },
+   "l_james_dempsey": {
+    "label": "L. James Dempsey",
+    "identity": "graph person keys: P:dempsey|james",
+    "phds_2009_2026": 3,
+    "francophone_univ_phds": 0,
+    "universities": 3,
+    "top_works": [
+     "Alberta’s Indians and the Second World War (1995; 2)",
+     "A Warrior’s Robe (2003; 1)",
+     "Warriors of the King: Prairie Indians in World War I. Regina: Canadian Plains Research Center, University of Regina, 1999 (1999; 1)",
+     "Problems of Western Canadian Indian Veterans (1989; 1)"
+    ],
+    "top_work_ids": [
+     "W:dempsey|alberta indians and the second world war|a",
+     "W:dempsey|warriors robe|a",
+     "W:dempsey|warriors of the king",
+     "W:dempsey|problems of western canadian indian veterans|a"
+    ]
+   },
+   "jonathan_vance": {
+    "label": "Jonathan F. Vance",
+    "identity": "candidates.csv: Vance, Jonathan",
+    "phds_2009_2026": 89,
+    "francophone_univ_phds": 0,
+    "universities": 18,
+    "top_works": [
+     "Death So Noble: Memory, Meaning, and the First World War (1997; 67)",
+     "A History of Canadian Culture (2009; 11)",
+     "Maple Leaf Empire: Canada, Britain, and Two World Wars (2012; 10)",
+     "Objects of Concern: Canadian Prisoners of War through the Twentieth Century (1994; 7)"
+    ],
+    "top_work_ids": [
+     "W:vance|death sonoble",
+     "W:vance|history of canadian culture",
+     "W:vance|maple leaf empire",
+     "W:vance|objects of concern"
+    ]
+   },
+   "jeff_keshen": {
+    "label": "Jeff Keshen",
+    "identity": "candidates.csv: Keshen, Jeff",
+    "phds_2009_2026": 77,
+    "francophone_univ_phds": 4,
+    "universities": 20,
+    "top_works": [
+     "Saints, Sinners, and Soldiers: Canada’s Second World War (2004; 34)",
+     "Propaganda and Censorship During Canada’s Great War (1996; 22)",
+     "All the News That Was Fit to Print: Ernest J. Chambers and Information Control in Canada, 1914-19 (1992; 8)",
+     "Revisiting Canada’s Civilian Women during World War II (1997; 5)"
+    ],
+    "top_work_ids": [
+     "W:keshen|saints sinners and soldiers",
+     "W:keshen|propaganda and censorship during canada",
+     "W:keshen|all the news that was fit to print|a",
+     "W:keshen|revisiting canadas civilian women during world war ii|a"
+    ]
+   },
+   "robert_rutherdale": {
+    "label": "Robert Rutherdale",
+    "identity": "candidates.csv: Rutherdale, Robert",
+    "phds_2009_2026": 70,
+    "francophone_univ_phds": 9,
+    "universities": 24,
+    "top_works": [
+     "Hometown Horizons: Local Responses to Canada’s Great War (2004; 26)",
+     "Creating Postwar Canada: Community, Diversity, and Dissent, 1945-75 (2008; 21)",
+     "Fatherhood, Masculinity, and the Good Life during Canada’s Baby Boom, 1945-1965 (1999; 7)",
+     "Making Men, Making History: Canadian Masculinities across Time and Place (2018; 6)"
+    ],
+    "top_work_ids": [
+     "W:rutherdale|hometown horizon",
+     "W:fahrni|creating postwar canada",
+     "W:rutherdale|fatherhood masculinity and the good life during canadas baby boom 1945|a",
+     "W:gossage|making men making history"
+    ]
+   },
+   "tim_cook": {
+    "label": "Tim Cook",
+    "identity": "candidates.csv: Cook, Tim",
+    "phds_2009_2026": 57,
+    "francophone_univ_phds": 1,
+    "universities": 16,
+    "top_works": [
+     "Clio’s Warriors: Canadian Historians and the Writing of the World Wars (2006; 21)",
+     "Shock Troops: Canadians Fighting the Great War, 1917-1918 (2008; 19)",
+     "At the Sharp End: Canadians Fighting the Great War, 1914-1916 (2007; 19)",
+     "Warlords: Borden, Mackenzie King, and Canada’s World Wars (2012; 8)"
+    ],
+    "top_work_ids": [
+     "W:cook|clio s warrior",
+     "W:cook|shock troops",
+     "W:cook|at the sharp end",
+     "W:cook|warlords"
+    ]
+   }
+  }
+ },
+ "groups_json_anchor_engagement": [
+  {
+   "id": "cdn_military",
+   "label": "Canadian military history: official history, war & society, memory",
+   "anchors": 10,
+   "engaged_phds": 184,
+   "share": 0.1412,
+   "share_ci95": [
+    0.1234,
+    0.1612
+   ],
+   "share_2009_14": 0.161,
+   "share_2020_26": 0.0963,
+   "trend": "falling",
+   "universities": 25,
+   "anchor_counts": {
+    "Stacey, C.P": 87,
+    "Morton, Desmond": 124,
+    "Cook, Tim": 57,
+    "Keshen, Jeff": 77,
+    "Rutherdale, Robert": 70,
+    "Berton, Pierre": 54,
+    "Copp, Terry": 54,
+    "Vance, Jonathan": 89,
+    "Bercuson, David": 73,
+    "Granatstein, J.L": 161
+   },
+   "top_works": [
+    "Death So Noble: Memory, Meaning, and the First World War (1997; 67)",
+    "A Military History of Canada (2007; 35)",
+    "The Ottawa Men: The Civil Service Mandarins, 1935-1957 (1982; 35)",
+    "Canada and the Age of Conflict (1981; 34)",
+    "Saints, Sinners, and Soldiers: Canada’s Second World War (2004; 34)",
+    "Arms, Men and Governments: The War Policies of Canada, 1939-1945 (1970; 28)",
+    "Broken Promises: A History of Conscription in Canada (1977; 27)",
+    "Hometown Horizons: Local Responses to Canada’s Great War (2004; 26)"
+   ]
+  }
+ ],
+ "reading": "Roster engagement falls from 19.0% of PhDs in 2009–14 to 11.4% in 2020–26. Vance’s Death So Noble (67 PhDs) is the most-cited work; the official histories are cited mainly in their policy volume (Stacey, Arms, Men and Governments, 28). Francophone universities supply 14 of 218 engaged PhDs, and the francophone military historians here are rarely cited (Gagnon 5, Pariseau 3).",
+ "cross_group_overlap_2009_2026": {
+  "note": "Copp, Bercuson and Desmond Morton are on both this roster and cdn_working_class; Stanley on both this roster and native_newcomer. The second figures remove shared people from both rosters.",
+  "native_newcomer": {
+   "overlap": 59,
+   "expected": 36.6,
+   "lift": 1.61,
+   "excluding_shared_people": {
+    "overlap": 45,
+    "expected": 34.0,
+    "lift": 1.32
+   }
+  },
+  "quebec_historiography": {
+   "overlap": 53,
+   "expected": 26.9,
+   "lift": 1.97
+  },
+  "cdn_working_class": {
+   "overlap": 150,
+   "expected": 46.8,
+   "lift": 3.2,
+   "excluding_shared_people": {
+    "overlap": 86,
+    "expected": 31.9,
+    "lift": 2.69
+   }
+  }
+ }
+}

@@ -1,0 +1,430 @@
+{
+ "prepared": "2026-10-12",
+ "corpus": "data/field-research/dissertation-citations-2026-10-11/graph.json; Dissertation nodes with in_analysis true and year 2009–2026",
+ "denominator": 1303,
+ "early_window": "2009–2014",
+ "early_n": 410,
+ "late_window": "2020–2026",
+ "late_n": 405,
+ "francophone_universities": [
+  "laval",
+  "montreal",
+  "sherbrooke",
+  "uqam"
+ ],
+ "francophone_university_phds": 179,
+ "method": "Engagement = PhDs citing works by at least two of the group's anchor people (groups.json primary + also), with identity cleanup from the scholars packet, as in groups_evidence.py. Pairwise overlaps drop anchors shared by both groups before recomputing engagement, so shared people do not inflate them.",
+ "engagement": {
+  "phds_2009_2026": 328,
+  "of": 1303,
+  "universities": 26,
+  "francophone_university_phds": 31,
+  "share_2009_14": 0.2415,
+  "share_2020_26": 0.2247,
+  "anchors": [
+   "Parr, Joy",
+   "Sangster, Joan",
+   "Strong-Boag, Veronica",
+   "Bradbury, Bettina",
+   "Prentice, Alison",
+   "Pierson, Ruth Roach",
+   "Mitchinson, Wendy",
+   "Morgan, Cecilia",
+   "Korinek, Valerie J",
+   "Fahrni, Magda",
+   "Campbell, Lara",
+   "Dubinsky, Karen",
+   "Iacovetta, Franca",
+   "Christie, Nancy",
+   "Comacchio, Cynthia",
+   "Baillargeon, Denyse",
+   "Marks, Lynne",
+   "Van Kirk, Sylvia",
+   "Perry, Adele"
+  ]
+ },
+ "anchor_citing_phds": {
+  "Parr, Joy": 134,
+  "Sangster, Joan": 129,
+  "Strong-Boag, Veronica": 89,
+  "Bradbury, Bettina": 76,
+  "Prentice, Alison": 59,
+  "Pierson, Ruth Roach": 51,
+  "Mitchinson, Wendy": 51,
+  "Morgan, Cecilia": 78,
+  "Korinek, Valerie J": 76,
+  "Fahrni, Magda": 78,
+  "Campbell, Lara": 67,
+  "Dubinsky, Karen": 79,
+  "Iacovetta, Franca": 146,
+  "Christie, Nancy": 121,
+  "Comacchio, Cynthia": 76,
+  "Baillargeon, Denyse": 68,
+  "Marks, Lynne": 51,
+  "Van Kirk, Sylvia": 61,
+  "Perry, Adele": 122
+ },
+ "pairwise_overlap_shared_anchors_removed": [
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_childhood_youth"
+   ],
+   "shared_anchors_removed": [
+    "Bradbury, Bettina",
+    "Comacchio, Cynthia",
+    "Korinek, Valerie J",
+    "Strong-Boag, Veronica"
+   ],
+   "a_engaged": 306,
+   "b_engaged": 54,
+   "overlap": 50,
+   "share_of_a": 0.163,
+   "lift": 3.94,
+   "raw_overlap_with_shared_anchors": 128,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_immigration_ethnicity"
+   ],
+   "shared_anchors_removed": [
+    "Iacovetta, Franca"
+   ],
+   "a_engaged": 309,
+   "b_engaged": 133,
+   "overlap": 94,
+   "share_of_a": 0.304,
+   "lift": 2.98,
+   "raw_overlap_with_shared_anchors": 141,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_intellectual_cultural"
+   ],
+   "shared_anchors_removed": [
+    "Morgan, Cecilia"
+   ],
+   "a_engaged": 315,
+   "b_engaged": 261,
+   "overlap": 165,
+   "share_of_a": 0.524,
+   "lift": 2.62,
+   "raw_overlap_with_shared_anchors": 188,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_military"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 328,
+   "b_engaged": 184,
+   "overlap": 93,
+   "share_of_a": 0.284,
+   "lift": 2.01,
+   "raw_overlap_with_shared_anchors": 93,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_national_tradition"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 328,
+   "b_engaged": 173,
+   "overlap": 100,
+   "share_of_a": 0.305,
+   "lift": 2.3,
+   "raw_overlap_with_shared_anchors": 100,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_political_national"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 328,
+   "b_engaged": 242,
+   "overlap": 136,
+   "share_of_a": 0.415,
+   "lift": 2.23,
+   "raw_overlap_with_shared_anchors": 136,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_regional"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 328,
+   "b_engaged": 194,
+   "overlap": 125,
+   "share_of_a": 0.381,
+   "lift": 2.56,
+   "raw_overlap_with_shared_anchors": 125,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_religion_reform"
+   ],
+   "shared_anchors_removed": [
+    "Christie, Nancy",
+    "Marks, Lynne"
+   ],
+   "a_engaged": 307,
+   "b_engaged": 76,
+   "overlap": 46,
+   "share_of_a": 0.15,
+   "lift": 2.57,
+   "raw_overlap_with_shared_anchors": 110,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_sixties"
+   ],
+   "shared_anchors_removed": [
+    "Campbell, Lara",
+    "Fahrni, Magda"
+   ],
+   "a_engaged": 315,
+   "b_engaged": 158,
+   "overlap": 108,
+   "share_of_a": 0.343,
+   "lift": 2.83,
+   "raw_overlap_with_shared_anchors": 142,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "cdn_working_class"
+   ],
+   "shared_anchors_removed": [
+    "Bradbury, Bettina",
+    "Parr, Joy",
+    "Sangster, Joan"
+   ],
+   "a_engaged": 287,
+   "b_engaged": 210,
+   "overlap": 130,
+   "share_of_a": 0.453,
+   "lift": 2.81,
+   "raw_overlap_with_shared_anchors": 218,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "liberal_order_framework"
+   ],
+   "shared_anchors_removed": [
+    "Christie, Nancy"
+   ],
+   "a_engaged": 312,
+   "b_engaged": 183,
+   "overlap": 123,
+   "share_of_a": 0.394,
+   "lift": 2.81,
+   "raw_overlap_with_shared_anchors": 163,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "moral_regulation"
+   ],
+   "shared_anchors_removed": [
+    "Mitchinson, Wendy"
+   ],
+   "a_engaged": 325,
+   "b_engaged": 155,
+   "overlap": 136,
+   "share_of_a": 0.418,
+   "lift": 3.52,
+   "raw_overlap_with_shared_anchors": 145,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "native_newcomer"
+   ],
+   "shared_anchors_removed": [
+    "Perry, Adele",
+    "Van Kirk, Sylvia"
+   ],
+   "a_engaged": 288,
+   "b_engaged": 219,
+   "overlap": 106,
+   "share_of_a": 0.368,
+   "lift": 2.19,
+   "raw_overlap_with_shared_anchors": 154,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "quebec_historiography"
+   ],
+   "shared_anchors_removed": [
+    "Baillargeon, Denyse",
+    "Fahrni, Magda"
+   ],
+   "a_engaged": 315,
+   "b_engaged": 180,
+   "overlap": 110,
+   "share_of_a": 0.349,
+   "lift": 2.53,
+   "raw_overlap_with_shared_anchors": 139,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "settler_colonialism"
+   ],
+   "shared_anchors_removed": [
+    "Perry, Adele"
+   ],
+   "a_engaged": 302,
+   "b_engaged": 121,
+   "overlap": 71,
+   "share_of_a": 0.235,
+   "lift": 2.53,
+   "raw_overlap_with_shared_anchors": 114,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_women_gender",
+    "who_killed_debate"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 328,
+   "b_engaged": 167,
+   "overlap": 114,
+   "share_of_a": 0.348,
+   "lift": 2.71,
+   "raw_overlap_with_shared_anchors": 114,
+   "of": 1303
+  }
+ ],
+ "theory_cocitation": [
+  {
+   "group": "cdn_women_gender",
+   "cited": "Michel Foucault (any work)",
+   "engaged": 328,
+   "overlap": 81,
+   "share": 0.247,
+   "baseline_share": 0.202,
+   "lift": 1.22,
+   "of": 1303
+  },
+  {
+   "group": "cdn_women_gender",
+   "cited": "Joan W. Scott (any work)",
+   "engaged": 328,
+   "overlap": 64,
+   "share": 0.195,
+   "baseline_share": 0.092,
+   "lift": 2.12,
+   "of": 1303
+  },
+  {
+   "group": "cdn_women_gender",
+   "cited": "Philippe Ariès (any work)",
+   "engaged": 328,
+   "overlap": 16,
+   "share": 0.049,
+   "baseline_share": 0.031,
+   "lift": 1.59,
+   "of": 1303
+  },
+  {
+   "group": "cdn_women_gender",
+   "cited": "Michael Omi or Howard Winant",
+   "engaged": 328,
+   "overlap": 1,
+   "share": 0.003,
+   "baseline_share": 0.005,
+   "lift": 0.57,
+   "of": 1303
+  }
+ ],
+ "caveats": [
+  "Bibliographies record consultation, not influence or adoption.",
+  "Anchor-based engagement favours groups with more anchors; compare trends, not levels.",
+  "Lifts between Canadian groups are high in general because the corpus is mostly Canadian history PhDs.",
+  "Francophone coverage: Laval has only 9 in-analysis PhDs."
+ ],
+ "answers_applied_2026_10_12": {
+  "note": "Engagement figures above were computed before the 2026-10-12 roster changes (Palmer and Dumont out; Perry and Van Kirk in as comparison rows) and were not recomputed. Figures below are from answers/data-answers.json (denominator 1,303 strict History PhDs, 2009–2026).",
+  "Q35_women_vs_gender_split": {
+   "women_history_literature_phds": 115,
+   "gender_history_literature_phds": 165,
+   "both": 53,
+   "lift": 3.64
+  },
+  "Q37_descent_into_discourse": {
+   "phds": 5,
+   "engaging_cdn_working_class": 0.8,
+   "engaging_cdn_women_gender": 0.6
+  },
+  "Q38_quebec_womens_history": {
+   "phds": 34,
+   "francophone_univ_phds": 27,
+   "engaging_quebec_historiography": {
+    "share": 0.912,
+    "lift": 5.82
+   },
+   "engaging_cdn_women_gender": {
+    "share": 0.794,
+    "lift": 3.15
+   }
+  },
+  "Q39": {
+   "perry": {
+    "citing_phds": 122,
+    "engaging_cdn_women_gender": {
+     "share": 0.672,
+     "lift": 2.9
+    },
+    "engaging_native_newcomer": {
+     "share": 0.713,
+     "lift": 4.22
+    },
+    "engaging_settler_colonialism": {
+     "share": 0.434,
+     "lift": 5.29
+    }
+   },
+   "van_kirk": {
+    "citing_phds": 61,
+    "engaging_cdn_women_gender": {
+     "share": 0.607,
+     "lift": 2.49
+    },
+    "engaging_native_newcomer": {
+     "share": 0.902,
+     "lift": 4.92
+    },
+    "engaging_settler_colonialism": {
+     "share": 0.77,
+     "lift": 6.83
+    }
+   }
+  }
+ }
+}

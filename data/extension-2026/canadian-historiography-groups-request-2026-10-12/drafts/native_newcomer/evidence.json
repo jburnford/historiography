@@ -1,0 +1,555 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-12",
+ "unit": "dissertations (strict History PhDs completed 2009-2026, in_analysis: true); never citation counts",
+ "inputs": {
+  "graph": "data/field-research/dissertation-citations-2026-10-11/graph.json",
+  "identity": "canadian-historiography-scholars-request-2026-10-12/candidates.csv and identity-decisions.csv (namesake works removed); non-candidates by graph person keys listed per person",
+  "script": "computed with a scratch script mirroring groups_evidence.py (person_works with identity decisions); not committed"
+ },
+ "caveats": [
+  "Bibliographies list works consulted, not influence or endorsement.",
+  "Engagement = cites works by at least two roster people; rosters differ from groups.json anchors, so shares differ from ../evidence.json.",
+  "Francophone universities = montreal, uqam, sherbrooke, laval (179 of 1303 PhDs; Laval is thin, 9). Ottawa is bilingual and not counted.",
+  "Graph person keys for non-candidates are not identity-reviewed; variant keys may be missed, so small counts are lower bounds.",
+  "Years are mostly repository issued dates."
+ ],
+ "roster_engagement": {
+  "roster_people": 22,
+  "engaged_phds": 219,
+  "of": 1303,
+  "share": 0.1681,
+  "early": {
+   "window": "2009-2014",
+   "engaged": 66,
+   "of": 410,
+   "share": 0.161
+  },
+  "late": {
+   "window": "2020-2026",
+   "engaged": 65,
+   "of": 405,
+   "share": 0.1605
+  },
+  "francophone_univ_engaged": 13,
+  "francophone_univ_all": 179,
+  "francophone_share_of_engaged": 0.0594,
+  "universities": 24,
+  "people": {
+   "harold_a_innis": {
+    "label": "Harold A. Innis",
+    "identity": "candidates.csv: Innis, Harold A",
+    "phds_2009_2026": 82,
+    "francophone_univ_phds": 4,
+    "universities": 20,
+    "top_works": [
+     "The Fur Trade in Canada: An Introduction to Canadian Economic History (1930; 48)",
+     "A History of the Canadian Pacific Railway (1971; 6)",
+     "Settlement and the Forest Frontier in Eastern Canada (1936; 6)",
+     "The Cod Fisheries: The History of an International Economy (1978; 6)"
+    ],
+    "top_work_ids": [
+     "W:innis|furtrade in canada",
+     "W:innis|history of the canadian pacific railway",
+     "W:lower|settlement the forest frontier in eastern canada",
+     "W:innis|cod fisheries"
+    ]
+   },
+   "george_f_g_stanley": {
+    "label": "George F. G. Stanley",
+    "identity": "candidates.csv: Stanley, George F.G",
+    "phds_2009_2026": 56,
+    "francophone_univ_phds": 0,
+    "universities": 16,
+    "top_works": [
+     "The Birth of Western Canada: A History of the Riel Rebellions (1961; 24)",
+     "Louis Riel (1963; 6)",
+     "Canada’s Soldiers: The Military History of an Unmilitary People (1974; 5)",
+     "Canada’s Soldiers, 1604-1954: The Military History of an Unmilitary People (1954; 4)"
+    ],
+    "top_work_ids": [
+     "W:stanley|birth of western canada",
+     "W:stanley|louis riel",
+     "W:stanley|canadas soldiers",
+     "W:stanley|canadas soldiers 1601 1954"
+    ]
+   },
+   "arthur_j_ray": {
+    "label": "Arthur J. Ray",
+    "identity": "candidates.csv: Ray, Arthur J",
+    "phds_2009_2026": 71,
+    "francophone_univ_phds": 1,
+    "universities": 19,
+    "top_works": [
+     "Indians in the Fur Trade: Their Role as Trappers, Hunters, and Middlemen in the Lands Southwest of Hudson Bay, 1660-1870 (1974; 35)",
+     "Bounty and Benevolence: A History of Saskatchewan Treaties (2000; 16)",
+     "I Have Lived Here Since the World Began: An Illustrated History of Canada’s Native People (1996; 11)",
+     "“Give Us Good Measure”: An Economic Analysis of Relations Between the Indians and the Hudson’s Bay Company Before 1763 (1978; 10)"
+    ],
+    "top_work_ids": [
+     "W:ray|indians in the fur trade",
+     "W:ray|bounty and benevolence",
+     "W:ray|have lived here since the world began",
+     "W:ray|give us good measure"
+    ]
+   },
+   "bruce_trigger": {
+    "label": "Bruce G. Trigger",
+    "identity": "candidates.csv: Trigger, Bruce G",
+    "phds_2009_2026": 60,
+    "francophone_univ_phds": 12,
+    "universities": 20,
+    "top_works": [
+     "The Children of Aataentsic: A History of the Huron People to 1660 (1987; 22)",
+     "Natives and Newcomers: Canada’s “Heroic Age” Reconsidered (1985; 20)",
+     "A History of Archaeological Thought (2006; 8)",
+     "The Huron: Farmers of the North (1969; 6)"
+    ],
+    "top_work_ids": [
+     "W:trigger|children ofaataentsic",
+     "W:trigger|natives and newcomers",
+     "W:trigger|history of archaeological thought",
+     "W:trigger|huron"
+    ]
+   },
+   "robin_fisher": {
+    "label": "Robin Fisher",
+    "identity": "graph person keys: P:fisher|robin",
+    "phds_2009_2026": 33,
+    "francophone_univ_phds": 1,
+    "universities": 18,
+    "top_works": [
+     "Contact and Conflict: Indian-European Relations in British Columbia, 1774-1890 (1977; 21)",
+     "Duff Pattullo of British Columbia (1991; 3)",
+     "Out of the Background: Readings on Canadian Native History (1996; 2)",
+     "Contact and Conflict Indian-European Relations in British Columbia, 1774-1890 (1977; 2)"
+    ],
+    "top_work_ids": [
+     "W:fisher|contact and conf1ict",
+     "W:fisher|duffpatullo of british columbia",
+     "W:coates|out of the background",
+     "W:fisher|contact and conflict indian european relations in british columbia"
+    ]
+   },
+   "sylvia_van_kirk": {
+    "label": "Sylvia Van Kirk",
+    "identity": "candidates.csv: Van Kirk, Sylvia",
+    "phds_2009_2026": 61,
+    "francophone_univ_phds": 1,
+    "universities": 20,
+    "top_works": [
+     "Many Tender Ties: Women in Fur-Trade Society, 1670-1870 (1980; 57)",
+     "‘What if Mama is an Indian?’: The Cultural Ambivalence of the Alexander Ross Family (1985; 6)",
+     "From Marrying-In to Marrying-Out: Changing Patterns of Aboriginal/Non-Aboriginal Marriage in Colonial Canada (2002; 5)",
+     "The Reputation of a Lady: Sarah Ballenden and the Foss-Pelly Scandal (1986; 3)"
+    ],
+    "top_work_ids": [
+     "W:van kirk|many tender ties",
+     "W:van kirk|what if mama is an indian|a",
+     "W:van kirk|marrying in to marrying out|a",
+     "W:van kirk|reputation of a lady|a"
+    ]
+   },
+   "jennifer_s_h_brown": {
+    "label": "Jennifer S. H. Brown",
+    "identity": "candidates.csv: Brown, Jennifer S.H",
+    "phds_2009_2026": 56,
+    "francophone_univ_phds": 1,
+    "universities": 17,
+    "top_works": [
+     "Strangers in Blood: Fur Trade Company Families in Indian Country (1980; 40)",
+     "The New Peoples: Being and Becoming Métis in North America (1985; 17)",
+     "Reading Beyond Words: Contexts for Native History (1996; 10)",
+     "Diverging Identities: The Presbyterian Métis of St. Gabriel Street, Montreal (1985; 6)"
+    ],
+    "top_work_ids": [
+     "W:brown|strangers in blood",
+     "W:peterson|new peoples",
+     "W:brown|reading beyond words",
+     "W:brown|diverging identities|a"
+    ]
+   },
+   "olive_patricia_dickason": {
+    "label": "Olive Patricia Dickason",
+    "identity": "candidates.csv: Dickason, Olive Patricia",
+    "phds_2009_2026": 59,
+    "francophone_univ_phds": 7,
+    "universities": 21,
+    "top_works": [
+     "Canada’s First Nations: A History of Founding Peoples from Earliest Times (1992; 23)",
+     "The Myth of the Savage: And the Beginnings of French Colonialism in the Americas (1984; 9)",
+     "The Myth of the Savage and the Beginnings of French Colonialism in the Americas (1984; 9)",
+     "A Concise History of Canada’s First Nations (2006; 7)"
+    ],
+    "top_work_ids": [
+     "W:dickason|canadas first nations",
+     "W:dickason|myth ofthe savage",
+     "W:dickason|myth of the savage and the beginnings of french colonialism in",
+     "W:dickason|concise history of canadas first nations"
+    ]
+   },
+   "denys_delage": {
+    "label": "Denys Delâge",
+    "identity": "graph person keys: P:delage|denys",
+    "phds_2009_2026": 29,
+    "francophone_univ_phds": 14,
+    "universities": 11,
+    "top_works": [
+     "Bitter Feast: Amerindians and Europeans in Northeastern North America, 1600-64 (1993; 7)",
+     "Le Pays renversé : Amérindiens et Européens en Amérique Du Nord-Est, 1600-1664 (1985; 6)",
+     "La peur de \"passer pour des Sauvages\" (2011; 4)",
+     "La religion dans l’alliance franco-amérindienne (1991; 4)"
+    ],
+    "top_work_ids": [
+     "W:delage|bitter feast",
+     "W:delage|pays renverse",
+     "W:delage|peur de passer pour des sauvages|a",
+     "W:delage|religion dans lalliance franco amerindienne|a"
+    ]
+   },
+   "donald_b_smith": {
+    "label": "Donald B. Smith",
+    "identity": "candidates.csv: Smith, Donald B",
+    "phds_2009_2026": 59,
+    "francophone_univ_phds": 4,
+    "universities": 18,
+    "top_works": [
+     "Sacred Feathers: The Reverend Peter Jones (Kahkewaquonaby) and the Mississauga Indians (1987; 21)",
+     "Mississauga Portraits: Ojibwe Voices from Nineteenth-Century Canada (2013; 9)",
+     "Journeys: A History of Canada (2010; 6)",
+     "Destinies: Canadian History Since Confederation (1996; 5)"
+    ],
+    "top_work_ids": [
+     "W:smith|sacred feathers",
+     "W:smith|mississauga portraits",
+     "W:francis|journeys",
+     "W:francis|destines"
+    ]
+   },
+   "james_rodger_miller": {
+    "label": "J. R. Miller",
+    "identity": "candidates.csv: Miller, J.R",
+    "phds_2009_2026": 142,
+    "francophone_univ_phds": 8,
+    "universities": 24,
+    "top_works": [
+     "Skyscrapers Hide the Heavens: A History of Indian-White Relations in Canada (2000; 49)",
+     "Compact, Contract, Covenant: Aboriginal Treaty-Making in Canada (2009; 41)",
+     "Shingwauk’s Vision: A History of Native Residential Schools (1996; 38)",
+     "Bounty and Benevolence: A History of Saskatchewan Treaties (2000; 16)"
+    ],
+    "top_work_ids": [
+     "W:miller|skyscrapers hide the heavens",
+     "W:miller|compact contract covenant",
+     "W:miller|shinewauks vision",
+     "W:ray|bounty and benevolence"
+    ]
+   },
+   "sarah_carter": {
+    "label": "Sarah Carter",
+    "identity": "candidates.csv: Carter, Sarah",
+    "phds_2009_2026": 125,
+    "francophone_univ_phds": 4,
+    "universities": 23,
+    "top_works": [
+     "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy (1990; 47)",
+     "The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915 (2008; 44)",
+     "Capturing Women: The Manipulation of Cultural Imagery in Canada’s Prairie West (1997; 26)",
+     "Aboriginal People and Colonizers of Western Canada to 1900 (1999; 21)"
+    ],
+    "top_work_ids": [
+     "W:carter|lost harvest",
+     "W:carter|importance of being monogamous",
+     "W:carter|apturing women",
+     "W:carter|aboriginal people and colonizers of western canada"
+    ]
+   },
+   "ken_coates": {
+    "label": "Ken Coates",
+    "identity": "candidates.csv: Coates, Ken",
+    "phds_2009_2026": 61,
+    "francophone_univ_phds": 2,
+    "universities": 20,
+    "top_works": [
+     "Best Left as Indians: Native-White Relations in the Yukon Territory, 1840-1973 (1991; 11)",
+     "Canada’s Colonies: A History of the Yukon and Northwest Territories (1985; 8)",
+     "The Alaska Highway in World War II: The U.S. Army of Occupation in Canada’s Northwest (1992; 8)",
+     "Arctic Front: Defending Canada in the Far North (2008; 8)"
+    ],
+    "top_work_ids": [
+     "W:coates|best left as indian",
+     "W:coates|canadas colonies",
+     "W:coates|alaska highway in world war ii",
+     "W:coates|arctic front"
+    ]
+   },
+   "john_lutz": {
+    "label": "John Lutz",
+    "identity": "candidates.csv: Lutz, John",
+    "phds_2009_2026": 57,
+    "francophone_univ_phds": 3,
+    "universities": 16,
+    "top_works": [
+     "Makúk: A New History of Aboriginal-White Relations (2008; 36)",
+     "Turning the Page: Ethnohistory from a New Generation (2009; 7)",
+     "Myth and Memory: Stories of Indigenous-European Contact (2007; 7)",
+     "First Contact as a Spiritual Performance: Encounters on the North American West Coast (2007; 3)"
+    ],
+    "top_work_ids": [
+     "W:lutz|makuk",
+     "W:carlson|turning the page|a",
+     "W:lutz|myth and memory",
+     "W:lutz|first contact as a spiritual performance|a"
+    ]
+   },
+   "mary_ellen_kelm": {
+    "label": "Mary-Ellen Kelm",
+    "identity": "candidates.csv: Kelm, Mary-Ellen",
+    "phds_2009_2026": 76,
+    "francophone_univ_phds": 2,
+    "universities": 21,
+    "top_works": [
+     "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50 (1998; 48)",
+     "Desperately Seeking Absolution: Native Agency as Colonialist Alibi? (1994; 10)",
+     "A Wilder West: Rodeo in Western Canada (2011; 8)",
+     "In the Days of Our Grandmothers: A Reader in Aboriginal Women’s History in Canada (2006; 8)"
+    ],
+    "top_work_ids": [
+     "W:kelm|colonizing bodies",
+     "W:brownlie|desparately seeking absolution|a",
+     "W:kelm|wilder west",
+     "W:kelm|in the days of our grandmothers"
+    ]
+   },
+   "robin_jarvis_brownlie": {
+    "label": "Robin Jarvis Brownlie",
+    "identity": "candidates.csv: Brownlie, Robin Jarvis",
+    "phds_2009_2026": 54,
+    "francophone_univ_phds": 4,
+    "universities": 16,
+    "top_works": [
+     "A Fatherly Eye: Indian Agents, Government Power, and Aboriginal Resistance in Ontario, 1918-1939 (2003; 24)",
+     "A Persistent Antagonism: First Nations and the Liberal Order (2009; 10)",
+     "Desperately Seeking Absolution: Native Agency as Colonialist Alibi? (1994; 10)",
+     "Finding a Way to the Heart: Feminist Writings on Aboriginal and Women’s History in Canada (2012; 9)"
+    ],
+    "top_work_ids": [
+     "W:brownlie|fatherly eye",
+     "W:brownlie|persistent antagonism|a",
+     "W:brownlie|desparately seeking absolution|a",
+     "W:brownlie|finding a way to the heart"
+    ]
+   },
+   "john_s_milloy": {
+    "label": "John S. Milloy",
+    "identity": "candidates.csv: Milloy, John S",
+    "phds_2009_2026": 58,
+    "francophone_univ_phds": 3,
+    "universities": 16,
+    "top_works": [
+     "A National Crime: The Canadian Government and the Residential School System, 1879-1986 (1999; 39)",
+     "The Early Indian Acts: Developmental Strategy and Constitutional Change (1983; 9)",
+     "The Era of Civilization: British Policy for the Indians of Canada, 1830-1860 (1978; 8)",
+     "The Plains Cree: Trade, Diplomacy and War, 1790 to 1870 (1988; 7)"
+    ],
+    "top_work_ids": [
+     "W:milloy|national crime",
+     "W:milloy|early indian act|a",
+     "W:milloy|era of civilization",
+     "W:milloy|plains cree"
+    ]
+   },
+   "myra_rutherdale": {
+    "label": "Myra Rutherdale",
+    "identity": "candidates.csv: Rutherdale, Myra",
+    "phds_2009_2026": 56,
+    "francophone_univ_phds": 1,
+    "universities": 16,
+    "top_works": [
+     "Women and the White Man’s God: Gender and Race in the Canadian Mission Field (2002; 18)",
+     "Contact Zones: Aboriginal and Settler Women in Canada’s Colonial Past (2005; 16)",
+     "‘It’s Our Country’: First Nations’ Participation in the Indian Pavilion at Expo 67 (2006; 14)",
+     "Contact Zones: Aboriginal and Settler Women in Canada’s Colonial Past (2005; 5)"
+    ],
+    "top_work_ids": [
+     "W:rutherdale|women and the white mans god",
+     "W:pickles|contact zones",
+     "W:rutherdale|its our country|a",
+     "W:rutherdale|contact zones"
+    ]
+   },
+   "paige_raibmon": {
+    "label": "Paige Raibmon",
+    "identity": "candidates.csv: Raibmon, Paige",
+    "phds_2009_2026": 65,
+    "francophone_univ_phds": 2,
+    "universities": 21,
+    "top_works": [
+     "Authentic Indians: Episodes of Encounter from the Late-Nineteenth-Century Northwest Coast (2005; 51)",
+     "Unmaking Native Space: A Genealogy of Indian Policy, Settler Practice, and the Microtechniques of Dispossession (2008; 9)",
+     "Theatres of Contact: The Kwakwaka’wakw Meet Colonialism in British Columbia and at the Chicago World’s Fair (2000; 7)",
+     "‘A New Understanding of Things Indian’: George Raley’s Negotiation of the Residential School Experience (1996; 4)"
+    ],
+    "top_work_ids": [
+     "W:raibmon|authentic indians",
+     "W:raibmon|unmaking native space|a",
+     "W:raibmon|theatres of contact|a",
+     "W:raibmon|new understanding of things indian|a"
+    ]
+   },
+   "carolyn_podruchny": {
+    "label": "Carolyn Podruchny",
+    "identity": "candidates.csv: Podruchny, Carolyn",
+    "phds_2009_2026": 55,
+    "francophone_univ_phds": 2,
+    "universities": 18,
+    "top_works": [
+     "Making the Voyageur World: Travelers and Traders in the North American Fur Trade (2006; 29)",
+     "Contours of a People: Metis Family, Mobility, and History (2012; 14)",
+     "Gathering Places: Aboriginal and Fur Trade Histories (2010; 6)",
+     "Festivities, Fortitude, and Fraternalism: Fur Trade Masculinity and the Beaver Club, 1785-1827 (1998; 6)"
+    ],
+    "top_work_ids": [
+     "W:podruchny|making the voyageur world",
+     "W:st onge|contour of a people",
+     "W:podruchny|gathering places",
+     "W:podruchny|festivities fortitude and fraternalism|a"
+    ]
+   },
+   "emma_larocque": {
+    "label": "Emma LaRocque",
+    "identity": "graph person keys: P:larocque|emma",
+    "phds_2009_2026": 15,
+    "francophone_univ_phds": 1,
+    "universities": 7,
+    "top_works": [
+     "When the Other Is Me: Native Resistance Discourse, 1850-1990 (2010; 7)",
+     "Defeathering the Indian (1975; 3)",
+     "The Colonization of a Native Woman Scholar (1996; 2)",
+     "A Dream of Giants: The Story of the Sunshine Coast Trail (2011; 1)"
+    ],
+    "top_work_ids": [
+     "W:larocque|when the other is me",
+     "W:larocque|defeathering the indian",
+     "W:larocque|colonization of a native woman scholar|a",
+     "W:larocque|dream of giants"
+    ]
+   },
+   "georges_e_sioui": {
+    "label": "Georges E. Sioui",
+    "identity": "graph person keys: P:sioui|georges e",
+    "phds_2009_2026": 15,
+    "francophone_univ_phds": 2,
+    "universities": 9,
+    "top_works": [
+     "Huron-Wendat: The Heritage of the Circle (1999; 8)",
+     "For an Amerindian Autohistory: An Essay on the Foundations of a Social Ethic (1992; 6)",
+     "Pour une autohistoire amérindienne: essai sur les fondements d’une morale sociale (1989; 2)",
+     "Les Hurons-Wendats, une civilisation méconnue (1994; 1)"
+    ],
+    "top_work_ids": [
+     "W:sioui|huron wendat",
+     "W:sioui|for an amerindian autohistory",
+     "W:sioui|pour une autohistoire amerindienne",
+     "W:sioui|hurons wendats une civilisation meconnue"
+    ]
+   }
+  }
+ },
+ "groups_json_anchor_engagement": [
+  {
+   "id": "native_newcomer",
+   "label": "Native–newcomer relations & fur-trade history",
+   "anchors": 20,
+   "engaged_phds": 244,
+   "share": 0.1873,
+   "share_ci95": [
+    0.167,
+    0.2094
+   ],
+   "share_2009_14": 0.1756,
+   "share_2020_26": 0.1901,
+   "trend": "steady",
+   "universities": 23,
+   "anchor_counts": {
+    "Miller, J.R": 142,
+    "Carter, Sarah": 125,
+    "Ray, Arthur J": 71,
+    "Van Kirk, Sylvia": 61,
+    "Brown, Jennifer S.H": 56,
+    "Trigger, Bruce G": 60,
+    "Milloy, John S": 58,
+    "Kelm, Mary-Ellen": 76,
+    "Raibmon, Paige": 65,
+    "Lutz, John": 57,
+    "Podruchny, Carolyn": 55,
+    "Coates, Ken": 61,
+    "Smith, Donald B": 59,
+    "Brownlie, Robin Jarvis": 54,
+    "Rutherdale, Myra": 56,
+    "Stanley, George F.G": 56,
+    "Innis, Harold A": 82,
+    "Perry, Adele": 122,
+    "Harris, Cole": 97,
+    "Dickason, Olive Patricia": 59
+   },
+   "top_works": [
+    "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871 (2001; 72)",
+    "Many Tender Ties: Women in Fur-Trade Society, 1670-1870 (1980; 57)",
+    "Authentic Indians: Episodes of Encounter from the Late-Nineteenth-Century Northwest Coast (2005; 51)",
+    "Skyscrapers Hide the Heavens: A History of Indian-White Relations in Canada (2000; 49)",
+    "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50 (1998; 48)",
+    "The Fur Trade in Canada: An Introduction to Canadian Economic History (1930; 48)",
+    "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia (2002; 48)",
+    "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy (1990; 47)"
+   ]
+  }
+ ],
+ "settler_theory_cocitation": {
+  "definition": "PhDs engaging this roster (two or more roster people cited) that also cite a settler-colonial work by Wolfe or Veracini (titles containing ‘settler’; 57 PhDs 2009–2026 overall).",
+  "by_window": [
+   {
+    "window": "2009-2014",
+    "all_phds": 410,
+    "engaged": 66,
+    "engaged_also_settler_theory": 1
+   },
+   {
+    "window": "2015-2019",
+    "all_phds": 488,
+    "engaged": 88,
+    "engaged_also_settler_theory": 14
+   },
+   {
+    "window": "2020-2026",
+    "all_phds": 405,
+    "engaged": 65,
+    "engaged_also_settler_theory": 26
+   }
+  ],
+  "reading": "Engagement with the native–newcomer roster is steady; the settler-colonial vocabulary arrives alongside it, not instead of it."
+ },
+ "cross_group_overlap_2009_2026": {
+  "note": "PhDs engaging both rosters; expected = product of shares × 1303. Shared roster people inflate overlap (George Stanley is on both this roster and cdn_military).",
+  "quebec_historiography": {
+   "overlap": 47,
+   "expected": 27.1,
+   "lift": 1.74
+  },
+  "cdn_working_class": {
+   "overlap": 84,
+   "expected": 47.1,
+   "lift": 1.78
+  },
+  "cdn_military": {
+   "overlap": 59,
+   "expected": 36.6,
+   "lift": 1.61,
+   "excluding_shared_stanley": {
+    "overlap": 45,
+    "expected": 34.0,
+    "lift": 1.32
+   }
+  }
+ }
+}

@@ -1,0 +1,352 @@
+{
+ "prepared": "2026-10-12",
+ "corpus": "data/field-research/dissertation-citations-2026-10-11/graph.json; Dissertation nodes with in_analysis true and year 2009–2026",
+ "denominator": 1303,
+ "early_window": "2009–2014",
+ "early_n": 410,
+ "late_window": "2020–2026",
+ "late_n": 405,
+ "francophone_universities": [
+  "laval",
+  "montreal",
+  "sherbrooke",
+  "uqam"
+ ],
+ "francophone_university_phds": 179,
+ "method": "Engagement = PhDs citing works by at least two of the group's anchor people (groups.json primary + also), with identity cleanup from the scholars packet, as in groups_evidence.py. Pairwise overlaps drop anchors shared by both groups before recomputing engagement, so shared people do not inflate them.",
+ "engagement": {
+  "phds_2009_2026": 132,
+  "of": 1303,
+  "universities": 22,
+  "francophone_university_phds": 13,
+  "share_2009_14": 0.1146,
+  "share_2020_26": 0.084,
+  "anchors": [
+   "Comacchio, Cynthia",
+   "Gleason, Mona",
+   "Adams, Mary Louise",
+   "Owram, Doug",
+   "Strong-Boag, Veronica",
+   "Bradbury, Bettina",
+   "Korinek, Valerie J"
+  ]
+ },
+ "anchor_citing_phds": {
+  "Comacchio, Cynthia": 76,
+  "Gleason, Mona": 68,
+  "Adams, Mary Louise": 52,
+  "Owram, Doug": 156,
+  "Strong-Boag, Veronica": 89,
+  "Bradbury, Bettina": 76,
+  "Korinek, Valerie J": 76
+ },
+ "pairwise_overlap_shared_anchors_removed": [
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_immigration_ethnicity"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 172,
+   "overlap": 65,
+   "share_of_a": 0.492,
+   "lift": 3.73,
+   "raw_overlap_with_shared_anchors": 65,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_intellectual_cultural"
+   ],
+   "shared_anchors_removed": [
+    "Owram, Doug"
+   ],
+   "a_engaged": 107,
+   "b_engaged": 236,
+   "overlap": 45,
+   "share_of_a": 0.421,
+   "lift": 2.32,
+   "raw_overlap_with_shared_anchors": 80,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_military"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 184,
+   "overlap": 49,
+   "share_of_a": 0.371,
+   "lift": 2.63,
+   "raw_overlap_with_shared_anchors": 49,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_national_tradition"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 173,
+   "overlap": 41,
+   "share_of_a": 0.311,
+   "lift": 2.34,
+   "raw_overlap_with_shared_anchors": 41,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_political_national"
+   ],
+   "shared_anchors_removed": [
+    "Owram, Doug"
+   ],
+   "a_engaged": 107,
+   "b_engaged": 220,
+   "overlap": 40,
+   "share_of_a": 0.374,
+   "lift": 2.21,
+   "raw_overlap_with_shared_anchors": 69,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_regional"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 194,
+   "overlap": 52,
+   "share_of_a": 0.394,
+   "lift": 2.65,
+   "raw_overlap_with_shared_anchors": 52,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_religion_reform"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 134,
+   "overlap": 57,
+   "share_of_a": 0.432,
+   "lift": 4.2,
+   "raw_overlap_with_shared_anchors": 57,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_sixties"
+   ],
+   "shared_anchors_removed": [
+    "Owram, Doug"
+   ],
+   "a_engaged": 107,
+   "b_engaged": 147,
+   "overlap": 49,
+   "share_of_a": 0.458,
+   "lift": 4.06,
+   "raw_overlap_with_shared_anchors": 75,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_women_gender"
+   ],
+   "shared_anchors_removed": [
+    "Bradbury, Bettina",
+    "Comacchio, Cynthia",
+    "Korinek, Valerie J",
+    "Strong-Boag, Veronica"
+   ],
+   "a_engaged": 54,
+   "b_engaged": 306,
+   "overlap": 50,
+   "share_of_a": 0.926,
+   "lift": 3.94,
+   "raw_overlap_with_shared_anchors": 128,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "cdn_working_class"
+   ],
+   "shared_anchors_removed": [
+    "Bradbury, Bettina"
+   ],
+   "a_engaged": 117,
+   "b_engaged": 275,
+   "overlap": 89,
+   "share_of_a": 0.761,
+   "lift": 3.6,
+   "raw_overlap_with_shared_anchors": 104,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "liberal_order_framework"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 219,
+   "overlap": 75,
+   "share_of_a": 0.568,
+   "lift": 3.38,
+   "raw_overlap_with_shared_anchors": 75,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "moral_regulation"
+   ],
+   "shared_anchors_removed": [
+    "Adams, Mary Louise",
+    "Gleason, Mona"
+   ],
+   "a_engaged": 120,
+   "b_engaged": 142,
+   "overlap": 74,
+   "share_of_a": 0.617,
+   "lift": 5.66,
+   "raw_overlap_with_shared_anchors": 100,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "native_newcomer"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 244,
+   "overlap": 60,
+   "share_of_a": 0.455,
+   "lift": 2.43,
+   "raw_overlap_with_shared_anchors": 60,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "quebec_historiography"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 204,
+   "overlap": 62,
+   "share_of_a": 0.47,
+   "lift": 3.0,
+   "raw_overlap_with_shared_anchors": 62,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "settler_colonialism"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 132,
+   "b_engaged": 161,
+   "overlap": 49,
+   "share_of_a": 0.371,
+   "lift": 3.0,
+   "raw_overlap_with_shared_anchors": 49,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_childhood_youth",
+    "who_killed_debate"
+   ],
+   "shared_anchors_removed": [
+    "Owram, Doug"
+   ],
+   "a_engaged": 107,
+   "b_engaged": 106,
+   "overlap": 26,
+   "share_of_a": 0.243,
+   "lift": 2.99,
+   "raw_overlap_with_shared_anchors": 64,
+   "of": 1303
+  }
+ ],
+ "theory_cocitation": [
+  {
+   "group": "cdn_childhood_youth",
+   "cited": "Michel Foucault (any work)",
+   "engaged": 132,
+   "overlap": 37,
+   "share": 0.28,
+   "baseline_share": 0.202,
+   "lift": 1.39,
+   "of": 1303
+  },
+  {
+   "group": "cdn_childhood_youth",
+   "cited": "Joan W. Scott (any work)",
+   "engaged": 132,
+   "overlap": 39,
+   "share": 0.295,
+   "baseline_share": 0.092,
+   "lift": 3.21,
+   "of": 1303
+  },
+  {
+   "group": "cdn_childhood_youth",
+   "cited": "Philippe Ariès (any work)",
+   "engaged": 132,
+   "overlap": 12,
+   "share": 0.091,
+   "baseline_share": 0.031,
+   "lift": 2.96,
+   "of": 1303
+  },
+  {
+   "group": "cdn_childhood_youth",
+   "cited": "Michael Omi or Howard Winant",
+   "engaged": 132,
+   "overlap": 0,
+   "share": 0.0,
+   "baseline_share": 0.005,
+   "lift": 0.0,
+   "of": 1303
+  }
+ ],
+ "caveats": [
+  "Bibliographies record consultation, not influence or adoption.",
+  "Anchor-based engagement favours groups with more anchors; compare trends, not levels.",
+  "Lifts between Canadian groups are high in general because the corpus is mostly Canadian history PhDs.",
+  "Francophone coverage: Laval has only 9 in-analysis PhDs."
+ ],
+ "answers_2026_10_12": {
+  "q43_milloy": {
+   "citing_phds": 44,
+   "engage_cdn_childhood_youth_share": 0.341,
+   "lift": 3.37,
+   "of": 1303,
+   "source": "../../answers/data-answers.json"
+  },
+  "q41_period": {
+   "most_cited_works_median_year": 1998
+  },
+  "q42_family_titles": {
+   "share_early": 0.012,
+   "share_late": 0.027,
+   "childhood_youth_titles": "about 3% throughout"
+  }
+ }
+}
