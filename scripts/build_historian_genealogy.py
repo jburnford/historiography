@@ -9,7 +9,9 @@ Link rule (conservative): an advisor (AHA id, "Given Surname") matches a dissert
 dissertator has the same folded surname and a compatible given name (same first name, or same
 initial where one side is an initial; a full first-name match beats an initial-only one), completed at least MIN_GAP years before the advisor's
 first supervised dissertation. A link is accepted only when exactly one dissertation qualifies;
-ambiguous advisors are reported, not guessed.
+ambiguous advisors are then settled by subject only when one namesake's title is clearly closest to
+the titles of the advisor's own students (TF-IDF cosine at least MIN_TOPIC and at least
+TOPIC_MARGIN times the next candidate's); the rest are reported, not guessed.
 
 Writes data/field-research/aha-dissertations-2026-10-13/genealogy/: edges.csv (advisor id ->
 student record), advisor-links.csv (advisor id -> own dissertation, with status), lineages.json
@@ -49,8 +51,27 @@ def given_ok(a, b):
     return x == y or (len(x) == 1 and y.startswith(x)) or (len(y) == 1 and x.startswith(y))
 
 
+MIN_TOPIC, TOPIC_MARGIN = 0.06, 2.5  # character n-grams (4-6) catch environmental/environmentalists
+VEC = None
+
+
+def topic_scores(cands, kids):
+    """Cosine similarity (TF-IDF over all titles) between each candidate's title and the advisor's
+    students' titles taken together."""
+    from sklearn.metrics.pairwise import cosine_similarity
+    a = VEC.transform([r['title'] for r in cands])
+    b = VEC.transform([' '.join(k['title'] for k in kids)])
+    return [float(x) for x in cosine_similarity(a, b)[:, 0]]
+
+
 def main():
+    global VEC
     recs = [json.loads(l) for l in (DIR / 'records.jsonl').open()]
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    VEC = TfidfVectorizer(analyzer='char_wb', ngram_range=(4, 6), min_df=3, sublinear_tf=True).fit([r['title'] for r in recs])
+    decided = {d['advisor_id']: d for d in csv.DictReader((OUT / 'identity-decisions.csv').open())} if (OUT / 'identity-decisions.csv').exists() else {}
+    by_id = {r['id']: r for r in recs}
+    namesakes = []
     by_surname = defaultdict(list)
     for r in recs:
         sur, giv = split_advisor(r['dissertator'])
@@ -69,14 +90,28 @@ def main():
         cands = [(r, g) for r, g in by_surname.get(' '.join(sur), []) if given_ok(giv, g) and r['year'] and first and r['year'] <= first - MIN_GAP]
         exact = [r for r, g in cands if giv and g and giv[0] == g[0] and len(giv[0]) > 1]
         cands = exact if exact else [r for r, _ in cands]  # a full first-name match beats an initial-only match
-        st = 'linked' if len(cands) == 1 else 'ambiguous' if cands else 'not_in_directory'
+        if len(cands) > 1:
+            namesakes.append(dict(advisor_id=aid, advisor=name, candidates='; '.join(f"{r['id']}:{r['year']}:{r['department']}" for r in cands)))
+        st, basis = ('linked', 'unique name and date') if len(cands) == 1 else ('ambiguous', '') if cands else ('not_in_directory', '')
+        if aid in decided:  # a recorded decision overrides the automatic rules
+            d = decided[aid]
+            cands, st, basis = [by_id[d['own_record']]], 'linked_by_decision', f"{d['source']}, {d['date']}: {d['note']}"
+            ranked = cands
+        elif st == 'ambiguous':  # several namesakes: the one whose subject matches the advisor's students
+            scores = topic_scores(cands, students[aid])
+            ranked = sorted(zip(scores, cands), key=lambda x: -x[0])
+            (s1, best), s2 = ranked[0], ranked[1][0]
+            if s1 >= MIN_TOPIC and s1 >= TOPIC_MARGIN * s2:
+                cands, st = [best], 'linked_by_topic'
+                basis = (f"{len(ranked)} namesakes; title similarity with the students' titles {s1:.2f} "
+                         f"against {s2:.2f} for the next candidate")
         status[st] += 1
         links[aid] = dict(advisor_id=aid, advisor=name, first_student_year=first, students=len(students[aid]),
                           status=st, own_record=cands[0]['id'] if len(cands) == 1 else '',
                           own_year=cands[0]['year'] if len(cands) == 1 else '',
                           own_department=cands[0]['department'] if len(cands) == 1 else '',
                           own_advisors='; '.join(n for _, n in cands[0]['advisors']) if len(cands) == 1 else '',
-                          candidates=len(cands))
+                          candidates=len(cands) if st not in ('linked_by_topic', 'linked_by_decision') else len(ranked), basis=basis)
     # record id -> advisor id when that dissertator is a linked advisor
     advisor_of_record = {l['own_record']: aid for aid, l in links.items() if l['own_record']}
     # parent of an advisor: the advisors of their own dissertation
@@ -104,6 +139,10 @@ def main():
         for aid, rs in students.items():
             for r in rs:
                 w.writerow([aid, names[aid], r['id'], r['dissertator'], r['department'], r['year'], r['title'], advisor_of_record.get(r['id'], '')])
+    with (OUT / 'namesakes.csv').open('w', newline='') as f:  # same-name candidates are distinct people
+        w = csv.DictWriter(f, fieldnames=['advisor_id', 'advisor', 'candidates'])
+        w.writeheader()
+        w.writerows(namesakes)
     with (OUT / 'advisor-links.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(next(iter(links.values()))))
         w.writeheader()
