@@ -1,6 +1,388 @@
 # Project memory and visualization handoff
 
-## Context-reset handoff — 2026-09-27 (Claude Opus session, 2026-09-25 to 27)
+## Current handoff — 2026-10-11: expanded Canadian dissertation metadata
+
+User requested McGill, Ottawa, Waterloo, Guelph, Wilfrid Laurier (interpreting
+“Laurie”), UBC, Alberta and UNB, then added Université de Montréal and Université
+Laval. Metadata expansion completed for nine new institutions; UBC pending access.
+
+- [Expanded pilot](data/field-research/canadian-dissertations-2026-10-11/README.md)
+  adds 4,527 records. Combined with the unchanged first pilot: **5,539 public
+  metadata records from 14 universities**, **1,426 explicitly identified History
+  doctorates**, **322 unresolved combined-department doctoral candidates** and
+  **zero dissertation PDFs downloaded**. Counts are repository records, not a
+  national census or deduplicated people/degrees across joint programmes.
+- New explicit History doctoral counts: Ottawa 57, Waterloo 58, Guelph 50,
+  Wilfrid Laurier 32, Alberta 88, UNB 30, Montréal 180, Laval 317. McGill's 293
+  doctorates retain combined History/Classical Studies affiliation without an
+  item-level programme; current PhD History catalogue cannot determine every
+  historical record. Alberta has another 29 unresolved combined-department
+  doctorates and 12 explicitly adjacent/Classics doctorates.
+- Montréal's collection contains 211 doctorates: 180 Histoire, 23 Sciences
+  médiévales and eight Histoire et sociopolitique des sciences. Adjacent programmes
+  remain available outside strict History. Waterloo includes 22 non-thesis works.
+  Guelph overlapping current/older/LAC sets deduplicate 435 hits to 268 records;
+  three Engineering doctorates carrying a History departmental tag stay unresolved
+  and outside the eligible cohort. Ottawa's Arts degree-family label does not
+  contradict Histoire / History department. UNB has one M.A./doctoral contradiction.
+- Laval's 220 literal phrase results and 1,250 degree-field results union to 1,313
+  records. Exact local History labels and explicit French doctoral/master types
+  resolve legacy “Thèse. Histoire.” / “Mémoire. Histoire.” records. Retrieval is
+  complete for the two bounded searches, not proven complete for all graduates.
+  Initial failed responses preserved; working public curl API requests succeeded.
+- UBC public collection requests returned an unusual-activity block. Its research
+  API requires a registered key; none supplied or registered. No bypass attempted;
+  do not convert this access limit into a zero cohort. No subscription access used.
+- Combined source-linked CSV/JSONL index preserves original normalized metadata
+  and exact source rows. Seventy-three response hashes, 12 first-pilot output
+  hashes and ten protected graph/browser inputs verified. Six offline review files
+  reproduced exactly; ten meaningful bilingual/scope/degree-conflict cases passed.
+  Raw directories remain excluded from version control.
+- Explicit degree dates now available for 238 eligible doctorates: Toronto 150
+  convocation dates and Alberta 88 graduation dates. Issued/deposit dates remain
+  separate; Waterloo 55/58 issued dates equal accession day, Ottawa 17/57, Guelph
+  24 missing issued dates. Laurier 1900 availability dates are placeholders.
+  Generic description fields, especially Montréal's, remain abstract candidates.
+  No new abstract-method coding or trend estimates; prior ten examples unchanged.
+
+Next: resolve combined programmes and degree dates/coverage, inspect description
+fields and code a bilingual sample with independent checking. Family review's
+unapplied display fixes and historical priorities remain in the previous handoff.
+Graph remains revision 1.127, exact-2000 snapshot 1.121 and public assets unchanged.
+OpenAlex remains paused. No commit, push or deployment. Preview remains port 4191.
+
+## Historical handoff — 2026-10-10: family review and Canadian dissertation pilot
+
+User requested a critical review of the remaining families after the Indigenous
+family explorer, then steered toward dissertations as evidence of historiographical
+trends. Requested institutions: York, USask, Toronto, Queen's and Western. User
+identified YorkSpace's modern start and suggested Library and Archives Canada.
+
+- [Family review](data/field-research/family-review-2026-10-10/README.md) covers ten
+  families, with Indigenous histories as comparator: all 77 group entries and 792
+  approaches inventoried, ten pinned inputs unchanged, five inventory outputs
+  reproduced exactly. Nineteen prioritized findings distinguish confirmed display
+  problems, existing-content cross-links and research candidates. All eleven family
+  routes pass counts/overflow/error checks at desktop and phone widths (22 contexts).
+- Source panels omit existing `scope_note` and catalogue witnesses; family member
+  sections omit type/date/scope context. Large phone pages and inaccessible internal
+  relationships impede comparison. Historical priorities: collaborative oral-history
+  methods already supported by scoped sources; computing/electronic publishing before
+  2000; diplomatic/international methods; Black feminist foundations; independent
+  African and Indian programmes. Annales interwar origins are already represented.
+  No display fixes or new historical claims applied in this review.
+- [Dissertation pilot](data/field-research/canadian-dissertations-2026-10-10/README.md)
+  harvests 1,012 unique public metadata records: 614 explicit History doctorates,
+  397 master's records and one unspecified degree. Doctoral counts: York 95,
+  USask 73, Queen's 151, Toronto 215, Western 80 (nine from older digitized set).
+  Collection/department/discipline filters and degree checks prevent keyword-only
+  selection; one York master's record is cross-listed from another discipline.
+- Fifteen raw API response hashes verified; normalized CSV/JSONL retained locally.
+  Raw metadata directory excluded from version control. No full-text PDFs or
+  subscription content downloaded. Toronto/Queen's/Western canonical APIs now use
+  Scholaris. Empty Toronto pre-mandate department query is not proof of absence;
+  a 2006 issued record exists in its collection named 2009 onward.
+- Dates need reconciliation before trends: 45 Queen's doctorates lack issued dates;
+  86 York and 96 Queen's issued dates equal accession day. York has one 2012
+  copyright record deposited in 2016. Only 150 Toronto records currently supply
+  explicit convocation dates. Preserve copyright, submission, defence, deposit and
+  degree dates separately. USask's departmental MA/PhD list provides a future
+  denominator/date-reconciliation source, not yet fully matched.
+- Ten illustrative abstracts checked with exact short locators, two per institution;
+  multi-label methods kept separate from topics. Single editorial coding, pending
+  independent coding. Four offline review artifacts reproduce exactly. No national
+  completeness claim, full-text method certification, identity inference, trend
+  estimate or new teaching edge.
+- LAC's current Theses Canada programme and documentation checked: digital plus
+  older physical/microform discovery, exportable CSV/JSON metadata, participating
+  universities only, and mixed publication/degree dates. Current search endpoint
+  returned HTTP 403; no LAC export harvested. Twenty older-period discovery queries
+  saved as unexecuted plan. York library offers registered students/faculty access
+  to its earlier 1967–2012 database route, distinct from public YorkSpace.
+
+Graph remains 1.127, exact-2000 1.121, and public assets unchanged. No commit, push
+or deployment. OpenAlex remains paused. Local preview remains port 4191.
+
+## Historical handoff — 2026-10-10: expose the family records
+
+The user found the Indigenous-histories family sparse despite its expanded data.
+Its timeline displayed standalone entries while approaches and roster participants
+were hidden inside field pages. Family routes now default to **Approaches & people**:
+all member-field approaches, works, participant profiles, source limits and existing
+connections to related fields. The Indigenous-histories family exposes **40 approaches,
+57 distinct roster people and 16 boundary relationships** across Indigenous history
+and ethnohistory. Indigenous history itself remains **33 approaches and 49 people**.
+
+- Generic explorer serves all eleven families. Search includes approach text, works,
+  names and community credits; shared people appear once with contextual field roles.
+  Profile breadcrumbs return to the family. `view=map` retains Timeline and
+  `view=list` retains List. Bare family routes work on phones as well as desktop.
+- Graph revision **1.127**, every data/evidence asset and the exact-2000 snapshot
+  are unchanged. Archived exploration reads archived approaches and people. No
+  synthetic edges, identity assertions or new standalone person entries.
+- [Interface acceptance](data/production-batches/family-explorer-2026-10-10/README.md)
+  records the checks, current asset hashes and append-only historical release
+  amendments. Earlier research acceptance/validation records remain untouched.
+- The user reported a system crash during inspection. Saved work was intact;
+  the tool host had lost an inspection call. Browser checks subsequently passed.
+  Whether the user meant Codex or the webpage is unresolved; no cause is claimed.
+- Local preview remains `http://127.0.0.1:4191/#family=indigenous-histories`.
+  The previous preview server was down after the interruption; restarted a
+  docs-only loopback server on 4191 (session 41817) and checked its served module
+  against the final build. This does not establish what caused the reported crash.
+  Student exercises now include the family explorer. Screenshot is local at
+  `/tmp/indigenous-family-after.png`.
+- Validation passes: 38 JavaScript cases, 29 current browser cases, 65 current
+  data cases, 33 historical release/site-extension cases and 10 historical browser
+  cases. Three focused family browser cases pass again against the final build.
+  All fifteen public files match a fresh build; data assets and prior historical
+  release amendments are preserved.
+
+All work remains local. No deployment, push or commit without yes. OpenAlex paused.
+
+## Historical handoff — 2026-10-10: Indigenous-history foundations
+
+User requests evidence-led connections between Indigenous traditions and scholarly
+work, especially bounded contributions by Lutz and Carlson. Excludes the taking-space
+angle. Local graph **1.127**: **137 entries, 777 relationships, 940 sources, 909 people
+and 792 approaches**. Indigenous history: **49 roster participants, 33 approaches**;
+ten existing individual entries remain, with no new individual promotions.
+
+- [Research report](data/field-research/indigenous-foundations-2026-10-10/README.md)
+  records Stó:lō community–university practice, labour/institutional inquiry, White’s
+  middle ground, Harris’s colonial geography and Wolfe’s metadata-only inclusion.
+  McHalsie, Schaepe, archivist David Smith, Carlson and Lutz retain distinct roles;
+  elders, hosts and students also contribute. David Smith’s namesakes are unresolved.
+  Reuse existing Harris ID and preserve his 2002 qualification. Planning 1997 and
+  first class 1998 are separate; atlas 2001 and edited collection 2018 remain later.
+- User supplied Lianne Leddy’s 2010 primary article. One selected 2010 intervention
+  adds Indigenous history as the fifth partially extended field. Leddy, Gertrude Lewis,
+  Susan Neylan and Winona Wheeler have distinct authorship, knowledge, mentorship
+  and cited-scholarship roles. Six named community contributors retained in strand
+  credits; no coauthorship inferred. Wheeler’s 2005 chapter itself is unread. Five
+  bounded catalogue claims and one work; 2011 URL timestamp is not the issue date.
+- `scripts/apply_indigenous_foundations.py --check` reproduces the batch with an
+  exact inverse delta. Earlier Indigenous tests now recover their accepted 1.126
+  graph rather than assume it is still production. Old records, claims, sources and
+  snapshot pointers remain exact. Exact-2000 stays 1.121. Two new comparisons have
+  specific strand targets; repeated endpoints with prior broad Ethnohistory edge
+  explain one additional warning, seven total and zero structural errors.
+- Borderlands candidate 14 targets 1.127 and remains unapplied; earlier candidates
+  are retained. Candidate 13 predates the source-locator correction. AU/NZ related
+  scholars remain candidates for collaboration/method research; dated titles alone
+  do not establish method transmission. Live 2009 PDF returned 404; indexed primary
+  text checked. Érudit yielded challenge HTML, not a read PDF. Leddy PDF checked and
+  hash-preserved under ignored raw/.
+
+- Derived builds are now practice v18, methods-v6 and freshly scanned mentions-v5
+  (49,520 reviews, 909 candidate name records). Method results and approach aggregates/
+  theme lifts remain equal to their preceding builds. The source page-locator
+  correction after scan start is reconciled explicitly; counted person records did
+  not change. Registry v9 and the eight-profile/84-credit pilot remain unchanged.
+- Validation: 65 current data cases, 36 JavaScript cases, 26 current browser cases,
+  33 historical release/site-extension cases and 10 historical release browser
+  cases pass. After the final evidence rebuild, nine evidence-asset cases and five
+  focused browser cases also pass; all fifteen public assets match a fresh build,
+  with the exact-2000 asset and 84-credit pilot unchanged. Visible strand and
+  profile credits include all six acknowledged
+  community contributors. Leddy’s conclusion and Miller citation (note 37) are
+  documented in the report. The regional ledger preserves a named Ngā Mōrehu
+  collaboration lead; no unreviewed regional claim enters the graph.
+
+All work remains local. No deployment, push or commit without yes. OpenAlex paused.
+
+## Historical handoff — 2026-10-10: Indigenous-history deep dive
+
+User requested missing thinkers and earlier antecedents, then supplied Claude's
+regional candidate list. Checked that list against primary passages, institutional
+accounts and scoped bibliographic records; implemented the bounded additions in
+[research report](data/field-research/indigenous-deep-dive-2026-10-10/README.md).
+Graph **1.126**: **137 entries (77 groups, 60 people), 775 teaching relationships,
+926 sources and 897 shared people**. Indigenous history has **36 roster participants,
+26 approaches and ten separate contributor entries**, previously 15, 11 and one.
+
+- Twenty-one new source-linked people, fifteen distinct approaches, twenty-seven
+  sources and nine approach-specific contribution edges. Earlier examples include
+  Guaman Poma's c. 1615/1616 manuscript, nineteenth-century printed histories,
+  Māori manuscripts, Cree/Tainui/Osage interwar work and Te Rangi Hīroa's 1938 book.
+  Selected dates establish witnesses, not origins of Indigenous historical knowledge.
+- Canadian additions: Ahenakew, Thunderchild and Cuthand retain separate narration,
+  recording and editorial roles; Dickason, Adams, LaRocque, Sioui and Stonechild
+  add distinct historical and methodological contributions. Both Stonechild and
+  Waiser are credited; Sioui's French original and English translation are distinct.
+- New standalone entries: Walker, O’Brien, Deloria, Wilson, Ahenakew, Dickason,
+  Adams, Sioui and McNickle. Smith's prior entry and every prior edge remain exact.
+  Roster inclusion supplies no automatic identity, citizenship or nation-membership
+  property. Existing outside collaborators remain explicitly distinguished.
+- Source limits distinguish selected passages, publisher/institutional descriptions
+  and indexed metadata. Costo journal dates conflict (1964/1967); no founding arrow
+  is accepted. The report lists remaining candidates rather than importing Claude's
+  whole list unchecked. Indigenous coverage remains through 2000, with no extension.
+- Reproduce with `scripts/apply_indigenous_deep_dive.py --check`. Acceptance keeps
+  the exact 1.125 baseline hash plus an inverse delta, so CI needs no local drafts.
+  New borderlands candidate 12 targets 1.126; candidate 11 and earlier packets remain
+  preserved, unapplied and under review. Exact-2000 view remains revision 1.121.
+- Publication corpus/mappings remain practice **v18** and registry **v9**; methods-v5
+  and freshly rescanned mentions-v4 reflect the expanded roster. Ethnohistory venue
+  counts include outside scholarship and cannot date origins or identify Indigenous
+  authorship. Raw research PDFs stay local and outside the browser asset allowlist.
+- Fresh mention totals differ only for transnational-history: 894 to 796, activating
+  the existing post-v2 exclusion of bare Transnationalisierung (all 98 removed
+  matches contain it). Fresh comparison denominators include all scanned reviews;
+  the old from-tags route included only tagged reviews. Lifts change separately
+  from Indigenous curation; record those differences rather than claim equivalence.
+  Correct that route's denominator before reusing tags for a future public build;
+  the present full scan uses all reviews and is unaffected.
+
+All work remains local. No deployment or push without yes. OpenAlex remains paused.
+See the production-batch validation for final checks and public-asset hashes.
+
+## Historical handoff — 2026-10-10: publication-evidence repairs
+
+User asked to use the coverage report to fix the problems. Implemented the bounded
+source-backed fixes in [repair report](data/evidence-layer/repairs/2026-10-10/README.md).
+Local public assets now use **practice v18, methods-v4 and mentions-v3**. Graph remains
+**1.125**; exact-2000 baseline remains **1.121**. No deployment; no push without yes.
+OpenAlex remains paused. Older audit and generated versions are preserved.
+
+- Fixed exact selected `catalogue_ids` joins for original Annales and History and
+  Theory: three existing curated edges restored. Added 13 source-backed crosswalk
+  rows; original 474 rows/statuses unchanged. Wartime Annales, forest predecessors,
+  Labour/Le Travail, Journal of African History, military lineage and Oral History
+  Review are mapped. Western Historical Quarterly now has a broad regional-context
+  tag instead of a blanket Indigenous-history theme. No new teaching relationships.
+- Bounded new [recovery](data/history-journals-recovery-2026-10-10/README.md): five
+  contexts, 12,251 records, 20 hashed source pages; offline source/export audit passed.
+  Contributor occurrences remain unreviewed/unresolved; registry v9 is unchanged.
+  The selected corpus is now 412 title contexts, with 1,002,067 distinct non-test records.
+- Publisher metadata supply **1,013** DOI-linked ranges: 503 History and Theory,
+  509 Labour/Le Travail, one Ethnohistory. Derived lengths fill unknown values only;
+  deposits remain untouched. Conflicts/unknown IDs/invalid ranges fail. Exact
+  title/year/starting-page joins; two extra primary-source observations are hashed
+  separately. Genre decisions remain unreviewed.
+- Candidates now start in 1929 for original Annales, 1960 for History and Theory,
+  1976 for Labour/Le Travail, 1954 for Ethnohistory, 1973 for Oral History Review.
+  Family and field charts include earlier data on mobile and desktop. Deposited
+  journal-articles view includes reviews/short records and exposes military deposits
+  from 1937 without promoting records lacking page ranges into research candidates.
+- Public coverage notes distinguish selection, deposits, missing lengths and proxy
+  counts. Established view counts 82 title contexts, not distinct journals. Folded
+  relations describe editorial context; method people/title hits are candidates,
+  with identity tiers by route and input pins. Mentions-v3 reuses frozen tags with
+  v18 mappings; reviewed-theme results are unchanged.
+- Fresh sensitivity audit exactly reconciles every all-journal family/bin and
+  headline totals. Publication repair regression cases and the full beta checks
+  are included in CI. See repair validation for final counts and pinned outputs.
+- Remaining source work: Annales 1933–1938 absent from checked Crossref deposits;
+  pre-1989 military records lack lengths; Journal of Military History deposits stop
+  in 2009; Agricultural History's pre-2000 backfile still absent. Ethnohistory and
+  Labour recovery is partial. Six mapped zero-candidate journals need publisher
+  category checks before new article-number exceptions. Forest predecessor's 1981
+  outlier is retained. Mixed/policy exclusions and the eight-profile pilot are unchanged.
+
+The original audit below describes the pre-repair state. Current builders use
+`scripts/evidence_inputs.py` to attach three catalogues read-only, deduplicate IDs
+and validate pagination assertions. Raw payloads/generated databases are gitignored;
+only allowlisted aggregate assets go to docs/. The repair folder preserves eight
+pre-repair files and their hashes. Student testing should probe coverage notes and
+switch between candidate/deposited views, especially Annales and war/military.
+
+## Historical handoff — 2026-10-10: publication-evidence coverage audit
+
+User asked for a similar audit across the project after the Annales and war/military
+diagnoses. Completed [coverage audit](data/evidence-layer/audits/coverage-2026-10-10/README.md):
+11 families, 77 groups, 407 selected title contexts, 819 community-screen contexts,
+1,638 catalogue periodicals; exact all-journal-bin/headline reconciliation. Frozen
+catalogues and registry opened read-only; 30 inputs pinned and unchanged. No new
+harvest, mapping acceptance, graph changes, public rebuild or deployment. OpenAlex paused.
+
+- Two selected journals lose three existing curated edges through ignored
+  `catalogue_ids`: original Annales (`initial:annales_1929`) and History and Theory
+  (`initial:history_theory`). Fix the builder's selected-key-only join in a new
+  practice version; v17 remains the current, flawed mapping snapshot.
+- Annales wartime phases, two forest-history predecessors, Labour/Le Travail and
+  Journal of African History have collected records but no theme mapping. Explicit
+  source-backed crosswalk review remains pending; title continuation is not an
+  automatic remit assignment. Original Annales deposits stop in 1932.
+- Ethnohistory has 2,707 pre-2000 records with no calculable length (only one lacks
+  a page field); no ten-page candidates until 2000. History and Theory and Labour
+  have similar older first-page-only deposits. Publisher metadata confirms concrete
+  long articles excluded by this proxy. Preserve deposits and use sourced supplements.
+- 63 selected contexts have no deposits; 144 nonempty lack themes (134 with proxy
+  items; many intentionally general/regional); six mapped nonempty contexts have
+  no qualifying candidates; 194 have mapped candidates. Eight curated venues are
+  outside selection: distinguish explicit exclusions/mixed screens from missing IDs.
+  Journal of Military History and Oral History Review are bounded recovery leads.
+  Urban History already includes Yearbook-era records despite its separate title gap.
+- 85 contexts begin after all stored start observations; 82 have internal deposit
+  gaps. Flags require review, not automatic assertions of missing publications.
+  Eight field charts hide pre-1950 counts; all mobile family cards start at 1950.
+  Established count 80 measures title contexts; Annales ESC/HSS share 18,010 DOIs,
+  already deduplicated correctly in family counts.
+- mentions-v2's v14 reference is benign for actual mappings: 20,984 review pairs
+  exactly match v17. methods-v3 lacks input pins/tier exports; candidate practitioners
+  and their works must not become verified method-use claims. Profile pilot remains
+  explicitly eight people/84 credits with weaker identity tiers.
+
+Audit script: `scripts/audit_evidence_coverage.py`, six regression checks in
+`tests/test_evidence_coverage_audit.py`. Seven CSV exports, 15 bounded primary-source
+checks and an 18-item correction queue. Initial run preserved under `runs/initial`;
+final distinguishes missing page fields from missing calculated lengths. Student
+facilitator notes now link the known coverage issues. Corrections are pending;
+student beta and all public assets remain as described below. No push without yes.
+
+## Historical handoff — 2026-10-10: student beta
+
+User direction: “I want you to do as much of this as you can and then I'll get a
+group of students to stress test the project.” The local preparation is implemented.
+**Do not push or publish without an explicit yes**: Pages serves `main:/docs`.
+Student-beta changes are local and uncommitted. No deployment occurred. OpenAlex remains paused.
+
+- **Graph:** revision **1.125**, schema 1.4; 128 entries (77 groups, 51 person
+  entries), 766 teaching relationships, 899 sources and 876 shared people.
+  [Acceptance](data/production-batches/student-beta-1.125/README.md) adds Said's
+  1988 foreword and Cooper/Stoler's 1997 collaboration with explicit source limits.
+  No new arrows. Exact-2000 baseline remains **1.121**.
+- **Website:** eleven-family landing is implemented. Practice **v17**,
+  methods-v3, mentions-v2 and clusters-v2 are current. A small overview defers
+  the full 3.09 MB graph until detail navigation. Graph/profile downloads have
+  retries and loading feedback. `docs/` contains 15 allowlisted files.
+- **Landing audit:** [results](data/evidence-layer/audits/landing-2026-10-10/README.md)
+  reproduce all-journal bins and compare page thresholds, subject-only mapping
+  and book-title screening. Proxy/sensitivity limits are visible on the page.
+  The 54-item genre screen remains **unreviewed**. Crosswalk statuses stay
+  440 proposed, 27 reviewed, six uncertain and one rejected; no silent promotion.
+- **Profiles:** eight source-linked pilots, **84 credit rows**, from frozen
+  registry v9. Display uses the weaker atlas/source-credit identity tier;
+  journal items, books reviewed and reviews written remain separate. Metadata
+  only. Registry v9 has **24,624 strict individuals; 53,888 including probable**.
+  The public build applies 600 roster QIDs; a QID does not accept every identity
+  link. The upstream name-level loop remains stopped.
+- **Borderlands/disability:** [candidate 11](data/extension-2026/borderlands-release-11/README.md)
+  adapts the frozen packet to 1.125 with zero errors. Two entries, ten works,
+  31 claims, 14 witnesses; **unapplied**. Every claim needs review. Field roots,
+  boundaries, regional coverage, new people, family placements and crosswalks
+  remain pending. Frozen research and citation scopes are unchanged.
+- **Trial:** [STUDENT-TESTING.md](STUDENT-TESTING.md) and
+  [feedback sheet](feedback/student-testing-template.csv) are ready. Serve only
+  `docs/`; students need the local beta until publication is authorized. A local
+  docs-only preview runs at http://127.0.0.1:4191/ (server session 70916). Port
+  4173 was already occupied and was left untouched.
+- **Checks:** CI includes evidence/family tests and Chromium browser acceptance.
+  `python3 tests/run_site_checks.py` owns its temporary server. Historical pinned
+  source/build changes are append-only amendments to 1.123 acceptance. Tests
+  cover exact 1.124→1.125 preservation and candidate 11. Validation: 40 focused
+  Python tests plus 13 frozen-release tests, 35 JavaScript checks and 27 Chromium
+  browser cases passed. Final label changes passed the six relevant browser cases.
+  All 15 public files match a fresh build; the 2000 asset is byte-identical. Unrelated
+  ORCID logs and data/wikidata remain untracked and untouched.
+
+Next: student trial, then fix observed blockers and misleading labels. Finish
+source-backed classification/genre decisions, remaining figure-audit pairs and
+candidate 11's editorial review. Probable identities need a broader benchmark.
+Historical counts and “next” instructions below describe earlier sessions.
+
+## Historical handoff — 2026-09-27 (Claude Opus session, 2026-09-25 to 27)
 
 All work below is committed locally on `main` (about 28 commits ahead of origin) and
 **not pushed**. Pushing deploys the public site (Pages serves `main:/docs`) and needs the

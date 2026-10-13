@@ -4,7 +4,7 @@
 import {spanOf} from './field.mjs';
 
 export const AXIS = {start: 1880, end: 2024, coverage: 2000};
-export const VIEWS = {all: 'All journals', established: 'Established journals only', reviews: 'Reviews'};
+export const VIEWS = {all: 'All journals', established: 'Established title contexts', reviews: 'Reviews', deposited: 'Deposited journal articles'};
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const pct = x => `${(x * 100).toFixed(1)}%`;
@@ -67,6 +67,37 @@ export function familyGraph(graph, family) {
 
 const peakOf = (block, view) => Math.max(0.01, ...block.families.flatMap(f => recordShares(f, view).map(s => s.share)));
 
+/* Read the family's approaches and rosters without inventing teaching edges. */
+export function familyContent(graph, family, query = '', allowedIds = null) {
+  const members = new Set(family.members.map(m => m.id));
+  const fields = graph.nodes.filter(n => members.has(n.id) && (!allowedIds || allowedIds.has(n.id)));
+  const names = new Map((graph.people || []).map(p => [p.id, p]));
+  const words = query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+  const matches = text => words.every(w => text.toLocaleLowerCase().includes(w));
+  const allApproaches = fields.flatMap(field => (field.strands || []).map(strand => ({field, strand})));
+  const approaches = allApproaches.filter(({field, strand:s}) => matches([field.label, s.title, s.focus, s.works,
+    ...(s.person_ids || []).map(id => names.get(id)?.label || ''),
+    ...(s.participant_credits || []).map(c => c.name)].filter(Boolean).join(' ')));
+  const contexts = new Map();
+  for (const field of fields) {
+    for (const row of field.representative_people || []) {
+      if (!names.has(row.person_id)) continue;
+      if (!contexts.has(row.person_id)) contexts.set(row.person_id, []);
+      contexts.get(row.person_id).push({field, row});
+    }
+  }
+  const allPeople = [...contexts].map(([id, contexts]) => ({person: names.get(id), contexts}))
+    .sort((a, b) => a.person.label.localeCompare(b.person.label));
+  const people = allPeople.filter(({person, contexts}) => matches([person.label,
+    ...contexts.map(({field, row}) => `${field.label} ${row.context || ''} ${row.works || ''}`)].join(' ')));
+  const fieldIds = new Set(fields.map(n => n.id));
+  const byId = new Map(graph.nodes.map(n => [n.id, n]));
+  const connections = graph.edges.filter(e => fieldIds.has(e.source) !== fieldIds.has(e.target))
+    .filter(e => byId.get(e.source)?.entry_kind === 'group' && byId.get(e.target)?.entry_kind === 'group')
+    .map(edge => ({edge, source: byId.get(edge.source), target: byId.get(edge.target)}));
+  return {fields, approaches, people, connections, approachCount: allApproaches.length, peopleCount: allPeople.length};
+}
+
 /* Long family labels wrap at the space nearest the middle rather than overflow the left
    edge; ' ›' always stays on the last line. ~7px/character at the label's 14px serif. */
 function labelLines(label, labelW) {
@@ -122,12 +153,12 @@ export function rowsSvg({block, graph, view = 'all', width = 1000, href}) {
   return `<svg class="landing-svg" viewBox="0 0 ${width} ${H}" width="${width}" height="${H}" role="group" aria-label="Families of historical writing: atlas dating and share of the record, ${AXIS.start}–${AXIS.end}">${grid}${wall}${rows}</svg>`;
 }
 
-/* Narrow screens: one card per family, on the same shared scale from 1950. */
+/* Narrow screens: one card per family, on the same shared scale from 1900. */
 export function cardsHtml({block, graph, view = 'all', href}) {
   const peak = peakOf(block, view);
   return `<ol class="family-cards">${block.families.map(f => {
-    const t = atlasTrack(graph, f), s = recordShares(f, view).filter(b => b.bin >= 1950);
-    const bars = s.map((b, i) => { const h = b.share / peak * 28; return `<rect x="${i * 9}" y="${(30 - h).toFixed(1)}" width="8" height="${h.toFixed(1)}"/>`; }).join('');
+    const t = atlasTrack(graph, f), s = recordShares(f, view);
+    const bars = s.map((b, i) => { const h = b.share / peak * 28; return `<rect x="${i * 9}" y="${(30 - h).toFixed(1)}" width="8" height="${h.toFixed(1)}"><title>${b.bin}–${b.bin + 4}: ${b.items.toLocaleString()} of ${b.total.toLocaleString()} records (${pct(b.share)})</title></rect>`; }).join('');
     const first = [...t.early, ...t.dots].map(d => d.year).sort((a, b) => a - b)[0];
     const n = t.dots.length + t.early.length + t.undated.length;
     /* A decade-derived early year would misstate precision the atlas doesn't claim. */
@@ -135,7 +166,7 @@ export function cardsHtml({block, graph, view = 'all', href}) {
     return `<li><a class="family-card" href="${esc(href(f.id))}"><h3>${esc(f.label)}</h3>` +
       `<p><strong>${n}</strong> atlas entr${n === 1 ? 'y' : 'ies'}${firstText}</p>` +
       `<svg class="card-bars" viewBox="0 0 ${Math.max(9, s.length * 9)} 31" preserveAspectRatio="none" aria-hidden="true">${bars}</svg>` +
-      `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record (bars from 1950)` : 'No record in this view'}</p></a></li>`;
+      `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record (bars from 1900)` : 'No record in this view'}</p></a></li>`;
   }).join('')}</ol>`;
 }
 
@@ -157,5 +188,5 @@ export function tableHtml({block, graph, view = 'all'}) {
     `<tr><th scope="row">Items no family claims (general, regional &amp; period journals)</th><td>—</td><td>${pct(strip.unclaimed || 0)}</td></tr>`;
   const period = `${strip.period[0]}–${strip.period[1]}`;
   return `<div class="table-scroll"><table><caption class="sr-only">Atlas entries and share of the record (${esc(VIEWS[view])}) per family and five-year period</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>` +
-    `<div class="table-scroll"><table class="strip-table"><caption>The gap in one line: share of atlas entries and share of research, ${esc(period)}</caption><thead><tr><th scope="col">Family</th><th scope="col">Share of atlas entries</th><th scope="col">Share of research, ${esc(period)}</th></tr></thead><tbody>${stripRows}</tbody></table></div>`;
+    `<div class="table-scroll"><table class="strip-table"><caption>The gap in one line: share of atlas entries and share of research candidates, ${esc(period)}</caption><thead><tr><th scope="col">Family</th><th scope="col">Share of atlas entries</th><th scope="col">Share of research candidates, ${esc(period)}</th></tr></thead><tbody>${stripRows}</tbody></table></div>`;
 }

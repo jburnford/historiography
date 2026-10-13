@@ -34,7 +34,12 @@ class AcceptedDigitalBrowserTests(frozen.DigitalBrowserTests):
         for path in self.site.rglob('*'):
             if path.is_file():
                 rel = path.relative_to(self.site)
-                if superseded and rel.as_posix() == 'data/graph.json':
+                if superseded and rel.as_posix() in {'data/graph.json','data/overview.json'}:
+                    if rel.as_posix() == 'data/overview.json':
+                        overview=release.read(release.ROOT/'docs'/rel)
+                        self.assertEqual(overview['revision_history'][-1],current['revision_history'][-1])
+                        self.assertEqual({n['id'] for n in overview['nodes']},{n['id'] for n in current['nodes']})
+                        self.assertTrue(overview['overview_only'])
                     continue
                 public = release.ROOT/'docs'/rel
                 self.assertEqual(public.read_bytes(),path.read_bytes(),str(public))

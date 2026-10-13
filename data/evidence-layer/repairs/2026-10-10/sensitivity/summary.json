@@ -1,0 +1,553 @@
+{
+  "schema_version": "1.0",
+  "inputs": {
+    "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb": "5ef652510f06bb86895091c40e4ad8fde1b9e14dad4d970f56d52a9a8a20b7a2",
+    "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb": "6bbc3c8d1e125099421cd3bcfa4efdf833b2bb3bf1f30a7c02f8e534e2838dcd",
+    "data/evidence-layer/generated/v18/summary.json": "2fdbff7f1de20aab3d2798359e488e2c4d71c74d00eb4c3eeb06455144a2f549",
+    "data/evidence-layer/generated/v18/journal_themes.csv": "39cc15845606fbf7351833a8d86e84007fa092c7de1251b257cb61e0e5a024a7",
+    "data/evidence-layer/practice-crosswalk.csv": "2a9f3fe22e895524ef62313cf5f3233f350d8fc25624324d7e74c170c31a19d0",
+    "data/evidence-layer/families-draft.csv": "75752482cfbb954ccb0fd3428a2e9b78328824f85cef8757fa638960e8611cf4",
+    "historiography-1920-2000.json": "66e33ae7d43fc1aebb7649b2965f694e8fb94b784bdc461ce01b9bf40c03bad7",
+    "data/history-journal-profession-review-2026-09-22/selected-journals.json": "6de30029f280783e314ce9ac2640e2721e1f5d8729a76788e58da4c3107e7820",
+    "data/history-journals-supplement-2026-09-26/selection.json": "84266871bf9a62785a90b0e640b871555ab909e3a24ec92582fa4e9bf8ef2b54",
+    "scripts/practice_families.py": "2015272c6a093df3bddb42cc2e328cdf8d88cafb1210f76eca76461fb2ffc1f8",
+    "scripts/audit_landing_evidence.py": "b1d8791e46a506446ab9d44be6c75bda4e645194b0067cf840d92b59cf140fca",
+    "data/history-journals-recovery-2026-10-10/generated/v1/catalog.duckdb": "9472a77f233707643dee0f54419ff1f93fde0da2d15b1f8680d9819294629d62",
+    "data/history-journals-recovery-2026-10-10/selection.json": "735bb108ef590aa7603e6b6225049ed46939444dc66e7c6ef03664020cd6195b",
+    "data/evidence-layer/repairs/2026-10-10/page-ranges.csv": "ba793bc1061180272abdb3d5bea6dddf78306f183567a4f0d697f4e5bfb2b822",
+    "data/evidence-layer/repairs/2026-10-10/additional-page-ranges.csv": "042b2337018bd531f1bd92983b2f024183e3ea3aabef4b1f8bd361dece73ed21",
+    "data/evidence-layer/repairs/2026-10-10/additional-pagination-witness.json": "fb1b67e6b998b8b481940d1e9529d8a6a03f941c2aed2956ef82a580d1bd0283",
+    "scripts/evidence_inputs.py": "b5bf2de4dc4ba3279c11dac02e679fe510092e10d88fc827ef28617cd17049f4"
+  },
+  "reconciles_published_all_journal_bins": true,
+  "mapping_status_counts": {
+    "proposed": 440,
+    "rejected": 1,
+    "reviewed": 40,
+    "uncertain": 6
+  },
+  "missing_pagination": [
+    {
+      "period": "1900-1949",
+      "items": 83344,
+      "missing": 32436,
+      "share": 0.3892
+    },
+    {
+      "period": "1950-1999",
+      "items": 453799,
+      "missing": 156191,
+      "share": 0.3442
+    },
+    {
+      "period": "2000-2024",
+      "items": 426980,
+      "missing": 51656,
+      "share": 0.121
+    }
+  ],
+  "scenarios": {
+    "pages_10": {
+      "items": 121806,
+      "unclaimed_share": 0.3646,
+      "established_journals": 82
+    },
+    "pages_8": {
+      "items": 128542,
+      "unclaimed_share": 0.363,
+      "established_journals": 82
+    },
+    "pages_12": {
+      "items": 115388,
+      "unclaimed_share": 0.3658,
+      "established_journals": 81
+    },
+    "pages_15": {
+      "items": 104169,
+      "unclaimed_share": 0.3661,
+      "established_journals": 81
+    },
+    "subject_mapping_only": {
+      "items": 121806,
+      "unclaimed_share": 0.4056,
+      "established_journals": 82
+    },
+    "screen_book_title_hints": {
+      "items": 121055,
+      "unclaimed_share": 0.3655,
+      "established_journals": 82
+    }
+  },
+  "sensitivity": [
+    {
+      "scenario": "pages_10",
+      "family": "Annales",
+      "share_1950_1974": 0.053748,
+      "share_2000_2024": 0.006264,
+      "change_percentage_points": -4.7484
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.150133,
+      "share_2000_2024": 0.219718,
+      "change_percentage_points": 6.9586
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.153686,
+      "share_2000_2024": 0.126357,
+      "change_percentage_points": -2.7329
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.021826,
+      "share_2000_2024": 0.032601,
+      "change_percentage_points": 1.0775
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Environment",
+      "share_1950_1974": 0.000282,
+      "share_2000_2024": 0.012118,
+      "change_percentage_points": 1.1836
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Indigenous histories",
+      "share_1950_1974": 5.6e-05,
+      "share_2000_2024": 0.004836,
+      "change_percentage_points": 0.4779
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.027635,
+      "share_2000_2024": 0.074799,
+      "change_percentage_points": 4.7164
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.113022,
+      "share_2000_2024": 0.073601,
+      "change_percentage_points": -3.9422
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Social history",
+      "share_1950_1974": 0.202301,
+      "share_2000_2024": 0.249881,
+      "change_percentage_points": 4.758
+    },
+    {
+      "scenario": "pages_10",
+      "family": "Theory & method",
+      "share_1950_1974": 0.032203,
+      "share_2000_2024": 0.074643,
+      "change_percentage_points": 4.244
+    },
+    {
+      "scenario": "pages_10",
+      "family": "War & the military",
+      "share_1950_1974": 0.007614,
+      "share_2000_2024": 0.037305,
+      "change_percentage_points": 2.9691
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Annales",
+      "share_1950_1974": 0.056681,
+      "share_2000_2024": 0.006169,
+      "change_percentage_points": -5.0512
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.153577,
+      "share_2000_2024": 0.220263,
+      "change_percentage_points": 6.6685
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.152081,
+      "share_2000_2024": 0.124123,
+      "change_percentage_points": -2.7958
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.020806,
+      "share_2000_2024": 0.032122,
+      "change_percentage_points": 1.1315
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Environment",
+      "share_1950_1974": 0.000399,
+      "share_2000_2024": 0.012159,
+      "change_percentage_points": 1.176
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Indigenous histories",
+      "share_1950_1974": 5e-05,
+      "share_2000_2024": 0.004792,
+      "change_percentage_points": 0.4742
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.026045,
+      "share_2000_2024": 0.076745,
+      "change_percentage_points": 5.07
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.11925,
+      "share_2000_2024": 0.073828,
+      "change_percentage_points": -4.5422
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Social history",
+      "share_1950_1974": 0.201776,
+      "share_2000_2024": 0.250261,
+      "change_percentage_points": 4.8484
+    },
+    {
+      "scenario": "pages_8",
+      "family": "Theory & method",
+      "share_1950_1974": 0.032033,
+      "share_2000_2024": 0.075788,
+      "change_percentage_points": 4.3756
+    },
+    {
+      "scenario": "pages_8",
+      "family": "War & the military",
+      "share_1950_1974": 0.007135,
+      "share_2000_2024": 0.037396,
+      "change_percentage_points": 3.0261
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Annales",
+      "share_1950_1974": 0.051391,
+      "share_2000_2024": 0.006344,
+      "change_percentage_points": -4.5047
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.147926,
+      "share_2000_2024": 0.21868,
+      "change_percentage_points": 7.0753
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.155332,
+      "share_2000_2024": 0.127648,
+      "change_percentage_points": -2.7685
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.022218,
+      "share_2000_2024": 0.033244,
+      "change_percentage_points": 1.1026
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Environment",
+      "share_1950_1974": 0.000129,
+      "share_2000_2024": 0.01222,
+      "change_percentage_points": 1.2091
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Indigenous histories",
+      "share_1950_1974": 0.0,
+      "share_2000_2024": 0.00494,
+      "change_percentage_points": 0.494
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.028787,
+      "share_2000_2024": 0.073907,
+      "change_percentage_points": 4.512
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.106968,
+      "share_2000_2024": 0.073266,
+      "change_percentage_points": -3.3702
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Social history",
+      "share_1950_1974": 0.202151,
+      "share_2000_2024": 0.250182,
+      "change_percentage_points": 4.8031
+    },
+    {
+      "scenario": "pages_12",
+      "family": "Theory & method",
+      "share_1950_1974": 0.032908,
+      "share_2000_2024": 0.072824,
+      "change_percentage_points": 3.9916
+    },
+    {
+      "scenario": "pages_12",
+      "family": "War & the military",
+      "share_1950_1974": 0.007664,
+      "share_2000_2024": 0.037404,
+      "change_percentage_points": 2.9741
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Annales",
+      "share_1950_1974": 0.048938,
+      "share_2000_2024": 0.006489,
+      "change_percentage_points": -4.2448
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.143915,
+      "share_2000_2024": 0.21708,
+      "change_percentage_points": 7.3165
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.154218,
+      "share_2000_2024": 0.13048,
+      "change_percentage_points": -2.3737
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.021088,
+      "share_2000_2024": 0.034242,
+      "change_percentage_points": 1.3154
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Environment",
+      "share_1950_1974": 8e-05,
+      "share_2000_2024": 0.01272,
+      "change_percentage_points": 1.2639
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Indigenous histories",
+      "share_1950_1974": 0.0,
+      "share_2000_2024": 0.005203,
+      "change_percentage_points": 0.5203
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.031149,
+      "share_2000_2024": 0.072066,
+      "change_percentage_points": 4.0916
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.093287,
+      "share_2000_2024": 0.074686,
+      "change_percentage_points": -1.8601
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Social history",
+      "share_1950_1974": 0.203397,
+      "share_2000_2024": 0.251303,
+      "change_percentage_points": 4.7907
+    },
+    {
+      "scenario": "pages_15",
+      "family": "Theory & method",
+      "share_1950_1974": 0.033242,
+      "share_2000_2024": 0.07004,
+      "change_percentage_points": 3.6798
+    },
+    {
+      "scenario": "pages_15",
+      "family": "War & the military",
+      "share_1950_1974": 0.008693,
+      "share_2000_2024": 0.036585,
+      "change_percentage_points": 2.7892
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Annales",
+      "share_1950_1974": 0.0,
+      "share_2000_2024": 0.0,
+      "change_percentage_points": 0.0
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.114996,
+      "share_2000_2024": 0.197609,
+      "change_percentage_points": 8.2613
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.188878,
+      "share_2000_2024": 0.129994,
+      "change_percentage_points": -5.8885
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.019514,
+      "share_2000_2024": 0.029268,
+      "change_percentage_points": 0.9754
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Environment",
+      "share_1950_1974": 0.0,
+      "share_2000_2024": 0.012118,
+      "change_percentage_points": 1.2118
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Indigenous histories",
+      "share_1950_1974": 0.001748,
+      "share_2000_2024": 0.006814,
+      "change_percentage_points": 0.5066
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.034854,
+      "share_2000_2024": 0.095069,
+      "change_percentage_points": 6.0215
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.103435,
+      "share_2000_2024": 0.064332,
+      "change_percentage_points": -3.9103
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Social history",
+      "share_1950_1974": 0.29705,
+      "share_2000_2024": 0.313269,
+      "change_percentage_points": 1.6218
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "Theory & method",
+      "share_1950_1974": 0.003271,
+      "share_2000_2024": 0.058322,
+      "change_percentage_points": 5.5051
+    },
+    {
+      "scenario": "subject_mapping_only",
+      "family": "War & the military",
+      "share_1950_1974": 0.007614,
+      "share_2000_2024": 0.035581,
+      "change_percentage_points": 2.7967
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Annales",
+      "share_1950_1974": 0.053787,
+      "share_2000_2024": 0.006303,
+      "change_percentage_points": -4.7484
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Cultural & intellectual history",
+      "share_1950_1974": 0.150243,
+      "share_2000_2024": 0.220957,
+      "change_percentage_points": 7.0715
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Economy & social science history",
+      "share_1950_1974": 0.153798,
+      "share_2000_2024": 0.127083,
+      "change_percentage_points": -2.6716
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Empire, colonialism & the global",
+      "share_1950_1974": 0.021842,
+      "share_2000_2024": 0.030019,
+      "change_percentage_points": 0.8177
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Environment",
+      "share_1950_1974": 0.000282,
+      "share_2000_2024": 0.012185,
+      "change_percentage_points": 1.1902
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Indigenous histories",
+      "share_1950_1974": 5.6e-05,
+      "share_2000_2024": 0.004866,
+      "change_percentage_points": 0.4809
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Political, national & international",
+      "share_1950_1974": 0.027655,
+      "share_2000_2024": 0.075255,
+      "change_percentage_points": 4.76
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Science, technology & medicine",
+      "share_1950_1974": 0.113105,
+      "share_2000_2024": 0.072537,
+      "change_percentage_points": -4.0568
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Social history",
+      "share_1950_1974": 0.202337,
+      "share_2000_2024": 0.250936,
+      "change_percentage_points": 4.8599
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "Theory & method",
+      "share_1950_1974": 0.032227,
+      "share_2000_2024": 0.07509,
+      "change_percentage_points": 4.2863
+    },
+    {
+      "scenario": "screen_book_title_hints",
+      "family": "War & the military",
+      "share_1950_1974": 0.007619,
+      "share_2000_2024": 0.037537,
+      "change_percentage_points": 2.9917
+    }
+  ],
+  "genre_sample_items": 54,
+  "genre_sample_status": "metadata_screen_only",
+  "caveats": [
+    "Article length and book-title flags are proxies, not verified genres.",
+    "Subject-only mapping is a sensitivity scenario, not an accepted crosswalk correction.",
+    "Counts are distinct DOI records; they are not necessarily distinct publications.",
+    "Family shares overlap. Established-journal membership can change with the threshold."
+  ]
+}

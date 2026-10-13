@@ -1,0 +1,14 @@
+[
+  {
+    "file": "tests/test_digital_release_candidate.py",
+    "before_sha256": "dd0911abd3b595903df7ac88b17b87b85009e96ec6afc035ac0f99fc03826189",
+    "after_sha256": "f8f4f6792d77978b6b38b5a6e5cda23e64abbca3d2227398c516cad6a6f61316",
+    "reason": "Direct historical candidate fixtures were reading the current 1.125 graph and colliding with already accepted digital_history IDs. Reuse the existing archived-baseline context; preserve all assertions."
+  },
+  {
+    "file": "tests/test_digital_release_browser.py",
+    "before_sha256": "12fdeb7d2474b7eec08b7bc9a9396412ef996b73bcf7192ff8be3e36ae086815",
+    "after_sha256": "1c6a1ec034b5280bce93f6a717e329b4ed65d66b71669758e28878cc03672068",
+    "reason": "Direct historical candidate fixtures were reading the current 1.125 graph and colliding with already accepted digital_history IDs. Reuse the existing archived-baseline context; preserve all assertions."
+  }
+]

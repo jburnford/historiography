@@ -1,4 +1,8 @@
 export const PAGE_SIZE = 6;
+/* Only the front door and its record toggle can use the small overview payload. */
+export function isOverviewHash(hash = '') {
+  return [...new URLSearchParams(hash.replace(/^#/, '')).keys()].every(k => k === 'record');
+}
 export const LAYER_TITLES = {
   intellectual_traditions: 'Intellectual traditions',
   enduring_fields_and_genres: 'Enduring fields & genres',
@@ -88,7 +92,7 @@ export function readRoute(hash, graph, pathways) {
     pathway: valid('pathway', pathways.pathways), layer: valid('layer', graph.layers),
     period: p.get('period') === 'unassigned' ? 'unassigned' : valid('period', graph.periods),
     query: p.get('query') || '', hunt: p.get('hunt') === '1',
-    view: p.get('view') === 'list' ? 'list' : 'map',
+    view: ['list', 'approaches', 'map'].includes(p.get('view')) ? p.get('view') : 'map',
     kind: Object.hasOwn(KINDS, p.get('kind')) ? p.get('kind') : '',
     neighborLayer: graph.layers.some(l => l.id === p.get('neighborLayer')) ? p.get('neighborLayer') : '',
     page: Math.max(0, Math.min(1000, Number.parseInt(p.get('page'), 10) || 0)),
@@ -98,7 +102,7 @@ export function readRoute(hash, graph, pathways) {
        malformed slug, like an unknown one, opens the full field); `record` picks the
        landing's record view. */
     family: !p.get('family') ? '' : /^[a-z0-9-]{2,60}$/.test(p.get('family')) ? p.get('family') : 'all',
-    record: ['established', 'reviews'].includes(p.get('record')) ? p.get('record') : '',
+    record: ['established', 'reviews', 'deposited'].includes(p.get('record')) ? p.get('record') : '',
   };
   if (route.edge) {
     const e = graph.edges.find(e => e.id === route.edge);
@@ -112,6 +116,9 @@ export function readRoute(hash, graph, pathways) {
   if (route.node) { route.tab = 'map'; route.focus = ''; route.path = ''; }
   if (route.focus) { route.tab = 'map'; route.person = ''; }
   if (route.person && !route.node) route.tab = 'people';
+  if (route.family && route.family !== 'all' && !p.has('view') && !route.focus && !route.path && !route.node && !route.person && !route.pathway)
+    route.view = 'approaches';
+  if (route.node && route.view === 'approaches') route.view = 'map';
   if ((route.hold || route.letter) && !route.node && !route.person && !route.pathway) route.tab = 'people';
   /* The bare front door is the families overview. Any value that names a detailed field state
      (and the exact 2000 view) opens the detailed field instead, so old links keep working.

@@ -31,13 +31,19 @@ jobs:
           node-version: '20'
       - name: Validate the curated graph
         run: python3 scripts/validate_graph.py
+      - name: Install test dependencies
+        run: python3 -m pip install duckdb==1.5.3 playwright==1.56.0
       - name: Data tests
         # test_journal_validation needs the gitignored raw catalogue inputs, so it runs locally only.
-        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation
+        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_evidence_asset tests.test_practice_families tests.test_student_beta tests.test_indigenous_deep_dive tests.test_indigenous_foundations tests.test_borderlands_release_candidate tests.test_evidence_coverage_audit tests.test_publication_repairs
       - name: View tests
         run: node tests/test_site_core.mjs
       - name: Rebuild the allowlisted site into docs/
         run: python3 scripts/build_site.py
+      - name: Install Chromium
+        run: python3 -m playwright install --with-deps chromium
+      - name: Browser acceptance
+        run: python3 tests/run_site_checks.py
       - name: Committed docs/ must match the sources
         run: |
           git status --porcelain docs

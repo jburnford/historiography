@@ -3,18 +3,42 @@
 **Public beta.** An interactive, deliberately contestable map of historiography, 1920–2000 with
 earlier roots and a partial post-2000 extension, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
-The site opens on **the field**: all 128 entries on a single time axis, banded by
-kind. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
+The site opens on **eleven families**, pairing the atlas's selected dates with
+shares of a selected journal and book-review record. Open a family to reach the
+field: entries on a single time axis, banded by kind. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.124** (schema 1.4): 128 entries,
-766 teaching relationships, 897 bibliography records, 876
+Production data revision **1.127** (schema 1.4): 137 entries,
+777 teaching relationships, 940 bibliography records, 909
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
 
-Fable owns the website rebuild. The [latest data handoff](data/production-batches/roster-corrections-1.121/README.md) adds the requested Eley, Wrigley, Lovejoy and Berg field connections and clarifies Wallerstein’s practitioner role. The [preceding field separation](data/production-batches/gender-split-1.120/README.md) separates Gender history, Racial formation and Intersectional analysis while preserving independent queer history. The [previous promotion handoff](data/production-batches/promotions-01/README.md) records the eight promoted people and their evidence limits.
+The [student-beta handoff](data/production-batches/student-beta-1.125/README.md)
+records two bounded roster additions, faster initial loading, an eight-profile
+publication-record pilot and a landing sensitivity audit. Probable identities
+and source limits remain visible. [Student tasks and a feedback sheet](STUDENT-TESTING.md)
+are ready for a seminar trial. These changes are local and have not been published.
+
+The [publication-evidence repairs](data/evidence-layer/repairs/2026-10-10/README.md)
+restore early Annales mappings, add military and oral-history title contexts, recover
+missing publisher page ranges, and expose pre-1950 records on mobile and desktop.
+Blank counts now explain collection limits. Some older backfiles remain incomplete;
+the deposited-articles view separates those records from research-length candidates.
+
+The [Indigenous-history deep dive](data/field-research/indigenous-deep-dive-2026-10-10/README.md)
+adds concrete earlier and interwar examples, Canadian and Hawaiian scholarship,
+and distinct historical methods. The entry now names 49 participants and ten have
+separate entries. Narrators, editors, coauthors and source-reading limits remain
+explicit. These independently rooted practices do not share one founding date.
+
+The [foundations and collaborations report](data/field-research/indigenous-foundations-2026-10-10/README.md)
+adds Stó:lō community–university practice and related historical scholarship.
+Leddy’s 2010 article contributes one selected later methodological case, with
+authorship, community knowledge and mentorship credited separately.
+
+The [earlier data handoff](data/production-batches/roster-corrections-1.121/README.md) adds the requested Eley, Wrigley, Lovejoy and Berg field connections and clarifies Wallerstein’s practitioner role. The [preceding field separation](data/production-batches/gender-split-1.120/README.md) separates Gender history, Racial formation and Intersectional analysis while preserving independent queer history. The [previous promotion handoff](data/production-batches/promotions-01/README.md) records the eight promoted people and their evidence limits.
 
 The [first partial post-2000 release](data/production-batches/extension-1.122/README.md) accepts nine medical-history and historical-geography works, twelve scoped historical claims and all coauthor credits. Fable's extension display and exact 2000 baseline view have passed browser checks. The local production build is ready; this integration has not been remotely deployed. The wider 2026 phase remains incomplete.
 
@@ -58,7 +82,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current graph, 128 entries, 766 interpretive relationships, 897 bibliography records, and 876 people.
+- `historiography-1920-2000.json`: current graph, 137 entries, 777 interpretive relationships, 940 bibliography records, and 909 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.
@@ -70,7 +94,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `REVISION-NOTES.md`: response to the supplied structural and historiographical feedback.
 - `scripts/validate_graph.py`: structural checks for the curated graph and seminar pathways.
 - `site/`: static visualization source and implementation documentation.
-- `scripts/build_site.py`: validated public build allowlist; ten files with both graph views.
+- `scripts/build_site.py`: validated public build allowlist; fifteen files with both graph views, landing aggregates and the profile pilot.
 - `tests/test_site_core.mjs` and `tests/test_site_browser.py`: visualization semantics and browser acceptance checks.
 - `journal-panel.json`: proposed comparison journals, identified by ISSN.
 - `scripts/journal_citations.py`: journal coverage audit, outgoing citation harvest, and cited-work metadata lookup.

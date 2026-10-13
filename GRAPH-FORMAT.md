@@ -1,5 +1,54 @@
 # Teaching graph format, schema 1.4
 
+## Current revision 1.127 (2026-10-10)
+
+**137 entries (77 groups, 60 person entries), 777 teaching relationships,
+940 sources and 909 shared people.** Thirteen roster rows (twelve new people and
+existing Harris), seven approaches and two undirected comparisons represent
+specific foundations and collaborations. No new individual entry is promoted.
+Indigenous history has 49 participants and 33 approaches, with one selected 2010
+article in the partial extension. Authorship, mentorship and knowledge contribution
+remain distinct. Source timestamps and retrospective accounts cannot move a later
+publication into an earlier year. Exact-2000 baseline remains revision 1.121.
+See the [foundations report](data/field-research/indigenous-foundations-2026-10-10/README.md).
+
+Optional strand `participant_credits` preserves named knowledge contributors and
+their locators without converting them into coauthors. Optional `citation_note`
+records an observed engagement with named scholarship, not a new influence edge.
+Extension work and claim references continue to resolve through `claim_catalogue`.
+
+## Historical revision 1.126 (2026-10-10)
+
+**137 entries (77 groups, 60 person entries), 775 teaching relationships,
+926 sources and 897 shared people.** Indigenous history gains 21 roster participants,
+15 approaches, 27 scoped sources and nine person entries with approach-specific
+contribution links. Its selected earlier witnesses begin c. 1615/1616; the curated
+span has `start_kind: earlier_roots`, not a common founding claim. Each added edge
+has a specific `target_strand`; roster membership does not extend it to every
+approach. Narrator, recorder, editor and coauthor credits remain distinct. Previous
+edges, catalogue claims and the exact-2000 baseline remain unchanged. See the
+[research report](data/field-research/indigenous-deep-dive-2026-10-10/README.md).
+Sections below have historical counts.
+
+Family explorers read each member field’s existing `strands` and
+`representative_people`. They deduplicate people by ID, retain every contextual
+role, and show boundary connections from existing teaching edges. This display
+projection creates no person entries or inferred relationships. `view=approaches`
+is the default family view; `view=map` and `view=list` retain the timeline and
+entry-list projections. The archived view uses the archived strands and roster.
+
+Reduced `data/overview.json` serves the family landing. `overview_only: true`
+means relationships, sources and people are omitted for transport, not absent
+from the project. Load `data/graph.json` before reading detailed relationships.
+The historical view uses the pinned revision 1.121 `data/graph-2000.json`.
+
+Separate `data/people-records.json` is an eight-profile metadata pilot, schema
+1.0, derived through frozen registry v9 occurrence IDs. It adds no teaching
+relationships. Displayed `identity_tier` is the weaker atlas/source-credit link;
+accepted, anchored and probable remain distinct. Book/review counts are separate
+from journal records. Credits do not establish influence; an absent pilot
+record is not an absent publication.
+
 ## Unified Ladybug research graph
 
 The [unified graph](data/unified-graph/README.md) joins source-preserving atlas,
@@ -26,7 +75,7 @@ its documentation before consuming its relationships; especially, never render
 
 ## Digital/web extension (revision 1.123)
 
-Current totals: **128 entries (77 groups, 51 people), 765 teaching relationships, 885 sources, 876 shared people and 767 strands**. Two new fields add seventeen selected works, twenty-seven historical claims, thirty-one author credits and two version links. See the [acceptance record](data/production-batches/extension-1.123/README.md). Existing records are unchanged; no new teaching arrows were inferred.
+Totals at this revision: **128 entries (77 groups, 51 people), 765 teaching relationships, 885 sources, 876 shared people and 767 strands**. Two new fields add seventeen selected works, twenty-seven historical claims, thirty-one author credits and two version links. See the [acceptance record](data/production-batches/extension-1.123/README.md). Existing records are unchanged; no new teaching arrows were inferred.
 
 `scope.extension.acceptance_record` names the latest integration, while optional `acceptance_records` retains both release records. The exact-2000 `baseline_graph`, `baseline_revision` and `baseline_sha256` still point to **1.121**; the pre-integration archive **1.122** serves a different purpose. Never replace the historical-view baseline with a later partial-extension snapshot.
 
@@ -34,15 +83,15 @@ New entry `date_label` and curated `date_span.basis` explicitly identify selecte
 
 ## Partial post-2000 extension (revision 1.122)
 
-Current totals: **126 entries, 765 teaching relationships, 855 sources and 850 shared people**. Nine works, twelve historical claims, eighteen author credits and a separate reprint assertion extend medical history and historical geography. Nine strands are additive; no new teaching edges. See the [acceptance record](data/production-batches/extension-1.122/README.md). Earlier counts below are historical.
+Totals at this revision: **126 entries, 765 teaching relationships, 855 sources and 850 shared people**. Nine works, twelve historical claims, eighteen author credits and a separate reprint assertion extend medical history and historical geography. Nine strands are additive; no new teaching edges. See the [acceptance record](data/production-batches/extension-1.122/README.md). Earlier counts below are historical.
 
 `scope.main_period` remains `[1920, 2000]`. Optional `scope.extension` now has `status: partial_accepted`, the display period in `proposed_view_period`, `research_cutoff`, `latest_selected_publication`, `field_ids`, `fully_reviewed_fields: 0` and a hash-pinned `baseline_graph` archive. The public builder publishes that baseline separately and adds `baseline_asset`. The exact 2000 view uses that graph, not a publication-year filter.
 
 Node `extension_coverage` records selected publication years, work/claim IDs and `field_review_complete: false`. New strands carry `intervention_year`, `work_ids` and `claim_ids`. Intervention marks belong to selected works; they do not move field origins or stretch old marks to 2026. Original work and reprint dates stay separate. Acceptance preserves each citation's check scope and limitation; no automatic upgrade from abstract to passage or whole-work verification.
 
-## Field separation (current revision 1.120)
+## Field separation (revision 1.120)
 
-Current totals: **126 entries (75 groups, 51 people), 765 teaching relationships, 841 sources, 830 shared people and 733 strands**. `gender` is now Gender history; `racial_formation` is a separate programme and `intersectionality` a separate approach. `queer` remains the independent Sexuality & queer history field. See [revision handoff](data/production-batches/gender-split-1.120/README.md).
+Totals at this revision: **126 entries (75 groups, 51 people), 765 teaching relationships, 841 sources, 830 shared people and 733 strands**. `gender` is now Gender history; `racial_formation` is a separate programme and `intersectionality` a separate approach. `queer` remains the independent Sexuality & queer history field. See [revision handoff](data/production-batches/gender-split-1.120/README.md).
 
 Optional `strand_redirects` records old and current compound addresses (`from`, `to`, `revision`, `reason`). Old addresses must no longer be active; each target must resolve to a current strand. The two relocated strand records are unchanged. Renderers should resolve old bookmarks/references through these redirects. Exact catalogue concepts may reference `legacy_entry_id` or `legacy_strand_address`; this is navigational mapping, not an equivalence between every concept in an entry.
 
@@ -52,7 +101,7 @@ For an illustrated explanation, read [ONTOLOGY.md](ONTOLOGY.md). The [entry-kind
 
 ## Production promotion extension (revision 1.119)
 
-Current data: **124 entries (73 groups, 51 people), 761 teaching relationships, 840 sources and 829 shared people**. Eight existing people gain entries; earlier records and the journal catalogue are preserved. Fable owns the website rebuild. See [acceptance and renderer handoff](data/production-batches/promotions-01/README.md).
+Data at revision 1.119: **124 entries (73 groups, 51 people), 761 teaching relationships, 840 sources and 829 shared people**. Eight existing people gain entries; earlier records and the journal catalogue are preserved. Fable owns the website rebuild. See [acceptance and renderer handoff](data/production-batches/promotions-01/README.md).
 
 Optional `claim_catalogue` schema 1.0 adds a bounded production entity/claim store using vocabulary 0.2, distinct from frozen staging fixtures. Entities distinguish people, works, concepts and entry presentations; works retain all author IDs. Claims contain exact subject/predicate/object, statement, qualification, intervention year, nullable historical validity, review/history and evidence joins. Each citation carries source-record ID, locator, support, scope, check status/date and limitation. Acceptance never upgrades a description or abstract into a checked body passage.
 
@@ -102,7 +151,7 @@ Correction batches may include `research_venue_checks`: each specifies `journal_
 
 Revision1.116 adds eleven principal edges and five explicit Annales title transitions: 38 principal, nine founding and three debate edges overall. Named title phases may share an ISSN (Annales ESC/HSS); preserve the combined library evidence and use the explicit title relations for boundaries. A generic unresolved candidate must not be silently merged. Existing canonical metadata is unchanged. The revision 1.116 review ledger is `feedback/journals/principal-venues-v1.116-review.json`; carried-forward screens and partial-access sources are explicitly marked.
 
-Revision 1.117 adds public, medical/health and urban history as enduring group entries with 18 approaches and 15 relationships. Current totals: 112 historical nodes, 723 edges, 819 sources, 811 people and 703 approaches across 69 groups. Four new principal intervals bring venue edges to 54 (42 principal, nine founding, three debate). Urban History Yearbook (1974–1991) continues as Urban History from 1992; title relations now number eleven. Current 69-field ledger: `feedback/journals/principal-venues-v1.117-review.json`. Earlier records remain unchanged.
+Revision 1.117 adds public, medical/health and urban history as enduring group entries with 18 approaches and 15 relationships. Totals at this revision: 112 historical nodes, 723 edges, 819 sources, 811 people and 703 approaches across 69 groups. Four new principal intervals bring venue edges to 54 (42 principal, nine founding, three debate). Urban History Yearbook (1974–1991) continues as Urban History from 1992; title relations now number eleven. Current 69-field ledger: `feedback/journals/principal-venues-v1.117-review.json`. Earlier records remain unchanged.
 
 Revision 1.118 adds Spatial history / Historical geography, Intellectual history, Labour history and Ethnohistory: 116 nodes, 752 edges, 833 sources, 829 people, and 731 approaches across 73 groups. Earlier records and the entire journal catalogue are unchanged. The current 73-field ledger is `feedback/journals/principal-venues-v1.118-review.json`; the four new targets have unaccepted leads only. Historical geography is not equivalent to GIS; Ethnohistory is not equivalent to Indigenous historical authority. See `feedback/four-fields-v1.118.md` for reading limits.
 

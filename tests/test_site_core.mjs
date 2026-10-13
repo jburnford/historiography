@@ -3,14 +3,28 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH} from '../site/core.mjs';
 import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from '../site/people.mjs';
+import {isOverviewHash} from '../site/core.mjs';
+import {recordPanel} from '../site/records.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
-import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
+import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
 const families = JSON.parse(readFileSync(new URL('../data/evidence-layer/site-evidence.json', import.meta.url))).families;
+test('only the landing and its record toggle may use a reduced graph', () => {
+  for (const hash of ['', '#', '#record=reviews']) assert.equal(isOverviewHash(hash),true);
+  for (const hash of ['#person=geoff_eley','#node=annales','#range=2000','#family=all','#query=Marx','#tab=people','#focus=annales','#path=x']) assert.equal(isOverviewHash(hash),false,hash);
+});
+test('record profiles preserve probable tiers and escape source metadata', () => {
+  const asset={coverage:'Pilot',identity_note:'Limits',people:{x:{atlas_identity_tier:'probable',counts:{journal_item:1},records:[
+    {kind:'journal_item',title:'<script>bad</script>',url:'javascript:alert(1)',year:2001,role:'author',identity_tier:'probable',credit_tier:'anchored',identity_bases:['orcid_claim_doi'],source_id:'doi:x'}]}}};
+  const html=recordPanel(asset,'x');
+  assert.ok(html.includes('Probable match')); assert.ok(html.includes('Identifier-supported match'));
+  assert.ok(html.includes('&lt;script&gt;')); assert.ok(!html.includes('javascript:'));
+  assert.equal(recordPanel(asset,'missing'),'');
+});
 
 test('arrows never turn legacy links or comparisons into influence', () => {
   const legacy = {source:'a',target:'b',type:'connection'};
@@ -354,7 +368,7 @@ test('landing: every family member is dated, early or undated, never dropped', (
   }
 });
 test('landing: record shares are items over the bin total and stop at 2024', () => {
-  for (const f of families.families) for (const view of ['all', 'established', 'reviews']) {
+  for (const f of families.families) for (const view of ['all', 'established', 'reviews', 'deposited']) {
     for (const s of recordShares(f, view)) {
       assert.ok(s.share >= 0 && s.share <= 1, `${f.id} ${view} ${s.bin}`);
       assert.equal(s.share, s.total ? s.items / s.total : 0);
@@ -366,7 +380,7 @@ test('landing: thin periods are dropped so they cannot set the shared scale', ()
   for (const f of families.families) {
     const reviews = recordShares(f, 'reviews');
     assert.ok(!reviews.some(s => s.bin === 1990), `${f.id}: Reviews 1990–94 has only 20 items`);
-    for (const view of ['all', 'established', 'reviews']) {
+    for (const view of ['all', 'established', 'reviews', 'deposited']) {
       for (const s of recordShares(f, view)) assert.ok(s.total >= MIN_BIN_TOTAL, `${f.id} ${view} ${s.bin}`);
     }
   }
@@ -476,4 +490,40 @@ test('landing links survive the mobile view=list override', () => {
   const r = readRoute(routeHash({...s2, family: 'annales', view: ''}), graph, pathways);
   assert.equal(r.overview, false);
   assert.equal(r.family, 'annales');
+});
+
+test('landing: mobile cards include interwar bins with descriptive titles', () => {
+  const html=cardsHtml({block: families, graph, view: 'all', href: id => `#family=${id}`});
+  const annales=html.split('<h3>Annales</h3>')[1].split('</a>')[0];
+  assert.match(annales, /1925–1929:/);
+  assert.match(annales, /bars from 1900/);
+  const deposited=cardsHtml({block: families, graph, view: 'deposited', href: id => `#family=${id}`});
+  const military=deposited.split('<h3>War &amp; the military</h3>')[1].split('</a>')[0];
+  assert.match(military, /1935–1939:/);
+});
+
+
+test('family content exposes rosters and approaches without manufacturing edges', () => {
+  const family = familyBySlug(families, 'indigenous-histories');
+  const before = JSON.stringify(graph);
+  const content = familyContent(graph, family);
+  assert.equal(content.approaches.length, 40);
+  assert.equal(content.people.length, 57);
+  assert.equal(content.people.filter(x => x.person.id === 'cole_harris').length, 1);
+  assert.ok(content.approaches.some(x => x.strand.id === 'stolo_community_university'));
+  assert.ok(content.connections.some(x => x.edge.id === 'edge_777' && !hasArrow(x.edge)));
+  assert.equal(JSON.stringify(graph), before);
+  const searched = familyContent(graph, family, 'Carlson');
+  assert.deepEqual(searched.approaches.map(x => x.strand.id), ['stolo_community_university']);
+  assert.deepEqual(searched.people.map(x => x.person.id), ['keith_thor_carlson']);
+  assert.equal(familyContent(graph, family, '', new Set(['indigenous'])).approaches.length, 33);
+});
+
+test('family routes open approaches and retain explicit timeline and focus routes', () => {
+  assert.equal(readRoute('#family=indigenous-histories', graph, pathways).view, 'approaches');
+  assert.equal(readRoute('#family=annales', graph, pathways).view, 'approaches');
+  assert.equal(readRoute('#family=indigenous-histories&view=map', graph, pathways).view, 'map');
+  assert.equal(readRoute('#family=indigenous-histories&view=list', graph, pathways).view, 'list');
+  assert.equal(readRoute('#family=indigenous-histories&focus=indigenous', graph, pathways).view, 'map');
+  assert.equal(readRoute('#family=all', graph, pathways).view, 'map');
 });

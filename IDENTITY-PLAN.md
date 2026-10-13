@@ -5,7 +5,17 @@ Builds on, and does not replace, the preservation rules in
 [REPAIR-PLAN](data/grounding-audit-2026-09-21/REPAIR-PLAN.md) and the book route in
 [AUTHOR-FIRST-PLAN](data/grounding-repair/AUTHOR-FIRST-PLAN.md).
 
-## Status (2026-09-26)
+## Current status (2026-10-10)
+
+Registry **v9** has 24,624 strict individuals and 53,888 including probable.
+The 543 bulk atlas matches remain probable; seven corroborated roster QIDs have
+been added separately. The public build carries 600 QIDs, without promoting
+probable registry links. An eight-profile publication-record pilot preserves
+both the atlas and source-credit tiers, displaying the weaker link. Larger
+stratified benchmarks and identity-review queues remain pending. The upstream
+name-level loop stays stopped. The diagnosis and measurements below are historical.
+
+## Historical status (2026-09-26)
 
 Done: step 0 (commits 2035c44, e7e3673); steps 1, 2.1, 2.2, 2.5; and steps 2.3-2.4 via
 Open Library work authors and ORCID claimed works (LCNAF/VIAF headings not yet used).

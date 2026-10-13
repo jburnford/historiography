@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "inputs": {
+    "data/history-journals-full-2026-09-22/generated/v1/catalog.duckdb": "5ef652510f06bb86895091c40e4ad8fde1b9e14dad4d970f56d52a9a8a20b7a2",
+    "data/history-journals-supplement-2026-09-26/generated/v1/catalog.duckdb": "6bbc3c8d1e125099421cd3bcfa4efdf833b2bb3bf1f30a7c02f8e534e2838dcd",
+    "data/person-registry/generated/v9/registry.duckdb": "61408c0ba7cf9dbf5705c7bb8d546d432784e430a34a3bb8bd23d0b6dd61b31d",
+    "historiography-1920-2000.json": "66e33ae7d43fc1aebb7649b2965f694e8fb94b784bdc461ce01b9bf40c03bad7",
+    "data/history-journal-profession-review-2026-09-22/journal-review.json": "cc20a615a3c15a2adcfe74d7fd00589b199c82ab0edc798f0f0a15812168c561",
+    "data/history-journal-profession-review-2026-09-22/selected-journals.json": "6de30029f280783e314ce9ac2640e2721e1f5d8729a76788e58da4c3107e7820",
+    "data/history-journals-supplement-2026-09-26/selection.json": "84266871bf9a62785a90b0e640b871555ab909e3a24ec92582fa4e9bf8ef2b54",
+    "data/evidence-layer/practice-crosswalk.csv": "5058058caa46ae8e7dfc92cbab490487b2a63d42dcd50effaa98b8465f87072a",
+    "data/evidence-layer/practice-hierarchy.csv": "1340c700963367d39ef85e6f14f95335f241919ff6a689fb89e1a824ba1991f0",
+    "data/evidence-layer/approach-folds.csv": "0d57a19e881756ad959b7f092473a9aa5ec4e7026a87cc88dbbbf4ee0280cf8d",
+    "data/evidence-layer/families-draft.csv": "75752482cfbb954ccb0fd3428a2e9b78328824f85cef8757fa638960e8611cf4",
+    "data/evidence-layer/site-evidence.json": "a5562c4b8c83144a0e9ba351da7a62b3f9fe6c3c20db56ec0c6218700725e76c",
+    "data/evidence-layer/site-people.json": "0ece423ced44a468a442c978113796a33587ed84c064b09f2e7ed640ea794c5e",
+    "data/evidence-layer/generated/v17/summary.json": "d23410102e913a2a0ffad4ccc91ade9ede85d109f00d11d3be1d5b93231eb5a2",
+    "data/evidence-layer/generated/v17/journal_themes.csv": "f913747ed22e7c7d5ceb296d49182116f5c7646448a6f1f58ec86dbc1036e776",
+    "data/evidence-layer/generated/v17/series.csv": "614fa27564fce51c8f654fdbead6f75da1b0791e882abf2fcd5a10ad824312ef",
+    "data/evidence-layer/generated/v17/review_themes.csv": "1624d3ca948b3d9cb22217c7f4b307faf2a86d7dac6b4c2d896b59d919e6b0d8",
+    "data/evidence-layer/generated/v14/review_themes.csv": "1624d3ca948b3d9cb22217c7f4b307faf2a86d7dac6b4c2d896b59d919e6b0d8",
+    "data/evidence-layer/generated/mentions-v2/summary.json": "069eb9d57111f835729efb15de1e257d35da74ca67f197daf7abeb58555886a2",
+    "data/evidence-layer/generated/methods-v3/summary.json": "39aa9895bf54b00beb3e2b71bc6dc0ae5f7db151352636782c201f95f3eaddbe",
+    "data/evidence-layer/generated/methods-v3/practitioners.csv": "9eb9d3adca43f6cf13c4b20ee35f10eb68ffefbe4623c3627a39764cab589bdb",
+    "scripts/build_practice_series.py": "00c20efd6c7b97c9b6d2677e6b0c1d8aab9ac9c6c43cc2a5bd204dd973cf6a71",
+    "scripts/practice_families.py": "44fd88c469893907409f8abab064788c2e150d30ab8e70d295d151b2e5e051a8",
+    "scripts/audit_landing_evidence.py": "0746663299444da35fe22b54166a29936e9e0a549ecf5646bb9c9022068c695d",
+    "scripts/build_evidence_asset.py": "38d5fa1da4a81178d8d026c47410b701acad705d8a3adb3c9da78c847baa3eee",
+    "scripts/build_method_signals.py": "b0fa610b3ede5f26b340fd4605055084d3aaf8958acda5e2583de91fbce859cd",
+    "scripts/build_review_mentions.py": "6b363bbc5dde5df7e4f0454d87b7905aeb00046029bba530d1093012cc73f588",
+    "site/app.js": "47efe993916375beef1c378aa02d375c49e2d84a6e7ba84a0e91328d5a73657d",
+    "site/landing.mjs": "5891abd7154fd1e5e51a4303221b44fa447c8a78c42173b2b5455558c10d9b74",
+    "scripts/audit_evidence_coverage.py": "14b98dc11858154ac912eb78a15f21da946e0deeb4f7f6a0fe4e93a38a5b5c29"
+  },
+  "graph_revision": "1.125",
+  "series": "v17",
+  "scope": {
+    "families": 11,
+    "entries": 77,
+    "selected_contexts": 407,
+    "community_screen": 819,
+    "catalogue_periodicals": 1638
+  },
+  "reconciles_published_all_journal_bins": true,
+  "venue_mapping_gaps": [
+    {
+      "edge_id": "journal_venue_annales_founding_programme",
+      "catalogue_id": "journal_dc31870ec1f950f5",
+      "target": "annales",
+      "journal_key": "initial:annales_1929"
+    },
+    {
+      "edge_id": "journal_venue_history_theory_philhist_principal",
+      "catalogue_id": "journal_9c2f011afd81d28b",
+      "target": "philhistory",
+      "journal_key": "initial:history_theory"
+    },
+    {
+      "edge_id": "journal_venue_annales_original_school_principal",
+      "catalogue_id": "journal_dc31870ec1f950f5",
+      "target": "annales",
+      "journal_key": "initial:annales_1929"
+    }
+  ],
+  "venue_edges_outside_selection": 9,
+  "distinct_venues_outside_selection": 8,
+  "selected_states": {
+    "articles_below_proxy_or_missing_pagination": 6,
+    "deposits_unmapped": 144,
+    "mapped_proxy_present": 194,
+    "no_deposits": 63
+  },
+  "unmapped_contexts_with_proxy": 134,
+  "title_history_states": {
+    "mapping_difference": 3,
+    "same_mapping": 7,
+    "selection_gap": 1
+  },
+  "contexts_later_than_all_start_observations": 85,
+  "contexts_with_internal_deposit_gaps": 82,
+  "entries_with_pre1950_items_hidden": 8,
+  "established_title_contexts": 80,
+  "overlapping_title_contexts": [
+    {
+      "first": "journal_65dd21715536a35f",
+      "second": "journal_b5b188191ea8d9f7",
+      "shared_records": 18010
+    }
+  ],
+  "mentions_mapping_comparison": {
+    "referenced_series": "v14",
+    "current_series": "v17",
+    "old_pairs": 20984,
+    "current_pairs": 20984,
+    "removed": 0,
+    "added": 0
+  },
+  "method_identity_occurrences": [
+    {
+      "corpus": "atlas",
+      "status": "accepted",
+      "occurrences": 2
+    },
+    {
+      "corpus": "atlas",
+      "status": "probable",
+      "occurrences": 51
+    },
+    {
+      "corpus": "crossref",
+      "status": "anchored",
+      "occurrences": 6889
+    }
+  ],
+  "method_summary_has_input_pins": false,
+  "limitations": [
+    "No new harvesting, identity acceptance, crosswalk acceptance or graph changes.",
+    "DOI records are not necessarily distinct publications; title contexts are not distinct journals.",
+    "No deposits, missing pagination, unmapped deposits and editorial exclusions are different states.",
+    "Library date observations can conflict or describe a title phase; gaps require source review.",
+    "Title continuation or merger does not automatically justify an identical field mapping.",
+    "Method identity counts describe occurrence tiers among pilot practitioner IDs, not distinct people tiers."
+  ],
+  "outputs": {
+    "catalogue-selection.csv": "9bc7301a1c5067b61ee72e391682f503c7748ffe8483439fa8b57530464f77f7",
+    "entry-coverage.csv": "9e4c7f0c7c0f6858db29ec17a4708fcea8b80cb101018d6d238db7364ad515bc",
+    "family-coverage.csv": "517f22bfa0e3719996e190258025b5abf6a2273a99dbf4f2bc6e6d7e9e2f95bc",
+    "journal-coverage.csv": "c1b60cfd2c0c0433caa7c4e34412d4024f9614a0b2f32353c1e80e0a82c1c209",
+    "targeted-periods.csv": "d4ed601034de745f7f24a967dc3c64fdc39bb38c90db54de24cb8cd3f287a8b5",
+    "title-history.csv": "229b3eae3f826d44bb0c832dc198eb1bd9916e23ea8a9f6f93b4d08479e36b09",
+    "venue-coverage.csv": "091168ca6222a1a1eae43cabf6cb47b93bafeb19ab85cef1f0357fdb41ac270e"
+  }
+}

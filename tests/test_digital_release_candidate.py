@@ -1,11 +1,14 @@
 import unittest
 from copy import deepcopy
 from scripts import build_digital_release_candidate as m
+from scripts import accept_digital_release as release
 
 
 class DigitalReleaseTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # Historical candidate fixtures must use their archived pre-release graph.
+        cls.enterClassContext(release.archived_candidate_inputs())
         cls.before = m.read(m.GRAPH)
         cls.batch,cls.actions = m.reconcile()
         cls.candidate = m.prepare(cls.before,cls.batch)

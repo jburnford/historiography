@@ -95,7 +95,10 @@ class FamilySeriesTests(unittest.TestCase):
         db.executemany("INSERT INTO mapped VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", mapped)
         membership = [("Social", "social", True), ("Cultural", "culture", True), ("Social", "culture", False),
                       ("Economy", "economic", True)]
+        db.execute("INSERT INTO items VALUES ('journal','early','s',1937,'journal_article_other','j3')")
+        db.execute("INSERT INTO mapped VALUES ('journal','early','s',1937,'journal_article_other','theme','social','','reviewed')")
         self.got = pf.family_series(db, membership)
+        self.addCleanup(db.close)
 
     def test_share_of_period_counts_distinct_items_over_all_items(self):
         allv = self.got["views"]["all"]
@@ -106,6 +109,13 @@ class FamilySeriesTests(unittest.TestCase):
         self.assertEqual(allv["families"]["Economy"][1970], 1)
         self.assertNotIn(2025, allv["totals"])
         self.assertEqual(self.got["bins"][-1], 2020)
+
+    def test_deposited_view_restores_early_unknown_lengths_without_promoting_genres(self):
+        dep=self.got['views']['deposited']
+        self.assertEqual(dep['totals'][1935],1)
+        self.assertEqual(dep['families']['Social'][1935],1)
+        self.assertNotIn(1935,self.got['views']['all']['totals'])
+        self.assertEqual(dep['totals'][2015],5)  # 'other' record is not a journal article
 
     def test_established_view_keeps_only_journals_in_both_windows(self):
         est = self.got["views"]["established"]

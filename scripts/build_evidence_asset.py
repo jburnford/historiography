@@ -53,7 +53,7 @@ def families_block(fam, entries, cw_labels):
     out = []
     for d in fam["definitions"]:
         series = {}
-        for view in ("all", "established", "reviews"):
+        for view in fam["views"]:
             v = fam["views"][view]
             got = v["families"].get(d["label"], {})
             series[view] = [[int(b), got.get(b, 0), v["totals"][b]] for b in sorted(v["totals"], key=int)]
@@ -80,6 +80,7 @@ def main():
     ap.add_argument("--series", required=True)
     ap.add_argument("--methods", required=True)
     ap.add_argument("--mentions", required=True)
+    ap.add_argument("--audit",default="data/evidence-layer/repairs/2026-10-10/sensitivity/summary.json")
     args = ap.parse_args()
     g = json.loads(GRAPH.read_text())
     entries = {n["id"]: n["label"] for n in g["nodes"] if n.get("entry_kind") == "group"}
@@ -123,6 +124,23 @@ def main():
             rec["journal_items_by_5yr"] = bins(journals.get(e, {}))
             rec["reviews_total"] = sum(reviews.get(e, {}).values())
             rec["journal_items_total"] = sum(journals.get(e, {}).values())
+        c=series['entry_coverage'][e]
+        note=f"{c['mapped_title_contexts']} mapped title contexts; {c['deposited_records']:,} distinct deposited records."
+        if c['missing_length']:
+            note += f" {c['missing_length']:,} article memberships lack calculable lengths; coverage is partial."
+        if not c['mapped_title_contexts']:
+            note += " Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
+        special={
+            'annales':' Original-title Crossref deposits cover 1929–1932; 1933–1938 remains a confirmed collection gap.',
+            'military':' The military-journal lineage now has deposits from 1937. Older first-page-only records do not qualify for the ten-page proxy; use Deposited journal articles to see them. Journal of Military History deposits currently stop in 2009.',
+            'indigenous':' Western Historical Quarterly is treated as a broad regional venue, not wholly Indigenous history. Ethnohistory pagination recovery is partial. Venue-level counts include outside scholarship and cannot identify Indigenous authorship or date the origins of Indigenous historical knowledge.',
+            'labourhistory':' Labour/Le Travail is now mapped; recovered publisher ranges restore some early candidates, including 1976. The older backfile remains partial.',
+            'women':' Signs and Feminist Studies remain outside this selected publication scope; teaching-venue links do not imply harvested records.',
+            'nation':' Nations and Nationalism remains outside this selected publication scope.',
+            'marx':' New Left Review remains outside this selected publication scope.',
+            'anticolonial':' A mapped teaching venue has no collected deposits; blank counts do not mean no journal or scholarship exists.'}
+        note+=special.get(e,'')
+        rec['coverage']={**c,'note':note}
         if e in methods:
             m = methods[e]
             rec["method"] = {"title_hits": m["title_hits_research_items"],
@@ -130,7 +148,8 @@ def main():
                              "practitioners": m["practitioners"],
                              "practitioner_items": m["practitioner_research_items"],
                              "practitioner_items_in_method_venues": m["practitioner_items_in_method_venues"],
-                             "share_elsewhere": m["share_elsewhere"]}
+                             "share_elsewhere": m["share_elsewhere"],
+                             "identity_tiers_by_basis":m["practitioners_by_basis_and_identity_tier"]}
         if e in invoked:
             rec["invoked_in_reviews"] = invoked[e]
             # An entry's own theme is trivially over-represented; show the other fields.
@@ -148,14 +167,14 @@ def main():
         "coverage": {
             "reviews": f"H-Net ({hn['years'][0]}–{hn['years'][1]}, {hn['items']:,} reviews) and Reviews in History "
                        f"({rih['years'][0]}–{rih['years'][1]}, {rih['items']:,})",
-            "journals": f"Crossref metadata for 407 history journals ({jn['items']:,} records); research articles "
-                        "are records of at least ten pages",
+            "journals": f"Crossref metadata for {series['selected_title_contexts']} selected journal/title contexts ({jn['items']:,} records); research candidates "
+                        "are journal-article records of at least ten pages using deposited or explicitly sourced publisher ranges, with an article-number exception for the Journal of Digital History",
             "general_reviews": hn["items_by_axis"].get("general", 0),
         },
         "caveats": [
             "Counts measure participation, not influence; a review is not agreement.",
             "Mapping networks, subject headings and journals to atlas entries is editorial and partly unreviewed; "
-            "journal counts are venue-level (a journal tagged with a field counts all its research articles).",
+            "journal counts are venue-level (a journal tagged with a field counts all its qualifying research candidates).",
             "These corpora are not the profession: H-Net is US-centred from 1993, Reviews in History is British, "
             "and Crossref coverage is uneven.",
         ],
@@ -163,6 +182,23 @@ def main():
         "families": families_block(series["families"], entries, cw_labels),
         "entries": out_entries,
     }
+    audit_path = ROOT / args.audit
+    if audit_path.exists():
+        audit = json.loads(audit_path.read_text())
+        assert ('data/evidence-layer/generated/'+args.series+'/summary.json') in audit['inputs'], 'Sensitivity audit does not match this series'
+        baseline = {r['family']: r for r in audit['sensitivity'] if r['scenario'] == 'pages_10'}
+        def maximum(names):
+            return max(abs(r['share_2000_2024'] - baseline[r['family']]['share_2000_2024']) * 100
+                       for r in audit['sensitivity'] if r['scenario'] in names)
+        length_delta = maximum({'pages_8','pages_12','pages_15'})
+        mapping_delta = maximum({'subject_mapping_only'})
+        asset['sensitivity'] = {
+            'note': f'An offline audit reproduces every published journal bin. Compared with the ten-page default, '
+                    f'thresholds of eight, twelve or fifteen pages move each family’s 2000–2024 share by at most {length_delta:.1f} percentage points. '
+                    f'Using directory subjects without journal-level themes moves a share by as much as {mapping_delta:.1f} points. '
+                    'Neither scenario verifies article genres.',
+            'pagination_note': 'Calculated lengths are missing for '+', '.join(f"{r['share']:.0%} of journal-article records in {r['period']}" for r in audit['missing_pagination'])+'. Source coverage can change comparisons across time; genres remain unverified.',
+        }
     OUT.write_text(json.dumps(asset, ensure_ascii=False, indent=1) + "\n")
     print(f"{OUT.relative_to(ROOT)}: {len(out_entries)} entries, {OUT.stat().st_size // 1024} KB")
 

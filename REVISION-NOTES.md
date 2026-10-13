@@ -1420,3 +1420,124 @@ Revision 1.105 applies the user-approved wider correction: Quantitative history 
 Current totals remain 109 entries, 708 relationships, 805 sources, 797 people, 1230 selections and 685 approaches across 66 groups. First pass complete; 48 second-pass outcomes, five completed before capture and 187 pending. Date corrections do not resolve unrelated queue questions. Next: followup 049 Ranger colonial traditions and reconsideration, then remaining frozen queue.
 
 Validation: zero errors, four reviewed warnings, 14 Python tests and eight JavaScript checks passed. Exact 65-field preservation audit, 66/66 group coverage labels, all 109 dated entries, unchanged individual nodes and frozen baseline checked. Six public files rebuilt and byte-identical to inputs. No frontend design/code changes, browser review, deployment or OpenAlex. Manifest: `feedback/group-date-coverage-v1.105.json`. Both 1.105 scripts complete; do not rerun. No active process. No 1.106 mutation/snapshot.
+
+
+## Revision 1.125: student beta (10 October 2026)
+
+Two bounded contributions from the figure audit are added: Said's 1988 foreword
+in Subaltern Studies and Cooper/Stoler's 1997 editorial collaboration in the
+postcolonial context. The former is a bibliographic credit check; the latter is
+a publisher-description and contents check. Bodies remain unread. One internal
+approach is added; there are no new teaching arrows, shared people, field origins
+or later critique claims. All prior graph records and the exact-2000 baseline
+remain unchanged. Totals: 128 entries, 766 relationships, 899 sources, 876 people
+and 770 internal approaches. The acceptance record pins the exact transformation.
+
+The local student beta defers the 3.09 MB detailed graph behind a 37 KB overview,
+adds loading/retry behavior and publishes eight source-linked record profiles
+with explicit identity tiers. Practice v17 is unchanged. An offline audit
+reconciles all journal bins and exposes sensitivity to classification and page
+thresholds. The 54-item genre screen remains unreviewed; no crosswalk decision
+is silently promoted. Browser acceptance is included in CI.
+
+Borderlands/disability candidate 11 adapts the frozen packet to this graph with
+no validation errors and no production import. Its claims, roots, boundaries,
+new people and landing placements remain under review. Student tasks and a
+feedback sheet are in STUDENT-TESTING.md. No deployment or OpenAlex work occurred.
+
+### Publication-evidence corrections — 2026-10-10
+
+This changes the derived evidence layer, not teaching-graph revision 1.125. Exact
+catalogue aliases restore existing Annales and History and Theory links. Thirteen
+source-backed crosswalk rows add bounded title/remit mappings and remove Western
+Historical Quarterly's blanket Indigenous-history assignment. A five-title recovery
+adds 12,251 records; 1,013 publisher ranges fill unknown lengths in derived views.
+Earlier source deposits and all 474 prior crosswalk rows/statuses remain preserved.
+
+Practice v18 exposes the early record, including a separate deposited-articles view;
+methods-v4 exports candidate identity tiers and pins inputs; mentions-v3 updates its
+practice reference with frozen tags. The original audits remain historical snapshots.
+Remaining older backfiles and genre checks are explicit in the
+[repair report](data/evidence-layer/repairs/2026-10-10/README.md). OpenAlex remains
+paused. These are local changes, not a published release.
+
+## Revision 1.126: Indigenous-history thinkers and antecedents (10 October 2026)
+
+The earlier field named fifteen contributors but gave only Linda Tuhiwai Smith
+a separate entry, with no concrete interwar or nineteenth-century examples.
+The source-checked expansion now names thirty-six participants, twenty-six
+approaches and ten standalone contributors. Twenty-one new shared people,
+fifteen approaches, twenty-seven sources and nine approach-specific contribution
+edges bring the graph to 137 entries, 775 relationships, 926 sources and 897 people.
+
+Earlier manuscript and print examples, Cree/Tainui/Osage interwar work, Canadian
+scholarship, Hawaiian historical inquiry, Aboriginal life writing and Aymara local
+history remain independently rooted practices. Guaman Poma's c. 1615/1616 manuscript
+dates a selected witness, not Indigenous history's origin. Narration, recording,
+translation, editing and coauthorship remain distinct. Ahenakew's 1923 recordings,
+1929 article and 1973 book are separately dated. No new influence arrows or
+post-2000 Indigenous-history extension are inferred.
+
+All earlier teaching edges, unrelated entries, sources, catalogue claims, journal
+records and exact-2000 revision 1.121 pointers remain unchanged. Source notes
+distinguish selected primary passages from institutional/publisher descriptions
+and indexed metadata. Claude's suggested list supplies candidates, not acceptance;
+the Costo journal's conflicting foundation dates remain unresolved. The
+[research report](data/field-research/indigenous-deep-dive-2026-10-10/README.md)
+records the checks, qualifications and next research leads.
+
+Methods-v5 and a fresh mentions-v4 scan reflect the larger roster; practice v18
+and registry v9 remain unchanged. Ethnohistory's public note explicitly distinguishes
+venue counts from Indigenous authorship and historical origins. Borderlands candidate
+12 targets the current graph without accepting its pending claims. Acceptance stores
+an exact inverse delta for CI reconstruction; regression and browser checks cover
+attribution, date distinctions, source limits and the preserved historical view.
+No deployment or OpenAlex work occurred.
+
+
+## Revision 1.127: foundations and collaborations in Indigenous history
+
+The user requested an evidence-led account of complex Indigenous and scholarly
+foundations, with bounded credit for Lutz and Carlson and no taking-space analysis.
+Thirteen roster rows add twelve local participants and reuse Cole Harris. Seven
+approaches distinguish Stó:lō practice, labour and institutional inquiry, White’s
+middle ground, colonial geography, adjacent settler-colonial bibliography and one
+selected 2010 Serpent River methodological case. No new individual entry is promoted.
+Two undirected comparisons target particular approaches; earlier edges remain exact.
+
+Leddy’s supplied primary article distinguishes authorship, knowledge contribution,
+mentorship and cited scholarship. Five catalogue claims retain those roles. Six
+community knowledge contributors are named in structured strand credits. The 2010
+issue, 2008 presentation/interviews and 2011 upload timestamp are distinct. The
+partial extension now includes a fifth field; its exact-2000 baseline remains 1.121.
+Later Stó:lō atlas and collection dates remain 2001 and 2018. Field-school planning
+in 1997 and first class in 1998 are separately evidenced, with conflicting biography
+dates recorded rather than silently reconciled.
+
+Totals: 137 entries, 777 relationships, 940 sources, 909 people and 792 approaches.
+Indigenous history has 49 participants and 33 approaches. Existing shared IDs,
+qualifications, claims, journals and unrelated entries survive exactly. Historical
+release tests now reconstruct 1.126 from its accepted transformation. Borderlands
+candidate 14 is prepared against this graph and remains unapplied. See the
+[foundations report](data/field-research/indigenous-foundations-2026-10-10/README.md).
+No deployment or OpenAlex work occurred.
+
+
+## Family explorer: expose the researched records (2026-10-10)
+
+The user found the Indigenous-histories family sparse after its research expansion.
+The timeline projected only standalone entries and their internal edges, hiding
+most roster participants and every approach inside the broad field entry. Family
+pages now open an explorer of the member fields’ approaches, cited works, named
+participants and source limits. A deduplicated people list preserves roles by field;
+existing boundary edges expose connections with related fields. Search matches
+approaches, works, participant names and community credits. Profile breadcrumbs
+return to the family. Timeline and List remain available on explicit routes.
+
+This applies across families. The Indigenous-histories family exposes 40 approaches
+and 57 distinct roster people across Indigenous history and ethnohistory. The
+Indigenous entry itself remains 49 people and 33 approaches. Graph revision 1.127,
+publication evidence, source records and exact-2000 snapshot are unchanged. The
+archived explorer uses its own roster and approaches; no later case leaks into it.
+See [interface acceptance](data/production-batches/family-explorer-2026-10-10/README.md).
+No deployment or OpenAlex work.

@@ -41,18 +41,20 @@
         "medicalhistory",
         "spatialhistory",
         "digital_history",
-        "web_history"
+        "web_history",
+        "indigenous"
       ],
       "fully_reviewed_fields": 0,
-      "note": "Selected medical, geographical, digital and web-history interventions only. Publication milestones are not field origins or endpoints; no field is completely reviewed through 2026.",
+      "note": "Selected medical, geographical, digital, web-history and Indigenous-history interventions only. Indigenous history adds one selected 2010 methodological article; no field is completely reviewed through 2026.",
       "baseline_graph": "drafts/historiography-1920-2000.v1.121.json",
       "baseline_revision": "1.121",
       "baseline_sha256": "69d0bf90b01cf60ea8cd928852c47ff116050d6160109b63db8c262e5302e683",
-      "acceptance_record": "data/production-batches/extension-1.123/acceptance.json",
+      "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json",
       "candidate_record": "data/extension-2026/digital-release-10/candidate.json",
       "acceptance_records": [
         "data/production-batches/extension-1.122/acceptance.json",
-        "data/production-batches/extension-1.123/acceptance.json"
+        "data/production-batches/extension-1.123/acceptance.json",
+        "data/production-batches/indigenous-1.127/acceptance.json"
       ]
     }
   },
@@ -14561,7 +14563,8 @@
         "spivak_speak",
         "pandey_communalism",
         "prakash_reason",
-        "nair_chakrabarty_review"
+        "nair_chakrabarty_review",
+        "said_subaltern_foreword_1988"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -14659,6 +14662,16 @@
           "works": "Review of Rethinking Working Class History (1990), 96–99",
           "source_ids": [
             "nair_chakrabarty_review"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "edward_said",
+          "role": "contributor",
+          "context": "Wrote the foreword to the 1988 Selected Subaltern Studies anthology edited by Guha and Spivak. This is a documented editorial contribution; it does not establish founding, collective membership or the direction of theoretical borrowing.",
+          "works": "Foreword to Selected Subaltern Studies (1988)",
+          "source_ids": [
+            "said_subaltern_foreword_1988"
           ],
           "basis": "source_review"
         }
@@ -15663,7 +15676,8 @@
         "prakash_subaltern_postcolonial_1994",
         "hall_diaspora",
         "hall_postcolonial_1996",
-        "gilroy"
+        "gilroy",
+        "cooper_stoler_tensions_1997"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -15789,6 +15803,16 @@
             "gilroy"
           ],
           "basis": "source_review"
+        },
+        {
+          "person_id": "frederick_cooper",
+          "role": "contributor",
+          "context": "Coedited Tensions of Empire with Ann Laura Stoler (1997) and coauthored its opening research-agenda chapter. The publisher describes a historical and anthropological inquiry into relations between metropole and colony and changing categories of colonial rule. This contextual inclusion does not identify Cooper as an adherent of every postcolonial theory; his later criticisms require a separate dated claim.",
+          "works": "Tensions of Empire (1997), coedited with Ann Laura Stoler; opening chapter, “Between Metropole and Colony: Rethinking a Research Agenda”",
+          "source_ids": [
+            "cooper_stoler_tensions_1997"
+          ],
+          "basis": "source_review"
         }
       ],
       "entry_type": "Teaching umbrella",
@@ -15896,6 +15920,20 @@
           "works": "Inden (1986), quoted and discussed by Guha (1989),77–78/note9",
           "source_ids": [
             "guha_deep_ecology_1989"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "metropole_colony",
+          "title": "Metropole and colony in a shared research agenda",
+          "focus": "Cooper and Stoler’s 1997 edited collection supplies a contextual reading on connections between imperial centres and colonial settings and the historical formation of categories of rule. This is the publisher’s description and contents, not a passage-level check or a claim that one programme defines postcolonial history.",
+          "person_ids": [
+            "frederick_cooper",
+            "ann_laura_stoler"
+          ],
+          "works": "Tensions of Empire (1997), especially the opening chapter credited to Stoler and Cooper",
+          "source_ids": [
+            "cooper_stoler_tensions_1997"
           ],
           "basis": "editorial_distinction"
         }
@@ -16802,12 +16840,12 @@
     {
       "id": "indigenous",
       "label": "Indigenous history & decolonizing methods",
-      "date_label": "Older roots; 1970s–90s growth · coverage through 2000",
+      "date_label": "Earlier examples 1615–1938; 1970s–90s growth · baseline through 2000; selected 2010 intervention",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
-      "description": "Centers Indigenous agency, sovereignty, oral traditions, and authority over historical knowledge; critiques colonial archives and research relations.",
-      "representative_figures_and_works": "Ranginui Walker, Ka Whawhai Tonu Mātou (1990); Jean M. O’Brien, Dispossession by Degrees (1997); Linda Tuhiwai Smith, Decolonizing Methodologies (1999). Ethnohistory is one interlocutor, not the origin of Indigenous historical knowledge.",
+      "description": "Indigenous historical traditions, community knowledge and scholarly research meet in varied academic practices. Oral histories, family relationships, archival inquiry and collaborations contribute different resources; authority and methods remain situated.",
+      "representative_figures_and_works": "Earlier selected writing includes Guaman Poma (c. 1615/1616), Cusick (checked 1828 edition), Apess (1836), Te Rangikāheke (manuscripts before 1854), and Cree/Tainui interwar work. Twentieth-century examples include McNickle (1949), Deloria (1969), Adams and LaRocque (1975), Dickason (1984, 1992), Sioui (1989), Walker (1990), Kameʻeleihiwa (1992), O’Brien (1997), Wilson (1996), and Smith (1999). See the distinct approaches for works, collaborators and evidence limits. Related scholarship includes Miller, White, Harris and Lutz; Stó:lō field-school practice credits community and university participants. Leddy’s 2010 reflection supplies a separately dated later case.",
       "source_ids": [
         "subaltern",
         "walker_struggle",
@@ -16819,7 +16857,48 @@
         "cruikshank_life",
         "rigney_indigenist",
         "rivera_oral",
-        "cruikshank_legitimacy_primary"
+        "cruikshank_legitimacy_primary",
+        "ind126_guaman_manuscript",
+        "ind126_cusick_1828",
+        "ind126_apess_1836",
+        "ind126_warren_1885",
+        "ind126_rangikaheke",
+        "ind126_ahenakew_voices",
+        "ind126_ahenakew_1929",
+        "ind126_jones_tainui",
+        "ind126_buck_interwar",
+        "ind126_dickason_nation",
+        "ind126_dickason_myth",
+        "ind126_dickason_survey",
+        "ind126_adams",
+        "ind126_larocque_book",
+        "ind126_larocque_author",
+        "ind126_sioui_interview",
+        "ind126_sioui_english",
+        "ind126_mcnickle",
+        "ind126_mathews",
+        "ind126_mathews_dates",
+        "ind126_hawaii_land",
+        "ind126_hawaii_trask",
+        "ind126_gilbert",
+        "ind126_ginibi",
+        "ind126_mamani",
+        "ind126_stonechild_waiser",
+        "ind126_larocque_thesis",
+        "ind127_turning",
+        "ind127_fieldschool",
+        "ind127_mchalsie",
+        "ind127_stolo_2016",
+        "ind127_stolo_2018",
+        "ind127_stolo_publications",
+        "ind127_carlson_books",
+        "ind127_lutz_1992",
+        "ind127_miller_1989",
+        "ind127_miller_1996",
+        "ind127_white_1991",
+        "ind127_harris_1997",
+        "ind127_wolfe_1999",
+        "ind127_leddy_2010"
       ],
       "entry_kind": "group",
       "representative_people": [
@@ -16841,7 +16920,8 @@
           "source_ids": [
             "walker_struggle"
           ],
-          "basis": "source_review"
+          "basis": "source_review",
+          "edge_id": "edge_767"
         },
         {
           "person_id": "jean_obrien",
@@ -16851,15 +16931,17 @@
           "source_ids": [
             "obrien_dispossession"
           ],
-          "basis": "source_review"
+          "basis": "source_review",
+          "edge_id": "edge_768"
         },
         {
           "person_id": "te_rangi_hiroa",
           "role": "contributor",
           "context": "Māori scholarship joins historical interpretation and material-culture research; an earlier trajectory distinct from later methodological manifestos.",
-          "works": "The Coming of the Maori (1949)",
+          "works": "Vikings of the Sunrise (1938); The Coming of the Maori (1949)",
           "source_ids": [
-            "buck_coming"
+            "buck_coming",
+            "ind126_buck_interwar"
           ],
           "basis": "source_review"
         },
@@ -16871,7 +16953,8 @@
           "source_ids": [
             "deloria_custer"
           ],
-          "basis": "source_review"
+          "basis": "source_review",
+          "edge_id": "edge_769"
         },
         {
           "person_id": "angela_cavender_wilson",
@@ -16881,7 +16964,8 @@
           "source_ids": [
             "wilson_indian_history"
           ],
-          "basis": "source_review"
+          "basis": "source_review",
+          "edge_id": "edge_770"
         },
         {
           "person_id": "julie_cruikshank",
@@ -16976,10 +17060,369 @@
             "huggins_archive_finding_aid"
           ],
           "basis": "source_review"
+        },
+        {
+          "person_id": "felipe_guaman_poma",
+          "role": "precursor",
+          "context": "Andean manuscript chronicler addressed a Christian colonial order and royal government. A selected early historical practice, not the founder of a single modern Indigenous method or evidence of a direct line to THOA.",
+          "works": "El primer nueva corónica y buen gobierno (manuscript c. 1615/1616)",
+          "source_ids": [
+            "ind126_guaman_manuscript"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "david_cusick",
+          "role": "precursor",
+          "context": "Tuscarora writer assembled Six Nations histories and translated materials into English; his 1828 preface makes the act of historical writing visible. The checked second edition does not establish an absolute beginning for Haudenosaunee knowledge.",
+          "works": "Sketches of Ancient History of the Six Nations (checked second edition, 1828)",
+          "source_ids": [
+            "ind126_cusick_1828"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "william_apess",
+          "role": "precursor",
+          "context": "His historical address reinterprets King Philip’s War, criticizes colonial violence and questions Pilgrim commemoration through a Christian moral argument. This is an earlier intervention in historical narration, not a claim that later writers borrowed directly from him.",
+          "works": "Eulogy on King Philip (1836), selected paragraphs",
+          "source_ids": [
+            "ind126_apess_1836"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "william_w_warren",
+          "role": "precursor",
+          "context": "Collected histories from relatives and tribal leaders and addressed a nineteenth-century white readership. The publisher’s account retains his goals and limitations; recording oral knowledge is not equivalent to the later decolonizing programme.",
+          "works": "History of the Ojibway People (first publication, 1885)",
+          "source_ids": [
+            "ind126_warren_1885"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "wiremu_maihi_te_rangikaheke",
+          "role": "precursor",
+          "context": "Māori manuscripts written before 1854 connect genealogy, historical narration and land. Te Ara documents Grey’s unacknowledged reuse and alterations; the Indigenous author is retained alongside the history of colonial publication.",
+          "works": "Historical and genealogical manuscripts before 1854; material reused in Grey’s publications, 1853–55",
+          "source_ids": [
+            "ind126_rangikaheke"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "edward_ahenakew",
+          "role": "historian",
+          "context": "Recorded Chief Thunderchild’s narratives in Cree in 1923 and wrote through Old Keyam’s literary voice. The 1973 book passed through Ruth M. Buck’s editing; composition, narration and publication are distinct. His 1929 folklore article supplies an interwar publication milestone.",
+          "works": "Thunderchild recordings (1923); Cree Trickster Tales (1929); Voices of the Plains Cree (1973, edited by Ruth M. Buck)",
+          "source_ids": [
+            "ind126_ahenakew_voices",
+            "ind126_ahenakew_1929"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_771"
+        },
+        {
+          "person_id": "chief_thunderchild",
+          "role": "contributor",
+          "context": "Named Plains Cree narrator whose histories Ahenakew recorded in 1923. His knowledge-producing role is separate from Ahenakew’s writing and the later editor’s selection; he is not an anonymous informant or the fictional Old Keyam.",
+          "works": "Narratives recorded in 1923, published in Part I of Voices of the Plains Cree (1973)",
+          "source_ids": [
+            "ind126_ahenakew_voices"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "stan_cuthand",
+          "role": "critic",
+          "context": "The 1995 introduction discusses Cree interpretation and challenges the editor’s exclusion of a story he translated. This supplies a specific criticism of editorial mediation, distinct from Thunderchild’s narration and Ahenakew’s authorship.",
+          "works": "Introduction to the 1995 edition of Voices of the Plains Cree, especially p. xii",
+          "source_ids": [
+            "ind126_ahenakew_voices"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "pei_te_hurinui_jones",
+          "role": "historian",
+          "context": "Recorded Tainui genealogies and historical traditions in Māori and English. Te Ara distinguishes his 1929 publication, English manuscript by about 1936, contested reuse by Kelly and the 1995 posthumous history.",
+          "works": "Māhinārangi (1929); English historical manuscript by c. 1936; Ngā iwi o Tainui (1995, posthumous)",
+          "source_ids": [
+            "ind126_jones_tainui"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "olive_patricia_dickason",
+          "role": "historian",
+          "context": "Her historical scholarship examines European representations and places First Peoples within a broad Canadian historical synthesis. MNO recognizes her Métis contribution. She is one major historian within a wider field, not its sole origin.",
+          "works": "The Myth of the Savage (1984); Canada’s First Nations (1992)",
+          "source_ids": [
+            "ind126_dickason_nation",
+            "ind126_dickason_myth",
+            "ind126_dickason_survey"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_772"
+        },
+        {
+          "person_id": "howard_adams",
+          "role": "historian",
+          "context": "Métis scholar’s critique of Canadian colonialism joins historical interpretation and Marxist politics. The institutional biography dates his doctorate and university appointment to 1966; detailed book arguments remain outside this description-level inclusion.",
+          "works": "Prison of Grass: Canada from a Native Point of View (1975)",
+          "source_ids": [
+            "ind126_adams"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_773"
+        },
+        {
+          "person_id": "emma_larocque",
+          "role": "critic",
+          "context": "In her 1999 dissertation, relates her 1974 research on stereotypes in Alberta history and social-studies curricula to Defeathering the Indian. Her pedagogical and resistance interpretation supplies a distinct historiographical intervention alongside Adams; the two are not treated as one doctrine.",
+          "works": "Defeathering the Indian (1975); Native Writers Resisting Colonizing Practices… (1999), selected passage",
+          "source_ids": [
+            "ind126_larocque_book",
+            "ind126_larocque_author",
+            "ind126_larocque_thesis"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "georges_e_sioui",
+          "role": "historian",
+          "context": "In his 1991 interview, explains autohistory as bringing Indigenous self-interpretation and transmitted traditions into historical discourse. His moral and philosophical proposal is situated; its account of Amerindian values does not define every nation.",
+          "works": "Pour une autohistoire amérindienne (1989); author interview (1991); English translation by Sheila Fischman (1992)",
+          "source_ids": [
+            "ind126_sioui_interview",
+            "ind126_sioui_english"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_774"
+        },
+        {
+          "person_id": "darcy_mcnickle",
+          "role": "historian",
+          "context": "Earlier historical synthesis and institution-building: the Newberry finding aid records his 1949 work and participation in creating its history centre in 1972. Institutional and bibliographic evidence does not establish particular book arguments or a universal field foundation.",
+          "works": "They Came Here First: The Epic of the American Indian (1949); Newberry history centre (1972)",
+          "source_ids": [
+            "ind126_mcnickle"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_775"
+        },
+        {
+          "person_id": "john_joseph_mathews",
+          "role": "historian",
+          "context": "Osage historical writing combines oral accounts, documentary history and community experience in the publisher’s description. The 1932 work and later 1961 history show an earlier trajectory; their genres and historical questions remain distinct.",
+          "works": "Wah’Kon-Tah (1932); The Osages: Children of the Middle Waters (1961)",
+          "source_ids": [
+            "ind126_mathews",
+            "ind126_mathews_dates"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "lilikala_kameeleihiwa",
+          "role": "historian",
+          "context": "Publisher describes Hawaiian-language historical inquiry into the Māhele and land relations and names earlier Hawaiian intellectual traditions. Hawaiʻi’s historical trajectory is distinct from Māori and continental North American examples.",
+          "works": "Native Land and Foreign Desires (1992)",
+          "source_ids": [
+            "ind126_hawaii_land"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "haunani_kay_trask",
+          "role": "critic",
+          "context": "Essays connect Hawaiian colonial history, sovereignty and criticism of racism and gender discrimination. The publisher distinguishes the 1993 original and 1999 revised edition; later additions are not assigned to the earlier book.",
+          "works": "From a Native Daughter (1993; revised 1999)",
+          "source_ids": [
+            "ind126_hawaii_trask"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "kevin_gilbert",
+          "role": "contributor",
+          "context": "Interview collection brings Aboriginal narrators’ experiences into print. His interviewer/compiler credit does not make him the sole producer of their knowledge; narrator-specific and methodological claims require the interviews.",
+          "works": "Living Black: Blacks Talk to Kevin Gilbert (1977)",
+          "source_ids": [
+            "ind126_gilbert"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "ruby_langford_ginibi",
+          "role": "contributor",
+          "context": "Life writing offers a situated history of family, work, movement and discrimination. The ANU account supports a distinct historical narrative; autobiography is not interchangeable with all transmitted oral traditions.",
+          "works": "Don’t Take Your Love to Town (1988)",
+          "source_ids": [
+            "ind126_ginibi"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "carlos_mamani_condori",
+          "role": "historian",
+          "context": "The catalogue identifies a local historical study of Aymara land and political struggles through Nina Qhispi’s biography. Its dates describe the historical subject. This inclusion does not infer the book’s method or assign THOA’s collective knowledge to one author.",
+          "works": "Taraqu, 1866–1935 (published 1991)",
+          "source_ids": [
+            "ind126_mamani"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "blair_stonechild",
+          "role": "historian",
+          "context": "Coauthor of a Saskatchewan historical study of First Nations and the 1885 conflict. Bill Waiser’s outside coauthor credit is explicit. The bibliographic inclusion does not constitute a chapter-level check of its historical interpretations.",
+          "works": "With Bill Waiser, Loyal Till Death: Indians and the North-West Rebellion (1997)",
+          "source_ids": [
+            "ind126_stonechild_waiser"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "john_lutz",
+          "role": "historian",
+          "context": "Labour-history scholarship and university teaching are distinct contributions; field-school co-instruction joined community expertise.",
+          "works": "After the Fur Trade (1992); Stó:lō Ethnohistory Field School (first class 1998)",
+          "source_ids": [
+            "ind127_lutz_1992",
+            "ind127_fieldschool",
+            "ind127_turning"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "keith_thor_carlson",
+          "role": "historian",
+          "context": "Stó:lō staff historian and field-school co-instructor; contributed to a community-supported research partnership.",
+          "works": "You Are Asked to Witness (editor, 1997); field-school planning (1997), first class (1998)",
+          "source_ids": [
+            "ind127_carlson_books",
+            "ind127_turning",
+            "ind127_fieldschool"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "albert_sonny_mchalsie",
+          "role": "contributor",
+          "context": "Stó:lō historian and cultural educator; taught and mentored field-school students from 1998.",
+          "works": "Stó:lō Ethnohistory Field School (1998); later place-name teaching account (2016)",
+          "source_ids": [
+            "ind127_mchalsie",
+            "ind127_stolo_2016",
+            "ind127_fieldschool"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "david_m_schaepe",
+          "role": "contributor",
+          "context": "Archaeologist and Stó:lō research staff participant in shaping the proposed field-school topics.",
+          "works": "Community consultation for field-school planning (1997), recalled in Turning the Page (2009)",
+          "source_ids": [
+            "ind127_turning"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "david_smith_stolo",
+          "role": "contributor",
+          "context": "Stó:lō archivist named in the planning account; source-specific local record with namesakes unresolved.",
+          "works": "Community consultation for field-school planning (1997), recalled in Turning the Page (2009)",
+          "source_ids": [
+            "ind127_turning"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "james_rodger_miller",
+          "role": "historian",
+          "context": "Native–newcomer and residential-school histories; the latter combines archives and interviews in its publisher description.",
+          "works": "Skyscrapers Hide the Heavens (1989); Shingwauk’s Vision (1996)",
+          "source_ids": [
+            "ind127_miller_1989",
+            "ind127_miller_1996"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "richard_white",
+          "role": "historian",
+          "context": "Great Lakes cultural interaction and historical relationships; the middle ground is a situated interpretation.",
+          "works": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650–1815 (1991)",
+          "source_ids": [
+            "ind127_white_1991"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "cole_harris",
+          "role": "historian",
+          "context": "Colonial geographical change and displacement in British Columbia; preserves his existing historical-geography profile.",
+          "works": "The Resettlement of British Columbia (1997; includes chapters with Robert Galois and David Demeritt)",
+          "source_ids": [
+            "ind127_harris_1997"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "patrick_wolfe",
+          "role": "comparison",
+          "context": "Related settler-colonial and anthropological scholarship, admitted as a bibliographic connection.",
+          "works": "Settler Colonialism and the Transformation of Anthropology (1999)",
+          "source_ids": [
+            "ind127_wolfe_1999"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "lianne_leddy",
+          "role": "historian",
+          "context": "Historical research within her own Serpent River community joins scholarly and family relationships.",
+          "works": "Interviewing Nookomis and Other Reflections (2010)",
+          "source_ids": [
+            "ind127_leddy_2010"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "gertrude_lewis",
+          "role": "contributor",
+          "context": "Leddy’s grandmother and historical-knowledge contributor; shaped the interview’s recording and transcription.",
+          "works": "Conversations discussed in Interviewing Nookomis (2010)",
+          "source_ids": [
+            "ind127_leddy_2010"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "susan_neylan",
+          "role": "contributor",
+          "context": "Acknowledged adviser who introduced collaborative research questions; mentorship is distinct from authorship.",
+          "works": "Acknowledgement in Interviewing Nookomis (2010), p. 1 note 1",
+          "source_ids": [
+            "ind127_leddy_2010"
+          ],
+          "basis": "source_review"
+        },
+        {
+          "person_id": "winona_wheeler",
+          "role": "contributor",
+          "context": "Leddy cites her relational account of oral history; the cited chapter itself remains unread.",
+          "works": "Reflections on the Social Relations of Indigenous Oral Histories (2005), as cited by Leddy (2010)",
+          "source_ids": [
+            "ind127_leddy_2010"
+          ],
+          "basis": "source_review"
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "A selective grouping of independently rooted Indigenous historical practices and decolonizing research, with Māori, Native North American, Yukon, Australian and Andean examples. Community historians, academic historians and outside collaborators have different positions. Neither anthropology nor European theory is their common origin; no selection stands for every nation or protocol.",
+      "scope_note": "A selective grouping of independently rooted Indigenous historical practices and decolonizing research, with Andean, Haudenosaunee, Ojibwe, Cree, Métis, Wendat, Māori, Osage, Native Hawaiian, Yukon and Australian examples. Earlier writing, community knowledge, academic historical scholarship and decolonizing methodology have different histories. Community historians, academic historians and outside collaborators have different positions. Neither anthropology nor European theory is their common origin; no selection stands for every nation or protocol. Membership is a contextual intellectual contribution, not a binary Indigenous-identity classification. Journal counts are venue-based publication proxies and cannot date the origins of these practices or identify Indigenous authorship. Academic Indigenous history includes documented collaborations with scholars working across historical, anthropological and geographical inquiries. Shared research subjects do not establish intellectual descent. Later source dates are separate from earlier events; only Leddy’s 2010 article is accepted here as a selected post-2000 intervention.",
       "strands": [
         {
           "id": "maori",
@@ -17027,9 +17470,10 @@
           "person_ids": [
             "te_rangi_hiroa"
           ],
-          "works": "The Coming of the Maori (1949)",
+          "works": "Vikings of the Sunrise (1938); The Coming of the Maori (1949)",
           "source_ids": [
-            "buck_coming"
+            "buck_coming",
+            "ind126_buck_interwar"
           ],
           "basis": "editorial_distinction"
         },
@@ -17130,8 +17574,394 @@
             "cruikshank_legitimacy_primary"
           ],
           "basis": "editorial_distinction"
+        },
+        {
+          "id": "early_andean_chronicle",
+          "title": "Early Andean manuscript history",
+          "focus": "An early colonial-period historical manuscript, situated in a Christian and royal political framework. It demonstrates earlier Indigenous-authored historical writing without making a modern field or THOA descend directly from it.",
+          "person_ids": [
+            "felipe_guaman_poma"
+          ],
+          "works": "El primer nueva corónica y buen gobierno (manuscript c. 1615/1616)",
+          "source_ids": [
+            "ind126_guaman_manuscript"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "haudenosaunee_print",
+          "title": "Haudenosaunee histories in print",
+          "focus": "Cusick’s preface presents gathering materials and translation as historical work. The 1828 second edition is a verified witness; printed publication is not the origin of the traditions it recounts.",
+          "person_ids": [
+            "david_cusick"
+          ],
+          "works": "Sketches of Ancient History of the Six Nations (checked second edition, 1828)",
+          "source_ids": [
+            "ind126_cusick_1828"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "anticolonial_commemoration",
+          "title": "Historical argument and colonial commemoration",
+          "focus": "Apess challenges colonial historical judgments and Pilgrim celebration. His Christian moral argument is an earlier intervention; no borrowing by later theorists is asserted.",
+          "person_ids": [
+            "william_apess"
+          ],
+          "works": "Eulogy on King Philip (1836), selected paragraphs",
+          "source_ids": [
+            "ind126_apess_1836"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "ojibwe_written_history",
+          "title": "Ojibwe oral knowledge and written history",
+          "focus": "Warren’s history draws on relatives and tribal leaders while addressing white readers. The publisher’s discussion retains the author’s nineteenth-century assumptions and limitations.",
+          "person_ids": [
+            "william_w_warren"
+          ],
+          "works": "History of the Ojibway People (first publication, 1885)",
+          "source_ids": [
+            "ind126_warren_1885"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "maori_manuscript_authorship",
+          "title": "Māori manuscript authorship and colonial publication",
+          "focus": "Te Rangikāheke’s genealogy and historical narration survive within manuscripts and Grey’s altered publications. Attribution reveals an Indigenous author behind texts circulated under a governor’s name.",
+          "person_ids": [
+            "wiremu_maihi_te_rangikaheke"
+          ],
+          "works": "Historical and genealogical manuscripts before 1854; material reused in Grey’s publications, 1853–55",
+          "source_ids": [
+            "ind126_rangikaheke"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "cree_interwar",
+          "title": "Cree narration and interwar writing",
+          "focus": "Thunderchild’s narration, Ahenakew’s 1923 recording and literary writing, his 1929 publication, and the 1973 edited book carry different dates and authorial roles. Cuthand’s 1995 criticism makes editorial selection visible.",
+          "person_ids": [
+            "chief_thunderchild",
+            "edward_ahenakew",
+            "stan_cuthand"
+          ],
+          "works": "1923 narration/recording; Cree Trickster Tales (1929); Voices of the Plains Cree (1973; 1995 introduction)",
+          "source_ids": [
+            "ind126_ahenakew_voices",
+            "ind126_ahenakew_1929"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "tainui_historical_writing",
+          "title": "Tainui genealogies and historical writing",
+          "focus": "Jones’s Māori-language historical work and the history of its publication distinguish interwar research from the 1995 posthumous volume. The institutional biography describes disputed reuse of an earlier English manuscript.",
+          "person_ids": [
+            "pei_te_hurinui_jones"
+          ],
+          "works": "Māhinārangi (1929); English historical manuscript by c. 1936; Ngā iwi o Tainui (1995, posthumous)",
+          "source_ids": [
+            "ind126_jones_tainui"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "canadian_historical_synthesis",
+          "title": "Canadian historical synthesis and regional inquiry",
+          "focus": "Dickason’s studies of representations and historical synthesis sit alongside Stonechild and Waiser’s Saskatchewan study. These are different scales and collaborations, not one doctrinal programme.",
+          "person_ids": [
+            "olive_patricia_dickason",
+            "blair_stonechild"
+          ],
+          "works": "The Myth of the Savage (1984); Canada’s First Nations (1992); Stonechild and Waiser, Loyal Till Death (1997)",
+          "source_ids": [
+            "ind126_dickason_myth",
+            "ind126_dickason_survey",
+            "ind126_stonechild_waiser"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "metis_representation_criticism",
+          "title": "Métis scholarship and criticism of representation",
+          "focus": "Adams’s colonial and class interpretation and LaRocque’s criticism of representation broaden the 1970s bibliography. Her 1999 dissertation p. 34 explicitly connects the earlier book to curriculum research and resistance. These are distinct intellectual positions.",
+          "person_ids": [
+            "howard_adams",
+            "emma_larocque"
+          ],
+          "works": "Prison of Grass (1975); Defeathering the Indian (1975)",
+          "source_ids": [
+            "ind126_adams",
+            "ind126_larocque_book",
+            "ind126_larocque_author",
+            "ind126_larocque_thesis"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "autohistory",
+          "title": "Wendat autohistory and historical interpretation",
+          "focus": "Sioui’s author interview supplies an explicit historiographical proposal about self-interpretation and oral transmission. His moral account remains attributed and situated; French and English publication dates are distinct.",
+          "person_ids": [
+            "georges_e_sioui"
+          ],
+          "works": "Pour une autohistoire amérindienne (1989); author interview (1991); English translation by Sheila Fischman (1992)",
+          "source_ids": [
+            "ind126_sioui_interview",
+            "ind126_sioui_english"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "native_history_institutions",
+          "title": "Historical synthesis and Native history institutions",
+          "focus": "McNickle’s 1949 work and role in creating the Newberry centre in 1972 establish an earlier bibliography and institutional contribution. Neither the centre nor a university is treated as the origin of Indigenous historical knowledge.",
+          "person_ids": [
+            "darcy_mcnickle"
+          ],
+          "works": "They Came Here First: The Epic of the American Indian (1949); Newberry history centre (1972)",
+          "source_ids": [
+            "ind126_mcnickle"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "osage_history",
+          "title": "Osage historical writing across the century",
+          "focus": "Mathews’s 1932 work and 1961 history supply earlier and mid-century examples. The publisher describes oral and documentary historical resources; detailed methodological claims await the works.",
+          "person_ids": [
+            "john_joseph_mathews"
+          ],
+          "works": "Wah’Kon-Tah (1932); The Osages: Children of the Middle Waters (1961)",
+          "source_ids": [
+            "ind126_mathews",
+            "ind126_mathews_dates"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "hawaiian_historical_authority",
+          "title": "Hawaiian land history and sovereignty",
+          "focus": "Kameʻeleihiwa’s land history and Trask’s political essays provide distinct Hawaiian contributions. Hawaiian-language historiography has earlier authors; neither regional programme is a subset of the Māori examples.",
+          "person_ids": [
+            "lilikala_kameeleihiwa",
+            "haunani_kay_trask"
+          ],
+          "works": "Native Land and Foreign Desires (1992); From a Native Daughter (1993; revised 1999)",
+          "source_ids": [
+            "ind126_hawaii_land",
+            "ind126_hawaii_trask"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "aboriginal_life_writing",
+          "title": "Aboriginal interviews and life writing",
+          "focus": "Gilbert’s interviews and Ginibi’s autobiography broaden the historical bibliography beyond university monographs. Their forms and authorial positions differ from each other and from community-transmitted oral histories.",
+          "person_ids": [
+            "kevin_gilbert",
+            "ruby_langford_ginibi"
+          ],
+          "works": "Living Black (1977); Don’t Take Your Love to Town (1988)",
+          "source_ids": [
+            "ind126_gilbert",
+            "ind126_ginibi"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "aymara_local_history",
+          "title": "Aymara political and local history",
+          "focus": "Mamani’s catalogued 1991 study complements the existing collective-history strand. The period 1866–1935 belongs to the subject, not its publication or the foundation of THOA.",
+          "person_ids": [
+            "carlos_mamani_condori"
+          ],
+          "works": "Taraqu, 1866–1935 (published 1991)",
+          "source_ids": [
+            "ind126_mamani"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "stolo_community_university",
+          "title": "Stó:lō community–university historical practice",
+          "focus": "Community priorities, cultural teaching, archives and university instruction contribute different resources. Planning in 1997 preceded the first class in 1998; elders, hosts and students also participated.",
+          "person_ids": [
+            "albert_sonny_mchalsie",
+            "david_m_schaepe",
+            "david_smith_stolo",
+            "keith_thor_carlson",
+            "john_lutz"
+          ],
+          "works": "Field-school planning (1997); first class (1998); later accounts (2009, 2011, 2016)",
+          "source_ids": [
+            "ind127_turning",
+            "ind127_fieldschool",
+            "ind127_mchalsie",
+            "ind127_stolo_2016"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "indigenous_labour_exchange",
+          "title": "Indigenous labour and exchange",
+          "focus": "A labour-history inquiry into Indigenous economic participation; distinct from a methodological origin claim.",
+          "person_ids": [
+            "john_lutz"
+          ],
+          "works": "After the Fur Trade (1992)",
+          "source_ids": [
+            "ind127_lutz_1992"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "native_newcomer_institutions",
+          "title": "Native–newcomer and institutional histories",
+          "focus": "Historical synthesis and residential-school inquiry connect policy, institutions and Indigenous experiences.",
+          "person_ids": [
+            "james_rodger_miller"
+          ],
+          "works": "Skyscrapers Hide the Heavens (1989); Shingwauk’s Vision (1996)",
+          "source_ids": [
+            "ind127_miller_1989",
+            "ind127_miller_1996"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "middle_ground",
+          "title": "Middle-ground interpretation",
+          "focus": "Cultural interaction exceeds a simple assimilation/persistence account. Great Lakes circumstances do not supply a universal account of colonization.",
+          "person_ids": [
+            "richard_white"
+          ],
+          "works": "The Middle Ground (1991)",
+          "source_ids": [
+            "ind127_white_1991"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "colonial_geography",
+          "title": "Colonial geography and displacement",
+          "focus": "Historical geography examines the colonial transformation of British Columbia and its effects on land and society.",
+          "person_ids": [
+            "cole_harris"
+          ],
+          "works": "The Resettlement of British Columbia (1997)",
+          "source_ids": [
+            "ind127_harris_1997"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "settler_colonial_interlocutor",
+          "title": "Related settler-colonial scholarship",
+          "focus": "A related bibliography on settler colonialism and anthropology. Book arguments and transmission remain outside this metadata-level inclusion.",
+          "person_ids": [
+            "patrick_wolfe"
+          ],
+          "works": "Settler Colonialism and the Transformation of Anthropology (1999)",
+          "source_ids": [
+            "ind127_wolfe_1999"
+          ],
+          "basis": "editorial_distinction"
+        },
+        {
+          "id": "serpent_river_collaboration",
+          "title": "Community and academic relationships at Serpent River",
+          "focus": "Family knowledge, scholarly dialogue and mentorship shape historical practice; the roles remain distinct.",
+          "person_ids": [
+            "lianne_leddy",
+            "gertrude_lewis",
+            "susan_neylan",
+            "winona_wheeler",
+            "angela_cavender_wilson",
+            "linda_tuhiwai_smith",
+            "julie_cruikshank"
+          ],
+          "works": "Interviewing Nookomis and Other Reflections (2010)",
+          "source_ids": [
+            "ind127_leddy_2010"
+          ],
+          "basis": "editorial_distinction",
+          "intervention_year": 2010,
+          "work_publication_year": 2010,
+          "participant_credits": [
+            {
+              "name": "Gertrude Lewis",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            },
+            {
+              "name": "Valerie Commanda",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            },
+            {
+              "name": "Arnelda Jacobs",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            },
+            {
+              "name": "Betty Jacobs",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            },
+            {
+              "name": "Terry Jacobs",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            },
+            {
+              "name": "Peter Johnston",
+              "role": "named knowledge contributor",
+              "locator": "p. 1 note 1"
+            }
+          ],
+          "citation_note": "Leddy cites Wheeler (2005), Smith (1999), Wilson (1998) and Cruikshank with the three Yukon elders (1991 edition), among others. Citation is documented engagement, not proof of sole influence or full reading of those cited works.",
+          "work_ids": [
+            "work:ind127:leddy_2010"
+          ],
+          "claim_ids": [
+            "claim:ind127:leddy_practice",
+            "claim:ind127:leddy_recording"
+          ]
         }
-      ]
+      ],
+      "date_span": {
+        "start": 1615,
+        "end": 2000,
+        "start_kind": "earlier_roots",
+        "end_kind": "coverage_limit",
+        "precision": "approximate",
+        "basis": "c. 1615/1616 dates the earliest selected manuscript witness, not the origin of Indigenous historical knowledge or a common academic field. Selected nineteenth-century and interwar practices precede the 1970s–90s academic/methodological growth. The baseline selection is through 2000; a separately marked 2010 article supplies one selected later intervention."
+      },
+      "extension_coverage": {
+        "status": "partial_accepted",
+        "baseline_through": 2000,
+        "research_cutoff": "2026-10-10",
+        "field_review_complete": false,
+        "publication_years": [
+          2010
+        ],
+        "work_ids": [
+          "work:ind127:leddy_2010"
+        ],
+        "claim_ids": [
+          "claim:ind127:leddy_authored",
+          "claim:ind127:leddy_practice",
+          "claim:ind127:leddy_recording",
+          "claim:ind127:lewis_contribution",
+          "claim:ind127:neylan_mentorship"
+        ],
+        "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json"
+      }
     },
     {
       "id": "freud",
@@ -30328,6 +31158,154 @@
         ],
         "acceptance_record": "data/production-batches/extension-1.123/acceptance.json"
       }
+    },
+    {
+      "id": "ranginui_walker",
+      "label": "Ranginui Walker",
+      "date_label": "Selected contributions · 1990",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Māori historical interpretation and political struggle in Aotearoa New Zealand; one regionally situated contribution.",
+      "representative_figures_and_works": "Ka Whawhai Tonu Mātou: Struggle Without End (1990)",
+      "source_ids": [
+        "walker_struggle"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "jean_obrien",
+      "label": "Jean M. O’Brien",
+      "date_label": "Selected contributions · 1997",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Natick land loss and strategic kinship/institutional adaptation challenge an uncomplicated disappearance narrative.",
+      "representative_figures_and_works": "Dispossession by Degrees: Indian Land and Identity in Natick, Massachusetts, 1650–1790 (1997)",
+      "source_ids": [
+        "obrien_dispossession"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "vine_deloria_jr",
+      "label": "Vine Deloria Jr.",
+      "date_label": "Selected contributions · 1969",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "A Native American manifesto challenges social scientists and institutions; its particular arguments await primary chapter review.",
+      "representative_figures_and_works": "Custer Died for Your Sins (1969)",
+      "source_ids": [
+        "deloria_custer"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "angela_cavender_wilson",
+      "label": "Angela Cavender Wilson",
+      "date_label": "Selected contributions · 1996",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Wahpetonwan Dakota historian argues for tribal and family historians’ authority, sustained relationships and careful interpretation of transmitted knowledge.",
+      "representative_figures_and_works": "“American Indian History or Non-Indian Perceptions…” (1996)",
+      "source_ids": [
+        "wilson_indian_history"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "edward_ahenakew",
+      "label": "Edward Ahenakew",
+      "date_label": "Selected contributions · 1923 recording; 1929 and 1973 publications",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Recorded Chief Thunderchild’s narratives in Cree in 1923 and wrote through Old Keyam’s literary voice. The 1973 book passed through Ruth M. Buck’s editing; composition, narration and publication are distinct. His 1929 folklore article supplies an interwar publication milestone.",
+      "representative_figures_and_works": "Thunderchild recordings (1923); Cree Trickster Tales (1929); Voices of the Plains Cree (1973, edited by Ruth M. Buck)",
+      "source_ids": [
+        "ind126_ahenakew_voices",
+        "ind126_ahenakew_1929"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "olive_patricia_dickason",
+      "label": "Olive Patricia Dickason",
+      "date_label": "Selected contributions · 1984; 1992",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Her historical scholarship examines European representations and places First Peoples within a broad Canadian historical synthesis. MNO recognizes her Métis contribution. She is one major historian within a wider field, not its sole origin.",
+      "representative_figures_and_works": "The Myth of the Savage (1984); Canada’s First Nations (1992)",
+      "source_ids": [
+        "ind126_dickason_nation",
+        "ind126_dickason_myth",
+        "ind126_dickason_survey"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "howard_adams",
+      "label": "Howard Adams",
+      "date_label": "Selected contributions · 1975",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Métis scholar’s critique of Canadian colonialism joins historical interpretation and Marxist politics. The institutional biography dates his doctorate and university appointment to 1966; detailed book arguments remain outside this description-level inclusion.",
+      "representative_figures_and_works": "Prison of Grass: Canada from a Native Point of View (1975)",
+      "source_ids": [
+        "ind126_adams"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "georges_e_sioui",
+      "label": "Georges E. Sioui",
+      "date_label": "Selected contributions · 1989; 1991; 1992",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "In his 1991 interview, explains autohistory as bringing Indigenous self-interpretation and transmitted traditions into historical discourse. His moral and philosophical proposal is situated; its account of Amerindian values does not define every nation.",
+      "representative_figures_and_works": "Pour une autohistoire amérindienne (1989); author interview (1991); English translation by Sheila Fischman (1992)",
+      "source_ids": [
+        "ind126_sioui_interview",
+        "ind126_sioui_english"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
+    },
+    {
+      "id": "darcy_mcnickle",
+      "label": "D’Arcy McNickle",
+      "date_label": "Selected contributions · 1949; 1972 institutional contribution",
+      "layer": "intellectual_connections",
+      "period": null,
+      "hunt_core_paradigm": false,
+      "description": "Earlier historical synthesis and institution-building: the Newberry finding aid records his 1949 work and participation in creating its history centre in 1972. Institutional and bibliographic evidence does not establish particular book arguments or a universal field foundation.",
+      "representative_figures_and_works": "They Came Here First: The Epic of the American Indian (1949); Newberry history centre (1972)",
+      "source_ids": [
+        "ind126_mcnickle"
+      ],
+      "entry_kind": "person",
+      "entry_type": "Individual thinker or historian",
+      "scope_note": "Selected contribution within Indigenous history’s independently rooted approaches. This entry does not designate a founder or an origin for Indigenous historical knowledge. Read the cited source-check limits; selected work dates are not a lifespan or a continuous career boundary."
     }
   ],
   "edges": [
@@ -42402,6 +43380,188 @@
         "culture"
       ],
       "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_767",
+      "source": "ranginui_walker",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Māori historical interpretation",
+      "map_label": "Māori historical interpretation",
+      "target_strand": "indigenous/maori",
+      "evidence_note": "Māori historical interpretation and political struggle in Aotearoa New Zealand; one regionally situated contribution. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "walker_struggle"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_768",
+      "source": "jean_obrien",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Natick land and historical identity",
+      "map_label": "Natick land and historical identity",
+      "target_strand": "indigenous/land",
+      "evidence_note": "Natick land loss and strategic kinship/institutional adaptation challenge an uncomplicated disappearance narrative. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "obrien_dispossession"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_769",
+      "source": "vine_deloria_jr",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Native criticism of research institutions",
+      "map_label": "Native criticism of research institutions",
+      "target_strand": "indigenous/institutional_criticism",
+      "evidence_note": "A Native American manifesto challenges social scientists and institutions; its particular arguments await primary chapter review. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "deloria_custer"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_770",
+      "source": "angela_cavender_wilson",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Tribal and family historical authority",
+      "map_label": "Tribal and family historical authority",
+      "target_strand": "indigenous/tribal_family",
+      "evidence_note": "Wahpetonwan Dakota historian argues for tribal and family historians’ authority, sustained relationships and careful interpretation of transmitted knowledge. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "wilson_indian_history"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_771",
+      "source": "edward_ahenakew",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Cree narration and interwar writing",
+      "map_label": "Cree narration and interwar writing",
+      "target_strand": "indigenous/cree_interwar",
+      "evidence_note": "Recorded Chief Thunderchild’s narratives in Cree in 1923 and wrote through Old Keyam’s literary voice. The 1973 book passed through Ruth M. Buck’s editing; composition, narration and publication are distinct. His 1929 folklore article supplies an interwar publication milestone. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "ind126_ahenakew_voices",
+        "ind126_ahenakew_1929"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_772",
+      "source": "olive_patricia_dickason",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Canadian historical synthesis",
+      "map_label": "Canadian historical synthesis",
+      "target_strand": "indigenous/canadian_historical_synthesis",
+      "evidence_note": "Her historical scholarship examines European representations and places First Peoples within a broad Canadian historical synthesis. MNO recognizes her Métis contribution. She is one major historian within a wider field, not its sole origin. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "ind126_dickason_nation",
+        "ind126_dickason_myth",
+        "ind126_dickason_survey"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_773",
+      "source": "howard_adams",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Colonialism and Métis historical interpretation",
+      "map_label": "Colonialism and Métis historical interpretation",
+      "target_strand": "indigenous/metis_representation_criticism",
+      "evidence_note": "Métis scholar’s critique of Canadian colonialism joins historical interpretation and Marxist politics. The institutional biography dates his doctorate and university appointment to 1966; detailed book arguments remain outside this description-level inclusion. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "ind126_adams"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_774",
+      "source": "georges_e_sioui",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Autohistory and self-interpretation",
+      "map_label": "Autohistory and self-interpretation",
+      "target_strand": "indigenous/autohistory",
+      "evidence_note": "In his 1991 interview, explains autohistory as bringing Indigenous self-interpretation and transmitted traditions into historical discourse. His moral and philosophical proposal is situated; its account of Amerindian values does not define every nation. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "ind126_sioui_interview",
+        "ind126_sioui_english"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_775",
+      "source": "darcy_mcnickle",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Historical synthesis and institution-building",
+      "map_label": "Historical synthesis and institution-building",
+      "target_strand": "indigenous/native_history_institutions",
+      "evidence_note": "Earlier historical synthesis and institution-building: the Newberry finding aid records his 1949 work and participation in creating its history centre in 1972. Institutional and bibliographic evidence does not establish particular book arguments or a universal field foundation. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field.",
+      "source_ids": [
+        "ind126_mcnickle"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_776",
+      "source": "ethnohistory",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Community–university historical practice",
+      "map_label": "Community–university historical practice",
+      "target_strand": "indigenous/stolo_community_university",
+      "evidence_note": "Stó:lō community and university participants combine different research resources in this particular field-school programme. This comparison records overlapping practice; it does not make either field the origin of the other.",
+      "source_ids": [
+        "ind127_turning",
+        "ind127_fieldschool",
+        "ind127_mchalsie"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_777",
+      "source": "spatialhistory",
+      "target": "indigenous",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Land and colonial geography",
+      "map_label": "Land and colonial geography",
+      "target_strand": "indigenous/colonial_geography",
+      "evidence_note": "Harris’s 1997 geographical inquiry offers a specific connection to histories of Indigenous–settler land relations. This comparison does not assert adoption of his methods by Indigenous historians.",
+      "source_ids": [
+        "ind127_harris_1997"
+      ],
+      "classification_basis": "editorial_review"
     }
   ],
   "sources": [
@@ -52077,6 +53237,438 @@
         "checked_on": "2026-09-28",
         "note": "OpenLibrary work record checked (raw/fox_genovese_1988.openlibrary.json): author, title, 1988, University of North Carolina Press. Book unread."
       }
+    },
+    {
+      "id": "said_subaltern_foreword_1988",
+      "title": "Edward W. Said, foreword to Selected Subaltern Studies, edited by Ranajit Guha and Gayatri Chakravorty Spivak (Oxford University Press, 1988).",
+      "url": "https://books.google.com/books/about/Selected_Subaltern_Studies.html?id=JEjsQbxIOC0C",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "OUP bibliographic description displayed by Google Books checked: editors, 1988 imprint, ISBN 9780195052893 and Said’s foreword credit. The foreword body was not read; this establishes the contribution, not intellectual descent or membership. The direct OUP page returned an anti-bot screen."
+      }
+    },
+    {
+      "id": "cooper_stoler_tensions_1997",
+      "title": "Frederick Cooper and Ann Laura Stoler, eds., Tensions of Empire: Colonial Cultures in a Bourgeois World (University of California Press, 1997).",
+      "url": "https://www.ucpress.edu/books/tensions-of-empire/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description, February 1997 date, editor credits and contents checked. The contents credit Stoler and Cooper with the opening research-agenda chapter. The description supports an editorial context connecting colony and metropole and examining changing categories of rule. Chapter and volume bodies were not read; this is not evidence of founding postcolonial theory or of its later reception."
+      }
+    },
+    {
+      "id": "ind126_guaman_manuscript",
+      "title": "Felipe Guaman Poma de Ayala, El primer nueva corónica y buen gobierno (manuscript c. 1615/1616), Royal Danish Library digital edition.",
+      "url": "https://poma.kb.dk/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Indexed Royal Library edition heading and contents checked: autograph manuscript dated 1615/1616, Andean and colonial historical sections and dialogue with the king. Direct opening returned 403. Bibliographic inclusion only; no manuscript passage or transmission to later authors established."
+      }
+    },
+    {
+      "id": "ind126_cusick_1828",
+      "title": "David Cusick, Sketches of Ancient History of the Six Nations, second edition (Tuscarora Village, 1828), Library of Congress facsimile.",
+      "url": "https://www.loc.gov/item/06003795/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "LOC catalogue metadata and downloaded facsimile checked. Read preface dated 10 June 1828 (PDF page 11) and opening of Part I (PDF pages 12–13). Cusick describes gathering materials and translating into English. The verified edition is 1828, not a claim to the first-ever Indigenous history or to a universal origin."
+      }
+    },
+    {
+      "id": "ind126_apess_1836",
+      "title": "William Apess, Eulogy on King Philip (1836), Voices of Democracy text and edition note.",
+      "url": "https://voicesofdemocracy.umd.edu/apess-eulogy-speech-text/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read selected paragraphs 1–4, 10–21: Christian moral criticism, historical reinterpretation of colonial violence, and criticism of commemorating the Pilgrims. Textual authentication page distinguishes 1836/1837 editions and the 1992 O’Connell edition used online. Interpretation concerns Apess’s argument, not independent verification of every event he narrates."
+      }
+    },
+    {
+      "id": "ind126_warren_1885",
+      "title": "William W. Warren, History of the Ojibway People (first published 1885); Minnesota Historical Society second-edition description.",
+      "url": "https://shop.mnhs.org/products/history-ojibway-people-second-edition",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description checked: first publication in 1885, accounts from relatives and tribal leaders, transcription for a nineteenth-century white readership, and acknowledged interpretive limitations. Book body and manuscript completion date not checked."
+      }
+    },
+    {
+      "id": "ind126_rangikaheke",
+      "title": "Jenifer Curnow, Wiremu Maihi Te Rangikāheke, Dictionary of New Zealand Biography (1990), Te Ara.",
+      "url": "https://teara.govt.nz/en/biographies/1t66/te-rangikaheke-wiremu-maihi",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read biography sections on manuscripts written before 1854, historical narration, genealogy, land, and Grey’s unacknowledged alterations and reuse in 1853–55 publications. Institutional biographical account, not a reading of the manuscripts; no direct influence on Smith or Walker established."
+      }
+    },
+    {
+      "id": "ind126_ahenakew_voices",
+      "title": "Edward Ahenakew, Voices of the Plains Cree (1973), edited by Ruth M. Buck; 1995 University of Regina edition with Stan Cuthand’s introduction.",
+      "url": "https://iportal.usask.ca/docs/VoicesOfThePlainsCree.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Downloaded 1995 edition. Checked imprint and contents; read Cuthand’s introduction pp. xii–xiv and xx and Buck’s 1973 introduction pp. 1–2. Thunderchild’s 1923 narration, Ahenakew’s recording, Old Keyam’s literary form, and later editorial selection remain distinct. No full-book reading or claim that the printed stories are unmediated transcripts. Cuthand’s introductory recollections contain a chronological inconsistency about seeing Thunderchild; that detail is not adopted."
+      }
+    },
+    {
+      "id": "ind126_ahenakew_1929",
+      "title": "Edward Ahenakew, Cree Trickster Tales, Journal of American Folklore 42, no. 166 (1929): 309–353.",
+      "url": "https://www.jstor.org/stable/i223502",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher issue contents checked: author E. Ahenakew, October–December 1929, pages 309–353, DOI 10.2307/535231. Article body unread. Oral-tradition publication is not automatically classified as a modern historical-method manifesto."
+      }
+    },
+    {
+      "id": "ind126_jones_tainui",
+      "title": "Bruce Biggs, Pei Te Hurinui Jones, Dictionary of New Zealand Biography (1998), Te Ara.",
+      "url": "https://teara.govt.nz/en/biographies/4j11/jones-pei-te-hurinui",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read biographical sections on recording Tainui genealogies, Māhinārangi (1929), English manuscript by about 1936, disputed reuse by Kelly in 1949, and posthumous Ngā iwi o Tainui (1995). Publication, composition and later editing distinguished. Original works unread; King Pōtatau’s genre is disputed in this account."
+      }
+    },
+    {
+      "id": "ind126_buck_interwar",
+      "title": "M. P. K. Sorrenson, Peter Henry Buck (Te Rangi Hīroa), Dictionary of New Zealand Biography (1996, updated 2002), Te Ara.",
+      "url": "https://teara.govt.nz/en/biographies/3b54/buck-peter-henry",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read institutional biography including interwar research and Vikings of the Sunrise (1938). Adds a dated earlier contribution to the existing person and strand; survey body unread. Does not equate Buck’s ethnology with later decolonizing methodology."
+      }
+    },
+    {
+      "id": "ind126_dickason_nation",
+      "title": "Métis Nation of Ontario, Métis Scholar Olive Dickason Passes (18 April 2011).",
+      "url": "https://www.metisnation.org/news/olive-dickason/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read MNO’s recognition of Dickason as Métis and original Cultural Commission member. Supports contextual affiliation and 1977 doctorate. The appended obituary’s single-founder claim and its inconsistent dating of Canada’s First Nations are not adopted."
+      }
+    },
+    {
+      "id": "ind126_dickason_myth",
+      "title": "Olive Patricia Dickason, The Myth of the Savage and the Beginnings of French Colonialism in the Americas (1984); University of Alberta Press description of later edition.",
+      "url": "https://ualbertapress.ca/9781772124545/the-myth-of-the-savage-and-the-beginnings-of-french-colonialism-in-the-americas/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description checked for study of early contact and European representations. Page lists a 1997 edition; original 1984 date cross-checked with MNO account and contemporary bibliographic review. Body unread; publisher blurbs are not passage-level findings."
+      }
+    },
+    {
+      "id": "ind126_dickason_survey",
+      "title": "Olive Patricia Dickason, Canada’s First Nations: A History of Founding Peoples from Earliest Times (McClelland & Stewart, 1992), Canadian Language Museum book record.",
+      "url": "https://languagemuseum.ca/books/canadas-first-nations-a-history-of-founding-peoples-from-earliest-times/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Museum book record checked: original author, 1992 date, publisher and ISBN 0771028008, description of historical synthesis combining history, anthropology and archaeology. Not a reading of the survey or evidence of every later reception claim."
+      }
+    },
+    {
+      "id": "ind126_adams",
+      "title": "Ron Laliberté, Howard Adams (1921–2001), Indigenous Saskatchewan Encyclopedia, University of Saskatchewan.",
+      "url": "https://teaching.usask.ca/indigenoussk/import/adams_howard_1921-2001.php",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read institutional biography: doctorate in History of Education and Saskatchewan appointment in 1966, Prison of Grass (1975), Métis and Marxist contextual interpretation, and colonialism/assimilation critique. Book body unread. This distinguishes academic participation before 1970 from later expansion."
+      }
+    },
+    {
+      "id": "ind126_larocque_book",
+      "title": "Emma LaRocque, Defeathering the Indian (Book Society of Canada, 1975), Smithsonian Libraries catalogue.",
+      "url": "https://www.si.edu/es/object/defeathering-indian-emma-laroque%3Asiris_sil_1106831",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Indexed Smithsonian catalogue author/title/year checked; direct opening unavailable. Catalogue uses LaRoque spelling and identifies LaRocque in authority form. Bibliographic inclusion only."
+      }
+    },
+    {
+      "id": "ind126_larocque_author",
+      "title": "Emma LaRocque author profile, University of Manitoba Press.",
+      "url": "https://uofmpress.ca/books/authors/emma-larocque",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher author description checked for Defeathering the Indian, Canadian historiography and Indigenous representations. No first-edition body reading or universal methodological claim."
+      }
+    },
+    {
+      "id": "ind126_sioui_interview",
+      "title": "Yolande Ricard, Georges E. Sioui: interview, Québec français 80 (winter 1991): 76–78, discussing Pour une autohistoire amérindienne (1989).",
+      "url": "https://www.erudit.org/fr/revues/qf/1991-n80-qf1224771/44778ac.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read author’s explanation of autohistory on p. 77 and adjacent discussion. Title/metadata identifies original 1989 French work. Supports his proposal to bring Indigenous self-interpretation and transmitted traditions into historical discourse. Claims about all Amerindian values are attributed to Sioui, not adopted as a universal description."
+      }
+    },
+    {
+      "id": "ind126_sioui_english",
+      "title": "Georges E. Sioui, For an Amerindian Autohistory (1992), translated by Sheila Fischman, McGill-Queen’s University Press.",
+      "url": "https://www.mqup.ca/for-an-amerindian-autohistory-products-9780773509504.php",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description, translator, foreword credit and October 1992 date checked. French original 1989 separately evidenced by contemporary interview. Body unread; publisher’s claim that he was the first is not adopted."
+      }
+    },
+    {
+      "id": "ind126_mcnickle",
+      "title": "D’Arcy McNickle papers, Newberry Library archival finding aid.",
+      "url": "https://archives.newberry.org/repositories/2/resources/333",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Indexed custodial finding-aid sections checked for They Came Here First (1949), University of Saskatchewan work and creating the Center for the History of the American Indian in 1972, named after him in 1984. Direct requests returned 403; evidence is limited to the indexed institutional account, not archival item or book reading."
+      }
+    },
+    {
+      "id": "ind126_mathews",
+      "title": "John Joseph Mathews, The Osages: Children of the Middle Waters (1961), University of Oklahoma Press later-edition description.",
+      "url": "https://www.oupress.com/9780806117706/the-osages/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description checked for oral history, recorded history and author’s community experience, and Wah’Kon-Tah’s original 1932 date. Page dates the paperback to 1981; original 1961 date cross-checked against Oklahoma Historical Society biography. Neither body read."
+      }
+    },
+    {
+      "id": "ind126_mathews_dates",
+      "title": "John Joseph Mathews, Oklahoma Historical Society Encyclopedia.",
+      "url": "https://www.okhistory.org/publications/enc/entry?entry=MA037",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Institutional biographical account checked for Wah’Kon-Tah (1932) and The Osages (1961). Retain genre differences rather than treating the two as interchangeable methodological treatises."
+      }
+    },
+    {
+      "id": "ind126_hawaii_land",
+      "title": "Lilikalā Kameʻeleihiwa, Native Land and Foreign Desires (1992), Bishop Museum Press description.",
+      "url": "https://bishopmuseumpress.org/products/native-land-and-foreign-desires",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description checked for Hawaiian-language sources, land relations and Māhele interpretation, and named nineteenth-century Hawaiian intellectuals Malo, ʻĪʻī and Kamakau. Original 1992 date checked against bibliographic record. Body and specific transmission passages unread."
+      }
+    },
+    {
+      "id": "ind126_hawaii_trask",
+      "title": "Haunani-Kay Trask, From a Native Daughter (1993; revised 1999), University of Hawaiʻi Press description.",
+      "url": "https://uhpress.hawaii.edu/title/from-a-native-daughter-colonialism-and-sovereignty-in-hawaii-revised-edition/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description explicitly distinguishes original 1993 publication and May 1999 revision and describes colonialism, sovereignty, racism and gender discrimination. Neither edition read in full; revision additions are not backdated to 1993."
+      }
+    },
+    {
+      "id": "ind126_gilbert",
+      "title": "Kevin Gilbert, Living Black: Blacks Talk to Kevin Gilbert (1977), Victorian Government Library Service catalogue.",
+      "url": "https://www.vgls.vic.gov.au/client/en_AU/vgls/search/detailnonmodal?d=ent%3A%2F%2FSD_ILS%2F0%2FSD_ILS%3A554211~~0&h=8&ic=true&ps=300&qu=Aboriginal+Australians+--+Government+relations.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Catalogue title, author, 1977 publication and interview/transcript description checked. Specific interviews, narrator credits and editorial methods remain unread; Gilbert is credited as compiler/interviewer, not sole producer of all knowledge."
+      }
+    },
+    {
+      "id": "ind126_ginibi",
+      "title": "Ruby Langford Ginibi, Don’t Take Your Love to Town (Penguin, 1988), ANU Indigenous Australia work-based biographical record.",
+      "url": "https://ia.anu.edu.au/biography/ginibi-ruby-langford-16683",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Institutional record and its work-based descriptions checked: original 1988 edition, life narrative, localities and historical experiences. This is mediated biographical description, not full-book reading or a claim that autobiography and transmitted oral tradition are identical."
+      }
+    },
+    {
+      "id": "ind126_mamani",
+      "title": "Carlos Mamani Condori, Taraqu, 1866–1935: masacre, guerra y renovación en la biografía de Eduardo L. Nina Qhispi (La Paz: Ediciones Aruwiyiri, 1991), Library of Congress HLAS record.",
+      "url": "https://www.loc.gov/item/hlas-bi96010895/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Indexed LOC bibliographic record and attributed HLAS annotation checked: author, 1991 imprint and local Aymara land/rights subject. Direct opening unavailable. Book body, oral-history method and institutional founding role not checked."
+      }
+    },
+    {
+      "id": "ind126_stonechild_waiser",
+      "title": "Blair Stonechild and Bill Waiser, Loyal Till Death: Indians and the North-West Rebellion (Fifth House, 1997), bibliographic record.",
+      "url": "https://books.google.com/books/about/Loyal_Till_Death.html?id=T9IUAAAAYAAJ",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Original 1997 imprint, title and both author credits checked in publisher/catalogue metadata, corroborated by Waiser’s public CV. Book body unread. Bibliographic inclusion preserves outside coauthor credit and does not accept every interpretation of 1885."
+      }
+    },
+    {
+      "id": "ind126_larocque_thesis",
+      "title": "Emma LaRocque, Native Writers Resisting Colonizing Practices in Canadian Historiography and Literature (PhD dissertation, University of Manitoba, 1999), p. 34.",
+      "url": "https://mspace.lib.umanitoba.ca/bitstream/1993/1635/1/NQ45006.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Downloaded thesis; checked title/date and read p. 34. LaRocque relates her 1974 curriculum research to Defeathering the Indian and describes its pedagogical and resistance purposes. This is her 1999 retrospective account, not a full reading of the 1975 book or dissertation."
+      }
+    },
+    {
+      "id": "ind127_turning",
+      "title": "Carlson, Lutz and Schaepe, Turning the Page: Ethnohistory from a New Generation (2009), UFV Research Review 2(2), pp. 1–8.",
+      "url": "https://artsandscience.usask.ca/keithcarlson/Publications/2-chapters/Turning%20the%20Page.PDF",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read indexed primary text, pp. 1–5 and 7–8: disciplinary resources, 1997 planning, named staff and community research priorities. Live download returned 404. Biography dates conflict internally (1997/1998); do not use them as a single founding date. Later model descriptions are retrospective, not proof of every detail in the first class."
+      }
+    },
+    {
+      "id": "ind127_fieldschool",
+      "title": "UVic, Ethnohistory Field School with the Stó:lō, institutional programme history.",
+      "url": "https://hcmc.uvic.ca/project/stolo/index.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read welcome section: first field school in 1998 and community-selected projects. Present partnership is not assigned wholesale to 1998. Saskatchewan participation dates differ across institutional accounts (2002/2003); not canonicalized here."
+      }
+    },
+    {
+      "id": "ind127_mchalsie",
+      "title": "UVic Ring, Naxaxalhts’i (Albert “Sonny” McHalsie), honorary-degree profile, June 2011, p. 6 (PDF page 6).",
+      "url": "https://www.uvic.ca/communicationsmarketing/assets/docs/ring/archives/2011/ring-june2011-web.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read McHalsie profile: teaching and mentoring in the field school since 1998. Later institutional recognition does not date the origin of his knowledge or community traditions."
+      }
+    },
+    {
+      "id": "ind127_stolo_2016",
+      "title": "Tara Sharpe, Unique ethnohistory field school well into its second decade, UVic (21 January 2016).",
+      "url": "https://www.uvic.ca/news/archive/topics/2016%2Bst--l--ethnohistory-field-school%2Bring",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read programme account and McHalsie’s statements on place-name teaching. Contemporary descriptions support later practice; first-course date is separately corroborated."
+      }
+    },
+    {
+      "id": "ind127_stolo_2018",
+      "title": "Towards a New Ethnohistory: Community-Engaged Scholarship among the People of the River (2018), University of Manitoba Press.",
+      "url": "https://uofmpress.ca/books/towards-a-new-ethnohistory",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher description, contents and four editor credits checked: Carlson, Lutz, Schaepe and McHalsie. Book body unread. Publication is 2018; not dated 1998 or added as an accepted 2018 field intervention."
+      }
+    },
+    {
+      "id": "ind127_stolo_publications",
+      "title": "Stó:lō Research and Resource Management Centre, Publications.",
+      "url": "https://www.srrmcentre.com/publications",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Community institution describes You Are Asked to Witness and explicitly dates the historical atlas to 2001. Neither the atlas nor its later editions is moved before 2000."
+      }
+    },
+    {
+      "id": "ind127_carlson_books",
+      "title": "Keith Thor Carlson, Edited Books, author bibliography.",
+      "url": "https://www.keiththorcarlson.com/edited-books",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Read 1997 editorial/author credits for You Are Asked to Witness. Page contains other discrepancies (2018 publisher and field-school date range); use the publisher and programme records for those assertions. Chapters remain unread."
+      }
+    },
+    {
+      "id": "ind127_lutz_1992",
+      "title": "John Lutz, After the Fur Trade: The Aboriginal Labouring Class of British Columbia, 1849–1890, JCHA 3(1) (1992): 69–93; USask I-Portal record.",
+      "url": "https://iportal.usask.ca/record/6423",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Institutional record and summary checked. Érudit PDF metadata agree on 1992 issue date, distinct from 1993 copyright; live download yielded an access-challenge HTML page. Article body unread; bibliography and summary-level subject only."
+      }
+    },
+    {
+      "id": "ind127_miller_1989",
+      "title": "J. R. Miller, Skyscrapers Hide the Heavens (first published 1989), UTP fourth-edition description.",
+      "url": "https://utpdistribution.com/9781487514495/skyscrapers-hide-the-heavens/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher explicitly identifies 1989 first publication. Its 2018 revision and contents are not assigned to the original. No first-founder or quantitative prominence claim."
+      }
+    },
+    {
+      "id": "ind127_miller_1996",
+      "title": "J. R. Miller, Shingwauk’s Vision: A History of Native Residential Schools (1996), UTP.",
+      "url": "https://utpdistribution.com/9781442690738/shingwauks-vision/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher date and description checked: archival research plus interviews, distinct government, missionary and student perspectives. Book body and narrator-specific credits unread; no universal methodological founding claim."
+      }
+    },
+    {
+      "id": "ind127_white_1991",
+      "title": "Richard White, Introduction, The Middle Ground (1991), pp. ix–xvi, Cambridge University Press.",
+      "url": "https://www.cambridge.org/core/books/abs/middle-ground/introduction/77BA2E74A619216D28C32232C8732869",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Indexed primary introduction excerpt and print metadata checked. Cultural interaction is more complex than an absorption/resistance dichotomy. Regional scope is Great Lakes, 1650–1815. Online date 2012 is not the original publication date; full book and direct transmission to other scholars unchecked."
+      }
+    },
+    {
+      "id": "ind127_harris_1997",
+      "title": "Cole Harris, The Resettlement of British Columbia: Essays on Colonialism and Geographical Change (1997), UBC Press.",
+      "url": "https://www.ubcpress.ca/the-resettlement-of-british-columbia",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Publisher date, description and contents checked: displacement and colonial geographical change. Two chapters credit Robert Galois and David Demeritt respectively; Harris is not asserted as sole author of every essay. Book body unread. Existing 2002 Making Native Space record and qualification preserved."
+      }
+    },
+    {
+      "id": "ind127_wolfe_1999",
+      "title": "Patrick Wolfe, Settler Colonialism and the Transformation of Anthropology (Cassell, 1999), institutional bibliography.",
+      "url": "https://www.eoas.info/bib/HASB05075.htm",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-10",
+        "note": "Swinburne institutional bibliography checks author, title and 1999 imprint. Bibliographic inclusion only; the subtitle order differs from the original catalogue record. No book argument, influence on Indigenous scholars or generic founder claim accepted."
+      }
+    },
+    {
+      "id": "ind127_leddy_2010",
+      "title": "Lianne Leddy, Interviewing Nookomis and Other Reflections: The Promise of Community Collaboration, Oral History Forum d’histoire orale 30 (2010), pp. 1–18.",
+      "url": "https://www.oralhistoryforum.ca/index.php/ohf/article/download/386/457/386-Article%20Text-1592-1-10-20110106.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-10",
+        "note": "Downloaded 18-page primary article; read pp. 1–3, 9–14 and 16–18. Named mentor and family/community roles, cited scholarship and interview adaptation checked. Issue year is 2010; URL upload timestamp is 2011. No full reading of cited works or independent verification of narrated environmental events."
+      },
+      "claim_source_record_id": "source:ind127:leddy_2010",
+      "scope_note": "Selected passages and metadata in this article only; cited works have separate reading limits."
     }
   ],
   "revision_history": [
@@ -56680,6 +58272,24 @@
       ],
       "audit": "data/evidence-layer/audits/figure-gaps-2026-09-27/README.md",
       "acceptance_record": "data/production-batches/figure-gaps-1.124/acceptance.json"
+    },
+    {
+      "version": "1.125",
+      "date": "2026-10-10",
+      "acceptance_record": "data/production-batches/student-beta-1.125/acceptance.json",
+      "summary": "Student beta: two bounded roster contributions from the figure audit. Said’s documented 1988 foreword joins Subaltern Studies; Cooper’s 1997 collaboration with Stoler joins the postcolonial-history context with one internal approach. Bibliographic and publisher-description limits remain explicit. No new entries, people, teaching arrows, or post-2000 claims."
+    },
+    {
+      "version": "1.126",
+      "date": "2026-10-10",
+      "acceptance_record": "data/production-batches/indigenous-1.126/acceptance.json",
+      "summary": "Indigenous-history deep dive: 21 source-linked roster people, 15 distinct approaches, 27 scoped sources and nine additional person entries with approach-specific contribution links. Earlier manuscript/print and interwar practices, Canadian scholarship and Hawaiian historical inquiry become explicit. Preserve collective narrators, coauthors, original/reprint dates, source-reading limits and independent roots. No new influence arrows, external identity matches, venue mappings or post-2000 field extension."
+    },
+    {
+      "version": "1.127",
+      "date": "2026-10-10",
+      "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json",
+      "summary": "Complex foundations of academic Indigenous history: community–university Stó:lō practice, labour and institutional histories, middle-ground interpretation, colonial geography and adjacent settler-colonial scholarship. Leddy’s 2010 methodological reflection adds one selected later intervention with distinct scholar, mentor and family-knowledge roles. Twelve new local participants and existing Cole Harris add thirteen roster rows; seven approaches and two undirected comparisons. No individual promotions or new influence arrows; exact-2000 baseline preserved."
     }
   ],
   "people": [
@@ -57625,11 +59235,13 @@
     },
     {
       "id": "ranginui_walker",
-      "label": "Ranginui Walker"
+      "label": "Ranginui Walker",
+      "node_id": "ranginui_walker"
     },
     {
       "id": "jean_obrien",
-      "label": "Jean M. O’Brien"
+      "label": "Jean M. O’Brien",
+      "node_id": "jean_obrien"
     },
     {
       "id": "john_hope_franklin",
@@ -58083,11 +59695,13 @@
     },
     {
       "id": "vine_deloria_jr",
-      "label": "Vine Deloria Jr."
+      "label": "Vine Deloria Jr.",
+      "node_id": "vine_deloria_jr"
     },
     {
       "id": "angela_cavender_wilson",
-      "label": "Angela Cavender Wilson"
+      "label": "Angela Cavender Wilson",
+      "node_id": "angela_cavender_wilson"
     },
     {
       "id": "julie_cruikshank",
@@ -60280,6 +61894,176 @@
       "id": "cameron_blevins",
       "label": "Cameron Blevins",
       "identity_note": "Local credited author; no inferred demographics or external authority."
+    },
+    {
+      "id": "felipe_guaman_poma",
+      "label": "Felipe Guaman Poma de Ayala",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "david_cusick",
+      "label": "David Cusick",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "william_apess",
+      "label": "William Apess",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "william_w_warren",
+      "label": "William W. Warren",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "wiremu_maihi_te_rangikaheke",
+      "label": "Wiremu Maihi Te Rangikāheke",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "edward_ahenakew",
+      "label": "Edward Ahenakew",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion.",
+      "node_id": "edward_ahenakew"
+    },
+    {
+      "id": "chief_thunderchild",
+      "label": "Chief Thunderchild (Peyasiw-awasis / Kapitikow)",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "stan_cuthand",
+      "label": "Stan Cuthand",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "pei_te_hurinui_jones",
+      "label": "Pei Te Hurinui Jones",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "olive_patricia_dickason",
+      "label": "Olive Patricia Dickason",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion.",
+      "node_id": "olive_patricia_dickason"
+    },
+    {
+      "id": "howard_adams",
+      "label": "Howard Adams",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion.",
+      "node_id": "howard_adams"
+    },
+    {
+      "id": "emma_larocque",
+      "label": "Emma LaRocque",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "georges_e_sioui",
+      "label": "Georges E. Sioui",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion.",
+      "node_id": "georges_e_sioui"
+    },
+    {
+      "id": "darcy_mcnickle",
+      "label": "D’Arcy McNickle",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion.",
+      "node_id": "darcy_mcnickle"
+    },
+    {
+      "id": "john_joseph_mathews",
+      "label": "John Joseph Mathews",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "lilikala_kameeleihiwa",
+      "label": "Lilikalā Kameʻeleihiwa",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "haunani_kay_trask",
+      "label": "Haunani-Kay Trask",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "kevin_gilbert",
+      "label": "Kevin Gilbert",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "ruby_langford_ginibi",
+      "label": "Ruby Langford Ginibi",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "carlos_mamani_condori",
+      "label": "Carlos Mamani Condori",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "blair_stonechild",
+      "label": "Blair Stonechild",
+      "identity_note": "Local source-linked historical contributor. No external identity match, citizenship, nation-membership property or demographic classification inferred from roster inclusion."
+    },
+    {
+      "id": "john_lutz",
+      "label": "John Lutz",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "keith_thor_carlson",
+      "label": "Keith Thor Carlson",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "albert_sonny_mchalsie",
+      "label": "Naxaxalhts’i / Albert “Sonny” McHalsie",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "david_m_schaepe",
+      "label": "David M. Schaepe",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "david_smith_stolo",
+      "label": "David Smith",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "james_rodger_miller",
+      "label": "J. R. Miller",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "richard_white",
+      "label": "Richard White",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "patrick_wolfe",
+      "label": "Patrick Wolfe",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "lianne_leddy",
+      "label": "Lianne Leddy",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "gertrude_lewis",
+      "label": "Gertrude Lewis",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "susan_neylan",
+      "label": "Susan Neylan",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+    },
+    {
+      "id": "winona_wheeler",
+      "label": "Winona Wheeler",
+      "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
     }
   ],
   "journal_catalogue": {
@@ -541586,6 +543370,47 @@
           "digital_history"
         ],
         "publication_note": "2016 chapter referring retrospectively to earlier digital projects and traditions."
+      },
+      {
+        "id": "person:lianne_leddy",
+        "label": "Lianne Leddy",
+        "type": "person",
+        "legacy_person_id": "lianne_leddy"
+      },
+      {
+        "id": "person:gertrude_lewis",
+        "label": "Gertrude Lewis",
+        "type": "person",
+        "legacy_person_id": "gertrude_lewis"
+      },
+      {
+        "id": "person:susan_neylan",
+        "label": "Susan Neylan",
+        "type": "person",
+        "legacy_person_id": "susan_neylan"
+      },
+      {
+        "id": "work:ind127:leddy_2010",
+        "label": "Interviewing Nookomis and Other Reflections: The Promise of Community Collaboration",
+        "type": "work",
+        "author_ids": [
+          "person:lianne_leddy"
+        ],
+        "publication_year_observation": 2010,
+        "candidate_navigation_ids": [
+          "indigenous"
+        ],
+        "publication_note": "2010 issue; 2008 presentation and interviews, 2011 URL upload timestamp are distinct observations."
+      },
+      {
+        "id": "concept:ind127:community_academic_relationships",
+        "label": "Community and academic relationships in historical research",
+        "type": "concept",
+        "concept_kind": [
+          "method"
+        ],
+        "legacy_strand_address": "indigenous/serpent_river_collaboration",
+        "qualification": "This particular methodological case, not a universal Indigenous research protocol."
       }
     ],
     "source_records": [
@@ -542062,6 +543887,16 @@
         "snapshot_path": "data/extension-2026/digital-release-10/raw/balance_closing.json",
         "snapshot_sha256": "e3de722697df0071989eee51547fc0ebf249105b40ac2a9f965c262d1a6b817f",
         "observed_at": "2026-09-19T14:36:22.856810+00:00"
+      },
+      {
+        "id": "source:ind127:leddy_2010",
+        "describes_work": "work:ind127:leddy_2010",
+        "url": "https://www.oralhistoryforum.ca/index.php/ohf/article/download/386/457/386-Article%20Text-1592-1-10-20110106.pdf",
+        "provider": "Oral History Forum publisher primary article",
+        "snapshot_path": "data/field-research/indigenous-foundations-2026-10-10/raw/leddy-2010.pdf",
+        "snapshot_sha256": "24e902b3f2712762ba2d782883f569ecc5545ef092aa68c9bca08cfdc260e95e",
+        "observed_at": "2026-10-11T00:24:56.821161+00:00",
+        "publication_year": 2010
       }
     ],
     "claims": [
@@ -548286,6 +550121,191 @@
             "checked_on": "2026-09-19",
             "support": "Named author of this work.",
             "limitation": "Authorship credit only; no demographic classification or full-work reading.",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:ind127:leddy_authored",
+        "subject": "person:lianne_leddy",
+        "predicate": "authored",
+        "object": "work:ind127:leddy_2010",
+        "statement": "Leddy is the article’s author.",
+        "qualification": "Narrators and mentor are not listed as article coauthors.",
+        "intervention_year": 2010,
+        "valid_time": null,
+        "basis": "source_assertion",
+        "attributed_to": "source:ind127:leddy_2010",
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-10-10",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept only this bounded attribution in the checked passage."
+        },
+        "history": [
+          {
+            "date": "2026-10-10",
+            "action": "accepted_into_production",
+            "revision": "1.127"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:ind127:leddy_2010",
+            "locator": "p. 1 byline",
+            "scope": "metadata",
+            "check_status": "metadata_checked",
+            "checked_on": "2026-10-10",
+            "support": "Leddy is the article’s author.",
+            "limitation": "Narrators and mentor are not listed as article coauthors.",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:ind127:leddy_practice",
+        "subject": "work:ind127:leddy_2010",
+        "predicate": "uses_approach",
+        "object": "concept:ind127:community_academic_relationships",
+        "statement": "The article examines community and academic relationships in historical research.",
+        "qualification": "A situated Serpent River case.",
+        "intervention_year": 2010,
+        "valid_time": null,
+        "basis": "editorial_interpretation",
+        "attributed_to": "source:ind127:leddy_2010",
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-10-10",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept only this bounded attribution in the checked passage."
+        },
+        "history": [
+          {
+            "date": "2026-10-10",
+            "action": "accepted_into_production",
+            "revision": "1.127"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:ind127:leddy_2010",
+            "locator": "pp. 1–3, 10–14",
+            "scope": "passage",
+            "check_status": "passage_checked",
+            "checked_on": "2026-10-10",
+            "support": "The article examines community and academic relationships in historical research.",
+            "limitation": "A situated Serpent River case.",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:ind127:leddy_recording",
+        "subject": "work:ind127:leddy_2010",
+        "predicate": "qualifies",
+        "object": "concept:ind127:community_academic_relationships",
+        "statement": "Interview practice adapts to family and community expectations.",
+        "qualification": "No universal protocol inferred.",
+        "intervention_year": 2010,
+        "valid_time": null,
+        "basis": "editorial_interpretation",
+        "attributed_to": "source:ind127:leddy_2010",
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-10-10",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept only this bounded attribution in the checked passage."
+        },
+        "history": [
+          {
+            "date": "2026-10-10",
+            "action": "accepted_into_production",
+            "revision": "1.127"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:ind127:leddy_2010",
+            "locator": "pp. 10–11",
+            "scope": "passage",
+            "check_status": "passage_checked",
+            "checked_on": "2026-10-10",
+            "support": "Interview practice adapts to family and community expectations.",
+            "limitation": "No universal protocol inferred.",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:ind127:lewis_contribution",
+        "subject": "person:gertrude_lewis",
+        "predicate": "contributes_to",
+        "object": "work:ind127:leddy_2010",
+        "statement": "Lewis contributes historical knowledge and shapes the interview process.",
+        "qualification": "Knowledge contribution, not article authorship.",
+        "intervention_year": 2010,
+        "valid_time": null,
+        "basis": "editorial_interpretation",
+        "attributed_to": "source:ind127:leddy_2010",
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-10-10",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept only this bounded attribution in the checked passage."
+        },
+        "history": [
+          {
+            "date": "2026-10-10",
+            "action": "accepted_into_production",
+            "revision": "1.127"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:ind127:leddy_2010",
+            "locator": "p. 1 note 1; pp. 10–11",
+            "scope": "passage",
+            "check_status": "passage_checked",
+            "checked_on": "2026-10-10",
+            "support": "Lewis contributes historical knowledge and shapes the interview process.",
+            "limitation": "Knowledge contribution, not article authorship.",
+            "support_assessment": "supports_bounded_attribution"
+          }
+        ]
+      },
+      {
+        "id": "claim:ind127:neylan_mentorship",
+        "subject": "person:susan_neylan",
+        "predicate": "contributes_to",
+        "object": "work:ind127:leddy_2010",
+        "statement": "Leddy acknowledges Neylan’s advice on collaborative research.",
+        "qualification": "Mentorship, not a field-founding assertion.",
+        "intervention_year": 2010,
+        "valid_time": null,
+        "basis": "editorial_interpretation",
+        "attributed_to": "source:ind127:leddy_2010",
+        "review": {
+          "status": "accepted",
+          "reviewed_on": "2026-10-10",
+          "reviewer": "Codex editorial integration review",
+          "rationale": "Accept only this bounded attribution in the checked passage."
+        },
+        "history": [
+          {
+            "date": "2026-10-10",
+            "action": "accepted_into_production",
+            "revision": "1.127"
+          }
+        ],
+        "evidence": [
+          {
+            "source_record_id": "source:ind127:leddy_2010",
+            "locator": "p. 1 note 1",
+            "scope": "passage",
+            "check_status": "passage_checked",
+            "checked_on": "2026-10-10",
+            "support": "Leddy acknowledges Neylan’s advice on collaborative research.",
+            "limitation": "Mentorship, not a field-founding assertion.",
             "support_assessment": "supports_bounded_attribution"
           }
         ]

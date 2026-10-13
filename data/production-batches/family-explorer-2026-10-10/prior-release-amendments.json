@@ -1,0 +1,541 @@
+[
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+    "amended_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d",
+    "date": "2026-09-26",
+    "reason": "Rebuilt from site/app.js after the change above.",
+    "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "docs/data/graph-2000.json",
+    "accepted_sha256": "35cc0084864a0225167abe0cc9f72eb45a1eacd27dcf01ab3a9f9f02e89ec61c",
+    "amended_sha256": "71ad3d87243566ab313e98093c98197e89b8ac0108ae515cf36479a5999ec7f0",
+    "date": "2026-09-26",
+    "reason": "Rebuilt: build-time people overlay now applies 543 bulk roster Wikidata identities (data/people-wikidata.json, method bulk_roster_match_2026-09-22).",
+    "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "docs/field.mjs",
+    "accepted_sha256": "5641ac55f2f6f5138461312b19fbec1678fd09d35371b7507adb648a4b845702",
+    "amended_sha256": "1ac796601c5eda96761d0e80d3343399b28e4f8ad81ebdd127f0bbbc72cd6af1",
+    "date": "2026-09-26",
+    "reason": "Rebuilt from site/field.mjs after the change above.",
+    "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+    "amended_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d",
+    "date": "2026-09-26",
+    "reason": "Lifespan labels mark decade/century precision as approximate and keep BCE years intact.",
+    "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "site/field.mjs",
+    "accepted_sha256": "5641ac55f2f6f5138461312b19fbec1678fd09d35371b7507adb648a4b845702",
+    "amended_sha256": "1ac796601c5eda96761d0e80d3343399b28e4f8ad81ebdd127f0bbbc72cd6af1",
+    "date": "2026-09-26",
+    "reason": "lifeIndex parses signed (BCE) years instead of slicing four characters.",
+    "scope": "Display and build-time overlay only; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "docs/data/graph-2000.json",
+    "accepted_sha256": "35cc0084864a0225167abe0cc9f72eb45a1eacd27dcf01ab3a9f9f02e89ec61c",
+    "amended_sha256": "76df215023b950acee244ec1134b09683716f5eccf68957a3a8ad2a573a04855",
+    "date": "2026-09-26",
+    "reason": "Rebuilt: overlay adds 7 ORCID-corroborated roster identities (method roster_orcid_corroborated_2026-09-26).",
+    "scope": "Build-time people overlay only; no graph entries, relationships or accepted claims changed.",
+    "supersedes_amendment_sha256": "71ad3d87243566ab313e98093c98197e89b8ac0108ae515cf36479a5999ec7f0"
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+    "amended_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/app.js.",
+    "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed.",
+    "supersedes_amendment_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d"
+  },
+  {
+    "file": "docs/styles.css",
+    "accepted_sha256": "b85d27aac52be4bb68ef9a10fd56fb857f9e9923a9f520e63e64365d4ecf6bd4",
+    "amended_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/styles.css.",
+    "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "scripts/build_site.py",
+    "accepted_sha256": "ab0930e052c034742e65affeaef72305b512e30edefd61089a46dbdb7ae03be6",
+    "amended_sha256": "5533df1cb687426346f016dfcf8be23d167644d3977e593b344e4ff0b88ac22b",
+    "date": "2026-09-27",
+    "reason": "Publishes the allowlisted evidence asset data/evidence.json (aggregates only).",
+    "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "a7c1d0067f3f1ca38c2fbc1560749fa24f3c3250414c7a9b1baa14286a4704e7",
+    "amended_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+    "date": "2026-09-27",
+    "reason": "Evidence-layer panel (\"What the record shows\") on entry pages, loaded lazily from data/evidence.json.",
+    "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed.",
+    "supersedes_amendment_sha256": "e76d20cb1a0ea8e90ca90aa643d5830f5ad6a791a17b33bd78b332526021c96d"
+  },
+  {
+    "file": "site/styles.css",
+    "accepted_sha256": "b85d27aac52be4bb68ef9a10fd56fb857f9e9923a9f520e63e64365d4ecf6bd4",
+    "amended_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+    "date": "2026-09-27",
+    "reason": "Styles for the evidence-layer panel and its bar charts.",
+    "scope": "Presentation of a separate evidence layer; no graph entries, relationships or accepted claims changed."
+  },
+  {
+    "file": "tests/test_digital_release_browser.py",
+    "accepted_sha256": "f62a285efcc4ae72d59cbfd999fcbd3b5588ece0d172473b447cfef3e34b0547",
+    "amended_sha256": "b819e9d5e384bec63e028fb1a4dd0a3d4e9e1cfa6b0cb36e8b3c94af7df3f12f",
+    "date": "2026-09-27",
+    "reason": "Public-file allowlist now also expects data/evidence.json when the evidence layer is built.",
+    "scope": "Test expectation for a new allowlisted asset; release checks otherwise unchanged."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+    "amended_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+    "date": "2026-09-27",
+    "reason": "Landing page of eleven editorial families (headline strip, paired atlas/record rows, record views, table, mobile cards); field view filtered by family; evidence asset loaded with the graph.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/core.mjs",
+    "accepted_sha256": "a618aaba92bd241ce420c170c661251740ae5d2503f2ce656bf69b0f7efab3af",
+    "amended_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+    "date": "2026-09-27",
+    "reason": "Route keys family, record and the derived overview flag; routeHash never writes overview.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/landing.mjs",
+    "accepted_sha256": null,
+    "amended_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+    "date": "2026-09-27",
+    "reason": "New pure module: landing strip, rows, cards and table builders; family subgraph.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/styles.css",
+    "accepted_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+    "amended_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+    "date": "2026-09-27",
+    "reason": "Landing and family-heading styles.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/index.html",
+    "accepted_sha256": "ba389df9c1d94aee4a9112f90fc49dab625160f62b868d851f16b8818239090e",
+    "amended_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+    "date": "2026-09-27",
+    "reason": "Deck copy introduces the families landing.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "scripts/build_site.py",
+    "accepted_sha256": "5533df1cb687426346f016dfcf8be23d167644d3977e593b344e4ff0b88ac22b",
+    "amended_sha256": "7f99206adbf6f500cb91bec042535dbc6d96cb3f1943cbe9b009156ff9d6e070",
+    "date": "2026-09-27",
+    "reason": "Publishes site/landing.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "d6687526284b1b1660919a7f770f0180b2dfcdc01563bd3f07d6ad6332d1e281",
+    "amended_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/app.js.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/core.mjs",
+    "accepted_sha256": "a618aaba92bd241ce420c170c661251740ae5d2503f2ce656bf69b0f7efab3af",
+    "amended_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/core.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/landing.mjs",
+    "accepted_sha256": null,
+    "amended_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/landing.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/styles.css",
+    "accepted_sha256": "f913bb5e2af5eee1ff8ff4f9fd10f2be0cf556357aed8aebc65dfee3a1755fbe",
+    "amended_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/styles.css.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/index.html",
+    "accepted_sha256": "ba389df9c1d94aee4a9112f90fc49dab625160f62b868d851f16b8818239090e",
+    "amended_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+    "date": "2026-09-27",
+    "reason": "Rebuilt from site/index.html.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/data/evidence.json",
+    "accepted_sha256": "78ac02e6f7fbf7d3710a5829d5c8ee9c5c530a2462faf094e38d4aaa33c0e92a",
+    "amended_sha256": "642534cd70c3e12b81caac850d85cb70d29601251ff54fc9c479ccb37b910c67",
+    "date": "2026-09-27",
+    "reason": "Rebuilt: evidence asset adds the families block (series v17).",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "tests/test_site_extension.py",
+    "accepted_sha256": "c4fb0f0d2f567de57c2404b36373caa3dfa606e3cec7e4db3126fe33ad7332a3",
+    "amended_sha256": "ea3ffedc21709eceb96c03dbbde36eca547a09105ab3ba5f2f603841f56fa872",
+    "date": "2026-09-27",
+    "reason": "Extension marks are checked on the full field (#family=all); the bare URL is now the families landing; allowlist expects landing.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "tests/test_digital_release_browser.py",
+    "accepted_sha256": "b819e9d5e384bec63e028fb1a4dd0a3d4e9e1cfa6b0cb36e8b3c94af7df3f12f",
+    "amended_sha256": "4bc694395f2797b6b910c707879b7101bf2b7f0494430e30c75cd305b395cf80",
+    "date": "2026-09-27",
+    "reason": "Digital-release entries are checked on the full field (#family=all); allowlist expects landing.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "tests/test_site_browser.py",
+    "accepted_sha256": "e120a184530ff22a490b0467e881c2c4dd0b75ee1375901ae2c5b3ac6fd13c73",
+    "amended_sha256": "7679e4059e991ad7caf0a1da954563ae5af5e2384d1716f2d7b43c5bf32f67c9",
+    "date": "2026-09-27",
+    "reason": "Landing, family drill-down and mobile-card tests; front-door tests move to #family=all; allowlist expects landing.mjs.",
+    "scope": "Landing redesign (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+    "amended_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+    "date": "2026-09-27",
+    "reason": "Landing fine print notes the 200-item minimum period; family page carries the record-fields caveat; AXIS_LABEL derived from landing.mjs AXIS.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/core.mjs",
+    "accepted_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+    "amended_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+    "date": "2026-09-27",
+    "reason": "readRoute: a malformed family slug opens the full field ('all'), as an unknown one does.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/styles.css",
+    "accepted_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+    "amended_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+    "date": "2026-09-27",
+    "reason": "Caption style for the landing table's new headline-strip table.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "site/README.md",
+    "accepted_sha256": "0fc04446dee04e9f89cc2ab3ea5c70b49a91056741604089bbf52edf5fbf3556",
+    "amended_sha256": "1ee423febe9a6675257872e96b95bccefd9663a0d1ecbd3548fc1eb1785b5f65",
+    "date": "2026-09-27",
+    "reason": "Landing section and build file list (landing.mjs, data/evidence.json, eleven files); #record= kept across the family route; 200-item minimum period. Covers the 2cadb59 edit, which had no amendment.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "ee97c3ea4d16b97a4d9fc3992908f254f87cdcfdc420104b26189f9a73a1a956",
+    "amended_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+    "date": "2026-09-27",
+    "reason": "Built copy of site/app.js: landing fine print notes the 200-item minimum period; family page carries the record-fields caveat; AXIS_LABEL derived from landing.mjs AXIS.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/core.mjs",
+    "accepted_sha256": "89e0befa7cdb23109176a12b9b43e6b96291c9d99784b0888752d329d87c2fb5",
+    "amended_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+    "date": "2026-09-27",
+    "reason": "Built copy of site/core.mjs: readRoute: a malformed family slug opens the full field ('all'), as an unknown one does.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/styles.css",
+    "accepted_sha256": "8c1923a9e62bb1a4bc7c956d698a92b4b2f94b20f27b867f2e975357a9fdfaca",
+    "amended_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+    "date": "2026-09-27",
+    "reason": "Built copy of site/styles.css: caption style for the landing table's new headline-strip table.",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "tests/test_site_browser.py",
+    "accepted_sha256": "7679e4059e991ad7caf0a1da954563ae5af5e2384d1716f2d7b43c5bf32f67c9",
+    "amended_sha256": "547dfc51d5a2b1c834312233d879c7a1dbc412f717dc8f59f801c1725d347098",
+    "date": "2026-09-27",
+    "reason": "Landing table check counts the per-period table only, and checks the new headline-strip table (11 families + unclaimed).",
+    "scope": "Landing redesign final review (specs/2026-09-27-landing-redesign-design.md); curated graph and claims unchanged."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+    "amended_sha256": "322c91aa57adce5256f72c0e9bbddb8811a888440661093960b5c201e67581c5",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "docs/core.mjs",
+    "accepted_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+    "amended_sha256": "597e357d7844dd8e0b1cd7a6b31398633ee006cddeaf18a36d6a2c8ac3255aef",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "docs/index.html",
+    "accepted_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+    "amended_sha256": "98733376eba55b778bd70a78379ac5573868b33c0e79224c191c961ce60afaf1",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "docs/styles.css",
+    "accepted_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+    "amended_sha256": "6ab413b00ef8aa594e4d82ec655ace82f9c1c17f5e4e186cce62f20f539347cc",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "scripts/build_site.py",
+    "accepted_sha256": "7f99206adbf6f500cb91bec042535dbc6d96cb3f1943cbe9b009156ff9d6e070",
+    "amended_sha256": "6b6b2427bedb9fe34496f79abc80a55956f09177eb8ce6a8e154f8d4cb723fd1",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/README.md",
+    "accepted_sha256": "1ee423febe9a6675257872e96b95bccefd9663a0d1ecbd3548fc1eb1785b5f65",
+    "amended_sha256": "7b00036c0bc8ef333aa5b0be2c8be2b4c611fa02a0c43e7d03b9c6fdd4a34413",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "f5eb31999aa2ce2e4ba1b475e88e89c51b2e57b8f2cf758924c31d22ec2b034b",
+    "amended_sha256": "322c91aa57adce5256f72c0e9bbddb8811a888440661093960b5c201e67581c5",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/core.mjs",
+    "accepted_sha256": "171c097ca629904019b7bc48d767530edd1a8dc1c109c348b8dc953040a5546a",
+    "amended_sha256": "597e357d7844dd8e0b1cd7a6b31398633ee006cddeaf18a36d6a2c8ac3255aef",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/index.html",
+    "accepted_sha256": "98ea7c4c76d3494758d3d95f03e79232cb10a602632f5bbf53f3d74e256b97d2",
+    "amended_sha256": "98733376eba55b778bd70a78379ac5573868b33c0e79224c191c961ce60afaf1",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/styles.css",
+    "accepted_sha256": "5bbd94866e79a2c7ed2cf2f6a9c31314ebe3c44b266de29962df22385b733b5a",
+    "amended_sha256": "6ab413b00ef8aa594e4d82ec655ace82f9c1c17f5e4e186cce62f20f539347cc",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "tests/test_digital_release_browser.py",
+    "accepted_sha256": "4bc694395f2797b6b910c707879b7101bf2b7f0494430e30c75cd305b395cf80",
+    "amended_sha256": "12fdeb7d2474b7eec08b7bc9a9396412ef996b73bcf7192ff8be3e36ae086815",
+    "date": "2026-10-10",
+    "reason": "Student-beta loading, profile pilot, proxy/sensitivity labels, current documentation or corresponding browser/build checks.",
+    "scope": "Public interface and build amendments; frozen 1.123 research, reviewed claim transformation and exact-2000 baseline preserved. Graph revision 1.125 is accepted separately."
+  },
+  {
+    "file": "site/landing.mjs",
+    "accepted_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+    "amended_sha256": "9ea189ec82fd0718e23d65eda6f86dd2a36826837fef9546f0f081db9e8e24e9",
+    "date": "2026-10-10",
+    "reason": "Record pre-existing landing source/build drift discovered during student-beta pin reconciliation; these two files were not changed by this beta.",
+    "scope": "Current interface and acceptance checks; frozen research and original reviewed transformations remain unchanged."
+  },
+  {
+    "file": "docs/landing.mjs",
+    "accepted_sha256": "93e948cb9d03ae41ed82e51eb4d4ff955115cdf50137efb8ded59e347addc654",
+    "amended_sha256": "9ea189ec82fd0718e23d65eda6f86dd2a36826837fef9546f0f081db9e8e24e9",
+    "date": "2026-10-10",
+    "reason": "Record pre-existing landing source/build drift discovered during student-beta pin reconciliation; these two files were not changed by this beta.",
+    "scope": "Current interface and acceptance checks; frozen research and original reviewed transformations remain unchanged."
+  },
+  {
+    "file": "docs/data/evidence.json",
+    "accepted_sha256": "642534cd70c3e12b81caac850d85cb70d29601251ff54fc9c479ccb37b910c67",
+    "amended_sha256": "0d9bed3409c2629ad6c913ee9483c245ddcd7dc31363074fb9a226df9812a115",
+    "date": "2026-10-10",
+    "reason": "Student-beta public-file allowlists, route completion checks or corresponding core tests.",
+    "scope": "Current interface and acceptance checks; frozen research and original reviewed transformations remain unchanged."
+  },
+  {
+    "file": "tests/test_site_extension.py",
+    "accepted_sha256": "ea3ffedc21709eceb96c03dbbde36eca547a09105ab3ba5f2f603841f56fa872",
+    "amended_sha256": "1cc72e577e81896dabddb2ea529820db3e2b8cd4358028d8a710a9e6c534097a",
+    "date": "2026-10-10",
+    "reason": "Student-beta public-file allowlists, route completion checks or corresponding core tests.",
+    "scope": "Current interface and acceptance checks; frozen research and original reviewed transformations remain unchanged."
+  },
+  {
+    "file": "tests/test_site_browser.py",
+    "accepted_sha256": "547dfc51d5a2b1c834312233d879c7a1dbc412f717dc8f59f801c1725d347098",
+    "amended_sha256": "59d645a5e72abe0203629f4f3ef8eb2c0ba8cfc2559b4fc8dacf149107bf1563",
+    "date": "2026-10-10",
+    "reason": "Student-beta public-file allowlists, route completion checks or corresponding core tests.",
+    "scope": "Current interface and acceptance checks; frozen research and original reviewed transformations remain unchanged."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "322c91aa57adce5256f72c0e9bbddb8811a888440661093960b5c201e67581c5",
+    "amended_sha256": "47efe993916375beef1c378aa02d375c49e2d84a6e7ba84a0e91328d5a73657d",
+    "date": "2026-10-10",
+    "reason": "Use research-candidate proxy labels consistently in landing tables, established-venue comparison and field evidence; sensitivity compares alternative thresholds with the ten-page default.",
+    "scope": "Wording correction only; counts, crosswalk decisions, graph, frozen claim transformations and 2000 baseline unchanged."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "322c91aa57adce5256f72c0e9bbddb8811a888440661093960b5c201e67581c5",
+    "amended_sha256": "47efe993916375beef1c378aa02d375c49e2d84a6e7ba84a0e91328d5a73657d",
+    "date": "2026-10-10",
+    "reason": "Use research-candidate proxy labels consistently in landing tables, established-venue comparison and field evidence; sensitivity compares alternative thresholds with the ten-page default.",
+    "scope": "Wording correction only; counts, crosswalk decisions, graph, frozen claim transformations and 2000 baseline unchanged."
+  },
+  {
+    "file": "site/landing.mjs",
+    "accepted_sha256": "9ea189ec82fd0718e23d65eda6f86dd2a36826837fef9546f0f081db9e8e24e9",
+    "amended_sha256": "5891abd7154fd1e5e51a4303221b44fa447c8a78c42173b2b5455558c10d9b74",
+    "date": "2026-10-10",
+    "reason": "Use research-candidate proxy labels consistently in landing tables, established-venue comparison and field evidence; sensitivity compares alternative thresholds with the ten-page default.",
+    "scope": "Wording correction only; counts, crosswalk decisions, graph, frozen claim transformations and 2000 baseline unchanged."
+  },
+  {
+    "file": "docs/landing.mjs",
+    "accepted_sha256": "9ea189ec82fd0718e23d65eda6f86dd2a36826837fef9546f0f081db9e8e24e9",
+    "amended_sha256": "5891abd7154fd1e5e51a4303221b44fa447c8a78c42173b2b5455558c10d9b74",
+    "date": "2026-10-10",
+    "reason": "Use research-candidate proxy labels consistently in landing tables, established-venue comparison and field evidence; sensitivity compares alternative thresholds with the ten-page default.",
+    "scope": "Wording correction only; counts, crosswalk decisions, graph, frozen claim transformations and 2000 baseline unchanged."
+  },
+  {
+    "file": "docs/data/evidence.json",
+    "accepted_sha256": "0d9bed3409c2629ad6c913ee9483c245ddcd7dc31363074fb9a226df9812a115",
+    "amended_sha256": "f660ad34addf97b983596fabfae4f51f0359779adcf67ea7423d15dab4335005",
+    "date": "2026-10-10",
+    "reason": "Use research-candidate proxy labels consistently in landing tables, established-venue comparison and field evidence; sensitivity compares alternative thresholds with the ten-page default.",
+    "scope": "Wording correction only; counts, crosswalk decisions, graph, frozen claim transformations and 2000 baseline unchanged."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "47efe993916375beef1c378aa02d375c49e2d84a6e7ba84a0e91328d5a73657d",
+    "amended_sha256": "decd9547e6e0425c1d9e3c96f41fb42c839417351fbf0bf2eab234d30ced432b",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "docs/core.mjs",
+    "accepted_sha256": "597e357d7844dd8e0b1cd7a6b31398633ee006cddeaf18a36d6a2c8ac3255aef",
+    "amended_sha256": "08db75bb3897373625d0956be9355180a30397d5edc7689335fae17e9f0d0611",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "47efe993916375beef1c378aa02d375c49e2d84a6e7ba84a0e91328d5a73657d",
+    "amended_sha256": "decd9547e6e0425c1d9e3c96f41fb42c839417351fbf0bf2eab234d30ced432b",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "site/core.mjs",
+    "accepted_sha256": "597e357d7844dd8e0b1cd7a6b31398633ee006cddeaf18a36d6a2c8ac3255aef",
+    "amended_sha256": "08db75bb3897373625d0956be9355180a30397d5edc7689335fae17e9f0d0611",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "tests/test_digital_release_browser.py",
+    "accepted_sha256": "12fdeb7d2474b7eec08b7bc9a9396412ef996b73bcf7192ff8be3e36ae086815",
+    "amended_sha256": "1c6a1ec034b5280bce93f6a717e329b4ed65d66b71669758e28878cc03672068",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "tests/test_digital_release_candidate.py",
+    "accepted_sha256": "dd0911abd3b595903df7ac88b17b87b85009e96ec6afc035ac0f99fc03826189",
+    "amended_sha256": "f8f4f6792d77978b6b38b5a6e5cda23e64abbca3d2227398c516cad6a6f61316",
+    "date": "2026-10-10",
+    "reason": "User requested implementation of publication-evidence coverage report: corrected title mappings, source-backed page ranges, earlier chart windows, coverage labels and checks; see data/evidence-layer/repairs/2026-10-10/README.md.",
+    "scope": "Derived evidence and public interface/documentation only. Frozen 1.123 research transformation, graph revision 1.125 and exact-2000 baseline remain unchanged."
+  },
+  {
+    "file": "site/README.md",
+    "accepted_sha256": "7b00036c0bc8ef333aa5b0be2c8be2b4c611fa02a0c43e7d03b9c6fdd4a34413",
+    "amended_sha256": "00348d4a951a2c919ccd3908fb3879ee7eae25968affbc7a10284dd883994dfd",
+    "date": "2026-10-10",
+    "reason": "Update current site handoff totals for the source-checked Indigenous-history revision 1.126.",
+    "scope": "Current documentation counts only. Original 1.123 research inputs, accepted claim transformation and exact-2000 baseline remain preserved."
+  },
+  {
+    "file": "site/README.md",
+    "accepted_sha256": "00348d4a951a2c919ccd3908fb3879ee7eae25968affbc7a10284dd883994dfd",
+    "amended_sha256": "8faa4ae4cd6d9c086832166afad45ba1a2c264daec4169294ea4e899f1725ed4",
+    "date": "2026-10-10",
+    "reason": "Represent revision 1.127 community and academic contributions, including visible source-specific knowledge credits and current documentation totals.",
+    "scope": "Current interface and documentation only; frozen 1.123 research transformation and exact-2000 baseline preserved."
+  },
+  {
+    "file": "site/app.js",
+    "accepted_sha256": "decd9547e6e0425c1d9e3c96f41fb42c839417351fbf0bf2eab234d30ced432b",
+    "amended_sha256": "0eb05099296f25d56e0baf8d5ed51deb93603e68c4c190756ae8dd2a75ccad1a",
+    "date": "2026-10-10",
+    "reason": "Represent revision 1.127 community and academic contributions, including visible source-specific knowledge credits and current documentation totals.",
+    "scope": "Current interface and documentation only; frozen 1.123 research transformation and exact-2000 baseline preserved."
+  },
+  {
+    "file": "docs/app.js",
+    "accepted_sha256": "decd9547e6e0425c1d9e3c96f41fb42c839417351fbf0bf2eab234d30ced432b",
+    "amended_sha256": "0eb05099296f25d56e0baf8d5ed51deb93603e68c4c190756ae8dd2a75ccad1a",
+    "date": "2026-10-10",
+    "reason": "Represent revision 1.127 community and academic contributions, including visible source-specific knowledge credits and current documentation totals.",
+    "scope": "Current interface and documentation only; frozen 1.123 research transformation and exact-2000 baseline preserved."
+  },
+  {
+    "file": "docs/data/evidence.json",
+    "accepted_sha256": "8aaa6187afabdd5561a929bea5516772929e41b0120f0285b2c3069b61887bd5",
+    "amended_sha256": "0c510375759aa9eb029cd40bdb3f8f0f6bf1261bd14f3dc752242c81db2e4eda",
+    "date": "2026-10-10",
+    "reason": "Use fresh methods-v6 and mentions-v5 build provenance for the expanded 1.127 roster.",
+    "scope": "Build metadata only: public evidence aggregates, frozen 1.123 research transformation and exact-2000 baseline remain unchanged."
+  }
+]

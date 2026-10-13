@@ -25,6 +25,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import duckdb
+import evidence_inputs
 
 ROOT = Path(__file__).resolve().parents[1]
 GEN = ROOT / "data/evidence-layer/generated"
@@ -96,7 +97,7 @@ def compile_method(spec):
 
 def venue_match(spec, journal):
     j = (journal or "").strip().lower()
-    return any(v in j for v in spec["venues"]) or j in spec.get("venue_exact", [])
+    return any(v in j for v in spec["venues"]) or any(x.strip() in spec.get("venue_exact", []) for x in j.split(" | "))
 
 
 def main():
@@ -110,23 +111,29 @@ def main():
         raise SystemExit(f"{out} exists; choose a new --version")
     db = duckdb.connect()
     db.execute(f"ATTACH {lit(ROOT / 'data/person-registry/generated' / args.registry / 'registry.duckdb')} AS rg (READ_ONLY)")
-    for i, c in enumerate(CATALOGS):
-        db.execute(f"ATTACH {lit(c)} AS x{i} (READ_ONLY)")
-    union = lambda t: " UNION ALL ".join(f"SELECT * FROM x{i}.{t}" for i in range(len(CATALOGS)))
-    db.execute(f"CREATE TEMP VIEW recs AS {union('records')}")
-    db.execute(f"CREATE TEMP VIEW mem AS {union('memberships')}")
-    db.execute(f"CREATE TEMP VIEW jn AS {union('journals')}")
-    db.execute("CREATE TEMP VIEW research AS " + " UNION ".join(
-        f"SELECT record_id FROM x{i}.research_candidates_by_length" for i in range(len(CATALOGS))))
-    # One row per research item with its (first) journal.
+    paths=evidence_inputs.input_paths()+[CLAIMS,GRAPH,Path(__file__),ROOT/'data/person-registry/generated'/args.registry/'registry.duckdb']
+    adir=GEN/'abstracts'
+    paths += sorted(adir.glob('*.jsonl.gz')) + ([adir/'manifest.json'] if (adir/'manifest.json').exists() else [])
+    def sha(path):
+        with path.open('rb') as f:
+            return hashlib.file_digest(f,'sha256').hexdigest()
+    before={str(p.relative_to(ROOT)):sha(p) for p in paths}
+    print("Method inputs pinned; loading catalogues",flush=True)
+    evidence_inputs.attach_catalogues(db)
+    db.execute('CREATE TEMP VIEW recs AS SELECT * FROM x_effective_records')
+    db.execute('CREATE TEMP VIEW mem AS SELECT * FROM x_memberships')
+    db.execute('CREATE TEMP VIEW jn AS SELECT * FROM x_journals')
+    db.execute('CREATE TEMP VIEW research AS SELECT * FROM x_research')
+    # One row per DOI; preserve every journal label in deterministic order for venue checks.
     items = db.execute("""
         SELECT r.record_id, lower(r.doi), coalesce(r.title_text, '') || ' ' || coalesce(r.subtitle_text, ''),
-               TRY_CAST(r.publication_year AS INT), any_value(j.label), any_value(m.journal_key)
+               TRY_CAST(r.publication_year AS INT), string_agg(DISTINCT j.label, ' | ' ORDER BY j.label), string_agg(DISTINCT m.journal_key, ' | ' ORDER BY m.journal_key)
         FROM recs r JOIN mem m USING (record_id) JOIN jn j USING (journal_key)
         WHERE NOT coalesce(r.is_test_record, false)
           AND (r.record_id IN (SELECT record_id FROM research)
                OR (m.journal_key IN (SELECT UNNEST(?::VARCHAR[])) AND r.record_type = 'journal-article'))
         GROUP BY 1, 2, 3, 4""", [sorted(BORN_DIGITAL)]).fetchall()
+    print(f"Loaded {len(items)} candidate items; scanning method lexicons",flush=True)
     compiled = {m: compile_method(s) for m, s in METHODS.items()}
     # Abstracts (harvest_crossref_abstracts.py), if present: a separate measure with its coverage,
     # never used to correct the title count. HTML/JATS tags are stripped before matching.
@@ -159,17 +166,19 @@ def main():
     claims = db.execute(f"SELECT orcid, journal FROM read_parquet({lit(CLAIMS)}) WHERE journal IS NOT NULL").fetchall()
     orcid_ind = dict(db.execute("SELECT substr(node, 7), individual_id FROM rg.individuals WHERE node LIKE 'orcid:%'").fetchall())
     credits = db.execute("""
-        SELECT r.individual_id, o.record_id FROM rg.occurrence_resolution r JOIN rg.occurrences o USING (occurrence_id)
+        SELECT r.individual_id, o.record_id,r.status FROM rg.occurrence_resolution r JOIN rg.occurrences o USING (occurrence_id)
         WHERE o.corpus = 'crossref' AND r.individual_id IS NOT NULL""").fetchall()
     item_journal = {rid: journal for rid, _, _, _, journal, _ in items}
     item_year = {rid: year for rid, _, _, year, _, _ in items}
     by_ind = defaultdict(set)
-    for ind, rid in credits:
+    credit_tiers=defaultdict(set)
+    for ind, rid, tier in credits:
         if rid in item_journal:
             by_ind[ind].add(rid)
+            credit_tiers[(ind,rid)].add(tier)
     g = json.loads(GRAPH.read_text())
-    atlas_ind = dict(db.execute("""SELECT substr(occurrence_id, 14), individual_id FROM rg.occurrence_resolution
-                                   WHERE corpus = 'atlas' AND individual_id IS NOT NULL""").fetchall())
+    atlas_ind = {pid:(ind,tier) for pid,ind,tier in db.execute("""SELECT substr(occurrence_id, 14), individual_id,status FROM rg.occurrence_resolution
+                                   WHERE corpus = 'atlas' AND individual_id IS NOT NULL""").fetchall()}
     roster = defaultdict(set)
     for n in g["nodes"]:
         ids = {p["person_id"] for p in n.get("representative_people") or []}
@@ -181,14 +190,17 @@ def main():
         pr = defaultdict(set)
         for orcid, journal in claims:
             if venue_match(spec, journal) and orcid.upper() in orcid_ind:
-                pr[orcid_ind[orcid.upper()]].add("orcid_claim_venue")
+                pr[orcid_ind[orcid.upper()]].add("orcid_claim_venue:anchored")
         for ind, rids in by_ind.items():
-            if any(venue_match(spec, item_journal[r]) for r in rids):
-                pr[ind].add("collection_venue_credit")
+            for r in rids:
+                if venue_match(spec,item_journal[r]):
+                    for tier in credit_tiers[(ind,r)]:
+                        pr[ind].add('collection_venue_credit:'+tier)
         for e in spec["entries"]:
             for pid in roster.get(e, ()):
                 if pid in atlas_ind:
-                    pr[atlas_ind[pid]].add("atlas_roster:" + e)
+                    ind,tier=atlas_ind[pid]
+                    pr[ind].add("atlas_roster:" + e + ":" + tier)
         in_venue = elsewhere = 0
         per_year = defaultdict(lambda: [0, 0])
         for ind, bases in pr.items():
@@ -214,6 +226,8 @@ def main():
             "practitioners": len(pr),
             "practitioners_by_basis": {b: sum(1 for s in pr.values() if any(x.startswith(b) for x in s))
                                        for b in ("orcid_claim_venue", "collection_venue_credit", "atlas_roster")},
+            "practitioners_by_basis_and_identity_tier": {basis: {tier:sum(any(b.startswith(basis+':') and b.endswith(':'+tier) for b in bases) for bases in pr.values())
+                for tier in ('accepted','anchored','probable')} for basis in ('orcid_claim_venue','collection_venue_credit','atlas_roster')},
             "practitioner_research_items": in_venue + elsewhere,
             "practitioner_items_in_method_venues": in_venue,
             "practitioner_items_elsewhere": elsewhere,
@@ -235,7 +249,11 @@ def main():
                         key=lambda h: hashlib.sha256((h[1] + args.audit_seed).encode()).hexdigest())[:30]
             for h in mh:
                 w.writerow([m, h[3], h[4], h[5][:200], h[6], ""])
-    (out / "summary.json").write_text(json.dumps({"research_items": len(items), "methods": summary}, indent=2) + "\n")
+    if before!={str(p.relative_to(ROOT)):sha(p) for p in paths}:
+        raise ValueError('Method inputs changed during build')
+    (out / "summary.json").write_text(json.dumps({"inputs":before,"registry":args.registry,
+        "identity_note":"Candidate people, not verified method use. Identity tiers are reported separately by route; routes overlap and must not be summed. Other credited works can include probable source-credit identities.",
+        "research_items": len(items), "methods": summary}, indent=2) + "\n")
     print(json.dumps({"research_items": len(items), **{m: {k: v for k, v in s.items() if "decade" not in k}
                                                         for m, s in summary.items()}}, indent=1))
 

@@ -4,7 +4,18 @@
 people traceable across corpora; this plan uses that record to put *practice* beside the
 atlas's *interpretation*.
 
-## Why: what the data shows
+## Current implementation (2026-10-10)
+
+The family landing and entry evidence panels are implemented using practice
+v18, methods-v6 and freshly rescanned mentions-v5; clusters-v2 remains the research build. An
+eight-profile publication-record pilot implements part of component 2 with
+source links and explicit identity tiers. The
+[publication-evidence repairs and fresh sensitivity audit](data/evidence-layer/repairs/2026-10-10/README.md)
+reconciles published journal bins; genre verification and most crosswalk review
+remain incomplete. [Student testing](STUDENT-TESTING.md) is the next usability
+step. Historical counts and diagnoses below are not current totals.
+
+## Why: what the data showed in September
 
 - **The canon and the record barely overlap.** Of 593 atlas people with a Wikidata identity,
   only **82** appear anywhere in the review or article data, mostly as authors of a few
