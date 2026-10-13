@@ -9,7 +9,7 @@ class BorderlandsCandidateTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.outputs,cls.after=m.outputs()
-        cls.before=m.read(m.GRAPH)
+        cls.before=m.baseline_graph()
         cls.candidate=cls.outputs['candidate.json']
         cls.batch=m.read(m.PACKET/'batch.json')
 
