@@ -1,0 +1,341 @@
+{
+ "prepared": "2026-10-12",
+ "corpus": "data/field-research/dissertation-citations-2026-10-11/graph.json; Dissertation nodes with in_analysis true and year 2009–2026",
+ "denominator": 1303,
+ "early_window": "2009–2014",
+ "early_n": 410,
+ "late_window": "2020–2026",
+ "late_n": 405,
+ "francophone_universities": [
+  "laval",
+  "montreal",
+  "sherbrooke",
+  "uqam"
+ ],
+ "francophone_university_phds": 179,
+ "method": "Engagement = PhDs citing works by at least two of the group's anchor people (groups.json primary + also), with identity cleanup from the scholars packet, as in groups_evidence.py. Pairwise overlaps drop anchors shared by both groups before recomputing engagement, so shared people do not inflate them.",
+ "engagement": {
+  "phds_2009_2026": 164,
+  "of": 1303,
+  "universities": 24,
+  "francophone_university_phds": 12,
+  "share_2009_14": 0.139,
+  "share_2020_26": 0.0963,
+  "anchors": [
+   "Valverde, Mariana",
+   "Kinsman, Gary",
+   "Strange, Carolyn",
+   "McLaren, Angus",
+   "Backhouse, Constance",
+   "Curtis, Bruce",
+   "Adams, Mary Louise",
+   "Gleason, Mona",
+   "Mitchinson, Wendy"
+  ]
+ },
+ "anchor_citing_phds": {
+  "Valverde, Mariana": 138,
+  "Kinsman, Gary": 56,
+  "Strange, Carolyn": 61,
+  "McLaren, Angus": 68,
+  "Backhouse, Constance": 81,
+  "Curtis, Bruce": 87,
+  "Adams, Mary Louise": 52,
+  "Gleason, Mona": 68,
+  "Mitchinson, Wendy": 51
+ },
+ "pairwise_overlap_shared_anchors_removed": [
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_childhood_youth"
+   ],
+   "shared_anchors_removed": [
+    "Adams, Mary Louise",
+    "Gleason, Mona"
+   ],
+   "a_engaged": 142,
+   "b_engaged": 120,
+   "overlap": 74,
+   "share_of_a": 0.521,
+   "lift": 5.66,
+   "raw_overlap_with_shared_anchors": 100,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_immigration_ethnicity"
+   ],
+   "shared_anchors_removed": [
+    "Backhouse, Constance"
+   ],
+   "a_engaged": 149,
+   "b_engaged": 158,
+   "overlap": 72,
+   "share_of_a": 0.483,
+   "lift": 3.99,
+   "raw_overlap_with_shared_anchors": 91,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_intellectual_cultural"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 279,
+   "overlap": 98,
+   "share_of_a": 0.598,
+   "lift": 2.79,
+   "raw_overlap_with_shared_anchors": 98,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_military"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 184,
+   "overlap": 45,
+   "share_of_a": 0.274,
+   "lift": 1.94,
+   "raw_overlap_with_shared_anchors": 45,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_national_tradition"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 173,
+   "overlap": 51,
+   "share_of_a": 0.311,
+   "lift": 2.34,
+   "raw_overlap_with_shared_anchors": 51,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_political_national"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 242,
+   "overlap": 75,
+   "share_of_a": 0.457,
+   "lift": 2.46,
+   "raw_overlap_with_shared_anchors": 75,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_regional"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 194,
+   "overlap": 63,
+   "share_of_a": 0.384,
+   "lift": 2.58,
+   "raw_overlap_with_shared_anchors": 63,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_religion_reform"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 134,
+   "overlap": 67,
+   "share_of_a": 0.409,
+   "lift": 3.97,
+   "raw_overlap_with_shared_anchors": 67,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_sixties"
+   ],
+   "shared_anchors_removed": [
+    "Kinsman, Gary"
+   ],
+   "a_engaged": 158,
+   "b_engaged": 170,
+   "overlap": 74,
+   "share_of_a": 0.468,
+   "lift": 3.59,
+   "raw_overlap_with_shared_anchors": 89,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_women_gender"
+   ],
+   "shared_anchors_removed": [
+    "Mitchinson, Wendy"
+   ],
+   "a_engaged": 155,
+   "b_engaged": 325,
+   "overlap": 136,
+   "share_of_a": 0.877,
+   "lift": 3.52,
+   "raw_overlap_with_shared_anchors": 145,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "cdn_working_class"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 285,
+   "overlap": 124,
+   "share_of_a": 0.756,
+   "lift": 3.46,
+   "raw_overlap_with_shared_anchors": 124,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "liberal_order_framework"
+   ],
+   "shared_anchors_removed": [
+    "Curtis, Bruce",
+    "Valverde, Mariana"
+   ],
+   "a_engaged": 112,
+   "b_engaged": 163,
+   "overlap": 40,
+   "share_of_a": 0.357,
+   "lift": 2.85,
+   "raw_overlap_with_shared_anchors": 111,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "native_newcomer"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 244,
+   "overlap": 78,
+   "share_of_a": 0.476,
+   "lift": 2.54,
+   "raw_overlap_with_shared_anchors": 78,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "quebec_historiography"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 204,
+   "overlap": 69,
+   "share_of_a": 0.421,
+   "lift": 2.69,
+   "raw_overlap_with_shared_anchors": 69,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "settler_colonialism"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 161,
+   "overlap": 62,
+   "share_of_a": 0.378,
+   "lift": 3.06,
+   "raw_overlap_with_shared_anchors": 62,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "moral_regulation",
+    "who_killed_debate"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 164,
+   "b_engaged": 167,
+   "overlap": 63,
+   "share_of_a": 0.384,
+   "lift": 3.0,
+   "raw_overlap_with_shared_anchors": 63,
+   "of": 1303
+  }
+ ],
+ "theory_cocitation": [
+  {
+   "group": "moral_regulation",
+   "cited": "Michel Foucault (any work)",
+   "engaged": 164,
+   "overlap": 60,
+   "share": 0.366,
+   "baseline_share": 0.202,
+   "lift": 1.81,
+   "of": 1303
+  },
+  {
+   "group": "moral_regulation",
+   "cited": "Joan W. Scott (any work)",
+   "engaged": 164,
+   "overlap": 39,
+   "share": 0.238,
+   "baseline_share": 0.092,
+   "lift": 2.58,
+   "of": 1303
+  },
+  {
+   "group": "moral_regulation",
+   "cited": "Philippe Ariès (any work)",
+   "engaged": 164,
+   "overlap": 10,
+   "share": 0.061,
+   "baseline_share": 0.031,
+   "lift": 1.99,
+   "of": 1303
+  },
+  {
+   "group": "moral_regulation",
+   "cited": "Michael Omi or Howard Winant",
+   "engaged": 164,
+   "overlap": 1,
+   "share": 0.006,
+   "baseline_share": 0.005,
+   "lift": 1.14,
+   "of": 1303
+  }
+ ],
+ "caveats": [
+  "Bibliographies record consultation, not influence or adoption.",
+  "Anchor-based engagement favours groups with more anchors; compare trends, not levels.",
+  "Lifts between Canadian groups are high in general because the corpus is mostly Canadian history PhDs.",
+  "Francophone coverage: Laval has only 9 in-analysis PhDs."
+ ],
+ "valverde_1991_foucault": {
+  "cited": "Michel Foucault (any work)",
+  "valverde_1991_citing_phds": 107,
+  "also_cite_foucault": 46,
+  "share": 0.43,
+  "baseline_share": 0.202,
+  "of": 1303
+ }
+}

@@ -1,0 +1,333 @@
+{
+ "prepared": "2026-10-12",
+ "corpus": "data/field-research/dissertation-citations-2026-10-11/graph.json; Dissertation nodes with in_analysis true and year 2009–2026",
+ "denominator": 1303,
+ "early_window": "2009–2014",
+ "early_n": 410,
+ "late_window": "2020–2026",
+ "late_n": 405,
+ "francophone_universities": [
+  "laval",
+  "montreal",
+  "sherbrooke",
+  "uqam"
+ ],
+ "francophone_university_phds": 179,
+ "method": "Engagement = PhDs citing works by at least two of the group's anchor people (groups.json primary + also), with identity cleanup from the scholars packet, as in groups_evidence.py. Pairwise overlaps drop anchors shared by both groups before recomputing engagement, so shared people do not inflate them.",
+ "engagement": {
+  "phds_2009_2026": 172,
+  "of": 1303,
+  "universities": 24,
+  "francophone_university_phds": 9,
+  "share_2009_14": 0.1463,
+  "share_2020_26": 0.0889,
+  "anchors": [
+   "Iacovetta, Franca",
+   "Avery, Donald",
+   "Knowles, Valerie",
+   "Swyripa, Frances",
+   "Ward, Peter",
+   "Roy, Patricia E",
+   "Walker, James W. St. G",
+   "Perin, Roberto",
+   "Backhouse, Constance",
+   "Palmer, Bryan D"
+  ]
+ },
+ "anchor_citing_phds": {
+  "Iacovetta, Franca": 146,
+  "Avery, Donald": 64,
+  "Knowles, Valerie": 56,
+  "Swyripa, Frances": 52,
+  "Ward, Peter": 59,
+  "Roy, Patricia E": 52,
+  "Walker, James W. St. G": 52,
+  "Perin, Roberto": 50,
+  "Backhouse, Constance": 81,
+  "Palmer, Bryan D": 125
+ },
+ "pairwise_overlap_shared_anchors_removed": [
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_childhood_youth"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 132,
+   "overlap": 65,
+   "share_of_a": 0.378,
+   "lift": 3.73,
+   "raw_overlap_with_shared_anchors": 65,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_intellectual_cultural"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 279,
+   "overlap": 98,
+   "share_of_a": 0.57,
+   "lift": 2.66,
+   "raw_overlap_with_shared_anchors": 98,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_military"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 184,
+   "overlap": 60,
+   "share_of_a": 0.349,
+   "lift": 2.47,
+   "raw_overlap_with_shared_anchors": 60,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_national_tradition"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 173,
+   "overlap": 51,
+   "share_of_a": 0.297,
+   "lift": 2.23,
+   "raw_overlap_with_shared_anchors": 51,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_political_national"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 242,
+   "overlap": 94,
+   "share_of_a": 0.547,
+   "lift": 2.94,
+   "raw_overlap_with_shared_anchors": 94,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_regional"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 194,
+   "overlap": 63,
+   "share_of_a": 0.366,
+   "lift": 2.46,
+   "raw_overlap_with_shared_anchors": 63,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_religion_reform"
+   ],
+   "shared_anchors_removed": [
+    "Perin, Roberto"
+   ],
+   "a_engaged": 167,
+   "b_engaged": 121,
+   "overlap": 51,
+   "share_of_a": 0.305,
+   "lift": 3.29,
+   "raw_overlap_with_shared_anchors": 64,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_sixties"
+   ],
+   "shared_anchors_removed": [
+    "Palmer, Bryan D"
+   ],
+   "a_engaged": 142,
+   "b_engaged": 158,
+   "overlap": 70,
+   "share_of_a": 0.493,
+   "lift": 4.07,
+   "raw_overlap_with_shared_anchors": 106,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_women_gender"
+   ],
+   "shared_anchors_removed": [
+    "Iacovetta, Franca"
+   ],
+   "a_engaged": 133,
+   "b_engaged": 309,
+   "overlap": 94,
+   "share_of_a": 0.707,
+   "lift": 2.98,
+   "raw_overlap_with_shared_anchors": 141,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "cdn_working_class"
+   ],
+   "shared_anchors_removed": [
+    "Palmer, Bryan D"
+   ],
+   "a_engaged": 142,
+   "b_engaged": 264,
+   "overlap": 97,
+   "share_of_a": 0.683,
+   "lift": 3.37,
+   "raw_overlap_with_shared_anchors": 130,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "liberal_order_framework"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 219,
+   "overlap": 83,
+   "share_of_a": 0.483,
+   "lift": 2.87,
+   "raw_overlap_with_shared_anchors": 83,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "moral_regulation"
+   ],
+   "shared_anchors_removed": [
+    "Backhouse, Constance"
+   ],
+   "a_engaged": 158,
+   "b_engaged": 149,
+   "overlap": 72,
+   "share_of_a": 0.456,
+   "lift": 3.99,
+   "raw_overlap_with_shared_anchors": 91,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "native_newcomer"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 244,
+   "overlap": 74,
+   "share_of_a": 0.43,
+   "lift": 2.3,
+   "raw_overlap_with_shared_anchors": 74,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "quebec_historiography"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 204,
+   "overlap": 71,
+   "share_of_a": 0.413,
+   "lift": 2.64,
+   "raw_overlap_with_shared_anchors": 71,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "settler_colonialism"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 161,
+   "overlap": 53,
+   "share_of_a": 0.308,
+   "lift": 2.49,
+   "raw_overlap_with_shared_anchors": 53,
+   "of": 1303
+  },
+  {
+   "pair": [
+    "cdn_immigration_ethnicity",
+    "who_killed_debate"
+   ],
+   "shared_anchors_removed": [],
+   "a_engaged": 172,
+   "b_engaged": 167,
+   "overlap": 75,
+   "share_of_a": 0.436,
+   "lift": 3.4,
+   "raw_overlap_with_shared_anchors": 75,
+   "of": 1303
+  }
+ ],
+ "theory_cocitation": [
+  {
+   "group": "cdn_immigration_ethnicity",
+   "cited": "Michel Foucault (any work)",
+   "engaged": 172,
+   "overlap": 40,
+   "share": 0.233,
+   "baseline_share": 0.202,
+   "lift": 1.15,
+   "of": 1303
+  },
+  {
+   "group": "cdn_immigration_ethnicity",
+   "cited": "Joan W. Scott (any work)",
+   "engaged": 172,
+   "overlap": 32,
+   "share": 0.186,
+   "baseline_share": 0.092,
+   "lift": 2.02,
+   "of": 1303
+  },
+  {
+   "group": "cdn_immigration_ethnicity",
+   "cited": "Philippe Ariès (any work)",
+   "engaged": 172,
+   "overlap": 3,
+   "share": 0.017,
+   "baseline_share": 0.031,
+   "lift": 0.57,
+   "of": 1303
+  },
+  {
+   "group": "cdn_immigration_ethnicity",
+   "cited": "Michael Omi or Howard Winant",
+   "engaged": 172,
+   "overlap": 1,
+   "share": 0.006,
+   "baseline_share": 0.005,
+   "lift": 1.08,
+   "of": 1303
+  }
+ ],
+ "caveats": [
+  "Bibliographies record consultation, not influence or adoption.",
+  "Anchor-based engagement favours groups with more anchors; compare trends, not levels.",
+  "Lifts between Canadian groups are high in general because the corpus is mostly Canadian history PhDs.",
+  "Francophone coverage: Laval has only 9 in-analysis PhDs."
+ ]
+}

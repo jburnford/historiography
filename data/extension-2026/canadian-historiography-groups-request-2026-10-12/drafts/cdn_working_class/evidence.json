@@ -1,0 +1,453 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-12",
+ "unit": "dissertations (strict History PhDs completed 2009-2026, in_analysis: true); never citation counts",
+ "inputs": {
+  "graph": "data/field-research/dissertation-citations-2026-10-11/graph.json",
+  "identity": "canadian-historiography-scholars-request-2026-10-12/candidates.csv and identity-decisions.csv (namesake works removed); non-candidates by graph person keys listed per person",
+  "script": "computed with a scratch script mirroring groups_evidence.py (person_works with identity decisions); not committed"
+ },
+ "caveats": [
+  "Bibliographies list works consulted, not influence or endorsement.",
+  "Engagement = cites works by at least two roster people; rosters differ from groups.json anchors, so shares differ from ../evidence.json.",
+  "Francophone universities = montreal, uqam, sherbrooke, laval (179 of 1303 PhDs; Laval is thin, 9). Ottawa is bilingual and not counted.",
+  "Graph person keys for non-candidates are not identity-reviewed; variant keys may be missed, so small counts are lower bounds.",
+  "Years are mostly repository issued dates."
+ ],
+ "roster_engagement": {
+  "roster_people": 16,
+  "engaged_phds": 280,
+  "of": 1303,
+  "share": 0.2149,
+  "early": {
+   "window": "2009-2014",
+   "engaged": 103,
+   "of": 410,
+   "share": 0.2512
+  },
+  "late": {
+   "window": "2020-2026",
+   "engaged": 66,
+   "of": 405,
+   "share": 0.163
+  },
+  "francophone_univ_engaged": 24,
+  "francophone_univ_all": 179,
+  "francophone_share_of_engaged": 0.0857,
+  "universities": 25,
+  "people": {
+   "harold_a_logan": {
+    "label": "Harold A. Logan",
+    "identity": "graph person keys: P:logan|harold; P:logan|h",
+    "phds_2009_2026": 3,
+    "francophone_univ_phds": 0,
+    "universities": 3,
+    "top_works": [
+     "Trade Unions in Canada. Their Development and Functioning (1948; 1)",
+     "Federation of Catholic Workers of Canada (1927; 1)",
+     "The History of Trade-Union Organization in Canada (1928; 1)"
+    ],
+    "top_work_ids": [
+     "W:logan|trade unions in canada",
+     "W:logan|federation of catholic workers of canada|a",
+     "W:logan|history of trade union organization in canada"
+    ]
+   },
+   "irving_abella": {
+    "label": "Irving Abella",
+    "identity": "graph person keys: P:abella|irving; P:abella|irving m",
+    "phds_2009_2026": 38,
+    "francophone_univ_phds": 2,
+    "universities": 16,
+    "top_works": [
+     "None is Too Many: Canada and the Jews of Europe, 1933-1948 (1982; 24)",
+     "Nationalism, Communism, and Canadian Labour: The CIO, the Communist Party, and the Canadian Congress of Labour, 1935-1956 (1973; 11)",
+     "On Strike: Six Key Labour Struggles in Canada, 1919-1949 (1974; 3)",
+     "A Coat of Many Colours: Two Centuries of Jewish Life in Canada (1990; 3)"
+    ],
+    "top_work_ids": [
+     "W:abella|none s too many",
+     "W:abella|nationalism communism and canadian labour",
+     "W:abella|on strike",
+     "W:abella|coat of many colours"
+    ]
+   },
+   "david_bercuson": {
+    "label": "David J. Bercuson",
+    "identity": "candidates.csv: Bercuson, David",
+    "phds_2009_2026": 73,
+    "francophone_univ_phds": 0,
+    "universities": 16,
+    "top_works": [
+     "True Patriot: The Life of Brooke Claxton, 1898-1960 (1993; 13)",
+     "Confrontation at Winnipeg: Labour, Industrial Relations, and the General Strike (1974; 12)",
+     "Fools and Wise Men: The Rise and Fall of the One Big Union (1978; 10)",
+     "Blood on the Hills: The Canadian Army in the Korean War (1999; 7)"
+    ],
+    "top_work_ids": [
+     "W:bercuson|true patriot",
+     "W:bercuson|confrontation at winnipeg",
+     "W:bercuson|fools and wise men",
+     "W:bercuson|blood on the hills"
+    ]
+   },
+   "kenneth_mcnaught": {
+    "label": "Kenneth McNaught",
+    "identity": "graph person keys: P:mcnaught|kenneth",
+    "phds_2009_2026": 25,
+    "francophone_univ_phds": 1,
+    "universities": 10,
+    "top_works": [
+     "A Prophet in Politics: A Biography of J.S. Woodsworth (1959; 15)",
+     "Conscience and History: A Memoir (1999; 4)",
+     "The Winnipeg Strike: 1919 (1974; 2)",
+     "The Winnipeg General Strike: 1919 (1919; 2)"
+    ],
+    "top_work_ids": [
+     "W:mcnaught|prophet in politics",
+     "W:mcnaught|conscience and history",
+     "W:mcnaught|winnipeg strike",
+     "W:mcnaught|winnipeg general strike"
+    ]
+   },
+   "terry_copp": {
+    "label": "Terry Copp",
+    "identity": "candidates.csv: Copp, Terry",
+    "phds_2009_2026": 54,
+    "francophone_univ_phds": 10,
+    "universities": 18,
+    "top_works": [
+     "Battle Exhaustion: Soldiers and Psychiatrists in the Canadian Army, 1939-1945 (1990; 13)",
+     "Cinderella Army: The Canadians in Northwest Europe, 1944-1945 (2006; 11)",
+     "Fields of Fire: The Canadians in Normandy (2003; 10)",
+     "The Anatomy of Poverty: The Condition of the Working Class in Montreal, 1897-1929 (1974; 9)"
+    ],
+    "top_work_ids": [
+     "W:copp|battle exhaustion",
+     "W:copp|cinderella army",
+     "W:copp|fields of fire",
+     "W:copp|anatomy ofpovert"
+    ]
+   },
+   "gregory_s_kealey": {
+    "label": "Gregory S. Kealey",
+    "identity": "candidates.csv: Kealey, Gregory S",
+    "phds_2009_2026": 101,
+    "francophone_univ_phds": 5,
+    "universities": 22,
+    "top_works": [
+     "Debating Dissent: Canada and the Sixties (2012; 23)",
+     "Toronto Workers Respond to Industrial Capitalism, 1867-1892 (1980; 18)",
+     "Secret Service: Political Policing in Canada from the Fenians to Fortress America (2012; 17)",
+     "R.C.M.P. Security Bulletins (1994; 12)"
+    ],
+    "top_work_ids": [
+     "W:campbell|debating dissent",
+     "W:kealey|toronto workers respond to industrial capitalism",
+     "W:whitaker|secret service",
+     "W:kealey|r cm p"
+    ]
+   },
+   "bryan_d_palmer": {
+    "label": "Bryan D. Palmer",
+    "identity": "candidates.csv: Palmer, Bryan D",
+    "phds_2009_2026": 125,
+    "francophone_univ_phds": 11,
+    "universities": 25,
+    "top_works": [
+     "Canada’s 1960s: The Ironies of Identity in a Rebellious Era (2009; 65)",
+     "Working-Class Experience: Rethinking the History of Canadian Labour, 1800-1991 (1992; 28)",
+     "A Culture in Conflict: Skilled Workers and Industrial Capitalism in Hamilton, Ontario, 1860-1914 (1979; 8)",
+     "Dreaming of What Might Be: The Knights of Labor in Ontario, 1880-1900 (1982; 6)"
+    ],
+    "top_work_ids": [
+     "W:palmer|canadas 1960s",
+     "W:palmer|working class experience",
+     "W:palmer|culture in conflict",
+     "W:kealey|dreaming of what might be"
+    ]
+   },
+   "craig_heron": {
+    "label": "Craig Heron",
+    "identity": "candidates.csv: Heron, Craig",
+    "phds_2009_2026": 92,
+    "francophone_univ_phds": 3,
+    "universities": 20,
+    "top_works": [
+     "Booze: A Distilled History (2003; 39)",
+     "The Canadian Labour Movement: A Short History (1989; 18)",
+     "The Workers’ Revolt in Canada, 1917-1925 (1998; 18)",
+     "Working in Steel: The Early Years in Canada, 1883-1935 (1988; 12)"
+    ],
+    "top_work_ids": [
+     "W:heron|booze",
+     "W:heron|canadian labour movement",
+     "W:heron|workers revolt in canada 1917 25",
+     "W:heron|working in steel"
+    ]
+   },
+   "james_struthers": {
+    "label": "James Struthers",
+    "identity": "candidates.csv: Struthers, James",
+    "phds_2009_2026": 50,
+    "francophone_univ_phds": 6,
+    "universities": 16,
+    "top_works": [
+     "No Fault of Their Own: Unemployment and the Canadian Welfare State, 1914-1941 (1983; 33)",
+     "The Limits of Affluence: Welfare in Ontario, 1920-1970 (1994; 17)",
+     "A Profession in Crisis: Charlotte Whitton and Canadian Social Work in the 1930s (1981; 5)",
+     "Unequal Citizenship: The Residualist Legacy in the Canadian Welfare State (2002; 2)"
+    ],
+    "top_work_ids": [
+     "W:struthers|no fault of their own",
+     "W:struthers|limits ofafluence",
+     "W:struthers|profession in crisis|a",
+     "W:struthers|unequal citizenship|a"
+    ]
+   },
+   "alvin_finkel": {
+    "label": "Alvin Finkel",
+    "identity": "candidates.csv: Finkel, Alvin",
+    "phds_2009_2026": 70,
+    "francophone_univ_phds": 6,
+    "universities": 22,
+    "top_works": [
+     "Social Policy and Practice in Canada: A History (2006; 21)",
+     "The Social Credit Phenomenon in Alberta (1989; 16)",
+     "Our Lives: Canada After 1945 (1997; 9)",
+     "History of the Canadian Peoples (2006; 8)"
+    ],
+    "top_work_ids": [
+     "W:finkel|social policy and practice in canada",
+     "W:finkel|social credit phenomenon in alberta",
+     "W:finkel|our lives",
+     "W:conrad|history of the canadian peoples"
+    ]
+   },
+   "jacques_rouillard": {
+    "label": "Jacques Rouillard",
+    "identity": "graph person keys: P:rouillard|jacques",
+    "phds_2009_2026": 29,
+    "francophone_univ_phds": 18,
+    "universities": 10,
+    "top_works": [
+     "Le syndicalisme québécois. Deux siècles d’histoire (2004; 14)",
+     "Histoire du syndicalisme au Québec: des origines à nos jours (1989; 4)",
+     "La Révolution tranquille : Rupture ou Tournant? (1998; 4)",
+     "La Révolution tranquille, rupture ou tournant? (1998; 4)"
+    ],
+    "top_work_ids": [
+     "W:rouillard|syndicalisme quebecois",
+     "W:rouillard|histoire du syndicalisme au quebec",
+     "W:rouillard|revolution tranquille|a",
+     "W:rouillard|revolution tranquille rupture ou tournant|a"
+    ]
+   },
+   "joan_sangster": {
+    "label": "Joan Sangster",
+    "identity": "candidates.csv: Sangster, Joan",
+    "phds_2009_2026": 129,
+    "francophone_univ_phds": 12,
+    "universities": 25,
+    "top_works": [
+     "Transforming Labour: Women and Work in Post-War Canada (2010; 29)",
+     "Dreams of Equality: Women on the Canadian Left, 1920-1950 (1989; 17)",
+     "Regulating Girls and Women: Sexuality, Family, and the Law in Ontario, 1920-1960 (2001; 17)",
+     "Earning Respect: The Lives of Working Women in Small-Town Ontario, 1920-1960 (1995; 15)"
+    ],
+    "top_work_ids": [
+     "W:sangster|transforming labour",
+     "W:sangster|dreams ofequality",
+     "W:sangster|regulating girls and women",
+     "W:sangster|earning respect"
+    ]
+   },
+   "bettina_bradbury": {
+    "label": "Bettina Bradbury",
+    "identity": "candidates.csv: Bradbury, Bettina",
+    "phds_2009_2026": 76,
+    "francophone_univ_phds": 21,
+    "universities": 21,
+    "top_works": [
+     "Working Families: Age, Gender, and Daily Survival in Industrializing Montreal (1993; 43)",
+     "Wife to Widow: Lives, Laws, and Politics in Nineteenth-Century Montreal (2011; 12)",
+     "Familles ouvrières à Montréal: âge, genre et survie quotidienne pendant la phase d'industrialisation (1995; 9)",
+     "Pigs, Cows, and Boarders: Non-Wage Forms of Survival among Montreal Families, 1861-91 (1984; 7)"
+    ],
+    "top_work_ids": [
+     "W:bradbury|working families",
+     "W:bradbury|wife to widow",
+     "W:bradbury|familles ouvrieres a montreal",
+     "W:bradbury|pigs cows and boarders|a"
+    ]
+   },
+   "joy_parr": {
+    "label": "Joy Parr",
+    "identity": "candidates.csv: Parr, Joy",
+    "phds_2009_2026": 134,
+    "francophone_univ_phds": 9,
+    "universities": 24,
+    "top_works": [
+     "The Gender of Breadwinners: Women, Men, and Change in Two Industrial Towns, 1880-1950 (1990; 47)",
+     "Domestic Goods: The Material, the Moral, and the Economic in the Postwar Years (1999; 39)",
+     "Sensing Changes: Technologies, Environments, and the Everyday, 1953-2003 (2010; 22)",
+     "Labouring Children: British Immigrant Apprentices to Canada, 1869-1924 (1980; 9)"
+    ],
+    "top_work_ids": [
+     "W:parr|gender ofbreadwinners",
+     "W:parr|domestic good",
+     "W:parr|sensing changes",
+     "W:parr|labouring children"
+    ]
+   },
+   "desmond_morton": {
+    "label": "Desmond Morton",
+    "identity": "candidates.csv: Morton, Desmond",
+    "phds_2009_2026": 124,
+    "francophone_univ_phds": 6,
+    "universities": 23,
+    "top_works": [
+     "A Military History of Canada (2007; 35)",
+     "Fight or Pay: Soldiers’ Families in the Great War (2004; 25)",
+     "Winning the Second Battle: Canadian Veterans and the Return to Civilian Life, 1915-1930 (1987; 23)",
+     "When Your Number’s Up: The Canadian Soldier in the First World War (1993; 20)"
+    ],
+    "top_work_ids": [
+     "W:morton|military history of canada",
+     "W:morton|fight or pay",
+     "W:morton|winning the second battle",
+     "W:morton|when you numbers up"
+    ]
+   },
+   "steven_high": {
+    "label": "Steven High",
+    "identity": "candidates.csv: High, Steven",
+    "phds_2009_2026": 60,
+    "francophone_univ_phds": 3,
+    "universities": 17,
+    "top_works": [
+     "Industrial Sunset: The Making of North America’s Rust Belt, 1969-1984 (2003; 19)",
+     "Rethinking the Concept of Community (1999; 9)",
+     "Corporate Wasteland: The Landscape and Memory of Deindustrialization (2007; 8)",
+     "Oral History at the Crossroads: Sharing Life Stories of Survival and Displacement (2014; 8)"
+    ],
+    "top_work_ids": [
+     "W:high|industrial sunset",
+     "W:walsh|rethinking the concept of community|a",
+     "W:high|corporate wasteland",
+     "W:high|oral history at the crossroads"
+    ]
+   }
+  }
+ },
+ "groups_json_anchor_engagement": [
+  {
+   "id": "cdn_working_class",
+   "label": "Canadian working-class history",
+   "anchors": 12,
+   "engaged_phds": 285,
+   "share": 0.2187,
+   "share_ci95": [
+    0.1971,
+    0.242
+   ],
+   "share_2009_14": 0.2463,
+   "share_2020_26": 0.1605,
+   "trend": "falling",
+   "universities": 25,
+   "anchor_counts": {
+    "Kealey, Gregory S": 101,
+    "Palmer, Bryan D": 125,
+    "Heron, Craig": 92,
+    "Struthers, James": 50,
+    "Finkel, Alvin": 70,
+    "High, Steven": 60,
+    "Copp, Terry": 54,
+    "Bercuson, David": 73,
+    "McKay, Ian": 182,
+    "Sangster, Joan": 129,
+    "Bradbury, Bettina": 76,
+    "Parr, Joy": 134
+   },
+   "top_works": [
+    "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History (2000; 90)",
+    "Canada’s 1960s: The Ironies of Identity in a Rebellious Era (2009; 65)",
+    "The Quest of the Folk: Antimodernism and Cultural Selection in Twentieth-Century Nova Scotia (1994; 56)",
+    "The Gender of Breadwinners: Women, Men, and Change in Two Industrial Towns, 1880-1950 (1990; 47)",
+    "Working Families: Age, Gender, and Daily Survival in Industrializing Montreal (1993; 43)",
+    "Booze: A Distilled History (2003; 39)",
+    "Domestic Goods: The Material, the Moral, and the Economic in the Postwar Years (1999; 39)",
+    "Reasoning Otherwise: Leftists and the People’s Enlightenment in Canada, 1890-1920 (2008; 36)"
+   ]
+  }
+ ],
+ "reading": "Roster engagement falls from 25.1% of PhDs in 2009–14 to 16.3% in 2020–26, the steepest fall of the four groups drafted here; francophone universities supply 24 of 280 engaged PhDs. Most-cited works by this roster are not its 1970s–80s labour classics but McKay’s Liberal Order Framework (90) and Palmer’s Canada’s 1960s (65), which belong to other proposed entries.",
+ "cross_group_overlap_2009_2026": {
+  "note": "Copp, Bercuson and Desmond Morton are on both this roster and cdn_military; the second figure removes them from both rosters.",
+  "native_newcomer": {
+   "overlap": 84,
+   "expected": 47.1,
+   "lift": 1.78
+  },
+  "quebec_historiography": {
+   "overlap": 79,
+   "expected": 34.6,
+   "lift": 2.28
+  },
+  "cdn_military": {
+   "overlap": 150,
+   "expected": 46.8,
+   "lift": 3.2,
+   "excluding_shared_people": {
+    "overlap": 86,
+    "expected": 31.9,
+    "lift": 2.69
+   }
+  }
+ },
+ "answers_applied_2026_10_12": {
+  "note": "Roster engagement above was computed for the 16-person roster and not recomputed after McKay was added. Figures from answers/data-answers.json and scratch counts on the citation graph (denominator 1,303 strict History PhDs 2009–2026; francophone = montreal, uqam, laval, sherbrooke).",
+  "Q31_mckay": {
+   "citing_phds": 182,
+   "engaging_cdn_working_class": {
+    "share": 0.527,
+    "lift": 2.88
+   },
+   "engaging_liberal_order_framework": {
+    "share": 0.473,
+    "lift": 3.48
+   },
+   "reasoning_otherwise_2008": {
+    "phds": 37,
+    "universities": 12,
+    "francophone": 1
+   }
+  },
+  "Q34_critics": {
+   "bercuson": {
+    "citing_phds": 73,
+    "engaging_cdn_working_class": 0.479,
+    "engaging_cdn_military_lift": 5.55
+   },
+   "morton": {
+    "citing_phds": 124,
+    "engaging_cdn_working_class": 0.629,
+    "engaging_cdn_military_lift": 5.32
+   }
+  },
+  "Q37_descent_into_discourse": {
+   "phds": 5,
+   "universities": 5,
+   "francophone": 1,
+   "engaging_cdn_working_class": {
+    "share": 0.8,
+    "lift": 3.95
+   },
+   "engaging_cdn_women_gender": {
+    "share": 0.6,
+    "lift": 2.38
+   }
+  },
+  "Q32_labourhistory_roster_has_no_canadians": true
+ }
+}

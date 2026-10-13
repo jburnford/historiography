@@ -7,7 +7,7 @@ This sorts the 95 questions by what settles them, for a reviewer whose training 
 - **Verified:** `verification.json`, with sources for each answer.
 - **Your call:** what the evidence cannot settle.
 
-**Applied to the drafts on 2026-10-12**, except five held for the user: the primary-placement moves for Backhouse (Q28), Owram (Q45) and Bliss (Q73, Q80), and the new Black Canadian history entry (Q46). Each draft records what was done per question in `question_resolutions` (carried into `consolidated-request.json`) and in its NOTES.md.
+**Applied to the drafts on 2026-10-12**, including the primary-placement moves for Backhouse (Q28), Owram (Q45) and Bliss (Q73, Q80) and a new Black Canadian history entry (Q46), which the user agreed to on 2026-10-12 (`apply_placements.py`; the Black history draft is `drafts/cdn_black_history/`). Each draft records what was done per question in `question_resolutions` (carried into `consolidated-request.json`) and in its NOTES.md.
 
 | How settled | Questions |
 | --- | ---: |
