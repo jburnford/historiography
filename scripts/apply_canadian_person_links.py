@@ -42,6 +42,11 @@ EDGE_886 = dict(  # finding of the research: two arrows must not tell the same s
                    'Canadian historians adopted one Marxist theory. Thompson’s own place is the separate edge from his '
                    'person entry (revision 1.129).'))
 TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
+RATIONALE = ('Person entries go to thinkers whose frameworks students meet across fields (user, 2026-10-13); readership '
+             'dispersion is in summary/idea-vs-content.csv. Wolfe: the historiography names his settler-colonial '
+             'programme, and in the sampled corpus 54 of 1,303 strict History doctoral dissertations dated 2009–2026 '
+             'cite him, rising from 1.0% to 8.6%. Scott, Hall and Thompson already have entries; the family map needs '
+             'edges to show them.')
 
 
 def read(path):
@@ -56,9 +61,15 @@ def sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+PERSONS = ('wolfe', 'mckay', 'innis')  # person-entry drafts, included when present
+ROSTER_EDGES = {  # proposal -> (group node, person) whose roster row gains the new edge_id
+    'cpl129_wolfe_rel_01': ('settler_colonialism', 'patrick_wolfe'),
+}
+
+
 def build():
-    """Freeze the packet from edges/proposed-edges.json and wolfe/entry-draft.json."""
-    research, wolfe = read(PKT / 'edges/proposed-edges.json'), read(PKT / 'wolfe/entry-draft.json')
+    """Freeze the packet from edges/proposed-edges.json and each person draft."""
+    research = read(PKT / 'edges/proposed-edges.json')
     edges, sources, addenda = [], [], {}
     for r in research['edges']:
         if r['recommendation']['decision'] != 'propose':
@@ -78,27 +89,44 @@ def build():
                 sources.append({k: s[k] for k in ('id', 'title', 'url', 'citation', 'verification', 'scope_note') if k in s})
             if s['id'] in used and s.get('proposed_verification_addendum'):
                 addenda[s['id']] = s['proposed_verification_addendum']
-    for r in wolfe['proposed_edges']:
-        e = {k: r[k] for k in EDGE_KEYS if r.get(k) is not None}
-        if r['proposal_id'] == 'cpl129_wolfe_rel_02':
-            e['target_strand'] = 'anthropology/colonial_knowledge'
-        e['proposal_id'] = r['proposal_id']
-        edges.append(e)
-    sources += wolfe['new_sources']
+    nodes, people_updates, wikidata, roster_edges = [], [], [], []
+    for name in PERSONS:
+        path = PKT / name / 'entry-draft.json'
+        if not path.exists():
+            continue
+        d = read(path)
+        nodes.append(d['node'])
+        people_updates.append(dict(id=d['people_update']['id'], node_id=d['people_update']['node_id']))
+        wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
+        for r in d['proposed_edges']:
+            if r.get('include') is False:
+                continue
+            e = {k: r[k] for k in EDGE_KEYS if r.get(k) is not None}
+            if r['proposal_id'] == 'cpl129_wolfe_rel_02':
+                e['target_strand'] = 'anthropology/colonial_knowledge'
+            e['proposal_id'] = r['proposal_id']
+            edges.append(e)
+            if r.get('roster_row'):
+                roster_edges.append(dict(node=r['roster_row'], person_id=d['node']['id'], proposal_id=r['proposal_id']))
+        sources += [s for s in d['new_sources'] if s['id'] not in {x['id'] for x in sources}]
+        for sid, note in (d.get('source_addenda') or {}).items():  # plain notes of pages read
+            add = note if isinstance(note, dict) else dict(status='supporting_page_checked', checked_on=DAY,
+                                                           note=note.removeprefix(f'Addendum {DAY} (Claude): '))
+            if sid in addenda:
+                raise ValueError('Two addenda for ' + sid)
+            addenda[sid] = add
+    for pid, (node, person) in ROSTER_EDGES.items():
+        if not any(x['proposal_id'] == pid for x in roster_edges):
+            roster_edges.append(dict(node=node, person_id=person, proposal_id=pid))
     packet = dict(schema='atlas_editorial_packet/1', revision='1.129', baseline_revision='1.128', prepared=DAY,
-                  node=wolfe['node'], people_update=dict(id='patrick_wolfe', node_id='patrick_wolfe'),
-                  roster_edge=dict(node='settler_colonialism', person_id='patrick_wolfe', proposal_id='cpl129_wolfe_rel_01'),
+                  nodes=nodes, people_updates=people_updates, roster_edges=roster_edges,
                   edges=edges, sources=sorted(sources, key=lambda s: s['id']), source_addenda=addenda,
-                  edge_revisions={'edge_886': EDGE_886}, deferred_relationships=deferred,
-                  wikidata=dict(person_id='patrick_wolfe', **wolfe['wikidata_check']),
-                  research=dict(edges=str((PKT / 'edges').relative_to(ROOT)), wolfe=str((PKT / 'wolfe').relative_to(ROOT))),
-                  rationale=('Wolfe is promoted because the historiography names his settler-colonial programme and, in '
-                             'the sampled corpus, 54 of 1,303 strict History doctoral dissertations dated 2009–2026 cite '
-                             'him, the citation share rising from 1.0% to 8.6%. The other person entries already exist; '
-                             'the family map needs edges to show them.'))
+                  edge_revisions={'edge_886': EDGE_886}, deferred_relationships=deferred, wikidata=wikidata,
+                  research={n: str((PKT / n).relative_to(ROOT)) for n in ('edges',) + PERSONS if (PKT / n).exists()},
+                  rationale=RATIONALE)
     PACKET.parent.mkdir(exist_ok=True)
     PACKET.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
-    print(f"packet: 1 node, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, {len(deferred)} deferred")
+    print(f"packet: {len(nodes)} person entries, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, {len(deferred)} deferred")
 
 
 def transform(before, packet):
@@ -106,11 +134,12 @@ def transform(before, packet):
         raise ValueError('Expected revision ' + packet['baseline_revision'])
     g = deepcopy(before)
     ids = {n['id'] for n in g['nodes']}
-    if packet['node']['id'] in ids:
-        raise ValueError('Node exists: ' + packet['node']['id'])
-    g['nodes'].append(deepcopy(packet['node']))
-    person = next(p for p in g['people'] if p['id'] == packet['people_update']['id'])
-    person['node_id'] = packet['people_update']['node_id']
+    for node in packet['nodes']:
+        if node['id'] in ids:
+            raise ValueError('Node exists: ' + node['id'])
+        g['nodes'].append(deepcopy(node))
+    for upd in packet['people_updates']:
+        next(p for p in g['people'] if p['id'] == upd['id'])['node_id'] = upd['node_id']
     have = {s['id'] for s in g['sources']}
     for s in packet['sources']:
         if s['id'] in have:
@@ -130,11 +159,11 @@ def transform(before, packet):
         g['edges'].append(dict(id=new_ids[e['proposal_id']], **deepcopy(e)))
     for eid, upd in packet['edge_revisions'].items():
         next(e for e in g['edges'] if e['id'] == eid).update(deepcopy(upd))
-    re_ = packet['roster_edge']
-    node = next(n for n in g['nodes'] if n['id'] == re_['node'])
-    next(r for r in node['representative_people'] if r['person_id'] == re_['person_id'])['edge_id'] = new_ids[re_['proposal_id']]
+    for re_ in packet['roster_edges']:
+        node = next(n for n in g['nodes'] if n['id'] == re_['node'])
+        next(r for r in node['representative_people'] if r['person_id'] == re_['person_id'])['edge_id'] = new_ids[re_['proposal_id']]
     g['revision_history'].append(dict(version='1.129', date=DAY, acceptance_record=str((OUT / 'acceptance.json').relative_to(ROOT)),
-        summary=SUMMARY, added_node_ids=[packet['node']['id']], added_edge_ids=list(new_ids.values()),
+        summary=SUMMARY, added_node_ids=[n['id'] for n in packet['nodes']], added_edge_ids=list(new_ids.values()),
         revised_edge_ids=sorted(packet['edge_revisions'])))
     return g
 
@@ -197,8 +226,8 @@ def main():
         BASE.write_bytes(GRAPH.read_bytes())
         OUT.mkdir(parents=True, exist_ok=True)
         GRAPH.write_text(serial(graph))
-        touched = dict(people={packet['people_update']['id']}, edges=set(packet['edge_revisions']),
-                       sources=set(packet['source_addenda']), nodes={packet['roster_edge']['node']})
+        touched = dict(people={u['id'] for u in packet['people_updates']}, edges=set(packet['edge_revisions']),
+                       sources=set(packet['source_addenda']), nodes={r['node'] for r in packet['roster_edges']})
         prior = {t: {r['id']: r for r in before[t] if r['id'] in ids} for t, ids in touched.items()}
         record = dict(revision='1.129', date=DAY,
             authorization=('User, 2026-10-13: add the top three person entries by Canadian PhD uptake (Scott, Hall, '
@@ -207,7 +236,7 @@ def main():
             packet_sha256=sha(PACKET), production_sha256=sha(GRAPH),
             previous_table_lengths={k: len(before[k]) for k in TABLES}, prior_records=prior,
             deferred=packet['deferred_relationships'],
-            counts=dict(new_person_entries=1, new_edges=len(packet['edges']), new_sources=len(packet['sources']),
+            counts=dict(new_person_entries=len(packet['nodes']), new_edges=len(packet['edges']), new_sources=len(packet['sources']),
                         revised_edges=len(packet['edge_revisions']), source_addenda=len(packet['source_addenda'])))
         (OUT / 'acceptance.json').write_text(serial(record))
     errors, warnings = validate(graph, read(ROOT / 'seminar-pathways.json'))
