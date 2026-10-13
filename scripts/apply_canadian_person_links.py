@@ -28,8 +28,8 @@ OUT = ROOT / 'data/production-batches/canadian-person-links-1.129'
 DAY = '2026-10-13'
 SUMMARY = ('Person-entry links for historiography in Canada: E. P. Thompson → Canadian working-class history and '
            'Joan Wallach Scott → Canadian women’s and gender history, each evidenced by pre-2000 Canadian texts '
-           'read in full; Patrick Wolfe promoted to a person entry with contributions to settler colonialism and '
-           'anthropology (1999 book, contents level). The Marxist edge to working-class history no longer carries '
+           'read at the cited passages; Patrick Wolfe promoted to a person entry with contributions to settler '
+           'colonialism and anthropology (1999 book: introduction pp. 1–2 read, the rest at contents level). The Marxist edge to working-class history no longer carries '
            'Thompson’s name. Catherine Hall’s edge is deferred: no checked pre-2000 passage.')
 EDGE_KEYS = ['source', 'target', 'relationship', 'type', 'relationship_kind', 'directed', 'source_ids', 'evidence_note',
              'classification_basis', 'map_label', 'target_strand']
@@ -91,7 +91,11 @@ def build():
                   edges=edges, sources=sorted(sources, key=lambda s: s['id']), source_addenda=addenda,
                   edge_revisions={'edge_886': EDGE_886}, deferred_relationships=deferred,
                   wikidata=dict(person_id='patrick_wolfe', **wolfe['wikidata_check']),
-                  research=dict(edges=str((PKT / 'edges').relative_to(ROOT)), wolfe=str((PKT / 'wolfe').relative_to(ROOT))))
+                  research=dict(edges=str((PKT / 'edges').relative_to(ROOT)), wolfe=str((PKT / 'wolfe').relative_to(ROOT))),
+                  rationale=('Wolfe is promoted because the historiography names his settler-colonial programme and, in '
+                             'the sampled corpus, 54 of 1,303 strict History doctoral dissertations dated 2009–2026 cite '
+                             'him, the citation share rising from 1.0% to 8.6%. The other person entries already exist; '
+                             'the family map needs edges to show them.'))
     PACKET.parent.mkdir(exist_ok=True)
     PACKET.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
     print(f"packet: 1 node, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, {len(deferred)} deferred")
