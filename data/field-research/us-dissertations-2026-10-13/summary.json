@@ -1,0 +1,739 @@
+{
+  "generated_at": "2026-10-13T19:10:00.984091+00:00",
+  "config": "data/field-research/us-dissertations-2026-10-13/harvest-config.json",
+  "aha_since": 2005,
+  "totals": {
+    "listed": 1688,
+    "kept": 1347,
+    "history_phd": 1335,
+    "needs_review": 12,
+    "open_pdf": 1137,
+    "open_pdf_history_phd": 1131,
+    "embargoed": 128,
+    "restricted": 54,
+    "no_public_pdf": 28,
+    "aha_matched": 1246,
+    "aha_matched_since": 1115,
+    "aha_phds_since": 1728
+  },
+  "institutions": {
+    "vanderbilt": {
+      "institution_name": "Vanderbilt University",
+      "streams": [
+        {
+          "id": "vanderbilt-history",
+          "api_base": "https://irbe.library.vanderbilt.edu",
+          "scope": null,
+          "query": "thesis.degree.discipline:History AND (thesis.degree.level:dissertation OR thesis.degree.level:Doctoral)",
+          "filters": {},
+          "duplicates_dropped": 3,
+          "listed": 131,
+          "kept": 128,
+          "excluded": 0
+        }
+      ],
+      "aha_orgcds": [
+        "14928"
+      ],
+      "aha_phds_total": 397,
+      "aha_phds_since": 132,
+      "listed": 131,
+      "kept": 128,
+      "kept_since": 128,
+      "history_phd": 128,
+      "needs_review": 0,
+      "with_pdf_bitstream": 121,
+      "open_pdf": 120,
+      "open_pdf_since": 120,
+      "open_pdf_history_phd": 120,
+      "embargoed": 5,
+      "restricted": 0,
+      "no_public_pdf": 3,
+      "access_status_counts": {
+        "open.access": 123,
+        "embargo": 5
+      },
+      "aha_matched": 122,
+      "aha_matched_since": 122,
+      "aha_match_rate_kept": 0.953,
+      "aha_coverage_since": 0.924,
+      "match_basis_counts": {
+        "surname+year+title": 112,
+        "surname+given_initial+year (title differs)": 9,
+        "surname+title (year differs by >1)": 1
+      },
+      "programme_counts": {
+        "History": 128
+      },
+      "years": {
+        "2005": 2,
+        "2006": 5,
+        "2008": 2,
+        "2009": 2,
+        "2010": 5,
+        "2011": 6,
+        "2012": 2,
+        "2013": 8,
+        "2014": 8,
+        "2015": 5,
+        "2016": 7,
+        "2017": 7,
+        "2018": 12,
+        "2019": 10,
+        "2020": 5,
+        "2021": 9,
+        "2022": 7,
+        "2023": 7,
+        "2024": 9,
+        "2025": 6,
+        "2026": 4
+      },
+      "excluded_values": {}
+    },
+    "duke": {
+      "institution_name": "Duke University",
+      "streams": [
+        {
+          "id": "duke-history",
+          "api_base": "https://dukespace.lib.duke.edu",
+          "scope": "fadcf88f-ca4d-406b-8046-65e56de0b8eb",
+          "query": null,
+          "filters": {
+            "department": "History,equals",
+            "itemtype": "Dissertation,equals"
+          },
+          "duplicates_dropped": 0,
+          "listed": 134,
+          "kept": 134,
+          "excluded": 0
+        }
+      ],
+      "aha_orgcds": [
+        "4881"
+      ],
+      "aha_phds_total": 793,
+      "aha_phds_since": 162,
+      "listed": 134,
+      "kept": 134,
+      "kept_since": 134,
+      "history_phd": 134,
+      "needs_review": 0,
+      "with_pdf_bitstream": 123,
+      "open_pdf": 123,
+      "open_pdf_since": 123,
+      "open_pdf_history_phd": 123,
+      "embargoed": 11,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 123,
+        "embargo": 11
+      },
+      "aha_matched": 132,
+      "aha_matched_since": 132,
+      "aha_match_rate_kept": 0.985,
+      "aha_coverage_since": 0.815,
+      "match_basis_counts": {
+        "surname+year+title": 131,
+        "title+year (name differs)": 1
+      },
+      "programme_counts": {
+        "History": 134
+      },
+      "years": {
+        "2007": 3,
+        "2008": 4,
+        "2009": 7,
+        "2010": 5,
+        "2011": 8,
+        "2012": 13,
+        "2013": 7,
+        "2014": 5,
+        "2015": 8,
+        "2016": 3,
+        "2017": 8,
+        "2018": 8,
+        "2019": 6,
+        "2020": 8,
+        "2021": 7,
+        "2022": 9,
+        "2023": 4,
+        "2024": 10,
+        "2025": 4,
+        "2026": 7
+      },
+      "excluded_values": {}
+    },
+    "maryland": {
+      "institution_name": "University of Maryland, College Park",
+      "streams": [
+        {
+          "id": "maryland-history",
+          "api_base": "https://api.drum.lib.umd.edu",
+          "scope": null,
+          "query": "dc.contributor.department:History AND dc.type:Dissertation",
+          "filters": {},
+          "duplicates_dropped": 0,
+          "listed": 292,
+          "kept": 196,
+          "excluded": 96
+        }
+      ],
+      "aha_orgcds": [
+        "5045"
+      ],
+      "aha_phds_total": 508,
+      "aha_phds_since": 169,
+      "listed": 292,
+      "kept": 196,
+      "kept_since": 171,
+      "history_phd": 196,
+      "needs_review": 0,
+      "with_pdf_bitstream": 196,
+      "open_pdf": 179,
+      "open_pdf_since": 156,
+      "open_pdf_history_phd": 179,
+      "embargoed": 15,
+      "restricted": 2,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 179,
+        "embargo": 15,
+        "restricted": 2
+      },
+      "aha_matched": 182,
+      "aha_matched_since": 164,
+      "aha_match_rate_kept": 0.929,
+      "aha_coverage_since": 0.97,
+      "match_basis_counts": {
+        "surname+year+title": 166,
+        "surname+given_initial+year (title differs)": 14,
+        "surname+title (year differs by >1)": 2
+      },
+      "programme_counts": {
+        "History": 196
+      },
+      "years": {
+        "1974": 1,
+        "1976": 1,
+        "1984": 1,
+        "1985": 1,
+        "1992": 2,
+        "1993": 1,
+        "1994": 1,
+        "1995": 1,
+        "1997": 1,
+        "1999": 2,
+        "2000": 1,
+        "2003": 3,
+        "2004": 9,
+        "2005": 3,
+        "2006": 8,
+        "2007": 6,
+        "2008": 10,
+        "2009": 10,
+        "2010": 9,
+        "2011": 8,
+        "2012": 13,
+        "2013": 11,
+        "2014": 8,
+        "2015": 11,
+        "2016": 7,
+        "2017": 7,
+        "2018": 6,
+        "2019": 7,
+        "2020": 6,
+        "2021": 7,
+        "2022": 7,
+        "2023": 7,
+        "2024": 7,
+        "2025": 11,
+        "2026": 2
+      },
+      "excluded_values": {
+        "Art History and Archaeology": 89,
+        "History/Library & Information Systems": 4,
+        "Art History & Archaeology": 3
+      }
+    },
+    "minnesota": {
+      "institution_name": "University of Minnesota, Twin Cities",
+      "streams": [
+        {
+          "id": "minnesota-history",
+          "api_base": "https://conservancy.umn.edu",
+          "scope": "c8d50607-c28c-423e-92ec-d24ff2089e01",
+          "query": "dc.description:\"Ph.D. dissertation\" AND dc.description:\"Major: History\"",
+          "filters": {},
+          "duplicates_dropped": 1,
+          "listed": 192,
+          "kept": 148,
+          "excluded": 43
+        }
+      ],
+      "aha_orgcds": [
+        "14808"
+      ],
+      "aha_phds_total": 896,
+      "aha_phds_since": 209,
+      "listed": 192,
+      "kept": 148,
+      "kept_since": 139,
+      "history_phd": 148,
+      "needs_review": 0,
+      "with_pdf_bitstream": 148,
+      "open_pdf": 148,
+      "open_pdf_since": 139,
+      "open_pdf_history_phd": 148,
+      "embargoed": 0,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 148
+      },
+      "aha_matched": 134,
+      "aha_matched_since": 131,
+      "aha_match_rate_kept": 0.905,
+      "aha_coverage_since": 0.627,
+      "match_basis_counts": {
+        "surname+year+title": 130,
+        "surname+given_initial+year (title differs)": 4
+      },
+      "programme_counts": {
+        "History": 148
+      },
+      "years": {
+        "1893": 1,
+        "1895": 2,
+        "1900": 1,
+        "1904": 1,
+        "1906": 1,
+        "1919": 1,
+        "1920": 1,
+        "1922": 1,
+        "2008": 3,
+        "2009": 11,
+        "2010": 15,
+        "2011": 9,
+        "2012": 9,
+        "2013": 13,
+        "2014": 9,
+        "2015": 6,
+        "2016": 4,
+        "2017": 8,
+        "2018": 11,
+        "2019": 4,
+        "2020": 9,
+        "2021": 11,
+        "2022": 4,
+        "2023": 4,
+        "2024": 5,
+        "2025": 2,
+        "2026": 2
+      },
+      "excluded_values": {
+        "History of Science, Technology, and Medicine": 29,
+        "History of Science and Technology": 10,
+        "History of Medicine and Biological Sciences": 4
+      }
+    },
+    "harvard": {
+      "institution_name": "Harvard University (History; History of Science)",
+      "streams": [
+        {
+          "id": "harvard-history",
+          "api_base": "https://dash.harvard.edu",
+          "scope": "73120379-4b95-6bd4-e053-0100007fdf3b",
+          "query": "(thesis.degree.department:History OR thesis.degree.discipline:History) AND thesis.degree.level:doctoral",
+          "filters": {},
+          "duplicates_dropped": 0,
+          "listed": 468,
+          "kept": 321,
+          "excluded": 147
+        }
+      ],
+      "aha_orgcds": [
+        "5087",
+        "5013"
+      ],
+      "aha_phds_total": 2258,
+      "aha_phds_since": 452,
+      "listed": 468,
+      "kept": 321,
+      "kept_since": 319,
+      "history_phd": 309,
+      "needs_review": 12,
+      "with_pdf_bitstream": 252,
+      "open_pdf": 180,
+      "open_pdf_since": 178,
+      "open_pdf_history_phd": 174,
+      "embargoed": 72,
+      "restricted": 44,
+      "no_public_pdf": 25,
+      "access_status_counts": {
+        "open.access": 205,
+        "embargo": 72,
+        "restricted": 44
+      },
+      "aha_matched": 283,
+      "aha_matched_since": 281,
+      "aha_match_rate_kept": 0.882,
+      "aha_coverage_since": 0.622,
+      "match_basis_counts": {
+        "surname+year+title": 253,
+        "surname+given_initial+year (title differs)": 28,
+        "title+year (name differs)": 2
+      },
+      "programme_counts": {
+        "History of Science": 92,
+        "History": 217,
+        "History and East Asian Languages": 5,
+        "History and Middle Eastern Studies": 4,
+        "Ancient History": 3
+      },
+      "years": {
+        "2012": 8,
+        "2013": 41,
+        "2014": 36,
+        "2015": 14,
+        "2016": 25,
+        "2017": 19,
+        "2018": 25,
+        "2019": 17,
+        "2020": 15,
+        "2021": 20,
+        "2022": 20,
+        "2023": 23,
+        "2024": 21,
+        "2025": 19,
+        "2026": 16
+      },
+      "excluded_values": {
+        "History of Art and Architecture": 104,
+        "History of Art and Architecture | History of Art and Architecture": 29,
+        "History of American Civilization": 14
+      }
+    },
+    "penn": {
+      "institution_name": "University of Pennsylvania",
+      "streams": [
+        {
+          "id": "penn-history",
+          "api_base": "https://repository.upenn.edu",
+          "scope": "34a5f2e5-48bc-428c-adf2-e3b1e2609515",
+          "query": "upenn.graduate.group:History",
+          "filters": {},
+          "error": "PermissionError: robots.txt disallows https://repository.upenn.edu/server/api/discover/search/objects?size=50&page=0&sort=dc.title%2CASC&scope=34a5f2e5-48bc-428c-adf2-e3b1e2609515&query=upenn.graduate.group%3AHistory&embed=accessStatus&embed=bundles/bitstreams"
+        }
+      ],
+      "aha_orgcds": [
+        "5101"
+      ],
+      "aha_phds_total": 953,
+      "aha_phds_since": 217,
+      "listed": 0,
+      "kept": 0,
+      "kept_since": 0,
+      "history_phd": 0,
+      "needs_review": 0,
+      "with_pdf_bitstream": 0,
+      "open_pdf": 0,
+      "open_pdf_since": 0,
+      "open_pdf_history_phd": 0,
+      "embargoed": 0,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {},
+      "aha_matched": 0,
+      "aha_matched_since": 0,
+      "aha_match_rate_kept": null,
+      "aha_coverage_since": null,
+      "match_basis_counts": {},
+      "programme_counts": {},
+      "years": {},
+      "excluded_values": {}
+    },
+    "cornell": {
+      "institution_name": "Cornell University",
+      "streams": [
+        {
+          "id": "cornell-history",
+          "api_base": "https://ecommons.cornell.edu",
+          "scope": "5893a6ea-7af3-41d7-abc6-04bcd26ab5df",
+          "query": "thesis.degree.discipline:History AND thesis.degree.level:\"Doctor of Philosophy\"",
+          "filters": {},
+          "duplicates_dropped": 0,
+          "listed": 155,
+          "kept": 113,
+          "excluded": 42
+        }
+      ],
+      "aha_orgcds": [
+        "5057"
+      ],
+      "aha_phds_total": 716,
+      "aha_phds_since": 149,
+      "listed": 155,
+      "kept": 113,
+      "kept_since": 113,
+      "history_phd": 113,
+      "needs_review": 0,
+      "with_pdf_bitstream": 113,
+      "open_pdf": 102,
+      "open_pdf_since": 102,
+      "open_pdf_history_phd": 102,
+      "embargoed": 11,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 102,
+        "embargo": 11
+      },
+      "aha_matched": 105,
+      "aha_matched_since": 105,
+      "aha_match_rate_kept": 0.929,
+      "aha_coverage_since": 0.705,
+      "match_basis_counts": {
+        "surname+year+title": 92,
+        "surname+given_initial+year (title differs)": 12,
+        "title+year (name differs)": 1
+      },
+      "programme_counts": {
+        "History": 113
+      },
+      "years": {
+        "2011": 5,
+        "2012": 11,
+        "2013": 6,
+        "2014": 10,
+        "2015": 9,
+        "2016": 6,
+        "2017": 12,
+        "2018": 5,
+        "2019": 9,
+        "2020": 5,
+        "2021": 4,
+        "2022": 5,
+        "2023": 7,
+        "2024": 5,
+        "2025": 9,
+        "2026": 5
+      },
+      "excluded_values": {
+        "History of Art, Archaeology, and Visual Studies": 16,
+        "History of Art and Archaeology": 15,
+        "History of Architecture and Urban Development": 6,
+        "History of Art, Archaeology and Visual Studies": 5
+      }
+    },
+    "washington": {
+      "institution_name": "University of Washington, Seattle",
+      "streams": [
+        {
+          "id": "washington-history",
+          "api_base": "https://digital.lib.washington.edu",
+          "scope": "de59d688-1251-4e74-8fc8-482d3ed5d0fe",
+          "query": "dc.description:\"Ph.D.\"",
+          "filters": {},
+          "duplicates_dropped": 0,
+          "listed": 128,
+          "kept": 128,
+          "excluded": 0
+        }
+      ],
+      "aha_orgcds": [
+        "14976"
+      ],
+      "aha_phds_total": 610,
+      "aha_phds_since": 129,
+      "listed": 128,
+      "kept": 128,
+      "kept_since": 78,
+      "history_phd": 128,
+      "needs_review": 0,
+      "with_pdf_bitstream": 128,
+      "open_pdf": 119,
+      "open_pdf_since": 69,
+      "open_pdf_history_phd": 119,
+      "embargoed": 9,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "embargo": 9,
+        "open.access": 119
+      },
+      "aha_matched": 123,
+      "aha_matched_since": 75,
+      "aha_match_rate_kept": 0.961,
+      "aha_coverage_since": 0.581,
+      "match_basis_counts": {
+        "surname+year+title": 123
+      },
+      "programme_counts": {
+        "History": 49,
+        "Theses--History": 53,
+        "['History', 'history']": 14,
+        "history": 12
+      },
+      "years": {
+        "1963": 1,
+        "1966": 1,
+        "1970": 1,
+        "1971": 1,
+        "1972": 2,
+        "1973": 1,
+        "1974": 4,
+        "1975": 1,
+        "1981": 3,
+        "1983": 1,
+        "1984": 1,
+        "1989": 1,
+        "1990": 1,
+        "1991": 2,
+        "1992": 1,
+        "1994": 3,
+        "1995": 1,
+        "1996": 2,
+        "1997": 4,
+        "1998": 3,
+        "1999": 2,
+        "2000": 3,
+        "2001": 2,
+        "2003": 2,
+        "2004": 6,
+        "2005": 1,
+        "2007": 2,
+        "2012": 5,
+        "2013": 9,
+        "2014": 8,
+        "2015": 8,
+        "2016": 3,
+        "2017": 8,
+        "2018": 4,
+        "2019": 3,
+        "2020": 4,
+        "2021": 7,
+        "2022": 4,
+        "2023": 4,
+        "2024": 5,
+        "2026": 3
+      },
+      "excluded_values": {}
+    },
+    "oklahoma": {
+      "institution_name": "University of Oklahoma (History; History of Science, Technology and Medicine)",
+      "streams": [
+        {
+          "id": "oklahoma-history",
+          "api_base": "https://shareok.org",
+          "scope": null,
+          "query": "ou.group:History AND (dc.thesis.degree:\"Ph.D.\" OR dc.thesis.degree:\"D.Phil.\" OR dc.thesis.degree:Doctor)",
+          "filters": {},
+          "duplicates_dropped": 2,
+          "listed": 188,
+          "kept": 179,
+          "excluded": 7
+        }
+      ],
+      "aha_orgcds": [
+        "15067",
+        "15013"
+      ],
+      "aha_phds_total": 341,
+      "aha_phds_since": 109,
+      "listed": 188,
+      "kept": 179,
+      "kept_since": 109,
+      "history_phd": 179,
+      "needs_review": 0,
+      "with_pdf_bitstream": 179,
+      "open_pdf": 166,
+      "open_pdf_since": 96,
+      "open_pdf_history_phd": 166,
+      "embargoed": 5,
+      "restricted": 8,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "embargo": 5,
+        "open.access": 166,
+        "restricted": 8
+      },
+      "aha_matched": 165,
+      "aha_matched_since": 105,
+      "aha_match_rate_kept": 0.922,
+      "aha_coverage_since": 0.963,
+      "match_basis_counts": {
+        "surname+year+title": 154,
+        "surname+given_initial+year (title differs)": 10,
+        "title+year (name differs)": 1
+      },
+      "programme_counts": {
+        "History: Arts & Sciences": 7,
+        "College of Arts and Sciences::Department of History": 128,
+        "College of Arts and Sciences::Department of History of Science": 29,
+        "Dodge Family College of Arts and Sciences::Department of History": 9,
+        "History of Science: Arts & Sciences": 2,
+        "Dodge Family College of Arts and Sciences::Department of History of Science, Technology, and Medicine": 1,
+        "Dodge Family College of Arts and Sciences::Department of History of Science": 3
+      },
+      "years": {
+        "1961": 1,
+        "1968": 1,
+        "1970": 1,
+        "1973": 1,
+        "1974": 3,
+        "1975": 1,
+        "1976": 2,
+        "1977": 2,
+        "1978": 7,
+        "1979": 2,
+        "1980": 6,
+        "1981": 3,
+        "1982": 4,
+        "1983": 3,
+        "1984": 5,
+        "1985": 1,
+        "1998": 5,
+        "1999": 2,
+        "2000": 5,
+        "2001": 2,
+        "2002": 4,
+        "2003": 5,
+        "2004": 4,
+        "2005": 4,
+        "2006": 2,
+        "2007": 4,
+        "2008": 1,
+        "2009": 6,
+        "2010": 8,
+        "2011": 4,
+        "2012": 8,
+        "2013": 6,
+        "2014": 11,
+        "2015": 3,
+        "2016": 4,
+        "2017": 2,
+        "2018": 4,
+        "2019": 8,
+        "2020": 7,
+        "2021": 6,
+        "2022": 4,
+        "2023": 7,
+        "2024": 2,
+        "2025": 6,
+        "2026": 2
+      },
+      "excluded_values": {
+        "Weitzenhoffer Family College of Fine Arts::School of Art and Art History": 7
+      }
+    }
+  },
+  "errors": {
+    "penn-history": "PermissionError: robots.txt disallows https://repository.upenn.edu/server/api/discover/search/objects?size=50&page=0&sort=dc.title%2CASC&scope=34a5f2e5-48bc-428c-adf2-e3b1e2609515&query=upenn.graduate.group%3AHistory&embed=accessStatus&embed=bundles/bitstreams"
+  },
+  "notes": [
+    "open_pdf = PDF in the ORIGINAL bundle and DSpace accessStatus open.access at harvest time; no PDF body was requested.",
+    "aha_matched counts distinct AHA records matched one-to-one; aha_coverage_since = matched AHA PhDs since aha_since / AHA PhDs since aha_since.",
+    "Repository holdings are not graduation censuses; deposit begins between ~2004 and ~2012 depending on the institution."
+  ]
+}

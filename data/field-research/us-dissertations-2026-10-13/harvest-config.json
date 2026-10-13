@@ -1,0 +1,299 @@
+{
+  "description": "US History PhD metadata harvest, tier-A DSpace 7-9 repositories (feasibility survey us-dissertations-feasibility-2026-10-13). Streams: DSpace discover/search/objects with optional scope, query and f.<facet> filters; 'department' and 'degree' are exact client-side keep rules (equals = case/accent-insensitive whole-value match; regex = re.search; extract = take regex group 1 from the field first).",
+  "user_agent": "HistoriographyMetadataHarvest/1.0 (public dissertation metadata research)",
+  "min_delay_seconds": 2.5,
+  "page_size": 50,
+  "aha_records": "data/field-research/aha-dissertations-2026-10-13/records.csv",
+  "aha_since": 2005,
+  "streams": [
+    {
+      "id": "vanderbilt-history",
+      "institution": "vanderbilt",
+      "institution_name": "Vanderbilt University",
+      "aha_orgcds": [
+        "14928"
+      ],
+      "api_base": "https://irbe.library.vanderbilt.edu",
+      "item_base": "https://ir.vanderbilt.edu",
+      "query": "thesis.degree.discipline:History AND (thesis.degree.level:dissertation OR thesis.degree.level:Doctoral)",
+      "department": {
+        "fields": [
+          "thesis.degree.discipline"
+        ],
+        "equals": [
+          "History"
+        ]
+      },
+      "degree": {
+        "fields": [
+          "thesis.degree.name",
+          "thesis.degree.level"
+        ],
+        "regex": "(?i)^(ph\\.? ?d\\.?|doctoral|dissertation)$"
+      },
+      "author_fields": [
+        "dc.creator",
+        "dc.contributor.author"
+      ],
+      "advisor_fields": [
+        "dc.contributor.advisor",
+        "dc.contributor.committeeChair"
+      ],
+      "rule_description": "thesis.degree.discipline == History; level dissertation/Doctoral (legacy and 2019+ ETDs)"
+    },
+    {
+      "id": "duke-history",
+      "institution": "duke",
+      "institution_name": "Duke University",
+      "aha_orgcds": [
+        "4881"
+      ],
+      "api_base": "https://dukespace.lib.duke.edu",
+      "item_base": "https://dukespace.lib.duke.edu",
+      "scope": "fadcf88f-ca4d-406b-8046-65e56de0b8eb",
+      "filters": {
+        "department": "History,equals",
+        "itemtype": "Dissertation,equals"
+      },
+      "department": {
+        "fields": [
+          "dc.department"
+        ],
+        "equals": [
+          "History"
+        ]
+      },
+      "degree": {
+        "fields": [
+          "dc.type"
+        ],
+        "equals": [
+          "Dissertation"
+        ]
+      },
+      "rule_description": "Dissertations collection; dc.department == History; dc.type == Dissertation (Duke doctoral dissertations)"
+    },
+    {
+      "id": "maryland-history",
+      "institution": "maryland",
+      "institution_name": "University of Maryland, College Park",
+      "aha_orgcds": [
+        "5045"
+      ],
+      "api_base": "https://api.drum.lib.umd.edu",
+      "item_base": "https://drum.lib.umd.edu",
+      "query": "dc.contributor.department:History AND dc.type:Dissertation",
+      "department": {
+        "fields": [
+          "dc.contributor.department"
+        ],
+        "equals": [
+          "History"
+        ],
+        "note": "'History/Library & Information Systems' (HiLS, a joint master's programme) is excluded: its 4 'Dissertation' items are information-studies and education topics; 'Art History and Archaeology' is a separate department"
+      },
+      "degree": {
+        "fields": [
+          "dc.type"
+        ],
+        "equals": [
+          "Dissertation"
+        ]
+      },
+      "rule_description": "dc.contributor.department == History (sole value); dc.type == Dissertation"
+    },
+    {
+      "id": "minnesota-history",
+      "institution": "minnesota",
+      "institution_name": "University of Minnesota, Twin Cities",
+      "aha_orgcds": [
+        "14808"
+      ],
+      "api_base": "https://conservancy.umn.edu",
+      "item_base": "https://conservancy.umn.edu",
+      "scope": "c8d50607-c28c-423e-92ec-d24ff2089e01",
+      "query": "dc.description:\"Ph.D. dissertation\" AND dc.description:\"Major: History\"",
+      "department": {
+        "fields": [
+          "dc.description"
+        ],
+        "extract": "Major\\s*:?\\s*([^.:;]+?)\\s*[.:;]",
+        "equals": [
+          "History"
+        ]
+      },
+      "degree": {
+        "fields": [
+          "dc.description"
+        ],
+        "regex": "(?i)Ph\\.?\\s?D\\.?\\s+dissertation"
+      },
+      "advisor_extract": "Advisors?\\s*:\\s*([^.]+)\\.",
+      "year_fields": [
+        "dc.description"
+      ],
+      "rule_description": "dc.description 'University of Minnesota Ph.D. dissertation ... Major: History.'"
+    },
+    {
+      "id": "harvard-history",
+      "institution": "harvard",
+      "institution_name": "Harvard University (History; History of Science)",
+      "aha_orgcds": [
+        "5087",
+        "5013"
+      ],
+      "api_base": "https://dash.harvard.edu",
+      "item_base": "https://dash.harvard.edu",
+      "scope": "73120379-4b95-6bd4-e053-0100007fdf3b",
+      "query": "(thesis.degree.department:History OR thesis.degree.discipline:History) AND thesis.degree.level:doctoral",
+      "department": {
+        "fields": [
+          "thesis.degree.department",
+          "thesis.degree.discipline"
+        ],
+        "equals": [
+          "History",
+          "History of Science"
+        ],
+        "review_regex": "^(History and (East Asian Languages|Middle Eastern Studies)|Ancient History)$",
+        "note": "History of Art and Architecture and History of American Civilization are separate programmes (excluded); joint History-and-language programmes and Ancient History are kept as needs_review unless AHA-matched"
+      },
+      "degree": {
+        "fields": [
+          "thesis.degree.level"
+        ],
+        "regex": "(?i)^doctoral$"
+      },
+      "advisor_fields": [
+        "dc.contributor.advisor",
+        "thesis.degree.advisor"
+      ],
+      "rule_description": "FAS theses; thesis.degree.department/discipline == History or History of Science (2012-16 discipline, 2017+ department); level doctoral"
+    },
+    {
+      "id": "penn-history",
+      "institution": "penn",
+      "institution_name": "University of Pennsylvania",
+      "aha_orgcds": [
+        "5101"
+      ],
+      "api_base": "https://repository.upenn.edu",
+      "item_base": "https://repository.upenn.edu",
+      "scope": "34a5f2e5-48bc-428c-adf2-e3b1e2609515",
+      "query": "upenn.graduate.group:History",
+      "department": {
+        "fields": [
+          "upenn.graduate.group"
+        ],
+        "equals": [
+          "History"
+        ]
+      },
+      "degree": {
+        "fields": [
+          "dc.description.degree"
+        ],
+        "equals": [
+          "Doctor of Philosophy (PhD)"
+        ]
+      },
+      "skip_bitstream_regex": "_embargo\\.pdf$",
+      "rule_description": "upenn.graduate.group == History; dc.description.degree == Doctor of Philosophy (PhD)"
+    },
+    {
+      "id": "cornell-history",
+      "institution": "cornell",
+      "institution_name": "Cornell University",
+      "aha_orgcds": [
+        "5057"
+      ],
+      "api_base": "https://ecommons.cornell.edu",
+      "item_base": "https://ecommons.cornell.edu",
+      "scope": "5893a6ea-7af3-41d7-abc6-04bcd26ab5df",
+      "query": "thesis.degree.discipline:History AND thesis.degree.level:\"Doctor of Philosophy\"",
+      "department": {
+        "fields": [
+          "thesis.degree.discipline"
+        ],
+        "equals": [
+          "History"
+        ]
+      },
+      "degree": {
+        "fields": [
+          "thesis.degree.level"
+        ],
+        "equals": [
+          "Doctor of Philosophy"
+        ]
+      },
+      "advisor_fields": [
+        "dc.contributor.chair",
+        "dc.contributor.advisor"
+      ],
+      "rule_description": "Theses and Dissertations; thesis.degree.discipline == History; level Doctor of Philosophy"
+    },
+    {
+      "id": "washington-history",
+      "institution": "washington",
+      "institution_name": "University of Washington, Seattle",
+      "aha_orgcds": [
+        "14976"
+      ],
+      "api_base": "https://digital.lib.washington.edu",
+      "item_base": "https://digital.lib.washington.edu/researchworks",
+      "scope": "de59d688-1251-4e74-8fc8-482d3ed5d0fe",
+      "query": "dc.description:\"Ph.D.\"",
+      "department": {
+        "fields": [
+          "dc.subject.other"
+        ],
+        "equals": [
+          "History",
+          "Theses--History"
+        ],
+        "exact_if_any": true,
+        "note": "dc.subject.other mixes the department ('History', legacy 'Theses--History') with ProQuest subject terms; the scope is the History department collection, so one matching value suffices"
+      },
+      "degree": {
+        "fields": [
+          "dc.description"
+        ],
+        "regex": "Ph\\.?\\s?D\\."
+      },
+      "year_fields": [
+        "dc.description"
+      ],
+      "rule_description": "History collection (Dissertations and Theses community); dc.description 'Thesis (Ph.D.)'"
+    },
+    {
+      "id": "oklahoma-history",
+      "institution": "oklahoma",
+      "institution_name": "University of Oklahoma (History; History of Science, Technology and Medicine)",
+      "aha_orgcds": [
+        "15067",
+        "15013"
+      ],
+      "api_base": "https://shareok.org",
+      "item_base": "https://shareok.org",
+      "query": "ou.group:History AND (dc.thesis.degree:\"Ph.D.\" OR dc.thesis.degree:\"D.Phil.\" OR dc.thesis.degree:Doctor)",
+      "department": {
+        "fields": [
+          "ou.group"
+        ],
+        "regex": "(^|::)Department of History( of Science(, Technology,? and Medicine)?)?$|^History( of Science)?: Arts & Sciences$"
+      },
+      "degree": {
+        "fields": [
+          "dc.thesis.degree"
+        ],
+        "regex": "^(Ph\\.\\s?D\\.?|D\\.\\s?Phil\\.?|Doctor)"
+      },
+      "author_fields": [
+        "dc.contributor.author",
+        "dc.creator"
+      ],
+      "rule_description": "sitewide; ou.group = OU Department of History or History of Science (Technology and Medicine); dc.thesis.degree Ph.D./D.Phil."
+    }
+  ]
+}
