@@ -687,8 +687,9 @@ draft = {
         "date_span": {"start": 1983, "start_kind": "earlier_roots", "end": 2020, "end_kind": "unstated",
                       "precision": "year",
                       "basis": "Selected publication milestones only. 1983 and 1995 are earlier settler-society witnesses, not the "
-                               "field's origin; Wolfe 1999 is the only selected milestone inside 1920–2000. Naming and "
-                               "consolidation fall after 2000; neither endpoint bounds the field."},
+                               "field's origin; Wolfe 1999 is the only selected milestone inside 1920–2000. The term itself has decolonization-era "
+                               "usage (Veracini 2013); the field's theoretical consolidation falls after 2000; neither endpoint "
+                               "bounds the field."},
         "description": DESCRIPTION,
         "description_words": len(DESCRIPTION.split()),
         "scope_note": "A selective research field whose theoretical consolidation came mostly after 2000; the entry covers its roots through 2000 and cites selected later works as readings. Settler-colonial theory, "

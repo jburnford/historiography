@@ -146,6 +146,7 @@ CLEAN = [
     (r'as extension coverage', 'as a later reading'), (r'carry the strand into the extension', 'carry the strand past 2000'),
     (r'so this is an extension comparison', 'so this comparison rests on later work'),
     (r', extension(?=[,):])', ', after 2000'), (r'\(extension\)', '(after 2000)'),
+    (r'\bExtension:', 'Later readings:'), (r'\bExtension only\.', 'Later readings only.'),
 ]
 IDS = {}  # raw entry and strand ids in prose -> their labels (filled in main)
 

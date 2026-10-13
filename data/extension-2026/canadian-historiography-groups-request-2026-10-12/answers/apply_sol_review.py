@@ -65,6 +65,14 @@ TEXT += [  # Sol verification pass, 2026-10-12
     (13, 'cdn_national_tradition', 'Urban historians later questioned metropolitan theses (Davis 1985).',
      'Donald Davis (1985) later questioned metropolitan theses.'),
 ]
+TEXT += [  # Sol's second verification pass, 2026-10-12: Bannister is not characterized as a critic
+    (12, 'liberal_order_framework', 'Christie, Palmer, Bannister, Sandwell, Fecteau and Ajzenstat appear as critics.',
+     'Christie, Palmer, Sandwell, Fecteau and Ajzenstat appear as critics; Bannister proposes a loyalist order for 1750–1840 (chapter title), its relation to McKay not characterized.'),
+    (12, 'liberal_order_framework', "Bryan Palmer argued that the framework sidesteps capitalism's changing structures, and Jerry Bannister proposed a loyalist order before 1840.",
+     "Bryan Palmer argued that the framework sidesteps capitalism's changing structures. Jerry Bannister proposed a loyalist order before 1840."),
+    (12, 'liberal_order_framework', 'Loyalism rather than liberalism before 1840 (Bannister); ', ''),
+]
+STRAND_DROP = {('liberal_order_framework', 'critiques'): ['jerry_bannister']}
 ROLES_2 = {('liberal_order_framework', 'jerry_bannister'): 'contributor'}
 SOURCE_NOTES = {  # record id -> passage appended to its verification note, wherever the record lives
     'cdng_buckner_2000': (8, ' Paragraphs 4–6 read on 2026-10-12 after the Sol review: Ken Windsor "initiated and eloquently '
@@ -110,7 +118,7 @@ def main():
                     if g in (gid, '*') and old in s:
                         s = s.replace(old, new)
                         hits[i] += 1
-                    elif g in (gid, '*') and new in s:
+                    elif g in (gid, '*') and new and new in s:
                         hits[i] += 1  # already applied
                 return s
             data = walk(data, fix)
@@ -124,6 +132,11 @@ def main():
                 for row in node['representative_people']:
                     if (gid, row['person_id']) in ROLES:
                         row['role'] = ROLES[(gid, row['person_id'])]
+                for (g, sid), pids in STRAND_DROP.items():
+                    if g == gid:
+                        for st in node['strands']:
+                            if st['id'] == sid:
+                                st['person_ids'] = [x for x in st['person_ids'] if x not in pids]
                 for rel in data.get('proposed_relationships', []):
                     rel.update(RELS.get(rel['proposal_id'], {}))
                 new_ids = {p['id'] for p in data.get('new_people', [])}
@@ -145,7 +158,7 @@ def main():
                     res.append(dict(q='sol_review', status='applied',
                                     summary=f'{REVIEW}: findings applied as listed in answers/apply_sol_review.py.'))
             path.write_text(json.dumps(data, ensure_ascii=False, indent=1))
-    missed = [TEXT[i][:3] for i, n in hits.items() if not n]
+    missed = [TEXT[i][:3] for i, n in hits.items() if not n and TEXT[i][3]]  # deletions cannot be re-detected
     if missed:
         raise SystemExit(f'Replacements that matched nothing: {missed}')
     print(f'{len(TEXT)} text fixes applied; roles {len(ROLES)}; relationships {len(RELS)}; coauthor strands {len(COAUTHORS)}')
