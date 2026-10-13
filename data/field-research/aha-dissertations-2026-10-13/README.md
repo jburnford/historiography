@@ -71,3 +71,22 @@ Two patterns stand out.
   especially the francophone departments.
 
 Neither source is complete on its own.
+
+## Historians' family tree (genealogy/)
+
+`scripts/build_historian_genealogy.py` builds advisor → student edges from the directory and
+links advisors to their own dissertations by a conservative unique-name rule; see the script's
+docstring. `lineages.json` holds the summary, the deepest chains and the largest families.
+
+**The main limit:** the directory covers only US and Canadian history departments. A historian
+who took a doctorate in Britain, France or elsewhere ends a chain. That is common among
+Canadian historians and among many atlas figures. For example, Jim Clifford (York 2011) ←
+Stephen Brooke stops there, because Brooke's Oxford doctorate is not in the directory.
+
+**Filling the gaps.** Links from outside the directory go in `genealogy/manual-links.csv`, each
+with its source and basis, and are kept apart from the AHA-derived edges. Possible sources:
+- Wikidata's doctoral advisor (P184) and doctoral student (P185), patchy below the most
+  prominent historians;
+- university thesis catalogues, such as Oxford's SOLO, which rarely name supervisors;
+- thesis-based monographs' acknowledgements;
+- people's own knowledge, as for Brooke → Kenneth O. Morgan, supplied by the user.
