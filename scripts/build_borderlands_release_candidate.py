@@ -14,6 +14,10 @@ from scripts.build_digital_release_candidate import audit, project, serial
 PACKET = ROOT / 'data/extension-2026/borderlands-disability-08'
 OUT = ROOT / 'data/extension-2026/borderlands-release-14'
 GRAPH = ROOT / 'historiography-1920-2000.json'
+# Candidate 14 was prepared against revision 1.127. Later accepted revisions must not change it,
+# so it reads that exact graph: the current file while it still matches, else the 1.127 snapshot
+# (drafts/, or git history), verified by hash.
+PINNED_SHA = '29d9d4e0a2c201434e21e1d6ec27695e75b892c0f5f8a12df1ec835e5f7441ac'
 
 
 def read(path):
@@ -24,8 +28,20 @@ def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def baseline_graph():
+    if sha(GRAPH) == PINNED_SHA:
+        return read(GRAPH)
+    import sys
+    sys.path.insert(0, str(ROOT / 'scripts'))
+    from build_site import load_baseline
+    graph, _ = load_baseline(dict(baseline_graph='drafts/historiography-1920-2000.v1.127.json', baseline_sha256=PINNED_SHA))
+    if graph is None:
+        raise ValueError('Revision 1.127 graph unavailable')
+    return graph
+
+
 def outputs():
-    before, batch = read(GRAPH), read(PACKET / 'batch.json')
+    before, batch = baseline_graph(), read(PACKET / 'batch.json')
     entities, claims, sources = (deepcopy(batch[k]) for k in ('entities', 'claims', 'source_records'))
     previous = {p['id']: p for p in before['people']}
     additions = []
@@ -71,7 +87,7 @@ def outputs():
                  candidate_record=str((OUT / 'candidate.json').relative_to(ROOT)),
                  note='Unapplied borderlands/disability preview alongside four accepted partial extensions. Field boundaries, roots and coverage remain under review.')
     candidate = dict(schema_version='extension_release_candidate/1', status='prepared_not_applied',
-                     baseline_revision=before['revision_history'][-1]['version'], baseline_sha256=sha(GRAPH),
+                     baseline_revision=before['revision_history'][-1]['version'], baseline_sha256=PINNED_SHA,
                      people_additions=additions, source_additions=graph_sources, node_additions=nodes,
                      catalogue_additions=dict(entities=entities, claims=claims, source_records=sources),
                      source_id_map=smap, extension_scope=scope, previous_extension_scope=before['scope']['extension'])
@@ -91,7 +107,7 @@ def outputs():
               ROOT / 'ontology/contract-v0.2.json', Path(__file__).resolve()]
     summary = dict(status='prepared_not_applied', production_imports=0, date='2026-10-10', errors=errors, warnings=warnings,
                    baseline_revision=candidate['baseline_revision'], baseline_sha256=candidate['baseline_sha256'],
-                   inputs={str(p.relative_to(ROOT)): sha(p) for p in inputs},
+                   inputs={str(p.relative_to(ROOT)): PINNED_SHA if p == GRAPH else sha(p) for p in inputs},
                    entries=len(nodes), works=sum(e['type']=='work' for e in entities), claims=len(claims),
                    source_records=len(sources), new_people=len(additions), new_strands=sum(len(n['strands']) for n in nodes),
                    historical_evidence=dict(Counter(ev['check_status'] for c in claims if c['predicate'] not in ('authored','realizes') for ev in c['evidence'])),

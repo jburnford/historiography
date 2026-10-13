@@ -508,9 +508,10 @@ STRANDS = [
      "Veracini disentangles settler colonial from colonial phenomena and introduces a dedicated journal (2011); "
      "a 2013 essay traces the concept's earlier career. Field-making, not a claim of single origin.",
      ["lorenzo_veracini"], ["veracini_2008", "veracini_2010", "veracini_2011", "veracini_2013", "cavanagh_veracini_2017"]),
-    ("earlier_settler_societies", "Settler capitalism and settler societies before the name",
-     "Comparative settler economies (1983) and gender, race, ethnicity and class in settler societies (1995) precede "
-     "the paradigm's consolidation; Veracini's history of the concept records decolonization-era usage.",
+    ("earlier_settler_societies", "Settler capitalism and settler societies in comparison",
+     "Comparative settler economies (1983) and gender, race, ethnicity and class in settler societies (1995) are earlier "
+     "comparative scholarship, before the field's theoretical consolidation; Veracini's history of the concept records "
+     "decolonization-era usage of the term itself.",
      ["donald_denoon", "daiva_stasiulis", "nira_yuval_davis"], ["denoon_1983", "stasiulis_yuval_davis_1995", "veracini_2013"]),
     ("comparative_twentieth_century", "Comparative and twentieth-century settler colonies",
      "Comparative collections and studies beyond the British settler dominions, including African settler and native "
@@ -635,7 +636,9 @@ RELS = [
                        "that decolonial sovereignty claims can circumvent Black radicalism. These are Black studies "
                        "theory rather than Black history as the atlas entry defines it; the source node is a review "
                        "decision.",
-         sources=["garba_sorentino_2020", "sexton_2016"], strength="abstract_checked_source_node_uncertain"),
+         sources=["garba_sorentino_2020", "sexton_2016"], strength="abstract_checked_source_node_uncertain",
+         deferred="Sol review 2026-10-12: the atlas's black entry is a historical field, not Black studies theory, and none "
+                  "of these critics is on its roster; the critiques stay in the entry's critiques strand."),
     dict(source="settler_colonialism", target="racial_formation", relationship_kind="comparison", directed=False,
          relationship="Land, labour and elementary structures of race",
          map_label="Settler colonialism and race",
@@ -646,12 +649,15 @@ RELS = [
 relationships = []
 for i, r in enumerate(RELS, 1):
     relationships.append({
-        "proposal_id": f"screq_rel_{i:02d}", "source": r["source"], "target": r["target"],
+        "proposal_id": f"screq_rel_{i:02d}", "source": r["source"], "target": r["target"], "deferred": r.get("deferred"),
         "type": "critique" if r["relationship_kind"] == "critique" else "connection",
         "relationship_kind": r["relationship_kind"], "directed": r["directed"],
         "relationship": r["relationship"], "map_label": r["map_label"], "evidence_note": r["evidence_note"],
         "source_ids": [src(x) for x in r["sources"]], "classification_basis": "editorial_review",
         "evidence_strength": r["strength"], "review_status": "needs_review"})
+
+all_relationships = relationships
+relationships = [{k: v for k, v in r.items() if k != "deferred"} for r in all_relationships if not r.get("deferred")]
 
 source_records = []
 for r in LIT:
@@ -677,7 +683,7 @@ draft = {
         "layer": "historiographical_developments",
         "period": None,
         "hunt_core_paradigm": False,
-        "date_label": "Earlier settler-society studies 1983–95 · Wolfe 1999, 2006 · Veracini 2010 · journal 2011 · selected critiques 2013–20; field chronology unresolved",
+        "date_label": "Earlier settler-society studies 1983–95 · Wolfe 1999 · coverage through 2000; selected later readings: Wolfe 2006, Veracini 2010, journal 2011, critiques 2013–20; field chronology unresolved",
         "date_span": {"start": 1983, "start_kind": "earlier_roots", "end": 2020, "end_kind": "unstated",
                       "precision": "year",
                       "basis": "Selected publication milestones only. 1983 and 1995 are earlier settler-society witnesses, not the "
@@ -685,7 +691,7 @@ draft = {
                                "consolidation fall after 2000; neither endpoint bounds the field."},
         "description": DESCRIPTION,
         "description_words": len(DESCRIPTION.split()),
-        "scope_note": "A selective research-field draft, mostly in the partial post-2000 extension. Settler-colonial theory, "
+        "scope_note": "A selective research field whose theoretical consolidation came mostly after 2000; the entry covers its roots through 2000 and cites selected later works as readings. Settler-colonial theory, "
                       "Indigenous political thought, Canadian histories of dispossession and comparative imperial history "
                       "have different genealogies. Roster inclusion is not adoption of the paradigm: Carter, Perry, Harris "
                       "and Daschuk wrote earlier or beside it. No single founder, origin or Canadian consensus is asserted. "
@@ -714,8 +720,10 @@ draft = {
     "new_people": new_people,
     "proposed_source_records": source_records,
     "existing_source_reuse": existing_source_reuse,
-    "proposed_relationships": relationships,
+    "proposed_relationships": relationships,  # deferred ones are listed under relationships_considered_not_proposed
     "relationships_considered_not_proposed": [
+        {"pair": f"{r['source']} → {r['target']} ({r['relationship_kind']}, {r['proposal_id']})", "reason": r["deferred"]}
+        for r in all_relationships if r.get("deferred")] + [
         {"pair": "environment – settler_colonialism", "reason": "Co-citation lift 2.45 and dissertations on settler science and waste, but no checked work states the link. A lead for a later pass."},
         {"pair": "medicalhistory – settler_colonialism", "reason": "Daschuk and Mosby are strongly co-cited, but their framing is unchecked."},
         {"pair": "ethnohistory / spatialhistory – indigenous", "reason": "Existing edges edge_776 and edge_777 are untouched."},

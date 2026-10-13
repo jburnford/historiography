@@ -40,9 +40,13 @@ STRENGTH = {'supporting_page_checked': 2, 'bibliographic_metadata_checked': 1}
 NOT_SAME_WORK = {frozenset(('qcreq_fecteau_1995', 'qcreq_rudin_1995'))}  # two 1995 BHP articles, 'La quête d'une…'
 IDENTITY_NOTE = ('Canadian historiography revision 1.128 participant. Roster inclusion does not establish '
                  'external identity resolution; any Wikidata match is recorded separately.')
-EXTENSION_POLICY = ('The new entries cover 1920–2000 with earlier roots. Later works appear only as cited '
-                    'readings, historiographical sources and strand works; no post-2000 extension '
-                    'interventions or claims are registered, and no field is reviewed through 2026.')
+EXTENSION_POLICY = ('The new entries cover 1920–2000 with earlier roots; their spans end at the 2000 coverage limit. '
+                    'Later works appear as cited readings, historiographical sources and strand works. A teaching '
+                    'relationship evidenced only by later work says so in its evidence note ("Later intervention") '
+                    'and is never drawn as a timeline mark. No post-2000 extension coverage or claims are registered, '
+                    'and no field is reviewed through 2026.')
+LATER_NOTE = (' Later intervention (first evidenced {year}): after the 2000 coverage limit; a teaching relationship, '
+              'not a timeline mark.')
 FAMILY = 'Historiography in Canada'
 BRIDGES = {  # user decision 2026-10-12: Canadian entries in a Canada family, bridged to their thematic family
     'cdn_national_tradition': 'Political, national & international',
@@ -63,7 +67,96 @@ BRIDGES = {  # user decision 2026-10-12: Canadian entries in a Canada family, br
     'cdn_regional': 'Social history',
     'cdn_sixties': 'Political, national & international',
 }
+RECORD_ONLY = [('none:canadian_history', 'General Canadian history venues (record only): CHA reports and journal, JCS, H-Canada.')]
+NOTE = 'Proposed 2026-10-12 with revision 1.128 (Historiography in Canada family); context or venue evidence only.'
+FOLDS = [  # entry, folds_into, relation: context for entries without direct evidence, never evidence
+    ('cdn_national_tradition', 'nationaltradition', 'subfield'), ('cdn_intellectual_cultural', 'intellectualhistory', 'subfield'),
+    ('cdn_intellectual_cultural', 'culture', 'subfield'), ('cdn_religion_reform', 'none:religious_history', 'subfield'),
+    ('liberal_order_framework', 'political', 'method_within'), ('liberal_order_framework', 'historicalsociology', 'method_within'),
+    ('moral_regulation', 'historicalsociology', 'method_within'), ('moral_regulation', 'social', 'method_within'),
+    ('cdn_working_class', 'labourhistory', 'subfield'), ('cdn_women_gender', 'women', 'subfield'), ('cdn_women_gender', 'gender', 'subfield'),
+    ('cdn_childhood_youth', 'none:childhood_youth', 'subfield'), ('cdn_immigration_ethnicity', 'none:ethnic_history', 'subfield'),
+    ('cdn_immigration_ethnicity', 'none:migration_history', 'subfield'), ('cdn_black_history', 'black', 'subfield'),
+    ('native_newcomer', 'ethnohistory', 'subfield'), ('quebec_historiography', 'nationaltradition', 'subfield'),
+    ('cdn_military', 'military', 'subfield'), ('cdn_political_national', 'political', 'subfield'),
+    ('cdn_political_national', 'none:diplomatic_international', 'subfield'), ('who_killed_debate', 'political', 'subfield'),
+    ('who_killed_debate', 'social', 'subfield'), ('cdn_regional', 'none:local_regional_history', 'subfield'),
+    ('cdn_sixties', 'political', 'subfield'), ('cdn_sixties', 'social', 'subfield'),
+    ('settler_colonialism', 'none:imperial_colonial_history', 'method_within'),
+]
+JOURNAL_THEMES = [  # journal title (as in the catalogue) -> new entry; venue rows, proposed
+    ('Revue d’histoire de l’Amérique française', 'quebec_historiography'), ('Bulletin d’histoire politique', 'quebec_historiography'),
+    ('Les Cahiers des dix', 'quebec_historiography'), ('Mens', 'quebec_historiography'),
+    ('Labour/Le Travail', 'cdn_working_class'), ('Canadian Military History', 'cdn_military'),
+    ('Ontario History', 'cdn_regional'), ('Acadiensis', 'cdn_regional'),
+    ('Études d’histoire religieuse', 'cdn_religion_reform'),
+    ('Sessions d’étude - Société canadienne d’histoire de l’Église catholique', 'cdn_religion_reform'),
+    ('Journal of the Canadian Historical Association', 'none:canadian_history'),
+    ('Historical Papers / Communications historiques', 'none:canadian_history'),
+    ('Report of the Annual Meeting of the Canadian Historical Association', 'none:canadian_history'),
+    ('Journal of Canadian Studies', 'none:canadian_history'),
+]
+HNET_THEMES = [('H-Canada', 269, 'none:canadian_history')]
 OTHER_FAMILIES = {'settler_colonialism': ('Empire, colonialism & the global', 'Indigenous histories')}
+
+
+# Drafting artefacts never reach the atlas: placement bookkeeping, question numbers, references
+# to drafts and drafters, and "Target is proposed" notes. The drafts keep them. Every change is
+# logged in the packet's `publication_edits`.
+END = r'[.!?](?=\s|$)'          # a sentence end, not a decimal point or an initial
+CLEAN = [
+    (r'\s*\[Merged with \w+ from [^:\]]+: ', ' '), (r'\]$', ''),
+    (r'\s*\([^()]*\bQ\d{1,2}\b[^()]*\)', ''),
+    (r'\s*\(candidates\.csv\)', ''),
+    (r'\s*Target is proposed\.', ''),
+    (r'Primary placement[^;.]*?; (shown|kept|listed)', lambda m: m.group(1).capitalize()),
+    (r'(^|(?<=[.!?]))\s*Primary placement.*?' + END, r'\1'),
+    (r'[;,]\s*(?:also |and )?primary placement.*?(' + END + ')', r'\1'),
+    (r'(^|(?<=[.!?]))\s*[^.!?]*?\b(?:drafter|groups\.json|screq_rel_\d+|wcreq_rel_\d+)\b.*?' + END, r'\1'),
+    (r'[;,]\s*the [\w-]+ draft proposes.*?(' + END + ')', r'\1'),
+    (r'\s*\(volumes (\d{4}–\d{2,4}) in this draft\)', r' (volumes \1 selected here)'),
+    (r'\bin this draft\b', 'here'), (r'\bthis draft\b', 'this entry'),
+    (r';\s*also in the settler-colonialism draft\.', '.'),
+    (r'have (?:their )?primary placements? in', 'are treated mainly in'),
+    (r'have primary placements elsewhere', 'are treated mainly elsewhere'),
+    (r'keep their primary placements there', 'remain treated mainly there'),
+    (r'where (s?he) has (?:her|his) primary placement', r'where \1 is treated mainly'),
+    (r'(his|her) primary placement is', r'\1 main entry is'),
+    (r'primary placement', 'main entry'),
+    # No extension is registered (EXTENSION_POLICY): later works are readings, not extension coverage.
+    (r'post-2000 extension partial', 'selected later readings'), (r'mostly post-2000 extension', 'selected later readings'),
+    (r'Most of these works are post-2000 \(partial extension\)', 'Most of these works are later readings, after 2000'),
+    (r'Post-2000 works are a partial extension', 'Post-2000 works are selected later readings'),
+    (r'Post-2000 works are extension', 'Post-2000 works are later readings'),
+    (r'All post-2000 \(extension\)', 'All after 2000'), (r'Post-2000 extension', 'After 2000'),
+    (r'(?i)post-2000 works? sits? in extension_coverage', 'later works are readings'),
+    (r'are in the partial extension', 'are later readings'),
+    (r'covers the post-2000 extension', 'is a later reading'), (r'\(post-2000 extension\)', '(after 2000)'),
+    (r'; post-2000 extension\)', '; after 2000)'), (r'\(extension; ', '(after 2000; '),
+    (r'as extension coverage', 'as a later reading'), (r'carry the strand into the extension', 'carry the strand past 2000'),
+    (r'so this is an extension comparison', 'so this comparison rests on later work'),
+    (r', extension(?=[,):])', ', after 2000'), (r'\(extension\)', '(after 2000)'),
+]
+IDS = {}  # raw entry and strand ids in prose -> their labels (filled in main)
+
+
+def unid(text):
+    return re.sub(r'\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b', lambda m: IDS.get(m.group(0), m.group(0)), text)
+ABBREV = re.compile(r'\b(?:e\.g|i\.e|cf|pp?|nos?|vols?|eds?|c|ca|St|Dr|Mr|Mrs|Jr|vs)\.|\b[A-Z]\.(?=\s?[A-Z])|\d\.(?=\d)')
+MARK = '\u2024'  # one-dot leader stands in for an abbreviation's full stop while cleaning
+
+
+def clean(text, where, log):
+    if not isinstance(text, str):
+        return text
+    out = ABBREV.sub(lambda m: m.group(0).replace('.', MARK), text)
+    for pat, rep in CLEAN:
+        out = re.sub(pat, rep, out)
+    out = unid(out).replace('the ‘The ', 'the ‘')
+    out = re.sub(r'\s{2,}', ' ', out).replace(' .', '.').replace(MARK, '.').strip()
+    if out != text:
+        log.append(dict(where=where, before=text, after=out))
+    return out
 
 
 def read(path):
@@ -145,9 +238,13 @@ def atlas_source(s, members):
     if v.get('checked_against'):
         note = f"{note} Checked against: {v['checked_against']}.".strip()
     others = [m for m in members if m['id'] != s['id']]
-    if others:
-        note += ' Same work also checked as ' + '; '.join(
-            f"{m['id']} ({m['verification']['status']}, {', '.join(m.get('drafts') or [])})" for m in others) + '.'
+    for m in others:  # keep every draft's documented check, not only its status
+        mv = m['verification']
+        extra = (mv.get('note') or '').strip()
+        if mv.get('checked_against'):
+            extra = f"{extra} Checked against: {mv['checked_against']}.".strip()
+        note += (f" Same work also checked as {m['id']} ({mv['status']}, {mv.get('checked_on') or DAY}; "
+                 f"{', '.join(m.get('drafts') or [])}): {extra}")
     url = s.get('url') or (f"https://doi.org/{s['doi']}" if s.get('doi') else None)
     out = dict(id=s['id'], title=s.get('citation') or s.get('title'), url=url, citation=s.get('citation') or s.get('title'),
                verification=dict(status=v['status'], checked_on=v.get('checked_on') or DAY, note=note.strip()))
@@ -168,6 +265,13 @@ def main():
     atlas_sources = {s['id'] for s in graph['sources']}
     atlas_nodes = {n['id'] for n in graph['nodes']}
     entries, rels = req['entries'], req['relationships']
+    for n in graph['nodes'] + [e['node'] for e in entries]:
+        if '_' in n['id']:
+            IDS[n['id']] = n['label']
+    for e in entries:  # strand ids name strands of their own entry; entry ids take precedence
+        for st in e['node'].get('strands') or []:
+            if '_' in st['id']:
+                IDS.setdefault(st['id'], f"‘{st['title']}’")
 
     refs = referenced(entries, rels)
     pool = [s for s in req['sources'] if s['id'] in refs and s['id'] not in atlas_sources]
@@ -180,23 +284,30 @@ def main():
         raise SystemExit(f'Unresolved source ids: {missing}')
 
     dropped = defaultdict(set)
-    adjusted = []
+    adjusted, edits = [], []
     nodes = []
     for e in entries:
         n = e['node']
         node = {k: n[k] for k in NODE_KEYS if k in n}
         dropped['node'].update(set(n) - set(NODE_KEYS))
+        for k in ('description', 'scope_note', 'representative_figures_and_works', 'date_label'):
+            if k in node:
+                node[k] = clean(node[k], f"{n['id']}.{k}", edits)
         node['source_ids'] = remap(n.get('source_ids'), canon)
         node['representative_people'] = []
         for r in n.get('representative_people') or []:
             row = {k: r[k] for k in ROSTER_KEYS if k in r}
             row['source_ids'] = remap(r.get('source_ids'), canon)
+            for k in ('context', 'works'):
+                row[k] = clean(row.get(k, ''), f"{n['id']}.row.{r['person_id']}.{k}", edits)
             dropped['roster'].update(set(r) - set(ROSTER_KEYS))
             node['representative_people'].append(row)
         node['strands'] = []
         for s in n.get('strands') or []:
             st = {k: s[k] for k in STRAND_KEYS if k in s}
             st['source_ids'] = remap(s.get('source_ids'), canon)
+            for k in ('title', 'focus', 'works'):
+                st[k] = clean(st.get(k, ''), f"{n['id']}.strand.{s['id']}.{k}", edits)
             dropped['strand'].update(set(s) - set(STRAND_KEYS))
             node['strands'].append(st)
         span = node.get('date_span')
@@ -204,8 +315,9 @@ def main():
             if span.get('end') is not None or span.get('end_kind') not in (None, 'coverage_limit'):
                 adjusted.append(f"{node['id']}: date_span end {span.get('end')} ({span.get('end_kind')}) -> 2000 coverage_limit")
             span['end'], span['end_kind'] = 2000, 'coverage_limit'
+            span['basis'] = clean(span.get('basis', ''), f"{n['id']}.date_span.basis", edits)
             span['basis'] = (span.get('basis', '') + ' Drawn to the atlas coverage limit (2000); later works are cited '
-                             'readings, not registered extension interventions (revision 1.128).').strip()
+                             'readings, not registered extension coverage (revision 1.128).').strip()
         nodes.append(node)
 
     used_people = {r['person_id'] for n in nodes for r in n['representative_people']} | {
@@ -230,12 +342,25 @@ def main():
     edges = []
     last = max(int(e['id'].split('_')[1]) for e in graph['edges'])
     endpoints = atlas_nodes | {n['id'] for n in nodes}
+    cited = {x['id']: x for x in graph['sources'] + sources}
+
+    def work_year(sid):
+        rec = cited.get(sid, {})
+        found = re.findall(r'\b(1[6-9]\d\d|20[0-2]\d)\b', rec.get('citation') or rec.get('title') or '')
+        return int(found[0]) if found else None
     strand_addresses = {f"{n['id']}/{st['id']}" for n in graph['nodes'] + nodes for st in n.get('strands') or []}
     for i, r in enumerate(sorted(rels, key=lambda r: r['proposal_id']), start=last + 1):
         if r['source'] not in endpoints or r['target'] not in endpoints:
             raise SystemExit(f"Bad endpoint in {r['proposal_id']}")
         edge = dict(id=f'edge_{i:03d}', **{k: r[k] for k in EDGE_KEYS if k in r})
         edge['source_ids'] = remap(r.get('source_ids'), canon)
+        for k in ('relationship', 'evidence_note', 'map_label'):
+            if k in edge:
+                edge[k] = clean(edge[k], f"{r['proposal_id']}.{k}", edits)
+        years = [work_year(i) for i in edge['source_ids']]
+        if edge['directed'] and years and all(y and y > 2000 for y in years):
+            edge['evidence_note'] += LATER_NOTE.format(year=min(years))
+            adjusted.append(f"{r['proposal_id']}: later intervention ({min(years)})")
         strand = (r.get('target_strand') or '').strip()
         if strand:
             if strand in strand_addresses and strand.startswith(r['target'] + '/'):
@@ -252,6 +377,16 @@ def main():
     for gid, (fam, bridge) in OTHER_FAMILIES.items():
         families.append(dict(family=fam, member=gid, member_kind='atlas_entry', bridge_family=bridge, status='reviewed',
                              note='User decision 2026-10-12: settler colonialism is an international field, bridged to Indigenous histories.'))
+    for member, note in RECORD_ONLY:
+        families.append(dict(family=FAMILY, member=member, member_kind='record_only', bridge_family='', status='proposed', note=note))
+    labels = {n['id']: n['label'] for n in graph['nodes'] + nodes}
+    folds = [dict(entry=e, entry_label=labels[e], folds_into=t, relation=r, status='proposed', note=NOTE) for e, t, r in FOLDS]
+    crosswalk = [dict(source='journal_title', source_label=title, volume='', volume_unit='research-length items', axis='theme',
+                      target=t, target_label=labels[t] if t in labels else 'No atlas entry: ' + t.split(':')[1].replace('_', ' '),
+                      status='proposed', note=NOTE) for title, t in JOURNAL_THEMES]
+    crosswalk += [dict(source='hnet', source_label=net, volume=str(n), volume_unit='reviews', axis='theme', target=t,
+                       target_label='No atlas entry: ' + t.split(':')[1].replace('_', ' '), status='proposed', note=NOTE)
+                  for net, n, t in HNET_THEMES]
     unplaced = sorted({n['id'] for n in nodes} - {f['member'] for f in families})
     if unplaced:
         raise SystemExit(f'No family for {unplaced}')
@@ -262,12 +397,12 @@ def main():
         extension_policy=EXTENSION_POLICY,
         nodes=nodes, people=people, sources=sources, edges=edges,
         source_id_merges={k: v for k, v in sorted(canon.items()) if k != v},
-        people_wikidata=wikidata, families=families,
-        dropped_drafting_fields={k: sorted(v) for k, v in sorted(dropped.items())}, adjustments=adjusted,
+        people_wikidata=wikidata, families=families, approach_folds=folds, crosswalk_rows=crosswalk,
+        dropped_drafting_fields={k: sorted(v) for k, v in sorted(dropped.items())}, adjustments=adjusted, publication_edits=edits,
         counts=dict(nodes=len(nodes), people=len(people), sources=len(sources), edges=len(edges),
                     roster_rows=sum(len(n['representative_people']) for n in nodes),
                     strands=sum(len(n['strands']) for n in nodes), merged_source_ids=sum(k != v for k, v in canon.items()),
-                    people_wikidata=len(wikidata)))
+                    people_wikidata=len(wikidata), publication_edits=len(edits), folds=len(folds), crosswalk_rows=len(crosswalk)))
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps(packet['counts']))

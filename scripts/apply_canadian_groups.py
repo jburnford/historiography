@@ -5,7 +5,8 @@ The frozen packet is the groups request's release/editorial-additions.json, buil
 scripts/build_canadian_release_packet.py from the reviewed drafts. The revision only appends:
 nodes, people, sources and edges, plus a revision_history row. It also appends the packet's
 reviewed QIDs to data/people-wikidata.json (applied to the published copy at build time) and its
-family rows to data/evidence-layer/families-draft.csv. `--check` rebuilds the accepted graph
+evidence-layer rows (landing families, approach folds, journal/network crosswalk rows, all
+proposed) to the CSVs under data/evidence-layer/. `--check` rebuilds the accepted graph
 from the 1.127 baseline and the pinned packet and compares it exactly.
 """
 import argparse
@@ -27,6 +28,8 @@ PACKET = ROOT / 'data/extension-2026/canadian-historiography-groups-request-2026
 OUT = ROOT / 'data/production-batches/canadian-1.128'
 WIKIDATA = ROOT / 'data/people-wikidata.json'
 FAMILIES = ROOT / 'data/evidence-layer/families-draft.csv'
+FOLDS = ROOT / 'data/evidence-layer/approach-folds.csv'
+CROSSWALK = ROOT / 'data/evidence-layer/practice-crosswalk.csv'
 DAY = '2026-10-12'
 TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
 SUMMARY = ('Historiography in Canada: sixteen Canadian group entries (the national tradition, intellectual and '
@@ -104,16 +107,24 @@ def wikidata_rows(sheet, packet):
     return [r for r in packet['people_wikidata'] if r['person_id'] not in have]
 
 
-def family_text(packet):
-    text = FAMILIES.read_text()
-    have = {r['member'] for r in csv.DictReader(io.StringIO(text))}
-    add = [r for r in packet['families'] if r['member'] not in have]
+CSV_TABLES = {  # packet key: (file, identity columns)
+    'families': (FAMILIES, ('member',)),
+    'approach_folds': (FOLDS, ('entry', 'folds_into')),
+    'crosswalk_rows': (CROSSWALK, ('source', 'source_label', 'axis', 'target')),
+}
+
+
+def csv_text(packet, key):
+    """The evidence-layer CSV with the packet's rows appended once (idempotent)."""
+    path, ident = CSV_TABLES[key]
+    text = path.read_text()
+    rows = list(csv.DictReader(io.StringIO(text)))
+    have = {tuple(r[c] for c in ident) for r in rows}
+    add = [r for r in packet[key] if tuple(r[c] for c in ident) not in have]
     if not add:
         return text
     out = io.StringIO()
-    writer = csv.DictWriter(out, fieldnames=['family', 'member', 'member_kind', 'bridge_family', 'status', 'note'],
-                            lineterminator='\n')
-    writer.writerows(add)
+    csv.DictWriter(out, fieldnames=list(rows[0].keys()), lineterminator='\n').writerows(add)
     return text.rstrip('\n') + '\n' + out.getvalue()
 
 
@@ -129,8 +140,8 @@ def main():
         graph = transform(baseline(), packet)
         if graph != accepted_graph():
             raise ValueError('Exact 1.128 reconstruction differs')
-        if wikidata_rows(read(WIKIDATA), packet) or family_text(packet) != FAMILIES.read_text():
-            raise ValueError('people-wikidata.json or families-draft.csv lacks the 1.128 rows')
+        if wikidata_rows(read(WIKIDATA), packet) or any(csv_text(packet, k) != CSV_TABLES[k][0].read_text() for k in CSV_TABLES):
+            raise ValueError('people-wikidata.json or an evidence-layer CSV lacks the 1.128 rows')
     else:
         if (OUT / 'acceptance.json').exists():
             raise ValueError('Already applied; use --check')
@@ -141,6 +152,7 @@ def main():
             raise ValueError('\n'.join(errors))
         if BASE.exists() and BASE.read_bytes() != GRAPH.read_bytes():
             raise ValueError('Refusing to replace a different snapshot')
+        BASE.parent.mkdir(exist_ok=True)  # drafts/ is gitignored, so absent on a clean checkout
         BASE.write_bytes(GRAPH.read_bytes())
         OUT.mkdir(parents=True, exist_ok=True)
         GRAPH.write_text(serial(graph))
@@ -149,7 +161,8 @@ def main():
         sheet['people'].extend(added)
         sheet['counts']['accepted'] = sum(r.get('status') == 'accepted' for r in sheet['people'])
         WIKIDATA.write_text(json.dumps(sheet, ensure_ascii=False, indent=2) + '\n')
-        FAMILIES.write_text(family_text(packet))
+        for key, (path, _) in CSV_TABLES.items():
+            path.write_text(csv_text(packet, key))
         record = dict(revision='1.128', date=DAY,
             authorization=('User, 2026-10-12: the atlas is for teaching historiography in Canada; approved the '
                            'Canadian group structure, every answered question, the Backhouse/Owram/Bliss placements, '
@@ -159,7 +172,7 @@ def main():
             packet=str(PACKET.relative_to(ROOT)), packet_sha256=sha(PACKET), production_sha256=sha(GRAPH),
             previous_table_lengths={k: len(before[k]) for k in TABLES},
             people_wikidata_added=[r['person_id'] for r in added],
-            families_added=[r['member'] for r in packet['families']],
+            evidence_rows_added={k: len(packet[k]) for k in CSV_TABLES},
             extension_policy=packet['extension_policy'],
             counts=dict(packet['counts'], new_person_entries=0),
             preserved=('All earlier entries, relationships, people, sources, claims, journals, pathways, strand '
