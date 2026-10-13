@@ -1,0 +1,148 @@
+{
+ "entries": 100,
+ "sample": "ubc-text-sample.jsonl (seed 20261012; 60 retrospective OCR 1968-2007, 40 born-digital 2008+)",
+ "judged_by": "independent agent, rubric of judgements.jsonl",
+ "overall": {
+  "boundary": {
+   "correct": 68,
+   "judged": 100,
+   "precision": 0.68,
+   "wilson95": [
+    0.583,
+    0.763
+   ]
+  },
+  "first_author": {
+   "correct": 79,
+   "judged": 98,
+   "precision": 0.806,
+   "wilson95": [
+    0.717,
+    0.872
+   ]
+  },
+  "title": {
+   "correct": 75,
+   "judged": 98,
+   "precision": 0.765,
+   "wilson95": [
+    0.672,
+    0.838
+   ]
+  },
+  "year": {
+   "correct": 66,
+   "judged": 86,
+   "precision": 0.767,
+   "wilson95": [
+    0.668,
+    0.844
+   ]
+  },
+  "entry_usable_for_graph": {
+   "correct": 57,
+   "judged": 100,
+   "precision": 0.57,
+   "wilson95": [
+    0.472,
+    0.663
+   ]
+  }
+ },
+ "by_stratum": {
+  "retrospective_ocr": {
+   "boundary": {
+    "correct": 35,
+    "judged": 60,
+    "precision": 0.583,
+    "wilson95": [
+     0.457,
+     0.699
+    ]
+   },
+   "first_author": {
+    "correct": 45,
+    "judged": 59,
+    "precision": 0.763,
+    "wilson95": [
+     0.64,
+     0.853
+    ]
+   },
+   "title": {
+    "correct": 44,
+    "judged": 59,
+    "precision": 0.746,
+    "wilson95": [
+     0.622,
+     0.839
+    ]
+   },
+   "year": {
+    "correct": 31,
+    "judged": 48,
+    "precision": 0.646,
+    "wilson95": [
+     0.504,
+     0.766
+    ]
+   },
+   "entry_usable_for_graph": {
+    "correct": 28,
+    "judged": 60,
+    "precision": 0.467,
+    "wilson95": [
+     0.346,
+     0.591
+    ]
+   }
+  },
+  "born_digital": {
+   "boundary": {
+    "correct": 33,
+    "judged": 40,
+    "precision": 0.825,
+    "wilson95": [
+     0.68,
+     0.913
+    ]
+   },
+   "first_author": {
+    "correct": 34,
+    "judged": 39,
+    "precision": 0.872,
+    "wilson95": [
+     0.733,
+     0.944
+    ]
+   },
+   "title": {
+    "correct": 31,
+    "judged": 39,
+    "precision": 0.795,
+    "wilson95": [
+     0.645,
+     0.892
+    ]
+   },
+   "year": {
+    "correct": 35,
+    "judged": 38,
+    "precision": 0.921,
+    "wilson95": [
+     0.792,
+     0.973
+    ]
+   },
+   "entry_usable_for_graph": {
+    "correct": 29,
+    "judged": 40,
+    "precision": 0.725,
+    "wilson95": [
+     0.572,
+     0.839
+    ]
+   }
+  }
+ }
+}

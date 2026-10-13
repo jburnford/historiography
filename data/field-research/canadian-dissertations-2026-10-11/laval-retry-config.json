@@ -1,0 +1,37 @@
+{
+  "requested_institutions": [
+    "mcgill",
+    "ottawa",
+    "waterloo",
+    "guelph",
+    "laurier",
+    "ubc",
+    "alberta",
+    "unb",
+    "montreal",
+    "laval"
+  ],
+  "dspace_streams": [
+    {
+      "id": "laval-doctorat-histoire",
+      "institution": "laval",
+      "api_base": "https://corpus.ulaval.ca",
+      "item_base": "https://corpus.ulaval.ca",
+      "collection": "32fa194e-af6e-41d8-bde3-fae02aed6899",
+      "query": "\"Doctorat en histoire\"",
+      "filters": {},
+      "scope": "Quoted degree-phrase discovery in thesis collection, with local exact programme checks; not all History degrees",
+      "omit_sort": true
+    }
+  ],
+  "retrieval_limits": [
+    {
+      "institution": "ubc",
+      "status": "not harvested",
+      "reason": "UBC blocked the public collection request as unusual activity; research API requires registered key, not supplied.",
+      "source": "https://open.library.ubc.ca/collections/ubctheses",
+      "documentation": "https://wiki.prod.apps.ctlt.ubc.ca/Library%3AOpen_Collections"
+    }
+  ],
+  "skip_laurier": true
+}

@@ -1,0 +1,1087 @@
+{
+ "method": "Stratified random sample: rows of person-wikidata.jsonl filtered by tier in file order; one random.Random(20261011) generator; rng.sample(pool,15) per tier in the order title_verified, probable_historian, probable_canadian_academic, possible_sole_candidate. Cited works: AUTHORED edges from the graph.json Person node, sorted by Work cited_by_all desc, top 5. Two sampled row keys (P:fecteau|jean, P:dummitt|chris) are absent from graph.json; they were resolved to the graph node carrying the same QID (P:fecteau|jeanmarie, P:dummitt|christopher). Across the whole file, 75 of 4030 rows have this key drift. Wikidata evidence: QLever (qlever.dev/api/wikidata) batched queries for label, description, P31, P106, P569/P570, P108, P69, P101, P27, P800, inverse P50, and VIAF/ORCID/ISNI; full direct statements for thin items; label lookups for alternative items; at least 2 s between requests. For thin items, the authority records linked from the Wikidata item were checked: id.loc.gov MARC 670 source citations, and GND via lobid.org. No Wikidata REST search was used. Verdict: correct = QID is the person who wrote the dominant cited works; wrong = a different person; unsure = insufficient evidence. Where historiographical knowledge was used, the evidence says so.",
+ "seed": 20261011,
+ "sample": [
+  {
+   "person": "P:bartlett|robert",
+   "graph_person_id": "P:bartlett|robert",
+   "name": "Bartlett, Robert",
+   "tier": "title_verified",
+   "qid": "Q2156495",
+   "cited_by_all": 13,
+   "top_works": [
+    "1993: The Making of Europe: Conquest, Colonization, and Cultural Change, 950-1350 (5)",
+    "1994: Symbolic Meanings of Hair in the Middle Ages (3)",
+    "2001: Medieval and Modern Concepts of Race and Ethnicity (2)",
+    "2013: Why Can the Dead Do Such Great Things?: Saints and Worshippers from the Martyrs to the Reformation (2)",
+    "2000: England under the Norman and Angevin Kings, 1075-1225 (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Robert Bartlett, British historian/medievalist b.1950, Edinburgh & St Andrews; 9 P50 works incl. The Hanged Man. Cited works (Making of Europe, England under the Norman and Angevin Kings, Why Can the Dead...) are his."
+  },
+  {
+   "person": "P:gutton|jeanpierre",
+   "graph_person_id": "P:gutton|jeanpierre",
+   "name": "GUTTON, Jean-Pierre",
+   "tier": "title_verified",
+   "qid": "Q93230884",
+   "cited_by_all": 17,
+   "top_works": [
+    "1974: La société et les pauvres en Europe (7)",
+    "1979: La sociabilité villageoise dans l’ancienne France : solidarités et voisinages XVIe- XVIIIe siècle (4)",
+    "1991: Enfermement et charité dans la France de l'Ancien Régime (3)",
+    "1987: La mise en place du personnel soignant dans les hôpitaux français (XVle-XVlue siècles) (2)",
+    "1999: Les administrateurs hospitaliers dans la France d 'Ancien Régime (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Jean-Pierre Gutton, French historian (1937-2026), university teacher. Cited works on poverty, villages and hospitals in Ancien Regime France match him (also historiographical knowledge)."
+  },
+  {
+   "person": "P:hartman|saidiya v",
+   "graph_person_id": "P:hartman|saidiya v",
+   "name": "Hartman, Saidiya V",
+   "tier": "title_verified",
+   "qid": "Q7399969",
+   "cited_by_all": 13,
+   "top_works": [
+    "1997: Scenes of Subjection: Terror, Slavery, and Self-Making in Nineteenth-Century America (7)",
+    "2007: Lose Your Mother: A Journey along the Atlantic Slave Route (6)",
+    "2008: Venus in Two Acts (3)",
+    "2020: Wayward Lives, Beautiful Experiments: Intimate Histories of Social Upheaval (1)",
+    "2016: The Belly of the World: A Note on Black Women’s Labors (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Saidiya Hartman, American historian/writer, Columbia; notable work Wayward Lives, Beautiful Experiments, which is also among the cited works, alongside Scenes of Subjection and Lose Your Mother."
+  },
+  {
+   "person": "P:himmelfarb|gertrude",
+   "graph_person_id": "P:himmelfarb|gertrude",
+   "name": "Himmelfarb, Gertrude",
+   "tier": "title_verified",
+   "qid": "Q2898270",
+   "cited_by_all": 17,
+   "top_works": [
+    "1991: Poverty and Compassion: The Moral Imagination of the Late Victorians (5)",
+    "1992: Telling it as You Like it: Post-Modernist History and the Flight From Fact (1)",
+    "1995: The De-Moralization of Society (1)",
+    "1962: Co., 1962 (1)",
+    "1986: Marriage and MoraIs Among the Victorians (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Gertrude Himmelfarb, American historian (1922-2019), CUNY, Victorian era/intellectual history; P50 Roads to Modernity. Cited Poverty and Compassion and Victorian morality works are hers."
+  },
+  {
+   "person": "P:paxton|robert o",
+   "graph_person_id": "P:paxton|robert o",
+   "name": "Paxton, Robert O",
+   "tier": "title_verified",
+   "qid": "Q1229212",
+   "cited_by_all": 19,
+   "top_works": [
+    "1972: Vichy France: Old Guard and New Order, 1940-1944 (9)",
+    "1981: Vichy France and the Jews (7)",
+    "1997: La France de Vichy 1940-1944 (4)",
+    "1981: Vichy et les Juifs (3)",
+    "1997: Europe in the Twentieth Century, Third Edition (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Robert Paxton, American historian/political scientist b.1932, Columbia. Cited Vichy France and Vichy France and the Jews are his (well known)."
+  },
+  {
+   "person": "P:lefebvre|henri",
+   "graph_person_id": "P:lefebvre|henri",
+   "name": "Lefebvre, Henri",
+   "tier": "title_verified",
+   "qid": "Q162597",
+   "cited_by_all": 48,
+   "top_works": [
+    "1991: The Production of Space (30)",
+    "1974: La production de l'espace (8)",
+    "1996: Writings on Cities (3)",
+    "1991: Critique of Everyday Life: Introduction (3)",
+    "2008: Space, difference, everyday life: reading Henri Lefebvre (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Henri Lefebvre, French philosopher/sociologist (1901-1991); P50 Rhythmanalysis. Cited Production of Space and Critique of Everyday Life are his. (One cited item, Space, difference, everyday life: reading Henri Lefebvre, is about him and is misattributed in the graph; not a grounding error.)"
+  },
+  {
+   "person": "P:fecteau|jean",
+   "graph_person_id": "P:fecteau|jeanmarie",
+   "name": "Fecteau, Jean-Marie",
+   "tier": "title_verified",
+   "qid": "Q55724413",
+   "cited_by_all": 58,
+   "top_works": [
+    "2004: La liberté du pauvre : crime et pauvreté au XIXe siècle québécois (24)",
+    "1989: Un nouvel ordre des choses (11)",
+    "1992: État et Associationnisme au XIXe Siècle Québécois: Éléments pour une problematique des rapports état/société dans la Transition au capitalisme (4)",
+    "1998: Une politique de l’enfance délinquante et en danger : la mise en place des écoles de réforme et d’industrie au Québec (1840-1873) (3)",
+    "1998: et al (3)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Jean-Marie Fecteau (1949-2012), UQAM historian; P50 includes The Pauper's Freedom. Graph node is P:fecteau|jeanmarie (row key P:fecteau|jean is missing from graph.json); top works La liberte du pauvre, Un nouvel ordre des choses are his."
+  },
+  {
+   "person": "P:hastings|max",
+   "graph_person_id": "P:hastings|max",
+   "name": "Hastings, Max",
+   "tier": "title_verified",
+   "qid": "Q726622",
+   "cited_by_all": 16,
+   "top_works": [
+    "1984: Overlord: D-Day and the Battle for Normandy 1944 (4)",
+    "2004: Armageddon: The Battle for Germany 1944-1945 (3)",
+    "1987: The Korean War (2)",
+    "2007: Retribution: The Battle for Japan, 1944-45 (1)",
+    "1985: Victory in Europe: D-day to VE (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Max Hastings, English journalist/military historian b.1945. Cited Overlord, Armageddon, The Korean War, Retribution are his."
+  },
+  {
+   "person": "P:acheson|dean",
+   "graph_person_id": "P:acheson|dean",
+   "name": "Acheson, Dean",
+   "tier": "title_verified",
+   "qid": "Q214758",
+   "cited_by_all": 13,
+   "top_works": [
+    "1969: Present at the Creation: My Years in the State Department (12)",
+    "1965: Morning and Noon (1)",
+    "1955: A Democrat Looks At His Party (1)",
+    "1961: Sketches From Life of Men I Have Known (1)",
+    "1969: Canadian Foreign Policy Since 1945 Middle Power or Satellite (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Dean Acheson, US statesman (1893-1971); P50 Morning and Noon. Present at the Creation is his memoir. (Canadian Foreign Policy Since 1945 is an edited reader misattributed in the graph.)"
+  },
+  {
+   "person": "P:le goff|jacques",
+   "graph_person_id": "P:le goff|jacques",
+   "name": "Le Goff, Jacques",
+   "tier": "title_verified",
+   "qid": "Q213992",
+   "cited_by_all": 59,
+   "top_works": [
+    "1984: The Birth of Purgatory (5)",
+    "1992: History and Memory (4)",
+    "1988: Histoire et mémoire (4)",
+    "1964: La civilisation de l’Occident médiévale (3)",
+    "1977: Pour un autre Moyen Âge (3)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Jacques Le Goff, French medievalist (1924-2014), EHESS. Cited Birth of Purgatory, History and Memory, Pour un autre Moyen Age are his."
+  },
+  {
+   "person": "P:delbourgo|james",
+   "graph_person_id": "P:delbourgo|james",
+   "name": "Delbourgo, James",
+   "tier": "title_verified",
+   "qid": "Q92962810",
+   "cited_by_all": 10,
+   "top_works": [
+    "2008: Science and Empire in the Atlantic World (4)",
+    "2009: The Brokered World. Go-Betweens and Global Intelligence, 1770-1820 (3)",
+    "2012: Listing People (1)",
+    "2006: A Most Amazing Scene of Wonders: Electricity and Enlightenment in Early America (1)",
+    "2019: The Knowing World: A New Global History of Science (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: James Delbourgo, researcher (ORCID 0000-0002-3037-8085); P50 The Knowing World, which is among cited works with The Brokered World and A Most Amazing Scene of Wonders. Item is thin (no employer or dates) but the authored work ties it to the historian of science."
+  },
+  {
+   "person": "P:bouchard|gerard",
+   "graph_person_id": "P:bouchard|gerard",
+   "name": "Bouchard, Gérard",
+   "tier": "title_verified",
+   "qid": "Q3123783",
+   "cited_by_all": 91,
+   "top_works": [
+    "2000: Genèse des nations et cultures du Nouveau Monde (18)",
+    "1996: Quelques arpents d’Amérique: population, économie, famille au Saguenay, 1838-1971 (18)",
+    "2003: Les Deux Chanoines: Contradiction et ambivalence dans la pensée de Lionel Groulx (11)",
+    "1995: Québécois et Américains: la culture québécoise aux XIXe et XXe siècles (8)",
+    "2004: La pensée impuissante. Échecs et mythes nationaux canadiens-français (1850-1960) (7)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Gerard Bouchard, Canadian historian/sociologist b.1943, UQAC/Laval; 50 P50 works incl. Saguenay demography. Cited Quelques arpents d'Amerique and Genese des nations are his."
+  },
+  {
+   "person": "P:zanker|paul",
+   "graph_person_id": "P:zanker|paul",
+   "name": "Zanker, Paul",
+   "tier": "title_verified",
+   "qid": "Q102026",
+   "cited_by_all": 10,
+   "top_works": [
+    "1988: The Power of Images in the Age of Augustus (8)",
+    "1990: Roman Art (1)",
+    "1998: Pompeii: Public and Private Life (1)",
+    "None: The Mask of Socrates: the image of the intellectual in antiquity (1)",
+    "None: In Search of the Roman Viewer (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Paul Zanker, German classical archaeologist b.1937; P50 Pompeii: Public and Private Life. Cited Power of Images in the Age of Augustus is his."
+  },
+  {
+   "person": "P:galton|francis",
+   "graph_person_id": "P:galton|francis",
+   "name": "Galton, Francis",
+   "tier": "title_verified",
+   "qid": "Q191026",
+   "cited_by_all": 10,
+   "top_works": [
+    "1869: Hereditary Genius: An Inquiry into its Laws and Consequences (5)",
+    "1883: Inquiries into Human Faculty and its Development (3)",
+    "1909: Essays in Eugenics (2)",
+    "1892: Finger Prints (1)",
+    "1904: Eugenics: Its Definition, Scope, and Aims (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Francis Galton (1822-1911); notable works Hereditary Genius and Finger Prints, both among cited works."
+  },
+  {
+   "person": "P:morgan|kenneth o",
+   "graph_person_id": "P:morgan|kenneth o",
+   "name": "Morgan, Kenneth O",
+   "tier": "title_verified",
+   "qid": "Q93657",
+   "cited_by_all": 17,
+   "top_works": [
+    "1979: Consensus and Disunity: The Lloyd George Coalition Government, 1918-1922 (5)",
+    "2010: The Oxford History of Britain (2)",
+    "2001: Britain Since 1945: The People’s Peace (2)",
+    "1971: London, 1971 (1)",
+    "1976: The Future at Work: Anglo-American Progressivism, 1890-1917 (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Kenneth O. Morgan, Welsh historian b.1934, Swansea/Queen's Oxford; 29 P50 works. Cited Consensus and Disunity and Britain Since 1945 are his."
+  },
+  {
+   "person": "P:jones|peter",
+   "graph_person_id": "P:jones|peter",
+   "name": "Jones, Peter",
+   "tier": "probable_historian",
+   "qid": "Q20127892",
+   "cited_by_all": 19,
+   "top_works": [
+    "1861: History of the Ojebway Indians; with special reference to their conversion to Christianity (8)",
+    "1847: A Collection of Chippeway and English Hymns, for the use of Native 1ndians. To which are added afew hymns translated by the Rev. James Evans and George Henry (2)",
+    "1831: The Sermons and Speeches of the Rev. Peter Jones, alais Kah-ke-wa-quonaby, the Convert Indian Chief delivered on the occasion of the Eighteenth Anniversary ojthe Wesleyan Methodist Missionary Society,jor the Leeds District: held in Brunswick and Albion Street Chapels, Leeds, September the 25th, 26th, and 27th (2)",
+    "1860: Life and Journals of Kah-Ke-Wa-Quo-Na-by (Rev. Peter Jones), Wesleyan Missionary (2)",
+    "2001: Preface: The ‘Little Ice Age’: Local and Global Perspectives (1)"
+   ],
+   "verdict": "wrong",
+   "evidence": "QID is Peter (Michael) Jones, British historian of France b.1949, University of Birmingham. The graph node's dominant cited works (History of the Ojebway Indians 1861, Life and Journals of Kah-ke-wa-quo-na-by 1860, Chippeway hymns 1847, Sermons and Speeches 1831) are by the Mississauga Methodist missionary Peter Jones/Kahkewaquonaby (1802-1856). The node also merges other Peter Joneses (Peter Murray Jones on medical texts, Peter d'A. Jones on Christian Socialism). Picked from 70 namesake candidates by a historian-description rule."
+  },
+  {
+   "person": "P:horton|james o",
+   "graph_person_id": "P:horton|james o",
+   "name": "Horton, James Oliver",
+   "tier": "probable_historian",
+   "qid": "Q58023121",
+   "cited_by_all": 10,
+   "top_works": [
+    "1865: West African Countries and Peoples, British and Native. With the Requirements Necessary for Establishing That Self Government Recommended by the Committee of the House of Commons, 1865; and a Vindication of the African Race (3)",
+    "1867: Physical and Medical Climate and Meteorology of the West Coast of Africa (2)",
+    "2009: Slavery in American History: An Uncomfortable National Dialogue (2)",
+    "1986: Freedom’s Yoke: Gender Conventions among Antebellum Free Blacks (1)",
+    "2006: Slavery and Public History: The Tough Stuff of American Memory (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: James Oliver Horton, American historian (1943-2017), George Washington Univ. Most cited works (Black Bostonians, In Hope of Liberty, Free People of Color, Slavery and Public History) are his. Caveat: the graph node also holds two works by James Africanus Beale Horton (West African Countries and Peoples 1865, Physical and Medical Climate 1867), a node-merge error, not a grounding error."
+  },
+  {
+   "person": "P:joutard|philippe",
+   "graph_person_id": "P:joutard|philippe",
+   "name": "Joutard, Philippe",
+   "tier": "probable_historian",
+   "qid": "Q19931037",
+   "cited_by_all": 10,
+   "top_works": [
+    "1987: Cévennes, terre de refuge, 1940-1944 (1)",
+    "1982: La distinction entre légendaire historique d'origine savante et celui d'origine populaire est-elle toujours Pertinente? (1)",
+    "1979: Tradition orale et mémoire sélective (1)",
+    "1983: Ces voix qui nous viennent du Passé (1)",
+    "2015: Les Huguenots en Amérique, un patrimoine paradoxal (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Philippe Joutard, French historian b.1935, Aix/EHESS. Cited works on oral tradition, Cevennes and Huguenots match (historiographical knowledge: La legende des Camisards, Ces voix qui nous viennent du passe)."
+  },
+  {
+   "person": "P:stevens|rosemary",
+   "graph_person_id": "P:stevens|rosemary",
+   "name": "Stevens, Rosemary",
+   "tier": "probable_historian",
+   "qid": "Q42533783",
+   "cited_by_all": 11,
+   "top_works": [
+    "1989: In Sickness and in Wealth: American Hospitals in the Twentieth Century (5)",
+    "2003: Medical Practice in Modern England: the Impact of Specialization & State Medicine (3)",
+    "2006: History and Health Policy in the United States: Putting the Past Back in (1)",
+    "1899: American Medicine and the Public lnterest. A History of Specialization (1)",
+    "None: Welfare Medicine in America: A Case Study of Medicaid (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Rosemary A. Stevens, American historian of medicine b.1935, UPenn, Manchester-educated. Cited In Sickness and in Wealth and Medical Practice in Modern England are hers."
+  },
+  {
+   "person": "P:jones|richard",
+   "graph_person_id": "P:jones|richard",
+   "name": "Jones, Richard",
+   "tier": "probable_historian",
+   "qid": "Q29643075",
+   "cited_by_all": 27,
+   "top_works": [
+    "1996: Destinies: Canadian History Since Confederation (7)",
+    "2010: Journeys: A History of Canada (6)",
+    "1992: Origins: Canadian History to (3)",
+    "1974: L’idéologie de l’Action catholique (1917-1939) (2)",
+    "1981: L’idéologie du Parti québécois (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Richard Jones, historian, Laval University professor b.1943. Cited L'ideologie de l'Action catholique and L'ideologie du Parti quebecois are his; Origins/Destinies/Journeys are the Francis-Jones-Smith textbooks he co-wrote (historiographical knowledge)."
+  },
+  {
+   "person": "P:dummitt|chris",
+   "graph_person_id": "P:dummitt|christopher",
+   "name": "Dummitt, Chris",
+   "tier": "probable_historian",
+   "qid": "Q112463651",
+   "cited_by_all": 12,
+   "top_works": [
+    "2007: The Manly Modern: Masculinity in Postwar Canada (36)",
+    "1998: Finding a Place for Father: Selling the Barbeque in Postwar Canada (11)",
+    "2004: Risk on the Rocks: Modernity, Manhood, and Mountaineering in Postwar British Columbia (4)",
+    "2009: Contesting Clio’s Craft: New Directions and Debates in Canadian History (4)",
+    "2017: Unbuttoned: A History of Mackenzie King’s Secret Life (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Christopher Dummitt, Canadian historian b.1973, Trent; fields masculinity, history of Canada. Graph node is P:dummitt|christopher (row key missing from graph.json); works The Manly Modern, Unbuttoned are his."
+  },
+  {
+   "person": "P:weber|max",
+   "graph_person_id": "P:weber|max",
+   "name": "Weber, Max",
+   "tier": "probable_historian",
+   "qid": "Q94829122",
+   "cited_by_all": 72,
+   "top_works": [
+    "1958: The Protestant Ethic and the Spirit of Capitalism (16)",
+    "1971: Économie et société (9)",
+    "1978: Economy and Society: An Outline of Interpretive Sociology (7)",
+    "1964: L’éthique protestante et l’esprit du capitalisme (6)",
+    "2003: Le savant et le politique (4)"
+   ],
+   "verdict": "wrong",
+   "evidence": "QID is a Max Weber described as German historian and pedagogue (1899-1982), born and died in Freiburg. The cited works (Protestant Ethic and the Spirit of Capitalism, Economy and Society, Le savant et le politique) are by the sociologist Max Weber (1864-1920), Wikidata Q9387 (confirmed via QLever label search). Picked from 20 namesake candidates by a historian-description rule."
+  },
+  {
+   "person": "P:christie|nancy j",
+   "graph_person_id": "P:christie|nancy j",
+   "name": "Christie, Nancy",
+   "tier": "probable_historian",
+   "qid": "Q112466726",
+   "cited_by_all": 157,
+   "top_works": [
+    "2000: Engendering the State: Family, Work, and Welfare in Canada (51)",
+    "1996: A Full-Orbed Christianity: The Protestant Churches and Social Welfare in Canada, 1900-1940 (44)",
+    "2010: Christian Churches and Their Peoples, 1840-1965: A Social History of Religion in Canada (17)",
+    "2003: Cultures of Citizenship in Post-War Canada, 1940-1955 (15)",
+    "2002: Households of Faith: Family, Gender, and Community in Canada, 1760-1969 (14)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Nancy Christie, Canadian historian b.1958, Western Ontario/Trent. Cited Engendering the State, A Full-Orbed Christianity, Households of Faith are hers."
+  },
+  {
+   "person": "P:limerick|patricia",
+   "graph_person_id": "P:limerick|patricia",
+   "name": "Limerick, Patricia Nelson",
+   "tier": "probable_historian",
+   "qid": "Q7145768",
+   "cited_by_all": 19,
+   "top_works": [
+    "1987: The Legacy of Conquest: The Unbroken Past of the American West (13)",
+    "1991: Trails: Toward a New Western History (7)",
+    "1995: Turnerians All: The Dream of a Helpful History in an Intelligible World (1)",
+    "1992: Haunted by Rhyoltie: Learning from the Landscape of Failure (1)",
+    "1996: Region and Reason (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Patricia Nelson Limerick, American historian, Colorado Boulder. Cited Legacy of Conquest and Trails are hers."
+  },
+  {
+   "person": "P:lynn|john a",
+   "graph_person_id": "P:lynn|john a",
+   "name": "Lynn, John A",
+   "tier": "probable_historian",
+   "qid": "Q6217800",
+   "cited_by_all": 18,
+   "top_works": [
+    "2003: Battle: A History of Combat and Culture (4)",
+    "1997: The Embattled Future of Academic Military History (3)",
+    "1997: Giants of the Grand Siècle: The French Army, 1610-1715 (3)",
+    "1999: The Wars of Louis XIV, 1667-1714 (3)",
+    "2008: Women, Armies, and Warfare in Early Modern Europe (3)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: John A. Lynn, American military historian, Illinois. Cited Giants of the Grand Siecle, Wars of Louis XIV, Battle are his."
+  },
+  {
+   "person": "P:ory|pascal",
+   "graph_person_id": "P:ory|pascal",
+   "name": "Ory, Pascal",
+   "tier": "probable_historian",
+   "qid": "Q3367546",
+   "cited_by_all": 24,
+   "top_works": [
+    "1986: Les intellectuels en France, de l’Affaire Dreyfus à nos jours (8)",
+    "2004: L’histoire culturelle (4)",
+    "1976: Les Collaborateurs, 1940-1945 (2)",
+    "1986: Les Intellectuels en France de l’affaire Dreyfus à nos jours (2)",
+    "1990: Entre Deux Guerres. La création française entre 1919 et 1939 (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Pascal Ory, French historian b.1948, Paris 1. Cited Les intellectuels en France and L'histoire culturelle are his."
+  },
+  {
+   "person": "P:collinson|patrick",
+   "graph_person_id": "P:collinson|patrick",
+   "name": "Collinson, Patrick",
+   "tier": "probable_historian",
+   "qid": "Q7146256",
+   "cited_by_all": 21,
+   "top_works": [
+    "1988: The Birthpangs o f Protestant England: Religion and Cultural Change in the Sixteenth and Seventeenth Centuries (3)",
+    "1967: The Elizabethan Puritan Movement (3)",
+    "1982: The Religion o f the Protestants: The Church in English Society 1559- 1625 (2)",
+    "1559: The Religion of Protestants: The Church in Englkh Society 1559- (2)",
+    "1983: Godly People: Essays on English Protestantism and Puritanism (London: The Hambeldon Press, 1983) (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Patrick Collinson, British historian (1929-2011), Reformation/history of Christianity. Cited Elizabethan Puritan Movement, Birthpangs of Protestant England are his."
+  },
+  {
+   "person": "P:metcalfe|alan",
+   "graph_person_id": "P:metcalfe|alan",
+   "name": "Metcalfe, Alan",
+   "tier": "probable_historian",
+   "qid": "Q112489775",
+   "cited_by_all": 14,
+   "top_works": [
+    "1987: Canada Learns to Play: The Emergence of Organized Sport, 1807-1914 (7)",
+    "1978: The Evolution of Organized Physical Recreation in Montreal, 1840-1895 (2)",
+    "1884: ―The Meaning of Amateurism: A Case Study of Canadian Sport, 1884-1970,‖ Canadian (1)",
+    "1974: Some Background Influences on Nineteenth Century Canadian Sport and Physical Education (1)",
+    "1807: Toronto: McCieiland and $tewart, 1987/9 (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata item is thin (English history professor, b.1933 Jarrow) but its LCCN n87881499 record (fetched from id.loc.gov) cites Canada Learns to Play (1987) and describes him as professor, Faculty of Human Kinetics, University of Windsor, b. 16 Mar 1933 Jarrow, who published on Canadian and British sport history. Matches every cited work."
+  },
+  {
+   "person": "P:pomian|krzysztof",
+   "graph_person_id": "P:pomian|krzysztof",
+   "name": "Pomian, Krzysztof",
+   "tier": "probable_historian",
+   "qid": "Q2662619",
+   "cited_by_all": 12,
+   "top_works": [
+    "1987: Collectionneurs, amateurs et curieux (4)",
+    "1984: L’Ordre du temps (2)",
+    "1984: Les archives. Du trésor des chartes au Caran (1)",
+    "1500: Collectors and Curiosities: Paris and Venice 1500-1800 (1)",
+    "1986: L'heure des Annales (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Krzysztof Pomian, Polish-French philosopher/historian b.1934, EHESS/CNRS. Cited Collectionneurs, amateurs et curieux and L'Ordre du temps are his."
+  },
+  {
+   "person": "P:higham|robin",
+   "graph_person_id": "P:higham|robin",
+   "name": "Higham, Robin",
+   "tier": "probable_historian",
+   "qid": "Q16937715",
+   "cited_by_all": 10,
+   "top_works": [
+    "1966: The Military Intellectuals in Britain, 1918–39 (2)",
+    "1999: Introduction (1)",
+    "1998: Russian Aviation and Air Power in the Twentieth Century (1)",
+    "2002: The Military History of Tsarist Russia (1)",
+    "1965: The Business History Review (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Robin Higham, American military historian (1925-2015), Kansas State. Cited Military Intellectuals in Britain and Russian aviation works are his."
+  },
+  {
+   "person": "P:dawson|robert m",
+   "graph_person_id": "P:dawson|robert m",
+   "name": "Dawson, Robert MacGregor",
+   "tier": "probable_canadian_academic",
+   "qid": "Q7347223",
+   "cited_by_all": 21,
+   "top_works": [
+    "1958: William Lyon Mackenzie King: A Political Biography (8)",
+    "1961: The Conscription Crisis of 1944 (4)",
+    "1943: Canada in World Affairs. Two Years of War, 1939-1941 (4)",
+    "1970: The Government of Canada (3)",
+    "1944: Report of the Royal Commission on Provincial Development and Rehabilitation, Vol. 1, Chapter II, Report on Agriculture (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Robert MacGregor Dawson, Canadian political scientist (1895-1958), Toronto. Cited William Lyon Mackenzie King, The Government of Canada and The Conscription Crisis of 1944 are his."
+  },
+  {
+   "person": "P:allen|richard b",
+   "graph_person_id": "P:allen|richard b",
+   "name": "Allen, Richard",
+   "tier": "probable_canadian_academic",
+   "qid": "Q7323684",
+   "cited_by_all": 75,
+   "top_works": [
+    "1971: The Social Passion: Religion and Social Reform in Canada, 1914-1928 (45)",
+    "1968: The Social Gospel and the Reform Tradition in Canada, 1890-1928 (6)",
+    "1975: The Social Gospel in Canada (5)",
+    "2008: The View from Murney Tower: Salem Bland, the Late Victorian Controversies, and the Search for a New Christianity (5)",
+    "1992: The Social Gospel as the Religion of the Agrarian Revolt (5)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Richard Allen, Canadian historian and politician (1929-2019), McMaster/Regina. Cited The Social Passion and social gospel works are his (historiographical knowledge: McMaster historian, later Ontario MPP)."
+  },
+  {
+   "person": "P:hiller|james k",
+   "graph_person_id": "P:hiller|james k",
+   "name": "Hiller, James K",
+   "tier": "probable_canadian_academic",
+   "qid": "Q133789781",
+   "cited_by_all": 27,
+   "top_works": [
+    "2010: Atlantic Canada: A History (12)",
+    "1991: Utrecht Revisited: The Origins of French Fishing Rights in Newfoundland Waters (3)",
+    "1995: The Newfoundland National Convention, 1946-1948 (2)",
+    "2019: Wilfred Grenfell and Newfoundland (1)",
+    "1997: The Labrador Boundary (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: James K. Hiller, b.1942, Memorial University of Newfoundland, field history. Cited Atlantic Canada: A History, Newfoundland and Labrador boundary works are his."
+  },
+  {
+   "person": "P:cook|terry",
+   "graph_person_id": "P:cook|terry",
+   "name": "Cook, Terry",
+   "tier": "probable_canadian_academic",
+   "qid": "Q16934246",
+   "cited_by_all": 22,
+   "top_works": [
+    "2002: Archives, Records, and Power: The Making of Modem Memory (5)",
+    "1972: John Beverly Robinson and the Conservative Blueprint for the Upper Canadian Community (4)",
+    "1975: George R. Parkin and the Concept of Britannic Idealism (3)",
+    "1979: The Tyranny of the Medium: A Comment on “Total Archives (2)",
+    "1898: What’s Past is Prologue: A History of Archival Ideas Since 1898 and the Future Paradigm Shift (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Terry Cook, Canadian archivist (1947-2014); P50 a post-custodial archival theory article. Cited Archives, Records, and Power and archival-ideas works are his. The early Robinson and Parkin articles are also his (historiographical knowledge)."
+  },
+  {
+   "person": "P:paquin|stephane",
+   "graph_person_id": "P:paquin|stephane",
+   "name": "PAQUIN, Stéphane",
+   "tier": "probable_canadian_academic",
+   "qid": "Q3501992",
+   "cited_by_all": 17,
+   "top_works": [
+    "1999: L’invention d’un mythe : le pacte entre deux peuples fondateurs (5)",
+    "2006: Histoire des relations internationales du Québec (4)",
+    "2006: Les Re/ations internationales du Québec depuis la Doctrine Gérin-Lajoie (1965-2005). Le prolongement externe des compétences internes (3)",
+    "2001: La revanche des petites nations (2)",
+    "2008: Pourquoi la Francophonie ? (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Stephane Paquin, Canadian political scientist b.1973, ENAP. Cited L'invention d'un mythe and Histoire des relations internationales du Quebec are his."
+  },
+  {
+   "person": "P:mccall|christina",
+   "graph_person_id": "P:mccall|christina",
+   "name": "McCall, Christina",
+   "tier": "probable_canadian_academic",
+   "qid": "Q5110829",
+   "cited_by_all": 12,
+   "top_works": [
+    "1990: Trudeau and Our Times Volume I: The Magnificent Obsession (8)",
+    "1994: Trudeau and Our Times: Volume 2 The Heroic Delusion (2)",
+    "1990: Trudeau (2)",
+    "1959: How (1)",
+    "1994: ‘Who Does This Asshole Think He Is?’ Pierre Trudeau's Relations With Ronald Reagan And Margaret Thatcher (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Christina McCall, Canadian journalist (1935-2005). Cited Trudeau and Our Times (with Stephen Clarkson) is hers."
+  },
+  {
+   "person": "P:bourassa|henri",
+   "graph_person_id": "P:bourassa|henri",
+   "name": "Bourassa, Henri",
+   "tier": "probable_canadian_academic",
+   "qid": "Q3130733",
+   "cited_by_all": 19,
+   "top_works": [
+    "1915: Que devons-nous à l'Angleterre? La défense nationale, la révolution impérialiste, le tribut à l'Empire (3)",
+    "1910: Religion, Langue, Nationalité: Discours prononcé à la séance de cloture du XXIe Congrès Eucharistique, à Montréal, le 10 septembre1910 (3)",
+    "1915: The Duty of Canada at the Present Hour (3)",
+    "1901: Grande-Bretagne et Canada: Questions actuelles (2)",
+    "1917: La Conscription (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Henri Bourassa (1868-1952), Canadian politician/journalist, founder of Le Devoir. Cited 1901-1917 pamphlets are his."
+  },
+  {
+   "person": "P:routhier|gilles",
+   "graph_person_id": "P:routhier|gilles",
+   "name": "Routhier, Gilles",
+   "tier": "probable_canadian_academic",
+   "qid": "Q3106491",
+   "cited_by_all": 11,
+   "top_works": [
+    "1981: L’ordre du monde. Capitalisme et communisme dans la doctrine de l’École sociale populaire, 1930-1936 (5)",
+    "1996: Quelle sécularisation? L'Église du Québec et la modernité (2)",
+    "2014: L’atlas historique du Québec : les missions au Québec et du Québec dans le monde (1)",
+    "2004: Religions et sciences sociales. Un chassé-croisé interprétatif entre histoire, théologie et sociologie (1)",
+    "2011: Vatican II Expériences canadiennes/Canadian Experiences (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Gilles Routhier, Canadian theologian b.1953, Laval. Cited Vatican II, missions and secularization works are his. The 1981 Ecole sociale populaire article is attributed to Routhier from historiographical knowledge (Recherches sociographiques)."
+  },
+  {
+   "person": "P:gilliland|jason a",
+   "graph_person_id": "P:gilliland|jason a",
+   "name": "Gilliland, Jason",
+   "tier": "probable_canadian_academic",
+   "qid": "Q57018943",
+   "cited_by_all": 12,
+   "top_works": [
+    "2002: The Creative Destruction of Montreal: Street Widenings and Urban (Re)Development in the Nineteenth Century (3)",
+    "2004: Muddy Shore to Modern Port: Redimensioning the Montréal Waterfront Time-Space (2)",
+    "2011: Did Segregation Increase as the City Expanded?: The Case of Montreal, 1881-1901 (2)",
+    "2017: Mapping Work in Early Twentieth-Century Montreal: A Rabbi, a Neighbourhood, and a Community (2)",
+    "2011: Trading Places: A Historical Geography of Retailing in London, Canada (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Jason A. Gilliland, Canadian geographer b.1969, McGill-educated, Western. Cited Montreal historical-geography works are his."
+  },
+  {
+   "person": "P:beauchemin|jacques",
+   "graph_person_id": "P:beauchemin|jacques",
+   "name": "Beauchemin, Jacques",
+   "tier": "probable_canadian_academic",
+   "qid": "Q19956219",
+   "cited_by_all": 25,
+   "top_works": [
+    "1994: La société libérale duplessiste (7)",
+    "2004: La société des identités : Éthique et politique dans le monde contemporain (4)",
+    "2002: L’histoire en trop. La mauvaise conscience des souverainistes québécois (3)",
+    "2009: L’identité franco-québécoise d’hier à aujourd’hui : la fin des vieilles certitudes (2)",
+    "1997: Conservatisme et traditionalisme dans le Québec duplessiste. Aux origines d’une confusion conceptuelle (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Jacques Beauchemin, Canadian sociologist b.1955, UQAM. Cited La societe liberale duplessiste and L'histoire en trop are his."
+  },
+  {
+   "person": "P:clarkson|stephen",
+   "graph_person_id": "P:clarkson|stephen",
+   "name": "Clarkson, Stephen",
+   "tier": "probable_canadian_academic",
+   "qid": "Q13522460",
+   "cited_by_all": 20,
+   "top_works": [
+    "1990: Trudeau and Our Times Volume I: The Magnificent Obsession (8)",
+    "1968: An Independent Foreign Policy for Canada? (5)",
+    "1994: Trudeau and Our Times: Volume 2 The Heroic Delusion (2)",
+    "1987: Canada and the Reagan Challenge (2)",
+    "1990: Trudeau (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Stephen Clarkson, Canadian political scientist (1937-2016), Toronto. Cited Trudeau and Our Times, An Independent Foreign Policy for Canada?, Canada and the Reagan Challenge are his."
+  },
+  {
+   "person": "P:england|robert",
+   "graph_person_id": "P:england|robert",
+   "name": "England, Robert",
+   "tier": "probable_canadian_academic",
+   "qid": "Q104650356",
+   "cited_by_all": 25,
+   "top_works": [
+    "1943: Discharged: A Commentary on Civil Re-Establishment of Veterans in Canada (9)",
+    "1936: The Colonization of Western Canada: A Study of Contemporary Land Settlement 1896-1934 (7)",
+    "1929: The Central European Immigrant in Canada (5)",
+    "1929: British Immigration (4)",
+    "1950: Twenty Million World War Veterans (3)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Robert England, b.1894, Canadian National Railway and UBC, Queen's-educated. Cited Colonization of Western Canada, Central European Immigrant in Canada, Discharged match a CNR colonization official later in veterans' rehabilitation (historiographical knowledge)."
+  },
+  {
+   "person": "P:humphrey|john p",
+   "graph_person_id": "P:humphrey|john p",
+   "name": "Humphrey, John P",
+   "tier": "probable_canadian_academic",
+   "qid": "Q437403",
+   "cited_by_all": 10,
+   "top_works": [
+    "1970: Report of the Royal Commission on the Status of Women in Canada (3)",
+    "1984: Human Rights & the United Nations: A Great Adventure (3)",
+    "1979: The Universal Charter: Its History, Impact, and Judicial Character (1)",
+    "None: Canadian-American Friendship (1)",
+    "None: Pan-America in the World Order (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: John Peters Humphrey (1905-1995), Canadian legal scholar, UN. Cited Human Rights & the United Nations: A Great Adventure is his. He sat on the Royal Commission on the Status of Women (historiographical knowledge)."
+  },
+  {
+   "person": "P:hunt|alan",
+   "graph_person_id": "P:hunt|alan",
+   "name": "Hunt, Alan",
+   "tier": "probable_canadian_academic",
+   "qid": "Q4706911",
+   "cited_by_all": 19,
+   "top_works": [
+    "1999: Governing Morals: A Social History of Moral Regulation (8)",
+    "1996: Governance of the Consuming Passions: A History of Sumptuary Law (3)",
+    "2002: Measuring Morals: The Beginnings of the Social Survey Movement in Canada, 1913-1917 (2)",
+    "1998: The Great Masturbation Panic and the Discourses of Moral Regulation in Nineteenth- and Early Twentieth-Century Britain (2)",
+    "1995: Moralizing Luxury: The Discourses of the Governance of Consumption (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Alan Hunt, Canadian sociologist of law (1949-2021). Cited Governing Morals, Governance of the Consuming Passions, moral-regulation essays are his."
+  },
+  {
+   "person": "P:lemieux|vincent",
+   "graph_person_id": "P:lemieux|vincent",
+   "name": "LEMIEUX, Vincent",
+   "tier": "probable_canadian_academic",
+   "qid": "Q2410590",
+   "cited_by_all": 15,
+   "top_works": [
+    "2014: Le Parti libéral du Québec. Alliances, rivalités et neutralités (3)",
+    "2011: Les partis générationnels au Québec: passé, présent, avenir (3)",
+    "1982: Personnel et partis politiques au Québec (3)",
+    "1991: Le Québec et la restructuration du Canada, 1980-1992 (2)",
+    "2002: Introduction à l’analyse politique (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Vincent Lemieux, Canadian political scientist (1933-2014), Laval. Cited Quebec parties works are his."
+  },
+  {
+   "person": "P:poutanen|mary a",
+   "graph_person_id": "P:poutanen|mary a",
+   "name": "Poutanen, Mary Anne",
+   "tier": "possible_sole_candidate",
+   "qid": "Q112551596",
+   "cited_by_all": 29,
+   "top_works": [
+    "2004: A Meeting of the People: School Boards and Protestant Communities in Quebec, 1801-1998 (4)",
+    "2015: Beyond Brutal Passions: Prostitution in Early Nineteenth-Century Montreal (4)",
+    "2002: Regulating Public Space in Early Nineteenth-Century Montreal: Vagrancy Laws and Gender in a Colonial Context (3)",
+    "2005: Cadets, Curfews, and Compulsory Schooling: Mobilizing Anglophone Children in WW II Montreal (3)",
+    "1985: For the Benefit of the Master: The Montreal Needle Trades during [he Transition (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Mary Anne Poutanen, b.1952, historian/university teacher, work locations Montreal and Quebec. Cited Beyond Brutal Passions and Montreal regulation works are hers."
+  },
+  {
+   "person": "P:vecsey|christopher",
+   "graph_person_id": "P:vecsey|christopher",
+   "name": "Vecsey, Christopher",
+   "tier": "possible_sole_candidate",
+   "qid": "Q113736875",
+   "cited_by_all": 10,
+   "top_works": [
+    "1983: Traditional Ojibwa Religion and Its Historical Changes (6)",
+    "1986: The Story and Structure of the Iroquois Confederacy (2)",
+    "1997: The Paths of Kateri's Kin (2)",
+    "1980: Syracuse: Syracuse University Press, 1980 (1)",
+    "1985: Review Essay (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Christopher Vecsey, American religious studies scholar b.1948. Cited Traditional Ojibwa Religion and Paths of Kateri's Kin are his."
+  },
+  {
+   "person": "P:rose|sonya",
+   "graph_person_id": "P:rose|sonya",
+   "name": "Rose, Sonya",
+   "tier": "possible_sole_candidate",
+   "qid": "Q20675662",
+   "cited_by_all": 22,
+   "top_works": [
+    "2006: Introduction (11)",
+    "2003: Which People’s War? National Identity and Citizenship in Britain, 1939-1945 (9)",
+    "1998: Sex, Citizenship and the Nation in World War II Britain (2)",
+    "2006: et al (1)",
+    "1992: Berkeley: University of California Press., 1992 (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Sonya Rose, American sociologist/historian (1935-2020), Michigan. Cited Which People's War? is hers. The 2006 Introduction is likely At Home with the Empire, with Catherine Hall (historiographical knowledge)."
+  },
+  {
+   "person": "P:zimmermann|benedicte",
+   "graph_person_id": "P:zimmermann|benedicte",
+   "name": "Bénédicte Zimmermann",
+   "tier": "possible_sole_candidate",
+   "qid": "Q2929908",
+   "cited_by_all": 13,
+   "top_works": [
+    "2006: Beyond Comparison: Histoire Croisée and the Challenge of Reflexivity (9)",
+    "2004: Penser l’histoire croisée : entre empirie et réflexivité (2)",
+    "None: De la comparaison à l'histoire croisée (1)",
+    "2003: Annales. Histoire, Sciences Sociales (1)",
+    "None: La constitution du chômage en Allemagne. Entre professions et territoires (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Benedicte Zimmermann, French sociologist b.1965. Cited Beyond Comparison/Penser l'histoire croisee (with Michael Werner) are hers."
+  },
+  {
+   "person": "P:bienvenue|louise",
+   "graph_person_id": "P:bienvenue|louise",
+   "name": "BIENVENUE, Louise",
+   "tier": "possible_sole_candidate",
+   "qid": "Q133760276",
+   "cited_by_all": 35,
+   "top_works": [
+    "2003: Quand la jeunesse entre en scène. L’Action catholique avant la Révolution tranquille (21)",
+    "2014: Le collège classique pour garçons : études historiques sur une institution québécoise disparue (9)",
+    "2003: Pierres grises et mauvaise conscience. Essai historiographique sur le rôle de l'Église catholique dans l'assistance au Québec (4)",
+    "2009: La \"rééducation totale\" des délinquants à Boscoville (1941-1970). Un tournant dans lřhistoire des régulations sociales au Québec (3)",
+    "2012: Sortir de la délinquance par l’expérience institutionnelle : Une histoire racontée par les voix et par les corps (1873-1977) (3)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata item has no label or description, only b.1969 plus VIAF/ISNI/GND. Its GND 174163770 (fetched via lobid.org) says Professor, Dept of History and Political Sciences, Universite de Sherbrooke, and lists Quand la jeunesse entre en scene (2003), her most-cited work here."
+  },
+  {
+   "person": "P:classen|constance",
+   "graph_person_id": "P:classen|constance",
+   "name": "Classen, Constance",
+   "tier": "possible_sole_candidate",
+   "qid": "Q93413846",
+   "cited_by_all": 13,
+   "top_works": [
+    "1994: Aroma: The Cultural History of Smell (9)",
+    "2012: The Deepest Sense: A Cultural History of Touch (4)",
+    "1993: Worlds of Sense: Exploring the Senses in History and Across Cultures (3)",
+    "2014: Ways of Sensing: Understanding the Senses in Society (2)",
+    "1997: Engendering Perception: Gender Ideologies and Sensory Hierarchies in Western History (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Constance Classen, b.1957, historian/religious studies scholar, field cultural history. Cited Aroma, Worlds of Sense, The Deepest Sense are hers."
+  },
+  {
+   "person": "P:newton|janice",
+   "graph_person_id": "P:newton|janice",
+   "name": "Newton, Janice",
+   "tier": "possible_sole_candidate",
+   "qid": "Q88070868",
+   "cited_by_all": 15,
+   "top_works": [
+    "1995: The Feminist Challenge to the Canadian Left, 1900-1918 (11)",
+    "1992: The Alchemy of Politicization: Socialist Women and the Early Canadian Left (2)",
+    "2008: The Plight of the Working Girl (1)",
+    "1989: 'From Wage Slave to White Slave: The Prostitution Controversy and the Early Canadian Left (1)",
+    "1989: Beyond the Vote: Canadian Women and Politics (1)"
+   ],
+   "verdict": "unsure",
+   "evidence": "Wikidata item has only a name, female, and archives at Clara Thomas Archives (York University). It was created in the same York-archives batch as Linda Briskin, which points to the York scholar who wrote The Feminist Challenge to the Canadian Left (historiographical knowledge). But its LCCN n85204172 (id.loc.gov) belongs to a different Janice Newton: a Monash University PhD and anthropologist, author of Orokaiva production and change (1985). The item appears to be a conflation, and nothing in it ties it directly to the cited works."
+  },
+  {
+   "person": "P:briskin|linda",
+   "graph_person_id": "P:briskin|linda",
+   "name": "Briskin, Linda",
+   "tier": "possible_sole_candidate",
+   "qid": "Q88070983",
+   "cited_by_all": 15,
+   "top_works": [
+    "1988: Feminist Organizing for Change: The Contemporary Women’s Movement in Canada (12)",
+    "1993: Women Challenging Unions: Feminism, Democracy, and Militancy (2)",
+    "1990: Briskin, Linda and Patricia McDermott, eds., Women Challenqing Unions: Feminism, Democracy and Militancy, Toronto: University of Toronto Press, 1993. • • Burgess, Joanne, nExploring the Limited Identities of Canadian Labour: Recent Trends in English-Canada and Quebec. n International Journal of Canadian Studies 1-2 (Spring-Fall 1990), pp (1)",
+    "1992: Socialist Feminism: From the Standpoint of Practice (1)",
+    "1983: Union Sisters: Women in the Labour Movement (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata item is thin (b.1949, archives at Clara Thomas/York), but its LCCN n84067697 record cites Union Sisters (1983), which is also among the cited works, alongside Feminist Organizing for Change and Women Challenging Unions."
+  },
+  {
+   "person": "P:clow|barbara",
+   "graph_person_id": "P:clow|barbara",
+   "name": "Clow, Barbara",
+   "tier": "possible_sole_candidate",
+   "qid": "Q133725522",
+   "cited_by_all": 14,
+   "top_works": [
+    "2001: Negotiating Disease: Power and Cancer Care, 1900-1950 (8)",
+    "2003: ‘An Illness of Nine Moths’ Duration’: Pregnancy and Thalidomide Use in Canada and the United States (3)",
+    "2013: Carriers of water: aboriginal women’s experiences, relationships, and reflections (2)",
+    "2008: Defining Disability, Limiting Liability: The Care of Thalidomide Victims in Canada (1)",
+    "2001: Social History of Medicine (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata item has no label, only b.1959 plus VIAF/ISNI/GND. GND 173983855 (lobid.org) is Canada-coded and lists Negotiating Disease (2001), her most-cited work here. Caveat: the GND cluster also lists Das Auge des Zentauren (1992) by Barbara Hand Clow, a different author, so the authority cluster is partly conflated."
+  },
+  {
+   "person": "P:tocqueville|alexis",
+   "graph_person_id": "P:tocqueville|alexis",
+   "name": "Tocqueville, Alexis de",
+   "tier": "possible_sole_candidate",
+   "qid": "Q53100365",
+   "cited_by_all": 17,
+   "top_works": [
+    "1840: Democracy in America (7)",
+    "1981: De la démocratie en Amérique (4)",
+    "1962: Œuvres complètes (2)",
+    "1967: L’Ancien Régime et la Révolution (2)",
+    "1957: The Old Regime and The Revolution (1)"
+   ],
+   "verdict": "wrong",
+   "evidence": "QID is a Flanders Arts Institute/Kunstenpunt performing-arts person record whose only content is the name. It carries an explicit \"different from\" (P1889) statement pointing to Q140694, Alexis de Tocqueville, French political thinker and historian (1805-1859), who wrote Democracy in America and L'Ancien Regime et la Revolution."
+  },
+  {
+   "person": "P:gitelman|zvi y",
+   "graph_person_id": "P:gitelman|zvi y",
+   "name": "Gitelman, Zvi",
+   "tier": "possible_sole_candidate",
+   "qid": "Q17060930",
+   "cited_by_all": 16,
+   "top_works": [
+    "1997: Bitter Legacy: Confronting the Holocaust in the USSR (5)",
+    "2001: A Century of Ambivalence: The Jews of Russia and the Soviet Union, 1881 to the Present (4)",
+    "1972: Jewish Nationality and Soviet Politics: The Jewish Sections of the CPSU, 1917-1930 (3)",
+    "2003: The Emergence of Modern Jewish Politics: Bundism and Zionism in Eastern Europe (2)",
+    "2005: Internationalism, Patriotism, and Disillusion: Soviet Jewish Veterans Remember World War II and the Holocaust (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Zvi Gitelman, American political scientist b.1940, Michigan. Cited Jewish Nationality and Soviet Politics, A Century of Ambivalence, Bitter Legacy are his."
+  },
+  {
+   "person": "P:gordon|milton m",
+   "graph_person_id": "P:gordon|milton m",
+   "name": "Gordon, Milton M",
+   "tier": "possible_sole_candidate",
+   "qid": "Q11781320",
+   "cited_by_all": 13,
+   "top_works": [
+    "1964: Assimilation in American Life: The Role of Race, Religion, and National Origins (13)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Milton Gordon, American sociologist (1918-2019), UMass Amherst. Cited Assimilation in American Life is his."
+  },
+  {
+   "person": "P:bates|robin",
+   "graph_person_id": "P:bates|robin",
+   "name": "Robin Bates",
+   "tier": "possible_sole_candidate",
+   "qid": "Q121337021",
+   "cited_by_all": 19,
+   "top_works": [
+    "2010: In the Province of History: The Making of the Public Past in Twentieth-Century Nova Scotia (17)",
+    "2003: ‘Bewildering and Contradictory Speculations:’ Canadian Protestant Culture and Evolution, 1914-1934, With a Case Study (1)",
+    "2003: New Frontiers in Graduate History 8th. Annual Graduate Student History Conference (1)"
+   ],
+   "verdict": "wrong",
+   "evidence": "QID is a director/producer known only through an ACMI ID (Australian Centre for the Moving Image). The cited author is Robin Bates, co-author with Ian McKay of In the Province of History (2010), a Nova Scotia historian, and his 2003 graduate-conference paper. No evidence links the ACMI film director/producer to this work."
+  },
+  {
+   "person": "P:goldie|terry",
+   "graph_person_id": "P:goldie|terry",
+   "name": "Goldie, Terry",
+   "tier": "possible_sole_candidate",
+   "qid": "Q112542698",
+   "cited_by_all": 10,
+   "top_works": [
+    "1989: Fear and Temptation: The Image of the Indigene in Canadian, Australian, and New Zealand Literatures (8)",
+    "1992: An Anthology of Canadian Native Literature in English (1)",
+    "2008: Queersexlife: Autobiographical Notes on Sexuality, Gender, and Identity (1)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata: Terry Goldie, b.1950, scholar of English/literary theorist; P50 In a Queer Country. Cited Fear and Temptation and Queersexlife are his."
+  },
+  {
+   "person": "P:vigod|bernard l",
+   "graph_person_id": "P:vigod|bernard l",
+   "name": "Vigod, Bernard",
+   "tier": "possible_sole_candidate",
+   "qid": "Q121747137",
+   "cited_by_all": 20,
+   "top_works": [
+    "1986: Quebec Before Duplessis: The Political Career of Louis-Alexandre Taschereau (9)",
+    "1996: Taschereau (5)",
+    "1978: Ideology and Institutions in Quebec. The Public Charities Controversy, 1921-1926 (3)",
+    "1974: «Qu'on ne craigne pas l'encombrement des compétences (2)",
+    "1979: The Quebec Government and Social Legislation During the 1930's. The Study in Political Self-Destruction (2)"
+   ],
+   "verdict": "correct",
+   "evidence": "Wikidata item has a label only, b.1946 d.1988. Its LCCN n86112103 record cites Quebec before Duplessis (1986), his most-cited work here; the 1996 Taschereau is its French translation."
+  }
+ ],
+ "counts_by_tier": {
+  "title_verified": {
+   "correct": 15,
+   "wrong": 0,
+   "unsure": 0
+  },
+  "probable_historian": {
+   "correct": 13,
+   "wrong": 2,
+   "unsure": 0
+  },
+  "probable_canadian_academic": {
+   "correct": 15,
+   "wrong": 0,
+   "unsure": 0
+  },
+  "possible_sole_candidate": {
+   "correct": 12,
+   "wrong": 2,
+   "unsure": 1
+  }
+ },
+ "wilson_95_correct_share": {
+  "title_verified": {
+   "correct": 15,
+   "n": 15,
+   "share": 1.0,
+   "wilson95": [
+    0.796,
+    1.0
+   ]
+  },
+  "probable_historian": {
+   "correct": 13,
+   "n": 15,
+   "share": 0.867,
+   "wilson95": [
+    0.621,
+    0.963
+   ]
+  },
+  "probable_canadian_academic": {
+   "correct": 15,
+   "n": 15,
+   "share": 1.0,
+   "wilson95": [
+    0.796,
+    1.0
+   ]
+  },
+  "possible_sole_candidate": {
+   "correct": 12,
+   "n": 15,
+   "share": 0.8,
+   "wilson95": [
+    0.548,
+    0.93
+   ]
+  },
+  "all_sampled_unweighted": {
+   "correct": 55,
+   "n": 60,
+   "share": 0.917,
+   "wilson95": [
+    0.819,
+    0.964
+   ]
+  }
+ }
+}

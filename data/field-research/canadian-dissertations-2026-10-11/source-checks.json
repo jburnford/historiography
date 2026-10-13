@@ -1,0 +1,112 @@
+[
+  {
+    "institution": "mcgill",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://mcgill.scholaris.ca/collections/3a97d3ab-56cd-44e6-94cc-6f8f5d791fb1",
+    "check_scope": "Live institutional DSpace API; exact department facet; all ten pages retrieved.",
+    "repository_streams": [
+      "mcgill-history"
+    ],
+    "metadata_records": 957,
+    "context": "Current programme page read at https://www.mcgill.ca/classics/graduate-studies/grad-programs; not a dated programme determination for all historical records."
+  },
+  {
+    "institution": "ottawa",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://ruor.uottawa.ca",
+    "check_scope": "Live institutional API and library repository page https://www.uottawa.ca/library/resources/uo-research; current, older and embargo streams.",
+    "repository_streams": [
+      "ottawa-current",
+      "ottawa-older",
+      "ottawa-embargo"
+    ],
+    "metadata_records": 173,
+    "context": "Degree-discipline Arts differs from department Histoire / History; one doctoral record from embargo collection."
+  },
+  {
+    "institution": "waterloo",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://uwspace.uwaterloo.ca/collections/e31dd997-cf73-4eec-b5e6-546597171aa7",
+    "check_scope": "Live institutional backend https://dspacemainprd01.lib.uwaterloo.ca/server/api; History and selected older collections.",
+    "repository_streams": [
+      "waterloo-history",
+      "waterloo-older"
+    ],
+    "metadata_records": 163,
+    "context": "History collection includes 22 non-thesis works; older field query empty, not proof of an absent cohort."
+  },
+  {
+    "institution": "guelph",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://atrium.lib.uoguelph.ca",
+    "check_scope": "Live institutional API across current, retrospective and LAC-harvested collections; library guide https://www.lib.uoguelph.ca/find/theses-dissertations/ read.",
+    "repository_streams": [
+      "guelph-current",
+      "guelph-older",
+      "guelph-lac"
+    ],
+    "metadata_records": 268,
+    "context": "435 query hits deduplicated to 268 repository IDs; programme conflicts retained."
+  },
+  {
+    "institution": "laurier",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://scholars.wlu.ca/do/oai/?verb=ListRecords&metadataPrefix=qualified-dublin-core&set=publication:hist_etd",
+    "check_scope": "Live institutional OAI qualified Dublin Core; all 91 active History-set records; no continuation token.",
+    "repository_streams": [],
+    "metadata_records": 91,
+    "context": "Deleted records none; generic contributor credits and roles preserved separately; no automatic supervisor assignment."
+  },
+  {
+    "institution": "alberta",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://ualberta.scholaris.ca/collections/f3d69d6d-203b-4472-a862-535e749ab216",
+    "check_scope": "Live institutional DSpace API; programme/department/degree labels and graduation dates.",
+    "repository_streams": [
+      "alberta-history-classics"
+    ],
+    "metadata_records": 406,
+    "context": "Current programme page https://www.ualberta.ca/en/graduate-programs/doctor-of-philosophy-in-history-history-classics-and-religion.html was indexed but direct browsing met a JavaScript challenge. Counts and exclusions rely on item metadata, not that snippet."
+  },
+  {
+    "institution": "unb",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://unbscholar.lib.unb.ca",
+    "check_scope": "Live institutional API at https://unbscholar.dspace.lib.unb.ca/server/api; indexed History discipline query followed by exact local checks.",
+    "repository_streams": [
+      "unb-history"
+    ],
+    "metadata_records": 97,
+    "context": "One Classics and Ancient History master record; one contradictory M.A./doctoral record retained unresolved."
+  },
+  {
+    "institution": "montreal",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://umontreal.scholaris.ca/collections/9c38c80e-a09b-4d54-a3bc-2c6a7ba4cbcb",
+    "check_scope": "Live institutional History departmental collection API; all eleven pages; French programme and degree labels.",
+    "repository_streams": [
+      "montreal-histoire"
+    ],
+    "metadata_records": 1059,
+    "context": "81 adjacent programme records including 31 doctorates; generic dcterms.description fields not certified as abstracts."
+  },
+  {
+    "institution": "laval",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://corpus.ulaval.ca/collections/32fa194e-af6e-41d8-bde3-fae02aed6899",
+    "check_scope": "Live institutional API: two bounded searches, sixteen successful pages, stable counts and unique IDs.",
+    "repository_streams": [
+      "laval-doctorat-histoire"
+    ],
+    "metadata_records": 1313,
+    "context": "Broad phrase search 220; degree-field search 1250; union 1313. Legacy degree names paired with explicit French doctoral/master document types. Public API documented at https://www.bibl.ulaval.ca/services/soutien-a-ledition-savante-et-a-la-recherche/corpusul-depot-institutionnel/donnees-ouvertes-de-corpusul."
+  },
+  {
+    "institution": "ubc",
+    "checked_at": "2026-10-11",
+    "primary_source": "https://open.library.ubc.ca/collections/ubctheses",
+    "check_scope": "Live collection request returned unusual-activity block in browser and command-line requests; no metadata harvest.",
+    "repository_streams": [],
+    "context": "API registration documentation indexed at https://wiki.prod.apps.ctlt.ubc.ca/Library%3AOpen_Collections; no key supplied or registered; no zero-cohort claim."
+  }
+]

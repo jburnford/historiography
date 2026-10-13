@@ -1,0 +1,336 @@
+{
+ "audit": "Top-500 cited works: node validity and under-merging",
+ "date": "2026-10-11",
+ "auditor": "Claude (agent), from domain knowledge plus the raw citation strings behind each node",
+ "source": "summary/top-500-works.csv",
+ "method": [
+  "Reproduced each row's merge exactly (fold, title_key and merge_titles imported from scripts/build_dissertation_citation_graph.py, applied to entries.jsonl) and inspected every title and author variant behind all 500 nodes. 'Entries' below means citing bibliography entries in all dissertations, not only History PhDs.",
+  "Checked each row against known bibliographic facts (author, title, first publication) for node validity.",
+  "Under-merging: compared every pair of the 500 rows on main title and full title similarity, across and within surnames, plus manual review."
+ ],
+ "criteria": {
+  "wrong": "Not a scholarly or published work, title fragment/debris, wrong first author, or a second distinct work (not an edition, printing, translation or volume of the same work) making up about 20% or more of the node's citing entries.",
+  "unsure": "A second distinct work making up about 10-20% of entries.",
+  "valid_with_note": "Contamination below about 10%, multi-volume sets cited under one title, editions/printings/translations merged under the same main title.",
+  "display_level": "The node is correct but the displayed author string in top-500-works.csv is wrong; reported separately from node identity errors."
+ },
+ "counts": {
+  "rows": 500,
+  "node_level": {
+   "valid": 494,
+   "wrong": 3,
+   "unsure": 3,
+   "wrong_ranks": [
+    98,
+    229,
+    296
+   ],
+   "unsure_ranks": [
+    192,
+    376,
+    452
+   ]
+  },
+  "row_level_including_display_author": {
+   "valid": 492,
+   "wrong": 5,
+   "unsure": 3,
+   "wrong_ranks": [
+    98,
+    178,
+    229,
+    295,
+    296
+   ],
+   "unsure_ranks": [
+    192,
+    376,
+    452
+   ]
+  },
+  "valid_with_minor_contamination": 15,
+  "multivolume_sets_accepted": 13,
+  "duplicate_groups": 1,
+  "surplus_nodes_from_duplicates": 1
+ },
+ "flags": [
+  {
+   "rank": 98,
+   "work_id": "W:canada|house of commons",
+   "authors": "Canada, Parliament",
+   "title": "House of Commons Debates",
+   "year": 1963,
+   "verdict": "wrong",
+   "level": "node",
+   "type": "not_a_work",
+   "reason": "Not a bibliographic work: a parliamentary serial ('Canada, Parliament. House of Commons Debates') keyed as author 'canada' + title 'house of commons'. The node pools Debates for unrelated sessions and years (1870s-1990s) and also absorbs House of Commons Journals and standing/special committee proceedings (72 citing entries; year 1963 is meaningless)."
+  },
+  {
+   "rank": 178,
+   "work_id": "W:constant|liberal and hegemony",
+   "authors": "Constant, Jean-Marie; Ducharme, Michel",
+   "title": "Liberalism and Hegemony: Debating the Canadian Liberal Revolution",
+   "year": 2009,
+   "verdict": "wrong",
+   "level": "display",
+   "type": "display_author",
+   "reason": "Displayed first author is 'Constant, Jean-Marie' (a different historian, of early-modern France). The editors are Jean-François Constant and Michel Ducharme; every citation reads Jean-François. person_key folds 'Jean-François' to first token 'jean', so P:constant|jean collapses two people and shows the wrong forename. Work node itself is correct."
+  },
+  {
+   "rank": 192,
+   "work_id": "W:linteau|histoire de montreal",
+   "authors": "Linteau, Paul-André",
+   "title": "Histoire de Montréal depuis la Confédération",
+   "year": 1992,
+   "verdict": "unsure",
+   "level": "node",
+   "type": "conflation",
+   "reason": "Main title 'Histoire de Montréal' (leading 'Une' dropped as stopword) merges Linteau's Histoire de Montréal depuis la Confédération (1992, dominant) with his distinct later book Une histoire de Montréal (Boréal, 2017): 4 of 32 entries (~12%). Node is mostly the 1992 book.",
+   "conflated_share_of_citing_entries": "4/32"
+  },
+  {
+   "rank": 229,
+   "work_id": "W:veracini|settler colonialism",
+   "authors": "Veracini, Lorenzo",
+   "title": "Settler Colonialism: A Theoretical Overview",
+   "year": 2010,
+   "verdict": "wrong",
+   "level": "node",
+   "type": "conflation",
+   "reason": "Two distinct Veracini works share main title 'Settler Colonialism': the 2010 book (Settler Colonialism: A Theoretical Overview, dominant) and the 2013 article ''Settler Colonialism': Career of a Concept', Journal of Imperial and Commonwealth History 41:2. Article = 7 of 27 citing entries (~26%).",
+   "conflated_share_of_citing_entries": "7/27"
+  },
+  {
+   "rank": 295,
+   "work_id": "W:cardinal|unjust society",
+   "authors": "Harold",
+   "title": "The Unjust Society: The Tragedy of Canada’s Indians",
+   "year": 1969,
+   "verdict": "wrong",
+   "level": "display",
+   "type": "display_author",
+   "reason": "Displayed author is 'Harold'; the work is Harold Cardinal, The Unjust Society (1969). The work node key (W:cardinal|unjust society) and all 22 citations are correct; the person layer strips 'Cardinal' as an honorific (HONORIFIC regex in build_dissertation_citation_graph.py includes 'Cardinal'), leaving the single-name person P:harold."
+  },
+  {
+   "rank": 296,
+   "work_id": "W:mathieu|north of the color line",
+   "authors": "Mathieu, Sarah-Jane",
+   "title": "North of the Color Line: Migration and Black Resistance in Canada, 1870-1955",
+   "year": 2010,
+   "verdict": "wrong",
+   "level": "node",
+   "type": "conflation",
+   "reason": "Two distinct Mathieu works share main title 'North of the Color/Colour Line': the 2010 UNC Press book (dominant) and the 2001 article 'North of the Colour Line: Sleeping Car Porters and the Battle against Jim Crow on Canadian Rails, 1880-1920', Labour/Le Travail 47. Article = 7 of 25 citing entries (~28%).",
+   "conflated_share_of_citing_entries": "7/25"
+  },
+  {
+   "rank": 376,
+   "work_id": "W:morton|manitoba",
+   "authors": "Morton, W.L",
+   "title": "Manitoba: A History",
+   "year": 1957,
+   "verdict": "unsure",
+   "level": "node",
+   "type": "conflation",
+   "reason": "Main title 'Manitoba' merges W.L. Morton's Manitoba: A History (1957/1967, dominant) with Manitoba: The Birth of a Province (ed. Morton, Manitoba Record Society, 1965): 3-4 of 22 entries (~14-18%; one entry cites both).",
+   "conflated_share_of_citing_entries": "3-4/22"
+  },
+  {
+   "rank": 452,
+   "work_id": "W:artibise|winnipeg",
+   "authors": "Artibise, Alan F.J",
+   "title": "Winnipeg: A Social History of Urban Growth, 1874-1914",
+   "year": 1975,
+   "verdict": "unsure",
+   "level": "node",
+   "type": "conflation",
+   "reason": "Main title 'Winnipeg' merges Artibise's Winnipeg: A Social History of Urban Growth, 1874-1914 (1975, dominant) with his distinct Winnipeg: An Illustrated History (Lorimer, 1977): 3 of 22 entries (~14%).",
+   "conflated_share_of_citing_entries": "3/22"
+  }
+ ],
+ "duplicate_groups": [
+  {
+   "ranks": [
+    89,
+    316
+   ],
+   "work": "Foucault, The History of Sexuality, Volume 1: An Introduction (Eng. 1978)",
+   "reason": "Same book split by title_key: citations written 'The History of Sexuality: An Introduction' key to 'history of sexuality' (rank 89, 37 History PhDs), while 'The History of Sexuality, Volume 1: An Introduction' (comma, no colon before the volume) keys to 'history of sexuality volume 1' (rank 316, 21). Every variant in both nodes is vol. 1 or unspecified; no vol. 2/3 citations found. The citing sets do not overlap (37 + 21 = 58 History PhDs), so merged the work would tie for rank 25 rather than appearing at 89 and 316."
+  }
+ ],
+ "related_not_counted_as_duplicates": [
+  {
+   "ranks": [
+    7,
+    284
+   ],
+   "reason": "Discipline and Punish (Eng. 1977) and Surveiller et punir (Fr. 1975): same work in translation with different titles; kept separate per the audit rule. Note that same-title translations do merge (Bourdieu, rank 84, pools La distinction and Distinction; also 12, 213, 326), so translation handling is title-dependent."
+  },
+  {
+   "ranks": [
+    41,
+    59
+   ],
+   "reason": "Scott's 1986 AHR article and her 1988 book (which reprints it as a chapter) are distinct works."
+  }
+ ],
+ "valid_with_minor_contamination": [
+  {
+   "rank": 41,
+   "note": "2 of 59 entries are Scott's later article 'Gender: Still a Useful Category of Analysis?' (Diogenes 57:1, 2010), absorbed via the one-word main title 'Gender'."
+  },
+  {
+   "rank": 76,
+   "note": "2 of 44 entries are Miller's chapter 'Compact, Contract, Covenant: The Evolution of Indian Treaty-Making' in Binnema & Neylan eds., New Histories for Old (2007)."
+  },
+  {
+   "rank": 11,
+   "note": "1 of 76 entries is Iacovetta's chapter 'The Gatekeepers: Middle-Class Campaigns of Citizenship in Early Cold War Canada' (2012)."
+  },
+  {
+   "rank": 57,
+   "note": "1 of 52 entries is Nelles's chapter 'The Art of Nation-Building: Canadian History Painting, 1880-1914' (2012)."
+  },
+  {
+   "rank": 357,
+   "note": "1 of 23 entries is Taylor's article 'The Divided Ground: Upper Canada, New York, and the Iroquois Six Nations' (Journal of the Early Republic, 2002)."
+  },
+  {
+   "rank": 389,
+   "note": "2 of 21 entries are Cronon's separate reply 'The Trouble with Wilderness: A Response' (Environmental History 1:1, 1996)."
+  },
+  {
+   "rank": 42,
+   "note": "2 of 54 entries are Mills's Queen's PhD thesis (2007) of the same main title."
+  },
+  {
+   "rank": 139,
+   "note": "2 of 33 entries are Carlson's UBC PhD thesis (2003) of the same main title."
+  },
+  {
+   "rank": 201,
+   "note": "2 of 27 entries are Brownlie's Toronto PhD thesis (1996), 'A Fatherly Eye: Two Indian Agents on Georgian Bay'."
+  },
+  {
+   "rank": 234,
+   "note": "3 of 26 entries are Milligan's York PhD thesis (2011) of the same main title."
+  },
+  {
+   "rank": 294,
+   "note": "2 of 24 entries are Martin's PhD thesis / an essay version of 'An Affirmative Action Empire'."
+  },
+  {
+   "rank": 43,
+   "note": "1 of 54 entries is Stoler's earlier essay 'Carnal Knowledge and Imperial Power: Gender, Race and Morality in Colonial Asia' (1991)."
+  },
+  {
+   "rank": 174,
+   "note": "1 of 29 entries is Basso's essay 'Wisdom Sits in Places: Notes on a Western Apache Landscape' (1996, in Senses of Place)."
+  },
+  {
+   "rank": 492,
+   "note": "1 of 24 entries is Richter's thesis-era title 'The Ordeal of the Longhouse: Change and Persistence on the Iroquois Frontier, 1609-1720'."
+  },
+  {
+   "rank": 118,
+   "note": "Single thesis-version citation absorbed (also similar single-entry thesis absorption at 219, 222, 223, 227, 335, 339, 347, 355)."
+  }
+ ],
+ "multivolume_sets_accepted": [
+  {
+   "rank": 77,
+   "note": "Histoire du Québec contemporain, 2 tomes (1979, 1986; rev. 1989)"
+  },
+  {
+   "rank": 89,
+   "note": "Foucault, History of Sexuality — in practice vol. 1 only (see duplicate group)"
+  },
+  {
+   "rank": 122,
+   "note": "Pearson, Mike: memoirs, 3 vols (1972-75)"
+  },
+  {
+   "rank": 124,
+   "note": "Stacey, Canada and the Age of Conflict, 2 vols (1977, 1981)"
+  },
+  {
+   "rank": 147,
+   "note": "Eayrs, In Defence of Canada, 5 vols (1964-83); entries cite individual volumes by subtitle"
+  },
+  {
+   "rank": 191,
+   "note": "Lamonde, Histoire sociale des idées au Québec, 2 vols (2000, 2004)"
+  },
+  {
+   "rank": 287,
+   "note": "Diefenbaker, One Canada, 3 vols (1975-77)"
+  },
+  {
+   "rank": 326,
+   "note": "Marx, Capital, 3 vols (includes French 'Le Capital')"
+  },
+  {
+   "rank": 344,
+   "note": "Canada's Department of External Affairs, 3 vols (Hilliker 1990; Hilliker & Barry 1995; vol. 3 2017)"
+  },
+  {
+   "rank": 373,
+   "note": "Pickersgill (& Forster), The Mackenzie King Record, 4 vols (1960-70)"
+  },
+  {
+   "rank": 394,
+   "note": "Thwaites ed., The Jesuit Relations and Allied Documents, 73 vols (1896-1901)"
+  },
+  {
+   "rank": 414,
+   "note": "Holmes, The Shaping of Peace, 2 vols (1979, 1982)"
+  },
+  {
+   "rank": 435,
+   "note": "Brown, Robert Laird Borden: A Biography, 2 vols (1975, 1980); display title from vol. II, year from vol. I"
+  }
+ ],
+ "display_minor_issues": [
+  {
+   "rank": 390,
+   "note": "Displayed authors 'McKillop, Brian; A' carry a spurious second author 'A' (parse debris from 'McKillop, A. B.'); first author correct."
+  },
+  {
+   "rank": 483,
+   "note": "Displayed author 'Careless, lM.S' is an OCR variant of J.M.S. Careless; first author correct."
+  },
+  {
+   "rank": 57,
+   "note": "Author shown uninverted as 'H.V. Nelles' (also rank 68); cosmetic."
+  },
+  {
+   "rank": 219,
+   "note": "Author shown uninverted as 'Stephen J. Harris'; cosmetic."
+  },
+  {
+   "rank": 388,
+   "note": "Author shown uninverted as 'John Urry'; cosmetic."
+  }
+ ],
+ "year_problems": [],
+ "year_notes": "No row has a year that is wrong for the work it names. Rows showing a later edition or reprint year (e.g. 1 Anderson 1991, 31 Miller 2000, 79 Morton 2007, 89 Foucault 1990, 113 Barman 2007, 121 Tobias 1983 reprint of 1976, 148 Berman 1988, 161 Stanley 1961, 231 Winks 1997, 375 Handlin 1973, 453 Nash 2001, 494 Elias 1994) were accepted. Row 98's year (1963) is meaningless because the node is not one work.",
+ "kind_problems": [
+  {
+   "rank": 172,
+   "note": "Nora, 'Between Memory and History' is an article (Representations 26, 1989), but its kind is 'thesis'."
+  },
+  {
+   "rank": 424,
+   "note": "Thompson, 'Moral Economy' was first published as a Past & Present article (1971); its kind is 'chapter' (it was later reprinted in Customs in Common). Acceptable."
+  },
+  {
+   "rank": 333,
+   "note": "Armitage, Ideological Origins is a book; its kind is 'book_or_serial'. The same applies to 400 Dumont."
+  }
+ ],
+ "systemic_findings": [
+  "Short main titles cause most conflations: when the text before the colon is a single word or a generic phrase ('Gender', 'Settler Colonialism', 'Manitoba', 'Winnipeg', 'Histoire de Montréal', 'North of the Color Line'), a different work by the same author with the same main title joins the node. The prefix rule in merge_titles does not cause this; the identical title_key does.",
+  "Volume designators that follow a comma or space ('The History of Sexuality, Volume 1: ...', 'Vol. 1') stay in the title_key and split a work that is otherwise keyed on the bare title (89/316).",
+  "Person-layer display bugs (they do not affect work identity): (a) HONORIFIC strips real surnames such as 'Cardinal' (and potentially 'Chief', 'Bishop', 'Major', 'Brother', 'Lord', 'Sister'), so Harold Cardinal becomes 'Harold'; (b) person_key keeps only the first token of hyphenated forenames, so Jean-François Constant and Jean-Marie Constant collapse into P:constant|jean. The same collapse can affect other hyphenated French forenames (Jean-Philippe, Paul-André, Jean-Claude, Jean-Pierre) and will also show up in top-500-people."
+ ]
+}

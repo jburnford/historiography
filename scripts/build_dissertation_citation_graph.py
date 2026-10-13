@@ -1,0 +1,665 @@
+#!/usr/bin/env python3
+"""Build a citation graph from parsed History doctorate bibliographies.
+
+Nodes: Dissertation, Work (a cited book, article, chapter or thesis, merged across
+dissertations), Person (cited authors, dissertation authors and supervisors share
+one name key: folded surname plus first initial) and Institution.
+Edges: CITES (Dissertation->Work, with the bibliography section and its
+primary/secondary side), AUTHORED (Person->Work), WROTE (Person->Dissertation),
+SUPERVISED (Person->Dissertation), AWARDED_BY (Dissertation->Institution).
+
+Each Dissertation carries ``eligibility``: ``history_phd`` (explicit History
+doctorate; for the fifteen first-harvest universities this is the Sol review's
+``doctoral_history_eligible``), ``needs_review`` (combined department, conflicting or
+collection-only scope; reviewed decisions in ``eligibility-overrides.csv`` take precedence) or ``adjacent`` (another programme). Work and Person counts
+named ``cited_by`` use ``history_phd`` dissertations only; ``cited_by_all`` uses all.
+
+Name keys are not identities: two scholars sharing a surname and initial collapse.
+Person keys use the surname and full first given name ('scott|joan'); initial-only
+citations join that key only when a single full name shares surname and initial.
+``atlas_person_candidate`` marks a Person whose key equals exactly one atlas roster
+label's key; it is a candidate link for review, not a resolved identity.
+Primary/secondary sides come from the dissertation's own subheadings, when present.
+"""
+import argparse
+from collections import Counter, defaultdict
+import csv
+import difflib
+import json
+import os
+from pathlib import Path
+import re
+import sys
+import unicodedata
+from xml.sax.saxutils import escape
+
+CITABLE = {'book', 'article', 'chapter', 'thesis', 'book_or_serial', 'unstyled'}
+STOPWORDS = {'the', 'a', 'an', 'le', 'la', 'les', 'l', 'un', 'une', 'des', 'du', 'de'}
+
+
+def fold(text):
+    text = unicodedata.normalize('NFKD', text or '')
+    text = ''.join(c for c in text if not unicodedata.combining(c)).lower()
+    return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9 ]+', ' ', text.replace('’', "'").replace("'", ''))).strip()
+
+
+VOLUME = re.compile(r'[,.]?\s*\b(?:vol(?:ume)?|tome|t|book|part|partie)\.?\s*(?:[ivxlc]+|\d+)\.?\s*$', re.I)
+
+
+def title_key(title):
+    main = re.split(r'\s*[:?!;—–]\s+|\s*\.\s+|\s+-\s+', title or '', maxsplit=1)[0]
+    main = VOLUME.sub('', main)  # 'The History of Sexuality, Volume 1' = 'The History of Sexuality'
+    words = fold(main).split()
+    while words and words[0] in STOPWORDS:
+        words = words[1:]
+    return ' '.join(words)[:80]
+
+
+HONORIFIC = re.compile(r'\b(?:Jr|Sr|II|III|IV|Dr|Prof|Professor|Rev|Reverend|Rt|Right|Hon|Honourable|Honorable|Sir|Dame|Lady|Lord|'
+                       r'Mr|Mrs|Ms|Miss|Mme|Mlle|Colonel|Col|Lt|Lieut|Lieutenant|Major|Maj|General|Gen|Brigadier|Brig|Captain|Capt|'
+                       r'Admiral|Adm|Commander|Cdr|Sergeant|Sgt|Corporal|Cpl|Private|Pte|Father|Fr|Abbé|Abbe|Mgr|Monseigneur|Sister|'
+                       r'Soeur|Sœur|Brother|Frère|Bishop|Archbishop|Cardinal|Chief)\b\.?(?=\s|,|$)', re.I)
+
+
+GLUED = re.compile(r'\b(?:[A-Z]{2}|[B-DF-HJ-NP-TV-Z]{3,4})\b(?![a-z])')  # glued initials such as 'JL', 'JJL'
+
+
+def person_key(name, inverted):
+    """'Surname, Given' (inverted) or 'Given Surname' -> 'surname|given' (full first given
+    name) or 'surname|g' (initial only); corporate or single names fold whole."""
+    name = re.sub(r'\s+', ' ', name or '').strip(' ,.')
+    if inverted == 'auto':  # repository author/advisor fields: inverted when a comma is present
+        inverted = ',' in name
+    if inverted and ',' in name:
+        # Honorifics and ranks are removed from the given names only: 'Cardinal, Harold'
+        # keeps its surname. Hyphenated forenames stay whole ('Jean-François' != 'Jean-Marie').
+        sur, given = name.split(',', 1)
+        sur = re.sub(r',?\s*\b(?:Jr|Sr|II|III|IV)\b\.?$', '', sur).strip(' ,.')
+        given = re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.')
+        given = re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[A-Za-zÀ-ÿ]{2})', '', given)
+        given = GLUED.sub(lambda m: ' '.join(m.group(0)), given)  # 'JL' -> 'J L'
+        if not sur:
+            return None, None
+    else:
+        toks = GLUED.sub(lambda m: ' '.join(m.group(0)), name).split()
+        if not toks:
+            return None, None
+        while len(toks) > 1 and HONORIFIC.fullmatch(toks[0]):
+            toks = toks[1:]
+        while len(toks) > 1 and re.fullmatch(r'(?:Jr|Sr|II|III|IV)\.?', toks[-1]):
+            toks = toks[:-1]
+        display = ' '.join(toks)  # keep hyphens for display; the key joins hyphenated forenames
+        toks = [toks[0]] + [re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[A-Za-zÀ-ÿ]{2})', '', t) for t in toks[1:-1]] + [toks[-1]] \
+            if len(toks) > 2 else [re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[A-Za-zÀ-ÿ]{2})', '', toks[0])] + toks[1:]
+        name = ' '.join(toks)
+        if not name:
+            return None, None
+        if len(toks) == 1 or not inverted and len(toks) > 4:
+            return fold(name), name
+        sur, given = (toks[-1], ' '.join(toks[:-1])) if not inverted else (name, '')
+        name = display
+    s, g = fold(sur), fold(given).split()
+    if not s:
+        return None, None
+    if not g:
+        return s, name
+    if len(g[0]) == 1 and len(g) >= 2 and len(g[1]) > 1:
+        g = g[1:]  # 'J. Elizabeth Elbourne' goes by Elizabeth
+    if len(g[0]) == 1:
+        return f'{s}|{g[0]}', name
+    # Full first name, plus a printed middle *initial* ('russell|peter a'). Full middle
+    # words are ignored: in bibliographies they are as often title words leaking into
+    # the author field ('Anderson, Benedict Imagined') as middle names.
+    middle = len(g) in (2, 3) and len(g[1]) == 1
+    return f'{s}|{g[0]}' + (f' {g[1]}' if middle else ''), name
+
+
+def name_detail(display):
+    """2 = full first given name, 1 = initials only, 0 = no given name."""
+    g = given_names(display) if ',' in display else []
+    return 2 if g and len(g[0]) > 1 else 1 if g else 0
+
+
+def initials(display):
+    return ''.join(t[0] for t in given_names(display))
+
+
+NICKNAMES = {'jim': 'james', 'jimmy': 'james', 'bill': 'william', 'will': 'william', 'bob': 'robert', 'rob': 'robert',
+             'bert': 'robert', 'dick': 'richard', 'rick': 'richard', 'tom': 'thomas', 'mike': 'michael', 'dave': 'david',
+             'ted': 'edward', 'ed': 'edward', 'ned': 'edward', 'tony': 'anthony', 'joe': 'joseph', 'dan': 'daniel',
+             'don': 'donald', 'doug': 'douglas', 'greg': 'gregory', 'jeff': 'jeffrey', 'ken': 'kenneth', 'larry': 'lawrence',
+             'len': 'leonard', 'nick': 'nicholas', 'pat': 'patrick', 'pete': 'peter', 'ron': 'ronald', 'sam': 'samuel',
+             'steve': 'stephen', 'chris': 'christopher', 'andy': 'andrew', 'alex': 'alexander', 'charlie': 'charles',
+             'chuck': 'charles', 'fred': 'frederick', 'gerry': 'gerald', 'jerry': 'gerald', 'hank': 'henry', 'harry': 'henry',
+             'liz': 'elizabeth', 'beth': 'elizabeth', 'betty': 'elizabeth', 'kate': 'katherine', 'kathy': 'katherine',
+             'peggy': 'margaret', 'meg': 'margaret', 'sue': 'susan', 'jenny': 'jennifer', 'cathy': 'catherine', 'reg': 'reginald'}
+
+
+def dominant_initials(names, printed_only=False):
+    """Most frequent multi-letter initials signature among a person's spellings
+    (printed_only: ignore spellings attached only as evidence from a cited work)."""
+    sigs = Counter()
+    for n, c in names.items():
+        if re.search(r'\.\s+[A-ZÀ-Ý][a-zà-ÿ]{2,}', n.split(',', 1)[-1]):
+            continue  # title debris after the name ('Thompson, Elizabeth. Public')
+        sig = initials(GLUED.sub(lambda m: ' '.join(m.group(0)), n))
+        if len(sig) > 1 and (c > 0 or not printed_only):
+            sigs[sig] += max(c, 1)
+    return sigs.most_common(1)[0][0] if sigs else None
+
+
+def resolve_initials(persons):
+    """Less specific name keys join one more specific person with the same surname.
+    1. 'russell|peter' joins the single 'russell|peter <middle>' key, if only one exists.
+    2. Initial-only 'miller|j' joins the full-name person whose spellings most often
+       carry the same initials ('J.R.' = 'James Rodger'); if several do, the one holding at
+       least 80% of their spellings; else the single full-name person with that first
+       initial. Ambiguous names stay separate."""
+    def parts(k):
+        sur, given = k.split('|', 1)
+        return sur, given.split()
+    alias = {}
+    # 0. Nickname forms with the same surname and middle initial ('miller|jim r' = 'miller|james r').
+    weight = {k: sum(max(v, 1) for v in p['names'].values()) for k, p in persons.items()}
+    nick = defaultdict(list)
+    for k in persons:
+        if '|' in k:
+            sur, g = parts(k)
+            if len(g) == 2 and len(g[0]) > 1:
+                nick[(sur, NICKNAMES.get(g[0], g[0]), g[1])].append(k)
+    for keys in nick.values():
+        if len(keys) > 1:
+            head = max(keys, key=lambda k: (parts(k)[1][0] not in NICKNAMES, weight[k]))
+            alias.update({k: head for k in keys if k != head})
+    mids = defaultdict(list)
+    for k in persons:
+        if '|' in k and k not in alias:
+            sur, g = parts(k)
+            if len(g) == 2 and len(g[0]) > 1:
+                mids[(sur, g[0])].append(k)
+    for k in persons:
+        if '|' in k:
+            sur, g = parts(k)
+            if len(g) == 1 and len(g[0]) > 1 and len(mids.get((sur, g[0]), [])) == 1:
+                alias[k] = mids[(sur, g[0])][0]
+    # Supervisors and dissertation authors appear in repository metadata with fuller names
+    # ('McKay, Ian G') than in bibliographies ('McKay, Ian'): such non-cited keys join the
+    # cited person with the same surname and first name who holds 80% of those citations.
+    cited_w = {k: p['roles'].get('cited_author', 0) for k, p in persons.items()}
+    by_first = defaultdict(list)
+    for k in persons:
+        if '|' in k and len(parts(k)[1][0]) > 1:
+            by_first[(parts(k)[0], NICKNAMES.get(parts(k)[1][0], parts(k)[1][0]))].append(k)
+    targets = set(alias.values())
+    for k, p in persons.items():
+        if '|' not in k or k in alias or k in targets or cited_w[k] or len(parts(k)[1][0]) < 2:
+            continue
+        cands = [c for c in by_first[(parts(k)[0], NICKNAMES.get(parts(k)[1][0], parts(k)[1][0]))] if c != k and cited_w[c]]
+        mid = parts(k)[1][1] if len(parts(k)[1]) > 1 else None
+        cands = [c for c in cands if not (mid and len(parts(c)[1]) > 1 and parts(c)[1][1] != mid)] or cands
+        if cands:
+            lead = max(cands, key=lambda c: cited_w[c])
+            if cited_w[lead] >= 0.8 * sum(cited_w[c] for c in cands):
+                alias[k] = alias.get(lead, lead)
+    full = defaultdict(list)
+    for k in persons:
+        if '|' in k and k not in alias:
+            sur, g = parts(k)
+            if len(g[0]) > 1:
+                full[sur].append(k)
+    for k, p in persons.items():
+        if '|' not in k:
+            continue
+        sur, g = parts(k)
+        if len(g[0]) != 1:
+            continue
+        cands = [c for c in full.get(sur, []) if parts(c)[1][0][0] == g[0]]
+        sig = dominant_initials(p['names'])
+        strong = [c for c in cands if sig and dominant_initials(persons[c]['names'], printed_only=True) == sig]
+        if os.environ.get('DEBUG_KEYS') and k in os.environ['DEBUG_KEYS'].split(','):
+            print('DEBUG', k, sig, [(c, dominant_initials(persons[c]['names'], printed_only=True), dict(persons[c]['names'].most_common(4))) for c in cands][:6], file=sys.stderr)
+        weight = {c: sum(max(v, 1) for v in persons[c]['names'].values()) for c in strong}
+        lead = max(strong, key=weight.get) if strong else None
+        if len({NICKNAMES.get(parts(c)[1][0], parts(c)[1][0]) for c in strong}) == 1 and len(strong) > 1:
+            # 'Jim' and 'James R.' with the same printed initials J.R.: one person
+            for c in strong:
+                if c != lead:
+                    alias[c] = lead
+            strong = [lead]
+        if len(strong) == 1:
+            alias[k] = strong[0]
+        elif strong and weight[lead] >= 0.8 * sum(weight.values()):  # one dominant bearer of these initials
+            alias[k] = lead
+        elif len(cands) == 1 and not strong:
+            alias[k] = cands[0]
+    return alias
+
+
+def given_names(display):
+    if ',' in display:
+        return fold(display.split(',', 1)[1]).split()
+    return fold(display).split()[:-1]
+
+
+def atlas_index():
+    """Atlas roster people keyed like Person nodes (surname plus full first given name)."""
+    path = Path(__file__).resolve().parents[1] / 'historiography-1920-2000.json'
+    index = defaultdict(list)
+    for p in json.loads(path.read_text()).get('people', []):
+        key, _ = person_key(p['label'], False)
+        if key and '|' in key and len(key.split('|')[1]) > 1:
+            index[key].append(p['id'])
+    return {k: v[0] for k, v in index.items() if len(v) == 1}
+
+
+def eligibility_index():
+    path = Path(__file__).resolve().parents[1] / 'data/field-research/canadian-dissertations-2026-10-11/review/combined-index.jsonl'
+    index = {}
+    if path.exists():
+        for line in path.open():
+            r = json.loads(line)
+            index[(r['institution'], r['id'])] = ('history_phd' if r['doctoral_history_eligible'] else
+                'adjacent' if r['scope_status'] in ('other_or_adjacent_programme', 'non_thesis_material') or r['degree_review'] != 'doctoral'
+                else 'needs_review', r['scope_status'])
+    return index
+
+
+def override_index(out):
+    """Reviewed record-level decisions (eligibility-overrides.csv) take precedence."""
+    path = out / 'eligibility-overrides.csv'
+    if not path.exists():
+        return {}
+    with path.open(newline='') as f:
+        return {(r['institution'], r['id']): r for r in csv.DictReader(f)}
+
+
+def exclusion_index(out):
+    """Reviewed decisions to keep a parsed thesis on record but out of the graph (graph-exclusions.csv)."""
+    path = out / 'graph-exclusions.csv'
+    if not path.exists():
+        return {}
+    with path.open(newline='') as f:
+        return {(r['institution'], r['id']): r for r in csv.DictReader(f)}
+
+
+def eligibility(d, index, overrides=None):
+    o = (overrides or {}).get((d['institution'], d['id']))
+    if o:
+        return o['eligibility'], 'reviewed_override: ' + o['note']
+    if (d['institution'], d['id']) in index:
+        return index[(d['institution'], d['id'])]
+    scope = d.get('history_scope') or ''
+    return ('history_phd' if scope.startswith('explicit_history') else 'needs_review'), scope or 'unchecked'
+
+
+def dissertation_year(d):
+    for field in ('graduation_dates', 'copyright_dates', 'issued_dates'):
+        for v in d.get(field) or []:
+            m = re.match(r'(\d{4})', v)
+            if m:
+                return int(m.group(1)), field
+    return None, None
+
+
+def merge_titles(works_by_surname):
+    """Merge near-identical title keys under the same first-author surname."""
+    alias = {}
+    for sur, keys in works_by_surname.items():
+        keys = sorted(keys, key=lambda k: (-len(k), k))
+        reps = []
+        for k in sorted(keys, key=len):
+            target = None
+            for r in reps:
+                if k.endswith('|a') != r.endswith('|a'):
+                    continue
+                short, long_ = sorted((k, r), key=len)
+                if (len(short.split()) >= 3 and long_.startswith(short)) or \
+                        difflib.SequenceMatcher(None, k, r).ratio() > 0.92:
+                    target = r
+                    break
+            if target:
+                alias[(sur, k)] = (sur, target)
+            else:
+                reps.append(k)
+    return alias
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--out', type=Path, required=True)
+    args = parser.parse_args()
+    out = args.out
+    docs = {d['id']: d for d in json.load((out / 'doctorates.json').open())}
+    extraction = {e['id']: e for e in map(json.loads, (out / 'extraction.jsonl').open())}
+    entries = {}
+    for line in (out / 'entries.jsonl').open():
+        try:
+            e = json.loads(line)
+        except json.JSONDecodeError:  # truncated line from an interrupted run
+            continue
+        if e['dissertation'] in extraction:  # re-extraction replaces earlier rows
+            entries[(e['dissertation'], e['n'])] = e
+    entries = list(entries.values())
+
+    # Work identity: first-author surname + main title, then fuzzy merge within surname.
+    raw_key = {}
+    by_sur = defaultdict(set)
+    for e in entries:
+        if e['kind'] not in CITABLE or not e.get('surnames') or not e.get('title'):
+            continue
+        sur, tk = fold(e['surnames'][0]), title_key(e['title'])
+        if not sur or len(tk) < 3:
+            continue
+        if e['kind'] in ('article', 'chapter'):
+            tk += '|a'  # an article and a book with the same title are different works
+        raw_key[(e['dissertation'], e['n'])] = (sur, tk)
+        by_sur[sur].add(tk)
+    alias = merge_titles(by_sur)
+
+    nodes, edges = {}, []
+    persons = defaultdict(lambda: dict(names=Counter(), roles=Counter()))
+    works = defaultdict(lambda: dict(titles=Counter(), years=Counter(), kinds=Counter(), containers=Counter(), author_variants=Counter(),
+                                     authors=[], citing=set(), sides=Counter(), institutions=set()))
+
+    def add_person(name, inverted, role):
+        key, display = person_key(name, inverted)
+        if key:
+            persons[key]['names'][display] += 1
+            persons[key]['roles'][role] += 1
+        return key
+
+    elig_index = eligibility_index()
+    overrides = override_index(out)
+    exclusions = exclusion_index(out)
+    for did, d in docs.items():
+        if did not in extraction:
+            continue
+        year, year_field = dissertation_year(d)
+        x = extraction[did]
+        elig, scope_status = eligibility(d, elig_index, overrides)
+        nodes[f'D:{did}'] = dict(id=f'D:{did}', type='Dissertation', title=d['title'], authors=d['authors'],
+                                 institution=d['institution'], year=year, year_source=year_field,
+                                 eligibility=elig, scope_status=scope_status,
+                                 ancient_topic=bool(overrides.get((d['institution'], did), {}).get('ancient_topic')),
+                                 advisors=d.get('advisors', []), history_scope=d.get('history_scope'),
+                                 item_url=d['item_url'], extraction_status=x['status'],
+                                 bibliography_entries=x.get('entries', 0),
+                                 graph_excluded=exclusions.get((d['institution'], did), {}).get('reason'))
+        # Only parsed, non-excluded bibliographies give CITES edges; in_analysis marks the strict set.
+        n = nodes[f'D:{did}']
+        n['cites_counted'] = x['status'] == 'parsed' and not n['graph_excluded']
+        n['in_analysis'] = n['cites_counted'] and elig == 'history_phd'
+        nodes[f'I:{d["institution"]}'] = dict(id=f'I:{d["institution"]}', type='Institution', name=d['institution'])
+        edges.append(dict(source=f'D:{did}', target=f'I:{d["institution"]}', type='AWARDED_BY'))
+        for a in d['authors']:
+            k = add_person(a, 'auto', 'dissertation_author')
+            if k:
+                edges.append(dict(source=f'P:{k}', target=f'D:{did}', type='WROTE'))
+        for a in d.get('advisors', []):
+            for part in re.split(r'\s*;\s*', a):
+                part = re.sub(r'\s*\([^)]*\)', '', part).strip(' ,')  # '(Supervisor1)', '(History)'
+                k = add_person(part, 'auto', 'supervisor')
+                if k:
+                    edges.append(dict(source=f'P:{k}', target=f'D:{did}', type='SUPERVISED'))
+
+    cites = set()
+    for e in entries:
+        key = raw_key.get((e['dissertation'], e['n']))
+        if not key or e['dissertation'] not in docs or not nodes.get(f'D:{e["dissertation"]}', {}).get('cites_counted'):
+            continue
+        key = alias.get(key, key)
+        wid = 'W:' + '|'.join(key)
+        w = works[wid]
+        w['titles'][e['title']] += 1
+        w['kinds'][e['kind']] += 1
+        w['sides'][e['section_side']] += 1
+        if e.get('year'):
+            w['years'][e['year']] += 1
+        if e.get('container'):
+            w['containers'][e['container']] += 1
+        w['author_variants'][tuple(e['authors'][:6])] += 1
+        if (e['dissertation'], wid) in cites:
+            continue
+        cites.add((e['dissertation'], wid))
+        w['citing'].add(e['dissertation'])
+        w['institutions'].add(e['institution'])
+        edges.append(dict(source=f'D:{e["dissertation"]}', target=wid, type='CITES', side=e['section_side'],
+                          section=' > '.join(e['section']), page=e['page'], kind=e['kind']))
+
+    # A work's authors come from its fullest citation: "Miller, James Rodger" in one
+    # bibliography names the "Miller, J.R." of every other citation of that work.
+    # Title evidence from catalogues (link_cited_works_to_authorities.py) can supply the
+    # full name and identifiers of a work's first author.
+    authorities = {}
+    if (out / 'work-authorities.jsonl').exists():
+        authorities = {r['work_id']: r for r in map(json.loads, (out / 'work-authorities.jsonl').open())}
+    person_ids = defaultdict(lambda: dict(qids=Counter(), ids=set()))
+    for wid, w in works.items():
+        best = max(w['author_variants'].items(), key=lambda kv: (name_detail(kv[0][0]) if kv[0] else 0, kv[1]))[0]
+        w['authors'] = [add_person(a, True if i == 0 else 'auto', 'cited_author') for i, a in enumerate(best)]
+        auth = authorities.get(wid)
+        if auth and w['authors'] and w['authors'][0] and '|' in w['authors'][0]:
+            sur = w['authors'][0].split('|')[0]
+            if auth.get('full_name') and name_detail(best[0]) < 2:
+                key, _ = person_key(auth['full_name'], 'auto')
+                if key and key.split('|')[0] == sur:
+                    persons[key]['names'][auth['full_name']] += 0
+                    persons[key]['roles']['cited_author'] += 1
+                    w['authors'][0] = key
+            if auth.get('identity'):
+                pid = person_ids[w['authors'][0]]
+                if auth['identity'].get('qid'):
+                    pid['qids'][auth['identity']['qid']] += 1
+                pid['ids'] |= set(auth['identity']['ids'])
+        if w['authors'] and w['authors'][0]:
+            first = persons[w['authors'][0]]['names']
+            for variant in w['author_variants']:
+                if variant and variant[0] not in first and fold(variant[0].split(',')[0]) == w['authors'][0].split('|')[0]:
+                    first[variant[0]] += 0  # record the spelling as evidence without inflating counts
+    strict = {k[2:] for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']}
+    for wid, w in works.items():
+        nodes[wid] = dict(id=wid, type='Work', title=w['titles'].most_common(1)[0][0],
+                          year=w['years'].most_common(1)[0][0] if w['years'] else None,
+                          kind=w['kinds'].most_common(1)[0][0], container=w['containers'].most_common(1)[0][0] if w['containers'] else None,
+                          cited_by=len(w['citing'] & strict), cited_by_all=len(w['citing']),
+                          institutions=len({nodes[f'D:{x}']['institution'] for x in w['citing'] & strict}),
+                          cited_as=dict(w['sides']), title_variants=len(w['titles']))
+        for k in dict.fromkeys(a for a in w['authors'] if a):
+            edges.append(dict(source=f'P:{k}', target=wid, type='AUTHORED'))
+    # Initial-only names join the single full-name person sharing surname and initial.
+    alias = resolve_initials(persons)
+    # Wikidata grounding of cited people (ground_cited_people_wikidata.py), by tier.
+    tiers = {}
+    if (out / 'person-wikidata.jsonl').exists():
+        for line in (out / 'person-wikidata.jsonl').open():
+            try:
+                r = json.loads(line)
+            except json.JSONDecodeError:  # line still being written by a grounding run
+                continue
+            k = r['person'][2:]
+            if r.get('qid') and k in persons and not person_ids.get(k, {}).get('qids'):
+                person_ids[k]['qids'][r['qid']] += 1
+                tiers[k] = r['tier']
+    # Reviewed decisions (person-wikidata-decisions.csv) override automatic grounding.
+    if (out / 'person-wikidata-decisions.csv').exists():
+        with (out / 'person-wikidata-decisions.csv').open(newline='') as f:
+            for r in csv.DictReader(f):
+                k = r['person'][2:]
+                if k in persons and r['decision'] == 'accept':
+                    person_ids[k]['qids'] = Counter({r['qid']: 1})
+                    tiers[k] = 'reviewed_' + r['basis']
+                elif k in persons and r['decision'] == 'reject':
+                    person_ids[k]['qids'].pop(r['qid'], None)
+                    tiers.pop(k, None)
+    by_qid = defaultdict(list)
+    for k, pid in person_ids.items():
+        if len(pid['qids']) == 1 and k in persons:
+            by_qid[next(iter(pid['qids']))].append(k)
+    for qid, keys in by_qid.items():
+        keys = [alias.get(k, k) for k in keys]
+        head = max(set(keys), key=lambda k: (len(k.split('|')[-1]), sum(persons[k]['roles'].values())))
+        for k in set(keys) - {head}:
+            alias[k] = head
+    for k in list(alias):  # follow chains, stopping at any cycle
+        seen = {k}
+        while alias[k] in alias and alias[alias[k]] not in seen:
+            seen.add(alias[k])
+            alias[k] = alias[alias[k]]
+    for k in list(alias):
+        if alias.get(alias.get(k)) == k:  # two-way cycle: the more specific key stays a person
+            alias.pop(max((k, alias[k]), key=len), None)
+    for k, target in alias.items():
+        if k in person_ids:
+            person_ids[target]['qids'].update(person_ids[k]['qids'])
+            person_ids[target]['ids'] |= person_ids[k]['ids']
+        if k in tiers and target not in tiers:
+            tiers[target] = tiers[k]
+    for short, full in alias.items():
+        if short not in persons:
+            continue
+        persons[full]['names'].update(persons[short]['names'])
+        persons[full]['roles'].update(persons[short]['roles'])
+        del persons[short]
+    seen_edges, merged = set(), []
+    for e in edges:
+        if e['source'].startswith('P:') and e['source'][2:] in alias:
+            e['source'] = 'P:' + alias[e['source'][2:]]
+        sig = (e['source'], e['target'], e['type'])
+        if e['type'] != 'CITES' and sig in seen_edges:
+            continue
+        seen_edges.add(sig)
+        merged.append(e)
+    edges[:] = merged
+    for w in works.values():
+        w['authors'] = [alias.get(a, a) for a in w['authors']]
+    cited_by_person = defaultdict(set)
+    for e in edges:
+        if e['type'] == 'AUTHORED':
+            cited_by_person[e['source']] |= works[e['target']]['citing']
+    atlas = atlas_index()
+    for k, p in persons.items():
+        name = p['names'].most_common(1)[0][0]
+        match = atlas.get(k)
+        nodes[f'P:{k}'] = dict(id=f'P:{k}', type='Person', key=k, name=name,
+                               roles=dict(p['roles']), cited_by_dissertations=len({x for x in cited_by_person[f'P:{k}'] if x in strict}),
+                               cited_by_all=len(cited_by_person[f'P:{k}']),
+                               name_variants=len(p['names']), name_key_kind='full_first_name' if '|' in k and len(k.split('|')[1]) > 1 else
+                               'initial_only' if '|' in k else 'corporate_or_single_name',
+                               **({'atlas_person_candidate': match} if match else {}),
+                               **({'qid': person_ids[k]['qids'].most_common(1)[0][0], 'qid_conflict': len(person_ids[k]['qids']) > 1,
+                                   'qid_basis': tiers.get(k, 'catalogue_title_match')}
+                                  if person_ids.get(k, {}).get('qids') else {}),
+                               **({'identifiers': sorted(person_ids[k]['ids'])} if person_ids.get(k, {}).get('ids') else {}))
+
+    (out / 'person-names.json').write_text(json.dumps(
+        {f'P:{k}': [n for n, _ in p['names'].most_common(12)] for k, p in persons.items()}, ensure_ascii=False) + '\n')
+    graph = dict(meta=dict(description=__doc__.strip().split('\n')[0],
+                           dissertations=sum(1 for n in nodes.values() if n['type'] == 'Dissertation'),
+                           eligibility=dict(Counter(n['eligibility'] for n in nodes.values() if n['type'] == 'Dissertation')),
+                           with_bibliography=sum(1 for n in nodes.values() if n['type'] == 'Dissertation' and n['extraction_status'] == 'parsed'),
+                           works=len(works), persons=len(persons), cites_edges=len(cites),
+                           caveats=['Heuristic bibliography parsing; see audit for measured precision.',
+                                    'Person nodes are name keys (surname, first name, middle initial) merged by catalogue title evidence and tiered Wikidata grounding; they are not authority-reviewed identities.',
+                                    'Bibliographies list works consulted, not every footnote citation, and not influence.']),
+                 nodes=list(nodes.values()), edges=edges)
+    (out / 'graph.json').write_text(json.dumps(graph, ensure_ascii=False) + '\n')
+    write_graphml(out / 'graph.graphml', graph)
+
+    with (out / 'works.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['work_id', 'cited_by_dissertations', 'cited_by_all', 'institutions', 'authors', 'title', 'year', 'kind', 'container', 'cited_as'])
+        for n in sorted((n for n in nodes.values() if n['type'] == 'Work'), key=lambda n: (-n['cited_by'], -n['cited_by_all'])):
+            authors = '; '.join(nodes[f'P:{a}']['name'] for a in dict.fromkeys(works[n['id']]['authors']) if a)
+            wr.writerow([n['id'], n['cited_by'], n['cited_by_all'], n['institutions'], authors, n['title'], n['year'], n['kind'], n['container'], json.dumps(n['cited_as'])])
+    with (out / 'cited-people.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['person_key', 'name', 'cited_by_dissertations', 'cited_by_all', 'roles', 'qid', 'qid_basis', 'atlas_person_candidate'])
+        for n in sorted((n for n in nodes.values() if n['type'] == 'Person'), key=lambda n: (-n['cited_by_dissertations'], -n['cited_by_all'])):
+            wr.writerow([n['key'], n['name'], n['cited_by_dissertations'], n['cited_by_all'], json.dumps(n['roles']), n.get('qid', ''), n.get('qid_basis', ''), n.get('atlas_person_candidate', '')])
+    with (out / 'dissertations.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['id', 'institution', 'eligibility', 'scope_status', 'year', 'year_source', 'author', 'title', 'extraction_status', 'bibliography_entries', 'cited_works_in_graph', 'graph_excluded', 'in_analysis'])
+        out_deg = Counter(e['source'] for e in edges if e['type'] == 'CITES')
+        for n in sorted((n for n in nodes.values() if n['type'] == 'Dissertation'), key=lambda n: (n['institution'], n['year'] or 0)):
+            wr.writerow([n['id'][2:], n['institution'], n['eligibility'], n['scope_status'], n['year'], n['year_source'], '; '.join(n['authors']), n['title'],
+                         n['extraction_status'], n['bibliography_entries'], out_deg[n['id']], n['graph_excluded'] or '', n['in_analysis']])
+    write_summary(out, docs, extraction, entries, nodes, edges)
+    print(json.dumps(graph['meta'], indent=1))
+
+
+def write_summary(out, docs, extraction, entries, nodes, edges, top=500):
+    """Small, tracked tables: coverage by university and the most-cited works and people."""
+    summary = out / 'summary'
+    summary.mkdir(exist_ok=True)
+    downloads = {}
+    for log in sorted(out.glob('downloads*.jsonl')):
+        for line in log.open():
+            d = json.loads(line)
+            if d['status'] == 'downloaded' or d['id'] not in downloads:
+                downloads[d['id']] = d['status']
+    citable = Counter(e['dissertation'] for e in entries if e['kind'] in CITABLE)
+    rows = defaultdict(Counter)
+    for did, d in docs.items():
+        r = rows[d['institution']]
+        r['doctorates_harvested'] += 1
+        st = downloads.get(did, 'not_attempted')
+        r['pdf_downloaded' if st == 'downloaded' else 'pdf_restricted_or_missing' if st in
+          ('restricted', 'no_public_pdf_bitstream', 'http_404') else 'pdf_pending_or_error'] += 1
+        x = extraction.get(did)
+        if x:
+            r['bibliography_parsed' if x['status'] == 'parsed' else 'bibliography_not_parsed'] += 1
+            if x.get('ocr'):
+                r['ocr'] += 1
+        n = nodes.get(f'D:{did}')
+        if n and n['in_analysis']:
+            r['history_phd_in_graph'] += 1
+        r['citable_entries'] += citable.get(did, 0)
+    cols = ['doctorates_harvested', 'pdf_downloaded', 'pdf_restricted_or_missing', 'pdf_pending_or_error',
+            'bibliography_parsed', 'bibliography_not_parsed', 'ocr', 'history_phd_in_graph', 'citable_entries']
+    with (summary / 'coverage-by-university.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['institution'] + cols)
+        for inst in sorted(rows):
+            wr.writerow([inst] + [rows[inst][c] for c in cols])
+        wr.writerow(['TOTAL'] + [sum(rows[i][c] for i in rows) for c in cols])
+    works = sorted((n for n in nodes.values() if n['type'] == 'Work'), key=lambda n: (-n['cited_by'], -n['cited_by_all']))[:top]
+    authors_of = defaultdict(list)
+    for e in edges:
+        if e['type'] == 'AUTHORED':
+            authors_of[e['target']].append(nodes[e['source']]['name'])
+    with (summary / f'top-{top}-works.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'universities', 'authors', 'title', 'year', 'kind'])
+        for i, n in enumerate(works, 1):
+            wr.writerow([i, n['cited_by'], n['cited_by_all'], n['institutions'], '; '.join(authors_of[n['id']]), n['title'], n['year'], n['kind']])
+    people = sorted((n for n in nodes.values() if n['type'] == 'Person' and n['name_key_kind'] != 'corporate_or_single_name'),
+                    key=lambda n: (-n['cited_by_dissertations'], -n['cited_by_all']))[:top]
+    with (summary / f'top-{top}-people.csv').open('w', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'name', 'person_key', 'qid', 'qid_basis', 'roles'])
+        for i, n in enumerate(people, 1):
+            wr.writerow([i, n['cited_by_dissertations'], n['cited_by_all'], n['name'], n['key'], n.get('qid', ''),
+                         n.get('qid_basis', ''), json.dumps(n['roles'])])
+
+
+def write_graphml(path, graph):
+    keys = ['type', 'label', 'institution', 'year', 'kind', 'cited_by', 'cited_by_dissertations']
+    with path.open('w') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<graphml xmlns="http://graphml.graphdrawing.org/xmlns">\n')
+        for k in keys:
+            f.write(f'<key id="{k}" for="node" attr.name="{k}" attr.type="string"/>\n')
+        f.write('<key id="etype" for="edge" attr.name="type" attr.type="string"/>\n'
+                '<key id="side" for="edge" attr.name="side" attr.type="string"/>\n<graph edgedefault="directed">\n')
+        for n in graph['nodes']:
+            label = n.get('title') or n.get('name') or n['id']
+            vals = dict(n, label=label)
+            data = ''.join(f'<data key="{k}">{escape(str(vals[k]))}</data>' for k in keys if vals.get(k) is not None)
+            f.write(f'<node id="{escape(n["id"])}">{data}</node>\n')
+        for i, e in enumerate(graph['edges']):
+            side = f'<data key="side">{e["side"]}</data>' if 'side' in e else ''
+            f.write(f'<edge id="e{i}" source="{escape(e["source"])}" target="{escape(e["target"])}"><data key="etype">{e["type"]}</data>{side}</edge>\n')
+        f.write('</graph>\n</graphml>\n')
+
+
+if __name__ == '__main__':
+    main()
