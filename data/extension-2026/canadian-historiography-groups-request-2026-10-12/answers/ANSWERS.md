@@ -133,6 +133,7 @@ This sorts the 95 questions by what settles them, for a reviewer whose training 
 
 - *Answer:* Create a separate entry. 104 PhDs cite Black Canadian history works, rising from 5.6% to 8.9%, and 23 dissertations are on Black Canadian subjects. Only 39% of those readers engage immigration and ethnicity (lift 3.0), so it is a distinct literature. Link it to the atlas's black entry.
 - *Change:* Propose a new 'Black Canadian history' group.
+- *Correction (2026-10-12, while drafting):* the 104 reproduces, but 25 of those PhDs reach it only through non-Canadian titles ("esclavage", the Indian Army). A curated set of Black Canadian works gives 177 PhDs (9.5% → 15.3%), 45% of whom engage immigration (lift 3.4). The '23 dissertations' was wrong: 11 dissertations are on Black Canadian subjects, plus one in part. The separate entry stands; see `drafts/cdn_black_history/evidence.json`.
 
 **Q50 · `cdn_immigration_ethnicity`.** Knowles is a popular historian whose 2007 edition is what PhDs cite; keep her as a contributor row?
 
