@@ -1,9 +1,23 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.130 (2026-10-13)
+## Current revision 1.131 (2026-10-13)
 
-**159 entries (95 groups, 64 person entries), 900 teaching relationships, 1,489 sources and
-1,188 shared people.**
+**166 entries (95 groups, 71 person entries), 913 teaching relationships, 1,551 sources and
+1,192 shared people.**
+
+The Environment family's timeline gains seven person entries:
+- William Cronon, Donald Worster, Alfred W. Crosby, Carolyn Merchant and Richard White,
+  the 1990 *JAH* round table without Pyne;
+- Aldo Leopold and Rachel Carson, as precursors (`influence` edges).
+
+Innis gets an `influence` edge to environmental history as a disputed Canadian antecedent.
+`edge_111` becomes a directed Annales influence. `edge_720` and `edge_336` no longer carry
+person names. Four new `people` records (Carson, Hays, Nash, Pyne) and seven environment
+roster rows are added. `apply_person_entries.py` now takes `extras` (packets without a node),
+`new_people`, `roster_additions` and `source_merges`. See the
+[acceptance record](data/production-batches/person-entries-1.131/README.md).
+
+## Historical revision 1.130 (2026-10-13)
 
 Kenneth Pomeranz becomes a person entry, with three contributions:
 - to world / global history, through reciprocal comparison;

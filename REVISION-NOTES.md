@@ -1625,3 +1625,32 @@ worded as Sol's review asked, because Pomeranz grants Europe some earlier advant
 `edge_063` no longer repeats his story. The low uptake in Canadian History PhDs measures
 Canadian reading, not his importance, and appears in no entry text. Totals: 159 entries,
 900 relationships. See the [acceptance record](data/production-batches/person-entries-1.130/README.md).
+
+## Revision 1.131: the Environment family's thinkers (13 October 2026)
+
+The user judged that the Environment family's timeline, which showed only Febvre and
+Pomeranz, did "not represent the field at all", and asked for "careful evaluation of who gets
+put front and centre". The evidence:
+- **International self-accounts:** the field's own histories of itself, 14 texts.
+- **Canadian self-accounts:** Canadian environmental historiography, 26 texts.
+- **Canadian History PhD citations:** a narrow slice, in the user's words.
+
+All of it is in `data/extension-2026/environment-family-2026-10-13/`. On that evidence the user
+chose Cronon, Worster, Crosby, Merchant and White ("the AHA round table minus Pyne") and added
+that "Aldo Leopold and Rachel Carson are key".
+- **Seven person entries:**
+  - Cronon, Worster, Crosby, Merchant and Richard White are historians (`contribution` edges);
+  - Leopold and Carson are precursors (`influence` edges).
+- **Innis:** linked to environmental history as a disputed Canadian antecedent. Cook (1990)
+  claims continuity; Forkey (1998) rejects the prototype.
+- **`edge_111`:** was an undirected comparison and is now the Annales influence that Worster
+  and Cronon acknowledge. McNeill's 2003 reassessment is labelled as a later reading.
+- **Roster rows in `environment`:** Hays, Nash, Pyne, Le Roy Ladurie, Innis, Richard White
+  and Carson.
+- **Names removed:** `edge_720` and `edge_336` no longer carry person names.
+
+A test of the user's hypothesis that Canadian environmental history is "very rooted in the
+American canon" (`canada-us-canon-test/`) found it so for frameworks. Cronon is cited by 75% of
+52 environmental-history PhDs. The content cited is Canadian. Sol's review gave nine
+findings, all fixed (`release/fixes-1.131.md`). Totals: 166 entries, 913 relationships. See
+the [acceptance record](data/production-batches/person-entries-1.131/README.md).

@@ -1,7 +1,10 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-13, revision 1.130):** 159 entries, 900
-relationships, 1,489 sources, 1,188 shared people. Revision 1.129 adds person entries for
+**Current implementation (2026-10-13, revision 1.131):** 166 entries, 913
+relationships, 1,551 sources, 1,192 shared people. Revision 1.131 gives the Environment family
+person entries for Cronon, Worster, Crosby, Merchant and Richard White and precursor entries
+for Leopold and Carson ([acceptance](data/production-batches/person-entries-1.131/README.md)).
+Revision 1.129 adds person entries for
 McKay, Innis and Wolfe and links Thompson and Scott to the Canadian fields
 ([acceptance](data/production-batches/canadian-person-links-1.129/README.md)). Revision 1.128 adds eighteen
 entries for historiography in Canada and a twelfth landing family

@@ -1,0 +1,3247 @@
+{
+  "revision": "1.131",
+  "date": "2026-10-13",
+  "authorization": "User, 2026-10-13: improving the landing-page families is 'the top priority'; Environmental History's two timeline thinkers do 'not represent the field at all'; 'we need careful evaluation of who gets put front and centre in a timeline'; on the evidence table: 'that is the AHA round table minus Pyne, which makes sense; Aldo Leopold and Rachel Carson are key'.",
+  "baseline": "drafts/historiography-1920-2000.v1.130.json",
+  "baseline_sha256": "7e79f6107134afe98365f30b54833a3595fcb42124a1b18843a56b6a0ce97db2",
+  "packet": "data/extension-2026/environment-family-2026-10-13/release/editorial-additions.json",
+  "packet_sha256": "7500e175b5f0ca4d50a9b25d6d3b832c2696b610521df9879715ff218bdf5ece",
+  "production_sha256": "2171c0d0adc3f5791910d169f289ff0887194b3b10972ed578295c0b363e70d9",
+  "previous_table_lengths": {
+    "nodes": 159,
+    "people": 1188,
+    "edges": 900,
+    "sources": 1489,
+    "revision_history": 130
+  },
+  "prior_records": {
+    "people": {
+      "alfred_crosby": {
+        "id": "alfred_crosby",
+        "label": "Alfred Crosby"
+      },
+      "carolyn_merchant": {
+        "id": "carolyn_merchant",
+        "label": "Carolyn Merchant"
+      },
+      "donald_worster": {
+        "id": "donald_worster",
+        "label": "Donald Worster"
+      },
+      "william_cronon": {
+        "id": "william_cronon",
+        "label": "William Cronon"
+      },
+      "aldo_leopold": {
+        "id": "aldo_leopold",
+        "label": "Aldo Leopold"
+      },
+      "richard_white": {
+        "id": "richard_white",
+        "label": "Richard White",
+        "identity_note": "Local source-linked participant or credited scholar. Roster inclusion does not establish Indigenous identity, citizenship, nation membership or external identity resolution."
+      }
+    },
+    "edges": {
+      "edge_111": {
+        "id": "edge_111",
+        "source": "environment",
+        "target": "annales",
+        "relationship": "has affinities with geography and long durations",
+        "type": "connection",
+        "relationship_kind": "comparison",
+        "directed": false,
+        "source_ids": [
+          "gurevich_annales"
+        ],
+        "evidence_note": "An editorial comparison of environmental history with Annales geographical and temporal concerns. The existing affinity statement does not establish environmental history as an upstream cause of Annales."
+      },
+      "edge_336": {
+        "id": "edge_336",
+        "source": "science",
+        "target": "environment",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Merchant connects the history of science with women and environmental questions",
+        "evidence_note": "Berkeley’s retrospective documents Merchant’s cross-field contribution. The added primary excerpt, reprinted in 1991, supports her account of mechanical order, control of nature and capitalist development. It does not verify every gender claim or adjudicate criticisms of the 1980 book. Selected 2006 retrospective passages now clarify Merchant’s material/ideational argument and her response to named 1990s critics. Pesic’s 1999 author abstract supplies a competing reading of Bacon’s metaphor. These sources document disagreement; they do not settle Bacon’s intentions or independently verify early experimental practices. Later reception is not backdated into the mapped period.",
+        "source_ids": [
+          "merchant_oral_history",
+          "merchant_death_excerpt",
+          "merchant_scientific_retrospective",
+          "pesic_proteus_1999"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Merchant: science, women, and nature"
+      },
+      "edge_720": {
+        "id": "edge_720",
+        "source": "environment",
+        "target": "urbanhistory",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Cronon: urban markets and rural production",
+        "evidence_note": "Nature’s Metropolis joins environmental and urban questions through commodity connections.",
+        "source_ids": [
+          "cronon_urban_reception"
+        ],
+        "map_label": "Cronon: urban markets and rural production",
+        "classification_basis": "editorial_review"
+      }
+    },
+    "sources": {
+      "environment": {
+        "id": "environment",
+        "title": "ASEH: institutional history",
+        "url": "https://aseh.org/history"
+      },
+      "subrahmanyam_connected": {
+        "id": "subrahmanyam_connected",
+        "title": "Sanjay Subrahmanyam, “Connected Histories: Notes towards a Reconfiguration of Early Modern Eurasia,” Modern Asian Studies 31, no. 3 (1997): 735–762.",
+        "citation": "Sanjay Subrahmanyam, “Connected Histories: Notes towards a Reconfiguration of Early Modern Eurasia,” Modern Asian Studies 31, no. 3 (1997): 735–762.",
+        "url": "https://doi.org/10.1017/S0026749X00017133",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-12",
+          "note": "Primary reproduced OCR at https://www.scribd.com/document/761473010/Connected-Histories-Sanjay-S read: 735–742, 745–747 plus opening748 through elite circulation, and 758–762. Remainder unread. Particular Bay of Bengal/millenarian mechanisms, Bayly reception742n16, ecology738n10, mediated Davis/Kafadar740n13 and specific Goldstone critique758–759 checked. Polemical depictions of theorists/regions remain attributed; no independent archive collation or numerical replication. 1997 print versus later online date distinguished; corrupt OCR footnote dates not adopted."
+        }
+      },
+      "leopold_almanac": {
+        "id": "leopold_almanac",
+        "title": "Aldo Leopold, A Sand County Almanac (1949); Aldo Leopold Foundation, author and book overview.",
+        "citation": "Aldo Leopold, A Sand County Almanac (1949); Aldo Leopold Foundation, author and book overview.",
+        "url": "https://aldoleopold.org/about/aldo-leopold",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Foundation overview checked for original 1949 Oxford University Press publication and the book’s natural observation and ethical concerns. The book was not read in full. Cronon’s separately cited afterword supplies the specific retrospective acknowledgment of landscape training modeled on Leopold’s course."
+        }
+      },
+      "cronon_changes_afterword": {
+        "id": "cronon_changes_afterword",
+        "title": "William Cronon, afterword to Changes in the Land: Indians, Colonists, and the Ecology of New England (1983; anniversary edition 2003): 171–186.",
+        "citation": "William Cronon, afterword to Changes in the Land: Indians, Colonists, and the Ecology of New England (1983; anniversary edition 2003): 171–186.",
+        "url": "https://www.williamcronon.net/courses/460/handouts/cronon_changes_in_the_land_2003_ed_afterword.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Downloaded primary retrospective consulted at pp. 173–175 for Wisconsin landscape training and Leopold’s course model; pp. 182–183 for learning property analysis from anthropology, economics and legal theory; pp. 184–185 for the author’s criticism of source asymmetries, schematic capitalism and neglected colonial spirituality. These concern the 1983 book; no full-book review or post-2000 extension of the mapped field."
+        }
+      },
+      "cronon_wilderness": {
+        "id": "cronon_wilderness",
+        "title": "William Cronon, “The Trouble with Wilderness; or, Getting Back to the Wrong Nature,” in Uncommon Ground (1995): 69–90.",
+        "citation": "William Cronon, “The Trouble with Wilderness; or, Getting Back to the Wrong Nature,” in Uncommon Ground (1995): 69–90.",
+        "url": "https://williamcronon.net/writing/Trouble_with_Wilderness_Main.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Expanded from selected passages to complete author-hosted reflow and notes, PDF1–24, at https://www.williamcronon.net/writing/Cronon_Trouble_with_Wilderness_1995.pdf . Original HTML fetch failed; PDF downloaded and text extracted despite parser warning. Reflow has transcription errors, including “Cuba” in note28. Guha’s name and citation corroborated against note28 in the journal reprint scan text at https://wilderness-society.org/wp-content/uploads/2019/08/Cronon-The-trouble-with-Wilderness.pdf ; remaining journal text not independently collated. Argument retains support for wild-land protection and nonhuman autonomy, reflow12,17–20. Reflow uses Rethinking subtitle in heading but Toward Reinventing Nature in final credit; original1995 chapter distinguished from1996 journal reprint. Cronon’s separate1996 response publisher metadata47–55 checked, body inaccessible and not used. No empirical conservation assessment or complete reception survey."
+        }
+      },
+      "crosby_ecological": {
+        "id": "crosby_ecological",
+        "title": "Alfred W. Crosby, Ecological Imperialism: The Biological Expansion of Europe, 900–1900 (1986; second edition 2004).",
+        "citation": "Alfred W. Crosby, Ecological Imperialism: The Biological Expansion of Europe, 900–1900 (1986; second edition 2004).",
+        "url": "https://www.cambridge.org/core/books/ecological-imperialism/8DDFF91CBE5BE025471C0E7622E16D1C",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Publisher description consulted for the argument about organisms and European settlement in temperate regions. Original 1986 metadata checked in the indexed Folger catalogue https://catalog.folger.edu/record/47488 ; direct catalogue access failed and publisher front-matter download timed out. This is the book’s stated argument, not a full reading or an endorsement of biological reductionism."
+        }
+      },
+      "worster_dust_bowl": {
+        "id": "worster_dust_bowl",
+        "title": "Donald Worster, Dust Bowl: The Southern Plains in the 1930s (1979); Kansas Historical Society annotated agriculture bibliography.",
+        "citation": "Donald Worster, Dust Bowl: The Southern Plains in the 1930s (1979); Kansas Historical Society annotated agriculture bibliography.",
+        "url": "https://www.kansashistory.gov/p/agriculture/13395",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Weather and Agriculture entries consulted for original title/date and the annotation identifying Worster’s argument that American capitalism connects the Depression and Dust Bowl. Adjacent entries show alternative explanations. This supports a concise attribution of his argument; the book and the wider empirical controversy have not been reviewed in full."
+        }
+      },
+      "merchant_death_excerpt": {
+        "id": "merchant_death_excerpt",
+        "title": "Carolyn Merchant, The Death of Nature: Women, Ecology, and the Scientific Revolution (1980), excerpt in John Zerzan and Alice Carnes, eds., Questioning Technology (1991): 36–40.",
+        "citation": "Carolyn Merchant, The Death of Nature: Women, Ecology, and the Scientific Revolution (1980), excerpt in John Zerzan and Alice Carnes, eds., Questioning Technology (1991): 36–40.",
+        "url": "https://r830.cnr.berkeley.edu/cmerchant/articles/36.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Author-hosted scanned primary excerpt downloaded and visually read, printed pp. 36–40, with 1991 title/copyright matter. It supports Merchant’s argument connecting mechanical order, control of nature and capitalist development. Original 1980 date checked against the author’s bibliography https://r830.cnr.berkeley.edu/cmerchant/search.html . This excerpt does not independently establish every gender claim or settle criticisms of her Scientific Revolution interpretation."
+        }
+      },
+      "cronon_environment_syllabus_1994": {
+        "id": "cronon_environment_syllabus_1994",
+        "title": "William Cronon, History 901: Topics in American Environmental History, Fall 1994 syllabus, University of Wisconsin–Madison.",
+        "citation": "William Cronon, History 901: Topics in American Environmental History, Fall 1994 syllabus, University of Wisconsin–Madison.",
+        "url": "https://history.wisc.edu/wp-content/uploads/sites/202/2017/05/history901_fall1994_cronon.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Six-page primary syllabus read through indexed PDF text. Page 4 assigns Sauer’s “Foreword to Historical Geography” (1941), Land and Life 351–379, in the 14 September session, alongside other landscape and environmental-history readings. This establishes a named pre-2001 teaching use, not a claim that the class assigned Morphology (1925), that all students adopted Sauer, or that Sauer alone founded environmental history. The assigned 1941 essay body was not read here beyond its opening on the final image of the separate Morphology scan. Local download returned 404 while web PDF text remained available."
+        }
+      },
+      "ind127_white_1991": {
+        "id": "ind127_white_1991",
+        "title": "Richard White, Introduction, The Middle Ground (1991), pp. ix–xvi, Cambridge University Press.",
+        "url": "https://www.cambridge.org/core/books/abs/middle-ground/introduction/77BA2E74A619216D28C32232C8732869",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-10",
+          "note": "Indexed primary introduction excerpt and print metadata checked. Cultural interaction is more complex than an absorption/resistance dichotomy. Regional scope is Great Lakes, 1650–1815. Online date 2012 is not the original publication date; full book and direct transmission to other scholars unchecked."
+        }
+      }
+    },
+    "nodes": {
+      "environment": {
+        "id": "environment",
+        "label": "Environmental history",
+        "date_label": "1970s consolidation · coverage through 2000",
+        "layer": "historiographical_developments",
+        "period": "period_2",
+        "hunt_core_paradigm": false,
+        "description": "Explains historical relations among people and the nonhuman world through ecological exchange, agriculture, property, commodity flows, conservation and cultural ideas of nature. These approaches disagree about causal emphasis. Cases from New England, the Great Plains, Mexico, India, colonial islands and South Africa connect ecological processes with power without supplying one universal model. Bullard’s environmental-justice inquiry and Rita and Jackie Huggins’s situated life histories broaden comparison toward unequal burdens, displacement and authority over historical accounts. Dust Bowl debates distinguish agricultural capitalism, technology and soils, federal intervention, regional scale and household survival; primary criticism and later social history complicate a single causal summary.",
+        "representative_figures_and_works": "Alfred Crosby; Donald Worster; Carolyn Merchant; William Cronon. ASEH founded 1977. Expanded contextual readings include Leopold’s precursor essays, Melville’s Mexican study, Gadgil and Guha’s Indian history, Grove’s colonial conservation and Carruthers’s South African park history.",
+        "source_ids": [
+          "environment",
+          "crosby_ecological",
+          "worster_dust_bowl",
+          "worster_dirty_thirties",
+          "merchant_oral_history",
+          "merchant_death_excerpt",
+          "cronon",
+          "cronon_changes_afterword",
+          "cronon_urban_reception",
+          "cronon_wilderness",
+          "leopold_almanac",
+          "gadgil_guha_fissured",
+          "grove_green",
+          "carruthers_kruger",
+          "melville_plague",
+          "cronon_environment_syllabus_1994",
+          "bullard_dixie_primary",
+          "huggins_auntie_rita",
+          "huggins_kooramindanjie",
+          "heiss_huggins_1998",
+          "mcdean_dust_historiography",
+          "fite_hurt_review",
+          "riney_rooted_dust",
+          "guha_deep_ecology_1989",
+          "johns_deep_ecology_reply",
+          "sessions_cronon_reply",
+          "pesic_proteus_1999",
+          "merchant_scientific_retrospective",
+          "carruthers_grove_review"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "alfred_crosby",
+            "role": "historian",
+            "context": "Argues that organisms accompanying Europeans helped transform environments and sustain settler expansion, particularly in temperate regions.",
+            "works": "Ecological Imperialism: The Biological Expansion of Europe, 900–1900 (1986)",
+            "source_ids": [
+              "environment",
+              "crosby_ecological"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "donald_worster",
+            "role": "historian",
+            "context": "Connects the Dust Bowl with agricultural capitalism as well as environmental conditions; this is a contested explanation, not the field’s unanimous account.",
+            "works": "Dust Bowl: The Southern Plains in the 1930s (1979); “The Dirty Thirties: A Study in Agricultural Capitalism” (1986)",
+            "source_ids": [
+              "environment",
+              "worster_dust_bowl",
+              "worster_dirty_thirties"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "carolyn_merchant",
+            "role": "historian",
+            "context": "Brings feminist history of science into environmental inquiry; argues that mechanical conceptions of nature support new forms of control and capitalist development.",
+            "works": "The Death of Nature: Women, Ecology, and the Scientific Revolution (1980)",
+            "source_ids": [
+              "environment",
+              "merchant_oral_history",
+              "merchant_death_excerpt"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_cronon",
+            "role": "historian",
+            "context": "Links colonial property and ecological change, city–hinterland commodity flows, and cultural ideas of wilderness. His later afterword criticizes schematic capitalism and uneven treatment of Indigenous and colonial sources in his first book.",
+            "works": "Changes in the Land (1983); Nature’s Metropolis (1991); “The Trouble with Wilderness” (1995)",
+            "source_ids": [
+              "environment",
+              "cronon",
+              "cronon_changes_afterword",
+              "cronon_urban_reception",
+              "cronon_wilderness"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "aldo_leopold",
+            "role": "precursor",
+            "context": "Ecological observation and conservation ethics precede the field’s later consolidation; Cronon identifies a landscape-training model drawn from Leopold.",
+            "works": "A Sand County Almanac (1949)",
+            "source_ids": [
+              "leopold_almanac",
+              "cronon_changes_afterword"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ramachandra_guha",
+            "role": "historian",
+            "context": "With ecologist Madhav Gadgil, examines changing resource use, social conflict and resistance in Indian environmental history. Distinct from Ranajit Guha.",
+            "works": "With Madhav Gadgil, This Fissured Land: An Ecological History of India (1992; UC Press edition 1993)",
+            "source_ids": [
+              "gadgil_guha_fissured"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "madhav_gadgil",
+            "role": "contributor",
+            "context": "Ecologist collaborating with Ramachandra Guha on resource-use systems and their social and political conflicts in India.",
+            "works": "With Ramachandra Guha, This Fissured Land: An Ecological History of India (1992; UC Press edition 1993)",
+            "source_ids": [
+              "gadgil_guha_fissured"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "richard_grove",
+            "role": "historian",
+            "context": "Traces conservation ideas through colonial island settings and scientific networks; his geographical emphasis differs from histories of mainland African conservation.",
+            "works": "Green Imperialism: Colonial Expansion, Tropical Island Edens and the Origins of Environmentalism, 1600–1860 (1995)",
+            "source_ids": [
+              "grove_green"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jane_carruthers",
+            "role": "historian",
+            "context": "Examines South African conservation through the politics of Kruger National Park, racial power and Afrikaner nationalism.",
+            "works": "The Kruger National Park: A Social and Political History (1995)",
+            "source_ids": [
+              "carruthers_kruger"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "elinor_melville",
+            "role": "historian",
+            "context": "Adapts Crosby’s biological-conquest question to introduced grazing animals and social change in Mexico’s Valle del Mezquital, emphasizing places with continuing Indigenous populations.",
+            "works": "A Plague of Sheep: Environmental Consequences of the Conquest of Mexico (1994)",
+            "source_ids": [
+              "melville_plague"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "carl_sauer",
+            "role": "contributor",
+            "context": "Supplies a documented teaching resource: Cronon’s 1994 graduate environmental-history syllabus assigns his 1941 essay. This is a specific use, not a field-wide genealogy.",
+            "works": "“Foreword to Historical Geography” (1941), assigned in Cronon’s History 901 (1994)",
+            "source_ids": [
+              "cronon_environment_syllabus_1994"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robert_bullard",
+            "role": "contributor",
+            "context": "Studies unequal pollution burdens and the political capacity to resist them; his Alsen account preserves disagreement about compensation and continuing health needs.",
+            "works": "Dumping in Dixie (1990), introduction and Alsen excerpts",
+            "source_ids": [
+              "bullard_dixie_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "rita_huggins",
+            "role": "contributor",
+            "context": "Her life narrative offers a situated account of displacement from Country and community relationships, voiced alongside her daughter rather than reduced to anonymous testimony.",
+            "works": "With Jackie Huggins, Auntie Rita (1994); with Jackie Huggins and Jane M. Jacobs, Kooramindanjie (1995)",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "huggins_kooramindanjie"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jackie_huggins",
+            "role": "historian",
+            "context": "Historian and collaborator in her mother’s life narrative; the relationship between oral testimony and official histories is visible in Heiss’s contemporary review.",
+            "works": "With Rita Huggins, Auntie Rita (1994); Sister Girl (1998), through Heiss’s review",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "heiss_huggins_1998"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "harry_mcdean",
+            "role": "historian",
+            "context": "Criticizes geographical generalization and competing accounts of government and capitalist culture; his preference for Hurt is a position within the debate.",
+            "works": "“Dust Bowl Historiography” (1986)",
+            "source_ids": [
+              "mcdean_dust_historiography"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "gilbert_fite",
+            "role": "historian",
+            "context": "Reviews Hurt favorably while asking historians to include northern Plains experiences; his desired scale differs from McDean’s later emphasis.",
+            "works": "Review of Hurt’s The Dust Bowl (1983)",
+            "source_ids": [
+              "fite_hurt_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "james_malin",
+            "role": "historian",
+            "context": "An ecological-history resource whom Worster both acknowledges and criticizes for explanations through natural dust storms and adaptation after pioneering.",
+            "works": "“Ecology and History” (1950); “Dust Storms” series (1946), through Worster’s 1986 discussion",
+            "source_ids": [
+              "worster_dirty_thirties"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paul_bonnifield",
+            "role": "historian",
+            "context": "Emphasizes farmers’ endurance and criticizes federal intervention; McDean disputes his account while recognizing his description of farming practices.",
+            "works": "The Dust Bowl: Men, Dirt, and Depression (1979), through McDean and Fite",
+            "source_ids": [
+              "mcdean_dust_historiography",
+              "fite_hurt_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "r_douglas_hurt",
+            "role": "historian",
+            "context": "Studies farming technology, soils, drought and conservation; McDean and Fite praise the book but emphasize its causal balance differently.",
+            "works": "The Dust Bowl: An Agricultural and Social History (1981), through contemporary reviews",
+            "source_ids": [
+              "mcdean_dust_historiography",
+              "fite_hurt_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "pamela_riney_kehrberg",
+            "role": "historian",
+            "context": "Examines families who remained in southwestern Kansas, work and assistance, and social adaptation alongside environmental change.",
+            "works": "Rooted in Dust (1994); contents identify oral-history and agricultural-census appendices",
+            "source_ids": [
+              "riney_rooted_dust"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ronald_inden",
+            "role": "contributor",
+            "context": "Guha uses his analysis of Orientalist representations to question deep ecology’s selective appropriation of Asian traditions.",
+            "works": "“Orientalist Constructions of India” (1986), received in Guha (1989)",
+            "source_ids": [
+              "guha_deep_ecology_1989"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "david_johns",
+            "role": "critic",
+            "context": "Responds to Guha by defending wilderness protection and biocentrism informed by social analysis; this selection rests on the author abstract.",
+            "works": "“The Relevance of Deep Ecology to the Third World” (1990), abstract",
+            "source_ids": [
+              "johns_deep_ecology_reply"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "george_sessions",
+            "role": "critic",
+            "context": "Challenges Cronon’s treatment of wilderness through conservation biology and ecocentric ethics; his wider accusations remain contested interpretations.",
+            "works": "“Reinventing Nature, The End Of Wilderness?” (1996)",
+            "source_ids": [
+              "sessions_cronon_reply"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_pesic",
+            "role": "critic",
+            "context": "A named interlocutor in disputes about Bacon, experiment and domination of nature; this is a focused criticism, not a rejection of environmental history.",
+            "works": "“Wrestling with Proteus” (1999), author abstract",
+            "source_ids": [
+              "pesic_proteus_1999"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "Ecological exchange, political economy, and feminist critiques of nature overlap; institutional society history does not document every intellectual route. Crosby’s temperate-settler argument differs from Melville’s Mexican case; Gadgil and Guha’s resource conflicts differ from Grove’s conservation networks and Carruthers’s park politics. Cronon’s cultural account of wilderness does not deny nonhuman nature. The selection remains incomplete, especially in environmental justice and Indigenous scholarship. A bounded second-pass addition now compares Bullard and the Huggins collaboration; primary-excerpt, publisher-description and metadata limits remain distinct, and neither selection represents every community.",
+        "strands": [
+          {
+            "id": "ecological_exchange",
+            "title": "Organisms, conquest and ecological exchange",
+            "person_ids": [
+              "alfred_crosby",
+              "elinor_melville"
+            ],
+            "focus": "Compare Crosby’s temperate settler environments with Melville’s explicit adaptation to grazing animals, land and continuing Indigenous populations in Mexico.",
+            "works": "Ecological Imperialism (1986); A Plague of Sheep (1994)",
+            "source_ids": [
+              "crosby_ecological",
+              "melville_plague"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "agriculture_capitalism",
+            "title": "Agricultural capitalism and environmental crisis",
+            "person_ids": [
+              "donald_worster"
+            ],
+            "focus": "Worster connects the Dust Bowl to agricultural capitalism. Compare that argument with competing explanations instead of treating it as settled consensus.",
+            "works": "Dust Bowl (1979); “The Dirty Thirties” (1986)",
+            "source_ids": [
+              "worster_dust_bowl",
+              "worster_dirty_thirties"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "gender_nature",
+            "title": "Gender, science and the control of nature",
+            "person_ids": [
+              "carolyn_merchant"
+            ],
+            "focus": "Merchant’s feminist intervention joins history of science with environmental questions; her mechanical-order argument concerns ideas, power and material change.",
+            "works": "The Death of Nature (1980)",
+            "source_ids": [
+              "merchant_oral_history",
+              "merchant_death_excerpt"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_property",
+            "title": "Colonial property and ecological change",
+            "person_ids": [
+              "william_cronon"
+            ],
+            "focus": "Property concepts help Cronon explain changes in New England. Read with his later self-criticism about source asymmetry, spirituality and schematic capitalism.",
+            "works": "Changes in the Land (1983; retrospective afterword 2003)",
+            "source_ids": [
+              "cronon",
+              "cronon_changes_afterword"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "urban_hinterland",
+            "title": "Cities, commodities and hinterlands",
+            "person_ids": [
+              "william_cronon"
+            ],
+            "focus": "Follow lumber, grain and meat between rural production and urban processing and markets; follow capital back toward the countryside.",
+            "works": "Nature’s Metropolis: Chicago and the Great West (1991)",
+            "source_ids": [
+              "cronon",
+              "cronon_urban_reception"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "india_resources",
+            "title": "Resource use and social conflict in India",
+            "person_ids": [
+              "ramachandra_guha",
+              "madhav_gadgil"
+            ],
+            "focus": "Changing resource-use systems, state interventions and resistance connect ecological and social histories without making precolonial society uniformly harmonious.",
+            "works": "This Fissured Land (1992)",
+            "source_ids": [
+              "gadgil_guha_fissured"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_conservation",
+            "title": "Conservation, colonial science and racial power",
+            "person_ids": [
+              "richard_grove",
+              "jane_carruthers"
+            ],
+            "focus": "Grove studies colonial conservation networks and islands; Carruthers studies a South African park’s racial and national politics. These distinct scales complicate a purely benevolent conservation story.",
+            "works": "Green Imperialism (1995); The Kruger National Park (1995)",
+            "source_ids": [
+              "grove_green",
+              "carruthers_kruger"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "wilderness_culture",
+            "title": "Wilderness as a historical cultural idea",
+            "person_ids": [
+              "william_cronon"
+            ],
+            "focus": "Cronon examines the pristine-wilderness ideal and Indigenous removal, while defending care for nonhuman nature in inhabited places.",
+            "works": "“The Trouble with Wilderness” (1995)",
+            "source_ids": [
+              "cronon_wilderness"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "sauer_teaching_reception",
+            "title": "Historical geography in environmental-history teaching",
+            "focus": "Cronon’s 1994 syllabus assigns Sauer’s 1941 essay among several resources for bringing nature into history. Assignment demonstrates use without establishing assent or an exclusive intellectual ancestry.",
+            "person_ids": [
+              "william_cronon",
+              "carl_sauer"
+            ],
+            "works": "History 901 syllabus (Fall 1994), 14 September readings",
+            "source_ids": [
+              "cronon_environment_syllabus_1994"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "environmental_justice_organizing",
+            "title": "Unequal pollution burdens and collective action",
+            "focus": "Bullard joins environmental distribution with race, class and organizing capacity. The Alsen case distinguishes partial gains from unresolved health concerns and internal disagreement.",
+            "person_ids": [
+              "robert_bullard"
+            ],
+            "works": "Dumping in Dixie (1990), selected reprinted excerpts",
+            "source_ids": [
+              "bullard_dixie_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "country_voice_comparison",
+            "title": "Country, displacement and historical voice",
+            "focus": "Read Rita and Jackie Huggins’s situated life-history project beside conservation and settler-landscape narratives. Publisher descriptions support this bounded comparison; their full books and place article remain unread.",
+            "person_ids": [
+              "rita_huggins",
+              "jackie_huggins",
+              "william_cronon",
+              "jane_carruthers"
+            ],
+            "works": "Auntie Rita (1994); Changes in the Land (1983); The Kruger National Park (1995)",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "heiss_huggins_1998",
+              "cronon_changes_afterword",
+              "carruthers_kruger"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "dust_causal_debate",
+            "title": "Agricultural culture, technology and regional causes",
+            "focus": "Worster argues for interacting natural and cultural forces while emphasizing agricultural capitalism. McDean criticizes his generalization, contests Bonnifield’s federal-policy account and favors Hurt’s regional specificity. These are competing interpretations.",
+            "person_ids": [
+              "donald_worster",
+              "harry_mcdean",
+              "paul_bonnifield",
+              "r_douglas_hurt"
+            ],
+            "works": "Worster (1986); McDean (1986), discussing books of 1979 and 1981",
+            "source_ids": [
+              "worster_dirty_thirties",
+              "mcdean_dust_historiography"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "malin_adaptation_debate",
+            "title": "Ecological adaptation and the promise of development",
+            "focus": "Worster acknowledges Malin’s ecological history but disputes explanations through natural storms and a passing pioneering stage. He distinguishes rival cultural values and varied regional entrepreneurial intensity.",
+            "person_ids": [
+              "james_malin",
+              "donald_worster"
+            ],
+            "works": "Malin (1946,1950), critically discussed by Worster (1986)",
+            "source_ids": [
+              "worster_dirty_thirties"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "dust_region_survival",
+            "title": "Regional boundaries and histories of staying",
+            "focus": "Compare McDean’s insistence on a specific Dust Bowl region, Fite’s call for northern Plains coverage, and Riney-Kehrberg’s household survival study in southwestern Kansas. Causal explanation, geographical scale and lived experience pose different questions.",
+            "person_ids": [
+              "harry_mcdean",
+              "gilbert_fite",
+              "pamela_riney_kehrberg"
+            ],
+            "works": "McDean (1986); Fite (1983); Rooted in Dust (1994)",
+            "source_ids": [
+              "mcdean_dust_historiography",
+              "fite_hurt_review",
+              "riney_rooted_dust"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "wilderness_contexts",
+            "title": "Wilderness, livelihood and different political contexts",
+            "focus": "Guha targets American deep ecology’s universal claims and conservation’s unequal costs in India, while acknowledging Naess’s concern about inequality. Cronon studies American sublime/frontier ideals and everyday responsibility, explicitly citing Guha in note28. Shared concerns about exclusion do not erase their different contexts or Cronon’s support for protected wild lands.",
+            "person_ids": [
+              "ramachandra_guha",
+              "william_cronon"
+            ],
+            "works": "Guha (1989); Cronon (1995), including note28",
+            "source_ids": [
+              "guha_deep_ecology_1989",
+              "cronon_wilderness"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "biocentrism_guha_response",
+            "title": "Can biocentrism incorporate social criticism?",
+            "focus": "Johns’s abstract disputes Guha’s equation of deep ecology with wilderness protection and defends biocentrism joined to critical social theory against overconsumption and militarism. This is a named response; the article’s detailed reasoning is not newly verified.",
+            "person_ids": [
+              "ramachandra_guha",
+              "david_johns"
+            ],
+            "works": "Guha (1989); Johns (1990), abstract",
+            "source_ids": [
+              "guha_deep_ecology_1989",
+              "johns_deep_ecology_reply"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "wilderness_conservation_response",
+            "title": "Cultural criticism and habitat protection",
+            "focus": "Sessions objects that Cronon underweights biodiversity and connected wild habitat. His claim that cultural construction conflicts with independent nature is a critical interpretation: Cronon explicitly defends nonhuman autonomy and wild-land protection.",
+            "person_ids": [
+              "william_cronon",
+              "george_sessions"
+            ],
+            "works": "Cronon (1995); Sessions (1996)",
+            "source_ids": [
+              "cronon_wilderness",
+              "sessions_cronon_reply"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "merchant_material_ideas",
+            "title": "Material change, ideas and gendered nature",
+            "focus": "Merchant retrospectively clarifies that ecological and economic changes made some ideas more plausible rather than mechanically causing them. Her socialist ecofeminism addresses production and reproduction and challenges an essentialist identification of women with nature.",
+            "person_ids": [
+              "carolyn_merchant"
+            ],
+            "works": "The Death of Nature (1980); Radical Ecology (1992), discussed in Merchant’s 2006 retrospective",
+            "source_ids": [
+              "merchant_death_excerpt",
+              "merchant_scientific_retrospective"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "conservation_knowledge_power",
+            "title": "Colonial conservation: knowledge, power and benefits",
+            "focus": "Carruthers’s review welcomes Grove’s island settings and exchanges of knowledge, while questioning parts of his synthesis. Her Kruger prologue and epilogue emphasize changing political coalitions, racial exclusion and allocation of benefits. Scientific conservation and unequal power can coexist; these works ask different questions at different scales.",
+            "person_ids": [
+              "richard_grove",
+              "jane_carruthers"
+            ],
+            "works": "Green Imperialism (1995), reviewed by Carruthers (1996); The Kruger National Park (1995), prologue and epilogue",
+            "source_ids": [
+              "grove_green",
+              "carruthers_grove_review",
+              "carruthers_kruger"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      },
+      "global": {
+        "id": "global",
+        "label": "World / global / connected history",
+        "date_label": "1960s roots; 1990s growth · coverage through 2000",
+        "layer": "historiographical_developments",
+        "period": "period_3",
+        "hunt_core_paradigm": false,
+        "description": "Moves across national containers through comparison, interaction, circulation, and connections. These approaches differ; global scale need not imply one theory of globalization.",
+        "representative_figures_and_works": "William McNeill (1963); Eric Wolf (1982); Sanjay Subrahmanyam (1997); Kenneth Pomeranz (2000).",
+        "source_ids": [
+          "global",
+          "wolf_europe",
+          "subrahmanyam_connected",
+          "pomeranz_divergence",
+          "hodgson_interrelations_primary",
+          "abulughod_system_primary",
+          "bentley_encounters",
+          "wong_china_primary",
+          "duara_rescuing",
+          "crosby_ecological",
+          "curtin",
+          "huang_pomeranz_review"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "william_h_mcneill",
+            "role": "historian",
+            "context": "World synthesis and an explicit account of historical interpretation; source criticism and better-fitting accounts remain valuable within his ecumenical program.",
+            "works": "The Rise of the West (1963); “Mythistory, or Truth, Myth, History, and Historians” (1986)",
+            "source_ids": [
+              "global"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "eric_wolf",
+            "role": "contributor",
+            "context": "Historical anthropology connects peoples usually separated from accounts of European expansion; the recorded source remains a publisher/retrospective check.",
+            "works": "Europe and the People Without History (1982)",
+            "source_ids": [
+              "global",
+              "wolf_europe"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sanjay_subrahmanyam",
+            "role": "historian",
+            "context": "Reconstructs circulation of people, ideas and goods across local and supraregional settings, criticizing national/area boxes without erasing differences.",
+            "works": "“Connected Histories: Notes towards a Reconfiguration of Early Modern Eurasia” (1997), selected primary pages",
+            "source_ids": [
+              "global",
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "kenneth_pomeranz",
+            "role": "historian",
+            "context": "Combines regional comparisons with coal location, overseas resources and colonial coercion; no single factor or uniform Eurasian path suffices.",
+            "works": "The Great Divergence (2000)",
+            "source_ids": [
+              "pomeranz_divergence"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_898"
+          },
+          {
+            "person_id": "marshall_hodgson",
+            "role": "historian",
+            "context": "Questions Eurocentric geographical and historical categories within an interregional history. His vocabulary and civilizational rankings remain open to criticism.",
+            "works": "“The interrelations of societies in history” (1963); Rethinking World History (posthumous collection1993)",
+            "source_ids": [
+              "hodgson_interrelations_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "edmund_burke_iii",
+            "role": "historian",
+            "context": "Edits and contextualizes Hodgson’s writings, acknowledging changes to spelling/transliteration and the institutional work enabling publication.",
+            "works": "Rethinking World History (1993), editor’s preface",
+            "source_ids": [
+              "hodgson_interrelations_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "janet_abu_lughod",
+            "role": "contributor",
+            "context": "Reconstructs earlier intercity networks and argues against a predetermined European ascendancy; integration is explicitly partial and institutionally diverse.",
+            "works": "Before European Hegemony (1989); “The World System in the Thirteenth Century” (AHA copyright1993), selected later reprint",
+            "source_ids": [
+              "abulughod_system_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jerry_bentley",
+            "role": "historian",
+            "context": "Examines conditions of cross-cultural conversion, conflict and compromise before1492.",
+            "works": "Old World Encounters (1993)",
+            "source_ids": [
+              "bentley_encounters"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "r_bin_wong",
+            "role": "historian",
+            "context": "Compares economic change, state formation and protest without treating European development as the universal path.",
+            "works": "China Transformed (1997), selected chapter openings",
+            "source_ids": [
+              "wong_china_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "prasenjit_duara",
+            "role": "historian",
+            "context": "Studies competing national, local and transnational histories rather than making the nation a singular subject of linear progress.",
+            "works": "Rescuing History from the Nation (1995)",
+            "source_ids": [
+              "duara_rescuing"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ca_bayly",
+            "role": "historian",
+            "context": "Subrahmanyam identifies his multilateral imperial explanation as an inspiration while recording differences.",
+            "works": "Imperial Meridian (1989), discussed and acknowledged in Connected Histories (1997),741–742n16",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "kn_chaudhuri",
+            "role": "historian",
+            "context": "Indian Ocean comparison and trade research provide resources and contested structural models; Subrahmanyam’s criticism is not a neutral verdict.",
+            "works": "Trade and Civilisation in the Indian Ocean (1985); Asia Before Europe (1990), discussed by Abu-Lughod and Subrahmanyam",
+            "source_ids": [
+              "abulughod_system_primary",
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "serge_gruzinski",
+            "role": "historian",
+            "context": "Work on indigenous power and colonial imagination enters Subrahmanyam’s discussion of imperial symbolism.",
+            "works": "Les Hommes-dieux du Mexique (1985); La colonisation de l’imaginaire (1988), cited in Connected Histories739n11",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "victor_lieberman",
+            "role": "comparison",
+            "context": "A comparative interlocutor whose regional-state framework is both credited and criticized by Subrahmanyam.",
+            "works": "1997 comparative theme essay on six Eurasian polities, discussed in Connected Histories735–736",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "cemal_kafadar",
+            "role": "historian",
+            "context": "An Ottoman self-writing study mediates a Davis resource in Subrahmanyam’s questions about individualism.",
+            "works": "“Self and Others: The Diary of a Dervish in Seventeenth Century Istanbul and First-person Narratives in Ottoman Literature” (1989), cited in Connected Histories740n13",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alfred_crosby",
+            "role": "historian",
+            "context": "Ecological histories provide explicitly cited resources in Subrahmanyam’s account of connected changes.",
+            "works": "Ecological Imperialism (1986); cited in Connected Histories738n10",
+            "source_ids": [
+              "crosby_ecological",
+              "subrahmanyam_connected"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "philip_curtin",
+            "role": "historian",
+            "context": "Cross-cultural trade supplies a world-historical subject distinct from his quantitative reconstruction of the slave trade.",
+            "works": "Cross-Cultural Trade in World History (1984), bibliography in Rethinking World History (1993); The Atlantic Slave Trade: A Census (1969)",
+            "source_ids": [
+              "hodgson_interrelations_primary",
+              "curtin"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "philip_huang",
+            "role": "historian",
+            "context": "His household involution argument is disputed by Pomeranz; later criticism distinguishes rising output from returns to labor.",
+            "works": "The Peasant Family and Rural Development in the Yangzi Delta,1350–1988 (1990), through Pomeranz (2000) and Huang’s2002 review",
+            "source_ids": [
+              "pomeranz_divergence",
+              "huang_pomeranz_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "charles_tilly",
+            "role": "contributor",
+            "context": "Pomeranz explicitly uses his method of comparing positions within a larger connected system.",
+            "works": "Big Structures, Large Processes, Huge Comparisons (1984), through Pomeranz (2000),4/note3 and10",
+            "source_ids": [
+              "pomeranz_divergence"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "joel_mokyr",
+            "role": "contributor",
+            "context": "Pomeranz adapts his proto-industrial labor model while questioning assumptions about trade and relative prices.",
+            "works": "Industrialization in the Low Countries,1795–1850 (1976),132–164, through Pomeranz (2000),21–22",
+            "source_ids": [
+              "pomeranz_divergence"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "strands": [
+          {
+            "id": "world",
+            "title": "World-historical synthesis",
+            "person_ids": [
+              "william_h_mcneill"
+            ],
+            "focus": "Large-scale synthesis differs from tracing specific connections.",
+            "works": "The Rise of the West (1963)",
+            "source_ids": [
+              "global"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "capitalism",
+            "title": "Capitalism and connected societies",
+            "person_ids": [
+              "eric_wolf"
+            ],
+            "focus": "Anthropological and historical inquiry questions isolated societies.",
+            "works": "Europe and the People Without History (1982)",
+            "source_ids": [
+              "wolf_europe"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "connected",
+            "title": "Connected histories",
+            "person_ids": [
+              "sanjay_subrahmanyam"
+            ],
+            "focus": "Circulating merchants, diplomats, religious specialists and ideas join local/regional with supraregional processes; connection preserves historical difference.",
+            "works": "Connected Histories (1997)",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "comparison",
+            "title": "Comparative development",
+            "person_ids": [
+              "kenneth_pomeranz",
+              "r_bin_wong"
+            ],
+            "focus": "Comparisons test explanations of divergent development; not simply a world-system model.",
+            "works": "The Great Divergence (2000); China Transformed (1997)",
+            "source_ids": [
+              "pomeranz_divergence",
+              "wong_china_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "interregional_categories",
+            "title": "Interregional history and historical categories",
+            "focus": "Hodgson contests maps and a single Western mainstream; the later edited collection transmits earlier essays.",
+            "person_ids": [
+              "marshall_hodgson",
+              "edmund_burke_iii"
+            ],
+            "works": "Interrelations (1963); Rethinking World History (1993)",
+            "source_ids": [
+              "hodgson_interrelations_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "premodern_networks",
+            "title": "Earlier world systems and partial integration",
+            "focus": "Abu-Lughod’s intercity networks connect diverse subsystems without making all production globally dependent.",
+            "person_ids": [
+              "janet_abu_lughod",
+              "kn_chaudhuri"
+            ],
+            "works": "Before European Hegemony (1989); Trade and Civilisation (1985)",
+            "source_ids": [
+              "abulughod_system_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "religious_encounters",
+            "title": "Cross-cultural encounters and religious change",
+            "focus": "Conversion, conflict and compromise are historical processes requiring conditions of contact.",
+            "person_ids": [
+              "jerry_bentley"
+            ],
+            "works": "Old World Encounters (1993)",
+            "source_ids": [
+              "bentley_encounters"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "eurasian_states",
+            "title": "Eurasian states, economies and popular action",
+            "focus": "Economic similarities and political differences require distinct comparisons; European categories need historical testing.",
+            "person_ids": [
+              "r_bin_wong",
+              "kenneth_pomeranz"
+            ],
+            "works": "China Transformed (1997); The Great Divergence (2000)",
+            "source_ids": [
+              "wong_china_primary",
+              "pomeranz_divergence"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "imperial_imaginaries",
+            "title": "Imperial networks and political imagination",
+            "focus": "Bayly’s imperial explanations and Gruzinski’s colonial symbolism are different named resources in Subrahmanyam.",
+            "person_ids": [
+              "ca_bayly",
+              "serge_gruzinski",
+              "sanjay_subrahmanyam"
+            ],
+            "works": "Imperial Meridian (1989); La colonisation de l’imaginaire (1988); Connected Histories (1997)",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "nation_narratives",
+            "title": "Competing narratives beyond national unity",
+            "focus": "Duara frames national, local and transnational histories as potentially conflicting rather than one evolutionary story.",
+            "person_ids": [
+              "prasenjit_duara"
+            ],
+            "works": "Rescuing History from the Nation (1995)",
+            "source_ids": [
+              "duara_rescuing"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "comparison_connection",
+            "title": "Comparison and connection in dispute",
+            "focus": "Lieberman’s state comparisons and Subrahmanyam’s circulation are interlocutory projects, not successive universal methods.",
+            "person_ids": [
+              "victor_lieberman",
+              "sanjay_subrahmanyam"
+            ],
+            "works": "1997 Eurasian comparison debate",
+            "source_ids": [
+              "subrahmanyam_connected"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "reciprocal_comparison_resources",
+            "title": "Reciprocal comparison and connected units",
+            "focus": "Pomeranz names Wong’s reciprocal comparison and Tilly’s encompassing comparison as resources. Regions, states and wider systems answer different questions; the method does not require treating Europe and China as internally uniform.",
+            "person_ids": [
+              "kenneth_pomeranz",
+              "r_bin_wong",
+              "charles_tilly"
+            ],
+            "works": "The Great Divergence (2000),7–10",
+            "source_ids": [
+              "pomeranz_divergence"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "protoindustry_trade_limits",
+            "title": "Proto-industry and the limits of trade",
+            "focus": "Pomeranz extends Mokyr’s labor model across regions while questioning unlimited manufacture exports and resource imports at unchanged relative prices. Comparing regions also requires examining their trading partners.",
+            "person_ids": [
+              "kenneth_pomeranz",
+              "joel_mokyr"
+            ],
+            "works": "The Great Divergence (2000),21–23",
+            "source_ids": [
+              "pomeranz_divergence"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "entry_type": "Teaching umbrella",
+        "scope_note": "World synthesis, comparative development, capitalism, and connected histories differ in units, scales, and explanatory assumptions."
+      },
+      "indigenous": {
+        "id": "indigenous",
+        "label": "Indigenous history & decolonizing methods",
+        "date_label": "Earlier examples 1615–1938; 1970s–90s growth · baseline through 2000; selected 2010 intervention",
+        "layer": "historiographical_developments",
+        "period": "period_3",
+        "hunt_core_paradigm": false,
+        "description": "Indigenous historical traditions, community knowledge and scholarly research meet in varied academic practices. Oral histories, family relationships, archival inquiry and collaborations contribute different resources; authority and methods remain situated.",
+        "representative_figures_and_works": "Earlier selected writing includes Guaman Poma (c. 1615/1616), Cusick (checked 1828 edition), Apess (1836), Te Rangikāheke (manuscripts before 1854), and Cree/Tainui interwar work. Twentieth-century examples include McNickle (1949), Deloria (1969), Adams and LaRocque (1975), Dickason (1984, 1992), Sioui (1989), Walker (1990), Kameʻeleihiwa (1992), O’Brien (1997), Wilson (1996), and Smith (1999). See the distinct approaches for works, collaborators and evidence limits. Related scholarship includes Miller, White, Harris and Lutz; Stó:lō field-school practice credits community and university participants. Leddy’s 2010 reflection supplies a separately dated later case.",
+        "source_ids": [
+          "subaltern",
+          "walker_struggle",
+          "obrien_dispossession",
+          "smith_decolonizing",
+          "buck_coming",
+          "deloria_custer",
+          "wilson_indian_history",
+          "cruikshank_life",
+          "rigney_indigenist",
+          "rivera_oral",
+          "cruikshank_legitimacy_primary",
+          "ind126_guaman_manuscript",
+          "ind126_cusick_1828",
+          "ind126_apess_1836",
+          "ind126_warren_1885",
+          "ind126_rangikaheke",
+          "ind126_ahenakew_voices",
+          "ind126_ahenakew_1929",
+          "ind126_jones_tainui",
+          "ind126_buck_interwar",
+          "ind126_dickason_nation",
+          "ind126_dickason_myth",
+          "ind126_dickason_survey",
+          "ind126_adams",
+          "ind126_larocque_book",
+          "ind126_larocque_author",
+          "ind126_sioui_interview",
+          "ind126_sioui_english",
+          "ind126_mcnickle",
+          "ind126_mathews",
+          "ind126_mathews_dates",
+          "ind126_hawaii_land",
+          "ind126_hawaii_trask",
+          "ind126_gilbert",
+          "ind126_ginibi",
+          "ind126_mamani",
+          "ind126_stonechild_waiser",
+          "ind126_larocque_thesis",
+          "ind127_turning",
+          "ind127_fieldschool",
+          "ind127_mchalsie",
+          "ind127_stolo_2016",
+          "ind127_stolo_2018",
+          "ind127_stolo_publications",
+          "ind127_carlson_books",
+          "ind127_lutz_1992",
+          "ind127_miller_1989",
+          "ind127_miller_1996",
+          "ind127_white_1991",
+          "ind127_harris_1997",
+          "ind127_wolfe_1999",
+          "ind127_leddy_2010"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "linda_tuhiwai_smith",
+            "role": "contributor",
+            "context": "Self-determination shapes who asks questions and controls research; her situated account acknowledges critical/feminist resources and differing insider/outsider positions.",
+            "works": "Decolonizing Methodologies (1999)",
+            "source_ids": [
+              "smith_decolonizing"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ranginui_walker",
+            "role": "historian",
+            "context": "Māori historical interpretation and political struggle in Aotearoa New Zealand; one regionally situated contribution.",
+            "works": "Ka Whawhai Tonu Mātou: Struggle Without End (1990)",
+            "source_ids": [
+              "walker_struggle"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_767"
+          },
+          {
+            "person_id": "jean_obrien",
+            "role": "historian",
+            "context": "Natick land loss and strategic kinship/institutional adaptation challenge an uncomplicated disappearance narrative.",
+            "works": "Dispossession by Degrees: Indian Land and Identity in Natick, Massachusetts, 1650–1790 (1997)",
+            "source_ids": [
+              "obrien_dispossession"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_768"
+          },
+          {
+            "person_id": "te_rangi_hiroa",
+            "role": "contributor",
+            "context": "Māori scholarship joins historical interpretation and material-culture research; an earlier trajectory distinct from later methodological manifestos.",
+            "works": "Vikings of the Sunrise (1938); The Coming of the Maori (1949)",
+            "source_ids": [
+              "buck_coming",
+              "ind126_buck_interwar"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "vine_deloria_jr",
+            "role": "critic",
+            "context": "A Native American manifesto challenges social scientists and institutions; its particular arguments await primary chapter review.",
+            "works": "Custer Died for Your Sins (1969)",
+            "source_ids": [
+              "deloria_custer"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_769"
+          },
+          {
+            "person_id": "angela_cavender_wilson",
+            "role": "historian",
+            "context": "Wahpetonwan Dakota historian argues for tribal and family historians’ authority, sustained relationships and careful interpretation of transmitted knowledge.",
+            "works": "“American Indian History or Non-Indian Perceptions…” (1996)",
+            "source_ids": [
+              "wilson_indian_history"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_770"
+          },
+          {
+            "person_id": "julie_cruikshank",
+            "role": "contributor",
+            "context": "Anthropologist and collaborator in a southern Yukon life-history project; the elders are knowledge producers, not anonymous source material. Her 1993 discussion paper examines how institutional settings reshape the interpretation of oral traditions.",
+            "works": "Life Lived Like a Story, with Angela Sidney, Kitty Smith and Annie Ned (1990); Claiming Legitimacy (1993 draft discussion paper)",
+            "source_ids": [
+              "cruikshank_life",
+              "cruikshank_legitimacy_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "angela_sidney",
+            "role": "contributor",
+            "context": "Named elder collaborator whose life narrative helps constitute the Yukon book; not merely a subject of an academic biography.",
+            "works": "Life Lived Like a Story, collaborative volume (1990)",
+            "source_ids": [
+              "cruikshank_life"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "kitty_smith",
+            "role": "contributor",
+            "context": "Named elder collaborator in the southern Yukon narrative project; her contribution is retained separately from the other narrators.",
+            "works": "Life Lived Like a Story, collaborative volume (1990)",
+            "source_ids": [
+              "cruikshank_life"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "annie_ned",
+            "role": "contributor",
+            "context": "Named elder collaborator in the southern Yukon narrative project; collaboration does not imply interchangeable experiences.",
+            "works": "Life Lived Like a Story, collaborative volume (1990)",
+            "source_ids": [
+              "cruikshank_life"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lester_irabinna_rigney",
+            "role": "contributor",
+            "context": "Australian Indigenist research methodology is a distinct bibliographic inclusion; detailed principles await the primary article.",
+            "works": "“Internationalization of an Indigenous Anticolonial Cultural Critique…” (1999)",
+            "source_ids": [
+              "rigney_indigenist"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "silvia_rivera_cusicanqui",
+            "role": "contributor",
+            "context": "Her account of THOA emphasizes Aymara direction and collective discussion; the workshop’s knowledge is not her individual creation.",
+            "works": "“El potencial epistemológico y teórico de la historia oral” (1987)",
+            "source_ids": [
+              "rivera_oral"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "rita_huggins",
+            "role": "contributor",
+            "context": "Her life narrative offers a situated account of displacement from Country and community relationships, voiced alongside her daughter rather than reduced to anonymous testimony.",
+            "works": "With Jackie Huggins, Auntie Rita (1994); with Jackie Huggins and Jane M. Jacobs, Kooramindanjie (1995)",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "huggins_kooramindanjie"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jackie_huggins",
+            "role": "historian",
+            "context": "Historian and collaborator in her mother’s life narrative; the relationship between oral testimony and official histories is visible in Heiss’s contemporary review.",
+            "works": "With Rita Huggins, Auntie Rita (1994); Sister Girl (1998), through Heiss’s review",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "heiss_huggins_1998"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jane_m_jacobs",
+            "role": "contributor",
+            "context": "Named outside collaborator with Rita and Jackie Huggins; coauthorship is documented, while the full article remains unread.",
+            "works": "With Jackie and Rita Huggins, Kooramindanjie (1995)",
+            "source_ids": [
+              "huggins_kooramindanjie",
+              "huggins_archive_finding_aid"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "felipe_guaman_poma",
+            "role": "precursor",
+            "context": "Andean manuscript chronicler addressed a Christian colonial order and royal government. A selected early historical practice, not the founder of a single modern Indigenous method or evidence of a direct line to THOA.",
+            "works": "El primer nueva corónica y buen gobierno (manuscript c. 1615/1616)",
+            "source_ids": [
+              "ind126_guaman_manuscript"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "david_cusick",
+            "role": "precursor",
+            "context": "Tuscarora writer assembled Six Nations histories and translated materials into English; his 1828 preface makes the act of historical writing visible. The checked second edition does not establish an absolute beginning for Haudenosaunee knowledge.",
+            "works": "Sketches of Ancient History of the Six Nations (checked second edition, 1828)",
+            "source_ids": [
+              "ind126_cusick_1828"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_apess",
+            "role": "precursor",
+            "context": "His historical address reinterprets King Philip’s War, criticizes colonial violence and questions Pilgrim commemoration through a Christian moral argument. This is an earlier intervention in historical narration, not a claim that later writers borrowed directly from him.",
+            "works": "Eulogy on King Philip (1836), selected paragraphs",
+            "source_ids": [
+              "ind126_apess_1836"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_w_warren",
+            "role": "precursor",
+            "context": "Collected histories from relatives and tribal leaders and addressed a nineteenth-century white readership. The publisher’s account retains his goals and limitations; recording oral knowledge is not equivalent to the later decolonizing programme.",
+            "works": "History of the Ojibway People (first publication, 1885)",
+            "source_ids": [
+              "ind126_warren_1885"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "wiremu_maihi_te_rangikaheke",
+            "role": "precursor",
+            "context": "Māori manuscripts written before 1854 connect genealogy, historical narration and land. Te Ara documents Grey’s unacknowledged reuse and alterations; the Indigenous author is retained alongside the history of colonial publication.",
+            "works": "Historical and genealogical manuscripts before 1854; material reused in Grey’s publications, 1853–55",
+            "source_ids": [
+              "ind126_rangikaheke"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "edward_ahenakew",
+            "role": "historian",
+            "context": "Recorded Chief Thunderchild’s narratives in Cree in 1923 and wrote through Old Keyam’s literary voice. The 1973 book passed through Ruth M. Buck’s editing; composition, narration and publication are distinct. His 1929 folklore article supplies an interwar publication milestone.",
+            "works": "Thunderchild recordings (1923); Cree Trickster Tales (1929); Voices of the Plains Cree (1973, edited by Ruth M. Buck)",
+            "source_ids": [
+              "ind126_ahenakew_voices",
+              "ind126_ahenakew_1929"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_771"
+          },
+          {
+            "person_id": "chief_thunderchild",
+            "role": "contributor",
+            "context": "Named Plains Cree narrator whose histories Ahenakew recorded in 1923. His knowledge-producing role is separate from Ahenakew’s writing and the later editor’s selection; he is not an anonymous informant or the fictional Old Keyam.",
+            "works": "Narratives recorded in 1923, published in Part I of Voices of the Plains Cree (1973)",
+            "source_ids": [
+              "ind126_ahenakew_voices"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "stan_cuthand",
+            "role": "critic",
+            "context": "The 1995 introduction discusses Cree interpretation and challenges the editor’s exclusion of a story he translated. This supplies a specific criticism of editorial mediation, distinct from Thunderchild’s narration and Ahenakew’s authorship.",
+            "works": "Introduction to the 1995 edition of Voices of the Plains Cree, especially p. xii",
+            "source_ids": [
+              "ind126_ahenakew_voices"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "pei_te_hurinui_jones",
+            "role": "historian",
+            "context": "Recorded Tainui genealogies and historical traditions in Māori and English. Te Ara distinguishes his 1929 publication, English manuscript by about 1936, contested reuse by Kelly and the 1995 posthumous history.",
+            "works": "Māhinārangi (1929); English historical manuscript by c. 1936; Ngā iwi o Tainui (1995, posthumous)",
+            "source_ids": [
+              "ind126_jones_tainui"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "olive_patricia_dickason",
+            "role": "historian",
+            "context": "Her historical scholarship examines European representations and places First Peoples within a broad Canadian historical synthesis. MNO recognizes her Métis contribution. She is one major historian within a wider field, not its sole origin.",
+            "works": "The Myth of the Savage (1984); Canada’s First Nations (1992)",
+            "source_ids": [
+              "ind126_dickason_nation",
+              "ind126_dickason_myth",
+              "ind126_dickason_survey"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_772"
+          },
+          {
+            "person_id": "howard_adams",
+            "role": "historian",
+            "context": "Métis scholar’s critique of Canadian colonialism joins historical interpretation and Marxist politics. The institutional biography dates his doctorate and university appointment to 1966; detailed book arguments remain outside this description-level inclusion.",
+            "works": "Prison of Grass: Canada from a Native Point of View (1975)",
+            "source_ids": [
+              "ind126_adams"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_773"
+          },
+          {
+            "person_id": "emma_larocque",
+            "role": "critic",
+            "context": "In her 1999 dissertation, relates her 1974 research on stereotypes in Alberta history and social-studies curricula to Defeathering the Indian. Her pedagogical and resistance interpretation supplies a distinct historiographical intervention alongside Adams; the two are not treated as one doctrine.",
+            "works": "Defeathering the Indian (1975); Native Writers Resisting Colonizing Practices… (1999), selected passage",
+            "source_ids": [
+              "ind126_larocque_book",
+              "ind126_larocque_author",
+              "ind126_larocque_thesis"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "georges_e_sioui",
+            "role": "historian",
+            "context": "In his 1991 interview, explains autohistory as bringing Indigenous self-interpretation and transmitted traditions into historical discourse. His moral and philosophical proposal is situated; its account of Amerindian values does not define every nation.",
+            "works": "Pour une autohistoire amérindienne (1989); author interview (1991); English translation by Sheila Fischman (1992)",
+            "source_ids": [
+              "ind126_sioui_interview",
+              "ind126_sioui_english"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_774"
+          },
+          {
+            "person_id": "darcy_mcnickle",
+            "role": "historian",
+            "context": "Earlier historical synthesis and institution-building: the Newberry finding aid records his 1949 work and participation in creating its history centre in 1972. Institutional and bibliographic evidence does not establish particular book arguments or a universal field foundation.",
+            "works": "They Came Here First: The Epic of the American Indian (1949); Newberry history centre (1972)",
+            "source_ids": [
+              "ind126_mcnickle"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_775"
+          },
+          {
+            "person_id": "john_joseph_mathews",
+            "role": "historian",
+            "context": "Osage historical writing combines oral accounts, documentary history and community experience in the publisher’s description. The 1932 work and later 1961 history show an earlier trajectory; their genres and historical questions remain distinct.",
+            "works": "Wah’Kon-Tah (1932); The Osages: Children of the Middle Waters (1961)",
+            "source_ids": [
+              "ind126_mathews",
+              "ind126_mathews_dates"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lilikala_kameeleihiwa",
+            "role": "historian",
+            "context": "Publisher describes Hawaiian-language historical inquiry into the Māhele and land relations and names earlier Hawaiian intellectual traditions. Hawaiʻi’s historical trajectory is distinct from Māori and continental North American examples.",
+            "works": "Native Land and Foreign Desires (1992)",
+            "source_ids": [
+              "ind126_hawaii_land"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "haunani_kay_trask",
+            "role": "critic",
+            "context": "Essays connect Hawaiian colonial history, sovereignty and criticism of racism and gender discrimination. The publisher distinguishes the 1993 original and 1999 revised edition; later additions are not assigned to the earlier book.",
+            "works": "From a Native Daughter (1993; revised 1999)",
+            "source_ids": [
+              "ind126_hawaii_trask"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "kevin_gilbert",
+            "role": "contributor",
+            "context": "Interview collection brings Aboriginal narrators’ experiences into print. His interviewer/compiler credit does not make him the sole producer of their knowledge; narrator-specific and methodological claims require the interviews.",
+            "works": "Living Black: Blacks Talk to Kevin Gilbert (1977)",
+            "source_ids": [
+              "ind126_gilbert"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ruby_langford_ginibi",
+            "role": "contributor",
+            "context": "Life writing offers a situated history of family, work, movement and discrimination. The ANU account supports a distinct historical narrative; autobiography is not interchangeable with all transmitted oral traditions.",
+            "works": "Don’t Take Your Love to Town (1988)",
+            "source_ids": [
+              "ind126_ginibi"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "carlos_mamani_condori",
+            "role": "historian",
+            "context": "The catalogue identifies a local historical study of Aymara land and political struggles through Nina Qhispi’s biography. Its dates describe the historical subject. This inclusion does not infer the book’s method or assign THOA’s collective knowledge to one author.",
+            "works": "Taraqu, 1866–1935 (published 1991)",
+            "source_ids": [
+              "ind126_mamani"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "blair_stonechild",
+            "role": "historian",
+            "context": "Coauthor of a Saskatchewan historical study of First Nations and the 1885 conflict. Bill Waiser’s outside coauthor credit is explicit. The bibliographic inclusion does not constitute a chapter-level check of its historical interpretations.",
+            "works": "With Bill Waiser, Loyal Till Death: Indians and the North-West Rebellion (1997)",
+            "source_ids": [
+              "ind126_stonechild_waiser"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_lutz",
+            "role": "historian",
+            "context": "Labour-history scholarship and university teaching are distinct contributions; field-school co-instruction joined community expertise.",
+            "works": "After the Fur Trade (1992); Stó:lō Ethnohistory Field School (first class 1998)",
+            "source_ids": [
+              "ind127_lutz_1992",
+              "ind127_fieldschool",
+              "ind127_turning"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "keith_thor_carlson",
+            "role": "historian",
+            "context": "Stó:lō staff historian and field-school co-instructor; contributed to a community-supported research partnership.",
+            "works": "You Are Asked to Witness (editor, 1997); field-school planning (1997), first class (1998)",
+            "source_ids": [
+              "ind127_carlson_books",
+              "ind127_turning",
+              "ind127_fieldschool"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "albert_sonny_mchalsie",
+            "role": "contributor",
+            "context": "Stó:lō historian and cultural educator; taught and mentored field-school students from 1998.",
+            "works": "Stó:lō Ethnohistory Field School (1998); later place-name teaching account (2016)",
+            "source_ids": [
+              "ind127_mchalsie",
+              "ind127_stolo_2016",
+              "ind127_fieldschool"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "david_m_schaepe",
+            "role": "contributor",
+            "context": "Archaeologist and Stó:lō research staff participant in shaping the proposed field-school topics.",
+            "works": "Community consultation for field-school planning (1997), recalled in Turning the Page (2009)",
+            "source_ids": [
+              "ind127_turning"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "david_smith_stolo",
+            "role": "contributor",
+            "context": "Stó:lō archivist named in the planning account; source-specific local record with namesakes unresolved.",
+            "works": "Community consultation for field-school planning (1997), recalled in Turning the Page (2009)",
+            "source_ids": [
+              "ind127_turning"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "james_rodger_miller",
+            "role": "historian",
+            "context": "Native–newcomer and residential-school histories; the latter combines archives and interviews in its publisher description.",
+            "works": "Skyscrapers Hide the Heavens (1989); Shingwauk’s Vision (1996)",
+            "source_ids": [
+              "ind127_miller_1989",
+              "ind127_miller_1996"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "richard_white",
+            "role": "historian",
+            "context": "Great Lakes cultural interaction and historical relationships; the middle ground is a situated interpretation.",
+            "works": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650–1815 (1991)",
+            "source_ids": [
+              "ind127_white_1991"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "cole_harris",
+            "role": "historian",
+            "context": "Colonial geographical change and displacement in British Columbia; preserves his existing historical-geography profile.",
+            "works": "The Resettlement of British Columbia (1997; includes chapters with Robert Galois and David Demeritt)",
+            "source_ids": [
+              "ind127_harris_1997"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "patrick_wolfe",
+            "role": "comparison",
+            "context": "Related settler-colonial and anthropological scholarship, admitted as a bibliographic connection.",
+            "works": "Settler Colonialism and the Transformation of Anthropology (1999)",
+            "source_ids": [
+              "ind127_wolfe_1999"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lianne_leddy",
+            "role": "historian",
+            "context": "Historical research within her own Serpent River community joins scholarly and family relationships.",
+            "works": "Interviewing Nookomis and Other Reflections (2010)",
+            "source_ids": [
+              "ind127_leddy_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "gertrude_lewis",
+            "role": "contributor",
+            "context": "Leddy’s grandmother and historical-knowledge contributor; shaped the interview’s recording and transcription.",
+            "works": "Conversations discussed in Interviewing Nookomis (2010)",
+            "source_ids": [
+              "ind127_leddy_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "susan_neylan",
+            "role": "contributor",
+            "context": "Acknowledged adviser who introduced collaborative research questions; mentorship is distinct from authorship.",
+            "works": "Acknowledgement in Interviewing Nookomis (2010), p. 1 note 1",
+            "source_ids": [
+              "ind127_leddy_2010"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "winona_wheeler",
+            "role": "contributor",
+            "context": "Leddy cites her relational account of oral history; the cited chapter itself remains unread.",
+            "works": "Reflections on the Social Relations of Indigenous Oral Histories (2005), as cited by Leddy (2010)",
+            "source_ids": [
+              "ind127_leddy_2010"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "A selective grouping of independently rooted Indigenous historical practices and decolonizing research, with Andean, Haudenosaunee, Ojibwe, Cree, Métis, Wendat, Māori, Osage, Native Hawaiian, Yukon and Australian examples. Earlier writing, community knowledge, academic historical scholarship and decolonizing methodology have different histories. Community historians, academic historians and outside collaborators have different positions. Neither anthropology nor European theory is their common origin; no selection stands for every nation or protocol. Membership is a contextual intellectual contribution, not a binary Indigenous-identity classification. Journal counts are venue-based publication proxies and cannot date the origins of these practices or identify Indigenous authorship. Academic Indigenous history includes documented collaborations with scholars working across historical, anthropological and geographical inquiries. Shared research subjects do not establish intellectual descent. Later source dates are separate from earlier events; only Leddy’s 2010 article is accepted here as a selected post-2000 intervention.",
+        "strands": [
+          {
+            "id": "maori",
+            "title": "Māori historical interpretation",
+            "person_ids": [
+              "ranginui_walker"
+            ],
+            "focus": "Historical struggle and self-determination in Aotearoa New Zealand; the original 1990 project is distinguished from later additions.",
+            "works": "Ka Whawhai Tonu Mātou (1990)",
+            "source_ids": [
+              "walker_struggle"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "land",
+            "title": "Land, identity and colonial change",
+            "person_ids": [
+              "jean_obrien"
+            ],
+            "focus": "Natick land loss, kinship and the making of an extinction narrative.",
+            "works": "Dispossession by Degrees (1997)",
+            "source_ids": [
+              "obrien_dispossession"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "methods",
+            "title": "Authority over research",
+            "person_ids": [
+              "linda_tuhiwai_smith"
+            ],
+            "focus": "Self-determination affects questions, methods and knowledge ownership; researcher positions differ within as well as across communities.",
+            "works": "Decolonizing Methodologies (1999)",
+            "source_ids": [
+              "smith_decolonizing"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "earlier_ethnology",
+            "title": "Māori scholarship and material culture",
+            "focus": "An earlier historical/anthropological trajectory, not a precursor stage superseded by one later method.",
+            "person_ids": [
+              "te_rangi_hiroa"
+            ],
+            "works": "Vikings of the Sunrise (1938); The Coming of the Maori (1949)",
+            "source_ids": [
+              "buck_coming",
+              "ind126_buck_interwar"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "institutional_criticism",
+            "title": "Criticism of institutions and researchers",
+            "focus": "Deloria’s manifesto supplies a distinct Native American intervention; specific chapters remain to be read.",
+            "person_ids": [
+              "vine_deloria_jr"
+            ],
+            "works": "Custer Died for Your Sins (1969)",
+            "source_ids": [
+              "deloria_custer"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "tribal_family",
+            "title": "Tribal and family historians",
+            "focus": "Wilson connects historical interpretation to sustained relationships and authority to share particular knowledge.",
+            "person_ids": [
+              "angela_cavender_wilson"
+            ],
+            "works": "“American Indian History or Non-Indian Perceptions…” (1996)",
+            "source_ids": [
+              "wilson_indian_history"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "yukon_collaboration",
+            "title": "Collaborative Yukon life narratives",
+            "focus": "Three elders and an anthropologist collaborate; life interviewing and transmitted traditions remain distinct practices.",
+            "person_ids": [
+              "angela_sidney",
+              "kitty_smith",
+              "annie_ned",
+              "julie_cruikshank"
+            ],
+            "works": "Life Lived Like a Story (1990)",
+            "source_ids": [
+              "cruikshank_life"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "indigenist",
+            "title": "Australian Indigenist methodology",
+            "focus": "Rigney’s 1999 article broadens the methodological bibliography; detailed arguments await primary reading.",
+            "person_ids": [
+              "lester_irabinna_rigney"
+            ],
+            "works": "“Internationalization…” (1999)",
+            "source_ids": [
+              "rigney_indigenist"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "andean",
+            "title": "Aymara direction and Andean oral history",
+            "focus": "Rivera describes THOA’s collective work and community review; research priorities do not belong solely to outside intellectuals.",
+            "person_ids": [
+              "silvia_rivera_cusicanqui"
+            ],
+            "works": "“El potencial epistemológico…” (1987); THOA’s Santos Marka T’ula project (1984), discussed there",
+            "source_ids": [
+              "rivera_oral"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "huggins_collaborative_history",
+            "title": "Distinct voices in collaborative history",
+            "focus": "Rita and Jackie Huggins’s life-history collaboration and their coauthored place article with Jacobs retain different author positions. Heiss’s 1998 review foregrounds oral testimony and historical authority.",
+            "person_ids": [
+              "rita_huggins",
+              "jackie_huggins",
+              "jane_m_jacobs"
+            ],
+            "works": "Auntie Rita (1994); Kooramindanjie (1995); Heiss on Sister Girl (1998)",
+            "source_ids": [
+              "huggins_auntie_rita",
+              "huggins_kooramindanjie",
+              "heiss_huggins_1998"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "narrative_institutions",
+            "title": "Narratives, place and institutional interpretation",
+            "focus": "Cruikshank’s 1993 discussion contrasts community uses of tradition with institutional demands. Her account of Gitksan and Wet’suwet’en testimony questions treating performed histories only as containers of facts.",
+            "person_ids": [
+              "julie_cruikshank"
+            ],
+            "works": "Claiming Legitimacy (1993), selected sections",
+            "source_ids": [
+              "cruikshank_legitimacy_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "early_andean_chronicle",
+            "title": "Early Andean manuscript history",
+            "focus": "An early colonial-period historical manuscript, situated in a Christian and royal political framework. It demonstrates earlier Indigenous-authored historical writing without making a modern field or THOA descend directly from it.",
+            "person_ids": [
+              "felipe_guaman_poma"
+            ],
+            "works": "El primer nueva corónica y buen gobierno (manuscript c. 1615/1616)",
+            "source_ids": [
+              "ind126_guaman_manuscript"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "haudenosaunee_print",
+            "title": "Haudenosaunee histories in print",
+            "focus": "Cusick’s preface presents gathering materials and translation as historical work. The 1828 second edition is a verified witness; printed publication is not the origin of the traditions it recounts.",
+            "person_ids": [
+              "david_cusick"
+            ],
+            "works": "Sketches of Ancient History of the Six Nations (checked second edition, 1828)",
+            "source_ids": [
+              "ind126_cusick_1828"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "anticolonial_commemoration",
+            "title": "Historical argument and colonial commemoration",
+            "focus": "Apess challenges colonial historical judgments and Pilgrim celebration. His Christian moral argument is an earlier intervention; no borrowing by later theorists is asserted.",
+            "person_ids": [
+              "william_apess"
+            ],
+            "works": "Eulogy on King Philip (1836), selected paragraphs",
+            "source_ids": [
+              "ind126_apess_1836"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "ojibwe_written_history",
+            "title": "Ojibwe oral knowledge and written history",
+            "focus": "Warren’s history draws on relatives and tribal leaders while addressing white readers. The publisher’s discussion retains the author’s nineteenth-century assumptions and limitations.",
+            "person_ids": [
+              "william_w_warren"
+            ],
+            "works": "History of the Ojibway People (first publication, 1885)",
+            "source_ids": [
+              "ind126_warren_1885"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "maori_manuscript_authorship",
+            "title": "Māori manuscript authorship and colonial publication",
+            "focus": "Te Rangikāheke’s genealogy and historical narration survive within manuscripts and Grey’s altered publications. Attribution reveals an Indigenous author behind texts circulated under a governor’s name.",
+            "person_ids": [
+              "wiremu_maihi_te_rangikaheke"
+            ],
+            "works": "Historical and genealogical manuscripts before 1854; material reused in Grey’s publications, 1853–55",
+            "source_ids": [
+              "ind126_rangikaheke"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "cree_interwar",
+            "title": "Cree narration and interwar writing",
+            "focus": "Thunderchild’s narration, Ahenakew’s 1923 recording and literary writing, his 1929 publication, and the 1973 edited book carry different dates and authorial roles. Cuthand’s 1995 criticism makes editorial selection visible.",
+            "person_ids": [
+              "chief_thunderchild",
+              "edward_ahenakew",
+              "stan_cuthand"
+            ],
+            "works": "1923 narration/recording; Cree Trickster Tales (1929); Voices of the Plains Cree (1973; 1995 introduction)",
+            "source_ids": [
+              "ind126_ahenakew_voices",
+              "ind126_ahenakew_1929"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "tainui_historical_writing",
+            "title": "Tainui genealogies and historical writing",
+            "focus": "Jones’s Māori-language historical work and the history of its publication distinguish interwar research from the 1995 posthumous volume. The institutional biography describes disputed reuse of an earlier English manuscript.",
+            "person_ids": [
+              "pei_te_hurinui_jones"
+            ],
+            "works": "Māhinārangi (1929); English historical manuscript by c. 1936; Ngā iwi o Tainui (1995, posthumous)",
+            "source_ids": [
+              "ind126_jones_tainui"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "canadian_historical_synthesis",
+            "title": "Canadian historical synthesis and regional inquiry",
+            "focus": "Dickason’s studies of representations and historical synthesis sit alongside Stonechild and Waiser’s Saskatchewan study. These are different scales and collaborations, not one doctrinal programme.",
+            "person_ids": [
+              "olive_patricia_dickason",
+              "blair_stonechild"
+            ],
+            "works": "The Myth of the Savage (1984); Canada’s First Nations (1992); Stonechild and Waiser, Loyal Till Death (1997)",
+            "source_ids": [
+              "ind126_dickason_myth",
+              "ind126_dickason_survey",
+              "ind126_stonechild_waiser"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "metis_representation_criticism",
+            "title": "Métis scholarship and criticism of representation",
+            "focus": "Adams’s colonial and class interpretation and LaRocque’s criticism of representation broaden the 1970s bibliography. Her 1999 dissertation p. 34 explicitly connects the earlier book to curriculum research and resistance. These are distinct intellectual positions.",
+            "person_ids": [
+              "howard_adams",
+              "emma_larocque"
+            ],
+            "works": "Prison of Grass (1975); Defeathering the Indian (1975)",
+            "source_ids": [
+              "ind126_adams",
+              "ind126_larocque_book",
+              "ind126_larocque_author",
+              "ind126_larocque_thesis"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "autohistory",
+            "title": "Wendat autohistory and historical interpretation",
+            "focus": "Sioui’s author interview supplies an explicit historiographical proposal about self-interpretation and oral transmission. His moral account remains attributed and situated; French and English publication dates are distinct.",
+            "person_ids": [
+              "georges_e_sioui"
+            ],
+            "works": "Pour une autohistoire amérindienne (1989); author interview (1991); English translation by Sheila Fischman (1992)",
+            "source_ids": [
+              "ind126_sioui_interview",
+              "ind126_sioui_english"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "native_history_institutions",
+            "title": "Historical synthesis and Native history institutions",
+            "focus": "McNickle’s 1949 work and role in creating the Newberry centre in 1972 establish an earlier bibliography and institutional contribution. Neither the centre nor a university is treated as the origin of Indigenous historical knowledge.",
+            "person_ids": [
+              "darcy_mcnickle"
+            ],
+            "works": "They Came Here First: The Epic of the American Indian (1949); Newberry history centre (1972)",
+            "source_ids": [
+              "ind126_mcnickle"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "osage_history",
+            "title": "Osage historical writing across the century",
+            "focus": "Mathews’s 1932 work and 1961 history supply earlier and mid-century examples. The publisher describes oral and documentary historical resources; detailed methodological claims await the works.",
+            "person_ids": [
+              "john_joseph_mathews"
+            ],
+            "works": "Wah’Kon-Tah (1932); The Osages: Children of the Middle Waters (1961)",
+            "source_ids": [
+              "ind126_mathews",
+              "ind126_mathews_dates"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "hawaiian_historical_authority",
+            "title": "Hawaiian land history and sovereignty",
+            "focus": "Kameʻeleihiwa’s land history and Trask’s political essays provide distinct Hawaiian contributions. Hawaiian-language historiography has earlier authors; neither regional programme is a subset of the Māori examples.",
+            "person_ids": [
+              "lilikala_kameeleihiwa",
+              "haunani_kay_trask"
+            ],
+            "works": "Native Land and Foreign Desires (1992); From a Native Daughter (1993; revised 1999)",
+            "source_ids": [
+              "ind126_hawaii_land",
+              "ind126_hawaii_trask"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "aboriginal_life_writing",
+            "title": "Aboriginal interviews and life writing",
+            "focus": "Gilbert’s interviews and Ginibi’s autobiography broaden the historical bibliography beyond university monographs. Their forms and authorial positions differ from each other and from community-transmitted oral histories.",
+            "person_ids": [
+              "kevin_gilbert",
+              "ruby_langford_ginibi"
+            ],
+            "works": "Living Black (1977); Don’t Take Your Love to Town (1988)",
+            "source_ids": [
+              "ind126_gilbert",
+              "ind126_ginibi"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "aymara_local_history",
+            "title": "Aymara political and local history",
+            "focus": "Mamani’s catalogued 1991 study complements the existing collective-history strand. The period 1866–1935 belongs to the subject, not its publication or the foundation of THOA.",
+            "person_ids": [
+              "carlos_mamani_condori"
+            ],
+            "works": "Taraqu, 1866–1935 (published 1991)",
+            "source_ids": [
+              "ind126_mamani"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "stolo_community_university",
+            "title": "Stó:lō community–university historical practice",
+            "focus": "Community priorities, cultural teaching, archives and university instruction contribute different resources. Planning in 1997 preceded the first class in 1998; elders, hosts and students also participated.",
+            "person_ids": [
+              "albert_sonny_mchalsie",
+              "david_m_schaepe",
+              "david_smith_stolo",
+              "keith_thor_carlson",
+              "john_lutz"
+            ],
+            "works": "Field-school planning (1997); first class (1998); later accounts (2009, 2011, 2016)",
+            "source_ids": [
+              "ind127_turning",
+              "ind127_fieldschool",
+              "ind127_mchalsie",
+              "ind127_stolo_2016"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "indigenous_labour_exchange",
+            "title": "Indigenous labour and exchange",
+            "focus": "A labour-history inquiry into Indigenous economic participation; distinct from a methodological origin claim.",
+            "person_ids": [
+              "john_lutz"
+            ],
+            "works": "After the Fur Trade (1992)",
+            "source_ids": [
+              "ind127_lutz_1992"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "native_newcomer_institutions",
+            "title": "Native–newcomer and institutional histories",
+            "focus": "Historical synthesis and residential-school inquiry connect policy, institutions and Indigenous experiences.",
+            "person_ids": [
+              "james_rodger_miller"
+            ],
+            "works": "Skyscrapers Hide the Heavens (1989); Shingwauk’s Vision (1996)",
+            "source_ids": [
+              "ind127_miller_1989",
+              "ind127_miller_1996"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "middle_ground",
+            "title": "Middle-ground interpretation",
+            "focus": "Cultural interaction exceeds a simple assimilation/persistence account. Great Lakes circumstances do not supply a universal account of colonization.",
+            "person_ids": [
+              "richard_white"
+            ],
+            "works": "The Middle Ground (1991)",
+            "source_ids": [
+              "ind127_white_1991"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_geography",
+            "title": "Colonial geography and displacement",
+            "focus": "Historical geography examines the colonial transformation of British Columbia and its effects on land and society.",
+            "person_ids": [
+              "cole_harris"
+            ],
+            "works": "The Resettlement of British Columbia (1997)",
+            "source_ids": [
+              "ind127_harris_1997"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "settler_colonial_interlocutor",
+            "title": "Related settler-colonial scholarship",
+            "focus": "A related bibliography on settler colonialism and anthropology. Book arguments and transmission remain outside this metadata-level inclusion.",
+            "person_ids": [
+              "patrick_wolfe"
+            ],
+            "works": "Settler Colonialism and the Transformation of Anthropology (1999)",
+            "source_ids": [
+              "ind127_wolfe_1999"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "serpent_river_collaboration",
+            "title": "Community and academic relationships at Serpent River",
+            "focus": "Family knowledge, scholarly dialogue and mentorship shape historical practice; the roles remain distinct.",
+            "person_ids": [
+              "lianne_leddy",
+              "gertrude_lewis",
+              "susan_neylan",
+              "winona_wheeler",
+              "angela_cavender_wilson",
+              "linda_tuhiwai_smith",
+              "julie_cruikshank"
+            ],
+            "works": "Interviewing Nookomis and Other Reflections (2010)",
+            "source_ids": [
+              "ind127_leddy_2010"
+            ],
+            "basis": "editorial_distinction",
+            "intervention_year": 2010,
+            "work_publication_year": 2010,
+            "participant_credits": [
+              {
+                "name": "Gertrude Lewis",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              },
+              {
+                "name": "Valerie Commanda",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              },
+              {
+                "name": "Arnelda Jacobs",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              },
+              {
+                "name": "Betty Jacobs",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              },
+              {
+                "name": "Terry Jacobs",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              },
+              {
+                "name": "Peter Johnston",
+                "role": "named knowledge contributor",
+                "locator": "p. 1 note 1"
+              }
+            ],
+            "citation_note": "Leddy cites Wheeler (2005), Smith (1999), Wilson (1998) and Cruikshank with the three Yukon elders (1991 edition), among others. Citation is documented engagement, not proof of sole influence or full reading of those cited works.",
+            "work_ids": [
+              "work:ind127:leddy_2010"
+            ],
+            "claim_ids": [
+              "claim:ind127:leddy_practice",
+              "claim:ind127:leddy_recording"
+            ]
+          }
+        ],
+        "date_span": {
+          "start": 1615,
+          "end": 2000,
+          "start_kind": "earlier_roots",
+          "end_kind": "coverage_limit",
+          "precision": "approximate",
+          "basis": "c. 1615/1616 dates the earliest selected manuscript witness, not the origin of Indigenous historical knowledge or a common academic field. Selected nineteenth-century and interwar practices precede the 1970s–90s academic/methodological growth. The baseline selection is through 2000; a separately marked 2010 article supplies one selected later intervention."
+        },
+        "extension_coverage": {
+          "status": "partial_accepted",
+          "baseline_through": 2000,
+          "research_cutoff": "2026-10-10",
+          "field_review_complete": false,
+          "publication_years": [
+            2010
+          ],
+          "work_ids": [
+            "work:ind127:leddy_2010"
+          ],
+          "claim_ids": [
+            "claim:ind127:leddy_authored",
+            "claim:ind127:leddy_practice",
+            "claim:ind127:leddy_recording",
+            "claim:ind127:lewis_contribution",
+            "claim:ind127:neylan_mentorship"
+          ],
+          "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json"
+        }
+      },
+      "science": {
+        "id": "science",
+        "label": "History of science",
+        "date_label": "Earlier roots · History of Science Society founded 1924 · later approaches · coverage through 2000",
+        "layer": "enduring_fields_and_genres",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Studies scientific knowledge, practices, instruments, institutions, and their historical settings. Histories of ideas, social and cultural histories, and material approaches coexist. The field predates Kuhn and STS, which transform parts of its questions without founding or exhausting it.",
+        "representative_figures_and_works": "George Sarton; Alexandre Koyré, Études galiléennes (1939); Robert K. Merton; Thomas Kuhn, The Structure of Scientific Revolutions (1962); Steven Shapin and Simon Schaffer, Leviathan and the Air-Pump (1985). Yates and Foucault provide additional, distinct contributions; they do not substitute for these historians and programmes. Further approaches include Metzger’s history of chemistry (1923), Maier’s medieval natural philosophy (1949), Fleck’s scientific fact (1935), Needham’s collaborative Chinese science project (from 1954), Rossiter’s Women Scientists in America (1982), and Merchant’s The Death of Nature (1980).",
+        "source_ids": [
+          "science_history",
+          "kuhn",
+          "sts",
+          "kuhn_structure",
+          "shapin_schaffer",
+          "poskett_science",
+          "sarton_introduction",
+          "kuhn_preface",
+          "needham_project",
+          "rossiter_scientists",
+          "merchant_oral_history",
+          "prakash_reason",
+          "yates_memory_primary",
+          "vickers_occult",
+          "foucault_archaeology_primary",
+          "foucault_subject_power_primary",
+          "goldstein_aha_profile",
+          "goldstein_chicago_profile",
+          "daston_galison_image",
+          "galison_image_logic",
+          "needham_collaborator_credits",
+          "rashed_arabic_mathematics",
+          "kumar_science_raj_1995",
+          "hountondji_endogenous",
+          "feierman_janzen_healing",
+          "kuhn_discovery_debate",
+          "popper_normal_debate",
+          "lakatos_science_pseudoscience",
+          "pesic_proteus_1999",
+          "merchant_scientific_retrospective",
+          "merchant_death_excerpt",
+          "hss_founding_date"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "george_sarton",
+            "role": "historian",
+            "context": "Organizes an extensive chronological history of science, including ancient and medieval learning.",
+            "works": "Introduction to the History of Science (1927–1948)",
+            "source_ids": [
+              "science_history",
+              "kuhn",
+              "sts",
+              "sarton_introduction"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "kuhn",
+            "role": "historian",
+            "context": "History and philosophy of science.",
+            "works": "The Structure of Scientific Revolutions (1962)",
+            "source_ids": [
+              "kuhn_structure",
+              "kuhn"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_131"
+          },
+          {
+            "person_id": "steven_shapin",
+            "role": "historian",
+            "context": "Studies the production and credibility of experimental knowledge in relation to social order.",
+            "works": "Leviathan and the Air-Pump (with Simon Schaffer, 1985)",
+            "source_ids": [
+              "shapin_schaffer"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "simon_schaffer",
+            "role": "historian",
+            "context": "Studies the production and credibility of experimental knowledge in relation to social order.",
+            "works": "Leviathan and the Air-Pump (with Steven Shapin, 1985)",
+            "source_ids": [
+              "shapin_schaffer"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alexandre_koyre",
+            "role": "historian",
+            "context": "Reconstructs changing scientific concepts and intellectual frameworks.",
+            "works": "Études galiléennes (1939)",
+            "source_ids": [
+              "poskett_science"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robert_k_merton",
+            "role": "contributor",
+            "context": "Sociological and historical inquiry connects scientific activity to social and religious contexts.",
+            "works": "Science, Technology and Society in Seventeenth-Century England",
+            "source_ids": [
+              "poskett_science"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "helene_metzger",
+            "role": "historian",
+            "context": "Historian of chemistry whose reconstruction of earlier ideas Kuhn acknowledges.",
+            "works": "Les doctrines chimiques en France du début du XVIIe à la fin du XVIIIe siècle (1923)",
+            "source_ids": [
+              "kuhn_preface"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "anneliese_maier",
+            "role": "historian",
+            "context": "Medieval natural philosophy is among Kuhn’s acknowledged historical resources.",
+            "works": "Die Vorläufer Galileis im 14. Jahrhundert (1949)",
+            "source_ids": [
+              "kuhn_preface"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ludwik_fleck",
+            "role": "contributor",
+            "context": "Physician and theorist whose study prompts Kuhn to consider scientific communities.",
+            "works": "Entstehung und Entwicklung einer wissenschaftlichen Tatsache (1935)",
+            "source_ids": [
+              "kuhn_preface"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "joseph_needham",
+            "role": "historian",
+            "context": "Studies Chinese scientific and technical achievements in social context through an extensive collaborative project.",
+            "works": "Science and Civilisation in China (from 1954; pre-2001 volumes within this map)",
+            "source_ids": [
+              "needham_project"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "margaret_rossiter",
+            "role": "historian",
+            "context": "Recovers women’s scientific work and the institutional barriers shaping careers in the United States.",
+            "works": "Women Scientists in America: Struggles and Strategies to 1940 (1982)",
+            "source_ids": [
+              "rossiter_scientists"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "carolyn_merchant",
+            "role": "historian",
+            "context": "Connects histories of science, women and environments; her interpretation remains an argument to examine.",
+            "works": "The Death of Nature: Women, Ecology, and the Scientific Revolution (1980)",
+            "source_ids": [
+              "merchant_oral_history"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "gyan_prakash",
+            "role": "historian",
+            "context": "Brings colonial classification and national claims about science into historical inquiry.",
+            "works": "Another Reason (1999)",
+            "source_ids": [
+              "prakash_reason"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "frances_yates",
+            "role": "historian",
+            "context": "Argues that mnemonic ordering and combinatory arts were transformed in projects for new knowledge. Her strongest causal and transmission claims remain hypotheses for assessment.",
+            "works": "The Art of Memory (1966), chapter XVII, pp. 368–389",
+            "source_ids": [
+              "yates_memory_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paolo_rossi",
+            "role": "historian",
+            "context": "Yates explicitly uses his research while distinguishing their approaches and qualifying agreement over Bacon.",
+            "works": "Clavis universalis (1960), cited in Yates’s preface and chapter XVII",
+            "source_ids": [
+              "yates_memory_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "brian_vickers",
+            "role": "contributor",
+            "context": "Edits a debate questioning a simple transition from magic to science and proposing different assumptions and methods; full cases are not newly checked.",
+            "works": "Occult and Scientific Mentalities in the Renaissance (editor, 1984)",
+            "source_ids": [
+              "vickers_occult"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "foucault",
+            "role": "contributor",
+            "context": "Investigates formation of objects and subject positions in medicine and human sciences, relating discourse to institutions and practices. One conceptual route within a diverse field.",
+            "works": "The Archaeology of Knowledge (1969); “The Subject and Power” (1982)",
+            "source_ids": [
+              "foucault_archaeology_primary",
+              "foucault_subject_power_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jan_goldstein",
+            "role": "historian",
+            "context": "Studies psychiatric knowledge and professionalization through multiple historical contexts; the consulted profile describes critical use of Foucault with attention to continuities and actors.",
+            "works": "Console and Classify: The French Psychiatric Profession in the Nineteenth Century (1987); “Foucault among the Sociologists” (1984)",
+            "source_ids": [
+              "goldstein_aha_profile",
+              "goldstein_chicago_profile"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lorraine_daston",
+            "role": "historian",
+            "context": "Coauthors a history of scientific image-making that distinguishes several meanings of objectivity.",
+            "works": "The Image of Objectivity (with Peter Galison, 1992)",
+            "source_ids": [
+              "daston_galison_image"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_galison",
+            "role": "historian",
+            "context": "Connects historical images and scientific virtues with a distinct project on apparatus and coordination.",
+            "works": "The Image of Objectivity (with Lorraine Daston, 1992); Image and Logic (1997)",
+            "source_ids": [
+              "daston_galison_image",
+              "galison_image_logic"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lu_gwei_djen",
+            "role": "historian",
+            "context": "Credited collaborator on several Chinese science volumes and coauthor of the medicine volume; these are explicit publication roles.",
+            "works": "Science and Civilisation in China V.2 (1974), V.5 (1983); VI.6 Medicine (with Needham, edited by Sivin, 2000)",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "wang_ling",
+            "role": "historian",
+            "context": "Credited research assistant on early volumes and collaborator on engineering studies; neither role is silently upgraded to sole authorship.",
+            "works": "Science and Civilisation in China I (1954); IV.2 Mechanical Engineering (1965), with Needham",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "ho_peng_yoke",
+            "role": "historian",
+            "context": "Credited collaborator on alchemical history and gunpowder; also printed as Ho Ping-Yu.",
+            "works": "Science and Civilisation in China V.3 (1976) and V.7 The Gunpowder Epic (1987), collaborative credits",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "nathan_sivin",
+            "role": "historian",
+            "context": "Named contribution to the alchemy volume and editorial work on medicine are different roles.",
+            "works": "Science and Civilisation in China V.4 (contribution, 1980); VI.6 Medicine (editor, 2000)",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "tsien_tsuen_hsuin",
+            "role": "historian",
+            "context": "Author of the paper-and-printing part, distinct from being merely an unnamed assistant to Needham.",
+            "works": "Science and Civilisation in China V.1: Paper and Printing (1985)",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "huang_hsing_tsung",
+            "role": "historian",
+            "context": "Author of the food-science part, with an earlier special contribution to botany.",
+            "works": "Science and Civilisation in China VI.5: Fermentations and Food Science (2000); VI.1 Botany (special contribution, 1986)",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "francesca_bray",
+            "role": "historian",
+            "context": "Author of the agriculture part; separate authorship makes the collaborative series more visible.",
+            "works": "Science and Civilisation in China VI.2: Agriculture (1984)",
+            "source_ids": [
+              "needham_collaborator_credits"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "roshdi_rashed",
+            "role": "historian",
+            "context": "Studies Arabic mathematical developments through texts and conceptual relationships.",
+            "works": "The Development of Arabic Mathematics (1994; French original 1984)",
+            "source_ids": [
+              "rashed_arabic_mathematics"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "deepak_kumar",
+            "role": "historian",
+            "context": "Investigates science and colonial government in nineteenth-century India.",
+            "works": "Science and the Raj, 1857–1905 (1995)",
+            "source_ids": [
+              "kumar_science_raj_1995"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paulin_hountondji",
+            "role": "contributor",
+            "context": "Questions research dependency and treats endogenous knowledge as historically changing.",
+            "works": "Endogenous Knowledge: Research Trails (editor, 1997; French collection 1994)",
+            "source_ids": [
+              "hountondji_endogenous"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "pierre_metinhoue",
+            "role": "contributor",
+            "context": "Contributes technical-history methodology to the Beninese collaborative volume.",
+            "works": "The Study of Traditional Techniques and Know-how: Methodological Issues (1997), described by Hountondji",
+            "source_ids": [
+              "hountondji_endogenous"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "steven_feierman",
+            "role": "historian",
+            "context": "Coedits historical inquiry into health, social conditions and varied African healing practices.",
+            "works": "The Social Basis of Health and Healing in Africa (coeditor, 1992)",
+            "source_ids": [
+              "feierman_janzen_healing"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_m_janzen",
+            "role": "contributor",
+            "context": "Coedits historical inquiry into health, social conditions and varied African healing practices.",
+            "works": "The Social Basis of Health and Healing in Africa (coeditor, 1992)",
+            "source_ids": [
+              "feierman_janzen_healing"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "karl_popper",
+            "role": "critic",
+            "context": "Acknowledges normal research while criticizing uncritical training and defending discussion across frameworks.",
+            "works": "Normal Science and its Dangers (1970)",
+            "source_ids": [
+              "popper_normal_debate"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "imre_lakatos",
+            "role": "contributor",
+            "context": "Offers research programmes and novel predictions as an alternative standard of appraisal.",
+            "works": "Science and Pseudoscience (1973 talk; later printed additions in consulted transcript)",
+            "source_ids": [
+              "lakatos_science_pseudoscience"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_pesic",
+            "role": "critic",
+            "context": "Interprets Bacon’s Proteus metaphor as reciprocal struggle and testing, challenging the torture interpretation; detailed article evidence remains unread.",
+            "works": "“Wrestling with Proteus” (1999), author abstract; Merchant’s later response used as retrospective evidence",
+            "source_ids": [
+              "pesic_proteus_1999",
+              "merchant_scientific_retrospective"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "strands": [
+          {
+            "id": "ideas",
+            "title": "Historical concepts and earlier disciplinary projects",
+            "person_ids": [
+              "george_sarton",
+              "alexandre_koyre",
+              "helene_metzger",
+              "anneliese_maier"
+            ],
+            "focus": "Distinguish disciplinary organization from accounts of conceptual transformation.",
+            "works": "Sarton’s historical programme; Koyré’s Études galiléennes",
+            "source_ids": [
+              "science_history",
+              "poskett_science",
+              "kuhn_preface"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "kuhn",
+            "title": "Scientific communities and revolutions",
+            "person_ids": [
+              "kuhn"
+            ],
+            "focus": "Normal science, paradigms, and revolutions offer a major reorientation within an existing field.",
+            "works": "The Structure of Scientific Revolutions (1962)",
+            "source_ids": [
+              "kuhn_structure",
+              "kuhn"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "social",
+            "title": "Scientific institutions and social contexts",
+            "person_ids": [
+              "robert_k_merton"
+            ],
+            "focus": "The social explanation of scientific activity has roots preceding later laboratory studies.",
+            "works": "Merton’s work on science in seventeenth-century England",
+            "source_ids": [
+              "poskett_science"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "practice",
+            "title": "Experiment, credibility, and knowledge-making",
+            "person_ids": [
+              "steven_shapin",
+              "simon_schaffer"
+            ],
+            "focus": "Historical practices of producing knowledge connect to questions of social order.",
+            "works": "Leviathan and the Air-Pump (1985)",
+            "source_ids": [
+              "shapin_schaffer"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "chinese_science",
+            "title": "Chinese science and comparative questions",
+            "person_ids": [
+              "joseph_needham",
+              "lu_gwei_djen",
+              "wang_ling",
+              "ho_peng_yoke",
+              "nathan_sivin",
+              "tsien_tsuen_hsuin",
+              "huang_hsing_tsung",
+              "francesca_bray"
+            ],
+            "focus": "Compare technical achievements and their social settings; avoid making Europe the inevitable destination of every history. Specific volume credits distinguish collaboration, assistance, editorial work and separate authorship; they do not establish a single shared argument.",
+            "works": "Science and Civilisation in China (from 1954)",
+            "source_ids": [
+              "needham_project",
+              "needham_collaborator_credits"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "women_environment",
+            "title": "Women, scientific careers, and environments",
+            "person_ids": [
+              "margaret_rossiter",
+              "carolyn_merchant"
+            ],
+            "focus": "Career exclusion and interpretations of nature are distinct questions within this selection.",
+            "works": "Women Scientists in America (1982); The Death of Nature (1980)",
+            "source_ids": [
+              "rossiter_scientists",
+              "merchant_oral_history"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "mnemonics_occult_method",
+            "title": "Mnemonic traditions, occult inquiry and scientific method",
+            "focus": "Yates and Rossi investigate historically situated methods; the Vickers volume questions simple transitions and proposes distinctions. Neither occult unity nor its direct transformation into all modern science is assumed.",
+            "person_ids": [
+              "frances_yates",
+              "paolo_rossi",
+              "brian_vickers"
+            ],
+            "works": "Yates, The Art of Memory (1966), chapter XVII; Rossi, Clavis universalis (1960); Vickers, ed., Occult and Scientific Mentalities (1984)",
+            "source_ids": [
+              "yates_memory_primary",
+              "vickers_occult"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "human_sciences_professions",
+            "title": "Human sciences, classifications and professions",
+            "focus": "Foucault’s questions about objects and institutions meet Goldstein’s historical analysis of psychiatric professionalization; the profile reports productive empirical revision, not automatic application.",
+            "person_ids": [
+              "foucault",
+              "jan_goldstein"
+            ],
+            "works": "The Archaeology of Knowledge (1969); Console and Classify (1987)",
+            "source_ids": [
+              "foucault_archaeology_primary",
+              "goldstein_aha_profile",
+              "goldstein_chicago_profile"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "objectivity_images",
+            "title": "Images and historical forms of objectivity",
+            "focus": "Mechanical restraint is one historically situated ideal, distinct from a claim to truth or escape from every perspective.",
+            "person_ids": [
+              "lorraine_daston",
+              "peter_galison"
+            ],
+            "works": "The Image of Objectivity (1992)",
+            "source_ids": [
+              "daston_galison_image"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "instruments_coordination",
+            "title": "Instruments and coordination",
+            "focus": "Galison’s project examines how apparatus and shared work connect different technical traditions.",
+            "person_ids": [
+              "peter_galison"
+            ],
+            "works": "Image and Logic (1997)",
+            "source_ids": [
+              "galison_image_logic"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "arabic_mathematics",
+            "title": "Arabic mathematics and conceptual history",
+            "focus": "Rashed examines configurations and transformations within mathematical knowledge.",
+            "person_ids": [
+              "roshdi_rashed"
+            ],
+            "works": "The Development of Arabic Mathematics (1994)",
+            "source_ids": [
+              "rashed_arabic_mathematics"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_indian_science",
+            "title": "Colonial Indian science",
+            "focus": "Kumar’s project addresses administration, education, research and Indian responses.",
+            "person_ids": [
+              "deepak_kumar"
+            ],
+            "works": "Science and the Raj (1995)",
+            "source_ids": [
+              "kumar_science_raj_1995"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "endogenous_knowledge",
+            "title": "Endogenous knowledge and research priorities",
+            "focus": "Hountondji challenges the treatment of inherited knowledge as timeless.",
+            "person_ids": [
+              "paulin_hountondji",
+              "pierre_metinhoue"
+            ],
+            "works": "Endogenous Knowledge (1997)",
+            "source_ids": [
+              "hountondji_endogenous"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "african_health_healing",
+            "title": "African health and healing histories",
+            "focus": "Distinct medical traditions are examined in historical and social settings.",
+            "person_ids": [
+              "steven_feierman",
+              "john_m_janzen"
+            ],
+            "works": "The Social Basis of Health and Healing in Africa (1992)",
+            "source_ids": [
+              "feierman_janzen_healing"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "normal_science_debates",
+            "title": "Normal science, criticism and research programmes",
+            "focus": "Kuhn’s puzzle-solving emphasis, Popper’s defense of critical training and Lakatos’s programme appraisal are competing positions.",
+            "person_ids": [
+              "kuhn",
+              "karl_popper",
+              "imre_lakatos"
+            ],
+            "works": "Kuhn and Popper contributions (1970); Lakatos radio talk (1973)",
+            "source_ids": [
+              "kuhn_discovery_debate",
+              "popper_normal_debate",
+              "lakatos_science_pseudoscience"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "bacon_metaphor_dispute",
+            "title": "Bacon’s metaphors and experimental power",
+            "focus": "Pesic’s 1999 abstract reads Proteus as mutual struggle and testing. Merchant’s later response distinguishes literal wording from rhetorical legitimation: she agrees Bacon did not write the familiar torture phrases, yet defends her domination argument. Competing interpretations remain explicit.",
+            "person_ids": [
+              "carolyn_merchant",
+              "peter_pesic"
+            ],
+            "works": "The Death of Nature (1980); “Wrestling with Proteus” (1999); Merchant (2006), retrospective response",
+            "source_ids": [
+              "merchant_death_excerpt",
+              "pesic_proteus_1999",
+              "merchant_scientific_retrospective"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "Kuhn is a central reorientation, not the field’s sole founder. Sarton, Koyré, Merton, and historians of experimental practice distinguish important approaches; Yates and Foucault are additional contributions. Chinese science and women’s scientific work expand this selection; it still needs fuller coverage of other regions and material practices. Named Chinese-series contributors and Daston/Galison’s image and instrument studies deepen the selection. Publication credits do not replace primary argument checks; wider regional coverage remains selective. Arabic mathematics, colonial Indian science, African healing and a Beninese knowledge programme are separate selected projects, not regional proxies or exhaustive coverage."
+      },
+      "urbanhistory": {
+        "id": "urbanhistory",
+        "label": "Urban history",
+        "date_label": "Earlier city histories · postwar expansion · Urban History Yearbook 1974 · coverage through 2000",
+        "layer": "enduring_fields_and_genres",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Studies cities and urbanization through institutions, populations, built environments and connections beyond city boundaries. Local reconstruction, quantitative mobility research, colonial spatial analysis and histories of segregation or public landscapes form different approaches.",
+        "representative_figures_and_works": "H. J. Dyos: Urban History Yearbook programme (1974); Sam Bass Warner Jr.: Streetcar Suburbs (1962; second edition 1978); Stephan Thernstrom: Poverty and Progress (1964); Thomas J. Sugrue: The Origins of the Urban Crisis (1996); Anthony D. King: Colonial Urban Development (1976); William Cronon: Nature’s Metropolis (1991); Dolores Hayden: The Power of Place (1995); Lynn Hollen Lees: “The challenge of political change” (1994). David Harvey: Social Justice and the City (1973); Walter Benjamin: Das Passagen-Werk (1982); Michel de Certeau: “Walking in the City” (1980).",
+        "source_ids": [
+          "urban_history_anniversary",
+          "warner_streetcar",
+          "thernstrom_poverty",
+          "sugrue_urban_crisis",
+          "king_colonial_urban",
+          "cronon_urban_reception",
+          "hayden_power_place",
+          "harvey_social_justice_1973",
+          "harvey_place_tradition",
+          "benjamin_arcades_project",
+          "certeau"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "h_j_dyos",
+            "role": "historian",
+            "context": "Organizes a British and international urban-history community, as Reeder’s 1979 appreciation records.",
+            "works": "Urban History Yearbook programme (1974)",
+            "source_ids": [
+              "urban_history_anniversary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sam_bass_warner",
+            "role": "historian",
+            "context": "Studies the making of Boston suburbs through transport and building.",
+            "works": "Streetcar Suburbs (1962; second edition 1978)",
+            "source_ids": [
+              "warner_streetcar"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "stephan_thernstrom",
+            "role": "historian",
+            "context": "Uses linked local records to investigate mobility while raising representativeness as a problem.",
+            "works": "Poverty and Progress (1964)",
+            "source_ids": [
+              "thernstrom_poverty"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "thomas_sugrue",
+            "role": "historian",
+            "context": "Connects racial exclusion, institutions and industrial restructuring in Detroit.",
+            "works": "The Origins of the Urban Crisis (1996)",
+            "source_ids": [
+              "sugrue_urban_crisis"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "anthony_d_king",
+            "role": "contributor",
+            "context": "Examines colonial spatial arrangements and social power, particularly Delhi.",
+            "works": "Colonial Urban Development (1976)",
+            "source_ids": [
+              "king_colonial_urban"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_cronon",
+            "role": "historian",
+            "context": "Relates urban markets and processing to rural resources and production.",
+            "works": "Nature’s Metropolis (1991)",
+            "source_ids": [
+              "cronon_urban_reception"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "dolores_hayden",
+            "role": "historian",
+            "context": "Connects urban landscapes and public historical interpretation.",
+            "works": "The Power of Place (1995)",
+            "source_ids": [
+              "hayden_power_place"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lynn_hollen_lees",
+            "role": "critic",
+            "context": "Questions restricted urban biographies and the relative neglect of politics.",
+            "works": "“The challenge of political change” (1994)",
+            "source_ids": [
+              "urban_history_anniversary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "david_harvey",
+            "role": "contributor",
+            "context": "Geographer whose urban political economy and historical studies of the city are standard resources for urban historians. A contributor from geography, not a school member.",
+            "works": "Social Justice and the City (1973); The Condition of Postmodernity (1989)",
+            "source_ids": [
+              "harvey_social_justice_1973",
+              "harvey_place_tradition"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "walter_benjamin",
+            "role": "contributor",
+            "context": "The unfinished Passagen-Werk on nineteenth-century Paris is a central resource for cultural histories of the city, its arcades and commodities. His Frankfurt and memory contexts remain.",
+            "works": "Das Passagen-Werk (1982); The Arcades Project (1999)",
+            "source_ids": [
+              "benjamin_arcades_project"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michel_de_certeau",
+            "role": "contributor",
+            "context": "“Walking in the City” gives urban historians a vocabulary of spatial practice and everyday use. His practice-theory context remains.",
+            "works": "The Practice of Everyday Life (1980; English 1984)",
+            "source_ids": [
+              "certeau"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "British institution-building and US quantitative urban studies do not define one school or exhaust the field. Cities are not self-contained units. Delhi adds a specific colonial inquiry; wider Asian, African, Latin American and medieval/early-modern historiographies remain underrepresented. Journal milestones mark consolidation, not the first historical study of cities.",
+        "strands": [
+          {
+            "id": "field_organization",
+            "title": "Field organization and methodological debate",
+            "focus": "Dyos’s community-building and Lees’s later criticism show an open, contested research field.",
+            "person_ids": [
+              "h_j_dyos",
+              "lynn_hollen_lees"
+            ],
+            "works": "Yearbook (1974); Lees (1994)",
+            "source_ids": [
+              "urban_history_anniversary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "suburban_building",
+            "title": "Transport, building and suburbs",
+            "focus": "Warner’s Boston case links infrastructure and the development of residential space.",
+            "person_ids": [
+              "sam_bass_warner"
+            ],
+            "works": "Streetcar Suburbs (1962)",
+            "source_ids": [
+              "warner_streetcar"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "mobility_records",
+            "title": "Urban mobility and linked records",
+            "focus": "Thernstrom tests mobility through census, tax and other local records.",
+            "person_ids": [
+              "stephan_thernstrom"
+            ],
+            "works": "Poverty and Progress (1964)",
+            "source_ids": [
+              "thernstrom_poverty"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "race_industrial_change",
+            "title": "Race and industrial change",
+            "focus": "Sugrue studies exclusion and deindustrialization through Detroit institutions.",
+            "person_ids": [
+              "thomas_sugrue"
+            ],
+            "works": "The Origins of the Urban Crisis (1996)",
+            "source_ids": [
+              "sugrue_urban_crisis"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_space",
+            "title": "Colonial power and urban space",
+            "focus": "King’s Delhi study examines spatial arrangements as expressions of social and political power.",
+            "person_ids": [
+              "anthony_d_king"
+            ],
+            "works": "Colonial Urban Development (1976)",
+            "source_ids": [
+              "king_colonial_urban"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "city_hinterland",
+            "title": "Cities and hinterlands",
+            "focus": "Cronon follows commodities between rural production and urban processing and exchange.",
+            "person_ids": [
+              "william_cronon"
+            ],
+            "works": "Nature’s Metropolis (1991)",
+            "source_ids": [
+              "cronon_urban_reception"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "public_landscape",
+            "title": "Public landscapes and interpretation",
+            "focus": "Hayden connects place-based interpretation with urban social histories.",
+            "person_ids": [
+              "dolores_hayden"
+            ],
+            "works": "The Power of Place (1995)",
+            "source_ids": [
+              "hayden_power_place"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "space_capital_culture",
+            "title": "Space, capital and the cultural city",
+            "person_ids": [
+              "david_harvey",
+              "walter_benjamin",
+              "michel_de_certeau"
+            ],
+            "focus": "Urban political economy (Harvey), the city of arcades and commodities (Benjamin) and spatial practice (de Certeau) supply the spatial and cultural turn in urban history, beside the entry’s social-science programme. They are resources from geography, criticism and theory, not a school.",
+            "works": "Social Justice and the City (1973); Das Passagen-Werk (1982); The Practice of Everyday Life (1980/84)",
+            "source_ids": [
+              "harvey_social_justice_1973",
+              "benjamin_arcades_project",
+              "certeau"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ]
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 7,
+    "new_edges": 13,
+    "new_sources": 62,
+    "source_addenda": 11
+  }
+}
