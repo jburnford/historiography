@@ -44,3 +44,10 @@ How the fixes were made:
 | 14 | `build_consolidated.py` now merges same-id records across drafts. The stronger check becomes the base, and the other draft's documented check is carried in the note. This keeps the working-class draft's jacket description for `lof_mckay_2008`. |
 | 17 | The settler date-span note now records the term's decolonization-era usage (Veracini 2013), and places only the theoretical consolidation after 2000. |
 | 20: edits 168, 176, 190 and 198 | The cleaning rules are narrowed. A parenthetical that also holds figures keeps them ("39% and lift 3.0 on a narrower definition"). A drafter clause goes, but the "Title-level" qualifier before it stays. A "(groups.json scope)" tag goes, but the sentence stays. Paths of the form "in drafts/…" go. Proposal ids in prose become final edge ids, and ids of defunct proposals are dropped. |
+
+## Third round, after Sol's second pass (`sol-verify2-1.128.md`)
+
+Sol found no blocker or major problem. It confirmed that all ten deferrals are right and that no directed edge with only post-2000 evidence remains. A fresh sample of 20 cleaning edits showed no damage. Three minor items are now fixed:
+- "Extension:" in reading lists became "Later readings:".
+- Bannister is out of the liberal order framework's critics list and critiques strand; only what his chapter title establishes is kept.
+- The settler date-span note's correction had not reached the packet, because a chained command failed earlier. It is now applied.
