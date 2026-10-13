@@ -1,0 +1,1320 @@
+{
+ "group": "cdn_black_history",
+ "prepared": "2026-10-12",
+ "denominator": {
+  "strict_history_phds_2009_2026": 1303,
+  "phds_2009_2014": 410,
+  "phds_2020_2026": 405
+ },
+ "method": "Citation graph data/field-research/dissertation-citations-2026-10-11/graph.json, loaded once; Dissertation nodes with in_analysis true and years 2009–2026 (n=1303); CITES Dissertation→Work, AUTHORED Person→Work. Counted by dissertation, not citation. The curated set started from cited Work titles combining a Black/slavery/Caribbean term with a Canadian place term, plus strong phrases (Africville, Black Loyalist, Underground Railroad, African Canadian…), plus all cited works of 50 scholars of the field; 580 candidate records were reviewed by hand and 494 kept (South African War, Canada–Caribbean diplomacy and trade, European and Caribbean slavery, Indigenous slavery and unrelated 'black' titles excluded). The set includes some older accounts and primary narratives about Black Canada (Riddell, Landon, Drew, Henson). Group engagement for other groups uses the data_answers.py rule (PhDs citing works by at least two groups.json anchors). Scripts kept in the session scratchpad; the work-id list is reproducible from the rules above.",
+ "uptake": {
+  "phds_citing_any": 177,
+  "share": 0.1358,
+  "share_2009_14": 0.0951,
+  "share_2020_26": 0.1531,
+  "phds_citing_two_or_more": 79,
+  "two_or_more_share_2009_14": 0.0366,
+  "two_or_more_share_2020_26": 0.0716,
+  "universities": 25,
+  "toronto_york": 43,
+  "francophone_any": 16,
+  "francophone_by_university": {
+   "montreal": 8,
+   "uqam": 5,
+   "laval": 2,
+   "sherbrooke": 1
+  },
+  "francophone_two_or_more": 10,
+  "by_university": {
+   "toronto": 26,
+   "york": 17,
+   "queens": 16,
+   "mcgill": 12,
+   "usask": 12,
+   "mcmaster": 10,
+   "western": 9,
+   "montreal": 8,
+   "waterloo": 6,
+   "guelph": 6,
+   "calgary": 5,
+   "dalhousie": 5,
+   "carleton": 5,
+   "manitoba": 5,
+   "uqam": 5,
+   "sfu": 4,
+   "unb": 4,
+   "concordia": 4,
+   "ottawa": 4,
+   "memorial": 4,
+   "ubc": 3,
+   "uvic": 3,
+   "laval": 2,
+   "alberta": 1,
+   "sherbrooke": 1
+  }
+ },
+ "q46_reproduction": {
+  "regex": "black loyalist|blacks in canada|hanging of ang[ée]lique|black battalion|fear of a black nation|african.canadian|race and recruitment|slavery in canada|esclavage|african nova scotia",
+  "work_records_matched": 98,
+  "phds": 104,
+  "share_2009_14": 0.0561,
+  "share_2020_26": 0.0889,
+  "phds_also_in_curated_set": 80,
+  "phds_only_via_unrelated_works": 24,
+  "unrelated_matches": [
+   [
+    "Race et esclavage dans la France de l’Ancien Régime",
+    5
+   ],
+   [
+    "L’esclavage dans l’Europe médiévale",
+    3
+   ],
+   [
+    "Loyola: les jésuites et l’esclavage : l’habitation des jésuites de Rémire en Guyane frança",
+    2
+   ],
+   [
+    "Les Indiens et l'histoire coloniale nord-américaine: les défis de l'ethnohistoire,'' in Cé",
+    2
+   ],
+   [
+    "L’autre citoyen: L’idéal républicain et les Antilles après l’esclavage",
+    1
+   ],
+   [
+    "De l’esclavage au salariat. Économie historique du salariat bridé",
+    1
+   ],
+   [
+    "Famille et esclavage à la nouvelle-Orléans sous le régime français (1699-1769)",
+    1
+   ],
+   [
+    "Deux pas vers une histoire du politique décolonisée : les problèmes de la souveraineté e",
+    1
+   ],
+   [
+    "Deux pas vers une histoire du politique décolonisée : les problèmes de la souveraineté et ",
+    1
+   ],
+   [
+    "Calcul et morale : coûts de l’esclavage et valeur de l’émancipation (XVIIIe-XIXe siècle)",
+    1
+   ],
+   [
+    "“‘Faut-il rétablir l’esclavage en France ?”‘ Droit naturel, économie politique et esclavag",
+    1
+   ],
+   [
+    "Le traitement juridique de l’esclavage au XVIIIe siècle : France-Angleterre",
+    1
+   ]
+  ],
+  "note": "Reproduces Q46 exactly (104; 5.6% → 8.9%; 22 francophone). 25 of the 104 PhDs enter only through non-Canadian matches of 'esclavage' or 'race and recruitment'; the regex misses most of the field. Use the curated 177."
+ },
+ "engagement_with_other_groups": {
+  "q46_regex": {
+   "cdn_national_tradition": {
+    "share": 0.192,
+    "lift": 1.45
+   },
+   "cdn_intellectual_cultural": {
+    "share": 0.404,
+    "lift": 1.89
+   },
+   "cdn_religion_reform": {
+    "share": 0.183,
+    "lift": 1.78
+   },
+   "liberal_order_framework": {
+    "share": 0.356,
+    "lift": 2.12
+   },
+   "moral_regulation": {
+    "share": 0.25,
+    "lift": 1.99
+   },
+   "cdn_working_class": {
+    "share": 0.365,
+    "lift": 1.67
+   },
+   "cdn_women_gender": {
+    "share": 0.452,
+    "lift": 1.8
+   },
+   "cdn_childhood_youth": {
+    "share": 0.144,
+    "lift": 1.42
+   },
+   "cdn_immigration_ethnicity": {
+    "share": 0.394,
+    "lift": 2.99
+   },
+   "native_newcomer": {
+    "share": 0.346,
+    "lift": 1.86
+   },
+   "quebec_historiography": {
+    "share": 0.394,
+    "lift": 2.52
+   },
+   "cdn_military": {
+    "share": 0.173,
+    "lift": 1.23
+   },
+   "cdn_political_national": {
+    "share": 0.327,
+    "lift": 1.64
+   },
+   "who_killed_debate": {
+    "share": 0.269,
+    "lift": 2.1
+   },
+   "cdn_regional": {
+    "share": 0.231,
+    "lift": 1.58
+   },
+   "cdn_sixties": {
+    "share": 0.317,
+    "lift": 2.23
+   },
+   "settler_colonialism": {
+    "share": 0.212,
+    "lift": 1.88
+   }
+  },
+  "q46_regex_excl_walker": {
+   "cdn_immigration_ethnicity": {
+    "share": 0.356,
+    "lift": 2.83
+   }
+  },
+  "core_any": {
+   "cdn_national_tradition": {
+    "share": 0.249,
+    "lift": 1.87
+   },
+   "cdn_intellectual_cultural": {
+    "share": 0.497,
+    "lift": 2.32
+   },
+   "cdn_religion_reform": {
+    "share": 0.237,
+    "lift": 2.31
+   },
+   "liberal_order_framework": {
+    "share": 0.418,
+    "lift": 2.49
+   },
+   "moral_regulation": {
+    "share": 0.339,
+    "lift": 2.69
+   },
+   "cdn_working_class": {
+    "share": 0.48,
+    "lift": 2.2
+   },
+   "cdn_women_gender": {
+    "share": 0.605,
+    "lift": 2.4
+   },
+   "cdn_childhood_youth": {
+    "share": 0.243,
+    "lift": 2.4
+   },
+   "cdn_immigration_ethnicity": {
+    "share": 0.452,
+    "lift": 3.42
+   },
+   "native_newcomer": {
+    "share": 0.418,
+    "lift": 2.24
+   },
+   "quebec_historiography": {
+    "share": 0.367,
+    "lift": 2.35
+   },
+   "cdn_military": {
+    "share": 0.249,
+    "lift": 1.76
+   },
+   "cdn_political_national": {
+    "share": 0.429,
+    "lift": 2.16
+   },
+   "who_killed_debate": {
+    "share": 0.294,
+    "lift": 2.29
+   },
+   "cdn_regional": {
+    "share": 0.333,
+    "lift": 2.29
+   },
+   "cdn_sixties": {
+    "share": 0.395,
+    "lift": 2.79
+   },
+   "settler_colonialism": {
+    "share": 0.277,
+    "lift": 2.45
+   }
+  },
+  "core_any_excl_walker": {
+   "cdn_immigration_ethnicity": {
+    "share": 0.429,
+    "lift": 3.41
+   }
+  },
+  "core_2plus": {
+   "cdn_national_tradition": {
+    "share": 0.177,
+    "lift": 1.33
+   },
+   "cdn_intellectual_cultural": {
+    "share": 0.506,
+    "lift": 2.36
+   },
+   "cdn_religion_reform": {
+    "share": 0.253,
+    "lift": 2.46
+   },
+   "liberal_order_framework": {
+    "share": 0.392,
+    "lift": 2.33
+   },
+   "moral_regulation": {
+    "share": 0.38,
+    "lift": 3.02
+   },
+   "cdn_working_class": {
+    "share": 0.456,
+    "lift": 2.08
+   },
+   "cdn_women_gender": {
+    "share": 0.646,
+    "lift": 2.56
+   },
+   "cdn_childhood_youth": {
+    "share": 0.228,
+    "lift": 2.25
+   },
+   "cdn_immigration_ethnicity": {
+    "share": 0.557,
+    "lift": 4.22
+   },
+   "native_newcomer": {
+    "share": 0.392,
+    "lift": 2.1
+   },
+   "quebec_historiography": {
+    "share": 0.43,
+    "lift": 2.75
+   },
+   "cdn_military": {
+    "share": 0.203,
+    "lift": 1.43
+   },
+   "cdn_political_national": {
+    "share": 0.392,
+    "lift": 1.97
+   },
+   "who_killed_debate": {
+    "share": 0.266,
+    "lift": 2.07
+   },
+   "cdn_regional": {
+    "share": 0.304,
+    "lift": 2.08
+   },
+   "cdn_sixties": {
+    "share": 0.456,
+    "lift": 3.21
+   },
+   "settler_colonialism": {
+    "share": 0.253,
+    "lift": 2.24
+   }
+  },
+  "core_2plus_excl_walker": {
+   "cdn_immigration_ethnicity": {
+    "share": 0.532,
+    "lift": 4.22
+   }
+  }
+ },
+ "engagement_group_sizes": {
+  "cdn_national_tradition": 173,
+  "cdn_intellectual_cultural": 279,
+  "cdn_religion_reform": 134,
+  "liberal_order_framework": 219,
+  "moral_regulation": 164,
+  "cdn_working_class": 285,
+  "cdn_women_gender": 328,
+  "cdn_childhood_youth": 132,
+  "cdn_immigration_ethnicity": 172,
+  "native_newcomer": 243,
+  "quebec_historiography": 204,
+  "cdn_military": 184,
+  "cdn_political_national": 259,
+  "who_killed_debate": 167,
+  "cdn_regional": 190,
+  "cdn_sixties": 185,
+  "settler_colonialism": 147
+ },
+ "immigration_overlap_note": "cdn_immigration_ethnicity counts Walker among its anchors; excluding him, 42.9% of the 177 engage it (lift 3.41) and 35.6% of the Q46 104 (lift 2.83).",
+ "most_cited_works_top20": [
+  {
+   "work_id": "W:austin|fear of a black nation",
+   "title": "Fear of a Black Nation: Race, Sex and Security in Sixties Montreal",
+   "graph_year": 2013,
+   "first_publication_year": 2013,
+   "phds": 18,
+   "francophone": 2
+  },
+  {
+   "work_id": "W:winks|blacks in canada",
+   "title": "The Blacks in Canada: A History",
+   "graph_year": 1997,
+   "first_publication_year": 1971,
+   "phds": 18,
+   "francophone": 1
+  },
+  {
+   "work_id": "W:mathieu|north of the color line",
+   "title": "North of the Color Line: Migration and Black Resistance in Canada, 1870-1955",
+   "graph_year": 2010,
+   "first_publication_year": 2010,
+   "phds": 15,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:walker|race and recruitment in world war 1|a",
+   "title": "Race and Recruitment in World War I: Enlistment of Visible Minorities in the Canadian Expeditionary Force",
+   "graph_year": 1989,
+   "first_publication_year": 1989,
+   "phds": 14,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:walker|race on trial",
+   "title": "Race on Trial: Black Defendants in Ontario’s Criminal Courts, 1858-1958",
+   "graph_year": 2010,
+   "first_publication_year": 2010,
+   "phds": 14,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:walker|black loyalists",
+   "title": "The Black Loyalists: The Search for a Promised Land in Nova Scotia and Sierra Leone, 1783-1870",
+   "graph_year": 1992,
+   "first_publication_year": 1976,
+   "phds": 14,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:cooper|hanging of angelique",
+   "title": "The Hanging of Angelique: The Untold Story of Canadian Slavery and the Burning of Old Montreal",
+   "graph_year": 2006,
+   "first_publication_year": 2006,
+   "phds": 13,
+   "francophone": 1
+  },
+  {
+   "work_id": "W:austin|all roads led to montreal|a",
+   "title": "All Roads Led to Montreal: Black Power, the Caribbean, and the Black Radical Tradition in Canada",
+   "graph_year": 2007,
+   "first_publication_year": 2007,
+   "phds": 11,
+   "francophone": 3
+  },
+  {
+   "work_id": "W:nelson|razing africville",
+   "title": "Razing Africville: A Geography of Racism",
+   "graph_year": 2008,
+   "first_publication_year": 2008,
+   "phds": 11,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:williams|road to now",
+   "title": "The Road to Now: A History of Blacks in Montreal",
+   "graph_year": 1997,
+   "first_publication_year": 1997,
+   "phds": 10,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:mills|place in the sun",
+   "title": "A Place in the Sun: Haiti, Haitians, and the Remaking of Quebec",
+   "graph_year": 2016,
+   "first_publication_year": 2016,
+   "phds": 8,
+   "francophone": 1
+  },
+  {
+   "work_id": "W:calliste|canadas immigration policy and domestics from the caribbean|a",
+   "title": "Canada’s Immigration Policy and Domestics from the Caribbean: The Second Domestic Scheme",
+   "graph_year": 1989,
+   "first_publication_year": 1989,
+   "phds": 8,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:flynn|moving beyond borders",
+   "title": "Moving Beyond Borders: A History of Black Canadian and Caribbean Women in the Diaspora",
+   "graph_year": 2011,
+   "first_publication_year": 2011,
+   "phds": 8,
+   "francophone": 1
+  },
+  {
+   "work_id": "W:whitfield|north to bondage",
+   "title": "North to Bondage: Loyalist Slavery in the Maritimes",
+   "graph_year": 2016,
+   "first_publication_year": 2016,
+   "phds": 8,
+   "francophone": 1
+  },
+  {
+   "work_id": "W:brand|no burden to carry",
+   "title": "No Burden to Carry: Narratives of Black Working Women in Ontario, 1920s-1950s",
+   "graph_year": 1991,
+   "first_publication_year": 1991,
+   "phds": 7,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:walker|racial discrimination in canada",
+   "title": "Racial Discrimination in Canada: The Black Experience",
+   "graph_year": 1985,
+   "first_publication_year": 1985,
+   "phds": 7,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:shepard|deemed unsuitable",
+   "title": "Deemed Unsuitable: Blacks from Oklahoma Move to the Canadian Prairies in Search of Equality in the Early 20th Century Only to Find Racism in their New Home",
+   "graph_year": 1997,
+   "first_publication_year": 1997,
+   "phds": 6,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:trudel|lesclavage au canadafrancais",
+   "title": "L’esclavage au Canada français",
+   "graph_year": 1960,
+   "first_publication_year": 1960,
+   "phds": 6,
+   "francophone": 2
+  },
+  {
+   "work_id": "W:henry|caribbean diaspora in toronto",
+   "title": "The Caribbean Diaspora in Toronto: Learning to Live with Racism",
+   "graph_year": 1994,
+   "first_publication_year": 1994,
+   "phds": 6,
+   "francophone": 0
+  },
+  {
+   "work_id": "W:elgersman|unyielding spirits",
+   "title": "Unyielding Spirits: Black Women and Slavery in Early Canada and Jamaica",
+   "graph_year": 1999,
+   "first_publication_year": 1999,
+   "phds": 6,
+   "francophone": 0
+  }
+ ],
+ "period_evidence": {
+  "first_publication_years_top20": [
+   1960,
+   1971,
+   1976,
+   1985,
+   1989,
+   1989,
+   1991,
+   1994,
+   1997,
+   1997,
+   1999,
+   2006,
+   2007,
+   2008,
+   2010,
+   2010,
+   2011,
+   2013,
+   2016,
+   2016
+  ],
+  "median": 1998.0,
+  "pre_1986": 4,
+  "y1986_2000": 7,
+  "post_2000": 9
+ },
+ "sources": {
+  "winks_1971": {
+   "phds_2009_2026": 18,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0146,
+   "share_2020_26": 0.0049,
+   "graph_work_ids": [
+    "W:winks|blacks in canada"
+   ]
+  },
+  "walker_1976": {
+   "phds_2009_2026": 14,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0025,
+   "graph_work_ids": [
+    "W:walker|black loyalists"
+   ]
+  },
+  "walker_1980": {
+   "phds_2009_2026": 2,
+   "of": 1303,
+   "universities": 2,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:walker|history of blacks in canada"
+   ]
+  },
+  "walker_1985": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 6,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0025,
+   "graph_work_ids": [
+    "W:walker|racial discrimination in canada",
+    "W:walker|racial discrimination in canada|a"
+   ]
+  },
+  "walker_1989": {
+   "phds_2009_2026": 14,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0122,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:walker|race and recruitment in world war 1|a"
+   ]
+  },
+  "walker_1997a": {
+   "phds_2009_2026": 3,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:walker|allegories and orientations in african canadian historiography|a"
+   ]
+  },
+  "walker_1999": {
+   "phds_2009_2026": 1,
+   "of": 1303,
+   "universities": 1,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:walker|myth history and revisionism|a"
+   ]
+  },
+  "cahill_1999": {
+   "phds_2009_2026": 1,
+   "of": 1303,
+   "universities": 1,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:cahill|black loyalist myth in atlantic canada|a"
+   ]
+  },
+  "trudel_1960": {
+   "phds_2009_2026": 6,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0074,
+   "graph_work_ids": [
+    "W:trudel|lesclavage au canadafrancais"
+   ]
+  },
+  "trudel_1990": {
+   "phds_2009_2026": 4,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0099,
+   "graph_work_ids": [
+    "W:trudel|dictionnaire des esclaves et de leurs proprietaires au canada francais"
+   ]
+  },
+  "trudel_2004": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 7,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0148,
+   "graph_work_ids": [
+    "W:trudel|canadas forgotten slaves",
+    "W:trudel|deux siecles desclavage au quebec"
+   ]
+  },
+  "hill_1981": {
+   "phds_2009_2026": 4,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:hill|freedom seekers"
+   ]
+  },
+  "calliste_1987": {
+   "phds_2009_2026": 5,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:calliste|sleeping car porters in canada|a"
+   ]
+  },
+  "calliste_1989": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 6,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:calliste|canadas immigration policy and domestics from the caribbean|a"
+   ]
+  },
+  "brand_1991": {
+   "phds_2009_2026": 7,
+   "of": 1303,
+   "universities": 6,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:brand|no burden to carry"
+   ]
+  },
+  "bristow_1994": {
+   "phds_2009_2026": 5,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:bristow|were rooted here and they cant pull us up",
+    "W:peggy bristow|were rooted here and they cant pull us up|a"
+   ]
+  },
+  "williams_1989": {
+   "phds_2009_2026": 5,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0049,
+   "graph_work_ids": [
+    "W:williams|blacks in montreal 1628 1986"
+   ]
+  },
+  "williams_1997": {
+   "phds_2009_2026": 11,
+   "of": 1303,
+   "universities": 8,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0049,
+   "graph_work_ids": [
+    "W:williams|noirs a montreal 1628",
+    "W:williams|raad lo novv",
+    "W:williams|road to now"
+   ]
+  },
+  "shepard_1997": {
+   "phds_2009_2026": 6,
+   "of": 1303,
+   "universities": 6,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:shepard|deemed unsuitable"
+   ]
+  },
+  "cooper_2006": {
+   "phds_2009_2026": 13,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0198,
+   "graph_work_ids": [
+    "W:cooper|hanging of angelique"
+   ]
+  },
+  "whitfield_2006": {
+   "phds_2009_2026": 5,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:whitfield|blacks on the border"
+   ]
+  },
+  "whitfield_2016": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 8,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0123,
+   "graph_work_ids": [
+    "W:whitfield|north to bondage"
+   ]
+  },
+  "mathieu_2010": {
+   "phds_2009_2026": 16,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0173,
+   "graph_work_ids": [
+    "W:mathieu|migration and black resistance in canada 1870 1955",
+    "W:mathieu|north of the color line"
+   ]
+  },
+  "bwalker_2010": {
+   "phds_2009_2026": 14,
+   "of": 1303,
+   "universities": 8,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0122,
+   "share_2020_26": 0.0074,
+   "graph_work_ids": [
+    "W:walker|race on trial"
+   ]
+  },
+  "austin_2007": {
+   "phds_2009_2026": 11,
+   "of": 1303,
+   "universities": 7,
+   "francophone_univ_phds": 3,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0025,
+   "graph_work_ids": [
+    "W:austin|all roads led to montreal|a"
+   ]
+  },
+  "austin_2013": {
+   "phds_2009_2026": 19,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 3,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0198,
+   "graph_work_ids": [
+    "W:austin|fear of a black nation",
+    "W:austin|negres noirs negres blancs"
+   ]
+  },
+  "mackey_2010": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 5,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0074,
+   "graph_work_ids": [
+    "W:mackey|done with slavery",
+    "W:mackey|esclavage et les noirs a montreal",
+    "W:mackey|lesclavage et les noirs a montreal 1760 1840"
+   ]
+  },
+  "gay_2004": {
+   "phds_2009_2026": 2,
+   "of": 1303,
+   "universities": 1,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:gay|noirs au quebec 1629 1900"
+   ]
+  },
+  "flynn_2011": {
+   "phds_2009_2026": 8,
+   "of": 1303,
+   "universities": 7,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0074,
+   "graph_work_ids": [
+    "W:flynn|moving beyond borders"
+   ]
+  },
+  "mills_2016": {
+   "phds_2009_2026": 12,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0123,
+   "graph_work_ids": [
+    "W:mills|place au soleil",
+    "W:mills|place in the sun",
+    "W:mills|quebec haiti and the deportation crisis of 1974|a"
+   ]
+  },
+  "nelson_2008": {
+   "phds_2009_2026": 11,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0122,
+   "share_2020_26": 0.0049,
+   "graph_work_ids": [
+    "W:nelson|razing africville"
+   ]
+  },
+  "clairmont_magill": {
+   "phds_2009_2026": 5,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0025,
+   "graph_work_ids": [
+    "W:clairmont|africville"
+   ]
+  },
+  "ruck_1987": {
+   "phds_2009_2026": 3,
+   "of": 1303,
+   "universities": 2,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:ruck|black battalion 1916 1920",
+    "W:ruck|canadas black battalion"
+   ]
+  },
+  "forsythe_1971": {
+   "phds_2009_2026": 3,
+   "of": 1303,
+   "universities": 2,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:forsythe|let the niggers burn"
+   ]
+  },
+  "silverman_1985": {
+   "phds_2009_2026": 4,
+   "of": 1303,
+   "universities": 4,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0025,
+   "graph_work_ids": [
+    "W:silverman|unwelcome guests"
+   ]
+  },
+  "stouffer_1992": {
+   "phds_2009_2026": 4,
+   "of": 1303,
+   "universities": 4,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:stauffer|light of nature and the law of god",
+    "W:stouffer|light ofnature and the law ofgod"
+   ]
+  },
+  "greaves_1930": {
+   "phds_2009_2026": 3,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0,
+   "graph_work_ids": [
+    "W:greaves|negro in canada"
+   ]
+  },
+  "morton_wright_2021": {
+   "phds_2009_2026": 0,
+   "of": 1303,
+   "universities": 0,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0,
+   "graph_work_ids": []
+  }
+ },
+ "roster_people": {
+  "james_w_st_g_walker": {
+   "phds_2009_2026": 30,
+   "of": 1303,
+   "universities": 13,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0244,
+   "share_2020_26": 0.0049,
+   "person_key": "P:walker|james",
+   "core_works": 14
+  },
+  "robin_w_winks": {
+   "phds_2009_2026": 18,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0146,
+   "share_2020_26": 0.0049,
+   "person_key": "P:winks|robin w",
+   "core_works": 4
+  },
+  "marcel_trudel": {
+   "phds_2009_2026": 14,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 4,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0222,
+   "person_key": "P:trudel|marcel",
+   "core_works": 4
+  },
+  "daniel_g_hill": {
+   "phds_2009_2026": 6,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0,
+   "person_key": "P:hill|daniel g",
+   "core_works": 3
+  },
+  "agnes_calliste": {
+   "phds_2009_2026": 18,
+   "of": 1303,
+   "universities": 11,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0122,
+   "share_2020_26": 0.0074,
+   "person_key": "P:calliste|agnes",
+   "core_works": 9
+  },
+  "dionne_brand": {
+   "phds_2009_2026": 9,
+   "of": 1303,
+   "universities": 8,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0,
+   "person_key": "P:brand|dionne",
+   "core_works": 3
+  },
+  "peggy_bristow": {
+   "phds_2009_2026": 4,
+   "of": 1303,
+   "universities": 4,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0024,
+   "share_2020_26": 0.0,
+   "person_key": "P:bristow|peggy",
+   "core_works": 3
+  },
+  "dorothy_w_williams": {
+   "phds_2009_2026": 13,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0099,
+   "person_key": "P:williams|dorothy w",
+   "core_works": 5
+  },
+  "barry_cahill": {
+   "phds_2009_2026": 3,
+   "of": 1303,
+   "universities": 3,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0049,
+   "share_2020_26": 0.0025,
+   "person_key": "P:cahill|barry",
+   "core_works": 3
+  },
+  "afua_cooper": {
+   "phds_2009_2026": 17,
+   "of": 1303,
+   "universities": 11,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0198,
+   "person_key": "P:cooper|afua",
+   "core_works": 10
+  },
+  "harvey_amani_whitfield": {
+   "phds_2009_2026": 19,
+   "of": 1303,
+   "universities": 11,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0122,
+   "share_2020_26": 0.0148,
+   "person_key": "P:whitfield|harvey a",
+   "core_works": 9
+  },
+  "sarah_jane_mathieu": {
+   "phds_2009_2026": 18,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0173,
+   "person_key": "P:mathieu|sarahjane",
+   "core_works": 3
+  },
+  "barrington_walker": {
+   "phds_2009_2026": 20,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 0,
+   "share_2009_14": 0.0195,
+   "share_2020_26": 0.0099,
+   "person_key": "P:walker|barrington",
+   "core_works": 9
+  },
+  "david_austin": {
+   "phds_2009_2026": 25,
+   "of": 1303,
+   "universities": 11,
+   "francophone_univ_phds": 4,
+   "share_2009_14": 0.0098,
+   "share_2020_26": 0.0198,
+   "person_key": "P:austin|david",
+   "core_works": 5
+  },
+  "frank_mackey": {
+   "phds_2009_2026": 9,
+   "of": 1303,
+   "universities": 5,
+   "francophone_univ_phds": 5,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0099,
+   "person_key": "P:mackey|frank",
+   "core_works": 4
+  },
+  "daniel_gay": {
+   "phds_2009_2026": 2,
+   "of": 1303,
+   "universities": 1,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0,
+   "person_key": "P:gay|daniel",
+   "core_works": 1
+  },
+  "karen_flynn": {
+   "phds_2009_2026": 13,
+   "of": 1303,
+   "universities": 10,
+   "francophone_univ_phds": 1,
+   "share_2009_14": 0.0073,
+   "share_2020_26": 0.0074,
+   "person_key": "P:flynn|karen c",
+   "core_works": 8
+  },
+  "sean_mills": {
+   "phds_2009_2026": 13,
+   "of": 1303,
+   "universities": 9,
+   "francophone_univ_phds": 2,
+   "share_2009_14": 0.0,
+   "share_2020_26": 0.0148,
+   "person_key": "P:mills|sean",
+   "core_works": 4
+  }
+ },
+ "dissertations_on_black_canadian_subjects": {
+  "count": 11,
+  "in_part": 1,
+  "list": [
+   {
+    "id": "D:f31ee38a-ff6c-46ae-89f7-6db0cfab5de6",
+    "title": "\"Girl You Better Apply to Teachers' College\": The History of Black Women Educators in Ontario, 1940s - 1980s",
+    "institution": "york",
+    "year": 2016,
+    "advisors": [
+     "Johnson, Michele Antoinette"
+    ],
+    "field_works_cited": 86,
+    "topic": "Black women educators in Ontario"
+   },
+   {
+    "id": "D:59074d57-3190-4a5d-bd80-7a3862503548",
+    "title": "\"For the Freedom of the Black People\": Case Studies on the Universal Negro Improvement Association in Canada, 1900-1950",
+    "institution": "waterloo",
+    "year": 2018,
+    "advisors": [
+     "Walker, James"
+    ],
+    "field_works_cited": 72,
+    "topic": "UNIA in Canada"
+   },
+   {
+    "id": "D:d683178c-fdcf-43fa-a1cb-15fb3b460b5f",
+    "title": "King Alpha's Song in a Strange Land: Jamaican Migrant and Canadian Host in Toronto's Transnational Reggae Music Scene, 1973-1990",
+    "institution": "guelph",
+    "year": 2013,
+    "advisors": [
+     "Wilson, Catharine"
+    ],
+    "field_works_cited": 67,
+    "topic": "Jamaican migrants and Toronto reggae"
+   },
+   {
+    "id": "D:0afafa87-f36f-40fc-9d2e-44dec9b376cc",
+    "title": "A March From Selma to Canada: Canada and the Transnational Civil Rights Movement",
+    "institution": "mcmaster",
+    "year": 2015,
+    "advisors": [
+     "Frager, Ruth"
+    ],
+    "field_works_cited": 63,
+    "topic": "Canada and the transnational civil rights movement"
+   },
+   {
+    "id": "D:28b64756-3413-435d-a532-fdd94b6969c9",
+    "title": "Flying Fish in the Great White North: The \"Culture\" of Black Barbadian Migration to 1967",
+    "institution": "western",
+    "year": 2013,
+    "advisors": [
+     "Bangarth, Stephanie"
+    ],
+    "field_works_cited": 58,
+    "topic": "Black Barbadian migration"
+   },
+   {
+    "id": "D:31bc6496-b96d-4d1a-85ca-2075b0878f65",
+    "title": "“Lifting As We Climb”: The Emergence of an African-Canadian Civil Society in Southern Ontario (1840-1901)",
+    "institution": "waterloo",
+    "year": 2016,
+    "advisors": [
+     "Walker, James"
+    ],
+    "field_works_cited": 41,
+    "topic": "African-Canadian civil society in southern Ontario"
+   },
+   {
+    "id": "D:d381626f-7045-4dbb-8a21-39fe5fa711e4",
+    "title": "Locating Diaspora: Afro-Caribbean Migrations and the Transnational Dialectics of Race and Community in North America, 1910-1929",
+    "institution": "toronto",
+    "year": 2014,
+    "advisors": [
+     "Kazal, Russell"
+    ],
+    "field_works_cited": 35,
+    "topic": "Afro-Caribbean migrations, including Toronto"
+   },
+   {
+    "id": "D:9ab73e28-91ba-47e5-adce-d373cd0e39f1",
+    "title": "“especially in this free Country:” Webs of Empire, Slavery and the Fur Trade",
+    "institution": "manitoba",
+    "year": 2021,
+    "advisors": [
+     "Perry, Adele (History)"
+    ],
+    "field_works_cited": 26,
+    "topic": "slavery and the fur trade (probable; bibliography cites 26 field works)"
+   },
+   {
+    "id": "D:b68294fc-b740-4a6e-9d72-356bffba6448",
+    "title": "What Colour is Intelligence?: Kent County and the Tanser Study",
+    "institution": "queens",
+    "year": 2025,
+    "advisors": [
+     "Walker, Barrington",
+     "Currarino, Rosanne"
+    ],
+    "field_works_cited": 22,
+    "topic": "Kent County and the Tanser intelligence study"
+   },
+   {
+    "id": "D:c6000e77-2da0-496d-8e3f-8f9af5fe811b",
+    "title": "« Tout [n]était pas si négatif que ça » : les mémoires contestées du duvaliérisme au sein de la diaspora haïtienne de Montréal, 1964-2014",
+    "institution": "montreal",
+    "year": 2022,
+    "advisors": [
+     "Milton, Cynthia E."
+    ],
+    "field_works_cited": 21,
+    "topic": "Duvalierism in the memory of Haitian Montreal"
+   },
+   {
+    "id": "D:97944f01-2fa0-45b4-b5e6-eed126ae3c6c",
+    "title": "Rooted In History: Representations of Ethiopian Identities in Canada",
+    "institution": "western",
+    "year": 2021,
+    "advisors": [
+     "Bangarth, Stephanie",
+     "Robert Wardaugh"
+    ],
+    "field_works_cited": 5,
+    "topic": "Ethiopian identities in Canada"
+   },
+   {
+    "id": "D:9d0ec3c2-2e89-4387-9b29-dafb9919fd2c",
+    "title": "‘Equality Now!’: Race, Racism and Resistance in 1970s Toronto",
+    "institution": "queens",
+    "year": 2012,
+    "advisors": [
+     "Walker, Barrington"
+    ],
+    "field_works_cited": 20,
+    "topic": "Race and resistance in 1970s Toronto (in part)"
+   }
+  ],
+  "q46_title_regex": {
+   "matched": 23,
+   "black_canadian_subjects": 6,
+   "note": "The data_answers.py title regex (black|african.canadian|afro|noir|slaver|esclav) also matches Kwa-Zulu Natal, Cold War Chicago, the Black Sea, black-bear hunting, Florentine, Louisianan, Sierra Leonean and Mauritian slavery, a British Atlantic slavery case and Assassin's Creed IV: Black Flag."
+  }
+ },
+ "caveats": [
+  "Bibliographies record consultation, not influence.",
+  "Laval is undercounted in the corpus.",
+  "Title matching misses works whose titles lack Black or Canadian terms; author-based additions cover the main scholars only.",
+  "Reprint years in the graph (Winks 1997, Walker 1992) are corrected to first publication for the period evidence only."
+ ]
+}
