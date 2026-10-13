@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "audited_at": "2026-10-12T20:02:08.157740+00:00",
+  "audit_script_sha256": "55b891ad07e0f8331f03022f597c44660344ffcc6cdc879af84825285ca955bb",
+  "selection_sha256": "8874e41353fa4b07c335155221f16cedfa97368c60055be505aff7f2759da72f",
+  "manifest_sha256": "d6f6db1d0dd5144d4f6e4658347bc7ea1ee9a9d48530f77707294c0c7abb9170",
+  "metrics": {
+    "harvest_groups": 18,
+    "records": 22194,
+    "contributors": 23398,
+    "source_memberships": 22194,
+    "records_with_multiple_metadata_versions": 0,
+    "membership_issn_status": {
+      "matching_deposited_issn": 22194
+    },
+    "records_with_orcid": 59,
+    "distinct_orcids": 65
+  },
+  "pages_checked": 50,
+  "source_occurrences_checked": 22194,
+  "membership_issn_status": {
+    "matching_deposited_issn": 22194
+  },
+  "zero_result_journals": [],
+  "checks": [
+    "approved_selection",
+    "source_manifest_and_page_hashes",
+    "exact_metadata_queries",
+    "cursor_chains_and_empty_terminal_pages",
+    "stable_source_totals",
+    "source_membership_equality",
+    "unique_keys",
+    "all_four_parquet_tables_equal_database",
+    "raw_metadata_hashes",
+    "raw_contributor_occurrences",
+    "unreviewed_genres_and_identities",
+    "frozen_export_hashes"
+  ]
+}
