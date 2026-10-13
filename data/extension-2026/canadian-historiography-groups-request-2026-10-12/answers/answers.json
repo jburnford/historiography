@@ -1,0 +1,449 @@
+{
+ "prepared": "2026-10-12",
+ "method": "Data answers from answers/data_answers.py (data-answers.json): strict History PhDs 2009-2026 (n=1,303). Engagement = citing two or more anchor people of a group. Placement test = share of a person's citing PhDs that engage each candidate group, with lift over the group's base rate. Convention answers follow the atlas (historiography-1920-2000.json, GRAPH-FORMAT.md). Verification answers come from answers/verification.json once complete. 'user' marks questions the evidence cannot settle. 'research' answers come from the background research files in answers/research/ (2026-10-12).",
+ "answers": [
+  {
+   "q": 1,
+   "basis": "convention",
+   "answer": "Teaching umbrella. The atlas types comparable grouped national projects this way: nationaltradition, and the US 'Progressive & consensus historiography'. No checked source uses 'Laurentian school', so the label should not say 'school'.",
+   "change": "entry_type 'Teaching umbrella'; label 'Laurentian & national tradition'."
+  },
+  {
+   "q": 2,
+   "basis": "data+convention",
+   "answer": "Remove Trudel and Ouellet from this roster. Both are read as Quebec historians: Trudel by 39 PhDs (15 francophone, rising 2.0% → 4.4%), Ouellet by 40 (15 francophone). Mention them only in the Centenary Series strand prose.",
+   "change": "Drop the roster rows; keep the strand mention."
+  },
+  {
+   "q": 3,
+   "basis": "data",
+   "answer": "Drop Stacey. His readers engage military history (lift 5.8) and political history (4.2) far more than the national tradition (3.2). Stanley's readers lean regional (4.4) and native–newcomer (4.2), about as much as national (4.0); keep him as a secondary row for The Birth of Western Canada only if you want the Riel interpretation represented.",
+   "change": "Drop Stacey; Stanley optional."
+  },
+  {
+   "q": 4,
+   "basis": "data",
+   "answer": "Brunet is cited by 12 PhDs (6 francophone). Keep him in the Quebec roster (Montreal school) and leave the Creighton–Brunet comparison to the relationship note.",
+   "change": "Drop him from this roster."
+  },
+  {
+   "q": 5,
+   "basis": "verified+data",
+   "answer": "Ormsby belongs in regional history (British Columbia), not the national tradition, though her CHA presidency (1965) makes her part of the profession's history. The national tradition's women question stays open; Hilda Neatby is the obvious figure already on the roster.",
+   "change": "No change to cdn_national_tradition; Ormsby is handled under Q89."
+  },
+  {
+   "q": 6,
+   "basis": "convention+data",
+   "answer": "period_0, 'Earlier roots & interwar initiatives'. The tradition's founding works are interwar (Innis 1930, Creighton 1937). Its cited core runs from Innis 1930 to Berger 1986, median 1969.",
+   "change": "period_0"
+  },
+  {
+   "q": 7,
+   "basis": "data",
+   "answer": "Keep one entry with two strands. The intellectual-history and cultural-history literatures overlap with a lift of 3.0, which is lower than several pairs already kept separate (2.0–5.4). So the data neither requires a merge nor justifies a split; the existing strands carry the distinction.",
+   "change": "No change."
+  },
+  {
+   "q": 9,
+   "basis": "data",
+   "answer": "Not a coverage artefact. Engagement with the entry's anchor people is steady (ratio 1.02, and 1.14 in a fixed panel of 14 universities), and bibliographies have grown longer (median 234 → 252 entries). The decline the drafter measured is in specific older works, not the field: the classics are ageing.",
+   "change": "Describe the field as steady, with its older works less cited."
+  },
+  {
+   "q": 10,
+   "basis": "data",
+   "answer": "Yes. 15 of the 60 PhDs citing The Quest of the Folk also cite Lears's No Place of Grace (lift 10). Lears is cited by 54 PhDs in all.",
+   "change": "Add Lears as a comparison row, with source verification."
+  },
+  {
+   "q": 11,
+   "basis": "research",
+   "answer": "Yes, a checked critique exists. Clarence Karr, 'What Happened to Canadian Intellectual History?', Acadiensis 18:2 (1989): 158-74, read in full, attacks the field's search for a national mind, its framing of everything as crisis and 'its narrow, elitist, biographical methodology' (p. 160): group biographies of 'an elite group composed primarily of academics, journalists and clergymen' (p. 169). Susan Mann Trofimenkoff (Canadian Literature 83, 1979: 7-20, read in full) had argued earlier that a field tied to nationalism had left women 'virtually non-existent'. Wright (Acadiensis 1995) names representativeness as the commonest charge against the field. Gauvreau 2010 is known only from a review. Palmer's Descent into Discourse is a general critique of poststructuralism, not checked against Canadian intellectual history. Owram 1989 is a self-assessment, not a critique. Each critique is cited by 0-5 of 1,303 PhDs, so they mark a debate, not current reading.",
+   "change": "Add a critique sentence anchored on Karr 1989 and Trofimenkoff 1979, with a critic row for Karr (check whether Trofimenkoff is already in the atlas). Do not use Palmer 1990 or Owram 1989 as critiques. Note the low uptake.",
+   "source": "research/q11-intellectual-history-critique.json"
+  },
+  {
+   "q": 12,
+   "basis": "data",
+   "answer": "The Catholic Action / Quiet Revolution literature (85 PhDs, 36 francophone, rising 5.9% → 7.7%) is read by Quebec historiography readers (88%, lift 5.6) at least as much as by religion readers (59%, lift 5.7). Make Quebec historiography its main home, and keep the contribution edge from religion and reform.",
+   "change": "Move the strand to quebec_historiography; keep crr_rel_04."
+  },
+  {
+   "q": 14,
+   "basis": "data+convention",
+   "answer": "Keep Allen 1971 as the first milestone: date labels mark milestones, not popularity. But Allen is now cited by only 17 PhDs (1.5% → 0.5%), against Cook's Regenerators (42) and Christie and Gauvreau (35), so the description should lead with the later debate.",
+   "change": "Keep the date label; reweight the description."
+  },
+  {
+   "q": 15,
+   "basis": "data",
+   "answer": "Keep the Irish Catholic works in religion and reform. Their readers (48 PhDs, falling 5.1% → 1.7%) engage the national, religion and Quebec groups (lift about 3.6–4.1); immigration is not among their main groups.",
+   "change": "No move."
+  },
+  {
+   "q": 16,
+   "basis": "data",
+   "answer": "Yes, the decline is real. Engagement ratio is 0.69 overall and 0.67 in the fixed university panel, while bibliographies grew. The extension coverage note can say uptake is declining.",
+   "change": "Add to the coverage note."
+  },
+  {
+   "q": 17,
+   "basis": "user",
+   "answer": "No international history-of-capitalism entry. The user (2026-10-12): 'I don't think the fields have connected so we shouldn't force it; I can see the overlap.' The PhD data agrees: 1 of 91 McKay-citing PhDs cites Beckert.",
+   "change": "Keep the liberal order framework's capitalism theme in its description where sources support it (Fecteau, Palmer), but drop the none:history_of_capitalism target and the open question."
+  },
+  {
+   "q": 18,
+   "basis": "convention",
+   "answer": "Keep 'Approach / theoretical programme', matching its closest precedent, racial_formation. The atlas's 'Debate' entries (philhistory, revival, truthdebate) are quarrels, not programmes; the 2009 debate is a strand inside the programme.",
+   "change": "No change."
+  },
+  {
+   "q": 19,
+   "basis": "convention",
+   "answer": "Palmer's critique should run from cdn_working_class, where Palmer is primary. The atlas draws critique edges from the entry that holds the critic. karl stays a comparison.",
+   "change": "No change."
+  },
+  {
+   "q": 22,
+   "basis": "data",
+   "answer": "Both are strongly co-cited with McKay's prospectus: Bradbury's Working Families (44 PhDs, 13 with McKay, lift 4.0) and Greer's Peasant, Lord, and Merchant (16 PhDs, 5 with McKay, lift 4.2). That supports a transition-to-capitalism strand, if their arguments are verified.",
+   "change": "Add the strand, pending verification."
+  },
+  {
+   "q": 23,
+   "basis": "convention+data",
+   "answer": "'Moral regulation'. No dissertation title uses either phrase; atlas labels are short; and 'regulatory state' overlaps with the liberal order framework's state formation.",
+   "change": "Label 'Moral regulation'."
+  },
+  {
+   "q": 25,
+   "basis": "data",
+   "answer": "Confirmed. Curtis's readers engage the liberal order framework (64%, lift 4.1) more than moral regulation (35%, 3.2). Keep him out of the moral regulation roster and in its boundary strand.",
+   "change": "No change."
+  },
+  {
+   "q": 26,
+   "basis": "convention",
+   "answer": "Contribution. The atlas mostly uses contribution for Foucault's outgoing edges (12 contributions, 3 influences); influence is reserved for evidenced transmission. Upgrade it only if Valverde's own text acknowledges the debt.",
+   "change": "Make it a contribution unless verification finds Valverde's acknowledgement."
+  },
+  {
+   "q": 27,
+   "basis": "data",
+   "answer": "The Great Arch is cited by 10 PhDs. Adding Corrigan and Sayer to the historicalsociology roster is low-cost and defensible but not driven by Canadian uptake.",
+   "change": "Optional."
+  },
+  {
+   "q": 28,
+   "basis": "data",
+   "answer": "Make immigration, ethnicity and race her primary placement. Colour-Coded (52 of her 81 citing PhDs) is read most by immigration readers (71%, lift 5.9). Petticoats and Prejudice (15 PhDs) belongs with moral regulation and women's history, so keep her roster rows there.",
+   "change": "Move Backhouse's primary to cdn_immigration_ethnicity."
+  },
+  {
+   "q": 31,
+   "basis": "data",
+   "answer": "Include McKay as a contributor. 53% of McKay-citing PhDs engage working-class history (lift 2.9), so his labour and left history is read in this field.",
+   "change": "Add a contributor row (Reasoning Otherwise, 2008)."
+  },
+  {
+   "q": 32,
+   "basis": "convention+data",
+   "answer": "The comparison edge is enough. The atlas's labourhistory roster has no Canadians (the Webbs, Thompson, Gutman, Montgomery and others); the Canadian entry carries them.",
+   "change": "No change."
+  },
+  {
+   "q": 33,
+   "basis": "convention",
+   "answer": "Keep only the settler packet's edge to labourhistory, or retarget it. Burrill's book is Canadian, so retarget it to cdn_working_class and drop the duplicate.",
+   "change": "Retarget screq_rel_07 to cdn_working_class; drop wcreq_rel_05."
+  },
+  {
+   "q": 34,
+   "basis": "convention",
+   "answer": "Keep all three critics. Critic rows are common in the atlas (94 of about 1,400 roster rows), and Bercuson's and Morton's readers sit in military and political history (lifts 5.3–5.6), consistent with critics from outside.",
+   "change": "No change."
+  },
+  {
+   "q": 35,
+   "basis": "data+convention",
+   "answer": "The data is neutral: the women's-history and gender-history literatures overlap with a lift of 3.6, within the range of separate pairs. The atlas already separates women and gender internationally. Keeping one Canadian entry linked to both, with the 1995–96 debate as a strand, preserves the distinction without duplicating it.",
+   "change": "No change, pending the Left History verification (Q36)."
+  },
+  {
+   "q": 37,
+   "basis": "data",
+   "answer": "Descent into Discourse is cited by only 5 PhDs, 80% of them in working-class history. Move it to cdn_working_class as Palmer's critique of the linguistic turn, not a critique of women's history.",
+   "change": "Drop from women/gender; note in working-class."
+  },
+  {
+   "q": 38,
+   "basis": "data",
+   "answer": "Quebec women's history (34 PhDs, 27 francophone) is read inside Quebec historiography (91%, lift 5.8); the Canadian women and gender group is not among its top groups. Make it primary in quebec_historiography and keep the critique edge from women and gender.",
+   "change": "Move the Clio, Lévesque and Baillargeon strand to quebec_historiography."
+  },
+  {
+   "q": 39,
+   "basis": "data",
+   "answer": "Add Perry as a comparison row: 67% of her readers engage women and gender. Van Kirk's readers sit overwhelmingly in native–newcomer (90%) and settler colonialism; a comparison row for her is optional.",
+   "change": "Add Perry; Van Kirk optional."
+  },
+  {
+   "q": 40,
+   "basis": "research",
+   "answer": "Creating Historical Memory (UBC Press, 1997; contents checked against Crossref chapter records and Coulter's review) covers Machar, Curzon, Skinner, Skelton, Esther Clark Wright and Wood-Legh, plus the Women's Institutes and women religious; Prentice's chapter discusses Neatby and Ormsby. The francophone counterpart is Bienvenue and Dorais, eds., Profession historienne? (2023); Bienvenue 2018 shows Marie-Claire Daveluy foregrounding women in the history of New France. Laut, Abbott, Gérin-Lajoie and Cleverdon are not chapter subjects; Abbott and Gérin-Lajoie did not write Canadian history, and Wood-Legh wrote English history. Uptake is low except Neatby (16 PhDs) and Cleverdon (10).",
+   "change": "Add an 'earlier women writers of history' strand: Skelton, Machar, Skinner, Clark Wright, Neatby, Ormsby and Daveluy, with Cleverdon kept; Curzon and Laut optional. Frame them as earlier women writers of history, not founders of women's history (only Skelton and Daveluy are documented as writing women in), through the 1997 recovery, with the editors' caveat that their subjects are mainly white and Anglo-Celtic.",
+   "source": "research/q40-early-women-historians.json"
+  },
+  {
+   "q": 41,
+   "basis": "convention+data",
+   "answer": "period_3. The field's most-cited works date from 1993–2000 (median 1998), which is the atlas's 'Further turns, c. 1985–2000'. Sutherland 1976 (cited by 22 PhDs) is an earlier root in the date label.",
+   "change": "period_3"
+  },
+  {
+   "q": 42,
+   "basis": "data",
+   "answer": "Keep 'family'. Family is a growing dissertation topic: titles rise from 1.2% to 2.7% of PhDs, while childhood and youth titles hold at about 3%.",
+   "change": "No change."
+  },
+  {
+   "q": 43,
+   "basis": "data",
+   "answer": "Yes, add a cross-reference. 34% of PhDs citing Milloy's A National Crime engage childhood history (lift 3.4). A comparison edge between childhood/youth and native–newcomer, or a strand note, is justified.",
+   "change": "Add a comparison edge citing Milloy."
+  },
+  {
+   "q": 45,
+   "basis": "data",
+   "answer": "Owram's readers engage childhood (lift 4.1) and the Sixties (3.9) more than intellectual history (3.0), because Born at the Right Time (70 PhDs) is his most-cited book. Keep roster rows in all three. Consider making cdn_sixties his primary placement.",
+   "change": "Consider making Owram primary in cdn_sixties."
+  },
+  {
+   "q": 46,
+   "basis": "data",
+   "answer": "Create a separate entry. 104 PhDs cite Black Canadian history works, rising from 5.6% to 8.9%, and 23 dissertations are on Black Canadian subjects. Only 39% of those readers engage immigration and ethnicity (lift 3.0), so it is a distinct literature. Link it to the atlas's black entry.",
+   "change": "Propose a new 'Black Canadian history' group."
+  },
+  {
+   "q": 47,
+   "basis": "resolved",
+   "answer": "Already corrected in the draft: Dalhousie Review 77:2 (1997).",
+   "change": "None."
+  },
+  {
+   "q": 50,
+   "basis": "data",
+   "answer": "Keep Knowles. Strangers at Our Gates is cited by 56 PhDs and is a standard reference.",
+   "change": "No change."
+  },
+  {
+   "q": 51,
+   "basis": "research",
+   "answer": "Francophone work on immigration to Quebec exists but is thinly cited. Pâquet's Tracer les marges de la Cité (Boréal, 2005) is cited by 8 PhDs, 5 francophone, the only immigration work with a francophone majority; his CHA booklet Toward a Quebec Ministry of Immigration, 1945 to 1968 (1997) is the in-period anchor. Ramirez's French edition Par monts et par vaux (Boréal, 1991) is cited only by francophone PhDs (4). Taschereau's 1988 RHAF historiographical article (metadata checked) called for moving beyond community studies. Anctil, Le rendez-vous manqué (1988) is optional. Laval is under-represented (9 PhDs), so francophone uptake is a floor.",
+   "change": "Add a short 'Immigration to Quebec' strand: Ramirez (1984, 1991), Helly (1987), Taschereau (1988, title level), Pâquet (1997; 2005 as extension coverage); Pâquet as a contributor row. Do not describe these works as widely taken up.",
+   "source": "research/q51-quebec-immigration.json"
+  },
+  {
+   "q": 52,
+   "basis": "data",
+   "answer": "Current dissertations do not use 'native–newcomer': 1 title does, while 'Indigenous' rises from 2.0% to 3.2% of titles and 'settler' from 0.5% to 2.0%. Recommend 'Indigenous–newcomer relations & fur-trade history', which keeps the field's word 'newcomer' and avoids colliding with settler_colonialism. Explain 'native–newcomer' as the field's historical name in the description.",
+   "change": "Relabel."
+  },
+  {
+   "q": 53,
+   "basis": "convention",
+   "answer": "22 is fine. Atlas rosters have a median of 15 and a maximum of 51.",
+   "change": "No change."
+  },
+  {
+   "q": 54,
+   "basis": "research",
+   "answer": "Yes. Winona Stevenson (now Wheeler), 'Indigenous Voices, Indigenous Histories, Part I: The Othering of Indigenous History', Saskatchewan History 50:2 (Fall 1998): 24-27, read in full, addresses historians of 'Indian-White relations' and argues that relying on the records of one side keeps even agency-centred work 'within the colonialist framework' and others oral history; she is Cree (Fisher River Cree First Nation). LaRocque's 1999 dissertation (already an atlas source) criticises the 'neo cross-cultural approach' of Bailey, Jaenen, Trigger, Brown and Van Kirk as ethnological othering (PDF p. 249) and fur-trade historians' double standards (pp. 102, 109). Sioui 1989 critiques conventional history in general. Adams 1975 predates the field; Dickason worked within it. Trigger 1986 and Brownlie and Kelm 1994 are non-Indigenous context.",
+   "change": "Add Stevenson/Wheeler 1998 as a new source (replacing the unverified Wheeler placeholder) and Winona Wheeler (atlas id winona_wheeler) as a critic beside Sioui and LaRocque; add the pages read to the LaRocque claim. Do not present Adams or Dickason as critics of this field.",
+   "source": "research/q54-indigenous-critique.json"
+  },
+  {
+   "q": 56,
+   "basis": "data",
+   "answer": "Confirmed. Innis's readers engage the national tradition (lift 4.5) and regional history (4.6); native–newcomer is lower (3.6), consistent with him being a precursor there. Keep the contribution edge.",
+   "change": "No change."
+  },
+  {
+   "q": 57,
+   "basis": "data",
+   "answer": "Keep Paul. We Were Not the Savages is cited by 11 PhDs, rising from 0.5% to 2.0%. The edition cited is 2000 (first published 1993).",
+   "change": "Keep; cite the edition."
+  },
+  {
+   "q": 59,
+   "basis": "convention+data",
+   "answer": "period_1. The professional schools and RHAF (1947) are postwar. Groulx is cited by 29 PhDs, mostly for his memoirs, as a source; an earlier root in the date label covers him.",
+   "change": "period_1"
+  },
+  {
+   "q": 60,
+   "basis": "data",
+   "answer": "Keep 'Quebec historiography'. 59 dissertation titles concern Quebec against 11 on French Canada outside Quebec. Acadia (Q86–87) needs its own strand rather than a broader label.",
+   "change": "No change."
+  },
+  {
+   "q": 61,
+   "basis": "convention",
+   "answer": "Use 'modernist' for the post-1970 generation; that is the part title in Bédard and Goyette's Parole d'historiens (2006), which the Quebec drafter checked. Keep 'revisionist' for Rudin's critique and the debate it started.",
+   "change": "Use 'modernist' in the description; use 'revisionist' only in the debate strand."
+  },
+  {
+   "q": 63,
+   "basis": "data",
+   "answer": "Yes, add Trudel. He is cited by 39 PhDs (15 francophone), rising from 2.0% to 4.4%, for the Histoire de la Nouvelle-France and L'esclavage au Canada français.",
+   "change": "Add Trudel to the roster."
+  },
+  {
+   "q": 64,
+   "basis": "convention",
+   "answer": "Confirming the subtitles is a pre-release check. Astra's release candidate checks sources against catalogues before acceptance.",
+   "change": "Flag for Astra's release check."
+  },
+  {
+   "q": 65,
+   "basis": "convention",
+   "answer": "'Canadian military history', matching the atlas's 'Military history'. The three modes go in the description.",
+   "change": "Shorten the label."
+  },
+  {
+   "q": 69,
+   "basis": "data",
+   "answer": "Keep Berton. He is cited by 54 PhDs; popular history is part of what Canadian PhDs engage.",
+   "change": "No change."
+  },
+  {
+   "q": 70,
+   "basis": "data",
+   "answer": "Keep it as a strand. Only 6 PhDs cite the Valour and the Horror literature.",
+   "change": "No change."
+  },
+  {
+   "q": 72,
+   "basis": "data",
+   "answer": "Keep business history as a strand in political history. It is small and falling: 47 PhDs, 4.2% → 3.2%.",
+   "change": "No change."
+  },
+  {
+   "q": 73,
+   "basis": "data",
+   "answer": "Make cdn_political_national Bliss's primary placement. His business history is cited by 29 PhDs, against 7 for 'Privatizing the Mind'. Keep a debate roster row for the charge.",
+   "change": "Move Bliss's primary to cdn_political_national."
+  },
+  {
+   "q": 74,
+   "basis": "data",
+   "answer": "Share them. Stacey's readers engage military history (lift 5.8) and political history (4.2); Granatstein's engage political (75%) and military (62%).",
+   "change": "Keep both in both entries."
+  },
+  {
+   "q": 75,
+   "basis": "prizes+data",
+   "answer": "Since 2012 the CHA has awarded a French-language political history article prize (Savard 2012, Djebabla 2013, Dorais 2015, Fillion 2017, Rainville 2019, Marsan 2025). Fernand Harvey (2023) and Anne Trépanier (2025) won the political history book prize. PhD uptake of these works is still low (0–2), so they show recognition rather than use.",
+   "change": "Add a francophone strand naming Savard and Harvey, marked as recognized but not yet widely cited."
+  },
+  {
+   "q": 76,
+   "basis": "data",
+   "answer": "Keep it here. The British World literature (81 PhDs, steady at about 6%) is read with political history (57%) and the national tradition. Revisit if an imperial-history entry is created.",
+   "change": "No change."
+  },
+  {
+   "q": 77,
+   "basis": "prizes+data",
+   "answer": "The CHA's Political History prizes (book prize and English article prize since 2011) have gone to women: E.A. Heaman (best book 2018, Tax, Order, and Good Government: A New Political History of Canada; 53 citing PhDs overall), Tina Loo (2020; 109 citing PhDs overall), Heidi Bohaker (2021), Ivana Caccia (2011), Suzanne Morton (2015, with Mosby), Anne Trépanier (2025), and Lisa Pasolli and Jacqueline Briggs (articles). The profession's recent recognition centres a 'new political history' of state, tax and governance; the citation-based anchors (Granatstein, Bothwell, English) represent the older diplomatic and political synthesis.",
+   "change": "Add Heaman, Loo and Bohaker as roster rows, and widen the scope to include the new political history (Heaman's subtitle) as a strand."
+  },
+  {
+   "q": 78,
+   "basis": "resolved",
+   "answer": "Moot. The proposed working-class and women's/gender groups were accepted (user, 2026-10-12), so the replies keep their proposed endpoints.",
+   "change": "None."
+  },
+  {
+   "q": 80,
+   "basis": "data",
+   "answer": "Same as Q73: primary cdn_political_national, with a debate roster row.",
+   "change": "See Q73."
+  },
+  {
+   "q": 81,
+   "basis": "research",
+   "answer": "Francophones engaged Granatstein, not Bliss. Reviews of Who Killed Canadian History? appeared in RHAF (Dionne 1998), the BHP (Bouvier; Fahmy-Eid; Jedwab and Slogar; Dubuc, 1999) and the CHA Bulletin (Dumont 1999, read in full: a 'réquisitoire ... féroce contre les praticiens de l'histoire sociale' with 'visées politiques'; she links it to Comeau and Dionne 1998 and to Létourneau). No francophone reply to Bliss 1991-92 was found. Quebec's own debate over national and political history (BHP from 1992, Bélanger 1997, the 2006-07 programme, Bédard and D'Arcy 2011) ran separately and does not cite either. Fecteau 1999 is about Rudin, not Who Killed. Only 4 PhDs cite texts from both debates.",
+   "change": "Add Dumont as a critic (full text read) and Dionne and Fahmy-Eid as title-level critics (needs_review); cite Bouvier, Jedwab and Slogar, and Dubuc in sources. Revise 'largely English-Canadian' in the scope note. Keep cdng_wk_rel_07 to quebec_historiography but ground it on Dumont 1999; move Fecteau 1999 to quebec_historiography only. A post-2000 Quebec debate entry is a later option.",
+   "source": "research/q81-who-killed-francophone.json"
+  },
+  {
+   "q": 82,
+   "basis": "data",
+   "answer": "Yes. The debate shows the steepest decline of any group (engagement ratio 0.38). Write the entry as a teaching entry about the profession's self-understanding, not as current practice.",
+   "change": "Adjust the register."
+  },
+  {
+   "q": 83,
+   "basis": "resolved",
+   "answer": "Ids were reconciled in consolidation; consolidate.py finds no conflicts beyond two real namesakes.",
+   "change": "None."
+  },
+  {
+   "q": 84,
+   "basis": "data",
+   "answer": "Keep both as secondary rows. Harris's readers engage regional history at lift 4.7, and Carter's at 4.4.",
+   "change": "No change."
+  },
+  {
+   "q": 85,
+   "basis": "data",
+   "answer": "Add an Ontario strand: 80 dissertation titles concern Ontario (6.8% → 3.7%). The North (about 16) and Newfoundland (9) are small; a combined 'North and Newfoundland' note is enough.",
+   "change": "Ontario strand; brief note for the North and Newfoundland."
+  },
+  {
+   "q": 86,
+   "basis": "data",
+   "answer": "Show Quebec's intraprovincial regional history only in quebec_historiography, as a contrast. Its readership is Quebec-centred.",
+   "change": "No change to regional."
+  },
+  {
+   "q": 87,
+   "basis": "data",
+   "answer": "Acadia is substantial and rising: 101 PhDs cite Acadian history (5.1% → 8.9%), mostly in English (Faragher, Reid, Plank, Griffiths; 23 francophone PhDs). Its readers engage Quebec (lift 3.2), the liberal order framework, national and regional history. Recommend an Acadia strand in cdn_regional (Atlantic), with a comparison to quebec_historiography.",
+   "change": "Add an Acadia strand to the Atlantic part of cdn_regional."
+  },
+  {
+   "q": 89,
+   "basis": "verified+data",
+   "answer": "Keep her, as a historian in the British Columbia strand. Her British Columbia: A History (1958) closes the first era of BC historiography: Reimer's study of how BC history was written ends in 1958 because of it. She was CHA president in 1965; sources conflict on whether she was the first or second woman to hold the office. Her low current PhD uptake (7) reflects the book's age, not its place in the historiography; the atlas uses precursor and historian rows for such figures. Sources: Canadian Encyclopedia (CHA president 1965), https://thecanadianencyclopedia.ca/index.php/en/article/margaret-anchoretta-ormsby; UBC History, https://history.ubc.ca/former-members/margaret-anchoretta-ormsby/; Reimer, Writing British Columbia History, 1784–1958 (UBC Press, 2009/2010), https://ubcpress.ca/writing-british-columbia-history-1784-1958, which ends in 1958 with her book (Favrholdt's review, BC Studies 166, 2010); Governor General honours record, https://www.gg.ca/en/honours/recipients/146-5300 ('first woman president'); BC Book Look ('second female president'), https://bcbooklook.com/welcome-to-the-ormsby-review/. The first/second-woman conflict is unresolved. Settled 2026-10-12 from the CHA's own list of presidents (cha-shc.ca): Hilda Neatby was the first woman president (1962-63) and Ormsby the second (1965-66). The Governor General's 'first woman president' is wrong.",
+   "change": "Keep Ormsby in cdn_regional (BC strand) with role 'historian'. Add 'Ormsby 1958' to the date label and Reimer 2009 as a source. If her presidency is mentioned, call her the CHA's second woman president (1965-66), after Neatby (1962-63)."
+  },
+  {
+   "q": 90,
+   "basis": "convention+data",
+   "answer": "Extension (period null), with period_3 roots in the date label. The field's most-cited works run from 1994 to 2010 (median 2005).",
+   "change": "No change."
+  },
+  {
+   "q": 91,
+   "basis": "data",
+   "answer": "Martel's readers engage the Sixties (69%) and Quebec historiography (67%) almost equally, so keep his groups.json primary, Quebec historiography. The draft's other choices are plausible.",
+   "change": "No change."
+  },
+  {
+   "q": 93,
+   "basis": "convention",
+   "answer": "Use 'Research field'. 'Topic field' is not in the atlas vocabulary (GRAPH-FORMAT schema 1.4). The same applies to cdn_childhood_youth.",
+   "change": "Use entry_type 'Research field' for both."
+  },
+  {
+   "q": 94,
+   "basis": "data",
+   "answer": "The decline is modest and real (ratio 0.78, panel 0.81). The field rests on a few reference works (Owram, Palmer, Mills, Igartua), so describe it as a recent synthesis literature rather than a school.",
+   "change": "Adjust the register."
+  }
+ ]
+}

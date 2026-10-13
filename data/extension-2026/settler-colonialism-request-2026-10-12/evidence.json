@@ -1,0 +1,4481 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-12",
+ "unit": "dissertations (strict History PhDs, in_analysis: true); never citation counts",
+ "inputs": {
+  "graph.json": "c3350ba923861c86373c55f47daa5012ac221aa03c8a1ce6ed1f540eb0a00bfc",
+  "views.json": "70e40efaeeb411f9cf2df041f94d3238fbc744dde20c11a5f4fd24391defeed8",
+  "script": "settler_colonial_evidence.py"
+ },
+ "corpus": {
+  "in_analysis": 1959,
+  "analysis_period": [
+   2009,
+   2026
+  ],
+  "analysis_dissertations": 1303,
+  "pre_2009_with_year": 621,
+  "no_year": 35,
+  "caveats": [
+   "Bibliographies list works consulted, not influence or endorsement.",
+   "Before 2009 the corpus is thin and lacks Toronto and York; shown as context only.",
+   "Years are mostly repository issued dates, not convocation years.",
+   "Laval has 14 PhDs in the graph (downloads pending); francophone coverage relies on Montréal, UQAM and Sherbrooke.",
+   "Work matching uses hand-checked graph ids per work; parsing errors can still hide a few citations (undercount, not overcount).",
+   "2024-2026 is incomplete (deposits lag)."
+  ]
+ },
+ "series_pooled_2009_2026": {
+  "theory": {
+   "k": 65,
+   "n": 1303,
+   "share": 0.0499,
+   "ci95": [
+    0.0393,
+    0.0631
+   ],
+   "definition": "Cites at least one settler-colonial theory work (Wolfe, Veracini, Elkins & Pedersen, Barker & Battell Lowman, Cavanagh & Veracini, Hixson, Mamdani 2001/2020)."
+  },
+  "core": {
+   "k": 86,
+   "n": 1303,
+   "share": 0.066,
+   "ci95": [
+    0.0538,
+    0.0808
+   ],
+   "definition": "HEADLINE. Theory works plus Indigenous critique/resurgence works read with them (Coulthard, A. Simpson, Tuck & Yang, Byrd, L. B. Simpson, Kauanui)."
+  },
+  "core_or_vocabulary": {
+   "k": 136,
+   "n": 1303,
+   "share": 0.1044,
+   "ci95": [
+    0.0889,
+    0.1222
+   ],
+   "definition": "Core, or any cited work whose own title says 'settler colonial(ism)'."
+  },
+  "canadian_context": {
+   "k": 179,
+   "n": 1303,
+   "share": 0.1374,
+   "ci95": [
+    0.1197,
+    0.1571
+   ],
+   "definition": "Context only: Canadian historiography of colonial dispossession (Harris, Carter, Perry, Daschuk, Regan, Razack). Much of it predates the paradigm."
+  },
+  "core_or_canadian": {
+   "k": 209,
+   "n": 1303,
+   "share": 0.1604,
+   "ci95": [
+    0.1415,
+    0.1813
+   ],
+   "definition": "Core or Canadian context series."
+  },
+  "critique": {
+   "k": 23,
+   "n": 1303,
+   "share": 0.0177,
+   "ci95": [
+    0.0118,
+    0.0263
+   ],
+   "definition": "Cites a published critique or reassessment of the paradigm (Greer, Ostler & Shoemaker, Shoemaker, Macoun & Strakosch, Snelgrove et al., King)."
+  }
+ },
+ "series_pooled_before_2009_context": {
+  "theory": {
+   "k": 0,
+   "n": 621
+  },
+  "core": {
+   "k": 0,
+   "n": 621
+  },
+  "core_or_vocabulary": {
+   "k": 0,
+   "n": 621
+  },
+  "canadian_context": {
+   "k": 30,
+   "n": 621
+  },
+  "core_or_canadian": {
+   "k": 30,
+   "n": 621
+  },
+  "critique": {
+   "k": 0,
+   "n": 621
+  }
+ },
+ "uptake_by_window": [
+  {
+   "window": "1990-1999",
+   "dissertations": 183,
+   "flag": "context_thin_no_toronto_york",
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "theory_ci95": "0.0-0.0206",
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_ci95": "0.0-0.0206",
+   "core_or_vocabulary_k": 0,
+   "core_or_vocabulary_share": 0.0,
+   "core_or_vocabulary_ci95": "0.0-0.0206",
+   "canadian_context_k": 2,
+   "canadian_context_share": 0.0109,
+   "canadian_context_ci95": "0.003-0.039",
+   "core_or_canadian_k": 2,
+   "core_or_canadian_share": 0.0109,
+   "core_or_canadian_ci95": "0.003-0.039",
+   "critique_k": 0,
+   "critique_share": 0.0,
+   "critique_ci95": "0.0-0.0206"
+  },
+  {
+   "window": "2000-2004",
+   "dissertations": 132,
+   "flag": "context_thin_no_toronto_york",
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "theory_ci95": "0.0-0.0283",
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_ci95": "0.0-0.0283",
+   "core_or_vocabulary_k": 0,
+   "core_or_vocabulary_share": 0.0,
+   "core_or_vocabulary_ci95": "0.0-0.0283",
+   "canadian_context_k": 11,
+   "canadian_context_share": 0.0833,
+   "canadian_context_ci95": "0.0472-0.1431",
+   "core_or_canadian_k": 11,
+   "core_or_canadian_share": 0.0833,
+   "core_or_canadian_ci95": "0.0472-0.1431",
+   "critique_k": 0,
+   "critique_share": 0.0,
+   "critique_ci95": "0.0-0.0283"
+  },
+  {
+   "window": "2005-2008",
+   "dissertations": 123,
+   "flag": "context_thin_no_toronto_york",
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "theory_ci95": "0.0-0.0303",
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_ci95": "0.0-0.0303",
+   "core_or_vocabulary_k": 0,
+   "core_or_vocabulary_share": 0.0,
+   "core_or_vocabulary_ci95": "0.0-0.0303",
+   "canadian_context_k": 17,
+   "canadian_context_share": 0.1382,
+   "canadian_context_ci95": "0.0881-0.2102",
+   "core_or_canadian_k": 17,
+   "core_or_canadian_share": 0.1382,
+   "core_or_canadian_ci95": "0.0881-0.2102",
+   "critique_k": 0,
+   "critique_share": 0.0,
+   "critique_ci95": "0.0-0.0303"
+  },
+  {
+   "window": "2009-2011",
+   "dissertations": 149,
+   "flag": "analysis",
+   "theory_k": 1,
+   "theory_share": 0.0067,
+   "theory_ci95": "0.0012-0.037",
+   "core_k": 1,
+   "core_share": 0.0067,
+   "core_ci95": "0.0012-0.037",
+   "core_or_vocabulary_k": 3,
+   "core_or_vocabulary_share": 0.0201,
+   "core_or_vocabulary_ci95": "0.0069-0.0575",
+   "canadian_context_k": 18,
+   "canadian_context_share": 0.1208,
+   "canadian_context_ci95": "0.0778-0.1829",
+   "core_or_canadian_k": 18,
+   "core_or_canadian_share": 0.1208,
+   "core_or_canadian_ci95": "0.0778-0.1829",
+   "critique_k": 0,
+   "critique_share": 0.0,
+   "critique_ci95": "0.0-0.0251"
+  },
+  {
+   "window": "2012-2014",
+   "dissertations": 261,
+   "flag": "analysis",
+   "theory_k": 2,
+   "theory_share": 0.0077,
+   "theory_ci95": "0.0021-0.0275",
+   "core_k": 3,
+   "core_share": 0.0115,
+   "core_ci95": "0.0039-0.0332",
+   "core_or_vocabulary_k": 6,
+   "core_or_vocabulary_share": 0.023,
+   "core_or_vocabulary_ci95": "0.0106-0.0492",
+   "canadian_context_k": 37,
+   "canadian_context_share": 0.1418,
+   "canadian_context_ci95": "0.1046-0.1893",
+   "core_or_canadian_k": 37,
+   "core_or_canadian_share": 0.1418,
+   "core_or_canadian_ci95": "0.1046-0.1893",
+   "critique_k": 0,
+   "critique_share": 0.0,
+   "critique_ci95": "0.0-0.0145"
+  },
+  {
+   "window": "2015-2017",
+   "dissertations": 314,
+   "flag": "analysis",
+   "theory_k": 11,
+   "theory_share": 0.035,
+   "theory_ci95": "0.0197-0.0616",
+   "core_k": 17,
+   "core_share": 0.0541,
+   "core_ci95": "0.0341-0.085",
+   "core_or_vocabulary_k": 25,
+   "core_or_vocabulary_share": 0.0796,
+   "core_or_vocabulary_ci95": "0.0545-0.1149",
+   "canadian_context_k": 45,
+   "canadian_context_share": 0.1433,
+   "canadian_context_ci95": "0.1089-0.1864",
+   "core_or_canadian_k": 48,
+   "core_or_canadian_share": 0.1529,
+   "core_or_canadian_ci95": "0.1173-0.1968",
+   "critique_k": 3,
+   "critique_share": 0.0096,
+   "critique_ci95": "0.0033-0.0277"
+  },
+  {
+   "window": "2018-2020",
+   "dissertations": 245,
+   "flag": "analysis",
+   "theory_k": 17,
+   "theory_share": 0.0694,
+   "theory_ci95": "0.0438-0.1083",
+   "core_k": 24,
+   "core_share": 0.098,
+   "core_ci95": "0.0667-0.1416",
+   "core_or_vocabulary_k": 32,
+   "core_or_vocabulary_share": 0.1306,
+   "core_or_vocabulary_ci95": "0.0941-0.1786",
+   "canadian_context_k": 29,
+   "canadian_context_share": 0.1184,
+   "canadian_context_ci95": "0.0837-0.1648",
+   "core_or_canadian_k": 39,
+   "core_or_canadian_share": 0.1592,
+   "core_or_canadian_ci95": "0.1187-0.2102",
+   "critique_k": 3,
+   "critique_share": 0.0122,
+   "critique_ci95": "0.0042-0.0354"
+  },
+  {
+   "window": "2021-2023",
+   "dissertations": 211,
+   "flag": "analysis",
+   "theory_k": 22,
+   "theory_share": 0.1043,
+   "theory_ci95": "0.0699-0.1528",
+   "core_k": 27,
+   "core_share": 0.128,
+   "core_ci95": "0.0895-0.1798",
+   "core_or_vocabulary_k": 40,
+   "core_or_vocabulary_share": 0.1896,
+   "core_or_vocabulary_ci95": "0.1424-0.2478",
+   "canadian_context_k": 32,
+   "canadian_context_share": 0.1517,
+   "canadian_context_ci95": "0.1095-0.2063",
+   "core_or_canadian_k": 44,
+   "core_or_canadian_share": 0.2085,
+   "core_or_canadian_ci95": "0.1592-0.2683",
+   "critique_k": 11,
+   "critique_share": 0.0521,
+   "critique_ci95": "0.0294-0.0909"
+  },
+  {
+   "window": "2024-2026",
+   "dissertations": 123,
+   "flag": "analysis",
+   "theory_k": 12,
+   "theory_share": 0.0976,
+   "theory_ci95": "0.0567-0.1628",
+   "core_k": 14,
+   "core_share": 0.1138,
+   "core_ci95": "0.069-0.182",
+   "core_or_vocabulary_k": 30,
+   "core_or_vocabulary_share": 0.2439,
+   "core_or_vocabulary_ci95": "0.1765-0.3268",
+   "canadian_context_k": 18,
+   "canadian_context_share": 0.1463,
+   "canadian_context_ci95": "0.0946-0.2195",
+   "core_or_canadian_k": 23,
+   "core_or_canadian_share": 0.187,
+   "core_or_canadian_ci95": "0.128-0.265",
+   "critique_k": 6,
+   "critique_share": 0.0488,
+   "critique_ci95": "0.0225-0.1023"
+  }
+ ],
+ "uptake_by_university_2009_2026": [
+  {
+   "institution": "manitoba",
+   "dissertations_2009_2026": 17,
+   "theory_k": 5,
+   "theory_share": 0.2941,
+   "core_k": 6,
+   "core_share": 0.3529,
+   "core_or_vocabulary_k": 8,
+   "core_or_vocabulary_share": 0.4706,
+   "canadian_context_k": 13,
+   "canadian_context_share": 0.7647,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "dalhousie",
+   "dissertations_2009_2026": 13,
+   "theory_k": 2,
+   "theory_share": 0.1538,
+   "core_k": 2,
+   "core_share": 0.1538,
+   "core_or_vocabulary_k": 2,
+   "core_or_vocabulary_share": 0.1538,
+   "canadian_context_k": 3,
+   "canadian_context_share": 0.2308,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "usask",
+   "dissertations_2009_2026": 59,
+   "theory_k": 7,
+   "theory_share": 0.1186,
+   "core_k": 9,
+   "core_share": 0.1525,
+   "core_or_vocabulary_k": 13,
+   "core_or_vocabulary_share": 0.2203,
+   "canadian_context_k": 26,
+   "canadian_context_share": 0.4407,
+   "note": ""
+  },
+  {
+   "institution": "alberta",
+   "dissertations_2009_2026": 40,
+   "theory_k": 4,
+   "theory_share": 0.1,
+   "core_k": 6,
+   "core_share": 0.15,
+   "core_or_vocabulary_k": 7,
+   "core_or_vocabulary_share": 0.175,
+   "canadian_context_k": 10,
+   "canadian_context_share": 0.25,
+   "note": ""
+  },
+  {
+   "institution": "concordia",
+   "dissertations_2009_2026": 14,
+   "theory_k": 2,
+   "theory_share": 0.1429,
+   "core_k": 2,
+   "core_share": 0.1429,
+   "core_or_vocabulary_k": 2,
+   "core_or_vocabulary_share": 0.1429,
+   "canadian_context_k": 0,
+   "canadian_context_share": 0.0,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "sfu",
+   "dissertations_2009_2026": 30,
+   "theory_k": 3,
+   "theory_share": 0.1,
+   "core_k": 4,
+   "core_share": 0.1333,
+   "core_or_vocabulary_k": 4,
+   "core_or_vocabulary_share": 0.1333,
+   "canadian_context_k": 4,
+   "canadian_context_share": 0.1333,
+   "note": ""
+  },
+  {
+   "institution": "uvic",
+   "dissertations_2009_2026": 33,
+   "theory_k": 3,
+   "theory_share": 0.0909,
+   "core_k": 4,
+   "core_share": 0.1212,
+   "core_or_vocabulary_k": 4,
+   "core_or_vocabulary_share": 0.1212,
+   "canadian_context_k": 9,
+   "canadian_context_share": 0.2727,
+   "note": ""
+  },
+  {
+   "institution": "ubc",
+   "dissertations_2009_2026": 58,
+   "theory_k": 5,
+   "theory_share": 0.0862,
+   "core_k": 7,
+   "core_share": 0.1207,
+   "core_or_vocabulary_k": 9,
+   "core_or_vocabulary_share": 0.1552,
+   "canadian_context_k": 7,
+   "canadian_context_share": 0.1207,
+   "note": ""
+  },
+  {
+   "institution": "york",
+   "dissertations_2009_2026": 94,
+   "theory_k": 7,
+   "theory_share": 0.0745,
+   "core_k": 9,
+   "core_share": 0.0957,
+   "core_or_vocabulary_k": 13,
+   "core_or_vocabulary_share": 0.1383,
+   "canadian_context_k": 21,
+   "canadian_context_share": 0.2234,
+   "note": ""
+  },
+  {
+   "institution": "mcgill",
+   "dissertations_2009_2026": 86,
+   "theory_k": 4,
+   "theory_share": 0.0465,
+   "core_k": 7,
+   "core_share": 0.0814,
+   "core_or_vocabulary_k": 9,
+   "core_or_vocabulary_share": 0.1047,
+   "canadian_context_k": 13,
+   "canadian_context_share": 0.1512,
+   "note": ""
+  },
+  {
+   "institution": "laurier",
+   "dissertations_2009_2026": 13,
+   "theory_k": 1,
+   "theory_share": 0.0769,
+   "core_k": 1,
+   "core_share": 0.0769,
+   "core_or_vocabulary_k": 1,
+   "core_or_vocabulary_share": 0.0769,
+   "canadian_context_k": 2,
+   "canadian_context_share": 0.1538,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "western",
+   "dissertations_2009_2026": 68,
+   "theory_k": 5,
+   "theory_share": 0.0735,
+   "core_k": 5,
+   "core_share": 0.0735,
+   "core_or_vocabulary_k": 6,
+   "core_or_vocabulary_share": 0.0882,
+   "canadian_context_k": 10,
+   "canadian_context_share": 0.1471,
+   "note": ""
+  },
+  {
+   "institution": "memorial",
+   "dissertations_2009_2026": 16,
+   "theory_k": 1,
+   "theory_share": 0.0625,
+   "core_k": 1,
+   "core_share": 0.0625,
+   "core_or_vocabulary_k": 2,
+   "core_or_vocabulary_share": 0.125,
+   "canadian_context_k": 3,
+   "canadian_context_share": 0.1875,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "waterloo",
+   "dissertations_2009_2026": 51,
+   "theory_k": 2,
+   "theory_share": 0.0392,
+   "core_k": 3,
+   "core_share": 0.0588,
+   "core_or_vocabulary_k": 4,
+   "core_or_vocabulary_share": 0.0784,
+   "canadian_context_k": 4,
+   "canadian_context_share": 0.0784,
+   "note": ""
+  },
+  {
+   "institution": "toronto",
+   "dissertations_2009_2026": 207,
+   "theory_k": 8,
+   "theory_share": 0.0386,
+   "core_k": 12,
+   "core_share": 0.058,
+   "core_or_vocabulary_k": 23,
+   "core_or_vocabulary_share": 0.1111,
+   "canadian_context_k": 20,
+   "canadian_context_share": 0.0966,
+   "note": ""
+  },
+  {
+   "institution": "unb",
+   "dissertations_2009_2026": 23,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 1,
+   "core_share": 0.0435,
+   "core_or_vocabulary_k": 5,
+   "core_or_vocabulary_share": 0.2174,
+   "canadian_context_k": 2,
+   "canadian_context_share": 0.087,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "queens",
+   "dissertations_2009_2026": 70,
+   "theory_k": 2,
+   "theory_share": 0.0286,
+   "core_k": 2,
+   "core_share": 0.0286,
+   "core_or_vocabulary_k": 5,
+   "core_or_vocabulary_share": 0.0714,
+   "canadian_context_k": 12,
+   "canadian_context_share": 0.1714,
+   "note": ""
+  },
+  {
+   "institution": "carleton",
+   "dissertations_2009_2026": 44,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 1,
+   "core_share": 0.0227,
+   "core_or_vocabulary_k": 5,
+   "core_or_vocabulary_share": 0.1136,
+   "canadian_context_k": 5,
+   "canadian_context_share": 0.1136,
+   "note": ""
+  },
+  {
+   "institution": "calgary",
+   "dissertations_2009_2026": 46,
+   "theory_k": 1,
+   "theory_share": 0.0217,
+   "core_k": 1,
+   "core_share": 0.0217,
+   "core_or_vocabulary_k": 3,
+   "core_or_vocabulary_share": 0.0652,
+   "canadian_context_k": 6,
+   "canadian_context_share": 0.1304,
+   "note": ""
+  },
+  {
+   "institution": "mcmaster",
+   "dissertations_2009_2026": 53,
+   "theory_k": 1,
+   "theory_share": 0.0189,
+   "core_k": 1,
+   "core_share": 0.0189,
+   "core_or_vocabulary_k": 1,
+   "core_or_vocabulary_share": 0.0189,
+   "canadian_context_k": 1,
+   "canadian_context_share": 0.0189,
+   "note": ""
+  },
+  {
+   "institution": "uqam",
+   "dissertations_2009_2026": 65,
+   "theory_k": 1,
+   "theory_share": 0.0154,
+   "core_k": 1,
+   "core_share": 0.0154,
+   "core_or_vocabulary_k": 3,
+   "core_or_vocabulary_share": 0.0462,
+   "canadian_context_k": 3,
+   "canadian_context_share": 0.0462,
+   "note": ""
+  },
+  {
+   "institution": "montreal",
+   "dissertations_2009_2026": 91,
+   "theory_k": 1,
+   "theory_share": 0.011,
+   "core_k": 1,
+   "core_share": 0.011,
+   "core_or_vocabulary_k": 4,
+   "core_or_vocabulary_share": 0.044,
+   "canadian_context_k": 0,
+   "canadian_context_share": 0.0,
+   "note": ""
+  },
+  {
+   "institution": "guelph",
+   "dissertations_2009_2026": 35,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_or_vocabulary_k": 1,
+   "core_or_vocabulary_share": 0.0286,
+   "canadian_context_k": 3,
+   "canadian_context_share": 0.0857,
+   "note": ""
+  },
+  {
+   "institution": "laval",
+   "dissertations_2009_2026": 9,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_or_vocabulary_k": 0,
+   "core_or_vocabulary_share": 0.0,
+   "canadian_context_k": 0,
+   "canadian_context_share": 0.0,
+   "note": "thin (n<30)"
+  },
+  {
+   "institution": "ottawa",
+   "dissertations_2009_2026": 54,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_or_vocabulary_k": 2,
+   "core_or_vocabulary_share": 0.037,
+   "canadian_context_k": 2,
+   "canadian_context_share": 0.037,
+   "note": ""
+  },
+  {
+   "institution": "sherbrooke",
+   "dissertations_2009_2026": 14,
+   "theory_k": 0,
+   "theory_share": 0.0,
+   "core_k": 0,
+   "core_share": 0.0,
+   "core_or_vocabulary_k": 0,
+   "core_or_vocabulary_share": 0.0,
+   "canadian_context_k": 0,
+   "canadian_context_share": 0.0,
+   "note": "thin (n<30)"
+  }
+ ],
+ "core_works": [
+  {
+   "group": "canadian",
+   "key": "perry_2001",
+   "title": "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+   "year": 2001,
+   "graph_work_ids": "W:perry|on the edge; W:perry adele|on the edge of empire",
+   "phds_all_years": 84,
+   "phds_2009_2026": 73,
+   "universities_2009_2026": 20,
+   "first_citing_year": 2003,
+   "phds_2009_2014": 24,
+   "phds_2020_2026": 20
+  },
+  {
+   "group": "canadian",
+   "key": "harris_2002",
+   "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+   "year": 2002,
+   "graph_work_ids": "W:harris|making native space",
+   "phds_all_years": 56,
+   "phds_2009_2026": 48,
+   "universities_2009_2026": 15,
+   "first_citing_year": 2003,
+   "phds_2009_2014": 17,
+   "phds_2020_2026": 11
+  },
+  {
+   "group": "canadian",
+   "key": "carter_1990",
+   "title": "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+   "year": 1990,
+   "graph_work_ids": "W:carter|lost harvest",
+   "phds_all_years": 59,
+   "phds_2009_2026": 47,
+   "universities_2009_2026": 16,
+   "first_citing_year": 1997,
+   "phds_2009_2014": 15,
+   "phds_2020_2026": 17
+  },
+  {
+   "group": "canadian",
+   "key": "daschuk_2013",
+   "title": "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+   "year": 2013,
+   "graph_work_ids": "W:daschuk|clearing the plains; W:daschuck|clearing the plains; W:dashuk|clearing the plains",
+   "phds_all_years": 46,
+   "phds_2009_2026": 45,
+   "universities_2009_2026": 14,
+   "first_citing_year": 2013,
+   "phds_2009_2014": 3,
+   "phds_2020_2026": 23
+  },
+  {
+   "group": "canadian",
+   "key": "carter_2008",
+   "title": "The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915",
+   "year": 2008,
+   "graph_work_ids": "W:carter|importance of being monogamous",
+   "phds_all_years": 44,
+   "phds_2009_2026": 44,
+   "universities_2009_2026": 15,
+   "first_citing_year": 2010,
+   "phds_2009_2014": 11,
+   "phds_2020_2026": 16
+  },
+  {
+   "group": "canadian",
+   "key": "carter_1997",
+   "title": "Capturing Women: The Manipulation of Cultural Imagery in Canada’s Prairie West",
+   "year": 1997,
+   "graph_work_ids": "W:carter|apturing women",
+   "phds_all_years": 32,
+   "phds_2009_2026": 26,
+   "universities_2009_2026": 13,
+   "first_citing_year": 2001,
+   "phds_2009_2014": 8,
+   "phds_2020_2026": 8
+  },
+  {
+   "group": "canadian",
+   "key": "perry_2015",
+   "title": "Colonial Relations: The Douglas-Connolly Family and the Nineteenth-Century Imperial World",
+   "year": 2015,
+   "graph_work_ids": "W:perry|colonial relations",
+   "phds_all_years": 25,
+   "phds_2009_2026": 24,
+   "universities_2009_2026": 10,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 15
+  },
+  {
+   "group": "canadian",
+   "key": "harris_1997",
+   "title": "The Resettlement of British Columbia: Essays on Colonialism and Geographical Change",
+   "year": 1997,
+   "graph_work_ids": "W:harris|resettlement ofbritish columbia; W:harris|resettlement of british columbia|a",
+   "phds_all_years": 27,
+   "phds_2009_2026": 22,
+   "universities_2009_2026": 13,
+   "first_citing_year": 2003,
+   "phds_2009_2014": 9,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "canadian",
+   "key": "carter_1999",
+   "title": "Aboriginal People and Colonizers of Western Canada to 1900",
+   "year": 1999,
+   "graph_work_ids": "W:carter|aboriginal people and colonizers of western canada",
+   "phds_all_years": 24,
+   "phds_2009_2026": 21,
+   "universities_2009_2026": 10,
+   "first_citing_year": 2002,
+   "phds_2009_2014": 6,
+   "phds_2020_2026": 8
+  },
+  {
+   "group": "canadian",
+   "key": "regan_2010",
+   "title": "Unsettling the Settler Within: Indian Residential Schools, Truth Telling, and Reconciliation in Canada",
+   "year": 2010,
+   "graph_work_ids": "W:regan|unsettling the settler within",
+   "phds_all_years": 16,
+   "phds_2009_2026": 16,
+   "universities_2009_2026": 8,
+   "first_citing_year": 2012,
+   "phds_2009_2014": 2,
+   "phds_2020_2026": 8
+  },
+  {
+   "group": "canadian",
+   "key": "carter_2016",
+   "title": "Imperial Plots: Women, Land, and the Spadework of British Colonialism on the Canadian Prairies",
+   "year": 2016,
+   "graph_work_ids": "W:carter|imperial plots",
+   "phds_all_years": 14,
+   "phds_2009_2026": 13,
+   "universities_2009_2026": 8,
+   "first_citing_year": 2017,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 9
+  },
+  {
+   "group": "canadian",
+   "key": "harris_2004",
+   "title": "How Did Colonialism Dispossess? Comments from an Edge of Empire",
+   "year": 2004,
+   "graph_work_ids": "W:harris|how did colonialism dispossess|a",
+   "phds_all_years": 13,
+   "phds_2009_2026": 11,
+   "universities_2009_2026": 8,
+   "first_citing_year": 2008,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "canadian",
+   "key": "razack_2002",
+   "title": "Race, Space, and the Law: Unmapping a White Settler Society",
+   "year": 2002,
+   "graph_work_ids": "W:razack|race space and the law; W:raznac|race space and the law",
+   "phds_all_years": 12,
+   "phds_2009_2026": 11,
+   "universities_2009_2026": 8,
+   "first_citing_year": 2007,
+   "phds_2009_2014": 6,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "canadian",
+   "key": "harris_2020",
+   "title": "A Bounded Land: Reflections on Settler Colonialism in Canada",
+   "year": 2020,
+   "graph_work_ids": "W:harris|bounded land",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2022,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "compare",
+   "key": "said_1978",
+   "title": "Orientalism",
+   "year": 1978,
+   "graph_work_ids": "W:said|orientalism",
+   "phds_all_years": 118,
+   "phds_2009_2026": 110,
+   "universities_2009_2026": 21,
+   "first_citing_year": 2001,
+   "phds_2009_2014": 31,
+   "phds_2020_2026": 35
+  },
+  {
+   "group": "compare",
+   "key": "mamdani_1996",
+   "title": "Citizen and Subject: Contemporary Africa and the Legacy of Late Colonialism",
+   "year": 1996,
+   "graph_work_ids": "W:mamdani|citizen and subject",
+   "phds_all_years": 23,
+   "phds_2009_2026": 22,
+   "universities_2009_2026": 9,
+   "first_citing_year": 1998,
+   "phds_2009_2014": 9,
+   "phds_2020_2026": 7
+  },
+  {
+   "group": "compare",
+   "key": "belich_2009",
+   "title": "Replenishing the Earth: The Settler Revolution and the Rise of the Anglo-World, 1783-1939",
+   "year": 2009,
+   "graph_work_ids": "W:belich|replenishing the earth",
+   "phds_all_years": 18,
+   "phds_2009_2026": 18,
+   "universities_2009_2026": 9,
+   "first_citing_year": 2011,
+   "phds_2009_2014": 5,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "compare",
+   "key": "alfred_1999",
+   "title": "Peace, Power, Righteousness: An Indigenous Manifesto",
+   "year": 1999,
+   "graph_work_ids": "W:alfred|peace power righteousness",
+   "phds_all_years": 14,
+   "phds_2009_2026": 14,
+   "universities_2009_2026": 9,
+   "first_citing_year": 2009,
+   "phds_2009_2014": 6,
+   "phds_2020_2026": 3
+  },
+  {
+   "group": "compare",
+   "key": "jacobs_2009",
+   "title": "White Mother to a Dark Race: Settler Colonialism, Maternalism, and the Removal of Indigenous Children in the American West and Australia, 1880-1940",
+   "year": 2009,
+   "graph_work_ids": "W:jacobs|white mother to a dark race; W:jacobs margaret d|white mother to a dark race",
+   "phds_all_years": 14,
+   "phds_2009_2026": 12,
+   "universities_2009_2026": 10,
+   "first_citing_year": 2012,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 7
+  },
+  {
+   "group": "compare",
+   "key": "ford_2010",
+   "title": "Settler Sovereignty: Jurisdiction and Indigenous People in America and Australia, 1788-1836",
+   "year": 2010,
+   "graph_work_ids": "W:ford|settler sovereignty",
+   "phds_all_years": 9,
+   "phds_2009_2026": 8,
+   "universities_2009_2026": 5,
+   "first_citing_year": 2016,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "compare",
+   "key": "elkins_2005_reckoning",
+   "title": "Imperial Reckoning: The Untold Story of Britain’s Gulag in Kenya",
+   "year": 2005,
+   "graph_work_ids": "W:elkins|imperial reckoning",
+   "phds_all_years": 8,
+   "phds_2009_2026": 8,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2011,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "compare",
+   "key": "burrill_2019",
+   "title": "The Settler Order Framework: Rethinking Canadian Working-Class History",
+   "year": 2019,
+   "graph_work_ids": "W:burrill|settler order framework|a",
+   "phds_all_years": 4,
+   "phds_2009_2026": 4,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 4
+  },
+  {
+   "group": "compare",
+   "key": "stasiulis_yuval_davis_1995",
+   "title": "Unsettling Settler Societies: Articulations of Gender, Race, Ethnicity, and Class",
+   "year": 1995,
+   "graph_work_ids": "W:stasiulis|unsettling settler societies; W:satsiulis|unsettling settler societies",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 3,
+   "first_citing_year": 2011,
+   "phds_2009_2014": 2,
+   "phds_2020_2026": 0
+  },
+  {
+   "group": "compare",
+   "key": "bannister_2017",
+   "title": "Settler Colonialism and the Future of Canadian History",
+   "year": 2017,
+   "graph_work_ids": "W:bannister|settler colonialism and the future of canadian history|a",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "compare",
+   "key": "hoxie_2008",
+   "title": "Retrieving the Red Continent: Settler Colonialism and the History of American Indians in the US",
+   "year": 2008,
+   "graph_work_ids": "W:hoxie|retrieving the red continent|a",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2011,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 0
+  },
+  {
+   "group": "compare",
+   "key": "cote_2019",
+   "title": "Théorie postcoloniale, décolonisation et colonialisme de peuplement : quelques repères pour la recherche en français au Canada",
+   "year": 2019,
+   "graph_work_ids": "W:cote|theorie postcoloniale decolonisation et colonialisme de peuplement|a",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "critique",
+   "key": "greer_2019_jcha",
+   "title": "Settler Colonialism and Beyond",
+   "year": 2019,
+   "graph_work_ids": "W:greer|settler colonialism and beyond|a",
+   "phds_all_years": 8,
+   "phds_2009_2026": 8,
+   "universities_2009_2026": 6,
+   "first_citing_year": 2021,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 8
+  },
+  {
+   "group": "critique",
+   "key": "ostler_shoemaker_2019",
+   "title": "Settler Colonialism in Early American History: Introduction",
+   "year": 2019,
+   "graph_work_ids": "W:ostler|settler colonialism in early american history|a; W:ostler|forum|a; W:forum|settler colonialism in early american history|a",
+   "phds_all_years": 6,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "critique",
+   "key": "snelgrove_dhamoon_corntassel_2014",
+   "title": "Unsettling Settler Colonialism: The Discourse and Politics of Settlers, and Solidarity with Indigenous Nations",
+   "year": 2014,
+   "graph_work_ids": "W:snelgrove|unsettling settler colonialism|a; W:corntassel|unsettling settler colonialism|a",
+   "phds_all_years": 6,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 6,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 3
+  },
+  {
+   "group": "critique",
+   "key": "greer_2019_wmq",
+   "title": "Settler Colonialism and Empire in Early America",
+   "year": 2019,
+   "graph_work_ids": "W:greer|settler colonialism and empire in early america|a",
+   "phds_all_years": 4,
+   "phds_2009_2026": 4,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 4
+  },
+  {
+   "group": "critique",
+   "key": "macoun_strakosch_2013",
+   "title": "The Ethical Demands of Settler Colonial Theory",
+   "year": 2013,
+   "graph_work_ids": "W:macoun|ethical demands of settler colonial theory|a",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2018,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "critique",
+   "key": "shoemaker_2019",
+   "title": "Settler Colonialism: Universal Theory or English Heritage?",
+   "year": 2019,
+   "graph_work_ids": "W:shoemaker|settler colonialism|a",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2022,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "critique",
+   "key": "king_2019",
+   "title": "The Black Shoals: Offshore Formations of Black and Native Studies",
+   "year": 2019,
+   "graph_work_ids": "W:king|black shoals",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2021,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "indigenous",
+   "key": "coulthard_2014",
+   "title": "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+   "year": 2014,
+   "graph_work_ids": "W:coulthard|red skin white mask",
+   "phds_all_years": 23,
+   "phds_2009_2026": 23,
+   "universities_2009_2026": 11,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 17
+  },
+  {
+   "group": "indigenous",
+   "key": "a_simpson_2014",
+   "title": "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+   "year": 2014,
+   "graph_work_ids": "W:simpson|mohawk interuptus; W:simpson|mohawk interruptus political life across the borders of settler states",
+   "phds_all_years": 23,
+   "phds_2009_2026": 23,
+   "universities_2009_2026": 11,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 15
+  },
+  {
+   "group": "indigenous",
+   "key": "tuck_yang_2012",
+   "title": "Decolonization is not a metaphor",
+   "year": 2012,
+   "graph_work_ids": "W:tuck|decolonization is not a metaphor|a",
+   "phds_all_years": 14,
+   "phds_2009_2026": 13,
+   "universities_2009_2026": 9,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 11
+  },
+  {
+   "group": "indigenous",
+   "key": "byrd_2011",
+   "title": "The Transit of Empire: Indigenous Critiques of Colonialism",
+   "year": 2011,
+   "graph_work_ids": "W:byrd|transit of empire",
+   "phds_all_years": 10,
+   "phds_2009_2026": 10,
+   "universities_2009_2026": 8,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 6
+  },
+  {
+   "group": "indigenous",
+   "key": "l_simpson_2017",
+   "title": "As We Have Always Done: Indigenous Freedom Through Radical Resistance",
+   "year": 2017,
+   "graph_work_ids": "W:simpson|as we have always done; W:betasamosake simpson|as we have always done",
+   "phds_all_years": 8,
+   "phds_2009_2026": 8,
+   "universities_2009_2026": 6,
+   "first_citing_year": 2019,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 7
+  },
+  {
+   "group": "indigenous",
+   "key": "kauanui_2016",
+   "title": "‘A Structure, Not an Event’: Settler Colonialism and Enduring Indigeneity",
+   "year": 2016,
+   "graph_work_ids": "W:kauanui|structure not an event|a",
+   "phds_all_years": 7,
+   "phds_2009_2026": 7,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2020,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 7
+  },
+  {
+   "group": "indigenous",
+   "key": "l_simpson_2011",
+   "title": "Dancing on Our Turtle’s Back: Stories of Nishnaabeg Re-Creation, Resurgence and a New Emergence",
+   "year": 2011,
+   "graph_work_ids": "W:simpson|dancing on our turtles back",
+   "phds_all_years": 6,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 5,
+   "first_citing_year": 2013,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "theory",
+   "key": "wolfe_2006",
+   "title": "Settler Colonialism and the Elimination of the Native",
+   "year": 2006,
+   "graph_work_ids": "W:wolfe|settler colonialism and the elimination of the native|a",
+   "phds_all_years": 32,
+   "phds_2009_2026": 31,
+   "universities_2009_2026": 13,
+   "first_citing_year": 2013,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 23
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2010",
+   "title": "Settler Colonialism: A Theoretical Overview",
+   "year": 2010,
+   "graph_work_ids": "W:veracini|settler colonialism; W:veracini|settler colonialism a theoretical overview; W:varacini|settler colonialism",
+   "phds_all_years": 25,
+   "phds_2009_2026": 25,
+   "universities_2009_2026": 14,
+   "first_citing_year": 2012,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 13
+  },
+  {
+   "group": "theory",
+   "key": "wolfe_1999",
+   "title": "Settler Colonialism and the Transformation of Anthropology: The Politics and Poetics of an Ethnographic Event",
+   "year": 1999,
+   "graph_work_ids": "W:wolfe|settler colonialism and the transformation of anthropology",
+   "phds_all_years": 17,
+   "phds_2009_2026": 17,
+   "universities_2009_2026": 11,
+   "first_citing_year": 2012,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 11
+  },
+  {
+   "group": "theory",
+   "key": "wolfe_2001",
+   "title": "Land, Labor, and Difference: Elementary Structures of Race",
+   "year": 2001,
+   "graph_work_ids": "W:wolfe|land labor and difference|a",
+   "phds_all_years": 9,
+   "phds_2009_2026": 9,
+   "universities_2009_2026": 6,
+   "first_citing_year": 2009,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 5
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2011",
+   "title": "Introducing Settler Colonial Studies",
+   "year": 2011,
+   "graph_work_ids": "W:veracini|introducing settler colonial studies|a; W:veracini|introducing|a",
+   "phds_all_years": 6,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 3
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2013",
+   "title": "‘Settler Colonialism’: Career of a Concept",
+   "year": 2013,
+   "graph_work_ids": "W:veracini|settler colonialism|a",
+   "phds_all_years": 7,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 6,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 4
+  },
+  {
+   "group": "theory",
+   "key": "barker_battell_lowman_2015",
+   "title": "Settler: Identity and Colonialism in 21st Century Canada",
+   "year": 2015,
+   "graph_work_ids": "W:lowman|settler; W:battell lowman|settler; W:barker|settler",
+   "phds_all_years": 6,
+   "phds_2009_2026": 6,
+   "universities_2009_2026": 5,
+   "first_citing_year": 2018,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 4
+  },
+  {
+   "group": "theory",
+   "key": "wolfe_2016",
+   "title": "Traces of History: Elementary Structures of Race",
+   "year": 2016,
+   "graph_work_ids": "W:wolfe|traces of history",
+   "phds_all_years": 4,
+   "phds_2009_2026": 4,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2019,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "theory",
+   "key": "cavanagh_veracini_2017",
+   "title": "The Routledge Handbook of the History of Settler Colonialism",
+   "year": 2017,
+   "graph_work_ids": "W:cavanagh|routledge handbook of the history of settler colonialism; W:veracini|routledge handbook of the history of settler colonialism",
+   "phds_all_years": 4,
+   "phds_2009_2026": 4,
+   "universities_2009_2026": 4,
+   "first_citing_year": 2018,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2015",
+   "title": "The Settler Colonial Present",
+   "year": 2015,
+   "graph_work_ids": "W:veracini|settler colonial present",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 3,
+   "first_citing_year": 2017,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 1
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2017",
+   "title": "Decolonizing Settler Colonialism: Kill the Settler in Him and Save the Man",
+   "year": 2017,
+   "graph_work_ids": "W:veracini|decolonizing settler colonialism|a",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2022,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 3
+  },
+  {
+   "group": "theory",
+   "key": "hixson_2013",
+   "title": "American Settler Colonialism: A History",
+   "year": 2013,
+   "graph_work_ids": "W:hixson|american settler colonialism; W:hixon|american settler colonialism",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2017,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 1
+  },
+  {
+   "group": "theory",
+   "key": "mamdani_2001",
+   "title": "Beyond Settler and Native as Political Identities: Overcoming the Political Legacy of Colonialism",
+   "year": 2001,
+   "graph_work_ids": "W:mamdani|beyond settler and native as political identities|a",
+   "phds_all_years": 3,
+   "phds_2009_2026": 3,
+   "universities_2009_2026": 3,
+   "first_citing_year": 2015,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  },
+  {
+   "group": "theory",
+   "key": "veracini_2008",
+   "title": "Settler Collective, Founding Violence, and Disavowal: The Settler Colonial Situation",
+   "year": 2008,
+   "graph_work_ids": "W:veracini|settler collective founding violence and disavowal|a",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2018,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 1
+  },
+  {
+   "group": "theory",
+   "key": "elkins_pedersen_2005",
+   "title": "Settler Colonialism in the Twentieth Century: Projects, Practices, Legacies",
+   "year": 2005,
+   "graph_work_ids": "W:elkins|settler colonialism in the twentieth century",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2012,
+   "phds_2009_2014": 1,
+   "phds_2020_2026": 0
+  },
+  {
+   "group": "theory",
+   "key": "mamdani_2020",
+   "title": "Neither Settler nor Native: The Making and Unmaking of Permanent Minorities",
+   "year": 2020,
+   "graph_work_ids": "W:mamdani|neither settler nor native",
+   "phds_all_years": 2,
+   "phds_2009_2026": 2,
+   "universities_2009_2026": 2,
+   "first_citing_year": 2023,
+   "phds_2009_2014": 0,
+   "phds_2020_2026": 2
+  }
+ ],
+ "settler_colonial_titled_works_cited_by_2plus": [
+  {
+   "work_id": "W:wolfe|settler colonialism and the elimination of the native|a",
+   "title": "Settler Colonialism and the Elimination of the Native",
+   "year": 2006,
+   "phds_all_years": 32,
+   "phds_2009_2026": 31
+  },
+  {
+   "work_id": "W:veracini|settler colonialism",
+   "title": "Settler Colonialism: A Theoretical Overview",
+   "year": 2010,
+   "phds_all_years": 23,
+   "phds_2009_2026": 23
+  },
+  {
+   "work_id": "W:wolfe|settler colonialism and the transformation of anthropology",
+   "title": "Settler Colonialism and the Transformation of Anthropology: The Politics and Poetics of an Ethnographic Event",
+   "year": 1999,
+   "phds_all_years": 17,
+   "phds_2009_2026": 17
+  },
+  {
+   "work_id": "W:jacobs|white mother to a dark race",
+   "title": "White Mother to a Dark Race: Settler Colonialism, Maternalism, and the Removal of Indigenous Children in the American West and Australia, 1880-1940",
+   "year": 2009,
+   "phds_all_years": 13,
+   "phds_2009_2026": 11
+  },
+  {
+   "work_id": "W:evans|equal subjects unequal rights",
+   "title": "Equal Subjects, Unequal Rights: Indigenous Peoples in British Settler Colonies, 1830-1910",
+   "year": 2003,
+   "phds_all_years": 11,
+   "phds_2009_2026": 9
+  },
+  {
+   "work_id": "W:ishiguro|nothing to write home about",
+   "title": "Nothing to Write Home About: British Family Correspondence and the Settler Colonial Everyday in British Columbia",
+   "year": 2019,
+   "phds_all_years": 11,
+   "phds_2009_2026": 10
+  },
+  {
+   "work_id": "W:greer|settler colonialism and beyond|a",
+   "title": "Settler Colonialism and Beyond",
+   "year": 2019,
+   "phds_all_years": 8,
+   "phds_2009_2026": 8
+  },
+  {
+   "work_id": "W:kauanui|structure not an event|a",
+   "title": "‘A Structure, Not an Event’: Settler Colonialism and Enduring Indigeneity",
+   "year": 2016,
+   "phds_all_years": 7,
+   "phds_2009_2026": 7
+  },
+  {
+   "work_id": "W:veracini|settler colonialism|a",
+   "title": "‘Settler Colonialism’: Career of a Concept",
+   "year": 2013,
+   "phds_all_years": 7,
+   "phds_2009_2026": 6
+  },
+  {
+   "work_id": "W:coombes|rethinking settler colonialism",
+   "title": "Rethinking Settler Colonialism: History and Memory in Australia, Canada, Aotearoa New Zealand and South Africa",
+   "year": 2006,
+   "phds_all_years": 5,
+   "phds_2009_2026": 5
+  },
+  {
+   "work_id": "W:kelm|talking back to the indian act",
+   "title": "Talking Back to the Indian Act: Critical Readings in Settler Colonial Histories",
+   "year": 2018,
+   "phds_all_years": 5,
+   "phds_2009_2026": 5
+  },
+  {
+   "work_id": "W:knickerbocker|negotiating sovereignty|a",
+   "title": "Negotiating Sovereignty: Indigenous Perspectives on the Patriation of a Settler Colonial Constitution, 1975-83",
+   "year": 2016,
+   "phds_all_years": 5,
+   "phds_2009_2026": 5
+  },
+  {
+   "work_id": "W:ostler|settler colonialism in early american history|a",
+   "title": "Settler Colonialism in Early American History: Introduction",
+   "year": 2019,
+   "phds_all_years": 5,
+   "phds_2009_2026": 5
+  },
+  {
+   "work_id": "W:snelgrove|unsettling settler colonialism|a",
+   "title": "Unsettling Settler Colonialism: The Discourse and Politics of Settlers, and Solidarity with Indigenous Nations",
+   "year": 2014,
+   "phds_all_years": 5,
+   "phds_2009_2026": 5
+  },
+  {
+   "work_id": "W:devereux|new woman new world|a",
+   "title": "New Woman, New World: Maternal Feminism and the New Imperialism in the White Settler Colonies",
+   "year": 1999,
+   "phds_all_years": 4,
+   "phds_2009_2026": 4
+  },
+  {
+   "work_id": "W:freeman|toronto has no history indigeneity settler colonialism and historical memory in |a",
+   "title": "‘Toronto Has No History!’ Indigeneity, Settler Colonialism, and Historical Memory in Canada’s Largest City",
+   "year": 2010,
+   "phds_all_years": 4,
+   "phds_2009_2026": 4
+  },
+  {
+   "work_id": "W:greer|settler colonialism and empire in early america|a",
+   "title": "Settler Colonialism and Empire in Early America",
+   "year": 2019,
+   "phds_all_years": 4,
+   "phds_2009_2026": 4
+  },
+  {
+   "work_id": "W:veracini|introducing settler colonial studies|a",
+   "title": "Introducing Settler Colonial Studies",
+   "year": 2011,
+   "phds_all_years": 4,
+   "phds_2009_2026": 4
+  },
+  {
+   "work_id": "W:cavanagh|routledge handbook of the history of settler colonialism",
+   "title": "The Routledge Handbook of the History of Settler Colonialism",
+   "year": 2017,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:edmonds|unpacking settler colonialisms urban strategies|a",
+   "title": "Unpacking Settler Colonialism’s Urban Strategies: Indigenous Peoples in Victoria, British Columbia, and the Transition to a Settler-Colonial City",
+   "year": 2010,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:freeman|toronto has no history",
+   "title": "‘Toronto Has no History!’ Indigeneity, Settler Colonialism and Historical Memory in Canada’s Largest City",
+   "year": 2010,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:macoun|ethical demands of settler colonial theory|a",
+   "title": "The Ethical Demands of Settler Colonial Theory",
+   "year": 2013,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:mawani|law settler colonialism and the forgotten space of maritime worlds|a",
+   "title": "Law, Settler Colonialism, and ‘the Forgotten Space’ of Maritime Worlds",
+   "year": 2016,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:veracini|decolonizing settler colonialism|a",
+   "title": "Decolonizing Settler Colonialism: Kill the Settler in Him and Save the Man",
+   "year": 2017,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:veracini|settler colonial present",
+   "title": "The Settler Colonial Present",
+   "year": 2015,
+   "phds_all_years": 3,
+   "phds_2009_2026": 3
+  },
+  {
+   "work_id": "W:arvin|decolonizing feminism|a",
+   "title": "Decolonizing Feminism: Challenging Connections between Settler Colonialism and Heteropatriarchy",
+   "year": 2013,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:bannister|settler colonialism and the future of canadian history|a",
+   "title": "Settler Colonialism and the Future of Canadian History",
+   "year": 2017,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:barker|settler colonialism and the consolidation of canada in the twentieth century|a",
+   "title": "Settler Colonialism and the Consolidation of Canada in the Twentieth Century",
+   "year": 2017,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:camfield|settler colonialism and labour studies in canada|a",
+   "title": "Settler Colonialism and Labour Studies in Canada: A Preliminary Exploration",
+   "year": 2019,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:carlson|myth making and unmaking|a",
+   "title": "Myth Making and Unmaking: Indigenous Sacred Sites, Settler Colonial Mobility, and Ontological Oppression",
+   "year": 2021,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:curthoys|dog that didnt bark|a",
+   "title": "The Dog That Didn’t Bark: The Durham Report, Indigenous Dispossession, and Self-Government for Britain's Settler Colonies",
+   "year": 2015,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:day|alien capital",
+   "title": "Alien Capital: Asian Racialization and the Logic of Settler Colonial Capitalism",
+   "year": 2016,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:elbourne|empire kinship and violence",
+   "title": "Empire, Kinship and Violence: Family Histories, Indigenous Rights and the Making of Settler Colonialism, 1770-1842",
+   "year": 2023,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:elkins|settler colonialism in the twentieth century",
+   "title": "Settler Colonialism in the Twentieth Century: Projects, Practices, Legacies",
+   "year": 2005,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:foley|unknown and feeble body|a",
+   "title": "‘An Unknown and Feeble Body’: How Settler Colonialism Was Theorized in the Nineteenth Century",
+   "year": 2011,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:harris|bounded land",
+   "title": "A Bounded Land: Reflections on Settler Colonialism in Canada",
+   "year": 2020,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:hay|inventing the thirty gene",
+   "title": "Inventing the Thirty Gene: The Science of Settler Colonialism",
+   "year": 2021,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:hixson|american settler colonialism",
+   "title": "American Settler Colonialism: A History",
+   "year": 2013,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:hoxie|retrieving the red continent|a",
+   "title": "Retrieving the Red Continent: Settler Colonialism and the History of American Indians in the US",
+   "year": 2008,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:lester|indigenous communities and settler colonialism",
+   "title": "Indigenous Communities and Settler Colonialism: Land Holding, Loss and Survival in an Interconnected World",
+   "year": 2015,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:morgensen|biopolitics of settler colonialism|a",
+   "title": "The Biopolitics of Settler Colonialism: Right Here, Right Now Scott Lauria Morgensen",
+   "year": 2011,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:morgensen|spaces between us",
+   "title": "Spaces Between Us: Queer Settler Colonialism and Indigenous Decolonization",
+   "year": 2011,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:neufeldt|settler colonial conscripts|a",
+   "title": "Settler Colonial Conscripts: Mennonite Reserves and the Enfolding of Implicated Subjects",
+   "year": 2021,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:pasternak|jurisdiction and settler colonialism|a",
+   "title": "Jurisdiction and Settler Colonialism: Where Do Laws Meet?",
+   "year": 2014,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:phillips|settler colonialism and the nuclear family|a",
+   "title": "Settler Colonialism and the Nuclear Family",
+   "year": 2009,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:preston|neoliberal settler colonialism canada and the tar sands|a",
+   "title": "Neoliberal Settler Colonialism, Canada and the Tar Sands",
+   "year": 2013,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:saranillio|why asian settler colonialism matters|a",
+   "title": "Why Asian settler colonialism matters: a thought piece on critiques, debates, and Indigenous difference",
+   "year": 2013,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:shoemaker|settler colonialism|a",
+   "title": "Settler Colonialism: Universal Theory or English Heritage?",
+   "year": 2019,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:uchida|brokers of empire",
+   "title": "Brokers of Empire: Japanese Settler Colonialism in Korea, 1876-1945",
+   "year": 2011,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:veracini|imagined geographies of settler colonialism|a",
+   "title": "The Imagined Geographies of Settler Colonialism",
+   "year": 2010,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:veracini|introducing|a",
+   "title": "Introducing: Settler Colonial Studies",
+   "year": 2011,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:veracini|settler collective founding violence and disavowal|a",
+   "title": "Settler Collective, Founding Violence, and Disavowal: The Settler Colonial Situation",
+   "year": 2008,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  },
+  {
+   "work_id": "W:westman|extracting home in the oil sands",
+   "title": "Extracting Home in the Oil Sands: Settler Colonialism and Environmental Change in Subarctic Canada",
+   "year": 2020,
+   "phds_all_years": 2,
+   "phds_2009_2026": 2
+  }
+ ],
+ "scholars": [
+  {
+   "scholar": "Sarah Carter",
+   "person_id": "P:carter|sarah a",
+   "graph_qid": "Q97628356",
+   "phds_all_years": 151,
+   "phds_2009_2026": 125,
+   "share_2009_2026": 0.0959,
+   "universities_2009_2026": 23,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Adele Perry",
+   "person_id": "P:perry|adele",
+   "graph_qid": "Q64626780",
+   "phds_all_years": 142,
+   "phds_2009_2026": 122,
+   "share_2009_2026": 0.0936,
+   "universities_2009_2026": 22,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Allan Greer",
+   "person_id": "P:greer|allan",
+   "graph_qid": "Q2837703",
+   "phds_all_years": 155,
+   "phds_2009_2026": 119,
+   "share_2009_2026": 0.0913,
+   "universities_2009_2026": 24,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Cole Harris",
+   "person_id": "P:harris|cole r",
+   "graph_qid": "Q5142660",
+   "phds_all_years": 115,
+   "phds_2009_2026": 88,
+   "share_2009_2026": 0.0675,
+   "universities_2009_2026": 23,
+   "atlas_person_id": "cole_harris"
+  },
+  {
+   "scholar": "Jean Barman",
+   "person_id": "P:barman|jean",
+   "graph_qid": "Q6170223",
+   "phds_all_years": 110,
+   "phds_2009_2026": 83,
+   "share_2009_2026": 0.0637,
+   "universities_2009_2026": 23,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Arthur J. Ray",
+   "person_id": "P:ray|arthur j",
+   "graph_qid": "Q62018245",
+   "phds_all_years": 97,
+   "phds_2009_2026": 71,
+   "share_2009_2026": 0.0545,
+   "universities_2009_2026": 19,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Patrick Wolfe",
+   "person_id": "P:wolfe|patrick",
+   "graph_qid": "Q109284663",
+   "phds_all_years": 56,
+   "phds_2009_2026": 54,
+   "share_2009_2026": 0.0414,
+   "universities_2009_2026": 18,
+   "atlas_person_id": "patrick_wolfe"
+  },
+  {
+   "scholar": "James Daschuk",
+   "person_id": "P:daschuk|james w",
+   "graph_qid": "Q112485461",
+   "phds_all_years": 44,
+   "phds_2009_2026": 43,
+   "share_2009_2026": 0.033,
+   "universities_2009_2026": 13,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Mary Jane Logan McCallum",
+   "person_id": "P:mccallum|mary",
+   "graph_qid": "Q133600621",
+   "phds_all_years": 44,
+   "phds_2009_2026": 42,
+   "share_2009_2026": 0.0322,
+   "universities_2009_2026": 14,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Ian Mosby",
+   "person_id": "P:mosby|ian",
+   "graph_qid": "Q133602250",
+   "phds_all_years": 42,
+   "phds_2009_2026": 40,
+   "share_2009_2026": 0.0307,
+   "universities_2009_2026": 16,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Lorenzo Veracini",
+   "person_id": "P:veracini|lorenzo",
+   "graph_qid": "Q112150999",
+   "phds_all_years": 40,
+   "phds_2009_2026": 39,
+   "share_2009_2026": 0.0299,
+   "universities_2009_2026": 15,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Mahmood Mamdani",
+   "person_id": "P:mamdani|mahmood",
+   "graph_qid": "Q723502",
+   "phds_all_years": 38,
+   "phds_2009_2026": 35,
+   "share_2009_2026": 0.0269,
+   "universities_2009_2026": 13,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Audra Simpson",
+   "person_id": "P:simpson|audra",
+   "graph_qid": "Q112536616",
+   "phds_all_years": 33,
+   "phds_2009_2026": 33,
+   "share_2009_2026": 0.0253,
+   "universities_2009_2026": 16,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Sherene Razack",
+   "person_id": "P:razack|sherene h",
+   "graph_qid": "Q21152487",
+   "phds_all_years": 35,
+   "phds_2009_2026": 30,
+   "share_2009_2026": 0.023,
+   "universities_2009_2026": 11,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Glen Coulthard",
+   "person_id": "P:coulthard|glen s",
+   "graph_qid": "Q91710018",
+   "phds_all_years": 27,
+   "phds_2009_2026": 26,
+   "share_2009_2026": 0.02,
+   "universities_2009_2026": 11,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Leanne Betasamosake Simpson",
+   "person_id": "P:simpson|leanne r",
+   "graph_qid": "Q22957997",
+   "phds_all_years": 26,
+   "phds_2009_2026": 26,
+   "share_2009_2026": 0.02,
+   "universities_2009_2026": 11,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "James Belich",
+   "person_id": "P:belich|james",
+   "graph_qid": "Q3160933",
+   "phds_all_years": 29,
+   "phds_2009_2026": 25,
+   "share_2009_2026": 0.0192,
+   "universities_2009_2026": 13,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Bonita Lawrence",
+   "person_id": "P:lawrence|bonita",
+   "graph_qid": "Q47510113",
+   "phds_all_years": 27,
+   "phds_2009_2026": 24,
+   "share_2009_2026": 0.0184,
+   "universities_2009_2026": 10,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Taiaiake Alfred",
+   "person_id": "P:alfred|taiaiake",
+   "graph_qid": "Q3513956",
+   "phds_all_years": 23,
+   "phds_2009_2026": 22,
+   "share_2009_2026": 0.0169,
+   "universities_2009_2026": 10,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Eve Tuck",
+   "person_id": "P:tuck|eve",
+   "graph_qid": "Q28924966",
+   "phds_all_years": 22,
+   "phds_2009_2026": 21,
+   "share_2009_2026": 0.0161,
+   "universities_2009_2026": 12,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Susan Pedersen",
+   "person_id": "P:pedersen|susan",
+   "graph_qid": "Q64711854",
+   "phds_all_years": 25,
+   "phds_2009_2026": 20,
+   "share_2009_2026": 0.0153,
+   "universities_2009_2026": 9,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Margaret D. Jacobs",
+   "person_id": "P:jacobs|margaret d",
+   "graph_qid": "Q6759323",
+   "phds_all_years": 22,
+   "phds_2009_2026": 19,
+   "share_2009_2026": 0.0146,
+   "universities_2009_2026": 12,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Paulette Regan",
+   "person_id": "P:regan|paulette",
+   "graph_qid": "Q122819024",
+   "phds_all_years": 16,
+   "phds_2009_2026": 16,
+   "share_2009_2026": 0.0123,
+   "universities_2009_2026": 8,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Caroline Elkins",
+   "person_id": "P:elkins|caroline",
+   "graph_qid": "Q2030286",
+   "phds_all_years": 13,
+   "phds_2009_2026": 13,
+   "share_2009_2026": 0.01,
+   "universities_2009_2026": 7,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Jodi A. Byrd",
+   "person_id": "P:byrd|jodi a",
+   "graph_qid": "Q57242581",
+   "phds_all_years": 12,
+   "phds_2009_2026": 12,
+   "share_2009_2026": 0.0092,
+   "universities_2009_2026": 9,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Lisa Ford",
+   "person_id": "P:ford|lisa",
+   "graph_qid": "Q108805531",
+   "phds_all_years": 13,
+   "phds_2009_2026": 12,
+   "share_2009_2026": 0.0092,
+   "universities_2009_2026": 7,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Aileen Moreton-Robinson",
+   "person_id": "P:moreton robinson|aileen",
+   "graph_qid": "Q21811399",
+   "phds_all_years": 11,
+   "phds_2009_2026": 11,
+   "share_2009_2026": 0.0084,
+   "universities_2009_2026": 8,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Adam J. Barker",
+   "person_id": "P:barker|adam j",
+   "graph_qid": "Q117081597",
+   "phds_all_years": 10,
+   "phds_2009_2026": 9,
+   "share_2009_2026": 0.0069,
+   "universities_2009_2026": 8,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "J. Kēhaulani Kauanui",
+   "person_id": "P:kauanui|kehaulani",
+   "graph_qid": null,
+   "phds_all_years": 9,
+   "phds_2009_2026": 9,
+   "share_2009_2026": 0.0069,
+   "universities_2009_2026": 6,
+   "atlas_person_id": null
+  },
+  {
+   "scholar": "Emma Battell Lowman",
+   "person_id": "P:lowman|emma",
+   "graph_qid": null,
+   "phds_all_years": 8,
+   "phds_2009_2026": 8,
+   "share_2009_2026": 0.0061,
+   "universities_2009_2026": 7,
+   "atlas_person_id": null
+  }
+ ],
+ "cocitation_wolfe_veracini": {
+  "anchor_phds_2009_2026": 58,
+  "definition": "Dissertations 2009-2026 citing any Wolfe or Veracini settler-colonial work; lift = share among anchors / share among all 2009-2026 PhDs.",
+  "top_by_count": [
+   {
+    "work_id": "W:daschuk|clearing the plains",
+    "title": "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+    "year": 2013,
+    "co_citing_phds": 19,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 42,
+    "share_of_anchor": 0.328,
+    "lift": 10.16
+   },
+   {
+    "work_id": "W:perry|on the edge",
+    "title": "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+    "year": 2001,
+    "co_citing_phds": 19,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 72,
+    "share_of_anchor": 0.328,
+    "lift": 5.93
+   },
+   {
+    "work_id": "W:smith|decolonizing methodologies",
+    "title": "Decolonizing Methodologies: Research and Indigenous Peoples",
+    "year": 1999,
+    "co_citing_phds": 17,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 40,
+    "share_of_anchor": 0.293,
+    "lift": 9.55
+   },
+   {
+    "work_id": "W:van kirk|many tender ties",
+    "title": "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+    "year": 1980,
+    "co_citing_phds": 17,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 57,
+    "share_of_anchor": 0.293,
+    "lift": 6.7
+   },
+   {
+    "work_id": "W:anderson|imagine communities",
+    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+    "year": 1991,
+    "co_citing_phds": 16,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 213,
+    "share_of_anchor": 0.276,
+    "lift": 1.69
+   },
+   {
+    "work_id": "W:kelm|colonizing bodies",
+    "title": "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50",
+    "year": 1998,
+    "co_citing_phds": 15,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 48,
+    "share_of_anchor": 0.259,
+    "lift": 7.02
+   },
+   {
+    "work_id": "W:said|orientalism",
+    "title": "Orientalism",
+    "year": 1978,
+    "co_citing_phds": 15,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 110,
+    "share_of_anchor": 0.259,
+    "lift": 3.06
+   },
+   {
+    "work_id": "W:harris|making native space",
+    "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+    "year": 2002,
+    "co_citing_phds": 14,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 48,
+    "share_of_anchor": 0.241,
+    "lift": 6.55
+   },
+   {
+    "work_id": "W:hogue|metis and the medicine line",
+    "title": "Metis and the Medicine Line: Creating a Border and Dividing a People",
+    "year": 2015,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 25,
+    "share_of_anchor": 0.224,
+    "lift": 11.68
+   },
+   {
+    "work_id": "W:macdougall|one of the family",
+    "title": "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+    "year": 2010,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 33,
+    "share_of_anchor": 0.224,
+    "lift": 8.85
+   },
+   {
+    "work_id": "W:brown|strangers in blood",
+    "title": "Strangers in Blood: Fur Trade Company Families in Indian Country",
+    "year": 1980,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 40,
+    "share_of_anchor": 0.224,
+    "lift": 7.3
+   },
+   {
+    "work_id": "W:miller|compact contract covenant",
+    "title": "Compact, Contract, Covenant: Aboriginal Treaty-Making in Canada",
+    "year": 2009,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 41,
+    "share_of_anchor": 0.224,
+    "lift": 7.12
+   },
+   {
+    "work_id": "W:raibmon|authentic indians",
+    "title": "Authentic Indians: Episodes of Encounter from the Late-Nineteenth-Century Northwest Coast",
+    "year": 2005,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 51,
+    "share_of_anchor": 0.224,
+    "lift": 5.73
+   },
+   {
+    "work_id": "W:mckay|liberal order framework|a",
+    "title": "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History",
+    "year": 2000,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 90,
+    "share_of_anchor": 0.224,
+    "lift": 3.25
+   },
+   {
+    "work_id": "W:simpson|mohawk interuptus",
+    "title": "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+    "year": 2014,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 21,
+    "share_of_anchor": 0.207,
+    "lift": 12.84
+   },
+   {
+    "work_id": "W:coulthard|red skin white mask",
+    "title": "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+    "year": 2014,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 23,
+    "share_of_anchor": 0.207,
+    "lift": 11.72
+   },
+   {
+    "work_id": "W:lutz|makuk",
+    "title": "Makúk: A New History of Aboriginal-White Relations",
+    "year": 2008,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 36,
+    "share_of_anchor": 0.207,
+    "lift": 7.49
+   },
+   {
+    "work_id": "W:milloy|national crime",
+    "title": "A National Crime: The Canadian Government and the Residential School System, 1879-1986",
+    "year": 1999,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 39,
+    "share_of_anchor": 0.207,
+    "lift": 6.91
+   },
+   {
+    "work_id": "W:carter|importance of being monogamous",
+    "title": "The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915",
+    "year": 2008,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 44,
+    "share_of_anchor": 0.207,
+    "lift": 6.13
+   },
+   {
+    "work_id": "W:carter|lost harvest",
+    "title": "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+    "year": 1990,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 47,
+    "share_of_anchor": 0.207,
+    "lift": 5.74
+   },
+   {
+    "work_id": "W:miller|skyscrapers hide the heavens",
+    "title": "Skyscrapers Hide the Heavens: A History of Indian-White Relations in Canada",
+    "year": 2000,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 49,
+    "share_of_anchor": 0.207,
+    "lift": 5.5
+   },
+   {
+    "work_id": "W:tuck|decolonization is not a metaphor|a",
+    "title": "Decolonization is not a metaphor",
+    "year": 2012,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.19,
+    "lift": 19.01
+   },
+   {
+    "work_id": "W:carter|apturing women",
+    "title": "Capturing Women: The Manipulation of Cultural Imagery in Canada’s Prairie West",
+    "year": 1997,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 26,
+    "share_of_anchor": 0.19,
+    "lift": 9.5
+   },
+   {
+    "work_id": "W:smith|liberalism surveillance and resistance",
+    "title": "Liberalism, Surveillance, and Resistance: Indigenous Communities in Western Canada, 1877-1927",
+    "year": 2009,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 27,
+    "share_of_anchor": 0.19,
+    "lift": 9.15
+   },
+   {
+    "work_id": "W:carlson|power of place the problem of time",
+    "title": "The Power of Place, the Problem of Time: Aboriginal Identity and Historical Consciousness in the Cauldron of Colonialism",
+    "year": 2010,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 32,
+    "share_of_anchor": 0.19,
+    "lift": 7.72
+   },
+   {
+    "work_id": "W:white|middle ground",
+    "title": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650-1815",
+    "year": 1991,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 66,
+    "share_of_anchor": 0.19,
+    "lift": 3.74
+   },
+   {
+    "work_id": "W:ens|from new peoples to new nations",
+    "title": "From New Peoples to New Nations: Aspects of Métis History and Identity from the Eighteenth to the Twenty-First Centuries",
+    "year": 2016,
+    "co_citing_phds": 10,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 19,
+    "share_of_anchor": 0.172,
+    "lift": 11.82
+   },
+   {
+    "work_id": "W:lux|medicine that lalks",
+    "title": "Medicine That Walks: Disease, Medicine and Canadian Plains Native People, 1880-1940",
+    "year": 2001,
+    "co_citing_phds": 10,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 26,
+    "share_of_anchor": 0.172,
+    "lift": 8.64
+   },
+   {
+    "work_id": "W:deloria|playing indian",
+    "title": "Playing Indian",
+    "year": 1998,
+    "co_citing_phds": 10,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 28,
+    "share_of_anchor": 0.172,
+    "lift": 8.02
+   },
+   {
+    "work_id": "W:trouillot|silencing the past",
+    "title": "Silencing the Past: Power and the Production of History",
+    "year": 1995,
+    "co_citing_phds": 10,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 44,
+    "share_of_anchor": 0.172,
+    "lift": 5.11
+   },
+   {
+    "work_id": "W:innes|elder brother and the law of the people",
+    "title": "Elder Brother and the Law of the People: Contemporary Kinship and Cowessess First Nation",
+    "year": 2013,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.155,
+    "lift": 15.55
+   },
+   {
+    "work_id": "W:andersen|metis",
+    "title": "“Métis”: Race, Recognition, and the Struggle for Indigenous Peoplehood",
+    "year": 2014,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 19,
+    "share_of_anchor": 0.155,
+    "lift": 10.64
+   },
+   {
+    "work_id": "W:francis|imaginary indian",
+    "title": "The Imaginary Indian: The Image of the Indian in Canadian Culture",
+    "year": 1992,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 33,
+    "share_of_anchor": 0.155,
+    "lift": 6.13
+   },
+   {
+    "work_id": "W:miller|shinewauks vision",
+    "title": "Shingwauk’s Vision: A History of Native Residential Schools",
+    "year": 1996,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 38,
+    "share_of_anchor": 0.155,
+    "lift": 5.32
+   },
+   {
+    "work_id": "W:innis|furtrade in canada",
+    "title": "The Fur Trade in Canada: An Introduction to Canadian Economic History",
+    "year": 1930,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 48,
+    "share_of_anchor": 0.155,
+    "lift": 4.21
+   },
+   {
+    "work_id": "W:backhouse|colour coded",
+    "title": "Colour-Coded: A Legal History of Racism in Canada, 1900-1950",
+    "year": 1999,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 48,
+    "share_of_anchor": 0.155,
+    "lift": 4.21
+   },
+   {
+    "work_id": "W:scott|seeing like astate",
+    "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+    "year": 1998,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 110,
+    "share_of_anchor": 0.155,
+    "lift": 1.84
+   },
+   {
+    "work_id": "W:harris|how did colonialism dispossess|a",
+    "title": "How Did Colonialism Dispossess? Comments from an Edge of Empire",
+    "year": 2004,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:hoy|line of blood and dirt",
+    "title": "A Line of Blood and Dirt: Creating the Canada-United States Border Across Indigenous Lands",
+    "year": 2021,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:jacobs|white mother to a dark race",
+    "title": "White Mother to a Dark Race: Settler Colonialism, Maternalism, and the Removal of Indigenous Children in the American West and Australia, 1880-1940",
+    "year": 2009,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:manuel|fourth world",
+    "title": "The Fourth World: An Indian Reality",
+    "year": 1974,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 14,
+    "share_of_anchor": 0.138,
+    "lift": 12.84
+   },
+   {
+    "work_id": "W:regan|unsettling the settler within",
+    "title": "Unsettling the Settler Within: Indian Residential Schools, Truth Telling, and Reconciliation in Canada",
+    "year": 2010,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 16,
+    "share_of_anchor": 0.138,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:witgen|infinity of nations",
+    "title": "An Infinity of Nations: How the Native New World Shaped Early North America",
+    "year": 2012,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 20,
+    "share_of_anchor": 0.138,
+    "lift": 8.99
+   },
+   {
+    "work_id": "W:cardinal|unjust society",
+    "title": "The Unjust Society: The Tragedy of Canada’s Indians",
+    "year": 1969,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 21,
+    "share_of_anchor": 0.138,
+    "lift": 8.56
+   },
+   {
+    "work_id": "W:mccallum|indigenous women work and history",
+    "title": "Indigenous Women, Work, and History, 1940-1980",
+    "year": 2014,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 25,
+    "share_of_anchor": 0.138,
+    "lift": 7.19
+   },
+   {
+    "work_id": "W:deloria|indians in unexpected places",
+    "title": "Indians in Unexpected Places",
+    "year": 2004,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 25,
+    "share_of_anchor": 0.138,
+    "lift": 7.19
+   },
+   {
+    "work_id": "W:podruchny|making the voyageur world",
+    "title": "Making the Voyageur World: Travelers and Traders in the North American Fur Trade",
+    "year": 2006,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 29,
+    "share_of_anchor": 0.138,
+    "lift": 6.2
+   },
+   {
+    "work_id": "W:ray|indians in the fur trade",
+    "title": "Indians in the Fur Trade: Their Role as Trappers, Hunters, and Middlemen in the Lands Southwest of Hudson Bay, 1660-1870",
+    "year": 1974,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 35,
+    "share_of_anchor": 0.138,
+    "lift": 5.13
+   },
+   {
+    "work_id": "W:stoler|carnal knowledge and imperial power",
+    "title": "Carnal Knowledge and Imperial Power: Race and the Intimate in Colonial Rule",
+    "year": 2002,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 52,
+    "share_of_anchor": 0.138,
+    "lift": 3.46
+   },
+   {
+    "work_id": "W:valverde|age of light",
+    "title": "The Age of Light, Soap, and Water: Moral Reform in English Canada, 1885-1925",
+    "year": 1991,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 107,
+    "share_of_anchor": 0.138,
+    "lift": 1.68
+   },
+   {
+    "work_id": "W:lawrence|real indians and others",
+    "title": "“Real” Indians and Others: Mixed-Blood Urban Native Peoples and Indigenous Nationhood",
+    "year": 2004,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 12,
+    "share_of_anchor": 0.121,
+    "lift": 13.1
+   },
+   {
+    "work_id": "W:eyford|white settler reserve",
+    "title": "White Settler Reserve: New Iceland and the Colonization of the Canadian West",
+    "year": 2016,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.121,
+    "lift": 12.1
+   },
+   {
+    "work_id": "W:anderson|life stages and native women",
+    "title": "Life Stages and Native Women: Memory, Teachings, and Story Medicine",
+    "year": 2011,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.121,
+    "lift": 12.1
+   },
+   {
+    "work_id": "W:st onge|contour of a people",
+    "title": "Contours of a People: Metis Family, Mobility, and History",
+    "year": 2012,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 14,
+    "share_of_anchor": 0.121,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:peterson|new peoples",
+    "title": "The New Peoples: Being and Becoming Métis in North America",
+    "year": 1985,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 17,
+    "share_of_anchor": 0.121,
+    "lift": 9.25
+   },
+   {
+    "work_id": "W:devine|people who own themselves",
+    "title": "The People Who Own Themselves: Aboriginal Ethnogenesis in a Canadian Family, 1660-1900",
+    "year": 2004,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 20,
+    "share_of_anchor": 0.121,
+    "lift": 7.86
+   },
+   {
+    "work_id": "W:neylan|heavens are changing",
+    "title": "The Heavens Are Changing: Nineteenth-Century Protestant Missions and Tsimshian Christianity",
+    "year": 2003,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 20,
+    "share_of_anchor": 0.121,
+    "lift": 7.86
+   },
+   {
+    "work_id": "W:bohaker|making aboriginal people immigrants too|a",
+    "title": "Making Aboriginal People ‘Immigrants Too’: A Comparison of Citizenship Programs for Newcomers and Indigenous Peoples in Postwar Canada, 1940s-1960s",
+    "year": 2009,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 20,
+    "share_of_anchor": 0.121,
+    "lift": 7.86
+   },
+   {
+    "work_id": "W:carter|aboriginal people and colonizers of western canada",
+    "title": "Aboriginal People and Colonizers of Western Canada to 1900",
+    "year": 1999,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 21,
+    "share_of_anchor": 0.121,
+    "lift": 7.49
+   },
+   {
+    "work_id": "W:stanley|birth of western canada",
+    "title": "The Birth of Western Canada: A History of the Riel Rebellions",
+    "year": 1961,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 24,
+    "share_of_anchor": 0.121,
+    "lift": 6.55
+   }
+  ],
+  "top_by_lift_min5": [
+   {
+    "work_id": "W:ostler|settler colonialism in early american history|a",
+    "title": "Settler Colonialism in Early American History: Introduction",
+    "year": 2019,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 5,
+    "share_of_anchor": 0.086,
+    "lift": 22.47
+   },
+   {
+    "work_id": "W:tuck|decolonization is not a metaphor|a",
+    "title": "Decolonization is not a metaphor",
+    "year": 2012,
+    "co_citing_phds": 11,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.19,
+    "lift": 19.01
+   },
+   {
+    "work_id": "W:reid|sea is my country",
+    "title": "The Sea is My Country: The Maritime World of the Makahs",
+    "year": 2015,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 6,
+    "share_of_anchor": 0.086,
+    "lift": 18.72
+   },
+   {
+    "work_id": "W:teillet|north west is our mother",
+    "title": "The North-West Is Our Mother: The Story of Louis Riel’s People, the Métis Nation",
+    "year": 2019,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 6,
+    "share_of_anchor": 0.086,
+    "lift": 18.72
+   },
+   {
+    "work_id": "W:jamieson|indian women and the law in canada",
+    "title": "Indian Women and the Law in Canada: Citizens Minus",
+    "year": 1978,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 6,
+    "share_of_anchor": 0.086,
+    "lift": 18.72
+   },
+   {
+    "work_id": "W:greer|settler colonialism and beyond|a",
+    "title": "Settler Colonialism and Beyond",
+    "year": 2019,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 8,
+    "share_of_anchor": 0.103,
+    "lift": 16.85
+   },
+   {
+    "work_id": "W:younging|elements of indigenous style",
+    "title": "Elements of Indigenous Style: A Guide for Writing By and About Indigenous Peoples",
+    "year": 2018,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 8,
+    "share_of_anchor": 0.103,
+    "lift": 16.85
+   },
+   {
+    "work_id": "W:harris|how did colonialism dispossess|a",
+    "title": "How Did Colonialism Dispossess? Comments from an Edge of Empire",
+    "year": 2004,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:hoy|line of blood and dirt",
+    "title": "A Line of Blood and Dirt: Creating the Canada-United States Border Across Indigenous Lands",
+    "year": 2021,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:jacobs|white mother to a dark race",
+    "title": "White Mother to a Dark Race: Settler Colonialism, Maternalism, and the Removal of Indigenous Children in the American West and Australia, 1880-1940",
+    "year": 2009,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 11,
+    "share_of_anchor": 0.138,
+    "lift": 16.34
+   },
+   {
+    "work_id": "W:sangster|iconic north",
+    "title": "The Iconic North: Cultural Constructions of Aboriginal Life in Postwar Canada",
+    "year": 2016,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:shewell|enough to keep them alive|a",
+    "title": "Enough to Keep Them Alive",
+    "year": 2004,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:foran|defining metis",
+    "title": "Defining Métis: Catholic Missionaries and the Idea of Civilization in Northwestern Saskatchewan, 1845-1898",
+    "year": 2017,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:peters|rooster town",
+    "title": "Rooster Town: The History of an Urban Métis Community, 1901-1961",
+    "year": 2018,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:kauanui|structure not an event|a",
+    "title": "‘A Structure, Not an Event’: Settler Colonialism and Enduring Indigeneity",
+    "year": 2016,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:simpson|as we have always done",
+    "title": "As We Have Always Done: Indigenous Freedom Through Radical Resistance",
+    "year": 2017,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 7,
+    "share_of_anchor": 0.086,
+    "lift": 16.05
+   },
+   {
+    "work_id": "W:innes|elder brother and the law of the people",
+    "title": "Elder Brother and the Law of the People: Contemporary Kinship and Cowessess First Nation",
+    "year": 2013,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.155,
+    "lift": 15.55
+   },
+   {
+    "work_id": "W:nickel|reconsidering 1969|a",
+    "title": "Reconsidering 1969: The White Paper and the Making of the Modern Indigenous Rights Movement",
+    "year": 2019,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 9,
+    "share_of_anchor": 0.103,
+    "lift": 14.98
+   },
+   {
+    "work_id": "W:perry|aqueduct",
+    "title": "Aqueduct: Colonialism, Resources, and the Histories We Remember",
+    "year": 2016,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 8,
+    "share_of_anchor": 0.086,
+    "lift": 14.04
+   },
+   {
+    "work_id": "W:byrd|transit of empire",
+    "title": "The Transit of Empire: Indigenous Critiques of Colonialism",
+    "year": 2011,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 10,
+    "share_of_anchor": 0.103,
+    "lift": 13.48
+   },
+   {
+    "work_id": "W:giraud|metis canadien",
+    "title": "Le métis canadien : son rôle dans l’histoire des provinces de l’Ouest",
+    "year": 1945,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 10,
+    "share_of_anchor": 0.103,
+    "lift": 13.48
+   },
+   {
+    "work_id": "W:obrien|firsting and lasting",
+    "title": "Firsting and Lasting: Writing Indians Out of Existence in New England",
+    "year": 2010,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 10,
+    "share_of_anchor": 0.103,
+    "lift": 13.48
+   },
+   {
+    "work_id": "W:lawrence|real indians and others",
+    "title": "“Real” Indians and Others: Mixed-Blood Urban Native Peoples and Indigenous Nationhood",
+    "year": 2004,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 12,
+    "share_of_anchor": 0.121,
+    "lift": 13.1
+   },
+   {
+    "work_id": "W:simpson|mohawk interuptus",
+    "title": "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+    "year": 2014,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 21,
+    "share_of_anchor": 0.207,
+    "lift": 12.84
+   },
+   {
+    "work_id": "W:manuel|fourth world",
+    "title": "The Fourth World: An Indian Reality",
+    "year": 1974,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 14,
+    "share_of_anchor": 0.138,
+    "lift": 12.84
+   },
+   {
+    "work_id": "W:harris|fish law and colonialism",
+    "title": "Fish, Law, and Colonialism: The Legal Capture of Salmon in British Columbia",
+    "year": 2001,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 9,
+    "share_of_anchor": 0.086,
+    "lift": 12.48
+   },
+   {
+    "work_id": "W:bradford|mixed blessings",
+    "title": "Mixed Blessings: Indigenous Encounters with Christianity in Canada",
+    "year": 2016,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 9,
+    "share_of_anchor": 0.086,
+    "lift": 12.48
+   },
+   {
+    "work_id": "W:stevenson|intimate integration",
+    "title": "Intimate Integration: A History of the Sixties Scoop and the Colonization of Indigenous Kinship",
+    "year": 2021,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 9,
+    "share_of_anchor": 0.086,
+    "lift": 12.48
+   },
+   {
+    "work_id": "W:wilson|research is ceremony",
+    "title": "Research is Ceremony: Indigenous Research Methods",
+    "year": 2008,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 9,
+    "share_of_anchor": 0.086,
+    "lift": 12.48
+   },
+   {
+    "work_id": "W:eyford|white settler reserve",
+    "title": "White Settler Reserve: New Iceland and the Colonization of the Canadian West",
+    "year": 2016,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.121,
+    "lift": 12.1
+   },
+   {
+    "work_id": "W:anderson|life stages and native women",
+    "title": "Life Stages and Native Women: Memory, Teachings, and Story Medicine",
+    "year": 2011,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 13,
+    "share_of_anchor": 0.121,
+    "lift": 12.1
+   },
+   {
+    "work_id": "W:ens|from new peoples to new nations",
+    "title": "From New Peoples to New Nations: Aspects of Métis History and Identity from the Eighteenth to the Twenty-First Centuries",
+    "year": 2016,
+    "co_citing_phds": 10,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 19,
+    "share_of_anchor": 0.172,
+    "lift": 11.82
+   },
+   {
+    "work_id": "W:coulthard|red skin white mask",
+    "title": "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+    "year": 2014,
+    "co_citing_phds": 12,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 23,
+    "share_of_anchor": 0.207,
+    "lift": 11.72
+   },
+   {
+    "work_id": "W:hogue|metis and the medicine line",
+    "title": "Metis and the Medicine Line: Creating a Border and Dividing a People",
+    "year": 2015,
+    "co_citing_phds": 13,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 25,
+    "share_of_anchor": 0.224,
+    "lift": 11.68
+   },
+   {
+    "work_id": "W:regan|unsettling the settler within",
+    "title": "Unsettling the Settler Within: Indian Residential Schools, Truth Telling, and Reconciliation in Canada",
+    "year": 2010,
+    "co_citing_phds": 8,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 16,
+    "share_of_anchor": 0.138,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:st onge|contour of a people",
+    "title": "Contours of a People: Metis Family, Mobility, and History",
+    "year": 2012,
+    "co_citing_phds": 7,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 14,
+    "share_of_anchor": 0.121,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:harris|landing native fisheries",
+    "title": "Landing Native Fisheries: Indian Reserves and Fishing Rights in British Columbia, 1849-1925",
+    "year": 2008,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 12,
+    "share_of_anchor": 0.103,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:heaman|tax order and good government",
+    "title": "Tax, Order, and Good Government: A New Political History of Canada, 1867-1917",
+    "year": 2017,
+    "co_citing_phds": 6,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 12,
+    "share_of_anchor": 0.103,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:getty|as long as the sun shines and water flows",
+    "title": "As Long as the Sun Shines and Water Flows: A Reader in Canadian Native Studies",
+    "year": 1983,
+    "co_citing_phds": 5,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 10,
+    "share_of_anchor": 0.086,
+    "lift": 11.23
+   },
+   {
+    "work_id": "W:andersen|metis",
+    "title": "“Métis”: Race, Recognition, and the Struggle for Indigenous Peoplehood",
+    "year": 2014,
+    "co_citing_phds": 9,
+    "anchor_phds": 58,
+    "work_phds_2009_2026": 19,
+    "share_of_anchor": 0.155,
+    "lift": 10.64
+   }
+  ]
+ },
+ "neighbourhood": {
+  "views_field_placement": [
+   {
+    "group": "theory",
+    "key": "wolfe_1999",
+    "work_id": "W:wolfe|settler colonialism and the transformation of anthropology",
+    "title": "Settler Colonialism and the Transformation of Anthropology: The Politics and Poetics of an Ethnographic Event",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 17,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.71
+     ],
+     [
+      "Environment, development & the state",
+      0.18
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.04
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.03
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Settler Colonialism: A Theoretical Overview",
+      0.455
+     ],
+     [
+      "Hunters at the Margin: Native People and Wildlife Conservation in the Northwest Territories",
+      0.286
+     ],
+     [
+      "Crimes Against Nature: Squatters, Poachers, Thieves, and the Hidden History of American Conservation",
+      0.259
+     ],
+     [
+      "Tangled Webs of History: Indians and the Law in Canada’s Pacific Coast Fisheries",
+      0.25
+     ],
+     [
+      "Life Lived Like a Story: Life Stories of Three Yukon Native Elders",
+      0.243
+     ]
+    ]
+   },
+   {
+    "group": "theory",
+    "key": "wolfe_2006",
+    "work_id": "W:wolfe|settler colonialism and the elimination of the native|a",
+    "title": "Settler Colonialism and the Elimination of the Native",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 32,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.91
+     ],
+     [
+      "unclustered",
+      0.03
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.02
+     ],
+     [
+      "Gleason · Adams · Korinek",
+      0.01
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Decolonizing Methodologies: Research and Indigenous Peoples",
+      0.369
+     ],
+     [
+      "Settler Colonialism: A Theoretical Overview",
+      0.369
+     ],
+     [
+      "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+      0.35
+     ],
+     [
+      "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+      0.295
+     ],
+     [
+      "The Fourth World: An Indian Reality",
+      0.284
+     ]
+    ]
+   },
+   {
+    "group": "theory",
+    "key": "veracini_2010",
+    "work_id": "W:veracini|settler colonialism",
+    "title": "Settler Colonialism: A Theoretical Overview",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 23,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.73
+     ],
+     [
+      "Environment, development & the state",
+      0.08
+     ],
+     [
+      "unclustered",
+      0.06
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.04
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Settler Colonialism and the Transformation of Anthropology: The Politics and Poetics of an Ethnographic Event",
+      0.455
+     ],
+     [
+      "Settler Colonialism and the Elimination of the Native",
+      0.369
+     ],
+     [
+      "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+      0.252
+     ],
+     [
+      "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+      0.228
+     ],
+     [
+      "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+      0.217
+     ]
+    ]
+   },
+   {
+    "group": "indigenous",
+    "key": "coulthard_2014",
+    "work_id": "W:coulthard|red skin white mask",
+    "title": "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 23,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.91
+     ],
+     [
+      "Postwar Canada, the Sixties & the Cold War",
+      0.05
+     ],
+     [
+      "unclustered",
+      0.03
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.01
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+      0.546
+     ],
+     [
+      "Decolonizing Methodologies: Research and Indigenous Peoples",
+      0.373
+     ],
+     [
+      "Settler Colonialism and the Elimination of the Native",
+      0.295
+     ],
+     [
+      "Metis and the Medicine Line: Creating a Border and Dividing a People",
+      0.286
+     ],
+     [
+      "The Heavens Are Changing: Nineteenth-Century Protestant Missions and Tsimshian Christianity",
+      0.255
+     ]
+    ]
+   },
+   {
+    "group": "indigenous",
+    "key": "a_simpson_2014",
+    "work_id": "W:simpson|mohawk interuptus",
+    "title": "Mohawk Interruptus: Political Life Across the Borders of Settler States",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 21,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.81
+     ],
+     [
+      "Postwar Canada, the Sixties & the Cold War",
+      0.06
+     ],
+     [
+      "Immigration, race & ethnicity",
+      0.05
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.04
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Red Skin, White Masks: Rejecting the Colonial Politics of Recognition",
+      0.546
+     ],
+     [
+      "Decolonizing Methodologies: Research and Indigenous Peoples",
+      0.325
+     ],
+     [
+      "Making Canadian Indian Policy: The Hidden Agenda, 1968-70",
+      0.3
+     ],
+     [
+      "Making Aboriginal People ‘Immigrants Too’: A Comparison of Citizenship Programs for Newcomers and Indigenous Peoples in Postwar Canada, 1940s-1960s",
+      0.293
+     ],
+     [
+      "The Clay We Are Made Of: Haudenosaunee Land Tenure on the Grand River",
+      0.282
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "harris_1997",
+    "work_id": "W:harris|resettlement ofbritish columbia",
+    "title": "The Resettlement of British Columbia: Essays on Colonialism and Geographical Change",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 26,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.75
+     ],
+     [
+      "Environment, development & the state",
+      0.15
+     ],
+     [
+      "unclustered",
+      0.04
+     ],
+     [
+      "Immigration, race & ethnicity",
+      0.03
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "The Power of Place, the Problem of Time: Aboriginal Identity and Historical Consciousness in the Cauldron of Colonialism",
+      0.347
+     ],
+     [
+      "Indians at Work: An Informal History of Native Labour in British Columbia, 1858-1930",
+      0.342
+     ],
+     [
+      "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+      0.341
+     ],
+     [
+      "Makúk: A New History of Aboriginal-White Relations",
+      0.327
+     ],
+     [
+      "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+      0.301
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "harris_2002",
+    "work_id": "W:harris|making native space",
+    "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 56,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.72
+     ],
+     [
+      "Environment, development & the state",
+      0.09
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.06
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.04
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Aboriginal Peoples and Politics: The Indian Land Question in British Columbia, 1849-1989",
+      0.463
+     ],
+     [
+      "A Fatherly Eye: Indian Agents, Government Power, and Aboriginal Resistance in Ontario, 1918-1939",
+      0.411
+     ],
+     [
+      "“Enough to Keep Them Alive”: Indian Welfare in Canada, 1873-1965",
+      0.409
+     ],
+     [
+      "Makúk: A New History of Aboriginal-White Relations",
+      0.401
+     ],
+     [
+      "‘As Their Natural Resources Fail’: Native Peoples and the Economic History of Northern Manitoba, 1870-1930",
+      0.388
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "carter_1990",
+    "work_id": "W:carter|lost harvest",
+    "title": "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 59,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.73
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.09
+     ],
+     [
+      "Environment, development & the state",
+      0.07
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.05
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "A Narrow Vision: Duncan Campbell Scott and the Administration of Indian Affairs in Canada",
+      0.431
+     ],
+     [
+      "A Fatherly Eye: Indian Agents, Government Power, and Aboriginal Resistance in Ontario, 1918-1939",
+      0.401
+     ],
+     [
+      "Skyscrapers Hide the Heavens: A History of Indian-White Relations in Canada",
+      0.383
+     ],
+     [
+      "Compact, Contract, Covenant: Aboriginal Treaty-Making in Canada",
+      0.382
+     ],
+     [
+      "The Treaties of Canada with the Indians of Manitoba and the North-West Territories",
+      0.361
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "carter_1997",
+    "work_id": "W:carter|apturing women",
+    "title": "Capturing Women: The Manipulation of Cultural Imagery in Canada’s Prairie West",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 32,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.75
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.07
+     ],
+     [
+      "unclustered",
+      0.04
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.03
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Strangers in Blood: Fur Trade Company Families in Indian Country",
+      0.328
+     ],
+     [
+      "Shingwauk’s Vision: A History of Native Residential Schools",
+      0.32
+     ],
+     [
+      "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+      0.319
+     ],
+     [
+      "Canada’s Subjugation of the Plains Cree, 1879-1885",
+      0.3
+     ],
+     [
+      "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+      0.299
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "carter_1999",
+    "work_id": "W:carter|aboriginal people and colonizers of western canada",
+    "title": "Aboriginal People and Colonizers of Western Canada to 1900",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 24,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.8
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.07
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.04
+     ],
+     [
+      "Environment, development & the state",
+      0.03
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "The Treaties of Canada with the Indians of Manitoba and the North-West Territories",
+      0.348
+     ],
+     [
+      "Canada’s Subjugation of the Plains Cree, 1879-1885",
+      0.347
+     ],
+     [
+      "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+      0.345
+     ],
+     [
+      "Metis and the Medicine Line: Creating a Border and Dividing a People",
+      0.32
+     ],
+     [
+      "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+      0.32
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "carter_2008",
+    "work_id": "W:carter|importance of being monogamous",
+    "title": "The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 44,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.64
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.16
+     ],
+     [
+      "unclustered",
+      0.07
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.05
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+      0.42
+     ],
+     [
+      "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+      0.399
+     ],
+     [
+      "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+      0.391
+     ],
+     [
+      "The People Who Own Themselves: Aboriginal Ethnogenesis in a Canadian Family, 1660-1900",
+      0.371
+     ],
+     [
+      "Contact Zones: Aboriginal and Settler Women in Canada’s Colonial Past",
+      0.366
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "perry_2001",
+    "work_id": "W:perry|on the edge",
+    "title": "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 83,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.51
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.13
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.13
+     ],
+     [
+      "unclustered",
+      0.06
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+      0.396
+     ],
+     [
+      "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50",
+      0.369
+     ],
+     [
+      "Authentic Indians: Episodes of Encounter from the Late-Nineteenth-Century Northwest Coast",
+      0.332
+     ],
+     [
+      "Colonial Relations: The Douglas-Connolly Family and the Nineteenth-Century Imperial World",
+      0.329
+     ],
+     [
+      "Women and the White Man’s God: Gender and Race in the Canadian Mission Field",
+      0.328
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "perry_2015",
+    "work_id": "W:perry|colonial relations",
+    "title": "Colonial Relations: The Douglas-Connolly Family and the Nineteenth-Century Imperial World",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 25,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.67
+     ],
+     [
+      "unclustered",
+      0.11
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.07
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.06
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Metis and the Medicine Line: Creating a Border and Dividing a People",
+      0.392
+     ],
+     [
+      "Haunted by Empire: Geographies of Intimacy in North American History",
+      0.34
+     ],
+     [
+      "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+      0.329
+     ],
+     [
+      "“Métis”: Race, Recognition, and the Struggle for Indigenous Peoplehood",
+      0.313
+     ],
+     [
+      "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+      0.313
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "daschuk_2013",
+    "work_id": "W:daschuk|clearing the plains",
+    "title": "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 43,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.82
+     ],
+     [
+      "unclustered",
+      0.04
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.04
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.03
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+      0.451
+     ],
+     [
+      "The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915",
+      0.391
+     ],
+     [
+      "Compact, Contract, Covenant: Aboriginal Treaty-Making in Canada",
+      0.376
+     ],
+     [
+      "From New Peoples to New Nations: Aspects of Métis History and Identity from the Eighteenth to the Twenty-First Centuries",
+      0.375
+     ],
+     [
+      "Medicine That Walks: Disease, Medicine and Canadian Plains Native People, 1880-1940",
+      0.375
+     ]
+    ]
+   },
+   {
+    "group": "canadian",
+    "key": "regan_2010",
+    "work_id": "W:regan|unsettling the settler within",
+    "title": "Unsettling the Settler Within: Indian Residential Schools, Truth Telling, and Reconciliation in Canada",
+    "field": "Indigenous peoples, fur trade & the West",
+    "cited_by_in_views": 16,
+    "link_split": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.83
+     ],
+     [
+      "unclustered",
+      0.04
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.04
+     ],
+     [
+      "Environment, development & the state",
+      0.02
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "The Heavens Are Changing: Nineteenth-Century Protestant Missions and Tsimshian Christianity",
+      0.357
+     ],
+     [
+      "The Power of Place, the Problem of Time: Aboriginal Identity and Historical Consciousness in the Cauldron of Colonialism",
+      0.354
+     ],
+     [
+      "The Fourth World: An Indian Reality",
+      0.344
+     ],
+     [
+      "A National Crime: The Canadian Government and the Residential School System, 1879-1986",
+      0.343
+     ],
+     [
+      "Decolonizing Methodologies: Research and Indigenous Peoples",
+      0.335
+     ]
+    ]
+   },
+   {
+    "group": "compare",
+    "key": "mamdani_1996",
+    "work_id": "W:mamdani|citizen and subject",
+    "title": "Citizen and Subject: Contemporary Africa and the Legacy of Late Colonialism",
+    "field": "Empire, colonialism & postcolonial theory",
+    "cited_by_in_views": 23,
+    "link_split": [
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.86
+     ],
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.14
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Colonialism in Question: Theory, Knowledge, History",
+      0.322
+     ],
+     [
+      "Tensions of Empire: Colonial Cultures in a Bourgeois World",
+      0.217
+     ],
+     [
+      "Transformations in Slavery: A History of Slavery in Africa",
+      0.215
+     ],
+     [
+      "The Nation and Its Fragments: Colonial and Postcolonial Histories",
+      0.194
+     ],
+     [
+      "Of Revelation and Revolution: Christianity, Colonialism, and Consciousness in South Africa",
+      0.174
+     ]
+    ]
+   },
+   {
+    "group": "compare",
+    "key": "belich_2009",
+    "work_id": "W:belich|replenishing the earth",
+    "title": "Replenishing the Earth: The Settler Revolution and the Rise of the Anglo-World, 1783-1939",
+    "field": "Liberal order, religion & the state",
+    "cited_by_in_views": 18,
+    "link_split": [
+     [
+      "Liberal order, religion & the state",
+      0.34
+     ],
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.27
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.11
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.1
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "The Great Land Rush and the Making of the Modern World, 1650-1900",
+      0.312
+     ],
+     [
+      "Colonial Leviathan: State Formation in Mid-Nineteenth-Century Canada",
+      0.268
+     ],
+     [
+      "Emigrant Worlds and Transatlantic Communities: Migration to Upper Canada in the First Half of the Nineteenth Century",
+      0.236
+     ],
+     [
+      "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+      0.233
+     ],
+     [
+      "The Patriots and the People: The Rebellion of 1837 in Rural Lower Canada",
+      0.231
+     ]
+    ]
+   },
+   {
+    "group": "compare",
+    "key": "said_1978",
+    "work_id": "W:said|orientalism",
+    "title": "Orientalism",
+    "field": "Empire, colonialism & postcolonial theory",
+    "cited_by_in_views": 118,
+    "link_split": [
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.45
+     ],
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.29
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.1
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.05
+     ]
+    ],
+    "top_neighbours": [
+     [
+      "Culture and Imperialism",
+      0.308
+     ],
+     [
+      "Imperial Eyes: Travel Writing and Transculturation",
+      0.273
+     ],
+     [
+      "The Location of Culture",
+      0.269
+     ],
+     [
+      "Provincializing Europe: Postcolonial Thought and Historical Difference",
+      0.247
+     ],
+     [
+      "Colonising Egypt",
+      0.238
+     ]
+    ]
+   }
+  ],
+  "field_engagement_core_vs_all": [
+   {
+    "field": "Indigenous peoples, fur trade & the West",
+    "core_citing_phds_engaging": 74,
+    "core_citing_phds": 86,
+    "share_core": 0.86,
+    "all_phds_engaging": 263,
+    "all_phds": 1303,
+    "share_all": 0.202,
+    "lift": 4.26
+   },
+   {
+    "field": "New France, early modern empire & the Atlantic",
+    "core_citing_phds_engaging": 25,
+    "core_citing_phds": 86,
+    "share_core": 0.291,
+    "all_phds_engaging": 134,
+    "all_phds": 1303,
+    "share_all": 0.103,
+    "lift": 2.83
+   },
+   {
+    "field": "Environment, development & the state",
+    "core_citing_phds_engaging": 21,
+    "core_citing_phds": 86,
+    "share_core": 0.244,
+    "all_phds_engaging": 130,
+    "all_phds": 1303,
+    "share_all": 0.1,
+    "lift": 2.45
+   },
+   {
+    "field": "Immigration, race & ethnicity",
+    "core_citing_phds_engaging": 22,
+    "core_citing_phds": 86,
+    "share_core": 0.256,
+    "all_phds_engaging": 187,
+    "all_phds": 1303,
+    "share_all": 0.144,
+    "lift": 1.78
+   },
+   {
+    "field": "Liberal order, religion & the state",
+    "core_citing_phds_engaging": 24,
+    "core_citing_phds": 86,
+    "share_core": 0.279,
+    "all_phds_engaging": 226,
+    "all_phds": 1303,
+    "share_all": 0.173,
+    "lift": 1.61
+   },
+   {
+    "field": "Empire, colonialism & postcolonial theory",
+    "core_citing_phds_engaging": 32,
+    "core_citing_phds": 86,
+    "share_core": 0.372,
+    "all_phds_engaging": 307,
+    "all_phds": 1303,
+    "share_all": 0.236,
+    "lift": 1.58
+   },
+   {
+    "field": "Quebec historiography",
+    "core_citing_phds_engaging": 10,
+    "core_citing_phds": 86,
+    "share_core": 0.116,
+    "all_phds_engaging": 102,
+    "all_phds": 1303,
+    "share_all": 0.078,
+    "lift": 1.49
+   },
+   {
+    "field": "Nationalism, memory & antimodernism",
+    "core_citing_phds_engaging": 17,
+    "core_citing_phds": 86,
+    "share_core": 0.198,
+    "all_phds_engaging": 185,
+    "all_phds": 1303,
+    "share_all": 0.142,
+    "lift": 1.39
+   },
+   {
+    "field": "Rodgers · Rydell · Wiebe",
+    "core_citing_phds_engaging": 3,
+    "core_citing_phds": 86,
+    "share_core": 0.035,
+    "all_phds_engaging": 36,
+    "all_phds": 1303,
+    "share_all": 0.028,
+    "lift": 1.26
+   },
+   {
+    "field": "Postwar Canada, the Sixties & the Cold War",
+    "core_citing_phds_engaging": 19,
+    "core_citing_phds": 86,
+    "share_core": 0.221,
+    "all_phds_engaging": 250,
+    "all_phds": 1303,
+    "share_all": 0.192,
+    "lift": 1.15
+   },
+   {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "core_citing_phds_engaging": 23,
+    "core_citing_phds": 86,
+    "share_core": 0.267,
+    "all_phds_engaging": 325,
+    "all_phds": 1303,
+    "share_all": 0.249,
+    "lift": 1.07
+   },
+   {
+    "field": "War, the military & imperialism",
+    "core_citing_phds_engaging": 8,
+    "core_citing_phds": 86,
+    "share_core": 0.093,
+    "all_phds_engaging": 165,
+    "all_phds": 1303,
+    "share_all": 0.127,
+    "lift": 0.73
+   },
+   {
+    "field": "Labour & the working class",
+    "core_citing_phds_engaging": 5,
+    "core_citing_phds": 86,
+    "share_core": 0.058,
+    "all_phds_engaging": 115,
+    "all_phds": 1303,
+    "share_all": 0.088,
+    "lift": 0.66
+   },
+   {
+    "field": "Gleason · Adams · Korinek",
+    "core_citing_phds_engaging": 3,
+    "core_citing_phds": 86,
+    "share_core": 0.035,
+    "all_phds_engaging": 72,
+    "all_phds": 1303,
+    "share_all": 0.055,
+    "lift": 0.63
+   }
+  ],
+  "engagement_rule": "a dissertation engages a co-citation field when it cites at least two of the field's clustered works (views.json, min_cited 15)",
+  "co_cited_field_profile": {
+   "theory": {
+    "citing_phds": 65,
+    "co_cited_clustered_citations": 1692,
+    "by_field": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.465
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.077
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.066
+     ],
+     [
+      "unclustered",
+      0.056
+     ],
+     [
+      "Environment, development & the state",
+      0.053
+     ],
+     [
+      "Immigration, race & ethnicity",
+      0.053
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.051
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.05
+     ],
+     [
+      "Postwar Canada, the Sixties & the Cold War",
+      0.037
+     ],
+     [
+      "Nationalism, memory & antimodernism",
+      0.033
+     ],
+     [
+      "War, the military & imperialism",
+      0.018
+     ],
+     [
+      "Quebec historiography",
+      0.017
+     ],
+     [
+      "Labour & the working class",
+      0.012
+     ],
+     [
+      "Rodgers · Rydell · Wiebe",
+      0.007
+     ],
+     [
+      "Gleason · Adams · Korinek",
+      0.005
+     ]
+    ]
+   },
+   "indigenous": {
+    "citing_phds": 52,
+    "co_cited_clustered_citations": 1448,
+    "by_field": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.512
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.072
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.068
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.065
+     ],
+     [
+      "unclustered",
+      0.051
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.046
+     ],
+     [
+      "Postwar Canada, the Sixties & the Cold War",
+      0.044
+     ],
+     [
+      "Immigration, race & ethnicity",
+      0.038
+     ],
+     [
+      "Environment, development & the state",
+      0.037
+     ],
+     [
+      "Nationalism, memory & antimodernism",
+      0.027
+     ],
+     [
+      "Quebec historiography",
+      0.011
+     ],
+     [
+      "Gleason · Adams · Korinek",
+      0.01
+     ],
+     [
+      "War, the military & imperialism",
+      0.006
+     ],
+     [
+      "Labour & the working class",
+      0.006
+     ],
+     [
+      "Rodgers · Rydell · Wiebe",
+      0.006
+     ]
+    ]
+   },
+   "canadian": {
+    "citing_phds": 179,
+    "co_cited_clustered_citations": 5877,
+    "by_field": [
+     [
+      "Indigenous peoples, fur trade & the West",
+      0.36
+     ],
+     [
+      "Moral regulation, gender, sexuality & the body",
+      0.104
+     ],
+     [
+      "Liberal order, religion & the state",
+      0.101
+     ],
+     [
+      "Immigration, race & ethnicity",
+      0.067
+     ],
+     [
+      "unclustered",
+      0.061
+     ],
+     [
+      "New France, early modern empire & the Atlantic",
+      0.052
+     ],
+     [
+      "Empire, colonialism & postcolonial theory",
+      0.052
+     ],
+     [
+      "Environment, development & the state",
+      0.051
+     ],
+     [
+      "Postwar Canada, the Sixties & the Cold War",
+      0.041
+     ],
+     [
+      "Nationalism, memory & antimodernism",
+      0.032
+     ],
+     [
+      "War, the military & imperialism",
+      0.03
+     ],
+     [
+      "Labour & the working class",
+      0.023
+     ],
+     [
+      "Gleason · Adams · Korinek",
+      0.016
+     ],
+     [
+      "Quebec historiography",
+      0.007
+     ],
+     [
+      "Rodgers · Rydell · Wiebe",
+      0.003
+     ]
+    ]
+   }
+  }
+ },
+ "dissertations_titled_settler": [
+  {
+   "year": 1977,
+   "institution": "alberta",
+   "title": "British policy and settler politics in Northern Rhodesia, 1924-1945: with special reference to the issue of amalgamation with Southern Rhodesia",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://ualberta.scholaris.ca/items/50daf5e5-8d72-4abc-b2ca-eef62f6e5040"
+  },
+  {
+   "year": 1988,
+   "institution": "ubc",
+   "title": "Mining in the settler dominions :  a comparative study of the industry in three communities from the 1880s to the First World War",
+   "settler_colonial_in_title": false,
+   "in_analysis": false,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "http://hdl.handle.net/2429/29037"
+  },
+  {
+   "year": 2000,
+   "institution": "dalhousie",
+   "title": "Rebels, heathen, and heretics:  The problem of settler identity in printed accounts of English colonial crises, with a particular focus on Ireland, New England, and Virginia, 1640--1700.",
+   "settler_colonial_in_title": false,
+   "in_analysis": false,
+   "eligibility": "needs_review",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://dal.scholaris.ca/items/bae8a956-4936-4a3a-84ca-f3fd8d225068"
+  },
+  {
+   "year": 2011,
+   "institution": "toronto",
+   "title": "\"Toronto Has No History!\" Indigeneity, Settler Colonialism, and Historical Memory in Canada's Largest City",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://utoronto.scholaris.ca/items/cec4d690-d409-4932-8758-a9fafed380a6"
+  },
+  {
+   "year": 2012,
+   "institution": "uvic",
+   "title": "Being young in the country: settler children and childhood in British Columbia and Alberta, 1860-1925.",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://dspace.library.uvic.ca/items/34a35398-1b1a-43a9-ad45-fcd42f03a201"
+  },
+  {
+   "year": 2015,
+   "institution": "usask",
+   "title": "Negotiated Identities: A History of Sharing and Indigenous-Settler Relations in Western Canada, 1800-1970",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://harvest.usask.ca/items/f171a747-a0c4-4d49-a76a-63bc4e469454"
+  },
+  {
+   "year": 2016,
+   "institution": "queens",
+   "title": "‘Black Settlers’: Hybridity, Neoliberalism and Ecosystemic Change  Among Tonga Farmers of Southern Zambia, 1964-2008",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://queensu.scholaris.ca/items/b9cfed5a-0b1d-41e1-8551-9cfed1e0532f"
+  },
+  {
+   "year": 2017,
+   "institution": "toronto",
+   "title": "Unsettled Settlers: Irish Catholics, Irish Catholicism, and British loyalty in Upper Canada, 1819-1840",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://utoronto.scholaris.ca/items/4c9c0643-d827-493d-b576-3df88a335506"
+  },
+  {
+   "year": 2018,
+   "institution": "uvic",
+   "title": "A \"Colony of Unrequited Dreams\"? Settler colonialism and the failed-settlement narrative in the Ottawa-Huron Tract, 1850-1910",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": false,
+   "cites_theory": false,
+   "item_url": "https://dspace.library.uvic.ca/items/8f4661a1-bd16-432d-9390-10109cd3e8aa"
+  },
+  {
+   "year": 2018,
+   "institution": "york",
+   "title": "The Science of Settler Colonialism: A Canadian History of the Thrifty Gene Hypothesis",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://yorkspace.library.yorku.ca/items/0a564451-759e-4d73-89d8-358e88a73cf9"
+  },
+  {
+   "year": 2020,
+   "institution": "mcgill",
+   "title": "Universal nation: Settler colonialism and the Canadian public debt over Miꞌkmaꞌki, 1820-1873",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://mcgill.scholaris.ca/items/90c2ea41-846b-442f-83c3-3f058a081135"
+  },
+  {
+   "year": 2020,
+   "institution": "western",
+   "title": "‘Phantom Limb’: Russian Settler Colonialism in the Post-Soviet Crimea (1991-1997)",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://uwo.scholaris.ca/items/f260e8a1-36b2-41f3-94ca-eebb7d45f7ac"
+  },
+  {
+   "year": 2021,
+   "institution": "usask",
+   "title": "Paycheques & Paper Promises: Coast Salish and Mi’kmaw Work And Family Life under Canadian Settler Colonialism",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://harvest.usask.ca/items/306b8f4a-4c83-4cbf-8ef9-7fda9c63a466"
+  },
+  {
+   "year": 2023,
+   "institution": "sfu",
+   "title": "Enabling settler citizens: Disability, age, public health, and settler colonialism in northern Ontario, 1876-1951",
+   "settler_colonial_in_title": true,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://summit.sfu.ca/item/36110"
+  },
+  {
+   "year": 2023,
+   "institution": "ubc",
+   "title": "Sovereign futures : indigenous and settler prophecies in two nineteenth-century American “northwests”",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "http://hdl.handle.net/2429/84721"
+  },
+  {
+   "year": 2023,
+   "institution": "usask",
+   "title": "Intersections of Historical Consciousness: The Meeting of Indigenous and Settler Histories in Canada’s Storied Places",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": false,
+   "item_url": "https://harvest.usask.ca/items/5adda6e0-e8dc-405a-8e1f-c708d699f431"
+  },
+  {
+   "year": 2024,
+   "institution": "dalhousie",
+   "title": "Inventing a Bountiful Earth: Settler Science in the Making of New Brunswick, 1763-1859",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "https://dal.scholaris.ca/items/9136da98-1747-42dc-9a05-02248e77dfaa"
+  },
+  {
+   "year": 2024,
+   "institution": "ubc",
+   "title": "Vexed forgetting and unruly plumes : tracing the settler wasting cycle in the Pacific Northwest across the long twentieth century",
+   "settler_colonial_in_title": false,
+   "in_analysis": true,
+   "eligibility": "history_phd",
+   "cites_core": true,
+   "cites_theory": true,
+   "item_url": "http://hdl.handle.net/2429/89698"
+  }
+ ]
+}
