@@ -3,14 +3,14 @@
 **Public beta.** An interactive, deliberately contestable map of historiography, 1920–2000 with
 earlier roots and a partial post-2000 extension, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
-The site opens on **eleven families**, pairing the atlas's selected dates with
+The site opens on **twelve families**, including *Historiography in Canada*, pairing the atlas's selected dates with
 shares of a selected journal and book-review record. Open a family to reach the
 field: entries on a single time axis, banded by kind. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.127** (schema 1.4): 137 entries,
-777 teaching relationships, 940 bibliography records, 909
+Production data revision **1.128** (schema 1.4): 155 entries,
+889 teaching relationships, 1,470 bibliography records, 1,188
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
@@ -82,7 +82,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current graph, 137 entries, 777 interpretive relationships, 940 bibliography records, and 909 people.
+- `historiography-1920-2000.json`: current graph, 155 entries, 889 interpretive relationships, 1,470 bibliography records, and 1,188 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.

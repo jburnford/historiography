@@ -45,9 +45,9 @@ class EvidenceAssetTests(unittest.TestCase):
 
     def test_families_place_every_field_once_and_in_order(self):
         fams = self.asset["families"]["families"]
-        self.assertEqual(len(fams), 11)
+        self.assertEqual(len(fams), 12)
         self.assertEqual(fams[0]["label"], "Social history")
-        self.assertEqual(len({f["id"] for f in fams}), 11)
+        self.assertEqual(len({f["id"] for f in fams}), 12)
         primary = [m["id"] for f in fams for m in f["members"] if m["primary"]]
         self.assertEqual(sorted(primary), sorted(self.groups), "every atlas field has exactly one primary family")
 

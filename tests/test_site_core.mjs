@@ -389,7 +389,7 @@ test('landing: both strip bars sum to one', () => {
   const s = stripSegments(families, graph);
   assert.ok(Math.abs(s.atlas.reduce((a, x) => a + x.share, 0) - 1) < 1e-9);
   assert.ok(Math.abs(s.record.reduce((a, x) => a + x.share, 0) + s.unclaimed - 1) < 0.01);
-  assert.equal(s.atlas.length, 11);
+  assert.equal(s.atlas.length, 12);
 });
 test('landing: a family subgraph holds its fields, their person entries, and internal edges only', () => {
   const annales = familyBySlug(families, 'annales');
@@ -404,7 +404,7 @@ test('landing: a family subgraph holds its fields, their person entries, and int
 });
 test('landing: rows, cards and table render one item per family', () => {
   const svg = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`});
-  assert.equal((svg.match(/class="family-row"/g) || []).length, 11);
+  assert.equal((svg.match(/class="family-row"/g) || []).length, 12);
   assert.match(svg, /data-family="annales"/);
   assert.match(svg, /href="#family=annales"/);
   assert.match(svg, /class="coverage-line"/);
@@ -413,15 +413,15 @@ test('landing: rows, cards and table render one item per family', () => {
   const envRow = est.split('data-family="environment"')[1].split('</a>')[0];
   assert.match(envRow, /no items in this view/);
   const cards = cardsHtml({block: families, graph, view: 'reviews', href: id => `#family=${id}`});
-  assert.equal((cards.match(/class="family-card"/g) || []).length, 11);
-  /* Two tables: the per-period table (header + 11 families = 12 rows), then the headline
-     strip as text (header + 11 families + the unclaimed row = 13 rows). */
+  assert.equal((cards.match(/class="family-card"/g) || []).length, 12);
+  /* Two tables: the per-period table (header + 12 families = 13 rows), then the headline
+     strip as text (header + 12 families + the unclaimed row = 14 rows). */
   const table = tableHtml({block: families, graph, view: 'established'});
   const [main, strip] = table.split('class="strip-table"');
-  assert.equal((main.match(/<tr>/g) || []).length, 12);
-  assert.equal((strip.match(/<tr>/g) || []).length, 13);
+  assert.equal((main.match(/<tr>/g) || []).length, 13);
+  assert.equal((strip.match(/<tr>/g) || []).length, 14);
   assert.match(strip, /Items no family claims/);
-  assert.equal((table.match(/<tr>/g) || []).length, 25);
+  assert.equal((table.match(/<tr>/g) || []).length, 27);
 });
 test('landing: a long family label wraps onto two lines rather than overflow the row', () => {
   const svg = rowsSvg({block: families, graph, view: 'all', width: 700, href: id => `#family=${id}`});
@@ -507,8 +507,9 @@ test('family content exposes rosters and approaches without manufacturing edges'
   const family = familyBySlug(families, 'indigenous-histories');
   const before = JSON.stringify(graph);
   const content = familyContent(graph, family);
-  assert.equal(content.approaches.length, 40);
-  assert.equal(content.people.length, 57);
+  /* Indigenous histories holds indigenous and ethnohistory, plus bridged native_newcomer and settler_colonialism (1.128). */
+  assert.equal(content.approaches.length, 65);
+  assert.equal(content.people.length, 103);
   assert.equal(content.people.filter(x => x.person.id === 'cole_harris').length, 1);
   assert.ok(content.approaches.some(x => x.strand.id === 'stolo_community_university'));
   assert.ok(content.connections.some(x => x.edge.id === 'edge_777' && !hasArrow(x.edge)));

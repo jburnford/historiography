@@ -1,6 +1,26 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.127 (2026-10-10)
+## Current revision 1.128 (2026-10-12)
+
+**155 entries (95 groups, 60 person entries), 889 teaching relationships,
+1,470 sources, 1,188 shared people and 948 approaches.** Eighteen group entries teach
+historiography in Canada: sixteen Canadian fields, schools and debates, Black Canadian
+history and settler colonialism. They bring 279 people, 530 sources and 112 edges
+(81 comparisons, 21 contributions, 9 critiques and 1 influence). No person entry is
+promoted. See the [acceptance record](data/production-batches/canadian-1.128/README.md).
+
+The new entries cover 1920–2000 with earlier roots. Their curated `date_span` ends at
+`end: 2000, end_kind: coverage_limit`. Later works appear only as readings, sources and
+strand works. A directed relationship evidenced only by works published after 2000 is
+deferred to an extension release that registers works and claims; the packet lists ten.
+No `extension_coverage` is added and `scope.extension` is unchanged. The exact-2000
+baseline remains revision 1.121, which predates these entries.
+
+Roster contexts carry no placement bookkeeping: a person appears in several entries with
+contextual roles, as before. Evidence-layer rows (landing family, approach folds,
+Canadian journal crosswalk rows) are `proposed`.
+
+## Historical revision 1.127 (2026-10-10)
 
 **137 entries (77 groups, 60 person entries), 777 teaching relationships,
 940 sources and 909 shared people.** Thirteen roster rows (twelve new people and

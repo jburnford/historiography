@@ -48,12 +48,12 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.landing-page, .field-page, .layer-card, .entry-card, .focus-layout, .school-layout, .person-card, .person-profile, .pathway-card, .pathway-layout, .register-section, .about, .empty').first).to_be_visible()
 
     def test_landing_families_strip_and_record_views(self):
-        """The front door: eleven families, the atlas's dating beside the record's share."""
+        """The front door: twelve families, the atlas's dating beside the record's share."""
         self.open()
         expect(self.page.locator('.landing-page')).to_be_visible()
-        expect(self.page.locator('svg.landing-svg .family-row')).to_have_count(11)
-        expect(self.page.locator('.strip-bar.atlas .seg')).to_have_count(11)
-        expect(self.page.locator('.strip-bar.record .seg')).to_have_count(12)
+        expect(self.page.locator('svg.landing-svg .family-row')).to_have_count(12)
+        expect(self.page.locator('.strip-bar.atlas .seg')).to_have_count(12)
+        expect(self.page.locator('.strip-bar.record .seg')).to_have_count(13)
         expect(self.page.locator('.strip-bar.record .seg.unclaimed')).to_contain_text('%')
         expect(self.page.locator('.landing-page')).to_contain_text('must not be summed')
         self.assertTrue(self.page.locator('#toolbar').is_hidden())
@@ -63,9 +63,9 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.get_by_role('button', name='Established title contexts', exact=True)).to_have_attribute('aria-pressed', 'true')
         self.assertIn('record=established', self.page.url)
         self.page.locator('details.landing-table > summary').click()
-        expect(self.page.locator('details.landing-table table:not(.strip-table) tbody tr')).to_have_count(11)
-        # The headline strip as text (its labels are hidden on mobile): 11 families + unclaimed.
-        expect(self.page.locator('details.landing-table table.strip-table tbody tr')).to_have_count(12)
+        expect(self.page.locator('details.landing-table table:not(.strip-table) tbody tr')).to_have_count(12)
+        # The headline strip as text (its labels are hidden on mobile): 12 families + unclaimed.
+        expect(self.page.locator('details.landing-table table.strip-table tbody tr')).to_have_count(13)
         self.page.screenshot(path=str(self.artifacts / 'landing-desktop.png'), full_page=True)
         # Opening a family from low on the page brings its field view into view.
         self.page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
@@ -476,7 +476,7 @@ class AtlasBrowserTests(unittest.TestCase):
     def test_landing_cards_on_mobile(self):
         self.page.set_viewport_size({'width': 390, 'height': 844})
         self.open()
-        expect(self.page.locator('.family-cards li')).to_have_count(11)
+        expect(self.page.locator('.family-cards li')).to_have_count(12)
         self.assertTrue(self.page.locator('.landing-rows').is_hidden())
         self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
         self.page.screenshot(path=str(self.artifacts / 'landing-mobile.png'), full_page=True)
@@ -486,7 +486,7 @@ class AtlasBrowserTests(unittest.TestCase):
         # On narrow screens the router defaults to the list view; landing links must still stay on the landing.
         self.open()
         self.page.get_by_role('button', name='Reviews', exact=True).click()
-        expect(self.page.locator('.family-cards li')).to_have_count(11)
+        expect(self.page.locator('.family-cards li')).to_have_count(12)
         self.assertIn('record=reviews', self.page.url)
         self.open('#family=annales&query=thompson')
         self.page.get_by_role('link', name='← All families').click()

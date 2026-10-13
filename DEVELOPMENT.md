@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-10, revision 1.127):** 137 entries, 777
-relationships, 940 sources, 909 shared people. The family landing, journal
+**Current implementation (2026-10-12, revision 1.128):** 155 entries, 889
+relationships, 1,470 sources, 1,188 shared people. Revision 1.128 adds eighteen
+entries for historiography in Canada and a twelfth landing family
+([acceptance](data/production-batches/canadian-1.128/README.md)). The family landing, journal
 venues and exact-2000 baseline are implemented. The student beta adds deferred
 loading, an eight-profile publication pilot, sensitivity notes and browser CI.
 [Student trial](STUDENT-TESTING.md) is next. Historical design directions below

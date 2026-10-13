@@ -3,9 +3,27 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-10)
+## Current local build (2026-10-12)
 
-Practice **v18**, methods **methods-v6** and **mentions-v5** serve graph 1.127.
+Practice **v20**, methods **methods-v7** and **mentions-v6** serve graph 1.128
+([historiography in Canada](../production-batches/canadian-1.128/README.md)). The landing
+gains a twelfth family, *Historiography in Canada*. Its record series comes from the proposed
+Canadian journal rows: *RHAF*, the *BHP*, *Cahiers des Dix* and *Mens* → Quebec
+historiography; *Labour/Le Travail* → working-class history; *Canadian Military History* →
+military history; *Ontario History* and *Acadiensis* → regional history; the church-history
+journals → religion and reform; and *JCHA*, the CHA reports, *JCS* and H-Canada → the
+record-only *Canadian history*. Twenty-six proposed folds give the other new entries
+context, never evidence. Mentions-v6 is a fresh full scan that includes the 279 new names.
+The landing sensitivity audit is `audits/landing-1.128`.
+
+```bash
+python3 scripts/build_evidence_asset.py --series v20 --methods methods-v7 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.128/summary.json
+python3 scripts/build_site.py
+```
+
+## Build of 2026-10-10 (historical)
+
+Practice **v18**, methods **methods-v6** and **mentions-v5** served graph 1.127.
 The [publication-evidence repairs](repairs/2026-10-10/README.md) preserve the prior
 audit and correct bounded title and pagination gaps. The subsequent
 [Indigenous-history deep dive](../field-research/indigenous-deep-dive-2026-10-10/README.md)

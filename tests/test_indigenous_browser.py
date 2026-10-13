@@ -56,7 +56,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('.school-tabs')).to_contain_text('15')
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(11)
         self.page.locator('#range-toggle a[aria-pressed="false"]').click()
-        expect(self.page.locator('#edition-label')).to_contain_text('1.127')
+        expect(self.page.locator('#edition-label')).to_contain_text('1.128')
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
         self.page.goto(URL + '#node=indigenous&section=connections')
         expect(self.page.locator('.core-people li')).to_have_count(49)
@@ -94,9 +94,10 @@ class IndigenousBrowserTests(unittest.TestCase):
     def test_family_exposes_approaches_people_and_boundary_connections(self):
         self.page.goto(URL + '#family=indigenous-histories')
         expect(self.page.locator('.family-explorer')).to_be_visible()
-        expect(self.page.locator('.family-content-summary')).to_contain_text('40 approaches')
-        expect(self.page.locator('.family-approach')).to_have_count(40)
-        expect(self.page.locator('.family-people li[data-person]')).to_have_count(57)
+        # 1.128 bridges native_newcomer and settler_colonialism into this family.
+        expect(self.page.locator('.family-content-summary')).to_contain_text('65 approaches')
+        expect(self.page.locator('.family-approach')).to_have_count(65)
+        expect(self.page.locator('.family-people li[data-person]')).to_have_count(103)
         expect(self.page.locator('.family-people [data-person="cole_harris"]')).to_have_count(1)
         case = self.page.locator('[data-approach="indigenous/stolo_community_university"]')
         for name in ('John Lutz', 'Keith Thor Carlson', 'David M. Schaepe'):
@@ -124,7 +125,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         self.page.locator('.family-approach-sources > summary').click()
         expect(self.page.locator('.family-approach-sources')).to_contain_text('1997')
         self.page.get_by_role('link', name='Clear search', exact=True).click()
-        expect(self.page.locator('.family-approach')).to_have_count(40)
+        expect(self.page.locator('.family-approach')).to_have_count(65)
         self.page.locator('.family-views').get_by_role('link', name='Timeline', exact=True).click()
         expect(self.page.locator('.field-table')).to_have_count(0)
         expect(self.page.locator('svg.field')).to_be_visible()
@@ -139,7 +140,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('[data-approach="indigenous/serpent_river_collaboration"]')).to_have_count(0)
         expect(self.page.locator('.family-people [data-person="lianne_leddy"]')).to_have_count(0)
         self.page.locator('#range-toggle a[aria-pressed="false"]').click()
-        expect(self.page.locator('.family-approach')).to_have_count(40)
+        expect(self.page.locator('.family-approach')).to_have_count(65)
 
 
 if __name__ == '__main__':

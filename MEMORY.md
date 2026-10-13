@@ -1,5 +1,24 @@
 # Project memory and visualization handoff
 
+## Current handoff — 2026-10-12: revision 1.128, historiography in Canada
+
+Claude now owns the atlas end to end. The user: "this is your project now". Sol and Astra
+are used only for cross-model review.
+
+- **Revision 1.128** adds 18 group entries for teaching historiography in Canada. Totals:
+  155 entries, 889 relationships, 1,470 sources and 1,188 people. See the
+  [acceptance record](data/production-batches/canadian-1.128/README.md).
+- **Landing.** It now has twelve families. *Historiography in Canada* is the primary home
+  of the Canadian entries, with bridges to the thematic families.
+- **Evidence builds.** v20, methods-v7, mentions-v6 and the landing-1.128 audit.
+- **Next.**
+  - An extension release that registers works and claims for the ten deferred later-dated
+    relationships, in the packet's `deferred_relationships`.
+  - Person entries for Canadian historians, by tier (scholars packet).
+  - Review of the proposed Canadian crosswalk rows and folds.
+  - The Laval dissertations once their download finishes.
+
+
 ## Current handoff — 2026-10-11: expanded Canadian dissertation metadata
 
 User requested McGill, Ottawa, Waterloo, Guelph, Wilfrid Laurier (interpreting

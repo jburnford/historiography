@@ -1,0 +1,50 @@
+{
+  "revision": "1.128",
+  "date": "2026-10-12",
+  "structural": {
+    "errors": 0,
+    "warnings": 7,
+    "warnings_new": 0,
+    "note": "The seven warnings equal the 1.127 baseline (four reviewed endpoint/type pairs and related notes)."
+  },
+  "exact_reconstruction": "python3 scripts/apply_canadian_groups.py --check: passes",
+  "borderlands_candidate_14": "python3 scripts/build_borderlands_release_candidate.py --check: passes against its pinned 1.127 graph",
+  "ci": {
+    "data_tests": "65 passed (the CI list in .github/workflows/pages.yml)",
+    "view_tests": "38 passed (tests/test_site_core.mjs)",
+    "browser_tests": "29 passed (tests/run_site_checks.py)",
+    "docs": "python3 scripts/build_site.py rebuilt the 15 allowlisted files"
+  },
+  "other_tests": {
+    "ran": 364,
+    "failures": 13,
+    "errors": 4,
+    "note": "Every failure and error also occurs on a clean 1.127 checkout with the same inputs (14 failures, 4 errors there; test_priority_research passes only after 1.128). They are older batch tests pinned to frozen inputs and are not in CI."
+  },
+  "evidence_builds": {
+    "series": "v20",
+    "methods": "methods-v7",
+    "mentions": "mentions-v6 (full scan)",
+    "audit": "data/evidence-layer/audits/landing-1.128",
+    "asset_entries": 95
+  },
+  "review": {
+    "model": "gpt-6.1-sol via Codex",
+    "passes": [
+      "release/sol-review-1.128.md",
+      "release/sol-verify-1.128.md",
+      "release/sol-verify2-1.128.md"
+    ],
+    "response": "release/sol-review-response.md",
+    "outcome": "No blocker or major finding remaining"
+  },
+  "hashes": {
+    "historiography-1920-2000.json": "335720eddab9c7a096394ef12237736eca2b1ac86173a3347f2f6cac0112b701",
+    "data/extension-2026/canadian-historiography-groups-request-2026-10-12/release/editorial-additions.json": "87525c80b80739b8434d167a0e3c0095df6e9ca8decbfce2e2574c0ccda9bb4a",
+    "data/evidence-layer/site-evidence.json": "468c45c5e95f16c78615d79338b58ab30f0bfb0b8fba5a86d2066f96160ecc1d",
+    "data/people-wikidata.json": "b0710389d607ce62a27e9a78c521028d6c875b8645fbbaee2f4394349978e98e",
+    "data/evidence-layer/families-draft.csv": "53e3dbc69d1277ebffc393ff6e5a275c6c514933720b62738755a6b0644bc5a5",
+    "data/evidence-layer/approach-folds.csv": "4ac11ea06834b365e2e72eedf0b7f1f6f5ca602277c6b66c6651a6f89c4d8cf6",
+    "data/evidence-layer/practice-crosswalk.csv": "bb29d09fb47663ffafeeeba5c6a6240eb7e7de60149d02d5f11d7b70ffc7a6d6"
+  }
+}
