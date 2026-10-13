@@ -1,4 +1,4 @@
-/* The landing: eleven editorial families, the atlas's dating beside the record's share of
+/* The landing: twelve editorial families, the atlas's dating beside the record's share of
    what historians published. Pure builders; app.js renders and wires them.
    specs/2026-09-27-landing-redesign-design.md */
 import {spanOf} from './field.mjs';
@@ -8,7 +8,9 @@ export const VIEWS = {all: 'All journals', established: 'Established title conte
 
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const pct = x => `${(x * 100).toFixed(1)}%`;
-const short = f => f.label.split(/[\s,&]/)[0];
+/* Strip labels use a family's first word, unless that word alone would mislead. */
+const SHORT = {'Historiography in Canada': 'Canada'};
+const short = f => SHORT[f.label] || f.label.split(/[\s,&]/)[0];
 
 /* Where the atlas dates each member: its first year (curated span, else the date label). */
 export function atlasTrack(graph, family) {

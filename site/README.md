@@ -1,9 +1,9 @@
 # Historiography atlas prototype
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.127**, schema 1.4,
-contains **137 entries, 777 relationships, 940 sources, 909 shared people and
-13 pathways**. The eleven-family landing pairs atlas dating with a selected
+The curated JSON remains authoritative. Current revision **1.128**, schema 1.4,
+contains **155 entries, 889 relationships, 1,470 sources, 1,188 shared people and
+13 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The exact-2000 view remains revision 1.121.
 
@@ -41,7 +41,7 @@ build uses tracked metadata assets and requires no database.
 
 ## Landing
 
-The bare URL opens a families overview: eleven editorial families, each row pairing the
+The bare URL opens a families overview: twelve editorial families, each row pairing the
 atlas's dating (orange dots) with the family's share of the record (green bars) under a
 one-line headline strip. `#family=<slug>` opens an explorer of that family’s approaches, works and roster contributors;
 `#family=<slug>&view=map` keeps its timeline and `view=list` its entry list.

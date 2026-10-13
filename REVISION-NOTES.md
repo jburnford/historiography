@@ -1541,3 +1541,47 @@ publication evidence, source records and exact-2000 snapshot are unchanged. The
 archived explorer uses its own roster and approaches; no later case leaks into it.
 See [interface acceptance](data/production-batches/family-explorer-2026-10-10/README.md).
 No deployment or OpenAlex work.
+
+## Revision 1.128: historiography in Canada (12 October 2026)
+
+The user: "the Atlas is for teaching historiography in Canada"; the missing Canadian
+historiography was a major gap. Eighteen group entries now cover:
+- the Laurentian and national tradition;
+- English-Canadian intellectual and cultural history;
+- religion, social reform and secularization;
+- the liberal order framework;
+- moral regulation;
+- working-class history;
+- women's and gender history;
+- childhood, youth and family;
+- immigration, ethnicity and race;
+- Black Canadian history;
+- Indigenous–newcomer relations and fur-trade history;
+- Quebec historiography;
+- military history;
+- political, international and national history;
+- the "Who Killed Canadian History?" debate;
+- regional history;
+- Canada's 1960s;
+- settler colonialism.
+
+How the entries were made:
+- **Weighting.** Emphasis follows what 1,303 Canadian History PhDs (2009–2026) cite, from
+  the dissertation citation graph.
+- **Drafting.** Agents drafted each entry from verified sources only. The drafters' 95 open
+  questions were answered from the citation data, atlas convention, source checks, CHA
+  prize evidence and research. The user decided the questions the evidence could not
+  settle: group structure, primary placements and a separate Black Canadian history entry.
+- **Review.** Sol reviewed the packet adversarially across three passes: 18 findings, then
+  a verification pass, then a final check. All findings are addressed, and the
+  later-dated relationships are deferred rather than drawn.
+
+Totals: 155 entries, 889 relationships, 1,470 sources, 1,188 people and 948 approaches.
+- **Landing.** A twelfth family, *Historiography in Canada*, is the primary home of the
+  Canadian entries, each bridged to its thematic family. Settler colonialism sits under
+  Empire, bridged to Indigenous histories.
+- **Coverage.** The new entries run to the 2000 coverage limit, and later works are
+  readings.
+- **Unchanged.** The exact-2000 view (1.121) and every earlier record.
+
+See the [acceptance record](data/production-batches/canadian-1.128/README.md).
