@@ -1585,3 +1585,29 @@ Totals: 155 entries, 889 relationships, 1,470 sources, 1,188 people and 948 appr
 - **Unchanged.** The exact-2000 view (1.121) and every earlier record.
 
 See the [acceptance record](data/production-batches/canadian-1.128/README.md).
+
+## Revision 1.129: person-entry links for historiography in Canada (13 October 2026)
+
+At 1.128 the Canada family's map showed only Gramsci and Foucault. A family map draws a
+person entry only when an edge joins it to a member field.
+
+The user asked for the most-read person entries and for Wolfe. They then set a principle:
+person entries go to big-idea thinkers, while historians cited for content stay on rosters.
+Readership dispersion across the dissertation co-citation fields shows the difference: McKay
+0.85, Thompson 0.86, Carter 0.51. The user named McKay, and judged Innis "the original big
+idea guy" though now on the decline.
+
+**What changed:**
+- **New person entries.** McKay links to the liberal order prospectus, antimodernism and
+  the folk, and the questioning of region. Innis links to the staples strand of the
+  national tradition. Wolfe links to settler colonialism and to anthropology's colonial
+  knowledge; his 1999 introduction, which was read, states "invasion is a structure not an
+  event".
+- **New edges from existing entries.** Thompson → working-class history, from the 1981
+  *Labour/Le Travailleur* exchange. Scott → women's and gender history, from Valverde's
+  1990 review.
+- **Deferred.** Hall: no checked pre-2000 Canadian passage engages *Family Fortunes*.
+- **Review.** Sol reviewed the batch twice and found no remaining problem.
+- **Totals.** 158 entries, 897 relationships, 1,486 sources.
+
+See the [acceptance record](data/production-batches/canadian-person-links-1.129/README.md).

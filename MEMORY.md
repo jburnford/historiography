@@ -1,6 +1,16 @@
 # Project memory and visualization handoff
 
-## Current handoff — 2026-10-12: revision 1.128, historiography in Canada
+## Current handoff — 2026-10-13: revision 1.129, person-entry links
+
+- **New person entries:** McKay, Innis and Wolfe.
+- **New edges:** Thompson → working-class history and Scott → women's and gender history.
+- **Deferred:** Hall.
+- **Totals:** 158 entries and 897 relationships.
+- **Principle:** person entries go to big-idea thinkers; see `summary/idea-vs-content.csv`.
+- **Next:** further Canadian person entries by that test, the extension release for
+  deferred edges, and Hall if a pre-2000 passage is read.
+
+## Handoff — 2026-10-12: revision 1.128, historiography in Canada
 
 Claude now owns the atlas end to end. The user: "this is your project now". Sol and Astra
 are used only for cross-model review.

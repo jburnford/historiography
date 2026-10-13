@@ -1,10 +1,14 @@
 """Read the expanded Indigenous entry and its preserved historical view in a browser."""
+import json
 import os
+from pathlib import Path
 import unittest
 
 from playwright.sync_api import sync_playwright, expect
 
 URL = os.environ.get('HISTORIOGRAPHY_SITE_URL', 'http://127.0.0.1:4173/')
+# The current production revision, so the test follows later releases.
+CURRENT = json.loads((Path(__file__).resolve().parents[1] / 'historiography-1920-2000.json').read_text())['revision_history'][-1]['version']
 
 
 class IndigenousBrowserTests(unittest.TestCase):
@@ -56,7 +60,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('.school-tabs')).to_contain_text('15')
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(11)
         self.page.locator('#range-toggle a[aria-pressed="false"]').click()
-        expect(self.page.locator('#edition-label')).to_contain_text('1.128')
+        expect(self.page.locator('#edition-label')).to_contain_text(CURRENT)
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
         self.page.goto(URL + '#node=indigenous&section=connections')
         expect(self.page.locator('.core-people li')).to_have_count(49)
