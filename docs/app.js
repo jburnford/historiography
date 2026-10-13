@@ -796,7 +796,7 @@ function landingPage() {
     : 'Share of research candidates in each five-year period, across the selected journals.';
   return `<div class="landing-page">
     <div class="section-heading"><div><p class="eyebrow">01 / THE ATLAS AND THE RECORD · ${AXIS_LABEL}</p>
-      <h2>Eleven families of historical writing</h2></div></div>
+      <h2>Twelve families of historical writing</h2></div></div>
     <p class="lede"><b class="atlas">Orange</b>: where this atlas dates its schools and fields. <b class="record">Green</b>: each family’s share of this publication record. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
     <p class="eyebrow">THE GAP IN ONE LINE</p>
     <div class="strip"><span>Share of atlas entries</span>${stripBar(strip.atlas, 'atlas')}
@@ -1242,7 +1242,7 @@ function render() {
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
-  $('announcement').textContent = onLanding ? `Eleven families of historical writing: the atlas beside the record. Record view: ${VIEWS[recordView()]}.`
+  $('announcement').textContent = onLanding ? `Twelve families of historical writing: the atlas beside the record. Record view: ${VIEWS[recordView()]}.`
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
