@@ -1,7 +1,7 @@
 """Build, apply and reconstruct a person-entry revision from a research packet.
 
 The packet directory holds batch.json (revision, baseline_revision, date, summary, authorization,
-rationale, persons) and one folder per person with entry-draft.json (node, people_update,
+rationale, persons, optional extras) and one folder per person with entry-draft.json (node, people_update,
 proposed_edges, new_sources, source_addenda or proposed_source_addenda, wikidata_check), in the
 format of data/extension-2026/canadian-person-links-2026-10-13/. Revision 1.129 used its own
 script (apply_canadian_person_links.py), which stays pinned to its acceptance record.
@@ -50,11 +50,20 @@ class Batch:
 
     def build(self):
         nodes, people_updates, edges, sources, addenda, roster_edges, wikidata = [], [], [], [], {}, [], []
-        for name in self.cfg['persons']:
+        new_people, roster_additions = [], []
+        for name in self.cfg['persons'] + self.cfg.get('extras', []):
             d = read(self.pkt / name / 'entry-draft.json')
-            nodes.append(d['node'])
-            people_updates.append(dict(id=d['people_update']['id'], node_id=d['people_update']['node_id']))
-            wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
+            if d.get('node'):
+                nodes.append(d['node'])
+                pu = d['people_update']
+                people_updates.append(dict(id=pu['id'], node_id=pu['node_id']))
+                if pu.get('new'):
+                    new_people.append({k: pu[k] for k in ('id', 'label', 'identity_note') if pu.get(k)})
+                wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
+            for p in d.get('new_people', []):
+                new_people.append(p)
+            for ra in d.get('roster_additions', []):
+                roster_additions.append(dict(node=ra['node'], row=ra['row'], proposal_id=ra.get('proposal_id')))
             for r in d['proposed_edges']:
                 if r.get('include') is False:
                     continue
@@ -66,17 +75,48 @@ class Batch:
             sources += [s for s in d.get('new_sources', []) if s['id'] not in {x['id'] for x in sources}]
             for sid, note in {**(d.get('source_addenda') or {}), **(d.get('proposed_source_addenda') or {})}.items():
                 add = note if isinstance(note, dict) else dict(status='supporting_page_checked', checked_on=self.day, note=note)
-                if sid in addenda:
-                    raise ValueError('Two addenda for ' + sid)
+                if sid in addenda:  # two drafts re-read the same source: keep both notes
+                    prev = addenda[sid]
+                    add = dict(prev, note=f"{prev['note']} [{name} draft: {add['note']}]",
+                               status=prev['status'] if prev['status'] == 'supporting_page_checked' else add['status'])
                 addenda[sid] = add
+        merges = self.cfg.get('source_merges', {})
+        if merges:
+            sources, nodes, edges, roster_additions = self.merge_sources(merges, sources, nodes, edges, roster_additions)
         packet = dict(schema='atlas_editorial_packet/1', revision=self.rev, baseline_revision=self.cfg['baseline_revision'],
                       prepared=self.day, nodes=nodes, people_updates=people_updates, roster_edges=roster_edges, edges=edges,
                       sources=sorted(sources, key=lambda s: s['id']), source_addenda=addenda,
                       edge_revisions=self.cfg.get('edge_revisions', {}), wikidata=wikidata, rationale=self.cfg['rationale'],
-                      research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons']})
+                      research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
+        if new_people or roster_additions:
+            packet.update(new_people=new_people, roster_additions=roster_additions)
         self.packet.parent.mkdir(exist_ok=True)
         self.packet.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
-        print(f'{self.rev} packet: {len(nodes)} person entries, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda')
+        print(f'{self.rev} packet: {len(nodes)} person entries, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, '
+              f'{len(new_people)} new people, {len(roster_additions)} roster additions')
+
+    @staticmethod
+    def merge_sources(merges, sources, nodes, edges, roster_additions):
+        """Fold duplicate new sources (same work drafted under several ids) into one canonical id.
+        Each duplicate's verification note is appended to the canonical note, since the drafts
+        read different pages; the strongest status wins."""
+        rank = {'supporting_page_checked': 2, 'bibliographic_metadata_checked': 1}
+        by_id = {s['id']: s for s in sources}
+        for dup, canon in merges.items():
+            if dup not in by_id or canon not in by_id:
+                raise ValueError(f'Merge {dup} -> {canon}: both must be new sources')
+            c, d = by_id[canon]['verification'], by_id[dup]['verification']
+            c['note'] = f"{c['note']} [Also checked under {dup}: {d['note']}]"
+            if rank.get(d['status'], 0) > rank.get(c['status'], 0):
+                c['status'], c['checked_on'] = d['status'], d['checked_on']
+        fix = lambda ids: list(dict.fromkeys(merges.get(i, i) for i in ids))
+        for n in nodes:
+            n['source_ids'] = fix(n['source_ids'])
+        for e in edges:
+            e['source_ids'] = fix(e['source_ids'])
+        for ra in roster_additions:
+            ra['row']['source_ids'] = fix(ra['row']['source_ids'])
+        return [s for s in sources if s['id'] not in merges], nodes, edges, roster_additions
 
     def transform(self, before, packet):
         if before['revision_history'][-1]['version'] != packet['baseline_revision']:
@@ -87,6 +127,11 @@ class Batch:
             if node['id'] in ids:
                 raise ValueError('Node exists: ' + node['id'])
             g['nodes'].append(deepcopy(node))
+        people = {p['id'] for p in g['people']}
+        for p in packet.get('new_people', []):
+            if p['id'] in people:
+                raise ValueError('Person exists: ' + p['id'])
+            g['people'].append(deepcopy(p))
         for upd in packet['people_updates']:
             next(p for p in g['people'] if p['id'] == upd['id'])['node_id'] = upd['node_id']
         have = {s['id'] for s in g['sources']}
@@ -108,6 +153,14 @@ class Batch:
             g['edges'].append(dict(id=new_ids[e['proposal_id']], **deepcopy(e)))
         for eid, upd in packet['edge_revisions'].items():
             next(e for e in g['edges'] if e['id'] == eid).update(deepcopy(upd))
+        for ra in packet.get('roster_additions', []):
+            node = next(n for n in g['nodes'] if n['id'] == ra['node'])
+            if any(r['person_id'] == ra['row']['person_id'] for r in node['representative_people']):
+                raise ValueError(f"Roster row exists: {ra['node']}/{ra['row']['person_id']}")
+            row = deepcopy(ra['row'])
+            if ra.get('proposal_id'):
+                row['edge_id'] = new_ids[ra['proposal_id']]
+            node['representative_people'].append(row)
         for re_ in packet['roster_edges']:
             node = next(n for n in g['nodes'] if n['id'] == re_['node'])
             next(r for r in node['representative_people'] if r['person_id'] == re_['person_id'])['edge_id'] = new_ids[re_['proposal_id']]
@@ -160,7 +213,8 @@ class Batch:
         self.out.mkdir(parents=True, exist_ok=True)
         GRAPH.write_text(serial(graph))
         touched = dict(people={u['id'] for u in packet['people_updates']}, edges=set(packet['edge_revisions']),
-                       sources=set(packet['source_addenda']), nodes={r['node'] for r in packet['roster_edges']})
+                       sources=set(packet['source_addenda']),
+                       nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])})
         record = dict(revision=self.rev, date=self.day, authorization=self.cfg['authorization'],
             baseline=str(self.base.relative_to(ROOT)), baseline_sha256=sha(self.base), packet=str(self.packet.relative_to(ROOT)),
             packet_sha256=sha(self.packet), production_sha256=sha(GRAPH),
