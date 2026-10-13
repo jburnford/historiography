@@ -1,6 +1,16 @@
 # Project memory and visualization handoff
 
-## Current handoff — 2026-10-13: revision 1.129, person-entry links
+## Current handoff — 2026-10-13 (end of day): revisions 1.128–1.130 live; historians' family tree
+
+- **Live:** 1.130 (159 entries, 900 relationships), with Pomeranz added after 1.129's McKay,
+  Innis and Wolfe.
+- **Person-entry batches:** `scripts/apply_person_entries.py` with `batch.json`.
+- **AHA Directory of History Dissertations:** 61,559 PhDs harvested, and a family tree built
+  in `data/field-research/aha-dissertations-2026-10-13/genealogy/`.
+- **Open:** the settler colonialism family bridge (it decides whether Wolfe appears in the
+  Canada map); Hall's deferred edge; gap-filling for advisors.
+
+## Handoff — 2026-10-13: revision 1.129, person-entry links
 
 - **New person entries:** McKay, Innis and Wolfe.
 - **New edges:** Thompson → working-class history and Scott → women's and gender history.
