@@ -9,8 +9,8 @@ field: entries on a single time axis, banded by kind. Hold an entry and everythi
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.129** (schema 1.4): 158 entries,
-897 teaching relationships, 1,486 bibliography records, 1,188
+Production data revision **1.130** (schema 1.4): 159 entries,
+900 teaching relationships, 1,489 bibliography records, 1,188
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
@@ -82,7 +82,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current graph, 158 entries, 897 interpretive relationships, 1,486 bibliography records, and 1,188 people.
+- `historiography-1920-2000.json`: current graph, 159 entries, 900 interpretive relationships, 1,489 bibliography records, and 1,188 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.

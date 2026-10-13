@@ -1,6 +1,21 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.129 (2026-10-13)
+## Current revision 1.130 (2026-10-13)
+
+**159 entries (95 groups, 64 person entries), 900 teaching relationships, 1,489 sources and
+1,188 shared people.**
+
+Kenneth Pomeranz becomes a person entry, with three contributions:
+- to world / global history, through reciprocal comparison;
+- to economic history, through regional divergence;
+- to environmental history, through ecological constraint.
+
+They rest on *The Great Divergence* (2000) and *The Making of a Hinterland* (1993).
+`edge_063` no longer carries his name. Batches like this now use
+`scripts/apply_person_entries.py` with a `batch.json` per packet. See the
+[acceptance record](data/production-batches/person-entries-1.130/README.md).
+
+## Historical revision 1.129 (2026-10-13)
 
 **158 entries (95 groups, 63 person entries), 897 teaching relationships, 1,486 sources and
 1,188 shared people.**

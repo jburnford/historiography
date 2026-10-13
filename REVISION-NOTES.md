@@ -1611,3 +1611,17 @@ idea guy" though now on the decline.
 - **Totals.** 158 entries, 897 relationships, 1,486 sources.
 
 See the [acceptance record](data/production-batches/canadian-person-links-1.129/README.md).
+
+## Revision 1.130: Kenneth Pomeranz (13 October 2026)
+
+The user asked for Pomeranz to be fleshed out. He becomes a person entry, with three
+contributions:
+- to world / global history: reciprocal comparison of Eurasian core regions;
+- to economic history: coal and New World resources enabled divergence;
+- to environmental history: ecological constraint, from *The Making of a Hinterland* (1993).
+
+*The Great Divergence* (2000) is checked through its introduction. The economic edge is
+worded as Sol's review asked, because Pomeranz grants Europe some earlier advantages.
+`edge_063` no longer repeats his story. The low uptake in Canadian History PhDs measures
+Canadian reading, not his importance, and appears in no entry text. Totals: 159 entries,
+900 relationships. See the [acceptance record](data/production-batches/person-entries-1.130/README.md).
