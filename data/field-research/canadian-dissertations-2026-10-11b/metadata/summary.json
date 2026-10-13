@@ -1,0 +1,139 @@
+{
+  "checked_at": "2026-10-11T16:56:00.986074+00:00",
+  "streams": [
+    {
+      "id": "carleton-history",
+      "institution": "carleton",
+      "api_base": "https://carleton.scholaris.ca",
+      "item_base": "https://carleton.scholaris.ca",
+      "collection": "f99d1385-7478-4b7b-8138-87e8e65b4a57",
+      "query": "thesis.degree.discipline:History AND thesis.degree.level:Doctoral",
+      "filters": {},
+      "scope": "All Theses and Dissertations; indexed History discipline + Doctoral level",
+      "reported_total": 102,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 101,
+        "metadata.only": 1
+      },
+      "degree_counts": {
+        "doctoral": 102
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 101,
+        "collection_only_requires_program_review": 1
+      }
+    },
+    {
+      "id": "mcmaster-current",
+      "institution": "mcmaster",
+      "api_base": "https://prod-ms-be.lib.mcmaster.ca",
+      "item_base": "https://macsphere.mcmaster.ca",
+      "collection": "c8299415-08ea-4ab0-b342-a6582ae8acf7",
+      "query": "dc.contributor.department:History AND dc.description.degree:Doctor",
+      "filters": {},
+      "scope": "Open Access Dissertations and Theses; department History + doctoral degree; Ancient History / History of Art need local exclusion",
+      "reported_total": 136,
+      "complete_query": true,
+      "access_facets": {},
+      "degree_counts": {
+        "doctoral": 136
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 134,
+        "collection_only_requires_program_review": 2
+      }
+    },
+    {
+      "id": "mcmaster-digitized",
+      "institution": "mcmaster",
+      "api_base": "https://prod-ms-be.lib.mcmaster.ca",
+      "item_base": "https://macsphere.mcmaster.ca",
+      "collection": "00012f86-e3ef-443d-9594-772afa280108",
+      "query": "dc.contributor.department:History AND dc.description.degree:Doctor",
+      "filters": {},
+      "scope": "Digitized Open Access Dissertations and Theses; department History + doctoral degree",
+      "reported_total": 4,
+      "complete_query": true,
+      "access_facets": {},
+      "degree_counts": {
+        "doctoral": 4
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 4
+      }
+    },
+    {
+      "id": "manitoba-history",
+      "institution": "manitoba",
+      "api_base": "https://mspace.lib.umanitoba.ca",
+      "item_base": "https://mspace.lib.umanitoba.ca",
+      "collection": "b982474b-e27f-4861-af0d-2a6e75aa57bc",
+      "query": "dc.degree.discipline:History AND dc.degree.level:Doctor",
+      "filters": {},
+      "scope": "FGPS Electronic Theses and Practica; History discipline + Doctor of Philosophy",
+      "reported_total": 98,
+      "complete_query": true,
+      "access_facets": {},
+      "degree_counts": {
+        "doctoral": 98
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 98
+      }
+    },
+    {
+      "id": "sherbrooke-history-phd",
+      "institution": "sherbrooke",
+      "api_base": "https://usherbrooke.scholaris.ca",
+      "item_base": "https://usherbrooke.scholaris.ca",
+      "collection": "eb9529f7-9412-4610-a4e6-9597f163fa5c",
+      "query": "thesis.degree.discipline:Histoire",
+      "filters": {
+        "itemtype": "Thèse de doctorat,equals"
+      },
+      "scope": "LSH doctoral collection; discipline Histoire; check degree name locally",
+      "reported_total": 16,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 15,
+        "embargo": 1
+      },
+      "degree_counts": {
+        "doctoral": 15,
+        "masters": 1
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 15
+      }
+    }
+  ],
+  "errors": [],
+  "retrieval_limits": [
+    {
+      "institution": "uqam",
+      "status": "EPrints; harvested by separate adapter",
+      "source": "https://archipel.uqam.ca"
+    },
+    {
+      "institution": "concordia",
+      "status": "EPrints; harvested by separate adapter",
+      "source": "https://spectrum.library.concordia.ca"
+    }
+  ],
+  "unique_records": 356,
+  "degree_counts": {
+    "doctoral": 355,
+    "masters": 1
+  },
+  "doctoral_scope_counts": {
+    "explicit_history_program_or_department": 352,
+    "collection_only_requires_program_review": 3
+  },
+  "qualifications": [
+    "Complete scoped queries do not establish complete institutional graduation coverage.",
+    "Combined departmental affiliation is not an item-level History programme determination.",
+    "Literal phrases are discovery queries; exact local programme checks control eligibility.",
+    "No thesis PDF, full-text body, identity assertion or influence relationship downloaded or inferred."
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "checked_at": "2026-10-11T16:56:56.823948+00:00",
+  "streams": [
+    {
+      "id": "calgary-open",
+      "institution": "calgary",
+      "api_base": "https://ucalgary.scholaris.ca",
+      "item_base": "https://ucalgary.scholaris.ca",
+      "collection": "16fe099b-62b7-45bd-9a99-5fc465f0d04d",
+      "query": null,
+      "filters": {
+        "discipline": "History,equals",
+        "itemtype": "doctoral thesis,equals"
+      },
+      "scope": "Open Theses and Dissertations; History discipline facet; doctoral itemtype",
+      "reported_total": 40,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 40
+      },
+      "degree_counts": {
+        "doctoral": 40
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 40
+      }
+    },
+    {
+      "id": "calgary-legacy",
+      "institution": "calgary",
+      "api_base": "https://ucalgary.scholaris.ca",
+      "item_base": "https://ucalgary.scholaris.ca",
+      "collection": "a797dc64-13ad-41d9-9257-b95a4729c296",
+      "query": null,
+      "filters": {
+        "discipline": "History,equals",
+        "itemtype": "doctoral thesis,equals"
+      },
+      "scope": "Legacy Theses; History discipline facet; doctoral itemtype",
+      "reported_total": 33,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 33
+      },
+      "degree_counts": {
+        "doctoral": 33
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 33
+      }
+    },
+    {
+      "id": "calgary-restricted",
+      "institution": "calgary",
+      "api_base": "https://ucalgary.scholaris.ca",
+      "item_base": "https://ucalgary.scholaris.ca",
+      "collection": "69c8d33f-b6fc-4b5c-8bca-1f7f2e4b030a",
+      "query": null,
+      "filters": {
+        "discipline": "History,equals",
+        "itemtype": "doctoral thesis,equals"
+      },
+      "scope": "Restricted Theses and Dissertations; mostly embargoed",
+      "reported_total": 5,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 3,
+        "embargo": 2
+      },
+      "degree_counts": {
+        "doctoral": 5
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 5
+      }
+    },
+    {
+      "id": "dal-history-dept",
+      "institution": "dalhousie",
+      "api_base": "https://dal.scholaris.ca",
+      "item_base": "https://dal.scholaris.ca",
+      "collection": "d7030dd0-a0b8-48f5-91a5-f1de39120e33",
+      "query": "dc.contributor.department:History",
+      "filters": {},
+      "scope": "FGS Online Theses with explicit History department; degree in dc.contributor.degree",
+      "reported_total": 168,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 165,
+        "embargo": 3
+      },
+      "degree_counts": {
+        "unspecified": 168
+      },
+      "doctoral_scope_counts": {}
+    },
+    {
+      "id": "dal-proquest-era",
+      "institution": "dalhousie",
+      "api_base": "https://dal.scholaris.ca",
+      "item_base": "https://dal.scholaris.ca",
+      "collection": "d7030dd0-a0b8-48f5-91a5-f1de39120e33",
+      "query": "(dc.contributor.degree:\"Ph.D.\" OR dc.description:\"Thesis (Ph.D.)\") AND dc.subject:History AND NOT dc.contributor.department:*",
+      "filters": {},
+      "scope": "ProQuest-era PhDs without department, ProQuest History subject; needs programme review",
+      "reported_total": 66,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 66
+      },
+      "degree_counts": {
+        "unspecified": 66
+      },
+      "doctoral_scope_counts": {}
+    },
+    {
+      "id": "uvic-etd-history",
+      "institution": "uvic",
+      "api_base": "https://dspace.library.uvic.ca",
+      "item_base": "https://dspace.library.uvic.ca",
+      "collection": "ca8ec61f-b2a4-489d-b16a-49332ad7a780",
+      "query": "dc.degree.department:\"Department of History\" AND NOT dc.degree.department:\"History in Art\"",
+      "filters": {},
+      "scope": "ETD collection, Department of History excluding History in Art",
+      "reported_total": 439,
+      "complete_query": true,
+      "access_facets": {},
+      "degree_counts": {
+        "masters": 356,
+        "doctoral": 58,
+        "unspecified": 25
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 58
+      }
+    },
+    {
+      "id": "mun-doctoral-history",
+      "institution": "memorial",
+      "api_base": "https://memorial.scholaris.ca",
+      "item_base": "https://memorial.scholaris.ca",
+      "collection": "3084addc-7de6-47cd-8270-2d3d6e79596d",
+      "query": "thesis.degree.discipline:\"History\"",
+      "filters": {},
+      "scope": "Doctoral Theses collection, History discipline",
+      "reported_total": 42,
+      "complete_query": true,
+      "access_facets": {
+        "open.access": 42
+      },
+      "degree_counts": {
+        "doctoral": 42
+      },
+      "doctoral_scope_counts": {
+        "explicit_history_program_or_department": 42
+      }
+    }
+  ],
+  "errors": [],
+  "retrieval_limits": [
+    {
+      "institution": "uvic",
+      "status": "Digitized theses collection (27 History items) has no degree metadata; not included"
+    },
+    {
+      "institution": "sfu",
+      "status": "Islandora; harvested by separate adapter",
+      "source": "https://summit.sfu.ca/collection/30027"
+    }
+  ],
+  "unique_records": 793,
+  "degree_counts": {
+    "doctoral": 178,
+    "unspecified": 259,
+    "masters": 356
+  },
+  "doctoral_scope_counts": {
+    "explicit_history_program_or_department": 178
+  },
+  "qualifications": [
+    "Complete scoped queries do not establish complete institutional graduation coverage.",
+    "Combined departmental affiliation is not an item-level History programme determination.",
+    "Literal phrases are discovery queries; exact local programme checks control eligibility.",
+    "No thesis PDF, full-text body, identity assertion or influence relationship downloaded or inferred."
+  ]
+}

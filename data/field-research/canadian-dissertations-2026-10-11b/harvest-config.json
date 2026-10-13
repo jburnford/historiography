@@ -1,0 +1,15 @@
+{
+  "requested_institutions": ["carleton", "mcmaster", "manitoba", "sherbrooke", "uqam", "concordia", "sfu", "calgary", "uvic", "dalhousie", "memorial"],
+  "dspace_streams": [
+    {"id": "carleton-history", "institution": "carleton", "api_base": "https://carleton.scholaris.ca", "item_base": "https://carleton.scholaris.ca", "collection": "f99d1385-7478-4b7b-8138-87e8e65b4a57", "query": "thesis.degree.discipline:History AND thesis.degree.level:Doctoral", "filters": {}, "scope": "All Theses and Dissertations; indexed History discipline + Doctoral level"},
+    {"id": "mcmaster-current", "institution": "mcmaster", "api_base": "https://prod-ms-be.lib.mcmaster.ca", "item_base": "https://macsphere.mcmaster.ca", "collection": "c8299415-08ea-4ab0-b342-a6582ae8acf7", "query": "dc.contributor.department:History AND dc.description.degree:Doctor", "filters": {}, "scope": "Open Access Dissertations and Theses; department History + doctoral degree; Ancient History / History of Art need local exclusion"},
+    {"id": "mcmaster-digitized", "institution": "mcmaster", "api_base": "https://prod-ms-be.lib.mcmaster.ca", "item_base": "https://macsphere.mcmaster.ca", "collection": "00012f86-e3ef-443d-9594-772afa280108", "query": "dc.contributor.department:History AND dc.description.degree:Doctor", "filters": {}, "scope": "Digitized Open Access Dissertations and Theses; department History + doctoral degree"},
+    {"id": "manitoba-history", "institution": "manitoba", "api_base": "https://mspace.lib.umanitoba.ca", "item_base": "https://mspace.lib.umanitoba.ca", "collection": "b982474b-e27f-4861-af0d-2a6e75aa57bc", "query": "dc.degree.discipline:History AND dc.degree.level:Doctor", "filters": {}, "scope": "FGPS Electronic Theses and Practica; History discipline + Doctor of Philosophy"},
+    {"id": "sherbrooke-history-phd", "institution": "sherbrooke", "api_base": "https://usherbrooke.scholaris.ca", "item_base": "https://usherbrooke.scholaris.ca", "collection": "eb9529f7-9412-4610-a4e6-9597f163fa5c", "query": "thesis.degree.discipline:Histoire", "filters": {"itemtype": "Thèse de doctorat,equals"}, "scope": "LSH doctoral collection; discipline Histoire; check degree name locally"}
+  ],
+  "retrieval_limits": [
+    {"institution": "uqam", "status": "EPrints; harvested by separate adapter", "source": "https://archipel.uqam.ca"},
+    {"institution": "concordia", "status": "EPrints; harvested by separate adapter", "source": "https://spectrum.library.concordia.ca"}
+  ],
+  "skip_laurier": true
+}

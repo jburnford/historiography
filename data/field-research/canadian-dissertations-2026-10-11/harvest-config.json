@@ -1,0 +1,157 @@
+{
+  "requested_institutions": [
+    "mcgill",
+    "ottawa",
+    "waterloo",
+    "guelph",
+    "laurier",
+    "ubc",
+    "alberta",
+    "unb",
+    "montreal",
+    "laval"
+  ],
+  "dspace_streams": [
+    {
+      "id": "mcgill-history",
+      "institution": "mcgill",
+      "api_base": "https://mcgill.scholaris.ca",
+      "item_base": "https://mcgill.scholaris.ca",
+      "collection": "3a97d3ab-56cd-44e6-94cc-6f8f5d791fb1",
+      "query": null,
+      "filters": {
+        "department": "Department of History and Classical Studies,equals"
+      },
+      "scope": "History and Classical Studies department; degree and programme adjudication separate"
+    },
+    {
+      "id": "ottawa-current",
+      "institution": "ottawa",
+      "api_base": "https://ruor.uottawa.ca",
+      "item_base": "https://ruor.uottawa.ca",
+      "collection": "b464ca75-3f7c-44b8-98e4-86090ce290c6",
+      "query": "uottawa.department:\"Histoire / History\" OR dc.faculty.department:\"Histoire / History\" OR thesis.degree.discipline:History",
+      "filters": {},
+      "scope": "Thesis collection and field-specific bilingual History query; local exact metadata eligibility"
+    },
+    {
+      "id": "ottawa-older",
+      "institution": "ottawa",
+      "api_base": "https://ruor.uottawa.ca",
+      "item_base": "https://ruor.uottawa.ca",
+      "collection": "fc050432-dc24-47c5-afdf-f8ace00451df",
+      "query": "uottawa.department:\"Histoire / History\" OR dc.faculty.department:\"Histoire / History\" OR thesis.degree.discipline:History",
+      "filters": {},
+      "scope": "Thesis collection and field-specific bilingual History query; local exact metadata eligibility"
+    },
+    {
+      "id": "ottawa-embargo",
+      "institution": "ottawa",
+      "api_base": "https://ruor.uottawa.ca",
+      "item_base": "https://ruor.uottawa.ca",
+      "collection": "3bfe0a95-c1b0-41af-90b5-91b190c7491e",
+      "query": "uottawa.department:\"Histoire / History\" OR dc.faculty.department:\"Histoire / History\" OR thesis.degree.discipline:History",
+      "filters": {},
+      "scope": "Thesis collection and field-specific bilingual History query; local exact metadata eligibility"
+    },
+    {
+      "id": "waterloo-history",
+      "institution": "waterloo",
+      "api_base": "https://dspacemainprd01.lib.uwaterloo.ca",
+      "item_base": "https://uwspace.uwaterloo.ca",
+      "collection": "e31dd997-cf73-4eec-b5e6-546597171aa7",
+      "query": null,
+      "filters": {},
+      "scope": "History collection, degree determined from uws-etd fields"
+    },
+    {
+      "id": "waterloo-older",
+      "institution": "waterloo",
+      "api_base": "https://dspacemainprd01.lib.uwaterloo.ca",
+      "item_base": "https://uwspace.uwaterloo.ca",
+      "collection": "eaa5c45c-b97c-47f2-a254-53f0ce85e645",
+      "query": "uws-etd.degree.department:History OR uws-etd.degree.discipline:History",
+      "filters": {},
+      "scope": "Digitized older collection; indexed History degree fields only, not complete older coverage"
+    },
+    {
+      "id": "guelph-current",
+      "institution": "guelph",
+      "api_base": "https://atrium.lib.uoguelph.ca",
+      "item_base": "https://atrium.lib.uoguelph.ca",
+      "collection": "50bed0cb-5490-4258-aec6-a4ec4a410bef",
+      "query": "dc.degree.programme:History OR dc.degree.department:\"Department of History\"",
+      "filters": {},
+      "scope": "Current, retrospective or LAC-harvested thesis collection; exact History programme/department fields"
+    },
+    {
+      "id": "guelph-older",
+      "institution": "guelph",
+      "api_base": "https://atrium.lib.uoguelph.ca",
+      "item_base": "https://atrium.lib.uoguelph.ca",
+      "collection": "dfe92be9-e7cd-49d9-8bfa-d686472117be",
+      "query": "dc.degree.programme:History OR dc.degree.department:\"Department of History\"",
+      "filters": {},
+      "scope": "Current, retrospective or LAC-harvested thesis collection; exact History programme/department fields"
+    },
+    {
+      "id": "guelph-lac",
+      "institution": "guelph",
+      "api_base": "https://atrium.lib.uoguelph.ca",
+      "item_base": "https://atrium.lib.uoguelph.ca",
+      "collection": "1fa9bb2c-15b1-4500-bce8-6c2b4c1a073b",
+      "query": "dc.degree.programme:History OR dc.degree.department:\"Department of History\"",
+      "filters": {},
+      "scope": "Current, retrospective or LAC-harvested thesis collection; exact History programme/department fields"
+    },
+    {
+      "id": "alberta-history-classics",
+      "institution": "alberta",
+      "api_base": "https://ualberta.scholaris.ca",
+      "item_base": "https://ualberta.scholaris.ca",
+      "collection": "f3d69d6d-203b-4472-a862-535e749ab216",
+      "query": "ual.department:\"Department of History and Classics\" OR ual.department:\"Department of History, Classics, and Religion\" OR ual.department:\"Department of History\" OR ual.department:\"History and Classics\"",
+      "filters": {},
+      "scope": "Combined History/Classics department candidates; item-level programme unresolved unless explicit"
+    },
+    {
+      "id": "unb-history",
+      "institution": "unb",
+      "api_base": "https://unbscholar.dspace.lib.unb.ca",
+      "item_base": "https://unbscholar.lib.unb.ca",
+      "collection": "2f9f590e-c8cd-487b-9ce2-5e8568e88eea",
+      "query": "thesis.degree.discipline:History",
+      "filters": {},
+      "scope": "Open Theses and Dissertations, field-specific History discipline"
+    },
+    {
+      "id": "montreal-histoire",
+      "institution": "montreal",
+      "api_base": "https://umontreal.scholaris.ca",
+      "item_base": "https://umontreal.scholaris.ca",
+      "collection": "9c38c80e-a09b-4d54-a3bc-2c6a7ba4cbcb",
+      "query": null,
+      "filters": {},
+      "scope": "Department of History theses and dissertations; French degree labels"
+    },
+    {
+      "id": "laval-doctorat-histoire",
+      "institution": "laval",
+      "api_base": "https://corpus.ulaval.ca",
+      "item_base": "https://corpus.ulaval.ca",
+      "collection": "32fa194e-af6e-41d8-bde3-fae02aed6899",
+      "query": "\"Doctorat en histoire\"",
+      "filters": {},
+      "scope": "Quoted degree-phrase discovery in thesis collection, with local exact programme checks; not all History degrees"
+    }
+  ],
+  "retrieval_limits": [
+    {
+      "institution": "ubc",
+      "status": "not harvested",
+      "reason": "UBC blocked the public collection request as unusual activity; research API requires registered key, not supplied.",
+      "source": "https://open.library.ubc.ca/collections/ubctheses",
+      "documentation": "https://wiki.prod.apps.ctlt.ubc.ca/Library%3AOpen_Collections"
+    }
+  ]
+}
