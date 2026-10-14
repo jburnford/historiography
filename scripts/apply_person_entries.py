@@ -95,8 +95,9 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        if self.cfg.get('text_revisions'):   # narrow corrections to existing roster contexts and strand text
-            packet['text_revisions'] = self.cfg['text_revisions']
+        for key in ('text_revisions', 'strand_list_additions', 'new_strands'):   # optional; written only when present
+            if self.cfg.get(key):
+                packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
         self.packet.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
         print(f'{self.rev} packet: {len(nodes)} person entries, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, '
@@ -171,6 +172,18 @@ class Batch:
             if obj.get(tr['field'], '').count(tr['old']) != 1:
                 raise ValueError(f"Text revision does not match once: {tr['node']} {tr['field']}")
             obj[tr['field']] = obj[tr['field']].replace(tr['old'], tr['new'])
+        for sla in packet.get('strand_list_additions', []):
+            node = next(n for n in g['nodes'] if n['id'] == sla['node'])
+            strand = next(s for s in node['strands'] if s['id'] == sla['strand'])
+            for key in ('person_ids', 'source_ids'):
+                for x in sla.get(key, []):
+                    if x not in strand.setdefault(key, []):
+                        strand[key].append(x)
+        for ns in packet.get('new_strands', []):
+            node = next(n for n in g['nodes'] if n['id'] == ns['node'])
+            if any(s['id'] == ns['strand']['id'] for s in node['strands']):
+                raise ValueError(f"Strand exists: {ns['node']}/{ns['strand']['id']}")
+            node['strands'].append(deepcopy(ns['strand']))
         for ra in packet.get('roster_additions', []):
             node = next(n for n in g['nodes'] if n['id'] == ra['node'])
             if any(r['person_id'] == ra['row']['person_id'] for r in node['representative_people']):

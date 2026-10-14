@@ -1770,3 +1770,20 @@ Chakrabarty gains his first incoming edges, from Guha and Spivak. Six group edge
 to the distinct interventions they record. Sol said "accept with fixes"; all 13 findings are
 fixed (`release/fixes-1.137.md`). Totals: 178 entries, 987 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.137/README.md).
+
+## Revision 1.138: Fernand Ouellet and his critics (14 October 2026)
+
+The user: "we also probably need Oullet and then some of his critics". Fernand Ouellet becomes a
+person entry with five edges:
+- the agricultural crisis and peasant mentalities as the ground of nationalism and, in large
+  part, of 1837–38 (1962–76);
+- his critics' answer: Paquet and Wallot, Tousignant and Greer, named as the proxies of a
+  quebec_historiography → Ouellet critique;
+- his critiques of the Montreal school's Conquest thesis and of parts of post-1960 economic
+  history;
+- Creighton's and Labrousse's influence on him.
+
+Six critics and participants join the Quebec roster. Two strands are rewritten from read texts,
+and a new strand covers interpretations of 1837–38. Sol said "accept with fixes"; all eight
+findings are fixed (`release/fixes-1.138.md`). Totals: 179 entries, 992 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.138/README.md).

@@ -1,6 +1,21 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.137 (2026-10-14)
+## Current revision 1.138 (2026-10-14)
+
+**179 entries (96 groups, 83 person entries), 992 teaching relationships, 1,707 sources and
+1,216 shared people.**
+
+Fernand Ouellet becomes a person entry. His critics have rows on quebec_historiography, and a new
+strand, `rebellions_1837_interpretations`, is added there.
+
+A person-entry batch may now also carry:
+- `strand_list_additions`: `{node, strand, person_ids, source_ids}`, appended without
+  duplicates;
+- `new_strands`: `{node, strand}`, which fails if the strand id exists.
+
+See the [acceptance record](data/production-batches/person-entries-1.138/README.md).
+
+## Historical revision 1.137 (2026-10-14)
 
 **178 entries (96 groups, 82 person entries), 987 teaching relationships, 1,694 sources and
 1,212 shared people.**
