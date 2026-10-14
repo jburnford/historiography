@@ -113,8 +113,9 @@ function labelLines(label, labelW) {
 
 /* Paired rows on one axis. `width` is the measured width of the box the SVG sits in. Each
    row is a native SVG `<a>` (not a `<g>` with a synthetic role): middle-click, Enter and
-   no-JS all work without app.js wiring a click handler. */
-export function rowsSvg({block, graph, view = 'all', width = 1000, href}) {
+   no-JS all work without app.js wiring a click handler. `closed` draws the legacy coverage
+   line at AXIS.coverage; an open-frame atlas (no closing date) passes closed: false. */
+export function rowsSvg({block, graph, view = 'all', width = 1000, href, closed = true}) {
   const labelW = Math.min(280, Math.max(160, width * 0.26));
   const x0 = labelW + 16, x1 = width - 16, rowH = 58, top = 26, foot = 26, barMax = 26;
   const x = y => x0 + (Math.max(y, AXIS.start) - AXIS.start) / (AXIS.end + 1 - AXIS.start) * (x1 - x0);
@@ -150,7 +151,7 @@ export function rowsSvg({block, graph, view = 'all', width = 1000, href}) {
       (bars ? '' : `<text class="row-empty" x="${x1}" y="${base - 4}" text-anchor="end">no items in this view</text>`) + `</a>`;
   }).join('');
   const cx = x(AXIS.coverage).toFixed(1);
-  const wall = `<line class="coverage-line" x1="${cx}" x2="${cx}" y1="${top - 6}" y2="${H - foot}"/>` +
+  const wall = !closed ? '' : `<line class="coverage-line" x1="${cx}" x2="${cx}" y1="${top - 6}" y2="${H - foot}"/>` +
     `<text class="coverage-label" x="${(+cx - 5).toFixed(1)}" y="${top - 10}" text-anchor="end">atlas coverage ends ${AXIS.coverage}</text>`;
   return `<svg class="landing-svg" viewBox="0 0 ${width} ${H}" width="${width}" height="${H}" role="group" aria-label="Families of historical writing: atlas dating and share of the record, ${AXIS.start}–${AXIS.end}">${grid}${wall}${rows}</svg>`;
 }

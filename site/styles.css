@@ -428,3 +428,10 @@ svg.field.focused{cursor:default}
 .tier-probable { color: #865020; }
 .identity-evidence { margin-top: .4rem; }
 .identity-evidence summary { font-size: .8rem; font-weight: normal; }
+/* Open frame: the faded tail after an entry's reviewed year, the research cutoff, the archive banner. */
+.field rect.unreviewed{fill:#b7c2b6;opacity:.28}
+.entry.selected rect.unreviewed{fill:#2f6b4f;opacity:.22}
+.entry.related rect.unreviewed{fill:#c9ae6a;opacity:.3}
+.field line.frame-cutoff{stroke:#7a6a3a;stroke-width:1;stroke-dasharray:2 3}
+.swatch.unreviewed::before{width:40px;background:linear-gradient(90deg,#b9c3b7 0 50%,#b9c3b747 50% 100%)}
+.archive-banner{margin:1rem 0;padding:.6rem .9rem;border-left:3px solid #b5651d;background:#fbf4ea;font-size:.92rem}
