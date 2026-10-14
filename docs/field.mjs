@@ -31,8 +31,11 @@ const DIR = {
 };
 export const JOURNAL_LAYER = 'journals_and_venues';
 const BREAK_YEAR = 1900, EARLY_SHARE = 0.2;
-const G = {padL: 18, padR: 26, barH: 18, rowGap: 8, bandGap: 30, ghostH: 4, ghostGap: 3,
-           chipH: 22, chipGap: 6, minW: 600};
+const G_FULL = {padL: 18, padR: 26, barH: 18, rowGap: 8, bandGap: 30, ghostH: 4, ghostGap: 3,
+           chipH: 22, chipGap: 6, minW: 600, bandHead: 26, axisGap: 40, clipAt: 46};
+/* The person-profile map: the same layout at a compact density, one band, no ghosts. */
+const G_COMPACT = {...G_FULL, padL: 10, padR: 14, barH: 13, rowGap: 9, bandGap: 4, chipH: 18, chipGap: 5,
+                   minW: 520, bandHead: 0, axisGap: 30, clipAt: 48, stackGap: 15, stackMinW: 280};
 
 const titleCase = k => String(k).replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 /* Section headings read as questions; legend chips read as the relationship's own name. */
@@ -251,16 +254,25 @@ export function interventionsOf(node) {
   return [...new Set(c.publication_years)].sort((a, b) => a - b);
 }
 
+/* Options: `numbering` (above); `extension` (archive-era extension zone); `only` (a Set of ids:
+   lay out just these entries); `compact` (the profile map's density: one band, no band heading,
+   no ghosts, and an axis that starts at 1900 unless an entry is earlier); `badges` (Map id → a
+   short word drawn after the label, counted in its width so labels still never collide);
+   `stacked` (with compact, for phone widths: one mark per row, its label on its own line above). */
 export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) {
   const numbering = opts.numbering || null;
   const extension = opts.extension || null;
-  const nodes = fieldNodes(graph);
+  const compact = Boolean(opts.compact);
+  const G = compact ? G_COMPACT : G_FULL;
+  const badges = opts.badges || null;
+  const nodes = opts.only ? fieldNodes(graph).filter(n => opts.only.has(n.id)) : fieldNodes(graph);
   const rows = nodes.map(node => ({node, span: spanOf(node)}));
   const spans = rows.filter(r => r.span).map(r => r.span);
-  const minYear = Math.min(1900, Math.floor(Math.min(...spans.map(s => s.start)) / 10) * 10);
+  const earliest = spans.length ? Math.min(...spans.map(s => s.start)) : BREAK_YEAR;
+  const minYear = Math.min(1900, Math.floor(earliest / 10) * 10);
   const frame = frameOf(graph);
   const maxYear = Math.max(frame.open ? frame.end : (extension ? extension.end : 2000),
-    Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10);
+    spans.length ? Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10 : 0);
   const coverageYear = frame.open ? null : frame.wall;
   /* Open frame: the prose "coverage through 2000" suffix is gone, so an entry that records a
      review year continues unless its span ends explicitly. The archive reads its labels. */
@@ -268,31 +280,37 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     || (frame.open && reviewedThrough(item.node) !== null && item.span?.endKind !== 'terminus');
 
   const undatedTotal = rows.filter(r => !r.span).length;
-  const inner = Math.max(Math.floor(width) - 2, G.minW);
+  const stacked = compact && Boolean(opts.stacked);
+  const inner = Math.max(Math.floor(width) - 2, stacked ? G.stackMinW : G.minW);
   const x0 = G.padL + 6, x1 = inner - G.padR;
   const W = x1 - x0;
   const early = BREAK_YEAR - minYear, late = maxYear - BREAK_YEAR;
+  /* A compact map with nothing before 1900 gives the compressed segment's width back. */
+  const earlyShare = compact && !early ? 0 : EARLY_SHARE;
   const scale = yr => yr <= BREAK_YEAR
-    ? x0 + (early ? (yr - minYear) / early : 0) * W * EARLY_SHARE
-    : x0 + W * EARLY_SHARE + (yr - BREAK_YEAR) / late * W * (1 - EARLY_SHARE);
+    ? x0 + (early ? (yr - minYear) / early : 0) * W * earlyShare
+    : x0 + W * earlyShare + (yr - BREAK_YEAR) / late * W * (1 - earlyShare);
   const labelOf = node => {
-    const base = clip(displayLabel(node), 46);
+    const base = clip(displayLabel(node), G.clipAt);
     const n = numbering?.get(node.id);
     return n ? `${n}. ${base}` : base;
   };
+  /* Badges are small capitals with letter-spacing; compact labels get a little slack for bold. */
+  const badgeW = b => b ? textW(b.toUpperCase(), 8.6) * 1.5 + 8 : 0;
+  const slack = compact ? 1.06 : 1;
 
   const lives = lifeIndex(graph);
   const axisTop = 14;
-  let y = axisTop + 40;
+  let y = axisTop + G.axisGap;
   const bands = [], bars = [], chips = [], ghosts = [], captions = [];
 
-  for (const layerId of layerOrder) {
-    const mine = rows.filter(r => r.node.layer === layerId);
+  for (const layerId of compact ? [null] : layerOrder) {
+    const mine = rows.filter(r => layerId === null || r.node.layer === layerId);
     if (!mine.length) continue;
-    const isFull = r => !focusSet || focusSet.has(r.node.id);
+    const isFull = r => compact || !focusSet || focusSet.has(r.node.id);
     const full = mine.filter(isFull), faded = mine.filter(r => !isFull(r));
     const labelY = y + 11;
-    y += 26;
+    y += G.bandHead;
     const top = y;
 
     /* Entries with no stated span sit in a wrapping strip at the top of their band, so the
@@ -307,9 +325,10 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     }
     for (const item of undated) {
       const label = clip(displayLabel(item.node), 40);
-      const w = Math.min(240, Math.round(textW(label, 11) + 22));
+      const badge = badges?.get(item.node.id) || '';
+      const w = Math.min(240 + badgeW(badge), Math.round(textW(label, 11) + 22 + badgeW(badge)));
       if (cx + w > x1 && cx > x0) { cx = x0; cy += G.chipH + G.chipGap; chipRows++; }
-      chips.push({...item, shape: 'chip', label, x: cx, y: cy, w, h: G.chipH});
+      chips.push({...item, shape: 'chip', label, badge, x: cx, y: cy, w, h: G.chipH});
       cx += w + G.chipGap;
     }
     const chipBlock = chipRows ? chipRows * (G.chipH + G.chipGap) + 4 : 0;
@@ -330,17 +349,32 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
       const fadeTo = open && frame.open ? frame.end : drawEnd;
       const point = drawEnd === item.span.start;
       const bw = Math.max(point ? 12 : 7, scale(drawEnd) - bx);
-      const label = labelOf(item.node);
+      let label = labelOf(item.node);
+      const badge = badges?.get(item.node.id) || '';
+      const extra = badgeW(badge);
       /* Undated roots: a thin lead-in from the axis's left edge to the first dated year. */
       const lead = item.span.openStart && bx - x0 > 4 ? {x: x0, w: bx - x0} : null;
-      const fitsRight = bx + bw + 7 + textW(label) <= x1;
-      const fitsLeft = bx - textW(label) - 9 >= G.padL;   /* a left label may sit over a lead-in */
-      const side = fitsRight ? 'right' : fitsLeft ? 'left' : 'inside';
-      const need = lead ? x0 : side === 'left' ? bx - textW(label) - 9 : bx;
-      const occupied = side === 'right' ? bx + bw + 7 + textW(label) : bx + bw;
-      let r = rowEnds.findIndex(end => end + 16 <= need);
+      const fitsRight = bx + bw + 7 + textW(label) * slack + extra <= x1;
+      const fitsLeft = bx - textW(label) * slack - extra - 9 >= G.padL;   /* a left label may sit over a lead-in */
+      let side = stacked ? 'above' : fitsRight ? 'right' : fitsLeft ? 'left' : 'inside';
+      if (stacked) label = clip(label, Math.max(6, Math.floor((x1 - x0 - extra) / (11.5 * 0.545 * slack))));
+      else if (compact && side === 'inside') {
+        /* A narrow map: put the label where there is most room and shorten it to fit there. */
+        const rooms = {right: x1 - (bx + bw + 7), left: bx - 9 - G.padL, inside: bw - 12};
+        side = Object.entries(rooms).sort((a, b) => b[1] - a[1])[0][0];
+        const chars = Math.max(6, Math.floor((rooms[side] - extra) / (11.5 * 0.545 * slack)));
+        label = clip(label, chars);
+      }
+      const labelW = textW(label) * slack + extra;
+      const need = lead ? x0 : side === 'left' ? bx - labelW - 9 : bx;
+      const occupied = side === 'right' ? bx + bw + 7 + labelW
+        : side === 'inside' && compact ? Math.max(bx + bw, bx + 9 + labelW) : bx + bw;
+      let r = stacked ? -1 : rowEnds.findIndex(end => end + 16 <= need);
       if (r === -1) { r = rowEnds.length; rowEnds.push(0); }
       rowEnds[r] = occupied;
+      /* Stacked: the label sits above its mark, starting where the mark starts unless that
+         would run off the right edge. */
+      const labelX = stacked ? Math.max(x0, Math.min(bx, x1 - labelW)) : null;
       const ticks = milestoneYears(item.node)
         .filter(yr => yr > item.span.start && yr <= drawEnd).map(yr => ({yr, x: scale(yr)}));
       /* Death within the axis: a marker, and the part of the mark after it is posthumous. */
@@ -357,11 +391,12 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
           && yr <= (frame.open ? frame.end : extension?.end ?? 0))
         .map(yr => ({yr, x: scale(yr)})) : [];
       if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
-      bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
-        life, death, posthumous, interventions, x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
+      bars.push({...item, shape: 'bar', label, badge, labelW, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
+        life, death, posthumous, interventions, labelX, x: bx, w: bw, h: G.barH,
+        y: barTop + r * (G.barH + G.rowGap + (stacked ? G.stackGap : 0)) + (stacked ? G.stackGap : 0)});
     }
 
-    const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap);
+    const fullH = chipBlock + rowEnds.length * (G.barH + G.rowGap + (stacked ? G.stackGap : 0));
     let gy = y + fullH + (faded.length ? 6 : 0);
     const ghostEnds = [];
     for (const item of faded.sort((a, b) => (a.span?.start ?? 0) - (b.span?.start ?? 0))) {
@@ -376,15 +411,56 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
         y: gy + r * (G.ghostH + G.ghostGap)});
     }
     const ghostH = ghostEnds.length * (G.ghostH + G.ghostGap);
-    bands.push({layerId, labelY, top: top - 26, height: fullH + ghostH + 26,
+    bands.push({layerId, labelY, top: top - G.bandHead, height: fullH + ghostH + G.bandHead,
       full: full.length, faded: faded.length});
     y += fullH + ghostH + (focusSet ? 18 : G.bandGap);
   }
 
   return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G, extension, frame,
-    minYear, maxYear, coverageYear, breakYear: BREAK_YEAR, height: y + 14,
+    minYear, maxYear, coverageYear, breakYear: BREAK_YEAR, earlyShare, height: y + (compact ? 6 : 14),
     placed: new Map([...chips, ...bars, ...ghosts].map(p => [p.node.id, p])),
     datedCount: rows.filter(r => r.span).length, undatedCount: undatedTotal};
+}
+
+/* ---------- a person on the field ---------- */
+/* The words drawn after each entry's label on a person's profile map. `contributor` reads as
+   "resource", as in the people register: an intellectual resource, not a member. */
+export const ROLE_BADGE = {historian: 'historian', contributor: 'resource', precursor: 'earlier resource',
+  critic: 'critic', comparison: 'comparison', own: 'own entry', approach: 'in an approach'};
+
+/* The entries a person's profile map draws: those whose rosters name the person (with the
+   role), the person's own entry, and every entry an own-entry relationship reaches, so each
+   relationship is drawn to a real place on the time axis rather than to an off-map stub.
+   A person named only inside approaches (strands) falls back to those entries. */
+export function personMapSubset(graph, personId) {
+  const person = (graph.people || []).find(p => p.id === personId) || null;
+  const atlas = new Set(graph.nodes.map(n => n.id));
+  const own = person?.node_id && atlas.has(person.node_id) ? person.node_id : null;
+  const roster = new Map();
+  for (const n of graph.nodes) for (const r of n.representative_people || [])
+    if (r.person_id === personId && !roster.has(n.id)) roster.set(n.id, r.role);
+  let basis = roster.size ? 'roster' : own ? 'own' : 'none';
+  if (!roster.size && !own) for (const n of graph.nodes)
+    if ((n.strands || []).some(s => s.person_ids?.includes(personId))) { roster.set(n.id, 'approach'); basis = 'approach'; }
+  const edges = own ? graph.edges.filter(e => (e.source === own || e.target === own)
+    && atlas.has(e.source) && atlas.has(e.target) && e.source !== e.target) : [];
+  const linked = new Map();
+  for (const edge of edges) {
+    const other = edge.source === own ? edge.target : edge.source;
+    if (!linked.has(other)) linked.set(other, []);
+    linked.get(other).push({edge, dir: edge.source === own ? 'out' : 'in'});
+  }
+  const ids = new Set([...roster.keys(), ...(own ? [own] : []), ...linked.keys()]);
+  return {person, own, roster, linked, edges, ids, basis};
+}
+/* Below STACK_BELOW px the map stacks (one mark per row, label above) instead of scrolling. */
+export const STACK_BELOW = 560;
+export function personMapLayout(graph, personId, width) {
+  const subset = personMapSubset(graph, personId);
+  const badges = new Map([...subset.roster].map(([id, role]) => [id, ROLE_BADGE[role] || role]));
+  if (subset.own) badges.set(subset.own, ROLE_BADGE.own);
+  return {...buildFieldLayout(graph, width, null, [], {only: subset.ids, compact: true, badges,
+    stacked: width < STACK_BELOW}), subset};
 }
 
 export const anchor = p => ({x: p.x + p.w / 2, y: p.y + p.h / 2});

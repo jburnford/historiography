@@ -544,6 +544,57 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.get_by_role('link', name='Hold in the field', exact=False).click()
         expect(self.page.locator('.entry.selected')).to_have_count(1)
 
+    def test_person_profile_map(self):
+        """Every profile opens with a compact map of the entries that name the person."""
+        self.open('#tab=people&person=dipesh_chakrabarty')
+        pm = self.page.locator('.person-map')
+        expect(pm.locator('svg.pm-svg')).to_be_visible()
+        # The map sits between the heading and "Where to read them".
+        self.assertTrue(self.page.evaluate("""() => { const m = document.querySelector('.person-map');
+            const h = [...document.querySelectorAll('.person-profile > h3')].find(x => x.textContent === 'Where to read them');
+            return Boolean(m.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_FOLLOWING)
+              && Boolean(document.querySelector('.person-profile > .section-heading').compareDocumentPosition(m) & Node.DOCUMENT_POSITION_FOLLOWING); }"""))
+        self.assertGreaterEqual(pm.locator('a.pm-entry').count(), 4)
+        own = [e for e in GRAPH['edges'] if 'dipesh_chakrabarty' in (e['source'], e['target'])]
+        expect(pm.locator('path.pm-edge')).to_have_count(len(own))
+        expect(pm.locator('a.pm-entry.own')).to_have_count(1)
+        expect(pm.locator('a.pm-entry[data-id="subaltern"]')).to_contain_text('HISTORIAN')
+        self.assertIn('as representative historian', pm.locator('a.pm-entry[data-id="subaltern"]').get_attribute('aria-label'))
+        self.assertIn('Dipesh Chakrabarty', pm.locator('svg.pm-svg').get_attribute('aria-label'))
+        # Hover and keyboard focus both read the entry and the role out.
+        pm.locator('a.pm-entry[data-id="eric_hobsbawm"] .pm-bar').hover()
+        expect(pm.locator('.pm-readout')).to_contain_text('criticises')
+        pm.locator('a.pm-entry[data-id="subaltern"]').focus()
+        expect(pm.locator('.pm-readout')).to_contain_text('Subaltern Studies')
+        self.page.keyboard.press('Enter')
+        self.page.wait_for_function("() => location.hash.includes('node=subaltern')")
+        self.open('#tab=people&person=dipesh_chakrabarty')
+        expect(self.page.locator('.person-profile .button-link.primary')).to_have_text('Full entry & relationships →')
+        self.page.locator('.person-map .pm-open').click()
+        self.page.wait_for_function("() => location.hash.includes('focus=dipesh_chakrabarty')")
+        expect(self.page.locator('.entry.selected')).to_have_count(1)
+        # A roster-only person: their roster entries, no own entry, no edges.
+        roster = [n['id'] for n in GRAPH['nodes'] if any(r['person_id'] == 'ramsay_cook' for r in n.get('representative_people', []))]
+        self.assertGreaterEqual(len(roster), 3)
+        self.open('#person=ramsay_cook')
+        expect(self.page.locator('.person-map a.pm-entry')).to_have_count(len(roster))
+        expect(self.page.locator('.person-map path.pm-edge')).to_have_count(0)
+        expect(self.page.locator('.person-map a.pm-entry.own')).to_have_count(0)
+        expect(self.page.locator('.person-map .pm-open')).to_have_text('Find them in the field →')
+        # The archive draws its own people against the 2000 wall.
+        self.open('#person=dipesh_chakrabarty&range=2000')
+        expect(self.page.locator('.person-map line.pm-wall')).to_have_count(1)
+        expect(self.page.locator('.person-map path.pm-edge')).to_have_count(0)
+        # A phone: stacked rows, nothing wider than the page.
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        for fragment in ['#tab=people&person=dipesh_chakrabarty', '#person=ramsay_cook', '#person=foucault']:
+            self.open(fragment)
+            expect(self.page.locator('.person-map svg.pm-svg')).to_be_visible()
+            self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'), fragment)
+            box = self.page.locator('.pm-scroll')
+            self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'), fragment)
+        self.page.screenshot(path=str(self.artifacts / 'person-map-mobile.png'), full_page=True)
+
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'}
