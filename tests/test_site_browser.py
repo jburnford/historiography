@@ -595,6 +595,128 @@ class AtlasBrowserTests(unittest.TestCase):
             self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'), fragment)
         self.page.screenshot(path=str(self.artifacts / 'person-map-mobile.png'), full_page=True)
 
+    @staticmethod
+    def people_families():
+        """Families by primary membership, as people.mjs familyIndex reads them from the published files."""
+        evidence = json.loads((ROOT / 'docs/data/evidence.json').read_text())['families']['families']
+        graph = json.loads((ROOT / 'docs/data/graph.json').read_text())
+        rosters = {n['id']: [r['person_id'] for r in n['representative_people']] for n in graph['nodes'] if n.get('representative_people')}
+        primary = {m['id']: f['id'] for f in evidence for m in f['members'] if m['primary'] and m['id'] in rosters}
+        of = {}
+        for entry, people in rosters.items():
+            for pid in people: of.setdefault(pid, set()).add(primary[entry])
+        return evidence, rosters, of
+
+    def test_people_families_two_levels(self):
+        """The people tab opens on the families; a family opens its own ring; back and the hash round-trip."""
+        evidence, rosters, of = self.people_families()
+        multi = sorted(pid for pid, fs in of.items() if len(fs) > 1)
+        self.open('#tab=people')
+        chart = self.page.locator('.company-chart svg.company.overview')
+        expect(chart.locator('a.family-anchor')).to_have_count(12)
+        expect(chart.locator('.dot')).to_have_count(len(multi))
+        self.assertEqual(sorted(chart.locator('.dot').evaluate_all('els => els.map(e => e.dataset.id)')), multi)
+        self.assertIn('families', chart.get_attribute('aria-label'))
+        expect(self.page.locator('.company-panel .family-list a')).to_have_count(12)
+        # Hover a person: their families light up and the panel names them.
+        chart.locator('.dot[data-id="ep_thompson"] circle.core').hover()
+        expect(self.page.locator('.company-panel h2')).to_contain_text('E. P. Thompson')
+        expect(chart.locator('a.family-anchor.hi')).to_have_count(len(of['ep_thompson']))
+        # Keyboard focus on a family previews it in the panel.
+        self.page.mouse.move(0, 0)
+        chart.locator('a.family-anchor[data-id="family:environment"]').focus()
+        expect(self.page.locator('.company-panel h2')).to_have_text('Environment')
+        # Click a family: its ring, with the entries it shares in outline.
+        social = next(f for f in evidence if f['id'] == 'social-history')
+        chart.locator('a.family-anchor[data-id="family:social-history"]').click()
+        self.page.wait_for_function("() => location.hash.includes('family=social-history')")
+        expect(self.page.locator('.section-heading h2')).to_have_text('Social history')
+        ring = self.page.locator('.company-chart svg.company')
+        expect(ring.locator('a.anchor')).to_have_count(sum(1 for m in social['members'] if m['id'] in rosters))
+        expect(ring.locator('a.anchor.bridged')).to_have_count(sum(1 for m in social['members'] if not m['primary'] and m['id'] in rosters))
+        named = {pid for m in social['members'] if m['id'] in rosters for pid in rosters[m['id']]}
+        expect(ring.locator('.dot')).to_have_count(len(named))
+        # Hold a person: the panel lists their other families, which open with the hold kept.
+        ring.locator('.dot[data-id="ep_thompson"] circle.core').click()
+        self.page.wait_for_function("() => location.hash.includes('hold=ep_thompson')")
+        expect(ring.locator('.dot.selected')).to_have_count(1)
+        expect(self.page.locator('.company-panel .panel-families')).to_contain_text('Cultural & intellectual history')
+        self.page.locator('.company-panel .panel-families').get_by_role('link', name='Cultural & intellectual history').click()
+        self.page.wait_for_function("() => location.hash.includes('family=cultural-and-intellectual-history') && location.hash.includes('hold=ep_thompson')")
+        expect(self.page.locator('.section-heading h2')).to_have_text('Cultural & intellectual history')
+        expect(self.page.locator('.company-chart .dot.selected[data-id="ep_thompson"]')).to_have_count(1)
+        # Back through history, then the back control.
+        self.page.go_back()
+        self.page.wait_for_function("() => location.hash.includes('family=social-history')")
+        expect(self.page.locator('.section-heading h2')).to_have_text('Social history')
+        self.page.locator('.family-crumbs').get_by_role('link', name='← All families').click()
+        self.page.wait_for_function("() => !location.hash.includes('family=')")
+        expect(self.page.locator('svg.company.overview a.family-anchor')).to_have_count(12)
+        # The profile breadcrumb returns to the family level and its hold.
+        self.open('#tab=people&family=social-history&hold=ep_thompson')
+        self.page.locator('.company-panel').get_by_role('link', name='Profile: where to read them →').click()
+        expect(self.page.locator('.person-profile h2')).to_contain_text('E. P. Thompson')
+        self.page.locator('.breadcrumbs').get_by_role('link', name='Social history').click()
+        self.page.wait_for_function("() => location.hash.includes('family=social-history') && location.hash.includes('hold=ep_thompson') && !location.hash.includes('person=')")
+        expect(self.page.locator('.company-chart .dot.selected[data-id="ep_thompson"]')).to_have_count(1)
+        # Old links: a held entry opens its family; family=all keeps every entry on one ring.
+        self.open('#tab=people&hold=women')
+        expect(self.page.locator('.company-chart a.anchor.selected[data-id="women"]')).to_have_count(1)
+        expect(self.page.locator('.family-crumbs')).to_be_visible()
+        self.open('#tab=people&family=all')
+        expect(self.page.locator('.company-chart a.anchor')).to_have_count(len(rosters))
+        self.open('#tab=people&family=nosuch')
+        expect(self.page.locator('svg.company.overview a.family-anchor')).to_have_count(12)
+        # A search lights up matching people and counts them per family.
+        self.open('#tab=people&query=Foucault')
+        self.assertGreater(self.page.locator('svg.company.overview .dot:not(.mute)').count(), 0)
+        expect(self.page.locator('svg.company.overview a.family-anchor tspan.n').first).to_contain_text('match')
+        self.page.screenshot(path=str(self.artifacts / 'people-families.png'), full_page=True)
+
+    def test_people_without_evidence_and_on_phones(self):
+        """Without the evidence asset the people tab is the single ring; phones get the family list."""
+        self.page.route('**/data/evidence.json', lambda route: route.abort())
+        self.open('#tab=people')
+        _, rosters, _ = self.people_families()
+        expect(self.page.locator('.company-chart a.anchor')).to_have_count(len(rosters))
+        expect(self.page.locator('.family-anchor')).to_have_count(0)
+        self.open('#tab=people&family=social-history')
+        expect(self.page.locator('.company-chart a.anchor')).to_have_count(len(rosters))
+        self.page.unroute('**/data/evidence.json')
+        self.page.set_viewport_size({'width': 420, 'height': 900})
+        self.page.goto(URL + '#tab=people')
+        self.page.reload()   # a hash change alone would keep the failed load
+        self.page.wait_for_function("() => document.getElementById('workspace').dataset.route === location.hash")
+        self.assertTrue(self.page.locator('.company-chart').is_hidden())
+        expect(self.page.locator('.company-panel .family-list a')).to_have_count(12)
+        self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
+        self.page.locator('.company-panel .family-list').get_by_role('link', name='Environment').click()
+        self.page.wait_for_function("() => location.hash.includes('family=environment')")
+        expect(self.page.locator('.company-panel .panel-entries a')).to_have_count(2)
+        expect(self.page.locator('.register-section')).to_be_visible()
+
+    def test_archive_pathway_lists_only_archive_entries(self):
+        """The 2000 archive predates some pathway entries: they are left out, not looked up."""
+        archive = {n['id'] for n in json.loads((ROOT / 'docs/data/graph-2000.json').read_text())['nodes']}
+        pathways = json.loads((ROOT / 'docs/data/pathways.json').read_text())['pathways']
+        caribbean = next(p for p in pathways if p['id'] == 'caribbean_african_anticolonial')
+        present = [i for i in caribbean['node_ids'] if i in archive]
+        self.assertLess(len(present), len(caribbean['node_ids']))
+        self.open('#range=2000&pathway=caribbean_african_anticolonial')
+        expect(self.page.locator('.reading-sequence>li')).to_have_count(len(present))
+        self.assertEqual(self.page.locator('.reading-sequence h3 a').evaluate_all("els => els.map(a => new URLSearchParams(a.getAttribute('href').slice(1)).get('node'))"), present)
+        expect(self.page.locator('.section-heading .eyebrow')).to_contain_text(f'{len(present)} ENTRIES')
+        self.open('#range=2000&tab=pathways')
+        expect(self.page.locator('.pathway-card')).to_have_count(sum(1 for p in pathways if any(i in archive for i in p['node_ids'])))
+        expect(self.page.locator('.section-heading')).to_contain_text(f"{sum(1 for p in pathways if any(i in archive for i in p['node_ids']))} routes")
+        self.open('#range=2000&path=caribbean_african_anticolonial')
+        expect(self.page.locator('.path-panel ol').first.locator('> li')).to_have_count(len(present))
+        # The live view keeps the full list after visiting the archive.
+        self.page.goto(URL + '#pathway=caribbean_african_anticolonial')
+        self.page.wait_for_function("() => document.getElementById('workspace').dataset.route === location.hash")
+        expect(self.page.locator('.reading-sequence>li')).to_have_count(len(caribbean['node_ids']))
+        expect(self.page.locator('[data-tab="pathways"] span')).to_have_text(str(len(pathways)))
+
     def test_public_contents_allowlist(self):
         actual = {str(p.relative_to(ROOT / 'docs')) for p in (ROOT / 'docs').rglob('*') if p.is_file()}
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll', 'data/graph.json', 'data/pathways.json'}
