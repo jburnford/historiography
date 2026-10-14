@@ -142,8 +142,22 @@ class Batch:
             raise ValueError('1.132 baseline unavailable')
         return graph
 
+    def accepted(self):
+        # the live graph moves on after 1.133; later revisions check against the accepted 1.133 graph
+        record = read(OUT / 'acceptance.json')
+        if sha(GRAPH) == record['production_sha256']:
+            return read(GRAPH)
+        if str(ROOT / 'scripts') not in sys.path:
+            sys.path.append(str(ROOT / 'scripts'))
+        from scripts.build_site import load_baseline
+        graph, _ = load_baseline(dict(baseline_graph=f'drafts/historiography-1920-2000.v{REV}.json',
+                                      baseline_sha256=record['production_sha256']))
+        if graph is None:
+            raise ValueError(f'Accepted {REV} graph unavailable')
+        return graph
+
     def check(self):
-        if transform(self.baseline()) != read(GRAPH):
+        if transform(self.baseline()) != self.accepted():
             raise ValueError(f'Exact {REV} reconstruction differs')
         if pathways_transform(read(PATHWAYS)) != read(PATHWAYS):
             raise ValueError(f'{REV} pathway question not applied')

@@ -19,7 +19,7 @@ class OpenFrame(unittest.TestCase):
         self.assertEqual(self.after['scope']['frame']['start'], 1920)
         self.assertIsNone(self.after['scope']['frame']['end'])
         self.assertNotIn('extension', self.after['scope'])
-        self.assertEqual(self.after['revision_history'][-1]['version'], '1.133')
+        self.assertIn('1.133', [r['version'] for r in self.after['revision_history']])
 
     def test_archive_pointer_is_the_exact_1121_view(self):
         a = self.after['scope']['archive']

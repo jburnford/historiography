@@ -55,11 +55,13 @@ class Batch:
             d = read(self.pkt / name / 'entry-draft.json')
             if d.get('node'):
                 nodes.append(d['node'])
-                pu = d['people_update']
-                people_updates.append(dict(id=pu['id'], node_id=pu['node_id']))
-                if pu.get('new'):
-                    new_people.append({k: pu[k] for k in ('id', 'label', 'identity_note') if pu.get(k)})
-                wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
+                pu = d.get('people_update')   # absent for group entries such as a debate
+                if pu:
+                    people_updates.append(dict(id=pu['id'], node_id=pu['node_id']))
+                    if pu.get('new'):
+                        new_people.append({k: pu[k] for k in ('id', 'label', 'identity_note') if pu.get(k)})
+                if d.get('wikidata_check'):
+                    wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
             for p in d.get('new_people', []):
                 new_people.append(p)
             for ra in d.get('roster_additions', []):
@@ -70,8 +72,11 @@ class Batch:
                 e = {k: r[k] for k in EDGE_KEYS if r.get(k) is not None}
                 e['proposal_id'] = r['proposal_id']
                 edges.append(e)
-                for row in ([r['roster_row']] if isinstance(r.get('roster_row'), str) else r.get('roster_row') or []):
-                    roster_edges.append(dict(node=row, person_id=d['node']['id'], proposal_id=r['proposal_id']))
+                rows = r.get('roster_row') or []
+                for row in (rows if isinstance(rows, list) else [rows]):
+                    # a dict names the person explicitly (extras edges have no draft node)
+                    node, pid = (row['node'], row['person_id']) if isinstance(row, dict) else (row, d['node']['id'])
+                    roster_edges.append(dict(node=node, person_id=pid, proposal_id=r['proposal_id']))
             sources += [s for s in d.get('new_sources', []) if s['id'] not in {x['id'] for x in sources}]
             for sid, note in {**(d.get('source_addenda') or {}), **(d.get('proposed_source_addenda') or {})}.items():
                 add = note if isinstance(note, dict) else dict(status='supporting_page_checked', checked_on=self.day, note=note)
