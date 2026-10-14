@@ -1,9 +1,9 @@
 # Historiography atlas prototype
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.138**, schema 1.5,
+The curated JSON remains authoritative. Current revision **1.139**, schema 1.5,
 contains **179 entries, 992 relationships, 1,707 sources, 1,216 shared people and
-13 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
+14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The atlas has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
@@ -114,7 +114,7 @@ Every person profile (`#person=<id>`) opens with **Where they sit**, a compact t
 4. **Approaches:** 731 explicit subdivisions across 73 groups reveal people, works, and methodological distinctions through collapsible panels. They are searchable and do not create edges or exclusive memberships.
 5. **Relationships:** the Connections tab centres the selected entry between incoming directed links on the left and outgoing links on the right. All matching relationships are shown together, without lane or list pagination. Incoming influences appear before contributions and critiques, alphabetically within roles; outgoing links are alphabetical. Comparisons and unclassified links all appear below the flow. The entire selected roster appears above the diagram, with links to profiles and works. All links remain reachable; following a connection retains this view.
 
-These are navigation levels, not inferred communities or an intellectual genealogy. Entry categories and scope notes distinguish fields, schools, methods, genres, and debates. No force simulation or automatically inferred chronological axis is used. The local map grows vertically with its full neighborhood; nesting limits the scope to one entry while retaining all its recorded connections. A count separates incoming, outgoing, and associated relationships. The thirteen overlapping seminar pathways provide another entry point, with the existing questions, exercises, and reading sequences.
+These are navigation levels, not inferred communities or an intellectual genealogy. Entry categories and scope notes distinguish fields, schools, methods, genres, and debates. No force simulation or automatically inferred chronological axis is used. The local map grows vertically with its full neighborhood; nesting limits the scope to one entry while retaining all its recorded connections. A count separates incoming, outgoing, and associated relationships. The fourteen overlapping seminar pathways provide another entry point, with the existing questions, exercises, and reading sequences.
 
 Every relationship can be inspected for its label, direction, evidence note, and distinct bibliography. Only explicit, directed classifications receive arrows. Comparisons use dashed lines without arrows; unclassified legacy connections use dotted lines without arrows. Critique arrows run from critic to the criticized position. Reference verification retains its scope notes and dates; missing URLs remain text citations.
 

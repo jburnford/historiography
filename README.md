@@ -9,9 +9,9 @@ field: entries on a single time axis, banded by kind. Hold an entry and everythi
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.138** (schema 1.5): 179 entries,
+Production data revision **1.139** (schema 1.5): 179 entries,
 992 teaching relationships, 1,707 bibliography records, 1,216
-people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
+people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
 
@@ -89,7 +89,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.
-- `seminar-pathways.json`: thirteen seminar pathways through the draft.
+- `seminar-pathways.json`: fourteen seminar pathways through the draft.
 - `feedback/fable-5.1-review.json`: decision log and ID mapping for all 116 proposed new relationships; three are deferred.
 - `EDITORIAL-REVIEW.md`: whole-map coverage review, source limitations, and a matrix of all 66 group rosters.
 - `feedback/editorial-review-2026-09-10.json`: every entry and edge, with scoped source-status notes.

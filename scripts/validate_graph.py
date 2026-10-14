@@ -12,6 +12,13 @@ except ImportError:
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def pathways_within(graph, pathways):
+    """The pathways restricted to entries this graph has: for checking an earlier revision against
+    today's pathways file, which may name entries added later."""
+    ids = {n["id"] for n in graph["nodes"]}
+    return {**pathways, "pathways": [{**p, "node_ids": [i for i in p["node_ids"] if i in ids]} for p in pathways["pathways"]]}
+
+
 def validate(graph, pathways):
     errors, warnings = [], []
     if 'claim_catalogue' in graph:

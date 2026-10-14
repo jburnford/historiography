@@ -6,7 +6,7 @@ import unittest
 from unittest.mock import patch
 
 from scripts import apply_indigenous_deep_dive as m
-from scripts.validate_graph import validate
+from scripts.validate_graph import validate, pathways_within
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -23,7 +23,7 @@ class IndigenousDeepDiveTests(unittest.TestCase):
         self.assertEqual(m.sha(m.PACKET), record['packet_sha256'])
         self.assertEqual(__import__('hashlib').sha256(m.serial(self.after).encode()).hexdigest(), record['production_sha256'])
         self.assertEqual(m.transform(self.before), self.after)
-        errors, _ = validate(self.after, m.read(ROOT / 'seminar-pathways.json'))
+        errors, _ = validate(self.after, pathways_within(self.after, m.read(ROOT / 'seminar-pathways.json')))
         self.assertEqual(errors, [])
 
     def test_baseline_recovers_without_the_local_drafts_folder(self):

@@ -142,7 +142,7 @@ class AtlasBrowserTests(unittest.TestCase):
 
     def test_pathways_and_direct_links(self):
         self.open('#tab=pathways')
-        expect(self.page.locator('.pathway-card')).to_have_count(13)
+        expect(self.page.locator('.pathway-card')).to_have_count(len(json.loads((ROOT / 'seminar-pathways.json').read_text())['pathways']))
         for pathway in PATHWAYS['pathways']:
             self.open(f"#pathway={pathway['id']}")
             expect(self.page.locator('.reading-sequence>li')).to_have_count(len(pathway['node_ids']))
