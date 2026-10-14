@@ -3,9 +3,13 @@
 Prepared 2026-10-14. **This is a proposal for review only.** No atlas file was edited and
 nothing was committed. The draft is in [entry-draft.json](entry-draft.json) and the batch
 configuration in [../batch.json](../batch.json). Applied in memory to the 1.131 graph (node,
-`node_id`, six new sources, four addenda, five edges as `edge_914`–`edge_918`, three roster
+`node_id`, eight new sources, four addenda, five edges as `edge_914`–`edge_918`, three roster
 `edge_id`s and the `edge_742` relabel), it passes `validate_graph` with **0 errors and the same
 7 existing warnings** (167 nodes, 918 edges; no dangling source ids).
+
+**Revised 2026-10-14 after the adversarial review** ([../release/sol-review-1.132.md](../release/sol-review-1.132.md),
+accept with fixes). All seven findings are applied to the draft and `batch.json`; the packet was
+rebuilt. Each change is listed in [../release/fixes-1.132.md](../release/fixes-1.132.md).
 
 ## What is proposed
 
@@ -21,16 +25,18 @@ configuration in [../batch.json](../batch.json). Applied in memory to the 1.131 
 - **Edge 3 → labourhistory (contribution).** Bengal labour and Marx's categories, 1989–97.
   Strand `labourhistory/colonial_categories`; roster row `labourhistory`.
 - **Edge 4 → eric_hobsbawm (critique).** Against the "prepolitical", 2000. No strand; no
-  roster row. An alternative is to retarget it to `marx`.
-- **Edge 5 → environment (contribution, `post_2000: true`).** The climate of history, 2009.
-  No strand; no roster row.
+  roster row. It records the critique of the category as Chakrabarty quotes it; Hobsbawm's own
+  text is unread (see below). The review advised keeping this target rather than `marx`.
+- **Edge 5 → environment (contribution).** The climate of history, 2009. No strand; no roster
+  row. The date is stated in its relationship, map label and evidence note; it carries no flag.
 - **Optional edge revision.** Relabel `edge_742` so it no longer carries his name and Nair's.
   This follows the `edge_886`, `edge_063` and `edge_720` precedents. It is mirrored in
   `batch.json`.
 - **Sources.**
-  - Six new: `pe132_chakrabarty_artifice_1992`, `pe132_chakrabarty_universalism_2000`,
-    `pe132_dirlik_1994`, `pe132_chandavarkar_1997`, `pe132_chakrabarty_climate_2009` and
-    `pe132_whose_anthropocene_2016`.
+  - Eight new: `pe132_chakrabarty_artifice_1992`, `pe132_chakrabarty_universalism_2000`,
+    `pe132_dirlik_1994`, `pe132_chandavarkar_1997`, `pe132_chakrabarty_climate_2009`,
+    `pe132_whose_anthropocene_2016`, and (after review) `pe132_hobsbawm_primitive_rebels`
+    (metadata only, scoped to edge 4) and `pe132_ohanlon_washbrook_1992` (first page and notes).
   - Four addenda: `post`, `subaltern`, `chakrabarty_labour` and `sarkar_decline`.
   - Two reused without re-reading: `nair_chakrabarty_review` and `guha_elementary`.
 
@@ -41,11 +47,11 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
 
 - **Date label.** It does not end "· coverage through 2000". It lists his dated works through
   2009. The final convention will be set by the rebuild.
-- **Edge 5.** It carries `"post_2000": true`, and its map label gives the year (2009). Its
-  evidence note says that no claim in it concerns work before 2000.
-  - **Applier.** `scripts/apply_person_entries.py` (`EDGE_KEYS`) does **not** copy `post_2000`
-    into the packet. The flag survives only in this draft until the rebuild adds the key or
-    another marker.
+- **Edge 5.** Its relationship and map label give the year (2009), and its evidence note opens
+  by dating it after the 1920–2000 frame and says that no claim in it concerns work before 2000.
+  - **No flag.** The first draft carried `"post_2000": true`, but the applier's `EDGE_KEYS`
+    drop it, so the packet never carried it (review finding 7). The key was removed; dating
+    conventions are left to the open-frame revision 1.133.
 - **Kept apart.** The 2009 essay and its 2014–16 reception are cited only on edge 5. The node
   text dates them, and the scope note says they support no claim about his work before 2000.
 
@@ -59,9 +65,11 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
 | `subaltern` (addendum) | AHA *Perspectives*, November 1997, read in full in the Internet Archive capture of 16 July 2024. The live page returned 403 | "Subaltern" pasts; "pasts that resist historicization"; the Santal; "the historian as historian ... cannot invoke the supernatural"; Guha as "the founder of the group" |
 | `chakrabarty_labour` (addendum) | Publisher preview: preface pp. xi–xv, acknowledgments, introduction pp. 3–6 | Marx's categories and "labor history in general" (p. xi); culture as "the 'unthought' of Indian Marxism" (p. xii); citizen and comrade (p. xiv); not Thompson's argument (p. 5, n. 9); Hobsbawm thanked (p. xvii) |
 | `pe132_chandavarkar_1997` (new) | History Workshop Journal 43 (1997), pp. 177–196, read in a PDF of the journal pages; DOI via OpenAlex | A labour historian's in-period critique: "static, timeless, indeed Orientalist" (p. 182); "England's proverbial Other" (p. 183); the migration claim not investigated (pp. 184–185) |
-| `sarkar_decline` (addendum) | Scan OCR'd; pp. 84–85, 87 and 97 checked against the page images | "Debilitating in both academic and political terms" (p. 85); "stimulating, if controversial" labour essays (p. 87); "for whom" (p. 97) |
+| `sarkar_decline` (addendum) | Scan OCR'd; pp. 84–85, 87 and 97 and notes 5, 10 and 39 checked against the page images | "Debilitating in both academic and political terms" (p. 85; n. 5: "Marx after Marxism", Polygraph 6/7, 1993); "stimulating, if controversial" labour essays (p. 87; n. 10: the Subaltern Studies II and III jute-worker essays, 1983–84); "for whom" (p. 97; n. 39: "The Difference-Deferral of a Colonial Modernity", Subaltern Studies VIII, 1994, pp. 83–85) |
 | `pe132_dirlik_1994` (new) | Critical Inquiry 20:2 (1994): pp. 328, 333–339 and 346–347 read; the rest skimmed | Cites Chakrabarty only in nn. 7 and 12. "Culturalism" and Eurocentrism as "just another ethnocentrism" (p. 346). **His main target is Prakash, and the draft says so** |
 | `pe132_chakrabarty_climate_2009` (new) | Critical Inquiry 35:2 (2009), pp. 197–222, read in full | Edge 5 only |
+| `pe132_ohanlon_washbrook_1992` (new, after review) | Cambridge Core page: metadata, first-page extract and the 70 notes; body closed | The article opens on Prakash (p. 141); n. 13 on "Prakash's notion of what constitutes Marxist history"; no note cites Chakrabarty. Context on edge 1 only |
+| `pe132_hobsbawm_primitive_rebels` (new, after review) | Metadata only (Open Library OL495654W; Internet Archive catalogue). Text not read | Scopes edge 4. Hobsbawm's words appear only as Chakrabarty quotes them (2000, p. 12) |
 | `pe132_whose_anthropocene_2016` (new) | RCC Perspectives 2016/2: pp. 5–8, 15–20 and 103–108 read | Edge 5 only: later reception, his concession (p. 104), and the Malm–Hornborg/McAfee critique as he reports it (p. 108) |
 
 **Not read.**
@@ -74,16 +82,24 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
   copy was found.
 - "The Death of History?" (Public Culture 4:2, 1992; doi:10.1215/08992363-4-2-47). It is
   closed access.
-- O'Hanlon and Washbrook, "After Orientalism" (CSSH 34:1, 1992, 141–167;
-  doi:10.1017/S0010417500017461). It is closed access; Prakash's reply follows at 168–184. **Not
-  used.** Whether they discuss Chakrabarty, and not only Prakash, is unchecked.
+- The body of O'Hanlon and Washbrook, "After Orientalism" (CSSH 34:1, 1992, 141–167;
+  doi:10.1017/S0010417500017461). It is closed access; Prakash's reply follows at 168–184. After
+  the review, the first-page extract and the notes were read on Cambridge Core: the article opens
+  on Prakash and no note cites Chakrabarty. The review's summary of the argument (from a a website
+  OCR copy that returned only a landing page here) is attributed to the review on edge 1.
+- Hobsbawm, *Primitive Rebels* (1959). The Internet Archive copies are borrow-only and their
+  search-inside service returned 403; the website OCR copy and the doczz.net transcription of
+  *Provincializing Europe*'s notes (which the review used for n. 36) were blocked. The
+  identification of n. 36 (pp. 2–3, 1978 Manchester edition) is the reviewer's.
 - Prakash, "Subaltern Studies as Postcolonial Criticism" (AHR 1994). It is metadata-only in the
   graph.
 - Pouchepadass, "Les Subaltern Studies ou la critique postcoloniale de la modernité" (L'Homme
   156, 2000). OpenEdition's bot wall blocked access.
 - Malm and Hornborg (2014). It is closed access and known only through Chakrabarty's 2016
   response.
-- Sarkar's quotations come from Chakrabarty's "Marx after Marxism" (1993), which is unread.
+- The two Chakrabarty texts Sarkar quotes: "Marx after Marxism" (Polygraph 6/7, 1993) for the
+  trajectory passage and "The Difference-Deferral of a Colonial Modernity" (Subaltern Studies
+  VIII, 1994, pp. 83–85) for the domesticity passage. Both are mediated through Sarkar.
 
 **Founder claims.** The draft makes none.
 - He calls Guha "the founder of the group" (1997).
@@ -97,6 +113,8 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
 - Sarkar (1997) calls the trajectory "debilitating" and asks "for whom".
 - Chandavarkar (1997) finds an "Orientalist" culture and an uninvestigated migration claim.
 - Dirlik (1994) charges postcolonial criticism with "culturalism", mainly against Prakash.
+- O'Hanlon and Washbrook (1992) criticise the post-Orientalist programme, principally Prakash's,
+  without naming him (context on edge 1).
 - For edge 5, after 2009: Malm and Hornborg, McAfee and Barnes. Chakrabarty also concedes the
   biological and geological agency point.
 
@@ -105,7 +123,8 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
 - **Edge 1 → post.**
   - **Evidence.** The 1992 essay is the first statement; the 2000 introduction gives the
     mature form.
-  - **Reception.** Dirlik is the in-period reading, and it is critical.
+  - **Reception.** Dirlik is the in-period reading, and it is critical. O'Hanlon and Washbrook (1992) are added as
+    context: their critique targets Prakash and the wider programme, not him by name.
   - **Strand.** `provincializing` holds him alone.
   - **Overlaps.** `edge_096` (→ modern) and `edge_124` (→ global) stay. Both are critiques by
     the group entry that already name him.
@@ -126,12 +145,17 @@ break in this project". The draft therefore departs from the 1.131 brief in two 
     generalises to "a variety of historicism that Western Marxism has cultivated" (p. 12).
   - **Precedent.** Person-to-person critiques exist, for example `edge_310`
     (ep_thompson → althusser).
-  - **Not checked.** The book's notes 35–36 are not in the excerpt, so the Hobsbawm work
-    quoted is unchecked. *Primitive Rebels* is likely but unconfirmed, and the draft does not
-    name it.
-  - **Counterpoint.** Chandavarkar's view that Subaltern historians misread Thompson.
-  - **Alternative.** Retarget to `marx`.
-- **Edge 5 → environment (post_2000).**
+  - **Source chain (after review).** The review reports that n. 36 (p. 261) cites *Primitive
+    Rebels* (Manchester, 1978; first published 1959), pp. 2–3, and that n. 35 concerns
+    rational-choice theory. Neither could be read here, so the edge cites a metadata-only
+    scoped source, gives Hobsbawm's words only as Chakrabarty quotes them (a quoted-in witness),
+    and reports, attributed to the review, Hobsbawm's "aspirations" wording and his view that
+    these movements were consequential.
+  - **Chandavarkar removed.** His 1997 sentence on Thompson's Subaltern disciples was not a
+    reply to this argument (review finding 3); it stays on the labour edge.
+  - **Target kept.** The review advised against retargeting to `marx`: Chakrabarty keeps Marx
+    as a central resource (p. 18).
+- **Edge 5 → environment (dated 2009).**
   - **What the essay argues.** It argues against environmental history's framing of humans as
     "biological agents" (Crosby quoted, p. 205) and for geological agency. The edge is
     classed as a contribution that disputes the field's prior framing.
@@ -173,11 +197,11 @@ importance.
 
 ## Open questions for the editor
 
-1. **The `post_2000` marker.** Should it become an applier key and a site convention? What
-   date-label form should entries spanning 2000 use?
-2. **Edge 4's target.** Should it be `eric_hobsbawm` (named in the passage) or `marx` (the
-   generalisation)? Before acceptance, should the Hobsbawm work in nn. 35–36 be checked in a
-   full copy?
+1. **Dating past 2000.** Left to the open-frame revision 1.133: whether edges and date labels
+   after 2000 need a marker, and what date-label form entries spanning 2000 use.
+2. **Edge 4's source.** Target kept as `eric_hobsbawm` (review). Before the quoted wording is
+   relied on, check *Primitive Rebels* pp. 2–3 and *Provincializing Europe* p. 261, n. 36 in a
+   printed or page-image copy.
 3. **New strand on `environment`.** Should the environment entry get a climate or
    Anthropocene strand at the rebuild? Edge 5 now has no target strand.
 4. **`edge_742`.** Relabel it, or leave it with his and Nair's names?
