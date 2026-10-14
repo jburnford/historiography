@@ -1,7 +1,8 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.136):** 175 entries, 967
-relationships, 1,664 sources, 1,212 shared people. Revision 1.136 adds person entries for Berger, Cook, Careless, Creighton, Parr and Valverde
+**Current implementation (2026-10-14, revision 1.137):** 178 entries, 987
+relationships, 1,694 sources, 1,212 shared people. Revision 1.137 adds person entries for Said, Guha and Spivak
+([acceptance](data/production-batches/person-entries-1.137/README.md)). Revision 1.136 adds person entries for Berger, Cook, Careless, Creighton, Parr and Valverde
 ([acceptance](data/production-batches/person-entries-1.136/README.md)). Revision 1.135 adds a Debate entry, *The Science
 Wars, 1994–2000*, and critique edges for Kuhn, SSK and Latour
 ([acceptance](data/production-batches/science-studies-1.135/README.md)). Revision 1.134 adds a person entry for Bryan D.
