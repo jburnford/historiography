@@ -1,7 +1,10 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.132):** 167 entries, 918
-relationships, 1,559 sources, 1,192 shared people. Revision 1.132 adds a person entry for
+**Current implementation (2026-10-14, revision 1.133):** 167 entries, 918
+relationships, 1,559 sources, 1,192 shared people. Revision 1.133 ends the 1920–2000 cutoff: each
+entry records `coverage.reviewed_through`, spans are open, and the exact-2000 view (1.121) is an
+archive ([acceptance](data/production-batches/open-frame-1.133/README.md); plan
+`plans/2026-10-14-open-frame.md`). Revision 1.132 adds a person entry for
 Dipesh Chakrabarty ([acceptance](data/production-batches/person-entries-1.132/README.md)).
 Revision 1.131 gives the Environment family
 person entries for Cronon, Worster, Crosby, Merchant and Richard White and precursor entries
@@ -79,7 +82,7 @@ Limitations recorded at that initial audit (some have since been addressed; see 
 
 ## Editorial sequence
 
-1. Agree on audience, geographic scope, and the first expansion theme. Keep 1920–2000 as the main period unless deliberately revised; distinguish earlier roots and later retrospective scholarship.
+1. Agree on audience, geographic scope, and the first expansion theme. Keep 1920–2000 as the main period unless deliberately revised (superseded 2026-10-14: revision 1.133 ends the cutoff); distinguish earlier roots and later retrospective scholarship.
 2. Select a small, coherent batch of entries and relationships. Research their claims using identifiable scholarly works and institutional sources. Record what each source supports.
 3. Add structured node types, representative works, and relationship citations as needed. Preserve existing IDs; document splits or replacements so saved links can survive revision.
 4. Review descriptions for distinctions between influence, shared concerns, institutional connection, methodological borrowing, and explicit critique. Retain readable relationship explanations.

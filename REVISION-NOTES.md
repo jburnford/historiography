@@ -1672,3 +1672,21 @@ Sarkar, Chandavarkar, Dirlik, and O'Hanlon and Washbrook. Sol said "accept with 
 seven findings are fixed (`release/fixes-1.132.md`). Hobsbawm's own pages remain unread.
 Totals: 167 entries, 918 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.132/README.md).
+
+## Revision 1.133: the open frame (14 October 2026)
+
+The user ended the atlas's 1920–2000 cutoff: "we need to end the 2000 break in this project … we're
+building it out now". The decisions:
+- switch now and build out field by field;
+- keep the exact-2000 view (revision 1.121) as an archive, linked from *Reading this map*;
+- title "The Historiography Atlas".
+
+What changed:
+- **Labels and coverage.** "Coverage through 2000" is gone from 102 date labels. Every group now
+  carries `coverage.reviewed_through: 2000`, pending field-by-field review.
+- **Spans.** Spans and 27 journal intervals are open.
+- **The field view.** Each mark is solid to its reviewed year and faded to the research cutoff,
+  instead of stopping at a wall.
+
+Applied by `scripts/apply_open_frame.py` (`--check` rebuilds it exactly). The plan is
+`plans/2026-10-14-open-frame.md`. Totals are unchanged: 167 entries, 918 relationships.

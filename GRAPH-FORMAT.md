@@ -1,6 +1,44 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.132 (2026-10-14)
+## Current revision 1.133: the open frame (2026-10-14)
+
+**Schema 1.5. 167 entries, 918 relationships.** The user ended the 1920–2000 cutoff on 2026-10-14:
+"we need to end the 2000 break in this project"; the frame "comes from the original experiment
+where I scoped it to 2000, but we're building it out now". The decisions:
+- switch now and build out field by field, each with a visible "reviewed through" marker;
+- keep the exact-2000 view as an archive;
+- drop the dates from the title.
+
+**New and changed fields:**
+- `title` is "The Historiography Atlas". `scope.main_period` is `[1920, null]`.
+- `scope.frame = {start: 1920, end: null, research_cutoff, note}`.
+- `scope.archive = {label, baseline_period: [1920, 2000], baseline_graph, baseline_revision: "1.121",
+  baseline_sha256, acceptance_records}`. The builder adds `baseline_asset: "data/graph-2000.json"`.
+  `scope.extension` is removed; its history stays in `revision_history` and the acceptance records.
+- Every group node has `coverage = {reviewed_through: 2000, basis}`. Raise `reviewed_through`
+  only after a survey of the field's later work, recorded in a revision batch. Person nodes have
+  no `coverage`; their marks end at their last dated work.
+- Date labels no longer contain "coverage through 2000"; 102 were cleaned.
+- Curated `date_span` entries that ended at the coverage limit are now `end: null, end_kind: "open"`.
+- 27 journal `principal_venue` intervals that ended at the atlas boundary are now open
+  (`temporal_scope.end: null`). The journal validator accepts a null end.
+- `extension_coverage` and strand `intervention_year` remain, as selected later interventions
+  dated individually.
+
+**What is unchanged:**
+- The data file keeps its name, `historiography-1920-2000.json`, because archived revisions are
+  recovered from git history under that name (`build_site.load_baseline`).
+- Historical appliers and acceptance scripts are unchanged and still reconstruct their revisions.
+
+**Policies superseded by 1.133** (they apply to revisions 1.104–1.132 only):
+- "coverage through 2000" date labels (1.104/1.105);
+- the deferral of post-2000-only relationships (1.128/1.129);
+- `scope.main_period` remaining `[1920, 2000]` (1.122);
+- the exact-2000 view as a main-view toggle (1.122/1.123).
+
+See the [acceptance record](data/production-batches/open-frame-1.133/README.md).
+
+## Historical revision 1.132 (2026-10-14)
 
 **167 entries (95 groups, 72 person entries), 918 teaching relationships, 1,559 sources and
 1,192 shared people.**
