@@ -1754,3 +1754,19 @@ Sol said "accept with fixes"; all ten findings are fixed (`release/fixes-1.136.m
 counts are removed from the displayed text, and qualifications are restored. Totals: 175 entries,
 967 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.136/README.md).
+
+## Revision 1.137: Said, Guha and Spivak (14 October 2026)
+
+The user asked that Chakrabarty connect to Subaltern Studies "and a few other key people", and
+said "Said is essential". Edward Said, Ranajit Guha and Gayatri Chakravorty Spivak become person
+entries, with 20 edges:
+- Said: Orientalism and contrapuntal reading; critiques of Foucault, of Marx on India
+  (contested) and of the named world-historical syntheses;
+- Guha: the Subaltern Studies programme; critiques of elitist nationalist historiography, of
+  Hobsbawm's "pre-political" and of Thompson's "rule of law";
+- Spivak: "Can the Subaltern Speak?", and a critique of Subaltern Studies from within.
+
+Chakrabarty gains his first incoming edges, from Guha and Spivak. Six group edges are relabelled
+to the distinct interventions they record. Sol said "accept with fixes"; all 13 findings are
+fixed (`release/fixes-1.137.md`). Totals: 178 entries, 987 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.137/README.md).

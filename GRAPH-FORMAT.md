@@ -1,6 +1,18 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.136 (2026-10-14)
+## Current revision 1.137 (2026-10-14)
+
+**178 entries (96 groups, 82 person entries), 987 teaching relationships, 1,694 sources and
+1,212 shared people.**
+
+Edward Said, Ranajit Guha and Gayatri Chakravorty Spivak become person entries, with 20 edges.
+Chakrabarty gains incoming edges from Guha and Spivak.
+
+Six group edges are relabelled to distinct interventions. edge_114 changes kind: an edge
+revision may set `type`, `relationship_kind` and `directed` when the relabelled claim changes
+kind. See the [acceptance record](data/production-batches/person-entries-1.137/README.md).
+
+## Historical revision 1.136 (2026-10-14)
 
 **175 entries (96 groups, 79 person entries), 967 teaching relationships, 1,664 sources and
 1,212 shared people.**
