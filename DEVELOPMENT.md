@@ -1,7 +1,8 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.137):** 178 entries, 987
-relationships, 1,694 sources, 1,212 shared people. Revision 1.137 adds person entries for Said, Guha and Spivak
+**Current implementation (2026-10-14, revision 1.138):** 179 entries, 992
+relationships, 1,707 sources, 1,216 shared people. Revision 1.138 adds a person entry for Fernand Ouellet and his critics
+([acceptance](data/production-batches/person-entries-1.138/README.md)). Revision 1.137 adds person entries for Said, Guha and Spivak
 ([acceptance](data/production-batches/person-entries-1.137/README.md)). Revision 1.136 adds person entries for Berger, Cook, Careless, Creighton, Parr and Valverde
 ([acceptance](data/production-batches/person-entries-1.136/README.md)). Revision 1.135 adds a Debate entry, *The Science
 Wars, 1994–2000*, and critique edges for Kuhn, SSK and Latour

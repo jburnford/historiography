@@ -1,8 +1,8 @@
 # Historiography atlas prototype
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.137**, schema 1.5,
-contains **178 entries, 987 relationships, 1,694 sources, 1,212 shared people and
+The curated JSON remains authoritative. Current revision **1.138**, schema 1.5,
+contains **179 entries, 992 relationships, 1,707 sources, 1,216 shared people and
 13 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The atlas has no closing date (1.133); the original 1920–2000 experiment
