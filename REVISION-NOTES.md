@@ -1713,3 +1713,23 @@ Sol said "accept with fixes"; all seven findings are fixed (`release/fixes-1.134
 
 Totals: 168 entries, 924 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.134/README.md).
+
+## Revision 1.135: the Science Wars and science studies' critics (14 October 2026)
+
+The user: "start on the science studies project". Science studies had no critique edges. A new
+Debate entry, *The Science Wars, 1994–2000*, carries the scientists' and philosophers' attacks:
+Gross and Levitt, Sokal, Sokal and Bricmont, Weinberg, Mermin and Koertge. They are aimed at
+SSK, Latour, constructionist science studies and the "immoderate" Kuhn. The entry also carries
+the replies of sociologists, Latour and historians of science.
+
+Five further critiques:
+- the 1965–70 critics of Kuhn;
+- Latour and Bloor against each other (1992–99);
+- Kuhn against the strong programme (1991);
+- Trentmann against actor-network theory (2009).
+
+Haraway is not drawn as a critic of Latour (the user: "broadly aligned"). Sol said "accept with
+fixes"; all ten findings are applied. Among them: the linguistic-turn edge is deferred, the STS
+charge is narrowed to selected positions, and the unread *SHPS* "Apology" is registered. Totals:
+169 entries, 939 relationships. See the
+[acceptance record](data/production-batches/science-studies-1.135/README.md).

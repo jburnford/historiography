@@ -1,6 +1,27 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.134 (2026-10-14)
+## Current revision 1.135 (2026-10-14)
+
+**169 entries (96 groups, 73 person entries), 939 teaching relationships, 1,609 sources and
+1,212 shared people.**
+
+A new group entry, `sciencewars`: a Debate in `historiographical_developments`, `period_3`, with
+`coverage.reviewed_through: 2000`. Its roster follows the `who_killed_debate` pattern:
+- the attackers are `contributor`;
+- the respondents are `critic`;
+- the commentators on both sides are `historian`.
+
+It has fifteen new edges: ten on the debate (an eleventh, to the linguistic turn, is deferred)
+and five further critiques:
+- the 1965–70 critics of Kuhn;
+- Latour and Bloor against each other;
+- Kuhn against the strong programme;
+- Trentmann against actor-network theory (2009).
+
+`edge_138` is trimmed to a comparison of method. See the
+[acceptance record](data/production-batches/science-studies-1.135/README.md).
+
+## Historical revision 1.134 (2026-10-14)
 
 **168 entries (95 groups, 73 person entries), 924 teaching relationships, 1,571 sources and
 1,192 shared people.**

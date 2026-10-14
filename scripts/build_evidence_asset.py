@@ -124,7 +124,10 @@ def main():
             rec["journal_items_by_5yr"] = bins(journals.get(e, {}))
             rec["reviews_total"] = sum(reviews.get(e, {}).values())
             rec["journal_items_total"] = sum(journals.get(e, {}).values())
-        c=series['entry_coverage'][e]
+        c=series['entry_coverage'].get(e)
+        if c is None:   # an entry added after this series was built: nothing has been mapped to it yet
+            c=dict(mapped_title_contexts=0, deposited_records=0, first_deposit=None, first_candidate=None,
+                   qualifying_records=0, missing_length=0, added_after_series=args.series)
         note=f"{c['mapped_title_contexts']} mapped title contexts; {c['deposited_records']:,} distinct deposited records."
         if c['missing_length']:
             note += f" {c['missing_length']:,} article memberships lack calculable lengths; coverage is partial."
@@ -140,6 +143,8 @@ def main():
             'marx':' New Left Review remains outside this selected publication scope.',
             'anticolonial':' A mapped teaching venue has no collected deposits; blank counts do not mean no journal or scholarship exists.'}
         note+=special.get(e,'')
+        if c.get('added_after_series'):
+            note+=f" Added to the atlas after evidence series {c['added_after_series']} was built; no publication evidence is mapped to it yet."
         rec['coverage']={**c,'note':note}
         if e in methods:
             m = methods[e]
