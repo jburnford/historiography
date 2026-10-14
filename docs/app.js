@@ -1,7 +1,7 @@
 import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH, isOverviewHash} from './core.mjs';
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
-  pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf} from './field.mjs';
+  pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf, frameOf, reviewedThrough} from './field.mjs';
 import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
 import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 import {recordPanel as publicationPanel} from './records.mjs';
@@ -39,6 +39,18 @@ async function loadPeopleRecords() {
 }
 const revision = () => graph.revision_history.at(-1).version;
 const activeExtension = () => state?.range === '2000' ? null : extensionOf(graph);
+/* The open frame (revision 1.133 on): no closing wall; each entry is reviewed through its own
+   year. The archived 2000 graph, and any graph without scope.frame, keeps the legacy wall. */
+const openFrame = (g = graph) => frameOf(g).open;
+/* The year an open-ended entry is drawn solid to, as buildFieldLayout draws it. */
+function solidEnd(n, span) {
+  const fr = frameOf(graph);
+  if (!fr.open) return span.coverage ?? graph.scope.main_period[1];
+  const reviewed = reviewedThrough(n);
+  return reviewed === null ? fr.end : Math.max(reviewed, span.end);
+}
+const isOpenSpan = (n, span) => span.endKind === 'coverage_limit'
+  || (openFrame() && reviewedThrough(n) !== null && span.endKind !== 'terminus');
 function adopt(g) {
   graph = g;
   nodeById = new Map(graph.nodes.map(n => [n.id, n]));
@@ -59,7 +71,7 @@ function adopt(g) {
 }
 /* The 2000 view is the archived baseline graph itself, never a date filter over the current one. */
 async function ensureRange(range) {
-  const asset = production.scope?.extension?.baseline_asset;
+  const asset = production.scope?.archive?.baseline_asset ?? production.scope?.extension?.baseline_asset;
   if (range === '2000' && asset) {
     if (!baselineGraph) {
       const response = await fetch(asset);
@@ -143,6 +155,12 @@ function extensionSection(n) {
   const years = [...new Set(c.publication_years || [])].sort((a, b) => a - b);
   const statusText = c.status === 'release_candidate' ? 'Release candidate · not yet accepted into production'
     : /accepted/.test(c.status || '') ? 'Partial release · accepted' : (c.status || '').replace(/_/g, ' ');
+  if (openFrame()) {
+    const through = reviewedThrough(n) ?? c.baseline_through ?? 2000;
+    return `<section class="extension" aria-label="Selected later interventions"><div class="ext-head"><p class="eyebrow">AFTER ${esc(through)} · SELECTED LATER INTERVENTIONS</p><span class="badge status-${esc(c.status || 'release_candidate')}">${esc(statusText)}</span></div>
+    <p class="context-note">${years.length} publication${years.length === 1 ? '' : 's'} selected (${esc(years.join(', '))}). Research cutoff ${esc(c.research_cutoff || 'unrecorded')}. ${c.field_review_complete ? 'This field has been reviewed through the cutoff.' : `This field is <strong>reviewed through ${esc(through)}</strong>: these are selected interventions after the review year, not a survey.`} The entry’s mark, reviewed through ${esc(through)}, is unchanged.</p>
+    ${(c.work_ids || []).map(workCard).join('')}</section>`;
+  }
   return `<section class="extension" aria-label="Selected interventions after 2000"><div class="ext-head"><p class="eyebrow">AFTER ${esc(c.baseline_through || 2000)} · SELECTED INTERVENTIONS</p><span class="badge status-${esc(c.status || 'release_candidate')}">${esc(statusText)}</span></div>
     <p class="context-note">${years.length} publication${years.length === 1 ? '' : 's'} selected (${esc(years.join(', '))}). Research cutoff ${esc(c.research_cutoff || 'unrecorded')}. ${c.field_review_complete ? 'This field has been reviewed through the cutoff.' : 'This field is <strong>not</strong> reviewed through the cutoff: these are selected interventions, not a survey of the field after 2000.'} The original mark and its coverage through ${esc(c.baseline_through || 2000)} are unchanged.</p>
     ${(c.work_ids || []).map(workCard).join('')}</section>`;
@@ -419,8 +437,10 @@ function fieldLegend() {
       <span class="swatch posthumous">† death · hatched = posthumous reception</span>
       <span class="swatch point">a single dated year</span>
       <span class="swatch fuzzy">decade precision</span>
-      <span class="swatch open">continues past the coverage limit</span>
-      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}</div>
+      ${openFrame() ? `<span class="swatch open unreviewed">solid to the year reviewed · faded where later work is not yet surveyed</span>
+      <span class="swatch axis-note">pre-1900 compressed</span>${shownGraph().nodes.some(n => interventionsOf(n).length) ? '<span class="swatch intervention">◆ selected later intervention</span>' : ''}`
+      : `<span class="swatch open">continues past the coverage limit</span>
+      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}</div>
     <div class="lg right"><strong>View</strong>
       <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
         aria-pressed="${state.view !== 'list'}">Field</a>
@@ -461,14 +481,23 @@ function fieldSvg(view) {
   };
   for (let yr = Math.ceil(view.minYear / 25) * 25; yr < view.breakYear; yr += 25) tick(yr, true);
   for (let yr = view.breakYear; yr <= view.maxYear; yr += 10) tick(yr, yr % 20 === 0);
-  const wx = view.scale(view.coverageYear), bx = view.scale(view.breakYear);
-  grid += `<line class="coverage-wall" x1="${wx}" y1="${view.axisTop + 16}" x2="${wx}" y2="${bottom}"/>
+  const fr = view.frame, bx = view.scale(view.breakYear);
+  const wx = fr.open ? null : view.scale(view.coverageYear);
+  if (fr.open) {
+    /* Open frame: no wall. The research cutoff is a date of reading, not an ending. */
+    const cx = view.scale(fr.cutoff);
+    grid += `<line class="frame-cutoff" x1="${cx}" y1="${view.axisTop + 16}" x2="${cx}" y2="${bottom}"/>
+      <text class="cutoff-label" x="${cx - 4}" y="${view.axisTop + 13}" text-anchor="end">research cutoff ${esc(graph.scope.frame?.research_cutoff || '')}</text>
+      <line class="scale-break" x1="${bx}" y1="${view.axisTop + 16}" x2="${bx}" y2="${bottom}"/>`;
+  } else {
+    grid += `<line class="coverage-wall" x1="${wx}" y1="${view.axisTop + 16}" x2="${wx}" y2="${bottom}"/>
     <text class="coverage-label" x="${wx - 6}" y="${bottom - 6}" text-anchor="end"
       >curated coverage ends ${view.coverageYear}</text>
     <line class="scale-break" x1="${bx}" y1="${view.axisTop + 16}" x2="${bx}" y2="${bottom}"/>`;
+  }
   /* The extension zone: only the axis is stretched; marks keep their own coverage, and the
      selected later interventions are drawn as points. The cutoff is a research date, not an end. */
-  const ext = view.extension;
+  const ext = fr.open ? null : view.extension;
   if (ext) {
     const ex = view.scale(ext.end);
     /* The zone is narrow: footnotes are clipped to it and the axis notes hang from the right edge. */
@@ -531,9 +560,27 @@ function fieldSvg(view) {
       href="${esc(focusHref(p.node.id))}"><rect class="ghost" x="${p.x}" y="${p.y}"
       width="${p.w}" height="${p.h}" rx="2"/><title>${esc(p.node.label)} · ${esc(
       p.node.date_label)}</title></a>`).join('');
+  /* Open frame: the faded tail runs from the reviewed year to the frame end, but stops short of
+     the next mark (or its left-hand label) sharing the row, so tails never run under other entries. */
+  const tailEnd = p => {
+    let end = view.scale(p.fadeTo);
+    for (const o of view.bars) {
+      if (o === p || o.y !== p.y || o.x < p.x + p.w - 0.5) continue;
+      const start = o.side === 'left' ? o.x - o.label.length * 6.27 - 9 : o.x;
+      end = Math.min(end, start - 6);
+    }
+    return end;
+  };
+  const tail = p => {
+    if (!fr.open || !p.open || !(p.fadeTo > p.drawEnd)) return '';
+    const x = view.scale(p.drawEnd), w = tailEnd(p) - x;
+    return w > 1 ? `<rect class="unreviewed" x="${x}" y="${p.y}" width="${w}" height="${p.h}"><title>${
+      p.reviewed !== null ? `Reviewed through ${p.drawEnd}; later work not yet surveyed` : 'Drawn to the research cutoff; later work is cited where checked'}</title></rect>` : '';
+  };
   const bars = view.bars.map(p => {
     const fuzzy = p.span.precision === 'decade';
     const xEnd = p.x + p.w;
+    const tailHtml = tail(p);
     return `<a class="entry end-${esc(p.span.endKind)} ${cls(p)}" data-id="${esc(p.node.id)}"
       href="${esc(markHref(p))}"
       aria-label="${esc(p.node.label)}, ${esc(p.node.date_label)}.${heldNote(p)}">
@@ -546,7 +593,7 @@ function fieldSvg(view) {
       ${p.lead ? '' : `<line class="bar-cap start" x1="${p.x}" y1="${p.y}" x2="${p.x}" y2="${p.y + p.h}"/>`}
       ${p.span.endKind === 'terminus'
         ? `<line class="bar-cap end" x1="${xEnd}" y1="${p.y}" x2="${xEnd}" y2="${p.y + p.h}"/>` : ''}
-      ${p.open && p.w > 30 ? `<rect class="bar-fade" x="${xEnd - 22}" y="${p.y - 1}" width="23" height="${p.h + 2}"/>` : ''}
+      ${tailHtml}${p.open && p.w > 30 && !tailHtml ? `<rect class="bar-fade" x="${xEnd - 22}" y="${p.y - 1}" width="23" height="${p.h + 2}"/>` : ''}
       ${p.ticks.map(t => `<line class="ms" x1="${t.x}" y1="${p.y + 3}" x2="${t.x}" y2="${p.y + p.h - 3}"
         ><title>${t.yr} · a year named in this entry’s date label</title></line>`).join('')}
       ${p.posthumous ? `<rect class="posthumous" x="${p.posthumous.x}" y="${p.y}" width="${p.posthumous.w}" height="${p.h}" rx="3"
@@ -582,9 +629,11 @@ function fieldSvg(view) {
 }
 
 function interventionNote(n) {
-  const years = activeExtension() ? interventionsOf(n) : [];
+  const open = openFrame() && state.range !== '2000';
+  const years = open ? interventionsOf(n).filter(y => y > (reviewedThrough(n) ?? 0)) : activeExtension() ? interventionsOf(n) : [];
   if (!years.length) return '';
   const c = n.extension_coverage;
+  if (open) return `<p class="ext-note"><strong>After ${esc(reviewedThrough(n) ?? c.baseline_through ?? 2000)}.</strong> ${years.length} selected later intervention${years.length === 1 ? '' : 's'} (${esc(years.join(', '))}), drawn as ◆ on this row. ${c.status === 'release_candidate' ? 'Release candidate, not yet accepted. ' : ''}${c.field_review_complete ? '' : 'Selected interventions after the review year, not a survey.'} Open the entry to read the exact claims and their evidence.</p>`;
   return `<p class="ext-note"><strong>After ${esc(c.baseline_through || 2000)}.</strong> ${years.length} selected intervention${years.length === 1 ? '' : 's'} (${esc(years.join(', '))}), drawn as ◆ on this row. ${c.status === 'release_candidate' ? 'Release candidate, not yet accepted. ' : ''}${c.field_review_complete ? '' : 'The field is not reviewed through the cutoff.'} Open the entry to read the exact claims and their evidence.</p>`;
 }
 function fieldDateNote(n, span) {
@@ -599,7 +648,24 @@ function fieldDateNote(n, span) {
     year is ${span.start}; that dates a contribution to an already established
     ${periodical ? 'periodical' : 'field'}, not its origin, so the mark runs in from the left edge
     without a starting cap. ` : '';
-  if (span.endKind === 'coverage_limit') {
+  if (openFrame() && isOpenSpan(n, span)) {
+    const reviewed = reviewedThrough(n);
+    if (reviewed !== null) {
+      const drawn = solidEnd(n, span);
+      opening = periodical
+        ? `<strong>First issue ${span.start}</strong>, drawn to ${drawn}.`
+        : span.openStart ? `Drawn solid from ${span.start} to ${drawn}.`
+        : `<strong>From ${span.start}</strong>${precision}, drawn to ${drawn}.`;
+      ending = `This entry is <strong>reviewed through ${reviewed}</strong>. The faded part runs to the research
+        cutoff (${esc(graph.scope.frame?.research_cutoff || '')}): later work is not yet surveyed here, not absent.`;
+    } else {
+      opening = periodical
+        ? `<strong>First issue ${span.start}</strong>, drawn to the research cutoff; later work is cited where checked.`
+        : span.openStart ? `Drawn solid from ${span.start} to the research cutoff; later work is cited where checked.`
+        : `<strong>From ${span.start}</strong>${precision}, drawn to the research cutoff; later work is cited where checked.`;
+      ending = '';
+    }
+  } else if (span.endKind === 'coverage_limit') {
     opening = periodical
       ? `<strong>First issue ${span.start}</strong>, drawn to ${wall}.`
       : span.openStart ? `Drawn solid from ${span.start} to ${wall}.`
@@ -639,8 +705,9 @@ function lifeLine(n, span) {
   const parts = [];
   if (life.birth) parts.push(`Born ${approx('birth')}${life.birth}`);
   parts.push(life.death ? `died ${approx('death')}${life.death}` : 'living at retrieval');
-  const posthumous = life.death && span && life.death < (span.endKind === 'coverage_limit'
-    ? (span.coverage ?? graph.scope.main_period[1]) : span.end);
+  const posthumous = life.death && span && life.death < (openFrame()
+    ? (isOpenSpan(n, span) ? solidEnd(n, span) : span.end)
+    : span.endKind === 'coverage_limit' ? (span.coverage ?? graph.scope.main_period[1]) : span.end);
   return `<p class="life">${esc(parts.join(' · '))}${life.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(life.qid)}"
       target="_blank" rel="noopener noreferrer">Wikidata ${esc(life.qid)}</a>` : ''}${
       life.retrieved ? ` <span class="prov">retrieved ${esc(life.retrieved)}</span>` : ''}${
@@ -695,11 +762,16 @@ function fieldPanel() {
     if (p) return pathwayPanel(p);
     return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
     <h2>Hover to light up an argument. Click to hold it.</h2>
-    <p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
+    ${openFrame() ? `<p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
+    the earliest dated year; a thin lead-in from the left edge means the label states earlier,
+    undated roots. A mark is solid through the year its entry has been reviewed and faded after it, to the research cutoff.
+    Fields are being extended one at a time; a faded tail means later work is not yet surveyed, not that the field stopped.
+    Ticks mark other years the label names; ◆ marks a selected later intervention. Open a relationship to read its evidence.</p>`
+    : `<p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
     the earliest dated year; a thin lead-in from the left edge means the label states earlier,
     undated roots. A bar that fades into the dashed wall at ${graph.scope.main_period[1]} continues beyond what this atlas
     covers: the wall is a limit of the map, not an ending. Ticks mark other years the label names.
-    Open a relationship to read its evidence.</p>${activeExtension() ? `<p>Beyond the wall, ◆ marks <strong>selected interventions after ${graph.scope.main_period[1]}</strong> for the ${activeExtension().covered} entries a partial release covers. Nothing else is extended; the research cutoff is a date of reading, not an ending.</p>` : ''}
+    Open a relationship to read its evidence.</p>`}${activeExtension() ? `<p>Beyond the wall, ◆ marks <strong>selected interventions after ${graph.scope.main_period[1]}</strong> for the ${activeExtension().covered} entries a partial release covers. Nothing else is extended; the research cutoff is a date of reading, not an ending.</p>` : ''}
     <p class="fine-print">To let go of a held entry, click it again, click empty space in the chart,
     press Escape, or use “Show everything” at the top of this panel.</p>
     <p class="fine-print">${fieldCatalogue.unlinked.toLocaleString()} catalogued periodicals
@@ -743,12 +815,14 @@ function fieldList() {
     <a href="${esc(href({query: ''}))}">Clear the search →</a></div>`;
   const starts = rows.filter(r => r.span).map(r => r.span.start);
   const lo = Math.floor(Math.min(1900, ...starts) / 10) * 10;
-  const hi = Math.max(graph.scope?.main_period?.[1] ?? 2000, ...rows.filter(r => r.span).map(r => r.span.end));
+  const fr = frameOf(graph);
+  const hi = fr.open ? fr.end
+    : Math.max(graph.scope?.main_period?.[1] ?? 2000, ...rows.filter(r => r.span).map(r => r.span.end));
   const pct = yr => Math.max(0, Math.min(100, (yr - lo) / (hi - lo) * 100));
-  const mini = span => {
+  const mini = (span, n) => {
     if (!span) return '';
-    const open = span.endKind === 'coverage_limit';
-    const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (span.coverage ?? hi) : span.end));
+    const open = fr.open ? isOpenSpan(n, span) : span.endKind === 'coverage_limit';
+    const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (fr.open ? solidEnd(n, span) : (span.coverage ?? hi)) : span.end));
     return `<span class="mini" aria-hidden="true">${span.openStart ? `<i class="lead" style="left:0;width:${a}%"></i>` : ''}<i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
   };
   const fam = activeFamily();
@@ -765,7 +839,7 @@ function fieldList() {
         <th scope="col">${fam ? 'All relationships' : 'Relationships'}</th></tr></thead><tbody>${mine.map(({n, span}) => {
         const rels = (fieldIndex.get(n.id) || []).length;
         return `<tr><td class="td-date">${esc(span ? `${span.start}${span.end > span.start
-            ? `–${span.end}` : ''}` : 'not stated')}${mini(span)}</td>
+            ? `–${span.end}` : ''}` : 'not stated')}${mini(span, n)}</td>
           <td><a href="${esc(focusHref(n.id))}">${esc(n.label)}</a>
             <span class="td-note">${esc(n.date_label)}</span></td>
           <td>${esc(n.entry_type || fieldTitle(n.layer))}</td>
@@ -806,7 +880,7 @@ function landingPage() {
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries. Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
+    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. ${openFrame() ? 'The atlas has no closing date; its entries are reviewed through 2000 unless marked otherwise, so record bars after 2000 can run ahead of the atlas’s reading.' : 'The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries.'} Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
       <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
     ${evidence.sensitivity ? `<details class="landing-audit"><summary>How sensitive is this comparison?</summary><p class="fine-print">${esc(evidence.sensitivity.note)}</p><p class="fine-print">${esc(evidence.sensitivity.pagination_note)}</p></details>` : ''}
   </div>`;
@@ -816,7 +890,8 @@ function drawLanding() {
   if (!box) return;
   landingWidth = box.clientWidth || 1000;
   /* Rows are native SVG links (Enter, middle-click and no-JS all work), so no handlers here. */
-  box.innerHTML = rowsSvg({block: evidence.families, graph, view: recordView(), width: landingWidth, href: familyHref});
+  box.innerHTML = rowsSvg({block: evidence.families, graph, view: recordView(), width: landingWidth, href: familyHref,
+    closed: !openFrame()});
   box.removeAttribute('aria-busy');
 }
 
@@ -898,7 +973,9 @@ function fieldPage() {
       <h2>${fam ? esc(fam.label) : 'Historiography on one time axis'}</h2></div>
       <p class="field-summary">${counts.datedCount} placed in time${counts.undatedCount
         ? ` · ${counts.undatedCount} without a stated span` : ''} ·
-        ${fieldEdges(shownGraph()).length} relationships${activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
+        ${fieldEdges(shownGraph()).length} relationships${openFrame()
+          ? ` · ${shownGraph().nodes.filter(n => n.entry_kind === 'group' && reviewedThrough(n) === 2000).length} entries reviewed through 2000`
+          : activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
     ${fam ? familyNavigation(false) : ''}${fieldLegend()}
     <div class="field-split">${body}
       <aside class="field-panel">${fieldPanel()}</aside></div>
@@ -1176,16 +1253,18 @@ function pathwayPage() {
     }).join('')}</ol></section><aside class="seminar-panel"><p class="eyebrow">BRING TO THE SEMINAR</p><h3>Questions to work with</h3><ol class="questions">${p.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ol><div class="exercise"><p class="eyebrow">TRY THIS</p><p>${esc(p.exercise)}</p></div><details><summary>Compare explanations</summary><ul>${pathways.comparison_axes.map(a => `<li>${esc(a)}</li>`).join('')}</ul></details><p class="fine-print">Editorial teaching prompts, not quotations from Hunt.</p></aside></div>`;
 }
 function about() {
+  const arch = production.scope?.archive, open = openFrame(production);
   return `${crumbs(['<span aria-current="page">Reading this map</span>'])}<article class="about"><p class="eyebrow">SCOPE & INTERPRETATION</p><h2>A map to think with.</h2><p class="deck">This is a selective, contestable teaching interpretation of historiography, for MA students reading Lynn Hunt’s <cite>Writing History in the Global Era</cite> (2014).</p>
     <h3>Move from traditions to people</h3><p>Start with four layers, open a school or field, and meet its representative historians and intellectual contributors. A shared person can appear in several groups with different roles. Open a profile for works and contexts, or switch to Connections to inspect the group’s relationships. Each map shows all recorded incoming relationships on the left and outgoing relationships on the right. Comparisons and unclassified connections appear separately below the flow. The full-text list also shows every connection.</p>
     <h3>Nesting is navigation</h3><p>The four layers organize a mixture of people, fields, traditions, methods, and debates. They do not define a historical family tree. Entries can connect across layers; seminar pathways overlap them. Hunt’s four paradigms are an explicit teaching lens, not a universal hierarchy.</p>
-    <h3>Periods are approximate groupings</h3><p>Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'} Periods describe emergence or expansion, not termination, and prose date labels can refer to publication or reception. Entries without assigned periods remain available when you filter by a period. There is no continuous timeline.</p>
+    <h3>Periods are approximate groupings</h3><p>${arch || open ? `The atlas began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, and prose date labels can refer to publication or reception. Entries without assigned periods remain available when you filter by a period. There is no continuous timeline.</p>
     <h3>Read the relationship before drawing a conclusion</h3><p>Influence, contribution, and classified critique have arrows. Critique runs from critic toward the position criticized; contribution does not imply founding a field. Comparisons have no direction. Older connections without direction metadata are visibly unclassified and have no arrow, including older records with a legacy critique category.</p>
     <h3>References have limits</h3><p>Bibliographic metadata checks establish the scope stated in their notes. A supporting page check is narrower than a full reading or a passage-level audit of every claim. Missing verification information means unrecorded. Some citations have no web link; relationship references are distinct from entry bibliographies.</p>
     <h3>What this beta does not yet cover</h3><p>Known gaps, so you can argue with the map
-    rather than around it. <strong>About a quarter of entries record no objection at all</strong> —
+    rather than around it. <strong>${open ? 'Many entries record no objection at all' : 'About a quarter of entries record no objection at all'}</strong> —
     including Kuhn, Latour, SSK and science studies, where the disagreements of the 1990s
-    “science wars” are missing. <strong>Coverage thins sharply after 1985</strong>, which is the
+    “science wars” are missing. ${open ? '<strong>Most entries are reviewed only through 2000; work since then is being added field by field</strong>'
+      : '<strong>Coverage thins sharply after 1985</strong>'}, which is the
     period Hunt writes about most. <strong>Non-Western traditions appear mostly as subject
     matter rather than as historiography</strong>: African history and Subaltern Studies are here
     as traditions with their own institutions, but there is no Chinese, Japanese, Korean or
@@ -1204,6 +1283,19 @@ function rangeControls() {
   const ext = production.scope?.extension;
   const toggle = $('range-toggle');
   const eyebrow = $('scope-eyebrow');
+  /* Open frame: the exact-2000 view is an archive reached from Reading this map, not a toggle. */
+  const arch = production.scope?.archive;
+  if (arch || openFrame(production)) {
+    toggle.hidden = true;
+    if (state.range === '2000' && arch) {
+      eyebrow.textContent = `${arch.baseline_period[0]}–${arch.baseline_period[1]} · ARCHIVED VIEW · REVISION ${arch.baseline_revision}`;
+      $('edition-label').textContent = `Archive ${arch.baseline_revision} · the original 1920–2000 experiment`;
+    } else {
+      eyebrow.textContent = 'EARLIER ROOTS TO THE PRESENT · ENTRIES REVIEWED FIELD BY FIELD';
+      $('edition-label').textContent = `Draft ${production.revision_history.at(-1).version}`;
+    }
+    return;
+  }
   if (!ext) { toggle.hidden = true; eyebrow.textContent = `${production.scope.main_period[0]}–${production.scope.main_period[1]} · WITH EARLIER ROOTS`; return; }
   const [a, b] = production.scope.main_period, end = ext.proposed_view_period?.[1];
   const status = /accepted/.test(ext.status || '') ? 'partial release' : (ext.status || '').replace(/_/g, ' ');
@@ -1239,6 +1331,9 @@ function render() {
     : state.tab === 'about' ? about()
     : state.tab === 'pathways' ? pathwayPage()
     : state.layer || state.query || state.period || state.hunt ? directory() : overview();
+  const arch = production.scope?.archive;
+  if (state.range === '2000' && arch && graph !== production) $('workspace').insertAdjacentHTML('afterbegin',
+    `<div class="archive-banner" role="note"><strong>Archived view.</strong> The original 1920–2000 experiment (revision ${esc(arch.baseline_revision)}). <a href="${esc(href({range: ''}))}">Return to the current atlas →</a></div>`);
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;

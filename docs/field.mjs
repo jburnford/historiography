@@ -4,10 +4,12 @@
    Two ideas do the work:
    1. Focus re-lays out. Holding an entry collapses everything unrelated to a thin ghost
       mark so the entry and its relations expand into the freed space.
-   2. Dates stay honest. A mark runs across the years its date label names. A label that
-      says "onward" or "coverage through 2000" is drawn solid to the atlas's coverage wall
-      with an open, fading end: the wall is a limit of the map, never an ending. Nothing in
-      the drawing claims a period of peak influence. A curated `date_span` always wins over
+   2. Dates stay honest. A mark runs across the years its date label names. In the open
+      frame an open-ended entry is drawn solid to the year through which the entry has been
+      reviewed (`coverage.reviewed_through`), then faded to the research cutoff: a review year
+      is a limit of our reading, never an ending. The archived 2000 view keeps its wall: there
+      a label that says "onward" or "coverage through 2000" is drawn solid to the coverage
+      wall with an open, fading end. Nothing in the drawing claims a period of peak influence. A curated `date_span` always wins over
       the prose parse, and the panel says which was used. See scope.notes: "Dates describe
       approximate emergence or expansion, not termination." */
 
@@ -85,7 +87,7 @@ export function spanOf(node) {
     return {
       start: d.start, end: end ?? d.start,
       /* An unverified end is not an ending: continue rather than stop. */
-      endKind: end === null ? 'coverage_limit' : (d.end_kind || 'unstated'),
+      endKind: end === null || d.end_kind === 'open' ? 'coverage_limit' : (d.end_kind || 'unstated'),
       coverage: Number.isFinite(d.coverage_through) ? d.coverage_through : null,
       precision: d.precision || 'year', curated: true,
       basis: d.basis || '', startKind: d.start_kind || '',
@@ -117,7 +119,7 @@ export function journalNodes(graph) {
     return {
       id, label: j.label, layer: JOURNAL_LAYER, entry_kind: 'periodical',
       entry_type: 'Journal or periodical', period: null, hunt_core_paradigm: false,
-      date_label: viaRole ? `Publication dates unverified · venue role evidenced from ${roleStart} · coverage through 2000`
+      date_label: viaRole ? `Publication dates unverified · venue role evidenced from ${roleStart}`
         : journalDateLabel(j),
       date_span: dated ? {
         start: d.start, end: Number.isFinite(d.end) ? d.end : null,
@@ -212,10 +214,24 @@ export function milestoneYears(node) {
 
 /* `width` is the width of the box the SVG will actually sit in — measure it, do not guess
    from the page. `opts.numbering` (Map id → n) prefixes labels for the pathway overlay. */
+/* The frame the field is drawn in. Open graphs (revision 1.133 on) have no wall: the axis runs
+   to the end of the year holding the research cutoff. Legacy graphs, such as the archived 1.121
+   view, carry a numeric main_period end and keep it as their wall. */
+export function frameOf(graph) {
+  const s = graph.scope || {};
+  const legacyWall = Number.isFinite(s.main_period?.[1]) ? s.main_period[1] : null;
+  if (!s.frame && legacyWall !== null) return {open: false, start: s.main_period[0], end: legacyWall, cutoff: null, wall: legacyWall};
+  const d = s.frame?.research_cutoff ? new Date(s.frame.research_cutoff) : new Date();
+  const cutoff = d.getUTCFullYear() + (d.getUTCMonth() + 0.5) / 12;
+  return {open: true, start: s.frame?.start ?? 1920, end: Math.ceil(cutoff), cutoff, wall: null};
+}
+export const reviewedThrough = node => node.coverage?.reviewed_through ?? null;
+
 /* Selected interventions after the coverage limit. The atlas's curated marks stop at their own
    recorded coverage; an extension adds dated points for the works a later release selected,
    on the entry's own row, and stretches only the axis. Nothing else is extended. */
 export function extensionOf(graph) {
+  if (frameOf(graph).open) return null;
   const ext = graph.scope?.extension;
   if (!ext?.proposed_view_period) return null;
   const cutoff = ext.research_cutoff ? (() => { const d = new Date(ext.research_cutoff);
@@ -242,9 +258,14 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
   const rows = nodes.map(node => ({node, span: spanOf(node)}));
   const spans = rows.filter(r => r.span).map(r => r.span);
   const minYear = Math.min(1900, Math.floor(Math.min(...spans.map(s => s.start)) / 10) * 10);
-  const maxYear = Math.max(extension ? extension.end : 2000,
+  const frame = frameOf(graph);
+  const maxYear = Math.max(frame.open ? frame.end : (extension ? extension.end : 2000),
     Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10);
-  const coverageYear = graph.scope?.main_period?.[1] ?? 2000;
+  const coverageYear = frame.open ? null : frame.wall;
+  /* Open frame: the prose "coverage through 2000" suffix is gone, so an entry that records a
+     review year continues unless its span ends explicitly. The archive reads its labels. */
+  const isOpen = item => item.span?.endKind === 'coverage_limit'
+    || (frame.open && reviewedThrough(item.node) !== null && item.span?.endKind !== 'terminus');
 
   const undatedTotal = rows.filter(r => !r.span).length;
   const inner = Math.max(Math.floor(width) - 2, G.minW);
@@ -298,9 +319,15 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     for (const item of full.filter(r => r.span).sort((a, b) =>
         a.span.start - b.span.start || a.node.label.localeCompare(b.node.label))) {
       const bx = scale(item.span.start);
-      /* An open-ended label is drawn solid to the coverage wall; the wall is the map's limit. */
-      const open = item.span.endKind === 'coverage_limit';
-      const drawEnd = open ? (item.span.coverage ?? coverageYear) : item.span.end;
+      /* Open frame: an open-ended mark is solid to its reviewed year, then faded to the frame
+         end. Archive: solid to the coverage wall; the wall is the map's limit. Dated work past
+         the reviewed year stays solid, so a mark never ends before its own last named year. */
+      const open = isOpen(item);
+      const reviewed = frame.open ? reviewedThrough(item.node) : null;
+      const drawEnd = open
+        ? (frame.open ? Math.max(reviewed ?? frame.end, item.span.end) : (item.span.coverage ?? coverageYear))
+        : item.span.end;
+      const fadeTo = open && frame.open ? frame.end : drawEnd;
       const point = drawEnd === item.span.start;
       const bw = Math.max(point ? 12 : 7, scale(drawEnd) - bx);
       const label = labelOf(item.node);
@@ -319,15 +346,18 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
       /* Death within the axis: a marker, and the part of the mark after it is posthumous. */
       const life = lives.get(item.node.id) || null;
       /* Drawn only inside the coverage limit; a later death is stated in the panel instead. */
-      const death = life?.death && life.death >= minYear && life.death <= coverageYear
+      const death = life?.death && life.death >= minYear && life.death <= (coverageYear ?? frame.end)
         ? {yr: life.death, x: scale(life.death)} : null;
       const posthumous = death && death.x < bx + bw
         ? {x: Math.max(bx, death.x), w: bx + bw - Math.max(bx, death.x)} : null;
-      /* Dated interventions after the wall, on this entry's row, separate from the mark. */
-      const interventions = extension ? interventionsOf(item.node)
-        .filter(yr => yr > coverageYear && yr <= extension.end).map(yr => ({yr, x: scale(yr)})) : [];
+      /* Dated interventions after the wall (archive) or the reviewed year (open frame), on this
+         entry's row, separate from the mark. */
+      const interventions = frame.open || extension ? interventionsOf(item.node)
+        .filter(yr => yr > (frame.open ? (reviewed ?? 0) : coverageYear)
+          && yr <= (frame.open ? frame.end : extension?.end ?? 0))
+        .map(yr => ({yr, x: scale(yr)})) : [];
       if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
-      bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, point, ticks,
+      bars.push({...item, shape: 'bar', label, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
         life, death, posthumous, interventions, x: bx, w: bw, h: G.barH, y: barTop + r * (G.barH + G.rowGap)});
     }
 
@@ -336,13 +366,13 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     const ghostEnds = [];
     for (const item of faded.sort((a, b) => (a.span?.start ?? 0) - (b.span?.start ?? 0))) {
       const bx = item.span ? scale(item.span.start) : x0;
-      const ghostEnd = item.span?.endKind === 'coverage_limit'
-        ? (item.span.coverage ?? coverageYear) : item.span?.end;
+      const ghostEnd = isOpen(item)
+        ? (frame.open ? frame.end : (item.span.coverage ?? coverageYear)) : item.span?.end;
       const bw = item.span ? Math.max(5, scale(ghostEnd) - bx) : 40;
       let r = ghostEnds.findIndex(end => end + 2 <= bx);
       if (r === -1) { r = ghostEnds.length; ghostEnds.push(0); }
       ghostEnds[r] = bx + bw;
-      ghosts.push({...item, shape: 'ghost', x: bx, w: bw, h: G.ghostH,
+      ghosts.push({...item, shape: 'ghost', ghostEnd, x: bx, w: bw, h: G.ghostH,
         y: gy + r * (G.ghostH + G.ghostGap)});
     }
     const ghostH = ghostEnds.length * (G.ghostH + G.ghostGap);
@@ -351,7 +381,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
     y += fullH + ghostH + (focusSet ? 18 : G.bandGap);
   }
 
-  return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G, extension,
+  return {inner, scale, chips, bars, ghosts, bands, captions, axisTop, x0, x1, G, extension, frame,
     minYear, maxYear, coverageYear, breakYear: BREAK_YEAR, height: y + 14,
     placed: new Map([...chips, ...bars, ...ghosts].map(p => [p.node.id, p])),
     datedCount: rows.filter(r => r.span).length, undatedCount: undatedTotal};

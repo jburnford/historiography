@@ -423,6 +423,15 @@ test('landing: rows, cards and table render one item per family', () => {
   assert.match(strip, /Items no family claims/);
   assert.equal((table.match(/<tr>/g) || []).length, 27);
 });
+test('landing: an open-frame atlas draws no coverage line; a closed one keeps it', () => {
+  const open = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`, closed: false});
+  assert.ok(!open.includes('coverage-line'));
+  assert.ok(!open.includes('atlas coverage ends'));
+  assert.equal((open.match(/class="family-row"/g) || []).length, 12);
+  const closed = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`, closed: true});
+  assert.match(closed, /class="coverage-line"/);
+  assert.match(closed, /atlas coverage ends 2000/);
+});
 test('landing: a long family label wraps onto two lines rather than overflow the row', () => {
   const svg = rowsSvg({block: families, graph, view: 'all', width: 700, href: id => `#family=${id}`});
   const row = svg.split('data-family="political-national-and-international"')[1].split('</a>')[0];
