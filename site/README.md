@@ -96,6 +96,16 @@ On an entry with `extension_coverage`, a section "After 2000 · selected interve
 - **The register** below the chart is the accessible route to all people. It opens on the people with their own entry, sorted by surname; the letter rail selects a surname initial (`#letter=B`); a search or a held entry lists exactly the matching people. `people.mjs` derives the surname (`sortName`) with a small editorial list for labels written surname first (Wang Feng, Lu Gwei-djen …) and compound surnames (Vidal de la Blache); lowercase particles follow the given name in the sort. A `sort_name` field on people records would replace that list.
 - Under 760 px the chart is not drawn and the register carries the page.
 
+## A person's profile map: where they sit
+
+Every person profile (`#person=<id>`) opens with **Where they sit**, a compact time-axis map drawn under the heading and above *Where to read them*. It is the field's own layout (`buildFieldLayout` in `field.mjs` with `only`, `compact` and `badges` options), not a second chart: `personMapSubset` picks the entries whose rosters name the person, the person's own entry (`people[].node_id`) if there is one, and every entry that one of the own entry's relationships reaches; `personMapLayout` lays them out in one band at a compact density, with an axis that starts at 1900 unless an entry is earlier.
+
+- **Roles** are badges after each label (HISTORIAN, RESOURCE, EARLIER RESOURCE, CRITIC, COMPARISON), counted in the label's width so labels never collide; the own entry is drawn in ink and badged OWN ENTRY. Bars are coloured by layer, as the cards below are.
+- **Relationships** are drawn only for a person with an own entry, and only that entry's recorded edges. Their targets are included as entries (dashed, pale: related to the own entry, not naming the person) rather than drawn as off-map stubs, because a stub has no place in time and the map's point is where the related work sits. Edge ends are spread along the own mark and meet each other mark at its nearest year, with a dot, so many relationships read as a comb rather than a knot.
+- **Interaction.** Every mark is a link to its entry; hover or keyboard focus writes the entry, its date label and the person's role (or the relationship, in words) to a live line under the map and emphasises its relationship. The SVG and each mark carry `aria-label`s; the cards below remain the full text equivalent. *Open in the field →* holds the own entry in the field (`#focus=`); for a roster-only person, *Find them in the field →* searches the field for their name.
+- **Frames.** The open frame draws solid to each entry's reviewed year with a faded tail to the research cutoff; `#range=2000` draws the archive's own people against its 2000 wall (Chakrabarty there is roster-only).
+- **Phones.** Below 560 px (`STACK_BELOW`) the map stacks one mark per row with its label above, so nothing scrolls sideways. A person named only inside approaches (strands) falls back to those entries, badged IN AN APPROACH.
+
 ## How nesting works
 
 1. **Atlas:** four existing layers appear as distinct containers. Period groups are nested where the dataset assigns them. Starting points and seminar questions offer routes in.

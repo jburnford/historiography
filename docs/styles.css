@@ -296,7 +296,7 @@ svg.field.focused{cursor:default}
 .mini i.lead{height:2px;top:2px;border-left:0;background:linear-gradient(90deg,#eceee6,#b7c2b6)}
 
 /* Labels beside a mark get a paper halo so they stay legible over lead-ins and grid lines. */
-.entry .bar-label.left,.entry .bar-label.right{paint-order:stroke;stroke:#fbfaf4;stroke-width:3px;stroke-linejoin:round}
+.entry .bar-label.left,.entry .bar-label.right{paint-order:stroke;stroke:#fbfaf4;stroke-width:4px;stroke-linejoin:round}
 
 /* Deaths and posthumous reception (Wikidata life dates on the published people records) */
 .entry .posthumous{fill:url(#hatch);pointer-events:none;opacity:.9}
@@ -436,3 +436,67 @@ svg.field.focused{cursor:default}
 .swatch.unreviewed::before{width:40px;flex:none;background:linear-gradient(90deg,#b9c3b7 0 50%,#b9c3b747 50% 100%)}
 .field-legend .lg>.swatch.unreviewed{white-space:normal;max-width:100%}
 .archive-banner{margin:1rem 0;padding:.6rem .9rem;border-left:3px solid #b5651d;background:#fbf4ea;font-size:.92rem}
+/* Where they sit: the person profile's compact field (personMapSvg in app.js). */
+.button-link.primary{background:var(--green);border-color:var(--green);color:#fff;font-weight:600}
+.button-link.primary:hover{background:#1d4432}
+.person-map{margin:0 0 30px;padding:18px 20px 14px;background:#fffdf7;border:1px solid var(--line);border-radius:7px}
+.pm-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:10px}
+.pm-head .eyebrow{margin-bottom:4px}
+.pm-head h3{font-size:22px;margin:0 0 3px}
+.pm-summary{font-size:12px;color:var(--muted);margin:0}
+.pm-open{white-space:nowrap;font-weight:600}
+.pm-scroll{overflow-x:auto;border:1px solid #e3e5dc;border-radius:5px;background:#fbfaf4}
+.pm-svg{display:block}
+.pm-tick{stroke:#e2e5dd}
+.pm-tick.major{stroke:#d0d5cc}
+.pm-tick-label{font:10px var(--sans);fill:#7c857c}
+.pm-axis{stroke:#b9c0b6}
+.pm-break{stroke:#b9a98a;stroke-dasharray:2 3}
+.pm-cutoff{stroke:#7a6a3a;stroke-width:1;stroke-dasharray:2 3}
+.pm-wall{stroke:#b0a58c;stroke-width:1.5;stroke-dasharray:5 4}
+.pm-caption{font:600 8.5px var(--sans);letter-spacing:1px;text-transform:uppercase;fill:#8a938b;dominant-baseline:middle}
+.pm-entry{cursor:pointer;transition:opacity .15s}
+.pm-entry .pm-bar{fill:var(--accent);fill-opacity:.82;stroke:var(--accent);stroke-width:.8}
+.pm-entry .pm-tail{fill:var(--accent);opacity:.22;pointer-events:none}
+.pm-entry .pm-lead{stroke:var(--accent);stroke-width:2;opacity:.5}
+.pm-entry .pm-fade{fill:url(#pm-fade);pointer-events:none}
+.pm-entry.own .pm-bar{fill:var(--ink);fill-opacity:1;stroke:var(--ink)}
+.pm-entry.own .pm-tail{fill:var(--ink)}
+.pm-entry.linked .pm-bar{fill:var(--tint);fill-opacity:1;stroke:var(--accent);stroke-dasharray:3 2}
+.pm-entry.linked .pm-tail{opacity:.14}
+.pm-entry.pm-chip .pm-bar{fill:var(--tint);fill-opacity:1}
+.pm-label{font:11.5px var(--sans);fill:#2c3a33;dominant-baseline:middle;paint-order:stroke;stroke:#fbfaf4;stroke-width:4px;stroke-linejoin:round}
+.pm-entry.own .pm-label{font-weight:700}
+.pm-label.inside{stroke:none;fill:#fff;font-weight:600}
+.pm-entry.linked .pm-label.inside,.pm-chip .pm-label.inside{fill:var(--ink)}
+.pm-badge{font:600 8.6px var(--sans);letter-spacing:.9px;fill:#6b756c}
+.pm-badge.critic{fill:#a8452c}
+.pm-label.inside .pm-badge{fill:inherit;opacity:.85}
+.pm-entry:hover .pm-bar,.pm-entry:focus .pm-bar{stroke:#a8572f;stroke-width:2;stroke-dasharray:none}
+.pm-entry:hover .pm-label,.pm-entry:focus .pm-label{text-decoration:underline}
+.pm-entry:focus{outline:none}
+.pm-svg.previewing .pm-entry:not(.hi){opacity:.45}
+.pm-edge{stroke-width:1.3;opacity:.6}
+.pm-edge.emph{stroke-width:2.6;opacity:1}
+.pm-edge.mute{opacity:.12}
+.pm-end{fill:currentColor;stroke:#fbfaf4;stroke-width:1;pointer-events:none}
+.pm-end.mute{opacity:.12}
+.pm-readout{font-size:12px;color:#3e4b44;min-height:1.6em;margin:8px 0 6px}
+.pm-legend{list-style:none;display:flex;flex-wrap:wrap;gap:4px 16px;margin:0;padding:0;font-size:11px;color:var(--muted)}
+.pm-legend li{display:flex;align-items:center;gap:6px}
+.pm-badge-key{font:600 8.6px var(--sans);letter-spacing:.9px;text-transform:uppercase;color:#4a564e;border:1px solid var(--line);border-radius:3px;padding:1px 5px;background:#fbfaf4}
+.pm-badge-key.critic{color:#a8452c}
+.pm-sw{display:inline-block;width:22px;height:9px;border-radius:2px;background:#8c663ccc}
+.pm-sw.own{background:var(--ink)}
+.pm-sw.linked{background:#f1eadb;border:1px dashed #8c663c}
+.pm-sw.tail{background:linear-gradient(90deg,#416d63d0 0 50%,#416d6338 50% 100%)}
+.pm-sw.lead{height:2px;background:#8c663c80}
+.pm-sw.wall{width:2px;height:14px;background:none;border-left:1.5px dashed #b0a58c;border-radius:0}
+.pm-kind i{width:18px;height:0;border-top:2px solid currentColor;display:block}
+.pm-kind.k-comparison i{border-top-style:dashed}
+.pm-kind.k-extra{color:#6b7280}
+.pm-kind.k-extra i{border-top-style:dotted}
+.pm-note{margin:8px 0 0}
+@media(max-width:700px){.person-map{padding:14px 12px 12px;margin-bottom:24px}
+  .pm-head{flex-direction:column;align-items:flex-start;gap:6px}
+  .pm-head h3{font-size:19px}}

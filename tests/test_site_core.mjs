@@ -7,7 +7,7 @@ import {isOverviewHash} from '../site/core.mjs';
 import {recordPanel} from '../site/records.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
-  lifeIndex, JOURNAL_LAYER, frameOf} from '../site/field.mjs';
+  lifeIndex, JOURNAL_LAYER, frameOf, personMapSubset, personMapLayout, ROLE_BADGE} from '../site/field.mjs';
 import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
@@ -583,4 +583,89 @@ test('archive graphs still draw to the 2000 wall', () => {
   const view = buildFieldLayout(g, 1000, null, ['L']);
   assert.equal(view.coverageYear, 2000);
   assert.equal(view.bars[0].drawEnd, 2000);
+});
+
+test('person map: roster entries, the own entry, and its edge targets — nothing else', () => {
+  const s = personMapSubset(graph, 'dipesh_chakrabarty');
+  assert.equal(s.own, 'dipesh_chakrabarty');
+  const roster = personContexts(graph, 'dipesh_chakrabarty').map(c => c.node.id);
+  for (const id of roster) assert.equal(s.roster.get(id), personContexts(graph, 'dipesh_chakrabarty').find(c => c.node.id === id).representative.role);
+  const own = graph.edges.filter(e => e.source === s.own || e.target === s.own);
+  assert.equal(s.edges.length, own.length);
+  const expected = new Set([...roster, s.own, ...own.map(e => e.source === s.own ? e.target : e.source)]);
+  assert.deepEqual([...s.ids].sort(), [...expected].sort());
+  for (const e of s.edges) assert.ok(s.ids.has(e.source) && s.ids.has(e.target), e.id);
+  // An edge target that does not name the person is marked as linked, not given a roster role.
+  assert.ok(s.linked.has('eric_hobsbawm') && !s.roster.has('eric_hobsbawm'));
+  assert.equal(s.linked.get('eric_hobsbawm')[0].dir, 'out');
+});
+test('person map: a roster-only person gets their roster entries and no edges', () => {
+  const s = personMapSubset(graph, 'ramsay_cook');
+  assert.equal(s.own, null);
+  assert.equal(s.edges.length, 0);
+  assert.equal(s.basis, 'roster');
+  assert.deepEqual([...s.ids].sort(), personContexts(graph, 'ramsay_cook').map(c => c.node.id).sort());
+  assert.ok(s.ids.size >= 3);
+});
+test('person map: a person named only within approaches falls back to those entries', () => {
+  const p = graph.people.find(x => !x.node_id && !personContexts(graph, x.id).length
+    && graph.nodes.some(n => (n.strands || []).some(st => st.person_ids?.includes(x.id))));
+  if (!p) return;
+  const s = personMapSubset(graph, p.id);
+  assert.equal(s.basis, 'approach');
+  assert.ok(s.ids.size > 0);
+  for (const id of s.ids) assert.equal(s.roster.get(id), 'approach');
+});
+test('person map layout reuses the field layout on the subset, compact and single-banded', () => {
+  const full = buildFieldLayout(graph, 1000, null, fieldLayers(graph, {}));
+  for (const [pid, width] of [['dipesh_chakrabarty', 1000], ['ramsay_cook', 1000], ['foucault', 760], ['foucault', 600]]) {
+    const L = personMapLayout(graph, pid, width);
+    assert.equal(L.placed.size, L.subset.ids.size, pid);
+    for (const id of L.subset.ids) assert.ok(L.placed.has(id), `${pid}: ${id} not drawn`);
+    assert.equal(L.bands.length, 1, 'one band: the subset is too small to split by layer');
+    assert.equal(L.ghosts.length, 0);
+    assert.ok(L.inner <= Math.max(width - 2, L.G.minW));
+    for (const b of L.bars) assert.ok(b.x >= L.x0 - 1 && b.x + b.w <= L.x1 + 1, `${pid}: ${b.node.id} outside axis`);
+    assert.ok(L.G.barH < full.G.barH, 'compact density');
+    // Badges name the role on each roster entry; the own entry says so; linked-only entries carry none.
+    for (const b of L.bars) {
+      if (b.node.id === L.subset.own) assert.equal(b.badge, ROLE_BADGE.own);
+      else if (L.subset.roster.has(b.node.id)) assert.equal(b.badge, ROLE_BADGE[L.subset.roster.get(b.node.id)]);
+      else assert.equal(b.badge, '');
+    }
+    // Labels never overlap a bar or another label on the same row.
+    const boxes = L.bars.map(b => { const w = b.labelW;
+      return b.side === 'right' ? [b.y, b.x, b.x + b.w + 7 + w] : b.side === 'left' ? [b.y, b.x - 9 - w, b.x + b.w] : [b.y, b.x, Math.max(b.x + b.w, b.x + 9 + w)]; });
+    for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++)
+      if (boxes[i][0] === boxes[j][0]) assert.ok(boxes[i][2] <= boxes[j][1] || boxes[j][2] <= boxes[i][1], `${pid}: row overlap ${L.bars[i].node.id} / ${L.bars[j].node.id}`);
+  }
+  // The axis keeps 1900 as its left edge when nothing is earlier, with no compressed segment.
+  const c = personMapLayout(graph, 'ramsay_cook', 900);
+  assert.equal(c.minYear, 1900);
+  assert.equal(c.earlyShare, 0);
+  assert.ok(Math.abs(c.scale(1900) - c.x0) < 0.5);
+  // The full field is unchanged by the options: same placement as before.
+  assert.equal(full.placed.size, fieldNodes(graph).length);
+  assert.equal(full.earlyShare, 0.2);
+});
+test('person map stacks on a phone: one mark per row, label above, nothing past the box', () => {
+  for (const pid of ['dipesh_chakrabarty', 'foucault', 'ramsay_cook']) {
+    const L = personMapLayout(graph, pid, 322);
+    assert.ok(L.inner <= 320, `${pid}: ${L.inner} wider than its box`);
+    assert.equal(new Set(L.bars.map(b => b.y)).size, L.bars.length, 'one mark per row');
+    for (const b of L.bars) {
+      assert.equal(b.side, 'above');
+      assert.ok(b.labelX >= L.x0 - 0.5 && b.labelX + b.labelW <= L.x1 + 0.5, `${pid}: ${b.node.id} label outside`);
+      assert.ok(b.x >= L.x0 - 1 && b.x + b.w <= L.x1 + 1, `${pid}: ${b.node.id} bar outside`);
+    }
+  }
+  assert.equal(personMapLayout(graph, 'foucault', 900).bars.some(b => b.side === 'above'), false, 'wide maps pack rows');
+});
+test('person map in the archive keeps the 2000 wall and the archive\'s own people', () => {
+  const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
+  const L = personMapLayout(archive, 'dipesh_chakrabarty', 900);
+  assert.equal(L.subset.own, null, 'no Chakrabarty entry in 1.121');
+  assert.equal(L.coverageYear, 2000);
+  assert.equal(L.maxYear, 2000);
+  for (const b of L.bars.filter(b => b.open)) assert.ok(b.drawEnd <= 2000, b.node.id);
 });

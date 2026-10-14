@@ -1,7 +1,8 @@
 import {PAGE_SIZE, LAYER_TITLES, KINDS, PERSON_ROLES, edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH, isOverviewHash} from './core.mjs';
 import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relationIndex, milestoneYears, lifeIndex,
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
-  pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf, frameOf, reviewedThrough} from './field.mjs';
+  pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf, frameOf, reviewedThrough,
+  personMapSubset, personMapLayout, ROLE_BADGE} from './field.mjs';
 import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
 import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 import {recordPanel as publicationPanel} from './records.mjs';
@@ -347,7 +348,8 @@ function personPage() {
   const family = familyBySlug(evidence?.families, state.family);
   const origin = parent ? `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent.label)}</a>` : family ? `<a href="${esc(href({tab: 'map', person: '', node: '', edge: '', focus: '', query: '', view: 'approaches'}))}">${esc(family.label)}</a>` : '<a href="#tab=people">Historians & contributors</a>';
   const basisLabels = {curated_entry: 'Selection recorded in the curated entry', existing_relationship: 'Selection supported by an existing qualified connection', source_review: 'Selection with a scoped source check', editorial_comparison: 'Editorial comparison across constituent fields'};
-  return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
+  return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link primary" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
+    ${personMapSection(p)}
     ${own ? `<p class="profile-introduction">${esc(own.description)}</p>` : '<p class="context-note">Read this person through the works and contexts below. These are selected points of entry, not a complete biography.</p>'}
     <h3>Where to read them</h3><div class="person-contexts">${contexts.map(({node:n, representative:r}) => `<section class="person-affiliation tone-${layerIndex(n.layer)}">${layerTag(n)}<h3><a href="${esc(nodeHref(n.id))}">${esc(n.label)} →</a></h3><span class="role-tag">${esc(PERSON_ROLES[r.role])}</span><p>${esc(r.context)}</p>
       ${r.works ? `<p class="person-work">${esc(r.works)}</p>` : `<p class="fine-print">The current selection names this person without a separate work citation. <a href="${esc(nodeHref(n.id))}">Read the group’s works and references.</a></p>`}
@@ -357,6 +359,149 @@ function personPage() {
     ${RECORD_PILOT.has(p.id) ? `<div data-person-records="${esc(p.id)}" aria-live="polite">${peopleRecords ? publicationPanel(peopleRecords,p.id) : '<p class="fine-print">Loading publication records…</p>'}</div>` : ''}
     </article>`;
 }
+/* ---------------- Where they sit: the profile's compact field ----------------
+   The same layout as the field (buildFieldLayout, compact), restricted to the entries that name
+   this person, their own entry, and the entries its relationships reach. Drawn after measuring
+   the column, like the field, and redrawn on resize. */
+let personMapWidth = 0, personMapSubsetMemo = null;
+const PM_ROLE_ORDER = ['historian', 'contributor', 'precursor', 'critic', 'comparison', 'approach'];
+const PM_ROLE_LABEL = {...PERSON_ROLES, approach: 'Named within an approach'};
+function pmSubset(id) {
+  if (personMapSubsetMemo?.id !== id || personMapSubsetMemo.g !== graph)
+    personMapSubsetMemo = {id, g: graph, s: personMapSubset(graph, id)};
+  return personMapSubsetMemo.s;
+}
+/* What a mark says on hover, on focus and to a screen reader: the entry, its dates, the role. */
+function pmDescribe(p, s, id) {
+  const n = nodeById.get(id);
+  const parts = [`${n.label}${n.date_label ? `, ${n.date_label}` : ''}.`];
+  if (id === s.own) parts.push(`${p.label}’s own entry${s.edges.length ? `, with ${s.edges.length} recorded relationship${s.edges.length === 1 ? '' : 's'}` : ''}.`);
+  if (s.roster.has(id)) parts.push(`${s.roster.get(id) === 'approach' ? 'Names them within an approach' : `Names them as ${PM_ROLE_LABEL[s.roster.get(id)].toLowerCase()}`}.`);
+  for (const r of s.linked.get(id) || [])
+    parts.push(`${r.dir === 'out' ? `${p.label} ${dirWord(r.edge.relationship_kind, 'out')} this entry` : `This entry ${dirWord(r.edge.relationship_kind, 'out')} ${p.label}`} (${kindChip(r.edge.relationship_kind).toLowerCase()}).`);
+  return parts.join(' ');
+}
+const pmHasLead = s => [...s.ids].some(id => { const n = nodeById.get(id), sp = n && spanOf(n);
+  return Boolean(sp?.openStart); });
+function personMapSection(p) {
+  const s = pmSubset(p.id);
+  if (!s.ids.size) return '';
+  const own = s.own ? nodeById.get(s.own) : null;
+  const named = [...s.roster.values()].filter(r => r !== 'approach').length;
+  const reach = s.linked.size;
+  const leave = {person: '', node: '', edge: '', page: 0, section: '', hold: '', letter: '', tab: 'map', view: 'map', family: '', path: ''};
+  const fieldLink = own ? href({...leave, focus: own.id, query: ''})
+    : href({...leave, focus: '', query: p.label});
+  const summary = [named ? `Named on ${named} entr${named === 1 ? 'y’s roster' : 'ies’ rosters'}` : s.basis === 'approach' ? `Named within approaches of ${s.roster.size} entr${s.roster.size === 1 ? 'y' : 'ies'}` : '',
+    own ? `own entry${s.edges.length ? ` with ${s.edges.length} relationship${s.edges.length === 1 ? '' : 's'} to ${reach} entr${reach === 1 ? 'y' : 'ies'}` : ''}` : ''].filter(Boolean).join(' · ');
+  const roles = PM_ROLE_ORDER.filter(r => [...s.roster.values()].includes(r));
+  const kinds = [...new Set(s.edges.map(e => e.relationship_kind))];
+  const fr = frameOf(graph);
+  return `<section class="person-map" aria-labelledby="pm-title"><div class="pm-head"><div><p class="eyebrow">WHERE THEY SIT</p>
+      <h3 id="pm-title">${esc(p.label)} on the time axis</h3><p class="pm-summary">${esc(summary)}.</p></div>
+      <a class="text-link pm-open" href="${esc(fieldLink)}">${own ? 'Open in the field' : 'Find them in the field'} →</a></div>
+    <div class="pm-scroll" data-person="${esc(p.id)}" aria-busy="true"></div>
+    <p class="pm-readout" aria-live="polite">${own || s.ids.size > 1 ? 'Hover or focus a mark for the entry and their role in it; select it to open the entry.' : 'Select the mark to open the entry.'}</p>
+    <ul class="pm-legend" aria-label="Key">
+      ${roles.map(r => `<li><span class="pm-badge-key${r === 'critic' ? ' critic' : ''}">${esc(ROLE_BADGE[r])}</span>${esc(PM_ROLE_LABEL[r].toLowerCase())}</li>`).join('')}
+      ${own ? '<li><span class="pm-sw own"></span>their own entry</li>' : ''}
+      ${reach ? '<li><span class="pm-sw linked"></span>related to their entry; does not name them</li>' : ''}
+      ${pmHasLead(s) ? '<li><span class="pm-sw lead"></span>earlier roots, undated</li>' : ''}
+      ${kinds.map(k => `<li class="pm-kind k-${esc(BASE_KINDS.includes(k) ? k : 'extra')}"><i></i>${esc(kindChip(k).toLowerCase())}</li>`).join('')}
+      ${fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
+        : `<li><span class="pm-sw wall"></span>${esc(fr.wall)}: the archive’s coverage limit, not an ending</li>`}
+    </ul>
+    <p class="fine-print pm-note">Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names; a roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
+}
+function personMapSvg(L, p) {
+  const s = L.subset, fr = L.frame, top = L.axisTop + 16, bottom = L.height - 2;
+  let grid = '';
+  const step = L.inner < 640 ? 40 : 20;
+  for (let yr = Math.ceil(L.minYear / 10) * 10; yr <= L.maxYear; yr += 10) {
+    if (yr < L.breakYear && yr % 50) continue;
+    const x = L.scale(yr).toFixed(1), major = yr >= L.breakYear ? yr % step === 0 : yr % 100 === 0;
+    grid += `<line class="pm-tick${major ? ' major' : ''}" x1="${x}" y1="${top}" x2="${x}" y2="${bottom}"/>${major
+      ? `<text class="pm-tick-label" x="${x}" y="${L.axisTop + 8}" text-anchor="middle">${yr}</text>` : ''}`;
+  }
+  if (L.earlyShare) { const bx = L.scale(L.breakYear).toFixed(1);
+    grid += `<line class="pm-break" x1="${bx}" y1="${top}" x2="${bx}" y2="${bottom}"><title>Before 1900 the axis is compressed</title></line>`; }
+  if (fr.open) { const cx = L.scale(fr.cutoff).toFixed(1);
+    grid += `<line class="pm-cutoff" x1="${cx}" y1="${top - 4}" x2="${cx}" y2="${bottom}"><title>Research cutoff ${esc(graph.scope.frame?.research_cutoff || '')}</title></line>`; }
+  else { const wx = L.scale(L.coverageYear).toFixed(1);
+    grid += `<line class="pm-wall" x1="${wx}" y1="${top - 4}" x2="${wx}" y2="${bottom}"><title>Coverage ends ${L.coverageYear}</title></line>`; }
+  const tone = id => `tone-${Math.max(0, layerIndex(nodeById.get(id).layer))}`;
+  const kindOf = e => BASE_KINDS.includes(e.relationship_kind) ? e.relationship_kind : 'extra-kind';
+  /* Every drawn relationship touches the own entry. Its ends are spread along the own mark, in
+     the order of the other ends, and each other end meets its mark at the nearest point in time,
+     on the side facing the own mark: lines run mostly upright, as a comb rather than a knot. */
+  const ownP = s.own ? L.placed.get(s.own) : null;
+  const ends = s.edges.map(e => ({e, o: L.placed.get(e.source === s.own ? e.target : e.source)})).filter(r => ownP && r.o)
+    .sort((a, b) => (a.o.x + a.o.w / 2) - (b.o.x + b.o.w / 2) || a.o.y - b.o.y);
+  const edges = ends.map(({e, o}, i) => {
+    const ax = ownP.x + (ownP.w * (i + 1)) / (ends.length + 1);
+    const above = o.y < ownP.y;
+    const bx = Math.min(Math.max(ax, o.x + 3), o.x + Math.max(o.w - 3, 3));
+    const a = {x: ax, y: above ? ownP.y : ownP.y + ownP.h}, b = {x: bx, y: above ? o.y + o.h : o.y};
+    const data = `data-a="${esc(e.source)}" data-b="${esc(e.target)}"`;
+    return {line: `<path class="edge pm-edge ${kindOf(e)}" ${data} d="${esc(edgePath(a, b))}"><title>${esc(e.relationship)}</title></path>`,
+      dot: `<circle class="pm-end k-${kindOf(e) === 'extra-kind' ? 'extra' : kindOf(e)}" ${data} cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="2.6"/>`}; });
+  const lines = edges.map(x => x.line).join(''), endDots = edges.map(x => x.dot).join('');
+  const cls = id => ['pm-entry', tone(id), id === s.own ? 'own' : s.roster.has(id) ? `role-${s.roster.get(id)}` : 'linked'].join(' ');
+  /* The faded tail stops short of the next mark (or its left-hand label) on the same row. */
+  const tailEnd = b => { let end = L.scale(b.fadeTo);
+    for (const o of L.bars) { if (o === b || o.y !== b.y || o.x < b.x + b.w - 0.5) continue;
+      end = Math.min(end, (o.side === 'left' ? o.x - o.labelW - 9 : o.x) - 6); }
+    return end; };
+  const label = b => { const badge = b.badge ? `<tspan class="pm-badge${b.badge === ROLE_BADGE.critic ? ' critic' : ''}" dx="6">${esc(b.badge.toUpperCase())}</tspan>` : '';
+    const x = b.side === 'above' ? b.labelX : b.side === 'right' ? b.x + b.w + 7 : b.side === 'left' ? b.x - 7 : b.x + 9;
+    const y = b.side === 'above' ? b.y - 7 : b.y + b.h / 2 + 1;
+    return `<text class="pm-label ${b.side}" x="${x.toFixed(1)}" y="${y.toFixed(1)}"${b.side === 'left' ? ' text-anchor="end"' : ''}>${esc(b.label)}${badge}</text>`; };
+  const bars = L.bars.map(b => {
+    const tailW = fr.open && b.open && b.fadeTo > b.drawEnd ? tailEnd(b) - L.scale(b.drawEnd) : 0;
+    return `<a class="${cls(b.node.id)}" data-id="${esc(b.node.id)}" href="${esc(nodeHref(b.node.id))}" aria-label="${esc(pmDescribe(p, s, b.node.id))}">
+      ${b.lead ? `<line class="pm-lead" x1="${b.lead.x.toFixed(1)}" y1="${(b.y + b.h / 2).toFixed(1)}" x2="${(b.lead.x + b.lead.w).toFixed(1)}" y2="${(b.y + b.h / 2).toFixed(1)}"><title>Earlier roots, undated</title></line>` : ''}
+      ${tailW > 1 ? `<rect class="pm-tail" x="${L.scale(b.drawEnd).toFixed(1)}" y="${b.y}" width="${tailW.toFixed(1)}" height="${b.h}"/>` : ''}
+      <rect class="pm-bar${b.point ? ' point' : ''}" x="${b.x.toFixed(1)}" y="${b.y}" width="${b.w.toFixed(1)}" height="${b.h}" rx="2.5"${b.span.precision === 'decade' && !b.point ? ' fill-opacity="0.72"' : ''}/>
+      ${!fr.open && b.open && b.w > 30 ? `<rect class="pm-fade" x="${(b.x + b.w - 20).toFixed(1)}" y="${b.y - 1}" width="21" height="${b.h + 2}"/>` : ''}
+      ${label(b)}</a>`; }).join('');
+  const chips = L.chips.map(c => `<a class="${cls(c.node.id)} pm-chip" data-id="${esc(c.node.id)}" href="${esc(nodeHref(c.node.id))}" aria-label="${esc(pmDescribe(p, s, c.node.id))} No date span stated.">
+      <rect class="pm-bar" x="${c.x}" y="${c.y}" width="${c.w}" height="${c.h}" rx="9"/><text class="pm-label inside" x="${c.x + 9}" y="${c.y + c.h / 2 + 1}">${esc(c.label)}${c.badge ? `<tspan class="pm-badge" dx="6">${esc(c.badge.toUpperCase())}</tspan>` : ''}</text></a>`).join('');
+  const captions = L.captions.map(c => `<text class="pm-caption" x="${c.x}" y="${c.y}">${esc(c.text)}</text>`).join('');
+  return `<svg class="pm-svg" width="${L.inner}" height="${L.height}" viewBox="0 0 ${L.inner} ${L.height}" role="group"
+      aria-label="Where ${esc(p.label)} sits: ${s.ids.size} entr${s.ids.size === 1 ? 'y' : 'ies'} on a time axis from ${L.minYear} to ${fr.open ? 'the research cutoff' : L.coverageYear}. Each mark is a link to the entry; the same entries are listed below.">
+    <defs><linearGradient id="pm-fade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fbfaf4" stop-opacity="0"/><stop offset="1" stop-color="#fbfaf4" stop-opacity=".92"/></linearGradient></defs>
+    <g class="pm-chrome">${grid}<line class="pm-axis" x1="${L.x0}" y1="${top}" x2="${L.x1}" y2="${top}"/>${captions}</g>
+    <g class="pm-edges">${lines}</g>${chips}${bars}<g class="pm-ends">${endDots}</g></svg>`;
+}
+function drawPersonMap() {
+  const box = document.querySelector('.pm-scroll');
+  if (!box || !state.person) return;
+  const p = personById.get(box.dataset.person);
+  personMapWidth = box.clientWidth || 900;
+  const L = {...personMapLayout(graph, p.id, personMapWidth), subset: pmSubset(p.id)};
+  box.innerHTML = personMapSvg(L, p);
+  box.removeAttribute('aria-busy');
+  const svg = box.querySelector('svg');
+  const readout = document.querySelector('.pm-readout');
+  const idle = readout.textContent;
+  const light = id => {
+    svg.classList.toggle('previewing', Boolean(id));
+    for (const a of svg.querySelectorAll('.pm-entry')) a.classList.toggle('hi', a.dataset.id === id);
+    for (const e of svg.querySelectorAll('.pm-edge, .pm-end')) {
+      const on = Boolean(id) && (id === L.subset.own || e.dataset.a === id || e.dataset.b === id);
+      e.classList.toggle('emph', on); e.classList.toggle('mute', Boolean(id) && !on);
+    }
+    readout.textContent = id ? pmDescribe(p, L.subset, id) : idle;
+  };
+  let current = null;
+  const preview = target => { const id = target.closest?.('.pm-entry')?.dataset.id || null;
+    if (id !== current) { current = id; light(id); } };
+  svg.addEventListener('mouseover', e => preview(e.target));
+  svg.addEventListener('mouseleave', () => { current = null; light(null); });
+  svg.addEventListener('focusin', e => preview(e.target));
+  svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) { current = null; light(null); } });
+}
+
 /* Approaches (strands) that name a person, including works added after the roster record. */
 function strandContexts(p) {
   const hits = graph.nodes.flatMap(n => (n.strands || []).filter(s => s.person_ids?.includes(p.id)).map(strand => ({n, strand})));
@@ -1048,6 +1193,8 @@ function onResize() {
     if (box && Math.abs(box.clientWidth - fieldWidth) > 4) drawField();
     const company = document.querySelector('.company-chart');
     if (company && Math.abs(company.clientWidth - companyWidth) > 4) drawCompany();
+    const pm = document.querySelector('.pm-scroll');
+    if (pm && Math.abs(pm.clientWidth - personMapWidth) > 4) drawPersonMap();
     const rows = document.querySelector('.landing-rows');
     if (rows && Math.abs(rows.clientWidth - landingWidth) > 4) drawLanding();
   }, 150);
@@ -1338,6 +1485,7 @@ function render() {
     `<div class="archive-banner" role="note"><strong>Archived view.</strong> The original 1920–2000 experiment (revision ${esc(arch.baseline_revision)}). <a href="${esc(href({range: ''}))}">Return to the current atlas →</a></div>`);
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
+  if (state.person) drawPersonMap();
   document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
   $('announcement').textContent = onLanding ? `Twelve families of historical writing: the atlas beside the record. Record view: ${VIEWS[recordView()]}.`
     : state.tab === 'map' && !state.node && !state.person
