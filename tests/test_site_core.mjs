@@ -600,11 +600,11 @@ test('person map: roster entries, the own entry, and its edge targets — nothin
   assert.equal(s.linked.get('eric_hobsbawm')[0].dir, 'out');
 });
 test('person map: a roster-only person gets their roster entries and no edges', () => {
-  const s = personMapSubset(graph, 'ramsay_cook');
+  const s = personMapSubset(graph, 'doug_owram');
   assert.equal(s.own, null);
   assert.equal(s.edges.length, 0);
   assert.equal(s.basis, 'roster');
-  assert.deepEqual([...s.ids].sort(), personContexts(graph, 'ramsay_cook').map(c => c.node.id).sort());
+  assert.deepEqual([...s.ids].sort(), personContexts(graph, 'doug_owram').map(c => c.node.id).sort());
   assert.ok(s.ids.size >= 3);
 });
 test('person map: a person named only within approaches falls back to those entries', () => {
@@ -618,7 +618,7 @@ test('person map: a person named only within approaches falls back to those entr
 });
 test('person map layout reuses the field layout on the subset, compact and single-banded', () => {
   const full = buildFieldLayout(graph, 1000, null, fieldLayers(graph, {}));
-  for (const [pid, width] of [['dipesh_chakrabarty', 1000], ['ramsay_cook', 1000], ['foucault', 760], ['foucault', 600]]) {
+  for (const [pid, width] of [['dipesh_chakrabarty', 1000], ['doug_owram', 1000], ['foucault', 760], ['foucault', 600]]) {
     const L = personMapLayout(graph, pid, width);
     assert.equal(L.placed.size, L.subset.ids.size, pid);
     for (const id of L.subset.ids) assert.ok(L.placed.has(id), `${pid}: ${id} not drawn`);
@@ -640,7 +640,7 @@ test('person map layout reuses the field layout on the subset, compact and singl
       if (boxes[i][0] === boxes[j][0]) assert.ok(boxes[i][2] <= boxes[j][1] || boxes[j][2] <= boxes[i][1], `${pid}: row overlap ${L.bars[i].node.id} / ${L.bars[j].node.id}`);
   }
   // The axis keeps 1900 as its left edge when nothing is earlier, with no compressed segment.
-  const c = personMapLayout(graph, 'ramsay_cook', 900);
+  const c = personMapLayout(graph, 'doug_owram', 900);
   assert.equal(c.minYear, 1900);
   assert.equal(c.earlyShare, 0);
   assert.ok(Math.abs(c.scale(1900) - c.x0) < 0.5);
@@ -649,7 +649,7 @@ test('person map layout reuses the field layout on the subset, compact and singl
   assert.equal(full.earlyShare, 0.2);
 });
 test('person map stacks on a phone: one mark per row, label above, nothing past the box', () => {
-  for (const pid of ['dipesh_chakrabarty', 'foucault', 'ramsay_cook']) {
+  for (const pid of ['dipesh_chakrabarty', 'foucault', 'doug_owram']) {
     const L = personMapLayout(graph, pid, 322);
     assert.ok(L.inner <= 320, `${pid}: ${L.inner} wider than its box`);
     assert.equal(new Set(L.bars.map(b => b.y)).size, L.bars.length, 'one mark per row');

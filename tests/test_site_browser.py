@@ -574,9 +574,9 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.wait_for_function("() => location.hash.includes('focus=dipesh_chakrabarty')")
         expect(self.page.locator('.entry.selected')).to_have_count(1)
         # A roster-only person: their roster entries, no own entry, no edges.
-        roster = [n['id'] for n in GRAPH['nodes'] if any(r['person_id'] == 'ramsay_cook' for r in n.get('representative_people', []))]
+        roster = [n['id'] for n in GRAPH['nodes'] if any(r['person_id'] == 'doug_owram' for r in n.get('representative_people', []))]
         self.assertGreaterEqual(len(roster), 3)
-        self.open('#person=ramsay_cook')
+        self.open('#person=doug_owram')
         expect(self.page.locator('.person-map a.pm-entry')).to_have_count(len(roster))
         expect(self.page.locator('.person-map path.pm-edge')).to_have_count(0)
         expect(self.page.locator('.person-map a.pm-entry.own')).to_have_count(0)
@@ -587,7 +587,7 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.person-map path.pm-edge')).to_have_count(0)
         # A phone: stacked rows, nothing wider than the page.
         self.page.set_viewport_size({'width': 390, 'height': 844})
-        for fragment in ['#tab=people&person=dipesh_chakrabarty', '#person=ramsay_cook', '#person=foucault']:
+        for fragment in ['#tab=people&person=dipesh_chakrabarty', '#person=doug_owram', '#person=foucault']:
             self.open(fragment)
             expect(self.page.locator('.person-map svg.pm-svg')).to_be_visible()
             self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'), fragment)
