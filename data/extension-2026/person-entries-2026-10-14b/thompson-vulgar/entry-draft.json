@@ -1,0 +1,92 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-14",
+ "applies_to": "historiography-1920-2000.json revision 1.133 -> candidate 1.134 (extras: one edge; no person entry)",
+ "review_status": "needs_review",
+ "proposed_edges": [
+  {
+   "proposal_id": "pe134_thompson_rel_01",
+   "source": "ep_thompson",
+   "target": "karl",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "From within Marxism, rejects the 'economic automatism' of Stalinist base-and-superstructure Marxism and the treatment of class as 'a thing', holding to the 'dialectical interaction between social consciousness ... and social being' and faulting Marx's own 'clumsy static model' (1957–78)",
+   "map_label": "Against economistic Marxism, 1957–78",
+   "evidence_note": "Thompson's own in-period statements. (1) 'Socialist Humanism: An Epistle to the Philistines', The New Reasoner 1 (Summer 1957), pp. 105–143, read in full in the Marxists Internet Archive transcription (no page numbers). Of Stalinist theory: 'How much easier if the people had no minds, if the \"superstructure\" was cut out and society was all \"base\"'; 'This economic automatism certainly is not Marxism.' 'In all their historical analysis Marx and Engels always kept in view this dialectical interaction between social consciousness (both active and passive) and social being. But in trying to explain their ideas they expressed them as a make-belief \"model\", the \"basis\" of social relations (in production) and the \"superstructure\" ... In fact no such basis and superstructure ever existed; it is a metaphor to help us to understand what does exist – men, who act, experience, think and act again. It turns out that it is a bad and dangerous model, since Stalin used it not as an image of men changing in society but as a mechanical model, operating semi-automatically and independently of conscious human agency.' 'An idea is not a reflex of a gasometer'; 'No \"basis\" ever invented a steam engine, or sat on the National Coal Board.' He does not exempt Marx: 'because Marx reduced his concept of process to a clumsy static model, Stalinism evolved this mystique'; features of Stalinism 'can be traced to ambiguities in the thought of Marx and, even more, to mechanistic fallacies in Lenin's writings'. Stalinism's three features are 'anti-intellectualism, moral nihilism, and the denial of the creative agency of human labour'. The revolt against Stalinism 'will, if successful, confirm the revolutionary confidence of the founders of the socialist movement'. (2) Preface to The Making of the English Working Class (1963), university-hosted transcription read in full (transcription pp. 1–2; printed pagination not collated): class is 'something which in fact happens (and can be shown to have happened) in human relationships'; 'There is today an ever-present temptation to suppose that class is a thing. This was not Marx's meaning, in his own historical writing, yet the error vitiates much latter-day \"Marxist\" writing', in which the class-consciousness that '\"it\" ought to have' is deduced and 'a cultural superstructure' lets recognition dawn 'in inefficient ways'; 'If we remember that class is a relationship and not a thing, we can not think in this way.' The same passage finds 'a similar error ... on the other side of the ideological divide', in the static sociology of Smelser and Dahrendorf, so the preface's target is reification in both camps. The preface's 'I am seeking to rescue the poor stockinger ...' is aimed at Fabian, economic-historian and 'Pilgrim's Progress' orthodoxies, not at Marxism, and is not used here. (3) 'The Poverty of Theory' (1978), section x, re-read in the Marxists Internet Archive transcription: 'Stalinism afforded a caricature of Marxism, which offered ... an identical reification of process, in which a \"superstructure\" was reduced to confirming or legitimating a base' (the identity is with Smelser's sociology), and no analogies 'derived from mechanical or organic mechanism' can 'encompass the logic of indeterminate historical process', since no analogy from another area can have 'any more than a limited, illustrative, metaphoric value (and often, as with basis and superstructure, a static and damaging one)'; in section vii he calls himself 'deeply indebted for certain concepts to Marx's own practice'. In-period readings: Palmer's 'Homage to Edward Thompson' (1993, Part I, p. 68) describes Thompson's socialist humanism as directed against 'the mechanical idealism of Stalinism's appropriation of the base/superstructure metaphor', and (1994, Part II, p. 17) quotes Thompson calling The Making 'a polemic against abbreviated economistic notations of Marxism' (from interviews, not read). The critique was itself contested inside Marxism: Callinicos (1992, p. 313) reports that Palmer's Descent into Discourse took Thompson and Raymond Williams 'to task for abandoning the metaphor of base and superstructure'. Later reading, labelled as such: Rogers (2021) sees in Thompson a 'rejection of economic determinism and the base–superstructure model of explanation favoured by many Marxists', preferring 'the co-determination of social being and social consciousness, mediated by experience'. Scope: a critique of economistic and Stalinist uses of historical materialism, and of Marx's own static model, made from within Marxism; it is not a rejection of historical materialism. The Althusser critique stays on edge_310 (ep_thompson → althusser) and edge_027 (marx → althusser); his contribution to Marxist social history stays on edge_309 (ep_thompson → marx).",
+   "source_ids": [
+    "pe134_thompson_socialist_humanism_1957",
+    "thompson_making_preface",
+    "ep_thompson_poverty",
+    "pl129_palmer_1993_homage",
+    "pe134_palmer_callinicos_1992",
+    "pe134_palmer_rogers_2021"
+   ],
+   "classification_basis": "editorial_review",
+   "review_status": "needs_review",
+   "target_strand": null,
+   "target_strand_note": "No karl strand maps the position criticised (Stalin's and, in part, Lenin's mechanical base-and-superstructure model). situated_histories holds Thompson himself (Making preface, 1963) and political_effects records Engels's 'last instance' qualification; neither is the object of the critique. If the editor wants the arrow to land on a strand, situated_histories is the nearer, as the strand where Thompson's alternative sits.",
+   "roster_row": {
+    "node": "karl",
+    "person_id": "ep_thompson"
+   },
+   "include": true,
+   "include_note": "Thompson holds a historian row on karl (no edge_id). roster_row is left null because apply_person_entries.py builds roster_edges with d['node']['id'], which an extras draft (no node) does not have; the release step can set edge_id on the karl/ep_thompson row by hand if wanted. Pathway use: the user's 'question of class' pathway should open on this edge (Thompson's turn against vulgar Marxism), then the Palmer–Scott exchange (pe134_palmer_rel_02)."
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "ep_thompson → althusser (The Poverty of Theory)",
+   "reason": "Exists as edge_310 (critique), with edge_027 (marx → althusser). Not duplicated; this edge uses Poverty only for its section x remarks on Stalinism and base and superstructure."
+  },
+  {
+   "pair": "ep_thompson → marx (Marxist social history)",
+   "reason": "edge_309 (contribution) already records class as a historical relationship from the same preface. The new edge points at historical materialism (karl) because the 1957 essay argues about the theory's base-and-superstructure model, not about the British historians' practice."
+  },
+  {
+   "pair": "ep_thompson → karl as contribution",
+   "reason": "Considered and rejected as the main kind: the 1957 essay is framed as a revolt against a dominant reading of the theory, so critique fits. His alternative (agency, experience, class as relationship) is already present as the karl/situated_histories strand."
+  },
+  {
+   "pair": "'I am seeking to rescue …' (Making preface) as evidence",
+   "reason": "Suggested in the brief, but the passage answers Fabian, empirical-economic-history and 'Pilgrim's Progress' orthodoxies (transcription p. 3), not Marxism. Not used."
+  },
+  {
+   "pair": "ep_thompson → historicalsociology / modern (Smelser, Dahrendorf)",
+   "reason": "The preface's critique of Smelser and Dahrendorf is the other half of the same passage; edge_471 (ep_thompson → modern) already records his challenge to growth models. Not proposed here."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "pe134_thompson_socialist_humanism_1957",
+   "title": "E. P. Thompson, “Socialist Humanism: An Epistle to the Philistines,” The New Reasoner 1 (Summer 1957): 105–143.",
+   "url": "https://www.marxists.org/archive/thompson-ep/1957/sochum.htm",
+   "citation": "E. P. Thompson, “Socialist Humanism: An Epistle to the Philistines,” The New Reasoner 1 (Summer 1957): 105–143; transcription by the Marxists Internet Archive.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-14",
+    "note": "Read in full in the Marxists Internet Archive transcription (from a PDF on the Barry Amiel & Norman Melburn Trust site; transcribed by Einde O'Callaghan); the transcription gives the issue and pp. 105–143 but no page breaks, and was not collated with the print. Palmer's Homage (1993) gives the same citation (New Reasoner 1, Summer 1957, 105–43). Passages used: 'if the \"superstructure\" was cut out and society was all \"base\"'; 'This economic automatism certainly is not Marxism'; the 'dialectical interaction between social consciousness (both active and passive) and social being'; basis and superstructure 'a metaphor' and 'a bad and dangerous model'; 'An idea is not a reflex of a gasometer'; 'No \"basis\" ever invented a steam engine'; Marx's 'clumsy static model'; 'ambiguities in the thought of Marx and, even more, to mechanistic fallacies in Lenin's writings'; 'anti-intellectualism, moral nihilism, and the denial of the creative agency of human labour'; the revolt 'will, if successful, confirm the revolutionary confidence of the founders of the socialist movement'."
+   },
+   "scope_note": "Thompson's 1957 critique of Stalinist base-and-superstructure Marxism, from within the socialist tradition."
+  }
+ ],
+ "reused_sources": {
+  "thompson_making_preface": "Re-read in full 2026-10-14 (same University of Texas transcription). See the addendum.",
+  "ep_thompson_poverty": "Sections vii and x re-read 2026-10-14 in the Marxists Internet Archive transcription. See the addendum.",
+  "pl129_palmer_1993_homage": "Re-read for both drafts; the addendum is in the palmer draft (one addendum per source).",
+  "pe134_palmer_callinicos_1992": "New in the palmer draft of the same batch (read in full); cited here for the in-Marxist objection.",
+  "pe134_palmer_rogers_2021": "New in the palmer draft of the same batch; cited here as a labelled later reading."
+ },
+ "source_addenda": {
+  "thompson_making_preface": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-14",
+   "note": "Re-read in full for the 1.134 extra edge (ep_thompson → karl). Transcription pp. 1–2: 'There is today an ever-present temptation to suppose that class is a thing. This was not Marx's meaning, in his own historical writing, yet the error vitiates much latter-day \"Marxist\" writing'; the class-consciousness '\"it\" ought to have'; 'a cultural superstructure, through which this recognition dawns in inefficient ways'; 'a similar error is committed daily on the other side of the ideological divide' (Smelser, Dahrendorf); 'If we remember that class is a relationship and not a thing, we can not think in this way.' Transcription p. 3: the 'enormous condescension of posterity' passage answers Fabian, empirical economic-history and 'Pilgrim's Progress' orthodoxies. Rogers (2021, n. 1) places the class-consciousness passage at pp. 9–10 of the 1968 Penguin edition; printed pages were not checked."
+  },
+  "ep_thompson_poverty": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-14",
+   "note": "Sections vii and x re-read for the 1.134 extra edge. Section x: 'Stalinism afforded a caricature of Marxism, which offered, in very different terminology but with an equally abstracted vocabulary, an identical reification of process, in which a \"superstructure\" was reduced to confirming or legitimating a base' (the comparison is with Smelser), followed by Stalin's 1950 formulations; no analogy from another area can have 'any more than a limited, illustrative, metaphoric value (and often, as with basis and superstructure, a static and damaging one)'. Section vii: 'Insofar as I am myself deeply indebted for certain concepts to Marx's own practice, I refuse to evade responsibility by falling back upon his authority'. Transcription without print pagination."
+  }
+ }
+}

@@ -1690,3 +1690,26 @@ What changed:
 
 Applied by `scripts/apply_open_frame.py` (`--check` rebuilds it exactly). The plan is
 `plans/2026-10-14-open-frame.md`. Totals are unchanged: 167 entries, 918 relationships.
+
+## Revision 1.134: Bryan D. Palmer (14 October 2026)
+
+The user: Palmer "probably deserve[s] a place; [he] also went toe to toe with Joan Scott". He
+becomes a person entry with five edges:
+- a contribution to Canadian working-class history (craft culture and class conflict, 1976–79);
+- a critique of Scott (the 1987 *International Labor and Working-Class History* forum, carried
+  into *Descent into Discourse*, 1990);
+- a critique of the linguistic turn (*Descent into Discourse*);
+- a critique of the liberal order framework (2009);
+- E. P. Thompson's influence on him.
+
+An extra edge, `ep_thompson → karl`, records Thompson's turn against economistic Marxism
+(1957–78). It is where the proposed "question of class" pathway starts.
+
+Sol said "accept with fixes"; all seven findings are fixed (`release/fixes-1.134.md`):
+- Scott's own definition of discourse is quoted;
+- Stansell's and Rabinbach's positions in the forum are distinguished;
+- Bercuson's methodological objection is given;
+- the liberal-order label is worded as Palmer's argument.
+
+Totals: 168 entries, 924 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.134/README.md).

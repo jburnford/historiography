@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.133):** 167 entries, 918
-relationships, 1,559 sources, 1,192 shared people. Revision 1.133 ends the 1920–2000 cutoff: each
+**Current implementation (2026-10-14, revision 1.134):** 168 entries, 924
+relationships, 1,571 sources, 1,192 shared people. Revision 1.134 adds a person entry for Bryan D.
+Palmer, with the 1987 exchange with Joan Scott and E. P. Thompson's critique of economistic
+Marxism ([acceptance](data/production-batches/person-entries-1.134/README.md)). Revision 1.133 ends the 1920–2000 cutoff: each
 entry records `coverage.reviewed_through`, spans are open, and the exact-2000 view (1.121) is an
 archive ([acceptance](data/production-batches/open-frame-1.133/README.md); plan
 `plans/2026-10-14-open-frame.md`). Revision 1.132 adds a person entry for

@@ -9,8 +9,8 @@ field: entries on a single time axis, banded by kind. Hold an entry and everythi
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.133** (schema 1.5): 167 entries,
-918 teaching relationships, 1,559 bibliography records, 1,192
+Production data revision **1.134** (schema 1.5): 168 entries,
+924 teaching relationships, 1,571 bibliography records, 1,192
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.

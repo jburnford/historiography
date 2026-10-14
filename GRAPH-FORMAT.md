@@ -1,6 +1,22 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.133: the open frame (2026-10-14)
+## Current revision 1.134 (2026-10-14)
+
+**168 entries (95 groups, 73 person entries), 924 teaching relationships, 1,571 sources and
+1,192 shared people.**
+
+Bryan D. Palmer becomes a person entry. He has:
+- a contribution to Canadian working-class history (1976–79);
+- critiques of Joan Scott (the 1987 ILWCH forum, then *Descent into Discourse*, 1990), of the
+  linguistic turn, and of the liberal order framework (2009);
+- Thompson's influence on him.
+
+One extra edge, `ep_thompson → karl` (critique, 1957–78), records Thompson's turn against
+economistic Marxism. Palmer joins the `language` roster as a critic. A person-entry
+`roster_row` may now be `{node, person_id}`, so an extras edge can link an existing roster row.
+See the [acceptance record](data/production-batches/person-entries-1.134/README.md).
+
+## Historical revision 1.133: the open frame (2026-10-14)
 
 **Schema 1.5. 167 entries, 918 relationships.** The user ended the 1920–2000 cutoff on 2026-10-14:
 "we need to end the 2000 break in this project"; the frame "comes from the original experiment
