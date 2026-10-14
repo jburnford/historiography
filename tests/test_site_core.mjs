@@ -7,7 +7,7 @@ import {isOverviewHash} from '../site/core.mjs';
 import {recordPanel} from '../site/records.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
-  lifeIndex, JOURNAL_LAYER} from '../site/field.mjs';
+  lifeIndex, JOURNAL_LAYER, frameOf} from '../site/field.mjs';
 import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from '../site/landing.mjs';
 
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
@@ -527,4 +527,33 @@ test('family routes open approaches and retain explicit timeline and focus route
   assert.equal(readRoute('#family=indigenous-histories&view=list', graph, pathways).view, 'list');
   assert.equal(readRoute('#family=indigenous-histories&focus=indigenous', graph, pathways).view, 'map');
   assert.equal(readRoute('#family=all', graph, pathways).view, 'map');
+});
+
+test('open frame: frameOf reads scope.frame; legacy graphs keep their wall', () => {
+  const open = {scope: {main_period: [1920, null], frame: {start: 1920, end: null, research_cutoff: '2026-10-14'}}, nodes: []};
+  assert.deepEqual(frameOf(open), {open: true, start: 1920, end: 2027, cutoff: 2026 + 9.5 / 12, wall: null});
+  const legacy = {scope: {main_period: [1920, 2000]}, nodes: []};
+  assert.equal(frameOf(legacy).open, false);
+  assert.equal(frameOf(legacy).wall, 2000);
+});
+
+test('open frame: a group is solid to reviewed_through and fades to the frame end', () => {
+  const g = {scope: {main_period: [1920, null], frame: {start: 1920, end: null, research_cutoff: '2026-10-14'}},
+    layers: [{id: 'L'}], edges: [], people: [], nodes: [
+      {id: 'a', label: 'A', layer: 'L', entry_kind: 'group', date_label: '1970s consolidation',
+       coverage: {reviewed_through: 2000}}]};
+  const view = buildFieldLayout(g, 1000, null, ['L']);
+  const bar = view.bars[0];
+  assert.equal(bar.reviewed, 2000);
+  assert.equal(bar.fadeTo, 2027);
+  assert.ok(view.scale(bar.fadeTo) > view.scale(2000));
+  assert.equal(view.coverageYear, null);
+});
+
+test('archive graphs still draw to the 2000 wall', () => {
+  const g = {scope: {main_period: [1920, 2000]}, layers: [{id: 'L'}], edges: [], people: [], nodes: [
+    {id: 'a', label: 'A', layer: 'L', entry_kind: 'group', date_label: '1970s consolidation · coverage through 2000'}]};
+  const view = buildFieldLayout(g, 1000, null, ['L']);
+  assert.equal(view.coverageYear, 2000);
+  assert.equal(view.bars[0].drawEnd, 2000);
 });

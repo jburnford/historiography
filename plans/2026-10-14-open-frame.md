@@ -760,6 +760,16 @@ Push only with the user's yes.
 
 ---
 
+## Decisions made during execution
+
+- **Task 3, open marks** (implementer's correction, accepted 2026-10-14). In an open frame, an
+  entry with `coverage.reviewed_through` is open unless its span ends explicitly
+  (`isOpen`). Otherwise cleaned labels such as "1970s consolidation" would stop in 1979.
+- **Task 3, solid end.** `drawEnd = max(reviewed_through, span.end)`, so fields dated after
+  their reviewed year (digital_history, web_history) never draw backwards.
+- **Person entries.** No `coverage`: a person's mark ends at their last dated work. Their
+  labels name works, not fields.
+
 ## After this plan (not tasks here)
 
 - **1.133, Chakrabarty:** rebase the draft's `batch.json` to baseline 1.132. His group-free person node needs no `coverage`. The 2009 environment edge is ordinary content.
