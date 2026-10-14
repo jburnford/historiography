@@ -1654,3 +1654,21 @@ American canon" (`canada-us-canon-test/`) found it so for frameworks. Cronon is 
 52 environmental-history PhDs. The content cited is Canadian. Sol's review gave nine
 findings, all fixed (`release/fixes-1.131.md`). Totals: 166 entries, 913 relationships. See
 the [acceptance record](data/production-batches/person-entries-1.131/README.md).
+
+## Revision 1.132: Dipesh Chakrabarty (14 October 2026)
+
+The user called adding Chakrabarty "a very high priority". He becomes a person entry with
+five edges:
+- contributions to postcolonial history (provincializing Europe, from "Postcoloniality and the
+  Artifice of History", 1992, to *Provincializing Europe*, 2000);
+- contributions to Subaltern Studies (subaltern pasts and historical translation);
+- a contribution to labour history (*Rethinking Working-Class History*, 1989, and "Minority
+  Histories, Subaltern Pasts", 1997);
+- a critique of Hobsbawm's "prepolitical", known through Chakrabarty's quotation (2000);
+- a contribution to environmental history ("The Climate of History", 2009).
+
+The 2009 edge follows the user's decision to end the 2000 cutoff. In-period criticism is kept:
+Sarkar, Chandavarkar, Dirlik, and O'Hanlon and Washbrook. Sol said "accept with fixes"; all
+seven findings are fixed (`release/fixes-1.132.md`). Hobsbawm's own pages remain unread.
+Totals: 167 entries, 918 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.132/README.md).

@@ -1,6 +1,23 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.131 (2026-10-13)
+## Current revision 1.132 (2026-10-14)
+
+**167 entries (95 groups, 72 person entries), 918 teaching relationships, 1,559 sources and
+1,192 shared people.**
+
+Dipesh Chakrabarty becomes a person entry with five edges:
+- contributions to postcolonial history (provincializing Europe, 1992–2000);
+- contributions to Subaltern Studies (historical translation);
+- a contribution to labour history (Bengal labour and Marx's categories, 1989–97);
+- a critique of Hobsbawm's "prepolitical" (2000);
+- a contribution to environmental history ("The Climate of History", 2009).
+
+The 2009 edge is the first person-entry edge resting on post-2000 work alone. It follows
+the user's decision of 2026-10-14 to end the 2000 cutoff; its date is stated in its label and
+evidence note. The structured open frame arrives in 1.133. See the
+[acceptance record](data/production-batches/person-entries-1.132/README.md).
+
+## Historical revision 1.131 (2026-10-13)
 
 **166 entries (95 groups, 71 person entries), 913 teaching relationships, 1,551 sources and
 1,192 shared people.**

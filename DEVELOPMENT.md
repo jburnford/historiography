@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-13, revision 1.131):** 166 entries, 913
-relationships, 1,551 sources, 1,192 shared people. Revision 1.131 gives the Environment family
+**Current implementation (2026-10-14, revision 1.132):** 167 entries, 918
+relationships, 1,559 sources, 1,192 shared people. Revision 1.132 adds a person entry for
+Dipesh Chakrabarty ([acceptance](data/production-batches/person-entries-1.132/README.md)).
+Revision 1.131 gives the Environment family
 person entries for Cronon, Worster, Crosby, Merchant and Richard White and precursor entries
 for Leopold and Carson ([acceptance](data/production-batches/person-entries-1.131/README.md)).
 Revision 1.129 adds person entries for
