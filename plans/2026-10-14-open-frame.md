@@ -16,9 +16,11 @@
   - keep the exact-2000 view (revision 1.121) "as an archive", reachable from Reading this map, with no main-view toggle;
   - the title is "drop the dates": **The Historiography Atlas**.
 - Revision numbering:
-  - the open frame is revision **1.132** on baseline 1.131;
-  - the Chakrabarty person entry, drafted in parallel, becomes **1.133**;
-  - the science-studies critique batch becomes **1.134**.
+  - the Chakrabarty person entry (high priority, draft ready) is **1.132**;
+  - the open frame is revision **1.133** on baseline 1.132;
+  - the science-studies critique batch is **1.134**.
+  - Every "1.132" below that refers to the open-frame revision means **1.133**. The applier
+    constants are already updated: REV '1.133', baseline v1.132, open-frame-1.133.
 - Keep the data file name `historiography-1920-2000.json`. `build_site.load_baseline` recovers archives from git history under that literal, so do not rename it in this plan.
 - The archive must still render exactly: `#range=2000` loads `data/graph-2000.json` (revision 1.121, sha256 `69d0bf90b01cf60ea8cd928852c47ff116050d6160109b63db8c262e5302e683`), whose labels still say "coverage through 2000". Every site change must keep that path working.
 - Historical appliers and acceptance scripts (`apply_*`, `accept_*`, `build_*_candidate`) reconstruct old revisions and stay unchanged. Only forward-facing tools change.
@@ -39,7 +41,7 @@
 | File | Responsibility | Change |
 | --- | --- | --- |
 | `scripts/apply_open_frame.py` | Pure `transform(graph) -> graph` plus build/apply/check CLI | Create |
-| `data/production-batches/open-frame-1.132/` | `acceptance.json`, `README.md` | Create (by `apply`) |
+| `data/production-batches/open-frame-1.133/` | `acceptance.json`, `README.md` | Create (by `apply`) |
 | `tests/test_open_frame.py` | Unit tests of the transform on the live graph | Create |
 | `historiography-1920-2000.json` | Graph data | Modified by the applier only |
 | `seminar-pathways.json` | One question reworded | Modify |
@@ -152,9 +154,9 @@ from scripts.validate_graph import validate
 
 GRAPH = ROOT / 'historiography-1920-2000.json'
 PATHWAYS = ROOT / 'seminar-pathways.json'
-OUT = ROOT / 'data/production-batches/open-frame-1.132'
-BASE = ROOT / 'drafts/historiography-1920-2000.v1.131.json'
-REV, DAY, CUTOFF = '1.132', '2026-10-14', '2026-10-14'
+OUT = ROOT / 'data/production-batches/open-frame-1.133'
+BASE = ROOT / 'drafts/historiography-1920-2000.v1.132.json'
+REV, DAY, CUTOFF = '1.133', '2026-10-14', '2026-10-14'
 ARCHIVE_SHA = '69d0bf90b01cf60ea8cd928852c47ff116050d6160109b63db8c262e5302e683'
 LIMIT = re.compile(r'\s*·?\s*(?:coverage|baseline) through 2000\b')
 AUTH = ("User, 2026-10-14: 'we need to end the 2000 break in this project'; the 2000 frame "
@@ -178,8 +180,8 @@ def clean_label(label):
 
 
 def transform(before):
-    if before['revision_history'][-1]['version'] != '1.131':
-        raise ValueError('Expected revision 1.131')
+    if before['revision_history'][-1]['version'] != '1.132':
+        raise ValueError('Expected revision 1.132')
     g = deepcopy(before)
     g['title'] = 'The Historiography Atlas'
     g['schema_version'] = '1.5'
@@ -382,7 +384,7 @@ Expected: 8 tests pass. The build says `Built 15 allowlisted files in docs/`.
 
 ```bash
 git add scripts/apply_open_frame.py tests/test_open_frame.py historiography-1920-2000.json seminar-pathways.json \
-  data/production-batches/open-frame-1.132 scripts/build_site.py scripts/journal_venue_batches.py docs/data
+  data/production-batches/open-frame-1.133 scripts/build_site.py scripts/journal_venue_batches.py docs/data
 git commit -m "Revision 1.132 (data): open frame — reviewed_through replaces the 2000 cutoff; exact-2000 view archived"
 ```
 Note: the browser tests are expected to fail until Tasks 3–5. CI is pushed only after Task 6.
@@ -695,7 +697,7 @@ Fix any overlap of labels with the faded tails before continuing.
   - mark the policies at L54–70, L147–161, L231 and L307 as historical, with one line each: "Superseded by 1.132".
 - Modify: `README.md` L1–4, L43–55, L85; `site/README.md` L4–8, L74–83; `DEVELOPMENT.md` L3–12, L39, L59, L80.
 - Modify: `REVISION-NOTES.md`: append "Revision 1.132: open frame".
-- Create: `data/production-batches/open-frame-1.132/README.md`.
+- Create: `data/production-batches/open-frame-1.133/README.md`.
 - Modify: `data/production-batches/extension-1.123/acceptance.json`: add an `amendments` entry `{file, amended_sha256, reason}` for each file this plan changes that the 1.123 manifests pin. To find them:
 
   ```bash
