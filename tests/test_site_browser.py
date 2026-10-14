@@ -339,22 +339,56 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertGreater(self.page.locator('details.band-list').count(), 1)
         self.assertEqual(self.page.locator('.field-table tbody tr').count(), drawn)
 
-        # Dates describe the label, never influence; an open-ended label runs to the coverage wall.
+        # Dates describe the label, never influence; an open-ended label is solid to its reviewed
+        # year and fades after it to the research cutoff (open frame, revision 1.133).
         self.open('#focus=annales')
         note = self.page.locator('.datewhy')
         expect(note).to_contain_text('From 1929')
-        expect(note).to_contain_text('limit of this atlas')
+        expect(note).to_contain_text('reviewed through 2000')
         expect(note).not_to_contain_text('influential through')
         bar = self.page.locator('.entry.selected .bar-shape').bounding_box()
-        wall = self.page.locator('.coverage-wall').bounding_box()
-        self.assertAlmostEqual(bar['x'] + bar['width'], wall['x'], delta=2, msg='Annales must run solid to the 2000 wall')
-        expect(self.page.locator('.entry.selected .bar-fade')).to_have_count(1)
+        tail = self.page.locator('.entry.selected rect.unreviewed').bounding_box()
+        self.assertAlmostEqual(bar['x'] + bar['width'], tail['x'], delta=2, msg='Annales is solid to 2000, then faded')
+        cutoff = self.page.locator('line.frame-cutoff').bounding_box()
+        self.assertGreater(tail['x'] + tail['width'], cutoff['x'] - 2, 'the faded tail reaches the research cutoff')
         # "Earlier roots" enters as already established: a lead-in, no start cap, and honest words.
         self.open('#focus=military')
         expect(self.page.locator('.entry.selected .bar-lead')).to_have_count(1)
         expect(self.page.locator('.entry.selected .bar-cap.start')).to_have_count(0)
         expect(self.page.locator('.datewhy')).to_contain_text('Earlier roots, undated')
         expect(self.page.locator('.datewhy')).to_contain_text('not its origin')
+
+    def test_open_frame_marks(self):
+        """Open frame (revision 1.133): no wall; faded tails after the reviewed year; one cutoff line."""
+        self.open('#focus=annales')
+        expect(self.page.locator('svg.field')).to_be_visible()
+        self.assertEqual(self.page.locator('.coverage-wall').count(), 0)
+        self.assertGreater(self.page.locator('rect.unreviewed').count(), 0)
+        self.assertEqual(self.page.locator('line.frame-cutoff').count(), 1)
+        expect(self.page.locator('.field-panel')).to_contain_text('reviewed through 2000')
+        self.assertTrue(self.page.locator('#range-toggle').is_hidden())
+        expect(self.page.locator('#edition-label')).to_contain_text(GRAPH['revision_history'][-1]['version'])
+
+    def test_archive_reachable_from_reading_this_map(self):
+        """The exact 1920–2000 view (1.121) survives as an archive, reached from Reading this map."""
+        self.open('#tab=about')
+        link = self.page.locator('a.archive-link')
+        expect(link).to_have_count(1)
+        link.click()
+        expect(self.page.locator('.archive-banner')).to_be_visible()
+        expect(self.page.locator('#edition-label')).to_contain_text('1.121')
+        self.assertTrue(self.page.locator('#range-toggle').is_hidden())
+        # The archive keeps its closed frame: the 2000 wall, no faded tails, no open-frame cutoff line.
+        self.open('#focus=annales&range=2000')
+        expect(self.page.locator('.coverage-wall')).to_have_count(1)
+        expect(self.page.locator('rect.unreviewed')).to_have_count(0)
+        bar = self.page.locator('.entry.selected .bar-shape').bounding_box()
+        wall = self.page.locator('.coverage-wall').bounding_box()
+        self.assertAlmostEqual(bar['x'] + bar['width'], wall['x'], delta=2, msg='Archived Annales runs solid to the 2000 wall')
+        expect(self.page.locator('.datewhy')).to_contain_text('limit of this atlas')
+        self.page.locator('.archive-banner a').click()
+        expect(self.page.locator('.archive-banner')).to_have_count(0)
+        expect(self.page.locator('#edition-label')).to_contain_text(GRAPH['revision_history'][-1]['version'])
 
     def test_releasing_a_held_entry(self):
         """Four ways out of a hold: the panel link, the bar itself, empty space, Escape."""
@@ -371,8 +405,8 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.entry.selected')).to_have_count(0)
 
         self.open('#focus=annales')
-        # Chart chrome (the coverage caption) is empty space as far as holding is concerned.
-        self.page.locator('.coverage-label').click()
+        # Chart chrome (the research-cutoff caption) is empty space as far as holding is concerned.
+        self.page.locator('.cutoff-label').click()
         expect(self.page.locator('.entry.selected')).to_have_count(0)
 
         self.open('#focus=annales&path=paradigms_and_limits')
@@ -395,6 +429,12 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.entry.selected .posthumous')).to_have_count(1)
         expect(self.page.locator('.field-panel .posthumous-note')).to_contain_text('after 1937')
         self.open('#focus=derrida')
+        expect(self.page.locator('.field-panel .life')).to_contain_text('died 2004')
+        # The open frame's axis runs to the research cutoff, so his 2004 death is drawn ...
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
+        # ... while the archived 2000 view still states it in the panel only.
+        self.open('#focus=derrida&range=2000')
+        expect(self.page.locator('#edition-label')).to_contain_text('1.121')
         expect(self.page.locator('.field-panel .life')).to_contain_text('died 2004')
         expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
         self.open('#focus=annales')
@@ -512,8 +552,9 @@ class AtlasBrowserTests(unittest.TestCase):
             expected.add('data/people-records.json')
         expected.add('landing.mjs')   # landing redesign (2026-09-27): page module
         published = json.loads((ROOT / 'docs/data/graph.json').read_text())
-        if published.get('scope', {}).get('extension', {}).get('baseline_asset'):
-            expected.add('data/graph-2000.json')   # the exact 2000 baseline, published only with an extension
+        scope = published.get('scope', {})
+        if (scope.get('archive') or scope.get('extension') or {}).get('baseline_asset'):
+            expected.add('data/graph-2000.json')   # the exact 2000 view, published only as an archive
         if (ROOT / 'data/evidence-layer/site-evidence.json').exists():
             expected.add('data/evidence.json')     # evidence-layer aggregates, published when built
         self.assertEqual(actual, expected)

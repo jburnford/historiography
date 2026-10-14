@@ -59,7 +59,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('#edition-label')).to_contain_text('1.121')
         expect(self.page.locator('.school-tabs')).to_contain_text('15')
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(11)
-        self.page.locator('#range-toggle a[aria-pressed="false"]').click()
+        self.page.locator('.archive-banner a').click()   # no main-view toggle: the banner returns
         expect(self.page.locator('#edition-label')).to_contain_text(CURRENT)
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
         self.page.goto(URL + '#node=indigenous&section=connections')
@@ -143,7 +143,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('#edition-label')).to_contain_text('1.121')
         expect(self.page.locator('[data-approach="indigenous/serpent_river_collaboration"]')).to_have_count(0)
         expect(self.page.locator('.family-people [data-person="lianne_leddy"]')).to_have_count(0)
-        self.page.locator('#range-toggle a[aria-pressed="false"]').click()
+        self.page.locator('.archive-banner a').click()   # no main-view toggle: the banner returns
         expect(self.page.locator('.family-approach')).to_have_count(65)
 
 

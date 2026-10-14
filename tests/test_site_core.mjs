@@ -208,12 +208,23 @@ test('field layout fits the box it is given and never reserves a rail', () => {
   }
   const view = buildFieldLayout(graph, 1400, null, order);
   if (view.undatedCount) assert.ok(view.captions.length > 0, 'undated strip must be captioned');
-  // "onward · coverage through 2000" is drawn solid to the wall and marked open, never as a stub.
+  // Open frame: "1929 onward" is solid to its reviewed year and fades to the frame end, never a stub.
+  assert.equal(view.coverageYear, null, 'the open frame has no wall');
   const annales = view.bars.find(b => b.node.id === 'annales');
   assert.ok(annales.open && !annales.point);
-  assert.ok(Math.abs(annales.x + annales.w - view.scale(view.coverageYear)) < 0.5, 'open ends reach the coverage wall');
-  for (const b of view.bars.filter(b => b.span.endKind === 'coverage_limit'))
-    assert.ok(Math.abs(b.x + b.w - view.scale(b.span.coverage ?? view.coverageYear)) < 0.5, b.node.id);
+  assert.equal(annales.reviewed, 2000);
+  assert.ok(Math.abs(annales.x + annales.w - view.scale(annales.reviewed)) < 0.5, 'open ends are solid to the reviewed year');
+  assert.equal(annales.fadeTo, view.frame.end, 'and fade to the research cutoff');
+  for (const b of view.bars.filter(b => b.open && b.reviewed !== null))
+    assert.ok(Math.abs(b.x + b.w - view.scale(Math.max(b.reviewed, b.span.end))) < 0.5, b.node.id);
+  // The archived 1.121 view keeps its wall: open ends there stop at 2000.
+  const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
+  const aview = buildFieldLayout(archive, 1400, null, fieldLayers(archive, {}));
+  assert.equal(aview.coverageYear, 2000);
+  const aannales = aview.bars.find(b => b.node.id === 'annales');
+  assert.ok(Math.abs(aannales.x + aannales.w - aview.scale(aview.coverageYear)) < 0.5, 'archive open ends reach the coverage wall');
+  for (const b of aview.bars.filter(b => b.span.endKind === 'coverage_limit'))
+    assert.ok(Math.abs(b.x + b.w - aview.scale(b.span.coverage ?? aview.coverageYear)) < 0.5, b.node.id);
   // A label naming one year, with no "onward", is a single mark of readable width.
   const point = view.bars.find(b => b.point);
   if (point) assert.ok(point.w >= 12 && point.span.endKind !== 'coverage_limit', 'a single dated year is drawn as a mark, not a sliver');
@@ -329,8 +340,15 @@ test('life dates mark a death and hatch posthumous reception, only for people wh
   assert.equal(gramsci.death.yr, 1937);
   assert.ok(gramsci.posthumous && gramsci.posthumous.w > 0, 'postwar reception of the Notebooks is posthumous');
   assert.ok(Math.abs(gramsci.posthumous.x + gramsci.posthumous.w - (gramsci.x + gramsci.w)) < 0.5);
+  // Open frame: the axis runs to the research cutoff, so a 2004 death is drawn, and "1960s onward"
+  // (no review year for a person) continues as hatched posthumous reception after it.
   const derrida = view.bars.find(b => b.node.id === 'derrida');
-  assert.equal(derrida.death, null, 'a death after the coverage limit is not drawn on the axis');
+  assert.equal(derrida.death.yr, 2004);
+  assert.ok(derrida.posthumous && Math.abs(derrida.posthumous.x - derrida.death.x) < 0.5);
+  // The archived 2000 view still states a later death in the panel, not on the axis.
+  const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
+  const aview = buildFieldLayout(archive, 1400, null, fieldLayers(archive, {}));
+  assert.equal(aview.bars.find(b => b.node.id === 'derrida').death, null, 'a death after the coverage limit is not drawn on the axis');
   assert.equal(parseSpan('Delbrück’s volumes 1900–20').end, 1920);
   const annales = view.bars.find(b => b.node.id === 'annales');
   assert.equal(annales.death, null, 'schools and fields never get a death marker');
