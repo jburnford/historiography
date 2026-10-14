@@ -24,6 +24,7 @@ from pathlib import Path
 
 import duckdb
 
+import aha_dissertation_route as aha
 import identity_routes as ir
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -80,7 +81,7 @@ def cluster(nodes, links):
 
 def inputs(args):
     paths = {
-        "atlas_graph": ROOT / "historiography-1920-2000.json",
+        "atlas_graph": args.atlas_graph,
         "atlas_wikidata": ROOT / "data/people-wikidata.json",
         "pilot_decisions": ROOT / "data/grounding-repair/decisions.json",
         "hnet_graph": ROOT / "data/hnet-graph/generated/graph.sqlite",
@@ -95,6 +96,10 @@ def inputs(args):
         "orcid_names": GENERATED / "orcid-claims/orcid-names.parquet",
         "orcid_affiliations": GENERATED / "orcid-claims/orcid-affiliations.parquet",
         "openlibrary_work_authors": GENERATED / "openlibrary/work-authors.tsv.gz",
+        "aha_records": ROOT / "data/field-research/aha-dissertations-2026-10-13/records.csv",
+        "aha_manual_links": ROOT / "data/field-research/aha-dissertations-2026-10-13/genealogy/manual-links.csv",
+        "aha_decisions": ROOT / "data/person-registry/aha-identity-decisions.csv",
+        "wikidata_p184": GENERATED / "wikidata-doctoral/P184.tsv.gz",
     }
     for f in sorted((UPSTREAM / "data/grounding/mcp_results").glob("*.csv")):
         paths["upstream_mcp:" + f.name] = f
@@ -376,6 +381,15 @@ def build(db, paths, auth_manifest):
           ["atlas:person:" + row["person_id"], pid, status,
            "atlas_bulk_roster_match" if bulk else "atlas_wikidata_sheet",
            wd.get("basis"), "data/people-wikidata.json", atlas_wd.get("generated_on")])
+    # Roster people outside the reviewed sheet get a person node too (no identity claimed), so
+    # that routes such as aha_dissertation can attach evidence to them.
+    sheet_ids = {row["person_id"] for row in atlas_wd["people"]}
+    roster = [p for p in atlas if p["id"] not in sheet_ids]
+    db.executemany("INSERT INTO people VALUES (?, ?, NULL, 'atlas_roster', 'not in data/people-wikidata.json')",
+                   [("atlas:" + p["id"], p["label"]) for p in roster])
+    db.executemany("""INSERT INTO identity_links VALUES (?, ?, 'unresolved', 'atlas_roster',
+                      'Roster entry without a reviewed identity sheet row', 'historiography-1920-2000.json', NULL, NULL)""",
+                   [("atlas:person:" + p["id"], "atlas:" + p["id"]) for p in roster])
     pilot = json.loads(paths["pilot_decisions"].read_text())
     for p in pilot["people"]:
         q("INSERT INTO people VALUES (?, ?, ?, 'grounding_repair_pilot', ?)",
@@ -461,6 +475,11 @@ def build(db, paths, auth_manifest):
                 list(DISTINCT substr(i.node, 4) ORDER BY substr(i.node, 4)) FILTER (WHERE i.node LIKE 'wd:%') AS qids,
                 any_value(p.label) AS label
          FROM individuals i LEFT JOIN people p ON p.person_id = i.node GROUP BY 1""")
+    # AHA dissertations: evidence-gated links from individuals to their North American PhD record.
+    recs, persons, pairs, manual = aha.gather(db, paths, lit)
+    decisions = list(csv.DictReader(open(paths["aha_decisions"], newline="", encoding="utf-8")))
+    props = aha.propose(recs, persons, pairs, manual, decisions)
+    aha.write(db, paths["aha_records"], props, sha(paths["aha_records"]))
     orphan = q("""SELECT count(*) FROM identity_links l LEFT JOIN occurrences o USING (occurrence_id)
                   WHERE o.occurrence_id IS NULL""").fetchone()[0]
     if orphan:
@@ -499,6 +518,18 @@ def build(db, paths, auth_manifest):
     q("""CREATE VIEW occurrence_resolution AS
          SELECT o.occurrence_id, o.corpus, o.role, o.name, r.persons, r.status, r.bases, r.individual_id
          FROM occurrences o LEFT JOIN resolution r USING (occurrence_id)""")
+    # PhD attributes: the resolved AHA record for each individual (one per individual unless a
+    # person genuinely holds two; conflicted records stay out).
+    q("""CREATE VIEW phd_records AS
+         SELECT r.individual_id, r.status, r.bases, d.aha_id, d.year AS phd_year, d.department, d.advisors,
+                d.advisor_ids, d.title, d.dissertator
+         FROM resolution r JOIN aha_dissertations d ON r.occurrence_id = 'aha:dissertation:' || d.aha_id""")
+    # Review queue: one AHA record supported for several individuals. Usually fragments of one
+    # person (atlas roster entry vs Open Library author vs ORCID holder), sometimes namesakes.
+    q("""CREATE VIEW aha_shared_records AS
+         SELECT aha_id, list(individual_id ORDER BY individual_id) AS individuals,
+                list(array_to_string(channels, '+') ORDER BY individual_id) AS channels
+         FROM aha_candidates WHERE status IN ('anchored', 'probable') GROUP BY 1 HAVING count(*) > 1""")
     q("""CREATE VIEW legacy_name_conflicts AS SELECT o.name, list(DISTINCT c.value ORDER BY c.value) AS qids,
          count(DISTINCT o.occurrence_id) AS credits FROM claims c JOIN occurrences o USING (occurrence_id)
          WHERE c.scheme = 'wikidata' GROUP BY 1 HAVING count(DISTINCT c.value) > 1""")
@@ -568,12 +599,54 @@ def summarize(db):
         "legacy_bridge_candidates": dict(db.execute("""SELECT corpus, count(DISTINCT occurrence_id)
              FROM legacy_bridge_candidates GROUP BY 1 ORDER BY 1""").fetchall()),
         "authority_ids": dict(db.execute("SELECT scheme, count(*) FROM authority_ids GROUP BY 1 ORDER BY 1").fetchall()),
+        "aha_dissertation": aha_summary(db),
+    }
+
+
+def aha_summary(db):
+    one = lambda sql: db.execute(sql).fetchone()[0]
+    pairs = lambda sql: dict(db.execute(sql).fetchall())
+    return {
+        "name_gated_pairs": one("SELECT count(*) FROM aha_candidates"),
+        "candidate_individuals": one("SELECT count(DISTINCT individual_id) FROM aha_candidates"),
+        "gated_out": pairs("SELECT gate, count(*) FROM aha_candidates WHERE gate IS NOT NULL GROUP BY 1 ORDER BY 1"),
+        "proposed_links": pairs("""SELECT coalesce(status, 'no_evidence'), count(*) FROM aha_candidates
+                                   GROUP BY 1 ORDER BY 1"""),
+        "decision_blocked": one("SELECT count(*) FROM aha_candidates WHERE decision IS NOT NULL AND status IS NULL"),
+        "channels": pairs("""SELECT status || ': ' || array_to_string(channels, '+'), count(*) FROM aha_candidates
+                             WHERE status IS NOT NULL GROUP BY 1 ORDER BY 2 DESC"""),
+        "resolved_records": pairs("SELECT status, count(*) FROM phd_records GROUP BY 1 ORDER BY 1"),
+        "individuals_gaining_phd": pairs("""SELECT status, count(DISTINCT individual_id) FROM phd_records
+                                            GROUP BY 1 ORDER BY 1"""),
+        "individuals_gaining_phd_any_tier": one("SELECT count(DISTINCT individual_id) FROM phd_records"),
+        "individuals_with_two_phd_records": one("""SELECT count(*) FROM (SELECT individual_id FROM phd_records
+                                                   GROUP BY 1 HAVING count(*) > 1)"""),
+        "atlas_people_gaining_phd": pairs("""
+            SELECT CASE WHEN len(s.qids) > 0 THEN 'with_qid' ELSE 'without_qid' END || ':' || p.status,
+                   count(DISTINCT i.node)
+            FROM individuals i JOIN individual_summary s USING (individual_id)
+            JOIN phd_records p USING (individual_id) WHERE i.node LIKE 'atlas:%' GROUP BY 1 ORDER BY 1"""),
+        "conflicted_records": one("""SELECT count(*) FROM resolution_conflicts
+                                     WHERE occurrence_id LIKE 'aha:dissertation:%'"""),
+        "shared_records": one("SELECT count(*) FROM aha_shared_records"),
+        "shared_records_by_node_kinds": pairs("""
+            WITH k AS (SELECT a.aha_id, list(DISTINCT split_part(i.node, ':', 1) ORDER BY split_part(i.node, ':', 1)) AS kinds
+                       FROM (SELECT aha_id, unnest(individuals) AS individual_id FROM aha_shared_records) a
+                       JOIN individuals i USING (individual_id) WHERE i.node NOT LIKE 'wd:%' GROUP BY 1)
+            SELECT array_to_string(kinds, '+'), count(*) FROM k GROUP BY 1 ORDER BY 2 DESC"""),
+        "shared_records_with_two_qids": one("""
+            SELECT count(*) FROM (SELECT a.aha_id FROM (SELECT aha_id, unnest(individuals) AS individual_id
+                                  FROM aha_shared_records) a JOIN individuals i USING (individual_id)
+                                  WHERE i.node LIKE 'wd:%' GROUP BY 1 HAVING count(DISTINCT i.node) > 1)"""),
     }
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--version", default="v1")
+    # The atlas is revised often; a build over a frozen copy (e.g. `git show HEAD:...`) avoids the
+    # input-changed guard tripping mid-build. The path and hash are recorded in summary.json.
+    ap.add_argument("--atlas-graph", type=Path, default=ROOT / "historiography-1920-2000.json")
     ap.add_argument("--authorities", type=Path,
                     default=ROOT / "data/person-registry/generated/wikidata-authorities")
     args = ap.parse_args()
