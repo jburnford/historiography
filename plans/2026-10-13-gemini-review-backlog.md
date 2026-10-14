@@ -64,3 +64,16 @@ scheduled.
     roots in Latour's nonhumans, Haraway, DeLanda 1997, and Braidotti/DeLanda's coinage;
     post-2000 extension in Barad 2003/2007, Bennett 2010, Coole and Frost 2010, and the
     historians' "material turn".
+- **2026-10-14, new pathway "The question of class"** (user idea). Every stop already exists.
+  A possible sequence:
+  - karl (historical materialism) → maurice_dobb (the transition debate) → marx (Marxist social
+    history) → ep_thompson (class as relationship and experience, 1963) → althusser (the
+    Thompson–Althusser quarrel) → labourhistory → social → joan_wallach_scott (Scott's gender
+    critique of Thompson) → language (the linguistic turn and the languages of class) →
+    racial_formation (whiteness and class) → subaltern (Chakrabarty against universal class
+    narratives) → intersectionality → cdn_working_class → liberal_order_framework (McKay).
+  - Possible questions: Is class a structure, a relationship or a language? What did gender and
+    race do to Thompson's "making"? Does a Canadian working-class history need its own frame?
+  - Gaps: Stedman Jones's *Languages of Class* (1983) has no entry, so check the `language`
+    roster. Roediger's *Wages of Whiteness* (1991): check the `racial_formation` roster.
+  - Pathways are pinned by the 1.123 release, so add this pathway in a revision with an amendment.
