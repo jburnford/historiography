@@ -1,6 +1,18 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.138 (2026-10-14)
+## Current revision 1.139 (2026-10-14)
+
+A pathway revision. The graph is unchanged apart from a `revision_history` entry, which lists
+`pathways_changed`. `seminar-pathways.json` now has 14 pathways:
+- Wittgenstein opens "Meaning, language, and historical evidence".
+- "Caribbean, African and South Asian challenges to historical explanation" adds Subaltern
+  Studies, Guha and Chakrabarty.
+- A new pathway, `question_of_class`, starts with Thompson's turn against economistic Marxism.
+
+Applied by `scripts/apply_pathways.py` (`--check` rebuilds it exactly). See the
+[acceptance record](data/production-batches/pathways-1.139/README.md).
+
+## Historical revision 1.138 (2026-10-14)
 
 **179 entries (96 groups, 83 person entries), 992 teaching relationships, 1,707 sources and
 1,216 shared people.**

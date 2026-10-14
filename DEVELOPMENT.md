@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.138):** 179 entries, 992
-relationships, 1,707 sources, 1,216 shared people. Revision 1.138 adds a person entry for Fernand Ouellet and his critics
+**Current implementation (2026-10-14, revision 1.139):** 179 entries, 992
+relationships, 1,707 sources, 1,216 shared people. Revision 1.139 revises the seminar pathways: Wittgenstein on meaning, a South Asian strand in the
+anticolonial pathway, and a new pathway, "The question of class"
+([acceptance](data/production-batches/pathways-1.139/README.md)). Revision 1.138 adds a person entry for Fernand Ouellet and his critics
 ([acceptance](data/production-batches/person-entries-1.138/README.md)). Revision 1.137 adds person entries for Said, Guha and Spivak
 ([acceptance](data/production-batches/person-entries-1.137/README.md)). Revision 1.136 adds person entries for Berger, Cook, Careless, Creighton, Parr and Valverde
 ([acceptance](data/production-batches/person-entries-1.136/README.md)). Revision 1.135 adds a Debate entry, *The Science

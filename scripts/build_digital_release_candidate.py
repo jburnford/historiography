@@ -11,7 +11,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from ontology.validate_research import validate as validate_research
-from scripts.validate_graph import validate as validate_graph
+from scripts.validate_graph import validate as validate_graph, pathways_within
 
 OUT = ROOT / 'data/extension-2026/digital-release-10'
 GRAPH = ROOT / 'historiography-1920-2000.json'
@@ -237,7 +237,7 @@ def project(before, candidate):
 
 def audit(before, after, batch, candidate):
     errors = validate_research(batch, read(ROOT/'ontology/contract-v0.2.json'), ROOT)
-    graph_errors, warnings = validate_graph(after, read(ROOT/'seminar-pathways.json'))
+    graph_errors, warnings = validate_graph(after, pathways_within(after, read(ROOT/'seminar-pathways.json')))   # a historical graph
     errors.extend(graph_errors)
     for key in before:
         if key in ('nodes','people','sources'):

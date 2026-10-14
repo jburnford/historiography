@@ -19,7 +19,7 @@ from pathlib import Path
 import shutil
 import subprocess
 
-from validate_graph import validate
+from validate_graph import validate, pathways_within
 
 ROOT = Path(__file__).resolve().parents[1]
 # GitHub Pages can serve a branch only from the repository root or `/docs`, so the
@@ -186,7 +186,7 @@ def build(graph_path=None, dest=None, baseline_path=None):
     if archive:
         baseline, origin = load_baseline(archive, baseline_path)
         if baseline:
-            b_errors, _ = validate(baseline, pathways)
+            b_errors, _ = validate(baseline, pathways_within(baseline, pathways))   # the archive predates later pathway entries
             if b_errors:
                 raise SystemExit('Baseline graph fails validation:\n' + '\n'.join(b_errors))
         else:

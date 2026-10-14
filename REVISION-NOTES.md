@@ -1787,3 +1787,16 @@ Six critics and participants join the Quebec roster. Two strands are rewritten f
 and a new strand covers interpretations of 1837–38. Sol said "accept with fixes"; all eight
 findings are fixed (`release/fixes-1.138.md`). Totals: 179 entries, 992 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.138/README.md).
+
+## Revision 1.139: seminar pathways (14 October 2026)
+
+Three pathway changes the user asked for:
+- Wittgenstein opens "Meaning, language, and historical evidence".
+- The anticolonial pathway becomes "Caribbean, African and South Asian challenges to historical
+  explanation", adding Subaltern Studies, Guha and Chakrabarty.
+- A new pathway, "The question of class", starts with Thompson's turn against economistic Marxism
+  and runs through the 1987 Scott–Palmer exchange, Joy Parr, Chakrabarty and the liberal order
+  debate.
+
+The graph is unchanged apart from its history entry. There are now 14 pathways. See the
+[acceptance record](data/production-batches/pathways-1.139/README.md).

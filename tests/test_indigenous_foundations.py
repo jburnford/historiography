@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from scripts import apply_indigenous_foundations as m
 from scripts import apply_indigenous_deep_dive as earlier
-from scripts.validate_graph import validate
+from scripts.validate_graph import validate, pathways_within
 
 
 class IndigenousFoundationsTests(unittest.TestCase):
@@ -20,7 +20,7 @@ class IndigenousFoundationsTests(unittest.TestCase):
         self.assertEqual(m.sha(m.PACKET), record['packet_sha256'])
         self.assertEqual(m.transform(self.before), self.after)
         self.assertEqual(hashlib.sha256(m.serial(self.after).encode()).hexdigest(), record['production_sha256'])
-        self.assertEqual(validate(self.after, m.read(m.ROOT / 'seminar-pathways.json'))[0], [])
+        self.assertEqual(validate(self.after, pathways_within(self.after, m.read(m.ROOT / 'seminar-pathways.json')))[0], [])
 
     def test_inverse_delta_works_without_local_archives(self):
         with patch.object(m, 'BASE', m.ROOT / 'drafts/absent-foundations-test.json'):
