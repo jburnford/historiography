@@ -119,7 +119,9 @@ def validate_catalogue(catalogue, atlas_nodes):
             errors.append('Visual venue relation needs a researched journal and an atlas group/debate')
         span = edge.get('temporal_scope', {})
         start, end = span.get('start'), span.get('end')
-        if type(start) is not int or type(end) is not int or end < start or span.get('precision') not in ('year','decade','approximate'):
+        # end None = open interval (open frame, revision 1.133): the role continues past the review year.
+        if (type(start) is not int or (end is not None and (type(end) is not int or end < start))
+                or span.get('precision') not in ('year','decade','approximate')):
             errors.append('Venue claim needs a dated, scoped interval')
         if kind=='founded_for' and (start != end or source.get('publication_start') != start):
             errors.append('Founding claim must agree with the journal founding date')
