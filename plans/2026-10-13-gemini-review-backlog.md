@@ -42,3 +42,13 @@ scheduled.
   historical materialism, Korean Minjung, Ibn Khaldun's reception. A real gap, but it needs
   the same careful front-and-centre evaluation as the Environment family (field
   self-accounts first), not a quick 4–6 entries.
+
+## User additions
+
+- **2026-10-14:** add Wittgenstein to the pathway `meaning_language_evidence` ("Meaning, language,
+  and historical evidence"; site `#pathway=meaning_language_evidence`). Its nodes are geertz,
+  culture, saussure, levistrauss, foucault, derrida, language, context, white, conceptual.
+  Wittgenstein has a person entry with edges to Geertz (edge_001) and, through his
+  description, to Skinner's contextualism. The likely place is at the start, before geertz,
+  or beside context. Pathways live in `seminar-pathways.json`, and the questions or exercise
+  may need a line on use, practice and meaning.
