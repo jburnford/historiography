@@ -52,9 +52,9 @@ class VenueMergeTests(unittest.TestCase):
             batch['edges'][0].update(fields)
             with self.assertRaises(ValueError):
                 merge_venues(self.catalogue, batch)
-        self.node['publication_start'] = 2006
+        self.node['publication_start'] = 2027
         self.batch['expected_node_fingerprints']['j1'] = fingerprint(self.node)
-        self.edge['temporal_scope'].update(start=2006, end=2006)
+        self.edge['temporal_scope'].update(start=2027, end=2027)
         with self.assertRaises(ValueError):
             merge_venues(self.catalogue, self.batch)
 
@@ -102,7 +102,7 @@ class VenueMergeTests(unittest.TestCase):
     def test_date_fill_requires_evidence_and_matching_edge(self):
         self.unknown_date_batch()
         for fields in [dict(source_ids=['missing']), dict(source_ids=[]), dict(note=''),
-                       dict(year=1951), dict(year=2001), dict(year=True)]:
+                       dict(year=1951), dict(year=2027), dict(year=True)]:
             batch = copy.deepcopy(self.batch)
             batch['publication_start_checks']['j1'].update(fields)
             with self.assertRaises(ValueError):
