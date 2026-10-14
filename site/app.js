@@ -722,7 +722,9 @@ function relRow(r) {
   const tone = BASE_KINDS.includes(kind) ? kind : 'extra-kind';
   const atlasEdge = atlasEdgeIds.has(e.id);
   const sources = atlasEdge ? sourceList(e.source_ids) : sourceList(e.source_ids, journalSourceById);
-  const scope = e.temporal_scope?.start ? `<p class="fine-print">Dated ${e.temporal_scope.start}${
+  /* An open interval (end null, open frame) reads "from 1972 onward", not as a single year. */
+  const scope = e.temporal_scope?.start ? `<p class="fine-print">${e.temporal_scope.end === null
+    ? `Dated from ${e.temporal_scope.start} onward` : `Dated ${e.temporal_scope.start}`}${
     e.temporal_scope.end && e.temporal_scope.end !== e.temporal_scope.start ? `–${e.temporal_scope.end}` : ''}${
     e.temporal_scope.meaning ? ` · ${esc(String(e.temporal_scope.meaning).replace(/_/g, ' '))}` : ''}.</p>` : '';
   const outside = outsideFamily(r.other);

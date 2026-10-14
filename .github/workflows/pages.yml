@@ -35,7 +35,7 @@ jobs:
         run: python3 -m pip install duckdb==1.5.3 playwright==1.56.0
       - name: Data tests
         # test_journal_validation needs the gitignored raw catalogue inputs, so it runs locally only.
-        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_evidence_asset tests.test_practice_families tests.test_student_beta tests.test_indigenous_deep_dive tests.test_indigenous_foundations tests.test_borderlands_release_candidate tests.test_evidence_coverage_audit tests.test_publication_repairs
+        run: python3 -m unittest tests.test_graph_validation tests.test_people_validation tests.test_evidence_asset tests.test_practice_families tests.test_student_beta tests.test_indigenous_deep_dive tests.test_indigenous_foundations tests.test_borderlands_release_candidate tests.test_evidence_coverage_audit tests.test_publication_repairs tests.test_open_frame
       - name: View tests
         run: node tests/test_site_core.mjs
       - name: Rebuild the allowlisted site into docs/

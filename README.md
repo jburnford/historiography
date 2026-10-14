@@ -1,7 +1,7 @@
-# Historiography: a seminar atlas
+# The Historiography Atlas
 
-**Public beta.** An interactive, deliberately contestable map of historiography, 1920–2000 with
-earlier roots and a partial post-2000 extension, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
+**Public beta.** An interactive, deliberately contestable map of historiography, from earlier
+roots to the present, extended field by field, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
 The site opens on **twelve families**, including *Historiography in Canada*, pairing the atlas's selected dates with
 shares of a selected journal and book-review record. Open a family to reach the
@@ -9,7 +9,7 @@ field: entries on a single time axis, banded by kind. Hold an entry and everythi
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available.
 
-Production data revision **1.132** (schema 1.4): 167 entries,
+Production data revision **1.133** (schema 1.5): 167 entries,
 918 teaching relationships, 1,559 bibliography records, 1,192
 people, and 13 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
@@ -51,8 +51,11 @@ The [digital/web release](data/production-batches/extension-1.123/README.md) add
   open; a fading end does not measure declining influence.
 - **Colour is the kind of relationship**, not the kind of entry. Critique, contribution,
   influence and comparison are distinguished, and only directed claims get arrows.
-- **The dashed wall at 2000** marks the original coverage boundary. Selected later interventions
-  appear separately; the September 2026 research cutoff does not imply complete field coverage.
+- **No closing date.** Each field's mark is solid through the year it has been reviewed (2000 for
+  most fields so far) and faded after it, to the research cutoff: a faded tail means later work is
+  not yet surveyed, not that the field stopped. Fields are being extended one at a time. The
+  original 1920–2000 experiment (revision 1.121) is kept as an archived view, linked from
+  *Reading this map*.
 - **Every relationship carries a source and an evidence note.** Open one and read what the
   evidence actually supports.
 
@@ -82,7 +85,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current graph, 167 entries, 918 interpretive relationships, 1,559 bibliography records, and 1,192 people.
+- `historiography-1920-2000.json`: current graph (the file keeps its historical name), 167 entries, 918 interpretive relationships, 1,559 bibliography records, and 1,192 people.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.

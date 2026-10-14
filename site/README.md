@@ -1,11 +1,12 @@
 # Historiography atlas prototype
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.132**, schema 1.4,
+The curated JSON remains authoritative. Current revision **1.133**, schema 1.5,
 contains **167 entries, 918 relationships, 1,559 sources, 1,192 shared people and
 13 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
 publication record. Detailed views render evidenced journal venues and five
-partially extended fields. The exact-2000 view remains revision 1.121.
+partially extended fields. The atlas has no closing date (1.133); the original 1920–2000 experiment
+(revision 1.121) is an archived view at `#range=2000`.
 
 ## Preview
 
@@ -71,9 +72,13 @@ Every entry sits on one time axis, banded by layer, with linked journals in a fi
 - **The text view** (`View · List`) groups the same entries by band, with a small time mark per row. Bands are open on wide screens and collapsed on narrow ones.
 - The hero is shown in full on the field and compressed to one line on every other view.
 
-## Coverage after 2000: the extension view
+## The open frame and the archived 2000 view
 
-The atlas's curated coverage ends in 2000. When the dataset carries `scope.extension`, the site offers two views of the same page, switched in the navigation bar and by `#range=2000`:
+From revision 1.133 the dataset carries `scope.frame` (no closing date; `research_cutoff`) and `scope.archive` (the exact 1.121 graph). In an open frame, `field.mjs` draws each open entry solid to `coverage.reviewed_through` (or its own last dated year, if later) and adds a faded `rect.unreviewed` tail to the research cutoff, shown as a dotted `line.frame-cutoff`; there is no wall. Person entries carry no `coverage` and end at their last dated work. Selected later interventions (`extension_coverage`) are still drawn as ◆ after the reviewed year. `#range=2000` loads `data/graph-2000.json` with an archive banner; *Reading this map* links to it; the old toggle is hidden. Every open-frame behaviour is gated on the data, so a graph without `scope.frame` (the archive itself) renders with its 2000 wall exactly as before.
+
+### Historical: the two-view extension (revisions 1.122–1.132)
+
+Before 1.133 the atlas's curated coverage ended in 2000. When the dataset carried `scope.extension`, the site offered two views of the same page, switched in the navigation bar and by `#range=2000`:
 
 - **Through 2000** loads `data/graph-2000.json`, an archived copy of the pre-release graph published by the build from the file named in `scope.extension.baseline_graph` (or `--baseline`). It is the exact baseline, never a date filter over the current graph, so the candidate's people, sources and strands are absent, not hidden.
 - **Through 2026 · partial** is the current graph. The field's axis stretches to `proposed_view_period[1]`; every mark keeps its own recorded coverage and still fades into the 2000 wall. Beyond the wall, a shaded zone names how many entries have selected interventions, a dashed line marks the research cutoff (a date of reading, not an ending), and the latest selected publication is labelled. Entries with `extension_coverage` get one ◆ per selected publication year on their own row, apart from the original mark. Nothing else is extended.
