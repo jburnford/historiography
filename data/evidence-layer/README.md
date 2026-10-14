@@ -3,7 +3,23 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-12)
+## Current local build (2026-10-14)
+
+Practice **v21** serves graph 1.135. It adds the new Debate entry *The Science Wars, 1994–2000*
+(`sciencewars`):
+- It is folded into the history of science (context only, no evidence of its own).
+- Its family is *Science, technology & medicine*, bridged to *Theory & method*.
+
+Family shares are unchanged from v20; only family membership changed. The landing audit is
+`audits/landing-1.135`. `build_evidence_asset.py` now accepts an entry that is newer than the
+series: it gets zero coverage and a note saying so.
+
+```bash
+python3 scripts/build_evidence_asset.py --series v21 --methods methods-v7 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.135/summary.json
+python3 scripts/build_site.py
+```
+
+## Previous build (2026-10-12)
 
 Practice **v20**, methods **methods-v7** and **mentions-v6** serve graph 1.128
 ([historiography in Canada](../production-batches/canadian-1.128/README.md)). The landing

@@ -1,7 +1,9 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation (2026-10-14, revision 1.134):** 168 entries, 924
-relationships, 1,571 sources, 1,192 shared people. Revision 1.134 adds a person entry for Bryan D.
+**Current implementation (2026-10-14, revision 1.135):** 169 entries, 939
+relationships, 1,609 sources, 1,212 shared people. Revision 1.135 adds a Debate entry, *The Science
+Wars, 1994–2000*, and critique edges for Kuhn, SSK and Latour
+([acceptance](data/production-batches/science-studies-1.135/README.md)). Revision 1.134 adds a person entry for Bryan D.
 Palmer, with the 1987 exchange with Joan Scott and E. P. Thompson's critique of economistic
 Marxism ([acceptance](data/production-batches/person-entries-1.134/README.md)). Revision 1.133 ends the 1920–2000 cutoff: each
 entry records `coverage.reviewed_through`, spans are open, and the exact-2000 view (1.121) is an
