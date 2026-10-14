@@ -312,7 +312,7 @@ svg.field.focused{cursor:default}
 
 /* Historians & contributors: the company they keep */
 .company-split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;align-items:start;margin-top:6px}
-.company-chart{min-width:0}.company-chart svg{display:block;width:100%;height:auto}
+.company-chart{min-width:0}.company-chart svg{display:block;width:100%;height:auto;margin:0 auto}
 .company-panel{background:#fffdf7;border:1px solid var(--line);border-radius:7px;font-size:13px}
 .company .spoke{stroke:#223831;stroke-opacity:.07;stroke-width:.8}
 .company.previewing .spoke:not(.hi){stroke-opacity:.015}
@@ -326,15 +326,26 @@ svg.field.focused{cursor:default}
 .company .dot.mute,.company .anchor.mute{opacity:.12}
 .company .dot.hi circle.core{stroke:#fffdf7;stroke-width:1.6;paint-order:stroke}
 .company .dot.selected circle.core{stroke:#284f41;stroke-width:3;paint-order:stroke}
-.company .dot-label{font:10.5px var(--serif);fill:#223831;pointer-events:none}
-.company.previewing .dot:not(.hi) .dot-label{display:none}
+.company .dot-label{font:10.5px var(--serif);fill:#223831;pointer-events:none;paint-order:stroke;stroke:#f6f4ed;stroke-width:3px;stroke-linejoin:round}
+.company.previewing .dot-label:not(.hi){display:none}.company .dot-label.mute{display:none}
+.company .dot circle.away{fill:#b07a2a;stroke:#f6f4ed;stroke-width:.8}
 .company .anchor{cursor:pointer}.company .anchor circle{fill:var(--accent)}
-.company .anchor text{font:11px var(--sans);fill:#223831}.company .anchor text tspan{fill:#8a948c;font-size:9.5px}
+.company .anchor text{font:11px var(--sans);fill:#223831}.company .anchor text tspan.n{fill:#8a948c;font-size:9.5px}
+.company .anchor.bridged circle{fill:#fffdf7;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:2.5 1.5}.company .anchor.bridged text{font-style:italic}
 .company .anchor:hover text,.company .anchor.hi text,.company .anchor.selected text{font-weight:650;fill:var(--accent)}
 .company.previewing .anchor:not(.hi){opacity:.3}
+/* The families overview: one disc per family, area by the people its entries name */
+.company .family-anchor{cursor:pointer}.company .family-anchor .hit{fill:transparent}
+.company .family-anchor .disc{fill:#e5ede5;stroke:#284f41;stroke-width:1.2}
+.company .family-anchor text{font:600 12.5px var(--sans);fill:#223831}.company .family-anchor tspan.n{font-weight:400;font-size:11px;fill:#64716a}
+.company .family-anchor:hover .disc,.company .family-anchor.hi .disc{fill:#284f41}
+.company .family-anchor:hover text,.company .family-anchor.hi text{fill:#284f41}
+.company.previewing .family-anchor:not(.hi){opacity:.35}
+.company .family-anchor.mute{opacity:.25}
+.panel-families{font-size:12.5px;line-height:1.7;margin:6px 0 10px}.panel-families .eyebrow{display:inline;margin-right:6px}.panel-families a{text-decoration:none}.panel-families a:hover{text-decoration:underline}
 .company-legend{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11px;color:#4a564e}
 .company-legend li{display:flex;align-items:center;gap:8px}.company-legend .lg{display:inline-block;width:10px;height:10px;border-radius:50%;border:1.2px solid #223831;flex:none}
-.lg-hist{background:#223831}.lg-res{background:#f6f4ed}.lg-crit{background:#f6f4ed;border-color:#a15643;box-shadow:0 0 0 2px #fff,0 0 0 3px #a15643}.lg-own{width:14px;height:14px;background:#223831}
+.lg-hist{background:#223831}.lg-res{background:#f6f4ed}.lg-crit{background:#f6f4ed;border-color:#a15643;box-shadow:0 0 0 2px #fff,0 0 0 3px #a15643}.lg-own{width:14px;height:14px;background:#223831}.lg-away{width:7px;height:7px;background:#b07a2a;border-color:#b07a2a}
 .bridge-list{padding-left:20px;margin:0;font-size:13px}.bridge-list li{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px solid #eceee5}.bridge-list a{text-decoration:none}.bridge-list a:hover{text-decoration:underline}.bridge-list span{color:var(--muted);font-size:11px}
 .panel-entries{list-style:none;padding:0;margin:8px 0 0}.panel-entries li{display:flex;justify-content:space-between;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px solid #eceee5;font-size:13px}.panel-entries a{text-decoration:none}.panel-entries a:hover{text-decoration:underline}.panel-entries .role-tag{margin:0;flex:none}
 .panel-roster{list-style:none;margin:4px 0 0;padding:0}.panel-roster li{padding:6px 0;border-bottom:1px solid #eceee5;font-size:13px;line-height:1.45}.panel-roster a{text-decoration:none}.panel-roster a:hover{text-decoration:underline}.panel-roster .lifespan{font-size:11px;color:var(--muted);margin-left:6px}.panel-work{display:block;font:italic 12px/1.5 var(--serif);color:#5a685f}

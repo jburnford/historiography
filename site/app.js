@@ -3,13 +3,23 @@ import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relat
   focusSetFor, fieldMatches, journalNodes, spanOf, anchor, edgePath, kindLabel, kindChip, dirWord,
   pathwaySet, pathwayEdges, BASE_KINDS, JOURNAL_LAYER, extensionOf, interventionsOf, frameOf, reviewedThrough,
   personMapSubset, personMapLayout, ROLE_BADGE} from './field.mjs';
-import {sortName, bySurname, companyLayout, bridges} from './people.mjs';
+import {sortName, bySurname, companyLayout, bridges, familyIndex, familyOverviewLayout, familyCompanyLayout, ENTRY_LINE, FAMILY_LINE} from './people.mjs';
 import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 import {recordPanel as publicationPanel} from './records.mjs';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 let graph, pathways, state, nodeById, sourceById, personById, personNames;
+/* `pathwayAsset` is data/pathways.json as loaded; `pathways` is the same object restricted to the
+   entries the shown graph has (the 2000 archive predates some pathway entries). It is rebuilt on
+   every adopt and never written back, so switching views keeps the full lists. A pathway with no
+   entry in the shown graph is omitted. */
+let pathwayAsset;
+function pathwaysFor(g) {
+  const ids = new Set(g.nodes.map(n => n.id));
+  return {...pathwayAsset, pathways: pathwayAsset.pathways
+    .map(p => ({...p, node_ids: p.node_ids.filter(id => ids.has(id))})).filter(p => p.node_ids.length)};
+}
 /* `production` is the current graph; `baselineGraph` the archived 2000 graph, loaded on demand
    for the exact baseline view. `catalogue` indexes the claim catalogue of whichever is shown. */
 let production, productionRequest, baselineGraph = null, catalogue = {entities: new Map(), claims: new Map(), records: new Map()};
@@ -54,6 +64,7 @@ const isOpenSpan = (n, span) => span.endKind === 'coverage_limit'
   || (openFrame() && reviewedThrough(n) !== null && span.endKind !== 'terminus');
 function adopt(g) {
   graph = g;
+  pathways = pathwaysFor(g);
   nodeById = new Map(graph.nodes.map(n => [n.id, n]));
   sourceById = new Map(graph.sources.map(s => [s.id, s]));
   personById = new Map(graph.people.map(p => [p.id, p]));
@@ -204,70 +215,173 @@ function schoolPeople() {
       ${extensionSection(n)}${strandGuide(n)}<div class="people-grid">${pageSlice(reps, 12).map(rep => personCard(personById.get(rep.person_id), rep)).join('')}</div>${pagination(reps.length, 12)}</section>
       <aside class="reading-panel" aria-label="Entry details">${nodeDetail(n)}</aside></div>`;
 }
-/* ---------------- Historians & contributors: the company they keep ---------------- */
-let companyHover = null, companyWidth = 0, companyBound = false;
-const holdHref = id => href({hold: id, letter: '', page: 0});
+/* ---------------- Historians & contributors: the company they keep ----------------
+   Two levels (people.mjs): the families overview (#tab=people) and one family's ring
+   (#tab=people&family=<slug>). With family=all, or without the evidence asset, every entry sits
+   on one ring as before. `companyL` is the layout last built; a hold link opens the level that
+   draws what it holds. */
+let companyHover = null, companyWidth = 0, companyBound = false, companyL = null;
 const ROLE_SHORT = {historian: 'historian', contributor: 'resource', precursor: 'earlier resource', critic: 'critic', comparison: 'comparison'};
 const filtersOn = () => Boolean(state.query || state.layer || state.period || state.hunt);
 const nameMark = label => { const {surname} = sortName(label); const i = label.indexOf(surname);
   return i < 0 ? esc(label) : `${esc(label.slice(0, i))}<strong>${esc(surname)}</strong>${esc(label.slice(i + surname.length))}`; };
+/* The level to draw: 'all', a family id, or '' for the overview. An old link holding an entry
+   (#tab=people&hold=women) opens that entry's family. */
+function companyLevel() {
+  const block = evidence?.families;
+  if (!block?.families?.length || state.family === 'all') return 'all';
+  const index = familyIndex(graph, block);
+  if (!index.families.length) return 'all';
+  return index.families.some(f => f.id === state.family) ? state.family : index.primaryOf.get(state.hold) || '';
+}
+function companyModel(width) {
+  const level = companyLevel();
+  companyL = level === 'all' ? companyLayout(graph, width) : level ? familyCompanyLayout(graph, evidence.families, level, width)
+    : familyOverviewLayout(graph, evidence.families, width);
+  companyL.drawn = new Set([...companyL.people.map(p => p.id), ...(companyL.kind === 'overview' ? [] : companyL.anchors.map(a => a.id))]);
+  return companyL;
+}
+const familyName = (L, id) => L.index?.families.find(f => f.id === id)?.label || id;
+/* Where holding `id` is drawn: this level if it draws them; else an entry's family or a person's
+   only family; else the overview, which lights the families of anyone not drawn. */
+function holdFamily(id) {
+  const L = companyL;
+  if (!L || L.kind === 'all') return state.family;
+  if (L.drawn.has(id)) return L.kind === 'family' ? L.family.id : '';
+  const fs = L.index.primaryOf.has(id) ? [L.index.primaryOf.get(id)] : L.index.familiesOf.get(id) || [];
+  return fs.length === 1 ? fs[0] : '';
+}
+const holdHref = id => href({hold: id, letter: '', page: 0, family: holdFamily(id)});
+/* Opening a family keeps a held person who belongs to it. */
+const familyPeopleHref = (L, id) => href({family: id, letter: '', page: 0,
+  hold: state.hold && (L.index.familiesOf.get(state.hold) || []).includes(id) ? state.hold : ''});
+const overviewHref = () => href({family: '', hold: '', letter: '', page: 0});
+const dotClass = (p, matched, extra = '') => ['dot', extra, p.own ? 'own' : '', p.roles.includes('critic') ? 'critic' : '',
+  p.roles.includes('historian') || p.own ? '' : 'resource', matched && !matched.has(p.id) ? 'mute' : '', state.hold === p.id ? 'selected' : ''].filter(Boolean).join(' ');
+const dotMarks = p => `${p.roles.includes('critic') ? `<circle class="ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(p.r + 1.6).toFixed(1)}"/>` : ''}
+      <circle class="core" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.r.toFixed(1)}"/>`;
+const nameTexts = (L, matched) => L.labels.map(l => `<text class="dot-label${matched && !matched.has(l.id) ? ' mute' : ''}" data-for="${l.id}" x="${l.x.toFixed(1)}" y="${(l.y + 3.5).toFixed(1)}" text-anchor="${l.anchor}">${esc(l.text)}</text>`).join('');
+/* The drawing's own extent (people.mjs `view`), never stretched past its drawn size. */
+const viewBox = L => `viewBox="${L.view.x.toFixed(1)} ${L.view.y.toFixed(1)} ${L.view.w.toFixed(1)} ${L.view.h.toFixed(1)}" width="${Math.round(L.view.w)}" height="${Math.round(L.view.h)}" style="max-width:${Math.round(L.view.w)}px"`;
+/* One ring of entries: every entry (family=all, or the fallback) or one family's. */
 function companySvg(L, matched, allowed) {
   const t = id => layerIndex(nodeById.get(id).layer);
-  const own = id => Boolean(personById.get(id)?.node_id);
-  const spokes = L.people.filter(p => !p.single).flatMap(p => p.entries.map(g => { const a = L.anchors.find(x => x.id === g);
+  const pos = new Map(L.anchors.map(a => [a.id, a]));
+  const spokes = L.people.filter(p => !p.single).flatMap(p => p.entries.map(g => { const a = pos.get(g);
     return `<line class="spoke" data-p="${p.id}" data-g="${g}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${a.x.toFixed(1)}" y2="${a.y.toFixed(1)}"/>`; })).join('');
   const dots = L.people.map(p => {
-    const label = personById.get(p.id).label;
-    const cls = ['dot', p.single ? `tone-${layerIndex(p.layer)}` : 'bridge', own(p.id) ? 'own' : '', p.roles.includes('critic') ? 'critic' : '',
-      p.roles.includes('historian') || own(p.id) ? '' : 'resource', matched && !matched.has(p.id) ? 'mute' : '', state.hold === p.id ? 'selected' : ''].filter(Boolean).join(' ');
-    const r = own(p.id) ? L.size * 0.0033 + 1.6 : L.size * 0.0021 + 1;
-    const body = `<title>${esc(label)} · ${p.entries.length} entr${p.entries.length === 1 ? 'y' : 'ies'}</title>
-      ${p.roles.includes('critic') ? `<circle class="ring" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(r + 1.6).toFixed(1)}"/>` : ''}
-      <circle class="core" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}"/>
-      ${own(p.id) && p.entries.length >= 4 ? `<text class="dot-label" x="${(p.x + r + 3).toFixed(1)}" y="${(p.y + 3.5).toFixed(1)}">${esc(label)}</text>` : ''}`;
-    return own(p.id) ? `<a class="${cls}" data-id="${p.id}" href="${esc(holdHref(p.id))}" aria-label="${esc(label)}: light up their entries">${body}</a>` : `<g class="${cls}" data-id="${p.id}">${body}</g>`;
+    const label = personById.get(p.id).label, away = p.elsewhere || [];
+    const cls = dotClass(p, matched, `${p.single ? `tone-${layerIndex(p.layer)}` : 'bridge'}${away.length ? ' elsewhere' : ''}`);
+    const also = away.length ? `; also in ${away.map(f => familyName(L, f)).join(', ')}` : '';
+    const body = `<title>${esc(label)} · ${p.entries.length} entr${p.entries.length === 1 ? 'y' : 'ies'}${esc(also)}</title>${dotMarks(p)}
+      ${away.length ? `<circle class="away" cx="${(p.x + p.r * 0.8 + 1.6).toFixed(1)}" cy="${(p.y - p.r * 0.8 - 1.6).toFixed(1)}" r="1.7"/>` : ''}`;
+    return p.own ? `<a class="${cls}" data-id="${p.id}" href="${esc(holdHref(p.id))}" aria-label="${esc(label)}: light up their entries${esc(also)}">${body}</a>` : `<g class="${cls}" data-id="${p.id}">${body}</g>`;
   }).join('');
   const anchors = L.anchors.map(a => {
     const deg = a.angle * 180 / Math.PI, flip = ((deg % 360) + 360) % 360 > 90 && ((deg % 360) + 360) % 360 < 270;
-    const lx = L.cx + (L.R + 16) * Math.cos(a.angle), ly = L.cy + (L.R + 16) * Math.sin(a.angle);
-    /* Fit the label to the space outside the ring: first drop a subtitle after a slash or
-       colon, then cut on a word boundary. The full label stays in the accessible name. */
-    const max = Math.floor(L.labelSpace / 6); let label = a.label;
-    if (label.length > max) label = label.split(/\s[/:]\s|:\s/)[0];
-    if (label.length > max) label = `${label.slice(0, max - 1).replace(/\s+\S*$/, '')}…`;
-    const cls = ['anchor', `tone-${t(a.id)}`, allowed && !allowed.has(a.id) ? 'mute' : '', state.hold === a.id ? 'selected' : ''].filter(Boolean).join(' ');
-    return `<a class="${cls}" data-id="${a.id}" href="${esc(holdHref(a.id))}" aria-label="${esc(a.label)}, ${a.count} people"><circle cx="${a.x.toFixed(1)}" cy="${a.y.toFixed(1)}" r="${(L.size * 0.0045 + 2).toFixed(1)}"/>
-      <text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" transform="rotate(${(flip ? deg + 180 : deg).toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})" text-anchor="${flip ? 'end' : 'start'}" dominant-baseline="middle">${esc(label)} <tspan>${a.count}</tspan></text></a>`;
+    const lx = (L.cx + (L.R + 16) * Math.cos(a.angle)).toFixed(1), ly = (L.cy + (L.R + 16) * Math.sin(a.angle)).toFixed(1);
+    /* people.mjs fits each label to the space outside the ring (fitLabel); the full label stays
+       in the accessible name. Lines stack about the radius, so a flipped label reads the same. */
+    const k = a.lines.length;
+    const lines = a.lines.map((l, i) => `<tspan x="${lx}" dy="${i ? ENTRY_LINE : (-(k - 1) / 2 * ENTRY_LINE).toFixed(2)}">${esc(l)}${i === k - 1 ? ` <tspan class="n">${a.count}</tspan>` : ''}</tspan>`).join('');
+    const home = a.bridged ? `; shared from ${familyName(L, a.home)}` : '';
+    const cls = ['anchor', `tone-${t(a.id)}`, a.bridged ? 'bridged' : '', allowed && !allowed.has(a.id) ? 'mute' : '', state.hold === a.id ? 'selected' : ''].filter(Boolean).join(' ');
+    return `<a class="${cls}" data-id="${a.id}" href="${esc(holdHref(a.id))}" aria-label="${esc(a.label)}, ${a.count} people${esc(home)}"><circle cx="${a.x.toFixed(1)}" cy="${a.y.toFixed(1)}" r="${(L.size * 0.0045 + 2).toFixed(1)}"/>
+      <text x="${lx}" y="${ly}" transform="rotate(${(flip ? deg + 180 : deg).toFixed(1)} ${lx} ${ly})" text-anchor="${flip ? 'end' : 'start'}" dominant-baseline="middle">${lines}</text></a>`;
   }).join('');
-  return `<svg class="company${state.hold ? ' held' : ''}" viewBox="0 0 ${L.size} ${L.size}" width="${L.size}" height="${L.size}" role="group" aria-label="People placed between the entries that name them">
-    <g class="spokes">${spokes}</g><g class="dots">${dots}</g><g class="anchors">${anchors}</g></svg>`;
+  const what = L.kind === 'family' ? `The entries of ${L.family.label}, with the people they name` : 'People placed between the entries that name them';
+  return `<svg class="company${state.hold ? ' held' : ''}" ${viewBox(L)} role="group" aria-label="${esc(what)}">
+    <g class="spokes">${spokes}</g><g class="dots">${dots}</g><g class="names">${nameTexts(L, matched)}</g><g class="anchors">${anchors}</g></svg>`;
+}
+/* The overview: the families on a ring, and only the people named in two or more of them. */
+function overviewSvg(L, matched) {
+  const pos = new Map(L.anchors.map(a => [a.id, a]));
+  const spokes = L.people.flatMap(p => p.families.map(f => { const a = pos.get(f);
+    return `<line class="spoke" data-p="${p.id}" data-g="family:${f}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${a.x.toFixed(1)}" y2="${a.y.toFixed(1)}"/>`; })).join('');
+  const dots = L.people.map(p => {
+    const label = personById.get(p.id).label, fams = p.families.map(f => pos.get(f).label).join(', ');
+    return `<a class="${dotClass(p, matched, 'bridge')}" data-id="${p.id}" href="${esc(holdHref(p.id))}" aria-label="${esc(`${label}: named in ${p.families.length} families, ${fams}. Light them up`)}"><title>${esc(label)} · ${esc(fams)}</title>${dotMarks(p)}</a>`;
+  }).join('');
+  const families = L.anchors.map(a => {
+    const hits = matched ? L.index.families.find(f => f.id === a.id).people.filter(id => matched.has(id)).length : null;
+    const lines = matched ? [...a.lines.slice(0, -1), `${hits} of ${a.count} match`] : a.lines;
+    const text = lines.map((l, i) => `<tspan class="${i === lines.length - 1 ? 'n' : ''}" x="${a.lx.toFixed(1)}" y="${(a.top + FAMILY_LINE * (i + 0.78)).toFixed(1)}">${esc(l)}</tspan>`).join('');
+    const said = `${a.label}: ${a.count} people named in ${a.entries} entr${a.entries === 1 ? 'y' : 'ies'}; ${a.shared} also named in other families. Open the family.`;
+    /* One target for the disc and its label together. */
+    const hit = [Math.min(a.box[0], a.x - a.r), Math.min(a.box[1], a.y - a.r), Math.max(a.box[2], a.x + a.r), Math.max(a.box[3], a.y + a.r)];
+    return `<a class="family-anchor${hits === 0 ? ' mute' : ''}" data-id="family:${a.id}" href="${esc(familyPeopleHref(L, a.id))}" aria-label="${esc(said)}"><rect class="hit" x="${hit[0].toFixed(1)}" y="${hit[1].toFixed(1)}" width="${(hit[2] - hit[0]).toFixed(1)}" height="${(hit[3] - hit[1]).toFixed(1)}"/><circle class="disc" cx="${a.x.toFixed(1)}" cy="${a.y.toFixed(1)}" r="${a.r.toFixed(1)}"/><text text-anchor="${a.anchor}">${text}</text></a>`;
+  }).join('');
+  return `<svg class="company overview${state.hold ? ' held' : ''}" ${viewBox(L)} role="group" aria-label="${L.anchors.length} families of historical writing, with the ${L.people.length} people named in two or more of them placed between those families">
+    <g class="spokes">${spokes}</g><g class="families">${families}</g><g class="dots">${dots}</g><g class="names">${nameTexts(L, matched)}</g></svg>`;
+}
+const LEGEND = `<ul class="company-legend"><li><span class="lg lg-hist"></span>named as historian</li><li><span class="lg lg-res"></span>named as resource or comparison</li><li><span class="lg lg-crit"></span>critical intervention</li><li><span class="lg lg-own"></span>has own entry</li>`;
+const topList = (rows, link) => `<ol class="bridge-list">${rows.map(b => `<li><a href="${esc(link(b.id))}" aria-label="${esc(b.label)}: light up their entries">${esc(b.label)}</a><span>${b.count}</span></li>`).join('')}</ol>`;
+function companyIntro(L) {
+  if (L.kind === 'overview') {
+    const top = L.people.map(p => ({id: p.id, label: personById.get(p.id).label, count: p.families.length, entries: p.entries.length}))
+      .sort((a, b) => b.count - a.count || b.entries - a.entries || a.label.localeCompare(b.label)).slice(0, 8);
+    const counted = L.index.families.reduce((s, f) => s + f.people.length, 0);
+    return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
+      <h2>Hover a family or a dot. Click a family to open it.</h2>
+      <p>The ${L.anchors.length} families of the landing page sit on the ring; a disc’s area is the number of people its entries name. Only the ${L.people.length} people named in entries of two or more families are drawn, between those families, in ink. Everyone else is counted at their family and drawn when you open it.</p>
+      ${LEGEND}</ul>
+      <div class="sec"><p class="eyebrow">Families</p><ul class="panel-entries family-list">${L.index.families.map(f => `<li><a href="${esc(familyPeopleHref(L, f.id))}">${esc(f.label)}</a><span class="role-tag">${f.people.length} people</span></li>`).join('')}</ul></div>
+      <div class="sec"><p class="eyebrow">Named across the most families</p>${topList(top, holdHref)}</div>
+      <p class="fine-print">A person counts once in each family whose entries name them, so the families’ counts sum to ${counted}, more than the people drawn and counted. Sharing a family is shared context, not influence. <a href="${esc(href({family: 'all', hold: '', letter: ''}))}">All entries on one ring →</a></p></div>`;
+  }
+  const ring = new Set(L.order);
+  const top = bridges(graph, L.kind === 'family' ? new Map([...L.byPerson].map(([id, rows]) => [id, rows.filter(r => ring.has(r.id))]).filter(([, rows]) => rows.length)) : L.byPerson, 8);
+  if (L.kind === 'family') {
+    const own = L.anchors.filter(a => !a.bridged), shared = L.anchors.filter(a => a.bridged);
+    const entry = a => `<li><a href="${esc(holdHref(a.id))}">${esc(a.label)}</a><span class="role-tag">${a.count}</span></li>`;
+    return `<div class="panel-empty"><p class="eyebrow">${esc(L.family.label)} · nothing selected</p>
+      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
+      <p>The family’s ${own.length} entr${own.length === 1 ? 'y sits' : 'ies sit'} on the ring${shared.length ? `, then the ${shared.length} it shares with other families, in outline` : ''}, each with the number of people it names. A person named in one of them gathers at that entry, in its colour; a person named in several moves inward, between them, in ink. A small dot at a person’s shoulder marks someone also named in another family.</p>
+      ${LEGEND}<li><span class="lg lg-away"></span>also in another family</li></ul>
+      <div class="sec"><p class="eyebrow">Entries</p><ul class="panel-entries">${own.map(entry).join('')}</ul>${shared.length ? `<p class="eyebrow">Shared with other families</p><ul class="panel-entries">${shared.map(entry).join('')}</ul>` : ''}</div>
+      ${top.length && top[0].count > 1 ? `<div class="sec"><p class="eyebrow">Named in the most entries here</p>${topList(top.filter(b => b.count > 1), holdHref)}</div>` : ''}
+      <p class="fine-print">Sharing an entry is shared context, not influence: no line is drawn between two people. Placement is the plain mean of an entry’s positions, not a force layout.</p></div>`;
+  }
+  return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
+      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
+      <p>Each of the ${L.anchors.length} entries sits on the ring with the number of people it names. A person named in one entry gathers at that entry, in its colour. A person named in several entries moves inward, between them, in ink. The bigger dots are the ${graph.people.filter(p => p.node_id).length} people who also have an entry of their own.</p>
+      ${LEGEND}</ul>
+      <div class="sec"><p class="eyebrow">Named in the most entries</p>${topList(top, holdHref)}</div>
+      <p class="fine-print">Sharing an entry is shared context, not influence: no line is drawn between two people, and a roster place is not an edge. Placement is the plain mean of an entry’s positions, not a force layout.</p></div>`;
 }
 function companyPanel(L) {
   const id = companyHover || state.hold;
   const release = state.hold && !companyHover ? `<p class="panel-release"><a class="release" href="${esc(href({hold: ''}))}">← Show everyone</a></p>` : '';
-  if (!id) {
-    const top = bridges(graph, L.byPerson, 8);
-    return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
-      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
-      <p>Each of the ${L.anchors.length} entries sits on the ring with the number of people it names. A person named in one entry gathers at that entry, in its colour. A person named in several entries moves inward, between them, in ink. The bigger dots are the ${graph.people.filter(p => p.node_id).length} people who also have an entry of their own.</p>
-      <ul class="company-legend"><li><span class="lg lg-hist"></span>named as historian</li><li><span class="lg lg-res"></span>named as resource or comparison</li><li><span class="lg lg-crit"></span>critical intervention</li><li><span class="lg lg-own"></span>has own entry</li></ul>
-      <div class="sec"><p class="eyebrow">Named in the most entries</p><ol class="bridge-list">${top.map(b => `<li><a href="${esc(holdHref(b.id))}" aria-label="${esc(b.label)}: light up their entries">${esc(b.label)}</a><span>${b.count}</span></li>`).join('')}</ol></div>
-      <p class="fine-print">Sharing an entry is shared context, not influence: no line is drawn between two people, and a roster place is not an edge. Placement is the plain mean of an entry’s positions, not a force layout.</p></div>`;
+  if (!id) return companyIntro(L);
+  if (id.startsWith('family:')) {
+    const f = L.index.families.find(x => x.id === id.slice(7)), a = L.anchors.find(x => x.id === f.id);
+    const shared = L.people.filter(p => p.families.includes(f.id)).sort((x, y) => y.families.length - x.families.length || y.entries.length - x.entries.length).slice(0, 6);
+    return `<p class="eyebrow">Family · ${f.entries.length} entr${f.entries.length === 1 ? 'y' : 'ies'} · ${f.people.length} people</p><h2>${esc(f.label)}</h2>
+      <p>${a.shared} of them ${a.shared === 1 ? 'is' : 'are'} also named in other families${f.bridged.length ? `; ${f.bridged.length} more entr${f.bridged.length === 1 ? 'y is' : 'ies are'} shared from other families` : ''}.</p>
+      <div class="sec"><p class="eyebrow">Entries</p><ul class="panel-roster">${f.entries.map(e => `<li><a href="${esc(holdHref(e))}">${esc(nodeById.get(e).label)}</a></li>`).join('')}</ul></div>
+      ${shared.length ? `<div class="sec"><p class="eyebrow">Shared most widely</p><ul class="panel-roster">${shared.map(p => `<li><a href="${esc(holdHref(p.id))}">${esc(personById.get(p.id).label)}</a><span class="panel-work">${p.families.length} families</span></li>`).join('')}</ul></div>` : ''}
+      <p class="panel-more"><a class="button-link" href="${esc(familyPeopleHref(L, f.id))}">Open this family →</a></p>`;
   }
   if (personById.has(id)) {
     const p = personById.get(id); const rows = L.byPerson.get(id) || []; const own = nodeById.get(p.node_id);
-    return `${release}<p class="eyebrow">${rows.length ? `Named in ${new Set(rows.map(r => r.id)).size} entr${new Set(rows.map(r => r.id)).size === 1 ? 'y' : 'ies'}` : 'Own entry only'}${own ? ' · has own entry' : ''}</p>
+    const fams = L.index?.familiesOf.get(id) || [];
+    const away = L.kind === 'family' ? fams.filter(f => f !== L.family.id) : fams;
+    const famLinks = away.map(f => `<a href="${esc(href({family: f, hold: id, letter: '', page: 0}))}">${esc(familyName(L, f))}</a>`).join(' · ');
+    return `${release}<p class="eyebrow">${rows.length ? `Named in ${new Set(rows.map(r => r.id)).size} entr${new Set(rows.map(r => r.id)).size === 1 ? 'y' : 'ies'}` : 'Own entry only'}${L.index && fams.length ? ` · ${fams.length} famil${fams.length === 1 ? 'y' : 'ies'}` : ''}${own ? ' · has own entry' : ''}</p>
       <h2>${esc(p.label)}${lifeSpan(p)}</h2>${own ? `<p class="claim">${esc(own.description)}</p>` : ''}
+      ${away.length ? `<p class="panel-families"><span class="eyebrow">${L.kind === 'family' ? 'Also in' : 'Families'}</span> ${famLinks}</p>` : ''}
       <ul class="panel-entries">${rows.map(r => `<li><a href="${esc(holdHref(r.id))}">${esc(nodeById.get(r.id).label)}</a><span class="role-tag">${esc(PERSON_ROLES[r.role])}</span></li>`).join('')}</ul>
       <p class="panel-more"><a class="button-link" href="${esc(personHref(id))}">Profile: where to read them →</a>${own ? ` <a class="button-link" href="${esc(nodeHref(own.id))}">Full entry →</a>` : ''}</p>`;
   }
   const n = nodeById.get(id); const rows = L.byEntry.get(id) || [];
   const reps = new Map((n.representative_people || []).map(r => [r.person_id, r]));
   const groups = ['historian', 'contributor', 'critic', 'precursor', 'comparison'].map(role => [role, rows.filter(r => r.role === role)]).filter(([, r]) => r.length);
+  const home = L.index?.primaryOf.get(id);
   /* One person per line with the work the entry cites, so a long roster can be scanned. */
   const line = x => { const rep = reps.get(x.id); const work = (rep?.works || '').split(';')[0].trim();
     return `<li><a href="${esc(holdHref(x.id))}">${esc(personById.get(x.id).label)}</a>${lifeSpan(personById.get(x.id))}${work ? `<span class="panel-work">${esc(work.length > 70 ? `${work.slice(0, 69)}…` : work)}</span>` : ''}</li>`; };
   return `${release}<p class="eyebrow">${esc(layerLabel(n.layer))} · ${rows.length} people</p><h2>${esc(n.label)}</h2><p class="meta">${esc(n.date_label || '')}</p>
+    ${L.kind === 'family' && home && home !== L.family.id ? `<p class="panel-families">Shared with this family from <a href="${esc(href({family: home, hold: id, letter: '', page: 0}))}">${esc(familyName(L, home))}</a>.</p>` : ''}
     ${groups.map(([role, r]) => `<div class="sec"><p class="eyebrow">${esc(PERSON_ROLES[role])}${r.length > 1 ? `s · ${r.length}` : ''}</p><ul class="panel-roster">${[...r].sort((a, b) => bySurname(personById.get(a.id), personById.get(b.id))).map(line).join('')}</ul></div>`).join('')}
     <p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}">Open the entry →</a></p>`;
 }
@@ -291,9 +405,24 @@ function register(L) {
     ${rows.length ? `<ol class="register">${rows.map(row).join('')}</ol>` : '<div class="empty"><h3>No people match.</h3><a href="#tab=people">Clear filters →</a></div>'}`;
 }
 function peopleDirectory() {
-  const L = companyLayout(graph, 1000);
-  return `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} entries that name them</span></div>
-    <p class="context-note">Every person in this atlas is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. Roles distinguish historians from intellectual resources and critics; being named together is shared context, not influence.</p>
+  companyHover = null;   /* a hover belongs to the chart it was made on */
+  const L = companyModel(1000);
+  const note = 'Roles distinguish historians from intellectual resources and critics; being named together is shared context, not influence.';
+  let head;
+  if (L.kind === 'family') {
+    const shared = L.anchors.filter(a => a.bridged).length;
+    head = `${crumbs([`<a href="${esc(overviewHref())}">Historians & contributors</a>`, `<span aria-current="page">${esc(L.family.label)}</span>`])}
+    <nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'approaches', hold: '', letter: '', page: 0}))}">This family’s approaches & works →</a></nav>
+    <div class="section-heading"><div><p class="eyebrow">THE COMPANY THEY KEEP · ONE FAMILY</p><h2>${esc(L.family.label)}</h2></div><span class="count">${L.people.length} people · ${L.anchors.length - shared} entries${shared ? ` · ${shared} shared with other families` : ''}</span></div>
+    <p class="context-note">Everyone this family’s entries name, placed between the entries that name them. A small dot at a person’s shoulder marks someone also named in another family; the panel links to it. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+  } else if (L.kind === 'overview') {
+    head = `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} families · ${L.people.length} named in more than one</span></div>
+    <p class="context-note">The families of historical writing, as on the landing page. The people drawn are those named in the entries of two or more families, placed between them; open a family to see everyone its entries name. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+  } else {
+    head = `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}${state.family === 'all' && evidence?.families ? `<nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a></nav>` : ''}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} entries that name them</span></div>
+    <p class="context-note">Every person in this atlas is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+  }
+  return `${head}
     <div class="company-split"><div class="company-chart" aria-busy="true"></div><aside class="field-panel company-panel" aria-label="Selection details">${companyPanel(L)}</aside></div>
     <section class="register-section" aria-label="Register of people">${register(L)}</section>`;
 }
@@ -301,21 +430,26 @@ function drawCompany() {
   const box = document.querySelector('.company-chart');
   if (!box) return;
   companyWidth = box.clientWidth || 0;
-  if (!companyWidth) return;   /* hidden on narrow screens; the register carries the content */
-  const L = companyLayout(graph, companyWidth);
+  if (!companyWidth) return;   /* hidden on narrow screens; the panel and register carry the content */
+  const L = companyModel(companyWidth);
   const matched = filtersOn() ? new Set(filterPeople(graph, state).map(p => p.id)) : null;
   const allowed = filtersOn() ? new Set(filterNodes(graph.nodes, {...state, query: ''}).map(n => n.id)) : null;
-  box.innerHTML = companySvg(L, matched, allowed);
+  box.innerHTML = L.kind === 'overview' ? overviewSvg(L, matched) : companySvg(L, matched, allowed);
   box.removeAttribute('aria-busy');
   const svg = box.querySelector('svg.company');
   const panel = document.querySelector('.company-panel');
   const paint = () => { panel.innerHTML = companyPanel(L); };
   const light = id => {
     const related = new Set();
-    if (id && L.byPerson.has(id)) for (const r of L.byPerson.get(id)) related.add(r.id);
-    if (id && L.byEntry.has(id)) for (const r of L.byEntry.get(id)) related.add(r.id);
+    if (id?.startsWith('family:')) { for (const p of L.people) if (p.families.includes(id.slice(7))) related.add(p.id); }
+    else if (id && L.kind === 'overview') for (const f of L.index.familiesOf.get(id) || []) related.add(`family:${f}`);
+    else {
+      if (id && L.byPerson.has(id)) for (const r of L.byPerson.get(id)) related.add(r.id);
+      if (id && L.byEntry.has(id)) for (const r of L.byEntry.get(id)) related.add(r.id);
+    }
     svg.classList.toggle('previewing', Boolean(id));
     for (const el of svg.querySelectorAll('[data-id]')) el.classList.toggle('hi', el.dataset.id === id || related.has(el.dataset.id));
+    for (const el of svg.querySelectorAll('.dot-label')) el.classList.toggle('hi', el.dataset.for === id || related.has(el.dataset.for));
     for (const sp of svg.querySelectorAll('.spoke')) sp.classList.toggle('hi', sp.dataset.p === id || sp.dataset.g === id);
   };
   const preview = target => {
@@ -329,8 +463,9 @@ function drawCompany() {
   svg.addEventListener('focusin', e => preview(e.target));
   svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
   svg.addEventListener('click', e => {
-    const dot = e.target.closest?.('g.dot');
-    if (dot) { change({hold: state.hold === dot.dataset.id ? '' : dot.dataset.id, letter: ''}); return; }
+    /* A dot toggles its hold, whether or not it is a link; modified clicks keep the link. */
+    const dot = e.target.closest?.('.dot');
+    if (dot && !(e.ctrlKey || e.metaKey || e.shiftKey)) { e.preventDefault(); change({hold: state.hold === dot.dataset.id ? '' : dot.dataset.id, letter: ''}); return; }
     if (!e.target.closest('a') && state.hold) change({hold: ''});
   });
   if (state.hold) light(state.hold);
@@ -346,7 +481,12 @@ function personPage() {
   const own = nodeById.get(p.node_id);
   const parent = nodeById.get(state.node);
   const family = familyBySlug(evidence?.families, state.family);
-  const origin = parent ? `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent.label)}</a>` : family ? `<a href="${esc(href({tab: 'map', person: '', node: '', edge: '', focus: '', query: '', view: 'approaches'}))}">${esc(family.label)}</a>` : '<a href="#tab=people">Historians & contributors</a>';
+  /* A profile opened from the people view (its link says tab=people) leads back to the same
+     level and hold; one opened from a family's approaches leads back there. */
+  const fromPeople = new URLSearchParams(location.hash.slice(1)).get('tab') === 'people';
+  const back = `<a href="${esc(href({person: '', page: 0, section: ''}))}">${esc(parent ? parent.label : fromPeople && family ? family.label : 'Historians & contributors')}</a>`;
+  const origin = parent ? back : fromPeople && family ? `<a href="${esc(href({person: '', family: '', hold: '', letter: '', page: 0, section: ''}))}">Historians & contributors</a>${'<span aria-hidden="true">/</span>'}${back}`
+    : family ? `<a href="${esc(href({tab: 'map', person: '', node: '', edge: '', focus: '', query: '', view: 'approaches'}))}">${esc(family.label)}</a>` : fromPeople ? back : '<a href="#tab=people">Historians & contributors</a>';
   const basisLabels = {curated_entry: 'Selection recorded in the curated entry', existing_relationship: 'Selection supported by an existing qualified connection', source_review: 'Selection with a scoped source check', editorial_comparison: 'Editorial comparison across constituent fields'};
   return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE MAP</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link primary" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
     ${personMapSection(p)}
@@ -1238,8 +1378,7 @@ function overview() {
       </article>`;
     }).join('')}</section>
     <aside class="guide"><p class="eyebrow">FOLLOW A QUESTION</p><h2>Take a seminar pathway.</h2><p>Read a small constellation of entries together, then test what connects them.</p>
-      ${['paradigms_and_limits', 'agency_and_structure', pathways.pathways.at(-2).id].map(id => {
-        const p = pathways.pathways.find(p => p.id === id);
+      ${[...new Set(['paradigms_and_limits', 'agency_and_structure', pathways.pathways.at(-2)?.id])].map(id => pathways.pathways.find(p => p.id === id)).filter(Boolean).map(p => {
         return `<a class="pathway-teaser" href="#pathway=${p.id}"><span>${p.node_ids.length} ENTRIES</span><strong>${esc(p.title)}</strong><span aria-hidden="true">→</span></a>`;
       }).join('')}<a class="text-link" href="#tab=pathways">All ${pathways.pathways.length} pathways →</a>
       <div class="guide-note"><span class="small-orbit" aria-hidden="true">◎</span><p>The layers are browsing groups. They are not ranks, and they do not imply that one school replaced another.</p></div>
@@ -1393,7 +1532,7 @@ function focused() {
 }
 function pathwayPage() {
   const p = pathways.pathways.find(p => p.id === state.pathway);
-  if (!p) return `${crumbs(['<span aria-current="page">Seminar pathways</span>'])}<div class="section-heading"><div><p class="eyebrow">FOLLOW A QUESTION</p><h2>Read across the map.</h2></div><p>Thirteen routes into historical explanation.</p></div><p class="context-note">${esc(pathways.interpretation_note)}</p><div class="pathway-grid">${pathways.pathways.map((p, i) => `<a class="pathway-card" href="#pathway=${p.id}"><span class="eyebrow">PATHWAY ${String(i + 1).padStart(2, '0')} · ${p.node_ids.length} ENTRIES</span><h3>${esc(p.title)}</h3><p>${esc(p.questions[0])}</p><span class="text-link">Begin reading →</span></a>`).join('')}</div>`;
+  if (!p) return `${crumbs(['<span aria-current="page">Seminar pathways</span>'])}<div class="section-heading"><div><p class="eyebrow">FOLLOW A QUESTION</p><h2>Read across the map.</h2></div><p>${pathways.pathways.length} routes into historical explanation.</p></div><p class="context-note">${esc(pathways.interpretation_note)}</p><div class="pathway-grid">${pathways.pathways.map((p, i) => `<a class="pathway-card" href="#pathway=${p.id}"><span class="eyebrow">PATHWAY ${String(i + 1).padStart(2, '0')} · ${p.node_ids.length} ENTRIES</span><h3>${esc(p.title)}</h3><p>${esc(p.questions[0])}</p><span class="text-link">Begin reading →</span></a>`).join('')}</div>`;
   return `${crumbs(['<a href="#tab=pathways">Seminar pathways</a>', `<span aria-current="page">${esc(p.title)}</span>`])}
     <div class="section-heading"><div><p class="eyebrow">SEMINAR PATHWAY · ${p.node_ids.length} ENTRIES</p><h2>${esc(p.title)}</h2></div></div>
     <div class="pathway-layout"><section><p class="context-note">A suggested reading sequence, not a claim of influence. Open an entry to examine its connections, or <a href="#path=${esc(p.id)}">see these entries together on the field →</a></p><ol class="reading-sequence">${p.node_ids.map((id, i) => {
@@ -1466,6 +1605,8 @@ function render() {
   $('layer-filter').value = state.layer;
   $('period-filter').value = state.period;
   $('hunt-filter').checked = state.hunt;
+  const pathCount = document.querySelector('[data-tab="pathways"] span');
+  if (pathCount) pathCount.textContent = pathways.pathways.length;
   document.querySelectorAll('[data-tab]').forEach(a => {
     const tab = state.person ? 'people' : state.pathway ? 'pathways' : state.node ? 'browse'
       : state.tab === 'map' ? 'field' : state.tab;
@@ -1506,7 +1647,7 @@ function render() {
 async function start() {
   try {
     const evidenceLoad = fetch('data/evidence.json', {signal: AbortSignal.timeout(8000)}).then(r => r.ok ? r.json() : null).catch(() => null);
-    [production, pathways] = await Promise.all([isOverviewHash(location.hash) ? 'data/overview.json' : 'data/graph.json', 'data/pathways.json'].map(async url => {
+    [production, pathwayAsset] = await Promise.all([isOverviewHash(location.hash) ? 'data/overview.json' : 'data/graph.json', 'data/pathways.json'].map(async url => {
       const response = await fetch(url);
       if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
       return response.json();

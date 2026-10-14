@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {edgeKind, hasArrow, filterNodes, filterPeople, personContexts, neighborhood, partitionNeighborhood, readRoute, routeHash, OVERVIEW_PATCH} from '../site/core.mjs';
-import {sortName, bySurname, membership, ringOrder, companyLayout, bridges} from '../site/people.mjs';
+import {sortName, bySurname, membership, ringOrder, companyLayout, bridges, fitLabel, familyIndex, familyOverviewLayout, familyCompanyLayout,
+  ENTRY_LINE, ENTRY_CHAR, NAME_CHAR} from '../site/people.mjs';
 import {isOverviewHash} from '../site/core.mjs';
 import {recordPanel} from '../site/records.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
@@ -374,6 +375,104 @@ test('the people register sorts by surname and the constellation places everyone
   const route = readRoute('#hold=women&letter=B', graph, {pathways: []});
   assert.equal(route.tab, 'people'); assert.equal(route.hold, 'women'); assert.equal(route.letter, 'B');
   assert.equal(readRoute('#hold=nobody&letter=bb', graph, {pathways: []}).hold, '');
+});
+
+const overlaps = (a, b) => a[0] < b[2] - 0.01 && b[0] < a[2] - 0.01 && a[1] < b[3] - 0.01 && b[1] < a[3] - 0.01;
+const noDotOverlap = (people, what) => {
+  for (let i = 0; i < people.length; i++) for (let j = i + 1; j < people.length; j++) {
+    const a = people[i], b = people[j];
+    assert.ok(Math.hypot(a.x - b.x, a.y - b.y) >= a.r + b.r - 0.01, `${what}: ${a.id} overlaps ${b.id}`);
+  }
+};
+const noNameOverlap = (L, what) => {
+  for (let i = 0; i < L.labels.length; i++) {
+    for (let j = i + 1; j < L.labels.length; j++) assert.ok(!overlaps(L.labels[i].box, L.labels[j].box), `${what}: names ${L.labels[i].id} / ${L.labels[j].id}`);
+    assert.ok(L.labels[i].box[2] - L.labels[i].box[0] >= L.labels[i].text.length * NAME_CHAR - 0.01);
+  }
+};
+test('people families: each roster entry has one primary family, and a person belongs to every family that names them', () => {
+  const idx = familyIndex(graph, families);
+  assert.equal(idx.families.length, 12);
+  const {byEntry, byPerson} = membership(graph);
+  for (const id of byEntry.keys()) assert.equal(idx.families.filter(f => f.entries.includes(id)).length, 1, id);
+  for (const [pid, rows] of byPerson) {
+    const expected = new Set(rows.map(r => idx.primaryOf.get(r.id)));
+    assert.deepEqual(new Set(idx.familiesOf.get(pid)), expected, pid);
+  }
+  for (const f of idx.families) assert.deepEqual(new Set(f.people), new Set([...idx.familiesOf].filter(([, fs]) => fs.includes(f.id)).map(([p]) => p)));
+  assert.ok(idx.familiesOf.get('ep_thompson').length >= 4);
+  assert.ok(['social-history', 'cultural-and-intellectual-history'].every(f => idx.familiesOf.get('ep_thompson').includes(f)));
+  assert.equal(familyIndex(graph, null).families.length, 0, 'no evidence block, no families');
+  // The archive lacks some members: they are skipped, never invented.
+  const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
+  const ai = familyIndex(archive, families), ids = new Set(archive.nodes.map(n => n.id));
+  for (const f of ai.families) for (const id of [...f.entries, ...f.bridged]) assert.ok(ids.has(id), id);
+  assert.ok(familyOverviewLayout(archive, families, 1000).people.length > 0);
+});
+test('fitLabel wraps, drops a subtitle, then cuts on a word boundary', () => {
+  assert.deepEqual(fitLabel('Social history', 20, 2), ['Social history']);
+  assert.deepEqual(fitLabel('Historical demography & history of the family', 24, 2), ['Historical demography &', 'history of the family']);
+  assert.deepEqual(fitLabel('Contextual intellectual history / Cambridge School', 40, 1), ['Contextual intellectual history']);
+  for (const l of fitLabel('Religion, social reform & secularization in Canada', 12, 2)) assert.ok(l.length <= 12, l);
+  assert.ok(fitLabel('Religion, social reform & secularization in Canada', 12, 2).at(-1).endsWith('…'));
+});
+test('people overview: twelve families, and only people named in two or more of them, each placed once', () => {
+  const idx = familyIndex(graph, families);
+  const multi = [...idx.familiesOf].filter(([, fs]) => fs.length > 1).map(([p]) => p).sort();
+  for (const width of [560, 640, 976, 1300]) {
+    const L = familyOverviewLayout(graph, families, width);
+    assert.equal(L.kind, 'overview');
+    assert.equal(L.anchors.length, 12);
+    assert.deepEqual(L.people.map(p => p.id).sort(), multi, 'every multi-family person once, nobody else');
+    for (const p of L.people) {
+      assert.deepEqual(p.families, idx.familiesOf.get(p.id), p.id);
+      assert.ok(Math.hypot(p.x - L.cx, p.y - L.cy) + p.r <= L.R, `${p.id} inside the ring`);
+    }
+    noDotOverlap(L.people, `overview ${width}`);
+    const discs = L.anchors.map(a => [a.x - a.r, a.y - a.r, a.x + a.r, a.y + a.r]);
+    for (const [i, a] of L.anchors.entries()) {
+      assert.equal(a.count, idx.families.find(f => f.id === a.id).people.length);
+      assert.ok(a.box[0] >= 0 && a.box[1] >= 0 && a.box[2] <= L.size && a.box[3] <= L.size, `${width}: ${a.id} label outside the chart`);
+      assert.ok(!a.lines.some(l => l.endsWith('…')), `${width}: ${a.id} label cut`);
+      for (const [j, b] of L.anchors.entries()) if (i !== j) {
+        if (i < j) assert.ok(!overlaps(a.box, b.box), `${width}: labels ${a.id} / ${b.id}`);
+        assert.ok(!overlaps(a.box, discs[j]), `${width}: label ${a.id} over disc ${b.id}`);
+      }
+    }
+    noNameOverlap(L, `overview ${width}`);
+    for (const l of L.labels) for (const a of L.anchors) assert.ok(!overlaps(l.box, a.box), `${width}: name ${l.id} over ${a.id}`);
+  }
+  assert.equal(JSON.stringify(familyOverviewLayout(graph, families, 900).people), JSON.stringify(familyOverviewLayout(graph, families, 900).people), 'deterministic');
+});
+test('people family level: its entries and bridges, everyone they name, and the families they also belong to', () => {
+  const idx = familyIndex(graph, families);
+  for (const fam of idx.families) for (const width of [560, 672, 976]) {
+    const L = familyCompanyLayout(graph, families, fam.id, width), what = `${fam.id} @${width}`;
+    assert.equal(L.kind, 'family');
+    assert.deepEqual(L.anchors.map(a => a.id).sort(), [...fam.entries, ...fam.bridged].sort(), what);
+    assert.deepEqual(L.anchors.filter(a => a.bridged).map(a => a.id).sort(), [...fam.bridged].sort(), what);
+    for (const a of L.anchors.filter(a => a.bridged)) assert.notEqual(a.home, fam.id);
+    const named = new Set([...fam.entries, ...fam.bridged].flatMap(id => idx.byEntry.get(id).map(r => r.id)));
+    assert.deepEqual(L.people.map(p => p.id).sort(), [...named].sort(), `${what}: everyone named, once`);
+    for (const p of L.people) {
+      assert.deepEqual(p.elsewhere, idx.familiesOf.get(p.id).filter(f => f !== fam.id), p.id);
+      assert.ok(Math.hypot(p.x - L.cx, p.y - L.cy) < L.R, `${what}: ${p.id} inside the ring`);
+    }
+    noDotOverlap(L.people, what);
+    noNameOverlap(L, what);
+    // Rotated labels: as thick as the gap between neighbours allows, and no longer than the space outside the ring.
+    const gap = 2 * Math.PI * (L.R + 16) / L.anchors.length;
+    for (const a of L.anchors) {
+      if (L.anchors.length > 1) assert.ok(a.lines.length * ENTRY_LINE <= gap - 2, `${what}: ${a.id} too thick`);
+      assert.ok(Math.max(...a.lines.map(l => l.length)) * ENTRY_CHAR <= L.labelSpace, `${what}: ${a.id} too long`);
+    }
+  }
+  // The largest families read whole at a wide desktop chart.
+  for (const id of ['cultural-and-intellectual-history', 'social-history'])
+    for (const a of familyCompanyLayout(graph, families, id, 976).anchors) assert.ok(!a.lines.at(-1).endsWith('…'), `${id}: ${a.label}`);
+  assert.equal(familyCompanyLayout(graph, families, 'nosuch', 900), null);
+  const env = familyCompanyLayout(graph, families, 'environment', 976);
+  assert.ok(env.view.h < env.view.w / 2, 'a two-entry family is framed to its own extent, not an empty square');
 });
 
 test('landing: every family member is dated, early or undated, never dropped', () => {
