@@ -1,6 +1,20 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.135 (2026-10-14)
+## Current revision 1.136 (2026-10-14)
+
+**175 entries (96 groups, 79 person entries), 967 teaching relationships, 1,664 sources and
+1,212 shared people.**
+
+Six Canadian historians become person entries: Carl Berger, Ramsay Cook, J. M. S. Careless,
+Donald Creighton, Joy Parr and Mariana Valverde. They bring 28 edges, and four existing edges are
+revised.
+
+A person-entry batch may now carry `text_revisions`: narrow corrections to an existing roster
+context or strand text. Each is `{node, person_id | strand, field, old, new, reason}`, and `old`
+must match exactly once. See the
+[acceptance record](data/production-batches/person-entries-1.136/README.md).
+
+## Historical revision 1.135 (2026-10-14)
 
 **169 entries (96 groups, 73 person entries), 939 teaching relationships, 1,609 sources and
 1,212 shared people.**

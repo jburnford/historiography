@@ -95,6 +95,8 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
+        if self.cfg.get('text_revisions'):   # narrow corrections to existing roster contexts and strand text
+            packet['text_revisions'] = self.cfg['text_revisions']
         self.packet.parent.mkdir(exist_ok=True)
         self.packet.write_text(json.dumps(packet, ensure_ascii=False, indent=1) + '\n')
         print(f'{self.rev} packet: {len(nodes)} person entries, {len(edges)} edges, {len(sources)} new sources, {len(addenda)} addenda, '
@@ -158,6 +160,17 @@ class Batch:
             g['edges'].append(dict(id=new_ids[e['proposal_id']], **deepcopy(e)))
         for eid, upd in packet['edge_revisions'].items():
             next(e for e in g['edges'] if e['id'] == eid).update(deepcopy(upd))
+        for tr in packet.get('text_revisions', []):
+            node = next(n for n in g['nodes'] if n['id'] == tr['node'])
+            if tr.get('person_id'):
+                obj = next(r for r in node['representative_people'] if r['person_id'] == tr['person_id'])
+            elif tr.get('strand'):
+                obj = next(s for s in node['strands'] if s['id'] == tr['strand'])
+            else:
+                obj = node
+            if obj.get(tr['field'], '').count(tr['old']) != 1:
+                raise ValueError(f"Text revision does not match once: {tr['node']} {tr['field']}")
+            obj[tr['field']] = obj[tr['field']].replace(tr['old'], tr['new'])
         for ra in packet.get('roster_additions', []):
             node = next(n for n in g['nodes'] if n['id'] == ra['node'])
             if any(r['person_id'] == ra['row']['person_id'] for r in node['representative_people']):

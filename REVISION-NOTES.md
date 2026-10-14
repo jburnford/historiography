@@ -1733,3 +1733,24 @@ fixes"; all ten findings are applied. Among them: the linguistic-turn edge is de
 charge is narrowed to selected positions, and the unread *SHPS* "Apology" is registered. Totals:
 169 entries, 939 relationships. See the
 [acceptance record](data/production-batches/science-studies-1.135/README.md).
+
+## Revision 1.136: six Canadian historians (14 October 2026)
+
+The user asked for "a list of Canadian historians who need an entry" and called Tier 1
+"obvious". Six historians whose frameworks the Canadian historiography names become person
+entries:
+- Carl Berger: imperialism as nationalism, and the historiography of the field;
+- Ramsay Cook: "limited identities", and *The Regenerators*;
+- J. M. S. Careless: metropolitanism;
+- Donald Creighton: the Laurentian narrative;
+- Joy Parr: *The Gender of Breadwinners*;
+- Mariana Valverde: moral regulation.
+
+They bring 28 edges, including critiques: Careless and Creighton against the frontier thesis,
+Cook against the Laurentian view and regionalism, Berger against the liberal nationalist reading
+of imperialism, and Valverde's sympathetic critique of Scott. Four existing edges are revised.
+
+Sol said "accept with fixes"; all ten findings are fixed (`release/fixes-1.136.md`). Canadian PhD
+counts are removed from the displayed text, and qualifications are restored. Totals: 175 entries,
+967 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.136/README.md).
