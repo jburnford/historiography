@@ -52,3 +52,15 @@ scheduled.
   description, to Skinner's contextualism. The likely place is at the start, before geertz,
   or beside context. Pathways live in `seminar-pathways.json`, and the questions or exercise
   may need a line on use, practice and meaning.
+- **2026-10-14, the "pathway endpoints" batch** (proposed to follow the science-studies critique
+  batch):
+  - Pathway `global_scale_explanation`: add Innis (harold_a_innis) first, the staples thesis.
+    It needs an evidenced Innis → dependency edge through Canadian political economy: Watkins
+    1963 and 1977; Levitt, *Silent Surrender* 1970.
+  - New entry "Extractivism" at the end of that pathway. Pre-2000 roots in Innis and Bunker,
+    *Underdeveloping the Amazon* (1985); post-2000 extension in Gudynas, Acosta and Svampa.
+    Empire family, perhaps bridging to Environment.
+  - Pathway `science_knowledge_practice`: new entry "New materialism" at the end. Pre-2000
+    roots in Latour's nonhumans, Haraway, DeLanda 1997, and Braidotti/DeLanda's coinage;
+    post-2000 extension in Barad 2003/2007, Bennett 2010, Coole and Frost 2010, and the
+    historians' "material turn".
