@@ -10,6 +10,8 @@ try:
 except ImportError:
     from journal_metadata_batches import fingerprint
 
+CUTOFF_YEAR = 2026   # open frame (revision 1.133): founding and venue years run to the research cutoff
+
 
 def merge_venues(catalogue, batch):
     result = copy.deepcopy(catalogue)
@@ -35,7 +37,7 @@ def merge_venues(catalogue, batch):
                 or node.get('publication_end') is not None or node.get('date_span')
                 or node.get('publication_status') != 'unknown'):
             raise ValueError('Founding date check may only fill wholly unknown chronology')
-        if (type(year) is not int or not 1 <= year <= 2000
+        if (type(year) is not int or not 1 <= year <= CUTOFF_YEAR
                 or not check.get('note') or not refs
                 or any(s not in sources for s in refs)):
             raise ValueError('Founding date check needs a sourced, in-scope publication year')
@@ -59,7 +61,7 @@ def merge_venues(catalogue, batch):
                 or edge.get('basis') not in ('sourced_founding_programme', 'primary_founding_editorial')
                 or edge.get('directed') is not True
                 or not edge.get('relationship') or not edge.get('evidence_note')
-                or type(year) is not int or year > 2000
+                or type(year) is not int or year > CUTOFF_YEAR
                 or span.get('end') != year or span.get('precision') != 'year'
                 or year != nodes[edge['source']].get('publication_start')):
             raise ValueError('Founding claim needs a programme and a matching in-scope year')

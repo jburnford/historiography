@@ -1,11 +1,11 @@
 {
-  "schema_version": "1.4",
-  "title": "Historiography, 1920–2000",
+  "schema_version": "1.5",
+  "title": "The Historiography Atlas",
   "description": "Teaching knowledge graph developed around Lynn Hunt’s Writing History in the Global Era, expanded with earlier traditions, enduring fields, and intellectual connections.",
   "scope": {
     "main_period": [
       1920,
-      2000
+      null
     ],
     "includes_earlier_roots": true,
     "geographic_emphasis": "Primarily Western academic historiography, with selected independent and critical traditions.",
@@ -16,41 +16,30 @@
       "A node’s source is a supporting reference and does not necessarily document every associated edge.",
       "Nodes include traditions, fields, genres, methods, approaches, and individual thinkers.",
       "New and revised relationships may include source_ids and evidence_note. A comparative teaching link does not assert influence merely because it has a source and target.",
-      "Sources published after 2000 can retrospectively support developments within the current 1920–2000 graph. The planned extension to 2026 is not yet represented as completed content.",
       "Editorial revision 1.3 incorporates selected and rewritten Fable 5.1 proposals into the existing revision 1.2; the supplied feedback used an older base and its edge IDs were remapped.",
       "Schema 1.2 adds optional edge directed and relationship_kind fields. Explicit comparisons have directed:false; missing direction metadata on inherited edges means not yet classified, not verified influence. Critique arrows point from critic to the position criticized.",
       "Optional source citation and verification fields distinguish bibliographic identity or supporting-page checks from an unperformed passage-level audit. Missing verification metadata means unrecorded, never implicitly verified. Checked metadata does not certify all node or edge interpretations.",
       "The map remains selective: a named work, school, or field does not imply that every associated thinker agrees. Paired nodes such as Progressive/consensus history are comparisons, not single paradigms.",
       "Revision 1.4 distinguishes women as producers of historical knowledge from women’s history as a field. Women historians appear across economic, political, military, intellectual, and other inquiries; belonging to the profession does not imply a shared feminist method or a linear succession of feminist waves.",
       "Schema 1.3 adds shared people records, explicit group/person entry kinds, and qualified representative_people rosters. Roster inclusion is not a new influence edge or a claim of formal school membership. Most rosters normalize existing curated prose; their inherited references are not new individual affiliation verification.",
-      "Directional neighborhood views place incoming directed relationships on the left and outgoing ones on the right. Comparisons and unclassified links sit separately. Thompson’s cultural contribution and feminist historians’ productive inheritance coexist with their criticisms; no uniform succession from class to culture is implied."
+      "Directional neighborhood views place incoming directed relationships on the left and outgoing ones on the right. Comparisons and unclassified links sit separately. Thompson’s cultural contribution and feminist historians’ productive inheritance coexist with their criticisms; no uniform succession from class to culture is implied.",
+      "From revision 1.133 the atlas has no closing date. Fields are extended one at a time; each entry states the year through which it has been reviewed. The original 1920–2000 experiment (revision 1.121) is kept as an archived view."
     ],
-    "extension": {
-      "status": "partial_accepted",
+    "frame": {
+      "start": 1920,
+      "end": null,
+      "research_cutoff": "2026-10-14",
+      "note": "Open frame from revision 1.133. Each entry records how far it has been reviewed (coverage.reviewed_through); a review year is a limit of our reading, not an ending."
+    },
+    "archive": {
+      "label": "The original 1920–2000 experiment",
       "baseline_period": [
         1920,
         2000
       ],
-      "proposed_view_period": [
-        1920,
-        2026
-      ],
-      "research_cutoff": "2026-09-19",
-      "latest_selected_publication": 2026,
-      "field_ids": [
-        "medicalhistory",
-        "spatialhistory",
-        "digital_history",
-        "web_history",
-        "indigenous"
-      ],
-      "fully_reviewed_fields": 0,
-      "note": "Selected medical, geographical, digital, web-history and Indigenous-history interventions only. Indigenous history adds one selected 2010 methodological article; no field is completely reviewed through 2026.",
       "baseline_graph": "drafts/historiography-1920-2000.v1.121.json",
       "baseline_revision": "1.121",
       "baseline_sha256": "69d0bf90b01cf60ea8cd928852c47ff116050d6160109b63db8c262e5302e683",
-      "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json",
-      "candidate_record": "data/extension-2026/digital-release-10/candidate.json",
       "acceptance_records": [
         "data/production-batches/extension-1.122/acceptance.json",
         "data/production-batches/extension-1.123/acceptance.json",
@@ -157,7 +146,7 @@
     {
       "id": "saussure",
       "label": "Structural linguistics",
-      "date_label": "Saussure’s Course, posthumous, 1916 · later linguistic programmes · coverage through 2000",
+      "date_label": "Saussure’s Course, posthumous, 1916 · later linguistic programmes",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -385,7 +374,11 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "levistrauss",
@@ -499,7 +492,7 @@
     {
       "id": "epistemology",
       "label": "Historical epistemology",
-      "date_label": "Bachelard 1938 · Canguilhem 1943, expanded 1966 · coverage through 2000",
+      "date_label": "Bachelard 1938 · Canguilhem 1943, expanded 1966",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -678,7 +671,11 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "foucault",
@@ -735,7 +732,7 @@
     {
       "id": "ranke",
       "label": "Critical historical scholarship",
-      "date_label": "Earlier philological roots · Ranke’s preface 1824 · later archival scholarship · coverage through 2000",
+      "date_label": "Earlier philological roots · Ranke’s preface 1824 · later archival scholarship",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -993,12 +990,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "karl",
       "label": "Historical materialism",
-      "date_label": "Marx’s preface 1859 · Capital I 1867 · later Marxists · coverage through 2000",
+      "date_label": "Marx’s preface 1859 · Capital I 1867 · later Marxists",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -1467,12 +1468,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "durkheim",
       "label": "Social facts & collective life",
-      "date_label": "Division of Labour 1893 · Rules 1895 · Elementary Forms 1912 · later school · coverage through 2000",
+      "date_label": "Division of Labour 1893 · Rules 1895 · Elementary Forms 1912 · later school",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -1673,12 +1678,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "weber",
       "label": "Interpretive historical sociology",
-      "date_label": "Weber’s Protestant Ethic 1904–05 · later comparative inquiry · coverage through 2000",
+      "date_label": "Weber’s Protestant Ethic 1904–05 · later comparative inquiry",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -1861,12 +1870,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "historicalecon",
       "label": "Historical economics",
-      "date_label": "Roscher’s programme 1843 · Schmoller’s methodological review 1883 · coverage through 2000",
+      "date_label": "Roscher’s programme 1843 · Schmoller’s methodological review 1883",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -2152,12 +2165,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "economictheory",
       "label": "Political economy & economic theory",
-      "date_label": "Smith 1776 · Ricardo 1817 · Mill 1848 · Marshall 1890 · later adaptations · coverage through 2000",
+      "date_label": "Smith 1776 · Ricardo 1817 · Mill 1848 · Marshall 1890 · later adaptations",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -2444,12 +2461,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "geography",
       "label": "Geography & environmental inquiry",
-      "date_label": "1800s roots · Marsh 1864 · Vidal 1903 · Sauer 1925 · later inquiries · coverage through 2000",
+      "date_label": "1800s roots · Marsh 1864 · Vidal 1903 · Sauer 1925 · later inquiries",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -2891,12 +2912,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "oldculture",
       "label": "Earlier cultural history",
-      "date_label": "Burckhardt’s Renaissance 1860 · Huizinga’s Autumn 1919 · coverage through 2000",
+      "date_label": "Burckhardt’s Renaissance 1860 · Huizinga’s Autumn 1919",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -3193,12 +3218,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "lifetradition",
       "label": "Biographical & literary traditions",
-      "date_label": "Ancient roots · Carlyle’s On Heroes 1841 · Strachey 1918 · coverage through 2000",
+      "date_label": "Ancient roots · Carlyle’s On Heroes 1841 · Strachey 1918",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -3466,12 +3495,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "wartradition",
       "label": "Strategic & military scholarship",
-      "date_label": "Earlier roots · Clausewitz’s On War 1832 · Delbrück’s volumes 1900–20 · coverage through 2000",
+      "date_label": "Earlier roots · Clausewitz’s On War 1832 · Delbrück’s volumes 1900–20",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -3720,12 +3753,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "anthropology",
       "label": "Anthropology & ethnography",
-      "date_label": "1800s roots · Tylor 1871 · Boas 1896 · later revisions · coverage through 2000",
+      "date_label": "1800s roots · Tylor 1871 · Boas 1896 · later revisions",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -4446,12 +4483,16 @@
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "A selective teaching map of sociocultural anthropology and ethnography, not all anthropology. Evolutionary, historical, functional, structural, interpretive, feminist and critical inquiries overlap without forming a single succession. Chinese research, Māori scholarship and collaborative histories have distinct trajectories. These approaches and rosters neither establish exclusive membership nor turn anthropology into one transferable theory."
+      "scope_note": "A selective teaching map of sociocultural anthropology and ethnography, not all anthropology. Evolutionary, historical, functional, structural, interpretive, feminist and critical inquiries overlap without forming a single succession. Chinese research, Māori scholarship and collaborative histories have distinct trajectories. These approaches and rosters neither establish exclusive membership nor turn anthropology into one transferable theory.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "nationaltradition",
       "label": "National & imperial narratives",
-      "date_label": "1800s–1900s · nation-building, empire and counter-histories · coverage through 2000",
+      "date_label": "1800s–1900s · nation-building, empire and counter-histories",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -4760,12 +4801,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "economic",
       "label": "Economic history",
-      "date_label": "1800s roots · Economic History Society founded 1926 · multiple paradigms · coverage through 2000",
+      "date_label": "1800s roots · Economic History Society founded 1926 · multiple paradigms",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -5791,12 +5836,16 @@
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "Distinguish the relevant historians, evidence, and mechanisms before claiming an influence. A subject shared with Annales or Marxism is not itself an explanation. Institutional approaches are not interchangeable, and consumption does not replace production. Household interests can conflict. Gerschenkron’s European comparison and Pomeranz’s Eurasian argument have distinct scales; neither is a universal development law. Furtado’s demand analysis and Novais’s structural criticism offer a Brazilian exchange, with primary-edition and numerical verification limits retained."
+      "scope_note": "Distinguish the relevant historians, evidence, and mechanisms before claiming an influence. A subject shared with Annales or Marxism is not itself an explanation. Institutional approaches are not interchangeable, and consumption does not replace production. Household interests can conflict. Gerschenkron’s European comparison and Pomeranz’s Eurasian argument have distinct scales; neither is a universal development law. Furtado’s demand analysis and Novais’s structural criticism offer a Brazilian exchange, with primary-edition and numerical verification limits retained.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "military",
       "label": "Military history",
-      "date_label": "Earlier roots · Howard 1961 · Keegan 1976 · multiple paradigms · coverage through 2000",
+      "date_label": "Earlier roots · Howard 1961 · Keegan 1976 · multiple paradigms",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -6249,12 +6298,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "political",
       "label": "Political history",
-      "date_label": "1800s roots · Namier 1929 · Hunt 1984 · multiple paradigms · coverage through 2000",
+      "date_label": "1800s roots · Namier 1929 · Hunt 1984 · multiple paradigms",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -7034,12 +7087,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "biography",
       "label": "Biography / life writing",
-      "date_label": "Ancient roots · Strachey 1918 · Davis 1995 · crosses fields · coverage through 2000",
+      "date_label": "Ancient roots · Strachey 1918 · Davis 1995 · crosses fields",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -7648,12 +7705,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "annales",
       "label": "Annales",
-      "date_label": "1929 onward · coverage through 2000",
+      "date_label": "1929 onward",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": true,
@@ -8103,12 +8164,16 @@
         }
       ],
       "entry_type": "School or movement",
-      "scope_note": "Generations overlap and disagree. The founders’ exchange programme differs from Braudel’s duration, serial economic models and the 1988–1989 methodological reconsideration. Roster contexts include named resources, critics and collaborators, not a uniform membership list. Women’s history and Italian microstoria retain independent histories; their specific exchanges do not establish a single Annales origin."
+      "scope_note": "Generations overlap and disagree. The founders’ exchange programme differs from Braudel’s duration, serial economic models and the 1988–1989 methodological reconsideration. Roster contexts include named resources, critics and collaborators, not a uniform membership list. Women’s history and Italian microstoria retain independent histories; their specific exchanges do not establish a single Annales origin.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "marx",
       "label": "Marxist social history",
-      "date_label": "Earlier roots · 1940s–60s expansion · coverage through 2000",
+      "date_label": "Earlier roots · 1940s–60s expansion",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": true,
@@ -8596,12 +8661,16 @@
         }
       ],
       "entry_type": "School or movement",
-      "scope_note": "British Marxist social history is the focus, with selected Caribbean and imperial exchanges and earlier radical traditions. Party-group collaboration, independent journals, adult education and later feminist or linguistic debates are different formations. The rosters include external interlocutors and critics; neither membership nor a single theory of culture, class or historical change is implied."
+      "scope_note": "British Marxist social history is the focus, with selected Caribbean and imperial exchanges and earlier radical traditions. Party-group collaboration, independent journals, adult education and later feminist or linguistic debates are different formations. The rosters include external interlocutors and critics; neither membership nor a single theory of culture, class or historical change is implied.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "black",
       "label": "Black history",
-      "date_label": "1800s roots · coverage through 2000",
+      "date_label": "1800s roots",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": false,
@@ -8864,12 +8933,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "anticolonial",
       "label": "Anti-colonial histories",
-      "date_label": "Earlier roots · 1930s–70s expansion · coverage through 2000",
+      "date_label": "Earlier roots · 1930s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": false,
@@ -9062,12 +9135,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "women",
       "label": "Women’s history",
-      "date_label": "Nineteenth-century and interwar work; renewed expansion from the 1960s · coverage through 2000",
+      "date_label": "Nineteenth-century and interwar work; renewed expansion from the 1960s",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": false,
@@ -9874,12 +9951,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "modern",
       "label": "Modernization theory",
-      "date_label": "1950s–60s expansion · coverage through 2000",
+      "date_label": "1950s–60s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": true,
@@ -10142,12 +10223,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "social",
       "label": "New social history",
-      "date_label": "1950s–70s expansion · coverage through 2000",
+      "date_label": "1950s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -10798,12 +10883,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "identity",
       "label": "Identity histories",
-      "date_label": "1960s–80s expansion · coverage through 2000",
+      "date_label": "1960s–80s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": true,
@@ -11010,12 +11099,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "oral",
       "label": "Oral history",
-      "date_label": "1940s institutions · expansion from the 1960s · coverage through 2000",
+      "date_label": "1940s institutions · expansion from the 1960s",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -11437,12 +11530,16 @@
         }
       ],
       "entry_type": "Method or approach",
-      "scope_note": "Recording testimony and interpreting the production of memory are related tasks; oral tradition and the life-history interview are distinct sources."
+      "scope_note": "Recording testimony and interpreting the production of memory are related tasks; oral tradition and the life-history interview are distinct sources.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "quant",
       "label": "Quantitative history",
-      "date_label": "1950s–70s expansion · coverage through 2000",
+      "date_label": "1950s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -11937,12 +12034,16 @@
         }
       ],
       "entry_type": "Method or approach",
-      "scope_note": "Serial history, demographic reconstruction, and cliometrics use numbers differently. A quantitative method does not establish a common theory. Counting, source linkage and formal modeling require different assumptions. Recorded categories, missing people and units of comparison shape conclusions; neither criticism nor narrative history ended quantitative research."
+      "scope_note": "Serial history, demographic reconstruction, and cliometrics use numbers differently. A quantitative method does not establish a common theory. Counting, source linkage and formal modeling require different assumptions. Recorded categories, missing people and units of comparison shape conclusions; neither criticism nor narrative history ended quantitative research.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "context",
       "label": "Contextual intellectual history / Cambridge School",
-      "date_label": "1960s onward · coverage through 2000",
+      "date_label": "1960s onward",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -12243,12 +12344,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "dependency",
       "label": "Dependency / world-systems",
-      "date_label": "1960s–70s expansion · coverage through 2000",
+      "date_label": "1960s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -12522,12 +12627,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "Dependency theories, Rodney’s African history, and Wallerstein’s world-system are related but cannot share every incoming or outgoing claim. Structuralist precursors are not automatically Marxist dependentistas. Bambirra’s defense of one Marxist current is a situated intervention; neither it nor Wallerstein’s disputed definition of capitalism settles the umbrella’s boundaries."
+      "scope_note": "Dependency theories, Rodney’s African history, and Wallerstein’s world-system are related but cannot share every incoming or outgoing claim. Structuralist precursors are not automatically Marxist dependentistas. Bambirra’s defense of one Marxist current is a situated intervention; neither it nor Wallerstein’s disputed definition of capitalism settles the umbrella’s boundaries.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "culture",
       "label": "New cultural history",
-      "date_label": "1970s–80s expansion · coverage through 2000",
+      "date_label": "1970s–80s expansion",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -12987,12 +13096,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "language",
       "label": "Linguistic turn / poststructuralism",
-      "date_label": "1970s–90s reception · coverage through 2000",
+      "date_label": "1970s–90s reception",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -13599,12 +13712,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "Structural linguistics, discourse, deconstruction, and narrative theory differ. A historical concern with language alone does not identify a poststructuralist."
+      "scope_note": "Structural linguistics, discourse, deconstruction, and narrative theory differ. A historical concern with language alone does not identify a poststructuralist.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "micro",
       "label": "Microhistory / everyday life",
-      "date_label": "1970s–80s expansion · coverage through 2000",
+      "date_label": "1970s–80s expansion",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -13956,12 +14073,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "Italian microstoria and German Alltagsgeschichte have distinct origins and aims; scale alone is not membership in either project. Evidence, narrative and generalization remain contested within this umbrella. Kracauer is a retrospective comparison, not a claimed founder. González’s Mexican microhistoria is included as a distinct local-history project; shared terminology does not establish transmission from Italian or German programmes."
+      "scope_note": "Italian microstoria and German Alltagsgeschichte have distinct origins and aims; scale alone is not membership in either project. Evidence, narrative and generalization remain contested within this umbrella. Kracauer is a retrospective comparison, not a claimed founder. González’s Mexican microhistoria is included as a distinct local-history project; shared terminology does not establish transmission from Italian or German programmes.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "environment",
       "label": "Environmental history",
-      "date_label": "1970s consolidation · coverage through 2000",
+      "date_label": "1970s consolidation",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -14638,12 +14759,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "subaltern",
       "label": "Subaltern Studies",
-      "date_label": "1982 onward · coverage through 2000",
+      "date_label": "1982 onward",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -14886,12 +15011,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "gender",
       "label": "Gender history",
-      "date_label": "Earlier roots · 1980s–90s expansion · coverage through 2000",
+      "date_label": "Earlier roots · 1980s–90s expansion",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -15416,12 +15545,16 @@
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "Gender history is a distinct research field with competing explanations and methods. Women’s history remains independent and is not superseded. Racial formation and intersectional analysis have their own entries; connections express specific arguments rather than membership in a combined school. Historical differences of class, race, caste, place and sexuality remain integral questions within gender history."
+      "scope_note": "Gender history is a distinct research field with competing explanations and methods. Women’s history remains independent and is not superseded. Racial formation and intersectional analysis have their own entries; connections express specific arguments rather than membership in a combined school. Historical differences of class, race, caste, place and sexuality remain integral questions within gender history.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "queer",
       "label": "Sexuality & queer history",
-      "date_label": "1970s roots; 1990s turn · coverage through 2000",
+      "date_label": "1970s roots; 1990s turn",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -15748,12 +15881,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "post",
       "label": "Postcolonial history / critique",
-      "date_label": "1970s roots · expansion from the 1980s · coverage through 2000",
+      "date_label": "1970s roots · expansion from the 1980s",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -16038,12 +16175,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "memory",
       "label": "Memory studies",
-      "date_label": "Older roots · 1980s–90s expansion · coverage through 2000",
+      "date_label": "Older roots · 1980s–90s expansion",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -16518,12 +16659,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "global",
       "label": "World / global / connected history",
-      "date_label": "1960s roots; 1990s growth · coverage through 2000",
+      "date_label": "1960s roots; 1990s growth",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -16938,12 +17083,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "World synthesis, comparative development, capitalism, and connected histories differ in units, scales, and explanatory assumptions."
+      "scope_note": "World synthesis, comparative development, capitalism, and connected histories differ in units, scales, and explanatory assumptions.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "indigenous",
       "label": "Indigenous history & decolonizing methods",
-      "date_label": "Earlier examples 1615–1938; 1970s–90s growth · baseline through 2000; selected 2010 intervention",
+      "date_label": "Earlier examples 1615–1938; 1970s–90s growth · selected 2010 intervention",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -18040,11 +18189,11 @@
       ],
       "date_span": {
         "start": 1615,
-        "end": 2000,
+        "end": null,
         "start_kind": "earlier_roots",
-        "end_kind": "coverage_limit",
+        "end_kind": "open",
         "precision": "approximate",
-        "basis": "c. 1615/1616 dates the earliest selected manuscript witness, not the origin of Indigenous historical knowledge or a common academic field. Selected nineteenth-century and interwar practices precede the 1970s–90s academic/methodological growth. The baseline selection is through 2000; a separately marked 2010 article supplies one selected later intervention."
+        "basis": "c. 1615/1616 dates the earliest selected manuscript witness, not the origin of Indigenous historical knowledge or a common academic field. Selected nineteenth-century and interwar practices precede the 1970s–90s academic/methodological growth. The baseline selection is through 2000; a separately marked 2010 article supplies one selected later intervention. Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "extension_coverage": {
         "status": "partial_accepted",
@@ -18065,12 +18214,16 @@
           "claim:ind127:neylan_mentorship"
         ],
         "acceptance_record": "data/production-batches/indigenous-1.127/acceptance.json"
+      },
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
       }
     },
     {
       "id": "freud",
       "label": "Freudian psychoanalysis",
-      "date_label": "1890s onward; divergent later schools · coverage through 2000",
+      "date_label": "1890s onward; divergent later schools",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -18415,12 +18568,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "science",
       "label": "History of science",
-      "date_label": "Earlier roots · History of Science Society founded 1924 · later approaches · coverage through 2000",
+      "date_label": "Earlier roots · History of Science Society founded 1924 · later approaches",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -19077,7 +19234,11 @@
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "Kuhn is a central reorientation, not the field’s sole founder. Sarton, Koyré, Merton, and historians of experimental practice distinguish important approaches; Yates and Foucault are additional contributions. Chinese science and women’s scientific work expand this selection; it still needs fuller coverage of other regions and material practices. Named Chinese-series contributors and Daston/Galison’s image and instrument studies deepen the selection. Publication credits do not replace primary argument checks; wider regional coverage remains selective. Arabic mathematics, colonial Indian science, African healing and a Beninese knowledge programme are separate selected projects, not regional proxies or exhaustive coverage."
+      "scope_note": "Kuhn is a central reorientation, not the field’s sole founder. Sarton, Koyré, Merton, and historians of experimental practice distinguish important approaches; Yates and Foucault are additional contributions. Chinese science and women’s scientific work expand this selection; it still needs fuller coverage of other regions and material practices. Named Chinese-series contributors and Daston/Galison’s image and instrument studies deepen the selection. Publication credits do not replace primary argument checks; wider regional coverage remains selective. Arabic mathematics, colonial Indian science, African healing and a Beninese knowledge programme are separate selected projects, not regional proxies or exhaustive coverage.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "white",
@@ -19144,7 +19305,7 @@
     {
       "id": "ssk",
       "label": "Sociology of scientific knowledge / SSK",
-      "date_label": "Strong Programme · 1970s onward · coverage through 2000",
+      "date_label": "Strong Programme · 1970s onward",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -19275,12 +19436,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "sts",
       "label": "Science and technology studies / STS",
-      "date_label": "Interdisciplinary consolidation · 1970s–90s · coverage through 2000",
+      "date_label": "Interdisciplinary consolidation · 1970s–90s",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -19588,12 +19753,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "conceptual",
       "label": "Conceptual history / Begriffsgeschichte",
-      "date_label": "Koselleck · 1960s–90s development · coverage through 2000",
+      "date_label": "Koselleck · 1960s–90s development",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -19839,12 +20008,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "psychohistory",
       "label": "Psychohistory / psychoanalytic history",
-      "date_label": "Earlier roots; postwar growth · 1950s–80s · coverage through 2000",
+      "date_label": "Earlier roots; postwar growth · 1950s–80s",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -20039,7 +20212,11 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "fanon",
@@ -20143,7 +20320,7 @@
     {
       "id": "historicism",
       "label": "Historicism & idealist philosophies of history",
-      "date_label": "1800s roots · Dilthey 1883 · Croce 1917 · Meinecke 1936 · Collingwood 1946 · coverage through 2000",
+      "date_label": "1800s roots · Dilthey 1883 · Croce 1917 · Meinecke 1936 · Collingwood 1946",
       "layer": "intellectual_traditions",
       "period": null,
       "hunt_core_paradigm": false,
@@ -20380,12 +20557,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "philhistory",
       "label": "Explanation & objectivity debates",
-      "date_label": "Earlier roots · Becker address 1931 · Hempel 1942 · Carr 1961 · Elton 1967 · coverage through 2000",
+      "date_label": "Earlier roots · Becker address 1931 · Hempel 1942 · Carr 1961 · Elton 1967",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -21041,12 +21222,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "frankfurt",
       "label": "Frankfurt School / critical theory",
-      "date_label": "1920s roots · Benjamin · Adorno · Habermas · coverage through 2000",
+      "date_label": "1920s roots · Benjamin · Adorno · Habermas",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -21468,12 +21653,16 @@
         }
       ],
       "entry_type": "School or movement",
-      "scope_note": "Benjamin’s historical time, Horkheimer/Adorno’s critique of domination, and Habermas’s public sphere require individual attribution. Empirical projects, exile institutions, Freudian debates and feminist/public-sphere criticisms are distinguished. Roster critics and historians are not thereby Institute members."
+      "scope_note": "Benjamin’s historical time, Horkheimer/Adorno’s critique of domination, and Habermas’s public sphere require individual attribution. Empirical projects, exile institutions, Freudian debates and feminist/public-sphere criticisms are distinguished. Roster critics and historians are not thereby Institute members.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "practice",
       "label": "Practice theory",
-      "date_label": "Bourdieu · de Certeau · Sewell · 1970s–90s development · coverage through 2000",
+      "date_label": "Bourdieu · de Certeau · Sewell · 1970s–90s development",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -21762,7 +21951,11 @@
         }
       ],
       "entry_type": "Method or approach",
-      "scope_note": "Bourdieu, de Certeau, and Sewell offer distinct accounts. Practice theory is not a unified successor to cultural history. Collaborative everyday research, cultural repertoires and Ortner’s plural orientation broaden this selection. Strategy has different meanings across these authors."
+      "scope_note": "Bourdieu, de Certeau, and Sewell offer distinct accounts. Practice theory is not a unified successor to cultural history. Collaborative everyday research, cultural repertoires and Ortner’s plural orientation broaden this selection. Strategy has different meanings across these authors.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "elias",
@@ -21787,7 +21980,7 @@
     {
       "id": "culturalstudies",
       "label": "British cultural studies",
-      "date_label": "Hoggart · Williams · Hall · CCCS 1964 · coverage through 2000",
+      "date_label": "Hoggart · Williams · Hall · CCCS 1964",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -22134,12 +22327,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "progressive",
       "label": "Progressive & consensus historiography (US)",
-      "date_label": "Contrasting frameworks prominent in the 1890s–1950s · coverage through 2000",
+      "date_label": "Contrasting frameworks prominent in the 1890s–1950s",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": false,
@@ -22411,12 +22608,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "Progressive and consensus interpretations are contrasting positions. Attribute criticisms and economic explanations to the relevant side. Hofstadter’s critical portraits, Hartz’s fear of conformity and Boorstin’s appraisal must remain distinct. Frontier/free-land and civilizational hierarchies in older texts are historical claims, not this atlas’s categories."
+      "scope_note": "Progressive and consensus interpretations are contrasting positions. Attribute criticisms and economic explanations to the relevant side. Hofstadter’s critical portraits, Hartz’s fear of conformity and Boorstin’s appraisal must remain distinct. Frontier/free-land and civilizational hierarchies in older texts are historical claims, not this atlas’s categories.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "newleft",
       "label": "New Left & radical history (US)",
-      "date_label": "1950s–70s expansion · coverage through 2000",
+      "date_label": "1950s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -22704,12 +22905,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "historyworkshop",
       "label": "History Workshop movement",
-      "date_label": "Ruskin College 1967 · journal 1976 · coverage through 2000",
+      "date_label": "Ruskin College 1967 · journal 1976",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -23070,12 +23275,16 @@
         }
       ],
       "entry_type": "School or movement",
-      "scope_note": "Adult education, socialist research, feminist criticism, and linguistic debates interact; no single turn describes the whole movement. The Ruskin workshops, later itinerant meetings and journal are related institutions with distinct histories. Retrospective participant accounts supply evidence about earlier practice without extending this map beyond 2000."
+      "scope_note": "Adult education, socialist research, feminist criticism, and linguistic debates interact; no single turn describes the whole movement. The Ruskin workshops, later itinerant meetings and journal are related institutions with distinct histories. Retrospective participant accounts supply evidence about earlier practice without extending this map beyond 2000.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "demography",
       "label": "Historical demography & history of the family",
-      "date_label": "Henry · Cambridge Group · 1950s–70s expansion · coverage through 2000",
+      "date_label": "Henry · Cambridge Group · 1950s–70s expansion",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -23571,12 +23780,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "revival",
       "label": "Revival of narrative / debate over quantification",
-      "date_label": "Stone 1979 · Hobsbawm 1980 · coverage through 2000",
+      "date_label": "Stone 1979 · Hobsbawm 1980",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -23908,12 +24121,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "historicalsociology",
       "label": "Comparative historical sociology",
-      "date_label": "Comparative programmes · 1960s–90s · earlier resources · coverage through 2000",
+      "date_label": "Comparative programmes · 1960s–90s · earlier resources",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -24340,12 +24557,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "bielefeld",
       "label": "West German historical social science / Sonderweg",
-      "date_label": "Wehler · Kocka · 1960s–90s debates and extensions · coverage through 2000",
+      "date_label": "Wehler · Kocka · 1960s–90s debates and extensions",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -24623,12 +24844,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "A teaching umbrella spanning a research programme, a contested German-path argument and critics. Historical social science is broader than Sonderweg; neither is synonymous with the later Historikerstreit. Long-term conditions are not inevitable causes of Nazism, and gender history broadens the programme without making all contributors doctrinal adherents. Innovation also coexisted with inherited teaching relationships and politically contested continuities across 1945; the 1998–1999 debate over historians’ Nazi pasts is a distinct episode."
+      "scope_note": "A teaching umbrella spanning a research programme, a contested German-path argument and critics. Historical social science is broader than Sonderweg; neither is synonymous with the later Historikerstreit. Long-term conditions are not inevitable causes of Nazism, and gender history broadens the programme without making all contributors doctrinal adherents. Innovation also coexisted with inherited teaching relationships and politically contested continuities across 1945; the 1998–1999 debate over historians’ Nazi pasts is a distinct episode.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "holocaust",
       "label": "Holocaust historiography",
-      "date_label": "Earlier documentation; 1960s–90s debates · coverage through 2000",
+      "date_label": "Earlier documentation; 1960s–90s debates",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -24912,12 +25137,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "nationalismstudies",
       "label": "Nationalism studies",
-      "date_label": "Modernist debates · 1983 landmark works · coverage through 2000",
+      "date_label": "Modernist debates · 1983 landmark works",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -25170,12 +25399,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "africanhist",
       "label": "African history: postwar institutional expansion",
-      "date_label": "Older traditions · Ibadan · Dar es Salaam · expansion from the 1950s · coverage through 2000",
+      "date_label": "Older traditions · Ibadan · Dar es Salaam · expansion from the 1950s",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -25603,12 +25836,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "atlantic",
       "label": "Atlantic & diaspora histories",
-      "date_label": "Earlier roots; 1960s–90s expansion · coverage through 2000",
+      "date_label": "Earlier roots; 1960s–90s expansion",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -25912,12 +26149,16 @@
         }
       ],
       "entry_type": "Teaching umbrella",
-      "scope_note": "Oceanic reconstruction, imperial history, regional social history and diaspora critique overlap without one origin. Forced and other migrations require distinct analysis. These selections broaden Caribbean and Iberian contexts while leaving substantial Indigenous, Latin American and non-Anglophone historiographies underrepresented."
+      "scope_note": "Oceanic reconstruction, imperial history, regional social history and diaspora critique overlap without one origin. Forced and other migrations require distinct analysis. These selections broaden Caribbean and Iberian contexts while leaving substantial Indigenous, Latin American and non-Anglophone historiographies underrepresented.",
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "technology",
       "label": "History of technology",
-      "date_label": "Enduring field · SHOT 1958 · coverage through 2000",
+      "date_label": "Enduring field · SHOT 1958",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -26260,12 +26501,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "consumption",
       "label": "Consumption & material culture",
-      "date_label": "Earlier roots; 1980s–90s expansion · coverage through 2000",
+      "date_label": "Earlier roots; 1980s–90s expansion",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -26767,12 +27012,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "truthdebate",
       "label": "Historians’ responses to postmodernism",
-      "date_label": "Plural reassessments · 1990s · coverage through 2000",
+      "date_label": "Plural reassessments · 1990s",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -27228,7 +27477,11 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "ivy_pinchbeck",
@@ -27716,7 +27969,7 @@
     {
       "id": "publichistory",
       "label": "Public history",
-      "date_label": "Earlier public practices · US training discussions 1975 · The Public Historian 1978 · coverage through 2000",
+      "date_label": "Earlier public practices · US training discussions 1975 · The Public Historian 1978",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -27888,12 +28141,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "medicalhistory",
       "label": "Medical & health history",
-      "date_label": "Earlier medical scholarship · social-medicine interventions 1930s · later social histories · coverage through 2000",
+      "date_label": "Earlier medical scholarship · social-medicine interventions 1930s · later social histories",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -28230,12 +28487,16 @@
           "claim:healthgeo05:wynter_participants"
         ],
         "acceptance_record": "data/production-batches/extension-1.122/acceptance.json"
+      },
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
       }
     },
     {
       "id": "urbanhistory",
       "label": "Urban history",
-      "date_label": "Earlier city histories · postwar expansion · Urban History Yearbook 1974 · coverage through 2000",
+      "date_label": "Earlier city histories · postwar expansion · Urban History Yearbook 1974",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -28481,12 +28742,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "spatialhistory",
       "label": "Spatial history / Historical geography",
-      "date_label": "Sauer 1925 · Hoskins 1955 · critical spatial studies and historical GIS by the 1990s · coverage through 2000",
+      "date_label": "Sauer 1925 · Hoskins 1955 · critical spatial studies and historical GIS by the 1990s",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -28733,7 +28998,7 @@
         }
       ],
       "entry_type": "Research field",
-      "scope_note": "Historical geography has roots well before digital mapping. Spatial history is an overlapping set of approaches, not a synonym for GIS or one unified school. The existing Geography & environmental inquiry entry retains its wider intellectual resources. This selection foregrounds British reconstruction, Australian colonial space and a British HGIS project; wider regional traditions and Indigenous spatial knowledge require fuller treatment. Later digital projects are not backdated into coverage through 2000.",
+      "scope_note": "Historical geography has roots well before digital mapping. Spatial history is an overlapping set of approaches, not a synonym for GIS or one unified school. The existing Geography & environmental inquiry entry retains its wider intellectual resources. This selection foregrounds British reconstruction, Australian colonial space and a British HGIS project; wider regional traditions and Indigenous spatial knowledge require fuller treatment. Later digital projects are not backdated into the period reviewed through 2000.",
       "strands": [
         {
           "id": "landscape_reconstruction",
@@ -29014,12 +29279,16 @@
           "claim:healthgeo05:legg_translation"
         ],
         "acceptance_record": "data/production-batches/extension-1.122/acceptance.json"
+      },
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
       }
     },
     {
       "id": "intellectualhistory",
       "label": "Intellectual history",
-      "date_label": "Earlier histories of thought · Lovejoy 1936 · Skinner 1969 · plural programmes through the 1990s · coverage through 2000",
+      "date_label": "Earlier histories of thought · Lovejoy 1936 · Skinner 1969 · plural programmes through the 1990s",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -29230,12 +29499,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "labourhistory",
       "label": "Labour history",
-      "date_label": "Webbs 1894/1920 · Thompson 1963 · expanding comparative and feminist inquiries in the 1970s–1990s · coverage through 2000",
+      "date_label": "Webbs 1894/1920 · Thompson 1963 · expanding comparative and feminist inquiries in the 1970s–1990s",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -29609,12 +29882,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "ethnohistory",
       "label": "Ethnohistory",
-      "date_label": "Earlier interdisciplinary work · Great Lakes–Ohio Valley project 1953 · Lurie 1961 · continuing regional programmes · coverage through 2000",
+      "date_label": "Earlier interdisciplinary work · Great Lakes–Ohio Valley project 1953 · Lurie 1961 · continuing regional programmes",
       "layer": "enduring_fields_and_genres",
       "period": null,
       "hunt_core_paradigm": false,
@@ -29882,7 +30159,11 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "joan_wallach_scott",
@@ -30105,7 +30386,7 @@
       "id": "racial_formation",
       "label": "Racial formation",
       "entry_type": "Approach / theoretical programme",
-      "date_label": "Earlier roots · Omi–Winant 1986 / revised 1994 · coverage through 2000",
+      "date_label": "Earlier roots · Omi–Winant 1986 / revised 1994",
       "description": "Investigates how racial categories and meanings are produced and contested through social, political and economic relations. Omi and Winant’s programme treats race as historically specific and consequential, not as a biological essence or a simple expression of another social category.",
       "scope_note": "A distinct theoretical programme relevant to histories of racialization, not a synonym for Black history or all scholarship about race. Original 1986 and revised 1994 editions remain distinct. The checked course extract is labelled second edition; its retyped pagination and edition attribution have not been independently authenticated. Intersectional analysis connects racial inquiry with gender, class and sexuality without being identical to racial-formation theory.",
       "representative_figures_and_works": "Michael Omi and Howard Winant, Racial Formation in the United States (1986; second edition 1994).",
@@ -30158,7 +30439,11 @@
         "claim:split120:authored_howard_winant",
         "claim:split120:omi_programme",
         "claim:split120:race_link"
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "layer": "historiographical_developments",
@@ -30168,7 +30453,7 @@
       "id": "intersectionality",
       "label": "Intersectional analysis",
       "entry_type": "Method / approach",
-      "date_label": "Earlier Black feminist roots · Crenshaw 1989 · Cohen 1997 · coverage through 2000",
+      "date_label": "Earlier Black feminist roots · Crenshaw 1989 · Cohen 1997",
       "description": "Examines how relations of race, gender, class and sexuality interact in specific structures of power. Crenshaw challenges single-axis frameworks that obscure Black women; Cohen brings an explicit intersectional critique to queer politics. The approach connects distinct fields without merging their objects or methods.",
       "scope_note": "An analytical approach with Black feminist and other intellectual and political roots, not a single school founded from nothing in 1989. Crenshaw’s legal critique and Cohen’s political intervention are distinct. Connections to gender, racial formation and queer history do not establish that every practitioner adopts this approach, or a direct Crenshaw–Omi/Winant borrowing.",
       "representative_figures_and_works": "Kimberlé Crenshaw, “Demarginalizing the Intersection of Race and Sex” (1989); Cathy J. Cohen, “Punks, Bulldaggers, and Welfare Queens” (1997). Earlier Black feminist resources are explicitly acknowledged by these authors.",
@@ -30240,7 +30525,11 @@
         "claim:split120:race_link",
         "claim:split120:queer_link",
         "claim:split120:identity_link"
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "digital_history",
@@ -30960,6 +31249,10 @@
           "claim:digital07:winters_selection"
         ],
         "acceptance_record": "data/production-batches/extension-1.123/acceptance.json"
+      },
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
       }
     },
     {
@@ -31264,6 +31557,10 @@
           "claim:digital07:gibbons_authority"
         ],
         "acceptance_record": "data/production-batches/extension-1.123/acceptance.json"
+      },
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
       }
     },
     {
@@ -31417,7 +31714,7 @@
     {
       "id": "cdn_national_tradition",
       "label": "Laurentian & national tradition",
-      "date_label": "Staple studies 1923–40 · Creighton 1937 · Lower 1946 · Careless 1954 · Centenary Series volumes 1964–85 · Berger's analysis 1976 · coverage through 2000",
+      "date_label": "Staple studies 1923–40 · Creighton 1937 · Lower 1946 · Careless 1954 · Centenary Series volumes 1964–85 · Berger's analysis 1976",
       "layer": "historiographical_developments",
       "period": "period_0",
       "hunt_core_paradigm": false,
@@ -31457,10 +31754,10 @@
       "date_span": {
         "start": 1923,
         "start_kind": "selected_milestone",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1923 is an early economic interpretation, not the tradition's origin; the tradition has no end date, and its works remain in use (Fur Trade cited by 49 PhDs, 2009–2026). Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1923 is an early economic interpretation, not the tradition's origin; the tradition has no end date, and its works remain in use (Fur Trade cited by 49 PhDs, 2009–2026). Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -31746,12 +32043,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_intellectual_cultural",
       "label": "English-Canadian intellectual & cultural history",
-      "date_label": "Berger 1970, 1976 · McKillop 1979 · Owram 1980, 1986 · cultural turn: McKay 1994, Vance 1997, Nelles 1999 · coverage through 2000; selected later readings",
+      "date_label": "Berger 1970, 1976 · McKillop 1979 · Owram 1980, 1986 · cultural turn: McKay 1994, Vance 1997, Nelles 1999 · selected later readings",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -31797,10 +32098,10 @@
       "date_span": {
         "start": 1970,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. Earlier histories of Canadian ideas belong partly to the national tradition; 1970 is the first selected work and 2016 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. Earlier histories of Canadian ideas belong partly to the national tradition; 1970 is the first selected work and 2016 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -32190,12 +32491,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_religion_reform",
       "label": "Religion, social reform & secularization in Canada",
-      "date_label": "Allen, The Social Passion 1971 · Cook, The Regenerators 1985 · secularization debate: Gauvreau 1991, Marshall 1992 and 1993–94, Christie and Gauvreau 1996 · coverage through 2000; selected later readings",
+      "date_label": "Allen, The Social Passion 1971 · Cook, The Regenerators 1985 · secularization debate: Gauvreau 1991, Marshall 1992 and 1993–94, Christie and Gauvreau 1996 · selected later readings",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -32235,10 +32540,10 @@
       "date_span": {
         "start": 1971,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. Earlier denominational and church histories are not counted; 1971 is the first selected work, 2017 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. Earlier denominational and church histories are not counted; 1971 is the first selected work, 2017 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -32540,12 +32845,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "liberal_order_framework",
       "label": "Liberal order framework",
-      "date_label": "State-formation roots: Curtis 1988, Greer and Radforth 1992 · McKay’s prospectus Dec. 2000 · debate volume 2009 · coverage through 2000; selected later readings",
+      "date_label": "State-formation roots: Curtis 1988, Greer and Radforth 1992 · McKay’s prospectus Dec. 2000 · debate volume 2009 · selected later readings",
       "layer": "historiographical_developments",
       "period": null,
       "hunt_core_paradigm": false,
@@ -32595,10 +32904,10 @@
       "date_span": {
         "start": 1988,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1988 and 1992 are state-formation roots, not the framework's origin; the prospectus (2000) is the naming milestone; 2009 the debate volume; 2018 the latest selected property work. Neither endpoint bounds the programme. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1988 and 1992 are state-formation roots, not the framework's origin; the prospectus (2000) is the naming milestone; 2009 the debate volume; 2018 the latest selected property work. Neither endpoint bounds the programme. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -32983,12 +33292,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "moral_regulation",
       "label": "Moral regulation",
-      "date_label": "International roots (Corrigan 1981; Corrigan and Sayer 1985) · Kinsman 1987 · Valverde and Weir 1988 · Valverde 1991 · critiques 1994–97 · Strange and Loo 1997 · selected publication milestones, not boundaries; coverage through 2000",
+      "date_label": "International roots (Corrigan 1981; Corrigan and Sayer 1985) · Kinsman 1987 · Valverde and Weir 1988 · Valverde 1991 · critiques 1994–97 · Strange and Loo 1997 · selected publication milestones, not boundaries",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -33031,10 +33344,10 @@
       "date_span": {
         "start": 1981,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1981 and 1985 are international roots in historical sociology, not a Canadian founding; 1997 is the last selected in-period milestone. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1981 and 1985 are international roots in historical sociology, not a Canadian founding; 1997 is the last selected in-period milestone. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -33377,12 +33690,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_working_class",
       "label": "Canadian working-class history",
-      "date_label": "Earlier institutional histories (Logan 1948) · Labour/Le Travailleur founded 1976 · Palmer 1979, Kealey 1980 · debate over culture 1981 · gender and family 1989–93 · coverage through 2000, selected later works",
+      "date_label": "Earlier institutional histories (Logan 1948) · Labour/Le Travailleur founded 1976 · Palmer 1979, Kealey 1980 · debate over culture 1981 · gender and family 1989–93 · selected later works",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -33427,10 +33744,10 @@
       "date_span": {
         "start": 1948,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication and institutional milestones. 1948 is an earlier institutional history, not the field’s origin; 1976 is the journal’s first volume (journal archive and Crossref; Freeman 2002 on the founding); 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication and institutional milestones. 1948 is an earlier institutional history, not the field’s origin; 1976 is the journal’s first volume (journal archive and Crossref; Freeman 2002 on the founding); 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -33817,12 +34134,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_women_gender",
       "label": "Canadian women's & gender history",
-      "date_label": "Earlier women writers of history (recovered by Boutilier and Prentice 1997) and Cleverdon’s suffrage history 1950 · collections and studies 1976–79 · Collectif Clio 1982 · Prentice et al. 1988 · Parr 1990 · Left History exchange 1995–96 · selected publication milestones, not boundaries; coverage through 2000",
+      "date_label": "Earlier women writers of history (recovered by Boutilier and Prentice 1997) and Cleverdon’s suffrage history 1950 · collections and studies 1976–79 · Collectif Clio 1982 · Prentice et al. 1988 · Parr 1990 · Left History exchange 1995–96 · selected publication milestones, not boundaries",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -33878,10 +34199,10 @@
       "date_span": {
         "start": 1950,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1950 is an earlier witness; 1982 and 1988 are syntheses, not foundings; 1995–96 dates a debate, not an end. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1950 is an earlier witness; 1982 and 1988 are syntheses, not foundings; 1995–96 dates a debate, not an end. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -34289,12 +34610,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_childhood_youth",
       "label": "Childhood, youth & family in Canada",
-      "date_label": "Sutherland 1976 · Parr, ed., 1982 · Rooke and Schnell 1983 · 1990s expansion (Comacchio 1993 to Gleason 1999; Marshall 1998) · selected publication milestones, not boundaries; coverage through 2000",
+      "date_label": "Sutherland 1976 · Parr, ed., 1982 · Rooke and Schnell 1983 · 1990s expansion (Comacchio 1993 to Gleason 1999; Marshall 1998) · selected publication milestones, not boundaries",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -34337,10 +34662,10 @@
       "date_span": {
         "start": 1976,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1976 is the earliest selected Canadian monograph, not a field origin; 1999 is the last selected in-period work. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1976 is the earliest selected Canadian monograph, not a field origin; 1999 is the last selected in-period work. later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -34644,12 +34969,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_immigration_ethnicity",
       "label": "Immigration, ethnicity & race in Canada",
-      "date_label": "Ward 1978 · Avery 1979 · Abella and Troper 1982 · Perin 1983 · Anderson 1991 · Walker on race and the law 1997 · Backhouse 1999 · selected publication milestones, not boundaries; coverage through 2000",
+      "date_label": "Ward 1978 · Avery 1979 · Abella and Troper 1982 · Perin 1983 · Anderson 1991 · Walker on race and the law 1997 · Backhouse 1999 · selected publication milestones, not boundaries",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -34697,10 +35026,10 @@
       "date_span": {
         "start": 1978,
         "start_kind": "unstated",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1978 is the first selected milestone, not a field origin (the Multicultural History Society of Ontario dates from 1976); 1999 is the last selected in-period milestone. later works are readings. Earlier Black Canadian works (Trudel 1960, Winks 1971) moved to Black Canadian history. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1978 is the first selected milestone, not a field origin (the Multicultural History Society of Ontario dates from 1976); 1999 is the last selected in-period milestone. later works are readings. Earlier Black Canadian works (Trudel 1960, Winks 1971) moved to Black Canadian history. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -35035,12 +35364,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_black_history",
       "label": "Black Canadian history",
-      "date_label": "Earlier work: Trudel on slavery in French Canada 1960 · Winks's survey 1971 · Walker's Black Loyalists 1976 · Calliste on sleeping car porters 1987 · Brand's oral history of Black working women 1991 · We're Rooted Here, African Canadian women's history 1994 · Walker's five orientations 1997 · Cahill–Walker Black Loyalist exchange 1999 · selected publication milestones, not boundaries; coverage through 2000, selected later works",
+      "date_label": "Earlier work: Trudel on slavery in French Canada 1960 · Winks's survey 1971 · Walker's Black Loyalists 1976 · Calliste on sleeping car porters 1987 · Brand's oral history of Black working women 1991 · We're Rooted Here, African Canadian women's history 1994 · Walker's five orientations 1997 · Cahill–Walker Black Loyalist exchange 1999 · selected publication milestones, not boundaries · selected later works",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -35092,10 +35425,10 @@
       "date_span": {
         "start": 1960,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1960 (Trudel) is earlier work, not a field origin; Walker (1997) also names older writers (Landon, Riddell) whom he classes as the 'Clients' orientation. 1999 is the last selected in-period milestone; later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1960 (Trudel) is earlier work, not a field origin; Walker (1997) also names older writers (Landon, Riddell) whom he classes as the 'Clients' orientation. 1999 is the last selected in-period milestone; later works are readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -35453,12 +35786,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "native_newcomer",
       "label": "Indigenous–newcomer relations & fur-trade history",
-      "date_label": "Earlier resources: Innis 1930, Stanley 1936 · Ray 1974 · Van Kirk and Brown 1980 · Trigger’s Natives and Newcomers 1985 · Miller 1989 · Milloy 1999 · coverage through 2000, selected later works",
+      "date_label": "Earlier resources: Innis 1930, Stanley 1936 · Ray 1974 · Van Kirk and Brown 1980 · Trigger’s Natives and Newcomers 1985 · Miller 1989 · Milloy 1999 · selected later works",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -35509,10 +35846,10 @@
       "date_span": {
         "start": 1930,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones. 1930 and 1936 are earlier works the field reworks, not its origin; 1974–85 is the field’s formation; 2000 is the atlas coverage boundary, not an end. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones. 1930 and 1936 are earlier works the field reworks, not its origin; 1974–85 is the field’s formation; 2000 is the atlas coverage boundary, not an end. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -35953,12 +36290,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "quebec_historiography",
       "label": "Quebec historiography",
-      "date_label": "Earlier national history (Groulx) · Institut d’histoire de l’Amérique française founded 1946, its Revue from 1947 · Montreal and Laval schools 1950s–60s · Histoire du Québec contemporain 1979 · Rudin’s critique 1992 · coverage through 2000; selected later readings (Catholic Action revision 2002–05)",
+      "date_label": "Earlier national history (Groulx) · Institut d’histoire de l’Amérique française founded 1946, its Revue from 1947 · Montreal and Laval schools 1950s–60s · Histoire du Québec contemporain 1979 · Rudin’s critique 1992 · selected later readings (Catholic Action revision 2002–05)",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -36018,10 +36359,10 @@
       "date_span": {
         "start": 1946,
         "start_kind": "institutional_milestone_with_earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected milestones. Groulx’s national history is an earlier root, not a boundary; 1946 is the founding of the IHAF and 1947 the Revue’s first issue, not founding dates for the field; 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected milestones. Groulx’s national history is an earlier root, not a boundary; 1946 is the founding of the IHAF and 1947 the Revue’s first issue, not founding dates for the field; 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -36543,12 +36884,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_military",
       "label": "Canadian military history",
-      "date_label": "Duguid’s only official volume 1938 · Stacey’s official histories 1955–70 · Nicholson’s replacement CEF history 1962 · Broken Promises 1977 · war-and-society studies 1986–93 · Walker on race and recruitment 1989 · Valour and the Horror broadcast and hearings 1992 · Vance 1997 · coverage through 2000, selected later works",
+      "date_label": "Duguid’s only official volume 1938 · Stacey’s official histories 1955–70 · Nicholson’s replacement CEF history 1962 · Broken Promises 1977 · war-and-society studies 1986–93 · Walker on race and recruitment 1989 · Valour and the Horror broadcast and hearings 1992 · Vance 1997 · selected later works",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -36594,10 +36939,10 @@
       "date_span": {
         "start": 1938,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones and one public controversy (broadcast January 1992, Senate hearings and Ombudsman’s report later that year; documented in a 1994 volume). 1938 is an earlier official history, not the field’s origin; 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones and one public controversy (broadcast January 1992, Senate hearings and Ombudsman’s report later that year; documented in a 1994 volume). 1938 is an earlier official history, not the field’s origin; 2000 is the atlas coverage boundary. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -36965,12 +37310,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_political_national",
       "label": "Political, international & national history",
-      "date_label": "Granatstein 1975, 1977, 1982 · Whitaker 1977 · Stacey 1977–81 · Bothwell, Drummond and English 1981 · Owram 1986 · Buckner 1993 · Whitaker and Marcuse 1994 · British World 2006 · CHA political history prizes first listed 2011 · Heaman's 'new political history' 2017 · coverage through 2000, selected later works",
+      "date_label": "Granatstein 1975, 1977, 1982 · Whitaker 1977 · Stacey 1977–81 · Bothwell, Drummond and English 1981 · Owram 1986 · Buckner 1993 · Whitaker and Marcuse 1994 · British World 2006 · CHA political history prizes first listed 2011 · Heaman's 'new political history' 2017 · selected later works",
       "layer": "historiographical_developments",
       "period": "period_2",
       "hunt_core_paradigm": false,
@@ -37016,10 +37365,10 @@
       "date_span": {
         "start": 1975,
         "start_kind": "selected_milestone",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones; political and diplomatic history of Canada is older (see Laurentian & national tradition). 2006 and later dates (the prizes' first listing in 2011, Heaman 2017) are later readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones; political and diplomatic history of Canada is older (see Laurentian & national tradition). 2006 and later dates (the prizes' first listing in 2011, Heaman 2017) are later readings. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -37404,12 +37753,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "who_killed_debate",
       "label": "The 'Who Killed Canadian History?' debate",
-      "date_label": "Roots: Cook 1967, Careless 1969 · Bliss's 'Privatizing the Mind' and the JCS replies 1991–92 · Strong-Boag's CHA address 1994 · Granatstein's book 1998 · CHR replies (McKillop, Palmer) and francophone reviews 1998–99 · CHR forum, Buckner, McKay and Osborne 2000 · Dummitt and Dawson 2009 · coverage through 2000",
+      "date_label": "Roots: Cook 1967, Careless 1969 · Bliss's 'Privatizing the Mind' and the JCS replies 1991–92 · Strong-Boag's CHA address 1994 · Granatstein's book 1998 · CHR replies (McKillop, Palmer) and francophone reviews 1998–99 · CHR forum, Buckner, McKay and Osborne 2000 · Dummitt and Dawson 2009",
       "layer": "historiographical_developments",
       "period": "period_3",
       "hunt_core_paradigm": false,
@@ -37449,10 +37802,10 @@
       "date_span": {
         "start": 1991,
         "start_kind": "selected_milestone",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Publication dates of the debate texts. 1967 and 1969 are roots, not the start of the debate; 2009 is a later intervention, not its end. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Publication dates of the debate texts. 1967 and 1969 are roots, not the start of the debate; 2009 is a later intervention, not its end. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -37795,12 +38148,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_regional",
       "label": "Canadian regional history",
-      "date_label": "Morton's Manitoba 1957 · Ormsby's British Columbia 1958 · Craig's Upper Canada 1963 · 'limited identities' 1967–69 · Acadiensis 1971 · Acheson 1972 · Forbes 1979 · Friesen 1984 · Barman 1991 · reassessments 2000 · coverage through 2000",
+      "date_label": "Morton's Manitoba 1957 · Ormsby's British Columbia 1958 · Craig's Upper Canada 1963 · 'limited identities' 1967–69 · Acadiensis 1971 · Acheson 1972 · Forbes 1979 · Friesen 1984 · Barman 1991 · reassessments 2000",
       "layer": "historiographical_developments",
       "period": "period_1",
       "hunt_core_paradigm": false,
@@ -37855,10 +38212,10 @@
       "date_span": {
         "start": 1957,
         "start_kind": "selected_milestone",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected milestones; provincial and local history is much older. Engagement in 2009–2026 PhDs is steady. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected milestones; provincial and local history is much older. Engagement in 2009–2026 PhDs is steady. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -38305,12 +38662,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "cdn_sixties",
       "label": "Canada’s 1960s",
-      "date_label": "Early accounts: Kostash 1980, Levitt 1984 · Behiels 1985 · Owram 1996 · Igartua 2006 · Palmer, Warren 2008–09 · Mills 2010 · Debating Dissent 2012 · coverage through 2000; selected later readings",
+      "date_label": "Early accounts: Kostash 1980, Levitt 1984 · Behiels 1985 · Owram 1996 · Igartua 2006 · Palmer, Warren 2008–09 · Mills 2010 · Debating Dissent 2012 · selected later readings",
       "layer": "historiographical_developments",
       "period": null,
       "hunt_core_paradigm": false,
@@ -38354,10 +38715,10 @@
       "date_span": {
         "start": 1980,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. Participants' and journalists' writing on the decade began earlier; 1980 is the first selected book and 2020 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. Participants' and journalists' writing on the decade began earlier; 1980 is the first selected book and 2020 the latest. Neither bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -38698,12 +39059,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "settler_colonialism",
       "label": "Settler colonialism",
-      "date_label": "Earlier settler-society studies 1983–95 · Wolfe 1999 · coverage through 2000; selected later readings: Wolfe 2006, Veracini 2010, journal 2011, critiques 2013–20; field chronology unresolved",
+      "date_label": "Earlier settler-society studies 1983–95 · Wolfe 1999 · selected later readings: Wolfe 2006, Veracini 2010, journal 2011, critiques 2013–20; field chronology unresolved",
       "layer": "historiographical_developments",
       "period": null,
       "hunt_core_paradigm": false,
@@ -38768,10 +39133,10 @@
       "date_span": {
         "start": 1983,
         "start_kind": "earlier_roots",
-        "end": 2000,
-        "end_kind": "coverage_limit",
+        "end": null,
+        "end_kind": "open",
         "precision": "year",
-        "basis": "Selected publication milestones only. 1983 and 1995 are earlier settler-society witnesses, not the field's origin; Wolfe 1999 is the only selected milestone inside 1920–2000. The term itself has decolonization-era usage (Veracini 2013); the field's theoretical consolidation falls after 2000; neither endpoint bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128)."
+        "basis": "Selected publication milestones only. 1983 and 1995 are earlier settler-society witnesses, not the field's origin; Wolfe 1999 is the only selected milestone inside 1920–2000. The term itself has decolonization-era usage (Veracini 2013); the field's theoretical consolidation falls after 2000; neither endpoint bounds the field. Drawn to the atlas coverage limit (2000); later works are cited readings, not registered extension coverage (revision 1.128). Open from revision 1.133: the former 2000 end was the atlas boundary, not an ending."
       },
       "representative_people": [
         {
@@ -39343,12 +39708,16 @@
           ],
           "basis": "editorial_distinction"
         }
-      ]
+      ],
+      "coverage": {
+        "reviewed_through": 2000,
+        "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+      }
     },
     {
       "id": "patrick_wolfe",
       "label": "Patrick Wolfe",
-      "date_label": "Settler Colonialism and the Transformation of Anthropology 1999 · later essays 2001, 2006 · coverage through 2000",
+      "date_label": "Settler Colonialism and the Transformation of Anthropology 1999 · later essays 2001, 2006",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39371,7 +39740,7 @@
     {
       "id": "ian_mckay",
       "label": "Ian McKay",
-      "date_label": "Tartanism Triumphant 1992 · The Quest of the Folk 1994 · 'A Note on Region' and the liberal order prospectus 2000 · later readings 2005, 2008, 2009 · coverage through 2000",
+      "date_label": "Tartanism Triumphant 1992 · The Quest of the Folk 1994 · 'A Note on Region' and the liberal order prospectus 2000 · later readings 2005, 2008, 2009",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39397,7 +39766,7 @@
     {
       "id": "harold_a_innis",
       "label": "Harold A. Innis",
-      "date_label": "The Fur Trade in Canada 1930 · The Cod Fisheries 1940 · Empire and Communications 1950 · The Bias of Communication 1951 · coverage through 2000",
+      "date_label": "The Fur Trade in Canada 1930 · The Cod Fisheries 1940 · Empire and Communications 1950 · The Bias of Communication 1951",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39422,7 +39791,7 @@
     {
       "id": "kenneth_pomeranz",
       "label": "Kenneth Pomeranz",
-      "date_label": "The Making of a Hinterland 1993 · The Great Divergence 2000 · coverage through 2000",
+      "date_label": "The Making of a Hinterland 1993 · The Great Divergence 2000",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39444,7 +39813,7 @@
     {
       "id": "william_cronon",
       "label": "William Cronon",
-      "date_label": "Changes in the Land 1983 · Nature’s Metropolis 1991 · “The Trouble with Wilderness” 1995 · coverage through 2000",
+      "date_label": "Changes in the Land 1983 · Nature’s Metropolis 1991 · “The Trouble with Wilderness” 1995",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39469,7 +39838,7 @@
     {
       "id": "donald_worster",
       "label": "Donald Worster",
-      "date_label": "Nature's Economy 1977 · Dust Bowl 1979 · Rivers of Empire 1985 · 'Transformations of the Earth' 1990 · coverage through 2000",
+      "date_label": "Nature's Economy 1977 · Dust Bowl 1979 · Rivers of Empire 1985 · 'Transformations of the Earth' 1990",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39495,7 +39864,7 @@
     {
       "id": "alfred_crosby",
       "label": "Alfred W. Crosby",
-      "date_label": "The Columbian Exchange 1972 · Virgin Soil Epidemics 1976 · Ecological Imperialism 1986 · coverage through 2000",
+      "date_label": "The Columbian Exchange 1972 · Virgin Soil Epidemics 1976 · Ecological Imperialism 1986",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39522,7 +39891,7 @@
     {
       "id": "carolyn_merchant",
       "label": "Carolyn Merchant",
-      "date_label": "The Death of Nature 1980 · Ecological Revolutions 1989 · Radical Ecology 1992 · coverage through 2000",
+      "date_label": "The Death of Nature 1980 · Ecological Revolutions 1989 · Radical Ecology 1992",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -39550,7 +39919,7 @@
     {
       "id": "richard_white",
       "label": "Richard White",
-      "date_label": "Land Use, Environment, and Social Change 1980 · The Roots of Dependency 1983 · field survey 1985 · The Middle Ground 1991 · The Organic Machine 1995 · coverage through 2000",
+      "date_label": "Land Use, Environment, and Social Change 1980 · The Roots of Dependency 1983 · field survey 1985 · The Middle Ground 1991 · The Organic Machine 1995",
       "layer": "intellectual_connections",
       "period": null,
       "hunt_core_paradigm": false,
@@ -76843,6 +77212,15 @@
       "revised_edge_ids": [
         "edge_742"
       ]
+    },
+    {
+      "version": "1.133",
+      "date": "2026-10-14",
+      "acceptance_record": "data/production-batches/open-frame-1.133/acceptance.json",
+      "summary": "Open frame: the 1920–2000 cutoff ends. Prose coverage limits become coverage.reviewed_through (2000 for every group, pending field-by-field review); open spans; the exact-2000 view (1.121) moves to scope.archive; title \"The Historiography Atlas\".",
+      "added_node_ids": [],
+      "added_edge_ids": [],
+      "revised_edge_ids": []
     }
   ],
   "people": [
@@ -492940,10 +493318,10 @@
         ],
         "temporal_scope": {
           "start": 1972,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -492963,10 +493341,10 @@
         ],
         "temporal_scope": {
           "start": 1989,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -492985,10 +493363,10 @@
         ],
         "temporal_scope": {
           "start": 1989,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493009,10 +493387,10 @@
         ],
         "temporal_scope": {
           "start": 1958,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493055,10 +493433,10 @@
         ],
         "temporal_scope": {
           "start": 1976,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493077,10 +493455,10 @@
         ],
         "temporal_scope": {
           "start": 1976,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493099,10 +493477,10 @@
         ],
         "temporal_scope": {
           "start": 1927,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493121,10 +493499,10 @@
         ],
         "temporal_scope": {
           "start": 1960,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493165,10 +493543,10 @@
         ],
         "temporal_scope": {
           "start": 1970,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493187,10 +493565,10 @@
         ],
         "temporal_scope": {
           "start": 1970,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493209,10 +493587,10 @@
         ],
         "temporal_scope": {
           "start": 1913,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493231,10 +493609,10 @@
         ],
         "temporal_scope": {
           "start": 1995,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493253,10 +493631,10 @@
         ],
         "temporal_scope": {
           "start": 1960,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493297,10 +493675,10 @@
         ],
         "temporal_scope": {
           "start": 1967,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493321,10 +493699,10 @@
         ],
         "temporal_scope": {
           "start": 1976,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493387,10 +493765,10 @@
         ],
         "temporal_scope": {
           "start": 1975,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493431,10 +493809,10 @@
         ],
         "temporal_scope": {
           "start": 1990,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493500,10 +493878,10 @@
         ],
         "temporal_scope": {
           "start": 1996,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary."
+          "note": "Selected evidentiary interval; neither the field’s lifespan nor a publication start/cessation claim. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493634,10 +494012,10 @@
         ],
         "temporal_scope": {
           "start": 1954,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493656,10 +494034,10 @@
         ],
         "temporal_scope": {
           "start": 1960,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493678,10 +494056,10 @@
         ],
         "temporal_scope": {
           "start": 1916,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493749,10 +494127,10 @@
         ],
         "temporal_scope": {
           "start": 1994,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493773,10 +494151,10 @@
         ],
         "temporal_scope": {
           "start": 1980,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493795,10 +494173,10 @@
         ],
         "temporal_scope": {
           "start": 1990,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary."
+          "note": "Evidenced selection interval, not a field lifespan or a claim of journal cessation. 2000 is the atlas coverage boundary. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493818,10 +494196,10 @@
         ],
         "temporal_scope": {
           "start": 1978,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493840,10 +494218,10 @@
         ],
         "temporal_scope": {
           "start": 1988,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       },
@@ -493886,10 +494264,10 @@
         ],
         "temporal_scope": {
           "start": 1992,
-          "end": 2000,
+          "end": null,
           "precision": "year",
           "meaning": "reviewed_role_interval",
-          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field."
+          "note": "Reviewed historical role; 2000 is the atlas boundary. A title-phase endpoint is not the end of the field. Open from revision 1.133: 2000 was the atlas boundary."
         },
         "checked_on": "2026-09-16"
       }

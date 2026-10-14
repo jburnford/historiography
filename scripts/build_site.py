@@ -6,10 +6,11 @@ Usage:
                                                      # (D must be under /tmp; never docs/)
   python3 scripts/build_site.py --baseline P         # override the 2000 baseline graph file
 
-When the graph carries `scope.extension` and names an archived baseline graph in
-`scope.extension.baseline_graph` (or --baseline is given), the build also publishes that
-baseline, slimmed like the main graph, as `data/graph-2000.json`, and records the asset in
-the published `scope.extension.baseline_asset` so the site can offer an exact 2000 view.
+When the graph carries `scope.archive` (open frame, revision 1.133; earlier revisions used
+`scope.extension`) and names an archived baseline graph in its `baseline_graph` (or --baseline
+is given), the build also publishes that baseline, slimmed like the main graph, as
+`data/graph-2000.json`, and records the asset as `baseline_asset` in the same published scope
+object so the site can offer the exact 2000 view as an archive.
 """
 import argparse
 import hashlib
@@ -178,10 +179,12 @@ def build(graph_path=None, dest=None, baseline_path=None):
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / source, out)
     # The 2000 baseline: an archived graph file, never a date filter over the current one.
-    extension = graph.get('scope', {}).get('extension')
+    scope = graph.get('scope', {})
+    archive_key = 'archive' if scope.get('archive') else 'extension'
+    archive = scope.get(archive_key)
     baseline = None
-    if extension:
-        baseline, origin = load_baseline(extension, baseline_path)
+    if archive:
+        baseline, origin = load_baseline(archive, baseline_path)
         if baseline:
             b_errors, _ = validate(baseline, pathways)
             if b_errors:
@@ -194,8 +197,8 @@ def build(graph_path=None, dest=None, baseline_path=None):
         out.parent.mkdir(parents=True, exist_ok=True)
         payload = graph if target == 'data/graph.json' else json.loads((ROOT / source).read_text())
         payload = publish_graph(json.loads(json.dumps(payload)))
-        if target == 'data/graph.json' and extension:
-            payload['scope']['extension'] = {**extension, 'baseline_asset': BASELINE_ASSET if baseline else None}
+        if target == 'data/graph.json' and archive:
+            payload['scope'][archive_key] = {**archive, 'baseline_asset': BASELINE_ASSET if baseline else None}
         out.write_text(json.dumps(payload, ensure_ascii=False, separators=(',', ':')))
         published += 1
     baseline_out = dest / BASELINE_ASSET
@@ -225,8 +228,8 @@ def build(graph_path=None, dest=None, baseline_path=None):
     overview.update(overview_only=True, revision_history=graph['revision_history'][-1:],
         nodes=[{k:n[k] for k in ('id','label','layer','entry_kind','entry_type','date_label','date_span','period') if k in n}
                for n in graph['nodes']], people=[], edges=[], sources=[])
-    if extension:
-        overview['scope'] = {**overview['scope'], 'extension': {**extension, 'baseline_asset': BASELINE_ASSET if baseline else None}}
+    if archive:
+        overview['scope'] = {**overview['scope'], archive_key: {**archive, 'baseline_asset': BASELINE_ASSET if baseline else None}}
     (dest / OVERVIEW_ASSET).write_text(json.dumps(overview, ensure_ascii=False, separators=(',', ':')))
     published += 1
     size = (dest / 'data' / 'graph.json').stat().st_size / 1024 / 1024
