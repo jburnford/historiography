@@ -15,6 +15,10 @@ opening a family from the landing shows its entries on a single time axis, bande
 influences, contributions, comparisons and disagreements — become readable. A text view of the
 same entries is always available; **Follow all connections** opens the entry's complete recorded relationships and evidence.
 
+On phones, the three primary views stay in a sticky navigation bar. Circles and timelines
+can be explored by touch inside scrollable viewports; selecting a person or entry brings
+their details into view. Search, collapsible filters and full text alternatives remain available.
+
 Production data revision **1.139** (schema 1.5): 179 entries,
 992 teaching relationships, 1,707 bibliography records, 1,216
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue

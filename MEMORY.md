@@ -1,6 +1,39 @@
 # Project memory and visualization handoff
 
-## Current handoff — 2026-10-15: History in Conversation
+## Current handoff — 2026-10-15: mobile UI/UX
+
+The user requested improvements to the mobile experience after the identity/circles update
+was pushed to `main` as `43ee913`. **History in Conversation**, subtitled **Historians, ideas
+and debates through time.**, keeps people circles, timeline and evidenced connections central.
+
+- Sticky phone navigation exposes Families, Timeline and People circles; More holds the
+  other routes and supports outside-tap/Escape dismissal. Inner pages omit the repeated
+  introduction. Entering a phone exploration brings search into view.
+- Search/select inputs use 16 px text; filters collapse with an active count. Guidance and
+  date keys collapse on phones. Connection rosters start collapsed, with every person retained.
+- Circles now render below 760 px in a bounded, scrollable viewport at a minimum layout
+  width of 620 px. Family lists, roles, shared-context limits and the full register remain.
+  Touch instructions and taps replace hover dependency. Person selection focuses its
+  context panel; Back to circles and People list provide direct return/jump controls.
+- The phone timeline uses a bounded scroll viewport. Its initial long panel is hidden;
+  selecting an entry focuses its details, with Follow all connections near the top and
+  Back to timeline returning to the chart. Full relationship lists remain the phone default.
+- Hover previews are gated on hover capability; keyboard previews remain. Native hash
+  routes, explicit view choices and archived graph behavior are preserved. Desktop
+  disclosures start open; the header/toolbar DOM remains stable during filtering.
+- Historical data remains revision 1.139: 179 entries, 992 relationships, 1,707 sources,
+  1,216 people and 14 pathways. No graph/evidence/archive edits. OpenAlex remains paused.
+- Validation: the 15-file public build and 52 JavaScript cases pass. The 39-case browser
+  suite passed, followed by all four touch cases passing again after the final navigation
+  refinements. Six views were checked at 320, 390, 430, 768 and 1280 px without document
+  overflow or JavaScript errors; phone and desktop screenshots were inspected. Built page
+  assets match their sources. Production graph, pathways and every public data asset are
+  byte-identical to main. Touch tests are in `tests/test_mobile_browser.py`, included in
+  `tests/run_site_checks.py` and browser CI.
+
+The user authorized committing and pushing the mobile improvements to `main` on 2026-10-15.
+
+## Handoff — 2026-10-15: History in Conversation
 
 The user agreed to replace **The Historiography Atlas** with **History in Conversation**,
 subtitled **Historians, ideas and debates through time.**, and to keep the timeline and

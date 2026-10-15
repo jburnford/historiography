@@ -26,18 +26,23 @@
     <nav class="main-nav" aria-label="Explore History in Conversation">
       <a href="#" data-tab="field">Families</a>
       <a href="#family=all&amp;view=map" data-tab="timeline">Timeline</a>
-      <a href="#tab=people" data-tab="people">Historians & contributors</a>
-      <a href="#tab=browse" data-tab="browse">Browse entries</a>
-      <a href="#tab=pathways" data-tab="pathways">Seminar pathways <span>14</span></a>
-      <a href="#tab=about" data-tab="about">Reading this map</a>
-      <span class="range-toggle" id="range-toggle" hidden aria-label="Coverage"></span>
-      <a href="#" class="reset">Reset view ↺</a>
+      <a href="#tab=people" data-tab="people" aria-label="Historians & contributors"><span class="nav-full-label">Historians & contributors</span><span class="nav-phone-label" aria-hidden="true">People circles</span></a>
+      <button class="nav-more" id="nav-more" type="button" aria-expanded="false" aria-controls="secondary-navigation">More <span aria-hidden="true">⌄</span></button>
+      <div class="secondary-navigation" id="secondary-navigation">
+        <a href="#tab=browse" data-tab="browse">Browse entries</a>
+        <a href="#tab=pathways" data-tab="pathways">Seminar pathways <span>14</span></a>
+        <a href="#tab=about" data-tab="about">Reading this map</a>
+        <span class="range-toggle" id="range-toggle" hidden aria-label="Coverage"></span>
+        <a href="#" class="reset">Reset view ↺</a>
+      </div>
     </nav>
     <div class="toolbar" id="toolbar">
       <label class="search-label"><span>Find an entry or work</span><input id="search" type="search" placeholder="Try “Thompson”, “agency”, “Metahistory”…" autocomplete="off"></label>
-      <label><span>Layer</span><select id="layer-filter"><option value="">All four layers</option></select></label>
-      <label><span>Period grouping</span><select id="period-filter"><option value="">All periods</option></select></label>
-      <label class="check-label"><input id="hunt-filter" type="checkbox"> Hunt’s four paradigms</label>
+      <details class="filter-options" id="filter-options" open><summary>Filters <span id="filter-count"></span></summary><div class="filter-fields">
+        <label><span>Layer</span><select id="layer-filter"><option value="">All four layers</option></select></label>
+        <label><span>Period grouping</span><select id="period-filter"><option value="">All periods</option></select></label>
+        <label class="check-label"><input id="hunt-filter" type="checkbox"> Hunt’s four paradigms</label>
+      </div></details>
     </div>
     <div id="notice" role="status"></div>
     <div id="workspace" tabindex="-1"><p class="loading">Opening History in Conversation…</p></div>
