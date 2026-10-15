@@ -1,6 +1,64 @@
-# Teaching graph format, schema 1.4
+# Teaching graph format, schema 1.6
 
-## Current revision 1.140 (2026-10-14)
+## Current revision 1.141 (2026-10-15): explicit chronology
+
+**187 entries (96 groups, 91 people), 1,023 teaching relationships, 1,785 sources,
+1,219 shared people and 14 pathways.** All 187 entries and the 38 linked journals
+have explicit `chronology` records: 660 dated events and 31 journal publication/title
+intervals. Thirteen bounded chronology source checks are added. No relationship,
+roster, strand, prior source qualification or review year changes. The Science Wars
+title drops its convenient 1994–2000 bounds; its former title is retained as an alias.
+
+Top-level `chronology_policy.version: "1"` requires chronology on every graph entry
+and linked journal. Unlinked discovery-catalogue journals are not migrated merely
+because they exist in the inventory. Each record has:
+
+- `version: 1`, readable `label`, `selection_note`, `interpretation`, `prepared_on`
+  and an `editorial_record`; optional `retain` and `unresolved` preserve qualifications.
+- `events`: locally unique `id`, `label`, explicit `kind`, `track`, `date`,
+  `source_ids` and `support`. Tracks are `contributions`, `context`, `editions` and
+  `reception`. Delivery, writing, recording, original publication, translation,
+  edition, founding and retrospective publication remain different event kinds.
+- `intervals`: locally unique `id`, named `subject`, `start`, `end`,
+  `start_meaning`, `end_meaning`, `source_ids`, `support` and optional context track.
+  A known ending must mean `terminus`, `phase_end` or `title_change`. A null end
+  explicitly means `unknown`; it does not establish continuation to the present.
+- `continuation`: `status` (`not_asserted`, `unknown`, or a separately sourced
+  `supported_as_of`) and `basis`. No continuous-to-present interval is introduced
+  by this release.
+
+Chronology references have an explicit namespace: `graph:<source_id>` or
+`journal:<catalogue_source_id>`. They are separate from an entry's general
+bibliography, so each dated event retains its specific support. Reading limits
+remain in the original source record. A catalogue can support a publication date
+without establishing a work's entire argument or an influence relationship.
+
+Dates retain precision: `{year, precision: "year"|"decade"|"century"}`, month/day
+dates with those components, or `{earliest, latest, precision: "year_range",
+qualifier}`. Event date ranges must explain whether they describe uncertainty,
+an issue convention or a sequence of publications/writing. They are not implicitly
+historical activity intervals. Optional alternate dates retain their own basis.
+Negative years are supported. Month/day values remain available in text on the
+timeline's year-scale axis.
+
+The shared reader (`site/chronology.mjs`) supplies all current views. Dotted
+connectors show the extent of selected contribution events; points identify the
+individual events. Context, editions and reception do not lengthen that connector.
+A selection extent is not a career, field lifespan or influence interval. A bar is
+reserved for a named, supported historical interval. A separate small review marker
+and text state `coverage.reviewed_through`; the reader never uses it to create
+historical duration. Existing selected later interventions remain registered and
+are individually dated. The exact-2000 archive keeps its old reader and frozen data.
+
+`date_label` and older `date_span` remain as provenance/legacy compatibility; the
+current renderer does not parse them into dates or infer continuation from words.
+Life dates remain reference metadata, with no automatic inference of posthumous
+reception. Later reception requires its own dated event and sources.
+
+Applied and reconstructed by `scripts/apply_chronology.py`; see the
+[acceptance record](data/production-batches/chronology-1.141/README.md).
+
+## Historical revision 1.140 (2026-10-14)
 
 **187 entries (96 groups, 91 person entries), 1,023 teaching relationships, 1,772 sources and
 1,219 shared people.**

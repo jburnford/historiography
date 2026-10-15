@@ -87,7 +87,7 @@ class IndigenousBrowserTests(unittest.TestCase):
             expect(case).to_contain_text(name)
         expect(case).to_contain_text('Leddy cites Wheeler')
         self.page.goto(URL + '#focus=indigenous')
-        expect(self.page.locator('svg.field .entry[data-id="indigenous"] .intervention')).to_have_count(1)
+        expect(self.page.locator('svg.field .entry[data-id="indigenous"] .chron-event[data-year="2010"]')).to_have_count(1)
         self.page.goto(URL + '#person=lianne_leddy')
         expect(self.page.locator('.person-profile')).to_contain_text('2010')
         self.page.locator('.person-evidence > summary').first.click()

@@ -22,7 +22,7 @@ if __name__=='__main__':
     thread.start()
     os.environ['HISTORIOGRAPHY_SITE_URL']=f'http://127.0.0.1:{server.server_port}/'
     try:
-        suite=unittest.defaultTestLoader.loadTestsFromNames(sys.argv[1:] or ['tests.test_site_browser','tests.test_student_beta_browser','tests.test_indigenous_browser','tests.test_mobile_browser'])
+        suite=unittest.defaultTestLoader.loadTestsFromNames(sys.argv[1:] or ['tests.test_site_browser','tests.test_student_beta_browser','tests.test_indigenous_browser','tests.test_mobile_browser','tests.test_chronology_browser'])
         result=unittest.TextTestRunner(verbosity=2).run(suite)
     finally:
         server.shutdown()

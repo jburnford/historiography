@@ -1,5 +1,20 @@
 # Historiography: editorial and visualization working plan
 
+**Timeline consistency — implemented (2026-10-15):** The user wants both
+historical meaning and drawing improved, starting with historical meaning. The
+[audit](data/field-research/timeline-spans-2026-10-15/README.md) inventories revision
+1.140's 187 entries and 38 linked journals. The
+[proposal and pilot](plans/2026-10-15-timeline-consistency.md) separate historical
+intervals, selected dated contributions/reception, and editorial review coverage.
+The [historical pilot](data/field-research/timeline-spans-2026-10-15/pilot-review.md)
+supplied source-linked decisions for 14 entries and two journals. The user then
+requested the whole-project implementation. Revision 1.141 now gives all 187
+entries and 38 linked journals explicit chronology: 660 events, 31 journal
+publication/title intervals and separate editorial coverage. Full/family timelines,
+person maps, landing dates, entries and text alternatives use the shared reader.
+See the [release](data/production-batches/chronology-1.141/README.md). Existing
+relationships, rosters, source limits, review years and exact-2000 archive remain.
+
 **Mobile UI/UX (2026-10-15):** The user requested improvements to the phone experience.
 Keep the circles visible and usable by touch, with the accessible register retained. Sticky
 primary navigation, collapsible filters/guides/connection rosters, bounded chart viewports
@@ -18,7 +33,7 @@ three ways of exploring the project. This is an identity and
 navigation update; historical data remains revision 1.139. Historical titles and snapshots
 are preserved. See the current handoff in `MEMORY.md`.
 
-**Current implementation (2026-10-14, revision 1.140):** 187 entries, 1,023
+**Implementation history (2026-10-14, revision 1.140):** 187 entries, 1,023
 relationships, 1,772 sources, 1,219 shared people. Revision 1.140 adds person entries for Kealey, Van Kirk, Brown, Olson, Curtis, Greer, Harris and Perry
 ([acceptance](data/production-batches/person-entries-1.140/README.md)). Revision 1.139 revises the seminar pathways: Wittgenstein on meaning, a South Asian strand in the
 anticolonial pathway, and a new pathway, "The question of class"

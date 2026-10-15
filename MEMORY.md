@@ -1,6 +1,119 @@
 # Project memory and visualization handoff
 
-## Current handoff — 2026-10-15: mobile UI/UX
+## Current handoff — 2026-10-15: whole-project chronology implementation
+
+The user reviewed the historical pilot and requested: **“Can you build this out
+to the whole project?”** Revision **1.141**, schema **1.6**, is implemented.
+The user subsequently requested **“Push”**, authorizing publication to `main`.
+See the [release and reproduction record](data/production-batches/chronology-1.141/README.md).
+
+- Current totals: **187 entries, 1,023 relationships, 1,785 sources, 1,219 people
+  and 14 pathways**. Every entry and all 38 linked journals have explicit KG
+  chronology: **660 events and 31 journal publication/title intervals**.
+- Manual selections for the other entries are in the research packet's
+  `project-events.psv`; the reviewed pilot and accepted structured strand dates
+  complete the records. `scripts/apply_chronology.py --check` reconstructs the
+  release exactly from pinned revision 1.140, using git history without a snapshot.
+- `site/chronology.mjs` supplies the shared reader. Full/family timelines, compact
+  person maps, landing dates, entry pages and lists use explicit events and named
+  intervals. Prose cannot alter current chronology. The archived graph has no
+  chronology and keeps its old reader, labels and drawing conventions.
+- Points date contributions; dotted connectors show their selection extent.
+  Context, editions and reception have separate markers. Bars represent sourced
+  intervals. Unknown journal endings never become present-day continuation.
+  Review years remain separate markers/text; all existing group review years stay
+  2000. Lifespan metadata cannot create a career or reception interval.
+- The Science Wars title loses its convenient 1994–2000 bounds; the old title is
+  retained as an alias and the ID is unchanged. All other prior node fields,
+  relationships, rosters, strands, source qualifications and review years are
+  preserved. Thirteen limited chronology checks add sources with actual reading
+  extents, not whole-work verification. No complete field-history survey is claimed.
+- The original audit and pilot are now pinned to `baseline/manifest.json` and
+  `baseline/field.mjs`, with the 1.140 graph recovered from commit `6a0ef708...`.
+  Their `--check` commands still reproduce the before records after migration.
+- Validation: 85 data cases, 55 JavaScript cases and the full 43-case browser
+  suite pass. The four new chronology browser cases cover all twelve families at
+  phone/desktop widths, date meanings and source access. Desktop/mobile screenshots
+  inspected. Exact release/pilot/audit reproduction and protected-asset checks pass.
+  The final build contains the small student-facing date-guide wording refinement;
+  all four focused chronology browser checks also pass on that build.
+- Chromium is installed in `/tmp/historiography-browsers`; use
+  `PLAYWRIGHT_BROWSERS_PATH`. DuckDB 1.5.3 is in `/tmp/historiography-test-deps`;
+  use `PYTHONPATH` for data tests. `tests/run_site_checks.py` now includes
+  `tests.test_chronology_browser`. CI includes `tests.test_chronology`.
+- The allowlisted build now has 16 files, including `chronology.mjs`. Exact-2000,
+  evidence, profile and pathway public assets are preserved. OpenAlex remains
+  paused. Commit and push to `main` are authorized by the subsequent push request.
+
+## Handoff — 2026-10-15: timeline consistency review
+
+The user identified timeline spans as the next major project and clarified that
+both historical meaning and drawing matter, **starting with historical meaning**.
+The [audit](data/field-research/timeline-spans-2026-10-15/README.md) and
+[project proposal](plans/2026-10-15-timeline-consistency.md) are saved locally.
+
+- Pulled `main` through `6a0ef70`. Current graph is revision **1.140**, schema 1.5:
+  **187 entries (96 groups, 91 people), 1,023 relationships, 1,772 sources,
+  1,219 shared people and 14 pathways**. The 1.139 counts below describe earlier work.
+- The read-only audit uses the production date reader/layout and inventories all
+  187 entries plus 38 linked journals. 166 curated spans derive from prose,
+  including all 91 people. All 96 groups use review year 2000 to extend their
+  bars, including all five debates. Thirteen people continue solid to the frame
+  end; lexical triggers include “Later philosophy,” a title's “Ten Years Later,”
+  and `present` inside Chartier's “Representations.” The Science Wars' 2004
+  retrospective extends the solid bar despite the entry's 1994–2000 title.
+- Proposed principle: separate a sourced historical interval, typed selected
+  events/works/reception, and editorial coverage. Unknown endings and supported
+  continuation differ. Selected works are not career bounds; an early witness
+  is not a field origin. The proposal is not an implemented schema or a set of
+  newly verified historical dates.
+- Historical pilot complete as a research candidate after the user said Continue:
+  [16-case comparison](data/field-research/timeline-spans-2026-10-15/pilot-review.md),
+  manual `pilot-decisions.json`, generated `pilot.json` with before/evidence records,
+  `pilot-summary.csv` and `pilot-contract.md`. There are 85 events, three journal
+  publication/title intervals and 97 referenced source records. A minimum event
+  set demonstrates semantics; it is not an exhaustive replacement for all works.
+- Historical findings: the Science Wars scope explicitly calls 2000 a convenience,
+  so it is not a verified ending. Careless's probable 1979 lecture delivery,
+  host's 1981 issue date and alternate 1980 citation remain distinct/qualified.
+  UBC Press dates Parr's Sensing Changes hardcover release to 2009-12-15 and PDF
+  release to 2010-07-01 (different ISBNs); preserve both and the current 2010 citation.
+  Annales ESC's 1946–1993 title phase differs from HSS from 1994 and the 1929 lineage.
+  CSSH's first issue October 1958 is independently corroborated by publisher metadata;
+  its 2009 online date is not the first issue. Unknown endings remain unknown.
+- Existing scoped evidence was reused without claiming to reread all works; new
+  external checks record reading extent and failures. Direct Nobel opening returned
+  403; Guaman Poma direct opening failed, so only indexed institutional metadata
+  was rechecked. No OpenAlex queries were made.
+- Next: a shared chronology reader and visual prototype from the candidate facts,
+  then staged migration. A local HTML preview was announced but is not built:
+  Chromium was missing and its installation was interrupted by the user's request
+  to show the pilot. Present the saved comparison directly; do not claim browser
+  validation. The user also asked whether the timeline is hard coded: explained
+  that facts come from the KG, but prose parsing/continuation rules are hard coded.
+- Reproduce with `node scripts/audit_timeline_spans.mjs`; verify saved output with
+  `node scripts/audit_timeline_spans.mjs --check`. Audit includes input hashes,
+  original labels/spans, normalized/layout dates and review flags. Flags prompt
+  review; they do not all represent historical errors.
+- Validation: saved outputs reproduce exactly; all 225 CSV/JSON entries match
+  with unique IDs; graph/renderer hashes, confirmed lexical cases, the deliberate
+  debate-roots distinction and documentation links pass. Production graph,
+  pathways, site, published assets and drafts are unchanged from HEAD. No browser
+  run was needed for this read-only audit and documentation work.
+- Pilot reproduction and semantic/reference checks pass with
+  `python3 scripts/build_timeline_pilot.py --check`. This checks selection vs
+  reception, publication editions, antecedents vs main exchange, coverage unchanged,
+  single-work entries and journal title change vs cessation, in addition to structure.
+- No graph, site, public build or archive change in this review; no revision bump,
+  commit, push or deployment. Existing 1.121 exact-2000 archive stays frozen.
+  OpenAlex remains paused. The mobile improvements below were pushed as `5f36321`.
+
+Earlier read-only questions remain separate: Joy Parr already has an environmental
+contribution edge (`edge_963`) but lacks an environmental roster placement; Colin
+M. Coates is a roster-only person in Canadian intellectual/cultural history, with
+no standalone node/edges or environmental placement. No fixes were applied.
+
+## Handoff — 2026-10-15: mobile UI/UX
 
 The user requested improvements to the mobile experience after the identity/circles update
 was pushed to `main` as `43ee913`. **History in Conversation**, subtitled **Historians, ideas

@@ -6,8 +6,10 @@ from pathlib import Path
 import sys
 try:
     from .validate_journal_catalogue import validate_catalogue
+    from .chronology import validate_chronologies
 except ImportError:
     from validate_journal_catalogue import validate_catalogue
+    from chronology import validate_chronologies
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -21,6 +23,7 @@ def pathways_within(graph, pathways):
 
 def validate(graph, pathways):
     errors, warnings = [], []
+    errors.extend(validate_chronologies(graph))
     if 'claim_catalogue' in graph:
         try:
             from .validate_claim_catalogue import validate_catalogue as validate_claims
@@ -115,9 +118,9 @@ def validate(graph, pathways):
         if person.get("node_id") and person["node_id"] not in identifiers["nodes"]:
             errors.append(f"Unknown full entry for person {person['id']}")
     for node in graph["nodes"]:
-        if graph.get("schema_version") in ("1.3", "1.4") and node.get("entry_kind") not in ("group", "person"):
+        if graph.get("schema_version") in ("1.3", "1.4", "1.5", "1.6") and node.get("entry_kind") not in ("group", "person"):
             errors.append(f"Missing entry kind in {node['id']}")
-        if graph.get("schema_version") == "1.4" and not node.get("entry_type"):
+        if graph.get("schema_version") in ("1.4", "1.5", "1.6") and not node.get("entry_type"):
             errors.append(f"Missing entry type in {node['id']}")
         strand_ids = set()
         for strand in node.get("strands", []):
@@ -161,6 +164,10 @@ def validate(graph, pathways):
                 person = next((p for p in people if p["id"] == pid), {})
                 if not edge or set((edge["source"], edge["target"])) != set((node["id"], person.get("node_id"))):
                     errors.append(f"Representative edge does not connect person and group in {node['id']}")
+    for node in graph['nodes'] + graph.get('journal_catalogue', {}).get('nodes', []):
+        c = node.get('chronology', {})
+        for fact in c.get('events', []) + c.get('intervals', []):
+            used_sources.update(ref[6:] for ref in fact.get('source_ids', []) if ref.startswith('graph:'))
     for ref in sorted(identifiers["sources"] - used_sources):
         warnings.append(f"Unused source: {ref}")
     for node_id in sorted(identifiers["nodes"] - connected):

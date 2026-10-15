@@ -1,3 +1,4 @@
+import {chronologyOf, chronologySpan, contributionSpan, chronologyEvents, dateBounds, dateText} from '../site/chronology.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -209,15 +210,19 @@ test('field layout fits the box it is given and never reserves a rail', () => {
   }
   const view = buildFieldLayout(graph, 1400, null, order);
   if (view.undatedCount) assert.ok(view.captions.length > 0, 'undated strip must be captioned');
-  // Open frame: "1929 onward" is solid to its reviewed year and fades to the frame end, never a stub.
-  assert.equal(view.coverageYear, null, 'the open frame has no wall');
+  // Current chronology does not turn editorial coverage into historical duration.
+  assert.equal(view.coverageYear, null);
   const annales = view.bars.find(b => b.node.id === 'annales');
-  assert.ok(annales.open && !annales.point);
+  assert.equal(annales.open, false);
   assert.equal(annales.reviewed, 2000);
-  assert.ok(Math.abs(annales.x + annales.w - view.scale(annales.reviewed)) < 0.5, 'open ends are solid to the reviewed year');
-  assert.equal(annales.fadeTo, view.frame.end, 'and fade to the research cutoff');
-  for (const b of view.bars.filter(b => b.open && b.reviewed !== null))
-    assert.ok(Math.abs(b.x + b.w - view.scale(Math.max(b.reviewed, b.span.end))) < 0.5, b.node.id);
+  assert.equal(annales.reviewMarker.year, 2000);
+  assert.equal(annales.drawEnd, 1989);
+  assert.ok(annales.chronology.events.some(e => e.date.year === 1929));
+  for (const b of view.bars) {
+    assert.ok(b.chronology, b.node.id);
+    assert.equal(b.open, false, b.node.id);
+    assert.equal(b.posthumous, null, 'lifespan alone cannot establish reception');
+  }
   // The archived 1.121 view keeps its wall: open ends there stop at 2000.
   const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
   const aview = buildFieldLayout(archive, 1400, null, fieldLayers(archive, {}));
@@ -285,10 +290,11 @@ test('undated earlier roots open the start of a mark instead of inventing an ori
   assert.ok(curated.openStart);
   const view = buildFieldLayout(graph, 1400, null, fieldLayers(graph, {}));
   const bar = view.bars.find(b => b.node.id === 'military');
-  assert.ok(bar.lead, 'military history enters the timeline as already established');
-  assert.equal(bar.lead.x, view.x0);
-  assert.ok(Math.abs(bar.lead.x + bar.lead.w - bar.x) < 0.5, 'the lead-in meets the first dated year');
-  for (const b of view.bars) if (b.span.openStart) assert.ok(b.lead || b.x - view.x0 <= 4, b.node.id);
+  assert.equal(bar.lead, null, 'do not draw an unsupported duration before the first selected work');
+  assert.ok(bar.chronology.events.some(e => e.date.year === 1832 && e.track === 'context'));
+  assert.ok(bar.chronology.events.some(e => e.date.year === 1961 && e.track === 'contributions'));
+  assert.match(bar.node.chronology.selection_note, /not a field origin/);
+
 });
 
 test('journals without publication dates fall back to their evidenced venue role, and say so', () => {
@@ -312,7 +318,7 @@ test('journals without publication dates fall back to their evidenced venue role
   assert.ok(undated.length >= 0);
 });
 
-test('life dates mark a death and hatch posthumous reception, only for people who carry them', () => {
+test('life dates remain reference metadata; reception requires dated evidence', () => {
   const sheet = JSON.parse(readFileSync(new URL('../data/people-wikidata.json', import.meta.url)));
   const accepted = new Map(sheet.people.filter(p => p.status === 'accepted').map(p => [p.person_id, p]));
   assert.ok(accepted.size >= 40);
@@ -334,18 +340,17 @@ test('life dates mark a death and hatch posthumous reception, only for people wh
   assert.equal(lifeIndex(graph).size, 0, 'the repository dataset carries no life dates');
   const view = buildFieldLayout(enriched, 1400, null, fieldLayers(enriched, {}));
   const bloch = view.bars.find(b => b.node.id === 'marc_bloch');
-  assert.equal(bloch.death.yr, 1944);
-  assert.equal(bloch.span.end, 1940, '"Feudal Society 1939–40" ends in 1940, not 1939');
-  assert.equal(bloch.posthumous, null, 'Bloch’s dated works all precede his death');
+  assert.equal(bloch.life.death, 1944);
+  assert.equal(bloch.death, null, 'life dates do not change explicit chronology geometry');
+  assert.equal(bloch.posthumous, null);
+  assert.ok(bloch.chronology.events.some(e => e.date.year === 1949 && e.kind === 'posthumous_publication'));
   const gramsci = view.bars.find(b => b.node.id === 'gramsci');
-  assert.equal(gramsci.death.yr, 1937);
-  assert.ok(gramsci.posthumous && gramsci.posthumous.w > 0, 'postwar reception of the Notebooks is posthumous');
-  assert.ok(Math.abs(gramsci.posthumous.x + gramsci.posthumous.w - (gramsci.x + gramsci.w)) < 0.5);
-  // Open frame: the axis runs to the research cutoff, so a 2004 death is drawn, and "1960s onward"
-  // (no review year for a person) continues as hatched posthumous reception after it.
+  assert.equal(gramsci.life.death, 1937);
+  assert.equal(gramsci.posthumous, null);
+  assert.ok(gramsci.chronology.events.some(e => e.date.year === 1974 && e.track === 'reception'));
   const derrida = view.bars.find(b => b.node.id === 'derrida');
-  assert.equal(derrida.death.yr, 2004);
-  assert.ok(derrida.posthumous && Math.abs(derrida.posthumous.x - derrida.death.x) < 0.5);
+  assert.equal(derrida.life.death, 2004);
+  assert.equal(derrida.posthumous, null, 'death and an old onward label cannot imply continuous reception');
   // The archived 2000 view still states a later death in the panel, not on the axis.
   const archive = JSON.parse(readFileSync(new URL('../docs/data/graph-2000.json', import.meta.url)));
   const aview = buildFieldLayout(archive, 1400, null, fieldLayers(archive, {}));
@@ -768,4 +773,43 @@ test('person map in the archive keeps the 2000 wall and the archive\'s own peopl
   assert.equal(L.coverageYear, 2000);
   assert.equal(L.maxYear, 2000);
   for (const b of L.bars.filter(b => b.open)) assert.ok(b.drawEnd <= 2000, b.node.id);
+});
+
+
+test('explicit chronology is independent of prose, coverage and lifespan', () => {
+  for (const id of ['wittgenstein', 'roger_chartier', 'j_m_s_careless', 'sciencewars']) {
+    const n = graph.nodes.find(n => n.id === id);
+    const poison = {...n, date_label: 'Representations · Later · 1600–2029 onward',
+      coverage: {reviewed_through: 2026}, date_span: {start: 1600, end: 2029}};
+    assert.deepEqual(spanOf(poison), spanOf(n), id);
+    assert.deepEqual(chronologyEvents(poison), chronologyEvents(n), id);
+  }
+  const science = graph.nodes.find(n => n.id === 'sciencewars');
+  assert.deepEqual(contributionSpan(science), {start: 1994, end: 1999});
+  assert.equal(chronologySpan(science).end, 2004, 'plotted retrospective is a separate dated event');
+  assert.equal(chronologyEvents(science).find(e => e.date.year === 2004).track, 'reception');
+});
+
+test('unknown journal endings, title changes and venue roles retain their meanings', () => {
+  const journals = journalNodes(graph).nodes;
+  const cssh = journals.find(j => j.id === 'journal_647183c1e131cf7a');
+  assert.equal(chronologyOf(cssh).intervals[0].end, null);
+  assert.equal(chronologySpan(cssh).end, 1958, 'unknown end cannot become today');
+  const hss = journals.find(j => j.id === 'journal_65dd21715536a35f');
+  assert.equal(chronologyOf(hss).intervals[0].end_meaning, 'title_change');
+  const venue = journals.find(j => j.id === 'journal_b8bc3aaecbd1501f');
+  assert.equal(chronologyOf(venue).events[0].kind, 'venue_role');
+  assert.equal(chronologyOf(venue).intervals.length, 0, 'venue evidence is not publication duration');
+});
+
+test('chronology retains date precision, BCE dates, editions and qualified alternatives', () => {
+  assert.deepEqual(dateBounds({year: -500, precision: 'century'}), [-500, -401]);
+  assert.deepEqual(dateBounds({year: 1980, precision: 'decade'}), [1980, 1989]);
+  assert.match(dateText({year: -500, precision: 'year'}), /500 BCE/);
+  assert.match(dateText({year: 1981, precision: 'year', alternatives: [{year: 1980}]}), /alternate citation: 1980/);
+  const parr = chronologyEvents(graph.nodes.find(n => n.id === 'joy_parr'));
+  assert.ok(parr.some(e => e.date.year === 2009 && e.track === 'editions'));
+  assert.ok(parr.some(e => e.date.year === 2010 && e.date.precision === 'day'));
+  const indigenous = chronologyEvents(graph.nodes.find(n => n.id === 'indigenous'));
+  assert.deepEqual(indigenous.find(e => e.kind === 'manuscript').bounds, [1615, 1616]);
 });
