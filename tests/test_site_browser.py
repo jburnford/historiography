@@ -693,7 +693,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.screenshot(path=str(self.artifacts / 'people-families.png'), full_page=True)
 
     def test_people_without_evidence_and_on_phones(self):
-        """Without the evidence asset the people tab is the single ring; phones get the family list."""
+        """Without evidence the people tab is one ring; phones retain circles and the family list."""
         self.page.route('**/data/evidence.json', lambda route: route.abort())
         self.open('#tab=people')
         _, rosters, _ = self.people_families()
@@ -706,7 +706,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.goto(URL + '#tab=people')
         self.page.reload()   # a hash change alone would keep the failed load
         self.page.wait_for_function("() => document.getElementById('workspace').dataset.route === location.hash")
-        self.assertTrue(self.page.locator('.company-chart').is_hidden())
+        expect(self.page.locator('.company-chart')).to_be_visible()
         expect(self.page.locator('.company-panel .family-list a')).to_have_count(12)
         self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
         self.page.locator('.company-panel .family-list').get_by_role('link', name='Environment').click()

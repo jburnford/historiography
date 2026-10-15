@@ -57,6 +57,25 @@ The timeline panel links directly to the selected entry's complete Connections v
 alongside its full entry, people and references. Existing bare family URLs still open
 Approaches & people; family navigation offers Timeline, Approaches & people and List.
 
+## Mobile exploration
+
+Below 700 px, a sticky navigation bar keeps Families, Timeline and People circles visible;
+More opens the other routes and closes on navigation, outside taps or Escape. Search uses
+16 px input text, with layer/period/Hunt filters in a disclosure and an active-filter count.
+Inner pages omit the repeated introduction; entering an exploration brings search into view.
+
+The circles are now drawn on phones too. Below 760 px their layout is at least 620 px wide
+inside a bounded, scrollable viewport, with the family list and full person register still
+available. Touch instructions replace hover guidance. Tapping a person opens and focuses
+their context panel; Back to circles returns to the chart, and People list jumps to the register.
+
+The phone timeline has a bounded scroll viewport, a collapsible date key and no initial
+instruction panel ahead of the chart. Selecting an entry brings its details into view,
+with Back to timeline and Follow all connections near the top. Full-text relationship
+lists remain the phone default; rosters on Connections start collapsed and retain every person.
+Desktop disclosures start open. Hover previews run only when the device supports hover;
+keyboard previews and native hash navigation are retained.
+
 ## Landing
 
 The bare URL opens a families overview: twelve editorial families, each row pairing the
@@ -114,7 +133,7 @@ On an entry with `extension_coverage`, a section "After 2000 · selected interve
 - **Hold** (`#hold=<person or entry id>`): click a dot (or an entry) to hold; click again, click empty space, press Escape or use “Show everyone” to release. A hold link opens the level that draws what it holds: an entry's family, a person's only family, or the overview, which lights the families of a person it does not draw. An old link holding an entry (`#tab=people&hold=women`) opens that entry's family. A profile opened from the people view leads back, through its breadcrumb, to the same level and hold.
 - The shared search and layer/period filters dim everyone who does not match; on the overview each family's count becomes “n of m match”.
 - **The register** below the chart is the accessible route to all people and is the same at both levels. It opens on the people with their own entry, sorted by surname; the letter rail selects a surname initial (`#letter=B`); a search or a held entry lists exactly the matching people. `people.mjs` derives the surname (`sortName`) with a small editorial list for labels written surname first (Wang Feng, Lu Gwei-djen …) and compound surnames (Vidal de la Blache); lowercase particles follow the given name in the sort. A `sort_name` field on people records would replace that list.
-- **Accessibility and phones.** The SVG and every family, entry and linked dot carry `aria-label`s; families and drawn people on the overview are links, so keyboard focus previews them as hover does. The panel is the text equivalent: on the overview it lists the twelve families as links, on a family its entries. Under 760 px the chart is not drawn; the panel's family list and the register carry the page.
+- **Accessibility and phones.** The SVG and every family, entry and linked dot carry `aria-label`s; families and drawn people on the overview are links, so keyboard focus previews them as hover does. The panel is the text equivalent: on the overview it lists the twelve families as links, on a family its entries. Under 760 px the chart is drawn in a scrollable viewport; the family list and register remain available as text alternatives.
 
 ## A person's profile map: where they sit
 

@@ -1,5 +1,12 @@
 # Historiography: editorial and visualization working plan
 
+**Mobile UI/UX (2026-10-15):** The user requested improvements to the phone experience.
+Keep the circles visible and usable by touch, with the accessible register retained. Sticky
+primary navigation, collapsible filters/guides/connection rosters, bounded chart viewports
+and selection-to-details navigation reduce scrolling and reliance on hover. Preserve the
+existing graph, evidence, routes, archive and desktop behavior. See `site/README.md` and
+the current `MEMORY.md` handoff for implementation and validation.
+
 **Identity and navigation (2026-10-15):** The agreed name is **History in Conversation**,
 subtitled **Historians, ideas and debates through time.** Timeline and recorded connections
 remain central: top-level Timeline access, family timeline links from the landing, and a

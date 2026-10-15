@@ -8,6 +8,15 @@ import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, fa
 import {recordPanel as publicationPanel} from './records.mjs';
 
 const $ = id => document.getElementById(id);
+const phone = () => matchMedia('(max-width: 700px)').matches;
+const phoneCircles = () => matchMedia('(max-width: 760px)').matches;
+const canHover = () => matchMedia('(hover: hover)').matches;
+const disclosureOpen = () => phone() ? '' : 'open';
+function closeNavigation() {
+  $('nav-more').setAttribute('aria-expanded', 'false');
+  document.querySelector('.main-nav').classList.remove('expanded');
+}
+const chartReturn = (id, label) => `<button type="button" class="touch-only chart-return" data-scroll-target="${id}">${label} ↑</button>`;
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 let graph, pathways, state, nodeById, sourceById, personById, personNames;
 /* `pathwayAsset` is data/pathways.json as loaded; `pathways` is the same object restricted to the
@@ -204,7 +213,7 @@ function strandGuide(n) {
 }
 function corePeople(n) {
   if (!n.representative_people?.length) return '';
-  return `<section class="core-people" aria-label="Historians and contributors for this entry"><div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THIS ENTRY</p><h3>Historians & contributors</h3></div><a class="text-link" href="${esc(href({section:'',edge:'',page:0,kind:'',neighborLayer:''}))}">Explore works & approaches →</a></div><ul>${n.representative_people.map(r => `<li data-person="${r.person_id}"><a href="${esc(personHref(r.person_id))}">${esc(personById.get(r.person_id).label)}</a><span>${esc(PERSON_ROLES[r.role])}</span></li>`).join('')}</ul><p class="fine-print">All ${n.representative_people.length} people in this entry’s selection. Roles distinguish historians, resources, and critics; this roster is not an influence diagram.</p></section>`;
+  return `<details class="core-people" ${disclosureOpen()} aria-label="Historians and contributors for this entry"><summary>Historians & contributors · ${n.representative_people.length}</summary><div class="section-heading"><a class="text-link" href="${esc(href({section:'',edge:'',page:0,kind:'',neighborLayer:''}))}">Explore works & approaches →</a></div><ul>${n.representative_people.map(r => `<li data-person="${r.person_id}"><a href="${esc(personHref(r.person_id))}">${esc(personById.get(r.person_id).label)}</a><span>${esc(PERSON_ROLES[r.role])}</span></li>`).join('')}</ul><p class="fine-print">All ${n.representative_people.length} people in this entry’s selection. Roles distinguish historians, resources, and critics; this roster is not an influence diagram.</p></details>`;
 }
 function schoolPeople() {
   const n = nodeById.get(state.node);
@@ -322,7 +331,7 @@ function companyIntro(L) {
       .sort((a, b) => b.count - a.count || b.entries - a.entries || a.label.localeCompare(b.label)).slice(0, 8);
     const counted = L.index.families.reduce((s, f) => s + f.people.length, 0);
     return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
-      <h2>Hover a family or a dot. Click a family to open it.</h2>
+      <h2>${canHover() ? 'Hover a family or a dot. Click a family to open it.' : 'Tap a family circle to explore. Tap a person to hold them.'}</h2>
       <p>The ${L.anchors.length} families of the landing page sit on the ring; a disc’s area is the number of people its entries name. Only the ${L.people.length} people named in entries of two or more families are drawn, between those families, in ink. Everyone else is counted at their family and drawn when you open it.</p>
       ${LEGEND}</ul>
       <div class="sec"><p class="eyebrow">Families</p><ul class="panel-entries family-list">${L.index.families.map(f => `<li><a href="${esc(familyPeopleHref(L, f.id))}">${esc(f.label)}</a><span class="role-tag">${f.people.length} people</span></li>`).join('')}</ul></div>
@@ -335,7 +344,7 @@ function companyIntro(L) {
     const own = L.anchors.filter(a => !a.bridged), shared = L.anchors.filter(a => a.bridged);
     const entry = a => `<li><a href="${esc(holdHref(a.id))}">${esc(a.label)}</a><span class="role-tag">${a.count}</span></li>`;
     return `<div class="panel-empty"><p class="eyebrow">${esc(L.family.label)} · nothing selected</p>
-      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
+      <h2>${canHover() ? 'Hover a dot to see whose company they keep. Click to hold.' : 'Tap a person to see whose company they keep.'}</h2>
       <p>The family’s ${own.length} entr${own.length === 1 ? 'y sits' : 'ies sit'} on the ring${shared.length ? `, then the ${shared.length} it shares with other families, in outline` : ''}, each with the number of people it names. A person named in one of them gathers at that entry, in its colour; a person named in several moves inward, between them, in ink. A small dot at a person’s shoulder marks someone also named in another family.</p>
       ${LEGEND}<li><span class="lg lg-away"></span>also in another family</li></ul>
       <div class="sec"><p class="eyebrow">Entries</p><ul class="panel-entries">${own.map(entry).join('')}</ul>${shared.length ? `<p class="eyebrow">Shared with other families</p><ul class="panel-entries">${shared.map(entry).join('')}</ul>` : ''}</div>
@@ -343,7 +352,7 @@ function companyIntro(L) {
       <p class="fine-print">Sharing an entry is shared context, not influence: no line is drawn between two people. Placement is the plain mean of an entry’s positions, not a force layout.</p></div>`;
   }
   return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
-      <h2>Hover a dot to see whose company they keep. Click to hold.</h2>
+      <h2>${canHover() ? 'Hover a dot to see whose company they keep. Click to hold.' : 'Tap a person to see whose company they keep.'}</h2>
       <p>Each of the ${L.anchors.length} entries sits on the ring with the number of people it names. A person named in one entry gathers at that entry, in its colour. A person named in several entries moves inward, between them, in ink. The bigger dots are the ${graph.people.filter(p => p.node_id).length} people who also have an entry of their own.</p>
       ${LEGEND}</ul>
       <div class="sec"><p class="eyebrow">Named in the most entries</p>${topList(top, holdHref)}</div>
@@ -414,31 +423,34 @@ function peopleDirectory() {
     head = `${crumbs([`<a href="${esc(overviewHref())}">Historians & contributors</a>`, `<span aria-current="page">${esc(L.family.label)}</span>`])}
     <nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'map', hold: '', letter: '', page: 0}))}">This family’s timeline →</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'approaches', hold: '', letter: '', page: 0}))}">This family’s approaches & works →</a></nav>
     <div class="section-heading"><div><p class="eyebrow">THE COMPANY THEY KEEP · ONE FAMILY</p><h2>${esc(L.family.label)}</h2></div><span class="count">${L.people.length} people · ${L.anchors.length - shared} entries${shared ? ` · ${shared} shared with other families` : ''}</span></div>
-    <p class="context-note">Everyone this family’s entries name, placed between the entries that name them. A small dot at a person’s shoulder marks someone also named in another family; the panel links to it. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+    <details class="company-guide" ${disclosureOpen()}><summary>How to read the circles</summary><p class="context-note">Everyone this family’s entries name, placed between the entries that name them. A small dot at a person’s shoulder marks someone also named in another family; the panel links to it. ${canHover() ? 'Hover to see whose company someone keeps; click to hold.' : 'Tap a person to hold them and read their context.'} Search or filter above to light up a subset. ${note}</p></details>`;
   } else if (L.kind === 'overview') {
     head = `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} families · ${L.people.length} named in more than one</span></div>
-    <p class="context-note">The families of historical writing, as on the landing page. The people drawn are those named in the entries of two or more families, placed between them; open a family to see everyone its entries name. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+    <details class="company-guide" ${disclosureOpen()}><summary>How to read the circles</summary><p class="context-note">The families of historical writing, as on the landing page. The people drawn are those named in the entries of two or more families, placed between them; open a family to see everyone its entries name. ${canHover() ? 'Hover to see whose company someone keeps; click to hold.' : 'Tap a person to hold them and read their context.'} Search or filter above to light up a subset. ${note}</p></details>`;
   } else {
     head = `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}${state.family === 'all' && evidence?.families ? `<nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a></nav>` : ''}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} entries that name them</span></div>
-    <p class="context-note">Every person in this map is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+    <details class="company-guide" ${disclosureOpen()}><summary>How to read the circles</summary><p class="context-note">Every person in this map is placed between the schools, fields and debates that name them. ${canHover() ? 'Hover to see whose company someone keeps; click to hold.' : 'Tap a person to hold them and read their context.'} Search or filter above to light up a subset. ${note}</p></details>`;
   }
   return `${head}
-    <div class="company-split"><div class="company-chart" aria-busy="true"></div><aside class="field-panel company-panel" aria-label="Selection details">${companyPanel(L)}</aside></div>
-    <section class="register-section" aria-label="Register of people">${register(L)}</section>`;
+    <p class="touch-only chart-hint">Drag inside the circles to explore. Tap a family to open it or a person to hold them. <button type="button" data-scroll-target="people-register">People list ↓</button></p>
+    <div class="company-split" data-held="${Boolean(state.hold)}"><div class="company-chart" id="company-map" tabindex="0" role="region" aria-label="Interactive people circles" aria-busy="true"></div><aside class="field-panel company-panel" aria-label="Selection details">${state.hold ? chartReturn('company-map', 'Back to circles') : ''}${companyPanel(L)}</aside></div>
+    <section class="register-section" id="people-register" tabindex="-1" aria-label="Register of people">${register(L)}</section>`;
 }
 function drawCompany() {
   const box = document.querySelector('.company-chart');
   if (!box) return;
   companyWidth = box.clientWidth || 0;
-  if (!companyWidth) return;   /* hidden on narrow screens; the panel and register carry the content */
-  const L = companyModel(companyWidth);
+  if (!companyWidth) return;
+  const layoutWidth = phoneCircles() ? Math.max(620, companyWidth) : companyWidth;
+  box.style.setProperty('--circle-width', `${layoutWidth}px`);
+  const L = companyModel(layoutWidth);
   const matched = filtersOn() ? new Set(filterPeople(graph, state).map(p => p.id)) : null;
   const allowed = filtersOn() ? new Set(filterNodes(graph.nodes, {...state, query: ''}).map(n => n.id)) : null;
   box.innerHTML = L.kind === 'overview' ? overviewSvg(L, matched) : companySvg(L, matched, allowed);
   box.removeAttribute('aria-busy');
   const svg = box.querySelector('svg.company');
   const panel = document.querySelector('.company-panel');
-  const paint = () => { panel.innerHTML = companyPanel(L); };
+  const paint = () => { panel.innerHTML = `${state.hold ? chartReturn('company-map', 'Back to circles') : ''}${companyPanel(L)}`; };
   const light = id => {
     const related = new Set();
     if (id?.startsWith('family:')) { for (const p of L.people) if (p.families.includes(id.slice(7))) related.add(p.id); }
@@ -458,7 +470,7 @@ function drawCompany() {
     companyHover = id; light(id || state.hold || null); paint();
   };
   const clear = () => { if (companyHover === null) return; companyHover = null; light(state.hold || null); paint(); };
-  svg.addEventListener('mouseover', e => preview(e.target));
+  svg.addEventListener('mouseover', e => { if (canHover()) preview(e.target); });
   svg.addEventListener('mouseleave', clear);
   svg.addEventListener('focusin', e => preview(e.target));
   svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
@@ -469,6 +481,15 @@ function drawCompany() {
     if (!e.target.closest('a') && state.hold) change({hold: ''});
   });
   if (state.hold) light(state.hold);
+  if (phoneCircles()) {
+    box.scrollLeft = (svg.getBoundingClientRect().width - box.clientWidth) / 2;
+    const selected = svg.querySelector('.dot.selected, .anchor.selected');
+    if (selected) {
+      const mark = selected.getBoundingClientRect(), frame = box.getBoundingClientRect();
+      box.scrollLeft += mark.x + mark.width / 2 - frame.x - frame.width / 2;
+      box.scrollTop = mark.y + mark.height / 2 - frame.y - frame.height / 2;
+    }
+  }
   if (!companyBound) {
     companyBound = true;
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && state.hold && state.tab === 'people' && !state.person) change({hold: ''}); });
@@ -716,7 +737,7 @@ function fieldLegend() {
         href="${esc(toggle(k))}" aria-pressed="${!hidden.has(k)}"
         title="${hidden.has(k) ? 'Show' : 'Hide'} ${esc(kindChip(k).toLowerCase())}"
         ><i></i>${esc(kindChip(k))} <em>${counts.get(k) || 0}</em></a>`).join('')}</div>
-    <div class="lg"><strong>The mark</strong>
+    <details class="mark-guide" ${disclosureOpen()}><summary>Reading the timeline</summary><div class="lg"><strong>The mark</strong>
       <span class="swatch precise">years the label names</span>
       <span class="swatch lead">earlier roots, undated</span>
       <span class="swatch posthumous">† death · hatched = posthumous reception</span>
@@ -725,7 +746,7 @@ function fieldLegend() {
       ${openFrame() ? `<span class="swatch open unreviewed">solid to the year reviewed · faded where later work is not yet surveyed</span>
       <span class="swatch axis-note">pre-1900 compressed</span>${shownGraph().nodes.some(n => interventionsOf(n).length) ? '<span class="swatch intervention">◆ selected later intervention</span>' : ''}`
       : `<span class="swatch open">continues past the coverage limit</span>
-      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}</div>
+      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}</div></details>
     <div class="lg right"><strong>View</strong>
       <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
         aria-pressed="${state.view !== 'list'}">Timeline</a>
@@ -1071,18 +1092,18 @@ function fieldPanel() {
   const atlas = graph.nodes.some(x => x.id === id);
   const groups = [...new Set(rels.map(r => r.edge.relationship_kind))];
   const seq = p ? p.node_ids.indexOf(id) : -1;
-  return `${state.focus && !hoverId ? `<p class="panel-release">${releaseLink()}</p>` : ''}
+  return `<div class="selection-actions">${chartReturn('timeline-map', 'Back to timeline')}${state.focus && !hoverId ? `<p class="panel-release">${releaseLink()}</p>` : ''}</div>
     ${p ? `<p class="path-strip">${seq >= 0 ? `Entry ${seq + 1} of ${p.node_ids.length} in` : 'Outside'}
       the pathway <a href="${esc(href({focus: ''}))}">${esc(p.title)}</a>.</p>` : ''}
     <p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
     <h2 id="field-title" tabindex="-1">${esc(n.label)}</h2>
     <p class="meta">${esc(n.date_label || 'No date label')} · ${esc(fieldTitle(n.layer))}</p>
+    ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(connectedNodeHref(id, ''))}">Follow all connections →</a></p>` : ''}
     ${lifeLine(n, span)}
     <div class="datewhy">${fieldDateNote(n, span)}${interventionNote(n)}</div>
     <p class="claim">${esc(n.description)}</p>
     ${n.scope_note ? `<div class="scope"><strong>Scope &amp; distinctions.</strong>
       ${esc(n.scope_note)}</div>` : ''}
-    ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(connectedNodeHref(id, ''))}">Follow all connections →</a></p>` : ''}
     ${groups.map(kind => {
       const items = rels.filter(r => r.edge.relationship_kind === kind);
       return `<section class="sec"><h3>${esc(kindLabel(kind))} · ${items.length}</h3>${
@@ -1258,8 +1279,8 @@ function fieldPage() {
   if (fam && !state.focus && state.view === 'approaches') return familyExplorer(fam);
   const counts = fieldView(1200);   /* counts do not depend on width; the SVG is drawn after measuring */
   const body = state.view === 'list' ? `<div class="field-listing">${fieldList()}</div>`
-    : '<div class="field-scroll" aria-busy="true"></div>';
-  return `<div class="field-page">
+    : '<div class="field-scroll" id="timeline-map" tabindex="0" role="region" aria-label="Interactive timeline" aria-busy="true"></div>';
+  return `<div class="field-page" data-selected="${Boolean(state.focus || state.path)}">
     ${fam ? familyHeading(fam) : ''}
     <div class="section-heading"><div><p class="eyebrow">${fam ? '01 / ONE FAMILY OF HISTORICAL WRITING' : '01 / THE WHOLE FIELD'}</p>
       <h2>${fam ? esc(fam.label) : 'Historiography on one time axis'}</h2></div>
@@ -1269,6 +1290,7 @@ function fieldPage() {
           ? ` · ${shownGraph().nodes.filter(n => n.entry_kind === 'group' && reviewedThrough(n) === 2000).length} entries reviewed through 2000`
           : activeExtension() ? ` · ${activeExtension().covered} entries with selected interventions after ${graph.scope.main_period[1]}` : ''}</p></div>
     ${fam ? familyNavigation(false) : ''}${fieldLegend()}
+    ${state.view !== 'list' ? '<p class="touch-only chart-hint">Scroll inside the timeline and tap an entry for its connections. Use List for a text view.</p>' : ''}
     <div class="field-split">${body}
       <aside class="field-panel">${fieldPanel()}</aside></div>
     <p class="fine-print">${state.view === 'list'
@@ -1297,12 +1319,12 @@ function drawField() {
     paint();
   };
   const clear = () => { if (hoverId === null) return; hoverId = null; svg.classList.remove('previewing'); paint(); };
-  svg.addEventListener('mouseover', e => preview(e.target));
+  svg.addEventListener('mouseover', e => { if (canHover()) preview(e.target); });
   svg.addEventListener('mouseleave', clear);
   /* Keyboard users get the same preview as hover. */
   svg.addEventListener('focusin', e => preview(e.target));
   svg.addEventListener('focusout', e => { if (!svg.contains(e.relatedTarget)) clear(); });
-  svg.addEventListener('mouseover', e => emphasise(svg, e.target));
+  svg.addEventListener('mouseover', e => { if (canHover()) emphasise(svg, e.target); });
   /* Clicking empty chart space lets go of the held entry. */
   svg.addEventListener('click', e => {
     if (state.focus && !e.target.closest('a')) change({focus: ''});
@@ -1310,7 +1332,11 @@ function drawField() {
   if (state.focus && state.focus !== scrolledFocus) {
     scrolledFocus = state.focus;
     const held = svg.querySelector('.entry.selected, .chip.selected');
-    held?.scrollIntoView({block: 'center',
+    if (phone() && held) {
+      const mark = held.getBoundingClientRect(), frame = box.getBoundingClientRect();
+      box.scrollTop += mark.y - frame.y - box.clientHeight / 2;
+      box.scrollLeft += mark.x + mark.width / 2 - frame.x - box.clientWidth / 2;
+    } else held?.scrollIntoView({block: 'center',
       behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
   }
   if (!state.focus) scrolledFocus = '';
@@ -1330,10 +1356,16 @@ function wireField() {
     if (svg) emphasise(svg, e.target);
   });
 }
-let resizeTimer;
+let resizeTimer, wasPhone = phone();
 function onResize() {
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
+    if (wasPhone !== phone()) {
+      wasPhone = phone();
+      $('filter-options').open = !wasPhone || Boolean(state.layer || state.period || state.hunt);
+      render();
+      return;
+    }
     const box = document.querySelector('.field-scroll');
     if (box && Math.abs(box.clientWidth - fieldWidth) > 4) drawField();
     const company = document.querySelector('.company-chart');
@@ -1524,8 +1556,8 @@ function focused() {
   const returnPatch = {node: '', person: '', edge: '', section: '', page: 0, kind: '', neighborLayer: ''};
   const returnLabel = state.pathway ? 'Back to pathway' : state.query || state.layer || state.period || state.hunt ? 'Back to entries' : 'Back to entries';
   return `${crumbs([`<a href="${esc(href(returnPatch))}">${returnLabel}</a>`, `<span aria-current="page">${esc(n.label)}</span>`])}
-    ${schoolTabs(n)}${corePeople(n)}<div class="focus-layout"><section class="neighborhood" aria-labelledby="neighborhood-title"><div class="section-heading"><div><p class="eyebrow">03 / EXAMINE THE CONNECTIONS</p><h2 id="neighborhood-title">One entry, in conversation.</h2></div></div>
-      <p class="context-note">All connections matching the selected filters are shown together. Read incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified links appear below. Select a relationship to read its evidence.</p>
+    ${schoolTabs(n)}${corePeople(n)}<div class="focus-layout"><section class="neighborhood" aria-labelledby="neighborhood-title"><div class="section-heading"><div><p class="eyebrow">03 / EXAMINE THE CONNECTIONS</p><h2 id="neighborhood-title">${phone() ? esc(n.label) : 'One entry, in conversation.'}</h2></div></div>
+      <p class="context-note">All connections matching the selected filters are shown together. ${state.view === 'list' ? 'Open a relationship to read its explanation and evidence.' : 'Read incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified links appear below. Select a relationship to read its evidence.'}</p>
       <div class="neighborhood-controls"><label><span>Relationship</span><select id="kind-filter"><option value="">All relationships (${allRows.length})</option>${Object.entries(KINDS).map(([k, label]) => `<option value="${k}" ${state.kind === k ? 'selected' : ''}>${label} (${allRows.filter(r => edgeKind(r.edge) === k).length})</option>`).join('')}</select></label>
       <label><span>Connected layer</span><select id="neighbor-layer"><option value="">All layers</option>${layerOptions(state.neighborLayer)}</select></label>
       <div class="view-toggle" aria-label="Relationship view"><button data-view="map" aria-pressed="${state.view === 'map'}">Map</button><button data-view="list" aria-pressed="${state.view === 'list'}">List</button></div></div>
@@ -1601,6 +1633,7 @@ function rangeControls() {
   toggle.innerHTML = `<span>Coverage</span><a href="${esc(href({range: '2000'}))}" aria-pressed="${state.range === '2000'}">Through ${b}</a><a href="${esc(href({range: ''}))}" aria-pressed="${state.range !== '2000'}">Through ${end} · partial</a>`;
 }
 function render() {
+  closeNavigation();
   rangeControls();
   const onField = state.tab === 'map' && !state.node && !state.person;
   /* Without the evidence asset the front door falls back to the full field view. */
@@ -1610,6 +1643,12 @@ function render() {
   $('layer-filter').value = state.layer;
   $('period-filter').value = state.period;
   $('hunt-filter').checked = state.hunt;
+  const filters = Number(Boolean(state.layer)) + Number(Boolean(state.period)) + Number(state.hunt);
+  $('filter-count').textContent = filters ? `· ${filters} active` : '';
+  if (!$('filter-options').dataset.initialized) {
+    $('filter-options').open = !phone() || filters > 0;
+    $('filter-options').dataset.initialized = 'true';
+  }
   const pathCount = document.querySelector('[data-tab="pathways"] span');
   if (pathCount) pathCount.textContent = pathways.pathways.length;
   document.querySelectorAll('[data-tab]').forEach(a => {
@@ -1619,6 +1658,7 @@ function render() {
   });
   document.body.dataset.view = onField ? 'field' : '';
   document.body.dataset.compact = onField ? '' : '1';
+  document.body.dataset.landing = String(onLanding);
   $('workspace').innerHTML = state.person ? personPage()
     : state.node ? (nodeById.get(state.node).representative_people?.length && state.section !== 'connections' ? schoolPeople() : focused())
     : onLanding ? landingPage() : onField ? fieldPage()
@@ -1665,8 +1705,19 @@ async function start() {
     adopt(production);
     window.addEventListener('resize', onResize);
     document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && $('nav-more').getAttribute('aria-expanded') === 'true') {
+        closeNavigation(); $('nav-more').focus(); e.stopImmediatePropagation(); return;
+      }
       if (e.key === 'Escape' && state.focus && document.querySelector('svg.field')
           && !e.target.closest('input, select, textarea')) change({focus: ''});
+    });
+    $('nav-more').addEventListener('click', () => {
+      const expanded = $('nav-more').getAttribute('aria-expanded') !== 'true';
+      $('nav-more').setAttribute('aria-expanded', String(expanded));
+      document.querySelector('.main-nav').classList.toggle('expanded', expanded);
+    });
+    document.addEventListener('pointerdown', e => {
+      if (!e.target.closest('.main-nav')) closeNavigation();
     });
     $('edition-label').textContent = `Draft ${revision()}`;
     $('layer-filter').insertAdjacentHTML('beforeend', layerOptions(''));
@@ -1703,11 +1754,22 @@ async function start() {
       }
       $('notice').textContent = '';
       render();
+      const selectedPanel = phoneCircles() && state.hold && state.hold !== old.hold && state.tab === 'people' && !state.person
+        ? document.querySelector('.company-panel') : phone() && state.focus && state.focus !== old.focus
+          ? document.querySelector('.field-page .field-panel') : null;
+      if (selectedPanel) {
+        selectedPanel.setAttribute('tabindex', '-1');
+        selectedPanel.focus({preventScroll: true});
+        selectedPanel.scrollIntoView({block: 'start'});
+        return;
+      }
       if (state.edge && state.edge !== old.edge) $('detail-title')?.focus({preventScroll: !matchMedia('(max-width: 1000px)').matches});
       else if (focusedId && $(focusedId) && !$(focusedId).closest('[hidden]')) $(focusedId).focus({preventScroll: true});
       else {
         $('workspace').focus({preventScroll: true});
-        if (state.node !== old.node || state.person !== old.person || state.section !== old.section || state.tab !== old.tab || state.pathway !== old.pathway || state.family !== old.family || state.overview !== old.overview) $('workspace').scrollIntoView({block: 'start'});
+        if (state.node !== old.node || state.person !== old.person || state.section !== old.section || state.tab !== old.tab || state.pathway !== old.pathway || state.family !== old.family || state.overview !== old.overview) {
+          (phone() && !$('toolbar').hidden ? $('toolbar') : $('workspace')).scrollIntoView({block: 'start'});
+        }
       }
     });
     $('notice').addEventListener('click', e => { if (e.target.closest('[data-retry-navigation]')) window.dispatchEvent(new HashChangeEvent('hashchange')); });
@@ -1719,6 +1781,11 @@ async function start() {
       const button = e.target.closest('button');
       if (!button) return;
       if (button.hasAttribute('data-retry-records')) loadPeopleRecords();
+      if (button.dataset.scrollTarget) {
+        const target = $(button.dataset.scrollTarget);
+        target?.focus({preventScroll: true});
+        target?.scrollIntoView({block: 'start'});
+      }
       if (button.dataset.page !== undefined) change({page: Number(button.dataset.page)});
       if (button.dataset.view) change({view: button.dataset.view});
       if (button.id === 'clear-neighbor-filters') change({kind: '', neighborLayer: '', page: 0});
