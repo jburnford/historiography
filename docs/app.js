@@ -6,6 +6,7 @@ import {buildFieldLayout, fieldNodes, fieldEdges, fieldKinds, fieldLayers, relat
 import {sortName, bySurname, companyLayout, bridges, familyIndex, familyOverviewLayout, familyCompanyLayout, ENTRY_LINE, FAMILY_LINE} from './people.mjs';
 import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, familyContent, rowsSvg, cardsHtml, tableHtml} from './landing.mjs';
 import {recordPanel as publicationPanel} from './records.mjs';
+import {chronologyOf, chronologyLabel, chronologyEvents, contributionSpan, dateText} from './chronology.mjs';
 
 const $ = id => document.getElementById(id);
 const phone = () => matchMedia('(max-width: 700px)').matches;
@@ -62,6 +63,7 @@ const activeExtension = () => state?.range === '2000' ? null : extensionOf(graph
 /* The open frame (revision 1.133 on): no closing wall; each entry is reviewed through its own
    year. The archived 2000 graph, and any graph without scope.frame, keeps the legacy wall. */
 const openFrame = (g = graph) => frameOf(g).open;
+const explicitChronology = () => graph.chronology_policy?.version === '1';
 /* The year an open-ended entry is drawn solid to, as buildFieldLayout draws it. */
 function solidEnd(n, span) {
   const fr = frameOf(graph);
@@ -69,8 +71,8 @@ function solidEnd(n, span) {
   const reviewed = reviewedThrough(n);
   return reviewed === null ? fr.end : Math.max(reviewed, span.end);
 }
-const isOpenSpan = (n, span) => span.endKind === 'coverage_limit'
-  || (openFrame() && reviewedThrough(n) !== null && span.endKind !== 'terminus');
+const isOpenSpan = (n, span) => !span.chronological && (span.endKind === 'coverage_limit'
+  || (openFrame() && reviewedThrough(n) !== null && span.endKind !== 'terminus'));
 function adopt(g) {
   graph = g;
   pathways = pathwaysFor(g);
@@ -179,7 +181,7 @@ function extensionSection(n) {
   if (openFrame()) {
     const through = reviewedThrough(n) ?? c.baseline_through ?? 2000;
     return `<section class="extension" aria-label="Selected later interventions"><div class="ext-head"><p class="eyebrow">AFTER ${esc(through)} · SELECTED LATER INTERVENTIONS</p><span class="badge status-${esc(c.status || 'release_candidate')}">${esc(statusText)}</span></div>
-    <p class="context-note">${years.length} publication${years.length === 1 ? '' : 's'} selected (${esc(years.join(', '))}). Research cutoff ${esc(c.research_cutoff || 'unrecorded')}. ${c.field_review_complete ? 'This field has been reviewed through the cutoff.' : `This field is <strong>reviewed through ${esc(through)}</strong>: these are selected interventions after the review year, not a survey.`} The entry’s mark, reviewed through ${esc(through)}, is unchanged.</p>
+    <p class="context-note">${years.length} publication${years.length === 1 ? '' : 's'} selected (${esc(years.join(', '))}). Research cutoff ${esc(c.research_cutoff || 'unrecorded')}. ${c.field_review_complete ? 'This field has been reviewed through the cutoff.' : `This field is <strong>reviewed through ${esc(through)}</strong>: these are selected interventions after the review year, not a survey.`} ${chronologyOf(n) ? 'Each selected contribution is dated individually; the review year remains separate.' : `The entry’s mark, reviewed through ${esc(through)}, is unchanged.`}</p>
     ${(c.work_ids || []).map(workCard).join('')}</section>`;
   }
   return `<section class="extension" aria-label="Selected interventions after 2000"><div class="ext-head"><p class="eyebrow">AFTER ${esc(c.baseline_through || 2000)} · SELECTED INTERVENTIONS</p><span class="badge status-${esc(c.status || 'release_candidate')}">${esc(statusText)}</span></div>
@@ -389,7 +391,7 @@ function companyPanel(L) {
   /* One person per line with the work the entry cites, so a long roster can be scanned. */
   const line = x => { const rep = reps.get(x.id); const work = (rep?.works || '').split(';')[0].trim();
     return `<li><a href="${esc(holdHref(x.id))}">${esc(personById.get(x.id).label)}</a>${lifeSpan(personById.get(x.id))}${work ? `<span class="panel-work">${esc(work.length > 70 ? `${work.slice(0, 69)}…` : work)}</span>` : ''}</li>`; };
-  return `${release}<p class="eyebrow">${esc(layerLabel(n.layer))} · ${rows.length} people</p><h2>${esc(n.label)}</h2><p class="meta">${esc(n.date_label || '')}</p>
+  return `${release}<p class="eyebrow">${esc(layerLabel(n.layer))} · ${rows.length} people</p><h2>${esc(n.label)}</h2><p class="meta">${esc(chronologyLabel(n))}</p>
     ${L.kind === 'family' && home && home !== L.family.id ? `<p class="panel-families">Shared with this family from <a href="${esc(href({family: home, hold: id, letter: '', page: 0}))}">${esc(familyName(L, home))}</a>.</p>` : ''}
     ${groups.map(([role, r]) => `<div class="sec"><p class="eyebrow">${esc(PERSON_ROLES[role])}${r.length > 1 ? `s · ${r.length}` : ''}</p><ul class="panel-roster">${[...r].sort((a, b) => bySurname(personById.get(a.id), personById.get(b.id))).map(line).join('')}</ul></div>`).join('')}
     <p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}">Open the entry →</a></p>`;
@@ -535,7 +537,7 @@ function pmSubset(id) {
 /* What a mark says on hover, on focus and to a screen reader: the entry, its dates, the role. */
 function pmDescribe(p, s, id) {
   const n = nodeById.get(id);
-  const parts = [`${n.label}${n.date_label ? `, ${n.date_label}` : ''}.`];
+  const parts = [`${n.label}${chronologyLabel(n) ? `, ${chronologyLabel(n)}` : ''}.`];
   if (id === s.own) parts.push(`${p.label}’s own entry${s.edges.length ? `, with ${s.edges.length} recorded relationship${s.edges.length === 1 ? '' : 's'}` : ''}.`);
   if (s.roster.has(id)) parts.push(`${s.roster.get(id) === 'approach' ? 'Names them within an approach' : `Names them as ${PM_ROLE_LABEL[s.roster.get(id)].toLowerCase()}`}.`);
   for (const r of s.linked.get(id) || [])
@@ -569,11 +571,33 @@ function personMapSection(p) {
       ${reach ? '<li><span class="pm-sw linked"></span>related to their entry; does not name them</li>' : ''}
       ${pmHasLead(s) ? '<li><span class="pm-sw lead"></span>earlier roots, undated</li>' : ''}
       ${kinds.map(k => `<li class="pm-kind k-${esc(BASE_KINDS.includes(k) ? k : 'extra')}"><i></i>${esc(kindChip(k).toLowerCase())}</li>`).join('')}
-      ${fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
+      ${explicitChronology() ? '<li>● selected contribution · ○ context · ◇ edition or reception · ▫ editorial review year</li>' : fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
         : `<li><span class="pm-sw wall"></span>${esc(fr.wall)}: the archive’s coverage limit, not an ending</li>`}
     </ul>
-    <p class="fine-print pm-note">Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names; a roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
+    <p class="fine-print pm-note">${explicitChronology() ? 'Points date works and events; dotted lines connect the selected contributions, not a lifespan. Editorial review years remain separate.' : 'Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names;'} A roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
 }
+/* Shared marks for full, family and compact maps. Geometry comes only from graph facts. */
+function chronologyShapes(p) {
+  const c = p.chronology, mid = p.y + p.h / 2;
+  const r = p.h < 16 ? 3 : 4;
+  const selection = c.selection?.w > 0 ? `<line class="chron-selection" x1="${c.selection.x}" x2="${c.selection.x + c.selection.w}"
+    y1="${mid}" y2="${mid}"><title>Extent of selected contributions; not historical duration</title></line>` : '';
+  const intervals = c.intervals.map(i => i.unknownEnd
+    ? `<circle class="chron-unknown" cx="${i.x}" cy="${mid}" r="${r + 2}"><title>${esc(i.subject)}: from ${esc(dateText(i.start))}; ending unestablished</title></circle>`
+    : `<rect class="chron-interval${i.track === 'context' ? ' interval-context' : ''}" x="${i.x}" y="${mid - 3}" width="${Math.max(1, i.w)}" height="6"><title>${esc(i.subject)}: ${esc(dateText(i.start))}–${esc(dateText(i.end))}; ${esc(i.end_meaning.replace(/_/g, ' '))}${i.track === 'context' ? '; lineage context' : ''}</title></rect>`).join('');
+  const events = c.events.map(e => {
+    const y = e.track === 'context' ? mid - 4 : e.track === 'reception' || e.track === 'editions' ? mid + 4 : mid;
+    const title = `${dateText(e.date)} · ${e.label} · ${e.kind.replace(/_/g, ' ')} · ${e.track}`;
+    const range = e.x1 > e.x0 ? `<line class="chron-range" x1="${e.x0}" x2="${e.x1}" y1="${y}" y2="${y}"/>` : '';
+    return `<g class="chron-event track-${e.track}${e.uncertain ? ' uncertain' : ''}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
+      <title>${esc(title)}</title>${range}${e.track === 'reception' || e.track === 'editions'
+        ? `<path d="M${e.x} ${y-r} l${r} ${r} l${-r} ${r} l${-r} ${-r} z"/>`
+        : `<circle cx="${e.x}" cy="${y}" r="${r}"/>`}</g>`;
+  }).join('');
+  const review = p.reviewMarker ? `<rect class="chron-review" x="${p.reviewMarker.x - 2.5}" y="${p.y + p.h + 1}" width="5" height="4"><title>Editorial coverage: reviewed through ${p.reviewMarker.year}; not a historical endpoint</title></rect>` : '';
+  return `<rect class="chron-hit" x="${p.x - 5}" y="${p.y - 3}" width="${p.w + 10}" height="${p.h + 6}" rx="3"/>${selection}${intervals}${events}${review}`;
+}
+
 function personMapSvg(L, p) {
   const s = L.subset, fr = L.frame, top = L.axisTop + 16, bottom = L.height - 2;
   let grid = '';
@@ -618,6 +642,7 @@ function personMapSvg(L, p) {
     const y = b.side === 'above' ? b.y - 7 : b.y + b.h / 2 + 1;
     return `<text class="pm-label ${b.side}" x="${x.toFixed(1)}" y="${y.toFixed(1)}"${b.side === 'left' ? ' text-anchor="end"' : ''}>${esc(b.label)}${badge}</text>`; };
   const bars = L.bars.map(b => {
+    if (b.chronology) return `<a class="${cls(b.node.id)} explicit" data-id="${esc(b.node.id)}" href="${esc(nodeHref(b.node.id))}" aria-label="${esc(pmDescribe(p, s, b.node.id))}">${chronologyShapes(b)}${label(b)}</a>`;
     const tailW = fr.open && b.open && b.fadeTo > b.drawEnd ? tailEnd(b) - L.scale(b.drawEnd) : 0;
     return `<a class="${cls(b.node.id)}" data-id="${esc(b.node.id)}" href="${esc(nodeHref(b.node.id))}" aria-label="${esc(pmDescribe(p, s, b.node.id))}">
       ${b.lead ? `<line class="pm-lead" x1="${b.lead.x.toFixed(1)}" y1="${(b.y + b.h / 2).toFixed(1)}" x2="${(b.lead.x + b.lead.w).toFixed(1)}" y2="${(b.y + b.h / 2).toFixed(1)}"><title>Earlier roots, undated</title></line>` : ''}
@@ -738,7 +763,13 @@ function fieldLegend() {
         title="${hidden.has(k) ? 'Show' : 'Hide'} ${esc(kindChip(k).toLowerCase())}"
         ><i></i>${esc(kindChip(k))} <em>${counts.get(k) || 0}</em></a>`).join('')}</div>
     <details class="mark-guide" ${disclosureOpen()}><summary>Reading the timeline</summary><div class="lg"><strong>The mark</strong>
-      <span class="swatch precise">years the label names</span>
+      ${explicitChronology() ? `<span class="swatch chron-point">selected contribution</span>
+      <span class="swatch chron-context">context or earlier work</span>
+      <span class="swatch chron-reception">edition or reception</span>
+      <span class="swatch chron-connector">extent of the selection</span>
+      <span class="swatch chron-interval-key">sourced historical interval</span>
+      <span class="swatch chron-review-key">editorial review year</span>
+      <span class="swatch axis-note">pre-1900 compressed</span>` : `<span class="swatch precise">years the label names</span>
       <span class="swatch lead">earlier roots, undated</span>
       <span class="swatch posthumous">† death · hatched = posthumous reception</span>
       <span class="swatch point">a single dated year</span>
@@ -746,7 +777,7 @@ function fieldLegend() {
       ${openFrame() ? `<span class="swatch open unreviewed">solid to the year reviewed · faded where later work is not yet surveyed</span>
       <span class="swatch axis-note">pre-1900 compressed</span>${shownGraph().nodes.some(n => interventionsOf(n).length) ? '<span class="swatch intervention">◆ selected later intervention</span>' : ''}`
       : `<span class="swatch open">continues past the coverage limit</span>
-      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}</div></details>
+      <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}`}</div></details>
     <div class="lg right"><strong>View</strong>
       <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
         aria-pressed="${state.view !== 'list'}">Timeline</a>
@@ -785,7 +816,10 @@ function fieldSvg(view) {
     if (major) grid += `<text class="tick-label" x="${view.scale(yr)}"
       y="${view.axisTop + 34}" text-anchor="middle">${yr}</text>`;
   };
-  for (let yr = Math.ceil(view.minYear / 25) * 25; yr < view.breakYear; yr += 25) tick(yr, true);
+  const earlyRoom = view.scale(view.breakYear) - view.scale(view.minYear);
+  const earlyStep = explicitChronology() ? ([25, 50, 100, 200, 500, 1000].find(step =>
+    step >= (view.breakYear - view.minYear) / Math.max(1, Math.floor(earlyRoom / 42))) || 1000) : 25;
+  for (let yr = Math.ceil(view.minYear / earlyStep) * earlyStep; yr < view.breakYear; yr += earlyStep) tick(yr, true);
   for (let yr = view.breakYear; yr <= view.maxYear; yr += 10) tick(yr, yr % 20 === 0);
   const fr = view.frame, bx = view.scale(view.breakYear);
   const wx = fr.open ? null : view.scale(view.coverageYear);
@@ -863,7 +897,7 @@ function fieldSvg(view) {
       <text class="chip-label" x="${p.x + 10}" y="${p.y + p.h / 2 + 1}">${esc(p.label)}</text>
     </a>`).join('');
   const ghosts = view.ghosts.map(p => `<a class="ghost-link" data-id="${esc(p.node.id)}"
-      href="${esc(focusHref(p.node.id))}"><rect class="ghost" x="${p.x}" y="${p.y}"
+      href="${esc(focusHref(p.node.id))}"><rect class="ghost${p.span?.chronological ? ' chron-ghost' : ''}" x="${p.x}" y="${p.y}"
       width="${p.w}" height="${p.h}" rx="2"/><title>${esc(p.node.label)} · ${esc(
       p.node.date_label)}</title></a>`).join('');
   /* Open frame: the faded tail runs from the reviewed year to the frame end, but stops short of
@@ -884,6 +918,11 @@ function fieldSvg(view) {
       p.reviewed !== null ? `Reviewed through ${p.drawEnd}; later work not yet surveyed` : 'Drawn to the research cutoff; later work is cited where checked'}</title></rect>` : '';
   };
   const bars = view.bars.map(p => {
+    if (p.chronology) return `<a class="entry explicit ${cls(p)}" data-id="${esc(p.node.id)}" href="${esc(markHref(p))}"
+      aria-label="${esc(p.node.label)}, ${esc(chronologyLabel(p.node))}.${heldNote(p)}">${chronologyShapes(p)}
+      <text class="bar-label ${p.side}" y="${p.y + p.h / 2 + 1}"
+        x="${p.side === 'right' ? p.x + p.w + 7 : p.side === 'left' ? p.x - 7 : p.x + 9}"
+        ${p.side === 'left' ? 'text-anchor="end"' : ''}>${esc(p.label)}</text></a>`;
     const fuzzy = p.span.precision === 'decade';
     const xEnd = p.x + p.w;
     const tailHtml = tail(p);
@@ -935,6 +974,7 @@ function fieldSvg(view) {
 }
 
 function interventionNote(n) {
+  if (chronologyOf(n)) return '';
   const open = openFrame() && state.range !== '2000';
   const years = open ? interventionsOf(n).filter(y => y > (reviewedThrough(n) ?? 0)) : activeExtension() ? interventionsOf(n) : [];
   if (!years.length) return '';
@@ -943,7 +983,17 @@ function interventionNote(n) {
   return `<p class="ext-note"><strong>After ${esc(c.baseline_through || 2000)}.</strong> ${years.length} selected intervention${years.length === 1 ? '' : 's'} (${esc(years.join(', '))}), drawn as ◆ on this row. ${c.status === 'release_candidate' ? 'Release candidate, not yet accepted. ' : ''}${c.field_review_complete ? '' : 'The field is not reviewed through the cutoff.'} Open the entry to read the exact claims and their evidence.</p>`;
 }
 function fieldDateNote(n, span) {
-  if (!span) return `<strong>No span stated.</strong> <code>${esc(n.date_label)}</code> names
+  const chronology = chronologyOf(n);
+  if (chronology) {
+    const selected = contributionSpan(n), review = reviewedThrough(n);
+    return `<strong>${esc(chronology.label)}</strong><p>${esc(chronology.selection_note)}</p>
+      <p>${selected ? `The selected contribution dates ${selected.start === selected.end ? `include ${selected.start}` : `run from ${selected.start} to ${selected.end}`}. ` : ''}
+      Points date works or events. The thin dotted connector shows the extent of the selection; it does not assert continuous activity or influence. Earlier context, editions and reception have separate markers.</p>
+      ${review !== null ? `<p class="chronology-coverage"><strong>Editorial coverage: reviewed through ${review}.</strong> ${esc(n.coverage?.basis || '')} The small outlined square records this survey limit separately from the dated contributions.</p>` : ''}
+      ${(chronology.intervals || []).map(i => `<p><strong>${esc(i.subject)}:</strong> ${esc(dateText(i.start))}${i.end ? `–${esc(dateText(i.end))}; ${esc(i.end_meaning.replace(/_/g, ' '))}` : '; ending unestablished'}. ${esc(i.support)}</p>`).join('')}
+      ${chronologyDetails(n)}`;
+  }
+  if (!span) return `<strong>No span stated.</strong> <code>${esc(chronologyLabel(n))}</code> names
     people or methods rather than years, so it sits in the band’s strip rather than being given a
     date it does not claim.`;
   const wall = span.coverage ?? graph.scope.main_period[1];
@@ -998,7 +1048,7 @@ function fieldDateNote(n, span) {
     names ${ticks === 1 ? 'is' : 'are'} ticked on the bar.` : '';
   const prov = span.curated
     ? `From the curated <code>date_span</code>. ${esc(span.basis || '')}`
-    : `Read from <code>${esc(n.date_label)}</code> by the site, not curated as numbers. The mark
+    : `Read from <code>${esc(chronologyLabel(n))}</code> by the site, not curated as numbers. The mark
        says nothing about when the ${periodical ? 'periodical' : 'field'} was most influential.`;
   return `${roots}${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
 }
@@ -1011,7 +1061,7 @@ function lifeLine(n, span) {
   const parts = [];
   if (life.birth) parts.push(`Born ${approx('birth')}${life.birth}`);
   parts.push(life.death ? `died ${approx('death')}${life.death}` : 'living at retrieval');
-  const posthumous = life.death && span && life.death < (openFrame()
+  const posthumous = !chronologyOf(n) && life.death && span && life.death < (openFrame()
     ? (isOpenSpan(n, span) ? solidEnd(n, span) : span.end)
     : span.endKind === 'coverage_limit' ? (span.coverage ?? graph.scope.main_period[1]) : span.end);
   return `<p class="life">${esc(parts.join(' · '))}${life.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(life.qid)}"
@@ -1019,6 +1069,26 @@ function lifeLine(n, span) {
       life.retrieved ? ` <span class="prov">retrieved ${esc(life.retrieved)}</span>` : ''}${
       posthumous ? `<br><span class="posthumous-note">The hatched part of the mark, after ${life.death},
       is reception of the work after the author’s death.</span>` : ''}</p>`;
+}
+
+function chronologyDetails(n) {
+  const c = chronologyOf(n);
+  if (!c) return '';
+  const source = ref => {
+    const journal = ref.startsWith('journal:');
+    const s = (journal ? journalSourceById : sourceById).get(ref.slice(journal ? 8 : 6));
+    if (!s) return '';
+    const title = s.citation || s.title;
+    return `<li>${/^https?:\/\//.test(s.url || '') ? `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(title)} ↗</a>` : esc(title)}${s.verification?.note || s.note || s.scope_note ? `<p>${esc(s.verification?.note || s.note || s.scope_note)}</p>` : ''}</li>`;
+  };
+  const groups = {contributions: 'Selected contributions', context: 'Earlier works & context', editions: 'Editions & translations', reception: 'Reception & retrospective discussion'};
+  const events = chronologyEvents(n);
+  return `<details class="chronology-details"><summary>Dated contributions & evidence · ${events.length}</summary>
+    <p>Dates distinguish publication, delivery, writing, editions and reception. Open an event for its source and date meaning.</p>${Object.entries(groups).map(([track, title]) => {
+      const rows = events.filter(e => e.track === track);
+      return rows.length ? `<section class="chronology-track"><h4>${title}</h4><ol>${rows.map(e => `<li data-chronology-event="${esc(e.id)}"><strong>${esc(dateText(e.date))}</strong> · ${esc(e.label)}
+        <span class="chronology-kind">${esc(e.kind.replace(/_/g, ' '))}</span><details><summary>Evidence & date meaning</summary><p>${esc(e.support)}</p><ul class="chronology-sources">${e.source_ids.map(source).join('')}</ul></details></li>`).join('')}</ol></section>` : '';
+    }).join('')}<p class="chronology-limits">${esc(c.continuation.basis)}</p></details>`;
 }
 
 /* One relationship, with its evidence and references one click away. */
@@ -1070,7 +1140,8 @@ function fieldPanel() {
     if (p) return pathwayPanel(p);
     return `<div class="panel-empty"><p class="eyebrow">Nothing selected</p>
     <h2>Hover to light up an argument. Click to hold it.</h2>
-    ${openFrame() ? `<p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
+    ${explicitChronology() ? `<p><strong>Points date selected works and events.</strong> Dotted connectors show the extent of a selection, not continuous activity or influence. Hollow markers distinguish earlier context; diamonds distinguish editions and reception. Bars are reserved for sourced historical intervals, with title changes distinguished from cessation.</p>
+    <p>The small outlined square marks the entry's editorial review year. Later selected works can appear beyond it without implying that the intervening period has been surveyed. The research cutoff is a date of reading, not a historical ending. Select an entry to inspect its dates, sources and recorded connections.</p>` : openFrame() ? `<p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
     the earliest dated year; a thin lead-in from the left edge means the label states earlier,
     undated roots. A mark is solid through the year its entry has been reviewed and faded after it, to the research cutoff.
     Fields are being extended one at a time; a faded tail means later work is not yet surveyed, not that the field stopped.
@@ -1097,7 +1168,7 @@ function fieldPanel() {
       the pathway <a href="${esc(href({focus: ''}))}">${esc(p.title)}</a>.</p>` : ''}
     <p class="eyebrow">${esc(n.entry_type || 'Entry')}</p>
     <h2 id="field-title" tabindex="-1">${esc(n.label)}</h2>
-    <p class="meta">${esc(n.date_label || 'No date label')} · ${esc(fieldTitle(n.layer))}</p>
+    <p class="meta">${esc(chronologyLabel(n) || 'No date label')} · ${esc(fieldTitle(n.layer))}</p>
     ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(connectedNodeHref(id, ''))}">Follow all connections →</a></p>` : ''}
     ${lifeLine(n, span)}
     <div class="datewhy">${fieldDateNote(n, span)}${interventionNote(n)}</div>
@@ -1129,13 +1200,17 @@ function fieldList() {
   const pct = yr => Math.max(0, Math.min(100, (yr - lo) / (hi - lo) * 100));
   const mini = (span, n) => {
     if (!span) return '';
+    if (chronologyOf(n)) {
+      const selected = contributionSpan(n);
+      return `<span class="mini chronology-mini" aria-hidden="true">${selected && selected.end > selected.start ? `<i class="selection" style="left:${pct(selected.start)}%;width:${pct(selected.end) - pct(selected.start)}%"></i>` : ''}${chronologyEvents(n).map(e => `<b class="track-${e.track}" style="left:${pct((e.bounds[0] + e.bounds[1]) / 2)}%"></b>`).join('')}</span>`;
+    }
     const open = fr.open ? isOpenSpan(n, span) : span.endKind === 'coverage_limit';
     const a = pct(span.start), b = Math.max(a + 1.5, pct(open ? (fr.open ? solidEnd(n, span) : (span.coverage ?? hi)) : span.end));
     return `<span class="mini" aria-hidden="true">${span.openStart ? `<i class="lead" style="left:0;width:${a}%"></i>` : ''}<i class="${open ? 'open' : ''}" style="left:${a}%;width:${b - a}%"></i></span>`;
   };
   const fam = activeFamily();
   return `<p class="fine-print">All ${rows.length} entries, in time order within each band.
-      Dates describe arrival and influence, not a lifespan.${fam
+      ${explicitChronology() ? 'Dates below give the selected contribution range; context and reception remain separately dated in each entry. These are not career or field boundaries.' : 'Dates describe selected works and developments, not a lifespan.'}${fam
         ? ' Relationship counts include relationships with entries outside this family.' : ''}</p>` +
     fieldLayers(shownGraph(), FIELD_TITLES).map(layerId => {
       const mine = rows.filter(r => r.n.layer === layerId);
@@ -1146,10 +1221,11 @@ function fieldList() {
       <thead><tr><th scope="col">Dates</th><th scope="col">Entry</th><th scope="col">Kind</th>
         <th scope="col">${fam ? 'All relationships' : 'Relationships'}</th></tr></thead><tbody>${mine.map(({n, span}) => {
         const rels = (fieldIndex.get(n.id) || []).length;
-        return `<tr><td class="td-date">${esc(span ? `${span.start}${span.end > span.start
-            ? `–${span.end}` : ''}` : 'not stated')}${mini(span, n)}</td>
+        const selected = chronologyOf(n) ? contributionSpan(n) : span;
+        return `<tr><td class="td-date">${esc(selected ? `${selected.start}${selected.end > selected.start
+            ? `–${selected.end}` : ''}` : 'not stated')}${chronologyOf(n) ? '<small>selected</small>' : ''}${mini(span, n)}</td>
           <td><a href="${esc(focusHref(n.id))}">${esc(n.label)}</a>
-            <span class="td-note">${esc(n.date_label)}</span></td>
+            <span class="td-note">${esc(chronologyLabel(n))}</span></td>
           <td>${esc(n.entry_type || fieldTitle(n.layer))}</td>
           <td class="td-num">${rels}</td></tr>`;
       }).join('')}</tbody></table></details>`;
@@ -1192,7 +1268,7 @@ function landingPage() {
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Curated entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. ${openFrame() ? 'The map has no closing date; its entries are reviewed through 2000 unless marked otherwise, so record bars after 2000 can run ahead of the map’s reading.' : 'The map’s own coverage ends in 2000; record bars after it have no matching map entries.'} Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
+    <p class="fine-print">Curated entries are placed at their earliest selected contribution date. This is an editorial selection, not a field origin or a measure of influence. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. ${openFrame() ? 'The map has no closing date; its entries are reviewed through 2000 unless marked otherwise, so record bars after 2000 can run ahead of the map’s reading.' : 'The map’s own coverage ends in 2000; record bars after it have no matching map entries.'} Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
       <a href="${esc(href({family: 'all', view: 'map'}))}">All entries on one axis →</a></p>
     ${evidence.sensitivity ? `<details class="landing-audit"><summary>How sensitive is this comparison?</summary><p class="fine-print">${esc(evidence.sensitivity.note)}</p><p class="fine-print">${esc(evidence.sensitivity.pagination_note)}</p></details>` : ''}
   </div>`;
@@ -1296,7 +1372,7 @@ function fieldPage() {
     <p class="fine-print">${state.view === 'list'
       ? 'Text view. Switch to Timeline for the visual arrangement.'
       : 'A text list of the same entries is available under View · List.'}
-      Bars follow the years each date label names; they are editorial readings, not verified chronology or measures of influence.</p>
+      ${explicitChronology() ? 'Points date selected works and events. Dotted lines connect the selection; they are not careers or field lifespans. Editorial coverage is shown separately.' : 'Bars follow the years each date label names; they are editorial readings, not verified chronology or measures of influence.'}</p>
   </div>`;
 }
 
@@ -1430,7 +1506,7 @@ function directory() {
     ${matchingPeople.length ? `<div class="people-search-hint"><a href="${esc(href({tab:'people', node:'', person:'', page:0}))}">${matchingPeople.length} matching people →</a><span>${esc(matchingPeople.slice(0,4).map(p=>p.label).join(' · '))}</span></div>` : ''}
     ${state.period ? `<p class="context-note">${esc(periodLabel(state.period))}. ${state.period !== 'unassigned' ? 'Entries with no assigned period are also included. Periods describe emergence or expansion, not termination.' : 'No period assignment does not mean the entry is undated; read its date label.'}</p>` : ''}
     ${state.hunt ? '<p class="context-note">These four entries form Hunt’s teaching lens, not a universal ranking of significance.</p>' : ''}
-    ${rows.length ? `<div class="entry-grid">${pageSlice(rows, 12).map(n => `<article class="entry-card tone-${layerIndex(n.layer)}">${layerTag(n)}<h3>${linkNode(n.id)}</h3><p class="date">${esc(n.date_label || 'Date not recorded')}</p><p class="entry-excerpt">${esc(n.description)}</p>${huntTag(n)}<a class="entry-open" href="${esc(nodeHref(n.id))}" aria-label="Explore ${esc(n.label)}">${n.representative_people?.length ? rosterLabel(n) + ' →' : 'Explore connections →'}</a></article>`).join('')}</div>${pagination(rows.length, 12)}` : '<div class="empty"><h3>No entries match these filters.</h3><p>Try a shorter search or choose a broader layer or period.</p><a href="#">Clear all filters →</a></div>'}`;
+    ${rows.length ? `<div class="entry-grid">${pageSlice(rows, 12).map(n => `<article class="entry-card tone-${layerIndex(n.layer)}">${layerTag(n)}<h3>${linkNode(n.id)}</h3><p class="date">${esc(chronologyLabel(n) || 'Date not recorded')}</p><p class="entry-excerpt">${esc(n.description)}</p>${huntTag(n)}<a class="entry-open" href="${esc(nodeHref(n.id))}" aria-label="Explore ${esc(n.label)}">${n.representative_people?.length ? rosterLabel(n) + ' →' : 'Explore connections →'}</a></article>`).join('')}</div>${pagination(rows.length, 12)}` : '<div class="empty"><h3>No entries match these filters.</h3><p>Try a shorter search or choose a broader layer or period.</p><a href="#">Clear all filters →</a></div>'}`;
 }
 function sourceList(ids, byId = sourceById) {
   if (!ids?.length) return '<p class="context-note">No relationship-specific references recorded. An entry’s bibliography does not establish this connection.</p>';
@@ -1448,8 +1524,9 @@ function sourceList(ids, byId = sourceById) {
 function nodeDetail(n) {
   const memberPaths = pathways.pathways.filter(p => p.node_ids.includes(n.id));
   return `<div class="reading-header"><p class="eyebrow">THE ENTRY</p><h2 id="detail-title" tabindex="-1">${esc(n.label)}</h2>${layerTag(n)}${huntTag(n)}<a class="hold-link" href="#focus=${esc(n.id)}">Hold in the field →</a></div>
-    <p class="date">${esc(n.date_label || 'Date not recorded')}</p><p class="period-note">${esc(periodLabel(n.period))}</p>
+    <p class="date">${esc(chronologyLabel(n) || 'Date not recorded')}</p><p class="period-note">${esc(periodLabel(n.period))}</p>
     ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}${recordPanel(n)}<h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
+    ${chronologyOf(n) ? `<section class="entry-chronology"><h3>Dates & historical meaning</h3><p>${esc(n.chronology.selection_note)}</p>${reviewedThrough(n) !== null ? `<p class="chronology-coverage">Editorial coverage: <strong>reviewed through ${reviewedThrough(n)}</strong>. Later selected contributions do not establish a survey of the intervening period.</p>` : ''}${chronologyDetails(n)}</section>` : ''}
     ${n.representative_people?.length ? '' : extensionSection(n)}${n.entry_kind === 'person' && n.claim_ids?.length ? `<details class="entry-claims"><summary>Exact claims behind this entry · ${n.claim_ids.length}</summary><p class="fine-print">Catalogue claims with their own review status and evidence scope; authorship credits are metadata, not influence.</p>${claimCards(n.claim_ids)}</details>` : ''}
     <details class="bibliography" open><summary>References <span>${n.source_ids?.length || 0}</span></summary><p class="fine-print">References offer context; a metadata check does not certify every interpretation.</p>${sourceList(n.source_ids)}</details>
     ${memberPaths.length ? `<h3>Read in a pathway</h3><ul class="related-pathways">${memberPaths.map(p => `<li><a href="#pathway=${p.id}">${esc(p.title)} →</a></li>`).join('')}</ul>` : ''}`;
@@ -1582,7 +1659,8 @@ function about() {
   return `${crumbs(['<span aria-current="page">Reading this map</span>'])}<article class="about"><p class="eyebrow">SCOPE & INTERPRETATION</p><h2>A map to think with.</h2><p class="deck">This is a selective, contestable teaching interpretation of historiography, for MA students reading Lynn Hunt’s <cite>Writing History in the Global Era</cite> (2014).</p>
     <h3>Explore circles, time and connections</h3><p>Open Historians & contributors to explore the people circles: families of historical writing arranged around the historians they share. Open a family to see everyone its entries name. The circles show shared context; proximity and shared membership do not establish influence. Open the Timeline to trace entries through time, across the whole field or within a family. Select an entry and follow its connections, each with an explanation and evidence. The connections view shows all recorded incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified connections appear separately below the flow. A full-text list offers the same relationships. Approaches & people opens each family’s works and contributors; a shared person can appear in several fields with different roles.</p>
     <h3>Nesting is navigation</h3><p>The four layers organize a mixture of people, fields, traditions, methods, and debates. They do not define a historical family tree. Entries can connect across layers; seminar pathways overlap them. Hunt’s four paradigms are an explicit teaching lens, not a universal hierarchy.</p>
-    <h3>Periods are approximate groupings</h3><p>${arch || open ? `The project began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, and prose date labels can refer to publication or reception. Entries without assigned periods remain available when you filter by a period. The timeline shows selected dated works and developments, rather than a complete chronology.</p>
+    ${production.chronology_policy ? '<h3>Dates name different kinds of evidence</h3><p>Points identify selected works and events. Dotted connectors show the extent of the contribution selection, not continuous activity or influence. Context, editions and reception have separate markers. Bars represent named, sourced historical intervals; a journal title change is different from cessation. The small outlined square records editorial review coverage separately. Unknown bounds remain unknown, and a first selected work is not a field origin. Open Dated contributions & evidence for date meanings, sources and unresolved questions. The archive retains its original dating conventions.</p>' : ''}
+    <h3>Periods are approximate groupings</h3><p>${arch || open ? `The project began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, while dated events distinguish publication, delivery, editions and reception. Entries without assigned periods remain available when you filter by a period. The timeline shows selected dated works and developments, rather than a complete chronology.</p>
     <h3>Read the relationship before drawing a conclusion</h3><p>Influence, contribution, and classified critique have arrows. Critique runs from critic toward the position criticized; contribution does not imply founding a field. Comparisons have no direction. Older connections without direction metadata are visibly unclassified and have no arrow, including older records with a legacy critique category.</p>
     <h3>References have limits</h3><p>Bibliographic metadata checks establish the scope stated in their notes. A supporting page check is narrower than a full reading or a passage-level audit of every claim. Missing verification information means unrecorded. Some citations have no web link; relationship references are distinct from entry bibliographies.</p>
     <h3>What this beta does not yet cover</h3><p>Known gaps, so you can argue with the map

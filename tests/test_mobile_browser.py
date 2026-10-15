@@ -101,7 +101,7 @@ class MobileBrowserTests(unittest.TestCase):
         expect(self.page.locator('.field-panel')).to_be_hidden()
         expect(self.page.locator('.mark-guide')).not_to_have_attribute('open', '')
         self.assertLessEqual(chart.bounding_box()['height'], 844 * .63)
-        mark = chart.locator('.entry[data-id="annales"] .bar-shape')
+        mark = chart.locator('.entry[data-id="annales"] .chron-hit')
         mark.scroll_into_view_if_needed()
         mark.tap()
         expect(self.page.locator('.field-panel')).to_be_focused()

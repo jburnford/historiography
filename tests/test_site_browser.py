@@ -279,7 +279,7 @@ class AtlasBrowserTests(unittest.TestCase):
         # A bar in the last full band, well below the first screen; the panel must still be in view.
         last = self.page.locator('.entry[data-id="micro"]')
         last.scroll_into_view_if_needed()
-        bb = last.locator('.bar-shape').bounding_box()
+        bb = last.locator('.chron-hit').bounding_box()
         self.page.mouse.move(bb['x'] + bb['width'] / 2, bb['y'] + bb['height'] / 2)
         self.page.wait_for_timeout(200)
         panel = self.page.locator('.field-panel').bounding_box()
@@ -339,31 +339,26 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertGreater(self.page.locator('details.band-list').count(), 1)
         self.assertEqual(self.page.locator('.field-table tbody tr').count(), drawn)
 
-        # Dates describe the label, never influence; an open-ended label is solid to its reviewed
-        # year and fades after it to the research cutoff (open frame, revision 1.133).
+        # Current dates are explicit contributions; review coverage is a separate marker.
         self.open('#focus=annales')
         note = self.page.locator('.datewhy')
-        expect(note).to_contain_text('From 1929')
+        expect(note).to_contain_text('Journal founded 1929')
         expect(note).to_contain_text('reviewed through 2000')
-        expect(note).not_to_contain_text('influential through')
-        bar = self.page.locator('.entry.selected .bar-shape').bounding_box()
-        tail = self.page.locator('.entry.selected rect.unreviewed').bounding_box()
-        self.assertAlmostEqual(bar['x'] + bar['width'], tail['x'], delta=2, msg='Annales is solid to 2000, then faded')
-        cutoff = self.page.locator('line.frame-cutoff').bounding_box()
-        self.assertGreater(tail['x'] + tail['width'], cutoff['x'] - 2, 'the faded tail reaches the research cutoff')
-        # "Earlier roots" enters as already established: a lead-in, no start cap, and honest words.
+        expect(self.page.locator('.entry.selected .chron-event')).to_have_count(4)
+        expect(self.page.locator('.entry.selected .chron-review')).to_have_count(1)
+        expect(self.page.locator('.entry.selected rect.unreviewed')).to_have_count(0)
         self.open('#focus=military')
-        expect(self.page.locator('.entry.selected .bar-lead')).to_have_count(1)
-        expect(self.page.locator('.entry.selected .bar-cap.start')).to_have_count(0)
-        expect(self.page.locator('.datewhy')).to_contain_text('Earlier roots, undated')
-        expect(self.page.locator('.datewhy')).to_contain_text('not its origin')
+        expect(self.page.locator('.entry.selected .bar-lead')).to_have_count(0)
+        expect(self.page.locator('.entry.selected .track-context[data-year="1832"]')).to_have_count(1)
+        expect(self.page.locator('.datewhy')).to_contain_text('not a field origin')
 
     def test_open_frame_marks(self):
-        """Open frame (revision 1.133): no wall; faded tails after the reviewed year; one cutoff line."""
+        """Explicit chronology: no wall or inferred tail; separate review markers and cutoff."""
         self.open('#focus=annales')
         expect(self.page.locator('svg.field')).to_be_visible()
         self.assertEqual(self.page.locator('.coverage-wall').count(), 0)
-        self.assertGreater(self.page.locator('rect.unreviewed').count(), 0)
+        self.assertEqual(self.page.locator('rect.unreviewed').count(), 0)
+        self.assertGreater(self.page.locator('.chron-review').count(), 0)
         self.assertEqual(self.page.locator('line.frame-cutoff').count(), 1)
         expect(self.page.locator('.field-panel')).to_contain_text('reviewed through 2000')
         self.assertTrue(self.page.locator('#range-toggle').is_hidden())
@@ -401,7 +396,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertNotIn('focus=', self.page.url)
 
         self.open('#focus=annales')
-        self.page.locator('.entry.selected .bar-shape').click()
+        self.page.locator('.entry.selected .chron-hit').click()
         expect(self.page.locator('.entry.selected')).to_have_count(0)
 
         self.open('#focus=annales')
@@ -418,20 +413,20 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.ghost')).to_have_count(0)
 
     def test_life_dates_from_wikidata(self):
-        """Deaths are drawn only for people, with provenance, and posthumous reception is hatched."""
+        """Life dates keep provenance; publication and reception require explicit dated facts."""
         self.open('#focus=marc_bloch')
         panel = self.page.locator('.field-panel')
         expect(panel.locator('.life')).to_contain_text('Born 1886 · died 1944')
         expect(panel.locator('.life a')).to_have_attribute('href', 'https://www.wikidata.org/wiki/Q156585')
         expect(panel.locator('.life')).to_contain_text('retrieved 2026-09-17')
-        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
         self.open('#focus=gramsci')
-        expect(self.page.locator('.entry.selected .posthumous')).to_have_count(1)
-        expect(self.page.locator('.field-panel .posthumous-note')).to_contain_text('after 1937')
+        expect(self.page.locator('.entry.selected .posthumous')).to_have_count(0)
+        expect(self.page.locator('.entry.selected .track-reception[data-year="1974"]')).to_have_count(1)
         self.open('#focus=derrida')
         expect(self.page.locator('.field-panel .life')).to_contain_text('died 2004')
         # The open frame's axis runs to the research cutoff, so his 2004 death is drawn ...
-        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
         # ... while the archived 2000 view still states it in the panel only.
         self.open('#focus=derrida&range=2000')
         expect(self.page.locator('#edition-label')).to_contain_text('1.121')
@@ -581,7 +576,7 @@ class AtlasBrowserTests(unittest.TestCase):
         self.assertIn('as representative historian', pm.locator('a.pm-entry[data-id="subaltern"]').get_attribute('aria-label'))
         self.assertIn('Dipesh Chakrabarty', pm.locator('svg.pm-svg').get_attribute('aria-label'))
         # Hover and keyboard focus both read the entry and the role out.
-        pm.locator('a.pm-entry[data-id="eric_hobsbawm"] .pm-bar').hover()
+        pm.locator('a.pm-entry[data-id="eric_hobsbawm"] .chron-hit').hover()
         expect(pm.locator('.pm-readout')).to_contain_text('criticises')
         pm.locator('a.pm-entry[data-id="subaltern"]').focus()
         expect(pm.locator('.pm-readout')).to_contain_text('Subaltern Studies')
@@ -742,7 +737,7 @@ class AtlasBrowserTests(unittest.TestCase):
         expected.update({'records.mjs', 'data/overview.json'})
         if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-people.json').exists():
             expected.add('data/people-records.json')
-        expected.add('landing.mjs')   # landing redesign (2026-09-27): page module
+        expected.update({'landing.mjs', 'chronology.mjs'})
         published = json.loads((ROOT / 'docs/data/graph.json').read_text())
         scope = published.get('scope', {})
         if (scope.get('archive') or scope.get('extension') or {}).get('baseline_asset'):

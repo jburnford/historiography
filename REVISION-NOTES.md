@@ -1,3 +1,26 @@
+# Revision 1.141: explicit chronology throughout the project
+
+The user requested consistent timeline spans, starting with historical meaning,
+reviewed a 16-case pilot and then requested the whole-project implementation.
+All 187 entries and 38 linked journals now supply explicit chronology: selected
+contributions, context, editions and reception, with historical intervals only
+where supported. The timeline no longer interprets words such as “Later” or
+“Representations” as instructions to extend a person toward the present.
+
+660 dated events and 31 journal publication/title intervals use a shared reader
+across the full field, families, compact person maps, landing and text views.
+Review coverage is a separate marker and explanation; existing review years
+stay unchanged. Life dates do not automatically establish reception. A journal
+title change is distinguished from cessation; unknown endpoints remain unknown.
+
+Thirteen bounded chronology sources are appended; existing source qualifications,
+relationships, rosters, strands and legacy dates remain. The Science Wars label
+drops its explicitly convenient 1994–2000 bounds, retaining the old label as an
+alias. No new influence relationship or complete field survey is claimed.
+Current totals: 187 entries, 1,023 relationships, 1,785 sources, 1,219 people and
+14 pathways. The exact-2000 archive keeps its frozen graph and earlier reader.
+See the [release](data/production-batches/chronology-1.141/README.md).
+
 # Revision 1.124: fifteen figures missing from their fields
 
 The user noticed that New cultural history "doesn't really capture the significance of Foucault": the entry named Geertz as its influence, as Wikipedia's Cultural history article does, while Hunt's *The New Cultural History* (1989) opens its "Models for Cultural History" with O'Brien on Foucault. The [figure-gaps audit](data/evidence-layer/audits/figure-gaps-2026-09-27/README.md) looked for the same pattern across the graph: people the review record ties to a field but whom the entry never names. The user approved all fifteen likely omissions.

@@ -31,6 +31,7 @@ PAGE_ASSETS = {
     'site/app.js': 'app.js',
     'site/core.mjs': 'core.mjs',
     'site/field.mjs': 'field.mjs',
+    'site/chronology.mjs': 'chronology.mjs',
     'site/people.mjs': 'people.mjs',
     'site/landing.mjs': 'landing.mjs',
     'site/records.mjs': 'records.mjs',
@@ -64,6 +65,9 @@ def slim_journal_catalogue(catalogue):
     nodes = [n for n in catalogue.get('nodes', []) if n['id'] in linked]
     cited = {i for n in nodes for i in n.get('source_ids', [])}
     cited |= {i for e in edges for i in e.get('source_ids', [])}
+    cited |= {ref[8:] for n in nodes for f in n.get('chronology', {}).get('events', [])
+              + n.get('chronology', {}).get('intervals', [])
+              for ref in f.get('source_ids', []) if ref.startswith('journal:')}
     kept = {'schema_version', 'as_of', 'scope', 'identity_policy', 'interpretation_note',
             'title_relationships'}
     slim = {k: v for k, v in catalogue.items() if k in kept}
@@ -224,9 +228,9 @@ def build(graph_path=None, dest=None, baseline_path=None):
     elif people_out.exists():
         people_out.unlink()
     # The landing needs dates and labels, not the full bibliography and claim store.
-    overview = {k: graph[k] for k in ('schema_version', 'title', 'subtitle', 'scope', 'layers', 'periods') if k in graph}
+    overview = {k: graph[k] for k in ('schema_version', 'title', 'subtitle', 'scope', 'layers', 'periods', 'chronology_policy') if k in graph}
     overview.update(overview_only=True, revision_history=graph['revision_history'][-1:],
-        nodes=[{k:n[k] for k in ('id','label','layer','entry_kind','entry_type','date_label','date_span','period') if k in n}
+        nodes=[{k:n[k] for k in ('id','label','layer','entry_kind','entry_type','date_label','date_span','period','chronology') if k in n}
                for n in graph['nodes']], people=[], edges=[], sources=[])
     if archive:
         overview['scope'] = {**overview['scope'], archive_key: {**archive, 'baseline_asset': BASELINE_ASSET if baseline else None}}

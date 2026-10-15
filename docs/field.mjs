@@ -4,14 +4,12 @@
    Two ideas do the work:
    1. Focus re-lays out. Holding an entry collapses everything unrelated to a thin ghost
       mark so the entry and its relations expand into the freed space.
-   2. Dates stay honest. A mark runs across the years its date label names. In the open
-      frame an open-ended entry is drawn solid to the year through which the entry has been
-      reviewed (`coverage.reviewed_through`), then faded to the research cutoff: a review year
-      is a limit of our reading, never an ending. The archived 2000 view keeps its wall: there
-      a label that says "onward" or "coverage through 2000" is drawn solid to the coverage
-      wall with an open, fading end. Nothing in the drawing claims a period of peak influence. A curated `date_span` always wins over
-      the prose parse, and the panel says which was used. See scope.notes: "Dates describe
-      approximate emergence or expansion, not termination." */
+   2. Current dates come from explicit graph chronology: selected events, supported
+      intervals and editorial coverage remain distinct. The frozen archive alone
+      follows legacy date labels and curated date_span values. Neither a selection
+      extent nor a review year establishes historical duration or peak influence. */
+
+import {chronologyOf, chronologySpan, chronologyGeometry, chronologyEvents} from './chronology.mjs';
 
 export const BASE_KINDS = ['critique', 'contribution', 'influence', 'comparison'];
 export const KIND_SECTION = {
@@ -84,6 +82,7 @@ export function parseSpan(label) {
 }
 
 export function spanOf(node) {
+  if (chronologyOf(node)) return chronologySpan(node);
   const d = node.date_span;
   if (d && Number.isFinite(d.start)) {
     const end = Number.isFinite(d.end) ? d.end : null;
@@ -121,6 +120,7 @@ export function journalNodes(graph) {
     const viaRole = !dated && Number.isFinite(roleStart);
     return {
       id, label: j.label, layer: JOURNAL_LAYER, entry_kind: 'periodical',
+      ...(j.chronology ? {chronology: j.chronology} : {}),
       entry_type: 'Journal or periodical', period: null, hunt_core_paradigm: false,
       date_label: viaRole ? `Publication dates unverified · venue role evidenced from ${roleStart}`
         : journalDateLabel(j),
@@ -210,6 +210,7 @@ export const displayLabel = n => n.short_label || n.label;
 /* Years named in a date label. Parsed from prose, so they are drawn as unlabelled ticks
    and described as read by the site, never as curated milestones. */
 export function milestoneYears(node) {
+  if (chronologyOf(node)) return [...new Set(chronologyEvents(node).flatMap(e => e.bounds))].sort((a, b) => a - b);
   const s = (node.date_label || '').replace(/coverage through\s+\d{4}/i, ' ');
   return [...new Set((s.match(/\b(1[6-9]\d{2}|20[0-2]\d)\b(?!s)/g) || []).map(Number))]
     .sort((a, b) => a - b);
@@ -276,8 +277,8 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
   const coverageYear = frame.open ? null : frame.wall;
   /* Open frame: the prose "coverage through 2000" suffix is gone, so an entry that records a
      review year continues unless its span ends explicitly. The archive reads its labels. */
-  const isOpen = item => item.span?.endKind === 'coverage_limit'
-    || (frame.open && reviewedThrough(item.node) !== null && item.span?.endKind !== 'terminus');
+  const isOpen = item => !item.span?.chronological && (item.span?.endKind === 'coverage_limit'
+    || (frame.open && reviewedThrough(item.node) !== null && item.span?.endKind !== 'terminus'));
 
   const undatedTotal = rows.filter(r => !r.span).length;
   const stacked = compact && Boolean(opts.stacked);
@@ -366,32 +367,35 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
         label = clip(label, chars);
       }
       const labelW = textW(label) * slack + extra;
-      const need = lead ? x0 : side === 'left' ? bx - labelW - 9 : bx;
-      const occupied = side === 'right' ? bx + bw + 7 + labelW
-        : side === 'inside' && compact ? Math.max(bx + bw, bx + 9 + labelW) : bx + bw;
+      const reviewX = item.span.chronological && reviewed !== null ? scale(reviewed) : null;
+      const need = Math.min(lead ? x0 : side === 'left' ? bx - labelW - 9 : bx, reviewX === null ? Infinity : reviewX - 4);
+      const occupied = Math.max(reviewX === null ? -Infinity : reviewX + 4, side === 'right' ? bx + bw + 7 + labelW
+        : side === 'inside' && compact ? Math.max(bx + bw, bx + 9 + labelW) : bx + bw);
       let r = stacked ? -1 : rowEnds.findIndex(end => end + 16 <= need);
       if (r === -1) { r = rowEnds.length; rowEnds.push(0); }
       rowEnds[r] = occupied;
       /* Stacked: the label sits above its mark, starting where the mark starts unless that
          would run off the right edge. */
       const labelX = stacked ? Math.max(x0, Math.min(bx, x1 - labelW)) : null;
-      const ticks = milestoneYears(item.node)
+      const ticks = (item.span.chronological ? [] : milestoneYears(item.node))
         .filter(yr => yr > item.span.start && yr <= drawEnd).map(yr => ({yr, x: scale(yr)}));
       /* Death within the axis: a marker, and the part of the mark after it is posthumous. */
       const life = lives.get(item.node.id) || null;
       /* Drawn only inside the coverage limit; a later death is stated in the panel instead. */
-      const death = life?.death && life.death >= minYear && life.death <= (coverageYear ?? frame.end)
+      const death = !item.span.chronological && life?.death && life.death >= minYear && life.death <= (coverageYear ?? frame.end)
         ? {yr: life.death, x: scale(life.death)} : null;
       const posthumous = death && death.x < bx + bw
         ? {x: Math.max(bx, death.x), w: bx + bw - Math.max(bx, death.x)} : null;
       /* Dated interventions after the wall (archive) or the reviewed year (open frame), on this
          entry's row, separate from the mark. */
-      const interventions = frame.open || extension ? interventionsOf(item.node)
+      const interventions = !item.span.chronological && (frame.open || extension) ? interventionsOf(item.node)
         .filter(yr => yr > (frame.open ? (reviewed ?? 0) : coverageYear)
           && yr <= (frame.open ? frame.end : extension?.end ?? 0))
         .map(yr => ({yr, x: scale(yr)})) : [];
       if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
       bars.push({...item, shape: 'bar', label, badge, labelW, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
+        chronology: item.span.chronological ? chronologyGeometry(item.node, scale) : null,
+        reviewMarker: reviewX !== null ? {year: reviewed, x: reviewX} : null,
         life, death, posthumous, interventions, labelX, x: bx, w: bw, h: G.barH,
         y: barTop + r * (G.barH + G.rowGap + (stacked ? G.stackGap : 0)) + (stacked ? G.stackGap : 0)});
     }
@@ -463,7 +467,8 @@ export function personMapLayout(graph, personId, width) {
     stacked: width < STACK_BELOW}), subset};
 }
 
-export const anchor = p => ({x: p.x + p.w / 2, y: p.y + p.h / 2});
+export const anchor = p => ({x: p.chronology?.selection
+  ? p.chronology.selection.x + p.chronology.selection.w / 2 : p.x + p.w / 2, y: p.y + p.h / 2});
 export const edgePath = (a, b) => {
   const m = (a.y + b.y) / 2;
   return `M${a.x},${a.y} C${a.x},${m} ${b.x},${m} ${b.x},${b.y}`;

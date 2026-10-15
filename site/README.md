@@ -1,8 +1,8 @@
 # Historiography atlas prototype
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.140**, schema 1.5,
-contains **187 entries, 1,023 relationships, 1,772 sources, 1,219 shared people and
+The curated JSON remains authoritative. Current revision **1.141**, schema 1.6,
+contains **187 entries, 1,023 relationships, 1,785 sources, 1,219 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The atlas has no closing date (1.133); the original 1920–2000 experiment
@@ -20,15 +20,15 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
 Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
-pushing requires the user's explicit approval. The current build publishes 15
-allowlisted files: HTML, CSS, `.nojekyll`, six JavaScript modules (`app`, `core`,
-`field`, `people`, `landing`, `records`) and six JSON assets (`graph`, `graph-2000`,
+pushing requires the user's explicit instruction. The current build publishes 16
+allowlisted files: HTML, CSS, `.nojekyll`, seven JavaScript modules (`app`, `core`,
+`field`, `chronology`, `people`, `landing`, `records`) and six JSON assets (`graph`, `graph-2000`,
 `overview`, `pathways`, `evidence`, `people-records`). The builder validates graphs
 and refuses unexpected output files or symlinks. Tests, captures, credentials and
 unrelated files stay outside the build. This beta has not been deployed.
 
 The landing downloads the reduced overview and aggregates; detail routes load
-the full 3.17 MB graph once. Selected profiles lazily load the separate record
+the full 5.72 MB graph once. Selected profiles lazily load the separate record
 pilot once. Failed downloads have retries. The pilot retains the weaker atlas
 and source-credit identity link and distinguishes journal items, books reviewed
 and reviews written. See [student trial](../STUDENT-TESTING.md) and
@@ -99,18 +99,45 @@ back to the full field, unfiltered.
 
 ## The detailed field view
 
-Every entry sits on one time axis, banded by layer, with linked journals in a fifth band. The chart is drawn at the width of the column it occupies and redrawn on resize, so nothing needs a horizontal scrollbar; entries with no stated span sit in a captioned strip at the top of their band. A mark runs across the years an entry's date label names: a label that says "onward" or "coverage through 2000" is drawn solid to the coverage wall with an open, fading end, because the wall is a limit of the map and not an ending. A label that opens with undated roots ("Earlier roots · Howard 1961 …") is open at the start: a thin lead-in runs from the axis edge to the first dated year, which is drawn without a starting cap because it dates a contribution to an established field, not an origin. A label naming a single year is a single mark. Other years the label names appear as ticks and are described as read from the label, never as curated milestones. Nothing in the drawing or the panel claims a period of peak influence.
+Every entry sits on one time axis, banded by layer, with the 38 linked journals
+in their own band. All 187 graph entries and linked journals have explicit chronology.
+The shared `chronology.mjs` reader supplies full/family timelines, compact person
+maps, landing dates and text alternatives; prose labels cannot change the geometry.
+
+Points identify dated contributions. Dotted connectors show the extent of the
+selected contribution events, without asserting a career, field lifespan or influence
+interval. Hollow context markers and separate edition/reception diamonds retain
+other kinds of time. Bars are reserved for supported historical intervals, including
+journal title phases; unknown endings do not turn into solid-to-present bars. Small
+outlined squares show editorial review years independently. Month/day precision,
+qualified ranges, alternative citations and source-reading limits remain in the
+entry's Dated contributions & evidence disclosure. The exact-2000 archive keeps
+its earlier prose/date-span reader and drawing conventions.
 
 - **Hold** (`#focus=<id>`) collapses unrelated entries to ghost strips and lists the held entry's relationships in the side panel. Let go by clicking the held mark again, clicking empty chart space, pressing Escape, using “Show everything” at the top of the panel, or the “show all” link in any band heading; a pathway overlay and search survive the release. The panel is sticky, so hovering deep in the chart keeps it on screen, and keyboard focus previews an entry exactly as hover does.
 - **Each relationship opens in place** to its evidence note, dated scope where recorded, its own references with verification status, a link to hold the other entry, and (for atlas edges) a link to the full relationship record. Journal venue edges resolve their references in the catalogue namespace and have no record page.
 - **A pathway can be laid over the field** (`#path=<pathway_id>`): members are numbered in reading order, everything else is ghosted, and only relationships recorded among the members are drawn. The panel carries the pathway's questions and exercise. Holding a member keeps the pathway as context (`#path=…&focus=…`); opening an entry page clears it. Pathway reading pages link to the overlay.
-- **Deaths and posthumous reception.** People with their own entry carry Wikidata identities and life dates in the published copy (`people[].wikidata`, `people[].life`), applied at build time from the reviewed sheet `data/people-wikidata.json`; the repository dataset is untouched and a `published_enrichment` note records the overlay. A person's mark gets a † at the death year when it falls inside the coverage limit, and the part of the mark after it is hatched as posthumous reception; the panel states birth, death, QID and retrieval date, and later deaths are stated there rather than drawn. Schools and fields never get a death marker. People cards and profiles show the life span under the name. See `feedback/wikidata-people-pilot-2026-09-17.md`.
+- **Life dates and reception.** Published people retain the reviewed Wikidata overlay,
+  QID, life dates and retrieval date. These are reference metadata, not contribution
+  bounds. The current timeline does not hatch an assumed reception period merely
+  because an author has died. Posthumous publication and reception are explicit,
+  separately sourced events. The archive keeps its former life-marker behavior.
+
 - **The text view** (`View · List`) groups the same entries by band, with a small time mark per row. Bands are open on wide screens and collapsed on narrow ones.
 - The hero is shown in full on the field and compressed to one line on every other view.
 
 ## The open frame and the archived 2000 view
 
-From revision 1.133 the dataset carries `scope.frame` (no closing date; `research_cutoff`) and `scope.archive` (the exact 1.121 graph). In an open frame, `field.mjs` draws each open entry solid to `coverage.reviewed_through` (or its own last dated year, if later) and adds a faded `rect.unreviewed` tail to the research cutoff, shown as a dotted `line.frame-cutoff`; there is no wall. Person entries carry no `coverage` and end at their last dated work. Selected later interventions (`extension_coverage`) are still drawn as ◆ after the reviewed year. `#range=2000` loads `data/graph-2000.json` with an archive banner; *Reading this map* links to it; the old toggle is hidden. Every open-frame behaviour is gated on the data, so a graph without `scope.frame` (the archive itself) renders with its 2000 wall exactly as before.
+The graph carries `scope.frame` (no closing date; research cutoff) and `scope.archive`
+(the exact revision 1.121 graph). The current timeline keeps the cutoff line as a date
+of reading and separates `coverage.reviewed_through` from historical marks. Selected
+later works do not advance that survey year. An inherited 2000 review limit beside
+post-2000 digital/web evidence is shown as legacy baseline coverage plus selected
+later work, never as an invented pre-2003 field bar.
+
+`#range=2000` loads `data/graph-2000.json` with an archive banner; Reading this map
+links to it. The archive has no explicit chronology and follows the legacy reader,
+with its 2000 coverage wall and original labels. Its published bytes remain unchanged.
 
 ### Historical: the two-view extension (revisions 1.122–1.132)
 

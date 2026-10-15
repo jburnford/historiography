@@ -19,11 +19,17 @@ On phones, the three primary views stay in a sticky navigation bar. Circles and 
 can be explored by touch inside scrollable viewports; selecting a person or entry brings
 their details into view. Search, collapsible filters and full text alternatives remain available.
 
-Production data revision **1.140** (schema 1.5): 187 entries,
-1,023 teaching relationships, 1,772 bibliography records, 1,219
+Production data revision **1.141** (schema 1.6): 187 entries,
+1,023 teaching relationships, 1,785 bibliography records, 1,219
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
+
+The [chronology release](data/production-batches/chronology-1.141/README.md) gives
+every entry and all 38 displayed journals explicit dated evidence: 660 events and
+31 publication/title intervals. The full timeline, families, person maps and text
+views use the same records. Work selections, historical duration, reception and
+editorial coverage remain distinct; the exact-2000 archive is preserved.
 
 The [student-beta handoff](data/production-batches/student-beta-1.125/README.md)
 records two bounded roster additions, faster initial loading, an eight-profile
@@ -56,14 +62,16 @@ The [digital/web release](data/production-batches/extension-1.123/README.md) add
 
 ## How to read the map
 
-- **Marks show the dated milestones or qualified spans stated in each entry.** Selected
-  publication dates do not establish a field's origin or endpoint. Earlier roots can remain
-  open; a fading end does not measure declining influence.
+- **Points date selected works and events.** Dotted connectors show the extent of
+  a selection; they do not establish a career, field lifespan or period of influence.
+  Context, editions and reception have distinct markers. Bars represent supported,
+  named historical intervals; a journal title change differs from cessation.
 - **Colour is the kind of relationship**, not the kind of entry. Critique, contribution,
   influence and comparison are distinguished, and only directed claims get arrows.
-- **No closing date.** Each field's mark is solid through the year it has been reviewed (2000 for
-  most fields so far) and faded after it, to the research cutoff: a faded tail means later work is
-  not yet surveyed, not that the field stopped. Fields are being extended one at a time. The
+- **Editorial coverage is separate.** A small outlined square and the entry's text
+  state the review year (2000 for all current groups). Later selected works do not
+  establish a survey of the intervening period. Unknown historical endings remain
+  unknown; the research cutoff is a date of reading. The
   original 1920–2000 experiment (revision 1.121) is kept as an archived view, linked from
   *Reading this map*.
 - **Every relationship carries a source and an evidence note.** Open one and read what the

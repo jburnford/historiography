@@ -2,6 +2,7 @@
    what historians published. Pure builders; app.js renders and wires them.
    specs/2026-09-27-landing-redesign-design.md */
 import {spanOf} from './field.mjs';
+import {chronologyOf, contributionSpan} from './chronology.mjs';
 
 export const AXIS = {start: 1880, end: 2024, coverage: 2000};
 export const VIEWS = {all: 'All journals', established: 'Established title contexts', reviews: 'Reviews', deposited: 'Deposited journal articles'};
@@ -19,7 +20,7 @@ export function atlasTrack(graph, family) {
   for (const m of family.members) {
     const node = byId.get(m.id);
     if (!node) continue;
-    const s = spanOf(node);
+    const s = chronologyOf(node) ? contributionSpan(node) : spanOf(node);
     if (!s) undated.push(node);
     else (s.start < AXIS.start ? early : dots).push({node, year: s.start});
   }
