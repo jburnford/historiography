@@ -9,6 +9,11 @@ script (apply_canadian_person_links.py), which stays pinned to its acceptance re
     python3 scripts/apply_person_entries.py PACKET_DIR --build   # freeze release/editorial-additions.json
     python3 scripts/apply_person_entries.py PACKET_DIR           # apply to the baseline revision
     python3 scripts/apply_person_entries.py PACKET_DIR --check   # rebuild the revision exactly
+
+Optional batch-level keys, copied into the packet only when present: text_revisions (replace one exact
+string in a node, strand or roster-row field), strand_list_additions (strand person_ids/source_ids),
+new_strands, and roster_list_additions ([{node, person_id, source_ids, works_append}]: extend an
+existing roster row's source_ids and append to its works, failing if the row is missing).
 """
 import argparse
 from copy import deepcopy
@@ -19,7 +24,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.validate_graph import validate
+from scripts.validate_graph import validate, pathways_within
 
 GRAPH = ROOT / 'historiography-1920-2000.json'
 EDGE_KEYS = ['source', 'target', 'relationship', 'type', 'relationship_kind', 'directed', 'source_ids', 'evidence_note',
@@ -95,7 +100,7 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'strand_list_additions', 'new_strands'):   # optional; written only when present
+        for key in ('text_revisions', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -192,6 +197,18 @@ class Batch:
             if ra.get('proposal_id'):
                 row['edge_id'] = new_ids[ra['proposal_id']]
             node['representative_people'].append(row)
+        for rla in packet.get('roster_list_additions', []):
+            node = next(n for n in g['nodes'] if n['id'] == rla['node'])
+            row = next((r for r in node['representative_people'] if r['person_id'] == rla['person_id']), None)
+            if row is None:
+                raise ValueError(f"Roster row missing: {rla['node']}/{rla['person_id']}")
+            for x in rla.get('source_ids', []):
+                if x not in row.setdefault('source_ids', []):
+                    row['source_ids'].append(x)
+            if rla.get('works_append'):
+                if rla['works_append'] in row.get('works', ''):
+                    raise ValueError(f"Works already listed: {rla['node']}/{rla['person_id']}")
+                row['works'] = '; '.join(w for w in (row.get('works'), rla['works_append']) if w)
         for re_ in packet['roster_edges']:
             node = next(n for n in g['nodes'] if n['id'] == re_['node'])
             next(r for r in node['representative_people'] if r['person_id'] == re_['person_id'])['edge_id'] = new_ids[re_['proposal_id']]
@@ -245,7 +262,8 @@ class Batch:
         GRAPH.write_text(serial(graph))
         touched = dict(people={u['id'] for u in packet['people_updates']}, edges=set(packet['edge_revisions']),
                        sources=set(packet['source_addenda']),
-                       nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])})
+                       nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])
+                              + packet.get('roster_list_additions', [])})
         record = dict(revision=self.rev, date=self.day, authorization=self.cfg['authorization'],
             baseline=str(self.base.relative_to(ROOT)), baseline_sha256=sha(self.base), packet=str(self.packet.relative_to(ROOT)),
             packet_sha256=sha(self.packet), production_sha256=sha(GRAPH),
@@ -276,7 +294,7 @@ def main():
     if args.build:
         return b.build()
     graph = b.check() if args.check else b.apply()
-    errors, warnings = validate(graph, read(ROOT / 'seminar-pathways.json'))
+    errors, warnings = validate(graph, pathways_within(graph, read(ROOT / 'seminar-pathways.json')))   # earlier revisions predate later pathway entries
     print(f'{b.rev}: {len(errors)} errors; {len(warnings)} warnings; {len(graph["nodes"])} nodes; {len(graph["edges"])} edges')
 
 
