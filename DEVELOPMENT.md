@@ -1,5 +1,16 @@
 # Historiography: editorial and visualization working plan
 
+**Identity and navigation (2026-10-15):** The agreed name is **History in Conversation**,
+subtitled **Historians, ideas and debates through time.** Timeline and recorded connections
+remain central: top-level Timeline access, family timeline links from the landing, and a
+direct link from each selected timeline entry to all its connections. The user also emphasized
+the people circles (`#tab=people`) as central: they have a landing action beside Timeline,
+with links between each family's circles and timeline. Circle positions express shared
+context, not inferred influence. Approaches, pathways and publication records support these
+three ways of exploring the project. This is an identity and
+navigation update; historical data remains revision 1.139. Historical titles and snapshots
+are preserved. See the current handoff in `MEMORY.md`.
+
 **Current implementation (2026-10-14, revision 1.139):** 179 entries, 992
 relationships, 1,707 sources, 1,216 shared people. Revision 1.139 revises the seminar pathways: Wittgenstein on meaning, a South Asian strand in the
 anticolonial pathway, and a new pathway, "The question of class"

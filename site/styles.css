@@ -6,6 +6,13 @@
 @media(max-width:700px){.masthead{padding:17px 20px}.edition{display:none}.wordmark{font-size:9px;letter-spacing:1px}main{padding:0 20px}.introduction{padding:30px 0 26px}h1{letter-spacing:-1px;line-height:1.08}.deck{font-size:13px}.deck br{display:none}.eyebrow{font-size:9px}.main-nav{gap:20px;flex-wrap:wrap;row-gap:0}.main-nav a{font-size:11px;padding:12px 0}.main-nav .reset{margin-left:0}.main-nav a span{display:none}.toolbar{grid-template-columns:1fr 1fr;gap:14px;padding:20px 0}.search-label{grid-column:1/-1}select{font-size:11px}.check-label{font-size:11px}.section-heading{align-items:flex-start;flex-direction:column;gap:12px;margin-top:26px}.section-heading h2{font-size:29px}.section-heading>p br{display:none}.layer-grid,.entry-grid,.pathway-grid{grid-template-columns:1fr}.layer-card h3{font-size:28px}.layer-card>p{max-width:none}.guide{grid-template-columns:1fr}.guide h2{font-size:30px}.guide .pathway-teaser{grid-column:1/-1}.breadcrumbs{font-size:10px;gap:7px}.neighborhood-controls{grid-template-columns:1fr 1fr}.view-toggle{grid-column:1/-1}.graph-meta{font-size:9px}.graph-meta>span:last-child{display:none}.relationship-row{grid-template-columns:1fr;gap:12px;padding:18px}.relationship-row h3{font-size:23px}.inspect-link{border-top:1px solid var(--line);padding-top:10px;font-size:12px}.reading-panel{padding:23px}.reading-sequence li{gap:15px}.seminar-panel{padding:23px}.pathway-card h3{font-size:25px}.about h2{font-size:37px}footer{margin:0 20px;flex-direction:column;gap:7px}.pagination{gap:12px}.pagination button{padding:8px 12px}.scope-stamp{display:none}}
 @media(prefers-reduced-motion:no-preference){a,button{transition:background-color .15s,border-color .15s}}
 
+.subtitle{font:clamp(19px,2vw,25px)/1.4 var(--serif);margin-bottom:18px}
+.timeline-entry{margin:0 0 24px}
+.exploration-actions{display:flex;flex-wrap:wrap;gap:12px}
+.timeline-entry .button-link{background:var(--green);color:#fff;border-color:var(--green)}
+.timeline-entry p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+body[data-compact="1"] .subtitle{display:none}
+
 /* School → person navigation */
 .edition #edition-label{padding:0;color:var(--muted)}
 .school-tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:22px 0 25px;flex-wrap:wrap}

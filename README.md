@@ -1,13 +1,19 @@
-# The Historiography Atlas
+# History in Conversation
+
+*Historians, ideas and debates through time.*
 
 **Public beta.** An interactive, deliberately contestable map of historiography, from earlier
 roots to the present, extended field by field, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
-The site opens on **twelve families**, including *Historiography in Canada*, pairing the atlas's selected dates with
-shares of a selected journal and book-review record. Open a family to reach the
-field: entries on a single time axis, banded by kind. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
+The site opens on **twelve families**, including *Historiography in Canada*, pairing the map's selected dates with
+shares of a selected journal and book-review record. Two prominent landing actions open the
+**Timeline** and **people circles**. The circles show the historians shared across families;
+opening a family reveals its entries and everyone they name. Shared context is distinct from
+the evidenced relationships in Connections. **Timeline** opens the whole field;
+opening a family from the landing shows its entries on a single time axis, banded by kind.
+**Approaches & people** remains available within each family. Hold an entry and everything unrelated collapses to a thin mark so its arguments —
 influences, contributions, comparisons and disagreements — become readable. A text view of the
-same entries is always available.
+same entries is always available; **Follow all connections** opens the entry's complete recorded relationships and evidence.
 
 Production data revision **1.139** (schema 1.5): 179 entries,
 992 teaching relationships, 1,707 bibliography records, 1,216
