@@ -1,6 +1,57 @@
 # Project memory and visualization handoff
 
-## Current handoff — 2026-10-13 (end of day): revisions 1.128–1.130 live; historians' family tree
+## Current handoff — 2026-10-15: History in Conversation
+
+The user agreed to replace **The Historiography Atlas** with **History in Conversation**,
+subtitled **Historians, ideas and debates through time.**, and to keep the timeline and
+connections central. After reviewing the implications, the user approved implementation.
+The user then emphasized that the circles at `https://jimclifford.ca/historiography/#tab=people`
+are key too. Treat **people circles, timeline and evidenced connections** as three central
+ways of exploring the project.
+
+- **Current data:** revision **1.139**, schema 1.5: **179 entries, 992 relationships,
+  1,707 sources, 1,216 shared people and 14 seminar pathways**. The older 1.130 handoff
+  below is historical; README, DEVELOPMENT and the checked-out graph had advanced to 1.139.
+- **Identity:** masthead, introduction, static/dynamic page titles, description, breadcrumbs,
+  loading/error text and current documentation updated. The production graph carries the
+  new `title` and `subtitle`, also published in the reduced overview. Historical snapshots,
+  acceptance records and appliers retain their original titles. No historical revision bump.
+- **Navigation:** Families remains the landing; a top-level Timeline link and landing action
+  open the whole field. Landing family links open their timelines explicitly, including on
+  phones. Bare family URLs still open Approaches & people. Family tabs put Timeline first;
+  the timeline panel offers **Follow all connections** alongside the full entry link.
+- **People circles:** an equally prominent landing action beside Timeline opens Historians
+  & contributors. The hero and reading guide introduce the circles. Family views link to
+  their own people circles; each family's circles link back to its timeline and approaches.
+  Keep the existing overview/family rings, person holding, search, roles, accessible register
+  and phone text equivalent. Shared context and spatial proximity do not assert influence.
+- **Preserve:** all historical records, stable IDs, relationship classifications, date spans,
+  source limits and the exact-2000 archive. No inferred exchange from shared context and no
+  broader chronological or geographic completeness claim. OpenAlex remains paused.
+- **Validation:** the 15-file public build passes; page assets match their sources.
+  All 36 Python graph/people/open-frame/evidence cases, 52 JavaScript cases and 35 browser
+  acceptance cases pass. Focused checks at 390, 768, 1024 and 1440 px cover the exact name
+  and subtitle, timeline routes, complete Annales connections, bare family URLs, and no
+  page overflow or JavaScript errors. Phone and desktop landing screenshots were inspected.
+  Graph validation has zero errors and seven existing warnings. Exact preservation checks
+  confirm every graph field except current title/subtitle is unchanged; the published
+  graph has the same bounded difference. Archive, evidence, profile pilot and pathways
+  assets remain byte-identical. Chromium was installed in `/tmp/historiography-browsers`
+  for browser checks; use `PLAYWRIGHT_BROWSERS_PATH` if rerunning in this workspace.
+  After the circles emphasis, all 35 browser cases pass again, including the landing
+  action and family circles/timeline round trip. Focused checks at the same four widths
+  also cover overview circles (or their phone text equivalent), family links and complete
+  connections. Final desktop landing/circles screenshots were inspected; public page
+  assets match their sources, and historical data/asset preservation checks pass again.
+
+An agent source review found no actionable issues in the identity, circles/timeline
+navigation, connection filters or archive preservation. Its extra browser probe was
+blocked by a pending sandbox permission request; it inspected the existing test evidence.
+
+The user authorized committing and pushing these reviewed changes to `main` on 2026-10-15.
+The committed `docs/` build is the GitHub Pages source; publication status is checked separately.
+
+## Historical handoff — 2026-10-13 (end of day): revisions 1.128–1.130 live; historians' family tree
 
 - **Live:** 1.130 (159 entries, 900 relationships), with Pomeranz added after 1.129's McKay,
   Innis and Wolfe.

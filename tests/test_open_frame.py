@@ -13,7 +13,7 @@ class OpenFrame(unittest.TestCase):
         cls.after = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
 
     def test_title_and_frame(self):
-        self.assertEqual(self.after['title'], 'The Historiography Atlas')
+        self.assertEqual(self.after['title'], 'History in Conversation')
         self.assertEqual(self.after['schema_version'], '1.5')
         self.assertEqual(self.after['scope']['main_period'], [1920, None])
         self.assertEqual(self.after['scope']['frame']['start'], 1920)

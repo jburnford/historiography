@@ -26,7 +26,7 @@ let production, productionRequest, baselineGraph = null, catalogue = {entities: 
 async function loadProduction() {
   if (!production.overview_only) return;
   if (!productionRequest) productionRequest = fetch('data/graph.json', {signal: AbortSignal.timeout(30000)})
-    .then(r => { if (!r.ok) throw new Error('Could not load the detailed atlas'); return r.json(); })
+    .then(r => { if (!r.ok) throw new Error('Could not load the detailed map'); return r.json(); })
     .catch(error => { productionRequest = null; throw error; });
   production = await productionRequest;
   if (graph.overview_only) adopt(production);
@@ -98,11 +98,11 @@ const layerLabel = id => LAYER_TITLES[id] || id;
 const periodLabel = id => graph.periods.find(p => p.id === id)?.label || 'No assigned period';
 const href = patch => routeHash({...state, ...patch});
 const nodeHref = id => href({node: id, person: '', edge: '', section: '', page: 0, kind: '', neighborLayer: ''});
-const connectedNodeHref = id => href({node: id, person: '', edge: '', section: 'connections', page: 0, kind: '', neighborLayer: ''});
+const connectedNodeHref = (id, view = state.view) => href({node: id, person: '', edge: '', section: 'connections', view, page: 0, kind: '', neighborLayer: ''});
 const personHref = id => href({person: id, edge: '', section: '', page: 0, kind: '', neighborLayer: ''});
 const linkNode = (id, className = '') => `<a class="${className}" href="${esc(nodeHref(id))}">${esc(nodeById.get(id).label)}</a>`;
 const layerOptions = selected => graph.layers.map(l => `<option value="${l.id}" ${selected === l.id ? 'selected' : ''}>${esc(layerLabel(l.id))}</option>`).join('');
-const crumbs = items => `<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#">Atlas</a>${items.map(i => `<span aria-hidden="true">/</span>${i}`).join('')}</nav>`;
+const crumbs = items => `<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#">History in Conversation</a>${items.map(i => `<span aria-hidden="true">/</span>${i}`).join('')}</nav>`;
 const layerTag = n => `<span class="layer-tag tone-${layerIndex(n.layer)}">${esc(layerLabel(n.layer))}</span>`;
 const huntTag = n => n.hunt_core_paradigm ? '<span class="hunt-tag">Hunt’s teaching lens</span>' : '';
 const rosterLabel = n => `${n.representative_people?.length || 0} historians & contributors`;
@@ -412,7 +412,7 @@ function peopleDirectory() {
   if (L.kind === 'family') {
     const shared = L.anchors.filter(a => a.bridged).length;
     head = `${crumbs([`<a href="${esc(overviewHref())}">Historians & contributors</a>`, `<span aria-current="page">${esc(L.family.label)}</span>`])}
-    <nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'approaches', hold: '', letter: '', page: 0}))}">This family’s approaches & works →</a></nav>
+    <nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'map', hold: '', letter: '', page: 0}))}">This family’s timeline →</a><a href="${esc(href({tab: 'map', family: L.family.id, view: 'approaches', hold: '', letter: '', page: 0}))}">This family’s approaches & works →</a></nav>
     <div class="section-heading"><div><p class="eyebrow">THE COMPANY THEY KEEP · ONE FAMILY</p><h2>${esc(L.family.label)}</h2></div><span class="count">${L.people.length} people · ${L.anchors.length - shared} entries${shared ? ` · ${shared} shared with other families` : ''}</span></div>
     <p class="context-note">Everyone this family’s entries name, placed between the entries that name them. A small dot at a person’s shoulder marks someone also named in another family; the panel links to it. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
   } else if (L.kind === 'overview') {
@@ -420,7 +420,7 @@ function peopleDirectory() {
     <p class="context-note">The families of historical writing, as on the landing page. The people drawn are those named in the entries of two or more families, placed between them; open a family to see everyone its entries name. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
   } else {
     head = `${crumbs(['<span aria-current="page">Historians & contributors</span>'])}${state.family === 'all' && evidence?.families ? `<nav class="family-crumbs" aria-label="Families"><a href="${esc(overviewHref())}">← All families</a></nav>` : ''}<div class="section-heading"><div><p class="eyebrow">THE PEOPLE BEHIND THE MAP</p><h2>The company they keep</h2></div><span class="count">${graph.people.length} people · ${L.anchors.length} entries that name them</span></div>
-    <p class="context-note">Every person in this atlas is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
+    <p class="context-note">Every person in this map is placed between the schools, fields and debates that name them. Hover to see whose company someone keeps; click to hold; search or filter above to light up a subset. ${note}</p>`;
   }
   return `${head}
     <div class="company-split"><div class="company-chart" aria-busy="true"></div><aside class="field-panel company-panel" aria-label="Selection details">${companyPanel(L)}</aside></div>
@@ -728,7 +728,7 @@ function fieldLegend() {
       <span class="swatch axis-note">pre-1900 compressed</span>${activeExtension() ? '<span class="swatch intervention">◆ selected intervention after the limit</span>' : ''}`}</div>
     <div class="lg right"><strong>View</strong>
       <a class="view-link" role="button" href="${esc(href({view: 'map'}))}"
-        aria-pressed="${state.view !== 'list'}">Field</a>
+        aria-pressed="${state.view !== 'list'}">Timeline</a>
       <a class="view-link" role="button" href="${esc(href({view: 'list'}))}"
         aria-pressed="${state.view === 'list'}">List</a></div>
   </div>`;
@@ -955,7 +955,7 @@ function fieldDateNote(n, span) {
       ? `<strong>First issue ${span.start}</strong>, drawn to ${wall}.`
       : span.openStart ? `Drawn solid from ${span.start} to ${wall}.`
       : `<strong>From ${span.start}</strong>${precision}, drawn to ${wall}.`;
-    ending = `${wall} is the limit of this atlas’s coverage, not an ending: the mark fades into
+    ending = `${wall} is the limit of this map’s coverage, not an ending: the mark fades into
       the wall because the ${periodical ? 'periodical' : 'field'} continues beyond what is mapped here.`;
   } else if (span.end > span.start) {
     opening = periodical
@@ -1056,7 +1056,7 @@ function fieldPanel() {
     Ticks mark other years the label names; ◆ marks a selected later intervention. Open a relationship to read its evidence.</p>`
     : `<p>A mark runs across <strong>the years an entry’s date label names</strong>. A left cap is
     the earliest dated year; a thin lead-in from the left edge means the label states earlier,
-    undated roots. A bar that fades into the dashed wall at ${graph.scope.main_period[1]} continues beyond what this atlas
+    undated roots. A bar that fades into the dashed wall at ${graph.scope.main_period[1]} continues beyond what this map
     covers: the wall is a limit of the map, not an ending. Ticks mark other years the label names.
     Open a relationship to read its evidence.</p>`}${activeExtension() ? `<p>Beyond the wall, ◆ marks <strong>selected interventions after ${graph.scope.main_period[1]}</strong> for the ${activeExtension().covered} entries a partial release covers. Nothing else is extended; the research cutoff is a date of reading, not an ending.</p>` : ''}
     <p class="fine-print">To let go of a held entry, click it again, click empty space in the chart,
@@ -1082,14 +1082,14 @@ function fieldPanel() {
     <p class="claim">${esc(n.description)}</p>
     ${n.scope_note ? `<div class="scope"><strong>Scope &amp; distinctions.</strong>
       ${esc(n.scope_note)}</div>` : ''}
+    ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(connectedNodeHref(id, ''))}">Follow all connections →</a></p>` : ''}
     ${groups.map(kind => {
       const items = rels.filter(r => r.edge.relationship_kind === kind);
       return `<section class="sec"><h3>${esc(kindLabel(kind))} · ${items.length}</h3>${
         items.map(relRow).join('')}</section>`;
     }).join('')}
-    ${atlas ? `<p class="panel-more"><a class="button-link" href="${esc(nodeHref(id))}"
-      >Full entry, people &amp; references →</a></p>` : `<p class="panel-more fine-print">
-      A catalogued periodical. Its atlas links are listed above; it has no entry page.</p>`}`;
+    ${atlas ? `<p class="panel-more"><a class="text-link" href="${esc(nodeHref(id))}">Full entry, people &amp; references →</a></p>` : `<p class="panel-more fine-print">
+      A catalogued periodical. Its map links are listed above; it has no entry page.</p>`}`;
 }
 
 /* The accessible equivalent of the field: the same entries, in time order, grouped by band. */
@@ -1135,12 +1135,13 @@ function fieldList() {
     }).join('');
 }
 
-/* ---------------- Landing: families, the atlas beside the record ---------------- */
+/* ---------------- Landing: families, the map beside the record ---------------- */
 let landingWidth = 0;
 const AXIS_LABEL = `${AXIS.start}–${AXIS.end}`;
 const recordView = () => state.record || 'all';
-/* Landing links clear the mobile list default (view) so the family page applies its own default. */
-const familyHref = id => href({family: id, view: ''});
+/* Family links from the landing open the timeline explicitly, including on phones.
+   Existing bare family URLs retain their approaches-and-people default. */
+const familyHref = id => href({family: id, view: 'map'});
 function stripBar(segments, cls, unclaimed = null) {
   const seg = (s, extra = '') => `<span class="seg${extra}" style="flex-basis:${(s.share * 100).toFixed(2)}%" title="${esc(`${s.label}: ${Math.round(s.share * 100)}%`)}">${s.share >= 0.07 ? esc(`${s.short} ${Math.round(s.share * 100)}%`) : ''}</span>`;
   const rest = unclaimed === null ? '' : seg({label: 'Items no family claims, mostly in general, regional and period journals', short: 'general, regional & period', share: unclaimed}, ' unclaimed');
@@ -1156,19 +1157,22 @@ function landingPage() {
     : view === 'reviews' ? 'Share of all book reviews in H-Net and Reviews in History in each five-year period.'
     : 'Share of research candidates in each five-year period, across the selected journals.';
   return `<div class="landing-page">
-    <div class="section-heading"><div><p class="eyebrow">01 / THE ATLAS AND THE RECORD · ${AXIS_LABEL}</p>
+    <div class="timeline-entry"><div class="exploration-actions"><a class="button-link" href="#family=all&amp;view=map">Explore the timeline →</a>
+      <a class="button-link" href="#tab=people">Explore the people circles →</a></div>
+      <p>Trace ideas through time or explore the historians shared across families. Select an entry to follow its connections and inspect the evidence.</p></div>
+    <div class="section-heading"><div><p class="eyebrow">01 / THE MAP AND THE RECORD · ${AXIS_LABEL}</p>
       <h2>Twelve families of historical writing</h2></div></div>
-    <p class="lede"><b class="atlas">Orange</b>: where this atlas dates its schools and fields. <b class="record">Green</b>: each family’s share of this publication record. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
+    <p class="lede"><b class="atlas">Orange</b>: where this map dates its schools and fields. <b class="record">Green</b>: each family’s share of this publication record. ◂ marks entries dated before 1880. Choose a family to see its fields.</p>
     <p class="eyebrow">THE GAP IN ONE LINE</p>
-    <div class="strip"><span>Share of atlas entries</span>${stripBar(strip.atlas, 'atlas')}
+    <div class="strip"><span>Share of curated entries</span>${stripBar(strip.atlas, 'atlas')}
       <span>Share of research candidates, ${strip.period[0]}–${strip.period[1]}</span>${stripBar(strip.record, 'record', strip.unclaimed)}</div>
     <div class="landing-controls"><p class="eyebrow">OVER TIME</p><div class="view-links" role="group" aria-label="Record view">${toggles}</div></div>
     <p class="fine-print">${esc(viewNote)} ${esc(block.note)} Blank bars can reflect selection limits, missing deposits, incomplete pagination or mapping gaps; they do not date a field’s beginning.</p>
     <div class="landing-rows" aria-busy="true"></div>
     ${cardsHtml({block, graph, view, href: familyHref})}
     <details class="landing-table"><summary>Table of these numbers</summary>${tableHtml({block, graph, view})}</details>
-    <p class="fine-print">Atlas entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. ${openFrame() ? 'The atlas has no closing date; its entries are reviewed through 2000 unless marked otherwise, so record bars after 2000 can run ahead of the atlas’s reading.' : 'The atlas’s own coverage ends in 2000; record bars after it have no matching atlas entries.'} Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
-      <a href="${esc(href({family: 'all', view: ''}))}">All entries on one axis →</a></p>
+    <p class="fine-print">Curated entries are placed at the first year in their date label, an editorial reading rather than verified chronology. Record counts use journal-level tags. Research candidates are journal-article records of at least ten pages; the Journal of Digital History uses article numbers and its journal-article records are included without a page threshold. These filters do not establish article genre. ${openFrame() ? 'The map has no closing date; its entries are reviewed through 2000 unless marked otherwise, so record bars after 2000 can run ahead of the map’s reading.' : 'The map’s own coverage ends in 2000; record bars after it have no matching map entries.'} Periods with fewer than ${MIN_BIN_TOTAL} items are omitted. ${esc(evidence.caveats.join(' '))}
+      <a href="${esc(href({family: 'all', view: 'map'}))}">All entries on one axis →</a></p>
     ${evidence.sensitivity ? `<details class="landing-audit"><summary>How sensitive is this comparison?</summary><p class="fine-print">${esc(evidence.sensitivity.note)}</p><p class="fine-print">${esc(evidence.sensitivity.pagination_note)}</p></details>` : ''}
   </div>`;
 }
@@ -1201,18 +1205,19 @@ function familyHeading(f) {
   const lacks = f.record_only.map(x => x.label);
   const note = [shared.length ? `Shared with other families: ${shared.join('; ')}.` : '',
     bridged.length ? `Also drawn here: ${bridged.join('; ')}.` : '',
-    lacks.length ? `In the record but not in the atlas: ${lacks.join(', ')}.` : ''].filter(Boolean).join(' ');
+    lacks.length ? `In the record but not in the map: ${lacks.join(', ')}.` : ''].filter(Boolean).join(' ');
   return `<nav class="family-crumbs" aria-label="Families"><a href="${esc(href(OVERVIEW_PATCH))}">← All families</a>
-      <a href="${esc(href({family: 'all', focus: '', path: ''}))}">All entries on one axis</a></nav>
+      <a href="${esc(href({family: 'all', focus: '', path: '', view: 'map'}))}">All entries on one axis</a></nav>
     ${note ? `<p class="family-note">${esc(note)}</p>` : ''}
     <p class="fine-print family-caveat">Record fields come from journal-level tags and subject headings; counts measure participation, not influence.</p>`;
 }
 
 function familyNavigation(exploring) {
   return `<nav class="family-views" aria-label="Family view">${[
-    ['approaches', 'Approaches & people'], ['map', 'Timeline'], ['list', 'List']
+    ['map', 'Timeline'], ['approaches', 'Approaches & people'], ['list', 'List']
   ].map(([view, label]) => `<a href="${esc(href({view, focus: '', page: 0}))}" ${
-    (exploring ? view === 'approaches' : state.view === view) ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav>`;
+    (exploring ? view === 'approaches' : state.view === view) ? 'aria-current="page"' : ''}>${label}</a>`).join('')}
+    <a href="${esc(href({tab: 'people', view: '', focus: '', path: '', hold: '', letter: '', page: 0}))}">People circles</a></nav>`;
 }
 
 function familyExplorer(fam) {
@@ -1267,7 +1272,7 @@ function fieldPage() {
     <div class="field-split">${body}
       <aside class="field-panel">${fieldPanel()}</aside></div>
     <p class="fine-print">${state.view === 'list'
-      ? 'Text view. Switch to Field for the visual arrangement.'
+      ? 'Text view. Switch to Timeline for the visual arrangement.'
       : 'A text list of the same entries is available under View · List.'}
       Bars follow the years each date label names; they are editorial readings, not verified chronology or measures of influence.</p>
   </div>`;
@@ -1364,7 +1369,7 @@ function overview() {
     'Collective projects, methodological debates, and fields as they expand and change.',
   ];
   const samples = [['karl', 'historicist'], ['science', 'political'], ['fanon', 'eileen_power'], ['annales', 'women']];
-  return `<div class="section-heading"><div><p class="eyebrow">01 / FIND YOUR WAY IN</p><h2>One atlas. Four layers.</h2></div><p>Open a layer, meet its historians,<br> then follow their connections.</p></div>
+  return `<div class="section-heading"><div><p class="eyebrow">01 / FIND YOUR WAY IN</p><h2>One map. Four layers.</h2></div><p>Open a layer, meet its historians,<br> then follow their connections.</p></div>
     <div class="overview-layout"><section class="layer-grid" aria-label="Four layers">${graph.layers.map((layer, i) => {
       const members = graph.nodes.filter(n => n.layer === layer.id);
       const exampleIds = samples[i].filter(id => nodeById.has(id) && nodeById.get(id).layer === layer.id);
@@ -1454,7 +1459,7 @@ function recordPanel(n) {
     const where = m.practitioner_items_in_method_venues
       ? `, ${Math.round(m.share_elsewhere * 100)}% of whose research appears outside method journals`
       : '; no matching method-venue credits were found';
-    parts.push(`<p>Candidate title matches for the method: <strong>${fmt(m.title_hits)}</strong>${m.abstract_hits_not_in_title ? `; abstracts name it in ${fmt(m.abstract_hits_not_in_title)} more` : ''} (incomplete search proxies). ${fmt(m.practitioners)} candidate practitioners${where}. Venue credits, ORCID claims and atlas rosters identify candidates; their other articles do not demonstrate use of the method.</p>`);
+    parts.push(`<p>Candidate title matches for the method: <strong>${fmt(m.title_hits)}</strong>${m.abstract_hits_not_in_title ? `; abstracts name it in ${fmt(m.abstract_hits_not_in_title)} more` : ''} (incomplete search proxies). ${fmt(m.practitioners)} candidate practitioners${where}. Venue credits, ORCID claims and curated rosters identify candidates; their other articles do not demonstrate use of the method.</p>`);
   }
   if (e.method?.identity_tiers_by_basis) {
     const tiers = Object.entries(e.method.identity_tiers_by_basis).map(([basis, counts]) => `${basis.replaceAll('_', ' ')}: ${fmt(counts.probable)} probable identity candidates`).join('; ');
@@ -1517,7 +1522,7 @@ function focused() {
   const rows = neighborhood(graph, n.id, state.kind, state.neighborLayer);
   const e = graph.edges.find(e => e.id === state.edge);
   const returnPatch = {node: '', person: '', edge: '', section: '', page: 0, kind: '', neighborLayer: ''};
-  const returnLabel = state.pathway ? 'Back to pathway' : state.query || state.layer || state.period || state.hunt ? 'Back to entries' : 'Back to atlas';
+  const returnLabel = state.pathway ? 'Back to pathway' : state.query || state.layer || state.period || state.hunt ? 'Back to entries' : 'Back to entries';
   return `${crumbs([`<a href="${esc(href(returnPatch))}">${returnLabel}</a>`, `<span aria-current="page">${esc(n.label)}</span>`])}
     ${schoolTabs(n)}${corePeople(n)}<div class="focus-layout"><section class="neighborhood" aria-labelledby="neighborhood-title"><div class="section-heading"><div><p class="eyebrow">03 / EXAMINE THE CONNECTIONS</p><h2 id="neighborhood-title">One entry, in conversation.</h2></div></div>
       <p class="context-note">All connections matching the selected filters are shown together. Read incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified links appear below. Select a relationship to read its evidence.</p>
@@ -1543,9 +1548,9 @@ function pathwayPage() {
 function about() {
   const arch = production.scope?.archive, open = openFrame(production);
   return `${crumbs(['<span aria-current="page">Reading this map</span>'])}<article class="about"><p class="eyebrow">SCOPE & INTERPRETATION</p><h2>A map to think with.</h2><p class="deck">This is a selective, contestable teaching interpretation of historiography, for MA students reading Lynn Hunt’s <cite>Writing History in the Global Era</cite> (2014).</p>
-    <h3>Move from traditions to people</h3><p>Start with four layers, open a school or field, and meet its representative historians and intellectual contributors. A shared person can appear in several groups with different roles. Open a profile for works and contexts, or switch to Connections to inspect the group’s relationships. Each map shows all recorded incoming relationships on the left and outgoing relationships on the right. Comparisons and unclassified connections appear separately below the flow. The full-text list also shows every connection.</p>
+    <h3>Explore circles, time and connections</h3><p>Open Historians & contributors to explore the people circles: families of historical writing arranged around the historians they share. Open a family to see everyone its entries name. The circles show shared context; proximity and shared membership do not establish influence. Open the Timeline to trace entries through time, across the whole field or within a family. Select an entry and follow its connections, each with an explanation and evidence. The connections view shows all recorded incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified connections appear separately below the flow. A full-text list offers the same relationships. Approaches & people opens each family’s works and contributors; a shared person can appear in several fields with different roles.</p>
     <h3>Nesting is navigation</h3><p>The four layers organize a mixture of people, fields, traditions, methods, and debates. They do not define a historical family tree. Entries can connect across layers; seminar pathways overlap them. Hunt’s four paradigms are an explicit teaching lens, not a universal hierarchy.</p>
-    <h3>Periods are approximate groupings</h3><p>${arch || open ? `The atlas began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, and prose date labels can refer to publication or reception. Entries without assigned periods remain available when you filter by a period. There is no continuous timeline.</p>
+    <h3>Periods are approximate groupings</h3><p>${arch || open ? `The project began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, and prose date labels can refer to publication or reception. Entries without assigned periods remain available when you filter by a period. The timeline shows selected dated works and developments, rather than a complete chronology.</p>
     <h3>Read the relationship before drawing a conclusion</h3><p>Influence, contribution, and classified critique have arrows. Critique runs from critic toward the position criticized; contribution does not imply founding a field. Comparisons have no direction. Older connections without direction metadata are visibly unclassified and have no arrow, including older records with a legacy critique category.</p>
     <h3>References have limits</h3><p>Bibliographic metadata checks establish the scope stated in their notes. A supporting page check is narrower than a full reading or a passage-level audit of every claim. Missing verification information means unrecorded. Some citations have no web link; relationship references are distinct from entry bibliographies.</p>
     <h3>What this beta does not yet cover</h3><p>Known gaps, so you can argue with the map
@@ -1609,7 +1614,7 @@ function render() {
   if (pathCount) pathCount.textContent = pathways.pathways.length;
   document.querySelectorAll('[data-tab]').forEach(a => {
     const tab = state.person ? 'people' : state.pathway ? 'pathways' : state.node ? 'browse'
-      : state.tab === 'map' ? 'field' : state.tab;
+      : state.tab === 'map' ? (onLanding || state.view === 'approaches' ? 'field' : 'timeline') : state.tab;
     if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
   document.body.dataset.view = onField ? 'field' : '';
@@ -1623,12 +1628,17 @@ function render() {
     : state.layer || state.query || state.period || state.hunt ? directory() : overview();
   const arch = production.scope?.archive;
   if (state.range === '2000' && arch && graph !== production) $('workspace').insertAdjacentHTML('afterbegin',
-    `<div class="archive-banner" role="note"><strong>Archived view.</strong> The original 1920–2000 experiment (revision ${esc(arch.baseline_revision)}). <a href="${esc(href({range: ''}))}">Return to the current atlas →</a></div>`);
+    `<div class="archive-banner" role="note"><strong>Archived view.</strong> The original 1920–2000 experiment (revision ${esc(arch.baseline_revision)}). <a href="${esc(href({range: ''}))}">Return to the current map →</a></div>`);
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   if (state.person) drawPersonMap();
-  document.title = `${state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title : 'Historiography'} · A seminar atlas`;
-  $('announcement').textContent = onLanding ? `Twelve families of historical writing: the atlas beside the record. Record view: ${VIEWS[recordView()]}.`
+  const pageLabel = state.person ? personById.get(state.person).label : state.node ? nodeById.get(state.node).label
+    : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title
+    : onLanding ? '' : onField ? activeFamily()?.label || 'Timeline'
+    : state.tab === 'people' ? 'Historians & contributors' : state.tab === 'browse' ? 'Browse entries'
+    : state.tab === 'pathways' ? 'Seminar pathways' : 'Reading this map';
+  document.title = [pageLabel, production.title].filter(Boolean).join(' · ');
+  $('announcement').textContent = onLanding ? `Twelve families of historical writing: the map beside the record. Record view: ${VIEWS[recordView()]}.`
     : state.tab === 'map' && !state.node && !state.person
     ? (state.focus ? `${fieldNodeById.get(state.focus).label} held in the field view.`
        : state.path ? `Pathway ${pathways.pathways.find(p => p.id === state.path).title} shown on the field.`
@@ -1684,7 +1694,7 @@ async function start() {
       const focusedId = document.activeElement?.id;
       const old = state;
       $('workspace').setAttribute('aria-busy', 'true');
-      if (production.overview_only && !isOverviewHash(location.hash)) $('notice').textContent = 'Loading the detailed atlas…';
+      if (production.overview_only && !isOverviewHash(location.hash)) $('notice').textContent = 'Loading the detailed map…';
       try { state = await routeFor(); }
       catch (error) {
         $('workspace').setAttribute('aria-busy', 'false');
@@ -1714,7 +1724,7 @@ async function start() {
       if (button.id === 'clear-neighbor-filters') change({kind: '', neighborLayer: '', page: 0});
     });
   } catch (error) {
-    $('workspace').innerHTML = `<div class="empty"><h2>The atlas could not be opened.</h2><p>${esc(error.message)}</p><p>Build the site and serve its dedicated output directory, then reload.</p><button onclick="location.reload()">Try again</button></div>`;
+    $('workspace').innerHTML = `<div class="empty"><h2>History in Conversation could not be opened.</h2><p>${esc(error.message)}</p><p>Build the site and serve its dedicated output directory, then reload.</p><button onclick="location.reload()">Try again</button></div>`;
   }
 }
 start();

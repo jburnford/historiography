@@ -40,6 +40,23 @@ data, evidence/family, JavaScript and browser checks, then checks build drift.
 Research rebuilds additionally require frozen local databases; the public site
 build uses tracked metadata assets and requires no database.
 
+## Identity and navigation
+
+The site is **History in Conversation**, subtitled **Historians, ideas and debates through time.**
+The masthead, introduction, metadata and route titles use this identity. The production graph
+and reduced overview carry `title` and `subtitle`; historical snapshots retain their original titles.
+This identity change leaves the historical data revision at 1.139.
+
+**Families** opens the overview; **Timeline** opens `#family=all&view=map`.
+The people circles (`#tab=people`, **Historians & contributors**) are a central exploration
+alongside the timeline and evidenced connections. An equally prominent landing action opens
+them. Family navigation links to that family's circles, and its circles link back to its
+timeline and approaches. Circle positions show shared context, not inferred influence.
+Landing family links explicitly open `#family=<slug>&view=map`, including on phones.
+The timeline panel links directly to the selected entry's complete Connections view,
+alongside its full entry, people and references. Existing bare family URLs still open
+Approaches & people; family navigation offers Timeline, Approaches & people and List.
+
 ## Landing
 
 The bare URL opens a families overview: twelve editorial families, each row pairing the
