@@ -1,6 +1,21 @@
 # Teaching graph format, schema 1.4
 
-## Current revision 1.139 (2026-10-14)
+## Current revision 1.140 (2026-10-14)
+
+**187 entries (96 groups, 91 person entries), 1,023 teaching relationships, 1,772 sources and
+1,219 shared people.**
+
+Eight Canadian historians become person entries (Tier 2): Kealey, Van Kirk, Brown, Olson,
+Curtis, Greer, Harris and Perry.
+
+A person-entry batch may now also carry `roster_list_additions`:
+`{node, person_id, source_ids, works_append}`. It runs after `roster_additions`, appends missing
+source ids to an existing roster row and joins `works_append` to its `works` with "; ". It fails
+if the row is missing or the works string is already listed.
+
+See the [acceptance record](data/production-batches/person-entries-1.140/README.md).
+
+## Historical revision 1.139 (2026-10-14)
 
 A pathway revision. The graph is unchanged apart from a `revision_history` entry, which lists
 `pathways_changed`. `seminar-pathways.json` now has 14 pathways:

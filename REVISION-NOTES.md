@@ -1800,3 +1800,25 @@ Three pathway changes the user asked for:
 
 The graph is unchanged apart from its history entry. There are now 14 pathways. See the
 [acceptance record](data/production-batches/pathways-1.139/README.md).
+
+## Revision 1.140: Canadian historians, Tier 2 (14 October 2026)
+
+The user: "tier 1 and 2 are obvious"; of Sherry Olson, "she is the key HGIS person in Canada".
+Eight Canadian historians become person entries, each carrying a framework the Canadian
+historiography names:
+- Gregory S. Kealey: workers' control and class analysis; political policing;
+- Sylvia Van Kirk and Jennifer S. H. Brown: women and families in fur-trade society (1980),
+  compared as a pair;
+- Sherry Olson: historical GIS, households on the cadastral lot; city building in Baltimore;
+- Bruce Curtis: the educational state, inspection and the census;
+- Allan Greer: peasant, lord and merchant; *Colonial Leviathan*; settler colonialism and beyond;
+- Cole Harris: geographical dispossession in British Columbia;
+- Adele Perry: gender, race and a settler colony.
+
+Critiques include Kealey on region and on ethnicity apart from class, Curtis on the census as
+artefact, Greer on settler-colonial framing and on staples, Harris on cultural enrichment and on
+colonial-discourse studies, Perry on Van Kirk, and named Indigenous critics (LaRocque on Van
+Kirk, Napoleon on Harris). Most books were borrow-only and are cited through reviewers, labelled
+as such. Two displayed PhD counts in the batch's scope are removed. Sol said "accept with fixes";
+all 11 findings are fixed (`release/fixes-1.140.md`). Totals: 187 entries, 1,023 relationships.
+See the [acceptance record](data/production-batches/person-entries-1.140/README.md).
