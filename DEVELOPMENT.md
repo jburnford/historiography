@@ -18,8 +18,9 @@ three ways of exploring the project. This is an identity and
 navigation update; historical data remains revision 1.139. Historical titles and snapshots
 are preserved. See the current handoff in `MEMORY.md`.
 
-**Current implementation (2026-10-14, revision 1.139):** 179 entries, 992
-relationships, 1,707 sources, 1,216 shared people. Revision 1.139 revises the seminar pathways: Wittgenstein on meaning, a South Asian strand in the
+**Current implementation (2026-10-14, revision 1.140):** 187 entries, 1,023
+relationships, 1,772 sources, 1,219 shared people. Revision 1.140 adds person entries for Kealey, Van Kirk, Brown, Olson, Curtis, Greer, Harris and Perry
+([acceptance](data/production-batches/person-entries-1.140/README.md)). Revision 1.139 revises the seminar pathways: Wittgenstein on meaning, a South Asian strand in the
 anticolonial pathway, and a new pathway, "The question of class"
 ([acceptance](data/production-batches/pathways-1.139/README.md)). Revision 1.138 adds a person entry for Fernand Ouellet and his critics
 ([acceptance](data/production-batches/person-entries-1.138/README.md)). Revision 1.137 adds person entries for Said, Guha and Spivak
