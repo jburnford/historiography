@@ -29,6 +29,9 @@ const DIR = {
 };
 export const JOURNAL_LAYER = 'journals_and_venues';
 const BREAK_YEAR = 1900, EARLY_SHARE = 0.2;
+/* The axis never starts before 1750 (user, 2026-10-17). Earlier dated events (Guaman Poma, ancient
+   precursors) sit at the left edge as 'before 1750' marks with their real dates in titles and panels. */
+export const AXIS_FLOOR = 1750;
 const G_FULL = {padL: 18, padR: 26, barH: 18, rowGap: 8, bandGap: 30, ghostH: 4, ghostGap: 3,
            chipH: 22, chipGap: 6, minW: 600, bandHead: 26, axisGap: 40, clipAt: 46};
 /* The person-profile map: the same layout at a compact density, one band, no ghosts. */
@@ -270,7 +273,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
   const rows = nodes.map(node => ({node, span: spanOf(node)}));
   const spans = rows.filter(r => r.span).map(r => r.span);
   const earliest = spans.length ? Math.min(...spans.map(s => s.start)) : BREAK_YEAR;
-  const minYear = Math.min(1900, Math.floor(earliest / 10) * 10);
+  const minYear = Math.max(AXIS_FLOOR, Math.min(1900, Math.floor(earliest / 10) * 10));
   const frame = frameOf(graph);
   const maxYear = Math.max(frame.open ? frame.end : (extension ? extension.end : 2000),
     spans.length ? Math.ceil(Math.max(...spans.map(s => s.end)) / 10) * 10 : 0);
@@ -289,7 +292,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
   /* A compact map with nothing before 1900 gives the compressed segment's width back. */
   const earlyShare = compact && !early ? 0 : EARLY_SHARE;
   const scale = yr => yr <= BREAK_YEAR
-    ? x0 + (early ? (yr - minYear) / early : 0) * W * earlyShare
+    ? x0 + (early ? (Math.max(yr, minYear) - minYear) / early : 0) * W * earlyShare
     : x0 + W * earlyShare + (yr - BREAK_YEAR) / late * W * (1 - earlyShare);
   const labelOf = node => {
     const base = clip(displayLabel(node), G.clipAt);
@@ -394,7 +397,7 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
         .map(yr => ({yr, x: scale(yr)})) : [];
       if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
       bars.push({...item, shape: 'bar', label, badge, labelW, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
-        chronology: item.span.chronological ? chronologyGeometry(item.node, scale) : null,
+        chronology: item.span.chronological ? chronologyGeometry(item.node, scale, minYear) : null,
         reviewMarker: reviewX !== null ? {year: reviewed, x: reviewX} : null,
         life, death, posthumous, interventions, labelX, x: bx, w: bw, h: G.barH,
         y: barTop + r * (G.barH + G.rowGap + (stacked ? G.stackGap : 0)) + (stacked ? G.stackGap : 0)});

@@ -1,0 +1,53 @@
+{
+  "scope": "Selected history journals: full Crossref bibliographic metadata through 2026-10-16",
+  "metrics": {
+    "harvest_groups": 1,
+    "records": 6569,
+    "contributors": 16557,
+    "source_memberships": 6569,
+    "records_with_multiple_metadata_versions": 0,
+    "membership_issn_status": {
+      "matching_deposited_issn": 6569
+    },
+    "records_with_orcid": 43,
+    "distinct_orcids": 30
+  },
+  "journals": [
+    {
+      "journal_key": "journal_3f6b7df8982cf2b9",
+      "label": "Mariner's Mirror",
+      "records": 6569,
+      "article_records": 6569,
+      "with_page_field": 6569,
+      "with_calculated_length": 6349,
+      "length_at_least_10": 2049,
+      "records_with_orcid": 43,
+      "orcid_credits": 44,
+      "distinct_orcids": 30,
+      "records_with_affiliation": 637,
+      "earliest_deposited_year": 1911,
+      "latest_deposited_year": 2026,
+      "test_records": 0
+    }
+  ],
+  "manifest_sha256": "d42720ea98db4157533085fddc27512bb987e7336c15c6d19a61b806a05709c2",
+  "validation": {
+    "page_hashes_checked": 8,
+    "metadata_allowlist_checked": true,
+    "unique_record_credit_membership_keys": true,
+    "record_credit_membership_duckdb_parquet_row_hashes_match": true,
+    "source_occurrences_match_per_journal": true,
+    "contributor_orphans": 0,
+    "membership_orphans": 0
+  },
+  "limitations": [
+    "Crossref coverage is not a complete publication census; publication years are as deposited.",
+    "One DOI row is not one unique publication; different DOIs and translated editions remain unreconciled.",
+    "For DOIs repeated across harvest groups, the first selection-order version supplies normalized fields; all source variants and hashes are retained.",
+    "All genres and person identities remain unreviewed. Contributor arrays may conflate reviewers and book authors.",
+    "Page length is a screening aid. Single page locators do not establish one-page length.",
+    "Journal selection is expandable editorial coverage, not an exclusive list or prestige ranking."
+  ],
+  "builder_sha256": "420c3cfd9c3bc2fb6e6dd8084afadc13bbbb8356f5a8cb71abeb4dba81243064",
+  "helpers_sha256": "b9f999a9a10791d30783650b97f2e8ec88783869eaad995fe50ee6b2f59b6c26"
+}

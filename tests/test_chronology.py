@@ -15,10 +15,18 @@ class ChronologyTests(unittest.TestCase):
     def setUpClass(cls):
         cls.before = json.loads(baseline_bytes())
         cls.graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
+        # The release as accepted: later revisions (1.142 onward) change the live graph, so the
+        # reconstruction and preservation checks compare against the frozen 1.141 snapshot.
+        frozen = ROOT / 'drafts/historiography-1920-2000.v1.141.json'
+        if frozen.exists():
+            cls.release = json.loads(frozen.read_text())
+        else:   # CI: rebuild 1.141 from the 1.142 acceptance record's prior records
+            from scripts.apply_person_entries import Batch
+            cls.release = Batch(ROOT / 'data/extension-2026/military-history-2026-10-15').baseline()
 
     def test_reconstructs_release_from_explicit_editorial_data(self):
         packet = build_packet()
-        self.assertEqual(transform(self.before, packet), self.graph)
+        self.assertEqual(transform(self.before, packet), self.release)
         self.assertEqual(validate_chronologies(self.graph), [])
 
     def test_all_current_entries_and_linked_journals_have_chronology(self):
@@ -28,7 +36,7 @@ class ChronologyTests(unittest.TestCase):
         self.assertTrue(all(n.get('chronology', {}).get('events') for n in nodes))
 
     def test_existing_graph_facts_and_qualifications_are_unchanged(self):
-        after = deepcopy(self.graph)
+        after = deepcopy(self.release)
         after['schema_version'] = self.before['schema_version']
         after.pop('chronology_policy')
         after['revision_history'].pop()

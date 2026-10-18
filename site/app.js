@@ -571,7 +571,7 @@ function personMapSection(p) {
       ${reach ? '<li><span class="pm-sw linked"></span>related to their entry; does not name them</li>' : ''}
       ${pmHasLead(s) ? '<li><span class="pm-sw lead"></span>earlier roots, undated</li>' : ''}
       ${kinds.map(k => `<li class="pm-kind k-${esc(BASE_KINDS.includes(k) ? k : 'extra')}"><i></i>${esc(kindChip(k).toLowerCase())}</li>`).join('')}
-      ${explicitChronology() ? '<li>● selected contribution · ○ context · ◇ edition or reception · ▫ editorial review year</li>' : fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
+      ${explicitChronology() ? '<li>● selected contribution · ○ context · ◇ edition or reception · ▫ editorial review year · ◁ before 1750</li>' : fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
         : `<li><span class="pm-sw wall"></span>${esc(fr.wall)}: the archive’s coverage limit, not an ending</li>`}
     </ul>
     <p class="fine-print pm-note">${explicitChronology() ? 'Points date works and events; dotted lines connect the selected contributions, not a lifespan. Editorial review years remain separate.' : 'Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names;'} A roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
@@ -587,8 +587,11 @@ function chronologyShapes(p) {
     : `<rect class="chron-interval${i.track === 'context' ? ' interval-context' : ''}" x="${i.x}" y="${mid - 3}" width="${Math.max(1, i.w)}" height="6"><title>${esc(i.subject)}: ${esc(dateText(i.start))}–${esc(dateText(i.end))}; ${esc(i.end_meaning.replace(/_/g, ' '))}${i.track === 'context' ? '; lineage context' : ''}</title></rect>`).join('');
   const events = c.events.map(e => {
     const y = e.track === 'context' ? mid - 4 : e.track === 'reception' || e.track === 'editions' ? mid + 4 : mid;
-    const title = `${dateText(e.date)} · ${e.label} · ${e.kind.replace(/_/g, ' ')} · ${e.track}`;
-    const range = e.x1 > e.x0 ? `<line class="chron-range" x1="${e.x0}" x2="${e.x1}" y1="${y}" y2="${y}"/>` : '';
+    const title = `${e.before ? 'Before 1750 (drawn at the axis edge): ' : ''}${dateText(e.date)} · ${e.label} · ${e.kind.replace(/_/g, ' ')} · ${e.track}`;
+    const range = !e.before && e.x1 > e.x0 ? `<line class="chron-range" x1="${e.x0}" x2="${e.x1}" y1="${y}" y2="${y}"/>` : '';
+    /* Events before the axis floor point off the left edge; their real date is in the title and panels. */
+    if (e.before) return `<g class="chron-event chron-before track-${e.track}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
+      <title>${esc(title)}</title><path d="M${e.x - r} ${y} l${r + 1} ${-r} v${2 * r} z"/></g>`;
     return `<g class="chron-event track-${e.track}${e.uncertain ? ' uncertain' : ''}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
       <title>${esc(title)}</title>${range}${e.track === 'reception' || e.track === 'editions'
         ? `<path d="M${e.x} ${y-r} l${r} ${r} l${-r} ${r} l${-r} ${-r} z"/>`
@@ -769,7 +772,8 @@ function fieldLegend() {
       <span class="swatch chron-connector">extent of the selection</span>
       <span class="swatch chron-interval-key">sourced historical interval</span>
       <span class="swatch chron-review-key">editorial review year</span>
-      <span class="swatch axis-note">pre-1900 compressed</span>` : `<span class="swatch precise">years the label names</span>
+      <span class="swatch axis-note">pre-1900 compressed</span>
+      <span class="swatch chron-before-key">◁ before 1750, at the axis edge</span>` : `<span class="swatch precise">years the label names</span>
       <span class="swatch lead">earlier roots, undated</span>
       <span class="swatch posthumous">† death · hatched = posthumous reception</span>
       <span class="swatch point">a single dated year</span>
@@ -988,7 +992,7 @@ function fieldDateNote(n, span) {
     const selected = contributionSpan(n), review = reviewedThrough(n);
     return `<strong>${esc(chronology.label)}</strong><p>${esc(chronology.selection_note)}</p>
       <p>${selected ? `The selected contribution dates ${selected.start === selected.end ? `include ${selected.start}` : `run from ${selected.start} to ${selected.end}`}. ` : ''}
-      Points date works or events. The thin dotted connector shows the extent of the selection; it does not assert continuous activity or influence. Earlier context, editions and reception have separate markers.</p>
+      Points date works or events. The thin dotted connector shows the extent of the selection; it does not assert continuous activity or influence. Earlier context, editions and reception have separate markers; work dated before 1750 points off the axis’s left edge.</p>
       ${review !== null ? `<p class="chronology-coverage"><strong>Editorial coverage: reviewed through ${review}.</strong> ${esc(n.coverage?.basis || '')} The small outlined square records this survey limit separately from the dated contributions.</p>` : ''}
       ${(chronology.intervals || []).map(i => `<p><strong>${esc(i.subject)}:</strong> ${esc(dateText(i.start))}${i.end ? `–${esc(dateText(i.end))}; ${esc(i.end_meaning.replace(/_/g, ' '))}` : '; ending unestablished'}. ${esc(i.support)}</p>`).join('')}
       ${chronologyDetails(n)}`;

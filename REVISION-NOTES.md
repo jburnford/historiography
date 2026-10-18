@@ -1845,3 +1845,26 @@ Kirk, Napoleon on Harris). Most books were borrow-only and are cited through rev
 as such. Two displayed PhD counts in the batch's scope are removed. Sol said "accept with fixes";
 all 11 findings are fixed (`release/fixes-1.140.md`). Totals: 187 entries, 1,023 relationships.
 See the [acceptance record](data/production-batches/person-entries-1.140/README.md).
+
+## Revision 1.142: military history before 1960 and its ancient roots (17 October 2026)
+
+The user: "review military history again; there must be military history going back to 1900;
+Greeks and Romans wrote military history". Drafted as 1.141 on 1.140 and reviewed by Sol
+(accept with fixes, 12 findings), then rebuilt on the chronology revision 1.141 with dates as
+chronology events (`release/rebase-1.142.md`).
+- **Ancient precursors:** Thucydides, Polybius and Arrian on `military`, Vegetius on
+  `wartradition`, each read in a primary passage. They are dated by century as context. Caesar,
+  Herodotus and Xenophon appear only through modern critics.
+- **1898–1953:** campaign and army history (Oman, Fortescue), ancient-warfare scholarship
+  (Kromayer, Veith, Grundy, Parker), the Oxford chair (Wilkinson), official histories (Edmonds,
+  Morison, Matloff, with Bailey's and Cooper's acknowledged work), Hancock and Gowing, Liddell
+  Hart and Fuller.
+- **Additions:** 24 roster rows, seven strands, five edges (Liddell Hart against official history;
+  Howard against Liddell Hart; three comparisons) and 31 sources. Howard's War Studies origin
+  story is corrected.
+- **Scope:** the selection concentrates on British, American and German scholarship, and says so.
+
+The main timeline now starts in 1750 (user), and earlier events sit at its left edge. The record:
+lengths are inferred from issue sequence and *The Mariner's Mirror* is added; War & the military's
+research series starts in 1910–14. Totals: 187 entries, 1,028 relationships. See the
+[acceptance record](data/production-batches/group-revision-1.142/README.md).

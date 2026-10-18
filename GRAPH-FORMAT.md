@@ -1,6 +1,27 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.141 (2026-10-15): explicit chronology
+## Current revision 1.142 (2026-10-17): military history before 1960
+
+**187 entries (96 groups, 91 people), 1,028 teaching relationships, 1,816 sources and 1,241
+shared people.**
+
+`military` and `wartradition` gain chronology events:
+- **Context (ancient precursors):** Thucydides, Polybius and Arrian, at century precision; these
+  are precursors, not a lineage.
+- **Selected scholarship (1898–1953):** Oman, Fortescue, Delbrück, Grundy, Kromayer, Wilkinson,
+  Edmonds, the American Military History Foundation and its journal, Morison, Matloff; and for
+  `wartradition`, Fuller and Liddell Hart.
+
+The revision also adds roster rows, strands, edges and sources. Its applier,
+`apply_person_entries.py`, gains `field_sets` (`{node, field, expect, value}` for `date_span`,
+`date_label`, `coverage` or `chronology`; it fails unless the current value equals `expect`).
+
+**Renderer.** The main timeline starts in 1750 (`AXIS_FLOOR`). Events before the floor are drawn
+at the axis edge as ◁ marks, with their dates in titles and panels; the data is unchanged.
+
+See the [acceptance record](data/production-batches/group-revision-1.142/README.md).
+
+## Historical revision 1.141 (2026-10-15): explicit chronology
 
 **187 entries (96 groups, 91 people), 1,023 teaching relationships, 1,785 sources,
 1,219 shared people and 14 pathways.** All 187 entries and the 38 linked journals

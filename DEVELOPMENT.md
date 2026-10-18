@@ -1,5 +1,19 @@
 # Historiography: editorial and visualization working plan
 
+**Military history and a 1750 axis (2026-10-17, revision 1.142):** The user asked to
+"review military history again; there must be military history going back to 1900; Greeks
+and Romans wrote military history". Revision 1.142 gives `military` and `wartradition`
+chronology events for ancient precursors (Thucydides, Polybius, Arrian; century precision,
+context track) and selected 1898–1953 scholarship (Oman, Fortescue, Delbrück, Kromayer,
+Edmonds, the American Military History Foundation and its journal, Morison, Matloff). It adds
+24 roster rows, seven strands, five edges and 31 sources (Sol: accept with fixes, 12 findings;
+[acceptance](data/production-batches/group-revision-1.142/README.md)). The user also set the main
+timeline to start in 1750. `AXIS_FLOOR` in `site/field.mjs` clamps the axis, and dated events
+before 1750 are drawn as ◁ marks at the left edge, with their real dates in titles and panels.
+The evidence record now infers page lengths from issue sequence and adds *The Mariner's Mirror*
+(practice v24; see `data/evidence-layer/README.md`). Totals: 1,028 relationships, 1,816 sources,
+1,241 shared people.
+
 **Timeline consistency — implemented (2026-10-15):** The user wants both
 historical meaning and drawing improved, starting with historical meaning. The
 [audit](data/field-research/timeline-spans-2026-10-15/README.md) inventories revision

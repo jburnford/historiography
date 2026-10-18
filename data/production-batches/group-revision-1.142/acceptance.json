@@ -1,0 +1,1025 @@
+{
+  "revision": "1.142",
+  "date": "2026-10-17",
+  "authorization": "User, 2026-10-15: “review military history again; there must be military history going back to 1900; Greeks and Romans wrote military history”. Research: data/extension-2026/military-history-2026-10-15/evidence-1900-1960.md and evidence-ancient-roots.md.",
+  "baseline": "drafts/historiography-1920-2000.v1.141.json",
+  "baseline_sha256": "2521b6217994a1d9061742ae658bf5f91e6b07621ec31d4cc9eb957bebf037a4",
+  "packet": "data/extension-2026/military-history-2026-10-15/release/editorial-additions.json",
+  "packet_sha256": "a333790fe3b2132b0383b867e7574092a88827cab916d881482f87e9963f315c",
+  "production_sha256": "f6f273252c1a3554227f34d8cd1f8b4fcc09099eed2a79433e7e6234e415f4c9",
+  "previous_table_lengths": {
+    "nodes": 187,
+    "people": 1219,
+    "edges": 1023,
+    "sources": 1785,
+    "revision_history": 141
+  },
+  "prior_records": {
+    "people": {},
+    "edges": {
+      "edge_039": {
+        "id": "edge_039",
+        "source": "wartradition",
+        "target": "military",
+        "relationship": "supplies distinct strategic, critical and maritime resources for historical inquiry",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "military",
+          "clausewitz_primary_selections",
+          "delbruck_preface_primary",
+          "keegan_face_excerpt",
+          "mahan_seapower_preface",
+          "corbett_maritime_intro"
+        ],
+        "evidence_note": "Clausewitz’s selected text examines judgment and friction; Delbrück’s preface explains mutually checking criticism, and Keegan explicitly uses his work. Mahan and Corbett state maritime purposes. These are named resources, not one uniform origin of military history.",
+        "classification_basis": "editorial_review",
+        "map_label": "Strategic questions, criticism and maritime scope"
+      },
+      "edge_064": {
+        "id": "edge_064",
+        "source": "military",
+        "target": "political",
+        "relationship": "intersects through strategy, diplomacy, and state power",
+        "type": "connection",
+        "relationship_kind": "comparison",
+        "directed": false,
+        "source_ids": [
+          "military"
+        ],
+        "evidence_note": "Strategy and state power create overlapping subjects; no causal direction follows from that overlap.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_558": {
+        "id": "edge_558",
+        "source": "demography",
+        "target": "wartradition",
+        "relationship": "Beloch’s ancient population estimates supply Delbrück with a resource for assessing military numbers",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "delbruck_preface_primary"
+        ],
+        "evidence_note": "Delbrück explicitly credits the 1886 work while correcting estimates. The later teaching umbrella includes this earlier population inquiry; no influence from the 1964 Cambridge Group is backdated.",
+        "map_label": "Beloch: population constraints and military figures",
+        "classification_basis": "editorial_review"
+      },
+      "edge_561": {
+        "id": "edge_561",
+        "source": "military",
+        "target": "wartradition",
+        "relationship": "Keegan challenges Clausewitz through an account that places culture against political explanation",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "bassford_keegan_polemic"
+        ],
+        "evidence_note": "The 1993 argument is mediated by Bassford’s critical 1994 reception; Keegan’s original book passages remain unread here. Keep this distinct from The Face of Battle and from a unified military-history rejection of strategic theory.",
+        "map_label": "Keegan: culture and the Clausewitz debate",
+        "classification_basis": "editorial_review"
+      },
+      "edge_562": {
+        "id": "edge_562",
+        "source": "wartradition",
+        "target": "military",
+        "relationship": "Bassford disputes Keegan’s separation of culture from politics and his reading of Clausewitz",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "bassford_keegan_polemic",
+          "clausewitz_primary_selections"
+        ],
+        "evidence_note": "The complete 1994 polemic values Keegan’s earlier battle study and acknowledges limits to Clausewitz. Personal motive claims are not adopted; later web corrections about ideal/absolute war and translation are separately dated.",
+        "map_label": "Bassford: culture, politics and textual interpretation",
+        "classification_basis": "editorial_review"
+      },
+      "edge_853": {
+        "id": "edge_853",
+        "source": "cdn_military",
+        "target": "military",
+        "relationship": "A national field within military history",
+        "type": "connection",
+        "relationship_kind": "comparison",
+        "directed": false,
+        "source_ids": [
+          "milreq_cook_2002",
+          "milreq_cook_2006"
+        ],
+        "evidence_note": "The atlas’s Military history entry has no Canadian participants. Cook’s account of Stacey and the Army Historical Section (official history as archive-making and narrative) parallels the military entry’s concern with source access and narrative framing. Comparison: the Canadian field is not presented as derived from Howard or Keegan.",
+        "classification_basis": "editorial_review",
+        "map_label": "Canadian military history and military history",
+        "proposal_id": "milreq_rel_01"
+      }
+    },
+    "sources": {
+      "clausewitz_primary_selections": {
+        "id": "clausewitz_primary_selections",
+        "title": "Carl von Clausewitz, On War (posthumous 1832), J. J. Graham translation with F. N. Maude editorial apparatus; selected passages.",
+        "citation": "Carl von Clausewitz, On War (posthumous 1832), J. J. Graham translation with F. N. Maude editorial apparatus; selected passages.",
+        "url": "https://www.gutenberg.org/files/1946/1946-h/1946-h.htm",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-12",
+          "note": "Read complete Marie von Clausewitz preface (30 June 1832), Notice (10 July 1827 and undated memorandum), Book I chapters VI–VII, Book II chapter III, and Book I chapter I sections 22–28. Supports editorial formation, uncertainty, friction, reacting opponents and variable relations of passion, chance and policy. Remaining chapters not read. Later editor’s Hague/great-war footnote is not Clausewitz; translation has not been collated against German or Howard/Paret."
+        }
+      },
+      "howard_strachan_memoir": {
+        "id": "howard_strachan_memoir",
+        "title": "Hew Strachan, “Michael Howard,” Biographical Memoirs of Fellows of the British Academy 20 (2022), pp. 223–244.",
+        "citation": "Hew Strachan, “Michael Howard,” Biographical Memoirs of Fellows of the British Academy 20 (2022), pp. 223–244.",
+        "url": "https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/28856/Strachan_2022_Howard-Michael_CC.pdf?sequence=1",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-12",
+          "note": "Title/abstract and complete printed pp. 228–231 and 235–237 read; remaining pages only keyword-located or unread. Supports 1961 and 1976 books, archival constraints, King’s institutional stages, Hart-Davis’s editing and Paret’s translation collaboration. Modernization and Cold War emphasis are Strachan’s retrospective assessment, not independent collation. Howard’s Use and Abuse essay remains unread after 403/interstitial failures; do not infer full text from metadata. Post-2000 memoir treats pre-2000 scholarship."
+        }
+      }
+    },
+    "nodes": {
+      "wartradition": {
+        "id": "wartradition",
+        "label": "Strategic & military scholarship",
+        "date_label": "Earlier roots · Clausewitz’s On War 1832 · Delbrück’s volumes 1900–20",
+        "layer": "intellectual_traditions",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Brings strategic reasoning, critical campaign scholarship and the editing of military texts into view. Clausewitz, Jomini, Delbrück, Mahan, Corbett and the translated Sun Tzu tradition pose different questions about judgment, evidence and the purposes of war. Professional education and academic inquiry overlap without being identical.",
+        "representative_figures_and_works": "Carl von Clausewitz, On War (1832); Hans Delbrück joins source criticism to analysis of warfare.",
+        "source_ids": [
+          "military",
+          "clausewitz_primary_selections",
+          "delbruck_preface_primary",
+          "delbruck_walter_review",
+          "mahan_seapower_preface",
+          "corbett_maritime_intro",
+          "jomini_art_conclusion",
+          "sun_tzu_giles_selection",
+          "howard_strachan_memoir",
+          "bassford_keegan_polemic"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "carl_von_clausewitz",
+            "role": "contributor",
+            "context": "Examines political purpose, passion, chance and friction in an unfinished, posthumously edited work. Strategic reasoning differs from empirical verification of particular campaigns.",
+            "works": "On War (1832); selected passages in Graham translation with later editorial apparatus",
+            "source_ids": [
+              "military",
+              "clausewitz_primary_selections"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "hans_delbruck",
+            "role": "historian",
+            "context": "Joins philological criticism to checks of practical possibility, using population evidence and documentary research. Explicitly acknowledges Ranke and Beloch; possible reconstructions are not automatically established events.",
+            "works": "Geschichte der Kriegskunst im Rahmen der politischen Geschichte, four volumes (1900–1920); first preface (1900)",
+            "source_ids": [
+              "military",
+              "delbruck_preface_primary",
+              "delbruck_walter_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alfred_thayer_mahan",
+            "role": "historian",
+            "context": "Proposes explaining sea power within general history and its social, political and economic surroundings. His naval-professional perspective and selected Europe/America scope are explicit.",
+            "works": "The Influence of Sea Power upon History, 1660–1783 (1890), preface",
+            "source_ids": [
+              "mahan_seapower_preface"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "julian_stafford_corbett",
+            "role": "contributor",
+            "context": "Treats naval operations within wider maritime coordination of armies, fleets and political purposes. Theory aids education and deliberation; this is a situated British imperial perspective.",
+            "works": "Some Principles of Maritime Strategy (1911), introduction",
+            "source_ids": [
+              "corbett_maritime_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marie_von_clausewitz",
+            "role": "contributor",
+            "context": "Organizes posthumous publication and describes intellectual companionship and assistance from others. Her modest prefatory disclaimer does not make editorial work intellectually empty.",
+            "works": "Preface to On War, 30 June 1832",
+            "source_ids": [
+              "clausewitz_primary_selections"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "antoine_henri_jomini",
+            "role": "contributor",
+            "context": "Defends strategic principles while insisting that war also turns on morale, judgment and contingencies. His conclusion qualifies a wholly mechanical characterization.",
+            "works": "The Art of War, Mendell/Craighill translation (1862), conclusion",
+            "source_ids": [
+              "jomini_art_conclusion"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sun_tzu",
+            "role": "precursor",
+            "context": "Traditional attribution of a Chinese strategic text that prioritizes overcoming resistance and preserving forces over repeated destructive combat. Neither a fixed composition date nor a uniform Chinese tradition is asserted.",
+            "works": "The Art of War, Giles translation (1910), chapter III §§1–8",
+            "source_ids": [
+              "sun_tzu_giles_selection"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lionel_giles",
+            "role": "contributor",
+            "context": "Makes translation, paragraph arrangement and selective Chinese commentary part of the English text’s reception; his criticism of predecessors remains a contested editorial judgment.",
+            "works": "The Art of War (1910), translator’s preface and commentary",
+            "source_ids": [
+              "sun_tzu_giles_selection"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_paret",
+            "role": "contributor",
+            "context": "Proposes and collaborates with Howard on a new Clausewitz translation. Strachan later assesses its modernization; translating does not simply transmit an unchanged meaning.",
+            "works": "With Michael Howard, On War (1976), translation; collaboration documented by Strachan",
+            "source_ids": [
+              "howard_strachan_memoir"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "christopher_bassford",
+            "role": "critic",
+            "context": "Challenges Keegan’s culture/politics opposition while valuing The Face of Battle. Later web corrections are distinguished from the original polemic.",
+            "works": "“John Keegan and the Grand Tradition of Trashing Clausewitz” (1994)",
+            "source_ids": [
+              "bassford_keegan_polemic"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michael_howard",
+            "role": "contributor",
+            "context": "Collaborates with Paret on translating Clausewitz; readable modern vocabulary is also an object of later interpretive criticism.",
+            "works": "With Peter Paret, On War (1976), translation",
+            "source_ids": [
+              "howard_strachan_memoir"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_keegan",
+            "role": "critic",
+            "context": "Questions Clausewitz through a cultural account of warfare, as represented in Bassford’s opposing reception. This is distinct from the combat-reconstruction method of his earlier book.",
+            "works": "A History of Warfare (1993), mediated by Bassford (1994)",
+            "source_ids": [
+              "bassford_keegan_polemic"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "karl_julius_beloch",
+            "role": "contributor",
+            "context": "Delbrück explicitly credits demographic groundwork while correcting individual estimates. A named methodological resource, not acceptance of every army figure.",
+            "works": "Die Bevölkerung der griechisch-römischen Welt (1886), acknowledged in Delbrück’s 1900 preface",
+            "source_ids": [
+              "delbruck_preface_primary"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "entry_type": "Intellectual tradition",
+        "scope_note": "A selective teaching umbrella, weighted toward European and Anglophone scholarship, with a Chinese text and its mediated reception distinguished. Delbrück explicitly uses Ranke, Beloch and biographical research; these roots are not independent of every other historical tradition. Theory does not guarantee successful action. Marie’s editing and later translations are substantive mediation. Corbett writes for an imperial setting; neither that perspective nor Mahan’s national judgments is universalized. Bassford’s later online corrections are not assigned to his 1994 argument.",
+        "strands": [
+          {
+            "id": "theory_judgment",
+            "title": "Strategic principles, uncertainty and judgment",
+            "focus": "Clausewitz’s friction and variable tendencies and Jomini’s qualified rules frame different questions. Neither makes war wholly mechanical.",
+            "person_ids": [
+              "carl_von_clausewitz",
+              "antoine_henri_jomini"
+            ],
+            "works": "On War (1832), selections; The Art of War (1862 translation), conclusion",
+            "source_ids": [
+              "clausewitz_primary_selections",
+              "jomini_art_conclusion"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "editing_translation",
+            "title": "Editing and translating strategic texts",
+            "focus": "Marie’s posthumous work and Howard/Paret’s translation expose mediation and interpretive choices, rather than a single transparent text.",
+            "person_ids": [
+              "marie_von_clausewitz",
+              "michael_howard",
+              "peter_paret"
+            ],
+            "works": "On War: 1832 preface; 1976 translation",
+            "source_ids": [
+              "clausewitz_primary_selections",
+              "howard_strachan_memoir"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "chinese_text_reception",
+            "title": "Chinese strategic writing and its translation",
+            "focus": "Giles’s selection and commentary mediate the attributed Sun Tzu text. Overcoming resistance is not synonymous with winning repeated battles; wider Chinese traditions and textual dating need separate inquiry.",
+            "person_ids": [
+              "sun_tzu",
+              "lionel_giles"
+            ],
+            "works": "The Art of War, Giles translation (1910), preface and III §§1–8",
+            "source_ids": [
+              "sun_tzu_giles_selection"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "practical_source_criticism",
+            "title": "Documents and practical possibility",
+            "focus": "Delbrück combines textual criticism with population and physical constraints, explicitly using Beloch and acknowledging Ranke. Possible alternatives remain distinct from proven events.",
+            "person_ids": [
+              "hans_delbruck",
+              "karl_julius_beloch",
+              "leopold_von_ranke"
+            ],
+            "works": "Geschichte der Kriegskunst (1900–1920), first preface",
+            "source_ids": [
+              "delbruck_preface_primary",
+              "delbruck_walter_review"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "maritime_coordination",
+            "title": "Sea power and maritime coordination",
+            "focus": "Mahan proposes integrating sea power with general history; Corbett distinguishes naval operations from wider maritime strategy. This juxtaposition does not itself establish direct transmission.",
+            "person_ids": [
+              "alfred_thayer_mahan",
+              "julian_stafford_corbett"
+            ],
+            "works": "The Influence of Sea Power (1890), preface; Some Principles (1911), introduction",
+            "source_ids": [
+              "mahan_seapower_preface",
+              "corbett_maritime_intro"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "culture_politics_debate",
+            "title": "Culture, politics and disputed reception",
+            "focus": "Keegan’s 1993 challenge and Bassford’s response are an exchange about interpreting Clausewitz. Bassford also values Keegan’s earlier work and acknowledges limits to strategic theory.",
+            "person_ids": [
+              "john_keegan",
+              "christopher_bassford",
+              "carl_von_clausewitz"
+            ],
+            "works": "A History of Warfare (1993), mediated; Bassford polemic (1994)",
+            "source_ids": [
+              "bassford_keegan_polemic",
+              "clausewitz_primary_selections"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1832–1920",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_7b32cc49fb93",
+              "label": "Clausewitz, On War",
+              "kind": "posthumous_publication",
+              "track": "contributions",
+              "date": {
+                "year": 1832,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:clausewitz_primary_selections"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_6cf431c701ae",
+              "label": "Mahan, The Influence of Sea Power upon History",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1890,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:mahan_seapower_preface"
+              ],
+              "support": "Book publication, distinct from the December 1889 preface. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_be03569a0878",
+              "label": "Delbrück, History of the Art of War, four volumes",
+              "kind": "publication_sequence",
+              "track": "contributions",
+              "date": {
+                "earliest": 1900,
+                "latest": 1920,
+                "precision": "year_range",
+                "qualifier": "dated_sequence"
+              },
+              "source_ids": [
+                "graph:delbruck_preface_primary"
+              ],
+              "support": "Publication sequence; not the duration or origin of military thought. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_a3fb50bc1627",
+              "label": "Corbett, Some Principles of Maritime Strategy",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1911,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:corbett_maritime_intro"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      },
+      "military": {
+        "id": "military",
+        "label": "Military history",
+        "date_label": "Earlier roots · Howard 1961 · Keegan 1976 · multiple paradigms",
+        "layer": "enduring_fields_and_genres",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Studies campaigns and combat alongside institutions, societies, maritime power, gender and remembrance. Howard’s contextual reconstruction, Keegan’s critical study of battle and debates over military revolutions supply different methods and explanations. Source access, narrative framing and geographic scope shape their claims.",
+        "representative_figures_and_works": "Distinct roots include Clausewitz, On War (1832), and Hans Delbrück; later examples: Michael Howard, John Keegan, and Joanna Bourke.",
+        "source_ids": [
+          "military",
+          "tuchman",
+          "wedgwood",
+          "winter_sites",
+          "nell_patriots",
+          "bourke_dismembering",
+          "clausewitz_primary_selections",
+          "delbruck_preface_primary",
+          "delbruck_walter_review",
+          "howard_strachan_memoir",
+          "keegan_face_excerpt",
+          "bassford_keegan_polemic",
+          "tuchman_search_excerpt",
+          "wedgwood_woolrych",
+          "rogers_military_revolution_intro",
+          "mahan_seapower_preface",
+          "corbett_maritime_intro",
+          "lucassen_zurcher_conscription"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "carl_von_clausewitz",
+            "role": "precursor",
+            "context": "Examines political purpose, passion, chance and friction in an unfinished, posthumously edited work. Strategic reasoning differs from empirical verification of particular campaigns.",
+            "works": "On War (1832); selected passages in Graham translation with later editorial apparatus",
+            "source_ids": [
+              "military",
+              "clausewitz_primary_selections"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "hans_delbruck",
+            "role": "historian",
+            "context": "Joins philological criticism to checks of practical possibility, using population evidence and documentary research. Explicitly acknowledges Ranke and Beloch; possible reconstructions are not automatically established events.",
+            "works": "Geschichte der Kriegskunst im Rahmen der politischen Geschichte, four volumes (1900–1920); first preface (1900)",
+            "source_ids": [
+              "military",
+              "delbruck_preface_primary",
+              "delbruck_walter_review"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michael_howard",
+            "role": "historian",
+            "context": "Combines campaign reconstruction, wider social context and war-studies teaching. Archival loss/access constrained the 1961 study; later Ultra disclosure exposed limits of official Grand Strategy records.",
+            "works": "The Franco-Prussian War (1961); Grand Strategy, IV (1972); War in European History (1976)",
+            "source_ids": [
+              "military",
+              "howard_strachan_memoir"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_keegan",
+            "role": "historian",
+            "context": "Studies combat experience through critically assessed testimony, documents and physical possibility. Sandhurst teaching, Delbrück/Burne and scholarly/library assistance inform the work; his battle definition leaves much colonial and guerrilla experience outside its frame.",
+            "works": "The Face of Battle (1976), available opening excerpt; A History of Warfare (1993), separate argument mediated by Bassford",
+            "source_ids": [
+              "military",
+              "keegan_face_excerpt",
+              "bassford_keegan_polemic"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "joanna_bourke",
+            "role": "historian",
+            "context": "Studies bodily injury, disease and masculinity in Britain during and after the Great War.",
+            "works": "Dismembering the Male (1996)",
+            "source_ids": [
+              "bourke_dismembering"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "barbara_tuchman",
+            "role": "historian",
+            "context": "Builds the opening-war narrative around decisions and circumstances. Her methodological excerpt insists on documented detail; the full Guns of August source apparatus remains to be collated.",
+            "works": "The Guns of August (1962); “In Search of History,” publisher excerpt in Practicing History (consulted 1982 edition)",
+            "source_ids": [
+              "tuchman",
+              "tuchman_search_excerpt"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_287"
+          },
+          {
+            "person_id": "cv_wedgwood",
+            "role": "historian",
+            "context": "Combines campaigns, diplomacy and narrative; her German-centered framing of the Thirty Years War attracts criticism.",
+            "works": "The Thirty Years War (1938); “The Strategy of the Great Civil War” (1945)",
+            "source_ids": [
+              "wedgwood",
+              "wedgwood_woolrych"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_295"
+          },
+          {
+            "person_id": "jay_winter",
+            "role": "historian",
+            "context": "Cultural history of Great War mourning complicates a simple rupture in forms of remembrance.",
+            "works": "Sites of Memory, Sites of Mourning (1995)",
+            "source_ids": [
+              "winter_sites"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_cooper_nell",
+            "role": "historian",
+            "context": "An early recovery of Black service and exclusion from national remembrance.",
+            "works": "The Colored Patriots of the American Revolution (1855)",
+            "source_ids": [
+              "nell_patriots"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "geoffrey_parker",
+            "role": "historian",
+            "context": "Expands the military-revolution debate around fortifications and chronology. Separately criticizes Wedgwood’s framing, as reported by Woolrych; original cited book passages remain unread.",
+            "works": "“The ‘Military Revolution,’ 1560–1660—a Myth?” (1976; revised 1979); The Military Revolution (1988); The Thirty Years War (1984), pp. xv, 216–217, mediated by Woolrych",
+            "source_ids": [
+              "wedgwood_woolrych",
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alfred_thayer_mahan",
+            "role": "historian",
+            "context": "Proposes explaining sea power within general history and its social, political and economic surroundings. His naval-professional perspective and selected Europe/America scope are explicit.",
+            "works": "The Influence of Sea Power upon History, 1660–1783 (1890), preface",
+            "source_ids": [
+              "mahan_seapower_preface"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "julian_stafford_corbett",
+            "role": "contributor",
+            "context": "Treats naval operations within wider maritime coordination of armies, fleets and political purposes. Theory aids education and deliberation; this is a situated British imperial perspective.",
+            "works": "Some Principles of Maritime Strategy (1911), introduction",
+            "source_ids": [
+              "corbett_maritime_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_paret",
+            "role": "contributor",
+            "context": "Proposes and collaborates with Howard on a new Clausewitz translation. Strachan later assesses its modernization; translating does not simply transmit an unchanged meaning.",
+            "works": "With Michael Howard, On War (1976), translation; collaboration documented by Strachan",
+            "source_ids": [
+              "howard_strachan_memoir"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "christopher_bassford",
+            "role": "critic",
+            "context": "Challenges Keegan’s culture/politics opposition while valuing The Face of Battle. Later web corrections are distinguished from the original polemic.",
+            "works": "“John Keegan and the Grand Tradition of Trashing Clausewitz” (1994)",
+            "source_ids": [
+              "bassford_keegan_polemic"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "a_h_burne",
+            "role": "contributor",
+            "context": "Keegan uses Inherent Military Probability with caution about assuming armies act alike across time.",
+            "works": "Inherent Military Probability, discussed in The Face of Battle (1976) excerpt",
+            "source_ids": [
+              "keegan_face_excerpt"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "christopher_duffy",
+            "role": "contributor",
+            "context": "Named colleague and source of a recounted practical drill experiment; a resource for asking what combat descriptions physically imply.",
+            "works": "Acknowledgments and drill experiment in The Face of Battle (1976) excerpt",
+            "source_ids": [
+              "keegan_face_excerpt"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "alan_shepperd",
+            "role": "contributor",
+            "context": "Sandhurst librarian acknowledged by Keegan; library work joins interlibrary loans and other research assistance in producing the book.",
+            "works": "Research/library assistance acknowledged in The Face of Battle (1976)",
+            "source_ids": [
+              "keegan_face_excerpt"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michael_roberts",
+            "role": "historian",
+            "context": "Proposes tactical change with wider institutional effects; the opening is read directly, later argument mediated by Rogers.",
+            "works": "“The Military Revolution, 1560–1660” (1955 lecture; 1956 publication; revised 1967)",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "clifford_j_rogers",
+            "role": "historian",
+            "context": "Argues for multiple episodes of military change and edits the competing interpretations.",
+            "works": "“The Military Revolutions of the Hundred Years’ War” (1993); The Military Revolution Debate (1995), editor",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jeremy_black",
+            "role": "critic",
+            "context": "Questions the conventional chronology, emphasizing continuity and later change; mediated by Rogers.",
+            "works": "A Military Revolution? Military Change and European Society (1991)",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_a_lynn",
+            "role": "historian",
+            "context": "Tests army-growth claims and challenges a fortification-led explanation; mediated by Rogers.",
+            "works": "“Recalculating French Army Growth” (1994; revised 1995)",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "i_a_a_thompson",
+            "role": "historian",
+            "context": "Examines finance and political concessions, qualifying automatic state centralization; mediated by Rogers.",
+            "works": "“‘Money, Money, and Yet More Money!’” (1995)",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_f_guilmartin",
+            "role": "historian",
+            "context": "Compares early military changes across Mediterranean and overseas encounters; mediated by Rogers.",
+            "works": "“The Military Revolution: Origins and First Tests Abroad” (1995)",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jan_lucassen",
+            "role": "historian",
+            "context": "Coauthor of a comparative recruitment study treating soldiers as labor and members of households.",
+            "works": "With Erik Jan Zürcher, “Conscription as Military Labour” (1998)",
+            "source_ids": [
+              "lucassen_zurcher_conscription"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "erik_jan_zurcher",
+            "role": "historian",
+            "context": "Coauthor of a comparative recruitment study treating soldiers as labor and members of households.",
+            "works": "With Jan Lucassen, “Conscription as Military Labour” (1998)",
+            "source_ids": [
+              "lucassen_zurcher_conscription"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "charles_tilly",
+            "role": "contributor",
+            "context": "An explicitly named analytical resource for the recruitment study.",
+            "works": "Coercion, Capital and European States, 990–1990 (1990), cited by Lucassen and Zürcher (1998), 406",
+            "source_ids": [
+              "lucassen_zurcher_conscription"
+            ],
+            "basis": "source_review"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "A research field with overlapping objects, not one school or a progression that supersedes campaign history. Delbrück and strategic scholarship supply distinct resources; military historians also reinterpret and criticize them. Keegan’s restricted battle definition leaves much colonial and guerrilla experience outside its frame. European military-revolution debates extend to overseas encounters without representing the whole world’s military historiography. Bourke, Winter and Nell retain distinct questions about bodies, mourning and recognition. Scholarly collaboration, library work, editing and archival limits are part of the field’s production.",
+        "strands": [
+          {
+            "id": "campaign_reconstruction",
+            "title": "Campaign reconstruction and documentary limits",
+            "focus": "Howard, Tuchman and Wedgwood connect decisions and circumstances through different narrative practices. Source access and explanatory selection remain objects of criticism.",
+            "person_ids": [
+              "michael_howard",
+              "barbara_tuchman",
+              "cv_wedgwood"
+            ],
+            "works": "The Franco-Prussian War (1961); The Guns of August (1962); The Thirty Years War (1938)",
+            "source_ids": [
+              "howard_strachan_memoir",
+              "tuchman_search_excerpt",
+              "wedgwood_woolrych"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "combat_testimony",
+            "title": "Combat experience and critical testimony",
+            "focus": "Keegan joins questions about bodies and behavior to criticism of memoirs, rhetoric and physical possibility. His selected battle frame does not represent all forms of war.",
+            "person_ids": [
+              "john_keegan",
+              "a_h_burne",
+              "christopher_duffy",
+              "alan_shepperd"
+            ],
+            "works": "The Face of Battle (1976), available excerpt",
+            "source_ids": [
+              "keegan_face_excerpt"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "war_studies_institutions",
+            "title": "War studies, research and teaching",
+            "focus": "Howard’s King’s work combines historical study with wider social, ethical and political inquiry. Library access, publishing and translation collaboration form part of the research setting.",
+            "person_ids": [
+              "michael_howard",
+              "peter_paret"
+            ],
+            "works": "The Franco-Prussian War (1961); War in European History (1976)",
+            "source_ids": [
+              "howard_strachan_memoir"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "naval_general_history",
+            "title": "Naval history within wider explanation",
+            "focus": "Sea power and military/naval coordination widen a land-centered account. Mahan and Corbett state different purposes from a simple naval chronicle.",
+            "person_ids": [
+              "alfred_thayer_mahan",
+              "julian_stafford_corbett"
+            ],
+            "works": "Mahan (1890), preface; Corbett (1911), introduction",
+            "source_ids": [
+              "mahan_seapower_preface",
+              "corbett_maritime_intro"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "military_change_debate",
+            "title": "Military revolutions: causes and chronology",
+            "focus": "Roberts, Parker, Rogers, Black and Lynn debate timing, mechanisms and evidence. Their accounts do not form one settled technological explanation.",
+            "person_ids": [
+              "michael_roberts",
+              "geoffrey_parker",
+              "clifford_j_rogers",
+              "jeremy_black",
+              "john_a_lynn"
+            ],
+            "works": "The Military Revolution Debate (1995), introduction",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "fiscal_global_scope",
+            "title": "Finance, bargaining and geographic scope",
+            "focus": "Fiscal bargaining and overseas comparisons complicate a universal route from weapons to centralized power. The selected debate remains weighted toward European questions.",
+            "person_ids": [
+              "i_a_a_thompson",
+              "john_f_guilmartin"
+            ],
+            "works": "The Military Revolution Debate (1995), introduction",
+            "source_ids": [
+              "rogers_military_revolution_intro"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "gender_bodies",
+            "title": "Bodies, injury and masculinity",
+            "focus": "Bourke examines men’s bodies and wartime masculinity. This question differs from strategic success or adding women to a roster.",
+            "person_ids": [
+              "joanna_bourke"
+            ],
+            "works": "Dismembering the Male (1996)",
+            "source_ids": [
+              "bourke_dismembering"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "memory_recognition",
+            "title": "Remembrance, mourning and recognition",
+            "focus": "Winter examines forms of mourning; Nell recovers Black military service from patriotic exclusion. These different projects broaden whose war is remembered.",
+            "person_ids": [
+              "jay_winter",
+              "william_cooper_nell"
+            ],
+            "works": "Sites of Memory, Sites of Mourning (1995); The Colored Patriots (1855)",
+            "source_ids": [
+              "winter_sites",
+              "nell_patriots"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "warfare_cultural_argument",
+            "title": "Cultural explanations and their critics",
+            "focus": "Keegan’s later account and Bassford’s opposition distinguish cultural interpretation from the earlier reconstruction of combat. Political purpose and culture need not be mutually exclusive.",
+            "person_ids": [
+              "john_keegan",
+              "christopher_bassford"
+            ],
+            "works": "A History of Warfare (1993), mediated; Bassford (1994)",
+            "source_ids": [
+              "bassford_keegan_polemic"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "recruitment_labor_households",
+            "title": "Recruitment as labor and household strategy",
+            "focus": "Lucassen and Zürcher compare state recruitment options with recruits’ and households’ responses. Pay and freedom vary independently; different systems coexist. Their explicit use of Tilly connects fiscal capacity to recruitment and resistance.",
+            "person_ids": [
+              "jan_lucassen",
+              "erik_jan_zurcher",
+              "charles_tilly"
+            ],
+            "works": "“Conscription as Military Labour” (1998), 405–419",
+            "source_ids": [
+              "lucassen_zurcher_conscription"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected military-history interventions, with earlier works distinguished",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "on_war_1832",
+              "label": "Clausewitz, On War, posthumous publication",
+              "kind": "posthumous_publication",
+              "track": "context",
+              "date": {
+                "year": 1832,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:clausewitz_primary_selections"
+              ],
+              "support": "Existing source and Marie von Clausewitz's 1832 preface. Later Graham/Maude edition and apparatus remain distinct; no full German collation."
+            },
+            {
+              "id": "howard_1961",
+              "label": "Howard, The Franco-Prussian War",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1961,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:howard_strachan_memoir"
+              ],
+              "support": "Existing selected reading of Strachan's 2022 memoir, printed pp. 228–231; a retrospective source for the 1961 book."
+            },
+            {
+              "id": "keegan_1976",
+              "label": "Keegan, The Face of Battle",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1976,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:keegan_face_excerpt"
+              ],
+              "support": "Existing original-date cross-check; the consulted reprint is 1983 and acknowledgments are dated 1974."
+            },
+            {
+              "id": "bourke_1996",
+              "label": "Bourke, Dismembering the Male",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1996,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:bourke_dismembering"
+              ],
+              "support": "Existing bibliographic/publisher evidence; a further selected field intervention, not closure of military historiography."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "The field is older and broader than these selected works; no researched universal interval is proposed."
+          },
+          "interpretation": "Use dated works with an explicit selective scope. Howard 1961 and Keegan 1976 are contributions to an older field, not its first and last years. Later memoir dates are evidence dates, not new personal interventions by Howard.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json",
+          "retain": [
+            "Multiple paradigms, colonial/guerrilla limits of Keegan's frame, and collaboration/editorial labour."
+          ],
+          "unresolved": [
+            "If phase bars are useful, define their subject and geography; do not construct a universal beginning from the oldest source in this selection."
+          ]
+        }
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 0,
+    "new_edges": 5,
+    "new_sources": 31,
+    "source_addenda": 2
+  }
+}

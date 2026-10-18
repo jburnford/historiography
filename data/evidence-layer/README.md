@@ -3,7 +3,47 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-14)
+## Current local build (2026-10-17)
+
+Practice **v24**, methods **methods-v9** (registry v9) and **mentions-v6** serve graph 1.142.
+The user asked why the War & the military record was empty before 1965. Two changes follow from
+that question.
+
+- **Issue-sequence lengths (user decision 2026-10-16, record-wide).** Many older deposits give only
+  a first page, among them the JSTOR backfile of *Military Affairs* and its 1937–40 predecessors.
+  - **The rule.** `scripts/evidence_inputs.py` takes a length from the next article's first page
+    in the same journal, volume and issue, when no deposited range or sourced publisher assertion
+    exists.
+  - **The test.** On 569,765 records with deposited ranges, the rule classifies items of 10 or
+    more pages with precision 98.6% and recall 99.4%. Before 1960 the figures are 97.1% and 98.7%.
+    Exact lengths agree only about 46% of the time, because of blank pages and plates, so the value
+    serves only the research-length proxy.
+  - **The guard.** Each length carries a basis in `x_effective_records.length_basis`: `deposited`,
+    `publisher_assertion` or `issue_sequence_inferred`. Deposits and sourced assertions always take
+    precedence. Records whose first page they share with another item, and the last item in an
+    issue, stay unknown.
+  - **The effect.** Records without a usable length fall from 39.5% to 25.1% for 1900–49, from
+    35.2% to 21.2% for 1950–99, and from 13.0% to 9.1% for 2000–24 (`audits/landing-1.142`
+    against `audits/landing-1.135`). The 2026-10-10 repair had declined to infer end pages. This
+    rule replaces that decision; the repair's publisher assertions are kept and take precedence.
+- ***The Mariner's Mirror* (from 1911)** is a new
+  [maritime supplement](../../history-journals-maritime-2026-10-16/README.md), mapped to Military
+  history by a proposed crosswalk row as a venue-level proxy for naval history.
+
+War & the military's research series now begins in 1910–14 (7 items, then 4, 43, 79, 98, 122, 103,
+109, 101, 113 and 114 per five-year bin to 1960–64), where it used to be zero until 1965. Other
+families gain early items too, so early-period shares differ from v21. Revision 1.142 adds no new
+entry, so membership is unchanged.
+
+```bash
+python3 scripts/build_practice_series.py --version v24
+python3 scripts/build_method_signals.py --registry v9 --version methods-v9
+python3 scripts/audit_landing_evidence.py --series v24 --out data/evidence-layer/audits/landing-1.142
+python3 scripts/build_evidence_asset.py --series v24 --methods methods-v9 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.142/summary.json
+python3 scripts/build_site.py
+```
+
+## Previous build (2026-10-14)
 
 Practice **v21** serves graph 1.135. It adds the new Debate entry *The Science Wars, 1994–2000*
 (`sciencewars`):

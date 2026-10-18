@@ -13,7 +13,10 @@ script (apply_canadian_person_links.py), which stays pinned to its acceptance re
 Optional batch-level keys, copied into the packet only when present: text_revisions (replace one exact
 string in a node, strand or roster-row field), strand_list_additions (strand person_ids/source_ids),
 new_strands, and roster_list_additions ([{node, person_id, source_ids, works_append}]: extend an
-existing roster row's source_ids and append to its works, failing if the row is missing).
+existing roster row's source_ids and append to its works, failing if the row is missing), and
+field_sets ([{node, field, expect, value}]: replace date_span, date_label or coverage on an existing
+node (and, from revision 1.142, `chronology`), failing unless the current value equals `expect`;
+value null removes the field).
 """
 import argparse
 from copy import deepcopy
@@ -30,6 +33,9 @@ GRAPH = ROOT / 'historiography-1920-2000.json'
 EDGE_KEYS = ['source', 'target', 'relationship', 'type', 'relationship_kind', 'directed', 'source_ids', 'evidence_note',
              'classification_basis', 'map_label', 'target_strand']
 TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
+# Whole-field replacements a batch may make on existing nodes (`field_sets`); prose edits stay
+# exact-string `text_revisions`.
+FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology'}
 
 
 def read(path):
@@ -100,7 +106,7 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
+        for key in ('text_revisions', 'field_sets', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -177,6 +183,18 @@ class Batch:
             if obj.get(tr['field'], '').count(tr['old']) != 1:
                 raise ValueError(f"Text revision does not match once: {tr['node']} {tr['field']}")
             obj[tr['field']] = obj[tr['field']].replace(tr['old'], tr['new'])
+        for fs in packet.get('field_sets', []):
+            # Replace a whole node field (e.g. a curated date_span), guarded by its expected
+            # current value so a stale packet cannot overwrite a later edit; value None removes it.
+            if fs['field'] not in FIELD_SET_ALLOWED:
+                raise ValueError(f"Field not settable: {fs['field']}")
+            node = next(n for n in g['nodes'] if n['id'] == fs['node'])
+            if node.get(fs['field']) != fs['expect']:
+                raise ValueError(f"Field set does not match its expected value: {fs['node']} {fs['field']}")
+            if fs['value'] is None:
+                node.pop(fs['field'], None)
+            else:
+                node[fs['field']] = deepcopy(fs['value'])
         for sla in packet.get('strand_list_additions', []):
             node = next(n for n in g['nodes'] if n['id'] == sla['node'])
             strand = next(s for s in node['strands'] if s['id'] == sla['strand'])
@@ -263,7 +281,7 @@ class Batch:
         touched = dict(people={u['id'] for u in packet['people_updates']}, edges=set(packet['edge_revisions']),
                        sources=set(packet['source_addenda']),
                        nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])
-                              + packet.get('roster_list_additions', [])})
+                              + packet.get('roster_list_additions', []) + packet.get('field_sets', [])})
         record = dict(revision=self.rev, date=self.day, authorization=self.cfg['authorization'],
             baseline=str(self.base.relative_to(ROOT)), baseline_sha256=sha(self.base), packet=str(self.packet.relative_to(ROOT)),
             packet_sha256=sha(self.packet), production_sha256=sha(GRAPH),

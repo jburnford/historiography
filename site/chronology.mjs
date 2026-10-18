@@ -39,12 +39,13 @@ export function chronologySpan(node) {
     precision: 'explicit', curated: true, chronological: true, basis: c.selection_note,
     contributionSpan: contributionSpan(node)} : null;
 }
-export function chronologyGeometry(node, scale) {
+export function chronologyGeometry(node, scale, floorYear = -Infinity) {
   const selection = contributionSpan(node);
   return {
     selection: selection ? {x: scale(selection.start), w: scale(selection.end) - scale(selection.start)} : null,
     events: chronologyEvents(node).map(e => ({...e, x: scale((e.bounds[0] + e.bounds[1]) / 2),
-      x0: scale(e.bounds[0]), x1: scale(e.bounds[1]), uncertain: e.bounds[0] !== e.bounds[1] || Boolean(e.date.qualifier)})),
+      x0: scale(e.bounds[0]), x1: scale(e.bounds[1]), uncertain: e.bounds[0] !== e.bounds[1] || Boolean(e.date.qualifier),
+      before: e.bounds[1] < floorYear})),
     intervals: (chronologyOf(node)?.intervals || []).map(i => {
       const a = dateBounds(i.start), b = dateBounds(i.end);
       return {...i, x: scale(a[0]), w: b ? scale(b[1]) - scale(a[0]) : 0, unknownEnd: !b};

@@ -1,0 +1,453 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-16",
+ "applies_to": "historiography-1920-2000.json revision 1.142 -> candidate 1.142 (extras: ancient roots of military history and ancient-warfare scholarship 1900–1930; no entry)",
+ "review_status": "needs_review",
+ "proposed_edges": [
+  {
+   "proposal_id": "mh141_anc_rel_01",
+   "source": "lifetradition",
+   "target": "military",
+   "type": "connection",
+   "relationship_kind": "comparison",
+   "directed": false,
+   "relationship": "Plutarch’s lives set themselves apart from campaign history, which later critics weigh against Polybius",
+   "map_label": "Lives and campaign history",
+   "evidence_note": "Plutarch’s opening to Alexander (existing source; opening paragraph read) distinguishes the selected life from a comprehensive campaign history: an ancient statement that campaign history was an established genre from which biography set itself apart. Kromayer (1903, p. 266, read), weighing the sources for Sellasia, prefers Polybius, who had military experience and was near the event, to Plutarch, ‘der … weit- und militärfremde Philosoph von Chäronea’. A comparison of genres; no ancient lineage is claimed for either entry.",
+   "source_ids": [
+    "plutarch_alexander_opening",
+    "kromayer_schlachtfelder_1903"
+   ],
+   "classification_basis": "editorial_review",
+   "review_status": "needs_review",
+   "target_strand": null,
+   "roster_row": null,
+   "include": true
+  },
+  {
+   "proposal_id": "mh141_anc_rel_02",
+   "source": "spatialhistory",
+   "target": "wartradition",
+   "type": "connection",
+   "relationship_kind": "comparison",
+   "directed": false,
+   "relationship": "Topographic survey becomes a test of ancient battle narratives (1892–1903)",
+   "map_label": "Battlefield survey and ancient narratives",
+   "evidence_note": "Grundy’s preface (1901, read): ‘The surveys of Thermopylae, Plataea, and Pylos, I have myself made at different times between 1892 and 1899’; ‘maps without accuracy cannot be used for the historical criticism of highly elaborate narratives’; he signs as ‘University Lecturer in Classical Geography, Oxford’. Kromayer (1903, pp. 1–5, read) finds it surprising that ancient battles were thought manageable without the maps modern war history requires, and takes Moltke’s motto that the locality is ‘das von einer längst vergangenen Begebenheit übriggebliebene Stück Wirklichkeit’; he names Grundy’s surveys as a precedent (p. 3). Polybius had already listed ‘the survey of cities, places, rivers’ as part of history (12.25e). The spatial-history entry dates its own roots to Sauer (1925); this is a comparison of practices, not a claim of influence on that field.",
+   "source_ids": [
+    "grundy_persian_war_1901",
+    "kromayer_schlachtfelder_1903",
+    "polybius_book12_paton"
+   ],
+   "classification_basis": "editorial_review",
+   "review_status": "needs_review",
+   "target_strand": "wartradition/battlefield_survey_numbers",
+   "roster_row": null,
+   "include": true
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "ranke → wartradition",
+   "reason": "Existing edge_557 stands. No text read connects Polybius to Ranke, so no Polybius→Ranke claim is added (evidence-ancient-roots.md §4d.1)."
+  },
+  {
+   "pair": "military → military (Delbrück–Kromayer dispute)",
+   "reason": "The atlas draws critique between entries only. The dispute is carried by the battlefield_survey_numbers strand and by Kromayer’s critic row on wartradition (§4d.6)."
+  },
+  {
+   "pair": "demography → wartradition (edge_558)",
+   "reason": "Not a new edge: Delbrück 1913 is added to edge_558 through batch.json edge_revisions. Grundy 1911’s population evidence is not added, because the edge is about Beloch’s estimates (§4d.4)."
+  },
+  {
+   "pair": "wartradition → military (edge_039)",
+   "reason": "Not a new edge: Kromayer 1903 and Delbrück 1913 are added to edge_039 through batch.json edge_revisions (§4d.5)."
+  },
+  {
+   "pair": "any edge resting on Hanson, Lendon, Lynn, Tarn or Adcock",
+   "reason": "Summary, reviewer-only or metadata evidence; later or deferred (§§2f–2g, 3)."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thucydides_crawley_method",
+   "title": "Thucydides, History of the Peloponnesian War, 1.22 and 5.68, trans. Richard Crawley (London: J. M. Dent, 1910), Perseus Digital Library.",
+   "url": "http://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0200:book=1:chapter=22",
+   "citation": "Thucydides, History of the Peloponnesian War, 1.22 and 5.68, trans. Richard Crawley (London: J. M. Dent, 1910), Perseus Digital Library.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in part for revision 1.142 (evidence-ancient-roots.md §1a): 1.22 and 5.68.1–3 in the Perseus transcription of Crawley’s translation. Quoted: the narrative ‘rests partly on what I saw myself, partly on what others saw for me, the accuracy of the report being always tried by the most severe and detailed tests possible’ (1.22.2); ‘want of coincidence between accounts of the same occurrences by different eye-witnesses, arising sometimes from imperfect memory, sometimes from undue partiality for one side or the other’ (1.22.3); ‘a possession for all time’ (1.22.4); of Mantinea (418), he could not put down the numbers ‘with any accuracy. Owing to the secrecy of their government the number of the Lacedaemonians was not known, and men are so apt to brag about the forces of their country that the estimate of their opponents was not trusted’ (5.68.2); he then counts from unit structure (5.68.3). The Greek was not collated and the rest of the work is unread here. The parallel with Delbrück’s emphasis on army numbers is the atlas’s; Delbrück does not cite 5.68 in the pages read. URL supplied at release (release/fixes-1.141.md, finding 12), checked by the coordinating session."
+   },
+   "scope_note": "Ancient primary text, recorded as a precursor statement on testimony and numbers; not the origin of the field."
+  },
+  {
+   "id": "polybius_book12_paton",
+   "title": "Polybius, Histories 12.25e–28a, trans. W. R. Paton, Loeb Classical Library, vol. IV (1925), LacusCurtius transcription.",
+   "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/12*.html",
+   "citation": "Polybius, Histories 12.25e–28a, trans. W. R. Paton, Loeb Classical Library, vol. IV (1925), LacusCurtius transcription.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for revision 1.142 (evidence-ancient-roots.md §1b): the Timaeus polemic on method, 12.25e–28a, with the Loeb page numbers shown on LacusCurtius. Quoted: the three parts of systematic history, ‘the first being the industrious study of memoirs and other documents and a comparison of their contents, the second the survey of cities, places, rivers, lakes, and in general all the peculiar features of land and sea and the distances of one place from another, and the third being the review of political events’ (12.25e.1, pp. 375–377); Ephorus ‘seems to me in dealing with war to have a certain notion of naval warfare, but he is entirely in the dark about battles on land’, and his Mantinea (362) is ‘quite imaginary … This becomes evident if we get a correct idea of the ground and then number the movements he describes as being carried out on it’ (12.25f, pp. 379–381); ‘It is neither possible for a man with no experience of warlike operations to write well about what happens in war, nor for one unversed in the practice and circumstances of politics to write well on that subject’ (12.25g.1, p. 381); such writers resemble ‘painters who make their sketches from stuffed bags’ (12.25h, pp. 381–383); ‘it will be well with history either when men of action undertake to write history …’ (12.28.1–5, pp. 403–405); the inquirer without experience, ‘even if present he is in a sense not present’ (12.28a, pp. 407–409). Book 12 is fragmentary and polemical, and the attack on Timaeus is also self-promotion; it is recorded as an ancient claim about who is competent to write war history, not as a neutral standard. Greek not collated. URL supplied at release (release/fixes-1.141.md, finding 12), checked by the coordinating session."
+   },
+   "scope_note": "Ancient primary text on documents, topography and experience; used with Kromayer’s later adoption and qualification of it."
+  },
+  {
+   "id": "polybius_book3_paton",
+   "title": "Polybius, Histories 3.33.17–18, 3.48.12 and 3.59.4–8, trans. W. R. Paton, Loeb Classical Library, vol. II, LacusCurtius transcription.",
+   "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html",
+   "citation": "Polybius, Histories 3.33.17–18, 3.48.12 and 3.59.4–8, trans. W. R. Paton, Loeb Classical Library, vol. II, LacusCurtius transcription.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in part for revision 1.142 (evidence-ancient-roots.md §1b): three passages. Hannibal’s troop lists from ‘a bronze tablet on which Hannibal himself had made out these lists’, followed as ‘an absolutely first-rate authority’ (3.33.17–18), which Delbrück (Numbers in History, 1913, p. 16) explicitly questions; on the Alpine crossing, ‘I have inquired about the circumstances from men present on the occasion and have personally inspected the country and made the passage of the Alps to learn for myself and see’ (3.48.12); his journeys through Africa, Spain and Gaul ‘for this very purpose of correcting the errors of former writers’ (3.59.4–8). Greek not collated; the Loeb volume’s date was not recorded. URL supplied at release (release/fixes-1.141.md, finding 12), checked by the coordinating session."
+   },
+   "scope_note": "Ancient primary text: participant inquiry, inspection of ground and a documentary source for numbers."
+  },
+  {
+   "id": "arrian_preface_chinnock",
+   "title": "Arrian, Anabasis of Alexander, preface, trans. E. J. Chinnock (1884), Wikisource transcription, pp. 6–7.",
+   "url": "https://en.wikisource.org/wiki/The_Anabasis_of_Alexander",
+   "citation": "Arrian, Anabasis of Alexander, preface, trans. E. J. Chinnock (1884), Wikisource transcription, pp. 6–7.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for revision 1.142 (evidence-ancient-roots.md §1c): Arrian’s preface. He follows Ptolemy and Aristobulus where they agree: ‘Aristobulus, because he served under king Alexander in his expedition, and Ptolemy, not only because he accompanied Alexander in his expedition, but also because he was himself a king afterwards, and falsification of facts would have been more disgraceful to him than to any other man’; both wrote ‘after Alexander’s death, when neither compulsion was used nor reward offered them’. Chinnock’s own notes, not Arrian, add that both accounts could be ‘more panegyrical than the facts warranted’. Greek not collated; the rest of the work unread. URL supplied at release (release/fixes-1.141.md, finding 12), checked by the coordinating session."
+   },
+   "scope_note": "Ancient primary text: participation and reputation as criteria for sources on a campaign."
+  },
+  {
+   "id": "vegetius_epitoma_prologue",
+   "title": "Vegetius, Epitoma rei militaris, book I, prologue and 1.8 (Latin text), The Latin Library.",
+   "url": "https://www.thelatinlibrary.com/vegetius1.html",
+   "citation": "Vegetius, Epitoma rei militaris, book I, prologue and 1.8 (Latin text), The Latin Library.",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in part for revision 1.142 (evidence-ancient-roots.md §1f): the prologue and 1.8, in Latin only; no published English translation was collated, and English renderings in the atlas are the research compiler’s own. Quoted: what is scattered ‘apud diversos historicos vel armorum disciplinam docentes’ is to be brought together, a task needing ‘labor diligens ac fidelis’ (prologue); ‘De historiis ergo vel libris nobis antiqua consuetudo repetenda est. Sed illi res gestas et euentas tantum scripsere bellorum, ista, quae nunc quaerimus, tamquam nota linquentes’ (1.8: the historians wrote only the deeds and outcomes of wars, leaving out what is now sought, as though it were well known); he compiles what Cato the Censor, Cornelius Celsus, Frontinus, Paternus and imperial constitutions set down, ‘velut in ordinem epitomata’ (1.8). The work’s date was not verified (a publisher’s summary of Hanson’s Cambridge chapter gives about AD 400). URL supplied at release (release/fixes-1.141.md, finding 12), checked by the coordinating session."
+   },
+   "scope_note": "Ancient technical military writing, self-described as an epitome; distinct from narrative war history."
+  },
+  {
+   "id": "delbruck_numbers_1913",
+   "title": "Hans Delbrück, Numbers in History: two lectures delivered at the University of London, 6–7 October 1913 (London: University of London Press / Hodder & Stoughton, 1913).",
+   "url": "https://archive.org/details/numbersinhistory00delb",
+   "citation": "Hans Delbrück, Numbers in History: two lectures delivered at the University of London, 6–7 October 1913 (London: University of London Press / Hodder & Stoughton, 1913).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for pp. 5–23 for revision 1.142 (evidence-ancient-roots.md §2a), archive.org numbersinhistory00delb. Quoted: ‘We must have historians not only of the Greeks, the Romans, or the Middle Ages, but also specialists for Constitutional History, or Economic History … On this basis, for forty years, I have studied the History of the Art of War’ (pp. 5–6); from the Swiss–Burgundian battles ‘an historian might draw conclusions regarding the course of the battles of Marathon and Plataeae’ (pp. 6–10); Herodotus wrote ‘forty or fifty years after the events’, so that what people tell ‘a generation after will very often be not history, but only legend’ (pp. 8–10); ‘the first point to which in any history of war we have to direct our attention is the number of the warriors’ (p. 11); Thucydides’ figures for Athenian citizen soldiers are ‘subjectively beyond every doubt’, though ‘the interpretation of what the numbers really meant … is not absolutely to be determined’ (pp. 16–17); he questions Caesar’s numbers for the Gauls and Hannibal’s Lacinian inscription reported by Polybius (p. 16); ‘All numbers control each other mutually’, with Moltke’s 1870 deployment as ‘a common standard of measure’ (pp. 17–19); Xerxes’ host (pp. 22–23). Beloch is not named in the pages read. One shared source id for the 1913 lectures (the 1900–1960 research also cites Delbrück)."
+   },
+   "scope_note": "A second Delbrück text beside the 1900 preface: numbers compared across eras and analogy between periods."
+  },
+  {
+   "id": "kromayer_schlachtfelder_1903",
+   "title": "Johannes Kromayer, Antike Schlachtfelder in Griechenland, vol. I (Berlin: Weidmann, 1903).",
+   "url": "https://archive.org/details/antikeschlachtfe01krom",
+   "citation": "Johannes Kromayer, Antike Schlachtfelder in Griechenland, vol. I (Berlin: Weidmann, 1903).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in part for revision 1.142 (evidence-ancient-roots.md §2b), archive.org antikeschlachtfe01krom: Vorwort pp. V–VII; Einleitung pp. 1–7; Mantinea, Beilage I, pp. 90–97 in part; Sellasia, Beilage I, pp. 252–265, and Beilage II, pp. 266–267, in part. Quoted: the book is ‘die Frucht einer Expedition “zur Erforschung antiker Schlachtfelder in Griechenland”’ of spring 1900 with Oberst Janke and ‘Goppel, Hauptmann im Großen Generalstabe’, supported by the Strasbourg faculty, the Berlin Academy and Schlieffen ‘durch Beurlaubung und Ausstattung eines Generalstabsoffiziers’ (Vorwort, signed October 1902); mottoes from Moltke (‘Die Örtlichkeit ist das von einer längst vergangenen Begebenheit übriggebliebene Stück Wirklichkeit’) and Clausewitz; the subject ‘fast allein von Männern genährt …, die von philologisch-historischen Forschungen aus an die Sache herangetreten sind’ (p. 2), with Frederick the Great and Clausewitz quoted for military neglect of antiquity; Grundy’s surveys named as an English precedent (p. 3); the Hellenistic era ‘uns kongenial’ (pp. 5–7, his own presentist framing); Polybius on Ephorus quoted and partly qualified, ‘Polybios’ Urteil setzt bestimmte, aber falsch wiedergegebene Tatsachen in den Berichten des Ephoros voraus’ (pp. 93–96); on Sellasia, Delbrück’s change of view is ‘die Folge meines Vortrages, speziell des Nachweises, daß die Oinusebene weit schmaler ist, als Delbrück, auf ungenaue Reiseberichte gestützt, angenommen hatte’ (p. 252); at stake is ‘die Beurteilung des Polybios und seine Zuverlässigkeit als Kriegschriftsteller und Historiker überhaupt’ (p. 264); Plutarch weighed against Polybius as ‘der … weit- und militärfremde Philosoph von Chäronea’ (p. 266). Delbrück’s side of the dispute (Kriegskunst II and his replies) and Kromayer’s 1900–01 lecture texts are unread; the account of Delbrück’s change of view is Kromayer’s."
+   },
+   "scope_note": "Battlefield survey with General Staff collaboration (1900) and a published dispute with Delbrück."
+  },
+  {
+   "id": "kromayer_veith_heerwesen_1928",
+   "title": "Johannes Kromayer and Georg Veith, Heerwesen und Kriegführung der Griechen und Römer, Handbuch der Altertumswissenschaft IV.3.2 (Munich, 1928).",
+   "url": "https://archive.org/details/30081001012420",
+   "citation": "Johannes Kromayer and Georg Veith, Heerwesen und Kriegführung der Griechen und Römer, Handbuch der Altertumswissenschaft IV.3.2 (Munich, 1928).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in part for revision 1.142 (evidence-ancient-roots.md §2c) through single-page OCR of a Digital Library of India scan (archive.org 30081001012420): Vorwort pp. V–VI; contents pp. VII–IX; Einleitung pp. 1–3; Kromayer’s ‘Quellen und Literatur’ pp. 14–17. Greek and Roman warfare treated together; Orient, Carthage, Gauls and Germans excluded (‘Wir wollten lieber “multum” als “multa” geben’); strategy and tactics added against ‘der vorwiegend antiquarischen Betrachtungsweise’ (Vorwort). The introduction quotes Veith, who cites Delbrück approvingly on discipline (‘Alle Verschiedenheiten des griechischen und römischen Kriegswesens gehen zurück auf die Verschiedenheit der Disziplin’) and calls the Greek ‘im innersten Wesen unsoldatisch’ (pp. 1–2), national-character generalisations of their time. Arrian ‘sachverständig’, with Ptolemy an equally expert source, and ‘Arrian allein ist militärisch gebildet’ (p. 14); Polybius’ ‘Polemik gegen die Schlachtbeschreibungen älterer Schriftsteller ist jedoch nicht immer gerechtfertigt’ (p. 14); military commentators ‘seit Folard’ projected ‘gewisse militärische Lieblingsideen, Theorien’ onto the ancients (pp. 15–16); ‘Sowohl die historisch-philologische als auch die militärische Fachbildung sind also jede für sich unzureichend’ (p. 16); Hans Droysen (1888–89) on the antiquarian side, Delbrück on ‘der Kunst der Kriegführung’ (p. 17; not Johann Gustav Droysen). Veith’s Roman sections are unread."
+   },
+   "scope_note": "Handbook of ancient army institutions and warfare; its geographic exclusions are explicit."
+  },
+  {
+   "id": "grundy_persian_war_1901",
+   "title": "G. B. Grundy, The Great Persian War and its Preliminaries: A Study of the Evidence, Literary and Topographical (London: Murray, 1901).",
+   "url": "https://archive.org/details/greatpersianwari00grunuoft",
+   "citation": "G. B. Grundy, The Great Persian War and its Preliminaries: A Study of the Evidence, Literary and Topographical (London: Murray, 1901).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for the preface, pp. v–viii, for revision 1.142 (evidence-ancient-roots.md §2d), archive.org greatpersianwari00grunuoft. Quoted: modern criticism of Herodotus and Thucydides largely ‘destructive’, and ‘a large part of it has been based upon topographical evidence’; Marathon surveyed ‘by the German Staff Officers for the German Archaeological Institute’; ‘The surveys of Thermopylae, Plataea, and Pylos, I have myself made at different times between 1892 and 1899’; ‘maps without accuracy cannot be used for the historical criticism of highly elaborate narratives’; ‘In his purely military history Herodotus is dealing with a subject about which he seems to have possessed little, if any, special knowledge’. Title page: ‘University Lecturer in Classical Geography, Oxford’. The body of the book is unread."
+   },
+   "scope_note": "Topographic survey as a test of ancient battle narratives."
+  },
+  {
+   "id": "grundy_thucydides_1911",
+   "title": "G. B. Grundy, Thucydides and the History of His Age (London: Murray, 1911).",
+   "url": "https://archive.org/details/cu31924028249955",
+   "citation": "G. B. Grundy, Thucydides and the History of His Age (London: Murray, 1911).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for the preface, pp. v–viii (signed 14 September 1910), and the introduction, pp. 7–9, for revision 1.142 (evidence-ancient-roots.md §§1a, 2d), archive.org cu31924028249955. Quoted: Thucydides’ ‘narrative is in the main a military history, as military history was understood at the time at which he wrote … With Thucydides the military history is a means to an end, not an end in itself. He aimed at being a teacher, not of strategy or tactics, but of politics’ (p. 8); population and economic evidence ‘interpreted in the light of what I knew of the conditions of life in modern Greece’; the strategy of the Ten Years’ War ‘is only explicable on those economic grounds’ (preface). The rest of the book is unread."
+   },
+   "scope_note": "A 1911 professional judgement that Thucydides wrote military history subordinated to political teaching."
+  },
+  {
+   "id": "parker_legions_1928",
+   "title": "H. M. D. Parker, The Roman Legions (Oxford: Clarendon Press, 1928).",
+   "url": "https://archive.org/details/bwb_P9-BHU-615",
+   "citation": "H. M. D. Parker, The Roman Legions (Oxford: Clarendon Press, 1928).",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-15",
+    "note": "Read in full for the preface, pp. 5–6 (signed February 1928), and the contents, for revision 1.142 (evidence-ancient-roots.md §2e), archive.org bwb_P9-BHU-615. Quoted: the subject ‘seems to have attracted more attention on the Continent than in this country’; the purpose is ‘to examine the internal organization of the legions, the areas from which they drew their recruits, and the conditions under which their soldiers served and were discharged’; ‘I have avoided a detailed account of particular campaigns’; debts ‘to two German scholars — A. von Domaszewski and E. Ritterling’. The abbreviation list is dominated by inscription corpora. The body of the book is unread."
+   },
+   "scope_note": "Institutional and epigraphic army history beside battle reconstruction."
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "plutarch_alexander_opening",
+   "use": "Edge mh141_anc_rel_01; not re-read (its existing note already records the distinction from campaign history)."
+  },
+  {
+   "id": "clausewitz_primary_selections",
+   "use": "Strand battlefield_survey_numbers; Book II ch. VI read (addendum)."
+  },
+  {
+   "id": "delbruck_preface_primary",
+   "use": "Not re-read; unchanged."
+  }
+ ],
+ "source_addenda": {
+  "clausewitz_primary_selections": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-15",
+   "note": "Book II chapter VI, ‘On Examples’, read in full for its discussion of ancient examples (revision 1.142 research, evidence-ancient-roots.md §1g). Quoted: ‘The farther we go back, the less useful becomes military history, as it gets so much the more meagre and barren of detail. The most useless of all is that of the old world’; the uselessness ‘is not altogether absolute’, and the Roman attack on Carthaginian Spain and Africa while Hannibal held Italy ‘is a most instructive subject to study’. Kromayer (1903, p. 2) quotes the German original as a reason why military men long neglected ancient warfare."
+  }
+ },
+ "new_people": [
+  {
+   "id": "thucydides",
+   "label": "Thucydides",
+   "identity_note": "Athenian historian of the Peloponnesian War (5th century BCE); a precursor on the military-history roster. Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q41683, reviewed in the draft)."
+  },
+  {
+   "id": "polybius",
+   "label": "Polybius",
+   "identity_note": "Greek historian of Rome’s rise (2nd century BCE); a precursor on the military-history roster. Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q131169, reviewed in the draft)."
+  },
+  {
+   "id": "arrian",
+   "label": "Arrian",
+   "identity_note": "Arrian of Nicomedia, Greek historian of Alexander’s campaigns (2nd century CE); a precursor on the military-history roster. Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q31845, reviewed in the draft)."
+  },
+  {
+   "id": "vegetius",
+   "label": "Vegetius",
+   "identity_note": "Author of the Latin Epitoma rei militaris; a precursor on the strategic-scholarship roster. Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q4298, reviewed in the draft)."
+  },
+  {
+   "id": "johannes_kromayer",
+   "label": "Johannes Kromayer",
+   "identity_note": "German ancient historian (1859–1934); Antike Schlachtfelder (1903–) and, with Georg Veith, Heerwesen und Kriegführung der Griechen und Römer (1928). Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q1697883, reviewed in the draft)."
+  },
+  {
+   "id": "georg_veith",
+   "label": "Georg Veith",
+   "identity_note": "Co-author with Johannes Kromayer of Heerwesen und Kriegführung der Griechen und Römer (1928). Added in revision 1.142 (military history before 1960 and its ancient roots). Roster inclusion does not establish external identity resolution; no Wikidata match recorded (a probable candidate, Q1506264, an Austro-Hungarian officer, historian and herpetologist, 1875–1925, was not confirmed against a read text)."
+  },
+  {
+   "id": "g_b_grundy",
+   "label": "G. B. Grundy",
+   "identity_note": "George Beardoe Grundy, Oxford ancient historian and classical geographer (1861–1948); The Great Persian War (1901), Thucydides and the History of His Age (1911). Added in revision 1.142 (military history before 1960 and its ancient roots). Wikidata match recorded separately (Q57293537, reviewed in the draft)."
+  },
+  {
+   "id": "h_m_d_parker",
+   "label": "H. M. D. Parker",
+   "identity_note": "Author of The Roman Legions (Oxford, 1928). Added in revision 1.142 (military history before 1960 and its ancient roots). Roster inclusion does not establish external identity resolution; no Wikidata match recorded (Q107111266, ‘Henry Michael Denne Parker’, carries no dates or works, and the expansion of the initials is not confirmed by a read text)."
+  }
+ ],
+ "roster_additions": [
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "thucydides",
+    "role": "precursor",
+    "context": "Tests his narrative against his own and others’ observation and notes conflicting eyewitness accounts (1.22); at Mantinea he says Spartan secrecy and bragging prevent accurate numbers (5.68). Grundy (1911) calls the work ‘in the main a military history’ whose aim was political teaching. A precursor of the genre, not its founder.",
+    "works": "History of the Peloponnesian War, 1.22 and 5.68 (Crawley translation, 1910)",
+    "source_ids": [
+     "thucydides_crawley_method",
+     "grundy_thucydides_1911"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "polybius",
+    "role": "precursor",
+    "context": "Divides systematic history into the study of documents, the survey of places and political experience; holds that no one without experience of war can write well about it; and tests Ephorus’ account of Mantinea against the ground (12.25e–28a). Kromayer (1903, 1928) adopts and qualifies this criticism, and he and Delbrück disputed Polybius’ reliability at Sellasia. Book 12 is fragmentary and polemical.",
+    "works": "Histories 12.25e–28a; 3.33, 3.48 and 3.59 (Paton, Loeb)",
+    "source_ids": [
+     "polybius_book12_paton",
+     "polybius_book3_paton",
+     "kromayer_schlachtfelder_1903"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "arrian",
+    "role": "precursor",
+    "context": "Prefers Ptolemy and Aristobulus because they served on Alexander’s campaign, and Ptolemy also because falsehood would have disgraced a king. Kromayer and Veith (1928) call Arrian and Ptolemy expert sources.",
+    "works": "Anabasis of Alexander, preface (Chinnock translation, 1884)",
+    "source_ids": [
+     "arrian_preface_chinnock",
+     "kromayer_veith_heerwesen_1928"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "johannes_kromayer",
+    "role": "historian",
+    "context": "Joins philology to topographic survey: an expedition to Greek battlefields in spring 1900 with a General Staff officer released by Schlieffen. Defends Polybius against Delbrück at Sellasia (1903), and observes that each era’s military theory shaped its reading of ancient war (1928). His Hellenistic analogies with the modern great state are his own framing.",
+    "works": "Antike Schlachtfelder in Griechenland, vol. I (1903); with Georg Veith, Heerwesen und Kriegführung der Griechen und Römer (1928)",
+    "source_ids": [
+     "kromayer_schlachtfelder_1903",
+     "kromayer_veith_heerwesen_1928"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "georg_veith",
+    "role": "historian",
+    "context": "Co-author of a handbook whose preface treats Greek and Roman warfare together, adds strategy and tactics to the antiquarian study of armies, and excludes the Orient, Carthage, Gauls and Germans. As quoted in its introduction he contrasts Greek and Roman warfare, citing Delbrück on discipline: national-character generalisations of their time. His battlefield volumes are unread.",
+    "works": "With Johannes Kromayer, Heerwesen und Kriegführung der Griechen und Römer (1928)",
+    "source_ids": [
+     "kromayer_veith_heerwesen_1928"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "g_b_grundy",
+    "role": "historian",
+    "context": "Surveyed Thermopylae, Plataea and Pylos himself (1892–99) to test Herodotus and Thucydides, holding that ‘maps without accuracy cannot be used for the historical criticism of highly elaborate narratives’ (1901); his 1911 preface argues that the strategy of the Ten Years’ War is explicable only on economic grounds.",
+    "works": "The Great Persian War (1901), preface; Thucydides and the History of His Age (1911), preface and introduction",
+    "source_ids": [
+     "grundy_persian_war_1901",
+     "grundy_thucydides_1911"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "military",
+   "proposal_id": null,
+   "row": {
+    "person_id": "h_m_d_parker",
+    "role": "historian",
+    "context": "His preface proposes an institutional history of the legions (organisation, recruitment and terms of service), says he has ‘avoided a detailed account of particular campaigns’ and credits Domaszewski and Ritterling; the abbreviation list shows extensive inscription corpora. The body of the book is unread.",
+    "works": "The Roman Legions (1928)",
+    "source_ids": [
+     "parker_legions_1928"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "wartradition",
+   "proposal_id": null,
+   "row": {
+    "person_id": "vegetius",
+    "role": "precursor",
+    "context": "Compiles earlier authorities (Cato, Celsus, Frontinus, Paternus and imperial constitutions) into what he calls an epitome, and distinguishes such teaching from histories that ‘wrote only the deeds and outcomes of wars’ (the research compiler’s translation of 1.8). Date and published translations not collated.",
+    "works": "Epitoma rei militaris, prologue and 1.8 (Latin text)",
+    "source_ids": [
+     "vegetius_epitoma_prologue"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "wartradition",
+   "proposal_id": null,
+   "row": {
+    "person_id": "johannes_kromayer",
+    "role": "critic",
+    "context": "Disputes Delbrück’s criticism of Polybius at Sellasia: textual Sachkritik should not run ahead of topographic survey. He reports that Delbrück changed his view after the plain was shown to be narrower than Delbrück had assumed (1903, Beilage I). Delbrück’s replies are unread.",
+    "works": "Antike Schlachtfelder in Griechenland, vol. I (1903), Beilage I",
+    "source_ids": [
+     "kromayer_schlachtfelder_1903"
+    ],
+    "basis": "source_review"
+   }
+  }
+ ],
+ "wikidata_checks": [
+  {
+   "person_id": "thucydides",
+   "qid": "Q41683",
+   "verdict": "correct",
+   "statements_seen": "Thucydides, ‘5th-century BC Athenian historian and general’; born c. 460 BCE, died c. 394 BCE (Wikidata dates). A separate item Q580356 is the Athenian statesman, son of Melesias."
+  },
+  {
+   "person_id": "polybius",
+   "qid": "Q131169",
+   "verdict": "correct",
+   "statements_seen": "Polybius, ‘ancient Greek historian’; c. 199–119 BCE (Wikidata dates). Distinct from Q1364198, a freedman of Claudius."
+  },
+  {
+   "person_id": "arrian",
+   "qid": "Q31845",
+   "verdict": "correct",
+   "statements_seen": "Arrian, ‘philosopher, historian, priest’; c. 89/95–175/180 CE; Anabasis of Alexander (Q1236228) is ‘work by Arrian’. Distinct from Q19997972, a 3rd-century historian Arrianus."
+  },
+  {
+   "person_id": "vegetius",
+   "qid": "Q4298",
+   "verdict": "correct",
+   "statements_seen": "Vegetius, ‘writer of the Later Roman Empire’; De re militari (Q1246541) is ‘4th- or 5th-century military treatise by Vegetius’."
+  },
+  {
+   "person_id": "johannes_kromayer",
+   "qid": "Q1697883",
+   "verdict": "correct",
+   "statements_seen": "Johannes Kromayer, ‘German historian (1859–1934)’; employers Leipzig University and Chernivtsi University; educated at Strasbourg and Jena; member of the German Archaeological Institute. The 1903 Vorwort is signed ‘Czernowitz’ and mentions the Strasbourg faculty’s support. Distinct from Q1697882, Johann Kromayer (1576–1643)."
+  },
+  {
+   "person_id": "georg_veith",
+   "qid": null,
+   "verdict": "not_recorded",
+   "statements_seen": "Candidate Q1506264, Georg Veith: Czech description ‘Austrian officer, historian and herpetologist, born 9 March 1875 in Černovice’; died 3 September 1925, Zile; P106 herpetologist only. No statement links the item to Kromayer or the battlefield volumes, and no read text gives Veith’s dates or nationality. Left ungrounded."
+  },
+  {
+   "person_id": "g_b_grundy",
+   "qid": "Q57293537",
+   "verdict": "correct",
+   "statements_seen": "George Beardoe Grundy, ‘English historian and classical scholar’; 1861–1948; educated at Brasenose College; occupations historian and classical scholar; a related item Q63314666 is his ‘The Topography of the Battle of Platæa’ (1894 edition)."
+  },
+  {
+   "person_id": "h_m_d_parker",
+   "qid": null,
+   "verdict": "not_recorded",
+   "statements_seen": "Semantic search found no match. A label query found Q107111266, ‘Henry Michael Denne Parker’: human, male, occupation author, with no dates, works or affiliation. The expansion of ‘H. M. D.’ is not confirmed by the preface read. Left ungrounded."
+  }
+ ],
+ "wikidata_method": "Wikidata MCP (search_items, get_statements, one label SPARQL query for Parker), 2026-10-16; no wbsearchentities. QIDs are recorded in identity_note in the house form; data/people-wikidata.json is not edited by this packet."
+}

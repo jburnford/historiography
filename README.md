@@ -19,8 +19,8 @@ On phones, the three primary views stay in a sticky navigation bar. Circles and 
 can be explored by touch inside scrollable viewports; selecting a person or entry brings
 their details into view. Search, collapsible filters and full text alternatives remain available.
 
-Production data revision **1.141** (schema 1.6): 187 entries,
-1,023 teaching relationships, 1,785 bibliography records, 1,219
+Production data revision **1.142** (schema 1.6): 187 entries,
+1,028 teaching relationships, 1,816 bibliography records, 1,241
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
