@@ -51,5 +51,35 @@ class FieldSetTests(unittest.TestCase):
         self.assertNotIn("date_span", out["nodes"][0])
 
 
+class ClaimReviewTests(unittest.TestCase):
+    def graph(self):
+        g = graph()
+        g["edges"] = [dict(id="edge_001", relationship="Provisional: x", review_status="needs_review", claim_ids=["c1"])]
+        g["claim_catalogue"] = dict(source_records=[dict(id="w0")],
+                                    claims=[dict(id="c1", review=dict(status="needs_review"), history=[], qualification="q", evidence=[])])
+        return g
+
+    def test_claim_and_edge_accepted_together(self):
+        p = packet([])
+        p["claim_reviews"] = [dict(claim_id="c1", expect_status="needs_review", status="accepted", reviewer="r",
+                                   rationale="body text read", edge_id="edge_001", edge_update=dict(relationship="x (1995)"))]
+        p["claim_reviews"][0].update(source_records_append=[dict(id="w1")], evidence_append=[dict(source_record_id="w1")])
+        p["node_list_additions"] = [dict(node="military", field="source_ids", values=["s1", "s1"])]
+        g = batch().transform(self.graph(), p)
+        self.assertEqual(g["claim_catalogue"]["claims"][0]["review"]["status"], "accepted")
+        self.assertEqual(g["claim_catalogue"]["claims"][0]["history"][-1]["revision"], "9.1")
+        self.assertEqual(g["edges"][0]["review_status"], "accepted")
+        self.assertEqual(g["edges"][0]["relationship"], "x (1995)")
+        self.assertEqual(g["nodes"][0]["source_ids"], ["s1"])
+        self.assertEqual([r["id"] for r in g["claim_catalogue"]["source_records"]], ["w0", "w1"])
+        self.assertEqual(g["claim_catalogue"]["claims"][0]["evidence"], [dict(source_record_id="w1")])
+
+    def test_stale_claim_status_fails(self):
+        p = packet([])
+        p["claim_reviews"] = [dict(claim_id="c1", expect_status="accepted", status="accepted", reviewer="r", rationale="x")]
+        with self.assertRaises(ValueError):
+            batch().transform(self.graph(), p)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1868,3 +1868,22 @@ The main timeline now starts in 1750 (user), and earlier events sit at its left 
 lengths are inferred from issue sequence and *The Mariner's Mirror* is added; War & the military's
 research series starts in 1910–14. Totals: 187 entries, 1,028 relationships. See the
 [acceptance record](data/production-batches/group-revision-1.142/README.md).
+
+## Revision 1.143: Natalie Zemon Davis, a full entry (18 October 2026)
+
+The user: "how does Natalie Zemon Davis only have one edge?"; "she is one of the top 5 most
+important historians in the 20th century"; "she needs a full entry". Her 1.119 promotion had one
+provisional edge to biography. She now has 13 edges:
+- **Contributions:** to gender (Scott 1986 credits her call for "the history of both women and
+  men"), women's history, cultural and social history ("The Rites of Violence", 1973),
+  microhistory (*Martin Guerre*), the narrative revival (Stone 1979) and global history.
+- **Influences:** E. P. Thompson in both directions; anthropology (Douglas, Van Gennep; later
+  Turner and Geertz) and Marc Bloch on her.
+- **Critique:** Robert Finlay's critique of *Martin Guerre* (1988), drawn from microhistory, with
+  her reply.
+- **Accepted:** the biography edge (*Women on the Margins*), on body text read.
+
+She also gains 28 chronology events (1966–2010, with editions and reception), 28 sources, roster
+rows on gender, global, Annales and public history, and two strands. Sol said "accept with fixes";
+all 12 findings are fixed (`release/fixes-1.143.md`). Totals: 187 entries, 1,040 relationships.
+See the [acceptance record](data/production-batches/person-entries-1.143/README.md).

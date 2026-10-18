@@ -16,7 +16,12 @@ new_strands, and roster_list_additions ([{node, person_id, source_ids, works_app
 existing roster row's source_ids and append to its works, failing if the row is missing), and
 field_sets ([{node, field, expect, value}]: replace date_span, date_label or coverage on an existing
 node (and, from revision 1.142, `chronology`), failing unless the current value equals `expect`;
-value null removes the field).
+value null removes the field). From 1.143: node_list_additions ([{node, field, values}] extending
+source_ids, work_ids or claim_ids) and claim_reviews ([{claim_id, expect_status, status, reviewer,
+rationale, qualification?, source_records_append?, evidence_append?, edge_id?, edge_update?}]:
+change a claim's review with a history entry, append claim witnesses and evidence joins
+and set its edge's review_status and text in the same step; prior claims are kept in the
+acceptance record for exact baseline recovery).
 """
 import argparse
 from copy import deepcopy
@@ -36,6 +41,8 @@ TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
 # Whole-field replacements a batch may make on existing nodes (`field_sets`); prose edits stay
 # exact-string `text_revisions`.
 FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology'}
+# List fields on an existing node that a batch may extend (`node_list_additions`), without duplicates.
+NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
 
 
 def read(path):
@@ -106,7 +113,7 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'field_sets', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
+        for key in ('text_revisions', 'field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -195,6 +202,38 @@ class Batch:
                 node.pop(fs['field'], None)
             else:
                 node[fs['field']] = deepcopy(fs['value'])
+        for nla in packet.get('node_list_additions', []):
+            if nla['field'] not in NODE_LIST_FIELDS:
+                raise ValueError(f"Node list not extensible: {nla['field']}")
+            node = next(n for n in g['nodes'] if n['id'] == nla['node'])
+            values = node.setdefault(nla['field'], [])
+            for v in nla['values']:
+                if v not in values:
+                    values.append(v)
+        for cr in packet.get('claim_reviews', []):
+            # A claim's review and the edge that projects it change together: the claim validator
+            # requires an edge to be `accepted` exactly when all its claims are, else "provisional".
+            claim = next(c for c in g['claim_catalogue']['claims'] if c['id'] == cr['claim_id'])
+            if claim['review']['status'] != cr['expect_status']:
+                raise ValueError(f"Claim review does not match its expected status: {cr['claim_id']}")
+            # An accepted interpretive claim needs passage- or abstract-checked evidence
+            # (ontology/validate_research.py): witnesses and joins arrive with the review.
+            have = {r['id'] for r in g['claim_catalogue']['source_records']}
+            for sr in cr.get('source_records_append', []):
+                if sr['id'] in have:
+                    raise ValueError(f"Claim source record exists: {sr['id']}")
+                g['claim_catalogue']['source_records'].append(deepcopy(sr))
+            claim['evidence'].extend(deepcopy(cr.get('evidence_append', [])))
+            claim['review'] = dict(status=cr['status'], reviewer=cr['reviewer'], reviewed_on=self.day,
+                                   rationale=cr['rationale'])
+            if cr.get('qualification'):
+                claim['qualification'] = cr['qualification']
+            claim['history'].append(dict(on=self.day, status=cr['status'], action=cr['rationale'], revision=self.rev))
+            if cr.get('edge_id'):
+                edge = next(e for e in g['edges'] if e['id'] == cr['edge_id'])
+                if cr['claim_id'] not in (edge.get('claim_ids') or []):
+                    raise ValueError(f"Edge {cr['edge_id']} does not project {cr['claim_id']}")
+                edge.update(deepcopy(cr.get('edge_update', {})), review_status=cr['status'])
         for sla in packet.get('strand_list_additions', []):
             node = next(n for n in g['nodes'] if n['id'] == sla['node'])
             strand = next(s for s in node['strands'] if s['id'] == sla['strand'])
@@ -259,6 +298,13 @@ class Batch:
                 for i, row in enumerate(before[table]):
                     if row['id'] in rows:
                         before[table][i] = deepcopy(rows[row['id']])
+            if 'previous_claim_source_records' in record:
+                cc = before['claim_catalogue']
+                cc['source_records'] = cc['source_records'][:record['previous_claim_source_records']]
+            claims = before['claim_catalogue']['claims']
+            for i, c in enumerate(claims):
+                if c['id'] in record.get('prior_claims', {}):
+                    claims[i] = deepcopy(record['prior_claims'][c['id']])
         if hashlib.sha256(serial(before).encode()).hexdigest() != record['baseline_sha256']:
             raise ValueError(f"Exact {self.cfg['baseline_revision']} baseline recovery differs")
         return before
@@ -278,10 +324,13 @@ class Batch:
         self.base.write_bytes(GRAPH.read_bytes())
         self.out.mkdir(parents=True, exist_ok=True)
         GRAPH.write_text(serial(graph))
-        touched = dict(people={u['id'] for u in packet['people_updates']}, edges=set(packet['edge_revisions']),
+        touched = dict(people={u['id'] for u in packet['people_updates']},
+                       edges=set(packet['edge_revisions']) | {c['edge_id'] for c in packet.get('claim_reviews', []) if c.get('edge_id')},
                        sources=set(packet['source_addenda']),
                        nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])
-                              + packet.get('roster_list_additions', []) + packet.get('field_sets', [])})
+                              + packet.get('roster_list_additions', []) + packet.get('field_sets', [])
+                              + packet.get('node_list_additions', []) + packet.get('text_revisions', [])
+                              + packet.get('strand_list_additions', []) + packet.get('new_strands', [])})
         record = dict(revision=self.rev, date=self.day, authorization=self.cfg['authorization'],
             baseline=str(self.base.relative_to(ROOT)), baseline_sha256=sha(self.base), packet=str(self.packet.relative_to(ROOT)),
             packet_sha256=sha(self.packet), production_sha256=sha(GRAPH),
@@ -289,6 +338,10 @@ class Batch:
             prior_records={t: {r['id']: r for r in before[t] if r['id'] in ids} for t, ids in touched.items()},
             counts=dict(new_person_entries=len(packet['nodes']), new_edges=len(packet['edges']),
                         new_sources=len(packet['sources']), source_addenda=len(packet['source_addenda'])))
+        if packet.get('claim_reviews'):   # claims live in claim_catalogue, outside TABLES
+            ids = {c['claim_id'] for c in packet['claim_reviews']}
+            record['prior_claims'] = {c['id']: c for c in before['claim_catalogue']['claims'] if c['id'] in ids}
+            record['previous_claim_source_records'] = len(before['claim_catalogue']['source_records'])
         (self.out / 'acceptance.json').write_text(serial(record))
         return graph
 

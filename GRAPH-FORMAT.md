@@ -1,6 +1,24 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.142 (2026-10-17): military history before 1960
+## Current revision 1.143 (2026-10-18): Natalie Zemon Davis
+
+**187 entries (96 groups, 91 people), 1,040 teaching relationships, 1,835 sources and 1,242
+shared people.**
+
+Natalie Zemon Davis gains 12 edges, 28 chronology events and 28 node sources. Her biography claim
+and edge_755 are accepted.
+
+The applier gains two keys:
+- `node_list_additions`: `{node, field: source_ids|work_ids|claim_ids, values}`, appended without
+  duplicates.
+- `claim_reviews`: `{claim_id, expect_status, status, reviewer, rationale, qualification?,
+  source_records_append?, evidence_append?, edge_id?, edge_update?}`. It changes a claim's review
+  (with a history entry), its witnesses and evidence joins, and its edge's `review_status` and
+  text together. Prior claims and the earlier witness count are kept in the acceptance record.
+
+See the [acceptance record](data/production-batches/person-entries-1.143/README.md).
+
+## Historical revision 1.142 (2026-10-17): military history before 1960
 
 **187 entries (96 groups, 91 people), 1,028 teaching relationships, 1,816 sources and 1,241
 shared people.**

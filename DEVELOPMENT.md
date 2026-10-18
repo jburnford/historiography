@@ -1,5 +1,20 @@
 # Historiography: editorial and visualization working plan
 
+**Natalie Zemon Davis, a full entry (2026-10-18, revision 1.143):** The user asked "how does
+Natalie Zemon Davis only have one edge?", called her "one of the top 5 most important historians
+in the 20th century" and said "she needs a full entry". Her 1.119 promotion had left one
+provisional edge. Revision 1.143 gives her 13 edges:
+- **Contributions:** gender, women, culture, social, micro, revival, global.
+- **Influences:** Thompson in both directions; anthropology and Bloch on her.
+- **Critique:** Finlay's, drawn from microhistory.
+- **Accepted:** the biography edge is no longer provisional.
+
+She also gains 28 chronology events, 28 sources and new roster rows. The applier gains
+`node_list_additions` and `claim_reviews` (Sol: accept with fixes, 12 findings;
+[acceptance](data/production-batches/person-entries-1.143/README.md)). The user's rule from the
+same review: a person entry needs at least 2 edges and 3 timeline points, met with read evidence.
+The backfill queue is in `data/extension-2026/thin-entries-2026-10-17/`.
+
 **Military history and a 1750 axis (2026-10-17, revision 1.142):** The user asked to
 "review military history again; there must be military history going back to 1900; Greeks
 and Romans wrote military history". Revision 1.142 gives `military` and `wartradition`

@@ -59,3 +59,35 @@ The user (2026-10-17): "Almost by definition, anyone important enough to be feat
 | 5 | 2 | Eric Williams | 1.2 |
 | 4 | 2 | Gilbert Ryle | before 1.119 |
 | 3 | 2 | Kenneth Pomeranz | 1.130 |
+
+## Later work after 2000 (user, 2026-10-17)
+
+The user: "Pomeranz is thin too; we need to go back to everyone who kept working after 2000". The
+person entries were built under the original 1920–2000 frame, which ended on 2026-10-14. Of the
+28 person entries with life dates showing them alive after about 2002, 26 have **no** chronology
+point after 2000. Among them:
+- Hobsbawm, Joan Scott, Lynn Hunt, Daston, Chartier, Latour, Spivak, Guha, Said, Derrida and
+  Geertz;
+- Cronon, Merchant, Worster;
+- Catherine Hall, Higginbotham, Davidoff, Tuhiwai Smith, Walker, Cavender Wilson;
+- Pomeranz, Hayden White, Christopher Hill, Dorothy Thompson and Lévi-Strauss.
+
+Entries without life dates also lack later work: O'Brien, McKay, Richard White, Crosby, Ramsay
+Cook, Dickason and Sioui. Chakrabarty has one later point.
+
+**Threshold, extended.** A person who kept working after 2000 needs their major later works and
+the debates around them, with read evidence: dated points, edges, and roster rows where they fit.
+
+**Waves.** Each wave is researched, drafted, reviewed by Sol and applied as its own revision.
+
+| Wave | People | Why together |
+| --- | --- | --- |
+| 0 | Natalie Zemon Davis | full entry (in progress) |
+| 1 | Pomeranz, Philip Huang (new entry: involution; founding editor of *Modern China*), Lynn Hunt, Lorraine Daston, Catherine Hall | thin on both counts; global, cultural and imperial history after 2000; the Pomeranz–Huang debate between two entries |
+| 1b | Robert Brenner (NEW: absent from the atlas; user: "his debate with Pomeranz is minor compared with the Brenner debate"). Test whether *The Brenner Debate* also warrants a Debate entry, like *The Science Wars* | the Brenner debate (*Past & Present* 1976–82, Aston and Philpin 1985) against Postan's demographic model and Le Roy Ladurie; the 1977 *NLR* critique of "neo-Smithian Marxism" (Wallerstein, Frank, Sweezy); social-property relations with Ellen Meiksins Wood; *Merchants and Revolution* (1993); Brenner and Isett against Pomeranz (*JAS* 2002); *The Economics of Global Turbulence* (1998/2006). A critique hub linking marx/transition, economic, annales, dependency/world-systems and Pomeranz. |
+| 2 | Joan Scott, Chartier, Hobsbawm, Hayden White | major figures without later work |
+| 3 | Chakrabarty, Spivak, Guha, Latour | postcolonial and science studies after 2000 (Chakrabarty's "Climate of History", 2009) |
+| 4 | Cronon, Merchant, Worster, Crosby, Richard White | environmental and western history |
+| 5 | Higginbotham, Davidoff, Tuhiwai Smith, Walker, Cavender Wilson, O'Brien | thin entries and their later work |
+| 6 | McKay, Ramsay Cook, Valverde, Dickason, Sioui; Canadian Tier 1–2 later works | Canada |
+| 7 | Paul Thompson (new entry) and the rest of the thin-entries table | |
