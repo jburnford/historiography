@@ -1,5 +1,13 @@
 # Historiography: editorial and visualization working plan
 
+**Post-2000 wave 1 (2026-10-18, revision 1.144):** The user: "Pomeranz is thin too; we need to
+go back to everyone who kept working after 2000". This wave covers Pomeranz, Philip C. C. Huang
+(a new person entry: involution; founder of *Modern China*, 1975), Lynn Hunt, Lorraine Daston
+and Catherine Hall. It adds 34 edges and 52 sources, from two independent research passes. Each
+person now has 6–12 edges and 11–19 timeline points, most of them after 2000 (Sol: accept with
+fixes, then a delta review; [acceptance](data/production-batches/person-entries-1.144/README.md)).
+The waves that follow are in `data/extension-2026/thin-entries-2026-10-17/README.md`.
+
 **Natalie Zemon Davis, a full entry (2026-10-18, revision 1.143):** The user asked "how does
 Natalie Zemon Davis only have one edge?", called her "one of the top 5 most important historians
 in the 20th century" and said "she needs a full entry". Her 1.119 promotion had left one

@@ -1,6 +1,18 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.143 (2026-10-18): Natalie Zemon Davis
+## Current revision 1.144 (2026-10-18): post-2000 wave 1
+
+**188 entries (96 groups, 92 people), 1,074 teaching relationships, 1,887 sources and 1,245
+shared people.**
+
+Philip C. C. Huang becomes a person entry. Pomeranz, Hunt, Daston and Catherine Hall gain their
+work after 2000 and its reception. The batch adds 34 edges and one strand
+(`science/moral_economies`), and `edge_354` is retargeted to `geertz` → `lynn_hunt`. Three
+repeated endpoint/type pairs were reviewed and kept as distinct later interventions.
+
+See the [acceptance record](data/production-batches/person-entries-1.144/README.md).
+
+## Historical revision 1.143 (2026-10-18): Natalie Zemon Davis
 
 **187 entries (96 groups, 91 people), 1,040 teaching relationships, 1,835 sources and 1,242
 shared people.**

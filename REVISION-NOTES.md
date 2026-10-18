@@ -1887,3 +1887,32 @@ She also gains 28 chronology events (1966–2010, with editions and reception), 
 rows on gender, global, Annales and public history, and two strands. Sol said "accept with fixes";
 all 12 findings are fixed (`release/fixes-1.143.md`). Totals: 187 entries, 1,040 relationships.
 See the [acceptance record](data/production-batches/person-entries-1.143/README.md).
+
+## Revision 1.144: post-2000 wave 1 (18 October 2026)
+
+The user: "Pomeranz is thin too; we need to go back to everyone who kept working after 2000",
+and "Philip Huang".
+- **Huang (new person entry):** involution, acknowledged as drawn from Chayanov and Geertz (1985,
+  1991); his founding of *Modern China* (1975); critiques of modernisation, of "incipient
+  capitalism" and of Said (1998); Bourdieu's "practice".
+- **Huang–Pomeranz:** the debate is drawn once, as critiques in both directions (*JAS* 2002; the
+  rejoinders in 62:1, 2003).
+- **Pomeranz:** a critique from economic history naming Brenner and Isett, Broadberry and Gupta,
+  Allen and colleagues, and Broadberry, Guan and Li, each for what they measured. Also his
+  global-history contribution (*Journal of Global History*; the 2014 AHA address), consumption,
+  and his critique of world-systems premises.
+- **Hunt:** political culture (1984; the 2003 address); the truth debate; global history (2014)
+  and human rights (2007), both through reviewers; Moyn and Bell as critics.
+- **Daston:** moral economies of science (1995); her critique of science studies (2009); Elias's
+  influence; comparisons with Foucault and Thompson.
+- **Catherine Hall:**
+  - influences on her: Eric Williams, C. L. R. James and Fanon;
+  - her critique of Hobsbawm, critique by Said;
+  - contributions to postcolonial, Atlantic, economic and public history and to gender (*Civilising
+    Subjects*; the Legacies of British Slave-ownership project);
+  - her critique of the national "island story".
+
+The batch draws on two independent research passes. Sol said "accept with fixes"; a delta review
+of the second pass's additions followed (`release/fixes-1.144.md`, `release/pass2-additions-1.144.md`).
+Totals: 188 entries, 1,074 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.144/README.md).

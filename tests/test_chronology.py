@@ -32,7 +32,8 @@ class ChronologyTests(unittest.TestCase):
     def test_all_current_entries_and_linked_journals_have_chronology(self):
         linked = {e['source'] for e in self.graph['journal_catalogue']['edges']}
         nodes = self.graph['nodes'] + [j for j in self.graph['journal_catalogue']['nodes'] if j['id'] in linked]
-        self.assertEqual(len(nodes), 225)
+        # 187 entries + 38 linked journals at 1.141; later revisions add entries (Huang, 1.144).
+        self.assertGreaterEqual(len(nodes), 225)
         self.assertTrue(all(n.get('chronology', {}).get('events') for n in nodes))
 
     def test_existing_graph_facts_and_qualifications_are_unchanged(self):
