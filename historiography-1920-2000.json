@@ -74492,7 +74492,7 @@
       "id": "edge_844",
       "source": "gramsci",
       "target": "liberal_order_framework",
-      "relationship": "Gramsci's hegemony informs the prospectus",
+      "relationship": "The liberal order framework is Gramscian: liberal order as hegemony and the national-political 'commonsense' (2000)",
       "type": "connection",
       "relationship_kind": "influence",
       "directed": true,
@@ -74502,9 +74502,9 @@
         "lof_palmer_2009",
         "lof_mckay_2000"
       ],
-      "evidence_note": "Pâquet names Gramsci as one of two explicit influences on the prospectus; Ajzenstat describes McKay as recommending \"a Gramscian approach\"; Palmer argues McKay's reading of Gramscian hegemony is too seamless. McKay's abstract uses \"liberal hegemony\" and \"commonsense\". PhD context: 9 of the 91 PhDs citing McKay 2000 also cite a Gramsci work. Influence on the prospectus only, not on every work in the roster.",
+      "evidence_note": "McKay's abstract (2000) maps Canada as 'a project of liberal rule in northern North America' through which 'liberal order became the national-political ‘commonsense’'. Ajzenstat (2009) describes McKay as recommending 'a Gramscian approach to Canadian history'; Pâquet (2009) names Gramsci, with Fernande Roy (1988), as one of the prospectus's two explicit influences; Palmer (2009) argues that McKay's reading of Gramscian hegemony is too seamless, conflating hegemony and domination. McKay's own Gramscian outlook is drawn separately (gramsci → ian_mckay, revision 1.149). PhD context: 9 of the 91 PhDs citing McKay 2000 also cite a Gramsci work.",
       "classification_basis": "editorial_review",
-      "map_label": "Gramscian hegemony",
+      "map_label": "A Gramscian framework",
       "proposal_id": "lof_rel_01"
     },
     {
@@ -80375,6 +80375,25 @@
       "classification_basis": "editorial_review",
       "map_label": "Chronicle and narrative: used and contested, 1992",
       "proposal_id": "w2_white_rel_05"
+    },
+    {
+      "id": "edge_1144",
+      "source": "gramsci",
+      "target": "ian_mckay",
+      "relationship": "McKay's historical work is Gramscian by his own account: cultural hegemony in The Quest of the Folk (1994), and 'the Gramscian assumptions that have shaped my outlook' (2000)",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "cdng_mckay_2000_region",
+        "cpl129_muise_1998",
+        "cpl129_wright_1995",
+        "lof_palmer_2009"
+      ],
+      "evidence_note": "McKay's own words, read in full (\"A Note on 'Region' in Writing the History of Atlantic Canada\", Acadiensis 29:2, 2000, p. 89): 'the Gramscian assumptions that have shaped my outlook'. Muise (Acadiensis 27:2, 1998, read pp. 124, 128–132) reports that in The Quest of the Folk McKay places himself 'within a neo-marxist framework associated with the work of Antonio Gramsci' and quotes the book (p. 306): 'the concept of the Folk was and remains a powerful obstacle to the formation of a counter-hegemonic cultural politics'. Wright (Acadiensis 24:2, 1995, p. 132 n. 29): 'For a very skilled handling of Antonio Gramsci's theory of cultural hegemony by an historian see Ian McKay, The Quest of the Folk'. Critic: Palmer (2009) argues that McKay's Gramsci conflates hegemony and domination. The Quest of the Folk is given through these readers. Distinct from edge_844 (Gramsci → the liberal order framework, 2000): this arrow carries the influence on McKay's work from 1994, before the prospectus.",
+      "classification_basis": "editorial_review",
+      "map_label": "Gramscian hegemony, 1994–2000",
+      "proposal_id": "mg_rel_01"
     }
   ],
   "sources": [
@@ -108796,6 +108815,19 @@
       "added_node_ids": [],
       "added_edge_ids": [],
       "revised_edge_ids": []
+    },
+    {
+      "version": "1.149",
+      "date": "2026-10-19",
+      "acceptance_record": "data/production-batches/person-entries-1.149/acceptance.json",
+      "summary": "Gramsci and McKay. A new influence edge, gramsci → ian_mckay, rests on McKay's own words (2000, p. 89) and two readers of The Quest of the Folk (Wright 1995, Muise 1998), with Palmer's critique. edge_844 (Gramsci → the liberal order framework) is restated plainly: the framework is Gramscian.",
+      "added_node_ids": [],
+      "added_edge_ids": [
+        "edge_1144"
+      ],
+      "revised_edge_ids": [
+        "edge_844"
+      ]
     }
   ],
   "people": [

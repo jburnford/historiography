@@ -1999,3 +1999,15 @@ scope-note sentence still carried wording left by its find-and-replace, such as 
 or "another copy". They now say only what was read. No reading claim, edge or count changes. The
 applier's guarded `source_field_sets` now also accepts `verification.note`. See the
 [acceptance record](data/production-batches/source-wording-1.148/README.md).
+
+## Revision 1.149: Gramsci and McKay (19 October 2026)
+
+The user: "why isn't Ian Mckay linked to Gramsci?" and "the liberal order framework is Gramscian".
+- **New edge** `gramsci` → `ian_mckay` (influence): McKay names "the Gramscian assumptions that have
+  shaped my outlook" (2000, p. 89); Wright (1995) and Muise (1998) read *The Quest of the Folk* (1994)
+  as a Gramscian study of cultural hegemony; Palmer (2009) as critic. The 1.129 packet had left this
+  as a lead because `edge_844` carried Gramsci at entry level, but the claims differ.
+- **`edge_844` restated:** the liberal order framework is Gramscian, liberal order as hegemony and the
+  national-political "commonsense" (McKay 2000; Ajzenstat, Pâquet, Palmer 2009).
+
+No new sources. Totals: 195 entries, 1,144 relationships. See the [acceptance record](data/production-batches/person-entries-1.149/README.md).

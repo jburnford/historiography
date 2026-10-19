@@ -1,6 +1,15 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.148 (2026-10-19): source wording
+## Current revision 1.149 (2026-10-19): Gramsci and McKay
+
+**195 entries, 1,144 teaching relationships, 2,049 sources and 1,282 shared people.**
+
+A new influence edge, `gramsci` → `ian_mckay` (`edge_1144`), rests on McKay's own words (2000,
+p. 89) and two readers of *The Quest of the Folk*, with Palmer's critique. `edge_844` (Gramsci →
+the liberal order framework) is restated plainly: the framework is Gramscian. See the
+[acceptance record](data/production-batches/person-entries-1.149/README.md).
+
+## Historical revision 1.148 (2026-10-19): source wording
 
 Counts are unchanged from 1.147. Thirteen source records (titles, citations and verification
 notes) and one sentence of the `capitalismdebates` scope note are reworded after the 2026-10-19
