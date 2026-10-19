@@ -397,7 +397,8 @@ export function buildFieldLayout(graph, width, focusSet, layerOrder, opts = {}) 
         .map(yr => ({yr, x: scale(yr)})) : [];
       if (interventions.length) rowEnds[r] = Math.max(rowEnds[r], scale(interventions.at(-1).yr) + 8);
       bars.push({...item, shape: 'bar', label, badge, labelW, side, contW: 0, open, lead, drawEnd, reviewed, fadeTo, point, ticks,
-        chronology: item.span.chronological ? chronologyGeometry(item.node, scale, minYear) : null,
+        chronology: item.span.chronological ? chronologyGeometry(item.node, scale, minYear,
+          life?.death && life.death >= minYear && life.death <= frame.end ? life.death : null) : null,
         reviewMarker: reviewX !== null ? {year: reviewed, x: reviewX} : null,
         life, death, posthumous, interventions, labelX, x: bx, w: bw, h: G.barH,
         y: barTop + r * (G.barH + G.rowGap + (stacked ? G.stackGap : 0)) + (stacked ? G.stackGap : 0)});

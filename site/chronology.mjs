@@ -39,13 +39,18 @@ export function chronologySpan(node) {
     precision: 'explicit', curated: true, chronological: true, basis: c.selection_note,
     contributionSpan: contributionSpan(node)} : null;
 }
-export function chronologyGeometry(node, scale, floorYear = -Infinity) {
+/* deathYear (a person's Wikidata death, when known) ends the dotted line of contributions: a
+   lifetime's work stops there, and later events (posthumous publications, reception) are marked
+   posthumous instead of stretching the line. */
+export function chronologyGeometry(node, scale, floorYear = -Infinity, deathYear = null) {
   const selection = contributionSpan(node);
+  const end = selection && deathYear !== null && deathYear >= selection.start ? Math.min(selection.end, deathYear) : selection?.end;
   return {
-    selection: selection ? {x: scale(selection.start), w: scale(selection.end) - scale(selection.start)} : null,
+    selection: selection ? {x: scale(selection.start), w: scale(end) - scale(selection.start)} : null,
+    death: deathYear !== null ? {yr: deathYear, x: scale(deathYear)} : null,
     events: chronologyEvents(node).map(e => ({...e, x: scale((e.bounds[0] + e.bounds[1]) / 2),
       x0: scale(e.bounds[0]), x1: scale(e.bounds[1]), uncertain: e.bounds[0] !== e.bounds[1] || Boolean(e.date.qualifier),
-      before: e.bounds[1] < floorYear})),
+      before: e.bounds[1] < floorYear, posthumous: deathYear !== null && e.bounds[0] > deathYear})),
     intervals: (chronologyOf(node)?.intervals || []).map(i => {
       const a = dateBounds(i.start), b = dateBounds(i.end);
       return {...i, x: scale(a[0]), w: b ? scale(b[1]) - scale(a[0]) : 0, unknownEnd: !b};

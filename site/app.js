@@ -571,10 +571,10 @@ function personMapSection(p) {
       ${reach ? '<li><span class="pm-sw linked"></span>related to their entry; does not name them</li>' : ''}
       ${pmHasLead(s) ? '<li><span class="pm-sw lead"></span>earlier roots, undated</li>' : ''}
       ${kinds.map(k => `<li class="pm-kind k-${esc(BASE_KINDS.includes(k) ? k : 'extra')}"><i></i>${esc(kindChip(k).toLowerCase())}</li>`).join('')}
-      ${explicitChronology() ? '<li>● selected contribution · ○ context · ◇ edition or reception · ▫ editorial review year · ◁ before 1750</li>' : fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
+      ${explicitChronology() ? '<li>● selected contribution · ○ context · ◇ edition or reception · † death (later points hollow: posthumous) · ▫ editorial review year · ◁ before 1750</li>' : fr.open ? '<li><span class="pm-sw tail"></span>solid to the year reviewed; faded where later work is not yet surveyed</li>'
         : `<li><span class="pm-sw wall"></span>${esc(fr.wall)}: the archive’s coverage limit, not an ending</li>`}
     </ul>
-    <p class="fine-print pm-note">${explicitChronology() ? 'Points date works and events; dotted lines connect the selected contributions, not a lifespan. Editorial review years remain separate.' : 'Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names;'} A roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
+    <p class="fine-print pm-note">${explicitChronology() ? 'Points date works and events; dotted lines connect the selected contributions, not a lifespan, and stop at a person’s death. Editorial review years remain separate.' : 'Colour follows each entry’s layer, as in the cards below. Bars follow the years each entry’s date label names;'} A roster place is shared context, not influence${own ? ', and only relationships recorded for their own entry are drawn' : ''}.</p></section>`;
 }
 /* Shared marks for full, family and compact maps. Geometry comes only from graph facts. */
 function chronologyShapes(p) {
@@ -587,18 +587,20 @@ function chronologyShapes(p) {
     : `<rect class="chron-interval${i.track === 'context' ? ' interval-context' : ''}" x="${i.x}" y="${mid - 3}" width="${Math.max(1, i.w)}" height="6"><title>${esc(i.subject)}: ${esc(dateText(i.start))}–${esc(dateText(i.end))}; ${esc(i.end_meaning.replace(/_/g, ' '))}${i.track === 'context' ? '; lineage context' : ''}</title></rect>`).join('');
   const events = c.events.map(e => {
     const y = e.track === 'context' ? mid - 4 : e.track === 'reception' || e.track === 'editions' ? mid + 4 : mid;
-    const title = `${e.before ? 'Before 1750 (drawn at the axis edge): ' : ''}${dateText(e.date)} · ${e.label} · ${e.kind.replace(/_/g, ' ')} · ${e.track}`;
+    const title = `${e.before ? 'Before 1750 (drawn at the axis edge): ' : ''}${dateText(e.date)} · ${e.label} · ${e.kind.replace(/_/g, ' ')} · ${e.track}${e.posthumous ? ' · posthumous' : ''}`;
     const range = !e.before && e.x1 > e.x0 ? `<line class="chron-range" x1="${e.x0}" x2="${e.x1}" y1="${y}" y2="${y}"/>` : '';
     /* Events before the axis floor point off the left edge; their real date is in the title and panels. */
     if (e.before) return `<g class="chron-event chron-before track-${e.track}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
       <title>${esc(title)}</title><path d="M${e.x - r} ${y} l${r + 1} ${-r} v${2 * r} z"/></g>`;
-    return `<g class="chron-event track-${e.track}${e.uncertain ? ' uncertain' : ''}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
+    return `<g class="chron-event track-${e.track}${e.uncertain ? ' uncertain' : ''}${e.posthumous ? ' posthumous-event' : ''}" data-event="${esc(e.id)}" data-year="${e.bounds[0]}">
       <title>${esc(title)}</title>${range}${e.track === 'reception' || e.track === 'editions'
         ? `<path d="M${e.x} ${y-r} l${r} ${r} l${-r} ${r} l${-r} ${-r} z"/>`
         : `<circle cx="${e.x}" cy="${y}" r="${r}"/>`}</g>`;
   }).join('');
+  const death = c.death ? `<g class="death-mark"><line x1="${c.death.x}" y1="${mid - r - 4}" x2="${c.death.x}" y2="${mid + r + 4}"/>
+    <text x="${c.death.x}" y="${mid - r - 5}" text-anchor="middle">†</text><title>Died ${c.death.yr} (Wikidata); later points are posthumous</title></g>` : '';
   const review = p.reviewMarker ? `<rect class="chron-review" x="${p.reviewMarker.x - 2.5}" y="${p.y + p.h + 1}" width="5" height="4"><title>Editorial coverage: reviewed through ${p.reviewMarker.year}; not a historical endpoint</title></rect>` : '';
-  return `<rect class="chron-hit" x="${p.x - 5}" y="${p.y - 3}" width="${p.w + 10}" height="${p.h + 6}" rx="3"/>${selection}${intervals}${events}${review}`;
+  return `<rect class="chron-hit" x="${p.x - 5}" y="${p.y - 3}" width="${p.w + 10}" height="${p.h + 6}" rx="3"/>${selection}${intervals}${events}${death}${review}`;
 }
 
 function personMapSvg(L, p) {
@@ -772,6 +774,7 @@ function fieldLegend() {
       <span class="swatch chron-connector">extent of the selection</span>
       <span class="swatch chron-interval-key">sourced historical interval</span>
       <span class="swatch chron-review-key">editorial review year</span>
+      <span class="swatch death-key">† death; later points hollow (posthumous)</span>
       <span class="swatch axis-note">pre-1900 compressed</span>
       <span class="swatch chron-before-key">◁ before 1750, at the axis edge</span>` : `<span class="swatch precise">years the label names</span>
       <span class="swatch lead">earlier roots, undated</span>

@@ -420,14 +420,19 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(panel.locator('.life')).to_contain_text('Born 1886 · died 1944')
         expect(panel.locator('.life a')).to_have_attribute('href', 'https://www.wikidata.org/wiki/Q156585')
         expect(panel.locator('.life')).to_contain_text('retrieved 2026-09-17')
-        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
+        # From revision 1.150 a death within the axis is drawn on explicit chronologies too, and ends
+        # the dotted line of contributions (user: Nietzsche and Wittgenstein extended past their deaths).
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
+        self.open('#focus=wittgenstein')
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
+        expect(self.page.locator('.entry.selected .posthumous-event[data-year="1953"]')).to_have_count(1)
         self.open('#focus=gramsci')
         expect(self.page.locator('.entry.selected .posthumous')).to_have_count(0)
         expect(self.page.locator('.entry.selected .track-reception[data-year="1974"]')).to_have_count(1)
         self.open('#focus=derrida')
         expect(self.page.locator('.field-panel .life')).to_contain_text('died 2004')
-        # The open frame's axis runs to the research cutoff, so his 2004 death is drawn ...
-        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
+        # The open frame's axis runs past 2004, so his death is drawn ...
+        expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
         # ... while the archived 2000 view still states it in the panel only.
         self.open('#focus=derrida&range=2000')
         expect(self.page.locator('#edition-label')).to_contain_text('1.121')
