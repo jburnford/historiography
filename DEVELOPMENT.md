@@ -5,6 +5,12 @@ corrected throughout the repository history (user decision), so every commit has
 short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.
 Research agents now cite only DOI, publisher, repository or author pages.
 
+**Post-2000 wave 2 (2026-10-19, revision 1.147):** Joan Scott, Chartier, Hobsbawm and Hayden White
+now have 13–21 edges and 20–22 timeline points each, about half after 2000 (Sol: accept with fixes;
+[acceptance](data/production-batches/person-entries-1.147/README.md)). Hobsbawm's later books are given through reviewers, and the reception of *The
+Invention of Tradition* and *Nations and Nationalism* is still unread. Next: wave 3 (Chakrabarty,
+Spivak, Guha, Latour).
+
 **Mokyr, Wrigley, de Vries and Wong (2026-10-19, revision 1.146):** person entries for the
 industrialisation and Great Divergence components of the 1.145 debate entry, with the field
 arrows re-sourced to the people who made the arguments. Sol: accept with fixes, all 12 applied

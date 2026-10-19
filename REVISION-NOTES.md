@@ -1970,3 +1970,24 @@ The field arrows into the debate for Wrigley, de Vries and Mokyr (`edge_1084`–
 from the people, keeping their ids. Sol said "accept with fixes"; all 12 findings are applied
 (`release/fixes-1.146.md`). Totals: 195 entries, 1,120 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.146/README.md).
+
+## Revision 1.147: post-2000 wave 2 (19 October 2026)
+
+The user: "we need to go back to everyone who kept working after 2000". Four entries built under
+the old 1920–2000 frame gain their later careers and reception:
+- **Joan Wallach Scott:** influences (Davis; Freud); critiques of psychohistory and of class as a
+  category (both from her abstracts); contributions to political history, postcolonial studies
+  (the veil and secularism books) and the truth debate; Laura Lee Downs's critique; her 2008
+  "Unanswered Questions" and *Theses on Theory and History* (2018).
+- **Roger Chartier:** the exchange with Hayden White (1993/1995), drawn once each way; his critiques
+  of the linguistic turn and of Lynn Hunt; practice theory's contribution to his work; book
+  history and the 2007 dialogue with Darnton; the Collège de France chair (2007).
+- **Eric Hobsbawm:** "We cannot invent our facts" (1993) against national traditions; global and
+  economic history; Tony Judt's critique; his later books through reviewers.
+- **Hayden White:** "The Practical Past" (2010) and the philosophy of history; the Holocaust
+  representation debate (from quoted passages); intellectual history; critics as Paul reports
+  them; his reading by Cronon.
+
+Sol said "accept with fixes" (14 findings); they are applied, narrowed or declined in
+`release/fixes-1.147.md`. The packet was rebased onto 1.146. Totals: 195 entries, 1,143
+relationships. See the [acceptance record](data/production-batches/person-entries-1.147/README.md).

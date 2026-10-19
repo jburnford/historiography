@@ -1,6 +1,19 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.146 (2026-10-19): Mokyr, Wrigley, de Vries and Wong
+## Current revision 1.147 (2026-10-19): post-2000 wave 2
+
+**195 entries (97 groups, 98 people), 1,143 teaching relationships, 2,049 sources and 1,282
+shared people.**
+
+Joan Wallach Scott, Roger Chartier, Eric Hobsbawm and Hayden White gain their later work and its
+reception: 23 edges, 57 sources and full chronologies (84 dated points, 43 after 2000). The
+Chartier–White exchange (1993/1995) is drawn once in each direction. Named critics without their
+own entry are routed through group entries and named in the text (Downs via `women`, Judt via
+`political`). Two people records are added (`laura_lee_downs`, `tony_judt`).
+
+See the [acceptance record](data/production-batches/person-entries-1.147/README.md).
+
+## Historical revision 1.146 (2026-10-19): Mokyr, Wrigley, de Vries and Wong
 
 **195 entries (97 groups, 98 people), 1,120 teaching relationships, 1,992 sources and 1,280
 shared people.**
