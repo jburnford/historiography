@@ -1916,3 +1916,36 @@ The batch draws on two independent research passes. Sol said "accept with fixes"
 of the second pass's additions followed (`release/fixes-1.144.md`, `release/pass2-additions-1.144.md`).
 Totals: 188 entries, 1,074 relationships. See the
 [acceptance record](data/production-batches/person-entries-1.144/README.md).
+
+## Revision 1.145: Capitalism, divergence and industrialisation (18 October 2026)
+
+The user asked for Robert Brenner ("his debate with Pomeranz is minor compared with the Brenner
+debate") and then for a larger debate entry "with Brenner/Wood as one of the main components".
+- **New Debate entry `capitalismdebates`:** five components in 11 strands:
+  - the transition debate (Dobb, Sweezy, Takahashi; 1950–53);
+  - the Brenner debate (*Past and Present* 1976–82; the 1985 volume) and political Marxism, Bois's
+    critical label that Wood made a programme;
+  - explaining industrialisation (Crafts–Harley and Berg–Hudson; Wrigley, proto-industrialisation,
+    de Vries, Mokyr, Allen and their critics);
+  - the Great Divergence (Wong, Pomeranz, Goldstone, Frank, with Landes as a counterpoint through his
+    readers; named critics by what each measured);
+  - slavery and capitalism (Williams and his critics; the new history of capitalism, Baptist and
+    Olmstead–Rhode, Hilt's assessment).
+- **Brenner (new person entry):** the 1976 article and the debate; critiques of Postan's
+  demographic model, Le Roy Ladurie and the "neo-Smithian" Marxism of Frank and Wallerstein (1977);
+  the influence of Dobb, Marx and (moderate, as Wood reads it) Christopher Hill; Hilton and Tawney
+  as evidence; Brenner and Isett against Pomeranz (2002), drawn once.
+- **Wood (new person entry):** political Marxism as a programme, built on Brenner and on E. P.
+  Thompson; "The Separation of the Economic and the Political" (1981) against Cohen's technological
+  determinism; "Eurocentric Anti-Eurocentrism" (2001) against Frank and Blaut.
+- **Moved:** `edge_1050` and `edge_407` now run from the debate.
+- **Corrected:** `williams_capitalism_primary` links to the UNC Press page, not a PDF on a personal
+  website.
+- **Reading limits:** unread books (*The Origin of Capitalism*, *Merchants and Revolution*,
+  *Econocide*, Mokyr's books, Rosenthal–Wong, Baptist, Johnson) are given through named readers or
+  publisher descriptions; Brenner 1976 is cited by its DOI.
+
+Sol said "accept with fixes"; all 14 findings are applied (`release/fixes-1.145.md`), and the
+quotations taken through WebFetch extractions were rechecked word for word
+(`release/quote-verification-1.145.md`). Totals: 191 entries, 1,108 relationships. See the
+[acceptance record](data/production-batches/group-revision-1.145/README.md).

@@ -1,6 +1,24 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.144 (2026-10-18): post-2000 wave 1
+## Current revision 1.145 (2026-10-18): Capitalism, divergence and industrialisation
+
+**191 entries (97 groups, 94 people), 1,108 teaching relationships, 1,970 sources and 1,280
+shared people.**
+
+A new Debate entry, `capitalismdebates` (*Capitalism, divergence and industrialisation*), joins
+five linked controversies: the Dobb–Sweezy transition debate, the Brenner debate and political
+Marxism, explaining industrialisation, the Great Divergence, and slavery and capitalism. It is a
+collection of controversies, not one bounded exchange, so `period` is `null`, its chronology
+intervals are empty and continuation is `not_asserted`; coverage is reviewed through 2000, with
+selected later interventions dated individually through 2023. Robert Brenner and Ellen Meiksins
+Wood become person entries. `edge_1050` (named critics of Pomeranz) and `edge_407` (Drescher and
+others on Williams) move from `economic` to the debate with their ids; Brenner and Isett are drawn
+once, as `robert_brenner` → `kenneth_pomeranz`. The batch adds 34 edges and 83 sources, and
+corrects one existing source URL through the applier's new `source_field_sets` key.
+
+See the [acceptance record](data/production-batches/group-revision-1.145/README.md).
+
+## Historical revision 1.144 (2026-10-18): post-2000 wave 1
 
 **188 entries (96 groups, 92 people), 1,074 teaching relationships, 1,887 sources and 1,245
 shared people.**

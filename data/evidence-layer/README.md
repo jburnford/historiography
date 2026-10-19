@@ -3,7 +3,26 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-17)
+## Current local build (2026-10-18)
+
+Practice **v25**, methods **methods-v9** and **mentions-v6** serve graph 1.145. Revision 1.145
+adds the Debate entry *Capitalism, divergence and industrialisation* (`capitalismdebates`):
+- It is folded into economic history (`approach-folds.csv`, subfield; context only, no evidence of
+  its own).
+- Its family is *Economy & social science history*, bridged to *Empire, colonialism & the global*
+  (`families-draft.csv`, proposed).
+
+Family shares are unchanged from v24; only family membership changed. The landing audit is
+`audits/landing-1.145`. The person entries added in 1.143–1.145 need no evidence rebuild.
+
+```bash
+python3 scripts/build_practice_series.py --version v25
+python3 scripts/audit_landing_evidence.py --series v25 --out data/evidence-layer/audits/landing-1.145
+python3 scripts/build_evidence_asset.py --series v25 --methods methods-v9 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.145/summary.json
+python3 scripts/build_site.py
+```
+
+## Previous build (2026-10-17)
 
 Practice **v24**, methods **methods-v9** (registry v9) and **mentions-v6** serve graph 1.142.
 The user asked why the War & the military record was empty before 1965. Two changes follow from

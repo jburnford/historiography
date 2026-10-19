@@ -21,7 +21,9 @@ source_ids, work_ids or claim_ids) and claim_reviews ([{claim_id, expect_status,
 rationale, qualification?, source_records_append?, evidence_append?, edge_id?, edge_update?}]:
 change a claim's review with a history entry, append claim witnesses and evidence joins
 and set its edge's review_status and text in the same step; prior claims are kept in the
-acceptance record for exact baseline recovery).
+acceptance record for exact baseline recovery). From 1.145: source_field_sets ([{id, field:
+url|title|citation, expect, value}]: correct an existing source record, e.g. replace a link to an
+unauthorised copy with the publisher's page).
 """
 import argparse
 from copy import deepcopy
@@ -43,6 +45,8 @@ TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
 FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology'}
 # List fields on an existing node that a batch may extend (`node_list_additions`), without duplicates.
 NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
+# Existing source-record fields a batch may correct (`source_field_sets`), guarded by `expect`.
+SOURCE_FIELDS = {'url', 'title', 'citation'}
 
 
 def read(path):
@@ -113,7 +117,7 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
+        for key in ('text_revisions', 'field_sets', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -202,6 +206,13 @@ class Batch:
                 node.pop(fs['field'], None)
             else:
                 node[fs['field']] = deepcopy(fs['value'])
+        for sf in packet.get('source_field_sets', []):
+            if sf['field'] not in SOURCE_FIELDS:
+                raise ValueError(f"Source field not settable: {sf['field']}")
+            src = next(x for x in g['sources'] if x['id'] == sf['id'])
+            if src.get(sf['field']) != sf['expect']:
+                raise ValueError(f"Source field does not match its expected value: {sf['id']} {sf['field']}")
+            src[sf['field']] = sf['value']
         for nla in packet.get('node_list_additions', []):
             if nla['field'] not in NODE_LIST_FIELDS:
                 raise ValueError(f"Node list not extensible: {nla['field']}")
@@ -326,7 +337,7 @@ class Batch:
         GRAPH.write_text(serial(graph))
         touched = dict(people={u['id'] for u in packet['people_updates']},
                        edges=set(packet['edge_revisions']) | {c['edge_id'] for c in packet.get('claim_reviews', []) if c.get('edge_id')},
-                       sources=set(packet['source_addenda']),
+                       sources=set(packet['source_addenda']) | {x['id'] for x in packet.get('source_field_sets', [])},
                        nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])
                               + packet.get('roster_list_additions', []) + packet.get('field_sets', [])
                               + packet.get('node_list_additions', []) + packet.get('text_revisions', [])

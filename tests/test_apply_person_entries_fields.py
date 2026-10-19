@@ -81,5 +81,16 @@ class ClaimReviewTests(unittest.TestCase):
             batch().transform(self.graph(), p)
 
 
+class SourceFieldTests(unittest.TestCase):
+    def test_guarded_url_correction(self):
+        g = graph(); g["sources"] = [dict(id="s1", url="https://unauthorised.example/book.pdf")]
+        p = packet([]); p["source_field_sets"] = [dict(id="s1", field="url", expect="https://unauthorised.example/book.pdf",
+                                                        value="https://publisher.example/book")]
+        self.assertEqual(batch().transform(g, p)["sources"][0]["url"], "https://publisher.example/book")
+        p["source_field_sets"][0]["expect"] = "stale"
+        with self.assertRaises(ValueError):
+            batch().transform(g, p)
+
+
 if __name__ == "__main__":
     unittest.main()

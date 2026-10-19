@@ -1,5 +1,15 @@
 # Historiography: editorial and visualization working plan
 
+**Capitalism, divergence and industrialisation (2026-10-18, revision 1.145):** The user asked
+for Robert Brenner ("his debate with Pomeranz is minor compared with the Brenner debate"), then:
+"we probably want to think bigger and add a history of capitalism/great divergence/industrialization
+debate with Brenner/Wood as one of the main components". The new Debate entry `capitalismdebates`
+has 11 strands across five components, 60 roster rows and 45 dated events; Brenner (14 edges) and
+Wood (6) become person entries. Sol: accept with fixes, all 14 applied
+([acceptance](data/production-batches/group-revision-1.145/README.md)). Its evidence-layer family is *Economy & social science history*, bridged to
+*Empire, colonialism & the global*; practice v25 folds it into economic history. Next: person
+entries for Mokyr, Wrigley and de Vries (1.146).
+
 **Post-2000 wave 1 (2026-10-18, revision 1.144):** The user: "Pomeranz is thin too; we need to
 go back to everyone who kept working after 2000". This wave covers Pomeranz, Philip C. C. Huang
 (a new person entry: involution; founder of *Modern China*, 1975), Lynn Hunt, Lorraine Daston
