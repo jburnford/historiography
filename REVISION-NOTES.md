@@ -1949,3 +1949,24 @@ Sol said "accept with fixes"; all 14 findings are applied (`release/fixes-1.145.
 quotations taken through WebFetch extractions were rechecked word for word
 (`release/quote-verification-1.145.md`). Totals: 191 entries, 1,108 relationships. See the
 [acceptance record](data/production-batches/group-revision-1.145/README.md).
+
+## Revision 1.146: Mokyr, Wrigley, de Vries and Wong (19 October 2026)
+
+Person entries for four economic historians whose arguments anchor the 1.145 debate entry
+*Capitalism, divergence and industrialisation*:
+- **Joel Mokyr:** the "Industrial Enlightenment" and useful knowledge (the October 2002 draft; the
+  2007 lecture); his critique of Pomeranz (2002); the English-county work with Kelly and Ó Gráda
+  (2014, 2023); the 2025 Nobel memorial prize. His books are given through reviewers (Khan, Harley,
+  Diebolt).
+- **E. A. Wrigley:** population reconstruction and the Cambridge Group; the organic and mineral-based
+  economies (1988, 2010, 2016); compared with Pomeranz by three readers; an influence on Wong.
+- **Jan de Vries:** the industrious revolution (1994, 2008) and its critics; *The First Modern
+  Economy* with van der Woude (1997); an influence on Pomeranz in Pomeranz's own words.
+- **R. Bin Wong:** reciprocal comparison (*China Transformed*, 1997), its influence on Pomeranz, and
+  his critique of Brenner, from his own 2016 retrospective; *Before and Beyond Divergence* (with
+  Rosenthal, 2011) through Ma's review.
+
+The field arrows into the debate for Wrigley, de Vries and Mokyr (`edge_1084`–`edge_1086`) now run
+from the people, keeping their ids. Sol said "accept with fixes"; all 12 findings are applied
+(`release/fixes-1.146.md`). Totals: 195 entries, 1,120 relationships. See the
+[acceptance record](data/production-batches/person-entries-1.146/README.md).

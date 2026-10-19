@@ -1,5 +1,15 @@
 # Historiography: editorial and visualization working plan
 
+**History rewrite (2026-10-19):** source links to copies that were not official publications were
+corrected throughout the repository history (user decision), so every commit has a new ID. Old
+short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.
+Research agents now cite only DOI, publisher, repository or author pages.
+
+**Mokyr, Wrigley, de Vries and Wong (2026-10-19, revision 1.146):** person entries for the
+industrialisation and Great Divergence components of the 1.145 debate entry, with the field
+arrows re-sourced to the people who made the arguments. Sol: accept with fixes, all 12 applied
+([acceptance](data/production-batches/person-entries-1.146/README.md)). Next: post-2000 wave 2 (Joan Scott, Chartier, Hobsbawm, Hayden White).
+
 **Capitalism, divergence and industrialisation (2026-10-18, revision 1.145):** The user asked
 for Robert Brenner ("his debate with Pomeranz is minor compared with the Brenner debate"), then:
 "we probably want to think bigger and add a history of capitalism/great divergence/industrialization

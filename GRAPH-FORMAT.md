@@ -1,6 +1,20 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.145 (2026-10-18): Capitalism, divergence and industrialisation
+## Current revision 1.146 (2026-10-19): Mokyr, Wrigley, de Vries and Wong
+
+**195 entries (97 groups, 98 people), 1,120 teaching relationships, 1,992 sources and 1,280
+shared people.**
+
+Joel Mokyr, E. A. Wrigley, Jan de Vries and R. Bin Wong become person entries; all four people
+records already existed. The batch adds 12 edges and 22 sources. `edge_1084`, `edge_1085` and
+`edge_1086` keep their ids and now run from Wrigley, de Vries and Mokyr to `capitalismdebates`
+instead of from demography, consumption and technology; each field gains its own distinct arrow.
+Mokyr's critique of Pomeranz leaves `edge_1050` and is drawn once, as `edge_1110`. Mokyr's 2025
+Nobel memorial prize is a context event of kind `award`.
+
+See the [acceptance record](data/production-batches/person-entries-1.146/README.md).
+
+## Historical revision 1.145 (2026-10-18): Capitalism, divergence and industrialisation
 
 **191 entries (97 groups, 94 people), 1,108 teaching relationships, 1,970 sources and 1,280
 shared people.**
