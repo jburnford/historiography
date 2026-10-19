@@ -1991,3 +1991,11 @@ the old 1920–2000 frame gain their later careers and reception:
 Sol said "accept with fixes" (14 findings); they are applied, narrowed or declined in
 `release/fixes-1.147.md`. The packet was rebased onto 1.146. Totals: 195 entries, 1,143
 relationships. See the [acceptance record](data/production-batches/person-entries-1.147/README.md).
+
+## Revision 1.148: source wording (19 October 2026)
+
+After the history rewrite (`data/history-rewrite-2026-10-19/README.md`), 13 source records and one
+scope-note sentence still carried wording left by its find-and-replace, such as "hosted by a website"
+or "another copy". They now say only what was read. No reading claim, edge or count changes. The
+applier's guarded `source_field_sets` now also accepts `verification.note`. See the
+[acceptance record](data/production-batches/source-wording-1.148/README.md).

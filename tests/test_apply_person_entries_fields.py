@@ -91,6 +91,16 @@ class SourceFieldTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             batch().transform(g, p)
 
+    def test_guarded_verification_note_correction(self):
+        g = graph(); g["sources"] = [dict(id="s1", url="u", verification=dict(status="checked", note="Read pp. 1-5 at a site."))]
+        p = packet([]); p["source_field_sets"] = [dict(id="s1", field="verification.note", expect="Read pp. 1-5 at a site.",
+                                                        value="Read pp. 1-5.")]
+        out = batch().transform(g, p)["sources"][0]
+        self.assertEqual(out["verification"], dict(status="checked", note="Read pp. 1-5."))
+        p["source_field_sets"][0]["field"] = "verification.status"
+        with self.assertRaises(ValueError):
+            batch().transform(g, p)
+
 
 if __name__ == "__main__":
     unittest.main()

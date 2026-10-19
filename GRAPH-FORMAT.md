@@ -1,6 +1,14 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.147 (2026-10-19): post-2000 wave 2
+## Current revision 1.148 (2026-10-19): source wording
+
+Counts are unchanged from 1.147. Thirteen source records (titles, citations and verification
+notes) and one sentence of the `capitalismdebates` scope note are reworded after the 2026-10-19
+history rewrite, which had left phrases such as "hosted by a website". The applier's
+`source_field_sets` key now also accepts `verification.note`. See the
+[acceptance record](data/production-batches/source-wording-1.148/README.md).
+
+## Historical revision 1.147 (2026-10-19): post-2000 wave 2
 
 **195 entries (97 groups, 98 people), 1,143 teaching relationships, 2,049 sources and 1,282
 shared people.**

@@ -22,8 +22,8 @@ rationale, qualification?, source_records_append?, evidence_append?, edge_id?, e
 change a claim's review with a history entry, append claim witnesses and evidence joins
 and set its edge's review_status and text in the same step; prior claims are kept in the
 acceptance record for exact baseline recovery). From 1.145: source_field_sets ([{id, field:
-url|title|citation, expect, value}]: correct an existing source record, e.g. replace a link to an
-unauthorised copy with the publisher's page).
+url|title|citation|verification.note, expect, value}]: correct an existing source record, e.g. replace
+a link to an unauthorised copy with the publisher's page; verification.note from 1.148).
 """
 import argparse
 from copy import deepcopy
@@ -46,7 +46,7 @@ FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology'}
 # List fields on an existing node that a batch may extend (`node_list_additions`), without duplicates.
 NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
 # Existing source-record fields a batch may correct (`source_field_sets`), guarded by `expect`.
-SOURCE_FIELDS = {'url', 'title', 'citation'}
+SOURCE_FIELDS = {'url', 'title', 'citation', 'verification.note'}
 
 
 def read(path):
@@ -210,9 +210,13 @@ class Batch:
             if sf['field'] not in SOURCE_FIELDS:
                 raise ValueError(f"Source field not settable: {sf['field']}")
             src = next(x for x in g['sources'] if x['id'] == sf['id'])
-            if src.get(sf['field']) != sf['expect']:
+            *parents, leaf = sf['field'].split('.')
+            holder = src
+            for key in parents:
+                holder = holder[key]
+            if holder.get(leaf) != sf['expect']:
                 raise ValueError(f"Source field does not match its expected value: {sf['id']} {sf['field']}")
-            src[sf['field']] = sf['value']
+            holder[leaf] = sf['value']
         for nla in packet.get('node_list_additions', []):
             if nla['field'] not in NODE_LIST_FIELDS:
                 raise ValueError(f"Node list not extensible: {nla['field']}")
