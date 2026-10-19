@@ -1,6 +1,17 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.150 (2026-10-19): timeline bands
+## Current revision 1.151 (2026-10-19): post-2000 wave 3
+
+**195 entries, 1,157 teaching relationships, 2,121 sources and 1,285 shared people.**
+
+Dipesh Chakrabarty, Gayatri Chakravorty Spivak, Ranajit Guha and Bruno Latour gain their later work
+and its reception: 13 edges, 72 sources, 6 edge revisions and full chronologies (90 dated points,
+62 after 2000). Prizes are `award` events on the context track. Critics without their own entry are
+routed through group entries and named in the text (Chibber via `historicalsociology`; Malm,
+Hornborg and LeCain via `environment`). Three people records are added. Latour gains a scope note
+(`field_sets` with `expect: null`). See the [acceptance record](data/production-batches/person-entries-1.151/README.md).
+
+## Historical revision 1.150 (2026-10-19): timeline bands
 
 Counts are unchanged from 1.149. The top-level `layers` list, which orders the timeline bands, is
 now, top to bottom:

@@ -2029,3 +2029,21 @@ fields with a simpler name"; "historians should be at the top". The four bands, 
 
 Band ids are kept where a band continues, so existing links and the archived 2000 view still work.
 No entry, edge or source changes. See the [acceptance record](data/production-batches/timeline-bands-1.150/README.md).
+
+## Revision 1.151: post-2000 wave 3 (19 October 2026)
+
+Postcolonial and science studies after 2000:
+- **Dipesh Chakrabarty:** *Provincializing Europe* (2000) and its reception; "The Climate of History"
+  (2009) and its critics (Malm and Hornborg, LeCain), carried in a revision of his environment arrow;
+  *The Climate of History in a Planetary Age* (2021); the Toynbee and Tagore prizes.
+- **Gayatri Chakravorty Spivak:** *A Critique of Postcolonial Reason* (1999) and its reception; her
+  critique of Guha (1985–88); her later redefinitions of the subaltern (a revision of her subaltern
+  arrow); the exchange with Chibber (2014); the Kyoto and Holberg prizes.
+- **Ranajit Guha:** *A Rule of Property* (1963) and *Dominance without Hegemony* (1997) through readers;
+  *History at the Limit of World-History* (2002); Chibber's critique (2013) via historical sociology.
+- **Bruno Latour:** *Science in Action* and *We Have Never Been Modern* through Pickering; "Why Has
+  Critique Run out of Steam?" (2004) and *Reassembling the Social* (2005); the Holberg lecture (2013);
+  the reception of his late books is stated as unread.
+
+Sol said "accept with fixes" (12 findings); applied or narrowed in `release/fixes-wave3.md`. Totals:
+195 entries, 1,157 relationships. See the [acceptance record](data/production-batches/person-entries-1.151/README.md).

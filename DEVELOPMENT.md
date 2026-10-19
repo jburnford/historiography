@@ -5,6 +5,12 @@ corrected throughout the repository history (user decision), so every commit has
 short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.
 Research agents now cite only DOI, publisher, repository or author pages.
 
+**Post-2000 wave 3 (2026-10-19, revision 1.151):** Chakrabarty, Spivak, Guha and Latour now have
+7–14 edges and 17–28 timeline points each, most after 2000 (Sol: accept with fixes;
+[acceptance](data/production-batches/person-entries-1.151/README.md)). Guha's later books are given through readers; the reception of Latour's late
+books (AIME, Facing Gaia, Down to Earth) is unread and stated as a gap. Next: wave 4 (Cronon,
+Merchant, Worster, Crosby, Richard White).
+
 **Timeline bands (2026-10-19, revision 1.150):** the user: "reorganize the whole timeline";
 "historians should be distinct from theorist"; "historians should be at the top". Four bands now:
 Historians, Schools and fields, Theorists, Traditions and theories
