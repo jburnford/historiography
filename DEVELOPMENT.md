@@ -5,6 +5,12 @@ corrected throughout the repository history (user decision), so every commit has
 short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.
 Research agents now cite only DOI, publisher, repository or author pages.
 
+**Timeline bands (2026-10-19, revision 1.150):** the user: "reorganize the whole timeline";
+"historians should be distinct from theorist"; "historians should be at the top". Four bands now:
+Historians, Schools and fields, Theorists, Traditions and theories
+([acceptance](data/production-batches/timeline-bands-1.150/README.md); classification in
+`data/extension-2026/timeline-bands-2026-10-19/person-classification.csv`).
+
 **Post-2000 wave 2 (2026-10-19, revision 1.147):** Joan Scott, Chartier, Hobsbawm and Hayden White
 now have 13–21 edges and 20–22 timeline points each, about half after 2000 (Sol: accept with fixes;
 [acceptance](data/production-batches/person-entries-1.147/README.md)). Hobsbawm's later books are given through reviewers, and the reception of *The

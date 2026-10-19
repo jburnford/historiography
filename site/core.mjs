@@ -3,11 +3,14 @@ export const PAGE_SIZE = 6;
 export function isOverviewHash(hash = '') {
   return [...new URLSearchParams(hash.replace(/^#/, '')).keys()].every(k => k === 'record');
 }
+/* Timeline bands from revision 1.150, top to bottom: historians, schools and fields, theorists,
+   traditions and theories. enduring_fields_and_genres survives only in the archived 2000 view. */
 export const LAYER_TITLES = {
-  intellectual_traditions: 'Intellectual traditions',
+  historians: 'Historians',
+  historiographical_developments: 'Schools & fields',
+  intellectual_connections: 'Theorists',
+  intellectual_traditions: 'Traditions & theories',
   enduring_fields_and_genres: 'Enduring fields & genres',
-  intellectual_connections: 'Thinkers & intellectual connections',
-  historiographical_developments: 'Schools, approaches & expanding fields',
 };
 export const KINDS = {
   influence: 'Influence', contribution: 'Contribution', comparison: 'Comparison',

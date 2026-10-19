@@ -102,5 +102,19 @@ class SourceFieldTests(unittest.TestCase):
             batch().transform(g, p)
 
 
+class LayerTests(unittest.TestCase):
+    def test_layer_field_and_band_list(self):
+        g = graph(); g["layers"] = [dict(id="a", label="A")]
+        node = g["nodes"][0]; node["layer"] = "a"
+        p = packet([]); p["field_sets"] = [dict(node=node["id"], field="layer", expect="a", value="b")]
+        p["layers_set"] = dict(expect=[dict(id="a", label="A")], value=[dict(id="b", label="B")])
+        out = batch().transform(g, p)
+        self.assertEqual(out["layers"], [dict(id="b", label="B")])
+        self.assertEqual(next(n for n in out["nodes"] if n["id"] == node["id"])["layer"], "b")
+        p["layers_set"]["expect"] = [dict(id="stale", label="S")]
+        with self.assertRaises(ValueError):
+            batch().transform(g, p)
+
+
 if __name__ == "__main__":
     unittest.main()

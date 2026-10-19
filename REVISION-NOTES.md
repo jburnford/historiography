@@ -2011,3 +2011,21 @@ The user: "why isn't Ian Mckay linked to Gramsci?" and "the liberal order framew
   national-political "commonsense" (McKay 2000; Ajzenstat, Pâquet, Palmer 2009).
 
 No new sources. Totals: 195 entries, 1,144 relationships. See the [acceptance record](data/production-batches/person-entries-1.149/README.md).
+
+## Revision 1.150: timeline bands (19 October 2026)
+
+The user: "I think we probably want to reorganize the whole timeline"; "historians should be distinct
+from theorist"; "Enduring Fields & Genres should be folded into Schools, Approaches and Expanding
+fields with a simpler name"; "historians should be at the top". The four bands, top to bottom:
+- **Historians** (new): 77 person entries who mainly write history.
+- **Schools and fields**: the former "Schools, approaches & expanding fields" with the 13 "Enduring fields
+  & genres" folded in (77 groups).
+- **Theorists**: 21 philosophers and social, cultural and literary theorists. Kuhn is counted a
+  historian; Leopold and Carson are theorists ("not historians"), both user decisions.
+- **Traditions and theories**: the 14 earlier traditions plus six theory groups that had sat with the
+  people (Frankfurt School, British cultural studies, structural linguistics, practice theory,
+  historical epistemology, the explanation and objectivity debates). The c. 1920 cut-off leaves the
+  name.
+
+Band ids are kept where a band continues, so existing links and the archived 2000 view still work.
+No entry, edge or source changes. See the [acceptance record](data/production-batches/timeline-bands-1.150/README.md).

@@ -1,6 +1,21 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.149 (2026-10-19): Gramsci and McKay
+## Current revision 1.150 (2026-10-19): timeline bands
+
+Counts are unchanged from 1.149. The top-level `layers` list, which orders the timeline bands, is
+now, top to bottom:
+- `historians`: Historians (new; 77 person entries who mainly write history);
+- `historiographical_developments`: Schools and fields (77 groups: the former schools, approaches and
+  expanding fields with the 13 enduring fields and genres folded in);
+- `intellectual_connections`: Theorists (21 person entries);
+- `intellectual_traditions`: Traditions and theories (20 groups: the earlier traditions plus six theory
+  groups moved from the thinkers band).
+
+`enduring_fields_and_genres` is no longer used in production; it remains in the archived 2000 view.
+The applier's `field_sets` may now set `layer` and `scope_note`, and `layers_set` replaces the band
+list. See the [acceptance record](data/production-batches/timeline-bands-1.150/README.md).
+
+## Historical revision 1.149 (2026-10-19): Gramsci and McKay
 
 **195 entries, 1,144 teaching relationships, 2,049 sources and 1,282 shared people.**
 
