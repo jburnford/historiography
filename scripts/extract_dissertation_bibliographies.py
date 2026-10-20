@@ -28,14 +28,14 @@ import unicodedata
 
 import fitz
 
-START = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:select(?:ed)?\s+|annotated\s+)?(?:bibliography|works\s+cited|references|'
+START = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:select(?:ed|ive)?\s+|annotated\s+)?(?:bibliography|works\s+cited|references|list\s+of\s+references|'
                    r'works\s+consulted|sources\s+(?:and|&)\s+bibliography|bibliography\s+(?:and|&)\s+sources|'
                    r'sources\s+consulted|list\s+of\s+sources|bibliographie|sources\s+et\s+bibliographie|'
                    r'(?:primary|archival|manuscript|unpublished\s+primary)\s+sources|sources\s+primaires|sources|'
                    r'références|références\s+bibliographiques|ouvrages\s+cités|liste\s+des\s+sources|'
                    r'sources\s+et\s+(?:études|ouvrages)|sources\s+(?:manuscrites|imprimées|archivistiques))\s*:?$', re.I)
 WEAK = re.compile(r'^(?:sources|references|références|(?:primary|archival)\s+sources|sources\s+primaires)$', re.I)
-STOP = re.compile(r'^(?:appendi(?:x|ces)|annexes?|index|curriculum\s+vitae|vita|glossary)\b', re.I)
+STOP = re.compile(r'^(?:appendi(?:x|ces)|annexes?|index|curriculum\s+vitae|vita|glossary|biographical\s+sketch)\b', re.I)
 ENTRY_START = re.compile(r'^(?:[—–_\-]{2,}|[A-ZÀ-ÝĀ-Ž][\w\'’ÀÁÂÄÇÈÉÊËÎÏÔÖÙÚÛÜà-ÿ\-]+(?: [A-Z][\w\'’\-]+)?,\s|'
                          r'[A-ZÀ-Ý][A-Za-zÀ-ÿ\'’\-]+(?: [A-Za-zÀ-ÿ\'’\-]+){0,4}\.\s)')
 PRIMARY = re.compile(r'primar|archiv|manuscript|government|official|newspaper|periodical|interview|oral|fonds|'
@@ -96,7 +96,8 @@ def lines_of(page, textpage=None):
 
 SQUEEZED = ('bibliography', 'bibliographie', 'bibliografia', 'bibliograffa', 'selectbibliography', 'selectedbibliography',
             'workscited', 'worksconsulted', 'sourcesconsulted', 'primarysources', 'archivalsources', 'secondarysources',
-            'sourcesandbibliography', 'sourcesprimaires', 'sourcesetbibliographie', 'references', 'listofsources')
+            'sourcesandbibliography', 'sourcesprimaires', 'sourcesetbibliographie', 'references', 'listofsources',
+            'listofreferences', 'selectivebibliography')
 
 
 def squeezed_heading(t):
@@ -105,12 +106,13 @@ def squeezed_heading(t):
     return sq in SQUEEZED
 
 
-STRONG = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:select(?:ed)?\s+|annotated\s+)?(?:bibliography|works\s+cited|works\s+consulted|'
+STRONG = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:select(?:ed|ive)?\s+|annotated\s+)?(?:bibliography|works\s+cited|works\s+consulted|list\s+of\s+references|'
                     r'references|bibliographie|bibliograf[ií]a|sources\s+(?:and|&)\s+bibliography|bibliography\s+(?:and|&)\s+sources|'
                     r'sources\s+et\s+bibliographie|sources\s+consulted|list\s+of\s+sources|références(?:\s+bibliographiques)?|'
                     r'ouvrages\s+cités|liste\s+des\s+sources)\s*:?$', re.I)
 STRONG_SQUEEZED = {'bibliography', 'bibliographie', 'bibliografia', 'bibliograffa', 'selectbibliography',
-                   'selectedbibliography', 'workscited', 'worksconsulted', 'sourcesandbibliography', 'sourcesetbibliographie'}
+                   'selectedbibliography', 'workscited', 'worksconsulted', 'sourcesandbibliography', 'sourcesetbibliographie',
+                   'listofreferences', 'selectivebibliography'}
 
 
 def find_span(doc):

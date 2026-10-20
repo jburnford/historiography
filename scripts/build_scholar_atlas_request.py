@@ -30,12 +30,14 @@ def main():
     parser.add_argument('--first-year', type=int, default=2009)
     parser.add_argument('--last-year', type=int, default=2026)
     parser.add_argument('--min-phds', type=int, default=50)
+    parser.add_argument('--country', default='CA', help="country sub-graph (default CA; '' = main graph of all countries)")
     args = parser.parse_args()
     g = json.loads((args.out / 'graph.json').read_text())
     nodes = {n['id']: n for n in g['nodes']}
-    diss = {k: n for k, n in nodes.items() if n['type'] == 'Dissertation' and n.get('in_analysis')
-            and n['year'] and args.first_year <= n['year'] <= args.last_year}
-    every = {k: n for k, n in nodes.items() if n['type'] == 'Dissertation' and n.get('in_analysis')}
+    # in_analysis is the main graph's strict set (all countries, 2026-10-20); this packet is Canadian.
+    scoped = lambda n: n['type'] == 'Dissertation' and n.get('in_analysis') and (not args.country or n.get('country', 'CA') == args.country)
+    diss = {k: n for k, n in nodes.items() if scoped(n) and n['year'] and args.first_year <= n['year'] <= args.last_year}
+    every = {k: n for k, n in nodes.items() if scoped(n)}
     cites, works_of = defaultdict(set), defaultdict(set)
     for e in g['edges']:
         if e['type'] == 'CITES' and e['source'] in every:

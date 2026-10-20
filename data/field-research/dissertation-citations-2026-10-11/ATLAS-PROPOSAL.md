@@ -2,8 +2,9 @@
 
 2026-10-11. A proposal, not an edit. The atlas stays interpretive and editorially owned. Everything below is evidence
 *beside* it, in the spirit of [EVIDENCE-LAYER-PLAN.md](../../../EVIDENCE-LAYER-PLAN.md). Figures come from
-[summary/](summary/), and the views are in [citation-views.html](summary/citation-views.html) and
-[citation-trends.html](summary/citation-trends.html).
+the Canadian sub-graph, [summary/countries/CA/](summary/countries/CA/) (since 2026-10-20 `summary/` holds the
+main graph of all countries; see the README), and the views are in [citation-views.html](summary/countries/CA/citation-views.html) and
+[citation-trends.html](summary/countries/CA/citation-trends.html).
 
 ## What this record adds
 
@@ -37,12 +38,12 @@ that engage the environmental field, the most cited are:
 Worster is cited by 29% of these dissertations, and Merchant by fewer. The atlas canon and Canadian practice diverge
 in a way worth showing students.
 
-**Needs:** editorial review of the field labels in [field-labels.csv](summary/field-labels.csv) and the draft
-[field-atlas-crosswalk.csv](summary/field-atlas-crosswalk.csv).
+**Needs:** editorial review of the field labels in [field-labels.csv](summary/countries/CA/field-labels.csv) and the draft
+[field-atlas-crosswalk.csv](summary/countries/CA/field-atlas-crosswalk.csv).
 
 ### B. Roster review
 
-[atlas-gaps.csv](summary/atlas-gaps.csv) lists the 200 most-cited people outside the roster, each with a trend and
+[atlas-gaps.csv](summary/countries/CA/atlas-gaps.csv) lists the 200 most-cited people outside the roster, each with a trend and
 a main field. They fall into two groups that need different decisions.
 - **International scholars bearing on existing entries:**
   - James C. Scott (170 PhDs, rising from 4% to 13%): environment and the state, anthropology.
@@ -74,7 +75,7 @@ the extension's priorities, with the data attached.
 
 ### D. Practice signals for method entries
 
-Bibliography subheadings record the kinds of sources used ([methods-by-period.csv](summary/methods-by-period.csv)):
+Bibliography subheadings record the kinds of sources used ([methods-by-period.csv](summary/countries/CA/methods-by-period.csv)):
 
 | Section kind | 1990s | 2018–25 | Reading |
 | --- | ---: | ---: | --- |

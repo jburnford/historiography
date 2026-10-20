@@ -10,7 +10,9 @@ structure; one that splits or dissolves depends on settings.
 Per work: the share of base runs in which it sits with its field's core (the anchor work's
 community), its strongest co-citation neighbours and their fields, and the fields it is
 assigned to under each perturbation. ``--works`` names works to report in detail (title
-prefixes). Output: ``audit/field-robustness.json`` and a printed summary.
+prefixes). ``--country CC`` tests a country sub-graph (see ``dissertation_scope.py``).
+Output: ``field-robustness.json`` in ``audit/`` (main graph) or ``audit/countries/<CC>/``, and a
+printed summary.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -21,6 +23,7 @@ import networkx as nx
 from networkx.algorithms.community import louvain_communities
 
 from dissertation_citation_views import fields, load
+from dissertation_scope import add_scope_argument, audit_dir, summary_dir
 
 
 def consensus(G, works, seeds, resolution, keep):
@@ -36,13 +39,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--works', nargs='*', default=['The Middle Ground'])
+    add_scope_argument(parser)
     args = parser.parse_args()
-    g, nodes, diss, cites, authored, sup = load(args.out)
+    g, nodes, diss, cites, authored, sup = load(args.out, args.country)
     labels_csv = {}
     import csv
-    with (args.out / 'summary' / 'field-labels.csv').open(newline='') as f:
+    with (summary_dir(args.out, args.country) / 'field-labels.csv').open(newline='') as f:
         labels_csv = {r['anchor_work']: r['label'] for r in csv.DictReader(f)}
-    works, count, G, groups, field_of, pos, stability, links = fields(nodes, diss, cites, authored, 15)
+    works, count, G, groups, field_of, pos, stability, links = fields(nodes, diss, cites, authored, 15, country=args.country)
     base = [set(gp) for gp in groups]
     names = [labels_csv.get(gp[0], nodes[gp[0]]['title'][:40]) for gp in groups]
 
@@ -63,7 +67,7 @@ def main():
         if mc == 15:
             W, GG = works, G
         else:
-            W, _, GG, *_ = fields(nodes, diss, cites, authored, mc, seeds=2)
+            W, _, GG, *_ = fields(nodes, diss, cites, authored, mc, seeds=2, country=args.country)
         comms, _ = consensus(GG, W, 40, res, keep)
         row = []
         for i, b in enumerate(base):
@@ -113,7 +117,9 @@ def main():
                                   min_jaccard=min(robust), mean_jaccard=round(sum(robust) / len(robust), 2)))
     out = dict(base=dict(min_cited=15, resolution=1.5, runs=40, consensus=0.8), fields=field_summary,
                perturbations=results, works=detail, content=content)
-    (args.out / 'audit' / 'field-robustness.json').write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
+    audit = audit_dir(args.out, args.country)
+    audit.mkdir(parents=True, exist_ok=True)
+    (audit / 'field-robustness.json').write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
     for r in field_summary:
         print(f"{r['field'][:48]:48} works {r['works']:3}  stability {r['mean_work_stability']:.2f}  jaccard mean {r['mean_jaccard']:.2f} min {r['min_jaccard']:.2f}")
     print(json.dumps(detail, ensure_ascii=False, indent=1)[:6000])

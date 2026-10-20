@@ -1,16 +1,23 @@
 #!/usr/bin/env python3
-"""Render summary/views.json (dissertation_citation_views.py) as one self-contained HTML page:
-fields (co-citation map + engagement over time), supervision, and universities."""
+"""Render views.json (dissertation_citation_views.py) as one self-contained HTML page:
+fields (co-citation map + engagement over time), supervision, and universities.
+
+``--country CC`` renders a country sub-graph's page (``summary/countries/<CC>/``, with the
+atlas section when its crosswalk exists); without it, the main graph's (``summary/``).
+See ``dissertation_scope.py``."""
 import argparse
 import json
 from pathlib import Path
+import re
+
+from dissertation_scope import add_scope_argument, audit_dir, scope_label, summary_dir
 
 TEMPLATE = r"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Canadian History PhDs: fields, supervision, universities</title>
+<title>__WHO__History PhDs: fields, supervision, universities</title>
 <style>
 .viz-root { color-scheme: light;
   --surface-1:#fcfcfb; --page:#f9f9f7; --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
@@ -54,10 +61,10 @@ td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
 </head>
 <body>
 <div class="viz-root">
-<h1>Canadian History PhDs: fields, supervision and universities</h1>
+<h1>__WHO__History PhDs: fields, supervision and universities</h1>
 <p class="lede">Built from the bibliographies of __N__ History doctoral dissertations (strict History PhDs with a parsed
 bibliography). Every measure is a share of dissertations, so corpus growth and department size do not read as influence.</p>
-<nav><a href="#fields">1 · Fields</a><a href="#supervision">2 · Supervision</a><a href="#universities">3 · Universities</a><a href="#practice">4 · Practice</a><a href="#atlas">5 · The atlas</a></nav>
+<nav><a href="#fields">1 · Fields</a><a href="#supervision">2 · Supervision</a><a href="#universities">3 · Universities</a><a href="#practice">4 · Practice</a><!--atlas--><a href="#atlas">5 · The atlas</a><!--/atlas--></nav>
 
 <h2 id="fields">1 · Fields: what is cited together</h2>
 <p class="note">Each dot is a work cited by at least __MINC__ History PhDs (__WORKS__ works; corporate authors and works cited mainly
@@ -65,7 +72,7 @@ as primary sources excluded). Works close together are cited by the same dissert
 clustering runs: works stay in a field only if they fall together in at least 80% of runs (__CLUSTERED__ of __WORKS__ works).
 Field names are provisional editorial labels. Select a field to see its works and people; click a dot to see a work's
 co-citation neighbours and whether it bridges fields. Robustness grades come from re-clustering at other resolutions and
-consensus thresholds (audit/field-robustness.json).</p>
+consensus thresholds (__ROBUSTNESS__).</p>
 <div class="chips" id="fieldChips"></div>
 <div class="mapwrap">
   <figure><figcaption>Co-citation map<span class="sub">Dot size: History PhDs citing the work. Thick lines: co-citation between fields (wider = stronger); thin lines: strongest links within a field.</span></figcaption><div id="map"></div></figure>
@@ -100,7 +107,7 @@ subheadings (__SECTIONED__ History PhDs with a subheaded bibliography). Headings
 cautiously and changes with more confidence. Centred three-year window, 95% band; grey = thin window.</p>
 <div class="grid" id="methods"></div>
 
-<h2 id="atlas">5 · The atlas: what Canadian History PhDs do with its canon</h2>
+<!--atlas--><h2 id="atlas">5 · The atlas: what __WHO__History PhDs do with its canon</h2>
 <p class="note">Atlas roster people matched to the citation graph by Wikidata QID or, where exactly one roster person shares a
 surname and first name, by name (a candidate match). Evidence beside the atlas, not edits to it.</p>
 <div class="tiles" id="atlasTiles"></div>
@@ -110,6 +117,7 @@ are international (James C. Scott, Mariana Valverde) and bear on existing entrie
 <div id="gaps" style="overflow-x:auto"></div>
 <h3>Fields and the atlas entries that name their people</h3>
 <div id="fieldAtlas" style="overflow-x:auto"></div>
+<!--/atlas-->
 <div class="tip" id="tip" role="status"></div>
 </div>
 <script id="data" type="application/json">__DATA__</script>
@@ -341,10 +349,11 @@ if (V.atlas) {
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
+    add_scope_argument(parser)
     args = parser.parse_args()
-    v = json.loads((args.out / 'summary' / 'views.json').read_text())
-    summary = args.out / 'summary'
-    rob_path = args.out / 'audit' / 'field-robustness.json'
+    summary = summary_dir(args.out, args.country)
+    v = json.loads((summary / 'views.json').read_text())
+    rob_path = audit_dir(args.out, args.country) / 'field-robustness.json'
     if rob_path.exists():
         rob = json.loads(rob_path.read_text())
         same = [c for c in rob['perturbations'] if not c.startswith('min cited')]
@@ -368,14 +377,19 @@ def main():
                           top100=sum(p['name'] in atlas_names for p in top100),
                           gaps=list(csv.DictReader((summary / 'atlas-gaps.csv').open())),
                           fields=list(csv.DictReader((summary / 'field-atlas-crosswalk.csv').open())))
-    html = (TEMPLATE.replace('__DATA__', json.dumps(v, ensure_ascii=False).replace('</', '<\\/'))
+    template = TEMPLATE if 'atlas' in v else re.sub(r'<!--atlas-->.*?<!--/atlas-->\n?', '', TEMPLATE, flags=re.S)
+    label = scope_label(args.country)
+    html = (template.replace('<!--atlas-->', '').replace('<!--/atlas-->\n', '').replace('<!--/atlas-->', '')
+            .replace('__WHO__', f'{label} ' if label else '')
+            .replace('__ROBUSTNESS__', rob_path.relative_to(args.out).as_posix())
+            .replace('__DATA__', json.dumps(v, ensure_ascii=False).replace('</', '<\\/'))
             .replace('__N__', f"{v['supervision']['dissertations']:,}").replace('__WITHSUP__', f"{v['supervision']['with_supervisor']:,}")
             .replace('__MINC__', str(v['fields']['min_cited'])).replace('__WORKS__', str(v['fields']['works']))
             .replace('__CLUSTERED__', str(v['fields']['clustered'])).replace('__MIN__', str(v['min_window']))
             .replace('__UNIS__', str(len(v['universities']['institutions'])))
             .replace('__SECTIONED__', f"{v.get('methods', {}).get('dissertations', 0):,}"))
-    (args.out / 'summary' / 'citation-views.html').write_text(html)
-    print('wrote', args.out / 'summary' / 'citation-views.html')
+    (summary / 'citation-views.html').write_text(html)
+    print('wrote', summary / 'citation-views.html')
 
 
 if __name__ == '__main__':

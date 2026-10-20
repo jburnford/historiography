@@ -20,8 +20,10 @@ A second measure counts the dissertations citing anyone on the atlas rosters of 
 family's entries. A scholar table ranks the people History PhDs cite, 2009 onward, with
 their atlas status (full entry, roster only, absent), for editorial review.
 
-Writes ``<out>/summary/atlas-trend-test.json``, ``atlas-trend-test.csv`` and
-``scholars-for-atlas-review.csv``. Nothing here edits the atlas or the evidence layer.
+The Toronto and York windows make this a test of the Canadian sub-graph: run it with
+``--country CA`` (see ``dissertation_scope.py``). It reads and writes the sub-graph's summary
+directory, ``<out>/summary/countries/CA/``: ``atlas-trend-test.json``, ``atlas-trend-test.csv``
+and ``scholars-for-atlas-review.csv``. Nothing here edits the atlas or the evidence layer.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -32,6 +34,8 @@ from pathlib import Path
 import random
 import re
 import unicodedata
+
+from dissertation_scope import add_scope_argument, check_country, in_scope, summary_dir
 
 ROOT = Path(__file__).resolve().parents[1]
 BINS = (2010, 2015, 2020)
@@ -138,12 +142,14 @@ def main():
     parser.add_argument('--recent-window', type=int, default=15, help='years before the dissertation for the recent-literature variant')
     parser.add_argument('--boot', type=int, default=2000)
     parser.add_argument('--scholars', type=int, default=250)
+    add_scope_argument(parser)
     args = parser.parse_args()
     series_dir = ROOT / 'data/evidence-layer/generated' / args.series
-    summary = args.out / 'summary'
+    summary = summary_dir(args.out, args.country)
     g = json.loads((args.out / 'graph.json').read_text())
+    check_country(g, args.country)
     nodes = {n['id']: n for n in g['nodes']}
-    diss = {k: n for k, n in nodes.items() if n['type'] == 'Dissertation' and n.get('in_analysis')
+    diss = {k: n for k, n in nodes.items() if in_scope(n, args.country)
             and n['year'] and args.first_year <= n['year'] <= args.last_year}
     families, journal_fams, labels, members = load_families(series_dir)
     index = journal_index(labels)

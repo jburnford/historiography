@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Render summary/trends.json (dissertation_citation_trends.py) as one self-contained HTML page.
+"""Render trends.json (dissertation_citation_trends.py) as one self-contained HTML page.
+
+``--country CC`` renders a country sub-graph's page (``summary/countries/<CC>/``); without it,
+the main graph's (``summary/``). See ``dissertation_scope.py``.
 
 Small multiples of the share of History PhD dissertations citing each scholar per year
 (centred three-year window, Wilson 95% band), grouped by the computed trend, plus the
@@ -10,12 +13,14 @@ import argparse
 import json
 from pathlib import Path
 
+from dissertation_scope import add_scope_argument, in_scope, scope_label, summary_dir
+
 TEMPLATE = r"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>What Canadian History PhDs cite, over time</title>
+<title>What __WHO__History PhDs cite, over time</title>
 <style>
 .viz-root {
   color-scheme: light;
@@ -78,15 +83,14 @@ td.n { text-align: right; font-variant-numeric: tabular-nums; }
 </head>
 <body>
 <div class="viz-root">
-<h1>What Canadian History PhDs cite, over time</h1>
-<p class="lede">The bibliographies of __N__ History doctoral dissertations from __U__ Canadian universities.
+<h1>What __WHO__History PhDs cite, over time</h1>
+<p class="lede">The bibliographies of __N__ History doctoral dissertations from __U__ __UNIS__.
 Each panel shows the share of a year's dissertations that cite a scholar (any of their works), over a
 centred three-year window. Shares are normalised by dissertations per year, so corpus growth does not
 read as rising influence.</p>
 <p class="note">Grey line and band: thin windows of fewer than __MIN__ dissertations, mostly before 1990,
 where one thesis moves the share by several points. The shaded band is a 95% Wilson interval. Years are
-repository issued years, which can be deposit rather than convocation years. Coverage is by repository
-holdings: UBC is absent, most of Laval is pending, and most dissertations date from after 2010. Trend
+repository issued years, which can be deposit rather than convocation years. __COVERAGE__ Trend
 groups compare 2000–09 with 2018–25 (rising: at least 1.25× and 2 points higher; declining: at most 0.75× and
 2 points lower). The final year is a two-year window, and recent deposits may still be incomplete.</p>
 
@@ -302,20 +306,32 @@ tableBtn.addEventListener('click', () => {
 """
 
 
+CA_COVERAGE = """Coverage is by repository
+holdings: UBC is absent, most of Laval is pending, and most dissertations date from after 2010."""
+MAIN_COVERAGE = """Coverage is by repository
+holdings and differs by country (coverage-by-university.csv); most dissertations date from after 2010."""
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
+    add_scope_argument(parser)
     args = parser.parse_args()
-    data = json.loads((args.out / 'summary' / 'trends.json').read_text())
-    graph_meta = json.loads((args.out / 'graph.json').read_text())['meta']
+    summary = summary_dir(args.out, args.country)
+    data = json.loads((summary / 'trends.json').read_text())
+    graph = json.loads((args.out / 'graph.json').read_text())
     n = sum(c['dissertations'] for c in data['context'])
-    universities = len({n['institution'] for n in json.loads((args.out / 'graph.json').read_text())['nodes']
-                        if n['type'] == 'Dissertation' and n['in_analysis']})
+    diss = [d for d in graph['nodes'] if in_scope(d, args.country)]
+    universities = len({d['institution'] for d in diss})
+    countries = len({d['country'] for d in diss})
+    label = scope_label(args.country)
+    unis = f'{label} universities' if args.country else f'universities in {countries} {"country" if countries == 1 else "countries"}'
     html = (TEMPLATE.replace('__DATA__', json.dumps(data, ensure_ascii=False).replace('</', '<\\/'))
+            .replace('__WHO__', f'{label} ' if label else '').replace('__UNIS__', unis)
+            .replace('__COVERAGE__', CA_COVERAGE if args.country == 'CA' else MAIN_COVERAGE)
             .replace('__N__', f'{n:,}').replace('__U__', str(universities)).replace('__MIN__', str(data['min_window'])))
-    (args.out / 'summary' / 'citation-trends.html').write_text(html)
-    print('wrote', args.out / 'summary' / 'citation-trends.html', graph_meta.get('dissertations'))
-
+    (summary / 'citation-trends.html').write_text(html)
+    print('wrote', summary / 'citation-trends.html', graph['meta'].get('dissertations'))
 
 if __name__ == '__main__':
     main()

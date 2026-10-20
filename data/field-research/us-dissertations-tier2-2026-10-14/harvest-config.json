@@ -1,0 +1,147 @@
+{
+  "description": "US History PhD metadata harvest, tier 2 (feasibility survey us-dissertations-feasibility-2026-10-13): UNC (Hyrax), UVA (Libra ETD), Florida (UFDC) and the robots-restricted DSpace 7 sites Kansas, Arizona and Temple. Each stream names an adapter, its listing route and the exact client-side keep rules ('department', 'degree'), which tier 1's build_record applies unchanged (equals = case/accent-insensitive whole-value match; regex = re.search; extract = take regex group 1 first). Non-DSpace records are crosswalked to DSpace-style metadata fields first; the synthetic field names (unc.*, uva.*, ufdc.*) are listed in the README.",
+  "user_agent": "HistoriographyMetadataHarvest/1.0 (public dissertation metadata research)",
+  "min_delay_seconds": 2.5,
+  "aha_records": "data/field-research/aha-dissertations-2026-10-13/records.csv",
+  "aha_since": 2005,
+  "streams": [
+    {
+      "id": "unc-history",
+      "adapter": "unc_hyrax",
+      "institution": "unc",
+      "institution_name": "University of North Carolina at Chapel Hill",
+      "aha_orgcds": ["5210"],
+      "api_base": "https://cdr.lib.unc.edu",
+      "item_base": "https://cdr.lib.unc.edu",
+      "listing_route": "DataCite DOIs (prefix 10.17615, resourceType Dissertation) plus the CDR sitemap -> /concern/dissertations/<id>.json for every work -> work page (citation_pdf_url) for kept works only; crawl-delay 8 s",
+      "datacite_prefix": "10.17615",
+      "datacite_query": "types.resourceType:Dissertation",
+      "datacite_masters_query": "types.resourceType:\"Masters Thesis\"",
+      "masters_sample": 25,
+      "sitemap": "https://cdr.lib.unc.edu/sitemap",
+      "department": {
+        "fields": ["unc.creator.affiliation"],
+        "equals": ["Department of History"],
+        "note": "creators[].affiliation; Art History is 'Department of Art and Art History', so whole-value equality excludes it"
+      },
+      "degree": {
+        "fields": ["unc.degree.effective"],
+        "regex": "^(Doctor of Philosophy|Ph\\.?\\s?D\\.?|\\(degree not recorded\\) Dissertation)$",
+        "weak_regex": "^\\(degree not recorded\\)",
+        "note": "Legacy CDR works (mostly 2007-2012) have no degree; DataCite types them Dissertation (not Masters Thesis). They are kept, but count as History PhDs only when matched to an AHA History PhD; otherwise needs_review."
+      },
+      "author_fields": ["dc.contributor.author"],
+      "advisor_fields": ["dc.contributor.advisor"],
+      "year_fields": ["thesis.degree.date"],
+      "rule_description": "CDR dissertation work; creators[].affiliation == Department of History; degree == Doctor of Philosophy"
+    },
+    {
+      "id": "uva-history",
+      "adapter": "uva_libra",
+      "institution": "virginia",
+      "institution_name": "University of Virginia",
+      "aha_orgcds": ["5102"],
+      "api_base": "https://libraetd.lib.virginia.edu",
+      "item_base": "https://libraetd.lib.virginia.edu",
+      "listing_route": "Libra ETD sitemap.xml (every public_view work) -> /api/works/<id>?for=view; DataCite (prefix 10.18130) titles only to order the requests",
+      "sitemap": "https://libraetd.lib.virginia.edu/sitemap.xml",
+      "datacite_prefix": "10.18130",
+      "datacite_query": "",
+      "department": {
+        "fields": ["uva.program"],
+        "equals": ["History - Graduate School of Arts and Sciences", "Corcoran Department of History", "Department of History"]
+      },
+      "degree": {
+        "fields": ["thesis.degree.name"],
+        "equals": ["PHD (Doctor of Philosophy)"]
+      },
+      "author_fields": ["dc.contributor.author"],
+      "advisor_fields": ["dc.contributor.advisor"],
+      "rule_description": "Libra ETD program is the History department (three spellings by era); degree == PHD (Doctor of Philosophy)"
+    },
+    {
+      "id": "florida-history",
+      "adapter": "ufl_ufdc",
+      "institution": "florida",
+      "institution_name": "University of Florida",
+      "aha_orgcds": ["5124"],
+      "api_base": "https://api.patron.uflib.ufl.edu",
+      "item_base": "https://ufdc.ufl.edu",
+      "listing_route": "UFDC JSON API exactsearch (four queries, union, paged with start=) -> /<bibid>/<vid>/downloads for public kept items only",
+      "queries": [
+        {"id": "etd-discipline", "params": {"filter": ["etd_degree_discipline:History", "etd_degree_level:Doctorate"]}},
+        {"id": "subject-phd-exact", "params": {"filter": ["subject_keyword:History thesis, Ph.D."]}},
+        {"id": "subject-phd-broad", "params": {"subject_keyword": "History thesis, Ph.D."}},
+        {"id": "subject-dissertations", "params": {"filter": ["subject_keyword:History | Dissertations, Academic | UF"]}}
+      ],
+      "department": {
+        "fields": ["ufdc.department"],
+        "equals": ["History"],
+        "note": "ufdc.department = etd_degree_discipline plus the department named in the subject headings '<Dept> thesis, Ph.D.' and '<Dept> | Dissertations, Academic | UF'; 'Art History' etc. do not match"
+      },
+      "degree": {
+        "fields": ["ufdc.degree"],
+        "regex": "^(Doctorate|Ph\\.D\\. \\(subject heading\\))$|^Thesis \\(Ph\\.?\\s?D"
+      },
+      "author_fields": ["dc.contributor.author"],
+      "advisor_fields": ["dc.contributor.advisor"],
+      "rule_description": "UFDC ETD/thesis record; department History (etd_degree_discipline or '<Dept> thesis, Ph.D.' heading); doctoral level or 'Thesis (Ph.D.)' note; open only if accesscode == public and embargo past"
+    },
+    {
+      "id": "kansas-history",
+      "adapter": "dspace_html",
+      "institution": "kansas",
+      "institution_name": "University of Kansas",
+      "aha_orgcds": ["15150"],
+      "api_base": "https://kuscholarworks.ku.edu",
+      "item_base": "https://kuscholarworks.ku.edu",
+      "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+      "sitemap": "https://kuscholarworks.ku.edu/sitemap_index.xml",
+      "openalex_sources": ["S4306400421", "S4377196285"],
+      "department": {"fields": ["dc.thesis.degreeDiscipline"], "equals": ["History"]},
+      "degree": {"fields": ["dc.thesis.degreeLevel"], "regex": "(?i)^Ph\\.?\\s?D\\.?$"},
+      "author_fields": ["dc.contributor.author", "dc.creator"],
+      "advisor_fields": ["dc.contributor.advisor"],
+      "rule_description": "dc.thesis.degreeDiscipline == History; dc.thesis.degreeLevel == Ph.D."
+    },
+    {
+      "id": "arizona-history",
+      "adapter": "dspace_html",
+      "institution": "arizona",
+      "institution_name": "University of Arizona",
+      "aha_orgcds": ["15075"],
+      "api_base": "https://repository.arizona.edu",
+      "item_base": "https://repository.arizona.edu",
+      "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+      "sitemap": "https://repository.arizona.edu/sitemap_index.xml",
+      "openalex_sources": ["S4306400271"],
+      "department": {
+        "fields": ["thesis.degree.discipline"],
+        "extract": "^(?!Graduate College$)(.+)$",
+        "equals": ["History"],
+        "note": "thesis.degree.discipline is ['Graduate College', 'History']: the granting college is set aside, the remaining value must be History"
+      },
+      "degree": {"fields": ["thesis.degree.level"], "regex": "(?i)^doctoral$"},
+      "author_fields": ["dc.contributor.author", "dc.creator"],
+      "advisor_fields": ["dc.contributor.advisor", "dc.contributor.chair"],
+      "rule_description": "thesis.degree.discipline == History (besides Graduate College); thesis.degree.level == doctoral"
+    },
+    {
+      "id": "temple-history",
+      "adapter": "dspace_html",
+      "institution": "temple",
+      "institution_name": "Temple University",
+      "aha_orgcds": ["5245"],
+      "api_base": "https://scholarshare.temple.edu",
+      "item_base": "https://scholarshare.temple.edu",
+      "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+      "sitemap": "https://scholarshare.temple.edu/sitemap_index.xml",
+      "openalex_sources": ["S4306402624"],
+      "department": {"fields": ["dc.description.department"], "equals": ["History"]},
+      "degree": {"fields": ["dc.description.degree"], "regex": "(?i)^Ph\\.?\\s?D\\.?$"},
+      "author_fields": ["dc.contributor.author", "dc.creator"],
+      "advisor_fields": ["dc.contributor.advisor"],
+      "rule_description": "dc.description.department == History; dc.description.degree == Ph.D."
+    }
+  ]
+}

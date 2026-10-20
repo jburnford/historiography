@@ -6,7 +6,7 @@ concentrate in one co-citation field. A scholar cited for a framework or big ide
 dissertations on unrelated subjects, so their readers spread across fields.
 
 For each person cited by at least --min strict History PhDs (2009-2026), each citing
-dissertation is assigned a home field: the co-citation field (summary/views.json) holding most
+dissertation is assigned a home field: the co-citation field (views.json) holding most
 of the works it cites, excluding the person's own works so they cannot pull the dissertation
 into their field. The script reports:
 - top-field share and its lift over the field's base rate among all fielded dissertations;
@@ -14,8 +14,9 @@ into their field. The script reports:
 - fields reached, those holding at least 10% of the person's fielded readers.
 
 Readership is the evidence: the method does not read the works. Namesakes share a person key
-unless the scholars packet separated them. Writes summary/idea-vs-content.csv and .json in
-the dissertation-citations output directory.
+unless the scholars packet separated them. Runs on the main graph or a country sub-graph
+(``--country CC``; see ``dissertation_scope.py``) and writes idea-vs-content.csv and .json
+into its summary directory (``summary/`` or ``summary/countries/<CC>/``).
 """
 import argparse
 from collections import Counter, defaultdict
@@ -24,6 +25,8 @@ import json
 import math
 from pathlib import Path
 
+from dissertation_scope import add_scope_argument, check_country, in_scope, summary_dir
+
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 
@@ -31,10 +34,14 @@ OUT = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--min', type=int, default=40)
+    ap.add_argument('--out', type=Path, default=OUT)
+    add_scope_argument(ap)
     args = ap.parse_args()
-    g = json.loads((OUT / 'graph.json').read_text())
+    g = json.loads((args.out / 'graph.json').read_text())
+    check_country(g, args.country)
+    summary = summary_dir(args.out, args.country)
     nodes = {n['id']: n for n in g['nodes']}
-    diss = {k for k, n in nodes.items() if n['type'] == 'Dissertation' and n.get('in_analysis') and n['year'] and 2009 <= n['year'] <= 2026}
+    diss = {k for k, n in nodes.items() if in_scope(n, args.country) and n['year'] and 2009 <= n['year'] <= 2026}
     cites, works_of, citing_of = defaultdict(set), defaultdict(set), defaultdict(set)
     for e in g['edges']:
         if e['type'] == 'CITES' and e['source'] in diss:
@@ -42,7 +49,7 @@ def main():
             citing_of[e['target']].add(e['source'])
         elif e['type'] == 'AUTHORED':
             works_of[e['source']].add(e['target'])
-    views = json.loads((OUT / 'summary/views.json').read_text())['fields']
+    views = json.loads((summary / 'views.json').read_text())['fields']
     field_of = {n['id']: n['field'] for n in views['nodes'] if n.get('field') is not None}
     labels = {f['id']: f['label'] for f in views['fields']}
     F = sorted(labels)
@@ -72,11 +79,11 @@ def main():
                          top_field=labels[top], top_share=round(share, 3), top_lift=round(share / (base[top] / base_n), 2),
                          dispersion=round(ent, 3), fields_reached=sum(c / n >= 0.10 for c in homes.values())))
     rows.sort(key=lambda r: -r['dispersion'])
-    with (OUT / 'summary/idea-vs-content.csv').open('w', newline='') as f:
+    with (summary / 'idea-vs-content.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
-    (OUT / 'summary/idea-vs-content.json').write_text(json.dumps(dict(
+    (summary / 'idea-vs-content.json').write_text(json.dumps(dict(
         method=__doc__.strip().splitlines()[0], min_citing=args.min, fields=labels,
         base_home_fields={labels[k]: v for k, v in base.items()}, people=rows), indent=1, ensure_ascii=False))
     print(f'{len(rows)} people with >= {args.min} citing PhDs; fields: {len(F)}')

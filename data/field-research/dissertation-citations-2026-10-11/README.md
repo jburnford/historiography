@@ -1,49 +1,113 @@
-# Citation graph from Canadian History PhD bibliographies
+# Citation graph from History PhD bibliographies
 
-This directory turns the closing bibliographies of History doctoral dissertations at
-Canadian universities into a citation graph: **dissertation → cited work → cited
-author**, with supervisors and dissertation authors on the same person layer. MA theses
-and MRPs are excluded. It is a research layer beside the atlas. It changes no atlas
-data and makes no claim about influence: a bibliography records works consulted.
+This directory turns the closing bibliographies of History doctoral dissertations into a
+citation graph: **dissertation → cited work → cited author**, with supervisors and
+dissertation authors on the same person layer. MA theses and MRPs are excluded. It is a
+research layer beside the atlas. It changes no atlas data and makes no claim about
+influence: a bibliography records works consulted.
 
-## What the graph contains (build of 2026-10-12, with UBC)
+It began as a Canadian case study (2026-10-11). Most of the analysis below, and
+[ATLAS-PROPOSAL.md](ATLAS-PROPOSAL.md), is about the Canadian sub-graph.
+
+## Scope: a main graph and country sub-graphs (decided 2026-10-20)
+
+The user's decision (2026-10-20): "we're working on adding a lot more dissertations from
+other parts of the world; so we'll end up with a main graph with everything we can find
+and sub-graphs for countries when they reach a threshold (maybe 2000+ dissertations for
+now)."
+
+- **Main graph.** Every strict History PhD from any country (`in_analysis`) counts in the
+  main figures. Every Dissertation carries `country` (ISO-2). Records harvested before the
+  field existed are Canadian (`CA`); the US tier-2 records are `US`.
+- **Country sub-graphs.** A country with at least **2,000** strict History PhDs gets a
+  sub-graph. The threshold is `SUBGRAPH_THRESHOLD` in `scripts/dissertation_scope.py`, and
+  `build_dissertation_citation_graph.py --subgraph-threshold N` overrides it. Each build
+  lists the qualifying countries in `graph.json` `meta.subgraphs`. Today only Canada
+  qualifies (2,151); the US has 116.
+- **Eligibility is country-neutral.** Each record is judged on its own basis:
+  - Canadian records: the eligibility review and reviewed overrides (below).
+  - US tier-2 records: the harvest's History scope plus an AHA History PhD match. The
+    match is recorded in `scope_status`.
+  - BASE records: `history_label` will map to `history_phd`, `needs_review` or `adjacent`
+    (`BASE_LABEL_ELIGIBILITY` in the builder). This is a hook only. BASE records are not
+    yet in `doctorates.json`, and the label mapping must be reviewed before they enter it:
+    the `history` label measured 74% precision on a hand check.
+- **Counts.**
+  - Works and People: `cited_by` (`cited_by_dissertations` on People) counts the main
+    graph's strict History PhDs. `cited_by_country` gives the same count per country
+    (`{"CA": 259, "US": 16}`). `cited_by_all` counts every dissertation with a counted
+    bibliography, of any eligibility or country.
+  - Dissertations: `subgraph` names the dissertation's country when that country has a
+    sub-graph.
+  - In `works.csv`, `cited-people.csv` and the main top-500 tables, there is a
+    `cited_by_<CC>` column for each sub-graph country and a `cited_by_other` column for the
+    rest.
+- **Reversal.** This reverses the interim rule of 2026-10-19, under which `in_analysis`
+  was Canadian only and US theses were counted apart in `cited_by_us`. That column and
+  `history_phd_separate_layer` are gone.
+
+**Layout.**
+
+| Path | Contents |
+| --- | --- |
+| `graph.json`, `works.csv`, `cited-people.csv`, `dissertations.csv` | the main graph (all countries) |
+| `summary/` | main graph: `coverage-by-university.csv` (by country, with `TOTAL_<CC>` rows and a grand `TOTAL`), `top-500-works.csv`, `top-500-people.csv`, `trends.json`, `trends-people.csv`, `citation-trends.html`, `views.json`, `field-labels.csv`, `methods.json`, `methods-by-period.csv`, `citation-views.html` (no atlas section) |
+| `summary/countries/CA/` | Canadian sub-graph: the same files restricted to Canadian strict History PhDs, plus the atlas crosswalk (`atlas-people-crosswalk.csv`, `atlas-gaps.csv`, `field-atlas-crosswalk.csv`), the atlas trend test (`atlas-trend-test.*`, `scholars-for-atlas-review.csv`), `idea-vs-content.*`, and the 2026-10-11 `top-1000-books.csv` and `top-1000-articles.csv` (no generator script; not regenerated) |
+| `audit/countries/CA/field-robustness.json`, `audit/field-robustness.json` | co-citation robustness, per scope |
+
+The Canadian pages and tables moved from `summary/` to `summary/countries/CA/` on
+2026-10-20. The main graph's field labels started from the Canadian labels wherever a field
+has the same anchor work; they need their own review.
+
+## What the graph contains (build of 2026-10-20)
+
+| | Main | CA | US |
+| --- | ---: | ---: | ---: |
+| Universities | 32 | 26 | 6 |
+| Doctoral records harvested | 3,232 | 2,798 | 434 |
+| PDFs (or UBC full texts) downloaded | 2,806 | 2,682 | 124 |
+| PDFs restricted, embargoed or without a public file | 364 | 89 | 275 |
+| PDFs pending or failed | 62 | 27 | 35 |
+| Bibliographies parsed | 2,479 | 2,363 | 116 |
+| of which recovered by OCR from scanned typescripts | 196 | 196 | 0 |
+| **Strict History PhDs in the graph (`in_analysis`)** | **2,267** | **2,151** | **116** |
+| Citable entries (books, articles, chapters, theses, unstyled works) | 660,969 | 629,591 | 31,378 |
+
+The US strict theses come from Virginia (53), UNC (33) and Florida (30).
+
+Graph totals:
 
 | | Count |
 | --- | ---: |
-| Doctoral records harvested (26 universities) | 2,798 |
-| PDFs (or UBC full texts) downloaded | 2,592 |
-| PDFs restricted, embargoed or without a public file | 89 |
-| PDFs still pending (Laval download continuing; Concordia retry; 3 UBC theses without full text) | 117 |
-| Bibliographies parsed | 2,149 |
-| of which recovered by OCR from scanned typescripts | 186 |
-| of which from UBC full text (no PDF) | 138 |
-| **Strict History PhDs with a parsed bibliography** | **2,037** |
-| Citable entries (books, articles, chapters, theses, unstyled works) | 577,126 |
-| Work nodes | 403,438 |
-| CITES edges (dissertation → work) | 514,223 |
-| Person nodes | 277,257 |
-| SUPERVISED edges | 1,973 |
+| Work nodes | 446,012 |
+| CITES edges (dissertation → work) | 569,074 |
+| Person nodes | 305,337 (6,188 with a QID) |
+| SUPERVISED edges | 2,651 |
 
-Works cited by at least 2 strict History PhDs: 44,173; by at least 5: 6,487; by at least 20: 460.
+Works cited by at least 2, 5 and 20 strict History PhDs:
+- main graph: 49,024, 7,265 and 489;
+- Canadian sub-graph: 45,626, 6,693 and 461.
+
 [Coverage by university](summary/coverage-by-university.csv) gives the same figures for
 each institution. The [top 500 works](summary/top-500-works.csv) and
 [top 500 people](summary/top-500-people.csv) are ranked by the number of strict History
-PhDs citing them.
+PhDs citing them. The Canadian equivalents are in [summary/countries/CA/](summary/countries/CA/).
 
-The most cited works are:
-1. Benedict Anderson, *Imagined Communities*: 252 History PhDs at 24 universities.
-2. Mariana Valverde, *The Age of Light, Soap, and Water*: 131.
-3. Edward Said, *Orientalism*: 119.
-4. Carl Berger, *The Sense of Power*: 117.
-5. James C. Scott, *Seeing Like a State*: 115.
-6. Ian McKay, "The Liberal Order Framework": 103.
+The most cited works in the Canadian sub-graph (main graph in brackets):
+1. Benedict Anderson, *Imagined Communities*: 259 History PhDs at 24 universities (275).
+2. Mariana Valverde, *The Age of Light, Soap, and Water*: 133 (133).
+3. Edward Said, *Orientalism*: 122 (127).
+4. James C. Scott, *Seeing Like a State*: 116 (124).
+5. Carl Berger, *The Sense of Power*: 115 (115).
+6. Ian McKay, "The Liberal Order Framework": 104 (104).
 
-The most cited people are Foucault, Anderson, Granatstein, Hobsbawm, Owram, McKay,
-Berger, Cook, Valverde and Parr.
+The most cited people in the Canadian sub-graph are Foucault, Anderson, Hobsbawm,
+Granatstein, Owram, McKay, Berger, Parr, Valverde and Said. In the main graph, Said and
+J.C. Scott move ahead of Parr, and Valverde falls out of the top ten.
 
 ## Corpus and eligibility
 
-Doctoral records come from four harvests:
+Canadian doctoral records come from four harvests:
 
 - [canadian-dissertations-2026-10-10](../canadian-dissertations-2026-10-10/README.md):
   York, Saskatchewan, Queen's, Toronto, Western.
@@ -58,10 +122,17 @@ Each Dissertation node carries `eligibility`. For the first fifteen universities
 the eligibility review in `canadian-dissertations-2026-10-11/review/combined-index.jsonl`
 (`doctoral_history_eligible`). For the eleven added later it follows the harvest scope.
 
-- `history_phd` (2,059 records): History doctorates. All headline counts use these.
-- `needs_review` (72): mostly Dalhousie's ProQuest-era records that have no department.
-- `adjacent` (56): other programmes, such as Montréal's Sciences médiévales and Classics
+- `history_phd` (2,530 Canadian and 124 US records, among the 2,806 with a downloaded PDF or
+  text; build of 2026-10-20):
+  History doctorates. All headline counts use these.
+- `needs_review` (73): mostly Dalhousie's ProQuest-era records that have no department.
+- `adjacent` (79): other programmes, such as Montréal's Sciences médiévales and Classics
   theses.
+
+US records come from the tier-2 harvest
+(`../us-dissertations-tier2-2026-10-14/`). Only records
+matched to an AHA History PhD record were kept, and only openly available PDFs were
+fetched.
 
 Combined History and Classics departments were resolved by reviewing each title
 ([`eligibility-overrides.csv`](eligibility-overrides.csv), 2026-10-11), on the user's
@@ -84,10 +155,12 @@ The API serves each thesis's extracted text rather than the PDF; see the text-on
 under Extract. The UVic digitized collection (27 History items with no degree field) is
 not included. Repository holdings are not graduation censuses. Older theses are thin at
 Carleton, McMaster, Manitoba, Memorial and Dalhousie, and the corpus is heavily recent.
-By the year field, the strict parsed set has 10 dissertations from before 1960, 25 from
-the 1960s, 92 from the 1970s, 100 from the 1980s, 200 from the 1990s, 316 from the 2000s,
-854 from the 2010s and 405 from the 2020s; 35 have no year. Years come mostly from repository issued dates, which can equal the
-accession date. Do not read them as convocation years.
+By the year field (build of 2026-10-20), the Canadian strict set has 11 dissertations from
+before 1960, 20 from the 1960s, 68 from the 1970s, 103 from the 1980s, 236 from the 1990s,
+359 from the 2000s, 894 from the 2010s and 425 from the 2020s; 35 have no year. The 116 US
+theses are mostly recent: 70 from the 2010s and 26 from the 2020s. Years come mostly from
+repository issued dates, which can equal the accession date. Do not read them as
+convocation years.
 
 ## Pipeline
 
@@ -99,8 +172,13 @@ python3 scripts/build_dissertation_citation_graph.py --out <dir>
 python3 scripts/link_cited_works_to_authorities.py --out <dir>
 python3 scripts/build_dissertation_citation_graph.py --out <dir>
 python3 scripts/ground_cited_people_wikidata.py --out <dir> --min-cited 10
-python3 scripts/build_dissertation_citation_graph.py --out <dir>
+python3 scripts/build_dissertation_citation_graph.py --out <dir> [--subgraph-threshold 2000]
+python3 scripts/dissertation_citation_summaries.py --out <dir> [--robustness]
 ```
+
+`dissertation_citation_summaries.py` runs the analysis scripts for the main graph and for each
+country sub-graph listed in `graph.json` `meta.subgraphs`. Each analysis script also runs on its
+own with `--country CC` (absent = main graph); see `scripts/dissertation_scope.py`.
 
 1. **Download.** `fetch_dissertation_pdfs.py` takes doctoral records only. It reads each
    DSpace item's ORIGINAL bundle, or the direct PDF link for Laurier, UQAM, Concordia and
@@ -215,17 +293,22 @@ python3 scripts/build_dissertation_citation_graph.py --out <dir>
 
 ## Change over time
 
-[`summary/citation-trends.html`](summary/citation-trends.html) is a self-contained,
-interactive page; the same figures are in [`summary/trends-people.csv`](summary/trends-people.csv).
+[`summary/countries/CA/citation-trends.html`](summary/countries/CA/citation-trends.html) is a self-contained,
+interactive page; the same figures are in [`summary/countries/CA/trends-people.csv`](summary/countries/CA/trends-people.csv).
+The main graph's version (all countries) is [`summary/citation-trends.html`](summary/citation-trends.html).
 It is built by `scripts/dissertation_citation_trends.py` and
 `scripts/render_citation_trends_html.py`.
+
+Unless dated, the figures in this section and the next are from the 2026-10-12 build. The
+linked files hold the values regenerated on 2026-10-20.
 
 - **Measure:** the share of a year's strict History PhDs citing a scholar, over a centred
   three-year window, with Wilson 95% bands. Normalising by dissertations per year means
   corpus growth does not read as rising influence.
 - **Thin years:** windows with fewer than 30 dissertations, mostly before 1990, are greyed.
-- **Trend groups:** these compare 2000–09 with 2018–25. Of the 300 most-cited scholars, 62
-  are rising, 75 declining and 163 steady.
+- **Trend groups:** these compare 2000–09 with 2018–25. Of the 300 most-cited scholars in the
+  Canadian sub-graph (build of 2026-10-20), 67 are rising, 60 declining and 173 steady; in the main
+  graph, 65, 60 and 175.
 
 What the page shows:
 - **Bibliography length:** the median bibliography grew from about 70 works in the 1970s
@@ -260,8 +343,9 @@ The direction holds within universities. Foucault (6 up, 4 down) and Anderson (6
 
 ## Fields, supervision, universities and practice
 
-[`summary/citation-views.html`](summary/citation-views.html) is a self-contained page. It is built by
-`scripts/dissertation_citation_views.py` (data in `summary/views.json`), `scripts/dissertation_atlas_crosswalk.py`
+[`summary/countries/CA/citation-views.html`](summary/countries/CA/citation-views.html) is a self-contained page (the main
+graph's, without the atlas section, is [`summary/citation-views.html`](summary/citation-views.html)). It is built by
+`scripts/dissertation_citation_views.py` (data in `views.json`), `scripts/dissertation_atlas_crosswalk.py`
 and `scripts/render_citation_views_html.py`. Every measure is a share of strict History PhDs.
 
 1. **Fields: co-citation.**
@@ -269,13 +353,13 @@ and `scripts/render_citation_views_html.py`. Every measure is a share of strict 
      primary sources, linked by cosine co-citation.
    - **How fields are found:** fields are the consensus of 40 Louvain runs at resolution 1.5. A work stays in a
      field only if it lands there in at least 80% of runs. Node order is fixed, so results are reproducible.
-   - **Labels:** provisional, editable in [`summary/field-labels.csv`](summary/field-labels.csv).
+   - **Labels:** provisional, editable in [`summary/countries/CA/field-labels.csv`](summary/countries/CA/field-labels.csv).
    - **Measures:** a dissertation *engages* a field when it cites at least three of its works. Each field reports
      engagement per year and the people its engaged dissertations cite (share within the field and lift over the
      corpus). Within-field shares show influence that whole-corpus counts dilute. MacEachern, for instance, is cited
      by 40% of environmental-history dissertations but only 2% of all dissertations.
 2. **Supervision.** Whether each dissertation cites its recorded supervisor, compared with other History PhDs at the
-   same university within five years. Students cite their supervisor 60% of the time; peers cite that person 4.7%
+   same university within five years. Students cite their supervisor 59% of the time; peers cite that person 4.7%
    of the time. The view also lists two-generation supervision chains.
    - Supervisor names are cleaned of role text such as "(Supervisor1)".
    - Repository-only names join the cited person with the same surname and first name ("McKay, Ian G" becomes
@@ -285,13 +369,13 @@ and `scripts/render_citation_views_html.py`. Every measure is a share of strict 
    department's distinctive scholars ranked by excess share. Each department's own supervisors are listed
    separately, because students cite their supervisors.
 4. **Practice.** The share of dissertations whose bibliography has a section of each kind, read from their own
-   subheadings ([`summary/methods-by-period.csv`](summary/methods-by-period.csv)).
+   subheadings ([`summary/countries/CA/methods-by-period.csv`](summary/countries/CA/methods-by-period.csv)).
    - Digital or online sources rise from 1% (1990s) to 30% (2018–25).
    - Oral history settles at about 20% from the 1990s.
    - Statistics and census sections fall from 6% to 2%.
 5. **The atlas.** Atlas roster people matched by QID, or by surname and first name when only one roster person has
-   them (`summary/atlas-people-crosswalk.csv`). The most-cited people outside the roster are listed for review
-   (`summary/atlas-gaps.csv`), and a draft field-to-entry crosswalk is in `summary/field-atlas-crosswalk.csv`.
+   them (`summary/countries/CA/atlas-people-crosswalk.csv`). The most-cited people outside the roster are listed for review
+   (`summary/countries/CA/atlas-gaps.csv`), and a draft field-to-entry crosswalk is in `summary/countries/CA/field-atlas-crosswalk.csv`.
 
 [ATLAS-PROPOSAL.md](ATLAS-PROPOSAL.md) sets out how this evidence could improve the atlas and lists the decisions
 needed.
@@ -299,8 +383,8 @@ needed.
 ## Atlas trend test, 2009–2026 (2026-10-12)
 
 `scripts/dissertation_atlas_trend_test.py` tests the atlas's landing trends against this
-graph. It writes `summary/atlas-trend-test.json`, `summary/atlas-trend-test.csv` and
-`summary/scholars-for-atlas-review.csv`.
+Canadian sub-graph. It writes `summary/countries/CA/atlas-trend-test.json`, `atlas-trend-test.csv` and
+`scholars-for-atlas-review.csv`.
 
 **Method.** The atlas's trends are each editorial family's share of the journal record per
 five-year bin, assigned through journal themes (evidence layer v18). The test applies the
@@ -352,7 +436,19 @@ draw on the international journal literature the atlas records.
 - The findings stand: level agreement is 0.94–1.0 across variants, change agreement is
   indeterminate, and the Empire rise remains the one robust divergence. Most of the new
   Canadian journals are general or regional, so they carry no family theme.
-- Run: `python3 scripts/dissertation_atlas_trend_test.py --out <dir> --series v19`.
+- Run: `python3 scripts/dissertation_atlas_trend_test.py --out <dir> --country CA --series v19`.
+
+**Rerun on the 2026-10-20 Canadian sub-graph** (v19). The test now covers 1,365 History PhDs
+(389, 505 and 353 per bin), and the bridge is 23,191 of 93,059 cited articles. The findings
+above stand:
+- Level agreement against all journals is 0.94–0.99.
+- Change agreement is indeterminate (−0.17 to +0.13).
+- The Empire rise remains the one robust divergence: log change +0.54, with a 95% interval of
+  0.06–1.04. It also holds without Toronto and with equal weights, and it vanishes in the
+  recent-literature variant.
+
+The scholar figures below are from the 2026-10-12 run; the current table is
+`summary/countries/CA/scholars-for-atlas-review.csv`.
 
 **Scholars for the atlas.** `scholars-for-atlas-review.csv` ranks the 250 people most cited
 by these 1,303 PhDs. Their atlas status is 18 full entries, 44 in a roster only and 188
@@ -479,7 +575,7 @@ link.
 
 Tracked:
 
-- `README.md`, `summary/` and `audit/`.
+- `README.md`, `summary/` (main graph) with `summary/countries/<CC>/` (sub-graphs), and `audit/`.
 - `doctorates.json`: the manifest of doctoral records.
 - `eligibility-overrides.csv`: reviewed eligibility decisions for combined-department doctorates.
 - `downloads*.jsonl`: download status and PDF hashes.
@@ -508,10 +604,22 @@ Local only (gitignored, large or third-party):
   the shortest "Surname, Given" before a title, ", ed." after initials, and mixed quotation marks.
   The PDF corpus was extracted before these fixes; a `--rebuild` would apply them (it re-OCRs
   the 186 scans).
-- Most of Laval's 345 PDFs are still downloading. The scans are large (up to about
-  200 MB each).
-- 5 scans timed out in OCR. 147 PDFs have no recognisable bibliography heading, mostly
-  poor OCR in older scans or theses without a closing bibliography.
+- All 345 Laval PDFs are downloaded, but 132 have no parsed bibliography yet (build of
+  2026-10-20).
+- In `extraction.jsonl` (2026-10-19), 424 PDFs have no recognisable bibliography heading,
+  mostly poor OCR in older scans or theses without a closing bibliography. 5 failed in
+  extraction.
+- **Other countries.** BASE theses (`../base-history-theses-2026-10-19/`) are being
+  downloaded into `pdf/base/` (log `downloads-base.jsonl`) but are not yet in
+  `doctorates.json` or the graph. To ingest them:
+  - add their manifest entries with `country` (ISO-2) and `history_label`;
+  - review `BASE_LABEL_ELIGIBILITY`;
+  - extract, then rebuild.
+
+  Sub-graphs appear automatically once a country reaches the threshold.
+- Scripts that read `graph.json` outside this pipeline and filter on `in_analysis` now get
+  every country. Add `country == 'CA'` (or `subgraph == 'CA'`) to keep them Canadian.
+  `scripts/build_scholar_atlas_request.py` now takes `--country` (default CA).
 - Grounding stops at ten citing dissertations. People cited less often have only
   catalogue identities.
 - Committee membership (recorded by Saskatchewan) is not yet in the graph.

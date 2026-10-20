@@ -1,0 +1,626 @@
+{
+  "generated_at": "2026-10-14T16:41:39.403011+00:00",
+  "config": "data/field-research/us-dissertations-tier2-2026-10-14/harvest-config.json",
+  "aha_since": 2005,
+  "totals": {
+    "listed": 947,
+    "kept": 434,
+    "history_phd": 434,
+    "needs_review": 0,
+    "open_pdf": 159,
+    "open_pdf_history_phd": 159,
+    "embargoed": 16,
+    "restricted": 145,
+    "no_public_pdf": 114,
+    "aha_matched": 425,
+    "aha_matched_since": 282,
+    "aha_phds_since": 1112
+  },
+  "institutions": {
+    "unc": {
+      "institution_name": "University of North Carolina at Chapel Hill",
+      "streams": [
+        {
+          "id": "unc-history",
+          "adapter": "unc_hyrax",
+          "listing_route": "DataCite DOIs (prefix 10.17615, resourceType Dissertation) plus the CDR sitemap -> /concern/dissertations/<id>.json for every work -> work page (citation_pdf_url) for kept works only; crawl-delay 8 s",
+          "listing": {
+            "datacite_dissertations": 10199,
+            "datacite_dissertation_work_ids": 10195,
+            "datacite_masters_work_ids": 4324,
+            "sitemap_dissertation_works": 15033,
+            "sitemap_only_not_masters": 526,
+            "masters_skipped": 4299,
+            "masters_check_sample": 25,
+            "not_in_sitemap": 10,
+            "candidates": 10746
+          },
+          "listing_fetched_at": "2026-10-14T16:18:49.618458+00:00",
+          "candidates": 10746,
+          "fetch": {
+            "not_fetched": 10695,
+            "examined": 51
+          },
+          "duplicates_dropped": 0,
+          "listed": 51,
+          "kept": 34
+        }
+      ],
+      "aha_orgcds": [
+        "5210"
+      ],
+      "aha_phds_total": 1034,
+      "aha_phds_since": 319,
+      "listed": 51,
+      "kept": 34,
+      "kept_since": 34,
+      "history_phd": 34,
+      "needs_review": 0,
+      "with_pdf_bitstream": 34,
+      "open_pdf": 34,
+      "open_pdf_since": 34,
+      "open_pdf_history_phd": 34,
+      "embargoed": 0,
+      "restricted": 0,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 34
+      },
+      "aha_matched": 34,
+      "aha_matched_since": 34,
+      "aha_match_rate_kept": 1.0,
+      "aha_coverage_since": 0.107,
+      "match_basis_counts": {
+        "surname+year+title": 34
+      },
+      "programme_counts": {
+        "Department of History": 34
+      },
+      "years": {
+        "2010": 1,
+        "2011": 2,
+        "2012": 1,
+        "2013": 1,
+        "2014": 4,
+        "2015": 4,
+        "2016": 4,
+        "2017": 1,
+        "2018": 2,
+        "2019": 3,
+        "2020": 3,
+        "2021": 1,
+        "2023": 2,
+        "2024": 1,
+        "2025": 2,
+        "2026": 2
+      },
+      "excluded_values": {
+        "Department of History": 14,
+        "Department of English and Comparative Literature": 2,
+        "Department of Epidemiology": 1
+      }
+    },
+    "virginia": {
+      "institution_name": "University of Virginia",
+      "streams": [
+        {
+          "id": "uva-history",
+          "adapter": "uva_libra",
+          "listing_route": "Libra ETD sitemap.xml (every public_view work) -> /api/works/<id>?for=view; DataCite (prefix 10.18130) titles only to order the requests",
+          "listing": {
+            "sitemap_works": 13804,
+            "datacite_ordered": 13811
+          },
+          "listing_fetched_at": "2026-10-14T16:15:49.960873+00:00",
+          "candidates": 13804,
+          "fetch": {
+            "not_fetched": 13422,
+            "examined": 382
+          },
+          "duplicates_dropped": 0,
+          "listed": 382,
+          "kept": 128
+        }
+      ],
+      "aha_orgcds": [
+        "5102"
+      ],
+      "aha_phds_total": 838,
+      "aha_phds_since": 241,
+      "listed": 382,
+      "kept": 128,
+      "kept_since": 87,
+      "history_phd": 128,
+      "needs_review": 0,
+      "with_pdf_bitstream": 60,
+      "open_pdf": 60,
+      "open_pdf_since": 47,
+      "open_pdf_history_phd": 60,
+      "embargoed": 9,
+      "restricted": 59,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "restricted": 59,
+        "open.access": 60,
+        "embargo": 9
+      },
+      "aha_matched": 123,
+      "aha_matched_since": 83,
+      "aha_match_rate_kept": 0.961,
+      "aha_coverage_since": 0.344,
+      "match_basis_counts": {
+        "surname+year+title": 122,
+        "title+year (name differs)": 1
+      },
+      "programme_counts": {
+        "Department of History": 34,
+        "History - Graduate School of Arts and Sciences": 52,
+        "Corcoran Department of History": 42
+      },
+      "years": {
+        "1950": 1,
+        "1971": 1,
+        "1973": 1,
+        "1974": 3,
+        "1975": 3,
+        "1976": 1,
+        "1977": 1,
+        "1980": 1,
+        "1981": 1,
+        "1982": 2,
+        "1983": 1,
+        "1984": 1,
+        "1985": 1,
+        "1986": 3,
+        "1991": 1,
+        "1992": 1,
+        "1996": 1,
+        "1997": 1,
+        "1998": 2,
+        "1999": 1,
+        "2000": 2,
+        "2002": 4,
+        "2003": 2,
+        "2004": 5,
+        "2005": 3,
+        "2006": 3,
+        "2007": 4,
+        "2008": 4,
+        "2009": 3,
+        "2010": 3,
+        "2011": 7,
+        "2012": 6,
+        "2013": 8,
+        "2014": 4,
+        "2015": 6,
+        "2016": 6,
+        "2017": 8,
+        "2018": 3,
+        "2020": 3,
+        "2021": 4,
+        "2022": 2,
+        "2023": 1,
+        "2024": 3,
+        "2025": 6
+      },
+      "excluded_values": {
+        "English - Graduate School of Arts and Sciences": 32,
+        "History - Graduate School of Arts and Sciences": 31,
+        "Department of English": 30,
+        "Architectural History - School of Architecture": 17,
+        "History of Art and Architecture - Graduate School of Arts and Sciences": 15,
+        "Religious Studies - Graduate School of Arts and Sciences": 12,
+        "Corcoran Department of History": 10,
+        "Department of Religious Studies": 8,
+        "Spanish - Graduate School of Arts and Sciences": 8,
+        "French - Graduate School of Arts and Sciences": 7,
+        "School of Engineering and Applied Science": 7,
+        "Nursing - Graduate School of Arts and Sciences": 7,
+        "Department of Architectural History": 6,
+        "Department of Anthropology": 6,
+        "Sociology - Graduate School of Arts and Sciences": 5,
+        "Department of Spanish, Italian, and Portuguese": 5,
+        "Department of Politics": 5,
+        "Music - Graduate School of Arts and Sciences": 5,
+        "Slavic Languages and Literatures - Graduate School of Arts and Sciences": 4,
+        "East Asian Studies - Graduate School of Arts and Sciences": 3,
+        "Harrison Undergraduate Research Award": 2,
+        "Doctor of Philosophy": 2,
+        "Department of Music": 2,
+        "Department of Art History": 2,
+        "Department of Slavic Languages and Literatures": 2
+      }
+    },
+    "florida": {
+      "institution_name": "University of Florida",
+      "streams": [
+        {
+          "id": "florida-history",
+          "adapter": "ufl_ufdc",
+          "listing_route": "UFDC JSON API exactsearch (four queries, union, paged with start=) -> /<bibid>/<vid>/downloads for public kept items only",
+          "listing": {
+            "query_hits": {
+              "etd-discipline": 119,
+              "subject-phd-exact": 144,
+              "subject-phd-broad": 379,
+              "subject-dissertations": 94
+            },
+            "union": 458
+          },
+          "listing_fetched_at": "2026-10-14T16:18:09.851279+00:00",
+          "candidates": 458,
+          "fetch": {
+            "examined": 458
+          },
+          "duplicates_dropped": 0,
+          "listed": 458,
+          "kept": 219
+        }
+      ],
+      "aha_orgcds": [
+        "5124"
+      ],
+      "aha_phds_total": 325,
+      "aha_phds_since": 133,
+      "listed": 458,
+      "kept": 219,
+      "kept_since": 120,
+      "history_phd": 219,
+      "needs_review": 0,
+      "with_pdf_bitstream": 30,
+      "open_pdf": 30,
+      "open_pdf_since": 30,
+      "open_pdf_history_phd": 30,
+      "embargoed": 5,
+      "restricted": 85,
+      "no_public_pdf": 99,
+      "access_status_counts": {
+        "open.access": 30,
+        "restricted": 85,
+        "embargo": 5,
+        "none": 99
+      },
+      "aha_matched": 215,
+      "aha_matched_since": 119,
+      "aha_match_rate_kept": 0.982,
+      "aha_coverage_since": 0.895,
+      "match_basis_counts": {
+        "surname+year+title": 199,
+        "surname+given_initial+year (title differs)": 14,
+        "title+year (name differs)": 2
+      },
+      "programme_counts": {
+        "History": 219
+      },
+      "years": {
+        "1952": 1,
+        "1953": 1,
+        "1954": 1,
+        "1955": 1,
+        "1956": 1,
+        "1958": 1,
+        "1959": 1,
+        "1960": 3,
+        "1961": 3,
+        "1962": 2,
+        "1966": 1,
+        "1967": 2,
+        "1968": 1,
+        "1969": 3,
+        "1970": 5,
+        "1972": 3,
+        "1973": 5,
+        "1974": 1,
+        "1975": 5,
+        "1976": 1,
+        "1977": 4,
+        "1978": 1,
+        "1979": 2,
+        "1983": 2,
+        "1985": 3,
+        "1986": 1,
+        "1987": 2,
+        "1988": 1,
+        "1989": 1,
+        "1990": 1,
+        "1991": 4,
+        "1992": 1,
+        "1993": 4,
+        "1994": 1,
+        "1995": 1,
+        "1996": 2,
+        "1997": 4,
+        "1998": 5,
+        "1999": 2,
+        "2000": 4,
+        "2001": 3,
+        "2002": 4,
+        "2003": 3,
+        "2005": 1,
+        "2007": 3,
+        "2008": 3,
+        "2009": 5,
+        "2010": 8,
+        "2011": 10,
+        "2012": 5,
+        "2013": 12,
+        "2014": 11,
+        "2015": 13,
+        "2016": 5,
+        "2017": 8,
+        "2018": 8,
+        "2019": 7,
+        "2020": 2,
+        "2021": 4,
+        "2022": 4,
+        "2023": 3,
+        "2024": 3,
+        "2025": 5
+      },
+      "excluded_values": {
+        "English": 41,
+        "History": 30,
+        "Anthropology": 29,
+        "Art History | Art and Art History": 19,
+        "Speech": 10,
+        "Political Science": 9,
+        "Curriculum and Instruction | Teaching and Learning": 5,
+        "Inter-American Studies": 5,
+        "Curriculum and Instruction (ISC) | Teaching and Learning": 5,
+        "Romance Languages and Literatures": 5,
+        "Economics": 4,
+        "Zoology": 4,
+        "Music": 4,
+        "Educational Administration and Supervision": 3,
+        "Curriculum and Instruction": 3,
+        "Entomology and Nematology": 3,
+        "Design, Construction, and Planning | Design, Construction and Planning": 3,
+        "Geography": 2,
+        "Design, Construction, and Planning": 2,
+        "Mass Communication": 2,
+        "Psychology": 2,
+        "Zoology | Biology": 2,
+        "Interdisciplinary Ecology": 2,
+        "Spanish": 2,
+        "Sociology": 2
+      }
+    },
+    "kansas": {
+      "institution_name": "University of Kansas",
+      "streams": [
+        {
+          "id": "kansas-history",
+          "adapter": "dspace_html",
+          "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+          "listing": {
+            "sitemap_item_urls": 33884,
+            "openalex_works": 11108,
+            "selection": {
+              "not selected": 6576,
+              "openalex_history_concept_or_topic": 1681,
+              "title_history_signal": 599,
+              "aha_surname_year": 293,
+              "no repository landing URL (e.g. ProQuest only)": 2580,
+              "landing URL without handle or uuid": 5,
+              "selected (distinct items)": 1947
+            }
+          },
+          "listing_fetched_at": "2026-10-14T16:30:53.300117+00:00",
+          "candidates": 1947,
+          "fetch": {
+            "not_fetched": 1927,
+            "examined": 19,
+            "status_404": 1
+          },
+          "duplicates_dropped": 0,
+          "listed": 19,
+          "kept": 17
+        }
+      ],
+      "aha_orgcds": [
+        "15150"
+      ],
+      "aha_phds_total": 441,
+      "aha_phds_since": 151,
+      "listed": 19,
+      "kept": 17,
+      "kept_since": 16,
+      "history_phd": 17,
+      "needs_review": 0,
+      "with_pdf_bitstream": 15,
+      "open_pdf": 15,
+      "open_pdf_since": 14,
+      "open_pdf_history_phd": 15,
+      "embargoed": 1,
+      "restricted": 1,
+      "no_public_pdf": 0,
+      "access_status_counts": {
+        "open.access": 15,
+        "restricted": 1,
+        "embargo": 1
+      },
+      "aha_matched": 17,
+      "aha_matched_since": 16,
+      "aha_match_rate_kept": 1.0,
+      "aha_coverage_since": 0.106,
+      "match_basis_counts": {
+        "surname+year+title": 16,
+        "surname+given_initial+year (title differs)": 1
+      },
+      "programme_counts": {
+        "History": 17
+      },
+      "years": {
+        "1997": 1,
+        "2009": 2,
+        "2010": 2,
+        "2012": 8,
+        "2015": 1,
+        "2016": 3
+      },
+      "excluded_values": {
+        "History": 2
+      }
+    },
+    "arizona": {
+      "institution_name": "University of Arizona",
+      "streams": [
+        {
+          "id": "arizona-history",
+          "adapter": "dspace_html",
+          "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+          "listing": {
+            "sitemap_item_urls": 114244,
+            "openalex_works": 36963,
+            "selection": {
+              "not selected": 31676,
+              "openalex_history_concept_or_topic": 4457,
+              "title_history_signal": 1523,
+              "aha_surname_year": 672,
+              "no repository landing URL (e.g. ProQuest only)": 1,
+              "selected (distinct items)": 5286
+            }
+          },
+          "listing_fetched_at": "2026-10-14T16:31:07.834085+00:00",
+          "candidates": 5286,
+          "fetch": {
+            "not_fetched": 5273,
+            "examined": 13
+          },
+          "duplicates_dropped": 0,
+          "listed": 13,
+          "kept": 12
+        }
+      ],
+      "aha_orgcds": [
+        "15075"
+      ],
+      "aha_phds_total": 275,
+      "aha_phds_since": 132,
+      "listed": 13,
+      "kept": 12,
+      "kept_since": 6,
+      "history_phd": 12,
+      "needs_review": 0,
+      "with_pdf_bitstream": 11,
+      "open_pdf": 0,
+      "open_pdf_since": 0,
+      "open_pdf_history_phd": 0,
+      "embargoed": 0,
+      "restricted": 0,
+      "no_public_pdf": 12,
+      "access_status_counts": {
+        "none": 12
+      },
+      "aha_matched": 12,
+      "aha_matched_since": 6,
+      "aha_match_rate_kept": 1.0,
+      "aha_coverage_since": 0.045,
+      "match_basis_counts": {
+        "surname+year+title": 12
+      },
+      "programme_counts": {
+        "History": 12
+      },
+      "years": {
+        "1982": 1,
+        "1983": 1,
+        "1985": 1,
+        "1989": 1,
+        "1992": 1,
+        "1994": 1,
+        "2006": 1,
+        "2008": 3,
+        "2015": 1,
+        "2018": 1
+      },
+      "excluded_values": {
+        "Anthropology": 1
+      }
+    },
+    "temple": {
+      "institution_name": "Temple University",
+      "streams": [
+        {
+          "id": "temple-history",
+          "adapter": "dspace_html",
+          "listing_route": "robots.txt disallows /server/api and /server/oai: sitemap_index.xml (inventory) + OpenAlex works for the repository (type dissertation, off-site) -> candidate item pages /handle/<handle> (server-side render, crawl-delay 10 s)",
+          "listing": {
+            "sitemap_item_urls": 11638,
+            "openalex_works": 3646,
+            "selection": {
+              "not selected": 2898,
+              "title_history_signal": 250,
+              "openalex_history_concept_or_topic": 635,
+              "aha_surname_year": 160,
+              "selected (distinct items)": 748
+            }
+          },
+          "listing_fetched_at": "2026-10-14T16:30:44.684758+00:00",
+          "candidates": 748,
+          "fetch": {
+            "not_fetched": 724,
+            "examined": 24
+          },
+          "duplicates_dropped": 0,
+          "listed": 24,
+          "kept": 24
+        }
+      ],
+      "aha_orgcds": [
+        "5245"
+      ],
+      "aha_phds_total": 348,
+      "aha_phds_since": 136,
+      "listed": 24,
+      "kept": 24,
+      "kept_since": 24,
+      "history_phd": 24,
+      "needs_review": 0,
+      "with_pdf_bitstream": 21,
+      "open_pdf": 20,
+      "open_pdf_since": 20,
+      "open_pdf_history_phd": 20,
+      "embargoed": 1,
+      "restricted": 0,
+      "no_public_pdf": 3,
+      "access_status_counts": {
+        "open.access": 22,
+        "none": 1,
+        "embargo": 1
+      },
+      "aha_matched": 24,
+      "aha_matched_since": 24,
+      "aha_match_rate_kept": 1.0,
+      "aha_coverage_since": 0.176,
+      "match_basis_counts": {
+        "surname+year+title": 24
+      },
+      "programme_counts": {
+        "History": 24
+      },
+      "years": {
+        "2009": 3,
+        "2010": 4,
+        "2011": 4,
+        "2012": 1,
+        "2013": 1,
+        "2015": 2,
+        "2017": 4,
+        "2018": 1,
+        "2024": 1,
+        "2025": 2,
+        "2026": 1
+      },
+      "excluded_values": {}
+    }
+  },
+  "errors": {},
+  "skipped": [],
+  "notes": [
+    "listed = items whose metadata was fetched and examined by the keep rule (see streams[].listing for the listing route and its size).",
+    "open_pdf = a public PDF is listed and the access status is open at harvest time (DSpace accessStatus; UNC citation_pdf_url; UVA visibility open with past or no embargo; UFDC accesscode public with past or no embargo); no PDF body was requested.",
+    "aha_matched counts distinct AHA records matched one-to-one; aha_coverage_since = matched AHA PhDs since aha_since / AHA PhDs since aha_since.",
+    "Repository holdings are not graduation censuses; electronic deposit begins between ~2005 and ~2010 depending on the institution."
+  ]
+}

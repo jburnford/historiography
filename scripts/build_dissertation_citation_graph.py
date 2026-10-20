@@ -11,8 +11,7 @@ SUPERVISED (Person->Dissertation), AWARDED_BY (Dissertation->Institution).
 Each Dissertation carries ``eligibility``: ``history_phd`` (explicit History
 doctorate; for the fifteen first-harvest universities this is the Sol review's
 ``doctoral_history_eligible``), ``needs_review`` (combined department, conflicting or
-collection-only scope; reviewed decisions in ``eligibility-overrides.csv`` take precedence) or ``adjacent`` (another programme). Work and Person counts
-named ``cited_by`` use ``history_phd`` dissertations only; ``cited_by_all`` uses all.
+collection-only scope; reviewed decisions in ``eligibility-overrides.csv`` take precedence) or ``adjacent`` (another programme).
 
 Name keys are not identities: two scholars sharing a surname and initial collapse.
 Person keys use the surname and full first given name ('scott|joan'); initial-only
@@ -20,6 +19,23 @@ citations join that key only when a single full name shares surname and initial.
 ``atlas_person_candidate`` marks a Person whose key equals exactly one atlas roster
 label's key; it is a candidate link for review, not a resolved identity.
 Primary/secondary sides come from the dissertation's own subheadings, when present.
+
+Scope (user decision, 2026-10-20; see ``dissertation_scope.py``): one **main graph** of
+every History PhD found, from any country, and a **country sub-graph** for each country
+with at least ``--subgraph-threshold`` (default 2000) strict History PhDs. Every
+Dissertation carries ``country`` (ISO-2; manifest entries without one are the legacy
+Canadian harvests, ``CA``). Eligibility is country-neutral: each record is judged on its
+own basis (the Canadian eligibility review and overrides; the harvest's ``history_scope``
+and ``eligibility_basis``, e.g. an AHA History PhD match for the US tier-2 records; a
+BASE ``history_label`` hook for later). ``in_analysis`` marks the strict set, a parsed,
+non-excluded bibliography of a ``history_phd``, regardless of country; ``subgraph`` names
+the dissertation's country when that country has a sub-graph.
+
+Counts on Work and Person nodes: ``cited_by`` (Works) and ``cited_by_dissertations``
+(Persons) count strict History PhDs of the main graph; ``cited_by_country`` gives the same
+count per country ({'CA': n, 'US': m}); ``cited_by_all`` counts every dissertation with a
+counted bibliography, of any eligibility and country. Summaries are written for the main
+graph to ``summary/`` and for each sub-graph to ``summary/countries/<CC>/``.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -32,6 +48,8 @@ import re
 import sys
 import unicodedata
 from xml.sax.saxutils import escape
+
+from dissertation_scope import SUBGRAPH_THRESHOLD, record_country, summary_dir
 
 CITABLE = {'book', 'article', 'chapter', 'thesis', 'book_or_serial', 'unstyled'}
 STOPWORDS = {'the', 'a', 'an', 'le', 'la', 'les', 'l', 'un', 'une', 'des', 'du', 'de'}
@@ -282,14 +300,31 @@ def exclusion_index(out):
         return {(r['institution'], r['id']): r for r in csv.DictReader(f)}
 
 
+# Hook for BASE records (data/field-research/base-history-theses-2026-10-19), not yet
+# ingested: their classifier's ``history_label``. The 'history' label measured 74% precision
+# on a hand check, so its mapping must be reviewed before BASE records enter the manifest.
+BASE_LABEL_ELIGIBILITY = {'history': 'history_phd', 'possible': 'needs_review', 'other': 'adjacent'}
+
+
 def eligibility(d, index, overrides=None):
+    """Country-neutral: every record is judged on its own eligibility basis.
+    1. Reviewed record-level overrides (eligibility-overrides.csv).
+    2. The Canadian first-harvest eligibility review (combined-index.jsonl).
+    3. A BASE ``history_label`` (hook; BASE is not yet ingested).
+    4. The harvest's ``history_scope``, with its ``eligibility_basis`` when the harvest
+       records one (US tier-2: 'AHA History PhD record matched')."""
     o = (overrides or {}).get((d['institution'], d['id']))
     if o:
         return o['eligibility'], 'reviewed_override: ' + o['note']
     if (d['institution'], d['id']) in index:
         return index[(d['institution'], d['id'])]
+    if d.get('history_label') is not None:
+        return BASE_LABEL_ELIGIBILITY.get(d['history_label'], 'needs_review'), f"base_history_label: {d['history_label']}"
     scope = d.get('history_scope') or ''
-    return ('history_phd' if scope.startswith('explicit_history') else 'needs_review'), scope or 'unchecked'
+    status = scope or 'unchecked'
+    if d.get('eligibility_basis'):
+        status += f"; {d['eligibility_basis']}"
+    return ('history_phd' if scope.startswith('explicit_history') else 'needs_review'), status
 
 
 def dissertation_year(d):
@@ -327,6 +362,8 @@ def merge_titles(works_by_surname):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--subgraph-threshold', type=int, default=SUBGRAPH_THRESHOLD,
+                        help='strict History PhDs a country needs for its own sub-graph (default %(default)s)')
     args = parser.parse_args()
     out = args.out
     docs = {d['id']: d for d in json.load((out / 'doctorates.json').open())}
@@ -378,7 +415,7 @@ def main():
         x = extraction[did]
         elig, scope_status = eligibility(d, elig_index, overrides)
         nodes[f'D:{did}'] = dict(id=f'D:{did}', type='Dissertation', title=d['title'], authors=d['authors'],
-                                 institution=d['institution'], year=year, year_source=year_field,
+                                 institution=d['institution'], country=record_country(d), year=year, year_source=year_field,
                                  eligibility=elig, scope_status=scope_status,
                                  ancient_topic=bool(overrides.get((d['institution'], did), {}).get('ancient_topic')),
                                  advisors=d.get('advisors', []), history_scope=d.get('history_scope'),
@@ -388,7 +425,7 @@ def main():
         # Only parsed, non-excluded bibliographies give CITES edges; in_analysis marks the strict set.
         n = nodes[f'D:{did}']
         n['cites_counted'] = x['status'] == 'parsed' and not n['graph_excluded']
-        n['in_analysis'] = n['cites_counted'] and elig == 'history_phd'
+        n['in_analysis'] = n['cites_counted'] and elig == 'history_phd'  # strict set, any country
         nodes[f'I:{d["institution"]}'] = dict(id=f'I:{d["institution"]}', type='Institution', name=d['institution'])
         edges.append(dict(source=f'D:{did}', target=f'I:{d["institution"]}', type='AWARDED_BY'))
         for a in d['authors']:
@@ -457,12 +494,23 @@ def main():
                 if variant and variant[0] not in first and fold(variant[0].split(',')[0]) == w['authors'][0].split('|')[0]:
                     first[variant[0]] += 0  # record the spelling as evidence without inflating counts
     strict = {k[2:] for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']}
+    country_of = {k[2:]: n['country'] for k, n in nodes.items() if n['type'] == 'Dissertation'}
+    strict_by_country = Counter(country_of[d] for d in strict)
+    subgraphs = sorted(c for c, k in strict_by_country.items() if k >= args.subgraph_threshold)
+    for k, n in nodes.items():
+        if n['type'] == 'Dissertation':
+            n['subgraph'] = n['country'] if n['in_analysis'] and n['country'] in subgraphs else None
+
+    def by_country(citing):
+        return dict(sorted(Counter(country_of[x] for x in citing).items()))
     for wid, w in works.items():
+        citing = w['citing'] & strict
         nodes[wid] = dict(id=wid, type='Work', title=w['titles'].most_common(1)[0][0],
                           year=w['years'].most_common(1)[0][0] if w['years'] else None,
                           kind=w['kinds'].most_common(1)[0][0], container=w['containers'].most_common(1)[0][0] if w['containers'] else None,
-                          cited_by=len(w['citing'] & strict), cited_by_all=len(w['citing']),
-                          institutions=len({nodes[f'D:{x}']['institution'] for x in w['citing'] & strict}),
+                          cited_by=len(citing), cited_by_all=len(w['citing']),
+                          **({'cited_by_country': by_country(citing)} if citing else {}),
+                          institutions=len({nodes[f'D:{x}']['institution'] for x in citing}),
                           cited_as=dict(w['sides']), title_variants=len(w['titles']))
         for k in dict.fromkeys(a for a in w['authors'] if a):
             edges.append(dict(source=f'P:{k}', target=wid, type='AUTHORED'))
@@ -541,8 +589,10 @@ def main():
         name = p['names'].most_common(1)[0][0]
         match = atlas.get(k)
         nodes[f'P:{k}'] = dict(id=f'P:{k}', type='Person', key=k, name=name,
-                               roles=dict(p['roles']), cited_by_dissertations=len({x for x in cited_by_person[f'P:{k}'] if x in strict}),
+                               roles=dict(p['roles']), cited_by_dissertations=len(cited_by_person[f'P:{k}'] & strict),
                                cited_by_all=len(cited_by_person[f'P:{k}']),
+                               **({'cited_by_country': by_country(cited_by_person[f'P:{k}'] & strict)}
+                                  if cited_by_person[f'P:{k}'] & strict else {}),
                                name_variants=len(p['names']), name_key_kind='full_first_name' if '|' in k and len(k.split('|')[1]) > 1 else
                                'initial_only' if '|' in k else 'corporate_or_single_name',
                                **({'atlas_person_candidate': match} if match else {}),
@@ -557,6 +607,9 @@ def main():
                            dissertations=sum(1 for n in nodes.values() if n['type'] == 'Dissertation'),
                            eligibility=dict(Counter(n['eligibility'] for n in nodes.values() if n['type'] == 'Dissertation')),
                            with_bibliography=sum(1 for n in nodes.values() if n['type'] == 'Dissertation' and n['extraction_status'] == 'parsed'),
+                           by_country=dict(sorted(Counter(n['country'] for n in nodes.values() if n['type'] == 'Dissertation').items())),
+                           in_analysis=len(strict), in_analysis_by_country=dict(sorted(strict_by_country.items())),
+                           subgraph_threshold=args.subgraph_threshold, subgraphs=subgraphs,
                            works=len(works), persons=len(persons), cites_edges=len(cites),
                            caveats=['Heuristic bibliography parsing; see audit for measured precision.',
                                     'Person nodes are name keys (surname, first name, middle initial) merged by catalogue title evidence and tiered Wikidata grounding; they are not authority-reviewed identities.',
@@ -565,46 +618,56 @@ def main():
     (out / 'graph.json').write_text(json.dumps(graph, ensure_ascii=False) + '\n')
     write_graphml(out / 'graph.graphml', graph)
 
+    # Per-country strict counts: one column per sub-graph country, the rest pooled in cited_by_other.
+    def country_cols(n):
+        c = n.get('cited_by_country', {})
+        return [c.get(cc, 0) for cc in subgraphs] + [sum(v for cc, v in c.items() if cc not in subgraphs)]
+    country_heads = [f'cited_by_{cc}' for cc in subgraphs] + ['cited_by_other']
     with (out / 'works.csv').open('w', newline='') as f:
         wr = csv.writer(f)
-        wr.writerow(['work_id', 'cited_by_dissertations', 'cited_by_all', 'institutions', 'authors', 'title', 'year', 'kind', 'container', 'cited_as'])
+        wr.writerow(['work_id', 'cited_by_dissertations', 'cited_by_all', 'institutions', 'authors', 'title', 'year', 'kind', 'container', 'cited_as'] + country_heads)
         for n in sorted((n for n in nodes.values() if n['type'] == 'Work'), key=lambda n: (-n['cited_by'], -n['cited_by_all'])):
             authors = '; '.join(nodes[f'P:{a}']['name'] for a in dict.fromkeys(works[n['id']]['authors']) if a)
-            wr.writerow([n['id'], n['cited_by'], n['cited_by_all'], n['institutions'], authors, n['title'], n['year'], n['kind'], n['container'], json.dumps(n['cited_as'])])
+            wr.writerow([n['id'], n['cited_by'], n['cited_by_all'], n['institutions'], authors, n['title'], n['year'], n['kind'], n['container'], json.dumps(n['cited_as'])] + country_cols(n))
     with (out / 'cited-people.csv').open('w', newline='') as f:
         wr = csv.writer(f)
-        wr.writerow(['person_key', 'name', 'cited_by_dissertations', 'cited_by_all', 'roles', 'qid', 'qid_basis', 'atlas_person_candidate'])
+        wr.writerow(['person_key', 'name', 'cited_by_dissertations', 'cited_by_all', 'roles', 'qid', 'qid_basis', 'atlas_person_candidate'] + country_heads)
         for n in sorted((n for n in nodes.values() if n['type'] == 'Person'), key=lambda n: (-n['cited_by_dissertations'], -n['cited_by_all'])):
-            wr.writerow([n['key'], n['name'], n['cited_by_dissertations'], n['cited_by_all'], json.dumps(n['roles']), n.get('qid', ''), n.get('qid_basis', ''), n.get('atlas_person_candidate', '')])
+            wr.writerow([n['key'], n['name'], n['cited_by_dissertations'], n['cited_by_all'], json.dumps(n['roles']), n.get('qid', ''), n.get('qid_basis', ''), n.get('atlas_person_candidate', '')] + country_cols(n))
     with (out / 'dissertations.csv').open('w', newline='') as f:
         wr = csv.writer(f)
-        wr.writerow(['id', 'institution', 'eligibility', 'scope_status', 'year', 'year_source', 'author', 'title', 'extraction_status', 'bibliography_entries', 'cited_works_in_graph', 'graph_excluded', 'in_analysis'])
+        wr.writerow(['id', 'institution', 'eligibility', 'scope_status', 'year', 'year_source', 'author', 'title', 'extraction_status', 'bibliography_entries', 'cited_works_in_graph', 'graph_excluded', 'in_analysis', 'country', 'subgraph'])
         out_deg = Counter(e['source'] for e in edges if e['type'] == 'CITES')
         for n in sorted((n for n in nodes.values() if n['type'] == 'Dissertation'), key=lambda n: (n['institution'], n['year'] or 0)):
             wr.writerow([n['id'][2:], n['institution'], n['eligibility'], n['scope_status'], n['year'], n['year_source'], '; '.join(n['authors']), n['title'],
-                         n['extraction_status'], n['bibliography_entries'], out_deg[n['id']], n['graph_excluded'] or '', n['in_analysis']])
-    write_summary(out, docs, extraction, entries, nodes, edges)
+                         n['extraction_status'], n['bibliography_entries'], out_deg[n['id']], n['graph_excluded'] or '', n['in_analysis'], n['country'], n['subgraph'] or ''])
+    write_summary(out, docs, extraction, entries, nodes, edges, works, cited_by_person, subgraphs)
     print(json.dumps(graph['meta'], indent=1))
 
 
-def write_summary(out, docs, extraction, entries, nodes, edges, top=500):
-    """Small, tracked tables: coverage by university and the most-cited works and people."""
-    summary = out / 'summary'
-    summary.mkdir(exist_ok=True)
+def write_summary(out, docs, extraction, entries, nodes, edges, works, cited_by_person, subgraphs, top=500):
+    """Small, tracked tables, for the main graph (summary/) and each country sub-graph
+    (summary/countries/<CC>/): coverage by university and the most-cited works and people."""
     downloads = {}
     for log in sorted(out.glob('downloads*.jsonl')):
         for line in log.open():
-            d = json.loads(line)
-            if d['status'] == 'downloaded' or d['id'] not in downloads:
-                downloads[d['id']] = d['status']
+            try:
+                d = json.loads(line)
+            except json.JSONDecodeError:  # a line still being written by a running download
+                continue
+            if d.get('status') == 'downloaded' or d.get('id') not in downloads:
+                downloads[d.get('id')] = d.get('status')
     citable = Counter(e['dissertation'] for e in entries if e['kind'] in CITABLE)
     rows = defaultdict(Counter)
+    country = {}
     for did, d in docs.items():
         r = rows[d['institution']]
         r['doctorates_harvested'] += 1
-        st = downloads.get(did, 'not_attempted')
+        # US records carry their access category; closed ones were never requested.
+        closed = d.get('access_category') in ('restricted', 'embargoed', 'no_public_pdf')
+        st = downloads.get(did, d['access_category'] if closed else 'not_attempted')
         r['pdf_downloaded' if st == 'downloaded' else 'pdf_restricted_or_missing' if st in
-          ('restricted', 'no_public_pdf_bitstream', 'http_404') else 'pdf_pending_or_error'] += 1
+          ('restricted', 'no_public_pdf_bitstream', 'http_404', 'embargoed', 'no_public_pdf') else 'pdf_pending_or_error'] += 1
         x = extraction.get(did)
         if x:
             r['bibliography_parsed' if x['status'] == 'parsed' else 'bibliography_not_parsed'] += 1
@@ -613,33 +676,67 @@ def write_summary(out, docs, extraction, entries, nodes, edges, top=500):
         n = nodes.get(f'D:{did}')
         if n and n['in_analysis']:
             r['history_phd_in_graph'] += 1
+        country[d['institution']] = record_country(d)
         r['citable_entries'] += citable.get(did, 0)
     cols = ['doctorates_harvested', 'pdf_downloaded', 'pdf_restricted_or_missing', 'pdf_pending_or_error',
             'bibliography_parsed', 'bibliography_not_parsed', 'ocr', 'history_phd_in_graph', 'citable_entries']
-    with (summary / 'coverage-by-university.csv').open('w', newline='') as f:
-        wr = csv.writer(f)
-        wr.writerow(['institution'] + cols)
-        for inst in sorted(rows):
-            wr.writerow([inst] + [rows[inst][c] for c in cols])
-        wr.writerow(['TOTAL'] + [sum(rows[i][c] for i in rows) for c in cols])
-    works = sorted((n for n in nodes.values() if n['type'] == 'Work'), key=lambda n: (-n['cited_by'], -n['cited_by_all']))[:top]
     authors_of = defaultdict(list)
     for e in edges:
         if e['type'] == 'AUTHORED':
             authors_of[e['target']].append(nodes[e['source']]['name'])
-    with (summary / f'top-{top}-works.csv').open('w', newline='') as f:
-        wr = csv.writer(f)
-        wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'universities', 'authors', 'title', 'year', 'kind'])
-        for i, n in enumerate(works, 1):
-            wr.writerow([i, n['cited_by'], n['cited_by_all'], n['institutions'], '; '.join(authors_of[n['id']]), n['title'], n['year'], n['kind']])
-    people = sorted((n for n in nodes.values() if n['type'] == 'Person' and n['name_key_kind'] != 'corporate_or_single_name'),
-                    key=lambda n: (-n['cited_by_dissertations'], -n['cited_by_all']))[:top]
-    with (summary / f'top-{top}-people.csv').open('w', newline='') as f:
-        wr = csv.writer(f)
-        wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'name', 'person_key', 'qid', 'qid_basis', 'roles'])
-        for i, n in enumerate(people, 1):
-            wr.writerow([i, n['cited_by_dissertations'], n['cited_by_all'], n['name'], n['key'], n.get('qid', ''),
-                         n.get('qid_basis', ''), json.dumps(n['roles'])])
+    diss = {k[2:]: n for k, n in nodes.items() if n['type'] == 'Dissertation'}
+    all_works = [n for n in nodes.values() if n['type'] == 'Work']
+    all_people = [n for n in nodes.values() if n['type'] == 'Person' and n['name_key_kind'] != 'corporate_or_single_name']
+
+    for scope in [None] + list(subgraphs):
+        summary = summary_dir(out, scope)
+        summary.mkdir(parents=True, exist_ok=True)
+        with (summary / 'coverage-by-university.csv').open('w', newline='') as f:
+            wr = csv.writer(f)
+            wr.writerow(['institution'] + cols + ['country'])
+            countries = [scope] if scope else sorted(set(country.values()), key=lambda c: (c not in subgraphs, c))
+            for c in countries:
+                insts = sorted(i for i in rows if country[i] == c)
+                for inst in insts:
+                    wr.writerow([inst] + [rows[inst][k] for k in cols] + [c])
+                wr.writerow(['TOTAL' if scope else f'TOTAL_{c}'] + [sum(rows[i][k] for i in insts) for k in cols] + [c])
+            if not scope:
+                wr.writerow(['TOTAL'] + [sum(rows[i][k] for i in rows) for k in cols] + ['all'])
+        # Counts within the scope: strict History PhDs, all counted dissertations, universities.
+        strict = {d for d, n in diss.items() if n['in_analysis'] and (scope is None or n['country'] == scope)}
+        counted = {d for d, n in diss.items() if n['cites_counted'] and (scope is None or n['country'] == scope)}
+        if scope is None:
+            wcount = {n['id']: (n['cited_by'], n['cited_by_all'], n['institutions']) for n in all_works}
+            pcount = {n['id']: (n['cited_by_dissertations'], n['cited_by_all']) for n in all_people}
+        else:
+            wcount = {}
+            for n in all_works:
+                citing = works[n['id']]['citing']
+                s = citing & strict
+                wcount[n['id']] = (len(s), len(citing & counted), len({diss[x]['institution'] for x in s}))
+            pcount = {n['id']: (len(cited_by_person[n['id']] & strict), len(cited_by_person[n['id']] & counted)) for n in all_people}
+        # The main tables add the per-country split: one column per sub-graph, the rest pooled.
+        extra_heads = [f'cited_by_{cc}' for cc in subgraphs] + ['cited_by_other'] if scope is None else []
+
+        def extra(n):
+            if scope is not None:
+                return []
+            c = n.get('cited_by_country', {})
+            return [c.get(cc, 0) for cc in subgraphs] + [sum(v for cc, v in c.items() if cc not in subgraphs)]
+        ranked = sorted(all_works, key=lambda n: (-wcount[n['id']][0], -wcount[n['id']][1]))[:top]
+        with (summary / f'top-{top}-works.csv').open('w', newline='') as f:
+            wr = csv.writer(f)
+            wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'universities', 'authors', 'title', 'year', 'kind'] + extra_heads)
+            for i, n in enumerate(ranked, 1):
+                k, a, u = wcount[n['id']]
+                wr.writerow([i, k, a, u, '; '.join(authors_of[n['id']]), n['title'], n['year'], n['kind']] + extra(n))
+        ranked = sorted(all_people, key=lambda n: (-pcount[n['id']][0], -pcount[n['id']][1]))[:top]
+        with (summary / f'top-{top}-people.csv').open('w', newline='') as f:
+            wr = csv.writer(f)
+            wr.writerow(['rank', 'cited_by_history_phds', 'cited_by_all', 'name', 'person_key', 'qid', 'qid_basis', 'roles'] + extra_heads)
+            for i, n in enumerate(ranked, 1):
+                k, a = pcount[n['id']]
+                wr.writerow([i, k, a, n['name'], n['key'], n.get('qid', ''), n.get('qid_basis', ''), json.dumps(n['roles'])] + extra(n))
 
 
 def write_graphml(path, graph):

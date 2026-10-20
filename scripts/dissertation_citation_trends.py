@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
-"""Change over time in what Canadian History PhD dissertations cite.
+"""Change over time in what History PhD dissertations cite (main graph or a country sub-graph).
 
-Uses strict History PhDs (eligibility ``history_phd``) with a parsed bibliography and a
-year. Every measure is normalised by the number of dissertations in the year: a
-person's value is the share of that year's dissertations citing any of their works.
+Uses strict History PhDs (``in_analysis``: eligibility ``history_phd`` with a parsed
+bibliography) with a year, from every country (main graph) or from one country
+(``--country CC``, a sub-graph; see ``dissertation_scope.py``). Every measure is
+normalised by the number of dissertations in the year: a person's value is the share of
+that year's dissertations citing any of their works.
 Shares use a centred three-year window with Wilson 95% intervals; windows with fewer
 than ``--min-window`` dissertations are flagged as thin (early years are small samples).
 
 Years are repository issued years, which can be deposit rather than convocation years.
 
-Writes ``summary/trends.json`` (for the HTML view) and ``summary/trends-people.csv``.
+Writes ``trends.json`` (for the HTML view) and ``trends-people.csv`` into ``summary/`` (main
+graph) or ``summary/countries/<CC>/``.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -18,6 +21,8 @@ import json
 import math
 from pathlib import Path
 import statistics
+
+from dissertation_scope import add_scope_argument, check_country, in_scope, strict_count, summary_dir
 
 CITABLE = {'book', 'article', 'chapter', 'thesis', 'book_or_serial', 'unstyled'}
 
@@ -38,10 +43,12 @@ def main():
     parser.add_argument('--last-year', type=int, default=2025)
     parser.add_argument('--min-window', type=int, default=30)
     parser.add_argument('--min-citing', type=int, default=20, help='include people cited by at least this many dissertations')
+    add_scope_argument(parser)
     args = parser.parse_args()
     graph = json.loads((args.out / 'graph.json').read_text())
+    check_country(graph, args.country)
     nodes = {n['id']: n for n in graph['nodes']}
-    diss = {k: n for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']
+    diss = {k: n for k, n in nodes.items() if in_scope(n, args.country)
             and n['year'] and args.first_year <= n['year'] <= args.last_year}
     cites, authored = defaultdict(set), defaultdict(set)
     for e in graph['edges']:
@@ -94,11 +101,12 @@ def main():
         early, late = share(c, 2000, 2009), share(c, 2018, 2025)
         trend = ('rising' if late >= 1.25 * early and late - early >= 0.02 else
                  'declining' if late <= 0.75 * early and early - late >= 0.02 else 'steady')
-        top_works = sorted(((nodes[w]['cited_by'], nodes[w]['title']) for w in works_of[p]), reverse=True)[:3]
+        top_works = sorted(((strict_count(nodes[w], args.country), nodes[w]['title']) for w in works_of[p]), reverse=True)[:3]
         people.append(dict(id=p, name=nodes[p]['name'], qid=nodes[p].get('qid'), total=sum(c.values()),
                            share_2000s=round(early, 4), share_2018_25=round(late, 4), trend=trend,
                            top_works=[t for _, t in top_works], series=series))
-    out = args.out / 'summary'
+    out = summary_dir(args.out, args.country)
+    out.mkdir(parents=True, exist_ok=True)
     (out / 'trends.json').write_text(json.dumps(dict(
         generated_from='graph.json', unit='share of strict History PhD dissertations citing the person (centred 3-year window)',
         min_window=args.min_window, min_citing=args.min_citing, years=years, context=context, people=people), ensure_ascii=False) + '\n')

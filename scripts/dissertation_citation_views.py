@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Three analytical views of the dissertation citation graph, written as JSON for the HTML page.
 
-All measures use strict History PhDs (eligibility ``history_phd``) with a parsed
-bibliography and are shares of dissertations, never raw counts.
+All measures use strict History PhDs (``in_analysis``: eligibility ``history_phd`` with a
+parsed bibliography), of every country (main graph) or of one country (``--country CC``,
+a sub-graph; see ``dissertation_scope.py``), and are shares of dissertations, never raw
+counts. Output: ``views.json`` in ``summary/`` or ``summary/countries/<CC>/``.
 
 1. Fields (co-citation). Works cited by at least ``--min-cited`` History PhDs, excluding
    corporate authors and works cited mostly as primary sources, are linked by cosine
@@ -20,8 +22,9 @@ bibliography and are shares of dissertations, never raw counts.
    field engagement by university, and each department's distinctive scholars (cited by
    at least 5 of its dissertations, ranked by lift over all other universities).
 
-Field labels are provisional and editable in ``summary/field-labels.csv`` (keyed by the
-field's anchor work, so they survive re-runs).
+Field labels are provisional and editable in ``field-labels.csv`` in the same directory
+(keyed by the field's anchor work, so they survive re-runs). A scope without a label file
+starts from the labels of the other scopes whose anchors it shares.
 """
 import argparse
 from collections import Counter, defaultdict
@@ -35,6 +38,8 @@ import re
 import networkx as nx
 from networkx.algorithms.community import louvain_communities
 
+from dissertation_scope import add_scope_argument, check_country, in_scope, strict_count, summary_dir
+
 
 def wilson(k, n, z=1.96):
     if not n:
@@ -45,11 +50,11 @@ def wilson(k, n, z=1.96):
     return max(0.0, c - h), min(1.0, c + h)
 
 
-def load(out):
+def load(out, country=None):
     g = json.loads((out / 'graph.json').read_text())
+    check_country(g, country)
     nodes = {n['id']: n for n in g['nodes']}
-    diss = {k: n for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']
-           }
+    diss = {k: n for k, n in nodes.items() if in_scope(n, country)}
     cites, authored, sup = defaultdict(set), defaultdict(list), defaultdict(set)
     for e in g['edges']:
         if e['type'] == 'CITES' and e['source'] in diss:
@@ -65,13 +70,13 @@ def first_author(nodes, authored, w):
     return nodes[authored[w][0]] if authored.get(w) else None
 
 
-def fields(nodes, diss, cites, authored, min_cited, seeds=40, resolution=1.5, keep=0.8):
+def fields(nodes, diss, cites, authored, min_cited, seeds=40, resolution=1.5, keep=0.8, country=None):
     def scholarly(w):
         n = nodes[w]
         ca = n['cited_as']
         a = first_author(nodes, authored, w)
         return a and a['name_key_kind'] != 'corporate_or_single_name' and ca.get('primary', 0) / (sum(ca.values()) or 1) < 0.5
-    works = {w for w, n in nodes.items() if n['type'] == 'Work' and n['cited_by'] >= min_cited and scholarly(w)}
+    works = {w for w, n in nodes.items() if n['type'] == 'Work' and strict_count(n, country) >= min_cited and scholarly(w)}
     count, co = Counter(), Counter()
     for d in diss:
         s = sorted(cites[d] & works)
@@ -122,20 +127,28 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--min-cited', type=int, default=15)
     parser.add_argument('--min-window', type=int, default=30)
+    add_scope_argument(parser)
     args = parser.parse_args()
     out = args.out
-    g, nodes, diss, cites, authored, sup = load(out)
+    summary = summary_dir(out, args.country)
+    summary.mkdir(parents=True, exist_ok=True)
+    g, nodes, diss, cites, authored, sup = load(out, args.country)
     people_of = {d: set().union(*(set(authored.get(w, [])) for w in cites[d])) if cites[d] else set() for d in diss}
     years = list(range(1965, 2026))
     n_year = Counter(n['year'] for n in diss.values() if n['year'])
 
     # ---- 1. Fields ------------------------------------------------------------------
-    works, count, G, groups, field_of, pos, stability, field_links = fields(nodes, diss, cites, authored, args.min_cited)
-    label_path = out / 'summary' / 'field-labels.csv'
+    works, count, G, groups, field_of, pos, stability, field_links = fields(nodes, diss, cites, authored, args.min_cited, country=args.country)
+    label_path = summary / 'field-labels.csv'
     labels = {}
     if label_path.exists():
         with label_path.open(newline='') as f:
             labels = {r['anchor_work']: r['label'] for r in csv.DictReader(f)}
+    else:  # a new scope starts from the editorial labels of the other scopes, by shared anchor work
+        for other in sorted({out / 'summary' / 'field-labels.csv', *(out / 'summary' / 'countries').glob('*/field-labels.csv')} - {label_path}):
+            if other.exists():
+                with other.open(newline='') as f:
+                    labels.update({r['anchor_work']: r['label'] for r in csv.DictReader(f) if r['anchor_work'] not in labels})
     engaged = {i: {d for d in diss if len(cites[d] & set(grp)) >= 3} for i, grp in enumerate(groups)}
     field_rows = []
     for i, grp in enumerate(groups):
@@ -308,7 +321,7 @@ def main():
                     fields=field_rows, nodes=map_nodes, edges=kept, years=years),
         supervision=supervision, universities=universities, min_window=args.min_window,
         note='Strict History PhDs with parsed bibliographies; shares of dissertations.')
-    (out / 'summary' / 'views.json').write_text(json.dumps(result, ensure_ascii=False) + '\n')
+    (summary / 'views.json').write_text(json.dumps(result, ensure_ascii=False) + '\n')
     print(json.dumps(dict(fields=len(groups), clustered=result['fields']['clustered'], works=len(works),
                           supervision={k: v for k, v in supervision.items() if not isinstance(v, list)},
                           universities=len(insts)), indent=1))

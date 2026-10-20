@@ -1,0 +1,52 @@
+{
+ "checked": "2026-10-19",
+ "user_agent": "HistoriographyMetadataResearch/1.0",
+ "requests": [
+  {
+   "t": "11:46:09 CST",
+   "url": "https://pqdtopen.proquest.com/robots.txt",
+   "status": 521,
+   "note": "Cloudflare \"Web server is down\" (origin down); Retry-After: 120"
+  },
+  {
+   "t": "11:47:09 CST",
+   "url": "https://pqdtopen.proquest.com/robots.txt",
+   "status": 521,
+   "note": "retried after 60 s, i.e. before the 120 s Retry-After had elapsed (our error); same 521"
+  },
+  {
+   "t": "11:47:15 CST",
+   "url": "https://pqdtopen.proquest.com/",
+   "status": 302,
+   "note": "redirect (not followed by client)"
+  },
+  {
+   "t": "note",
+   "note": "the 11:47:15 root request was also sent before the 120 s Retry-After from 11:47:09 had elapsed (our error); later requests waited >120 s"
+  },
+  {
+   "t": "11:49:32 CST",
+   "url": "https://pqdtopen.proquest.com/ (HEAD, curl)",
+   "status": 301,
+   "location": "https://www.proquest.com/?defaultdiss=true"
+  },
+  {
+   "t": "11:51:02 CST",
+   "url": "https://www.proquest.com/robots.txt",
+   "status": 200,
+   "note": "Disallow: /openview/ (the open-access document view path), /docview/*PQ/1, /runSearch, /login, /*?accountid=*; GPTBot and ChatGPT-User Disallow: /"
+  },
+  {
+   "t": "11:51:11 CST",
+   "url": "https://www.proquest.com/?defaultdiss=true",
+   "status": 302
+  },
+  {
+   "t": "11:51:24 CST",
+   "url": "https://www.proquest.com/?defaultdiss=true (HEAD, curl)",
+   "status": 302,
+   "location": "https://www.proquest.com/intermediateredirectforezproxy"
+  }
+ ],
+ "conclusion": "PQDT Open no longer exists as a standalone site: the host redirects into the ProQuest platform, whose landing page routes into an institutional-authentication (EZproxy) flow, and whose robots.txt disallows /openview/, the path that serves open-access ProQuest documents. Stopped here as instructed; no search, item or PDF requests made."
+}
