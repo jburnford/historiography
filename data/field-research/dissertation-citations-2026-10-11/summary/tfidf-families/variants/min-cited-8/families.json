@@ -1,0 +1,5577 @@
+{
+ "scope": "main",
+ "generated": "2026-10-20",
+ "script": "scripts/dissertation_tfidf_families.py",
+ "strict_dissertations_in_scope": 2267,
+ "rows": 1673,
+ "rows_excluded_lt_min_works": 594,
+ "works": 2912,
+ "excluded_profile": {
+  "by_institution": [
+   [
+    "mcgill",
+    121
+   ],
+   [
+    "laval",
+    97
+   ],
+   [
+    "montreal",
+    82
+   ],
+   [
+    "mcmaster",
+    37
+   ],
+   [
+    "alberta",
+    32
+   ],
+   [
+    "manitoba",
+    28
+   ],
+   [
+    "sfu",
+    22
+   ],
+   [
+    "toronto",
+    17
+   ],
+   [
+    "uqam",
+    16
+   ],
+   [
+    "carleton",
+    15
+   ],
+   [
+    "concordia",
+    12
+   ],
+   [
+    "memorial",
+    12
+   ]
+  ],
+  "by_country": [
+   [
+    "CA",
+    579
+   ],
+   [
+    "US",
+    15
+   ]
+  ],
+  "by_decade": [
+   [
+    0,
+    2
+   ],
+   [
+    1930,
+    1
+   ],
+   [
+    1940,
+    3
+   ],
+   [
+    1950,
+    6
+   ],
+   [
+    1960,
+    20
+   ],
+   [
+    1970,
+    67
+   ],
+   [
+    1980,
+    77
+   ],
+   [
+    1990,
+    134
+   ],
+   [
+    2000,
+    99
+   ],
+   [
+    2010,
+    127
+   ],
+   [
+    2020,
+    58
+   ]
+  ],
+  "share_by_institution": {
+   "mcgill": 0.49,
+   "toronto": 0.08,
+   "laval": 0.52,
+   "montreal": 0.52,
+   "mcmaster": 0.3,
+   "queens": 0.08,
+   "york": 0.07,
+   "carleton": 0.16,
+   "alberta": 0.35,
+   "uqam": 0.21,
+   "western": 0.12,
+   "usask": 0.07
+  },
+  "median_bibliography_entries": 219,
+  "median_bibliography_entries_rows": 305
+ },
+ "parameters": {
+  "min_cited": 8,
+  "min_works": 3,
+  "seed": 0,
+  "bootstrap": 50,
+  "tfidf": "binary tf, smoothed idf ln((1+N)/(1+df))+1, row L2 norm",
+  "nmf": "frobenius, cd solver, nndsvd init, max_iter 800, tol 1e-4"
+ },
+ "k": 14,
+ "k_rule": "most families reproduced at matched cosine >= 0.8, among ks with mean matched cosine >= 0.75; ties to the smaller k",
+ "elbow": 17,
+ "sweep": [
+  {
+   "k": 8,
+   "reconstruction_error": 39.9165,
+   "relative_error": 0.9759,
+   "iterations": 91,
+   "stability_mean": 0.749,
+   "stability_median_family": 0.726,
+   "stability_p10_family": 0.629,
+   "stability_min_family": 0.585,
+   "families_reproduced": 3
+  },
+  {
+   "k": 9,
+   "reconstruction_error": 39.8377,
+   "relative_error": 0.974,
+   "iterations": 88,
+   "stability_mean": 0.731,
+   "stability_median_family": 0.709,
+   "stability_p10_family": 0.629,
+   "stability_min_family": 0.601,
+   "families_reproduced": 2
+  },
+  {
+   "k": 10,
+   "reconstruction_error": 39.7608,
+   "relative_error": 0.9721,
+   "iterations": 275,
+   "stability_mean": 0.726,
+   "stability_median_family": 0.752,
+   "stability_p10_family": 0.548,
+   "stability_min_family": 0.44,
+   "families_reproduced": 3
+  },
+  {
+   "k": 11,
+   "reconstruction_error": 39.6842,
+   "relative_error": 0.9702,
+   "iterations": 80,
+   "stability_mean": 0.724,
+   "stability_median_family": 0.732,
+   "stability_p10_family": 0.563,
+   "stability_min_family": 0.555,
+   "families_reproduced": 4
+  },
+  {
+   "k": 12,
+   "reconstruction_error": 39.6103,
+   "relative_error": 0.9684,
+   "iterations": 75,
+   "stability_mean": 0.727,
+   "stability_median_family": 0.756,
+   "stability_p10_family": 0.62,
+   "stability_min_family": 0.534,
+   "families_reproduced": 2
+  },
+  {
+   "k": 13,
+   "reconstruction_error": 39.5397,
+   "relative_error": 0.9667,
+   "iterations": 116,
+   "stability_mean": 0.729,
+   "stability_median_family": 0.709,
+   "stability_p10_family": 0.596,
+   "stability_min_family": 0.426,
+   "families_reproduced": 5
+  },
+  {
+   "k": 14,
+   "reconstruction_error": 39.4602,
+   "relative_error": 0.9647,
+   "iterations": 181,
+   "stability_mean": 0.751,
+   "stability_median_family": 0.76,
+   "stability_p10_family": 0.604,
+   "stability_min_family": 0.559,
+   "families_reproduced": 5
+  },
+  {
+   "k": 15,
+   "reconstruction_error": 39.3968,
+   "relative_error": 0.9632,
+   "iterations": 98,
+   "stability_mean": 0.736,
+   "stability_median_family": 0.742,
+   "stability_p10_family": 0.578,
+   "stability_min_family": 0.553,
+   "families_reproduced": 5
+  },
+  {
+   "k": 16,
+   "reconstruction_error": 39.3249,
+   "relative_error": 0.9614,
+   "iterations": 50,
+   "stability_mean": 0.738,
+   "stability_median_family": 0.741,
+   "stability_p10_family": 0.609,
+   "stability_min_family": 0.58,
+   "families_reproduced": 5
+  },
+  {
+   "k": 17,
+   "reconstruction_error": 39.2614,
+   "relative_error": 0.9599,
+   "iterations": 54,
+   "stability_mean": 0.739,
+   "stability_median_family": 0.769,
+   "stability_p10_family": 0.574,
+   "stability_min_family": 0.43,
+   "families_reproduced": 7
+  },
+  {
+   "k": 18,
+   "reconstruction_error": 39.2054,
+   "relative_error": 0.9585,
+   "iterations": 59,
+   "stability_mean": 0.717,
+   "stability_median_family": 0.745,
+   "stability_p10_family": 0.559,
+   "stability_min_family": 0.358,
+   "families_reproduced": 6
+  },
+  {
+   "k": 19,
+   "reconstruction_error": 39.1539,
+   "relative_error": 0.9573,
+   "iterations": 115,
+   "stability_mean": 0.684,
+   "stability_median_family": 0.748,
+   "stability_p10_family": 0.381,
+   "stability_min_family": 0.298,
+   "families_reproduced": 5
+  },
+  {
+   "k": 20,
+   "reconstruction_error": 39.0959,
+   "relative_error": 0.9558,
+   "iterations": 78,
+   "stability_mean": 0.703,
+   "stability_median_family": 0.75,
+   "stability_p10_family": 0.446,
+   "stability_min_family": 0.322,
+   "families_reproduced": 8
+  },
+  {
+   "k": 21,
+   "reconstruction_error": 39.0272,
+   "relative_error": 0.9542,
+   "iterations": 307,
+   "stability_mean": 0.697,
+   "stability_median_family": 0.722,
+   "stability_p10_family": 0.43,
+   "stability_min_family": 0.409,
+   "families_reproduced": 6
+  },
+  {
+   "k": 22,
+   "reconstruction_error": 38.9713,
+   "relative_error": 0.9528,
+   "iterations": 153,
+   "stability_mean": 0.69,
+   "stability_median_family": 0.706,
+   "stability_p10_family": 0.483,
+   "stability_min_family": 0.372,
+   "families_reproduced": 4
+  },
+  {
+   "k": 23,
+   "reconstruction_error": 38.9312,
+   "relative_error": 0.9518,
+   "iterations": 82,
+   "stability_mean": 0.66,
+   "stability_median_family": 0.709,
+   "stability_p10_family": 0.446,
+   "stability_min_family": 0.368,
+   "families_reproduced": 3
+  },
+  {
+   "k": 24,
+   "reconstruction_error": 38.8867,
+   "relative_error": 0.9507,
+   "iterations": 137,
+   "stability_mean": 0.647,
+   "stability_median_family": 0.699,
+   "stability_p10_family": 0.409,
+   "stability_min_family": 0.329,
+   "families_reproduced": 4
+  },
+  {
+   "k": 25,
+   "reconstruction_error": 38.8291,
+   "relative_error": 0.9493,
+   "iterations": 115,
+   "stability_mean": 0.657,
+   "stability_median_family": 0.702,
+   "stability_p10_family": 0.42,
+   "stability_min_family": 0.348,
+   "families_reproduced": 5
+  },
+  {
+   "k": 26,
+   "reconstruction_error": 38.7662,
+   "relative_error": 0.9478,
+   "iterations": 135,
+   "stability_mean": 0.659,
+   "stability_median_family": 0.735,
+   "stability_p10_family": 0.438,
+   "stability_min_family": 0.272,
+   "families_reproduced": 3
+  },
+  {
+   "k": 27,
+   "reconstruction_error": 38.724,
+   "relative_error": 0.9467,
+   "iterations": 255,
+   "stability_mean": 0.657,
+   "stability_median_family": 0.718,
+   "stability_p10_family": 0.425,
+   "stability_min_family": 0.302,
+   "families_reproduced": 4
+  },
+  {
+   "k": 28,
+   "reconstruction_error": 38.6705,
+   "relative_error": 0.9454,
+   "iterations": 234,
+   "stability_mean": 0.655,
+   "stability_median_family": 0.718,
+   "stability_p10_family": 0.434,
+   "stability_min_family": 0.143,
+   "families_reproduced": 4
+  },
+  {
+   "k": 29,
+   "reconstruction_error": 38.6101,
+   "relative_error": 0.944,
+   "iterations": 156,
+   "stability_mean": 0.65,
+   "stability_median_family": 0.69,
+   "stability_p10_family": 0.457,
+   "stability_min_family": 0.432,
+   "families_reproduced": 3
+  },
+  {
+   "k": 30,
+   "reconstruction_error": 38.5618,
+   "relative_error": 0.9428,
+   "iterations": 129,
+   "stability_mean": 0.655,
+   "stability_median_family": 0.68,
+   "stability_p10_family": 0.487,
+   "stability_min_family": 0.449,
+   "families_reproduced": 4
+  }
+ ],
+ "stability": {
+  "bootstrap_mean": 0.751,
+  "init_random_mean": 0.918,
+  "note": "bootstrap: mean matched cosine of work loadings over resampled refits; init: 4 random-init + 1 nndsvda refit"
+ },
+ "membership_note": "soft memberships are each family's share of the reconstructed column (works) or row (dissertations)",
+ "families": [
+  {
+   "id": 0,
+   "provisional_label": "Said · Chakrabarty · Cooper — africa, colonial, postcolonial, knowledge",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "africa",
+    "colonial",
+    "postcolonial",
+    "knowledge",
+    "colonialism",
+    "imperial"
+   ],
+   "bootstrap_stability": 0.821,
+   "unstable": false,
+   "init_stability": 0.995,
+   "dominated_dissertations": 182,
+   "member_works": 250,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "1985-1989": 1,
+     "1990-1994": 4,
+     "1995-1999": 2,
+     "2000-2004": 4,
+     "2005-2009": 7,
+     "2010-2014": 35,
+     "2015-2019": 56,
+     "2020-2024": 52,
+     "2025-2029": 14,
+     "unknown": 7
+    },
+    "share_of_bin": {
+     "1990-1994": 0.118,
+     "1995-1999": 0.029,
+     "2000-2004": 0.036,
+     "2005-2009": 0.043,
+     "2010-2014": 0.097,
+     "2015-2019": 0.117,
+     "2020-2024": 0.16,
+     "2025-2029": 0.209,
+     "unknown": 0.212
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 1.0,
+     "citing": 127,
+     "membership": 0.752
+    },
+    {
+     "id": "W:chakrabarty|provincialising europe",
+     "title": "Provincializing Europe: Postcolonial Thought and Historical Difference",
+     "first_author": "Chakrabarty, Dipesh",
+     "year": 2000,
+     "loading": 0.649,
+     "citing": 48,
+     "membership": 0.928
+    },
+    {
+     "id": "W:cooper|colonialism in question",
+     "title": "Colonialism in Question: Theory, Knowledge, History",
+     "first_author": "Cooper, Frederick",
+     "year": 2005,
+     "loading": 0.594,
+     "citing": 40,
+     "membership": 0.913
+    },
+    {
+     "id": "W:stoler|along the archival grain",
+     "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
+     "first_author": "Stoler, Ann Laura",
+     "year": 2009,
+     "loading": 0.561,
+     "citing": 59,
+     "membership": 0.746
+    },
+    {
+     "id": "W:mamdani|citizen and subject",
+     "title": "Citizen and Subject: Contemporary Africa and the Legacy of Late Colonialism",
+     "first_author": "Mamdani, Mahmood",
+     "year": 1996,
+     "loading": 0.546,
+     "citing": 24,
+     "membership": 1.0
+    },
+    {
+     "id": "W:stoler|carnal knowledge and imperial power",
+     "title": "Carnal Knowledge and Imperial Power: Race and the Intimate in Colonial Rule",
+     "first_author": "Stoler, Ann Laura",
+     "year": 2002,
+     "loading": 0.537,
+     "citing": 57,
+     "membership": 0.698
+    },
+    {
+     "id": "W:chatterjee|nation and its fragments",
+     "title": "The Nation and Its Fragments: Colonial and Postcolonial Histories",
+     "first_author": "Chatterjee, Partha",
+     "year": 1993,
+     "loading": 0.527,
+     "citing": 30,
+     "membership": 0.865
+    },
+    {
+     "id": "W:mcclintock|imperial leather",
+     "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
+     "first_author": "McClintock, Anne",
+     "year": 1995,
+     "loading": 0.481,
+     "citing": 72,
+     "membership": 0.55
+    },
+    {
+     "id": "W:said|culture andlmperialism",
+     "title": "Culture and Imperialism",
+     "first_author": "Said, Edward",
+     "year": 1993,
+     "loading": 0.455,
+     "citing": 58,
+     "membership": 0.64
+    },
+    {
+     "id": "W:cooper|tensions of empire",
+     "title": "Tensions of Empire: Colonial Cultures in a Bourgeois World",
+     "first_author": "Cooper, Frederick",
+     "year": 1997,
+     "loading": 0.453,
+     "citing": 25,
+     "membership": 0.929
+    },
+    {
+     "id": "W:hall|civilising subjects",
+     "title": "Civilising Subjects: Colony and Metropole in the English Imagination, 1830-1867",
+     "first_author": "Hall, Catherine",
+     "year": 2002,
+     "loading": 0.442,
+     "citing": 56,
+     "membership": 0.668
+    },
+    {
+     "id": "W:vaughan|curing their ills",
+     "title": "Curing Their Ills: Colonial Power and African Illness",
+     "first_author": "Vaughan, Megan",
+     "year": 1991,
+     "loading": 0.391,
+     "citing": 13,
+     "membership": 1.0
+    },
+    {
+     "id": "W:lovejoy|transformations in slavery",
+     "title": "Transformations in Slavery: A History of Slavery in Africa",
+     "first_author": "Lovejoy, Paul E",
+     "year": 1983,
+     "loading": 0.387,
+     "citing": 18,
+     "membership": 0.991
+    },
+    {
+     "id": "W:lugard|dual mandate in british tropical africa",
+     "title": "The Dual Mandate in British Tropical Africa",
+     "first_author": "Lugard, Frederick",
+     "year": 1922,
+     "loading": 0.367,
+     "citing": 12,
+     "membership": 1.0
+    },
+    {
+     "id": "W:cohn|colonialism and it forms of knowledge",
+     "title": "Colonialism and Its Forms of Knowledge: The British in India",
+     "first_author": "Cohn, Bernard S",
+     "year": 1996,
+     "loading": 0.345,
+     "citing": 20,
+     "membership": 0.998
+    },
+    {
+     "id": "W:stoler|ace and the education of desire",
+     "title": "Race and the Education of Desire: Foucault’s History of Sexuality and the Colonial Order of Things",
+     "first_author": "Stoler, Ann Laura",
+     "year": 1995,
+     "loading": 0.334,
+     "citing": 28,
+     "membership": 0.792
+    },
+    {
+     "id": "W:fanon|wretch of the earth",
+     "title": "The Wretched of the Earth",
+     "first_author": "Fanon, Frantz",
+     "year": 1963,
+     "loading": 0.33,
+     "citing": 40,
+     "membership": 0.583
+    },
+    {
+     "id": "W:headrick|tools of empire",
+     "title": "The Tools of Empire: Technology and European Imperialism in the Nineteenth Century",
+     "first_author": "Headrick, Daniel R",
+     "year": 1981,
+     "loading": 0.312,
+     "citing": 19,
+     "membership": 0.935
+    },
+    {
+     "id": "W:bose|hundred horizons",
+     "title": "A Hundred Horizons: The Indian Ocean in the Age of Global Empire",
+     "first_author": "Bose, Sugata",
+     "year": 2006,
+     "loading": 0.309,
+     "citing": 14,
+     "membership": 0.999
+    },
+    {
+     "id": "W:cooper|africa since 1940",
+     "title": "Africa Since 1940: The Past of the Present",
+     "first_author": "Cooper, Frederick",
+     "year": 1940,
+     "loading": 0.305,
+     "citing": 13,
+     "membership": 0.853
+    },
+    {
+     "id": "W:pratt|imperial eyes",
+     "title": "Imperial Eyes: Travel Writing and Transculturation",
+     "first_author": "Pratt, Mary Louise",
+     "year": 1992,
+     "loading": 0.301,
+     "citing": 74,
+     "membership": 0.403
+    },
+    {
+     "id": "W:dirks|castes of mind",
+     "title": "Castes of Mind: Colonialism and the Making of Modern India",
+     "first_author": "Dirks, Nicholas B",
+     "year": 2001,
+     "loading": 0.291,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:mehta|liberalism and empire",
+     "title": "Liberalism and Empire: A Study in Nineteenth-Century British Liberal Thought",
+     "first_author": "Mehta, Uday Singh",
+     "year": 1999,
+     "loading": 0.289,
+     "citing": 18,
+     "membership": 0.872
+    },
+    {
+     "id": "W:adas|machines as the measure ofman",
+     "title": "Machines as the Measure of Men: Science, Technology, and Ideologies of Western Dominance",
+     "first_author": "Adas, Michael",
+     "year": 1989,
+     "loading": 0.289,
+     "citing": 18,
+     "membership": 0.899
+    },
+    {
+     "id": "W:spivak|can the subaltern speak|a",
+     "title": "Can the Subaltern Speak?",
+     "first_author": "Spivak, Gayatri Chakravorty",
+     "year": 1988,
+     "loading": 0.289,
+     "citing": 29,
+     "membership": 0.732
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Stoler, Ann Laura",
+     "loading_share": 0.0334
+    },
+    {
+     "name": "Cooper, Frederick",
+     "loading_share": 0.0281
+    },
+    {
+     "name": "Said, Edward",
+     "loading_share": 0.0252
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0236
+    },
+    {
+     "name": "Scott, James C",
+     "loading_share": 0.0151
+    },
+    {
+     "name": "Fanon, Frantz",
+     "loading_share": 0.0131
+    },
+    {
+     "name": "Hall, Catherine",
+     "loading_share": 0.0123
+    },
+    {
+     "name": "Curtin, Philip D",
+     "loading_share": 0.0118
+    },
+    {
+     "name": "Chakrabarty, Dipesh",
+     "loading_share": 0.0112
+    },
+    {
+     "name": "Bayly, C. A",
+     "loading_share": 0.0106
+    },
+    {
+     "name": "White, Luise",
+     "loading_share": 0.0097
+    },
+    {
+     "name": "Burton, Antoinette",
+     "loading_share": 0.0096
+    },
+    {
+     "name": "Mamdani, Mahmood",
+     "loading_share": 0.0095
+    },
+    {
+     "name": "Chatterjee, Partha",
+     "loading_share": 0.0091
+    },
+    {
+     "name": "Dirks, Nicholas B",
+     "loading_share": 0.0087
+    }
+   ],
+   "top_institutions": [
+    [
+     "toronto",
+     34
+    ],
+    [
+     "mcgill",
+     28
+    ],
+    [
+     "queens",
+     18
+    ],
+    [
+     "york",
+     11
+    ],
+    [
+     "mcmaster",
+     11
+    ],
+    [
+     "ubc",
+     11
+    ]
+   ],
+   "sample_dissertations": [
+    "Nationalism in Question: A Study of Key Categories in Ghanaian History",
+    "Zanzibar",
+    "Neither Strange nor Familiar: ‘Chinese-ness,’ Capital, and the Production of Race in Colonial Burma, 1886-1937",
+    "Poverty and Welfare in Colonial Nigeria, 1900-1954",
+    "Feasting on famines: food insecurity and the making of the Anglo-Egyptian Sudan, 1883-1956",
+    "The ANC's Medical Trial Run: the Anti-Apartheid Medical Service in Exile, 1964-1990",
+    "TamilThanmai: A Historical Ethnography Of Public Political Lives in Tamilnadu (1950-1970)",
+    "Patterns of rural protest : chiefs, slaves and peasants in northwestern Sierra Leone, 1896-1956"
+   ]
+  },
+  {
+   "id": 1,
+   "provisional_label": "Carter · Van Kirk · Smith — heavens, fur, aboriginal, trade",
+   "label_is_provisional": true,
+   "louvain_hint": "New France, early modern empire & the Atlantic",
+   "title_terms": [
+    "heavens",
+    "fur",
+    "aboriginal",
+    "trade",
+    "indian",
+    "metis"
+   ],
+   "bootstrap_stability": 0.932,
+   "unstable": false,
+   "init_stability": 0.995,
+   "dominated_dissertations": 175,
+   "member_works": 368,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "1975-1979": 1,
+     "1980-1984": 1,
+     "1985-1989": 3,
+     "1990-1994": 3,
+     "1995-1999": 8,
+     "2000-2004": 13,
+     "2005-2009": 16,
+     "2010-2014": 25,
+     "2015-2019": 49,
+     "2020-2024": 43,
+     "2025-2029": 13
+    },
+    "share_of_bin": {
+     "1990-1994": 0.088,
+     "1995-1999": 0.114,
+     "2000-2004": 0.118,
+     "2005-2009": 0.099,
+     "2010-2014": 0.07,
+     "2015-2019": 0.103,
+     "2020-2024": 0.132,
+     "2025-2029": 0.194
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:carter|lost harvest",
+     "title": "Lost Harvests: Prairie Indian Reserve Farmers and Government Policy",
+     "first_author": "Carter, Sarah",
+     "year": 1990,
+     "loading": 1.0,
+     "citing": 59,
+     "membership": 0.908
+    },
+    {
+     "id": "W:van kirk|many tender ties",
+     "title": "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+     "first_author": "Van Kirk, Sylvia",
+     "year": 1980,
+     "loading": 0.972,
+     "citing": 70,
+     "membership": 0.782
+    },
+    {
+     "id": "W:smith|decolonizing methodologies",
+     "title": "Decolonizing Methodologies: Research and Indigenous Peoples",
+     "first_author": "Smith, Linda Tuhiwai",
+     "year": 1999,
+     "loading": 0.882,
+     "citing": 46,
+     "membership": 0.958
+    },
+    {
+     "id": "W:ray|indians in the fur trade",
+     "title": "Indians in the Fur Trade: Their Role as Trappers, Hunters, and Middlemen in the Lands Southwest of Hudson Bay, 1660-1870",
+     "first_author": "Ray, Arthur J",
+     "year": 1974,
+     "loading": 0.881,
+     "citing": 46,
+     "membership": 0.921
+    },
+    {
+     "id": "W:harris|making native space",
+     "title": "Making Native Space: Colonialism, Resistance, and Reserves in British Columbia",
+     "first_author": "Harris, Cole",
+     "year": 2002,
+     "loading": 0.863,
+     "citing": 57,
+     "membership": 0.851
+    },
+    {
+     "id": "W:brown|strangers in blood",
+     "title": "Strangers in Blood: Fur Trade Company Families in Indian Country",
+     "first_author": "Brown, Jennifer S.H",
+     "year": 1980,
+     "loading": 0.848,
+     "citing": 50,
+     "membership": 0.856
+    },
+    {
+     "id": "W:miller|skyscrapers hide the heavens",
+     "title": "Skyscrapers Hide the Heavens: A History of Indian-White Relations in Canada",
+     "first_author": "Miller, James",
+     "year": 2000,
+     "loading": 0.847,
+     "citing": 62,
+     "membership": 0.764
+    },
+    {
+     "id": "W:perry|on the edge",
+     "title": "On the Edge of Empire: Gender, Race, and the Making of British Columbia, 1849-1871",
+     "first_author": "Perry, Adele",
+     "year": 2001,
+     "loading": 0.809,
+     "citing": 84,
+     "membership": 0.548
+    },
+    {
+     "id": "W:raibmon|authentic indians",
+     "title": "Authentic Indians: Episodes of Encounter from the Late-Nineteenth-Century Northwest Coast",
+     "first_author": "Raibmon, Paige",
+     "year": 2005,
+     "loading": 0.792,
+     "citing": 53,
+     "membership": 0.809
+    },
+    {
+     "id": "W:macdougall|one of the family",
+     "title": "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+     "first_author": "Macdougall, Brenda",
+     "year": 2010,
+     "loading": 0.746,
+     "citing": 33,
+     "membership": 1.0
+    },
+    {
+     "id": "W:milloy|national crime",
+     "title": "A National Crime: The Canadian Government and the Residential School System, 1879-1986",
+     "first_author": "Milloy, John S",
+     "year": 1999,
+     "loading": 0.745,
+     "citing": 44,
+     "membership": 0.8
+    },
+    {
+     "id": "W:daschuk|clearing the plains",
+     "title": "Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life",
+     "first_author": "Daschuk, James",
+     "year": 2013,
+     "loading": 0.744,
+     "citing": 44,
+     "membership": 0.927
+    },
+    {
+     "id": "W:miller|compact contract covenant",
+     "title": "Compact, Contract, Covenant: Aboriginal Treaty-Making in Canada",
+     "first_author": "Miller, J.R",
+     "year": 2009,
+     "loading": 0.744,
+     "citing": 42,
+     "membership": 0.914
+    },
+    {
+     "id": "W:fisher|contact and conf1ict",
+     "title": "Contact and Conflict: Indian-European Relations in British Columbia, 1774-1890",
+     "first_author": "Fisher, Robin",
+     "year": 1977,
+     "loading": 0.738,
+     "citing": 33,
+     "membership": 0.982
+    },
+    {
+     "id": "W:carlson|power of place the problem of time",
+     "title": "The Power of Place, the Problem of Time: Aboriginal Identity and Historical Consciousness in the Cauldron of Colonialism",
+     "first_author": "Carlson, Keith Thor",
+     "year": 2010,
+     "loading": 0.736,
+     "citing": 32,
+     "membership": 0.919
+    },
+    {
+     "id": "W:miller|shinewauks vision",
+     "title": "Shingwauk’s Vision: A History of Native Residential Schools",
+     "first_author": "Miller, James",
+     "year": 1996,
+     "loading": 0.715,
+     "citing": 45,
+     "membership": 0.773
+    },
+    {
+     "id": "W:lutz|makuk",
+     "title": "Makúk: A New History of Aboriginal-White Relations",
+     "first_author": "Lutz, John",
+     "year": 2008,
+     "loading": 0.702,
+     "citing": 36,
+     "membership": 0.974
+    },
+    {
+     "id": "W:titley|narrow vision",
+     "title": "A Narrow Vision: Duncan Campbell Scott and the Administration of Indian Affairs in Canada",
+     "first_author": "Titley, E. Brian",
+     "year": 1986,
+     "loading": 0.681,
+     "citing": 34,
+     "membership": 0.971
+    },
+    {
+     "id": "W:kelm|colonizing bodies",
+     "title": "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50",
+     "first_author": "Kelm, Mary-Ellen",
+     "year": 1998,
+     "loading": 0.667,
+     "citing": 51,
+     "membership": 0.604
+    },
+    {
+     "id": "W:innis|furtrade in canada",
+     "title": "The Fur Trade in Canada: An Introduction to Canadian Economic History",
+     "first_author": "Innis, Harold A",
+     "year": 1930,
+     "loading": 0.659,
+     "citing": 62,
+     "membership": 0.59
+    },
+    {
+     "id": "W:wolfe|settler colonialism and the elimination of the native|a",
+     "title": "Settler Colonialism and the Elimination of the Native",
+     "first_author": "Wolfe, Patrick",
+     "year": 2006,
+     "loading": 0.639,
+     "citing": 33,
+     "membership": 0.942
+    },
+    {
+     "id": "W:tobias|rotection civilization assimilation|a",
+     "title": "Protection, Civilization, Assimilation: An Outline History of Canada’s Indian Policy",
+     "first_author": "Tobias, John L",
+     "year": 1983,
+     "loading": 0.637,
+     "citing": 37,
+     "membership": 0.842
+    },
+    {
+     "id": "W:francis|imaginary indian",
+     "title": "The Imaginary Indian: The Image of the Indian in Canadian Culture",
+     "first_author": "Francis, Daniel",
+     "year": 1992,
+     "loading": 0.632,
+     "citing": 41,
+     "membership": 0.751
+    },
+    {
+     "id": "W:friesen|canadian prairie",
+     "title": "The Canadian Prairies: A History",
+     "first_author": "Friesen, Gerald",
+     "year": 1987,
+     "loading": 0.63,
+     "citing": 71,
+     "membership": 0.541
+    },
+    {
+     "id": "W:basso|wisdom sits in place",
+     "title": "Wisdom Sits in Places: Landscape and Language Among the Western Apache",
+     "first_author": "Basso, Keith",
+     "year": 1996,
+     "loading": 0.629,
+     "citing": 33,
+     "membership": 0.827
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Carter, Sarah",
+     "loading_share": 0.0256
+    },
+    {
+     "name": "Ray, Arthur J",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "Harris, Cole",
+     "loading_share": 0.0118
+    },
+    {
+     "name": "Miller, James",
+     "loading_share": 0.0113
+    },
+    {
+     "name": "Cruikshank, Julie",
+     "loading_share": 0.0112
+    },
+    {
+     "name": "Loo, Tina",
+     "loading_share": 0.0105
+    },
+    {
+     "name": "Miller, J.R",
+     "loading_share": 0.0103
+    },
+    {
+     "name": "Perry, Adele",
+     "loading_share": 0.0098
+    },
+    {
+     "name": "Milloy, John S",
+     "loading_share": 0.0093
+    },
+    {
+     "name": "White, Richard",
+     "loading_share": 0.0082
+    },
+    {
+     "name": "Brownlie, Robin Jarvis",
+     "loading_share": 0.0081
+    },
+    {
+     "name": "Brown, Jennifer S.H",
+     "loading_share": 0.0077
+    },
+    {
+     "name": "Tobias, John L",
+     "loading_share": 0.0076
+    },
+    {
+     "name": "Ens, Gerhard J",
+     "loading_share": 0.0076
+    },
+    {
+     "name": "Raibmon, Paige",
+     "loading_share": 0.0074
+    }
+   ],
+   "top_institutions": [
+    [
+     "usask",
+     29
+    ],
+    [
+     "manitoba",
+     23
+    ],
+    [
+     "alberta",
+     14
+    ],
+    [
+     "toronto",
+     13
+    ],
+    [
+     "uvic",
+     10
+    ],
+    [
+     "york",
+     10
+    ]
+   ],
+   "sample_dissertations": [
+    "Mapping Métis Stories: Land Use, Gender and Kinship in the Qu'Appelle Valley, 1850-1950",
+    "“IT WAS OUR LIVES, THAT WAS WHAT WE BELIEVED”: INDIGENOUS HISTORIES OF CATHOLICISM IN NORTHWEST SASKATCHEWAN",
+    "Land, water, and memory: Mennonite settlement and Indigenous presence in southern Manitoba",
+    "Digging Roots and Remembering Relatives: Lakota Kinship and Movement in the Northern Great Plains from the Wood Mountain Uplands across Lakó",
+    "TLA’AMIN HOUSING ARCHITECTURE  AND HOME TERRITORIES IN THE TWENTIETH CENTURY: INVISIBLE SPACES SHAPING HISTORICAL INDIGENOUS EDUCATION",
+    "The Niitsitapi trade : Euroamericans and the Blackfoot-speaking peoples, to the mid-1830s",
+    "Boundaries of the heart: white women, indigenous people, and the Christian missions to the Dakotas, 1862-1938",
+    "La représentation d'Oka : une crise vue par la caricature"
+   ]
+  },
+  {
+   "id": 2,
+   "provisional_label": "Westfall · Cook · McCalla — upper, mid, victorian, nineteenth",
+   "label_is_provisional": true,
+   "louvain_hint": "Liberal order, religion & the state",
+   "title_terms": [
+    "upper",
+    "mid",
+    "victorian",
+    "nineteenth",
+    "protestant",
+    "ontario"
+   ],
+   "bootstrap_stability": 0.717,
+   "unstable": false,
+   "init_stability": 0.697,
+   "dominated_dissertations": 174,
+   "member_works": 360,
+   "years": {
+    "median": 2010,
+    "by_5yr": {
+     "1970-1974": 2,
+     "1975-1979": 2,
+     "1980-1984": 2,
+     "1985-1989": 8,
+     "1990-1994": 8,
+     "1995-1999": 12,
+     "2000-2004": 21,
+     "2005-2009": 24,
+     "2010-2014": 32,
+     "2015-2019": 44,
+     "2020-2024": 13,
+     "2025-2029": 3,
+     "unknown": 3
+    },
+    "share_of_bin": {
+     "1990-1994": 0.235,
+     "1995-1999": 0.171,
+     "2000-2004": 0.191,
+     "2005-2009": 0.149,
+     "2010-2014": 0.089,
+     "2015-2019": 0.092,
+     "2020-2024": 0.04,
+     "2025-2029": 0.045,
+     "unknown": 0.091
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:westfall|two worlds",
+     "title": "Two Worlds: The Protestant Culture of Nineteenth-Century Ontario",
+     "first_author": "Westfall, William",
+     "year": 1989,
+     "loading": 1.0,
+     "citing": 39,
+     "membership": 0.922
+    },
+    {
+     "id": "W:cook|regenerators",
+     "title": "The Regenerators: Social Criticism in Late Victorian English Canada",
+     "first_author": "Cook, Ramsay",
+     "year": 1985,
+     "loading": 0.938,
+     "citing": 65,
+     "membership": 0.649
+    },
+    {
+     "id": "W:mccalla|planting the provinc",
+     "title": "Planting the Province: The Economic History of Upper Canada, 1784-1870",
+     "first_author": "McCalla, Douglas",
+     "year": 1993,
+     "loading": 0.915,
+     "citing": 36,
+     "membership": 0.893
+    },
+    {
+     "id": "W:errington|lion the eagle and upper canada",
+     "title": "The Lion, the Eagle, and Upper Canada: A Developing Colonial Ideology",
+     "first_author": "Errington, Jane",
+     "year": 1987,
+     "loading": 0.867,
+     "citing": 35,
+     "membership": 0.86
+    },
+    {
+     "id": "W:berger|sense ofpower",
+     "title": "The Sense of Power: Studies in the Ideas of Canadian Imperialism, 1867-1914",
+     "first_author": "Berger, Carl",
+     "year": 1970,
+     "loading": 0.83,
+     "citing": 115,
+     "membership": 0.39
+    },
+    {
+     "id": "W:zeller|nventing canada",
+     "title": "Inventing Canada: Early Victorian Science and the Idea of a Transcontinental Nation",
+     "first_author": "Zeller, Suzanne",
+     "year": 1987,
+     "loading": 0.792,
+     "citing": 42,
+     "membership": 0.758
+    },
+    {
+     "id": "W:wilton|popular poutics and poutical culture in upper canada 1800 1850",
+     "title": "Popular Politics and Political Culture in Upper Canada, 1800-1850",
+     "first_author": "Wilton, Carol",
+     "year": 2000,
+     "loading": 0.78,
+     "citing": 25,
+     "membership": 0.941
+    },
+    {
+     "id": "W:mcnairn|capacily to judge",
+     "title": "The Capacity to Judge: Public Opinion and Deliberative Democracy in Upper Canada, 1791-1854",
+     "first_author": "McNairn, Jeffrey L",
+     "year": 2000,
+     "loading": 0.758,
+     "citing": 37,
+     "membership": 0.835
+    },
+    {
+     "id": "W:akenson|irish in ontario",
+     "title": "The Irish in Ontario: A Study in Rural History",
+     "first_author": "Akenson, Donald H",
+     "year": 1984,
+     "loading": 0.755,
+     "citing": 20,
+     "membership": 0.979
+    },
+    {
+     "id": "W:curtis|politics ofpopulation",
+     "title": "The Politics of Population: State Formation, Statistics, and the Census of Canada, 1840-1875",
+     "first_author": "Curtis, Bruce",
+     "year": 2001,
+     "loading": 0.754,
+     "citing": 57,
+     "membership": 0.644
+    },
+    {
+     "id": "W:grant|profusion of spires",
+     "title": "A Profusion of Spires: Religion in Nineteenth-Century Ontario",
+     "first_author": "Grant, John Webster",
+     "year": 1988,
+     "loading": 0.748,
+     "citing": 21,
+     "membership": 0.987
+    },
+    {
+     "id": "W:errington|wives and mothers",
+     "title": "Wives and Mothers, Schoolmistresses and Scullery Maids: Working Women in Upper Canada, 1790-1840",
+     "first_author": "Errington, Jane",
+     "year": 1995,
+     "loading": 0.746,
+     "citing": 23,
+     "membership": 0.961
+    },
+    {
+     "id": "W:marks|revivais androller rinks",
+     "title": "Revivals and Roller Rinks: Religion, Leisure, and Identity in Late-Nineteenth-Century Small-Town Ontario",
+     "first_author": "Marks, Lynne",
+     "year": 1996,
+     "loading": 0.741,
+     "citing": 40,
+     "membership": 0.698
+    },
+    {
+     "id": "W:davidoff|fami1y fortunes",
+     "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
+     "first_author": "Davidoff, Leonore",
+     "year": 1987,
+     "loading": 0.737,
+     "citing": 58,
+     "membership": 0.49
+    },
+    {
+     "id": "W:holman|sense oftheir duty",
+     "title": "A Sense of Their Duty: Middle-Class Formation in Victorian Ontario Towns",
+     "first_author": "Holman, Andrew C",
+     "year": 2000,
+     "loading": 0.722,
+     "citing": 25,
+     "membership": 0.942
+    },
+    {
+     "id": "W:mckay|liberal order framework|a",
+     "title": "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History",
+     "first_author": "McKay, Ian",
+     "year": 2000,
+     "loading": 0.716,
+     "citing": 104,
+     "membership": 0.4
+    },
+    {
+     "id": "W:mckillop|disciplinedintelligence",
+     "title": "A Disciplined Intelligence: Critical Inquiry and Canadian Thought in the Victorian Era",
+     "first_author": "McKillop, A.B",
+     "year": 1979,
+     "loading": 0.714,
+     "citing": 35,
+     "membership": 0.842
+    },
+    {
+     "id": "W:morgan|public men and virtuous women",
+     "title": "Public Men and Virtuous Women: The Gendered Languages of Religion and Politics in Upper Canada, 1791-1850",
+     "first_author": "Morgan, Cecilia",
+     "year": 1996,
+     "loading": 0.706,
+     "citing": 28,
+     "membership": 0.882
+    },
+    {
+     "id": "W:allen|social passion",
+     "title": "The Social Passion: Religion and Social Reform in Canada, 1914-1928",
+     "first_author": "Allen, Richard",
+     "year": 1971,
+     "loading": 0.669,
+     "citing": 46,
+     "membership": 0.583
+    },
+    {
+     "id": "W:christie|ful orbed christianity",
+     "title": "A Full-Orbed Christianity: The Protestant Churches and Social Welfare in Canada, 1900-1940",
+     "first_author": "Christie, Nancy",
+     "year": 1996,
+     "loading": 0.665,
+     "citing": 45,
+     "membership": 0.583
+    },
+    {
+     "id": "W:berger|writing ofcanadian history",
+     "title": "The Writing of Canadian History: Aspects of English-Canadian Historical Writing since 1900",
+     "first_author": "Berger, Carl",
+     "year": 1986,
+     "loading": 0.652,
+     "citing": 73,
+     "membership": 0.41
+    },
+    {
+     "id": "W:heaman|inglorious arts ofpeace",
+     "title": "The Inglorious Arts of Peace: Exhibitions in Canadian Society during the Nineteenth Century",
+     "first_author": "Heaman, Elsbeth",
+     "year": 1999,
+     "loading": 0.648,
+     "citing": 31,
+     "membership": 0.854
+    },
+    {
+     "id": "W:gagan|hopeful travelers",
+     "title": "Hopeful Travellers: Families, Land, and Social Change in Mid-Victorian Peel County, Canada West",
+     "first_author": "Gagan, David",
+     "year": 1981,
+     "loading": 0.646,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:greer|colonial leviathan",
+     "title": "Colonial Leviathan: State Formation in Mid-Nineteenth-Century Canada",
+     "first_author": "Greer, Allan",
+     "year": 1992,
+     "loading": 0.64,
+     "citing": 39,
+     "membership": 0.693
+    },
+    {
+     "id": "W:careless|brown of the globe",
+     "title": "Brown of the Globe",
+     "first_author": "Careless, J.M.S",
+     "year": 1959,
+     "loading": 0.639,
+     "citing": 19,
+     "membership": 0.996
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Berger, Carl",
+     "loading_share": 0.0132
+    },
+    {
+     "name": "Errington, Jane",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "Greer, Allan",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "Curtis, Bruce",
+     "loading_share": 0.0108
+    },
+    {
+     "name": "Careless, J.M.S",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "Wilson, Catharine",
+     "loading_share": 0.0096
+    },
+    {
+     "name": "Christie, Nancy",
+     "loading_share": 0.0078
+    },
+    {
+     "name": "Grant, John Webster",
+     "loading_share": 0.0077
+    },
+    {
+     "name": "McCalla, Douglas",
+     "loading_share": 0.0075
+    },
+    {
+     "name": "McKillop, A.B",
+     "loading_share": 0.0071
+    },
+    {
+     "name": "McKay, Ian",
+     "loading_share": 0.0067
+    },
+    {
+     "name": "Marks, Lynne",
+     "loading_share": 0.0067
+    },
+    {
+     "name": "Sandwell, Ruth",
+     "loading_share": 0.0066
+    },
+    {
+     "name": "Westfall, William",
+     "loading_share": 0.0064
+    },
+    {
+     "name": "Owram, Doug",
+     "loading_share": 0.0062
+    }
+   ],
+   "top_institutions": [
+    [
+     "mcgill",
+     19
+    ],
+    [
+     "carleton",
+     18
+    ],
+    [
+     "mcmaster",
+     16
+    ],
+    [
+     "guelph",
+     13
+    ],
+    [
+     "queens",
+     12
+    ],
+    [
+     "laval",
+     9
+    ]
+   ],
+   "sample_dissertations": [
+    "Public Servants or Professional Alienists?: Medical Superintendents and the Early Professionalization of Asylum Management and Insanity Trea",
+    "Keeping the faith: Quaker community and women in the Yonge Street Meeting, Upper Canada",
+    "Francis Hincks and the politics of interest, 1831-1854",
+    "\"[[The]] Free Church in Canada, 1844-1861\"",
+    "On the farm, in the Town, and in the City: Nineteenth-Century Networks and Spaces in Rural Middlesex County, Southwestern Ontario",
+    "\"The homespun economy\": persistence of handweaving in New Brunswick in the nineteenth century",
+    "A Century of Soybeans: Scientific Research and Mixed Farming in Agricultural Southern Ontario, 1881-1983",
+    "Protestant Liberty: Religion and the Making of Canadian Liberalism, 1828-1878"
+   ]
+  },
+  {
+   "id": 3,
+   "provisional_label": "Adams · Gleason · Valverde — trouble, postwar, babies, youth",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "trouble",
+    "postwar",
+    "babies",
+    "youth",
+    "sexuality",
+    "moral"
+   ],
+   "bootstrap_stability": 0.775,
+   "unstable": false,
+   "init_stability": 0.9,
+   "dominated_dissertations": 162,
+   "member_works": 333,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1985-1989": 1,
+     "1990-1994": 2,
+     "1995-1999": 7,
+     "2000-2004": 11,
+     "2005-2009": 14,
+     "2010-2014": 31,
+     "2015-2019": 51,
+     "2020-2024": 33,
+     "2025-2029": 8,
+     "unknown": 4
+    },
+    "share_of_bin": {
+     "1990-1994": 0.059,
+     "1995-1999": 0.1,
+     "2000-2004": 0.1,
+     "2005-2009": 0.087,
+     "2010-2014": 0.086,
+     "2015-2019": 0.107,
+     "2020-2024": 0.101,
+     "2025-2029": 0.119,
+     "unknown": 0.121
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:adams|trouble with normal",
+     "title": "The Trouble with Normal: Postwar Youth and the Making of Heterosexuality",
+     "first_author": "Adams, Mary Louise",
+     "year": 1997,
+     "loading": 1.0,
+     "citing": 61,
+     "membership": 0.967
+    },
+    {
+     "id": "W:gleason|normalizing the idea",
+     "title": "Normalizing the Ideal: Psychology, Schooling, and the Family in Postwar Canada",
+     "first_author": "Gleason, Mona",
+     "year": 1999,
+     "loading": 0.985,
+     "citing": 66,
+     "membership": 0.948
+    },
+    {
+     "id": "W:valverde|age of light",
+     "title": "The Age of Light, Soap, and Water: Moral Reform in English Canada, 1885-1925",
+     "first_author": "Valverde, Mariana",
+     "year": 1991,
+     "loading": 0.848,
+     "citing": 133,
+     "membership": 0.537
+    },
+    {
+     "id": "W:korinek|roughing in the suburbs",
+     "title": "Roughing it in the Suburbs: Reading Chatelaine Magazine in the Fifties and Sixties",
+     "first_author": "Korinek, Valerie J",
+     "year": 2000,
+     "loading": 0.824,
+     "citing": 57,
+     "membership": 0.891
+    },
+    {
+     "id": "W:owram|bom at the right time",
+     "title": "Born at the Right Time: A History of the Baby Boom Generation",
+     "first_author": "Owram, Doug",
+     "year": 1996,
+     "loading": 0.78,
+     "citing": 89,
+     "membership": 0.654
+    },
+    {
+     "id": "W:strange|torontos girl problem",
+     "title": "Toronto’s Girl Problem: The Perils and Pleasures of the City, 1880-1930",
+     "first_author": "Strange, Carolyn",
+     "year": 1995,
+     "loading": 0.677,
+     "citing": 52,
+     "membership": 0.805
+    },
+    {
+     "id": "W:mclaren|our own master race",
+     "title": "Our Own Master Race: Eugenics in Canada, 1885-1945",
+     "first_author": "McLaren, Angus",
+     "year": 1990,
+     "loading": 0.612,
+     "citing": 58,
+     "membership": 0.682
+    },
+    {
+     "id": "W:foucault|history ifsexuality",
+     "title": "The History of Sexuality",
+     "first_author": "Foucault, Michel",
+     "year": 1978,
+     "loading": 0.598,
+     "citing": 63,
+     "membership": 0.525
+    },
+    {
+     "id": "W:butler|gender trouble",
+     "title": "Gender Trouble: Feminism and the Subversion of Identity",
+     "first_author": "Butler, Judith",
+     "year": 1990,
+     "loading": 0.59,
+     "citing": 59,
+     "membership": 0.528
+    },
+    {
+     "id": "W:comacchio|dominion of youth",
+     "title": "The Dominion of Youth: Adolescence and the Making of a Modern Canada, 1920-1950",
+     "first_author": "Comacchio, Cynthia",
+     "year": 2006,
+     "loading": 0.586,
+     "citing": 48,
+     "membership": 0.782
+    },
+    {
+     "id": "W:mclaren|bedroom and the state",
+     "title": "The Bedroom and the State: The Changing Practices and Politics of Contraception and Abortion in Canada, 1880-1980",
+     "first_author": "McLaren, Angus",
+     "year": 1986,
+     "loading": 0.573,
+     "citing": 29,
+     "membership": 0.985
+    },
+    {
+     "id": "W:myers|caught",
+     "title": "Caught: Montreal’s Modern Girls and the Law, 1869-1945",
+     "first_author": "Myers, Tamara",
+     "year": 2006,
+     "loading": 0.538,
+     "citing": 30,
+     "membership": 0.907
+    },
+    {
+     "id": "W:kinsman|regulation of desire",
+     "title": "The Regulation of Desire: Sexuality in Canada",
+     "first_author": "Kinsman, Gary",
+     "year": 1987,
+     "loading": 0.537,
+     "citing": 23,
+     "membership": 1.0
+    },
+    {
+     "id": "W:sutherland|children in english",
+     "title": "Children in English-Canadian Society: Framing the Twentieth-Century Consensus",
+     "first_author": "Sutherland, Neil",
+     "year": 1976,
+     "loading": 0.536,
+     "citing": 42,
+     "membership": 0.772
+    },
+    {
+     "id": "W:comacchio|nations are built babies",
+     "title": "Nations are Built of Babies: Saving Ontario’s Mothers and Children, 1900-1940",
+     "first_author": "Comacchio, Cynthia",
+     "year": 1993,
+     "loading": 0.532,
+     "citing": 28,
+     "membership": 0.986
+    },
+    {
+     "id": "W:mitchinson|nature of their bodies",
+     "title": "The Nature of Their Bodies: Women and Their Doctors in Victorian Canada",
+     "first_author": "Mitchinson, Wendy",
+     "year": 1991,
+     "loading": 0.521,
+     "citing": 34,
+     "membership": 0.741
+    },
+    {
+     "id": "W:kinsman|canadian war on queers",
+     "title": "The Canadian War on Queers: National Security as Sexual Regulation",
+     "first_author": "Kinsman, Gary",
+     "year": 2010,
+     "loading": 0.498,
+     "citing": 31,
+     "membership": 0.876
+    },
+    {
+     "id": "W:strong boag|new day recalled",
+     "title": "The New Day Recalled: Lives of Girls and Women in English Canada, 1919-1939",
+     "first_author": "Strong-Boag, Veronica",
+     "year": 1988,
+     "loading": 0.483,
+     "citing": 28,
+     "membership": 0.902
+    },
+    {
+     "id": "W:parr|domestic good",
+     "title": "Domestic Goods: The Material, the Moral, and the Economic in the Postwar Years",
+     "first_author": "Parr, Joy",
+     "year": 1999,
+     "loading": 0.451,
+     "citing": 48,
+     "membership": 0.628
+    },
+    {
+     "id": "W:mitchinson|giving birth in canada",
+     "title": "Giving Birth in Canada, 1900-1950",
+     "first_author": "Mitchinson, Wendy",
+     "year": 2002,
+     "loading": 0.446,
+     "citing": 18,
+     "membership": 0.969
+    },
+    {
+     "id": "W:bradbury|working families",
+     "title": "Working Families: Age, Gender, and Daily Survival in Industrializing Montreal",
+     "first_author": "Bradbury, Bettina",
+     "year": 1993,
+     "loading": 0.438,
+     "citing": 62,
+     "membership": 0.485
+    },
+    {
+     "id": "W:christie|engendering the state",
+     "title": "Engendering the State: Family, Work, and Welfare in Canada",
+     "first_author": "Christie, Nancy",
+     "year": 2000,
+     "loading": 0.431,
+     "citing": 51,
+     "membership": 0.574
+    },
+    {
+     "id": "W:chauncey|gay new york",
+     "title": "Gay New York: Gender, Urban Culture, and the Making of the Gay Male World, 1890-1940",
+     "first_author": "Chauncey, George",
+     "year": 1994,
+     "loading": 0.43,
+     "citing": 32,
+     "membership": 0.643
+    },
+    {
+     "id": "W:fahrni|household politics",
+     "title": "Household Politics: Montreal Families and Postwar Reconstruction",
+     "first_author": "Fahrni, Magda",
+     "year": 2005,
+     "loading": 0.412,
+     "citing": 39,
+     "membership": 0.66
+    },
+    {
+     "id": "W:arnup|education formotherhood",
+     "title": "Education for Motherhood: Advice for Mothers in Twentieth-Century Canada",
+     "first_author": "Arnup, Katherine",
+     "year": 1994,
+     "loading": 0.408,
+     "citing": 17,
+     "membership": 1.0
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Gleason, Mona",
+     "loading_share": 0.0162
+    },
+    {
+     "name": "Sangster, Joan",
+     "loading_share": 0.0145
+    },
+    {
+     "name": "Comacchio, Cynthia",
+     "loading_share": 0.0137
+    },
+    {
+     "name": "Strong-Boag, Veronica",
+     "loading_share": 0.0136
+    },
+    {
+     "name": "McLaren, Angus",
+     "loading_share": 0.0135
+    },
+    {
+     "name": "Mitchinson, Wendy",
+     "loading_share": 0.0123
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0116
+    },
+    {
+     "name": "Parr, Joy",
+     "loading_share": 0.0114
+    },
+    {
+     "name": "Iacovetta, Franca",
+     "loading_share": 0.0104
+    },
+    {
+     "name": "Kinsman, Gary",
+     "loading_share": 0.0102
+    },
+    {
+     "name": "Korinek, Valerie J",
+     "loading_share": 0.0102
+    },
+    {
+     "name": "Adams, Mary Louise",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "Christie, Nancy",
+     "loading_share": 0.0098
+    },
+    {
+     "name": "Scott, Joan W",
+     "loading_share": 0.0097
+    },
+    {
+     "name": "Dubinsky, Karen",
+     "loading_share": 0.0096
+    }
+   ],
+   "top_institutions": [
+    [
+     "york",
+     22
+    ],
+    [
+     "usask",
+     13
+    ],
+    [
+     "carleton",
+     12
+    ],
+    [
+     "toronto",
+     12
+    ],
+    [
+     "queens",
+     11
+    ],
+    [
+     "uvic",
+     10
+    ]
+   ],
+   "sample_dissertations": [
+    "More Than Plumbing:  The History of Sexual Education in Ontario, 1960-1979",
+    "The great emancipator? : the impact of the birth-control pill on married women in English Canada, 1960-1980",
+    "Queerly Familial: Canadian Histories of Queer Reproduction, Parenting, and Activism, 1968-2005",
+    "Writing Desire: The Love Letters of Frieda Fraser and Edith Williams",
+    "A Region at Odds: Abortion Politics in the Maritime Provinces, 1969-1988",
+    "\"Talking About Down There\": The Development of a Public Discussion of Cervical Cancer in the Twentieth Century",
+    "Modernizing Midwifery: Managing Childbirth in Ontario and the British Isles, 1900–1950",
+    "Roman Catholic Women Religious and Organizational Reform in English Canada: The Ursuline and Holy Names Sisters in the Diocese of London, On"
+   ]
+  },
+  {
+   "id": 4,
+   "provisional_label": "Beattie · Fletcher · Walker — england, crime, early, honour",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "england",
+    "crime",
+    "early",
+    "honour",
+    "sex",
+    "marriage"
+   ],
+   "bootstrap_stability": 0.728,
+   "unstable": false,
+   "init_stability": 0.994,
+   "dominated_dissertations": 126,
+   "member_works": 166,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1990-1994": 1,
+     "1995-1999": 6,
+     "2000-2004": 6,
+     "2005-2009": 9,
+     "2010-2014": 31,
+     "2015-2019": 41,
+     "2020-2024": 22,
+     "2025-2029": 4,
+     "unknown": 6
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.086,
+     "2000-2004": 0.055,
+     "2005-2009": 0.056,
+     "2010-2014": 0.086,
+     "2015-2019": 0.086,
+     "2020-2024": 0.067,
+     "2025-2029": 0.06,
+     "unknown": 0.182
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:beattie|crime and the courts in england",
+     "title": "Crime and the Courts in England, 1660-1800",
+     "first_author": "Beattie, J.M",
+     "year": 1986,
+     "loading": 1.0,
+     "citing": 14,
+     "membership": 1.0
+    },
+    {
+     "id": "W:fletcher|gender sex and subordination in england",
+     "title": "Gender, Sex and Subordination in England, 1500-1800",
+     "first_author": "Fletcher, Anthony",
+     "year": 1995,
+     "loading": 0.919,
+     "citing": 13,
+     "membership": 1.0
+    },
+    {
+     "id": "W:walker|crime gender and social order in early modern england",
+     "title": "Crime, Gender, and Social Order in Early Modern England",
+     "first_author": "Walker, Garthine",
+     "year": 2003,
+     "loading": 0.878,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:brewer|sinews ofpower",
+     "title": "The Sinews of Power: War, Money and the English State, 1688-1783",
+     "first_author": "Brewer, John",
+     "year": 1989,
+     "loading": 0.87,
+     "citing": 42,
+     "membership": 0.552
+    },
+    {
+     "id": "W:stone|family sex and marriage",
+     "title": "The Family, Sex and Marriage in England, 1500-1800",
+     "first_author": "Stone, Lawrence",
+     "year": 1977,
+     "loading": 0.863,
+     "citing": 24,
+     "membership": 0.888
+    },
+    {
+     "id": "W:gowing|domestic dangers",
+     "title": "Domestic Dangers: Women, Words, and Sex in Early Modern London",
+     "first_author": "Gowing, Laura",
+     "year": 1996,
+     "loading": 0.826,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:amussen|ordered society",
+     "title": "An Ordered Society: Gender and Class in Early Modern England",
+     "first_author": "Amussen, Susan Dwyer",
+     "year": 1988,
+     "loading": 0.823,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:colley|britons",
+     "title": "Britons: Forging the Nation, 1707-1837",
+     "first_author": "Colley, Linda",
+     "year": 1992,
+     "loading": 0.808,
+     "citing": 70,
+     "membership": 0.374
+    },
+    {
+     "id": "W:sharpe|crime in early modern england 1550 1750",
+     "title": "Crime in Early Modern England, 1550-1750",
+     "first_author": "Sharpe, J.A",
+     "year": 1984,
+     "loading": 0.799,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:beattie|pattern of crime in england 1600 1800|a",
+     "title": "The Pattern of Crime in England 1660-1800",
+     "first_author": "Beattie, J.M",
+     "year": 1974,
+     "loading": 0.795,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:thompson|whigs and hunters",
+     "title": "Whigs and Hunters: The Origin of the Black Act",
+     "first_author": "Thompson, E.P",
+     "year": 1975,
+     "loading": 0.787,
+     "citing": 20,
+     "membership": 0.867
+    },
+    {
+     "id": "W:scott|gender|a",
+     "title": "Gender: A Useful Category of Historical Analysis",
+     "first_author": "Scott, Joan W",
+     "year": 1986,
+     "loading": 0.784,
+     "citing": 61,
+     "membership": 0.423
+    },
+    {
+     "id": "W:gowing|common bodies",
+     "title": "Common Bodies: Women, Touch and Power in Seventeenth-Century England",
+     "first_author": "Gowing, Laura",
+     "year": 2003,
+     "loading": 0.782,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hindle|state and social change in early modern england",
+     "title": "The State and Social Change in Early Modern England",
+     "first_author": "Hindle, Steve",
+     "year": 2000,
+     "loading": 0.775,
+     "citing": 11,
+     "membership": 1.0
+    },
+    {
+     "id": "W:foucault|discipline andpunish",
+     "title": "Discipline and Punish: The Birth of the Prison",
+     "first_author": "Foucault, Michel",
+     "year": 1977,
+     "loading": 0.749,
+     "citing": 102,
+     "membership": 0.281
+    },
+    {
+     "id": "W:amussen|punishment discipline and power|a",
+     "title": "Punishment, Discipline, and Power: The Social Meanings of Violence in Early Modern England",
+     "first_author": "Amussen, Susan Dwyer",
+     "year": 1995,
+     "loading": 0.726,
+     "citing": 8,
+     "membership": 1.0
+    },
+    {
+     "id": "W:foyster|manhood in early modern england",
+     "title": "Manhood in Early Modern England: Honour, Sex and Marriage",
+     "first_author": "Foyster, Elizabeth",
+     "year": 1999,
+     "loading": 0.717,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:king|crime justice and discretion in england",
+     "title": "Crime, Justice, and Discretion in England, 1740-1820",
+     "first_author": "King, Peter",
+     "year": 2000,
+     "loading": 0.697,
+     "citing": 8,
+     "membership": 1.0
+    },
+    {
+     "id": "W:herrup|common peace",
+     "title": "The Common Peace: Participation and the Criminal Law in Seventeenth-Century England",
+     "first_author": "Herrup, Cynthia",
+     "year": 1987,
+     "loading": 0.697,
+     "citing": 10,
+     "membership": 0.988
+    },
+    {
+     "id": "W:shepard|meanings of manhood in early modern england",
+     "title": "Meanings of Manhood in Early Modern England",
+     "first_author": "Shepard, Alexandra",
+     "year": 2003,
+     "loading": 0.688,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:elias|civilizing process",
+     "title": "The Civilizing Process",
+     "first_author": "Elias, Norbert",
+     "year": 1994,
+     "loading": 0.686,
+     "citing": 22,
+     "membership": 0.884
+    },
+    {
+     "id": "W:clark|english society 1660 1832",
+     "title": "English Society, 1660-1832: Religion, Ideology and Politics During the Ancien Regime",
+     "first_author": "Clark, J.C.D",
+     "year": 2000,
+     "loading": 0.683,
+     "citing": 11,
+     "membership": 0.994
+    },
+    {
+     "id": "W:wrightson|english society 1560 1680",
+     "title": "English Society, 1580-1680",
+     "first_author": "Wrightson, Keith",
+     "year": 1982,
+     "loading": 0.683,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:dabhoiwala|construction of honour reputation and statue in late seventeenth and early eight|a",
+     "title": "The Construction of Honour, Reputation and Status in Late Seventeenth- and Early Eighteenth-Century England",
+     "first_author": "Dabhoiwala, Faramerz",
+     "year": 1996,
+     "loading": 0.681,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:ingram|church courts sex and marriage in england 1570 1640",
+     "title": "Church Courts, Sex and Marriage in England, 1570-1640",
+     "first_author": "Ingram, Martin",
+     "year": 1987,
+     "loading": 0.677,
+     "citing": 8,
+     "membership": 1.0
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Beattie, J.M",
+     "loading_share": 0.0271
+    },
+    {
+     "name": "Thompson, E.P",
+     "loading_share": 0.0257
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0196
+    },
+    {
+     "name": "Scott, Joan W",
+     "loading_share": 0.0194
+    },
+    {
+     "name": "Gowing, Laura",
+     "loading_share": 0.0179
+    },
+    {
+     "name": "Amussen, Susan Dwyer",
+     "loading_share": 0.0172
+    },
+    {
+     "name": "Walker, Garthine",
+     "loading_share": 0.0166
+    },
+    {
+     "name": "Davis, Natalie Zemon",
+     "loading_share": 0.0157
+    },
+    {
+     "name": "Shepard, Alexandra",
+     "loading_share": 0.0151
+    },
+    {
+     "name": "King, Peter",
+     "loading_share": 0.0151
+    },
+    {
+     "name": "Brewer, John",
+     "loading_share": 0.0142
+    },
+    {
+     "name": "Wrightson, Keith",
+     "loading_share": 0.014
+    },
+    {
+     "name": "Clark, Anna",
+     "loading_share": 0.0117
+    },
+    {
+     "name": "Hay, Douglas",
+     "loading_share": 0.0115
+    },
+    {
+     "name": "Tosh, John",
+     "loading_share": 0.0111
+    }
+   ],
+   "top_institutions": [
+    [
+     "mcgill",
+     16
+    ],
+    [
+     "toronto",
+     12
+    ],
+    [
+     "queens",
+     11
+    ],
+    [
+     "york",
+     9
+    ],
+    [
+     "guelph",
+     8
+    ],
+    [
+     "uqam",
+     8
+    ]
+   ],
+   "sample_dissertations": [
+    "Married Women, Crime, and Questions of Liability in England, 1640-1760",
+    "Allies, Accomplices, Avengers:\tThe Alliances of Non-Elite Women in Seventeenth-Century England",
+    "Children at the Birth of Empire, c. 1600-1760",
+    "Violence, Legal Culture and Social Control: The Records of Scotland’s Justiciary Court, 1493–1558",
+    "Women's Networks of Family, Work, Support and Slander in Canongate, 1600-1660",
+    "Infanticide in Early Modern Germany: the experience of Augsburg Memmingen, Ulm, and Nördlingen, 1500-1800",
+    "Community, conflict & control: the burgh of Aberdeen, c.1542-c.1603",
+    "“Through a glasse darkly”: secrecy and access to arcane knowledge in seventeenth-century England"
+   ]
+  },
+  {
+   "id": 5,
+   "provisional_label": "Anderson · Hobsbawm · Gellner — nationalism, memory, nations, lieux",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "nationalism",
+    "memory",
+    "nations",
+    "lieux",
+    "tradition",
+    "groups"
+   ],
+   "bootstrap_stability": 0.591,
+   "unstable": true,
+   "init_stability": 0.998,
+   "dominated_dissertations": 118,
+   "member_works": 194,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1990-1994": 2,
+     "1995-1999": 1,
+     "2000-2004": 8,
+     "2005-2009": 8,
+     "2010-2014": 32,
+     "2015-2019": 36,
+     "2020-2024": 28,
+     "2025-2029": 2,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "1990-1994": 0.059,
+     "1995-1999": 0.014,
+     "2000-2004": 0.073,
+     "2005-2009": 0.05,
+     "2010-2014": 0.089,
+     "2015-2019": 0.075,
+     "2020-2024": 0.086,
+     "2025-2029": 0.03,
+     "unknown": 0.03
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:anderson|imagine communities",
+     "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+     "first_author": "Anderson, Benedict",
+     "year": 1991,
+     "loading": 1.0,
+     "citing": 275,
+     "membership": 0.936
+    },
+    {
+     "id": "W:hobsbawm|invention oftradition",
+     "title": "The Invention of Tradition",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1983,
+     "loading": 0.43,
+     "citing": 81,
+     "membership": 0.866
+    },
+    {
+     "id": "W:gellner|nation and nationalism",
+     "title": "Nations and Nationalism",
+     "first_author": "Gellner, Ernest",
+     "year": 1983,
+     "loading": 0.337,
+     "citing": 33,
+     "membership": 0.9
+    },
+    {
+     "id": "W:hobsbawm|ations and nationalism since 1780",
+     "title": "Nations and Nationalism since 1780: Programme, Myth, Reality",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1990,
+     "loading": 0.272,
+     "citing": 40,
+     "membership": 0.856
+    },
+    {
+     "id": "W:halbwachs|on collective memory",
+     "title": "On Collective Memory",
+     "first_author": "Halbwachs, Maurice",
+     "year": 1992,
+     "loading": 0.176,
+     "citing": 27,
+     "membership": 0.804
+    },
+    {
+     "id": "W:lowenthal|pastis a foreign country",
+     "title": "The Past is a Foreign Country",
+     "first_author": "Lowenthal, David",
+     "year": 1985,
+     "loading": 0.151,
+     "citing": 25,
+     "membership": 0.828
+    },
+    {
+     "id": "W:brubaker|ethnicity without groups",
+     "title": "Ethnicity without Groups",
+     "first_author": "Brubaker, Rogers",
+     "year": 2004,
+     "loading": 0.146,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:habermas|structural transformation ofthe public sphere",
+     "title": "The Structural Transformation of the Public Sphere: An Inquiry into a Category of Bourgeois Society",
+     "first_author": "Habermas, Jürgen",
+     "year": 1989,
+     "loading": 0.139,
+     "citing": 57,
+     "membership": 0.407
+    },
+    {
+     "id": "W:nora|lieux de memoire",
+     "title": "Les lieux de mémoire",
+     "first_author": "Nora, Pierre",
+     "year": 1984,
+     "loading": 0.137,
+     "citing": 20,
+     "membership": 0.733
+    },
+    {
+     "id": "W:winter|sites ofmemory sites ofmourning",
+     "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
+     "first_author": "Winter, Jay",
+     "year": 1995,
+     "loading": 0.135,
+     "citing": 33,
+     "membership": 0.558
+    },
+    {
+     "id": "W:young|texture of memory",
+     "title": "The Texture of Memory: Holocaust Memorials and Meaning",
+     "first_author": "Young, James E",
+     "year": 1993,
+     "loading": 0.121,
+     "citing": 11,
+     "membership": 1.0
+    },
+    {
+     "id": "W:gillis|commemorations",
+     "title": "Commemorations: The Politics of National Identity",
+     "first_author": "Gillis, John R",
+     "year": 1994,
+     "loading": 0.121,
+     "citing": 17,
+     "membership": 0.844
+    },
+    {
+     "id": "W:nora|between memory and history",
+     "title": "Between Memory and History: Les Lieux de Mémoire",
+     "first_author": "Nora, Pierre",
+     "year": 1989,
+     "loading": 0.116,
+     "citing": 21,
+     "membership": 0.754
+    },
+    {
+     "id": "W:hunt|politics culture and class in the french",
+     "title": "Politics, Culture, and Class in the French Revolution",
+     "first_author": "Hunt, Lynn",
+     "year": 1984,
+     "loading": 0.114,
+     "citing": 10,
+     "membership": 0.829
+    },
+    {
+     "id": "W:kaplan|making of the jewish middle class",
+     "title": "The Making of the Jewish Middle Class: Women, Family, and Identity in Imperial Germany",
+     "first_author": "Kaplan, Marion",
+     "year": 1991,
+     "loading": 0.111,
+     "citing": 9,
+     "membership": 0.973
+    },
+    {
+     "id": "W:bodnar|remaking america",
+     "title": "Remaking America: Public Memory, Commemoration, and Patriotism in the Twentieth Century",
+     "first_author": "Bodnar, John",
+     "year": 1992,
+     "loading": 0.109,
+     "citing": 26,
+     "membership": 0.602
+    },
+    {
+     "id": "W:nelles|art of ation building",
+     "title": "The Art of Nation-Building: Pageantry and Spectacle at Quebec’s Tercentenary",
+     "first_author": "Nelles, H.V",
+     "year": 1999,
+     "loading": 0.108,
+     "citing": 54,
+     "membership": 0.403
+    },
+    {
+     "id": "W:confino|nation as local metaphor",
+     "title": "The Nation as a Local Metaphor: Württemberg, Imperial Germany, and National Memory, 1871-1918",
+     "first_author": "Confino, Alon",
+     "year": 1997,
+     "loading": 0.104,
+     "citing": 10,
+     "membership": 0.913
+    },
+    {
+     "id": "W:nathans|beyond the pale",
+     "title": "Beyond the Pale: The Jewish Encounter with Late Imperial Russia",
+     "first_author": "Nathans, Benjamin",
+     "year": 2002,
+     "loading": 0.103,
+     "citing": 8,
+     "membership": 0.894
+    },
+    {
+     "id": "W:connerton|how societies remember",
+     "title": "How Societies Remember",
+     "first_author": "Connerton, Paul",
+     "year": 1989,
+     "loading": 0.103,
+     "citing": 20,
+     "membership": 0.789
+    },
+    {
+     "id": "W:arendt|origins of totalitarism",
+     "title": "The Origins of Totalitarianism",
+     "first_author": "Arendt, Hannah",
+     "year": 1951,
+     "loading": 0.1,
+     "citing": 23,
+     "membership": 0.539
+    },
+    {
+     "id": "W:mckay|quest ofthe folk",
+     "title": "The Quest of the Folk: Antimodernism and Cultural Selection in Twentieth-Century Nova Scotia",
+     "first_author": "McKay, Ian",
+     "year": 1994,
+     "loading": 0.1,
+     "citing": 73,
+     "membership": 0.302
+    },
+    {
+     "id": "W:applegate|nation of provincials",
+     "title": "A Nation of Provincials: The German Idea of Heimat",
+     "first_author": "Applegate, Celia",
+     "year": 1990,
+     "loading": 0.097,
+     "citing": 9,
+     "membership": 0.822
+    },
+    {
+     "id": "W:todorova|imagining the balkans",
+     "title": "Imagining the Balkans",
+     "first_author": "Todorova, Maria",
+     "year": 1997,
+     "loading": 0.095,
+     "citing": 10,
+     "membership": 0.738
+    },
+    {
+     "id": "W:tanaka|japans orient",
+     "title": "Japan’s Orient: Rendering Pasts into History",
+     "first_author": "Tanaka, Stefan",
+     "year": 1993,
+     "loading": 0.095,
+     "citing": 8,
+     "membership": 0.861
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Anderson, Benedict",
+     "loading_share": 0.0474
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0443
+    },
+    {
+     "name": "Nora, Pierre",
+     "loading_share": 0.0176
+    },
+    {
+     "name": "Brubaker, Rogers",
+     "loading_share": 0.0164
+    },
+    {
+     "name": "Gellner, Ernest",
+     "loading_share": 0.0159
+    },
+    {
+     "name": "Halbwachs, Maurice",
+     "loading_share": 0.0158
+    },
+    {
+     "name": "Mosse, George L",
+     "loading_share": 0.0119
+    },
+    {
+     "name": "Hunt, Lynn",
+     "loading_share": 0.01
+    },
+    {
+     "name": "Habermas, Jürgen",
+     "loading_share": 0.009
+    },
+    {
+     "name": "Winter, Jay",
+     "loading_share": 0.009
+    },
+    {
+     "name": "McKay, Ian",
+     "loading_share": 0.0087
+    },
+    {
+     "name": "Confino, Alon",
+     "loading_share": 0.0081
+    },
+    {
+     "name": "Lowenthal, David",
+     "loading_share": 0.0071
+    },
+    {
+     "name": "White, Hayden",
+     "loading_share": 0.0069
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0067
+    }
+   ],
+   "top_institutions": [
+    [
+     "toronto",
+     22
+    ],
+    [
+     "ubc",
+     15
+    ],
+    [
+     "concordia",
+     10
+    ],
+    [
+     "laval",
+     9
+    ],
+    [
+     "alberta",
+     8
+    ],
+    [
+     "mcgill",
+     7
+    ]
+   ],
+   "sample_dissertations": [
+    "SERB, BOSNIAN, AND YUGOSLAV: THE BOSNIAN SERB INTELLECTUALS ON THE ROAD TOWARDS A MULTI-ETHNIC IDENTITY, 1878-1914",
+    "Avatars of Memory. Rituals and Commemorative Practices in Colombia, 1864-1913",
+    "Listening to the State: Radio and the Technopolitics of Sound in Mao’s China",
+    "La culture politique des étudiants de l'UNAM, 1968-2000 : de l'autoritarisme à la transition démocratique",
+    "Boundless revolution : global maoism and communist movements in southeast Asia, 1949-1979",
+    "Cityscape, Urban Nobodies and War: Modern Transformation of Nianhua in Suzhou-Shanghai",
+    "Becoming Significant: The Development of a Rural Community in the Republican China",
+    "Coming Together at Easter: Commemorating the Easter Rising in Ireland, 1916-1966"
+   ]
+  },
+  {
+   "id": 6,
+   "provisional_label": "White · Havard · Dechêne — haut, empires, français, pays",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "haut",
+    "empires",
+    "français",
+    "pays",
+    "atlantic",
+    "xviie"
+   ],
+   "bootstrap_stability": 0.745,
+   "unstable": false,
+   "init_stability": 0.952,
+   "dominated_dissertations": 117,
+   "member_works": 219,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1990-1994": 4,
+     "1995-1999": 7,
+     "2000-2004": 8,
+     "2005-2009": 9,
+     "2010-2014": 22,
+     "2015-2019": 33,
+     "2020-2024": 27,
+     "2025-2029": 4,
+     "unknown": 3
+    },
+    "share_of_bin": {
+     "1990-1994": 0.118,
+     "1995-1999": 0.1,
+     "2000-2004": 0.073,
+     "2005-2009": 0.056,
+     "2010-2014": 0.061,
+     "2015-2019": 0.069,
+     "2020-2024": 0.083,
+     "2025-2029": 0.06,
+     "unknown": 0.091
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:white|middle ground",
+     "title": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650-1815",
+     "first_author": "White, Richard",
+     "year": 1991,
+     "loading": 1.0,
+     "citing": 93,
+     "membership": 0.568
+    },
+    {
+     "id": "W:havard|empire et metissage",
+     "title": "Empire et métissages : Indiens et Français dans le Pays d’en Haut, 1660-1715",
+     "first_author": "Havard, Gilles",
+     "year": 2003,
+     "loading": 0.948,
+     "citing": 30,
+     "membership": 0.988
+    },
+    {
+     "id": "W:dechene|habitants et marchands de montreal au 17e siecle",
+     "title": "Habitants et marchands de Montréal au XVIIe siècle",
+     "first_author": "Dechêne, Louise",
+     "year": 1974,
+     "loading": 0.821,
+     "citing": 26,
+     "membership": 0.936
+    },
+    {
+     "id": "W:banks|chasing empire across the sea",
+     "title": "Chasing Empire Across the Sea: Communications and the State in the French Atlantic, 1713-1763",
+     "first_author": "Banks, Kenneth J",
+     "year": 2002,
+     "loading": 0.81,
+     "citing": 23,
+     "membership": 0.985
+    },
+    {
+     "id": "W:richter|ordeal ofthe longhouse",
+     "title": "The Ordeal of the Longhouse: The Peoples of the Iroquois League in the Era of European Colonization",
+     "first_author": "Richter, Daniel K",
+     "year": 1992,
+     "loading": 0.721,
+     "citing": 29,
+     "membership": 0.848
+    },
+    {
+     "id": "W:dechene|peuple letat et la guerre au canada sous le regimefrancais",
+     "title": "Le Peuple, l’État et la Guerre au Canada sous le Régime français",
+     "first_author": "Dechêne, Louise",
+     "year": 2008,
+     "loading": 0.62,
+     "citing": 17,
+     "membership": 0.959
+    },
+    {
+     "id": "W:pritchard|in search of empire",
+     "title": "In Search of Empire: The French in the Americas, 1670-1730",
+     "first_author": "Pritchard, James S",
+     "year": 2004,
+     "loading": 0.609,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:trudel|histoire de la nouvelle france",
+     "title": "Histoire de la Nouvelle-France",
+     "first_author": "Trudel, Marcel",
+     "year": 1963,
+     "loading": 0.609,
+     "citing": 20,
+     "membership": 0.819
+    },
+    {
+     "id": "W:anderson|crucible of war",
+     "title": "Crucible of War: The Seven Years’ War and the Fate of Empire in British North America, 1754-1766",
+     "first_author": "Anderson, Fred",
+     "year": 2000,
+     "loading": 0.608,
+     "citing": 19,
+     "membership": 1.0
+    },
+    {
+     "id": "W:trigger|children ofaataentsic",
+     "title": "The Children of Aataentsic: A History of the Huron People to 1660",
+     "first_author": "Trigger, Bruce G",
+     "year": 1987,
+     "loading": 0.601,
+     "citing": 30,
+     "membership": 0.708
+    },
+    {
+     "id": "W:havard|histoire de lamerique francaise",
+     "title": "Histoire de l’Amérique française",
+     "first_author": "Havard, Gilles",
+     "year": 2003,
+     "loading": 0.595,
+     "citing": 14,
+     "membership": 0.947
+    },
+    {
+     "id": "W:dechene|partage de i subsistances au canada sous le regime francai",
+     "title": "Le partage des subsistances au Canada sous le régime français",
+     "first_author": "Dechêne, Louise",
+     "year": 1994,
+     "loading": 0.577,
+     "citing": 14,
+     "membership": 0.978
+    },
+    {
+     "id": "W:hancock|citizens ofthe world",
+     "title": "Citizens of the World: London Merchants and the Integration of the British Atlantic Community, 1735-1785",
+     "first_author": "Hancock, David",
+     "year": 1995,
+     "loading": 0.548,
+     "citing": 20,
+     "membership": 0.871
+    },
+    {
+     "id": "W:deslandres|croire etfaire croire",
+     "title": "Croire et faire croire: Les missions françaises au XVIIe siècle",
+     "first_author": "Deslandres, Dominique",
+     "year": 2003,
+     "loading": 0.535,
+     "citing": 18,
+     "membership": 0.938
+    },
+    {
+     "id": "W:benton|searchfor sovereignty",
+     "title": "A Search for Sovereignty: Law and Geography in European Empires, 1400-1900",
+     "first_author": "Benton, Lauren",
+     "year": 2010,
+     "loading": 0.521,
+     "citing": 32,
+     "membership": 0.608
+    },
+    {
+     "id": "W:rushforth|bonds of alliance",
+     "title": "Bonds of Alliance: Indigenous and Atlantic Slaveries in New France",
+     "first_author": "Rushforth, Brett",
+     "year": 2012,
+     "loading": 0.499,
+     "citing": 21,
+     "membership": 0.866
+    },
+    {
+     "id": "W:balvay|epee et la plume",
+     "title": "L’épée et la plume : Amérindiens et soldats des troupes de la marine en Louisiane et au Pays d’en haut (1683-1763)",
+     "first_author": "Balvay, Arnaud",
+     "year": 2006,
+     "loading": 0.496,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:bailyn|ideological origins of the american revolution",
+     "title": "The Ideological Origins of the American Revolution",
+     "first_author": "Bailyn, Bernard",
+     "year": 1967,
+     "loading": 0.489,
+     "citing": 24,
+     "membership": 0.6
+    },
+    {
+     "id": "W:seed|ceremonies of possession",
+     "title": "Ceremonies of Possession in Europe's Conquest of the New World, 1492-1640",
+     "first_author": "Seed, Patricia",
+     "year": 1995,
+     "loading": 0.486,
+     "citing": 19,
+     "membership": 0.866
+    },
+    {
+     "id": "W:white|frenchmen and frenchified indians",
+     "title": "Wild Frenchmen and Frenchified Indians: Material Culture and Race in Colonial Louisiana",
+     "first_author": "White, Sophie",
+     "year": 2012,
+     "loading": 0.484,
+     "citing": 17,
+     "membership": 0.947
+    },
+    {
+     "id": "W:pagden|lords of an the world",
+     "title": "Lords of All the World: Ideologies of Empire in Spain, Britain and France c. 1500-c. 1800",
+     "first_author": "Pagden, Anthony",
+     "year": 1995,
+     "loading": 0.48,
+     "citing": 18,
+     "membership": 0.724
+    },
+    {
+     "id": "W:brewer|sinews ofpower",
+     "title": "The Sinews of Power: War, Money and the English State, 1688-1783",
+     "first_author": "Brewer, John",
+     "year": 1989,
+     "loading": 0.47,
+     "citing": 42,
+     "membership": 0.348
+    },
+    {
+     "id": "W:hinderaker|elusive empires",
+     "title": "Elusive Empires: Constructing Colonialism in the Ohio Valley, 1673-1800",
+     "first_author": "Hinderaker, Eric",
+     "year": 1997,
+     "loading": 0.464,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:eccles|france in america",
+     "title": "France in America",
+     "first_author": "Eccles, W. J",
+     "year": 1990,
+     "loading": 0.463,
+     "citing": 12,
+     "membership": 1.0
+    },
+    {
+     "id": "W:greer|mohawk saint",
+     "title": "Mohawk Saint: Catherine Tekakwitha and the Jesuits",
+     "first_author": "Greer, Allan",
+     "year": 2005,
+     "loading": 0.461,
+     "citing": 24,
+     "membership": 0.697
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Havard, Gilles",
+     "loading_share": 0.0268
+    },
+    {
+     "name": "Dechêne, Louise",
+     "loading_share": 0.0253
+    },
+    {
+     "name": "Greer, Allan",
+     "loading_share": 0.0213
+    },
+    {
+     "name": "Richter, Daniel K",
+     "loading_share": 0.0172
+    },
+    {
+     "name": "Eccles, W. J",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "Trigger, Bruce G",
+     "loading_share": 0.0124
+    },
+    {
+     "name": "Trudel, Marcel",
+     "loading_share": 0.012
+    },
+    {
+     "name": "Pagden, Anthony",
+     "loading_share": 0.0115
+    },
+    {
+     "name": "Armitage, David",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "White, Richard",
+     "loading_share": 0.0106
+    },
+    {
+     "name": "Taylor, Alan",
+     "loading_share": 0.0102
+    },
+    {
+     "name": "Bailyn, Bernard",
+     "loading_share": 0.0098
+    },
+    {
+     "name": "Jennings, Francis",
+     "loading_share": 0.0096
+    },
+    {
+     "name": "Rushforth, Brett",
+     "loading_share": 0.0086
+    },
+    {
+     "name": "Banks, Kenneth J",
+     "loading_share": 0.0085
+    }
+   ],
+   "top_institutions": [
+    [
+     "mcgill",
+     22
+    ],
+    [
+     "laval",
+     14
+    ],
+    [
+     "toronto",
+     13
+    ],
+    [
+     "montreal",
+     13
+    ],
+    [
+     "virginia",
+     9
+    ],
+    [
+     "uqam",
+     7
+    ]
+   ],
+   "sample_dissertations": [
+    "Voix de guerre : le renseignement au sein de l'armée française lors de la guerre de Sept Ans en Amérique du Nord",
+    "Évolution du dessin militaire à l'âge classique : esthétique et système de codification académique du dessin militaire vus à travers l'oeuvr",
+    "Using algonquian dictionaries as ethnographic sources: A case study in the legal culture and jurispractices of the illinois at the turn of t",
+    "Brothers in Arms: The Le Moyne Family and the Atlantic World, 1685-1745",
+    "Encrer la parole : écrit et oralité dans les dictionnaires jésuites en français et wendat (XVIIe -XVIIIe siècles)",
+    "Subdélégués et subdélégations dans l'espace atlantique français : étude comparative des intendances de Caen, Lille, Rennes, Fort-Royal et Qu",
+    "The \"Lavalette Affair\": Jesuits and money in the French Atlantic",
+    "«Et ferez justice» : le métier d’intendant au Canada et dans les généralités de\r\nBretagne et de Tours au 18e siècle (1700-1750)"
+   ]
+  },
+  {
+   "id": 7,
+   "provisional_label": "Kelley · Knowles · Avery — immigration, immigrants, immigrant, gates",
+   "label_is_provisional": true,
+   "louvain_hint": "Immigration, race & ethnicity",
+   "title_terms": [
+    "immigration",
+    "immigrants",
+    "immigrant",
+    "gates",
+    "mosaic",
+    "japanese"
+   ],
+   "bootstrap_stability": 0.7,
+   "unstable": false,
+   "init_stability": 0.614,
+   "dominated_dissertations": 109,
+   "member_works": 223,
+   "years": {
+    "median": 2014,
+    "by_5yr": {
+     "1980-1984": 2,
+     "1990-1994": 1,
+     "1995-1999": 8,
+     "2000-2004": 8,
+     "2005-2009": 11,
+     "2010-2014": 29,
+     "2015-2019": 25,
+     "2020-2024": 18,
+     "2025-2029": 2,
+     "unknown": 5
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.114,
+     "2000-2004": 0.073,
+     "2005-2009": 0.068,
+     "2010-2014": 0.081,
+     "2015-2019": 0.052,
+     "2020-2024": 0.055,
+     "2025-2029": 0.03,
+     "unknown": 0.152
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:kelley|making of the mosaic",
+     "title": "The Making of the Mosaic: A History of Canadian Immigration Policy",
+     "first_author": "Kelley, Ninette",
+     "year": 1998,
+     "loading": 1.0,
+     "citing": 52,
+     "membership": 0.879
+    },
+    {
+     "id": "W:knowles|trangers at our gates",
+     "title": "Strangers at Our Gates: Canadian Immigration and Immigration Policy, 1540-2006",
+     "first_author": "Knowles, Valerie",
+     "year": 2007,
+     "loading": 0.949,
+     "citing": 57,
+     "membership": 0.819
+    },
+    {
+     "id": "W:avery|reluctant host",
+     "title": "Reluctant Host: Canada’s Response to Immigrant Workers, 1896-1994",
+     "first_author": "Avery, Donald",
+     "year": 1995,
+     "loading": 0.917,
+     "citing": 34,
+     "membership": 0.983
+    },
+    {
+     "id": "W:iacovetta|gatekeeper",
+     "title": "Gatekeepers: Reshaping Immigrant Lives in Cold War Canada",
+     "first_author": "Iacovetta, Franca",
+     "year": 2006,
+     "loading": 0.801,
+     "citing": 77,
+     "membership": 0.53
+    },
+    {
+     "id": "W:iacovetta|such hardworking people",
+     "title": "Such Hardworking People: Italian Immigrants in Postwar Toronto",
+     "first_author": "Iacovetta, Franca",
+     "year": 1992,
+     "loading": 0.76,
+     "citing": 31,
+     "membership": 0.966
+    },
+    {
+     "id": "W:avery|dangerous foreigner",
+     "title": "Dangerous Foreigners: European Immigrant Workers and Labour Radicalism in Canada, 1896-1932",
+     "first_author": "Avery, Donald",
+     "year": 1979,
+     "loading": 0.749,
+     "citing": 42,
+     "membership": 0.847
+    },
+    {
+     "id": "W:ward|white canada forever",
+     "title": "White Canada Forever: Popular Attitudes and Public Policy Toward Orientals in British Columbia",
+     "first_author": "Ward, Peter",
+     "year": 1978,
+     "loading": 0.73,
+     "citing": 42,
+     "membership": 0.83
+    },
+    {
+     "id": "W:frager|sweatshop strife",
+     "title": "Sweatshop Strife: Class, Ethnicity, and Gender in the Jewish Labour Movement of Toronto, 1900-1939",
+     "first_author": "Frager, Ruth",
+     "year": 1992,
+     "loading": 0.725,
+     "citing": 32,
+     "membership": 0.869
+    },
+    {
+     "id": "W:bodnar|transplanted",
+     "title": "The Transplanted: A History of Immigrants in Urban America",
+     "first_author": "Bodnar, John",
+     "year": 1985,
+     "loading": 0.716,
+     "citing": 23,
+     "membership": 0.949
+    },
+    {
+     "id": "W:roberts|whence thev came",
+     "title": "Whence They Came: Deportation from Canada, 1900-1935",
+     "first_author": "Roberts, Barbara",
+     "year": 1988,
+     "loading": 0.711,
+     "citing": 30,
+     "membership": 0.963
+    },
+    {
+     "id": "W:hawkins|canada and emigration",
+     "title": "Canada and Immigration: Public Policy and Public Concern",
+     "first_author": "Hawkins, Freda",
+     "year": 1988,
+     "loading": 0.707,
+     "citing": 22,
+     "membership": 0.936
+    },
+    {
+     "id": "W:patrias|patriots and proletarians",
+     "title": "Patriots and Proletarians: Politicizing Hungarian Immigrants in Interwar Canada",
+     "first_author": "Patrias, Carmela",
+     "year": 1994,
+     "loading": 0.624,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:zucchi|talians in toronto",
+     "title": "Italians in Toronto: Development of a National Identity, 1875-1935",
+     "first_author": "Zucchi, John",
+     "year": 1988,
+     "loading": 0.601,
+     "citing": 21,
+     "membership": 0.991
+    },
+    {
+     "id": "W:woodsworth|strangers within our gates",
+     "title": "Strangers Within Our Gates or Coming Canadians",
+     "first_author": "Woodsworth, J. S",
+     "year": 1909,
+     "loading": 0.571,
+     "citing": 30,
+     "membership": 0.773
+    },
+    {
+     "id": "W:angus|canadian bolcheviks",
+     "title": "Canadian Bolsheviks: The Early Years of the Communist Party of Canada",
+     "first_author": "Angus, Ian",
+     "year": 1981,
+     "loading": 0.57,
+     "citing": 24,
+     "membership": 0.891
+    },
+    {
+     "id": "W:backhouse|colour coded",
+     "title": "Colour-Coded: A Legal History of Racism in Canada, 1900-1950",
+     "first_author": "Backhouse, Constance",
+     "year": 1999,
+     "loading": 0.566,
+     "citing": 56,
+     "membership": 0.509
+    },
+    {
+     "id": "W:handlin|uprooted",
+     "title": "The Uprooted",
+     "first_author": "Handlin, Oscar",
+     "year": 1973,
+     "loading": 0.556,
+     "citing": 19,
+     "membership": 0.885
+    },
+    {
+     "id": "W:palmer|working class experience",
+     "title": "Working-Class Experience: Rethinking the History of Canadian Labour, 1800-1991",
+     "first_author": "Palmer, Bryan D",
+     "year": 1992,
+     "loading": 0.555,
+     "citing": 51,
+     "membership": 0.574
+    },
+    {
+     "id": "W:avakumovic|communist party in canada",
+     "title": "The Communist Party in Canada: A History",
+     "first_author": "Avakumovic, Ivan",
+     "year": 1975,
+     "loading": 0.506,
+     "citing": 22,
+     "membership": 0.852
+    },
+    {
+     "id": "W:roy|white mans province",
+     "title": "A White Man’s Province: British Columbia Politicians and Chinese and Japanese Immigrants, 1858-1914",
+     "first_author": "Roy, Patricia E",
+     "year": 1989,
+     "loading": 0.486,
+     "citing": 32,
+     "membership": 0.684
+    },
+    {
+     "id": "W:mckay|reasoning otherwise",
+     "title": "Reasoning Otherwise: Leftists and the People’s Enlightenment in Canada, 1890-1920",
+     "first_author": "McKay, Ian",
+     "year": 2008,
+     "loading": 0.485,
+     "citing": 40,
+     "membership": 0.623
+    },
+    {
+     "id": "W:rodney|soldiers ofthe international",
+     "title": "Soldiers of the International: A History of the Communist Party of Canada, 1919-1929",
+     "first_author": "Rodney, William",
+     "year": 1968,
+     "loading": 0.485,
+     "citing": 18,
+     "membership": 0.916
+    },
+    {
+     "id": "W:epp|women without men",
+     "title": "Women Without Men: Mennonite Refugees of the Second World War",
+     "first_author": "Epp, Marlene",
+     "year": 2000,
+     "loading": 0.484,
+     "citing": 21,
+     "membership": 0.801
+    },
+    {
+     "id": "W:adachi|enemv that never was",
+     "title": "The Enemy That Never Was: A History of the Japanese Canadians",
+     "first_author": "Adachi, Ken",
+     "year": 1976,
+     "loading": 0.484,
+     "citing": 19,
+     "membership": 0.883
+    },
+    {
+     "id": "W:whitaker|double standard",
+     "title": "Double Standard: The Secret History of Canadian Immigration",
+     "first_author": "Whitaker, Reg",
+     "year": 1987,
+     "loading": 0.481,
+     "citing": 18,
+     "membership": 0.91
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Iacovetta, Franca",
+     "loading_share": 0.0275
+    },
+    {
+     "name": "Avery, Donald",
+     "loading_share": 0.0184
+    },
+    {
+     "name": "Roy, Patricia E",
+     "loading_share": 0.0165
+    },
+    {
+     "name": "Whitaker, Reg",
+     "loading_share": 0.0125
+    },
+    {
+     "name": "McKay, Ian",
+     "loading_share": 0.012
+    },
+    {
+     "name": "Hawkins, Freda",
+     "loading_share": 0.0098
+    },
+    {
+     "name": "Palmer, Bryan D",
+     "loading_share": 0.0097
+    },
+    {
+     "name": "Walker, James W. St. G",
+     "loading_share": 0.0096
+    },
+    {
+     "name": "Kelley, Ninette",
+     "loading_share": 0.0095
+    },
+    {
+     "name": "Knowles, Valerie",
+     "loading_share": 0.009
+    },
+    {
+     "name": "Kealey, Gregory S",
+     "loading_share": 0.0089
+    },
+    {
+     "name": "Palmer, Howard",
+     "loading_share": 0.0087
+    },
+    {
+     "name": "Heron, Craig",
+     "loading_share": 0.0085
+    },
+    {
+     "name": "Swyripa, Frances",
+     "loading_share": 0.0083
+    },
+    {
+     "name": "Patrias, Carmela",
+     "loading_share": 0.008
+    }
+   ],
+   "top_institutions": [
+    [
+     "queens",
+     15
+    ],
+    [
+     "toronto",
+     12
+    ],
+    [
+     "york",
+     11
+    ],
+    [
+     "mcmaster",
+     9
+    ],
+    [
+     "carleton",
+     8
+    ],
+    [
+     "uvic",
+     6
+    ]
+   ],
+   "sample_dissertations": [
+    "\"Sincerest Revolutionary Greetings\": Progressive Ukrainians in Twentieth Century Canada",
+    "Communists vs. Conservatives and the Struggle for the Hungarian Soul in Canada, 1940-1989",
+    "Sebben che siamo donne (although we are women) : a comparative study of Italian immigrant women in post-war Canada and Australia",
+    "Good Friday on College Street: Urban Space and Changing Italian Identity",
+    "Hurrah Revolutionaries and Polish Patriots: The Polish Communist Movement in Canada, 1918-1950",
+    "Canadian reds : the Young Communist League of Canada, international communism and the Soviet experience (1917-1939)",
+    "‘Equality Now!’: Race, Racism and Resistance in 1970s Toronto",
+    "In the lie of this Multicultural Land: An Analysis of Barbados-Canada Relations, 1966 -1990."
+   ]
+  },
+  {
+   "id": 8,
+   "provisional_label": "Linteau · LAMONDE · Dumont — québec, quand, histoire, lionel",
+   "label_is_provisional": true,
+   "louvain_hint": "Quebec historiography",
+   "title_terms": [
+    "québec",
+    "quand",
+    "histoire",
+    "lionel",
+    "groulx",
+    "idées"
+   ],
+   "bootstrap_stability": 0.861,
+   "unstable": false,
+   "init_stability": 0.999,
+   "dominated_dissertations": 108,
+   "member_works": 174,
+   "years": {
+    "median": 2013,
+    "by_5yr": {
+     "1935-1939": 1,
+     "1985-1989": 2,
+     "1990-1994": 5,
+     "1995-1999": 6,
+     "2000-2004": 7,
+     "2005-2009": 20,
+     "2010-2014": 23,
+     "2015-2019": 20,
+     "2020-2024": 19,
+     "2025-2029": 5
+    },
+    "share_of_bin": {
+     "1990-1994": 0.147,
+     "1995-1999": 0.086,
+     "2000-2004": 0.064,
+     "2005-2009": 0.124,
+     "2010-2014": 0.064,
+     "2015-2019": 0.042,
+     "2020-2024": 0.058,
+     "2025-2029": 0.075
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:linteau|histoire du quebec",
+     "title": "Histoire du Québec contemporain",
+     "first_author": "Linteau, Paul-André",
+     "year": 1989,
+     "loading": 1.0,
+     "citing": 57,
+     "membership": 0.99
+    },
+    {
+     "id": "W:lamonde|histoire sociale des idees",
+     "title": "Histoire sociale des idées au Québec",
+     "first_author": "LAMONDE, Yvan",
+     "year": 2000,
+     "loading": 0.619,
+     "citing": 38,
+     "membership": 0.894
+    },
+    {
+     "id": "W:dumont|genese de la societe quebecoise",
+     "title": "Genèse de la société québécoise",
+     "first_author": "Dumont, Fernand",
+     "year": 1993,
+     "loading": 0.502,
+     "citing": 28,
+     "membership": 0.777
+    },
+    {
+     "id": "W:bienvenue|quand la jeunesse entre en scene",
+     "title": "Quand la jeunesse entre en scène. L’Action catholique avant la Révolution tranquille",
+     "first_author": "Bienvenue, Louise",
+     "year": 2003,
+     "loading": 0.487,
+     "citing": 26,
+     "membership": 0.864
+    },
+    {
+     "id": "W:behiels|prelude to quebecs quiet revolution",
+     "title": "Prelude to Quebec’s Quiet Revolution: Liberalism Versus Neo-Nationalism, 1945-1960",
+     "first_author": "Behiels, Michael D",
+     "year": 1985,
+     "loading": 0.481,
+     "citing": 39,
+     "membership": 0.755
+    },
+    {
+     "id": "W:bock|quand la nation debordait des frontieres",
+     "title": "Quand la nation débordait les frontières. Les minorités françaises dans la pensée de Lionel Groulx",
+     "first_author": "BOCK, Michel",
+     "year": 2004,
+     "loading": 0.479,
+     "citing": 22,
+     "membership": 0.93
+    },
+    {
+     "id": "W:dion|quebec 1945 2000",
+     "title": "Québec, 1945-2000",
+     "first_author": "DION, Léon",
+     "year": 1993,
+     "loading": 0.476,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:gauvreau|origines catholiques de la revolution tranquille",
+     "title": "Les origines catholiques de la Révolution tranquille",
+     "first_author": "Gauvreau, Michael",
+     "year": 2008,
+     "loading": 0.42,
+     "citing": 17,
+     "membership": 0.979
+    },
+    {
+     "id": "W:ferretti|breve histoire de leglise catholique au quebec",
+     "title": "Brève histoire de l’Église catholique au Québec",
+     "first_author": "Ferretti, Lucia",
+     "year": 1999,
+     "loading": 0.407,
+     "citing": 21,
+     "membership": 0.972
+    },
+    {
+     "id": "W:dickinson|breve histoire socio",
+     "title": "Brève histoire socio-économique du Québec",
+     "first_author": "Dickinson, John A",
+     "year": 2009,
+     "loading": 0.38,
+     "citing": 24,
+     "membership": 0.786
+    },
+    {
+     "id": "W:theriault|critique de famericanite",
+     "title": "Critique de l’américanité : mémoire et démocratie au Québec",
+     "first_author": "Thériault, Joseph Yvon",
+     "year": 2005,
+     "loading": 0.377,
+     "citing": 17,
+     "membership": 0.901
+    },
+    {
+     "id": "W:bouchard|genese des nations et culture du nouveau monde",
+     "title": "Genèse des nations et cultures du Nouveau Monde",
+     "first_author": "Bouchard, Gérard",
+     "year": 2000,
+     "loading": 0.364,
+     "citing": 21,
+     "membership": 0.877
+    },
+    {
+     "id": "W:boily|pensee nationaliste de lionel groulx",
+     "title": "La pensée nationaliste de Lionel Groulx",
+     "first_author": "BOILY, Frédéric",
+     "year": 2003,
+     "loading": 0.357,
+     "citing": 14,
+     "membership": 0.997
+    },
+    {
+     "id": "W:hamelin|histoire de catholicisme quebecois",
+     "title": "Histoire du catholicisme québécois",
+     "first_author": "Hamelin, Jean",
+     "year": 1984,
+     "loading": 0.352,
+     "citing": 23,
+     "membership": 0.815
+    },
+    {
+     "id": "W:rudin|faire de jhistoire au quebec",
+     "title": "Faire de l'histoire au Québec",
+     "first_author": "Rudin, Ronald",
+     "year": 1998,
+     "loading": 0.351,
+     "citing": 14,
+     "membership": 0.983
+    },
+    {
+     "id": "W:bouchard|deux chanoines",
+     "title": "Les deux chanoines. Contradiction et ambivalence dans la pensée de Lionel Groulx",
+     "first_author": "Bouchard, Gérard",
+     "year": 2003,
+     "loading": 0.342,
+     "citing": 14,
+     "membership": 0.943
+    },
+    {
+     "id": "W:galarneau|colleges classiques au canada francais",
+     "title": "Les collèges classiques au Canada français",
+     "first_author": "Galarneau, Claude",
+     "year": 1978,
+     "loading": 0.339,
+     "citing": 14,
+     "membership": 1.0
+    },
+    {
+     "id": "W:fortin|passage de la modernite",
+     "title": "Passage de la modernité : les intellectuels québécois et leurs revues (1778-2004)",
+     "first_author": "FORTIN, Andrée",
+     "year": 1993,
+     "loading": 0.335,
+     "citing": 12,
+     "membership": 1.0
+    },
+    {
+     "id": "W:lamarre|devenir de la nation quebecoise",
+     "title": "Le devenir de la nation québécoise selon Maurice Séguin, Guy Frégault et Michel Brunet 1944-1969",
+     "first_author": "LAMARRE, Jean",
+     "year": 1993,
+     "loading": 0.317,
+     "citing": 16,
+     "membership": 0.925
+    },
+    {
+     "id": "W:martel|deuil dun pays imagine",
+     "title": "Le deuil d'un pays imaginé: rêves, luttes et déroute du Canada français",
+     "first_author": "Martel, Marcel",
+     "year": 1997,
+     "loading": 0.311,
+     "citing": 17,
+     "membership": 0.856
+    },
+    {
+     "id": "W:linteau|histoire de montreal",
+     "title": "Histoire de Montréal depuis la Confédération",
+     "first_author": "Linteau, Paul-André",
+     "year": 1992,
+     "loading": 0.309,
+     "citing": 37,
+     "membership": 0.561
+    },
+    {
+     "id": "W:gelinas|droite intellectuelle quebecoise et la revolution tranquille",
+     "title": "La droite intellectuelle québécoise et la Révolution tranquille",
+     "first_author": "GÉLINAS, Xavier",
+     "year": 2007,
+     "loading": 0.309,
+     "citing": 13,
+     "membership": 0.989
+    },
+    {
+     "id": "W:gagnon|quebec et ses historiens",
+     "title": "Le Québec et ses historiens de 1840 à 1920",
+     "first_author": "Gagnon, Serge",
+     "year": 1978,
+     "loading": 0.306,
+     "citing": 14,
+     "membership": 0.909
+    },
+    {
+     "id": "W:belanger|idees en mouvement",
+     "title": "Les idées en mouvement : perspectives en histoire intellectuelle et culturelle du Canada",
+     "first_author": "Bélanger, Damien-Claude",
+     "year": 2004,
+     "loading": 0.305,
+     "citing": 12,
+     "membership": 0.966
+    },
+    {
+     "id": "W:meunier|sortir de la grande noirceur",
+     "title": "Sortir de la grande noirceur : l’horizon personnaliste de la Révolution tranquille",
+     "first_author": "MEUNIER, E.-Martin",
+     "year": 2002,
+     "loading": 0.299,
+     "citing": 14,
+     "membership": 0.937
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Linteau, Paul-André",
+     "loading_share": 0.0327
+    },
+    {
+     "name": "Bouchard, Gérard",
+     "loading_share": 0.0234
+    },
+    {
+     "name": "LAMONDE, Yvan",
+     "loading_share": 0.0188
+    },
+    {
+     "name": "WARREN, Jean-Philippe",
+     "loading_share": 0.0169
+    },
+    {
+     "name": "Dumont, Fernand",
+     "loading_share": 0.0145
+    },
+    {
+     "name": "Rudin, Ronald",
+     "loading_share": 0.0145
+    },
+    {
+     "name": "Hamelin, Jean",
+     "loading_share": 0.0142
+    },
+    {
+     "name": "Bienvenue, Louise",
+     "loading_share": 0.014
+    },
+    {
+     "name": "Gauvreau, Michael",
+     "loading_share": 0.0135
+    },
+    {
+     "name": "DION, Léon",
+     "loading_share": 0.0134
+    },
+    {
+     "name": "RUMILLY, Robert",
+     "loading_share": 0.0128
+    },
+    {
+     "name": "Baillargeon, Denyse",
+     "loading_share": 0.0127
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0124
+    },
+    {
+     "name": "BEAULIEU, André",
+     "loading_share": 0.0123
+    },
+    {
+     "name": "MEUNIER, E.-Martin",
+     "loading_share": 0.012
+    }
+   ],
+   "top_institutions": [
+    [
+     "laval",
+     37
+    ],
+    [
+     "montreal",
+     24
+    ],
+    [
+     "uqam",
+     23
+    ],
+    [
+     "ottawa",
+     7
+    ],
+    [
+     "sherbrooke",
+     5
+    ],
+    [
+     "mcgill",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "L'historiographie de la Révolution tranquille et ses rapports à la mémoire canadienne-française : 1960 à aujourd'hui",
+    "Le Montréal-Matin (1930-1978), un journal d'information populaire",
+    "L'engagement du père Georges-Henri Lévesque dans la modernité canadienne-française, 1932-1962 : contribution à l'histoire intellectuelle du ",
+    "Les usages scolaires du cinéma, de la radio et de la télévision à la Commission des écoles catholiques de Montréal, 1920-1970",
+    "Prises de parole et modes de l'engagement intellectuel dans le nouvel-Ontario (1970-1995)",
+    "L'iconographie jésuite et ses implications cultuelles dans l'art et la religion des Québécois (1842-1968)",
+    "Les valeurs morales dans les courriers des lecteurs de la presse quotidienne québécoise (1960-2000)",
+    "Le bien public (1909-1978) : un journal, une maison d'édition, une imprimerie la réussite d'une entreprise mauricienne à travers ses réseaux"
+   ]
+  },
+  {
+   "id": 9,
+   "provisional_label": "Sugrue · McGirr · Cohen — suburban, unfinished, struggle, silent",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "suburban",
+    "unfinished",
+    "struggle",
+    "silent",
+    "south",
+    "progressive"
+   ],
+   "bootstrap_stability": 0.633,
+   "unstable": false,
+   "init_stability": 0.986,
+   "dominated_dissertations": 100,
+   "member_works": 186,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1980-1984": 1,
+     "1985-1989": 1,
+     "1990-1994": 1,
+     "1995-1999": 2,
+     "2000-2004": 2,
+     "2005-2009": 4,
+     "2010-2014": 36,
+     "2015-2019": 30,
+     "2020-2024": 18,
+     "2025-2029": 4,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.029,
+     "2000-2004": 0.018,
+     "2005-2009": 0.025,
+     "2010-2014": 0.1,
+     "2015-2019": 0.063,
+     "2020-2024": 0.055,
+     "2025-2029": 0.06,
+     "unknown": 0.03
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:sugrue|origins of the urban crisis",
+     "title": "The Origins of the Urban Crisis: Race and Inequality in Postwar Detroit",
+     "first_author": "Sugrue, Thomas J",
+     "year": 1996,
+     "loading": 1.0,
+     "citing": 26,
+     "membership": 0.964
+    },
+    {
+     "id": "W:mcgirr|suburban warriors",
+     "title": "Suburban Warriors: The Origins of the New American Right",
+     "first_author": "McGirr, Lisa",
+     "year": 2001,
+     "loading": 0.884,
+     "citing": 21,
+     "membership": 1.0
+    },
+    {
+     "id": "W:cohen|consumers republic",
+     "title": "A Consumer’s Republic: The Politics of Mass Consumption in Postwar America",
+     "first_author": "Cohen, Lizabeth",
+     "year": 2003,
+     "loading": 0.837,
+     "citing": 50,
+     "membership": 0.72
+    },
+    {
+     "id": "W:lassiter|silent majority",
+     "title": "The Silent Majority: Suburban Politics in the Sunbelt South",
+     "first_author": "Lassiter, Matthew D",
+     "year": 2006,
+     "loading": 0.739,
+     "citing": 12,
+     "membership": 1.0
+    },
+    {
+     "id": "W:payne|ive got the light of freedom",
+     "title": "I’ve Got the Light of Freedom: The Organizing Tradition and the Mississippi Freedom Struggle",
+     "first_author": "Payne, Charles",
+     "year": 1995,
+     "loading": 0.645,
+     "citing": 13,
+     "membership": 1.0
+    },
+    {
+     "id": "W:kruse|white flight",
+     "title": "White Flight: Atlanta and the Making of Modern Conservatism",
+     "first_author": "Kruse, Kevin M",
+     "year": 2005,
+     "loading": 0.644,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:sugrue|sweet land of liberty",
+     "title": "Sweet Land of Liberty: The Forgotten Struggle for Civil Rights in the North",
+     "first_author": "Sugrue, Thomas J",
+     "year": 2008,
+     "loading": 0.587,
+     "citing": 11,
+     "membership": 1.0
+    },
+    {
+     "id": "W:cronon|natures metropolis",
+     "title": "Nature’s Metropolis: Chicago and the Great West",
+     "first_author": "Cronon, William",
+     "year": 1991,
+     "loading": 0.583,
+     "citing": 49,
+     "membership": 0.585
+    },
+    {
+     "id": "W:mcgerr|fierce discontent",
+     "title": "A Fierce Discontent: The Rise and Fall of the Progressive Movement in America, 1870-1920",
+     "first_author": "McGerr, Michael",
+     "year": 2003,
+     "loading": 0.539,
+     "citing": 20,
+     "membership": 0.952
+    },
+    {
+     "id": "W:jackson|crabgrass frontier",
+     "title": "Crabgrass Frontier: The Suburbanization of the United States",
+     "first_author": "Jackson, Kenneth",
+     "year": 1985,
+     "loading": 0.536,
+     "citing": 14,
+     "membership": 0.95
+    },
+    {
+     "id": "W:roediger|wages of whiteness",
+     "title": "The Wages of Whiteness: Race and the Making of the American Working Class",
+     "first_author": "Roediger, David",
+     "year": 1991,
+     "loading": 0.535,
+     "citing": 49,
+     "membership": 0.579
+    },
+    {
+     "id": "W:foner|reconstruction",
+     "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
+     "first_author": "Foner, Eric",
+     "year": 1988,
+     "loading": 0.532,
+     "citing": 14,
+     "membership": 0.986
+    },
+    {
+     "id": "W:rodgers|atlantic crossings",
+     "title": "Atlantic Crossings: Social Politics in a Progressive Age",
+     "first_author": "Rodgers, Daniel T",
+     "year": 1998,
+     "loading": 0.494,
+     "citing": 34,
+     "membership": 0.695
+    },
+    {
+     "id": "W:hale|making whiteness",
+     "title": "Making Whiteness: The Culture of Segregation in the South, 1890-1940",
+     "first_author": "Hale, Grace",
+     "year": 1998,
+     "loading": 0.484,
+     "citing": 13,
+     "membership": 0.978
+    },
+    {
+     "id": "W:wiebe|search for order",
+     "title": "The Search for Order, 1877-1920",
+     "first_author": "Wiebe, Robert H",
+     "year": 1967,
+     "loading": 0.479,
+     "citing": 28,
+     "membership": 0.718
+    },
+    {
+     "id": "W:ayers|promise of the new south",
+     "title": "The Promise of the New South: Life After Reconstruction",
+     "first_author": "Ayers, Edward L",
+     "year": 1992,
+     "loading": 0.468,
+     "citing": 11,
+     "membership": 1.0
+    },
+    {
+     "id": "W:self|american babylon",
+     "title": "American Babylon: Race and the Struggle for Postwar Oakland",
+     "first_author": "Self, Robert O",
+     "year": 2003,
+     "loading": 0.461,
+     "citing": 10,
+     "membership": 1.0
+    },
+    {
+     "id": "W:cohen|making a new deal",
+     "title": "Making a New Deal: Industrial Workers in Chicago, 1919-1939",
+     "first_author": "Cohen, Lizabeth",
+     "year": 1990,
+     "loading": 0.457,
+     "citing": 21,
+     "membership": 0.853
+    },
+    {
+     "id": "W:hall|long civil rights movement and political uses of the past|a",
+     "title": "The Long Civil Rights Movement and the Political Uses of the Past",
+     "first_author": "Hall, Jacquelyn Dowd",
+     "year": 2005,
+     "loading": 0.45,
+     "citing": 8,
+     "membership": 1.0
+    },
+    {
+     "id": "W:may|homeward bound",
+     "title": "Homeward Bound: American Families in the Cold War Era",
+     "first_author": "May, Elaine Tyler",
+     "year": 1988,
+     "loading": 0.427,
+     "citing": 41,
+     "membership": 0.426
+    },
+    {
+     "id": "W:gerstle|american crucible",
+     "title": "American Crucible: Race and Nation in the Twentieth Century",
+     "first_author": "Gerstle, Gary",
+     "year": 2001,
+     "loading": 0.398,
+     "citing": 19,
+     "membership": 0.756
+    },
+    {
+     "id": "W:cowie|stayin alive",
+     "title": "Stayin’ Alive: The 1970s and the Last Days of the Working Class",
+     "first_author": "Cowie, Jefferson",
+     "year": 2010,
+     "loading": 0.392,
+     "citing": 10,
+     "membership": 0.953
+    },
+    {
+     "id": "W:hahn|nation under our feet",
+     "title": "A Nation Under Our Feet: Black Political Struggles in the Rural South from Slavery to the Great Migration",
+     "first_author": "Hahn, Steven",
+     "year": 2003,
+     "loading": 0.39,
+     "citing": 11,
+     "membership": 0.983
+    },
+    {
+     "id": "W:rosen|terror in the heart",
+     "title": "Terror in the Heart of Freedom: Citizenship, Sexual Violence, and the Meaning of Race in the Postemancipation South",
+     "first_author": "Rosen, Hannah",
+     "year": 2009,
+     "loading": 0.378,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:singh|black is a country",
+     "title": "Black is a Country: Race and the Unfinished Struggle for Democracy",
+     "first_author": "Singh, Nikhil Pal",
+     "year": 2004,
+     "loading": 0.36,
+     "citing": 8,
+     "membership": 0.939
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Sugrue, Thomas J",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "Cohen, Lizabeth",
+     "loading_share": 0.0199
+    },
+    {
+     "name": "Cronon, William",
+     "loading_share": 0.0136
+    },
+    {
+     "name": "McGirr, Lisa",
+     "loading_share": 0.0136
+    },
+    {
+     "name": "Foner, Eric",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "Jacobson, Matthew Frye",
+     "loading_share": 0.0115
+    },
+    {
+     "name": "Lassiter, Matthew D",
+     "loading_share": 0.0113
+    },
+    {
+     "name": "Kelley, Robin D. G",
+     "loading_share": 0.0113
+    },
+    {
+     "name": "Roediger, David",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "Hofstadter, Richard",
+     "loading_share": 0.0107
+    },
+    {
+     "name": "Rodgers, Daniel T",
+     "loading_share": 0.0104
+    },
+    {
+     "name": "Ayers, Edward L",
+     "loading_share": 0.0101
+    },
+    {
+     "name": "Lears, Jackson",
+     "loading_share": 0.0101
+    },
+    {
+     "name": "Payne, Charles",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "Kruse, Kevin M",
+     "loading_share": 0.0099
+    }
+   ],
+   "top_institutions": [
+    [
+     "virginia",
+     16
+    ],
+    [
+     "toronto",
+     15
+    ],
+    [
+     "florida",
+     15
+    ],
+    [
+     "western",
+     9
+    ],
+    [
+     "sfu",
+     5
+    ],
+    [
+     "york",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "“The Metropolitan Moment: Municipal Boundaries, Segregation, and Civil Rights Possibilities in the American North”",
+    "From Segregation Academies to School Choice: The Post-Brown History of School Privatization",
+    "Criminalization, Empowerment, and the End of Public Housing as We Knew It, 1969-2000",
+    "The Day of Sainthood Has Passed: Abolitionists and the Golden Moment of the Civil War, 1861-1865",
+    "From the Field to the Shop Floor",
+    "The Perfect Storm",
+    "Racing, Region, and the Environment",
+    "Making a Sunbelt Place"
+   ]
+  },
+  {
+   "id": 10,
+   "provisional_label": "Vance · Stephen J. Harris · Fussell — war, army, great, battle",
+   "label_is_provisional": true,
+   "louvain_hint": "War, the military & imperialism",
+   "title_terms": [
+    "war",
+    "army",
+    "great",
+    "battle",
+    "fighting",
+    "warfare"
+   ],
+   "bootstrap_stability": 0.781,
+   "unstable": false,
+   "init_stability": 0.956,
+   "dominated_dissertations": 92,
+   "member_works": 152,
+   "years": {
+    "median": 2014,
+    "by_5yr": {
+     "1980-1984": 2,
+     "1985-1989": 2,
+     "1990-1994": 1,
+     "1995-1999": 5,
+     "2000-2004": 12,
+     "2005-2009": 15,
+     "2010-2014": 13,
+     "2015-2019": 29,
+     "2020-2024": 8,
+     "2025-2029": 3,
+     "unknown": 2
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.071,
+     "2000-2004": 0.109,
+     "2005-2009": 0.093,
+     "2010-2014": 0.036,
+     "2015-2019": 0.061,
+     "2020-2024": 0.025,
+     "2025-2029": 0.045,
+     "unknown": 0.061
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:vance|death sonoble",
+     "title": "Death So Noble: Memory, Meaning, and the First World War",
+     "first_author": "Vance, Jonathan",
+     "year": 1997,
+     "loading": 1.0,
+     "citing": 86,
+     "membership": 0.602
+    },
+    {
+     "id": "W:harris|canadian brass",
+     "title": "Canadian Brass: The Making of a Professional Army, 1860-1939",
+     "first_author": "Stephen J. Harris",
+     "year": 1988,
+     "loading": 0.742,
+     "citing": 26,
+     "membership": 0.821
+    },
+    {
+     "id": "W:fussell|great war and modem memory",
+     "title": "The Great War and Modern Memory",
+     "first_author": "Fussell, Paul",
+     "year": 1975,
+     "loading": 0.739,
+     "citing": 45,
+     "membership": 0.741
+    },
+    {
+     "id": "W:morton|when you numbers up",
+     "title": "When Your Number’s Up: The Canadian Soldier in the First World War",
+     "first_author": "Morton, Desmond",
+     "year": 1993,
+     "loading": 0.66,
+     "citing": 26,
+     "membership": 0.925
+    },
+    {
+     "id": "W:cook|shock troops",
+     "title": "Shock Troops: Canadians Fighting the Great War, 1917-1918",
+     "first_author": "Cook, Tim",
+     "year": 2008,
+     "loading": 0.645,
+     "citing": 21,
+     "membership": 0.959
+    },
+    {
+     "id": "W:cook|clio s warrior",
+     "title": "Clio’s Warriors: Canadian Historians and the Writing of the World Wars",
+     "first_author": "Cook, Tim",
+     "year": 2006,
+     "loading": 0.636,
+     "citing": 24,
+     "membership": 0.877
+    },
+    {
+     "id": "W:keshen|propaganda and censorship during canada",
+     "title": "Propaganda and Censorship During Canada’s Great War",
+     "first_author": "Keshen, Jeff",
+     "year": 1996,
+     "loading": 0.634,
+     "citing": 28,
+     "membership": 0.864
+    },
+    {
+     "id": "W:cook|at the sharp end",
+     "title": "At the Sharp End: Canadians Fighting the Great War, 1914-1916",
+     "first_author": "Cook, Tim",
+     "year": 2007,
+     "loading": 0.625,
+     "citing": 20,
+     "membership": 0.988
+    },
+    {
+     "id": "W:nicholson|canadian expeditionary force",
+     "title": "Canadian Expeditionary Force, 1914-1919: Official History of the Canadian Army in the First World War",
+     "first_author": "Nicholson, G.W.L",
+     "year": 1962,
+     "loading": 0.609,
+     "citing": 19,
+     "membership": 1.0
+    },
+    {
+     "id": "W:granatstein|canadas army",
+     "title": "Canada’s Army: Waging War and Keeping the Peace",
+     "first_author": "Granatstein, J.L",
+     "year": 2002,
+     "loading": 0.586,
+     "citing": 27,
+     "membership": 0.691
+    },
+    {
+     "id": "W:rutherdale|hometown horizon",
+     "title": "Hometown Horizons: Local Responses to Canada’s Great War",
+     "first_author": "Rutherdale, Robert",
+     "year": 2004,
+     "loading": 0.585,
+     "citing": 27,
+     "membership": 0.841
+    },
+    {
+     "id": "W:granatstein|broken promises",
+     "title": "Broken Promises: A History of Conscription in Canada",
+     "first_author": "Granatstein, J.L",
+     "year": 1977,
+     "loading": 0.583,
+     "citing": 35,
+     "membership": 0.678
+    },
+    {
+     "id": "W:miller|painting the map red",
+     "title": "Painting the Map Red: Canada and the South African War, 1899-1902",
+     "first_author": "Miller, Carman",
+     "year": 1993,
+     "loading": 0.572,
+     "citing": 26,
+     "membership": 0.865
+    },
+    {
+     "id": "W:morton|fight or pay",
+     "title": "Fight or Pay: Soldiers’ Families in the Great War",
+     "first_author": "Morton, Desmond",
+     "year": 2004,
+     "loading": 0.554,
+     "citing": 28,
+     "membership": 0.78
+    },
+    {
+     "id": "W:morton|military history of canada",
+     "title": "A Military History of Canada",
+     "first_author": "Morton, Desmond",
+     "year": 2007,
+     "loading": 0.549,
+     "citing": 44,
+     "membership": 0.508
+    },
+    {
+     "id": "W:moss|manliness and militarism",
+     "title": "Manliness and Militarism: Educating Young Boys in Ontario for War",
+     "first_author": "Moss, Mark",
+     "year": 2001,
+     "loading": 0.529,
+     "citing": 34,
+     "membership": 0.661
+    },
+    {
+     "id": "W:miller|our glory and our grief",
+     "title": "Our Glory and Our Grief: Torontonians and the Great War",
+     "first_author": "Miller, Ian",
+     "year": 2002,
+     "loading": 0.528,
+     "citing": 23,
+     "membership": 0.824
+    },
+    {
+     "id": "W:rawling|surviving trench warfare",
+     "title": "Surviving Trench Warfare: Technology and the Canadian Corps, 1914-1918",
+     "first_author": "Rawling, Bill",
+     "year": 1992,
+     "loading": 0.514,
+     "citing": 13,
+     "membership": 1.0
+    },
+    {
+     "id": "W:duguid|official history of the canadian forces in the great war",
+     "title": "Official History of the Canadian Forces in the Great War, 1914-1919",
+     "first_author": "Duguid, Archer Fortescue",
+     "year": 1938,
+     "loading": 0.509,
+     "citing": 14,
+     "membership": 0.991
+    },
+    {
+     "id": "W:keegan|face ofbattle",
+     "title": "The Face of Battle",
+     "first_author": "Keegan, John",
+     "year": 1976,
+     "loading": 0.501,
+     "citing": 19,
+     "membership": 0.835
+    },
+    {
+     "id": "W:stacey|canada and the age ofconflict",
+     "title": "Canada and the Age of Conflict",
+     "first_author": "Stacey, C.P",
+     "year": 1981,
+     "loading": 0.495,
+     "citing": 43,
+     "membership": 0.464
+    },
+    {
+     "id": "W:morton|marching toarmageddon",
+     "title": "Marching to Armageddon: Canadians and the Great War, 1914-1919",
+     "first_author": "Morton, Desmond",
+     "year": 1989,
+     "loading": 0.492,
+     "citing": 16,
+     "membership": 0.971
+    },
+    {
+     "id": "W:morton|winning the second battle",
+     "title": "Winning the Second Battle: Canadian Veterans and the Return to Civilian Life, 1915-1930",
+     "first_author": "Morton, Desmond",
+     "year": 1987,
+     "loading": 0.492,
+     "citing": 34,
+     "membership": 0.66
+    },
+    {
+     "id": "W:eksteins|rites ofspring",
+     "title": "Rites of Spring: The Great War and the Birth of the Modern Age",
+     "first_author": "Eksteins, Modris",
+     "year": 1989,
+     "loading": 0.487,
+     "citing": 29,
+     "membership": 0.645
+    },
+    {
+     "id": "W:wood|militia myths",
+     "title": "Militia Myths: Ideas of the Canadian Citizen Soldier, 1896-1921",
+     "first_author": "Wood, James",
+     "year": 2010,
+     "loading": 0.459,
+     "citing": 20,
+     "membership": 0.91
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Morton, Desmond",
+     "loading_share": 0.0426
+    },
+    {
+     "name": "Stacey, C.P",
+     "loading_share": 0.0333
+    },
+    {
+     "name": "Cook, Tim",
+     "loading_share": 0.0299
+    },
+    {
+     "name": "Granatstein, J.L",
+     "loading_share": 0.0289
+    },
+    {
+     "name": "Vance, Jonathan",
+     "loading_share": 0.0209
+    },
+    {
+     "name": "Winter, Jay",
+     "loading_share": 0.019
+    },
+    {
+     "name": "Keshen, Jeff",
+     "loading_share": 0.0175
+    },
+    {
+     "name": "Copp, Terry",
+     "loading_share": 0.0174
+    },
+    {
+     "name": "Brown, Robert Craig",
+     "loading_share": 0.0146
+    },
+    {
+     "name": "Nicholson, G.W.L",
+     "loading_share": 0.0137
+    },
+    {
+     "name": "Stephen J. Harris",
+     "loading_share": 0.0103
+    },
+    {
+     "name": "Fussell, Paul",
+     "loading_share": 0.0102
+    },
+    {
+     "name": "Keegan, John",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "French, David",
+     "loading_share": 0.0096
+    },
+    {
+     "name": "Bourke, Joanna",
+     "loading_share": 0.0091
+    }
+   ],
+   "top_institutions": [
+    [
+     "western",
+     12
+    ],
+    [
+     "mcmaster",
+     12
+    ],
+    [
+     "calgary",
+     11
+    ],
+    [
+     "ottawa",
+     7
+    ],
+    [
+     "uvic",
+     6
+    ],
+    [
+     "memorial",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "A city goes to war: Victoria in the Great War 1914-1918",
+    "An Army of Never-Ending Strength: The Reinforcement of the Canadian Army 1944-1945",
+    "Commanding the Green Centre Line in Normandy: A Case Study of Division Command in the Second World War",
+    "The Evolution of Canadian Divisional Reconnaissance Regiments in the Second World War",
+    "The divisional experience in the C.E.F.: a social and operational history of the 2nd Canadian division, 1915-1918",
+    "\"For Weariness Cannot but Fill our Men after so long a Period of Hardship and Endurance:\" War Weariness in the Canadian Corps in the First W",
+    "Tribute to the Fallen: The Evolution of Canadian Battlefield Burials during the First World War",
+    "\"Maintaining the Mobility of the Corps:\" Horses, Mules, and the Canadian Army Veterinary Corps in the Great War"
+   ]
+  },
+  {
+   "id": 11,
+   "provisional_label": "Pearson · Bothwell · Whitaker — diefenbaker, lester, pearson, honourable",
+   "label_is_provisional": true,
+   "louvain_hint": "Postwar Canada, the Sixties & the Cold War",
+   "title_terms": [
+    "diefenbaker",
+    "lester",
+    "pearson",
+    "honourable",
+    "memoirs",
+    "affairs"
+   ],
+   "bootstrap_stability": 0.873,
+   "unstable": false,
+   "init_stability": 0.981,
+   "dominated_dissertations": 81,
+   "member_works": 143,
+   "years": {
+    "median": 2012,
+    "by_5yr": {
+     "1980-1984": 1,
+     "1985-1989": 2,
+     "1990-1994": 1,
+     "1995-1999": 4,
+     "2000-2004": 7,
+     "2005-2009": 14,
+     "2010-2014": 23,
+     "2015-2019": 20,
+     "2020-2024": 7,
+     "2025-2029": 1,
+     "unknown": 1
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.057,
+     "2000-2004": 0.064,
+     "2005-2009": 0.087,
+     "2010-2014": 0.064,
+     "2015-2019": 0.042,
+     "2020-2024": 0.021,
+     "2025-2029": 0.015,
+     "unknown": 0.03
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:pearson|mike",
+     "title": "Mike: The Memoirs of the Right Honourable Lester B. Pearson",
+     "first_author": "Pearson, Lester B",
+     "year": 1972,
+     "loading": 1.0,
+     "citing": 38,
+     "membership": 1.0
+    },
+    {
+     "id": "W:bothwell|canada since 1945",
+     "title": "Canada Since 1945: Power, Politics, and Provincialism",
+     "first_author": "Bothwell, Robert",
+     "year": 1981,
+     "loading": 0.698,
+     "citing": 45,
+     "membership": 0.836
+    },
+    {
+     "id": "W:whitaker|cold war canada",
+     "title": "Cold War Canada: The Making of a National Insecurity State, 1945-1957",
+     "first_author": "Whitaker, Reg",
+     "year": 1994,
+     "loading": 0.696,
+     "citing": 56,
+     "membership": 0.679
+    },
+    {
+     "id": "W:granatstein|ottawa me",
+     "title": "The Ottawa Men: The Civil Service Mandarins, 1935-1957",
+     "first_author": "Granatstein, J.L",
+     "year": 1982,
+     "loading": 0.693,
+     "citing": 51,
+     "membership": 0.755
+    },
+    {
+     "id": "W:eayrs|in def ence ofcanada",
+     "title": "In Defence of Canada",
+     "first_author": "Eayrs, James",
+     "year": 1964,
+     "loading": 0.681,
+     "citing": 33,
+     "membership": 0.79
+    },
+    {
+     "id": "W:smith|rogue tory",
+     "title": "Rogue Tory: The Life and Legend of John G. Diefenbaker",
+     "first_author": "Smith, Denis",
+     "year": 1995,
+     "loading": 0.672,
+     "citing": 30,
+     "membership": 0.987
+    },
+    {
+     "id": "W:bothwell|alliance and allusion",
+     "title": "Alliance and Illusion: Canada and the World, 1945-1984",
+     "first_author": "Bothwell, Robert",
+     "year": 2007,
+     "loading": 0.667,
+     "citing": 37,
+     "membership": 0.834
+    },
+    {
+     "id": "W:robinson|diefenbakers world",
+     "title": "Diefenbaker’s World: A Populist in Foreign Affairs",
+     "first_author": "Robinson, Basil",
+     "year": 1989,
+     "loading": 0.644,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hilliker|canadas department ofexternal affairs",
+     "title": "Canada’s Department of External Affairs",
+     "first_author": "Hilliker, John",
+     "year": 1990,
+     "loading": 0.64,
+     "citing": 27,
+     "membership": 0.941
+    },
+    {
+     "id": "W:diefenbaker|one canada",
+     "title": "One Canada: Memoirs of the Right Honourable John G. Diefenbaker",
+     "first_author": "Diefenbaker, John G",
+     "year": 1976,
+     "loading": 0.618,
+     "citing": 26,
+     "membership": 1.0
+    },
+    {
+     "id": "W:english|worldly years",
+     "title": "The Worldly Years: The Life of Lester Pearson, Volume II: 1949-1972",
+     "first_author": "English, John",
+     "year": 1992,
+     "loading": 0.599,
+     "citing": 21,
+     "membership": 0.951
+    },
+    {
+     "id": "W:stacey|am men and government",
+     "title": "Arms, Men and Governments: The War Policies of Canada, 1939-1945",
+     "first_author": "Stacey, C.P",
+     "year": 1970,
+     "loading": 0.579,
+     "citing": 38,
+     "membership": 0.637
+    },
+    {
+     "id": "W:holmes|shaping ofpeace",
+     "title": "The Shaping of Peace: Canada and the Search for World Order, 1943-1957",
+     "first_author": "Holmes, John W",
+     "year": 1979,
+     "loading": 0.566,
+     "citing": 19,
+     "membership": 0.984
+    },
+    {
+     "id": "W:hillmer|empire to umpire",
+     "title": "Empire to Umpire: Canada and the World to the 1990s",
+     "first_author": "Hillmer, Norman",
+     "year": 1994,
+     "loading": 0.545,
+     "citing": 21,
+     "membership": 0.929
+    },
+    {
+     "id": "W:newman|renegade in power",
+     "title": "Renegade in Power: The Diefenbaker Years",
+     "first_author": "Newman, Peter C",
+     "year": 1963,
+     "loading": 0.503,
+     "citing": 23,
+     "membership": 0.893
+    },
+    {
+     "id": "W:granatstein|canadas war",
+     "title": "Canada’s War: The Politics of the Mackenzie King Government, 1939-1945",
+     "first_author": "Granatstein, J.L",
+     "year": 1975,
+     "loading": 0.482,
+     "citing": 41,
+     "membership": 0.615
+    },
+    {
+     "id": "W:granatstein|man of influence",
+     "title": "A Man of Influence: Norman A. Robertson and Canadian Statecraft, 1929-68",
+     "first_author": "Granatstein, J.L",
+     "year": 1981,
+     "loading": 0.475,
+     "citing": 18,
+     "membership": 0.98
+    },
+    {
+     "id": "W:stacey|canada and the age ofconflict",
+     "title": "Canada and the Age of Conflict",
+     "first_author": "Stacey, C.P",
+     "year": 1981,
+     "loading": 0.462,
+     "citing": 43,
+     "membership": 0.497
+    },
+    {
+     "id": "W:creighton|forked road",
+     "title": "The Forked Road: Canada 1939-1957",
+     "first_author": "Creighton, Donald",
+     "year": 1976,
+     "loading": 0.451,
+     "citing": 25,
+     "membership": 0.842
+    },
+    {
+     "id": "W:reid|radical mandarin",
+     "title": "Radical Mandarin: The Memoirs of Escott Reid",
+     "first_author": "Reid, Escott",
+     "year": 1989,
+     "loading": 0.45,
+     "citing": 15,
+     "membership": 0.994
+    },
+    {
+     "id": "W:bercuson|true patriot",
+     "title": "True Patriot: The Life of Brooke Claxton, 1898-1960",
+     "first_author": "Bercuson, David",
+     "year": 1993,
+     "loading": 0.435,
+     "citing": 21,
+     "membership": 0.871
+    },
+    {
+     "id": "W:martin|very public life",
+     "title": "A Very Public Life",
+     "first_author": "Martin, Paul",
+     "year": 1985,
+     "loading": 0.435,
+     "citing": 15,
+     "membership": 0.999
+    },
+    {
+     "id": "W:morton|military history of canada",
+     "title": "A Military History of Canada",
+     "first_author": "Morton, Desmond",
+     "year": 2007,
+     "loading": 0.431,
+     "citing": 44,
+     "membership": 0.457
+    },
+    {
+     "id": "W:thompson|canada and the united states",
+     "title": "Canada and the United States: Ambivalent Allies",
+     "first_author": "Thompson, John Herd",
+     "year": 1994,
+     "loading": 0.43,
+     "citing": 23,
+     "membership": 0.859
+    },
+    {
+     "id": "W:chapnick|middle power project",
+     "title": "The Middle Power Project: Canada and the Founding of the United Nations",
+     "first_author": "Chapnick, Adam",
+     "year": 2005,
+     "loading": 0.429,
+     "citing": 21,
+     "membership": 0.912
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Granatstein, J.L",
+     "loading_share": 0.0527
+    },
+    {
+     "name": "Bothwell, Robert",
+     "loading_share": 0.0433
+    },
+    {
+     "name": "Stacey, C.P",
+     "loading_share": 0.0254
+    },
+    {
+     "name": "English, John",
+     "loading_share": 0.0239
+    },
+    {
+     "name": "Whitaker, Reg",
+     "loading_share": 0.0188
+    },
+    {
+     "name": "Smith, Denis",
+     "loading_share": 0.0157
+    },
+    {
+     "name": "Pearson, Lester B",
+     "loading_share": 0.0157
+    },
+    {
+     "name": "Morton, Desmond",
+     "loading_share": 0.0131
+    },
+    {
+     "name": "Hillmer, Norman",
+     "loading_share": 0.0122
+    },
+    {
+     "name": "Eayrs, James",
+     "loading_share": 0.0107
+    },
+    {
+     "name": "Maloney, Sean M",
+     "loading_share": 0.0101
+    },
+    {
+     "name": "Robinson, Basil",
+     "loading_share": 0.0101
+    },
+    {
+     "name": "Hilliker, John",
+     "loading_share": 0.01
+    },
+    {
+     "name": "Creighton, Donald",
+     "loading_share": 0.01
+    },
+    {
+     "name": "Pickersgill, J.W",
+     "loading_share": 0.0098
+    }
+   ],
+   "top_institutions": [
+    [
+     "queens",
+     9
+    ],
+    [
+     "carleton",
+     9
+    ],
+    [
+     "calgary",
+     8
+    ],
+    [
+     "ottawa",
+     7
+    ],
+    [
+     "toronto",
+     7
+    ],
+    [
+     "western",
+     6
+    ]
+   ],
+   "sample_dissertations": [
+    "A Departmental Dilemma: The Genesis of Canadian Military Export Policy, 1945-1960",
+    "Marcel Cadieux, the Department of External Affairs, and Canadian International Relations: 1941-1970",
+    "Canada, the Congo crisis, and United Nations peacekeeping 1960-1964",
+    "Canadian Government decision-making and the commitments to the Somalia peace operations in 1992",
+    "Diefenbaker, Latin America and Caribbean: The Pursuit of Canadian Autonomy",
+    "Under the radar: Defence Construction (1951) Limited and military infrastructure in Canada, 1950-1965",
+    "Preparing to fight the bear: American influence on Canadian army staff officer education, 1946-1956",
+    "Navigating a course between Scylla and Charybdis : Quebec Voluntary Hospitals, the market and the State, 1940 to 1960"
+   ]
+  },
+  {
+   "id": 12,
+   "provisional_label": "Westad · Naimark · Judt — germany, dictatorship, east, divided",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "germany",
+    "dictatorship",
+    "east",
+    "divided",
+    "cold",
+    "inside"
+   ],
+   "bootstrap_stability": 0.559,
+   "unstable": true,
+   "init_stability": 0.806,
+   "dominated_dissertations": 75,
+   "member_works": 88,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "1990-1994": 1,
+     "1995-1999": 2,
+     "2005-2009": 7,
+     "2010-2014": 15,
+     "2015-2019": 26,
+     "2020-2024": 23,
+     "2025-2029": 1
+    },
+    "share_of_bin": {
+     "1990-1994": 0.029,
+     "1995-1999": 0.029,
+     "2005-2009": 0.043,
+     "2010-2014": 0.042,
+     "2015-2019": 0.054,
+     "2020-2024": 0.071,
+     "2025-2029": 0.015
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:westad|global cold war",
+     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+     "first_author": "Westad, Odd Arne",
+     "year": 2005,
+     "loading": 1.0,
+     "citing": 34,
+     "membership": 0.849
+    },
+    {
+     "id": "W:naimark|russians in germany",
+     "title": "The Russians in Germany: A History of the Soviet Zone of Occupation, 1945-1949",
+     "first_author": "Naimark, Norman",
+     "year": 1995,
+     "loading": 0.903,
+     "citing": 25,
+     "membership": 0.927
+    },
+    {
+     "id": "W:judt|postwar",
+     "title": "Postwar: A History of Europe Since 1945",
+     "first_author": "Judt, Tony",
+     "year": 2005,
+     "loading": 0.862,
+     "citing": 31,
+     "membership": 0.907
+    },
+    {
+     "id": "W:herf|divided memory",
+     "title": "Divided Memory: The Nazi Past in the Two Germanys",
+     "first_author": "Herf, Jeffrey",
+     "year": 1997,
+     "loading": 0.705,
+     "citing": 16,
+     "membership": 0.998
+    },
+    {
+     "id": "W:trachtenberg|constructed peace",
+     "title": "A Constructed Peace: The Making of the European Settlement, 1945-1963",
+     "first_author": "Trachtenberg, Marc",
+     "year": 1999,
+     "loading": 0.557,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:zubok|failed empire",
+     "title": "A Failed Empire: The Soviet Union in the Cold War from Stalin to Gorbachev",
+     "first_author": "Zubok, Vladislav",
+     "year": 2007,
+     "loading": 0.518,
+     "citing": 15,
+     "membership": 0.836
+    },
+    {
+     "id": "W:zubok|inside the kremlins cold war",
+     "title": "Inside the Kremlin’s Cold War: From Stalin to Khrushchev",
+     "first_author": "Zubok, Vladislav",
+     "year": 1996,
+     "loading": 0.517,
+     "citing": 16,
+     "membership": 0.778
+    },
+    {
+     "id": "W:leffler|for the soul ofmankind",
+     "title": "For the Soul of Mankind: The United States, the Soviet Union, and the Cold War",
+     "first_author": "Leffler, Melvyn P",
+     "year": 2007,
+     "loading": 0.514,
+     "citing": 10,
+     "membership": 0.965
+    },
+    {
+     "id": "W:harrison|driving the soviets up the wall",
+     "title": "Driving the Soviets up the Wall: Soviet-East German Relations, 1953-1961",
+     "first_author": "Harrison, Hope M",
+     "year": 2003,
+     "loading": 0.494,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:gaddis|strategies of containment",
+     "title": "Strategies of Containment: A Critical Appraisal of Postwar American National Security Policy",
+     "first_author": "Gaddis, John Lewis",
+     "year": 1982,
+     "loading": 0.476,
+     "citing": 16,
+     "membership": 0.783
+    },
+    {
+     "id": "W:fulbrook|history of germany 1918 2000",
+     "title": "A History of Germany 1918-2014: The Divided Nation",
+     "first_author": "Fulbrook, Mary",
+     "year": 2015,
+     "loading": 0.474,
+     "citing": 12,
+     "membership": 0.984
+    },
+    {
+     "id": "W:leffler|preponderance of power",
+     "title": "A Preponderance of Power: National Security, the Truman Administration, and the Cold War",
+     "first_author": "Leffler, Melvyn P",
+     "year": 1992,
+     "loading": 0.469,
+     "citing": 19,
+     "membership": 0.63
+    },
+    {
+     "id": "W:garthoff|detente and confrontation",
+     "title": "Détente and Confrontation: American-Soviet Relations from Nixon to Reagan",
+     "first_author": "Garthoff, Raymond L",
+     "year": 1994,
+     "loading": 0.46,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:harsch|revenge of the domestic",
+     "title": "Revenge of the Domestic: Women, the Family, and Communism in the German Democratic Republic",
+     "first_author": "Harsch, Donna",
+     "year": 2007,
+     "loading": 0.455,
+     "citing": 10,
+     "membership": 0.944
+    },
+    {
+     "id": "W:fulbrook|anatomy of a dictatorship",
+     "title": "Anatomy of a Dictatorship: Inside the GDR, 1949-1989",
+     "first_author": "Fulbrook, Mary",
+     "year": 1949,
+     "loading": 0.445,
+     "citing": 9,
+     "membership": 0.989
+    },
+    {
+     "id": "W:hohn|gis and frauleins",
+     "title": "GIs and Fräuleins: The German-American Encounter in 1950s West Germany",
+     "first_author": "Höhn, Maria",
+     "year": 2002,
+     "loading": 0.444,
+     "citing": 9,
+     "membership": 0.977
+    },
+    {
+     "id": "W:fulbrook|peoples state",
+     "title": "The People’s State: East German Society from Hitler to Honecker",
+     "first_author": "Fulbrook, Mary",
+     "year": 2005,
+     "loading": 0.439,
+     "citing": 10,
+     "membership": 0.914
+    },
+    {
+     "id": "W:ross|east german dictatorship",
+     "title": "The East German Dictatorship: Problems and Perspectives in the Interpretation of the GDR",
+     "first_author": "Ross, Corey",
+     "year": 2002,
+     "loading": 0.429,
+     "citing": 8,
+     "membership": 1.0
+    },
+    {
+     "id": "W:kopstein|politics of economic decline in east germany",
+     "title": "The Politics of Economic Decline in East Germany, 1945-1989",
+     "first_author": "Kopstein, Jeffrey S",
+     "year": 1997,
+     "loading": 0.428,
+     "citing": 10,
+     "membership": 0.908
+    },
+    {
+     "id": "W:jarausch|after hitler",
+     "title": "After Hitler: Recivilizing Germans, 1945-1995",
+     "first_author": "Jarausch, Konrad H",
+     "year": 2006,
+     "loading": 0.417,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:milward|reconstruction of western europe",
+     "title": "The Reconstruction of Western Europe, 1945-51",
+     "first_author": "Milward, Alan S",
+     "year": 1984,
+     "loading": 0.397,
+     "citing": 8,
+     "membership": 0.991
+    },
+    {
+     "id": "W:hitchcock|france restored",
+     "title": "France Restored: Cold War Diplomacy and the Quest for Leadership in Europe, 1944-1954",
+     "first_author": "Hitchcock, William I",
+     "year": 1998,
+     "loading": 0.395,
+     "citing": 11,
+     "membership": 0.844
+    },
+    {
+     "id": "W:moeller|war stories",
+     "title": "War Stories: The Search for a Usable Past in the Federal Republic of Germany",
+     "first_author": "Moeller, Robert G",
+     "year": 2001,
+     "loading": 0.395,
+     "citing": 13,
+     "membership": 0.811
+    },
+    {
+     "id": "W:suri|power and protest",
+     "title": "Power and Protest: Global Revolution and the Rise of Détente",
+     "first_author": "Suri, Jeremi",
+     "year": 2003,
+     "loading": 0.385,
+     "citing": 15,
+     "membership": 0.773
+    },
+    {
+     "id": "W:bessel|germany 1945",
+     "title": "Germany 1945: From War to Peace",
+     "first_author": "Bessel, Richard",
+     "year": 2009,
+     "loading": 0.384,
+     "citing": 8,
+     "membership": 0.962
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Fulbrook, Mary",
+     "loading_share": 0.0352
+    },
+    {
+     "name": "Leffler, Melvyn P",
+     "loading_share": 0.0333
+    },
+    {
+     "name": "Zubok, Vladislav",
+     "loading_share": 0.0268
+    },
+    {
+     "name": "Gaddis, John Lewis",
+     "loading_share": 0.0264
+    },
+    {
+     "name": "Westad, Odd Arne",
+     "loading_share": 0.0259
+    },
+    {
+     "name": "Naimark, Norman",
+     "loading_share": 0.0243
+    },
+    {
+     "name": "Judt, Tony",
+     "loading_share": 0.0223
+    },
+    {
+     "name": "Jarausch, Konrad H",
+     "loading_share": 0.0183
+    },
+    {
+     "name": "Herf, Jeffrey",
+     "loading_share": 0.0183
+    },
+    {
+     "name": "Mazower, Mark",
+     "loading_share": 0.0171
+    },
+    {
+     "name": "Trachtenberg, Marc",
+     "loading_share": 0.0144
+    },
+    {
+     "name": "Harrison, Hope M",
+     "loading_share": 0.0128
+    },
+    {
+     "name": "Garthoff, Raymond L",
+     "loading_share": 0.0119
+    },
+    {
+     "name": "Harsch, Donna",
+     "loading_share": 0.0118
+    },
+    {
+     "name": "Höhn, Maria",
+     "loading_share": 0.0115
+    }
+   ],
+   "top_institutions": [
+    [
+     "toronto",
+     19
+    ],
+    [
+     "waterloo",
+     8
+    ],
+    [
+     "mcmaster",
+     7
+    ],
+    [
+     "virginia",
+     6
+    ],
+    [
+     "ubc",
+     5
+    ],
+    [
+     "montreal",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "The German Red Cross(es) and Humanitarianism in Divided Germany, 1945-1965",
+    "A Traditional Friendship?",
+    "“Lucky that East Germany also exists”: Yugoslavia between the Federal Republic of Germany and the German Democratic Republic (1955-1968)",
+    "From Racial Selection to Postwar Deception: The Napolas and Denazification",
+    "Stalin’s Last Comrade: Hanna Wolf and the “Karl Marx” Party College in the German Democratic Republic",
+    "Looking over the Horizon: Nuclear Abolitionism and the End of the Cold War, 1979-1989",
+    "The Schuman plan: vision, power and persuasion",
+    "Hashavat Avedah : a history of Jewish Cultural Reconstruction, Inc."
+   ]
+  },
+  {
+   "id": 13,
+   "provisional_label": "Martin · Kotkin · Zubkova — soviet, stalinism, russia, stalin",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "soviet",
+    "stalinism",
+    "russia",
+    "stalin",
+    "ukraine",
+    "russian"
+   ],
+   "bootstrap_stability": 0.801,
+   "unstable": false,
+   "init_stability": 0.984,
+   "dominated_dissertations": 54,
+   "member_works": 56,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 3,
+     "2005-2009": 3,
+     "2010-2014": 12,
+     "2015-2019": 18,
+     "2020-2024": 15,
+     "2025-2029": 3
+    },
+    "share_of_bin": {
+     "2000-2004": 0.027,
+     "2005-2009": 0.019,
+     "2010-2014": 0.033,
+     "2015-2019": 0.038,
+     "2020-2024": 0.046,
+     "2025-2029": 0.045
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:martin|affirmative action empire",
+     "title": "The Affirmative Action Empire: Nations and Nationalism in the Soviet Union, 1923-1939",
+     "first_author": "Martin, Terry",
+     "year": 2001,
+     "loading": 1.0,
+     "citing": 29,
+     "membership": 0.975
+    },
+    {
+     "id": "W:kotkin|magnetic mountain",
+     "title": "Magnetic Mountain: Stalinism as a Civilization",
+     "first_author": "Kotkin, Stephen",
+     "year": 1995,
+     "loading": 0.987,
+     "citing": 30,
+     "membership": 0.957
+    },
+    {
+     "id": "W:zubkova|russia after the war",
+     "title": "Russia after the War: Hopes, Illusions, and Disappointments, 1945-1957",
+     "first_author": "Zubkova, Elena",
+     "year": 1998,
+     "loading": 0.711,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hirsch|empire of nations",
+     "title": "Empire of Nations: Ethnographic Knowledge and the Making of the Soviet Union",
+     "first_author": "Hirsch, Francine",
+     "year": 2005,
+     "loading": 0.694,
+     "citing": 20,
+     "membership": 0.895
+    },
+    {
+     "id": "W:fitzpatrick|everyday stalinism",
+     "title": "Everyday Stalinism: Ordinary Life in Extraordinary Times: Soviet Russia in the 1930s",
+     "first_author": "Fitzpatrick, Sheila",
+     "year": 1999,
+     "loading": 0.635,
+     "citing": 22,
+     "membership": 0.889
+    },
+    {
+     "id": "W:weiner|making sense of war",
+     "title": "Making Sense of War: The Second World War and the Fate of the Bolshevik Revolution",
+     "first_author": "Weiner, Amir",
+     "year": 2001,
+     "loading": 0.634,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:gross|revolution from abroad",
+     "title": "Revolution from Abroad: The Soviet Conquest of Poland's Western Ukraine and Western Belorussia",
+     "first_author": "Gross, Jan T",
+     "year": 2002,
+     "loading": 0.615,
+     "citing": 13,
+     "membership": 1.0
+    },
+    {
+     "id": "W:brandenberger|national bolshevism",
+     "title": "National Bolshevism: Stalinist Mass Culture and the Formation of Modern Russian National Identity, 1931-1956",
+     "first_author": "Brandenberger, David",
+     "year": 2002,
+     "loading": 0.537,
+     "citing": 14,
+     "membership": 0.987
+    },
+    {
+     "id": "W:snyder|bloodland",
+     "title": "Bloodlands: Europe Between Hitler and Stalin",
+     "first_author": "Snyder, Timothy",
+     "year": 2010,
+     "loading": 0.523,
+     "citing": 17,
+     "membership": 0.86
+    },
+    {
+     "id": "W:slezkine|ussr as a communal apartment or how a socialist state promoted ethnic pluralism|a",
+     "title": "The USSR as a Communal Apartment, or How a Socialist State Promoted Ethnic Particularism",
+     "first_author": "Slezkine, Yuri",
+     "year": 1994,
+     "loading": 0.509,
+     "citing": 12,
+     "membership": 0.966
+    },
+    {
+     "id": "W:viola|peasant rebels under stalin",
+     "title": "Peasant Rebels Under Stalin: Collectivization and the Culture of Peasant Resistance",
+     "first_author": "Viola, Lynne",
+     "year": 1996,
+     "loading": 0.509,
+     "citing": 13,
+     "membership": 0.984
+    },
+    {
+     "id": "W:yekelchyk|stalins empire of memory",
+     "title": "Stalin’s Empire of Memory: Russian-Ukrainian Relations in the Soviet Historical Imagination",
+     "first_author": "Yekelchyk, Serhy",
+     "year": 2004,
+     "loading": 0.482,
+     "citing": 11,
+     "membership": 1.0
+    },
+    {
+     "id": "W:viola|unknown gulag",
+     "title": "The Unknown Gulag: The Lost World of Stalin’s Special Settlements",
+     "first_author": "Viola, Lynne",
+     "year": 2007,
+     "loading": 0.425,
+     "citing": 11,
+     "membership": 0.965
+    },
+    {
+     "id": "W:brown|biography of no place",
+     "title": "A Biography of No Place: From Ethnic Borderland to Soviet Heartland",
+     "first_author": "Brown, Kate",
+     "year": 2004,
+     "loading": 0.424,
+     "citing": 13,
+     "membership": 0.918
+    },
+    {
+     "id": "W:lewin|making of the soviet system",
+     "title": "The Making of the Soviet System: Essays in the Social History of Interwar Russia",
+     "first_author": "Lewin, Moshe",
+     "year": 1985,
+     "loading": 0.414,
+     "citing": 9,
+     "membership": 0.946
+    },
+    {
+     "id": "W:snyder|reconstruction of nations",
+     "title": "The Reconstruction of Nations: Poland, Ukraine, Lithuania, Belarus, 1569-1999",
+     "first_author": "Snyder, Timothy",
+     "year": 2003,
+     "loading": 0.414,
+     "citing": 11,
+     "membership": 0.675
+    },
+    {
+     "id": "W:statiev|soviet counterinsurgency in the western borderlands",
+     "title": "The Soviet Counterinsurgency in the Western Borderlands",
+     "first_author": "Statiev, Alexander",
+     "year": 2010,
+     "loading": 0.4,
+     "citing": 9,
+     "membership": 0.955
+    },
+    {
+     "id": "W:holquist|making war forging revolution",
+     "title": "Making War, Forging Revolution: Russia’s Continuum of Crisis, 1914-1921",
+     "first_author": "Holquist, Peter",
+     "year": 2002,
+     "loading": 0.398,
+     "citing": 11,
+     "membership": 0.922
+    },
+    {
+     "id": "W:fitzpatrick|stalins peasant",
+     "title": "Stalin’s Peasants: Resistance and Survival in the Russian Village after Collectivization",
+     "first_author": "Fitzpatrick, Sheila",
+     "year": 1994,
+     "loading": 0.383,
+     "citing": 8,
+     "membership": 0.975
+    },
+    {
+     "id": "W:berkhoff|harvest of despair",
+     "title": "Harvest of Despair: Life and Death in Ukraine under Nazi Rule",
+     "first_author": "Berkhoff, Karel",
+     "year": 2004,
+     "loading": 0.381,
+     "citing": 11,
+     "membership": 0.968
+    },
+    {
+     "id": "W:tumarkin|living and the dead",
+     "title": "The Living and the Dead: The Rise and Fall of the Cult of World War II in Russia",
+     "first_author": "Tumarkin, Nina",
+     "year": 1994,
+     "loading": 0.368,
+     "citing": 9,
+     "membership": 1.0
+    },
+    {
+     "id": "W:fitzpatrick|russian revolution",
+     "title": "The Russian Revolution",
+     "first_author": "Fitzpatrick, Sheila",
+     "year": 1994,
+     "loading": 0.363,
+     "citing": 10,
+     "membership": 0.884
+    },
+    {
+     "id": "W:timasheff|great retreat",
+     "title": "The Great Retreat: The Growth and Decline of Communism in Russia",
+     "first_author": "Timasheff, N.S. The Great Retreat",
+     "year": 1946,
+     "loading": 0.358,
+     "citing": 8,
+     "membership": 1.0
+    },
+    {
+     "id": "W:krylova|soviet women in combat",
+     "title": "Soviet Women in Combat: A History of Violence on the Eastern Front",
+     "first_author": "Krylova, Anna",
+     "year": 2010,
+     "loading": 0.353,
+     "citing": 8,
+     "membership": 0.872
+    },
+    {
+     "id": "W:dunham|in stalins time",
+     "title": "In Stalin’s Time: Middleclass Values in Soviet Fiction",
+     "first_author": "Dunham, Vera S",
+     "year": 1976,
+     "loading": 0.352,
+     "citing": 9,
+     "membership": 0.97
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Fitzpatrick, Sheila",
+     "loading_share": 0.0485
+    },
+    {
+     "name": "Viola, Lynne",
+     "loading_share": 0.0379
+    },
+    {
+     "name": "Gross, Jan T",
+     "loading_share": 0.0323
+    },
+    {
+     "name": "Martin, Terry",
+     "loading_share": 0.0305
+    },
+    {
+     "name": "Kotkin, Stephen",
+     "loading_share": 0.0301
+    },
+    {
+     "name": "Snyder, Timothy",
+     "loading_share": 0.0285
+    },
+    {
+     "name": "Zubkova, Elena",
+     "loading_share": 0.0216
+    },
+    {
+     "name": "Hirsch, Francine",
+     "loading_share": 0.0212
+    },
+    {
+     "name": "Weiner, Amir",
+     "loading_share": 0.0193
+    },
+    {
+     "name": "Scott, James C",
+     "loading_share": 0.0185
+    },
+    {
+     "name": "Brandenberger, David",
+     "loading_share": 0.0164
+    },
+    {
+     "name": "Slezkine, Yuri",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "Suny, Ronald Grigor",
+     "loading_share": 0.0149
+    },
+    {
+     "name": "Yekelchyk, Serhy",
+     "loading_share": 0.0147
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0131
+    }
+   ],
+   "top_institutions": [
+    [
+     "toronto",
+     21
+    ],
+    [
+     "alberta",
+     9
+    ],
+    [
+     "unc",
+     8
+    ],
+    [
+     "western",
+     4
+    ],
+    [
+     "queens",
+     3
+    ],
+    [
+     "calgary",
+     2
+    ]
+   ],
+   "sample_dissertations": [
+    "The Gulag and Soviet Society in Western Siberia, 1929-1953",
+    "Rethinking the Postwar Era: Soviet Ukrainian Writers under Late Stalinism, 1945-1949",
+    "“The Enemies Next Door”: Stalinist Repression in the Postwar Latvian Countryside",
+    "Revolving Doors of Power: Local Government in Russia’s Revolutions and Civil War, 1917-1923",
+    "“Truly Polish in Spirit and Form”: The Communist Poles and their Battle against Nazi Germany,  1941-1945",
+    "The Soviet Latvian War Effort: Experiencing, Remembering and Narrating the History of the Second World War",
+    "Social conflict and Soviety counterinsurgency in the western borderlands, 1944-50",
+    "\"Red 'Teaspoons of Charity': Zhenotdel, Russian Women, and the Communist Party, 1919-1930.\""
+   ]
+  }
+ ]
+}

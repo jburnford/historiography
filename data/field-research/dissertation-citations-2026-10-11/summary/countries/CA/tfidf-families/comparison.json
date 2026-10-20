@@ -1,0 +1,1802 @@
+{
+ "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
+ "louvain_fields": 13,
+ "louvain_clustered": 794,
+ "louvain_vocabulary": 838,
+ "nmf_vocabulary": 838,
+ "shared_works": 794,
+ "work_assignment_agreement": {
+  "adjusted_rand": 0.532,
+  "nmi": 0.636,
+  "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
+ },
+ "entropy_vs_louvain_link_split_spearman": 0.52,
+ "families": [
+  {
+   "family": 0,
+   "label": "Van Kirk · Carter · Brown — aboriginal, indian, trade, metis",
+   "dominated": 142,
+   "member_works": 103,
+   "best_by_member_works": {
+    "field": "Indigenous peoples, fur trade & the West",
+    "field_id": 0,
+    "jaccard": 0.858,
+    "field_size": 107
+   },
+   "best_by_top25": {
+    "field": "Indigenous peoples, fur trade & the West",
+    "field_id": 0,
+    "jaccard": 0.234,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Indigenous peoples, fur trade & the West",
+    "field_id": 0,
+    "jaccard": 0.52,
+    "engaged": 247
+   },
+   "top25_spread": [
+    [
+     "Indigenous peoples, fur trade & the West",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 1,
+   "label": "Cook · Westfall · Errington — upper, victorian, mid, protestant",
+   "dominated": 140,
+   "member_works": 115,
+   "best_by_member_works": {
+    "field": "Liberal order, religion & the state",
+    "field_id": 2,
+    "jaccard": 0.577,
+    "field_size": 90
+   },
+   "best_by_top25": {
+    "field": "Liberal order, religion & the state",
+    "field_id": 2,
+    "jaccard": 0.264,
+    "top25_inside": 0.96
+   },
+   "best_by_dissertations": {
+    "field": "Liberal order, religion & the state",
+    "field_id": 2,
+    "jaccard": 0.396,
+    "engaged": 255
+   },
+   "top25_spread": [
+    [
+     "Liberal order, religion & the state",
+     0.96
+    ]
+   ]
+  },
+  {
+   "family": 2,
+   "label": "Gleason · Adams · Korinek — postwar, youth, girl, moral",
+   "dominated": 120,
+   "member_works": 91,
+   "best_by_member_works": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.441,
+    "field_size": 92
+   },
+   "best_by_top25": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.219,
+    "top25_inside": 0.84
+   },
+   "best_by_dissertations": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.337,
+    "engaged": 316
+   },
+   "top25_spread": [
+    [
+     "Moral regulation, gender, sexuality & the body",
+     0.84
+    ],
+    [
+     "Postwar Canada, the Sixties & the Cold War",
+     0.12
+    ]
+   ]
+  },
+  {
+   "family": 3,
+   "label": "Knowles · Kelley · Avery — immigration, immigrant, gates, policy",
+   "dominated": 114,
+   "member_works": 92,
+   "best_by_member_works": {
+    "field": "Immigration, race & ethnicity",
+    "field_id": 5,
+    "jaccard": 0.515,
+    "field_size": 61
+   },
+   "best_by_top25": {
+    "field": "Immigration, race & ethnicity",
+    "field_id": 5,
+    "jaccard": 0.284,
+    "top25_inside": 0.76
+   },
+   "best_by_dissertations": {
+    "field": "Immigration, race & ethnicity",
+    "field_id": 5,
+    "jaccard": 0.409,
+    "engaged": 179
+   },
+   "top25_spread": [
+    [
+     "Immigration, race & ethnicity",
+     0.76
+    ],
+    [
+     "Labour & the working class",
+     0.24
+    ]
+   ]
+  },
+  {
+   "family": 4,
+   "label": "Scott · Cronon · Loo — condition, nature, changes, wildlife",
+   "dominated": 96,
+   "member_works": 60,
+   "best_by_member_works": {
+    "field": "Environment, development & the state",
+    "field_id": 11,
+    "jaccard": 0.508,
+    "field_size": 32
+   },
+   "best_by_top25": {
+    "field": "Environment, development & the state",
+    "field_id": 11,
+    "jaccard": 0.676,
+    "top25_inside": 0.92
+   },
+   "best_by_dissertations": {
+    "field": "Environment, development & the state",
+    "field_id": 11,
+    "jaccard": 0.414,
+    "engaged": 92
+   },
+   "top25_spread": [
+    [
+     "Environment, development & the state",
+     0.92
+    ]
+   ]
+  },
+  {
+   "family": 5,
+   "label": "Said · Chakrabarty · Chatterjee — colonial, postcolonial, difference, thought",
+   "dominated": 80,
+   "member_works": 47,
+   "best_by_member_works": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.357,
+    "field_size": 86
+   },
+   "best_by_top25": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.247,
+    "top25_inside": 0.88
+   },
+   "best_by_dissertations": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.221,
+    "engaged": 296
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.88
+    ]
+   ]
+  },
+  {
+   "family": 6,
+   "label": "Pearson · Granatstein · Eayrs — diefenbaker, memoirs, honourable, pearson",
+   "dominated": 76,
+   "member_works": 48,
+   "best_by_member_works": {
+    "field": "Postwar Canada, the Sixties & the Cold War",
+    "field_id": 3,
+    "jaccard": 0.5,
+    "field_size": 87
+   },
+   "best_by_top25": {
+    "field": "Postwar Canada, the Sixties & the Cold War",
+    "field_id": 3,
+    "jaccard": 0.258,
+    "top25_inside": 0.92
+   },
+   "best_by_dissertations": {
+    "field": "Postwar Canada, the Sixties & the Cold War",
+    "field_id": 3,
+    "jaccard": 0.293,
+    "engaged": 233
+   },
+   "top25_spread": [
+    [
+     "Postwar Canada, the Sixties & the Cold War",
+     0.92
+    ]
+   ]
+  },
+  {
+   "family": 7,
+   "label": "Anderson · Hobsbawm · Gellner — nationalism, tradition, memory, nations",
+   "dominated": 71,
+   "member_works": 41,
+   "best_by_member_works": {
+    "field": "Nationalism, memory & antimodernism",
+    "field_id": 10,
+    "jaccard": 0.345,
+    "field_size": 33
+   },
+   "best_by_top25": {
+    "field": "Nationalism, memory & antimodernism",
+    "field_id": 10,
+    "jaccard": 0.318,
+    "top25_inside": 0.56
+   },
+   "best_by_dissertations": {
+    "field": "Nationalism, memory & antimodernism",
+    "field_id": 10,
+    "jaccard": 0.221,
+    "engaged": 139
+   },
+   "top25_spread": [
+    [
+     "Nationalism, memory & antimodernism",
+     0.56
+    ],
+    [
+     "War, the military & imperialism",
+     0.12
+    ]
+   ]
+  },
+  {
+   "family": 8,
+   "label": "Vance · Morton · Stephen J. Harris — war, great, army, first",
+   "dominated": 64,
+   "member_works": 43,
+   "best_by_member_works": {
+    "field": "War, the military & imperialism",
+    "field_id": 6,
+    "jaccard": 0.75,
+    "field_size": 55
+   },
+   "best_by_top25": {
+    "field": "War, the military & imperialism",
+    "field_id": 6,
+    "jaccard": 0.455,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "War, the military & imperialism",
+    "field_id": 6,
+    "jaccard": 0.377,
+    "engaged": 144
+   },
+   "top25_spread": [
+    [
+     "War, the military & imperialism",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 9,
+   "label": "Linteau · LAMONDE · Dumont — québec, histoire, genèse, quand",
+   "dominated": 62,
+   "member_works": 38,
+   "best_by_member_works": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.633,
+    "field_size": 42
+   },
+   "best_by_top25": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.595,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.4,
+    "engaged": 113
+   },
+   "top25_spread": [
+    [
+     "Quebec historiography",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 10,
+   "label": "Butler · Scott · Foucault — gender, feminism, sexuality, manhood",
+   "dominated": 58,
+   "member_works": 32,
+   "best_by_member_works": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.159,
+    "field_size": 92
+   },
+   "best_by_top25": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.147,
+    "top25_inside": 0.6
+   },
+   "best_by_dissertations": {
+    "field": "Moral regulation, gender, sexuality & the body",
+    "field_id": 1,
+    "jaccard": 0.113,
+    "engaged": 316
+   },
+   "top25_spread": [
+    [
+     "Moral regulation, gender, sexuality & the body",
+     0.6
+    ],
+    [
+     "Postwar Canada, the Sixties & the Cold War",
+     0.24
+    ]
+   ]
+  },
+  {
+   "family": 11,
+   "label": "Davidoff · Walkowitz · Clark — london, class, outcast, england",
+   "dominated": 56,
+   "member_works": 37,
+   "best_by_member_works": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.183,
+    "field_size": 86
+   },
+   "best_by_top25": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.194,
+    "top25_inside": 0.72
+   },
+   "best_by_dissertations": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.114,
+    "engaged": 296
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.72
+    ],
+    [
+     "Moral regulation, gender, sexuality & the body",
+     0.16
+    ]
+   ]
+  },
+  {
+   "family": 12,
+   "label": "Brewer · Colley · Armitage — ideological, atlantic, slavery, empire",
+   "dominated": 51,
+   "member_works": 33,
+   "best_by_member_works": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.318,
+    "field_size": 54
+   },
+   "best_by_top25": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.274,
+    "top25_inside": 0.68
+   },
+   "best_by_dissertations": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.159,
+    "engaged": 117
+   },
+   "top25_spread": [
+    [
+     "New France, early modern empire & the Atlantic",
+     0.68
+    ],
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.2
+    ]
+   ]
+  },
+  {
+   "family": 13,
+   "label": "White · Havard · Dechêne — xviie, français, habitants, lakes",
+   "dominated": 45,
+   "member_works": 28,
+   "best_by_member_works": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.464,
+    "field_size": 54
+   },
+   "best_by_top25": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.411,
+    "top25_inside": 0.92
+   },
+   "best_by_dissertations": {
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 7,
+    "jaccard": 0.286,
+    "engaged": 117
+   },
+   "top25_spread": [
+    [
+     "New France, early modern empire & the Atlantic",
+     0.92
+    ]
+   ]
+  },
+  {
+   "family": 14,
+   "label": "Foucault · Scott — resistance, histoire, pauvreté, everyday",
+   "dominated": 32,
+   "member_works": 14,
+   "best_by_member_works": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.143,
+    "field_size": 42
+   },
+   "best_by_top25": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.117,
+    "top25_inside": 0.28
+   },
+   "best_by_dissertations": {
+    "field": "Quebec historiography",
+    "field_id": 9,
+    "jaccard": 0.043,
+    "engaged": 113
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.28
+    ],
+    [
+     "Quebec historiography",
+     0.28
+    ],
+    [
+     "New France, early modern empire & the Atlantic",
+     0.16
+    ]
+   ]
+  },
+  {
+   "family": 15,
+   "label": "Naimark · Judt · Herf — hitler, europe, since, memory",
+   "dominated": 30,
+   "member_works": 10,
+   "best_by_member_works": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.103,
+    "field_size": 86
+   },
+   "best_by_top25": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.121,
+    "top25_inside": 0.48
+   },
+   "best_by_dissertations": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.065,
+    "engaged": 296
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.48
+    ],
+    [
+     "Postwar Canada, the Sixties & the Cold War",
+     0.16
+    ]
+   ]
+  },
+  {
+   "family": 16,
+   "label": "Kotkin · Martin · Hirsch — soviet, stalinism, union, nations",
+   "dominated": 22,
+   "member_works": 6,
+   "best_by_member_works": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.07,
+    "field_size": 86
+   },
+   "best_by_top25": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.181,
+    "top25_inside": 0.68
+   },
+   "best_by_dissertations": {
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 4,
+    "jaccard": 0.056,
+    "engaged": 296
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.68
+    ]
+   ]
+  }
+ ],
+ "louvain_to_nmf": [
+  {
+   "field": "Indigenous peoples, fur trade & the West",
+   "field_id": 0,
+   "works": 107,
+   "best_family": 0,
+   "family_label": "Van Kirk · Carter · Brown — aboriginal, indian, trade, metis",
+   "jaccard": 0.858,
+   "work_spread": [
+    [
+     0,
+     97
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     3
+    ],
+    [
+     11,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Moral regulation, gender, sexuality & the body",
+   "field_id": 1,
+   "works": 92,
+   "best_family": 2,
+   "family_label": "Gleason · Adams · Korinek — postwar, youth, girl, moral",
+   "jaccard": 0.441,
+   "work_spread": [
+    [
+     2,
+     56
+    ],
+    [
+     10,
+     17
+    ],
+    [
+     11,
+     10
+    ],
+    [
+     1,
+     4
+    ]
+   ]
+  },
+  {
+   "field": "Liberal order, religion & the state",
+   "field_id": 2,
+   "works": 90,
+   "best_family": 1,
+   "family_label": "Cook · Westfall · Errington — upper, victorian, mid, protestant",
+   "jaccard": 0.577,
+   "work_spread": [
+    [
+     1,
+     75
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     12,
+     3
+    ],
+    [
+     9,
+     3
+    ]
+   ]
+  },
+  {
+   "field": "Postwar Canada, the Sixties & the Cold War",
+   "field_id": 3,
+   "works": 87,
+   "best_family": 6,
+   "family_label": "Pearson · Granatstein · Eayrs — diefenbaker, memoirs, honourable, pearson",
+   "jaccard": 0.5,
+   "work_spread": [
+    [
+     6,
+     45
+    ],
+    [
+     2,
+     21
+    ],
+    [
+     10,
+     7
+    ],
+    [
+     3,
+     5
+    ]
+   ]
+  },
+  {
+   "field": "Empire, colonialism & postcolonial theory",
+   "field_id": 4,
+   "works": 86,
+   "best_family": 5,
+   "family_label": "Said · Chakrabarty · Chatterjee — colonial, postcolonial, difference, thought",
+   "jaccard": 0.357,
+   "work_spread": [
+    [
+     5,
+     35
+    ],
+    [
+     11,
+     19
+    ],
+    [
+     15,
+     9
+    ],
+    [
+     16,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Immigration, race & ethnicity",
+   "field_id": 5,
+   "works": 61,
+   "best_family": 3,
+   "family_label": "Knowles · Kelley · Avery — immigration, immigrant, gates, policy",
+   "jaccard": 0.515,
+   "work_spread": [
+    [
+     3,
+     52
+    ],
+    [
+     7,
+     4
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     11,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "War, the military & imperialism",
+   "field_id": 6,
+   "works": 55,
+   "best_family": 8,
+   "family_label": "Vance · Morton · Stephen J. Harris — war, great, army, first",
+   "jaccard": 0.75,
+   "work_spread": [
+    [
+     8,
+     42
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     7,
+     4
+    ],
+    [
+     6,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "New France, early modern empire & the Atlantic",
+   "field_id": 7,
+   "works": 54,
+   "best_family": 13,
+   "family_label": "White · Havard · Dechêne — xviie, français, habitants, lakes",
+   "jaccard": 0.464,
+   "work_spread": [
+    [
+     13,
+     26
+    ],
+    [
+     12,
+     21
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     14,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "Labour & the working class",
+   "field_id": 8,
+   "works": 44,
+   "best_family": 3,
+   "family_label": "Knowles · Kelley · Avery — immigration, immigrant, gates, policy",
+   "jaccard": 0.259,
+   "work_spread": [
+    [
+     3,
+     28
+    ],
+    [
+     1,
+     8
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     11,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Quebec historiography",
+   "field_id": 9,
+   "works": 42,
+   "best_family": 9,
+   "family_label": "Linteau · LAMONDE · Dumont — québec, histoire, genèse, quand",
+   "jaccard": 0.633,
+   "work_spread": [
+    [
+     9,
+     31
+    ],
+    [
+     14,
+     7
+    ],
+    [
+     2,
+     2
+    ],
+    [
+     7,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "Nationalism, memory & antimodernism",
+   "field_id": 10,
+   "works": 33,
+   "best_family": 7,
+   "family_label": "Anderson · Hobsbawm · Gellner — nationalism, tradition, memory, nations",
+   "jaccard": 0.345,
+   "work_spread": [
+    [
+     7,
+     19
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Environment, development & the state",
+   "field_id": 11,
+   "works": 32,
+   "best_family": 4,
+   "family_label": "Scott · Cronon · Loo — condition, nature, changes, wildlife",
+   "jaccard": 0.508,
+   "work_spread": [
+    [
+     4,
+     31
+    ],
+    [
+     5,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Rodgers · Rydell · Wiebe",
+   "field_id": 12,
+   "works": 11,
+   "best_family": 10,
+   "family_label": "Butler · Scott · Foucault — gender, feminism, sexuality, manhood",
+   "jaccard": 0.103,
+   "work_spread": [
+    [
+     10,
+     4
+    ],
+    [
+     4,
+     2
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     1,
+     1
+    ]
+   ]
+  }
+ ],
+ "louvain_unclustered_works": [
+  {
+   "title": "Promise of Eden: The Canadian Expansionist Movement and the Idea of the West, 1856-1900",
+   "first_author": "Owram, Doug",
+   "citing": 59,
+   "entropy": 0.464,
+   "nmf_top": 1,
+   "nmf_top_share": 0.36,
+   "nmf_second": 0,
+   "nmf_second_share": 0.32,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
+   "first_author": "Davidoff, Leonore",
+   "citing": 57,
+   "entropy": 0.206,
+   "nmf_top": 11,
+   "nmf_top_share": 0.73,
+   "nmf_second": 1,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Becoming Modern in Toronto: The Industrial Exhibition and the Shaping of a Late Victorian Culture",
+   "first_author": "Walden, Keith",
+   "citing": 49,
+   "entropy": 0.501,
+   "nmf_top": 1,
+   "nmf_top_share": 0.44,
+   "nmf_second": 2,
+   "nmf_second_share": 0.31,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Canada 1922-1939: Decades of Discord",
+   "first_author": "Thompson, John Herd",
+   "citing": 38,
+   "entropy": 0.569,
+   "nmf_top": 1,
+   "nmf_top_share": 0.33,
+   "nmf_second": 3,
+   "nmf_second_share": 0.24,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The West Beyond the West: A History of British Columbia",
+   "first_author": "Barman, Jean",
+   "citing": 37,
+   "entropy": 0.571,
+   "nmf_top": 2,
+   "nmf_top_share": 0.29,
+   "nmf_second": 4,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+   "first_author": "Bederman, Gail",
+   "citing": 36,
+   "entropy": 0.6,
+   "nmf_top": 10,
+   "nmf_top_share": 0.42,
+   "nmf_second": 4,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Liberation Deferred? The Ideas of the English-Canadian Suffragists, 1877-1918",
+   "first_author": "Bacchi, Carol Lee",
+   "citing": 32,
+   "entropy": 0.491,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 2,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Capital",
+   "first_author": "Marx, Karl",
+   "citing": 32,
+   "entropy": 0.546,
+   "nmf_top": 14,
+   "nmf_top_share": 0.31,
+   "nmf_second": 4,
+   "nmf_second_share": 0.29,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Selections from the Prison Notebooks of Antonio Gramsci",
+   "first_author": "Gramsci, Antonio",
+   "citing": 28,
+   "entropy": 0.708,
+   "nmf_top": 1,
+   "nmf_top_share": 0.25,
+   "nmf_second": 5,
+   "nmf_second_share": 0.17,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Waning of the Green: Catholics, the Irish, and Identity in Toronto, 1887-1922",
+   "first_author": "McGowan, Mark",
+   "citing": 26,
+   "entropy": 0.368,
+   "nmf_top": 1,
+   "nmf_top_share": 0.68,
+   "nmf_second": 8,
+   "nmf_second_share": 0.16,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Courtship, Love, and Marriage in Nineteenth-Century English Canada",
+   "first_author": "Ward, Peter",
+   "citing": 25,
+   "entropy": 0.514,
+   "nmf_top": 1,
+   "nmf_top_share": 0.5,
+   "nmf_second": 2,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Who Killed Canadian History?",
+   "first_author": "Granatstein, J.L",
+   "citing": 23,
+   "entropy": 0.666,
+   "nmf_top": 3,
+   "nmf_top_share": 0.24,
+   "nmf_second": 0,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Sweetness and Power: The Place of Sugar in Modern History",
+   "first_author": "Mintz, Sidney W",
+   "citing": 22,
+   "entropy": 0.503,
+   "nmf_top": 5,
+   "nmf_top_share": 0.45,
+   "nmf_second": 4,
+   "nmf_second_share": 0.24,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "‘Limited Identities’ in Canada",
+   "first_author": "Careless, J.M.S",
+   "citing": 21,
+   "entropy": 0.614,
+   "nmf_top": 1,
+   "nmf_top_share": 0.31,
+   "nmf_second": 3,
+   "nmf_second_share": 0.26,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Commercial Empire of the St. Lawrence, 1760-1850",
+   "first_author": "Creighton, Donald",
+   "citing": 21,
+   "entropy": 0.604,
+   "nmf_top": 4,
+   "nmf_top_share": 0.4,
+   "nmf_second": 13,
+   "nmf_second_share": 0.18,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Great Cat Massacre and Other Episodes in French Cultural History",
+   "first_author": "Darnton, Robert",
+   "citing": 20,
+   "entropy": 0.482,
+   "nmf_top": 11,
+   "nmf_top_share": 0.51,
+   "nmf_second": 14,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "A Short History of Quebec",
+   "first_author": "Dickinson, John A",
+   "citing": 20,
+   "entropy": 0.648,
+   "nmf_top": 1,
+   "nmf_top_share": 0.28,
+   "nmf_second": 3,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "A Not Unreasonable Claim: Women and Reform in Canada, 1880s-1920s",
+   "first_author": "Kealey, Linda",
+   "citing": 20,
+   "entropy": 0.479,
+   "nmf_top": 1,
+   "nmf_top_share": 0.4,
+   "nmf_second": 2,
+   "nmf_second_share": 0.33,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Food Will Win the War: The Politics, Culture, and Science of Food on Canada’s Home Front",
+   "first_author": "Mosby, Ian",
+   "citing": 20,
+   "entropy": 0.531,
+   "nmf_top": 2,
+   "nmf_top_share": 0.48,
+   "nmf_second": 4,
+   "nmf_second_share": 0.15,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Canadian Men and Women of the Time",
+   "first_author": "Morgan, Henry J",
+   "citing": 19,
+   "entropy": 0.347,
+   "nmf_top": 1,
+   "nmf_top_share": 0.71,
+   "nmf_second": 8,
+   "nmf_second_share": 0.15,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Great Transformation: The Political and Economic Origins of Our Time",
+   "first_author": "Polanyi, Karl",
+   "citing": 19,
+   "entropy": 0.629,
+   "nmf_top": 5,
+   "nmf_top_share": 0.26,
+   "nmf_second": 4,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Canada: An American Nation? Essays on Continentalism, Identity and the Canadian Frame of Mind",
+   "first_author": "Smith, Allan",
+   "citing": 19,
+   "entropy": 0.485,
+   "nmf_top": 1,
+   "nmf_top_share": 0.48,
+   "nmf_second": 4,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Rise and Fall of the Great Powers: Economic Change and Military Conflict from 1500 to 2000",
+   "first_author": "Kennedy, Paul",
+   "citing": 18,
+   "entropy": 0.562,
+   "nmf_top": 12,
+   "nmf_top_share": 0.32,
+   "nmf_second": 7,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Progressive Party in Canada",
+   "first_author": "Morton, W.L",
+   "citing": 18,
+   "entropy": 0.48,
+   "nmf_top": 1,
+   "nmf_top_share": 0.47,
+   "nmf_second": 3,
+   "nmf_second_share": 0.21,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Frontier in American History",
+   "first_author": "Turner, Frederick Jackson",
+   "citing": 18,
+   "entropy": 0.639,
+   "nmf_top": 4,
+   "nmf_top_share": 0.3,
+   "nmf_second": 13,
+   "nmf_second_share": 0.3,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Outline of a Theory of Practice",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 17,
+   "entropy": 0.467,
+   "nmf_top": 10,
+   "nmf_top_share": 0.5,
+   "nmf_second": 7,
+   "nmf_second_share": 0.17,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Eyewitnessing: The Uses of Images as Historical Evidence",
+   "first_author": "Burke, Peter",
+   "citing": 17,
+   "entropy": 0.646,
+   "nmf_top": 9,
+   "nmf_top_share": 0.33,
+   "nmf_second": 5,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Consumers’ Imperium: The Global Production of American Domesticity, 1865-1920",
+   "first_author": "Hoganson, Kristin L",
+   "citing": 17,
+   "entropy": 0.556,
+   "nmf_top": 4,
+   "nmf_top_share": 0.3,
+   "nmf_second": 5,
+   "nmf_second_share": 0.29,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Virage à gauche interdit : les communistes, les socialistes et leurs ennemis au Québec, 1929-1939",
+   "first_author": "Lévesque, Andrée",
+   "citing": 17,
+   "entropy": 0.368,
+   "nmf_top": 9,
+   "nmf_top_share": 0.53,
+   "nmf_second": 3,
+   "nmf_second_share": 0.35,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Becoming Native in a Foreign Land: Sport, Visual Culture, and Identity in Montreal, 1840-85",
+   "first_author": "Poulter, Gillian",
+   "citing": 17,
+   "entropy": 0.621,
+   "nmf_top": 4,
+   "nmf_top_share": 0.32,
+   "nmf_second": 1,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Women in Public: Between Banners and Ballots, 1825-1880",
+   "first_author": "Ryan, Mary P",
+   "citing": 17,
+   "entropy": 0.431,
+   "nmf_top": 1,
+   "nmf_top_share": 0.4,
+   "nmf_second": 11,
+   "nmf_second_share": 0.34,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Haunted by Empire: Geographies of Intimacy in North American History",
+   "first_author": "Stoler, Ann Laura",
+   "citing": 17,
+   "entropy": 0.609,
+   "nmf_top": 5,
+   "nmf_top_share": 0.43,
+   "nmf_second": 0,
+   "nmf_second_share": 0.17,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Contributing Citizens: Modern Charitable Fundraising and the Making of the Welfare State, 1920-1966",
+   "first_author": "Tillotson, Shirley",
+   "citing": 17,
+   "entropy": 0.508,
+   "nmf_top": 2,
+   "nmf_top_share": 0.5,
+   "nmf_second": 6,
+   "nmf_second_share": 0.22,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Privatizing the Mind: The Sundering of Canadian History, the Sundering of Canada",
+   "first_author": "Bliss, Michael",
+   "citing": 16,
+   "entropy": 0.675,
+   "nmf_top": 1,
+   "nmf_top_share": 0.29,
+   "nmf_second": 2,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The New Cultural History",
+   "first_author": "Hunt, Lynn",
+   "citing": 16,
+   "entropy": 0.334,
+   "nmf_top": 14,
+   "nmf_top_share": 0.67,
+   "nmf_second": 15,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Separate Spheres, Female Worlds, Woman's Place: The Rhetoric of Women's History",
+   "first_author": "Kerber, Linda K",
+   "citing": 16,
+   "entropy": 0.468,
+   "nmf_top": 11,
+   "nmf_top_share": 0.48,
+   "nmf_second": 1,
+   "nmf_second_share": 0.24,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Populism and Democratic Thought in the Canadian Prairies, 1910-1945",
+   "first_author": "Laycock, David",
+   "citing": 16,
+   "entropy": 0.568,
+   "nmf_top": 3,
+   "nmf_top_share": 0.34,
+   "nmf_second": 2,
+   "nmf_second_share": 0.21,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Keepers of the Game: Indian-Animal Relationships and the Fur Trade",
+   "first_author": "Martin, Calvin",
+   "citing": 16,
+   "entropy": 0.344,
+   "nmf_top": 13,
+   "nmf_top_share": 0.44,
+   "nmf_second": 4,
+   "nmf_second_share": 0.44,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Ways of Seeing",
+   "first_author": "Berger, John",
+   "citing": 15,
+   "entropy": 0.705,
+   "nmf_top": 7,
+   "nmf_top_share": 0.27,
+   "nmf_second": 2,
+   "nmf_second_share": 0.21,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "British Imperialism: Innovation and Expansion, 1688-1914",
+   "first_author": "Cain, P.J",
+   "citing": 15,
+   "entropy": 0.295,
+   "nmf_top": 12,
+   "nmf_top_share": 0.57,
+   "nmf_second": 5,
+   "nmf_second_share": 0.38,
+   "louvain": "unclustered"
+  }
+ ],
+ "named_works": {
+  "The Middle Ground": {
+   "title": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650-1815",
+   "first_author": "White, Richard",
+   "citing": 89,
+   "entropy": 0.38,
+   "nmf_top": 13,
+   "nmf_top_share": 0.61,
+   "nmf_second": 0,
+   "nmf_second_share": 0.26,
+   "louvain": "New France, early modern empire & the Atlantic"
+  },
+  "Imagined Communities": {
+   "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+   "first_author": "Anderson, Benedict",
+   "citing": 259,
+   "entropy": 0.283,
+   "nmf_top": 7,
+   "nmf_top_share": 0.81,
+   "nmf_second": 3,
+   "nmf_second_share": 0.06,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  "Orientalism": {
+   "title": "Orientalism",
+   "first_author": "Said, Edward",
+   "citing": 122,
+   "entropy": 0.236,
+   "nmf_top": 5,
+   "nmf_top_share": 0.85,
+   "nmf_second": 12,
+   "nmf_second_share": 0.04,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  "Discipline and Punish": {
+   "title": "Discipline and Punish: The Birth of the Prison",
+   "first_author": "Foucault, Michel",
+   "citing": 98,
+   "entropy": 0.615,
+   "nmf_top": 11,
+   "nmf_top_share": 0.35,
+   "nmf_second": 10,
+   "nmf_second_share": 0.29,
+   "louvain": "Moral regulation, gender, sexuality & the body"
+  },
+  "The Making of the English Working Class": {
+   "title": "The Making of the English Working Class",
+   "first_author": "Thompson, E.P",
+   "citing": 76,
+   "entropy": 0.589,
+   "nmf_top": 3,
+   "nmf_top_share": 0.27,
+   "nmf_second": 11,
+   "nmf_second_share": 0.25,
+   "louvain": "Labour & the working class"
+  },
+  "Seeing Like a State": {
+   "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+   "first_author": "Scott, James C",
+   "citing": 116,
+   "entropy": 0.294,
+   "nmf_top": 4,
+   "nmf_top_share": 0.77,
+   "nmf_second": 16,
+   "nmf_second_share": 0.13,
+   "louvain": "Environment, development & the state"
+  },
+  "Gender and the Politics of History": {
+   "title": "Gender and the Politics of History",
+   "first_author": "Scott, Joan W",
+   "citing": 56,
+   "entropy": 0.481,
+   "nmf_top": 11,
+   "nmf_top_share": 0.46,
+   "nmf_second": 10,
+   "nmf_second_share": 0.33,
+   "louvain": "Moral regulation, gender, sexuality & the body"
+  },
+  "Facing East from Indian Country": {
+   "title": "Facing East from Indian Country: A Native History of Early America",
+   "first_author": "Richter, Daniel K",
+   "citing": 22,
+   "entropy": 0.416,
+   "nmf_top": 13,
+   "nmf_top_share": 0.49,
+   "nmf_second": 0,
+   "nmf_second_share": 0.29,
+   "louvain": "New France, early modern empire & the Atlantic"
+  },
+  "Britons": {
+   "title": "Britons: Forging the Nation, 1707-1837",
+   "first_author": "Colley, Linda",
+   "citing": 64,
+   "entropy": 0.432,
+   "nmf_top": 12,
+   "nmf_top_share": 0.55,
+   "nmf_second": 11,
+   "nmf_second_share": 0.29,
+   "louvain": "New France, early modern empire & the Atlantic"
+  },
+  "The Liberal Order Framework": {
+   "title": "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History",
+   "first_author": "McKay, Ian",
+   "citing": 104,
+   "entropy": 0.698,
+   "nmf_top": 1,
+   "nmf_top_share": 0.31,
+   "nmf_second": 4,
+   "nmf_second_share": 0.17,
+   "louvain": "Liberal order, religion & the state"
+  },
+  "Many Tender Ties": {
+   "title": "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
+   "first_author": "Van Kirk, Sylvia",
+   "citing": 69,
+   "entropy": 0.308,
+   "nmf_top": 0,
+   "nmf_top_share": 0.78,
+   "nmf_second": 13,
+   "nmf_second_share": 0.08,
+   "louvain": "Indigenous peoples, fur trade & the West"
+  },
+  "Colonizing Bodies": {
+   "title": "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50",
+   "first_author": "Kelm, Mary-Ellen",
+   "citing": 51,
+   "entropy": 0.269,
+   "nmf_top": 0,
+   "nmf_top_share": 0.62,
+   "nmf_second": 2,
+   "nmf_second_share": 0.35,
+   "louvain": "Indigenous peoples, fur trade & the West"
+  }
+ },
+ "bridges_top30": [
+  {
+   "title": "Distinction: A Social Critique of the Judgement of Taste",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 47,
+   "entropy": 0.787,
+   "nmf_top": 7,
+   "nmf_top_share": 0.18,
+   "nmf_second": 9,
+   "nmf_second_share": 0.16,
+   "louvain": "Moral regulation, gender, sexuality & the body"
+  },
+  {
+   "title": "The Interpretation of Cultures: Selected Essays",
+   "first_author": "Geertz, Clifford",
+   "citing": 48,
+   "entropy": 0.775,
+   "nmf_top": 7,
+   "nmf_top_share": 0.23,
+   "nmf_second": 9,
+   "nmf_second_share": 0.17,
+   "louvain": "Indigenous peoples, fur trade & the West"
+  },
+  {
+   "title": "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History",
+   "first_author": "McKay, Ian",
+   "citing": 104,
+   "entropy": 0.698,
+   "nmf_top": 1,
+   "nmf_top_share": 0.31,
+   "nmf_second": 4,
+   "nmf_second_share": 0.17,
+   "louvain": "Liberal order, religion & the state"
+  },
+  {
+   "title": "All that is Solid Melts into Air: The Experience of Modernity",
+   "first_author": "Berman, Marshall",
+   "citing": 30,
+   "entropy": 0.691,
+   "nmf_top": 4,
+   "nmf_top_share": 0.4,
+   "nmf_second": 7,
+   "nmf_second_share": 0.16,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  {
+   "title": "The Other Quiet Revolution: National Identities in English Canada, 1945-71",
+   "first_author": "Igartua, José",
+   "citing": 68,
+   "entropy": 0.677,
+   "nmf_top": 6,
+   "nmf_top_share": 0.27,
+   "nmf_second": 3,
+   "nmf_second_share": 0.2,
+   "louvain": "Postwar Canada, the Sixties & the Cold War"
+  },
+  {
+   "title": "Liberalism and Hegemony: Debating the Canadian Liberal Revolution",
+   "first_author": "Constant, Jean-François",
+   "citing": 32,
+   "entropy": 0.666,
+   "nmf_top": 1,
+   "nmf_top_share": 0.35,
+   "nmf_second": 0,
+   "nmf_second_share": 0.14,
+   "louvain": "Liberal order, religion & the state"
+  },
+  {
+   "title": "The Production of Space",
+   "first_author": "Lefebvre, Henri",
+   "citing": 35,
+   "entropy": 0.665,
+   "nmf_top": 4,
+   "nmf_top_share": 0.27,
+   "nmf_second": 5,
+   "nmf_second_share": 0.2,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  {
+   "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
+   "first_author": "Foucault, Michel",
+   "citing": 34,
+   "entropy": 0.66,
+   "nmf_top": 16,
+   "nmf_top_share": 0.28,
+   "nmf_second": 10,
+   "nmf_second_share": 0.21,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  {
+   "title": "Atlantic Crossings: Social Politics in a Progressive Age",
+   "first_author": "Rodgers, Daniel T",
+   "citing": 30,
+   "entropy": 0.652,
+   "nmf_top": 10,
+   "nmf_top_share": 0.23,
+   "nmf_second": 4,
+   "nmf_second_share": 0.22,
+   "louvain": "Rodgers · Rydell · Wiebe"
+  },
+  {
+   "title": "The Empire Within: Postcolonial Thought and Political Activism in Sixties Montreal",
+   "first_author": "Mills, Sean",
+   "citing": 57,
+   "entropy": 0.646,
+   "nmf_top": 2,
+   "nmf_top_share": 0.29,
+   "nmf_second": 3,
+   "nmf_second_share": 0.27,
+   "louvain": "Postwar Canada, the Sixties & the Cold War"
+  },
+  {
+   "title": "National Dreams: Myth, Memory, and Canadian History",
+   "first_author": "Francis, Daniel",
+   "citing": 39,
+   "entropy": 0.645,
+   "nmf_top": 7,
+   "nmf_top_share": 0.37,
+   "nmf_second": 8,
+   "nmf_second_share": 0.2,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  {
+   "title": "The Anatomy of Poverty: The Condition of the Working Class in Montreal, 1897-1929",
+   "first_author": "Copp, Terry",
+   "citing": 31,
+   "entropy": 0.634,
+   "nmf_top": 1,
+   "nmf_top_share": 0.3,
+   "nmf_second": 11,
+   "nmf_second_share": 0.16,
+   "louvain": "Labour & the working class"
+  },
+  {
+   "title": "Discipline and Punish: The Birth of the Prison",
+   "first_author": "Foucault, Michel",
+   "citing": 98,
+   "entropy": 0.615,
+   "nmf_top": 11,
+   "nmf_top_share": 0.35,
+   "nmf_second": 10,
+   "nmf_second_share": 0.29,
+   "louvain": "Moral regulation, gender, sexuality & the body"
+  },
+  {
+   "title": "No Place of Grace: Antimodernism and the Transformation of American Culture, 1880-1920",
+   "first_author": "Lears, Jackson",
+   "citing": 42,
+   "entropy": 0.611,
+   "nmf_top": 4,
+   "nmf_top_share": 0.33,
+   "nmf_second": 1,
+   "nmf_second_share": 0.21,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  {
+   "title": "The Writing of Canadian History: Aspects of English-Canadian Historical Writing since 1900",
+   "first_author": "Berger, Carl",
+   "citing": 73,
+   "entropy": 0.606,
+   "nmf_top": 1,
+   "nmf_top_share": 0.44,
+   "nmf_second": 8,
+   "nmf_second_share": 0.12,
+   "louvain": "Liberal order, religion & the state"
+  },
+  {
+   "title": "The Quest of the Folk: Antimodernism and Cultural Selection in Twentieth-Century Nova Scotia",
+   "first_author": "McKay, Ian",
+   "citing": 73,
+   "entropy": 0.605,
+   "nmf_top": 7,
+   "nmf_top_share": 0.28,
+   "nmf_second": 4,
+   "nmf_second_share": 0.23,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  {
+   "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+   "first_author": "Bederman, Gail",
+   "citing": 36,
+   "entropy": 0.6,
+   "nmf_top": 10,
+   "nmf_top_share": 0.42,
+   "nmf_second": 4,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Booze: A Distilled History",
+   "first_author": "Heron, Craig",
+   "citing": 46,
+   "entropy": 0.591,
+   "nmf_top": 1,
+   "nmf_top_share": 0.35,
+   "nmf_second": 2,
+   "nmf_second_share": 0.29,
+   "louvain": "Liberal order, religion & the state"
+  },
+  {
+   "title": "The Government Generation: Canadian Intellectuals and the State, 1900-1945",
+   "first_author": "Owram, Doug",
+   "citing": 62,
+   "entropy": 0.59,
+   "nmf_top": 1,
+   "nmf_top_share": 0.32,
+   "nmf_second": 6,
+   "nmf_second_share": 0.3,
+   "louvain": "Postwar Canada, the Sixties & the Cold War"
+  },
+  {
+   "title": "Canada’s 1960s: The Ironies of Identity in a Rebellious Era",
+   "first_author": "Palmer, Bryan D",
+   "citing": 70,
+   "entropy": 0.589,
+   "nmf_top": 2,
+   "nmf_top_share": 0.33,
+   "nmf_second": 3,
+   "nmf_second_share": 0.23,
+   "louvain": "Postwar Canada, the Sixties & the Cold War"
+  },
+  {
+   "title": "The Making of the English Working Class",
+   "first_author": "Thompson, E.P",
+   "citing": 76,
+   "entropy": 0.589,
+   "nmf_top": 3,
+   "nmf_top_share": 0.27,
+   "nmf_second": 11,
+   "nmf_second_share": 0.25,
+   "louvain": "Labour & the working class"
+  },
+  {
+   "title": "The Art of Nation-Building: Pageantry and Spectacle at Quebec’s Tercentenary",
+   "first_author": "Nelles, H.V",
+   "citing": 54,
+   "entropy": 0.588,
+   "nmf_top": 7,
+   "nmf_top_share": 0.39,
+   "nmf_second": 1,
+   "nmf_second_share": 0.26,
+   "louvain": "Nationalism, memory & antimodernism"
+  },
+  {
+   "title": "The Catholic Origins of Quebec’s Quiet Revolution, 1931-1970",
+   "first_author": "Gauvreau, Michael",
+   "citing": 39,
+   "entropy": 0.584,
+   "nmf_top": 9,
+   "nmf_top_share": 0.34,
+   "nmf_second": 3,
+   "nmf_second_share": 0.2,
+   "louvain": "Quebec historiography"
+  },
+  {
+   "title": "The Sense of Power: Studies in the Ideas of Canadian Imperialism, 1867-1914",
+   "first_author": "Berger, Carl",
+   "citing": 115,
+   "entropy": 0.58,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 8,
+   "nmf_second_share": 0.25,
+   "louvain": "War, the military & imperialism"
+  },
+  {
+   "title": "Silencing the Past: Power and the Production of History",
+   "first_author": "Trouillot, Michel-Rolph",
+   "citing": 45,
+   "entropy": 0.579,
+   "nmf_top": 7,
+   "nmf_top_share": 0.25,
+   "nmf_second": 5,
+   "nmf_second_share": 0.25,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  {
+   "title": "Domination and the Arts of Resistance: Hidden Transcripts",
+   "first_author": "Scott, James C",
+   "citing": 38,
+   "entropy": 0.577,
+   "nmf_top": 14,
+   "nmf_top_share": 0.43,
+   "nmf_second": 7,
+   "nmf_second_share": 0.17,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  {
+   "title": "The West Beyond the West: A History of British Columbia",
+   "first_author": "Barman, Jean",
+   "citing": 37,
+   "entropy": 0.571,
+   "nmf_top": 2,
+   "nmf_top_share": 0.29,
+   "nmf_second": 4,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Canada 1922-1939: Decades of Discord",
+   "first_author": "Thompson, John Herd",
+   "citing": 38,
+   "entropy": 0.569,
+   "nmf_top": 1,
+   "nmf_top_share": 0.33,
+   "nmf_second": 3,
+   "nmf_second_share": 0.24,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Imperial Eyes: Travel Writing and Transculturation",
+   "first_author": "Pratt, Mary Louise",
+   "citing": 72,
+   "entropy": 0.564,
+   "nmf_top": 5,
+   "nmf_top_share": 0.48,
+   "nmf_second": 0,
+   "nmf_second_share": 0.22,
+   "louvain": "Indigenous peoples, fur trade & the West"
+  },
+  {
+   "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
+   "first_author": "McClintock, Anne",
+   "citing": 70,
+   "entropy": 0.562,
+   "nmf_top": 5,
+   "nmf_top_share": 0.43,
+   "nmf_second": 11,
+   "nmf_second_share": 0.19,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  }
+ ]
+}
