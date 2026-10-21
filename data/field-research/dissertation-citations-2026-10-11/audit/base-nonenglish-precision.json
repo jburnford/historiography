@@ -1,0 +1,111 @@
+{
+ "entries": 100,
+ "sample": "audit/base-nonenglish-sample.jsonl (20 BASE bibliographies: de 4, es 3, pt 3, sv 2, it 2, nl 2, el 2, ca 2; 5 entries each; seed 20261020)",
+ "judged_by": "independent agent, 2026-10-20, rubric of audit/judgements.jsonl; title n/a = no entry in the text",
+ "fields": {
+  "boundary": {
+   "correct": 57,
+   "judged": 100,
+   "precision": 0.57,
+   "wilson95": [
+    0.472,
+    0.663
+   ]
+  },
+  "first_author": {
+   "correct": 52,
+   "judged": 82,
+   "precision": 0.634,
+   "wilson95": [
+    0.526,
+    0.73
+   ]
+  },
+  "title": {
+   "correct": 50,
+   "judged": 86,
+   "precision": 0.581,
+   "wilson95": [
+    0.476,
+    0.68
+   ]
+  },
+  "year": {
+   "correct": 60,
+   "judged": 80,
+   "precision": 0.75,
+   "wilson95": [
+    0.645,
+    0.832
+   ]
+  },
+  "usable": {
+   "correct": 32,
+   "judged": 100,
+   "precision": 0.32,
+   "wilson95": [
+    0.237,
+    0.417
+   ],
+   "note": "boundary, author (or none) and title all correct"
+  }
+ },
+ "by_language": {
+  "ca": {
+   "boundary": "5/10",
+   "first_author": "4/7",
+   "title": "5/8",
+   "year": "5/7",
+   "usable": "4/10"
+  },
+  "de": {
+   "boundary": "13/20",
+   "first_author": "8/15",
+   "title": "6/16",
+   "year": "12/15",
+   "usable": "5/20"
+  },
+  "el": {
+   "boundary": "9/10",
+   "first_author": "5/9",
+   "title": "5/10",
+   "year": "9/10",
+   "usable": "4/10"
+  },
+  "es": {
+   "boundary": "2/15",
+   "first_author": "7/12",
+   "title": "8/13",
+   "year": "10/11",
+   "usable": "2/15"
+  },
+  "it": {
+   "boundary": "4/10",
+   "first_author": "4/9",
+   "title": "9/10",
+   "year": "4/10",
+   "usable": "1/10"
+  },
+  "nl": {
+   "boundary": "5/10",
+   "first_author": "5/6",
+   "title": "5/6",
+   "year": "5/5",
+   "usable": "5/10"
+  },
+  "pt": {
+   "boundary": "14/15",
+   "first_author": "14/15",
+   "title": "11/15",
+   "year": "10/14",
+   "usable": "10/15"
+  },
+  "sv": {
+   "boundary": "5/10",
+   "first_author": "5/9",
+   "title": "1/8",
+   "year": "5/8",
+   "usable": "1/10"
+  }
+ }
+}

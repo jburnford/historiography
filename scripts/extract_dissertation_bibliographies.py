@@ -44,6 +44,78 @@ PRIMARY = re.compile(r'primar|archiv|manuscript|government|official|newspaper|pe
 SECONDARY = re.compile(r'secondary|books|articles|monograph|chapters|theses|dissertations|scholarship|'
                        r'études|ouvrages|sources secondaires|historiograph|literature|studies', re.I)
 YEAR = re.compile(r'(?<![\d/])(1[4-9]\d\d|20[0-2]\d)(?![\d/])')
+# Bibliography headings in further languages (BASE theses, added 2026-10-20). Kept apart from the
+# English and French patterns above, so those match exactly as before; every use below is an
+# extra alternative ("or"), and none of these words occurs as an English or French heading.
+START_ML = re.compile(
+    r'^(?:[IVX\d]+\.?\s+)?(?:'
+    # German
+    r'literaturverzeichnis|quellen-?\s*und\s*literaturverzeichnis|literatur-?\s*und\s*quellenverzeichnis|'
+    r'quellen\s+und\s+literatur|literatur\s+und\s+quellen|verzeichnis\s+der\s+quellen\s+und\s+literatur|'
+    r'quellenverzeichnis|literatur|quellen|(?:un)?gedruckte\s+quellen|archivalien|(?:archivalische|archivische)\s+quellen|'
+    # Spanish
+    r'bibliograf[ií]a(?:\s+(?:y|e|i)\s+(?:fuentes|fontes|fonti|fonts|referencias|refer[eè]ncies))?'
+    r'(?:\s+(?:citada|consultada|esmentada|utilizada|utilitzada|general|seleccionada|selecta))?|'
+    r'fuentes\s+y\s+bibliograf[ií]a|referencias(?:\s+bibliogr[aá]ficas)?|'
+    r'obras\s+citadas|fuentes(?:\s+(?:primarias|documentales|archiv[ií]sticas|impresas|consultadas))?|'
+    # Portuguese
+    r'refer[eê]ncias?(?:\s+bibliogr[aá]ficas?)?|fontes\s+e\s+(?:bibliografia|refer[eê]ncias)|bibliografia\s+e\s+fontes|'
+    r'fontes(?:\s+(?:prim[aá]rias|documentais|consultadas|impressas))?|'
+    # Swedish
+    r'k[aä]ll-?\s*och\s*litteraturf[oö]rteckning|litteraturf[oö]rteckning|k[aä]llf[oö]rteckning|'
+    r'k[aä]llor\s+och\s+litteratur|referenser|litteratur|(?:o?tryckta\s+)?k[aä]llor|'
+    # Italian
+    r'fonti\s+e\s+bibliografia|bibliografia\s+e\s+fonti|riferimenti\s+bibliografici|opere\s+citate|'
+    r'fonti(?:\s+(?:archivistiche|edite|inedite|a\s+stampa))?|'
+    # Dutch
+    r'literatuurlijst|bibliografie|bronnen-?\s*en\s*literatuur(?:lijst)?|geraadpleegde\s+literatuur|literatuur|bronnen|'
+    # Catalan and Greek
+    r'fonts\s+i\s+bibliografia|refer[eè]ncies(?:\s+bibliogr[aà]fiques)?|'
+    r'fonts(?:\s+(?:esmentades|consultades|documentals|prim[aà]ries|arxiv[ií]stiques|impreses))?|arxius\s+consultats|'
+    r'βιβλιογραφ[ιί]α|βιβλιογραφικ[εέ]ς\s+αναφορ[εέ]ς|δευτερογεν[ηή]ς\s+βιβλιογραφ[ιί]α|'
+    r'πηγ[εέ]ς(?:\s+και\s+βιβλιογραφ[ιί]α)?|πρωτογεν[εέ]ις\s+πηγ[εέ]ς|αναφορ[εέ]ς'
+    r')\s*[:.]?$', re.I)
+# The weak ones mark a primary-sources part ('Quellen', 'Fuentes') that a following strong
+# heading ('Literatur') extends back to, as 'Sources' does for 'Bibliography'.
+WEAK_ML = re.compile(
+    r'^(?:quellen|(?:un)?gedruckte\s+quellen|archivalien|(?:archivalische|archivische)\s+quellen|'
+    r'fuentes(?:\s+(?:primarias|documentales|archiv[ií]sticas|impresas|consultadas))?|'
+    r'fontes(?:\s+(?:prim[aá]rias|documentais|consultadas|impressas))?|(?:o?tryckta\s+)?k[aä]llor|'
+    r'fonti(?:\s+(?:archivistiche|edite|inedite|a\s+stampa))?|bronnen|'
+    r'fonts(?:\s+(?:esmentades|consultades|documentals|prim[aà]ries|arxiv[ií]stiques|impreses))?|arxius\s+consultats|'
+    r'πηγ[εέ]ς|πρωτογεν[εέ]ις\s+πηγ[εέ]ς|literatur|litteratur|literatuur)[:.]?$', re.I)
+SQUEEZED_ML = {'literaturverzeichnis', 'quellenundliteraturverzeichnis', 'quellenundliteratur', 'bibliografía',
+               'litteraturforteckning', 'kallochlitteraturforteckning', 'literatuurlijst', 'bibliografie',
+               'riferimentibibliografici', 'referenciasbibliograficas', 'referenciasbibliograficas', 'βιβλιογραφια'}
+PRIMARY_ML = re.compile(r'quellen|archivalien|fuentes|fontes|fonti|\bfonts\b|k[aä]llor|bronnen|πηγ|zeitung|prensa|jornais|'
+                        r'giornali|tidningar|kranten|entrevistas|intervist|intervjuer|ungedruckt|gedruckt|tryckta|editadas|'
+                        r'in[eé]dit[ao]s|documentos|documenti|dokumente|akten', re.I)
+SECONDARY_ML = re.compile(r'literatur|litteratur|literatuur|sekund[aä]r|secund[aá]ri|secondari|sekund[aä]rlitteratur|'
+                          r'darstellungen|estudios|estudos|studi\b|bibliograf[ií]a\s+secundaria', re.I)
+
+
+# Further forms seen in US theses (English) and BASE theses (qualified French headings, Latvian,
+# Turkish), 2026-10-20. Used only as a fallback when no heading above is found, so every thesis
+# that parsed before parses exactly as before.
+START_US = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:bibliography\s+of\s+(?:primary|secondary)\s+sources|bibliography\s+of\s+works\s+cited|'
+                      r'bibliography\s+(?:and|&)\s+(?:works\s+cited|references)|dissertation\s+bibliography|'
+                      r'(?:ancient|modern|general|primary|secondary)\s+bibliography|works\s+cited\s+(?:and|&)\s+consulted|'
+                      r'(?:references|literature|sources)\s+cited|bibliography\s*:\s*[\w ,]{3,30}|reference\s+list|'
+                      # French qualified forms, Latvian and Turkish (BASE theses); also fallback only
+                      r'bibliographie\s+(?:g[ée]n[ée]rale|th[ée]matique|s[ée]lective|indicative|raisonn[ée]e)|'
+                      r'orientations\s+bibliographiques|sources\s+et\s+r[ée]f[ée]rences|'
+                      r'(?:izmantoto\s+)?avotu\s+un\s+literat[uū]ras\s+saraksts|izmantot[aā]s?\s+literat[uū]ras\s+saraksts|'
+                      r'izmantotie\s+avoti\s+un\s+literat[uū]ra|literat[uū]ra|(?:nepublic[eē]tie|nepublic[eē]ti|public[eē]tie)?\s*avoti|'
+                      r'kaynak[cç]a|kaynaklar)\s*[:.]?$', re.I)
+WEAK_US = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:bibliography\s+of\s+primary\s+sources|primary\s+bibliography|'
+                     r'(?:nepublic[eē]tie|nepublic[eē]ti|public[eē]tie)?\s*avoti)\s*[:.]?$', re.I)
+
+
+def ml_heading(t):
+    sq = ''.join(c for c in unicodedata.normalize('NFKD', t.lower()) if c.isalpha())
+    return bool(START_ML.match(t)) or sq in SQUEEZED_ML
+
+
 DASH_AUTHOR = re.compile(r'^\s*[—–_\-]{2,}\s*[.,]?\s*')
 OPEN_Q, CLOSE_Q = '“"«‘', '”"»’'
 
@@ -115,7 +187,7 @@ STRONG_SQUEEZED = {'bibliography', 'bibliographie', 'bibliografia', 'bibliograff
                    'listofreferences', 'selectivebibliography'}
 
 
-def find_span(doc):
+def find_span(doc, fallback=False):
     """The closing bibliography: the last run of pages carrying a strong heading
     ('Bibliography', 'Works Cited', 'Bibliographie'...) after 40% of the document, walked
     back over consecutive pages (running headers) and back to a 'Sources' heading up to 15
@@ -127,12 +199,16 @@ def find_span(doc):
     for i in range(floor, n):
         for line in doc[i].get_text().splitlines():
             t = line.strip()
-            if len(t) >= 50 or not (START.match(t) or squeezed_heading(t)):
+            if fallback and len(t) < 50 and START_US.match(t):
+                (weak if WEAK_US.match(t) else strong).append(i)
+                break
+            if len(t) >= 50 or not (START.match(t) or squeezed_heading(t) or ml_heading(t)):
                 continue
             sq = ''.join(c for c in unicodedata.normalize('NFKD', t.lower()) if c.isalpha())
-            if STRONG.match(t) or sq in STRONG_SQUEEZED:
+            if STRONG.match(t) or sq in STRONG_SQUEEZED or (not START.match(t) and not squeezed_heading(t) and ml_heading(t)
+                                                            and not WEAK_ML.match(t)):
                 strong.append(i)
-            elif not (WEAK.match(t) and i < n * 0.6):
+            elif not ((WEAK.match(t) or WEAK_ML.match(t)) and i < n * 0.6):
                 weak.append(i)
             break
     if strong:
@@ -167,10 +243,10 @@ def find_span_ocr(doc, floor=0.55, extra=8):
         heads = [l['text'].strip() for l in lines_of(page, tp)[:6]]
         if any(STOP.match(t) and len(t) < 60 for t in heads) and start is None:
             end = i
-        hit = [t for t in heads if len(t) < 50 and (START.match(t) or squeezed_heading(t))]
+        hit = [t for t in heads if len(t) < 50 and (START.match(t) or squeezed_heading(t) or ml_heading(t))]
         if hit:
             start = i
-            if not any(WEAK.match(t) or re.search(r'primary|secondary|archiv', t, re.I) for t in hit):
+            if not any(WEAK.match(t) or WEAK_ML.match(t) or re.search(r'primary|secondary|archiv', t, re.I) for t in hit):
                 break  # 'Bibliography' itself: stop
         elif start is not None and i < start - extra:
             break
@@ -182,7 +258,7 @@ def is_heading(line, prev, body_size, margin):
     if len(re.findall(r'[A-Za-zÀ-ÿ]', t)) < 3:
         return False
     if len(t) > 80 or t.endswith(('.', ',', ';')) and not t.endswith(('etc.',)) or ENTRY_START.match(t) and ', ' in t[:40]:
-        if not (len(t) < 50 and START.match(t)):
+        if not (len(t) < 50 and (START.match(t) or START_ML.match(t))):
             return False
     if re.search(r'\d{4}.*[.,]$', t) or t.count(',') > 2:
         return False
@@ -190,7 +266,7 @@ def is_heading(line, prev, body_size, margin):
     larger = max(s[3] for s in line['spans']) > body_size + 0.8
     centred = line['x0'] > margin + 60
     caps = t.isupper() and len(t) > 3
-    keyword = bool(PRIMARY.search(t) or SECONDARY.search(t) or START.match(t))
+    keyword = bool(PRIMARY.search(t) or SECONDARY.search(t) or START.match(t) or START_ML.match(t))
     gap_before = prev is None or prev['page'] != line['page'] or line['y0'] - prev['y1'] > 6
     return gap_before and (bold or larger or (centred and keyword) or caps or (keyword and len(t) < 45 and not t.endswith('.')))
 
@@ -210,7 +286,7 @@ def split_entries(lines):
     entries, path, cur, prev = [], [], None, None
     for line in lines:
         if is_heading(line, prev, body_size, margin):
-            level = 0 if START.match(line['text']) and not path else (1 if (line['text'].isupper() or max(s[3] for s in line['spans']) > body_size + 0.8) else 2)
+            level = 0 if (START.match(line['text']) or START_ML.match(line['text']) and not WEAK_ML.match(line['text'])) and not path else (1 if (line['text'].isupper() or max(s[3] for s in line['spans']) > body_size + 0.8) else 2)
             path = [p for p in path if p[0] < level] + [(level, line['text'].strip(': '))]
             cur, prev = None, line
             continue
@@ -257,6 +333,13 @@ def italic_runs(spans):
 GIVEN = r"[A-ZÀ-Ý][\w'’\-]*\.?(?:(?:\s+|(?<=\.))[A-ZÀ-Ý][\w'’\-]*\.?){0,5}"  # tokens split by space or after a period: no backtracking blow-up
 NAME = re.compile(r'[^,.“"«]{2,60},\s+' + GIVEN + r'(?:,?\s(?:Jr|Sr)\.?)?(?:,\s*eds?)?')
 INITIALS_AHEAD = re.compile(r'[A-ZÀ-Ý]\.(?:\s?[A-ZÀ-Ý]\.)*(?:,\s*eds?\.)?\s')  # 'Smith, J. A. B. Title': the shortest name stops at 'J.'
+
+
+# German style 'Name, Vorname: Titel, Ort Jahr' (also 'Name, V./Name2, V.: Titel'); used only when
+# neither the period-terminated name nor the fallback matched, so existing parses are unchanged.
+COLON_NAME = re.compile(r"^([A-ZÀ-ÝĀ-Ž][\w'’\-]+(?: [a-zà-ÿ]+)?(?: [A-ZÀ-Ý][\w'’\-]+)?,\s+" + GIVEN +
+                        r"(?:\s*(?:/|;|u\.|und)\s*[A-ZÀ-ÝĀ-Ž][\w'’\-]+,\s+" + GIVEN + r")*(?:\s*\((?:Hg|Hrsg|Ed|Eds)\.?\))?)\s*:\s+")
+COLON_IMPRINT = re.compile(r'^\s*(.+?),\s*(?:[A-ZÀ-ÝĀ-Ž][\w\-/ ]{1,40}?\s+)?(?:1[4-9]|20)\d\d\b')
 
 
 def name_end(raw):
@@ -353,6 +436,7 @@ def parse(entry, prev_author):
     qpos = next((i for i, c in enumerate(raw) if c in OPEN_Q and i >= shift and (c != '‘' or i == 0 or raw[i - 1] == ' ')), None)
     ipos = runs[0][0] if runs else None
     result = dict(raw=text, page=entry['page'] + 1 if entry['page'] is not None else None, section=entry['section'])
+    colon = None  # set only by the German 'Name, Vorname:' path below
     cut = min(p for p in (qpos, ipos) if p is not None) if (qpos is not None or ipos is not None) else None
     if dash:
         author = prev_author
@@ -367,6 +451,8 @@ def parse(entry, prev_author):
         m = name_end(raw)
         if m is None and (fallback := re.match(r'^(.{2,200}?(?:[a-zà-ÿ\)]{2}|[A-Z]{2,}))\.\s', raw)):
             m = fallback.end(1), fallback.end()
+        if m is None and (colon := COLON_NAME.match(raw)):
+            m = colon.end(1), colon.end()
         author = clean(raw[:m[0]]) if m else None
         cut = m[1] if m else None
         # co-authors after an inverted first name: "Long, T.D. and C. Wright, eds."
@@ -397,6 +483,8 @@ def parse(entry, prev_author):
         m = re.match(r'^\s*(.+?)(?<!\b[A-Z])(?<!\bSt)(?<!\bvol)(?<!\bNo)(?<!\bRev)(?<!\bMr)(?<!\bMrs)(?<!\bDr)\.\s+(?=[A-Z0-9(\[])', rest)
         title = clean(m.group(1)) if m else clean(rest[:200])
         title_end = cut + (m.end(1) if m else min(len(rest), 200))
+        if colon and (imprint := COLON_IMPRINT.match(rest)):  # 'Titel, Ort Jahr': the imprint is not title
+            title, title_end = clean(imprint.group(1)), cut + imprint.end(1)
     years = pub_years(raw[title_end:]) or pub_years(raw[cut or 0:]) or YEAR.findall(raw)
     low = text.lower()
     section = ' > '.join(entry['section']).lower()
@@ -423,7 +511,9 @@ def parse(entry, prev_author):
     else:
         kind = 'other'
     side = 'primary' if PRIMARY.search(section) and not SECONDARY.search(section) else \
-           'secondary' if SECONDARY.search(section) else 'unspecified'
+           'secondary' if SECONDARY.search(section) else \
+           'primary' if PRIMARY_ML.search(section) and not SECONDARY_ML.search(section) else \
+           'secondary' if SECONDARY_ML.search(section) else 'unspecified'
     authors = split_authors(author) if author else []
     result.update(author=author, authors=authors,
                   surnames=[surname(a, i == 0) for i, a in enumerate(authors)],
@@ -760,24 +850,36 @@ def _process_text(path):
                 kinds=dict(Counter(p['kind'] for p in parsed)), sides=dict(Counter(p['section_side'] for p in parsed))), parsed
 
 
-def process(path, limit=None):
+def process(path, limit=None, parts=None):
+    """``parts``: every declared part of a multi-part dissertation, in part order (the
+    primary ``path`` first); they are read as one document."""
     limit = limit or (1500 if OCR else 300)
     signal.signal(signal.SIGALRM, _alarm)
     signal.alarm(limit)
     try:
         if str(path).endswith('.txt'):
             return _process_text(Path(path))
-        return _process(Path(path))
+        return _process(Path(path), parts=[Path(p) for p in parts] if parts and len(parts) > 1 else None)
     except Exception as exc:  # one malformed PDF must not stop the batch
         return dict(file=str(path), status='extraction_error', error=f'{type(exc).__name__}: {exc}'), []
     finally:
         signal.alarm(0)
 
 
-def _process(path):
+def open_parts(parts):
+    """One in-memory document from the declared parts of a multi-part dissertation (US
+    repositories split some deposits into front matter, chapters and bibliography)."""
+    doc = fitz.open()
+    for p in parts:
+        with fitz.open(p) as part:
+            doc.insert_pdf(part)
+    return doc
+
+
+def _process(path, parts=None):
     fitz.TOOLS.mupdf_display_errors(False)
     try:
-        doc = fitz.open(path)
+        doc = open_parts(parts) if parts else fitz.open(path)
     except Exception as exc:
         return dict(file=str(path), status='unreadable', error=str(exc)), []
     pages = len(doc)
@@ -789,6 +891,8 @@ def _process(path):
         start, end, ocr = find_span_ocr(doc)
     else:
         start, end = find_span(doc)
+        if start is None:  # further English heading forms, tried only when none of the usual ones is found
+            start, end = find_span(doc, fallback=True)
     if start is None:
         return dict(file=str(path), pages=pages, status='no_bibliography_heading', ocr=bool(ocr), ocr_pages=len(ocr)), []
     lines = [l for i in range(start, end) for l in (lines_of(*ocr[i]) if ocr else lines_of(doc[i]))]
@@ -809,7 +913,29 @@ def _process(path):
     if status == 'parsed' and other > 0.6 and ((end - start) / pages > 0.25 or len(parsed) > 2500):
         status = 'suspect_span'  # body text or unreadable OCR swallowed: kept out of the graph
     return dict(file=str(path), pages=pages, status=status, bib_pages=[start + 1, end], entries=len(parsed), ocr=bool(ocr),
-                kinds=dict(Counter(p['kind'] for p in parsed)), sides=dict(Counter(p['section_side'] for p in parsed))), parsed
+                kinds=dict(Counter(p['kind'] for p in parsed)), sides=dict(Counter(p['section_side'] for p in parsed)),
+                **({'parts': len(parts)} if parts else {})), parsed
+
+
+def read_log(path):
+    """Rows of a download log, tolerating a final line still being written."""
+    rows = []
+    for line in path.open():
+        try:
+            rows.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    return rows
+
+
+def declared_parts(d, out):
+    """All part paths of a dissertation whose files declare part numbers (``part`` 1..n),
+    in order; None for single files and for undeclared extra bitstreams (which stay unread,
+    as before)."""
+    files = d.get('files', [])
+    if len(files) < 2 or not all(f.get('part') for f in files):
+        return None
+    return [str(out / f['path']) for f in sorted(files, key=lambda f: f['part'])]
 
 
 def main():
@@ -817,6 +943,8 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--workers', type=int, default=6)
     parser.add_argument('--only', nargs='*', help='specific PDF paths (testing)')
+    parser.add_argument('--only-file', type=Path, help='file listing PDF paths (one per line, relative to --out), as --only '
+                                                       '(written by dissertation_ingest.py for incremental runs)')
     parser.add_argument('--rebuild', action='store_true', help='re-extract everything (needed after parser changes)')
     parser.add_argument('--retry-status', nargs='*', default=[], help='re-extract PDFs whose last status is one of these')
     parser.add_argument('--ocr', action='store_true', help='OCR scanned theses (needs Tesseract; TESSDATA_PREFIX)')
@@ -824,35 +952,46 @@ def main():
     fitz.TOOLS.mupdf_display_errors(False)
     global OCR
     OCR = args.ocr
-    done = set()
+    if args.only_file:
+        args.only = (args.only or []) + [l.strip() for l in args.only_file.open() if l.strip()]
+    done = {}  # file -> sha256 of the extracted copy (None for rows written before hashes were recorded)
     if not args.rebuild and (args.out / 'extraction.jsonl').exists():
         last = {}
         for line in (args.out / 'extraction.jsonl').open():
             x = json.loads(line)
-            last[x['file']] = x['status']
-        done = {f for f, st in last.items() if st not in args.retry_status}
+            last[x['file']] = (x['status'], x.get('sha256'))
+        done = {f: sha for f, (st, sha) in last.items() if st not in args.retry_status}
     latest = {}
     for log in sorted(args.out.glob('downloads*.jsonl')):
-        for line in log.open():
-            d = json.loads(line)
+        for d in read_log(log):
+            if 'institution' not in d or 'id' not in d:
+                continue  # raw logs of sources not yet in the manifest (BASE); dissertation_ingest.py maps them
             if d['status'] == 'downloaded' or (d['institution'], d['id']) not in latest:
                 latest[(d['institution'], d['id'])] = d
     downloads = list(latest.values())
+    only = set(args.only or [])
     jobs = []
     for d in downloads:
         for f in d.get('files', []):
-            if f['primary'] and f['path'] not in done and (not args.only or f['path'] in args.only or str(args.out / f['path']) in args.only):
-                jobs.append((d, args.out / f['path']))
+            if not f['primary'] or (only and f['path'] not in only and str(args.out / f['path']) not in only):
+                continue
+            # Done when extracted before, unless the file has since been replaced (sha256 differs).
+            if f['path'] in done and (done[f['path']] is None or not f.get('sha256') or done[f['path']] == f['sha256']):
+                continue
+            jobs.append((d, args.out / f['path']))
     if any(str(path).endswith('.txt') for _, path in jobs):
         VOCAB.update(load_vocab(args.out))  # inherited by the forked workers
     mode = 'w' if args.rebuild or not done else 'a'
     print(f'{len(jobs)} PDFs to extract ({len(done)} already done)', flush=True)
     with ProcessPoolExecutor(args.workers) as pool, \
             (args.out / 'extraction.jsonl').open(mode) as log, (args.out / 'entries.jsonl').open(mode) as ent:
-        futures = {pool.submit(process, str(path)): (d, path) for d, path in jobs}
+        futures = {pool.submit(process, str(path), None, declared_parts(d, args.out)): (d, path) for d, path in jobs}
         for future in as_completed(futures):
             (d, path), (info, parsed) = futures[future], future.result()
             info.update(institution=d['institution'], id=d['id'], file=str(path.relative_to(args.out)))
+            sha = next((f.get('sha256') for f in d.get('files', []) if f['primary']), None)
+            if sha:
+                info['sha256'] = sha
             log.write(json.dumps(info, ensure_ascii=False) + '\n')
             for i, r in enumerate(parsed):
                 ent.write(json.dumps(dict(dissertation=d['id'], institution=d['institution'], n=i, **r), ensure_ascii=False) + '\n')

@@ -39,6 +39,7 @@ graph to ``summary/`` and for each sub-graph to ``summary/countries/<CC>/``.
 """
 import argparse
 from collections import Counter, defaultdict
+from datetime import datetime
 import csv
 import difflib
 import json
@@ -364,6 +365,10 @@ def main():
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--subgraph-threshold', type=int, default=SUBGRAPH_THRESHOLD,
                         help='strict History PhDs a country needs for its own sub-graph (default %(default)s)')
+    parser.add_argument('--provisional-subgraph', nargs='*', default=[], metavar='CC',
+                        help='also give these countries a sub-graph when they fall below the threshold, labelled '
+                             "'first pass, below threshold' in meta.provisional_subgraphs and in a NOTE.json in their "
+                             'summary directory (the threshold itself is unchanged)')
     args = parser.parse_args()
     out = args.out
     docs = {d['id']: d for d in json.load((out / 'doctorates.json').open())}
@@ -497,6 +502,12 @@ def main():
     country_of = {k[2:]: n['country'] for k, n in nodes.items() if n['type'] == 'Dissertation'}
     strict_by_country = Counter(country_of[d] for d in strict)
     subgraphs = sorted(c for c, k in strict_by_country.items() if k >= args.subgraph_threshold)
+    provisional = {}
+    for c in (cc.strip().upper() for cc in args.provisional_subgraph):
+        if c not in subgraphs and strict_by_country.get(c):
+            provisional[c] = (f'first pass, below threshold: {strict_by_country[c]} strict History PhDs '
+                              f'< {args.subgraph_threshold}')
+    subgraphs = sorted(set(subgraphs) | set(provisional))
     for k, n in nodes.items():
         if n['type'] == 'Dissertation':
             n['subgraph'] = n['country'] if n['in_analysis'] and n['country'] in subgraphs else None
@@ -610,6 +621,7 @@ def main():
                            by_country=dict(sorted(Counter(n['country'] for n in nodes.values() if n['type'] == 'Dissertation').items())),
                            in_analysis=len(strict), in_analysis_by_country=dict(sorted(strict_by_country.items())),
                            subgraph_threshold=args.subgraph_threshold, subgraphs=subgraphs,
+                           **({'provisional_subgraphs': provisional} if provisional else {}),
                            works=len(works), persons=len(persons), cites_edges=len(cites),
                            caveats=['Heuristic bibliography parsing; see audit for measured precision.',
                                     'Person nodes are name keys (surname, first name, middle initial) merged by catalogue title evidence and tiered Wikidata grounding; they are not authority-reviewed identities.',
@@ -642,6 +654,13 @@ def main():
             wr.writerow([n['id'][2:], n['institution'], n['eligibility'], n['scope_status'], n['year'], n['year_source'], '; '.join(n['authors']), n['title'],
                          n['extraction_status'], n['bibliography_entries'], out_deg[n['id']], n['graph_excluded'] or '', n['in_analysis'], n['country'], n['subgraph'] or ''])
     write_summary(out, docs, extraction, entries, nodes, edges, works, cited_by_person, subgraphs)
+    for c in subgraphs:  # a provisional sub-graph's outputs carry its label; a qualifying one drops a stale label
+        note = summary_dir(out, c) / 'NOTE.json'
+        if c in provisional:
+            note.write_text(json.dumps(dict(country=c, status=provisional[c], built=datetime.now().strftime('%Y-%m-%d')),
+                                       indent=1) + '\n')
+        elif note.exists():
+            note.unlink()
     print(json.dumps(graph['meta'], indent=1))
 
 
