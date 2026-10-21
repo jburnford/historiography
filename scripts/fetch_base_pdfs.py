@@ -315,7 +315,7 @@ def follow(url, accept, consume, chain):
                 # 418: Croatian Dabar repositories reject bots; non-standard 45x-49x (guaiaca 468): WAF blocks
                 stop_host(host, f'HTTP {code} on {url}' + (' (bot challenge)' if is_challenge(body) else ''))
                 raise Outcome('host_stopped', f'{netloc}: {host.stopped}', url=url)
-            if code >= 500:
+            if code >= 500 and netloc not in RESOLVERS:  # a resolver relays a dead prefix server's 500
                 note_error(host)
             raise Outcome('error', f'HTTP {code} on {url}', url=url)
         except Outcome:
@@ -487,6 +487,9 @@ def save_pdf(response, url, host, dest, first=None):
                                                        f'/server/api/core/bitstreams/{dspace.group(2)}/content', '', '')))
             if is_login_page(url, rest):
                 raise Outcome('restricted', f'login page instead of a PDF at {url}', url=url)
+            if len(rest) < 2000:  # a one-line server error page (ORA: 'there's been an error with this download')
+                note_error(host)
+                raise Outcome('error', f'short HTML error page ({len(rest)} bytes) instead of a PDF at {url}', url=url)
             stop_host(host, f'HTML ({ctype}) instead of the declared PDF at {url}')
             raise Outcome('host_stopped', f'{host.netloc}: {host.stopped}', url=url, content_type=ctype)
         raise Outcome('not_pdf', f'not a PDF ({ctype}) at {url}', url=url, content_type=ctype,
