@@ -1,32 +1,32 @@
 {
  "scope": "US",
- "generated": "2026-10-20",
+ "generated": "2026-10-21",
  "script": "scripts/dissertation_tfidf_families.py",
- "strict_dissertations_in_scope": 1979,
- "rows": 1194,
- "rows_excluded_lt_min_works": 785,
- "works": 734,
+ "strict_dissertations_in_scope": 2040,
+ "rows": 1246,
+ "rows_excluded_lt_min_works": 794,
+ "works": 763,
  "excluded_profile": {
   "by_institution": [
    [
     "michigan",
-    173
+    170
+   ],
+   [
+    "newmexico",
+    107
    ],
    [
     "rice",
     99
    ],
    [
-    "newmexico",
-    97
-   ],
-   [
     "tennessee",
-    74
+    73
    ],
    [
     "washington",
-    58
+    57
    ],
    [
     "minnesota",
@@ -38,7 +38,7 @@
    ],
    [
     "maryland",
-    37
+    33
    ],
    [
     "base:hdl:10919",
@@ -46,21 +46,21 @@
    ],
    [
     "vanderbilt",
-    29
+    28
    ],
    [
     "base:doi:10.6082",
-    21
+    19
    ],
    [
     "duke",
-    18
+    17
    ]
   ],
   "by_country": [
    [
     "US",
-    785
+    794
    ]
   ],
   "by_decade": [
@@ -86,11 +86,11 @@
    ],
    [
     1940,
-    9
+    11
    ],
    [
     1950,
-    37
+    45
    ],
    [
     1960,
@@ -106,36 +106,36 @@
    ],
    [
     1990,
-    60
+    59
    ],
    [
     2000,
-    66
+    63
    ],
    [
     2010,
-    153
+    159
    ],
    [
     2020,
-    129
+    126
    ]
   ],
   "share_by_institution": {
-   "michigan": 0.5,
+   "michigan": 0.49,
    "rice": 0.49,
-   "maryland": 0.21,
-   "newmexico": 0.58,
+   "maryland": 0.19,
+   "newmexico": 0.61,
    "tennessee": 0.49,
    "minnesota": 0.36,
-   "duke": 0.15,
+   "duke": 0.14,
    "oklahoma": 0.31,
-   "vanderbilt": 0.25,
-   "washington": 0.52,
+   "vanderbilt": 0.24,
+   "washington": 0.51,
    "virginia": 0.25,
    "alabama": 0.17
   },
-  "median_bibliography_entries": 180,
+  "median_bibliography_entries": 177,
   "median_bibliography_entries_rows": 283
  },
  "parameters": {
@@ -146,190 +146,190 @@
   "tfidf": "binary tf, smoothed idf ln((1+N)/(1+df))+1, row L2 norm",
   "nmf": "frobenius, cd solver, nndsvd init, max_iter 800, tol 1e-4"
  },
- "k": 10,
+ "k": 12,
  "k_rule": "most families reproduced at matched cosine >= 0.8, among ks with mean matched cosine >= 0.75; ties to the smaller k",
  "elbow": 16,
  "sweep": [
   {
    "k": 8,
-   "reconstruction_error": 32.829,
-   "relative_error": 0.9501,
-   "iterations": 63,
-   "stability_mean": 0.769,
-   "stability_median_family": 0.811,
-   "stability_p10_family": 0.599,
-   "stability_min_family": 0.367,
+   "reconstruction_error": 33.5836,
+   "relative_error": 0.9514,
+   "iterations": 55,
+   "stability_mean": 0.799,
+   "stability_median_family": 0.835,
+   "stability_p10_family": 0.667,
+   "stability_min_family": 0.585,
    "families_reproduced": 5
   },
   {
    "k": 10,
-   "reconstruction_error": 32.569,
-   "relative_error": 0.9425,
-   "iterations": 84,
-   "stability_mean": 0.811,
-   "stability_median_family": 0.846,
-   "stability_p10_family": 0.675,
-   "stability_min_family": 0.53,
-   "families_reproduced": 7
-  },
-  {
-   "k": 12,
-   "reconstruction_error": 32.3511,
-   "relative_error": 0.9362,
-   "iterations": 78,
-   "stability_mean": 0.739,
-   "stability_median_family": 0.773,
-   "stability_p10_family": 0.514,
-   "stability_min_family": 0.294,
-   "families_reproduced": 4
-  },
-  {
-   "k": 14,
-   "reconstruction_error": 32.1577,
-   "relative_error": 0.9306,
-   "iterations": 98,
-   "stability_mean": 0.726,
-   "stability_median_family": 0.766,
-   "stability_p10_family": 0.516,
-   "stability_min_family": 0.225,
+   "reconstruction_error": 33.329,
+   "relative_error": 0.9442,
+   "iterations": 72,
+   "stability_mean": 0.775,
+   "stability_median_family": 0.838,
+   "stability_p10_family": 0.557,
+   "stability_min_family": 0.498,
    "families_reproduced": 6
   },
   {
+   "k": 12,
+   "reconstruction_error": 33.0972,
+   "relative_error": 0.9376,
+   "iterations": 93,
+   "stability_mean": 0.789,
+   "stability_median_family": 0.838,
+   "stability_p10_family": 0.715,
+   "stability_min_family": 0.346,
+   "families_reproduced": 7
+  },
+  {
+   "k": 14,
+   "reconstruction_error": 32.8819,
+   "relative_error": 0.9315,
+   "iterations": 109,
+   "stability_mean": 0.748,
+   "stability_median_family": 0.802,
+   "stability_p10_family": 0.555,
+   "stability_min_family": 0.405,
+   "families_reproduced": 7
+  },
+  {
    "k": 16,
-   "reconstruction_error": 31.9281,
-   "relative_error": 0.924,
-   "iterations": 308,
-   "stability_mean": 0.754,
-   "stability_median_family": 0.742,
-   "stability_p10_family": 0.613,
-   "stability_min_family": 0.511,
+   "reconstruction_error": 32.6676,
+   "relative_error": 0.9255,
+   "iterations": 91,
+   "stability_mean": 0.755,
+   "stability_median_family": 0.771,
+   "stability_p10_family": 0.594,
+   "stability_min_family": 0.558,
    "families_reproduced": 7
   },
   {
    "k": 18,
-   "reconstruction_error": 31.7586,
-   "relative_error": 0.9191,
-   "iterations": 102,
-   "stability_mean": 0.723,
-   "stability_median_family": 0.774,
-   "stability_p10_family": 0.443,
-   "stability_min_family": 0.365,
-   "families_reproduced": 8
+   "reconstruction_error": 32.4774,
+   "relative_error": 0.9201,
+   "iterations": 139,
+   "stability_mean": 0.74,
+   "stability_median_family": 0.786,
+   "stability_p10_family": 0.552,
+   "stability_min_family": 0.384,
+   "families_reproduced": 9
   },
   {
    "k": 20,
-   "reconstruction_error": 31.5631,
-   "relative_error": 0.9134,
-   "iterations": 386,
-   "stability_mean": 0.722,
-   "stability_median_family": 0.775,
-   "stability_p10_family": 0.445,
-   "stability_min_family": 0.289,
-   "families_reproduced": 8
+   "reconstruction_error": 32.2999,
+   "relative_error": 0.915,
+   "iterations": 69,
+   "stability_mean": 0.735,
+   "stability_median_family": 0.772,
+   "stability_p10_family": 0.505,
+   "stability_min_family": 0.385,
+   "families_reproduced": 9
   },
   {
    "k": 22,
-   "reconstruction_error": 31.3881,
-   "relative_error": 0.9084,
-   "iterations": 533,
-   "stability_mean": 0.711,
-   "stability_median_family": 0.735,
-   "stability_p10_family": 0.504,
-   "stability_min_family": 0.377,
-   "families_reproduced": 8
+   "reconstruction_error": 32.1273,
+   "relative_error": 0.9102,
+   "iterations": 76,
+   "stability_mean": 0.719,
+   "stability_median_family": 0.745,
+   "stability_p10_family": 0.462,
+   "stability_min_family": 0.378,
+   "families_reproduced": 9
   },
   {
    "k": 24,
-   "reconstruction_error": 31.2151,
-   "relative_error": 0.9034,
-   "iterations": 197,
-   "stability_mean": 0.697,
-   "stability_median_family": 0.693,
-   "stability_p10_family": 0.516,
-   "stability_min_family": 0.467,
-   "families_reproduced": 6
+   "reconstruction_error": 31.9467,
+   "relative_error": 0.905,
+   "iterations": 79,
+   "stability_mean": 0.727,
+   "stability_median_family": 0.753,
+   "stability_p10_family": 0.518,
+   "stability_min_family": 0.458,
+   "families_reproduced": 9
   },
   {
    "k": 26,
-   "reconstruction_error": 31.0476,
-   "relative_error": 0.8985,
-   "iterations": 111,
-   "stability_mean": 0.689,
-   "stability_median_family": 0.699,
-   "stability_p10_family": 0.493,
-   "stability_min_family": 0.356,
-   "families_reproduced": 5
+   "reconstruction_error": 31.7883,
+   "relative_error": 0.9006,
+   "iterations": 78,
+   "stability_mean": 0.7,
+   "stability_median_family": 0.746,
+   "stability_p10_family": 0.506,
+   "stability_min_family": 0.281,
+   "families_reproduced": 6
   },
   {
    "k": 28,
-   "reconstruction_error": 30.8816,
-   "relative_error": 0.8937,
-   "iterations": 180,
-   "stability_mean": 0.694,
-   "stability_median_family": 0.706,
-   "stability_p10_family": 0.529,
-   "stability_min_family": 0.422,
-   "families_reproduced": 8
+   "reconstruction_error": 31.6422,
+   "relative_error": 0.8964,
+   "iterations": 88,
+   "stability_mean": 0.704,
+   "stability_median_family": 0.741,
+   "stability_p10_family": 0.487,
+   "stability_min_family": 0.225,
+   "families_reproduced": 7
   },
   {
    "k": 30,
-   "reconstruction_error": 30.7364,
-   "relative_error": 0.8895,
-   "iterations": 167,
-   "stability_mean": 0.668,
-   "stability_median_family": 0.66,
-   "stability_p10_family": 0.464,
-   "stability_min_family": 0.334,
-   "families_reproduced": 8
+   "reconstruction_error": 31.484,
+   "relative_error": 0.8919,
+   "iterations": 70,
+   "stability_mean": 0.7,
+   "stability_median_family": 0.698,
+   "stability_p10_family": 0.534,
+   "stability_min_family": 0.214,
+   "families_reproduced": 11
   }
  ],
  "stability": {
-  "bootstrap_mean": 0.811,
-  "init_random_mean": 0.927,
+  "bootstrap_mean": 0.789,
+  "init_random_mean": 0.9,
   "note": "bootstrap: mean matched cosine of work loadings over resampled refits; init: 4 random-init + 1 nndsvda refit"
  },
  "membership_note": "soft memberships are each family's share of the reconstructed column (works) or row (dissertations)",
  "families": [
   {
    "id": 0,
-   "provisional_label": "McPherson · Foner · Sellers — jacksonian, radicalism, ideology, civil",
+   "provisional_label": "McPherson · Foner · Sellers — jacksonian, radicalism, republic, ideology",
    "label_is_provisional": true,
    "louvain_hint": "Revolution, early republic & antebellum politics (provisional)",
    "title_terms": [
     "jacksonian",
     "radicalism",
+    "republic",
     "ideology",
-    "civil",
-    "revolution",
-    "creation"
+    "old",
+    "political"
    ],
-   "bootstrap_stability": 0.82,
+   "bootstrap_stability": 0.823,
    "unstable": false,
-   "init_stability": 0.969,
-   "dominated_dissertations": 202,
-   "member_works": 145,
+   "init_stability": 0.842,
+   "dominated_dissertations": 197,
+   "member_works": 149,
    "years": {
     "median": 2012,
     "by_5yr": {
      "1970-1974": 1,
      "1975-1979": 2,
-     "1980-1984": 3,
+     "1980-1984": 2,
      "1985-1989": 4,
      "1990-1994": 9,
-     "1995-1999": 12,
+     "1995-1999": 11,
      "2000-2004": 16,
      "2005-2009": 27,
-     "2010-2014": 52,
-     "2015-2019": 50,
+     "2010-2014": 53,
+     "2015-2019": 46,
      "2020-2024": 23,
      "2025-2029": 3
     },
     "share_of_bin": {
      "2000-2004": 0.34,
-     "2005-2009": 0.209,
-     "2010-2014": 0.15,
-     "2015-2019": 0.151,
-     "2020-2024": 0.103,
+     "2005-2009": 0.205,
+     "2010-2014": 0.144,
+     "2015-2019": 0.133,
+     "2020-2024": 0.097,
      "2025-2029": 0.068
     }
    },
@@ -341,307 +341,307 @@
      "year": 1988,
      "loading": 1.0,
      "citing": 46,
-     "membership": 0.916
+     "membership": 0.885
     },
     {
      "id": "W:foner|free soil free labor free man",
      "title": "Free Soil, Free Labor, Free Men: The Ideology of the Republican Party before the Civil War",
      "first_author": "Foner, Eric",
      "year": 1970,
-     "loading": 0.927,
-     "citing": 57,
-     "membership": 0.932
+     "loading": 0.977,
+     "citing": 58,
+     "membership": 0.925
     },
     {
      "id": "W:sellers|market revolution",
      "title": "The Market Revolution: Jacksonian America, 1815-1846",
      "first_author": "Sellers, Charles",
      "year": 1991,
-     "loading": 0.866,
+     "loading": 0.856,
      "citing": 43,
-     "membership": 0.949
-    },
-    {
-     "id": "W:wyatt brown|southern honor",
-     "title": "Southern Honor: Ethics and Behavior in the Old South",
-     "first_author": "Wyatt-Brown, Bertram",
-     "year": 1982,
-     "loading": 0.788,
-     "citing": 40,
-     "membership": 0.993
+     "membership": 0.884
     },
     {
      "id": "W:mccurry|master of small worlds",
      "title": "Masters of Small Worlds: Yeoman Households, Gender Relations, and the Political Culture of the Antebellum South Carolina Low Country",
      "first_author": "McCurry, Stephanie",
      "year": 1995,
-     "loading": 0.762,
-     "citing": 46,
-     "membership": 0.983
+     "loading": 0.806,
+     "citing": 48,
+     "membership": 0.984
     },
     {
-     "id": "W:bailyn|ideological origins ofthe american revolution",
-     "title": "The Ideological Origins of the American Revolution",
-     "first_author": "Bailyn, Bernard",
-     "year": 1967,
-     "loading": 0.76,
-     "citing": 49,
-     "membership": 0.853
+     "id": "W:wyatt brown|southern honor",
+     "title": "Southern Honor: Ethics and Behavior in the Old South",
+     "first_author": "Wyatt-Brown, Bertram",
+     "year": 1982,
+     "loading": 0.792,
+     "citing": 40,
+     "membership": 0.975
     },
     {
      "id": "W:freehling|road to disunion",
      "title": "The Road to Disunion: Secessionists at Bay, 1776-1854",
      "first_author": "Freehling, William W",
      "year": 1990,
-     "loading": 0.721,
-     "citing": 28,
+     "loading": 0.767,
+     "citing": 29,
      "membership": 1.0
     },
     {
-     "id": "W:howe|what hath gad wrought",
-     "title": "What Hath God Wrought: The Transformation of America, 1815-1848",
-     "first_author": "Howe, Daniel Walker",
-     "year": 2007,
-     "loading": 0.697,
-     "citing": 43,
-     "membership": 0.814
-    },
-    {
-     "id": "W:wood|creation of the american republic",
-     "title": "The Creation of the American Republic, 1776-1787",
-     "first_author": "Wood, Gordon S",
-     "year": 1969,
-     "loading": 0.692,
-     "citing": 39,
-     "membership": 0.94
+     "id": "W:bailyn|ideological origins ofthe american revolution",
+     "title": "The Ideological Origins of the American Revolution",
+     "first_author": "Bailyn, Bernard",
+     "year": 1967,
+     "loading": 0.759,
+     "citing": 50,
+     "membership": 0.823
     },
     {
      "id": "W:genovese|roll jordan role",
      "title": "Roll, Jordan, Roll: The World the Slaves Made",
      "first_author": "Genovese, Eugene D",
      "year": 1974,
-     "loading": 0.671,
-     "citing": 68,
-     "membership": 0.588
+     "loading": 0.743,
+     "citing": 70,
+     "membership": 0.625
+    },
+    {
+     "id": "W:howe|what hath gad wrought",
+     "title": "What Hath God Wrought: The Transformation of America, 1815-1848",
+     "first_author": "Howe, Daniel Walker",
+     "year": 2007,
+     "loading": 0.728,
+     "citing": 44,
+     "membership": 0.81
+    },
+    {
+     "id": "W:wood|creation of the american republic",
+     "title": "The Creation of the American Republic, 1776-1787",
+     "first_author": "Wood, Gordon S",
+     "year": 1969,
+     "loading": 0.716,
+     "citing": 41,
+     "membership": 0.913
     },
     {
      "id": "W:ryan|cradle of the mddle class",
      "title": "Cradle of the Middle Class: The Family in Oneida County, New York, 1790-1865",
      "first_author": "Ryan, Mary P",
      "year": 1981,
-     "loading": 0.663,
+     "loading": 0.657,
      "citing": 34,
-     "membership": 0.963
-    },
-    {
-     "id": "W:faust|this republic of suffering",
-     "title": "This Republic of Suffering: Death and the American Civil War",
-     "first_author": "Faust, Drew Gilpin",
-     "year": 2008,
-     "loading": 0.63,
-     "citing": 32,
-     "membership": 0.947
-    },
-    {
-     "id": "W:foner|reconstruction",
-     "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
-     "first_author": "Foner, Eric",
-     "year": 1988,
-     "loading": 0.63,
-     "citing": 72,
-     "membership": 0.52
-    },
-    {
-     "id": "W:potter|impeding crisis 1848 1861",
-     "title": "The Impending Crisis, 1848-1861",
-     "first_author": "Potter, David M",
-     "year": 1976,
-     "loading": 0.624,
-     "citing": 25,
-     "membership": 0.993
+     "membership": 0.916
     },
     {
      "id": "W:ford|origins ofsouthern radicalism",
      "title": "Origins of Southern Radicalism: The South Carolina Upcountry, 1800-1860",
      "first_author": "Ford, Lacy K",
      "year": 1988,
-     "loading": 0.62,
-     "citing": 24,
+     "loading": 0.653,
+     "citing": 25,
      "membership": 1.0
     },
     {
-     "id": "W:howe|political culture ofthe american whigs",
-     "title": "The Political Culture of the American Whigs",
-     "first_author": "Howe, Daniel Walker",
-     "year": 1979,
-     "loading": 0.586,
-     "citing": 24,
-     "membership": 1.0
+     "id": "W:faust|this republic of suffering",
+     "title": "This Republic of Suffering: Death and the American Civil War",
+     "first_author": "Faust, Drew Gilpin",
+     "year": 2008,
+     "loading": 0.645,
+     "citing": 34,
+     "membership": 0.914
+    },
+    {
+     "id": "W:potter|impeding crisis 1848 1861",
+     "title": "The Impending Crisis, 1848-1861",
+     "first_author": "Potter, David M",
+     "year": 1976,
+     "loading": 0.639,
+     "citing": 25,
+     "membership": 0.988
+    },
+    {
+     "id": "W:foner|reconstruction",
+     "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
+     "first_author": "Foner, Eric",
+     "year": 1988,
+     "loading": 0.639,
+     "citing": 73,
+     "membership": 0.501
     },
     {
      "id": "W:holt|political crisis of the",
      "title": "The Political Crisis of the 1850s",
      "first_author": "Holt, Michael F",
      "year": 1978,
-     "loading": 0.585,
+     "loading": 0.606,
      "citing": 22,
-     "membership": 1.0
+     "membership": 0.978
     },
     {
-     "id": "W:cott|bonds ofwomanhood",
-     "title": "The Bonds of Womanhood: \"Woman's Sphere\" in New England, 1780-1835",
-     "first_author": "Cott, Nancy F",
-     "year": 1977,
-     "loading": 0.564,
-     "citing": 31,
-     "membership": 0.943
-    },
-    {
-     "id": "W:mathews|religion in the old south",
-     "title": "Religion in the Old South",
-     "first_author": "Mathews, Donald G",
-     "year": 1977,
-     "loading": 0.557,
+     "id": "W:howe|political culture ofthe american whigs",
+     "title": "The Political Culture of the American Whigs",
+     "first_author": "Howe, Daniel Walker",
+     "year": 1979,
+     "loading": 0.582,
      "citing": 24,
-     "membership": 0.953
-    },
-    {
-     "id": "W:kerber|women ofthe republic",
-     "title": "Women of the Republic: Intellect and Ideology in Revolutionary America",
-     "first_author": "Kerber, Linda K",
-     "year": 1980,
-     "loading": 0.553,
-     "citing": 39,
-     "membership": 0.827
+     "membership": 0.947
     },
     {
      "id": "W:wilentz|rise of american democracy",
      "title": "The Rise of American Democracy: Jefferson to Lincoln",
      "first_author": "Wilentz, Sean",
      "year": 2005,
-     "loading": 0.546,
-     "citing": 27,
-     "membership": 0.952
-    },
-    {
-     "id": "W:ahlstrom|religious history of the american people",
-     "title": "A Religious History of the American People",
-     "first_author": "Ahlstrom, Sydney E",
-     "year": 1972,
-     "loading": 0.537,
+     "loading": 0.577,
      "citing": 28,
-     "membership": 0.88
+     "membership": 0.938
     },
     {
-     "id": "W:blight|race and reunion",
-     "title": "Race and Reunion: The Civil War in American Memory",
-     "first_author": "Blight, David W",
-     "year": 2001,
-     "loading": 0.527,
-     "citing": 59,
-     "membership": 0.559
+     "id": "W:kerber|women ofthe republic",
+     "title": "Women of the Republic: Intellect and Ideology in Revolutionary America",
+     "first_author": "Kerber, Linda K",
+     "year": 1980,
+     "loading": 0.575,
+     "citing": 40,
+     "membership": 0.822
+    },
+    {
+     "id": "W:cott|bonds ofwomanhood",
+     "title": "The Bonds of Womanhood: \"Woman's Sphere\" in New England, 1780-1835",
+     "first_author": "Cott, Nancy F",
+     "year": 1977,
+     "loading": 0.571,
+     "citing": 31,
+     "membership": 0.927
     },
     {
      "id": "W:fox genovese|within the plantation household",
      "title": "Within the Plantation Household: Black and White Women of the Old South",
      "first_author": "Fox-Genovese, Elizabeth",
      "year": 1988,
-     "loading": 0.523,
+     "loading": 0.562,
      "citing": 36,
-     "membership": 0.779
+     "membership": 0.823
     },
     {
-     "id": "W:hatch|democratization ofamerican christianity",
-     "title": "The Democratization of American Christianity",
-     "first_author": "Hatch, Nathan O",
-     "year": 1989,
-     "loading": 0.52,
-     "citing": 36,
-     "membership": 0.792
+     "id": "W:mathews|religion in the old south",
+     "title": "Religion in the Old South",
+     "first_author": "Mathews, Donald G",
+     "year": 1977,
+     "loading": 0.556,
+     "citing": 24,
+     "membership": 0.947
+    },
+    {
+     "id": "W:oakes|ruling race",
+     "title": "The Ruling Race: A History of American Slaveholders",
+     "first_author": "Oakes, James",
+     "year": 1982,
+     "loading": 0.552,
+     "citing": 26,
+     "membership": 0.987
+    },
+    {
+     "id": "W:watson|liberty and power",
+     "title": "Liberty and Power: The Politics of Jacksonian America",
+     "first_author": "Watson, Harry L",
+     "year": 1990,
+     "loading": 0.526,
+     "citing": 22,
+     "membership": 0.948
+    },
+    {
+     "id": "W:faust|mothers ofinvention",
+     "title": "Mothers of Invention: Women of the Slaveholding South in the American Civil War",
+     "first_author": "Faust, Drew Gilpin",
+     "year": 1996,
+     "loading": 0.509,
+     "citing": 24,
+     "membership": 0.932
     }
    ],
    "top_people": [
     {
      "name": "Faust, Drew Gilpin",
-     "loading_share": 0.0286
+     "loading_share": 0.0293
     },
     {
      "name": "McPherson, James M",
-     "loading_share": 0.0242
+     "loading_share": 0.0235
     },
     {
      "name": "Foner, Eric",
-     "loading_share": 0.0231
+     "loading_share": 0.0234
     },
     {
      "name": "Wood, Gordon S",
-     "loading_share": 0.0211
+     "loading_share": 0.0212
     },
     {
      "name": "Howe, Daniel Walker",
-     "loading_share": 0.0191
-    },
-    {
-     "name": "McCurry, Stephanie",
-     "loading_share": 0.0166
+     "loading_share": 0.019
     },
     {
      "name": "Freehling, William W",
-     "loading_share": 0.0165
+     "loading_share": 0.0173
     },
     {
-     "name": "Kerber, Linda K",
-     "loading_share": 0.0152
+     "name": "McCurry, Stephanie",
+     "loading_share": 0.0172
     },
     {
      "name": "Genovese, Eugene D",
-     "loading_share": 0.0149
+     "loading_share": 0.0162
     },
     {
      "name": "Ford, Lacy K",
-     "loading_share": 0.0148
+     "loading_share": 0.0151
+    },
+    {
+     "name": "Kerber, Linda K",
+     "loading_share": 0.015
     },
     {
      "name": "Wilentz, Sean",
-     "loading_share": 0.0144
+     "loading_share": 0.0146
     },
     {
      "name": "Ryan, Mary P",
-     "loading_share": 0.0144
+     "loading_share": 0.0134
     },
     {
      "name": "Sellers, Charles",
-     "loading_share": 0.0129
+     "loading_share": 0.0124
     },
     {
      "name": "Wyatt-Brown, Bertram",
-     "loading_share": 0.0117
+     "loading_share": 0.0115
     },
     {
-     "name": "Bailyn, Bernard",
-     "loading_share": 0.0113
+     "name": "Hahn, Steven",
+     "loading_share": 0.0111
     }
    ],
    "top_institutions": [
     [
      "rice",
-     42
+     41
     ],
     [
      "tennessee",
-     31
+     30
     ],
     [
      "maryland",
-     27
+     24
     ],
     [
      "alabama",
-     20
+     19
     ],
     [
      "michigan",
-     16
+     15
     ],
     [
      "virginia",
@@ -650,412 +650,51 @@
    ],
    "sample_dissertations": [
     "The Tariff in the Age of Jackson",
+    "The Transformation of a Confederate State: War and Politics on the South Carolina Home Front, 1861-1862",
     "\"The Bounds of Habitation\": The Geography of the American Colonization  Society, 1816-1860.",
-    "The divine economy: Evangelicalism and the defense of slavery, 1830-1865",
-    "Catholics in Beulahland:  The Church's encounter with anti-Catholicism, nativism, and anti-abolitionism in the Carolinas and Georgia, 1820--",
     "\"Any Changes, Eh?\": Party Defection, Party Switching, and Shifting Allegiances in Antebellum America, 1830-1860",
     "In pursuit of recognition : Confederate diplomatic initiatives, 1861-1865",
-    "New England's Calhounites: The Henshaw Faction of the Massachusetts Democratic Party, 1828-1850.",
-    "\"A LIGHT WHICH REVEALS ITS TRUE MEANING\": STATE SUPREME COURTS AND THE CONFEDERATE CONSTITUTION"
+    "\"A LIGHT WHICH REVEALS ITS TRUE MEANING\": STATE SUPREME COURTS AND THE CONFEDERATE CONSTITUTION",
+    "A Suspected Democratic Regiment: The Fourth New Hampshire Volunteers in the American Civil War",
+    "\"Separate and apart\": Women's public lives in a rural southern county, 1837-1873"
    ]
   },
   {
    "id": 1,
-   "provisional_label": "Ngai · Kramer · Lee — immigration, race, cold, ethnicity",
-   "label_is_provisional": true,
-   "louvain_hint": "Immigration, race & whiteness (provisional)",
-   "title_terms": [
-    "immigration",
-    "race",
-    "cold",
-    "ethnicity",
-    "strangers",
-    "united"
-   ],
-   "bootstrap_stability": 0.785,
-   "unstable": false,
-   "init_stability": 0.926,
-   "dominated_dissertations": 148,
-   "member_works": 106,
-   "years": {
-    "median": 2016,
-    "by_5yr": {
-     "1995-1999": 1,
-     "2000-2004": 3,
-     "2005-2009": 21,
-     "2010-2014": 38,
-     "2015-2019": 50,
-     "2020-2024": 28,
-     "2025-2029": 7
-    },
-    "share_of_bin": {
-     "2000-2004": 0.064,
-     "2005-2009": 0.163,
-     "2010-2014": 0.11,
-     "2015-2019": 0.151,
-     "2020-2024": 0.125,
-     "2025-2029": 0.159
-    }
-   },
-   "top_works": [
-    {
-     "id": "W:ngai|impossible subject",
-     "title": "Impossible Subjects: Illegal Aliens and the Making of Modern America",
-     "first_author": "Ngai, Mae M",
-     "year": 2004,
-     "loading": 1.0,
-     "citing": 79,
-     "membership": 0.939
-    },
-    {
-     "id": "W:kramer|blood of government",
-     "title": "The Blood of Government: Race, Empire, the United States, and the Philippines",
-     "first_author": "Kramer, Paul A",
-     "year": 2006,
-     "loading": 0.585,
-     "citing": 46,
-     "membership": 0.852
-    },
-    {
-     "id": "W:lee|at americas gate",
-     "title": "At America’s Gates: Chinese Immigration During the Exclusion Era, 1882-1943",
-     "first_author": "Lee, Erika",
-     "year": 2003,
-     "loading": 0.579,
-     "citing": 33,
-     "membership": 1.0
-    },
-    {
-     "id": "W:dudziak|cold war civil rights",
-     "title": "Cold War Civil Rights: Race and the Image of American Democracy",
-     "first_author": "Dudziak, Mary L",
-     "year": 2000,
-     "loading": 0.553,
-     "citing": 57,
-     "membership": 0.675
-    },
-    {
-     "id": "W:westad|global cold war",
-     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
-     "first_author": "Westad, Odd Arne",
-     "year": 2005,
-     "loading": 0.502,
-     "citing": 38,
-     "membership": 0.753
-    },
-    {
-     "id": "W:sanchez|becoming mexican american",
-     "title": "Becoming Mexican American: Ethnicity, Culture, and Identity in Chicano Los Angeles, 1900-1945",
-     "first_author": "Sanchez, George J",
-     "year": 1993,
-     "loading": 0.48,
-     "citing": 45,
-     "membership": 0.696
-    },
-    {
-     "id": "W:leffler|preponderance ofpower",
-     "title": "A Preponderance of Power: National Security, the Truman Administration, and the Cold War",
-     "first_author": "Leffler, Melvyn P",
-     "year": 1992,
-     "loading": 0.472,
-     "citing": 26,
-     "membership": 1.0
-    },
-    {
-     "id": "W:hoganson|fight for american manhood",
-     "title": "Fighting for American Manhood: How Gender Politics Provoked the Spanish-American and Philippine-American Wars",
-     "first_author": "Hoganson, Kristin",
-     "year": 1998,
-     "loading": 0.46,
-     "citing": 42,
-     "membership": 0.768
-    },
-    {
-     "id": "W:higham|stranger in the land",
-     "title": "Strangers in the Land: Patterns of American Nativism, 1860-1925",
-     "first_author": "Higham, John",
-     "year": 1955,
-     "loading": 0.457,
-     "citing": 48,
-     "membership": 0.625
-    },
-    {
-     "id": "W:williams|tragedy ofamerican diplomacy",
-     "title": "The Tragedy of American Diplomacy",
-     "first_author": "Williams, William Appleman",
-     "year": 1959,
-     "loading": 0.456,
-     "citing": 32,
-     "membership": 0.899
-    },
-    {
-     "id": "W:dower|war without mercy",
-     "title": "War Without Mercy: Race and Power in the Pacific War",
-     "first_author": "Dower, John W",
-     "year": 1986,
-     "loading": 0.44,
-     "citing": 30,
-     "membership": 0.844
-    },
-    {
-     "id": "W:shah|contagious divides",
-     "title": "Contagious Divides: Epidemics and Race in San Francisco’s Chinatown",
-     "first_author": "Shah, Nayan",
-     "year": 2001,
-     "loading": 0.41,
-     "citing": 40,
-     "membership": 0.728
-    },
-    {
-     "id": "W:azuma|between two empires",
-     "title": "Between Two Empires: Race, History, and Transnationalism in Japanese America",
-     "first_author": "Azuma, Eiichiro",
-     "year": 2005,
-     "loading": 0.407,
-     "citing": 18,
-     "membership": 1.0
-    },
-    {
-     "id": "W:gaddis|strategies ofcontainment",
-     "title": "Strategies of Containment: A Critical Appraisal of Postwar American National Security Policy",
-     "first_author": "Gaddis, John Lewis",
-     "year": 1982,
-     "loading": 0.403,
-     "citing": 21,
-     "membership": 1.0
-    },
-    {
-     "id": "W:von eschen|race against empire",
-     "title": "Race Against Empire: Black Americans and Anticolonialism, 1937-1957",
-     "first_author": "Von Eschen, Penny M",
-     "year": 1997,
-     "loading": 0.394,
-     "citing": 29,
-     "membership": 0.752
-    },
-    {
-     "id": "W:omi|racial formation in",
-     "title": "Racial Formation in the United States: From the 1960s to the 1990s",
-     "first_author": "Omi, Michael",
-     "year": 1994,
-     "loading": 0.386,
-     "citing": 41,
-     "membership": 0.607
-    },
-    {
-     "id": "W:borstelmann|cold war and the color line",
-     "title": "The Cold War and the Color Line: American Race Relations in the Global Arena",
-     "first_author": "Borstelmann, Thomas",
-     "year": 2001,
-     "loading": 0.377,
-     "citing": 34,
-     "membership": 0.663
-    },
-    {
-     "id": "W:lee|orientals",
-     "title": "Orientals: Asian Americans in Popular Culture",
-     "first_author": "Robert G. Lee",
-     "year": 1999,
-     "loading": 0.363,
-     "citing": 15,
-     "membership": 1.0
-    },
-    {
-     "id": "W:klein|cold war orientalism",
-     "title": "Cold War Orientalism: Asia in the Middlebrow Imagination, 1945-1961",
-     "first_author": "Klein, Christina",
-     "year": 2003,
-     "loading": 0.362,
-     "citing": 20,
-     "membership": 0.939
-    },
-    {
-     "id": "W:gutierrez|walls and mirrors",
-     "title": "Walls and Mirrors: Mexican Americans, Mexican Immigrants, and the Politics of Ethnicity",
-     "first_author": "Gutiérrez, David G",
-     "year": 1995,
-     "loading": 0.359,
-     "citing": 28,
-     "membership": 0.772
-    },
-    {
-     "id": "W:kaplan|anarchy ofempire in the making of u s",
-     "title": "The Anarchy of Empire in the Making of U.S. Culture",
-     "first_author": "Kaplan, Amy",
-     "year": 2002,
-     "loading": 0.357,
-     "citing": 27,
-     "membership": 0.834
-    },
-    {
-     "id": "W:jacobson|whiteness ofa different color",
-     "title": "Whiteness of a Different Color: European Immigrants and the Alchemy of Race",
-     "first_author": "Jacobson, Matthew Frye",
-     "year": 1998,
-     "loading": 0.354,
-     "citing": 53,
-     "membership": 0.53
-    },
-    {
-     "id": "W:grandin|empires workshop",
-     "title": "Empire’s Workshop: Latin America, the United States, and the Rise of the New Imperialism",
-     "first_author": "Grandin, Greg",
-     "year": 2006,
-     "loading": 0.348,
-     "citing": 22,
-     "membership": 0.746
-    },
-    {
-     "id": "W:zolberg|nation by design",
-     "title": "A Nation by Design: Immigration Policy in the Fashioning of America",
-     "first_author": "Zolberg, Aristide R",
-     "year": 2006,
-     "loading": 0.34,
-     "citing": 16,
-     "membership": 0.985
-    },
-    {
-     "id": "W:jacobson|barbarian virtues",
-     "title": "Barbarian Virtues: The United States Encounters Foreign Peoples at Home and Abroad, 1876-1917",
-     "first_author": "Jacobson, Matthew Frye",
-     "year": 2000,
-     "loading": 0.339,
-     "citing": 27,
-     "membership": 0.776
-    }
-   ],
-   "top_people": [
-    {
-     "name": "Ngai, Mae M",
-     "loading_share": 0.0255
-    },
-    {
-     "name": "Kramer, Paul A",
-     "loading_share": 0.021
-    },
-    {
-     "name": "Dower, John W",
-     "loading_share": 0.018
-    },
-    {
-     "name": "Jacobson, Matthew Frye",
-     "loading_share": 0.0177
-    },
-    {
-     "name": "Kaplan, Amy",
-     "loading_share": 0.0173
-    },
-    {
-     "name": "Gaddis, John Lewis",
-     "loading_share": 0.017
-    },
-    {
-     "name": "Shah, Nayan",
-     "loading_share": 0.0155
-    },
-    {
-     "name": "Lee, Erika",
-     "loading_share": 0.0148
-    },
-    {
-     "name": "Dudziak, Mary L",
-     "loading_share": 0.0141
-    },
-    {
-     "name": "Westad, Odd Arne",
-     "loading_share": 0.0128
-    },
-    {
-     "name": "Sanchez, George J",
-     "loading_share": 0.0123
-    },
-    {
-     "name": "Leffler, Melvyn P",
-     "loading_share": 0.012
-    },
-    {
-     "name": "Roediger, David R",
-     "loading_share": 0.0119
-    },
-    {
-     "name": "Bederman, Gail",
-     "loading_share": 0.0118
-    },
-    {
-     "name": "Hoganson, Kristin",
-     "loading_share": 0.0117
-    }
-   ],
-   "top_institutions": [
-    [
-     "michigan",
-     25
-    ],
-    [
-     "maryland",
-     20
-    ],
-    [
-     "minnesota",
-     17
-    ],
-    [
-     "vanderbilt",
-     14
-    ],
-    [
-     "duke",
-     13
-    ],
-    [
-     "washington",
-     9
-    ]
-   ],
-   "sample_dissertations": [
-    "Walter Lippmann, Strategic Internationalism, the Cold War, and Vietnam, 1943-1967",
-    "The Power to Invade: Armed Primacy and Congressional Conflict, 1977-1987",
-    "Thinking through transition:\tUSAF doctrine, technology and the F-111A",
-    "Prisoners, diplomats, and saboteurs: an international history of the diplomacy of captivity during and following the Korean war",
-    "Richard Nixon's Detente and Willy Brandt's Ostpolitik:\nThe Politics and Economic Diplomacy of Engaging the East",
-    "What We Want To Do As Americans: Jewish Political Activism and United States Refugee Policy, 1969-1981",
-    "McCarthyism and Eisenhower's State Department, 1953-1961",
-    "Networking Empire: International Organizations, American Power, and the Struggle over Global Communications in the 20th Century"
-   ]
-  },
-  {
-   "id": 2,
-   "provisional_label": "Said · Cohn · Chakrabarty — india, postcolonial, colonialism, imperial",
+   "provisional_label": "Said · Cohn · Chakrabarty — india, imperial, postcolonial, colonial",
    "label_is_provisional": true,
    "louvain_hint": "Theory, empire & the transnational turn (provisional)",
    "title_terms": [
     "india",
-    "postcolonial",
-    "colonialism",
     "imperial",
+    "postcolonial",
     "colonial",
-    "knowledge"
+    "colonialism",
+    "africa"
    ],
-   "bootstrap_stability": 0.89,
+   "bootstrap_stability": 0.852,
    "unstable": false,
-   "init_stability": 0.999,
-   "dominated_dissertations": 128,
+   "init_stability": 0.998,
+   "dominated_dissertations": 129,
    "member_works": 62,
    "years": {
     "median": 2016,
     "by_5yr": {
+     "1995-1999": 1,
+     "2000-2004": 1,
      "2005-2009": 11,
-     "2010-2014": 37,
+     "2010-2014": 36,
      "2015-2019": 45,
-     "2020-2024": 26,
-     "2025-2029": 9
+     "2020-2024": 27,
+     "2025-2029": 8
     },
     "share_of_bin": {
-     "2005-2009": 0.085,
-     "2010-2014": 0.107,
-     "2015-2019": 0.136,
-     "2020-2024": 0.116,
-     "2025-2029": 0.205
+     "2000-2004": 0.021,
+     "2005-2009": 0.083,
+     "2010-2014": 0.098,
+     "2015-2019": 0.13,
+     "2020-2024": 0.114,
+     "2025-2029": 0.182
     }
    },
    "top_works": [
@@ -1065,105 +704,123 @@
      "first_author": "Said, Edward",
      "year": 1978,
      "loading": 1.0,
-     "citing": 85,
-     "membership": 0.91
+     "citing": 90,
+     "membership": 0.946
     },
     {
      "id": "W:cohn|colonialism and it forms of knowledge",
      "title": "Colonialism and Its Forms of Knowledge: The British in India",
      "first_author": "Cohn, Bernard S",
      "year": 1996,
-     "loading": 0.676,
+     "loading": 0.615,
      "citing": 36,
-     "membership": 0.985
+     "membership": 0.991
     },
     {
      "id": "W:chakrabarty|rovincializing europe",
      "title": "Provincializing Europe: Postcolonial Thought and Historical Difference",
      "first_author": "Chakrabarty, Dipesh",
      "year": 2000,
-     "loading": 0.616,
-     "citing": 50,
-     "membership": 0.863
+     "loading": 0.54,
+     "citing": 54,
+     "membership": 0.782
     },
     {
      "id": "W:cooper|tensions of empire",
      "title": "Tensions of Empire: Colonial Cultures in a Bourgeois World",
      "first_author": "Cooper, Frederick",
      "year": 1997,
-     "loading": 0.542,
-     "citing": 39,
+     "loading": 0.502,
+     "citing": 40,
      "membership": 1.0
-    },
-    {
-     "id": "W:chatterjee|nation and its fragments",
-     "title": "The Nation and Its Fragments: Colonial and Postcolonial Histories",
-     "first_author": "Chatterjee, Partha",
-     "year": 1993,
-     "loading": 0.487,
-     "citing": 32,
-     "membership": 0.741
     },
     {
      "id": "W:conklin|mission to civilize",
      "title": "A Mission to Civilize: The Republican Idea of Empire in France and West Africa, 1895-1930",
      "first_author": "Conklin, Alice L",
      "year": 1997,
-     "loading": 0.456,
-     "citing": 23,
-     "membership": 0.953
+     "loading": 0.434,
+     "citing": 26,
+     "membership": 0.92
+    },
+    {
+     "id": "W:chatterjee|nation and its fragments",
+     "title": "The Nation and Its Fragments: Colonial and Postcolonial Histories",
+     "first_author": "Chatterjee, Partha",
+     "year": 1993,
+     "loading": 0.416,
+     "citing": 32,
+     "membership": 0.695
     },
     {
      "id": "W:hall|civilising subjects",
      "title": "Civilising Subjects: Colony and Metropole in the English Imagination, 1830-1867",
      "first_author": "Hall, Catherine",
      "year": 2002,
-     "loading": 0.441,
-     "citing": 39,
-     "membership": 0.824
+     "loading": 0.404,
+     "citing": 40,
+     "membership": 0.814
     },
     {
      "id": "W:bhabha|location ofculture",
      "title": "The Location of Culture",
      "first_author": "Bhabha, Homi K",
      "year": 1994,
-     "loading": 0.419,
+     "loading": 0.391,
      "citing": 27,
-     "membership": 0.982
+     "membership": 0.971
+    },
+    {
+     "id": "W:fanon|wretch of the earth",
+     "title": "The Wretched of the Earth",
+     "first_author": "Fanon, Frantz",
+     "year": 1963,
+     "loading": 0.366,
+     "citing": 44,
+     "membership": 0.737
     },
     {
      "id": "W:stoler|carnal knowledge and imperial power",
      "title": "Carnal Knowledge and Imperial Power: Race and the Intimate in Colonial Rule",
      "first_author": "Stoler, Ann Laura",
      "year": 2002,
-     "loading": 0.385,
+     "loading": 0.356,
      "citing": 50,
      "membership": 0.647
-    },
-    {
-     "id": "W:pratt|imperial eyes",
-     "title": "Imperial Eyes: Travel Writing and Transculturation",
-     "first_author": "Pratt, Mary Louise",
-     "year": 1992,
-     "loading": 0.382,
-     "citing": 47,
-     "membership": 0.658
     },
     {
      "id": "W:cooper|decolonization and african society",
      "title": "Decolonization and African Society: The Labor Question in French and British Africa",
      "first_author": "Cooper, Frederick",
      "year": 1996,
-     "loading": 0.379,
-     "citing": 22,
-     "membership": 0.956
+     "loading": 0.342,
+     "citing": 23,
+     "membership": 0.857
+    },
+    {
+     "id": "W:said|culture andlmperialism",
+     "title": "Culture and Imperialism",
+     "first_author": "Said, Edward",
+     "year": 1993,
+     "loading": 0.337,
+     "citing": 27,
+     "membership": 0.84
+    },
+    {
+     "id": "W:pratt|imperial eyes",
+     "title": "Imperial Eyes: Travel Writing and Transculturation",
+     "first_author": "Pratt, Mary Louise",
+     "year": 1992,
+     "loading": 0.335,
+     "citing": 47,
+     "membership": 0.628
     },
     {
      "id": "W:sinha|colonialmasculinity",
      "title": "Colonial Masculinity: The ‘Manly Englishman’ and the ‘Effeminate Bengali’ in the Late Nineteenth Century",
      "first_author": "Sinha, Mrinalini",
      "year": 1995,
-     "loading": 0.369,
+     "loading": 0.334,
      "citing": 20,
      "membership": 1.0
     },
@@ -1172,171 +829,153 @@
      "title": "Black Skin, White Masks",
      "first_author": "Fanon, Frantz",
      "year": 1967,
-     "loading": 0.356,
+     "loading": 0.333,
      "citing": 27,
-     "membership": 0.907
-    },
-    {
-     "id": "W:fanon|wretch of the earth",
-     "title": "The Wretched of the Earth",
-     "first_author": "Fanon, Frantz",
-     "year": 1963,
-     "loading": 0.354,
-     "citing": 41,
-     "membership": 0.728
-    },
-    {
-     "id": "W:said|culture andlmperialism",
-     "title": "Culture and Imperialism",
-     "first_author": "Said, Edward",
-     "year": 1993,
-     "loading": 0.324,
-     "citing": 27,
-     "membership": 0.846
+     "membership": 0.893
     },
     {
      "id": "W:burton|burdens of history",
      "title": "Burdens of History: British Feminists, Indian Women, and Imperial Culture, 1865-1915",
      "first_author": "Burton, Antoinette",
      "year": 1994,
-     "loading": 0.324,
+     "loading": 0.301,
      "citing": 21,
-     "membership": 0.929
+     "membership": 0.894
     },
     {
      "id": "W:cooper|colonialism in question",
      "title": "Colonialism in Question: Theory, Knowledge, History",
      "first_author": "Cooper, Frederick",
      "year": 2005,
-     "loading": 0.32,
-     "citing": 34,
-     "membership": 0.706
+     "loading": 0.299,
+     "citing": 36,
+     "membership": 0.674
     },
     {
      "id": "W:mitchell|colonising egypt",
      "title": "Colonising Egypt",
      "first_author": "Mitchell, Timothy",
      "year": 1988,
-     "loading": 0.315,
-     "citing": 19,
-     "membership": 0.908
-    },
-    {
-     "id": "W:bayly|empire and information",
-     "title": "Empire and Information: Intelligence Gathering and Social Communication in India, 1780-1870",
-     "first_author": "Bayly, C.A",
-     "year": 1996,
-     "loading": 0.302,
-     "citing": 17,
-     "membership": 0.946
+     "loading": 0.282,
+     "citing": 20,
+     "membership": 0.827
     },
     {
      "id": "W:mcclintock|imperial leather",
      "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
      "first_author": "McClintock, Anne",
      "year": 1995,
-     "loading": 0.294,
+     "loading": 0.273,
      "citing": 34,
-     "membership": 0.7
+     "membership": 0.69
+    },
+    {
+     "id": "W:bayly|empire and information",
+     "title": "Empire and Information: Intelligence Gathering and Social Communication in India, 1780-1870",
+     "first_author": "Bayly, C.A",
+     "year": 1996,
+     "loading": 0.259,
+     "citing": 18,
+     "membership": 0.927
     },
     {
      "id": "W:dirks|castes of mind",
      "title": "Castes of Mind: Colonialism and the Making of Modern India",
      "first_author": "Dirks, Nicholas B",
      "year": 2001,
-     "loading": 0.281,
+     "loading": 0.256,
      "citing": 15,
-     "membership": 1.0
+     "membership": 0.971
     },
     {
      "id": "W:wilder|french imperial nation state",
      "title": "The French Imperial Nation-State: Negritude and Colonial Humanism Between the Two World Wars",
      "first_author": "Wilder, Gary",
      "year": 2005,
-     "loading": 0.278,
+     "loading": 0.255,
      "citing": 15,
-     "membership": 0.945
+     "membership": 0.884
     },
     {
      "id": "W:stoler|along the archival grain",
      "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
      "first_author": "Stoler, Ann Laura",
      "year": 2009,
-     "loading": 0.266,
+     "loading": 0.235,
      "citing": 36,
-     "membership": 0.547
-    },
-    {
-     "id": "W:foucault|discipline andpunish",
-     "title": "Discipline and Punish: The Birth of the Prison",
-     "first_author": "Foucault, Michel",
-     "year": 1977,
-     "loading": 0.264,
-     "citing": 94,
-     "membership": 0.278
+     "membership": 0.518
     },
     {
      "id": "W:spivak|can the subaltern speak|a",
      "title": "Can the Subaltern Speak?",
      "first_author": "Spivak, Gayatri Chakravorty",
      "year": 1988,
-     "loading": 0.252,
-     "citing": 17,
-     "membership": 0.819
+     "loading": 0.229,
+     "citing": 18,
+     "membership": 0.783
+    },
+    {
+     "id": "W:mehta|liberalism and empire",
+     "title": "Liberalism and Empire: A Study in Nineteenth-Century British Liberal Thought",
+     "first_author": "Mehta, Uday S",
+     "year": 1999,
+     "loading": 0.226,
+     "citing": 18,
+     "membership": 0.836
     }
    ],
    "top_people": [
     {
      "name": "Cooper, Frederick",
-     "loading_share": 0.0706
+     "loading_share": 0.0697
     },
     {
      "name": "Said, Edward",
-     "loading_share": 0.0601
+     "loading_share": 0.0651
     },
     {
      "name": "Stoler, Ann Laura",
-     "loading_share": 0.0398
+     "loading_share": 0.0456
     },
     {
      "name": "Foucault, Michel",
-     "loading_share": 0.0382
+     "loading_share": 0.035
     },
     {
      "name": "Fanon, Frantz",
-     "loading_share": 0.0322
+     "loading_share": 0.034
     },
     {
      "name": "Cohn, Bernard S",
-     "loading_share": 0.0307
-    },
-    {
-     "name": "Scott, James C",
-     "loading_share": 0.0293
+     "loading_share": 0.0299
     },
     {
      "name": "Chakrabarty, Dipesh",
-     "loading_share": 0.0279
+     "loading_share": 0.0262
     },
     {
      "name": "Sinha, Mrinalini",
-     "loading_share": 0.0266
+     "loading_share": 0.026
     },
     {
-     "name": "Mitchell, Timothy",
-     "loading_share": 0.0236
-    },
-    {
-     "name": "Chatterjee, Partha",
-     "loading_share": 0.0221
+     "name": "Scott, James C",
+     "loading_share": 0.0213
     },
     {
      "name": "Conklin, Alice L",
-     "loading_share": 0.0207
+     "loading_share": 0.0211
+    },
+    {
+     "name": "Chatterjee, Partha",
+     "loading_share": 0.0203
+    },
+    {
+     "name": "Mitchell, Timothy",
+     "loading_share": 0.0202
     },
     {
      "name": "Hall, Catherine",
-     "loading_share": 0.02
+     "loading_share": 0.0197
     },
     {
      "name": "Bhabha, Homi K",
@@ -1344,32 +983,32 @@
     },
     {
      "name": "Pratt, Mary Louise",
-     "loading_share": 0.0173
+     "loading_share": 0.0163
     }
    ],
    "top_institutions": [
     [
      "michigan",
-     37
-    ],
-    [
-     "duke",
-     17
+     36
     ],
     [
      "minnesota",
      16
     ],
     [
+     "duke",
+     16
+    ],
+    [
      "washington",
-     13
+     11
     ],
     [
      "maryland",
-     9
+     8
     ],
     [
-     "vanderbilt",
+     "stanford",
      6
     ]
    ],
@@ -1377,45 +1016,46 @@
     "Scripts, Scholars, and the State: The Role of Empire, Scholarship, and the Census in Shaping Religious Identity in Colonial India",
     "The Arab Rediscovery of India",
     "The Jews of the Desert:  Colonialism, Zionism, and the Jews of the Algerian M'zab, 1882-1962.",
-    "The Play of History: The Svaminarayan Religious Community in Modern India",
-    "Hindi and the Democratic Commons Vernacular Genealogies of Indian Political Modernity, 1860-1930",
     "How Professionals Became Natives: Geography and Trans-Frontier Exploration in Colonial India",
+    "Hindi and the Democratic Commons Vernacular Genealogies of Indian Political Modernity, 1860-1930",
     "South African Women of the African National Congress: Gender, Exile, and the Global Struggle against Apartheid, 1976-1990",
-    "Knowledge and Power on the Kazakh Steppe, 1845-1917."
+    "European capitalist penetration of Tunisia, 1860-1881: a case study of the regency's debt crisis and the establishment of the international ",
+    "The Play of History: The Svaminarayan Religious Community in Modern India"
    ]
   },
   {
-   "id": 3,
-   "provisional_label": "Berlin · Thornton · Scott — atlantic, americas, haitian, africans",
+   "id": 2,
+   "provisional_label": "Berlin · Thornton · Scott — atlantic, haitian, americas, africans",
    "label_is_provisional": true,
    "louvain_hint": "Atlantic slavery & the Black Atlantic (provisional)",
    "title_terms": [
     "atlantic",
-    "americas",
     "haitian",
+    "americas",
     "africans",
-    "slavery",
-    "creoles"
+    "creoles",
+    "world"
    ],
-   "bootstrap_stability": 0.867,
+   "bootstrap_stability": 0.929,
    "unstable": false,
-   "init_stability": 0.991,
-   "dominated_dissertations": 117,
-   "member_works": 90,
+   "init_stability": 0.993,
+   "dominated_dissertations": 119,
+   "member_works": 88,
    "years": {
     "median": 2017,
     "by_5yr": {
+     "1980-1984": 1,
      "2005-2009": 5,
-     "2010-2014": 35,
-     "2015-2019": 37,
+     "2010-2014": 37,
+     "2015-2019": 36,
      "2020-2024": 36,
      "2025-2029": 4
     },
     "share_of_bin": {
-     "2005-2009": 0.039,
+     "2005-2009": 0.038,
      "2010-2014": 0.101,
-     "2015-2019": 0.111,
-     "2020-2024": 0.161,
+     "2015-2019": 0.104,
+     "2020-2024": 0.153,
      "2025-2029": 0.091
     }
    },
@@ -1427,177 +1067,132 @@
      "year": 1998,
      "loading": 1.0,
      "citing": 64,
-     "membership": 0.758
+     "membership": 0.718
     },
     {
      "id": "W:thornton|africa and africans in the making of the atlantic world",
      "title": "Africa and Africans in the Making of the Atlantic World, 1400-1800",
      "first_author": "Thornton, John",
      "year": 1998,
-     "loading": 0.861,
-     "citing": 32,
-     "membership": 0.946
+     "loading": 0.925,
+     "citing": 33,
+     "membership": 0.959
     },
     {
      "id": "W:scott|common wind",
      "title": "The Common Wind: Currents of Afro-American Communication in the Era of the Haitian Revolution",
      "first_author": "Scott, Julius S",
      "year": 1986,
-     "loading": 0.763,
-     "citing": 27,
+     "loading": 0.822,
+     "citing": 28,
      "membership": 1.0
-    },
-    {
-     "id": "W:landers|atlantic creoles in the age of revolution",
-     "title": "Atlantic Creoles in the Age of Revolutions",
-     "first_author": "Landers, Jane",
-     "year": 2010,
-     "loading": 0.757,
-     "citing": 24,
-     "membership": 0.981
     },
     {
      "id": "W:brown|reapers garden",
      "title": "The Reaper’s Garden: Death and Power in the World of Atlantic Slavery",
      "first_author": "Brown, Vincent",
      "year": 2008,
-     "loading": 0.755,
-     "citing": 29,
-     "membership": 0.998
+     "loading": 0.817,
+     "citing": 31,
+     "membership": 0.942
     },
     {
-     "id": "W:tannenbaum|slave and citizen",
-     "title": "Slave and Citizen: The Negro in the Americas",
-     "first_author": "Tannenbaum, Frank",
-     "year": 1946,
-     "loading": 0.712,
+     "id": "W:landers|atlantic creoles in the age of revolution",
+     "title": "Atlantic Creoles in the Age of Revolutions",
+     "first_author": "Landers, Jane",
+     "year": 2010,
+     "loading": 0.79,
      "citing": 25,
-     "membership": 0.909
-    },
-    {
-     "id": "W:gilroy|black atlantic",
-     "title": "The Black Atlantic: Modernity and Double Consciousness",
-     "first_author": "Gilroy, Paul",
-     "year": 1993,
-     "loading": 0.703,
-     "citing": 60,
-     "membership": 0.531
+     "membership": 0.962
     },
     {
      "id": "W:dubois|avengers ofthe new world",
      "title": "Avengers of the New World: The Story of the Haitian Revolution",
      "first_author": "Dubois, Laurent",
      "year": 2004,
-     "loading": 0.702,
-     "citing": 30,
-     "membership": 0.987
+     "loading": 0.785,
+     "citing": 33,
+     "membership": 0.978
+    },
+    {
+     "id": "W:tannenbaum|slave and citizen",
+     "title": "Slave and Citizen: The Negro in the Americas",
+     "first_author": "Tannenbaum, Frank",
+     "year": 1946,
+     "loading": 0.772,
+     "citing": 26,
+     "membership": 0.9
+    },
+    {
+     "id": "W:gilroy|black atlantic",
+     "title": "The Black Atlantic: Modernity and Double Consciousness",
+     "first_author": "Gilroy, Paul",
+     "year": 1993,
+     "loading": 0.738,
+     "citing": 61,
+     "membership": 0.529
     },
     {
      "id": "W:landers|black society in spanish florida",
      "title": "Black Society in Spanish Florida",
      "first_author": "Landers, Jane",
      "year": 1999,
-     "loading": 0.672,
+     "loading": 0.707,
      "citing": 23,
-     "membership": 0.92
-    },
-    {
-     "id": "W:smallwood|saltwater slavery",
-     "title": "Saltwater Slavery: A Middle Passage from Africa to American Diaspora",
-     "first_author": "Smallwood, Stephanie",
-     "year": 2007,
-     "loading": 0.649,
-     "citing": 27,
-     "membership": 0.925
-    },
-    {
-     "id": "W:patterson|slavery and social death",
-     "title": "Slavery and Social Death: A Comparative Study",
-     "first_author": "Patterson, Orlando",
-     "year": 1982,
-     "loading": 0.61,
-     "citing": 32,
-     "membership": 0.883
-    },
-    {
-     "id": "W:sweet|recreating africa",
-     "title": "Recreating Africa: Culture, Kinship, and Religion in the African-Portuguese World, 1441-1770",
-     "first_author": "Sweet, James H",
-     "year": 2003,
-     "loading": 0.601,
-     "citing": 18,
-     "membership": 0.998
+     "membership": 0.909
     },
     {
      "id": "W:benton|searchfor sovereignty",
      "title": "A Search for Sovereignty: Law and Geography in European Empires, 1400-1900",
      "first_author": "Benton, Lauren",
      "year": 2010,
-     "loading": 0.583,
+     "loading": 0.689,
+     "citing": 36,
+     "membership": 0.706
+    },
+    {
+     "id": "W:smallwood|saltwater slavery",
+     "title": "Saltwater Slavery: A Middle Passage from Africa to American Diaspora",
+     "first_author": "Smallwood, Stephanie",
+     "year": 2007,
+     "loading": 0.677,
+     "citing": 28,
+     "membership": 0.894
+    },
+    {
+     "id": "W:patterson|slavery and social death",
+     "title": "Slavery and Social Death: A Comparative Study",
+     "first_author": "Patterson, Orlando",
+     "year": 1982,
+     "loading": 0.628,
      "citing": 33,
-     "membership": 0.708
+     "membership": 0.852
+    },
+    {
+     "id": "W:sweet|recreating africa",
+     "title": "Recreating Africa: Culture, Kinship, and Religion in the African-Portuguese World, 1441-1770",
+     "first_author": "Sweet, James H",
+     "year": 2003,
+     "loading": 0.624,
+     "citing": 18,
+     "membership": 0.994
     },
     {
      "id": "W:childs|1812 aponte rebellion and the struggle against atlantic slavery",
      "title": "The 1812 Aponte Rebellion in Cuba and the Struggle against Atlantic Slavery",
      "first_author": "Childs, Matt D",
      "year": 2006,
-     "loading": 0.58,
+     "loading": 0.613,
      "citing": 15,
-     "membership": 0.951
-    },
-    {
-     "id": "W:miller|way of death",
-     "title": "Way of Death: Merchant Capitalism and the Angolan Slave Trade, 1730-1830",
-     "first_author": "Miller, Joseph C",
-     "year": 1988,
-     "loading": 0.573,
-     "citing": 18,
-     "membership": 0.997
-    },
-    {
-     "id": "W:curtin|atlantic slave trade",
-     "title": "The Atlantic Slave Trade: A Census",
-     "first_author": "Curtin, Philip D",
-     "year": 1969,
-     "loading": 0.573,
-     "citing": 17,
-     "membership": 1.0
-    },
-    {
-     "id": "W:heywood|central africans atlantic creoles and the foundation of the americas",
-     "title": "Central Africans, Atlantic Creoles, and the Foundation of the Americas, 1585-1660",
-     "first_author": "Heywood, Linda M",
-     "year": 2007,
-     "loading": 0.571,
-     "citing": 15,
-     "membership": 0.997
+     "membership": 0.947
     },
     {
      "id": "W:eltis|rise ofafrican slavery in the americas",
      "title": "The Rise of African Slavery in the Americas",
      "first_author": "Eltis, David",
      "year": 2000,
-     "loading": 0.559,
-     "citing": 18,
-     "membership": 1.0
-    },
-    {
-     "id": "W:wood|black majority",
-     "title": "Black Majority: Negroes in Colonial South Carolina from 1670 through the Stono Rebellion",
-     "first_author": "Wood, Peter H",
-     "year": 1974,
-     "loading": 0.556,
-     "citing": 32,
-     "membership": 0.751
-    },
-    {
-     "id": "W:blackburn|making of new world slavery",
-     "title": "The Making of New World Slavery: From the Baroque to the Modern, 1492-1800",
-     "first_author": "Blackburn, Robin",
-     "year": 1997,
-     "loading": 0.548,
-     "citing": 18,
+     "loading": 0.607,
+     "citing": 19,
      "membership": 1.0
     },
     {
@@ -1605,71 +1200,112 @@
      "title": "The Black Jacobins: Toussaint L’Ouverture and the San Domingo Revolution",
      "first_author": "James, C.L.R",
      "year": 1963,
-     "loading": 0.543,
-     "citing": 32,
-     "membership": 0.706
+     "loading": 0.606,
+     "citing": 35,
+     "membership": 0.703
     },
     {
-     "id": "W:bennett|africans in colonial mexico",
-     "title": "Africans in Colonial Mexico: Absolutism, Christianity, and Afro-Creole Consciousness, 1570-1640",
-     "first_author": "Bennett, Herman L",
-     "year": 2003,
-     "loading": 0.54,
+     "id": "W:miller|way of death",
+     "title": "Way of Death: Merchant Capitalism and the Angolan Slave Trade, 1730-1830",
+     "first_author": "Miller, Joseph C",
+     "year": 1988,
+     "loading": 0.602,
+     "citing": 19,
+     "membership": 0.994
+    },
+    {
+     "id": "W:heywood|central africans atlantic creoles and the foundation of the americas",
+     "title": "Central Africans, Atlantic Creoles, and the Foundation of the Americas, 1585-1660",
+     "first_author": "Heywood, Linda M",
+     "year": 2007,
+     "loading": 0.599,
+     "citing": 15,
+     "membership": 0.993
+    },
+    {
+     "id": "W:curtin|atlantic slave trade",
+     "title": "The Atlantic Slave Trade: A Census",
+     "first_author": "Curtin, Philip D",
+     "year": 1969,
+     "loading": 0.598,
      "citing": 17,
-     "membership": 0.748
+     "membership": 1.0
     },
     {
-     "id": "W:genovese|roll jordan role",
-     "title": "Roll, Jordan, Roll: The World the Slaves Made",
-     "first_author": "Genovese, Eugene D",
-     "year": 1974,
-     "loading": 0.54,
-     "citing": 68,
-     "membership": 0.392
-    },
-    {
-     "id": "W:dunn|sugar and slaves",
-     "title": "Sugar and Slaves: The Rise of the Planter Class in the English West Indies, 1624-1713",
-     "first_author": "Dunn, Richard S",
-     "year": 1972,
-     "loading": 0.538,
-     "citing": 22,
-     "membership": 0.998
+     "id": "W:blackburn|making of new world slavery",
+     "title": "The Making of New World Slavery: From the Baroque to the Modern, 1492-1800",
+     "first_author": "Blackburn, Robin",
+     "year": 1997,
+     "loading": 0.58,
+     "citing": 18,
+     "membership": 1.0
     },
     {
      "id": "W:linebaugh|many headed hydra",
      "title": "The Many-Headed Hydra: Sailors, Slaves, Commoners, and the Hidden History of the Revolutionary Atlantic",
      "first_author": "Linebaugh, Peter",
      "year": 2000,
-     "loading": 0.535,
-     "citing": 23,
-     "membership": 0.938
+     "loading": 0.571,
+     "citing": 24,
+     "membership": 0.912
+    },
+    {
+     "id": "W:dunn|sugar and slaves",
+     "title": "Sugar and Slaves: The Rise of the Planter Class in the English West Indies, 1624-1713",
+     "first_author": "Dunn, Richard S",
+     "year": 1972,
+     "loading": 0.569,
+     "citing": 22,
+     "membership": 0.993
+    },
+    {
+     "id": "W:bennett|africans in colonial mexico",
+     "title": "Africans in Colonial Mexico: Absolutism, Christianity, and Afro-Creole Consciousness, 1570-1640",
+     "first_author": "Bennett, Herman L",
+     "year": 2003,
+     "loading": 0.569,
+     "citing": 17,
+     "membership": 0.736
+    },
+    {
+     "id": "W:seed|ceremonies of possession",
+     "title": "Ceremonies of Possession in Europe’s Conquest of the New World, 1492-1640",
+     "first_author": "Seed, Patricia",
+     "year": 1995,
+     "loading": 0.568,
+     "citing": 28,
+     "membership": 0.688
+    },
+    {
+     "id": "W:ferrer|freedoms mirror",
+     "title": "Freedom’s Mirror: Cuba and Haiti in the Age of Revolution",
+     "first_author": "Ferrer, Ada",
+     "year": 2014,
+     "loading": 0.564,
+     "citing": 16,
+     "membership": 1.0
     }
    ],
    "top_people": [
     {
      "name": "Berlin, Ira",
-     "loading_share": 0.0295
-    },
-    {
-     "name": "Landers, Jane",
      "loading_share": 0.0266
     },
     {
-     "name": "Johnson, Walter",
-     "loading_share": 0.0201
-    },
-    {
-     "name": "Dubois, Laurent",
-     "loading_share": 0.0182
+     "name": "Landers, Jane",
+     "loading_share": 0.0254
     },
     {
      "name": "Benton, Lauren",
-     "loading_share": 0.0172
+     "loading_share": 0.0192
     },
     {
-     "name": "Genovese, Eugene D",
-     "loading_share": 0.0167
+     "name": "Dubois, Laurent",
+     "loading_share": 0.0189
+    },
+    {
+     "name": "Johnson, Walter",
+     "loading_share": 0.0178
     },
     {
      "name": "Mintz, Sidney W",
@@ -1677,41 +1313,45 @@
     },
     {
      "name": "Thornton, John",
-     "loading_share": 0.016
+     "loading_share": 0.0157
     },
     {
      "name": "Davis, David Brion",
-     "loading_share": 0.0159
+     "loading_share": 0.0155
+    },
+    {
+     "name": "Genovese, Eugene D",
+     "loading_share": 0.015
     },
     {
      "name": "Ferrer, Ada",
-     "loading_share": 0.0149
+     "loading_share": 0.0146
     },
     {
      "name": "Scott, Julius S",
-     "loading_share": 0.0142
+     "loading_share": 0.0139
     },
     {
      "name": "Brown, Vincent",
-     "loading_share": 0.014
-    },
-    {
-     "name": "Tannenbaum, Frank",
-     "loading_share": 0.0132
-    },
-    {
-     "name": "Gilroy, Paul",
-     "loading_share": 0.0131
+     "loading_share": 0.0139
     },
     {
      "name": "Colley, Linda",
-     "loading_share": 0.0129
+     "loading_share": 0.0138
+    },
+    {
+     "name": "Rediker, Marcus",
+     "loading_share": 0.0134
+    },
+    {
+     "name": "Tannenbaum, Frank",
+     "loading_share": 0.0131
     }
    ],
    "top_institutions": [
     [
      "vanderbilt",
-     23
+     22
     ],
     [
      "duke",
@@ -1719,7 +1359,7 @@
     ],
     [
      "michigan",
-     20
+     18
     ],
     [
      "minnesota",
@@ -1735,8 +1375,8 @@
     ]
    ],
    "sample_dissertations": [
-    "Competition and the Mercantile Culture of the Gold Coast Slave Trade in the Atlantic World Economy, 1620-1720",
     "Enemies Bound by Trade: Jamaica, Cuba, and the Shared World of Contraband in Atlantic Empires, 1710-1760",
+    "Competition and the Mercantile Culture of the Gold Coast Slave Trade in the Atlantic World Economy, 1620-1720",
     "The Afro-Portuguese Maritime World and the Foundations of Spanish Caribbean Society, 1570-1640",
     "Spain, the Caribbean, and the Making of Religious Sanctuary",
     "Social Networks and the Formation of an African Atlantic: The Upper Guinea Coast, Cape Verde, and the Spanish Caribbean, 1450 – 1600",
@@ -1746,7 +1386,7 @@
    ]
   },
   {
-   "id": 4,
+   "id": 3,
    "provisional_label": "White · Hämäläinen · Blackhawk — indians, borderlands, indian, native",
    "label_is_provisional": true,
    "louvain_hint": "Native America, borderlands & the West (provisional)",
@@ -1758,29 +1398,29 @@
     "ground",
     "boarding"
    ],
-   "bootstrap_stability": 0.867,
+   "bootstrap_stability": 0.901,
    "unstable": false,
-   "init_stability": 0.97,
-   "dominated_dissertations": 110,
-   "member_works": 59,
+   "init_stability": 0.975,
+   "dominated_dissertations": 114,
+   "member_works": 63,
    "years": {
     "median": 2015,
     "by_5yr": {
      "1975-1979": 3,
      "1995-1999": 2,
      "2000-2004": 8,
-     "2005-2009": 8,
-     "2010-2014": 33,
-     "2015-2019": 28,
-     "2020-2024": 22,
+     "2005-2009": 9,
+     "2010-2014": 32,
+     "2015-2019": 31,
+     "2020-2024": 23,
      "2025-2029": 6
     },
     "share_of_bin": {
      "2000-2004": 0.17,
-     "2005-2009": 0.062,
-     "2010-2014": 0.095,
-     "2015-2019": 0.084,
-     "2020-2024": 0.098,
+     "2005-2009": 0.068,
+     "2010-2014": 0.087,
+     "2015-2019": 0.089,
+     "2020-2024": 0.097,
      "2025-2029": 0.136
     }
    },
@@ -1791,15 +1431,15 @@
      "first_author": "White, Richard",
      "year": 1991,
      "loading": 1.0,
-     "citing": 75,
-     "membership": 0.753
+     "citing": 77,
+     "membership": 0.733
     },
     {
      "id": "W:hamalainen|comanche empire",
      "title": "The Comanche Empire",
      "first_author": "Hämäläinen, Pekka",
      "year": 2008,
-     "loading": 0.891,
+     "loading": 0.896,
      "citing": 45,
      "membership": 0.985
     },
@@ -1808,213 +1448,213 @@
      "title": "Violence over the Land: Indians and Empires in the Early American West",
      "first_author": "Blackhawk, Ned",
      "year": 2006,
-     "loading": 0.806,
-     "citing": 40,
-     "membership": 0.979
+     "loading": 0.826,
+     "citing": 41,
+     "membership": 0.956
     },
     {
      "id": "W:hoxie|final promise",
      "title": "A Final Promise: The Campaign to Assimilate the Indians, 1880-1920",
      "first_author": "Hoxie, Frederick E",
      "year": 1984,
-     "loading": 0.768,
+     "loading": 0.773,
      "citing": 24,
-     "membership": 0.988
+     "membership": 0.993
     },
     {
      "id": "W:prucha|great father",
      "title": "The Great Father: The United States Government and the American Indians",
      "first_author": "Prucha, Francis Paul",
      "year": 1984,
-     "loading": 0.714,
+     "loading": 0.715,
      "citing": 34,
-     "membership": 0.973
+     "membership": 0.961
     },
     {
      "id": "W:adams|education for extinction",
      "title": "Education for Extinction: American Indians and the Boarding School Experience, 1875-1928",
      "first_author": "Adams, David Wallace",
      "year": 1995,
-     "loading": 0.707,
+     "loading": 0.711,
      "citing": 31,
-     "membership": 0.911
+     "membership": 0.894
     },
     {
      "id": "W:deloria|playing indian",
      "title": "Playing Indian",
      "first_author": "Deloria, Philip J",
      "year": 1998,
-     "loading": 0.674,
-     "citing": 44,
-     "membership": 0.749
+     "loading": 0.672,
+     "citing": 46,
+     "membership": 0.728
     },
     {
      "id": "W:duval|native ground",
      "title": "The Native Ground: Indians and Colonists in the Heart of the Continent",
      "first_author": "DuVal, Kathleen",
      "year": 2006,
-     "loading": 0.671,
+     "loading": 0.667,
      "citing": 36,
-     "membership": 0.815
+     "membership": 0.816
     },
     {
      "id": "W:deloria|indians in unexpected places",
      "title": "Indians in Unexpected Places",
      "first_author": "Deloria, Philip J",
      "year": 2004,
-     "loading": 0.636,
+     "loading": 0.639,
      "citing": 37,
-     "membership": 0.826
+     "membership": 0.818
     },
     {
      "id": "W:barr|peace came in the form of a woman",
      "title": "Peace Came in the Form of a Woman: Indians and Spaniards in the Texas Borderlands",
      "first_author": "Barr, Juliana",
      "year": 2007,
-     "loading": 0.615,
+     "loading": 0.634,
      "citing": 32,
-     "membership": 0.882
+     "membership": 0.877
     },
     {
      "id": "W:basso|wisdom sits in place",
      "title": "Wisdom Sits in Places: Landscape and Language Among the Western Apache",
-     "first_author": "Basso, Keith",
+     "first_author": "Basso, Keith H",
      "year": 1996,
-     "loading": 0.573,
+     "loading": 0.598,
      "citing": 25,
-     "membership": 0.893
+     "membership": 0.889
     },
     {
      "id": "W:limerick|legacy ofconquest",
      "title": "The Legacy of Conquest: The Unbroken Past of the American West",
      "first_author": "Limerick, Patricia Nelson",
      "year": 1987,
-     "loading": 0.569,
+     "loading": 0.571,
      "citing": 46,
-     "membership": 0.592
+     "membership": 0.589
     },
     {
      "id": "W:witgen|infinity of nations",
      "title": "An Infinity of Nations: How the Native New World Shaped Early North America",
      "first_author": "Witgen, Michael",
      "year": 2012,
-     "loading": 0.569,
+     "loading": 0.57,
      "citing": 23,
      "membership": 1.0
-    },
-    {
-     "id": "W:delay|war of a thousand deserts",
-     "title": "War of a Thousand Deserts: Indian Raids and the U.S.-Mexican War",
-     "first_author": "DeLay, Brian",
-     "year": 2008,
-     "loading": 0.493,
-     "citing": 27,
-     "membership": 0.794
     },
     {
      "id": "W:jacoby|shadows at dawn",
      "title": "Shadows at Dawn: A Borderlands Massacre and the Violence of History",
      "first_author": "Jacoby, Karl",
      "year": 2008,
-     "loading": 0.493,
+     "loading": 0.502,
      "citing": 18,
-     "membership": 0.977
+     "membership": 0.972
+    },
+    {
+     "id": "W:delay|war of a thousand deserts",
+     "title": "War of a Thousand Deserts: Indian Raids and the U.S.-Mexican War",
+     "first_author": "DeLay, Brian",
+     "year": 2008,
+     "loading": 0.496,
+     "citing": 27,
+     "membership": 0.794
     },
     {
      "id": "W:berkhofer|white hans indian",
      "title": "The White Man’s Indian: Images of the American Indian from Columbus to the Present",
      "first_author": "Berkhofer, Robert F",
      "year": 1978,
-     "loading": 0.487,
+     "loading": 0.49,
      "citing": 18,
-     "membership": 0.97
+     "membership": 0.969
     },
     {
      "id": "W:white|roots of dependency",
      "title": "The Roots of Dependency: Subsistence, Environment, and Social Change among the Choctaws, Pawnees, and Navajos",
      "first_author": "White, Richard",
      "year": 1983,
-     "loading": 0.477,
+     "loading": 0.473,
      "citing": 18,
-     "membership": 1.0
-    },
-    {
-     "id": "W:obrien|firsting and lasting",
-     "title": "Firsting and Lasting: Writing Indians out of Existence in New England",
-     "first_author": "O’Brien, Jean M",
-     "year": 2010,
-     "loading": 0.468,
-     "citing": 31,
-     "membership": 0.744
+     "membership": 0.982
     },
     {
      "id": "W:child|boarding school seasons",
      "title": "Boarding School Seasons: American Indian Families, 1900-1940",
      "first_author": "Child, Brenda J",
      "year": 1998,
-     "loading": 0.465,
+     "loading": 0.467,
      "citing": 16,
-     "membership": 0.985
+     "membership": 0.982
     },
     {
      "id": "W:weber|spanish frontier in orth america",
      "title": "The Spanish Frontier in North America",
      "first_author": "Weber, David J",
      "year": 1992,
-     "loading": 0.46,
+     "loading": 0.465,
      "citing": 28,
-     "membership": 0.723
+     "membership": 0.739
+    },
+    {
+     "id": "W:obrien|firsting and lasting",
+     "title": "Firsting and Lasting: Writing Indians out of Existence in New England",
+     "first_author": "O’Brien, Jean M",
+     "year": 2010,
+     "loading": 0.464,
+     "citing": 31,
+     "membership": 0.731
     },
     {
      "id": "W:perdue|cherokee women",
      "title": "Cherokee Women: Gender and Culture Change, 1700-1835",
      "first_author": "Perdue, Theda",
      "year": 1998,
-     "loading": 0.445,
+     "loading": 0.444,
      "citing": 24,
-     "membership": 0.853
+     "membership": 0.861
     },
     {
      "id": "W:smith|decolonising methodologies",
      "title": "Decolonizing Methodologies: Research and Indigenous Peoples",
      "first_author": "Smith, Linda Tuhiwai",
      "year": 1999,
-     "loading": 0.44,
+     "loading": 0.443,
      "citing": 17,
-     "membership": 0.82
+     "membership": 0.811
     },
     {
      "id": "W:brooks|captives and cousins",
      "title": "Captives and Cousins: Slavery, Kinship, and Community in the Southwest Borderlands",
      "first_author": "Brooks, James F",
      "year": 2002,
-     "loading": 0.44,
+     "loading": 0.436,
      "citing": 23,
-     "membership": 0.833
+     "membership": 0.808
     },
     {
      "id": "W:richter|facing eastfrom indian country",
      "title": "Facing East from Indian Country: A Native History of Early America",
      "first_author": "Richter, Daniel K",
      "year": 2001,
-     "loading": 0.427,
-     "citing": 30,
-     "membership": 0.66
+     "loading": 0.432,
+     "citing": 31,
+     "membership": 0.652
     },
     {
      "id": "W:dowd|spirited resistance",
      "title": "A Spirited Resistance: The North American Indian Struggle for Unity, 1745-1815",
      "first_author": "Dowd, Gregory Evans",
      "year": 1992,
-     "loading": 0.421,
-     "citing": 15,
-     "membership": 0.959
+     "loading": 0.423,
+     "citing": 16,
+     "membership": 0.919
     }
    ],
    "top_people": [
     {
      "name": "White, Richard",
-     "loading_share": 0.0495
+     "loading_share": 0.0487
     },
     {
      "name": "Deloria, Philip J",
@@ -2022,31 +1662,31 @@
     },
     {
      "name": "Hämäläinen, Pekka",
-     "loading_share": 0.0365
+     "loading_share": 0.037
     },
     {
      "name": "Blackhawk, Ned",
-     "loading_share": 0.0231
+     "loading_share": 0.0236
     },
     {
      "name": "Richter, Daniel K",
      "loading_share": 0.0223
     },
     {
-     "name": "Hoxie, Frederick E",
-     "loading_share": 0.022
+     "name": "Weber, David J",
+     "loading_share": 0.0221
     },
     {
-     "name": "Weber, David J",
-     "loading_share": 0.0219
+     "name": "Hoxie, Frederick E",
+     "loading_share": 0.0221
     },
     {
      "name": "Prucha, Francis Paul",
-     "loading_share": 0.0205
+     "loading_share": 0.0204
     },
     {
      "name": "Adams, David Wallace",
-     "loading_share": 0.0202
+     "loading_share": 0.0203
     },
     {
      "name": "Perdue, Theda",
@@ -2054,19 +1694,19 @@
     },
     {
      "name": "DuVal, Kathleen",
-     "loading_share": 0.0192
-    },
-    {
-     "name": "Slotkin, Richard",
-     "loading_share": 0.0179
+     "loading_share": 0.019
     },
     {
      "name": "Barr, Juliana",
-     "loading_share": 0.0176
+     "loading_share": 0.0181
     },
     {
-     "name": "Basso, Keith",
-     "loading_share": 0.0164
+     "name": "Slotkin, Richard",
+     "loading_share": 0.018
+    },
+    {
+     "name": "Basso, Keith H",
+     "loading_share": 0.0171
     },
     {
      "name": "Limerick, Patricia Nelson",
@@ -2076,7 +1716,7 @@
    "top_institutions": [
     [
      "oklahoma",
-     34
+     36
     ],
     [
      "newmexico",
@@ -2084,7 +1724,7 @@
     ],
     [
      "michigan",
-     12
+     13
     ],
     [
      "minnesota",
@@ -2101,20 +1741,383 @@
    ],
    "sample_dissertations": [
     "Intertribal Interactions, Relationality, and Community Resilience in The Northeastern Oklahoma Indian Nations, 1800-1930",
-    "CONFLICT, TENSION, STRENGTH: THE HISTORY OF ST. PAULS MISSION, ST. LABRE INDIAN SCHOOL, AND ST. STEPHENS INDIAN SCHOOL, 1884—PRESENT'",
     "The murder of Joe White: Ojibwe leadership and colonialism in Wisconsin",
-    "“The Heart of the Nation”: The Roles of Female Leadership Networks in Mandan and Hidatsa Resistance and Resilience",
+    "Sovereignty on Trial, The Delaware-Cherokee Relationship Divided in Conflict",
     "Sherman's Lieutenants: The Army Officer Corps, Federal Indian Policy, and Native Sovereignty, 1862-1878",
-    "Deconstructing the \"Apache\" Identity: A History of the San Carlos Apachean Peoples",
     "Y√≠√† [i.e. Y√≠a√π",
-    "Sovereignty on Trial, The Delaware-Cherokee Relationship Divided in Conflict"
+    "Deconstructing the \"Apache\" Identity: A History of the San Carlos Apachean Peoples",
+    "CONFLICT, TENSION, STRENGTH: THE HISTORY OF ST. PAULS MISSION, ST. LABRE INDIAN SCHOOL, AND ST. STEPHENS INDIAN SCHOOL, 1884—PRESENT'",
+    "“The Heart of the Nation”: The Roles of Female Leadership Networks in Mandan and Hidatsa Resistance and Resilience"
+   ]
+  },
+  {
+   "id": 4,
+   "provisional_label": "Ngai · Lee · Dudziak — immigration, chinese, ethnicity, race",
+   "label_is_provisional": true,
+   "louvain_hint": "Immigration, race & whiteness (provisional)",
+   "title_terms": [
+    "immigration",
+    "chinese",
+    "ethnicity",
+    "race",
+    "americans",
+    "asian"
+   ],
+   "bootstrap_stability": 0.854,
+   "unstable": false,
+   "init_stability": 0.981,
+   "dominated_dissertations": 114,
+   "member_works": 91,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 3,
+     "2005-2009": 12,
+     "2010-2014": 32,
+     "2015-2019": 40,
+     "2020-2024": 21,
+     "2025-2029": 6
+    },
+    "share_of_bin": {
+     "2000-2004": 0.064,
+     "2005-2009": 0.091,
+     "2010-2014": 0.087,
+     "2015-2019": 0.115,
+     "2020-2024": 0.089,
+     "2025-2029": 0.136
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:ngai|impossible subject",
+     "title": "Impossible Subjects: Illegal Aliens and the Making of Modern America",
+     "first_author": "Ngai, Mae M",
+     "year": 2004,
+     "loading": 1.0,
+     "citing": 84,
+     "membership": 0.985
+    },
+    {
+     "id": "W:lee|at americas gate",
+     "title": "At America’s Gates: Chinese Immigration During the Exclusion Era, 1882-1943",
+     "first_author": "Lee, Erika",
+     "year": 2003,
+     "loading": 0.565,
+     "citing": 34,
+     "membership": 1.0
+    },
+    {
+     "id": "W:dudziak|cold war civil rights",
+     "title": "Cold War Civil Rights: Race and the Image of American Democracy",
+     "first_author": "Dudziak, Mary L",
+     "year": 2000,
+     "loading": 0.515,
+     "citing": 60,
+     "membership": 0.672
+    },
+    {
+     "id": "W:sanchez|becoming mexican american",
+     "title": "Becoming Mexican American: Ethnicity, Culture, and Identity in Chicano Los Angeles, 1900-1945",
+     "first_author": "Sanchez, George J",
+     "year": 1993,
+     "loading": 0.512,
+     "citing": 47,
+     "membership": 0.771
+    },
+    {
+     "id": "W:kramer|blood of government",
+     "title": "The Blood of Government: Race, Empire, the United States, and the Philippines",
+     "first_author": "Kramer, Paul A",
+     "year": 2006,
+     "loading": 0.498,
+     "citing": 47,
+     "membership": 0.773
+    },
+    {
+     "id": "W:omi|racial formation in",
+     "title": "Racial Formation in the United States: From the 1960s to the 1990s",
+     "first_author": "Omi, Michael",
+     "year": 1994,
+     "loading": 0.407,
+     "citing": 42,
+     "membership": 0.676
+    },
+    {
+     "id": "W:shah|contagious divides",
+     "title": "Contagious Divides: Epidemics and Race in San Francisco’s Chinatown",
+     "first_author": "Shah, Nayan",
+     "year": 2001,
+     "loading": 0.4,
+     "citing": 41,
+     "membership": 0.775
+    },
+    {
+     "id": "W:gutierrez|walls and mirrors",
+     "title": "Walls and Mirrors: Mexican Americans, Mexican Immigrants, and the Politics of Ethnicity",
+     "first_author": "Gutiérrez, David G",
+     "year": 1995,
+     "loading": 0.382,
+     "citing": 29,
+     "membership": 0.867
+    },
+    {
+     "id": "W:dower|war without mercy",
+     "title": "War Without Mercy: Race and Power in the Pacific War",
+     "first_author": "Dower, John W",
+     "year": 1986,
+     "loading": 0.378,
+     "citing": 32,
+     "membership": 0.793
+    },
+    {
+     "id": "W:azuma|between two empires",
+     "title": "Between Two Empires: Race, History, and Transnationalism in Japanese America",
+     "first_author": "Azuma, Eiichiro",
+     "year": 2005,
+     "loading": 0.371,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:borstelmann|cold war and the color line",
+     "title": "The Cold War and the Color Line: American Race Relations in the Global Arena",
+     "first_author": "Borstelmann, Thomas",
+     "year": 2001,
+     "loading": 0.363,
+     "citing": 36,
+     "membership": 0.675
+    },
+    {
+     "id": "W:takaki|strangers from a different shore",
+     "title": "Strangers from a Different Shore: A History of Asian Americans",
+     "first_author": "Takaki, Ronald",
+     "year": 1989,
+     "loading": 0.354,
+     "citing": 20,
+     "membership": 0.95
+    },
+    {
+     "id": "W:lee|orientals",
+     "title": "Orientals: Asian Americans in Popular Culture",
+     "first_author": "Robert G. Lee",
+     "year": 1999,
+     "loading": 0.351,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:westad|global cold war",
+     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+     "first_author": "Westad, Odd Arne",
+     "year": 2005,
+     "loading": 0.348,
+     "citing": 40,
+     "membership": 0.528
+    },
+    {
+     "id": "W:von eschen|race against empire",
+     "title": "Race Against Empire: Black Americans and Anticolonialism, 1937-1957",
+     "first_author": "Von Eschen, Penny M",
+     "year": 1997,
+     "loading": 0.327,
+     "citing": 29,
+     "membership": 0.696
+    },
+    {
+     "id": "W:williams|tragedy ofamerican diplomacy",
+     "title": "The Tragedy of American Diplomacy",
+     "first_author": "Williams, William Appleman",
+     "year": 1959,
+     "loading": 0.321,
+     "citing": 33,
+     "membership": 0.698
+    },
+    {
+     "id": "W:hoganson|fight for american manhood",
+     "title": "Fighting for American Manhood: How Gender Politics Provoked the Spanish-American and Philippine-American Wars",
+     "first_author": "Hoganson, Kristin",
+     "year": 1998,
+     "loading": 0.321,
+     "citing": 42,
+     "membership": 0.572
+    },
+    {
+     "id": "W:montejano|anglos and mexicans in the making of texas",
+     "title": "Anglos and Mexicans in the Making of Texas, 1836-1986",
+     "first_author": "Montejano, David",
+     "year": 1987,
+     "loading": 0.31,
+     "citing": 28,
+     "membership": 0.679
+    },
+    {
+     "id": "W:klein|cold war orientalism",
+     "title": "Cold War Orientalism: Asia in the Middlebrow Imagination, 1945-1961",
+     "first_author": "Klein, Christina",
+     "year": 2003,
+     "loading": 0.308,
+     "citing": 21,
+     "membership": 0.899
+    },
+    {
+     "id": "W:salyer|law harsh as tigers",
+     "title": "Laws Harsh as Tigers: Chinese Immigrants and the Shaping of Modern Immigration Law",
+     "first_author": "Salyer, Lucy E",
+     "year": 1995,
+     "loading": 0.307,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:molina|fit to be citizens",
+     "title": "Fit to Be Citizens?: Public Health and Race in Los Angeles, 1879-1939",
+     "first_author": "Molina, Natalia",
+     "year": 2006,
+     "loading": 0.305,
+     "citing": 19,
+     "membership": 0.927
+    },
+    {
+     "id": "W:kaplan|anarchy ofempire in the making of u s",
+     "title": "The Anarchy of Empire in the Making of U.S. Culture",
+     "first_author": "Kaplan, Amy",
+     "year": 2002,
+     "loading": 0.302,
+     "citing": 27,
+     "membership": 0.801
+    },
+    {
+     "id": "W:jacobson|barbarian virtues",
+     "title": "Barbarian Virtues: The United States Encounters Foreign Peoples at Home and Abroad, 1876-1917",
+     "first_author": "Jacobson, Matthew Frye",
+     "year": 2000,
+     "loading": 0.296,
+     "citing": 28,
+     "membership": 0.694
+    },
+    {
+     "id": "W:zolberg|nation by design",
+     "title": "A Nation by Design: Immigration Policy in the Fashioning of America",
+     "first_author": "Zolberg, Aristide R",
+     "year": 2006,
+     "loading": 0.294,
+     "citing": 17,
+     "membership": 0.886
+    },
+    {
+     "id": "W:hernandez|migra",
+     "title": "Migra!: A History of the U.S. Border Patrol",
+     "first_author": "Hernández, Kelly Lytle",
+     "year": 2010,
+     "loading": 0.294,
+     "citing": 16,
+     "membership": 0.946
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Ngai, Mae M",
+     "loading_share": 0.032
+    },
+    {
+     "name": "Kramer, Paul A",
+     "loading_share": 0.0221
+    },
+    {
+     "name": "Dower, John W",
+     "loading_share": 0.0198
+    },
+    {
+     "name": "Shah, Nayan",
+     "loading_share": 0.0189
+    },
+    {
+     "name": "Jacobson, Matthew Frye",
+     "loading_share": 0.0184
+    },
+    {
+     "name": "Kaplan, Amy",
+     "loading_share": 0.0181
+    },
+    {
+     "name": "Lee, Erika",
+     "loading_share": 0.0181
+    },
+    {
+     "name": "Dudziak, Mary L",
+     "loading_share": 0.0165
+    },
+    {
+     "name": "Sanchez, George J",
+     "loading_share": 0.0164
+    },
+    {
+     "name": "Roediger, David R",
+     "loading_share": 0.0137
+    },
+    {
+     "name": "Pascoe, Peggy",
+     "loading_share": 0.0131
+    },
+    {
+     "name": "Omi, Michael",
+     "loading_share": 0.013
+    },
+    {
+     "name": "Borstelmann, Thomas",
+     "loading_share": 0.0126
+    },
+    {
+     "name": "Gutiérrez, David G",
+     "loading_share": 0.0122
+    },
+    {
+     "name": "Azuma, Eiichiro",
+     "loading_share": 0.0119
+    }
+   ],
+   "top_institutions": [
+    [
+     "michigan",
+     22
+    ],
+    [
+     "minnesota",
+     17
+    ],
+    [
+     "vanderbilt",
+     12
+    ],
+    [
+     "duke",
+     10
+    ],
+    [
+     "washington",
+     9
+    ],
+    [
+     "maryland",
+     9
+    ]
+   ],
+   "sample_dissertations": [
+    "Reorienting America: Race, Geopolitics, and the Repeal of Asian Exclusion, 1940-1952",
+    "Transforming Catholicism: Mexican-Origin People and the Catholic Church in San Antonio and Oklahoma City in the Twentieth Century",
+    "Families precede nation and race?: marriage, migration, and integration of Japanese war brides after World War II.",
+    "Interracial Romances of American Empire:  Migration, Marriage, and Law in Twentieth Century California.",
+    "Chinese Exclusion and U.S. Empire in Hawai’i and Cuba, 1874-1943",
+    "The internment of memory: Forgetting and remembering the Japanese American World War II experience",
+    "What We Want To Do As Americans: Jewish Political Activism and United States Refugee Policy, 1969-1981",
+    "The Power to Invade: Armed Primacy and Congressional Conflict, 1977-1987"
    ]
   },
   {
    "id": 5,
    "provisional_label": "Butler · Foucault · Vaughan — latin, mexico, category, limits",
    "label_is_provisional": true,
-   "louvain_hint": "Foucault · Dudziak · Kramer",
+   "louvain_hint": "Gender, sexuality & the United States in the world (provisional)",
    "title_terms": [
     "latin",
     "mexico",
@@ -2123,28 +2126,29 @@
     "gender",
     "identity"
    ],
-   "bootstrap_stability": 0.825,
+   "bootstrap_stability": 0.727,
    "unstable": false,
-   "init_stability": 0.934,
-   "dominated_dissertations": 109,
-   "member_works": 50,
+   "init_stability": 0.956,
+   "dominated_dissertations": 113,
+   "member_works": 53,
    "years": {
     "median": 2015,
     "by_5yr": {
+     "1995-1999": 1,
      "2000-2004": 1,
-     "2005-2009": 14,
-     "2010-2014": 38,
-     "2015-2019": 31,
-     "2020-2024": 21,
+     "2005-2009": 13,
+     "2010-2014": 37,
+     "2015-2019": 35,
+     "2020-2024": 22,
      "2025-2029": 3,
      "unknown": 1
     },
     "share_of_bin": {
      "2000-2004": 0.021,
-     "2005-2009": 0.109,
-     "2010-2014": 0.11,
-     "2015-2019": 0.093,
-     "2020-2024": 0.094,
+     "2005-2009": 0.098,
+     "2010-2014": 0.101,
+     "2015-2019": 0.101,
+     "2020-2024": 0.093,
      "2025-2029": 0.068
     }
    },
@@ -2155,69 +2159,69 @@
      "first_author": "Butler, Judith",
      "year": 1990,
      "loading": 1.0,
-     "citing": 43,
-     "membership": 0.964
+     "citing": 45,
+     "membership": 0.959
     },
     {
      "id": "W:foucault|history ifsexuality",
      "title": "The History of Sexuality",
      "first_author": "Foucault, Michel",
      "year": 1978,
-     "loading": 0.951,
+     "loading": 0.958,
      "citing": 63,
-     "membership": 0.848
+     "membership": 0.83
     },
     {
      "id": "W:vaughan|culture politics in revolution",
      "title": "Cultural Politics in Revolution: Teachers, Peasants, and Schools in Mexico, 1930-1940",
      "first_author": "Vaughan, Mary Kay",
      "year": 1997,
-     "loading": 0.937,
+     "loading": 0.87,
      "citing": 24,
-     "membership": 1.0
-    },
-    {
-     "id": "W:zolov|refried elvis",
-     "title": "Refried Elvis: The Rise of the Mexican Counterculture",
-     "first_author": "Zolov, Eric",
-     "year": 1999,
-     "loading": 0.817,
-     "citing": 22,
-     "membership": 1.0
+     "membership": 0.981
     },
     {
      "id": "W:foucault|discipline andpunish",
      "title": "Discipline and Punish: The Birth of the Prison",
      "first_author": "Foucault, Michel",
      "year": 1977,
-     "loading": 0.808,
-     "citing": 94,
-     "membership": 0.557
+     "loading": 0.862,
+     "citing": 95,
+     "membership": 0.601
+    },
+    {
+     "id": "W:zolov|refried elvis",
+     "title": "Refried Elvis: The Rise of the Mexican Counterculture",
+     "first_author": "Zolov, Eric",
+     "year": 1999,
+     "loading": 0.755,
+     "citing": 22,
+     "membership": 1.0
     },
     {
      "id": "W:stepan|hour of eugenics",
      "title": "The Hour of Eugenics: Race, Gender, and Nation in Latin America",
      "first_author": "Stepan, Nancy",
      "year": 1991,
-     "loading": 0.775,
+     "loading": 0.746,
      "citing": 27,
-     "membership": 0.987
+     "membership": 0.989
     },
     {
      "id": "W:james|doha marias story",
      "title": "Doña María’s Story: Life History, Memory, and Political Identity",
      "first_author": "James, Daniel",
      "year": 2000,
-     "loading": 0.743,
+     "loading": 0.698,
      "citing": 20,
-     "membership": 0.987
+     "membership": 0.988
     },
     {
      "id": "W:rosemblatt|gendered compromises",
      "title": "Gendered Compromises: Political Cultures and the State in Chile, 1920-1950",
      "first_author": "Rosemblatt, Karin Alejandra",
      "year": 2000,
-     "loading": 0.715,
+     "loading": 0.679,
      "citing": 16,
      "membership": 1.0
     },
@@ -2226,45 +2230,36 @@
      "title": "Bodies That Matter: On the Discursive Limits of “Sex.”",
      "first_author": "Butler, Judith",
      "year": 1993,
-     "loading": 0.659,
+     "loading": 0.655,
      "citing": 20,
-     "membership": 0.943
-    },
-    {
-     "id": "W:joseph|eve ydav forms ofstate formation",
-     "title": "Everyday Forms of State Formation: Revolution and the Negotiation of Rule in Modern Mexico",
-     "first_author": "Joseph, Gilbert M",
-     "year": 1994,
-     "loading": 0.572,
-     "citing": 22,
-     "membership": 0.861
+     "membership": 0.947
     },
     {
      "id": "W:mallon|peasant and nation",
      "title": "Peasant and Nation: The Making of Postcolonial Mexico and Peru",
      "first_author": "Mallon, Florencia E",
      "year": 1995,
-     "loading": 0.549,
+     "loading": 0.516,
      "citing": 22,
-     "membership": 0.908
+     "membership": 0.904
     },
     {
      "id": "W:scott|gender|a",
      "title": "Gender: A Useful Category of Historical Analysis",
      "first_author": "Scott, Joan W",
      "year": 1986,
-     "loading": 0.507,
+     "loading": 0.512,
      "citing": 39,
-     "membership": 0.709
+     "membership": 0.736
     },
     {
-     "id": "W:joseph|close encounters of empire",
-     "title": "Close Encounters of Empire: Writing the Cultural History of U.S.-Latin American Relations",
+     "id": "W:joseph|eve ydav forms ofstate formation",
+     "title": "Everyday Forms of State Formation: Revolution and the Negotiation of Rule in Modern Mexico",
      "first_author": "Joseph, Gilbert M",
-     "year": 1998,
-     "loading": 0.476,
-     "citing": 26,
-     "membership": 0.642
+     "year": 1994,
+     "loading": 0.501,
+     "citing": 22,
+     "membership": 0.766
     },
     {
      "id": "W:habermas|structural transformation ofthe public sphere",
@@ -2273,190 +2268,199 @@
      "year": 1989,
      "loading": 0.449,
      "citing": 58,
-     "membership": 0.378
-    },
-    {
-     "id": "W:lefebvre|production ofspace",
-     "title": "The Production of Space",
-     "first_author": "Lefebvre, Henri",
-     "year": 1991,
-     "loading": 0.432,
-     "citing": 47,
-     "membership": 0.48
+     "membership": 0.384
     },
     {
      "id": "W:elias|civilising process",
      "title": "The Civilizing Process",
      "first_author": "Elias, Norbert",
      "year": 2000,
-     "loading": 0.425,
-     "citing": 21,
-     "membership": 0.864
+     "loading": 0.448,
+     "citing": 22,
+     "membership": 0.886
     },
     {
-     "id": "W:scott|seeing like a sate",
-     "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
-     "first_author": "Scott, James C",
+     "id": "W:joseph|close encounters of empire",
+     "title": "Close Encounters of Empire: Writing the Cultural History of U.S.-Latin American Relations",
+     "first_author": "Joseph, Gilbert M",
      "year": 1998,
-     "loading": 0.412,
-     "citing": 104,
-     "membership": 0.218
+     "loading": 0.445,
+     "citing": 26,
+     "membership": 0.64
     },
     {
-     "id": "W:knight|mexican revolution",
-     "title": "The Mexican Revolution",
-     "first_author": "Knight, Alan",
-     "year": 1986,
-     "loading": 0.402,
-     "citing": 15,
-     "membership": 0.805
-    },
-    {
-     "id": "W:grandin|last colonial massacre",
-     "title": "The Last Colonial Massacre: Latin America in the Cold War",
-     "first_author": "Grandin, Greg",
-     "year": 2004,
-     "loading": 0.392,
-     "citing": 17,
-     "membership": 0.754
+     "id": "W:moore|formation of a persecutin society",
+     "title": "The Formation of a Persecuting Society: Power and Deviance in Western Europe, 950-1250",
+     "first_author": "Moore, Robert",
+     "year": 1987,
+     "loading": 0.439,
+     "citing": 20,
+     "membership": 0.972
     },
     {
      "id": "W:bynum|holy feast and holy fast",
      "title": "Holy Feast and Holy Fast: The Religious Significance of Food to Medieval Women",
      "first_author": "Bynum, Caroline Walker",
      "year": 1987,
-     "loading": 0.378,
+     "loading": 0.399,
      "citing": 18,
-     "membership": 0.997
+     "membership": 0.999
+    },
+    {
+     "id": "W:grandin|last colonial massacre",
+     "title": "The Last Colonial Massacre: Latin America in the Cold War",
+     "first_author": "Grandin, Greg",
+     "year": 2004,
+     "loading": 0.366,
+     "citing": 17,
+     "membership": 0.754
+    },
+    {
+     "id": "W:knight|mexican revolution",
+     "title": "The Mexican Revolution",
+     "first_author": "Knight, Alan",
+     "year": 1986,
+     "loading": 0.347,
+     "citing": 15,
+     "membership": 0.697
     },
     {
      "id": "W:appelbaum|race nation in modern latin america",
      "title": "Race and Nation in Modern Latin America",
      "first_author": "Appelbaum, Nancy P",
      "year": 2003,
-     "loading": 0.364,
+     "loading": 0.346,
      "citing": 16,
-     "membership": 0.779
-    },
-    {
-     "id": "W:moore|formation of a persecutin society",
-     "title": "The Formation of a Persecuting Society: Power and Deviance in Western Europe, 950-1250",
-     "first_author": "Moore, R.I",
-     "year": 2007,
-     "loading": 0.351,
-     "citing": 19,
-     "membership": 0.921
-    },
-    {
-     "id": "W:escobar|encountering development",
-     "title": "Encountering Development: The Making and Unmaking of the Third World",
-     "first_author": "Escobar, Arturo",
-     "year": 1995,
-     "loading": 0.336,
-     "citing": 17,
-     "membership": 0.749
-    },
-    {
-     "id": "W:scott|weapons ofthe weak",
-     "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
-     "first_author": "Scott, James C",
-     "year": 1985,
-     "loading": 0.322,
-     "citing": 49,
-     "membership": 0.376
+     "membership": 0.787
     },
     {
      "id": "W:scott|gender and the politics ofhistoy",
      "title": "Gender and the Politics of History",
      "first_author": "Scott, Joan W",
      "year": 1988,
-     "loading": 0.32,
-     "citing": 29,
-     "membership": 0.548
+     "loading": 0.315,
+     "citing": 31,
+     "membership": 0.525
+    },
+    {
+     "id": "W:escobar|encountering development",
+     "title": "Encountering Development: The Making and Unmaking of the Third World",
+     "first_author": "Escobar, Arturo",
+     "year": 1995,
+     "loading": 0.306,
+     "citing": 19,
+     "membership": 0.634
+    },
+    {
+     "id": "W:lefebvre|production ofspace",
+     "title": "The Production of Space",
+     "first_author": "Lefebvre, Henri",
+     "year": 1991,
+     "loading": 0.305,
+     "citing": 49,
+     "membership": 0.331
+    },
+    {
+     "id": "W:scott|weapons ofthe weak",
+     "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
+     "first_author": "Scott, James C",
+     "year": 1985,
+     "loading": 0.3,
+     "citing": 51,
+     "membership": 0.351
+    },
+    {
+     "id": "W:briggs|reproducing empire",
+     "title": "Reproducing Empire: Race, Sex, Science, and U.S. Imperialism in Puerto Rico",
+     "first_author": "Briggs, Laura",
+     "year": 2002,
+     "loading": 0.293,
+     "citing": 38,
+     "membership": 0.456
     }
    ],
    "top_people": [
     {
      "name": "Foucault, Michel",
-     "loading_share": 0.0995
+     "loading_share": 0.1025
     },
     {
      "name": "Butler, Judith",
-     "loading_share": 0.0588
-    },
-    {
-     "name": "Joseph, Gilbert M",
-     "loading_share": 0.0371
-    },
-    {
-     "name": "Scott, James C",
-     "loading_share": 0.0358
-    },
-    {
-     "name": "Vaughan, Mary Kay",
-     "loading_share": 0.0332
+     "loading_share": 0.0595
     },
     {
      "name": "Scott, Joan W",
-     "loading_share": 0.0293
+     "loading_share": 0.0383
+    },
+    {
+     "name": "Joseph, Gilbert M",
+     "loading_share": 0.034
+    },
+    {
+     "name": "Vaughan, Mary Kay",
+     "loading_share": 0.0313
     },
     {
      "name": "Zolov, Eric",
-     "loading_share": 0.0289
+     "loading_share": 0.0271
+    },
+    {
+     "name": "Scott, James C",
+     "loading_share": 0.027
     },
     {
      "name": "Stepan, Nancy",
-     "loading_share": 0.0274
+     "loading_share": 0.0268
     },
     {
      "name": "James, Daniel",
-     "loading_share": 0.0263
+     "loading_share": 0.0251
     },
     {
      "name": "Rosemblatt, Karin Alejandra",
-     "loading_share": 0.0253
+     "loading_share": 0.0244
     },
     {
      "name": "Mallon, Florencia E",
-     "loading_share": 0.0194
-    },
-    {
-     "name": "Grandin, Greg",
-     "loading_share": 0.018
+     "loading_share": 0.0186
     },
     {
      "name": "Stoler, Ann Laura",
-     "loading_share": 0.0165
+     "loading_share": 0.0183
+    },
+    {
+     "name": "Grandin, Greg",
+     "loading_share": 0.017
     },
     {
      "name": "Habermas, Jürgen",
-     "loading_share": 0.0159
+     "loading_share": 0.0161
     },
     {
-     "name": "Lefebvre, Henri",
-     "loading_share": 0.0153
+     "name": "Elias, Norbert",
+     "loading_share": 0.0161
     }
    ],
    "top_institutions": [
     [
      "maryland",
-     25
+     26
+    ],
+    [
+     "duke",
+     15
     ],
     [
      "minnesota",
      14
     ],
     [
-     "duke",
-     14
+     "michigan",
+     12
     ],
     [
      "newmexico",
-     13
-    ],
-    [
-     "michigan",
-     10
+     11
     ],
     [
      "vanderbilt",
@@ -2464,53 +2468,51 @@
     ]
    ],
    "sample_dissertations": [
-    "Schools as Laboratories: Science, Children's Bodies, and School Reformers in the Making of Modern Argentina (1880-1930)",
     "The public body: sex work in twelfth and thirteenth century Occitania",
-    "Plan Perquenco and Chile's Indigenous Policies Under the Pinochet Dictatorship, 1976-1988",
     "FORGETTING THE WEAKNESS OF HER SEX AND A WOMAN'S SOFTNESS':HISTORIANS OF THE ANGLO-NORMAN WORLD AND THEIR FEMALE SUBJECT'",
-    "\"Basically Intelligent:\" The Blind, Intelligence, and Gender in Argentina, 1880-1939",
     "Lay Spirituality, Crusading, and Reform in the Sermons of Jacques de Vitry",
-    "The Gothic Saints And Their Mystical Songs: Performing Sanctity In The Thirteenth-Century Diocese Of Liège",
+    "Fashioning Adria, Fashioning Femininity: Venetian Women and the  \nRadicalization of the Querelle des Femmes, 1550–1635",
+    "Plan Perquenco and Chile's Indigenous Policies Under the Pinochet Dictatorship, 1976-1988",
+    "\"Basically Intelligent:\" The Blind, Intelligence, and Gender in Argentina, 1880-1939",
+    "Cities and sovereigns:ceremonial receptions of Iberia as seen from below, 1350-1550",
     "Breaking Habits: Identity and the Dissolution of Convents in France, 1789-1808"
    ]
   },
   {
    "id": 6,
-   "provisional_label": "Sugrue · Lassiter · McGirr — suburban, postwar, sunbelt, seventies",
+   "provisional_label": "Sugrue · McGirr · Lassiter — suburban, sunbelt, postwar, seventies",
    "label_is_provisional": true,
    "louvain_hint": "Postwar metropolis, suburbs & the New Right (provisional)",
    "title_terms": [
     "suburban",
-    "postwar",
     "sunbelt",
+    "postwar",
     "seventies",
     "conservatism",
     "suburbanization"
    ],
-   "bootstrap_stability": 0.906,
+   "bootstrap_stability": 0.942,
    "unstable": false,
-   "init_stability": 0.964,
-   "dominated_dissertations": 102,
-   "member_works": 71,
+   "init_stability": 0.998,
+   "dominated_dissertations": 103,
+   "member_works": 70,
    "years": {
     "median": 2016,
     "by_5yr": {
-     "1985-1989": 1,
-     "1990-1994": 1,
      "1995-1999": 1,
-     "2000-2004": 2,
-     "2005-2009": 11,
-     "2010-2014": 26,
-     "2015-2019": 29,
+     "2000-2004": 1,
+     "2005-2009": 10,
+     "2010-2014": 32,
+     "2015-2019": 28,
      "2020-2024": 28,
      "2025-2029": 3
     },
     "share_of_bin": {
-     "2000-2004": 0.043,
-     "2005-2009": 0.085,
-     "2010-2014": 0.075,
-     "2015-2019": 0.087,
-     "2020-2024": 0.125,
+     "2000-2004": 0.021,
+     "2005-2009": 0.076,
+     "2010-2014": 0.087,
+     "2015-2019": 0.081,
+     "2020-2024": 0.119,
      "2025-2029": 0.068
     }
    },
@@ -2521,52 +2523,43 @@
      "first_author": "Sugrue, Thomas J",
      "year": 1996,
      "loading": 1.0,
-     "citing": 75,
-     "membership": 0.936
-    },
-    {
-     "id": "W:lassiter|silent majority",
-     "title": "The Silent Majority: Suburban Politics in the Sunbelt South",
-     "first_author": "Lassiter, Matthew D",
-     "year": 2006,
-     "loading": 0.909,
-     "citing": 71,
-     "membership": 0.799
+     "citing": 77,
+     "membership": 0.928
     },
     {
      "id": "W:mcgirr|suburban warriors",
      "title": "Suburban Warriors: The Origins of the New American Right",
      "first_author": "McGirr, Lisa",
      "year": 2001,
-     "loading": 0.889,
-     "citing": 66,
-     "membership": 0.894
+     "loading": 0.933,
+     "citing": 70,
+     "membership": 0.908
+    },
+    {
+     "id": "W:lassiter|silent majority",
+     "title": "The Silent Majority: Suburban Politics in the Sunbelt South",
+     "first_author": "Lassiter, Matthew D",
+     "year": 2006,
+     "loading": 0.924,
+     "citing": 73,
+     "membership": 0.801
     },
     {
      "id": "W:cohen|consumers republic",
      "title": "A Consumer’s Republic: The Politics of Mass Consumption in Postwar America",
      "first_author": "Cohen, Lizabeth",
      "year": 2003,
-     "loading": 0.88,
-     "citing": 81,
-     "membership": 0.724
-    },
-    {
-     "id": "W:self|american babylon",
-     "title": "American Babylon: Race and the Struggle for Postwar Oakland",
-     "first_author": "Self, Robert O",
-     "year": 2003,
-     "loading": 0.751,
-     "citing": 48,
-     "membership": 0.991
+     "loading": 0.892,
+     "citing": 85,
+     "membership": 0.699
     },
     {
      "id": "W:kruse|white flight",
      "title": "White Flight: Atlanta and the Making of Modern Conservatism",
      "first_author": "Kruse, Kevin M",
      "year": 2005,
-     "loading": 0.748,
-     "citing": 56,
+     "loading": 0.757,
+     "citing": 57,
      "membership": 0.723
     },
     {
@@ -2574,17 +2567,26 @@
      "title": "Crabgrass Frontier: The Suburbanization of the United States",
      "first_author": "Jackson, Kenneth T",
      "year": 1985,
-     "loading": 0.741,
-     "citing": 50,
-     "membership": 0.765
+     "loading": 0.724,
+     "citing": 51,
+     "membership": 0.76
+    },
+    {
+     "id": "W:self|american babylon",
+     "title": "American Babylon: Race and the Struggle for Postwar Oakland",
+     "first_author": "Self, Robert O",
+     "year": 2003,
+     "loading": 0.715,
+     "citing": 48,
+     "membership": 0.91
     },
     {
      "id": "W:schulman|seventies",
      "title": "The Seventies: The Great Shift in American Culture, Society, and Politics",
      "first_author": "Schulman, Bruce J",
      "year": 2001,
-     "loading": 0.639,
-     "citing": 32,
+     "loading": 0.676,
+     "citing": 34,
      "membership": 1.0
     },
     {
@@ -2592,99 +2594,117 @@
      "title": "Stayin’ Alive: The 1970s and the Last Days of the Working Class",
      "first_author": "Cowie, Jefferson",
      "year": 2010,
-     "loading": 0.611,
-     "citing": 35,
-     "membership": 0.955
-    },
-    {
-     "id": "W:freund|colored property",
-     "title": "Colored Property: State Policy and White Racial Politics in Suburban America",
-     "first_author": "Freund, David M.P",
-     "year": 2007,
-     "loading": 0.596,
-     "citing": 34,
-     "membership": 0.958
+     "loading": 0.613,
+     "citing": 36,
+     "membership": 0.908
     },
     {
      "id": "W:phillips fein|invisible hands",
      "title": "Invisible Hands: The Making of the Conservative Movement from the New Deal to Reagan",
      "first_author": "Phillips-Fein, Kim",
      "year": 2009,
-     "loading": 0.568,
-     "citing": 32,
-     "membership": 1.0
+     "loading": 0.588,
+     "citing": 33,
+     "membership": 0.995
+    },
+    {
+     "id": "W:freund|colored property",
+     "title": "Colored Property: State Policy and White Racial Politics in Suburban America",
+     "first_author": "Freund, David M.P",
+     "year": 2007,
+     "loading": 0.579,
+     "citing": 34,
+     "membership": 0.934
     },
     {
      "id": "W:stein|pivotal decade",
      "title": "Pivotal Decade: How the United States Traded Factories for Finance in the Seventies",
      "first_author": "Stein, Judith",
      "year": 2010,
-     "loading": 0.552,
-     "citing": 28,
-     "membership": 1.0
+     "loading": 0.569,
+     "citing": 29,
+     "membership": 0.912
     },
     {
      "id": "W:self|all in the family",
-     "title": "All in the Family: The Realignment of American Democracy since the 1960s",
+     "title": "All in the Family: The Realignment of American Democracy Since the 1960s",
      "first_author": "Self, Robert O",
      "year": 2012,
-     "loading": 0.521,
-     "citing": 27,
-     "membership": 0.928
-    },
-    {
-     "id": "W:may|homeward bound",
-     "title": "Homeward Bound: American Families in the Cold War Era",
-     "first_author": "May, Elaine Tyler",
-     "year": 1988,
-     "loading": 0.508,
-     "citing": 64,
-     "membership": 0.541
+     "loading": 0.565,
+     "citing": 29,
+     "membership": 0.956
     },
     {
      "id": "W:schulman|rightward bound",
      "title": "Rightward Bound: Making America Conservative in the 1970s",
      "first_author": "Schulman, Bruce J",
      "year": 2008,
-     "loading": 0.487,
-     "citing": 24,
-     "membership": 1.0
+     "loading": 0.512,
+     "citing": 25,
+     "membership": 0.983
+    },
+    {
+     "id": "W:may|homeward bound",
+     "title": "Homeward Bound: American Families in the Cold War Era",
+     "first_author": "May, Elaine Tyler",
+     "year": 1988,
+     "loading": 0.51,
+     "citing": 66,
+     "membership": 0.52
     },
     {
      "id": "W:rodgers|age of fracture",
      "title": "Age of Fracture",
      "first_author": "Rodgers, Daniel T",
      "year": 2011,
-     "loading": 0.45,
-     "citing": 27,
-     "membership": 0.959
+     "loading": 0.481,
+     "citing": 29,
+     "membership": 0.905
     },
     {
      "id": "W:moreton|to serve god and walmart",
      "title": "To Serve God and Wal-Mart: The Making of Christian Free Enterprise",
      "first_author": "Moreton, Bethany",
      "year": 2009,
-     "loading": 0.438,
+     "loading": 0.434,
      "citing": 28,
-     "membership": 0.905
+     "membership": 0.908
     },
     {
      "id": "W:rome|bulldozer in the countryside",
      "title": "The Bulldozer in the Countryside: Suburban Sprawl and the Rise of American Environmentalism",
      "first_author": "Rome, Adam",
      "year": 2001,
-     "loading": 0.4,
+     "loading": 0.408,
      "citing": 32,
-     "membership": 0.443
+     "membership": 0.465
     },
     {
-     "id": "W:harvey|brief history of neoliberalism",
-     "title": "A Brief History of Neoliberalism",
-     "first_author": "Harvey, David",
-     "year": 2005,
+     "id": "W:perlstein|before the storm",
+     "title": "Before the Storm: Barry Goldwater and the Unmaking of the American Consensus",
+     "first_author": "Perlstein, Rick",
+     "year": 2001,
+     "loading": 0.406,
+     "citing": 19,
+     "membership": 0.99
+    },
+    {
+     "id": "W:dochuk|from bible belt to sunbelt",
+     "title": "From Bible Belt to Sunbelt: Plain-Folk Religion, Grassroots Politics, and the Rise of Evangelical Conservatism",
+     "first_author": "Dochuk, Darren",
+     "year": 2011,
      "loading": 0.398,
-     "citing": 27,
-     "membership": 0.753
+     "citing": 23,
+     "membership": 0.896
+    },
+    {
+     "id": "W:carter|politics ofrage",
+     "title": "The Politics of Rage: George Wallace, the Origins of the New Conservatism, and the Transformation of American Politics",
+     "first_author": "Carter, Dan T",
+     "year": 1995,
+     "loading": 0.391,
+     "citing": 30,
+     "membership": 0.624
     },
     {
      "id": "W:edsall|chain reaction",
@@ -2693,128 +2713,110 @@
      "year": 1991,
      "loading": 0.388,
      "citing": 18,
-     "membership": 0.931
+     "membership": 0.924
     },
     {
-     "id": "W:carter|politics ofrage",
-     "title": "The Politics of Rage: George Wallace, the Origins of the New Conservatism, and the Transformation of American Politics",
-     "first_author": "Carter, Dan T",
-     "year": 1995,
-     "loading": 0.387,
-     "citing": 30,
-     "membership": 0.626
+     "id": "W:harvey|brief history of neoliberalism",
+     "title": "A Brief History of Neoliberalism",
+     "first_author": "Harvey, David",
+     "year": 2005,
+     "loading": 0.383,
+     "citing": 28,
+     "membership": 0.718
     },
     {
-     "id": "W:dochuk|from bible belt to sunbelt",
-     "title": "From Bible Belt to Sunbelt: Plain-Folk Religion, Grassroots Politics, and the Rise of Evangelical Conservatism",
-     "first_author": "Dochuk, Darren",
-     "year": 2011,
-     "loading": 0.368,
-     "citing": 22,
-     "membership": 0.873
+     "id": "W:jacobs|pocketbook politics",
+     "title": "Pocketbook Politics: Economic Citizenship in Twentieth-Century America",
+     "first_author": "Jacobs, Meg",
+     "year": 2005,
+     "loading": 0.369,
+     "citing": 25,
+     "membership": 0.838
     },
     {
-     "id": "W:perlstein|before the storm",
-     "title": "Before the Storm: Barry Goldwater and the Unmaking of the American Consensus",
-     "first_author": "Perlstein, Rick",
-     "year": 2001,
-     "loading": 0.361,
-     "citing": 17,
-     "membership": 0.999
-    },
-    {
-     "id": "W:cowie|capital moves",
-     "title": "Capital Moves: RCA’s Seventy-Year Quest for Cheap Labor",
-     "first_author": "Cowie, Jefferson",
-     "year": 1999,
-     "loading": 0.35,
-     "citing": 20,
-     "membership": 0.98
-    },
-    {
-     "id": "W:hirsch|making the second ghetto",
-     "title": "Making the Second Ghetto: Race and Housing in Chicago, 1940-1960",
-     "first_author": "Hirsch, Arnold R",
-     "year": 1983,
-     "loading": 0.343,
-     "citing": 20,
-     "membership": 0.899
+     "id": "W:fraser|rise and fall of the new deal order",
+     "title": "The Rise and Fall of the New Deal Order, 1930-1980",
+     "first_author": "Fraser, Steve",
+     "year": 1989,
+     "loading": 0.364,
+     "citing": 33,
+     "membership": 0.658
     }
    ],
    "top_people": [
     {
      "name": "Schulman, Bruce J",
-     "loading_share": 0.04
+     "loading_share": 0.0414
     },
     {
      "name": "Sugrue, Thomas J",
-     "loading_share": 0.0356
-    },
-    {
-     "name": "Self, Robert O",
      "loading_share": 0.0355
     },
     {
-     "name": "Kruse, Kevin M",
-     "loading_share": 0.0302
+     "name": "Self, Robert O",
+     "loading_share": 0.0354
     },
     {
      "name": "Cohen, Lizabeth",
-     "loading_share": 0.0298
+     "loading_share": 0.0307
+    },
+    {
+     "name": "Kruse, Kevin M",
+     "loading_share": 0.03
     },
     {
      "name": "Cowie, Jefferson",
-     "loading_share": 0.0268
-    },
-    {
-     "name": "Lassiter, Matthew D",
-     "loading_share": 0.0253
+     "loading_share": 0.0263
     },
     {
      "name": "McGirr, Lisa",
-     "loading_share": 0.0248
+     "loading_share": 0.0258
+    },
+    {
+     "name": "Lassiter, Matthew D",
+     "loading_share": 0.0256
     },
     {
      "name": "Jackson, Kenneth T",
-     "loading_share": 0.0206
-    },
-    {
-     "name": "Freund, David M.P",
-     "loading_share": 0.0166
-    },
-    {
-     "name": "Phillips-Fein, Kim",
-     "loading_share": 0.0158
-    },
-    {
-     "name": "Stein, Judith",
-     "loading_share": 0.0154
+     "loading_share": 0.02
     },
     {
      "name": "Rodgers, Daniel T",
-     "loading_share": 0.0153
+     "loading_share": 0.0169
+    },
+    {
+     "name": "Phillips-Fein, Kim",
+     "loading_share": 0.0163
+    },
+    {
+     "name": "Freund, David M.P",
+     "loading_share": 0.016
+    },
+    {
+     "name": "Stein, Judith",
+     "loading_share": 0.0157
     },
     {
      "name": "Carter, Dan T",
      "loading_share": 0.0151
     },
     {
-     "name": "Harvey, David",
-     "loading_share": 0.0147
+     "name": "May, Elaine Tyler",
+     "loading_share": 0.0141
     }
    ],
    "top_institutions": [
     [
      "michigan",
-     20
+     19
     ],
     [
      "maryland",
-     15
+     17
     ],
     [
      "minnesota",
-     9
+     8
     ],
     [
      "duke",
@@ -2825,26 +2827,26 @@
      7
     ],
     [
-     "rice",
-     6
+     "vanderbilt",
+     7
     ]
    ],
    "sample_dissertations": [
-    "ìThe Ownership Society:î  Mortgage Securitization and the Metropolitan Landscape Since the 1960s.",
     "Dream Deregulated: The Politics of U.S. Housing Finance, 1968-1985",
     "Unsatisfactory Progress: The Pursuit of Good Schools in Suburban America, 1940-1980",
+    "ìThe Ownership Society:î  Mortgage Securitization and the Metropolitan Landscape Since the 1960s.",
     "Building Bohemia in Detroit's Cass Corridor, 1964-2017",
-    "\"Against the Public\": Teacher Strikes and the Decline of Liberalism, 1968-1981",
     "FREEDOM IS MY BUSINESS: CARL MCINTIRE, CHRISTIAN  FUNDAMENTALISM AND THE RISE OF MODERN CONSERVATISM",
-    "The Surface of Things: Reading a Cinema of Decline",
-    "Safer Sex: Gay Politics and the Remaking of Liberalism in Seattle, 1966-1995"
+    "A Choice, Not an Echo: Polarization and the Transformation of the American Party System",
+    "\"Against the Public\": Teacher Strikes and the Decline of Liberalism, 1968-1981",
+    "\"Charlie Brown's america:\tPeanuts and the politics of wishy-washy, 1950-1989\""
    ]
   },
   {
    "id": 7,
-   "provisional_label": "Gilmore · Woodward — south, struggle, jim, crow",
+   "provisional_label": "Gilmore · Woodward · Chafe — south, struggle, jim, crow",
    "label_is_provisional": true,
-   "louvain_hint": "Slavery, emancipation & Reconstruction (provisional)",
+   "louvain_hint": "The South: slavery, Reconstruction & Jim Crow (provisional)",
    "title_terms": [
     "south",
     "struggle",
@@ -2853,33 +2855,33 @@
     "black",
     "organizing"
    ],
-   "bootstrap_stability": 0.53,
-   "unstable": true,
-   "init_stability": 0.746,
-   "dominated_dissertations": 100,
-   "member_works": 66,
+   "bootstrap_stability": 0.744,
+   "unstable": false,
+   "init_stability": 0.967,
+   "dominated_dissertations": 93,
+   "member_works": 65,
    "years": {
-    "median": 2011,
+    "median": 2012,
     "by_5yr": {
      "1975-1979": 1,
-     "1980-1984": 2,
+     "1980-1984": 1,
      "1985-1989": 1,
      "1990-1994": 2,
-     "1995-1999": 8,
-     "2000-2004": 7,
+     "1995-1999": 6,
+     "2000-2004": 5,
      "2005-2009": 11,
-     "2010-2014": 31,
+     "2010-2014": 30,
      "2015-2019": 20,
-     "2020-2024": 14,
+     "2020-2024": 13,
      "2025-2029": 2,
      "unknown": 1
     },
     "share_of_bin": {
-     "2000-2004": 0.149,
-     "2005-2009": 0.085,
-     "2010-2014": 0.089,
-     "2015-2019": 0.06,
-     "2020-2024": 0.062,
+     "2000-2004": 0.106,
+     "2005-2009": 0.083,
+     "2010-2014": 0.082,
+     "2015-2019": 0.058,
+     "2020-2024": 0.055,
      "2025-2029": 0.045
     }
    },
@@ -2890,188 +2892,206 @@
      "first_author": "Gilmore, Glenda",
      "year": 1996,
      "loading": 1.0,
-     "citing": 63,
-     "membership": 0.787
+     "citing": 64,
+     "membership": 0.737
     },
     {
      "id": "W:woodward|strange career of jim crow",
      "title": "The Strange Career of Jim Crow",
      "first_author": "Woodward, Comer Vann",
      "year": 1955,
-     "loading": 0.959,
+     "loading": 0.988,
      "citing": 44,
-     "membership": 0.953
-    },
-    {
-     "id": "W:woodward|origins of the new south 1877",
-     "title": "Origins of the New South, 1877-1913",
-     "first_author": "Woodward, C. Vann",
-     "year": 1951,
-     "loading": 0.886,
-     "citing": 49,
-     "membership": 0.732
+     "membership": 0.947
     },
     {
      "id": "W:chafe|civilities and civil rights",
      "title": "Civilities and Civil Rights: Greensboro, North Carolina, and the Black Struggle for Freedom",
      "first_author": "Chafe, William H",
      "year": 1980,
-     "loading": 0.872,
+     "loading": 0.914,
      "citing": 32,
-     "membership": 0.902
+     "membership": 0.91
     },
     {
      "id": "W:ayers|promise ofthe new south",
      "title": "The Promise of the New South: Life After Reconstruction",
      "first_author": "Ayers, Edward L",
      "year": 1992,
-     "loading": 0.848,
+     "loading": 0.877,
      "citing": 44,
-     "membership": 0.71
+     "membership": 0.704
     },
     {
      "id": "W:dittmer|local people",
      "title": "Local People: The Struggle for Civil Rights in Mississippi",
      "first_author": "Dittmer, John",
      "year": 1994,
-     "loading": 0.812,
+     "loading": 0.852,
      "citing": 29,
-     "membership": 0.93
+     "membership": 0.938
     },
     {
-     "id": "W:egerton|speak now against the dav",
-     "title": "Speak Now Against the Day: The Generation Before the Civil Rights Movement in the South",
-     "first_author": "Egerton, John",
-     "year": 1994,
-     "loading": 0.751,
-     "citing": 21,
-     "membership": 1.0
+     "id": "W:woodward|origins of the new south 1877",
+     "title": "Origins of the New South, 1877-1913",
+     "first_author": "Woodward, C. Vann",
+     "year": 1951,
+     "loading": 0.838,
+     "citing": 49,
+     "membership": 0.635
     },
     {
      "id": "W:payne|ive got the light of freedom",
      "title": "I’ve Got the Light of Freedom: The Organizing Tradition and the Mississippi Freedom Struggle",
      "first_author": "Payne, Charles",
      "year": 1995,
-     "loading": 0.728,
+     "loading": 0.767,
      "citing": 37,
-     "membership": 0.758
+     "membership": 0.772
     },
     {
-     "id": "W:hale|making whiteness",
-     "title": "Making Whiteness: The Culture of Segregation in the South, 1890-1940",
-     "first_author": "Hale, Grace",
-     "year": 1998,
-     "loading": 0.716,
-     "citing": 55,
-     "membership": 0.657
-    },
-    {
-     "id": "W:kluger|simple justice",
-     "title": "Simple Justice: The History of Brown v. Board of Education and Black America’s Struggle for Equality",
-     "first_author": "Kluger, Richard",
-     "year": 1975,
-     "loading": 0.7,
+     "id": "W:egerton|speak now against the dav",
+     "title": "Speak Now Against the Day: The Generation Before the Civil Rights Movement in the South",
+     "first_author": "Egerton, John",
+     "year": 1994,
+     "loading": 0.76,
      "citing": 21,
-     "membership": 0.998
+     "membership": 0.971
     },
     {
      "id": "W:hahn|nation under our feet",
      "title": "A Nation Under Our Feet: Black Political Struggles in the Rural South from Slavery to the Great Migration",
      "first_author": "Hahn, Steven",
      "year": 2003,
-     "loading": 0.698,
+     "loading": 0.737,
      "citing": 60,
-     "membership": 0.531
+     "membership": 0.541
+    },
+    {
+     "id": "W:hale|making whiteness",
+     "title": "Making Whiteness: The Culture of Segregation in the South, 1890-1940",
+     "first_author": "Hale, Grace",
+     "year": 1998,
+     "loading": 0.731,
+     "citing": 55,
+     "membership": 0.646
+    },
+    {
+     "id": "W:kluger|simple justice",
+     "title": "Simple Justice: The History of Brown v. Board of Education and Black America’s Struggle for Equality",
+     "first_author": "Kluger, Richard",
+     "year": 1975,
+     "loading": 0.728,
+     "citing": 21,
+     "membership": 1.0
     },
     {
      "id": "W:anderson|education of blacks in the south 1860",
      "title": "The Education of Blacks in the South, 1860-1935",
      "first_author": "Anderson, James D",
      "year": 1988,
-     "loading": 0.655,
+     "loading": 0.671,
      "citing": 30,
-     "membership": 0.931
+     "membership": 0.915
     },
     {
      "id": "W:higginbotham|righteous discontent",
      "title": "Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880-1920",
      "first_author": "Higginbotham, Evelyn Brooks",
      "year": 1993,
-     "loading": 0.642,
+     "loading": 0.67,
      "citing": 40,
-     "membership": 0.751
-    },
-    {
-     "id": "W:key|southern politics in state and nation",
-     "title": "Southern Politics in State and Nation",
-     "first_author": "Key, Valdimer Orlando, Jr",
-     "year": 1949,
-     "loading": 0.63,
-     "citing": 28,
-     "membership": 0.85
-    },
-    {
-     "id": "W:sullivan|days of hope",
-     "title": "Days of Hope: Race and Democracy in the New Deal Era",
-     "first_author": "Sullivan, Patricia",
-     "year": 1996,
-     "loading": 0.622,
-     "citing": 19,
-     "membership": 0.994
+     "membership": 0.749
     },
     {
      "id": "W:branch|parting the waters",
      "title": "Parting the Waters: America in the King Years, 1954-1963",
      "first_author": "Branch, Taylor",
      "year": 1988,
-     "loading": 0.618,
+     "loading": 0.645,
      "citing": 20,
-     "membership": 0.973
+     "membership": 0.969
+    },
+    {
+     "id": "W:sullivan|days of hope",
+     "title": "Days of Hope: Race and Democracy in the New Deal Era",
+     "first_author": "Sullivan, Patricia",
+     "year": 1996,
+     "loading": 0.626,
+     "citing": 20,
+     "membership": 0.942
     },
     {
      "id": "W:schulman|from cotton belt to sunbelt",
      "title": "From Cotton Belt to Sunbelt: Federal Policy, Economic Development, and the Transformation of the South, 1938-1980",
      "first_author": "Schulman, Bruce J",
      "year": 1991,
-     "loading": 0.606,
+     "loading": 0.617,
      "citing": 41,
-     "membership": 0.57
+     "membership": 0.56
     },
     {
-     "id": "W:kelley|hammer and hoe",
-     "title": "Hammer and Hoe: Alabama Communists During the Great Depression",
-     "first_author": "Kelley, Robin D. G",
-     "year": 1990,
-     "loading": 0.587,
-     "citing": 22,
-     "membership": 0.879
-    },
-    {
-     "id": "W:myrdal|american dilemma",
-     "title": "An American Dilemma: The Negro Problem and Modern Democracy",
-     "first_author": "Myrdal, Gunnar",
-     "year": 1944,
-     "loading": 0.573,
-     "citing": 26,
-     "membership": 0.876
-    },
-    {
-     "id": "W:foner|reconstruction",
-     "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
-     "first_author": "Foner, Eric",
-     "year": 1988,
-     "loading": 0.569,
-     "citing": 72,
-     "membership": 0.37
+     "id": "W:key|southern politics in state and nation",
+     "title": "Southern Politics in State and Nation",
+     "first_author": "Key, Valdimer Orlando, Jr",
+     "year": 1949,
+     "loading": 0.605,
+     "citing": 29,
+     "membership": 0.744
     },
     {
      "id": "W:morris|origins ofthe civil rights movement",
      "title": "The Origins of the Civil Rights Movement: Black Communities Organizing for Change",
      "first_author": "Morris, Aldon D",
      "year": 1984,
-     "loading": 0.569,
+     "loading": 0.602,
      "citing": 17,
-     "membership": 0.976
+     "membership": 0.964
+    },
+    {
+     "id": "W:foner|reconstruction",
+     "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
+     "first_author": "Foner, Eric",
+     "year": 1988,
+     "loading": 0.602,
+     "citing": 73,
+     "membership": 0.371
+    },
+    {
+     "id": "W:kelley|hammer and hoe",
+     "title": "Hammer and Hoe: Alabama Communists During the Great Depression",
+     "first_author": "Kelley, Robin D. G",
+     "year": 1990,
+     "loading": 0.602,
+     "citing": 22,
+     "membership": 0.878
+    },
+    {
+     "id": "W:hall|long civil rights movement and political uses of the past|a",
+     "title": "The Long Civil Rights Movement and the Political Uses of the Past",
+     "first_author": "Hall, Jacquelyn Dowd",
+     "year": 2005,
+     "loading": 0.578,
+     "citing": 37,
+     "membership": 0.56
+    },
+    {
+     "id": "W:cobb|selling ofthe south",
+     "title": "The Selling of the South: The Southern Crusade for Industrial Development, 1936-1990",
+     "first_author": "Cobb, James C",
+     "year": 1993,
+     "loading": 0.578,
+     "citing": 22,
+     "membership": 0.741
+    },
+    {
+     "id": "W:myrdal|american dilemma",
+     "title": "An American Dilemma: The Negro Problem and Modern Democracy",
+     "first_author": "Myrdal, Gunnar",
+     "year": 1944,
+     "loading": 0.574,
+     "citing": 26,
+     "membership": 0.825
     },
     {
      "id": "W:gaines|uplifting the race",
@@ -3080,102 +3100,84 @@
      "year": 1996,
      "loading": 0.567,
      "citing": 29,
-     "membership": 0.815
+     "membership": 0.768
     },
     {
-     "id": "W:cobb|selling ofthe south",
-     "title": "The Selling of the South: The Southern Crusade for Industrial Development, 1936-1990",
-     "first_author": "Cobb, James C",
-     "year": 1993,
-     "loading": 0.561,
+     "id": "W:carson|in struggle",
+     "title": "In Struggle: SNCC and the Black Awakening of the 1960s",
+     "first_author": "Carson, Clayborne",
+     "year": 1981,
+     "loading": 0.538,
      "citing": 22,
-     "membership": 0.766
-    },
-    {
-     "id": "W:hall|long civil rights movement and political uses of the past|a",
-     "title": "The Long Civil Rights Movement and the Political Uses of the Past",
-     "first_author": "Hall, Jacquelyn Dowd",
-     "year": 2005,
-     "loading": 0.556,
-     "citing": 36,
-     "membership": 0.579
-    },
-    {
-     "id": "W:tindall|emergence of the new south 1913 1945",
-     "title": "The Emergence of the New South, 1913-1945",
-     "first_author": "Tindall, George B",
-     "year": 1967,
-     "loading": 0.551,
-     "citing": 17,
-     "membership": 0.859
+     "membership": 0.803
     }
    ],
    "top_people": [
     {
-     "name": "Woodward, C. Vann",
-     "loading_share": 0.028
+     "name": "Gilmore, Glenda",
+     "loading_share": 0.0286
     },
     {
-     "name": "Gilmore, Glenda",
-     "loading_share": 0.028
+     "name": "Woodward, C. Vann",
+     "loading_share": 0.0271
     },
     {
      "name": "Hall, Jacquelyn Dowd",
-     "loading_share": 0.0252
+     "loading_share": 0.0254
     },
     {
      "name": "Woodward, Comer Vann",
-     "loading_share": 0.0198
+     "loading_share": 0.0207
     },
     {
      "name": "Kelley, Robin D. G",
-     "loading_share": 0.0196
+     "loading_share": 0.0207
     },
     {
      "name": "Ayers, Edward L",
-     "loading_share": 0.0196
+     "loading_share": 0.0206
     },
     {
      "name": "Hahn, Steven",
-     "loading_share": 0.0191
+     "loading_share": 0.0201
     },
     {
      "name": "Chafe, William H",
-     "loading_share": 0.018
+     "loading_share": 0.0191
     },
     {
      "name": "Litwack, Leon F",
-     "loading_share": 0.0174
+     "loading_share": 0.0184
     },
     {
      "name": "Dittmer, John",
-     "loading_share": 0.0167
-    },
-    {
-     "name": "Egerton, John",
-     "loading_share": 0.0155
+     "loading_share": 0.0178
     },
     {
      "name": "Payne, Charles",
-     "loading_share": 0.015
+     "loading_share": 0.0161
+    },
+    {
+     "name": "Egerton, John",
+     "loading_share": 0.0159
     },
     {
      "name": "Hale, Grace",
-     "loading_share": 0.0147
+     "loading_share": 0.0153
     },
     {
      "name": "Kluger, Richard",
-     "loading_share": 0.0144
+     "loading_share": 0.0152
     },
     {
      "name": "Du Bois, W. E. B",
-     "loading_share": 0.0138
+     "loading_share": 0.0147
     }
    ],
    "top_institutions": [
     [
      "rice",
-     19
+     16
     ],
     [
      "duke",
@@ -3183,7 +3185,7 @@
     ],
     [
      "tennessee",
-     12
+     11
     ],
     [
      "maryland",
@@ -3191,66 +3193,66 @@
     ],
     [
      "vanderbilt",
-     10
+     9
     ],
     [
      "alabama",
-     8
+     7
     ]
    ],
    "sample_dissertations": [
     "\"To Strike for Right, To Strike With Might\": African Americans and the Struggle for Civil Rights in Baltimore, 1910-1930",
-    "Democracy’s Sanctuary: Highlander Folk School’s Campaign for Justice from the Labor Movement to the Civil Rights Movement, 1932-1962",
     "\"At a most uncomfortable speed\":  The desegregation of the South's private universities, 1945--1964",
     "Leaders in the Making: Higher Education, Student Activism, and the Black Freedom Struggle in South Carolina, 1925-1975",
-    "Slipping Backwards: The Supreme Court, Segregation Legislation, and the African American Press, 1877-1920",
-    "“It Seemed Like Reaching for the Moon:” Southside Virginia’s Civil Rights Struggle Against  The Virginia Way, 1951-1964",
     "Blessed are the peacemakers : Martin Luther King Jr., eight religious leaders, the media, and the letter from Birmingham jail",
-    "Education and the evolution of the South : a history of the Berry Schools, 1902-1970"
+    "Slipping Backwards: The Supreme Court, Segregation Legislation, and the African American Press, 1877-1920",
+    "From the Field to the Shop Floor",
+    "“It Seemed Like Reaching for the Moon:” Southside Virginia’s Civil Rights Struggle Against  The Virginia Way, 1951-1964",
+    "Brick and Mortar: Historically Black Colleges and the Struggle for Equality, 1930-1960"
    ]
   },
   {
    "id": 8,
-   "provisional_label": "Wiebe · Scott · Cronon — nature, conservation, condition, progressive",
+   "provisional_label": "Wiebe · Hofstadter · McGerr — search, order, progressive, reform",
    "label_is_provisional": true,
-   "louvain_hint": "Environment & the state (provisional)",
+   "louvain_hint": "Gilded Age & Progressive Era (provisional)",
    "title_terms": [
-    "nature",
-    "conservation",
-    "condition",
+    "search",
+    "order",
     "progressive",
-    "machine",
-    "wilderness"
+    "reform",
+    "american",
+    "age"
    ],
-   "bootstrap_stability": 0.691,
-   "unstable": false,
-   "init_stability": 0.773,
-   "dominated_dissertations": 93,
-   "member_works": 53,
+   "bootstrap_stability": 0.346,
+   "unstable": true,
+   "init_stability": 0.544,
+   "dominated_dissertations": 82,
+   "member_works": 48,
    "years": {
-    "median": 2014,
+    "median": 2011,
     "by_5yr": {
      "1970-1974": 1,
      "1975-1979": 1,
-     "1980-1984": 4,
-     "1985-1989": 2,
-     "1990-1994": 2,
-     "1995-1999": 2,
-     "2000-2004": 5,
-     "2005-2009": 8,
-     "2010-2014": 31,
-     "2015-2019": 20,
-     "2020-2024": 12,
-     "2025-2029": 4,
+     "1980-1984": 5,
+     "1985-1989": 3,
+     "1990-1994": 3,
+     "1995-1999": 5,
+     "2000-2004": 4,
+     "2005-2009": 12,
+     "2010-2014": 23,
+     "2015-2019": 12,
+     "2020-2024": 10,
+     "2025-2029": 2,
      "unknown": 1
     },
     "share_of_bin": {
-     "2000-2004": 0.106,
-     "2005-2009": 0.062,
-     "2010-2014": 0.089,
-     "2015-2019": 0.06,
-     "2020-2024": 0.054,
-     "2025-2029": 0.091
+     "2000-2004": 0.085,
+     "2005-2009": 0.091,
+     "2010-2014": 0.062,
+     "2015-2019": 0.035,
+     "2020-2024": 0.042,
+     "2025-2029": 0.045
     }
    },
    "top_works": [
@@ -3261,359 +3263,359 @@
      "year": 1967,
      "loading": 1.0,
      "citing": 83,
-     "membership": 0.799
-    },
-    {
-     "id": "W:scott|seeing like a sate",
-     "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
-     "first_author": "Scott, James C",
-     "year": 1998,
-     "loading": 0.996,
-     "citing": 104,
-     "membership": 0.581
-    },
-    {
-     "id": "W:cronon|natures metropolis",
-     "title": "Nature’s Metropolis: Chicago and the Great West",
-     "first_author": "Cronon, William",
-     "year": 1991,
-     "loading": 0.876,
-     "citing": 76,
-     "membership": 0.771
-    },
-    {
-     "id": "W:hays|conservation and the gospel of efficiency",
-     "title": "Conservation and the Gospel of Efficiency: The Progressive Conservation Movement, 1890-1920",
-     "first_author": "Hays, Samuel P",
-     "year": 1959,
-     "loading": 0.819,
-     "citing": 28,
      "membership": 1.0
-    },
-    {
-     "id": "W:jacoby|crimes against nature",
-     "title": "Crimes Against Nature: Squatters, Poachers, Thieves, and the Hidden History of American Conservation",
-     "first_author": "Jacoby, Karl",
-     "year": 2001,
-     "loading": 0.716,
-     "citing": 23,
-     "membership": 1.0
-    },
-    {
-     "id": "W:white|organic machine",
-     "title": "The Organic Machine: The Remaking of the Columbia River",
-     "first_author": "White, Richard",
-     "year": 1995,
-     "loading": 0.715,
-     "citing": 32,
-     "membership": 0.935
-    },
-    {
-     "id": "W:nash|wilderness and american mind",
-     "title": "Wilderness and the American Mind",
-     "first_author": "Nash, Roderick",
-     "year": 2001,
-     "loading": 0.592,
-     "citing": 27,
-     "membership": 0.983
-    },
-    {
-     "id": "W:worster|rivers ofempire",
-     "title": "Rivers of Empire: Water, Aridity, and the Growth of the American West",
-     "first_author": "Worster, Donald",
-     "year": 1985,
-     "loading": 0.567,
-     "citing": 22,
-     "membership": 0.906
-    },
-    {
-     "id": "W:chandler|visible hand",
-     "title": "The Visible Hand: The Managerial Revolution in American Business",
-     "first_author": "Chandler, Alfred D",
-     "year": 1977,
-     "loading": 0.487,
-     "citing": 38,
-     "membership": 0.786
     },
     {
      "id": "W:hofstadter|age of reform",
      "title": "The Age of Reform: From Bryan to F.D.R",
      "first_author": "Hofstadter, Richard",
      "year": 1955,
-     "loading": 0.465,
+     "loading": 0.497,
      "citing": 46,
-     "membership": 0.639
-    },
-    {
-     "id": "W:rodgers|atlantic crossings",
-     "title": "Atlantic Crossings: Social Politics in a Progressive Age",
-     "first_author": "Rodgers, Daniel T",
-     "year": 1998,
-     "loading": 0.45,
-     "citing": 63,
-     "membership": 0.528
-    },
-    {
-     "id": "W:rome|bulldozer in the countryside",
-     "title": "The Bulldozer in the Countryside: Suburban Sprawl and the Rise of American Environmentalism",
-     "first_author": "Rome, Adam",
-     "year": 2001,
-     "loading": 0.438,
-     "citing": 32,
-     "membership": 0.557
-    },
-    {
-     "id": "W:worster|dustbowl",
-     "title": "Dust Bowl: The Southern Plains in the 1930s",
-     "first_author": "Worster, Donald",
-     "year": 1979,
-     "loading": 0.414,
-     "citing": 22,
-     "membership": 0.833
-    },
-    {
-     "id": "W:spence|dispossessing the wilderness",
-     "title": "Dispossessing the Wilderness: Indian Removal and the Making of the National Parks",
-     "first_author": "Spence, Mark David",
-     "year": 1999,
-     "loading": 0.398,
-     "citing": 16,
-     "membership": 0.864
-    },
-    {
-     "id": "W:cronon|uncommon ground",
-     "title": "Uncommon Ground: Rethinking the Human Place in Nature",
-     "first_author": "Cronon, William",
-     "year": 1995,
-     "loading": 0.358,
-     "citing": 17,
-     "membership": 0.901
+     "membership": 0.983
     },
     {
      "id": "W:mcgerr|fierce discontent",
      "title": "A Fierce Discontent: The Rise and Fall of the Progressive Movement in America, 1870-1920",
      "first_author": "McGerr, Michael",
      "year": 2003,
-     "loading": 0.347,
+     "loading": 0.326,
      "citing": 36,
-     "membership": 0.593
+     "membership": 0.823
     },
     {
-     "id": "W:carson|silent spring",
-     "title": "Silent Spring",
-     "first_author": "Carson, Rachel L",
-     "year": 1962,
-     "loading": 0.338,
-     "citing": 17,
-     "membership": 0.786
+     "id": "W:chandler|visible hand",
+     "title": "The Visible Hand: The Managerial Revolution in American Business",
+     "first_author": "Chandler, Alfred D",
+     "year": 1977,
+     "loading": 0.314,
+     "citing": 40,
+     "membership": 0.695
     },
     {
-     "id": "W:hurley|environmental inequalities",
-     "title": "Environmental Inequalities: Class, Race, and Industrial Pollution in Gary, Indiana, 1945-1980",
-     "first_author": "Hurley, Andrew",
-     "year": 1995,
-     "loading": 0.338,
-     "citing": 22,
-     "membership": 0.634
+     "id": "W:higham|stranger in the land",
+     "title": "Strangers in the Land: Patterns of American Nativism, 1860-1925",
+     "first_author": "Higham, John",
+     "year": 1955,
+     "loading": 0.289,
+     "citing": 49,
+     "membership": 0.527
     },
     {
      "id": "W:kolko|triump of conservatism",
      "title": "The Triumph of Conservatism: A Reinterpretation of American History, 1900-1916",
      "first_author": "Kolko, Gabriel",
      "year": 1963,
-     "loading": 0.33,
+     "loading": 0.284,
      "citing": 20,
-     "membership": 0.857
+     "membership": 1.0
     },
     {
-     "id": "W:white|your misfortune and none of my own",
-     "title": "“It’s Your Misfortune and None of My Own”: A New History of the American West",
-     "first_author": "White, Richard",
-     "year": 1991,
-     "loading": 0.323,
-     "citing": 27,
-     "membership": 0.62
+     "id": "W:rodgers|atlantic crossings",
+     "title": "Atlantic Crossings: Social Politics in a Progressive Age",
+     "first_author": "Rodgers, Daniel T",
+     "year": 1998,
+     "loading": 0.277,
+     "citing": 64,
+     "membership": 0.484
+    },
+    {
+     "id": "W:cohen|making a new deal",
+     "title": "Making a New Deal: Industrial Workers in Chicago, 1919-1939",
+     "first_author": "Cohen, Lizabeth",
+     "year": 1990,
+     "loading": 0.263,
+     "citing": 59,
+     "membership": 0.52
+    },
+    {
+     "id": "W:kennedy|over here",
+     "title": "Over Here: The First World War and American Society",
+     "first_author": "Kennedy, David M",
+     "year": 1980,
+     "loading": 0.255,
+     "citing": 23,
+     "membership": 0.873
     },
     {
      "id": "W:skowronek|building a new american state",
      "title": "Building a New American State: The Expansion of National Administrative Capacities, 1877-1920",
      "first_author": "Skowronek, Stephen",
      "year": 1982,
-     "loading": 0.32,
+     "loading": 0.242,
      "citing": 22,
-     "membership": 0.734
+     "membership": 0.826
     },
     {
-     "id": "W:cronon|changes in the land",
-     "title": "Changes in the Land: Indians, Colonists, and the Ecology of New England",
-     "first_author": "Cronon, William",
-     "year": 1983,
-     "loading": 0.314,
-     "citing": 41,
-     "membership": 0.454
+     "id": "W:kennedy|freedomfrom fear",
+     "title": "Freedom From Fear: The American People in Depression and War, 1929-1945",
+     "first_author": "Kennedy, David M",
+     "year": 1999,
+     "loading": 0.231,
+     "citing": 33,
+     "membership": 0.641
     },
     {
-     "id": "W:gottlieb|forcing the spring",
-     "title": "Forcing the Spring: The Transformation of the American Environmental Movement",
-     "first_author": "Gottlieb, Robert",
+     "id": "W:bledstein|culture ofprofessionalism",
+     "title": "The Culture of Professionalism: The Middle Class and the Development of Higher Education in America",
+     "first_author": "Bledstein, Burton J",
+     "year": 1976,
+     "loading": 0.22,
+     "citing": 15,
+     "membership": 0.839
+    },
+    {
+     "id": "W:trachtenberg|incorporation ofamerica",
+     "title": "The Incorporation of America: Culture and Society in the Gilded Age",
+     "first_author": "Trachtenberg, Alan",
+     "year": 1982,
+     "loading": 0.216,
+     "citing": 26,
+     "membership": 0.659
+    },
+    {
+     "id": "W:rodgers|in search ofprogressivism|a",
+     "title": "In Search of Progressivism",
+     "first_author": "Rodgers, Daniel T",
+     "year": 1982,
+     "loading": 0.206,
+     "citing": 15,
+     "membership": 0.923
+    },
+    {
+     "id": "W:weigley|american wav of war",
+     "title": "The American Way of War: A History of United States Military Strategy and Policy",
+     "first_author": "Weigley, Russell F",
+     "year": 1973,
+     "loading": 0.202,
+     "citing": 17,
+     "membership": 0.811
+    },
+    {
+     "id": "W:lears|rebirth of nation",
+     "title": "Rebirth of a Nation: The Making of Modern America, 1877-1920",
+     "first_author": "Lears, Jackson",
+     "year": 2009,
+     "loading": 0.195,
+     "citing": 21,
+     "membership": 0.771
+    },
+    {
+     "id": "W:boyer|urban masses and moral order in america",
+     "title": "Urban Masses and Moral Order in America, 1820-1920",
+     "first_author": "Boyer, Paul",
+     "year": 1978,
+     "loading": 0.193,
+     "citing": 28,
+     "membership": 0.629
+    },
+    {
+     "id": "W:lears|no place ofgrace",
+     "title": "No Place of Grace: Antimodernism and the Transformation of American Culture, 1880-1920",
+     "first_author": "Lears, Jackson",
+     "year": 1981,
+     "loading": 0.188,
+     "citing": 32,
+     "membership": 0.6
+    },
+    {
+     "id": "W:bederman|manliness and civi ization",
+     "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+     "first_author": "Bederman, Gail",
+     "year": 1995,
+     "loading": 0.187,
+     "citing": 63,
+     "membership": 0.345
+    },
+    {
+     "id": "W:muncy|creating a female dominion",
+     "title": "Creating a Female Dominion in American Reform, 1890-1935",
+     "first_author": "Muncy, Robyn",
+     "year": 1991,
+     "loading": 0.171,
+     "citing": 22,
+     "membership": 0.703
+    },
+    {
+     "id": "W:leach|land of desire",
+     "title": "Land of Desire: Merchants, Power, and the Rise of a New American Culture",
+     "first_author": "Leach, William",
      "year": 1993,
-     "loading": 0.309,
+     "loading": 0.167,
+     "citing": 17,
+     "membership": 0.764
+    },
+    {
+     "id": "W:wiebe|searchfor order",
+     "title": "The Search for Order",
+     "first_author": "Wiebe, Robert H",
+     "year": 1967,
+     "loading": 0.154,
      "citing": 16,
-     "membership": 0.69
+     "membership": 0.828
     },
     {
-     "id": "W:mitchell|rule of experts",
-     "title": "Rule of Experts: Egypt, Techno-Politics, Modernity",
-     "first_author": "Mitchell, Timothy",
-     "year": 2002,
-     "loading": 0.305,
-     "citing": 30,
-     "membership": 0.485
+     "id": "W:skocpol|protecting soldiers and others",
+     "title": "Protecting Soldiers and Mothers: The Political Origins of Social Policy in the United States",
+     "first_author": "Skocpol, Theda",
+     "year": 1992,
+     "loading": 0.151,
+     "citing": 31,
+     "membership": 0.517
     },
     {
-     "id": "W:marx|machine in the garden",
-     "title": "The Machine in the Garden: Technology and the Pastoral Ideal in America",
-     "first_author": "Marx, Leo",
-     "year": 1964,
-     "loading": 0.303,
-     "citing": 22,
-     "membership": 0.754
+     "id": "W:hays|conservation and the gospel of efficiency",
+     "title": "Conservation and the Gospel of Efficiency: The Progressive Conservation Movement, 1890-1920",
+     "first_author": "Hays, Samuel P",
+     "year": 1959,
+     "loading": 0.149,
+     "citing": 29,
+     "membership": 0.287
+    },
+    {
+     "id": "W:brinkley|end of reform",
+     "title": "The End of Reform: New Deal Liberalism in Recession and War",
+     "first_author": "Brinkley, Alan",
+     "year": 1995,
+     "loading": 0.147,
+     "citing": 36,
+     "membership": 0.409
     }
    ],
    "top_people": [
     {
-     "name": "Cronon, William",
-     "loading_share": 0.0561
-    },
-    {
-     "name": "White, Richard",
-     "loading_share": 0.0481
-    },
-    {
-     "name": "Scott, James C",
-     "loading_share": 0.042
-    },
-    {
      "name": "Wiebe, Robert H",
-     "loading_share": 0.0399
-    },
-    {
-     "name": "Worster, Donald",
-     "loading_share": 0.0356
-    },
-    {
-     "name": "Hays, Samuel P",
-     "loading_share": 0.0297
-    },
-    {
-     "name": "Jacoby, Karl",
-     "loading_share": 0.026
-    },
-    {
-     "name": "Rodgers, Daniel T",
-     "loading_share": 0.0248
-    },
-    {
-     "name": "Nash, Roderick",
-     "loading_share": 0.0215
+     "loading_share": 0.0709
     },
     {
      "name": "Hofstadter, Richard",
-     "loading_share": 0.0187
-    },
-    {
-     "name": "Chandler, Alfred D",
-     "loading_share": 0.0177
+     "loading_share": 0.0357
     },
     {
      "name": "Kennedy, David M",
-     "loading_share": 0.0162
+     "loading_share": 0.0298
     },
     {
-     "name": "Rome, Adam",
-     "loading_share": 0.0159
+     "name": "Rodgers, Daniel T",
+     "loading_share": 0.0296
     },
     {
      "name": "Lears, Jackson",
-     "loading_share": 0.0154
+     "loading_share": 0.0235
     },
     {
      "name": "Cohen, Lizabeth",
-     "loading_share": 0.0147
+     "loading_share": 0.0213
+    },
+    {
+     "name": "McGerr, Michael",
+     "loading_share": 0.02
+    },
+    {
+     "name": "Chandler, Alfred D",
+     "loading_share": 0.0193
+    },
+    {
+     "name": "Higham, John",
+     "loading_share": 0.0178
+    },
+    {
+     "name": "Kolko, Gabriel",
+     "loading_share": 0.0174
+    },
+    {
+     "name": "Bederman, Gail",
+     "loading_share": 0.0159
+    },
+    {
+     "name": "Skowronek, Stephen",
+     "loading_share": 0.0149
+    },
+    {
+     "name": "Bledstein, Burton J",
+     "loading_share": 0.0135
+    },
+    {
+     "name": "Trachtenberg, Alan",
+     "loading_share": 0.0132
+    },
+    {
+     "name": "Boyer, Paul",
+     "loading_share": 0.0132
     }
    ],
    "top_institutions": [
     [
-     "oklahoma",
-     20
-    ],
-    [
-     "michigan",
-     11
-    ],
-    [
      "maryland",
-     9
+     14
     ],
     [
-     "washington",
+     "oklahoma",
+     12
+    ],
+    [
+     "tennessee",
+     10
+    ],
+    [
+     "rice",
      9
     ],
     [
      "duke",
-     8
+     7
     ],
     [
-     "rice",
-     6
+     "newmexico",
+     5
     ]
    ],
    "sample_dissertations": [
-    "The Conflicted Mission of the United States Bureau of Biological Survey, 1885-1940: Wildlife, Uncertainty, and Ambivalence",
-    "Life, Death, and the Construction of Space on the Kamo River",
-    "Oklahoma's Forgotten Drought: Regional and Federal Responses to Climate Crisis in the 1950s",
-    "From creekology to geology:  Finding and conserving oil on the Southern Plains, 1859--1930.",
-    "Taylorism in France, 1904-1920 :",
-    "Colorado's 'island community':  Irrigation and industrial agriculture in Colorado's Grand Valley, 1882--1920.",
-    "A BOND RATHER THAN A BARRIER?  CONSTRUCTING THE ST. LAWRENCE SEAWAY",
-    "Preserving the garden :"
+    "THE WORLDVIEW OF FRANKLIN D. ROOSEVELT: FRANCE, GERMANY, AND UNITED STATES INVOLVEMENT IN WORLD WAR II IN EUROPE",
+    "The early years of the American Bar Association, 1878-1928",
+    "The Robber Barons of Show Business: Traveling Amusements And The Development of the American Entertainment Industry, 1870- 1920",
+    "From intolerance to indifference : access to opportunity for women physicians, 1870-1925",
+    "From Scopes to Reagan",
+    "\"THE CITY THAT KNOWS HOW\":  SAN FRANCISCO, THE GREAT WAR, AND URBAN IDENTITY",
+    "Defining Rights: Contesting the Contra War Through Human Rights Advocacy, 1981-1988",
+    "THE DUDLEY OBSERVATORY CONTROVERSY (NEW YORK)"
    ]
   },
   {
    "id": 9,
    "provisional_label": "Anderson · Gellner · Hobsbawm — nationalism, nations, bohemian, germany",
    "label_is_provisional": true,
-   "louvain_hint": "Theory, empire & the transnational turn (provisional)",
+   "louvain_hint": null,
    "title_terms": [
     "nationalism",
     "nations",
     "bohemian",
     "germany",
-    "nationhood",
-    "bourgeois"
+    "bourgeois",
+    "nationhood"
    ],
-   "bootstrap_stability": 0.927,
+   "bootstrap_stability": 0.858,
    "unstable": false,
-   "init_stability": 0.999,
-   "dominated_dissertations": 85,
-   "member_works": 32,
+   "init_stability": 0.977,
+   "dominated_dissertations": 71,
+   "member_works": 26,
    "years": {
-    "median": 2014,
+    "median": 2013,
     "by_5yr": {
-     "1995-1999": 2,
-     "2000-2004": 5,
+     "1995-1999": 1,
+     "2000-2004": 4,
      "2005-2009": 13,
-     "2010-2014": 26,
-     "2015-2019": 22,
-     "2020-2024": 14,
+     "2010-2014": 22,
+     "2015-2019": 16,
+     "2020-2024": 12,
      "2025-2029": 3
     },
     "share_of_bin": {
-     "2000-2004": 0.106,
-     "2005-2009": 0.101,
-     "2010-2014": 0.075,
-     "2015-2019": 0.066,
-     "2020-2024": 0.062,
+     "2000-2004": 0.085,
+     "2005-2009": 0.098,
+     "2010-2014": 0.06,
+     "2015-2019": 0.046,
+     "2020-2024": 0.051,
      "2025-2029": 0.068
     }
    },
@@ -3624,124 +3626,739 @@
      "first_author": "Anderson, Benedict",
      "year": 1991,
      "loading": 1.0,
-     "citing": 233,
-     "membership": 0.74
+     "citing": 237,
+     "membership": 0.777
     },
     {
      "id": "W:gellner|nation and nationalism",
      "title": "Nations and Nationalism",
      "first_author": "Gellner, Ernest",
      "year": 1983,
-     "loading": 0.562,
+     "loading": 0.529,
      "citing": 35,
-     "membership": 1.0
+     "membership": 0.997
     },
     {
      "id": "W:hobsbawm|nations and nationalism",
      "title": "Nations and Nationalism since 1780: Programme, Myth, Reality",
      "first_author": "Hobsbawm, Eric",
      "year": 1990,
-     "loading": 0.407,
+     "loading": 0.401,
      "citing": 29,
-     "membership": 0.989
+     "membership": 0.994
     },
     {
      "id": "W:hobsbawm|invention oftradition",
      "title": "The Invention of Tradition",
      "first_author": "Hobsbawm, Eric",
      "year": 1983,
-     "loading": 0.317,
+     "loading": 0.311,
      "citing": 41,
-     "membership": 0.784
-    },
-    {
-     "id": "W:king|budweisers into czechs and germans",
-     "title": "Budweisers into Czechs and Germans: A Local History of Bohemian Politics, 1848-1948",
-     "first_author": "King, Jeremy",
-     "year": 2002,
-     "loading": 0.289,
-     "citing": 17,
-     "membership": 1.0
-    },
-    {
-     "id": "W:judson|guardians of the nation",
-     "title": "Guardians of the Nation: Activists on the Language Frontiers of Imperial Austria",
-     "first_author": "Judson, Pieter M",
-     "year": 2006,
-     "loading": 0.275,
-     "citing": 18,
-     "membership": 1.0
+     "membership": 0.804
     },
     {
      "id": "W:habermas|structural transformation ofthe public sphere",
      "title": "The Structural Transformation of the Public Sphere: An Inquiry into a Category of Bourgeois Society",
      "first_author": "Habermas, Jürgen",
      "year": 1989,
-     "loading": 0.269,
+     "loading": 0.272,
      "citing": 58,
-     "membership": 0.539
+     "membership": 0.557
     },
     {
-     "id": "W:zahra|kidnapped souls",
-     "title": "Kidnapped Souls: National Indifference and the Battle for Children in the Bohemian Lands, 1900-1948",
-     "first_author": "Zahra, Tara",
-     "year": 2008,
-     "loading": 0.269,
-     "citing": 17,
-     "membership": 1.0
+     "id": "W:king|budweisers into czechs and germans",
+     "title": "Budweisers into Czechs and Germans: A Local History of Bohemian Politics, 1848-1948",
+     "first_author": "King, Jeremy",
+     "year": 2002,
+     "loading": 0.252,
+     "citing": 19,
+     "membership": 0.858
+    },
+    {
+     "id": "W:judson|guardians of the nation",
+     "title": "Guardians of the Nation: Activists on the Language Frontiers of Imperial Austria",
+     "first_author": "Judson, Pieter M",
+     "year": 2006,
+     "loading": 0.24,
+     "citing": 19,
+     "membership": 0.893
     },
     {
      "id": "W:smith|ethnic origins of na",
      "title": "The Ethnic Origins of Nations",
      "first_author": "Smith, Anthony D",
      "year": 1986,
-     "loading": 0.243,
+     "loading": 0.21,
      "citing": 15,
-     "membership": 0.991
-    },
-    {
-     "id": "W:brubaker|nationalism reframed",
-     "title": "Nationalism Reframed: Nationhood and the National Question in the New Europe",
-     "first_author": "Brubaker, Rogers",
-     "year": 1996,
-     "loading": 0.237,
-     "citing": 17,
-     "membership": 0.972
-    },
-    {
-     "id": "W:arendt|origins of totalitarism",
-     "title": "The Origins of Totalitarianism",
-     "first_author": "Arendt, Hannah",
-     "year": 1973,
-     "loading": 0.206,
-     "citing": 28,
-     "membership": 0.746
+     "membership": 0.927
     },
     {
      "id": "W:weber|peasants into frenchmen",
      "title": "Peasants into Frenchmen: The Modernization of Rural France, 1870-1914",
      "first_author": "Weber, Eugen",
      "year": 1976,
-     "loading": 0.198,
-     "citing": 30,
-     "membership": 0.624
+     "loading": 0.204,
+     "citing": 31,
+     "membership": 0.669
+    },
+    {
+     "id": "W:brubaker|nationalism reframed",
+     "title": "Nationalism Reframed: Nationhood and the National Question in the New Europe",
+     "first_author": "Brubaker, Rogers",
+     "year": 1996,
+     "loading": 0.195,
+     "citing": 17,
+     "membership": 0.824
+    },
+    {
+     "id": "W:zahra|kidnapped souls",
+     "title": "Kidnapped Souls: National Indifference and the Battle for Children in the Bohemian Lands, 1900-1948",
+     "first_author": "Zahra, Tara",
+     "year": 2008,
+     "loading": 0.195,
+     "citing": 18,
+     "membership": 0.709
     },
     {
      "id": "W:herf|reactionary modernism",
      "title": "Reactionary Modernism: Technology, Culture, and Politics in Weimar and the Third Reich",
      "first_author": "Herf, Jeffrey",
      "year": 1984,
-     "loading": 0.193,
+     "loading": 0.18,
      "citing": 17,
-     "membership": 0.999
+     "membership": 0.913
+    },
+    {
+     "id": "W:halbwachs|on collective memory",
+     "title": "On Collective Memory",
+     "first_author": "Halbwachs, Maurice",
+     "year": 1992,
+     "loading": 0.173,
+     "citing": 18,
+     "membership": 0.933
     },
     {
      "id": "W:blackbourn|pecularities of german history",
      "title": "The Peculiarities of German History: Bourgeois Society and Politics in Nineteenth-Century Germany",
      "first_author": "Blackbourn, David",
      "year": 1984,
-     "loading": 0.193,
+     "loading": 0.169,
      "citing": 16,
+     "membership": 0.951
+    },
+    {
+     "id": "W:winter|sites of memory",
+     "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
+     "first_author": "Winter, Jay",
+     "year": 1995,
+     "loading": 0.168,
+     "citing": 16,
+     "membership": 0.863
+    },
+    {
+     "id": "W:applegate|nation ofprovincials",
+     "title": "A Nation of Provincials: The German Idea of Heimat",
+     "first_author": "Applegate, Celia",
+     "year": 1990,
+     "loading": 0.167,
+     "citing": 15,
+     "membership": 0.993
+    },
+    {
+     "id": "W:brubaker|citizenship and nationhood in france and germany",
+     "title": "Citizenship and Nationhood in France and Germany",
+     "first_author": "Brubaker, Rogers",
+     "year": 1992,
+     "loading": 0.165,
+     "citing": 21,
+     "membership": 0.663
+    },
+    {
+     "id": "W:confino|nation as local metaphor",
+     "title": "The Nation as a Local Metaphor: Württemberg, Imperial Germany, and National Memory, 1871-1918",
+     "first_author": "Confino, Alon",
+     "year": 1997,
+     "loading": 0.156,
+     "citing": 16,
+     "membership": 0.848
+    },
+    {
+     "id": "W:hull|absolute destruction",
+     "title": "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany",
+     "first_author": "Hull, Isabel V",
+     "year": 2005,
+     "loading": 0.139,
+     "citing": 17,
+     "membership": 0.67
+    },
+    {
+     "id": "W:chatterjee|nation and its fragments",
+     "title": "The Nation and Its Fragments: Colonial and Postcolonial Histories",
+     "first_author": "Chatterjee, Partha",
+     "year": 1993,
+     "loading": 0.12,
+     "citing": 32,
+     "membership": 0.305
+    },
+    {
+     "id": "W:geertz|interpretation of culture",
+     "title": "The Interpretation of Cultures: Selected Essays",
+     "first_author": "Geertz, Clifford",
+     "year": 1973,
+     "loading": 0.118,
+     "citing": 46,
+     "membership": 0.396
+    },
+    {
+     "id": "W:arendt|origins of totalitarism",
+     "title": "The Origins of Totalitarianism",
+     "first_author": "Arendt, Hannah",
+     "year": 1973,
+     "loading": 0.117,
+     "citing": 30,
+     "membership": 0.384
+    },
+    {
+     "id": "W:fussell|great war and modem memory",
+     "title": "The Great War and Modern Memory",
+     "first_author": "Fussell, Paul",
+     "year": 1975,
+     "loading": 0.11,
+     "citing": 15,
+     "membership": 0.685
+    },
+    {
+     "id": "W:colley|ritons",
+     "title": "Britons: Forging the Nation, 1707-1837",
+     "first_author": "Colley, Linda",
+     "year": 1992,
+     "loading": 0.107,
+     "citing": 40,
+     "membership": 0.331
+    },
+    {
+     "id": "W:calhoun|habermas and the public sphere",
+     "title": "Habermas and the Public Sphere",
+     "first_author": "Calhoun, Craig",
+     "year": 1992,
+     "loading": 0.098,
+     "citing": 17,
+     "membership": 0.575
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Anderson, Benedict",
+     "loading_share": 0.1232
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0877
+    },
+    {
+     "name": "Gellner, Ernest",
+     "loading_share": 0.0652
+    },
+    {
+     "name": "Brubaker, Rogers",
+     "loading_share": 0.0443
+    },
+    {
+     "name": "Habermas, Jürgen",
+     "loading_share": 0.0335
+    },
+    {
+     "name": "King, Jeremy",
+     "loading_share": 0.0311
+    },
+    {
+     "name": "Judson, Pieter M",
+     "loading_share": 0.0296
+    },
+    {
+     "name": "Smith, Anthony D",
+     "loading_share": 0.0259
+    },
+    {
+     "name": "Weber, Eugen",
+     "loading_share": 0.0251
+    },
+    {
+     "name": "Zahra, Tara",
+     "loading_share": 0.024
+    },
+    {
+     "name": "Herf, Jeffrey",
+     "loading_share": 0.0221
+    },
+    {
+     "name": "Halbwachs, Maurice",
+     "loading_share": 0.0213
+    },
+    {
+     "name": "Blackbourn, David",
+     "loading_share": 0.0208
+    },
+    {
+     "name": "Winter, Jay",
+     "loading_share": 0.0206
+    },
+    {
+     "name": "Applegate, Celia",
+     "loading_share": 0.0205
+    }
+   ],
+   "top_institutions": [
+    [
+     "maryland",
+     17
+    ],
+    [
+     "michigan",
+     12
+    ],
+    [
+     "tennessee",
+     7
+    ],
+    [
+     "vanderbilt",
+     7
+    ],
+    [
+     "minnesota",
+     4
+    ],
+    [
+     "rice",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "Bulgaria's Macedonia: Nation-Building and State Building, Centralization and Autonomy in Pirin Macedonia, 1903-1952",
+    "Political Murder and the Victory of Ethnic Nationalism in Interwar Poland.",
+    "Fractured Nationalism and the Crises of French Identity, 1789-1899",
+    "Germany's Catholic fraternities and the Weimar Republic",
+    "A legacy of care:\tHesse and the Alice Frauenverein, 1867-1918",
+    "Redemptive Geographies: The Turn to Local Heimat in West Germany, 1945-1965",
+    "Identity, Community, and State Formation at Roman Palmyra",
+    "Jewish Citizens of Socialist Yugoslavia: Politics of Jewish Identity in a Socialist State, 1944-1974."
+   ]
+  },
+  {
+   "id": 10,
+   "provisional_label": "Scott · Cronon · White — nature, condition, conservation, wilderness",
+   "label_is_provisional": true,
+   "louvain_hint": "Environment & the state (provisional)",
+   "title_terms": [
+    "nature",
+    "condition",
+    "conservation",
+    "wilderness",
+    "machine",
+    "human"
+   ],
+   "bootstrap_stability": 0.778,
+   "unstable": false,
+   "init_stability": 0.958,
+   "dominated_dissertations": 71,
+   "member_works": 36,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1995-1999": 1,
+     "2000-2004": 4,
+     "2005-2009": 5,
+     "2010-2014": 23,
+     "2015-2019": 21,
+     "2020-2024": 13,
+     "2025-2029": 4
+    },
+    "share_of_bin": {
+     "2000-2004": 0.085,
+     "2005-2009": 0.038,
+     "2010-2014": 0.062,
+     "2015-2019": 0.061,
+     "2020-2024": 0.055,
+     "2025-2029": 0.091
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:scott|seeing like a sate",
+     "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+     "first_author": "Scott, James C",
+     "year": 1998,
+     "loading": 1.0,
+     "citing": 113,
+     "membership": 0.753
+    },
+    {
+     "id": "W:cronon|natures metropolis",
+     "title": "Nature’s Metropolis: Chicago and the Great West",
+     "first_author": "Cronon, William",
+     "year": 1991,
+     "loading": 0.618,
+     "citing": 81,
+     "membership": 0.712
+    },
+    {
+     "id": "W:white|organic machine",
+     "title": "The Organic Machine: The Remaking of the Columbia River",
+     "first_author": "White, Richard",
+     "year": 1995,
+     "loading": 0.57,
+     "citing": 35,
+     "membership": 0.955
+    },
+    {
+     "id": "W:jacoby|crimes against nature",
+     "title": "Crimes Against Nature: Squatters, Poachers, Thieves, and the Hidden History of American Conservation",
+     "first_author": "Jacoby, Karl",
+     "year": 2001,
+     "loading": 0.527,
+     "citing": 24,
+     "membership": 1.0
+    },
+    {
+     "id": "W:mitchell|rule of experts",
+     "title": "Rule of Experts: Egypt, Techno-Politics, Modernity",
+     "first_author": "Mitchell, Timothy",
+     "year": 2002,
+     "loading": 0.452,
+     "citing": 36,
+     "membership": 0.755
+    },
+    {
+     "id": "W:hays|conservation and the gospel of efficiency",
+     "title": "Conservation and the Gospel of Efficiency: The Progressive Conservation Movement, 1890-1920",
+     "first_author": "Hays, Samuel P",
+     "year": 1959,
+     "loading": 0.424,
+     "citing": 29,
+     "membership": 0.713
+    },
+    {
+     "id": "W:worster|rivers ofempire",
+     "title": "Rivers of Empire: Water, Aridity, and the Growth of the American West",
+     "first_author": "Worster, Donald",
+     "year": 1985,
+     "loading": 0.402,
+     "citing": 23,
+     "membership": 0.876
+    },
+    {
+     "id": "W:nash|wilderness and american mind",
+     "title": "Wilderness and the American Mind",
+     "first_author": "Nash, Roderick",
+     "year": 1967,
+     "loading": 0.356,
+     "citing": 28,
+     "membership": 0.8
+    },
+    {
+     "id": "W:grove|green imperialism",
+     "title": "Green Imperialism: Colonial Expansion, Tropical Island Edens and the Origins of Environmentalism, 1600-1860",
+     "first_author": "Grove, Richard",
+     "year": 1995,
+     "loading": 0.332,
+     "citing": 22,
+     "membership": 0.704
+    },
+    {
+     "id": "W:cronon|trouble with wilderness|a",
+     "title": "The Trouble with Wilderness; or, Getting Back to the Wrong Nature",
+     "first_author": "Cronon, William",
+     "year": 1996,
+     "loading": 0.31,
+     "citing": 15,
+     "membership": 0.951
+    },
+    {
+     "id": "W:cronon|uncommon ground",
+     "title": "Uncommon Ground: Rethinking the Human Place in Nature",
+     "first_author": "Cronon, William",
+     "year": 1995,
+     "loading": 0.305,
+     "citing": 19,
+     "membership": 0.936
+    },
+    {
+     "id": "W:rome|bulldozer in the countryside",
+     "title": "The Bulldozer in the Countryside: Suburban Sprawl and the Rise of American Environmentalism",
+     "first_author": "Rome, Adam",
+     "year": 2001,
+     "loading": 0.304,
+     "citing": 32,
+     "membership": 0.535
+    },
+    {
+     "id": "W:lefebvre|production ofspace",
+     "title": "The Production of Space",
+     "first_author": "Lefebvre, Henri",
+     "year": 1991,
+     "loading": 0.293,
+     "citing": 49,
+     "membership": 0.453
+    },
+    {
+     "id": "W:spence|dispossessing the wilderness",
+     "title": "Dispossessing the Wilderness: Indian Removal and the Making of the National Parks",
+     "first_author": "Spence, Mark David",
+     "year": 1999,
+     "loading": 0.292,
+     "citing": 17,
+     "membership": 0.854
+    },
+    {
+     "id": "W:worster|dustbowl",
+     "title": "Dust Bowl: The Southern Plains in the 1930s",
+     "first_author": "Worster, Donald",
+     "year": 1979,
+     "loading": 0.28,
+     "citing": 23,
+     "membership": 0.727
+    },
+    {
+     "id": "W:crosby|ecological imperia ism",
+     "title": "Ecological Imperialism: The Biological Expansion of Europe, 900-1900",
+     "first_author": "Crosby, Alfred W",
+     "year": 1986,
+     "loading": 0.251,
+     "citing": 25,
+     "membership": 0.627
+    },
+    {
+     "id": "W:hurley|environmental inequalities",
+     "title": "Environmental Inequalities: Class, Race, and Industrial Pollution in Gary, Indiana, 1945-1980",
+     "first_author": "Hurley, Andrew",
+     "year": 1995,
+     "loading": 0.241,
+     "citing": 22,
+     "membership": 0.624
+    },
+    {
+     "id": "W:gottlieb|forcing the spring",
+     "title": "Forcing the Spring: The Transformation of the American Environmental Movement",
+     "first_author": "Gottlieb, Robert",
+     "year": 1993,
+     "loading": 0.237,
+     "citing": 17,
+     "membership": 0.696
+    },
+    {
+     "id": "W:carson|silent spring",
+     "title": "Silent Spring",
+     "first_author": "Carson, Rachel L",
+     "year": 1962,
+     "loading": 0.217,
+     "citing": 17,
+     "membership": 0.675
+    },
+    {
+     "id": "W:cronon|changes in the land",
+     "title": "Changes in the Land: Indians, Colonists, and the Ecology of New England",
+     "first_author": "Cronon, William",
+     "year": 1983,
+     "loading": 0.215,
+     "citing": 41,
+     "membership": 0.431
+    },
+    {
+     "id": "W:marx|machine in the garden",
+     "title": "The Machine in the Garden: Technology and the Pastoral Ideal in America",
+     "first_author": "Marx, Leo",
+     "year": 1964,
+     "loading": 0.19,
+     "citing": 23,
+     "membership": 0.609
+    },
+    {
+     "id": "W:harvey|condition ofpostmodernity",
+     "title": "The Condition of Postmodernity: An Enquiry into the Origins of Cultural Change",
+     "first_author": "Harvey, David",
+     "year": 1990,
+     "loading": 0.187,
+     "citing": 26,
+     "membership": 0.471
+    },
+    {
+     "id": "W:white|railroaded",
+     "title": "Railroaded: The Transcontinentals and the Making of Modern America",
+     "first_author": "White, Richard",
+     "year": 2011,
+     "loading": 0.186,
+     "citing": 35,
+     "membership": 0.419
+    },
+    {
+     "id": "W:braudel|mediterranean and the mediterranean world i the age of philip ii",
+     "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+     "first_author": "Braudel, Fernand",
+     "year": 1972,
+     "loading": 0.179,
+     "citing": 29,
+     "membership": 0.483
+    },
+    {
+     "id": "W:white|your misfortune and none of my own",
+     "title": "“It’s Your Misfortune and None of My Own”: A New History of the American West",
+     "first_author": "White, Richard",
+     "year": 1991,
+     "loading": 0.161,
+     "citing": 30,
+     "membership": 0.384
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Cronon, William",
+     "loading_share": 0.0912
+    },
+    {
+     "name": "Scott, James C",
+     "loading_share": 0.0767
+    },
+    {
+     "name": "White, Richard",
+     "loading_share": 0.0591
+    },
+    {
+     "name": "Worster, Donald",
+     "loading_share": 0.043
+    },
+    {
+     "name": "Jacoby, Karl",
+     "loading_share": 0.0332
+    },
+    {
+     "name": "Mitchell, Timothy",
+     "loading_share": 0.0324
+    },
+    {
+     "name": "Hays, Samuel P",
+     "loading_share": 0.0267
+    },
+    {
+     "name": "Nash, Roderick",
+     "loading_share": 0.0224
+    },
+    {
+     "name": "Grove, Richard",
+     "loading_share": 0.0209
+    },
+    {
+     "name": "Rome, Adam",
+     "loading_share": 0.0191
+    },
+    {
+     "name": "Lefebvre, Henri",
+     "loading_share": 0.0184
+    },
+    {
+     "name": "Spence, Mark David",
+     "loading_share": 0.0184
+    },
+    {
+     "name": "Crosby, Alfred W",
+     "loading_share": 0.0177
+    },
+    {
+     "name": "Hurley, Andrew",
+     "loading_share": 0.0152
+    },
+    {
+     "name": "Gottlieb, Robert",
+     "loading_share": 0.0149
+    }
+   ],
+   "top_institutions": [
+    [
+     "michigan",
+     14
+    ],
+    [
+     "oklahoma",
+     9
+    ],
+    [
+     "washington",
+     9
+    ],
+    [
+     "stanford",
+     6
+    ],
+    [
+     "minnesota",
+     4
+    ],
+    [
+     "duke",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "From creekology to geology:  Finding and conserving oil on the Southern Plains, 1859--1930.",
+    "Lake Effects Transnational History and the Making of a Valencian Landscape.",
+    "Life, Death, and the Construction of Space on the Kamo River",
+    "Tracking Wildlife Conservation in Southern Africa: Histories of Protected Areas in Gorongosa and Maputaland",
+    "Making global warming green: climate change and American environmentalism, 1957-1992",
+    "Roots of empire: State formation and the politics of timber access.",
+    "The destruction of the Trinity River, California (1848--1964).",
+    "Ginning up Egyptian Cotton: Quality, Standardization, and Power over a Global Commodity, 1905-1952"
+   ]
+  },
+  {
+   "id": 11,
+   "provisional_label": "Kotkin · Yurchak · Martin — soviet, union, failed, last",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "soviet",
+    "union",
+    "failed",
+    "last",
+    "nations",
+    "cold"
+   ],
+   "bootstrap_stability": 0.714,
+   "unstable": false,
+   "init_stability": 0.606,
+   "dominated_dissertations": 40,
+   "member_works": 12,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2005-2009": 4,
+     "2010-2014": 11,
+     "2015-2019": 17,
+     "2020-2024": 8
+    },
+    "share_of_bin": {
+     "2005-2009": 0.03,
+     "2010-2014": 0.03,
+     "2015-2019": 0.049,
+     "2020-2024": 0.034
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:kotkin|magnetic mountain",
+     "title": "Magnetic Mountain: Stalinism as a Civilization",
+     "first_author": "Kotkin, Stephen",
+     "year": 1995,
+     "loading": 1.0,
+     "citing": 25,
+     "membership": 0.953
+    },
+    {
+     "id": "W:yurchak|everything was forever until it was no more",
+     "title": "Everything Was Forever, Until It Was No More: The Last Soviet Generation",
+     "first_author": "Yurchak, Alexei",
+     "year": 2006,
+     "loading": 0.769,
+     "citing": 18,
      "membership": 1.0
     },
     {
@@ -3749,198 +4366,306 @@
      "title": "The Affirmative Action Empire: Nations and Nationalism in the Soviet Union, 1923-1939",
      "first_author": "Martin, Terry",
      "year": 2001,
-     "loading": 0.191,
-     "citing": 16,
-     "membership": 0.969
+     "loading": 0.664,
+     "citing": 19,
+     "membership": 0.894
     },
     {
-     "id": "W:applegate|nation ofprovincials",
-     "title": "A Nation of Provincials: The German Idea of Heimat",
-     "first_author": "Applegate, Celia",
-     "year": 1990,
-     "loading": 0.179,
-     "citing": 15,
-     "membership": 0.994
-    },
-    {
-     "id": "W:hull|absolute destruction",
-     "title": "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany",
-     "first_author": "Hull, Isabel V",
-     "year": 2005,
-     "loading": 0.177,
-     "citing": 16,
-     "membership": 0.833
-    },
-    {
-     "id": "W:kotkin|magnetic mountain",
-     "title": "Magnetic Mountain: Stalinism as a Civilization",
-     "first_author": "Kotkin, Stephen",
-     "year": 1995,
-     "loading": 0.176,
-     "citing": 22,
-     "membership": 0.789
-    },
-    {
-     "id": "W:brubaker|citizenship and nationhood in france and germany",
-     "title": "Citizenship and Nationhood in France and Germany",
-     "first_author": "Brubaker, Rogers",
-     "year": 1992,
-     "loading": 0.172,
-     "citing": 20,
-     "membership": 0.664
-    },
-    {
-     "id": "W:halbwachs|on collective memory",
-     "title": "On Collective Memory",
-     "first_author": "Halbwachs, Maurice",
-     "year": 1992,
-     "loading": 0.168,
+     "id": "W:zubok|failed empire",
+     "title": "A Failed Empire: The Soviet Union in the Cold War from Stalin to Gorbachev",
+     "first_author": "Zubok, Vladislav",
+     "year": 2007,
+     "loading": 0.657,
      "citing": 18,
-     "membership": 0.898
+     "membership": 0.99
     },
     {
-     "id": "W:winter|sites of memory",
-     "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
-     "first_author": "Winter, Jay",
-     "year": 1995,
-     "loading": 0.165,
-     "citing": 16,
-     "membership": 0.904
-    },
-    {
-     "id": "W:confino|nation as local metaphor",
-     "title": "The Nation as a Local Metaphor: Württemberg, Imperial Germany, and National Memory, 1871-1918",
-     "first_author": "Confino, Alon",
-     "year": 1997,
-     "loading": 0.163,
-     "citing": 16,
-     "membership": 0.847
-    },
-    {
-     "id": "W:geertz|interpretation of culture",
-     "title": "The Interpretation of Cultures: Selected Essays",
-     "first_author": "Geertz, Clifford",
-     "year": 1973,
-     "loading": 0.139,
-     "citing": 45,
-     "membership": 0.457
-    },
-    {
-     "id": "W:yurchak|everything was forever until it was no more",
-     "title": "Everything Was Forever, Until It Was No More: The Last Soviet Generation",
-     "first_author": "Yurchak, Alexei",
-     "year": 2006,
-     "loading": 0.131,
+     "id": "W:taubman|khrushchev",
+     "title": "Khrushchev: The Man and His Era",
+     "first_author": "Taubman, William",
+     "year": 2003,
+     "loading": 0.563,
      "citing": 15,
-     "membership": 0.958
+     "membership": 1.0
+    },
+    {
+     "id": "W:naimark|russians in germany",
+     "title": "The Russians in Germany: A History of the Soviet Zone of Occupation, 1945-1949",
+     "first_author": "Naimark, Norman M",
+     "year": 1995,
+     "loading": 0.436,
+     "citing": 16,
+     "membership": 0.992
+    },
+    {
+     "id": "W:hirsch|empire of nations",
+     "title": "Empire of Nations: Ethnographic Knowledge and the Making of the Soviet Union",
+     "first_author": "Hirsch, Francine",
+     "year": 2005,
+     "loading": 0.406,
+     "citing": 16,
+     "membership": 0.7
+    },
+    {
+     "id": "W:arendt|origins of totalitarism",
+     "title": "The Origins of Totalitarianism",
+     "first_author": "Arendt, Hannah",
+     "year": 1973,
+     "loading": 0.345,
+     "citing": 30,
+     "membership": 0.448
     },
     {
      "id": "W:judt|postwar",
      "title": "Postwar: A History of Europe since 1945",
      "first_author": "Judt, Tony",
      "year": 2005,
-     "loading": 0.124,
+     "loading": 0.294,
+     "citing": 22,
+     "membership": 0.552
+    },
+    {
+     "id": "W:westad|global cold war",
+     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+     "first_author": "Westad, Odd Arne",
+     "year": 2005,
+     "loading": 0.223,
+     "citing": 40,
+     "membership": 0.269
+    },
+    {
+     "id": "W:zahra|kidnapped souls",
+     "title": "Kidnapped Souls: National Indifference and the Battle for Children in the Bohemian Lands, 1900-1948",
+     "first_author": "Zahra, Tara",
+     "year": 2008,
+     "loading": 0.201,
+     "citing": 18,
+     "membership": 0.291
+    },
+    {
+     "id": "W:gaddis|we now know",
+     "title": "We Now Know: Rethinking Cold War History",
+     "first_author": "Gaddis, John Lewis",
+     "year": 1997,
+     "loading": 0.176,
+     "citing": 16,
+     "membership": 0.492
+    },
+    {
+     "id": "W:gaddis|strategies ofcontainment",
+     "title": "Strategies of Containment: A Critical Appraisal of Postwar American National Security Policy",
+     "first_author": "Gaddis, John Lewis",
+     "year": 1982,
+     "loading": 0.17,
+     "citing": 21,
+     "membership": 0.369
+    },
+    {
+     "id": "W:suri|power and protest",
+     "title": "Power and Protest: Global Revolution and the Rise of Détente",
+     "first_author": "Suri, Jeremi",
+     "year": 2003,
+     "loading": 0.144,
      "citing": 20,
-     "membership": 0.678
+     "membership": 0.323
+    },
+    {
+     "id": "W:berman|all that is solid melts into air",
+     "title": "All That Is Solid Melts into Air: The Experience of Modernity",
+     "first_author": "Berman, Marshall",
+     "year": 1982,
+     "loading": 0.128,
+     "citing": 22,
+     "membership": 0.214
+    },
+    {
+     "id": "W:reddy|navigation of feeling",
+     "title": "The Navigation of Feeling: A Framework for the History of Emotions",
+     "first_author": "Reddy, William M",
+     "year": 2001,
+     "loading": 0.121,
+     "citing": 16,
+     "membership": 0.357
+    },
+    {
+     "id": "W:leffler|preponderance ofpower",
+     "title": "A Preponderance of Power: National Security, the Truman Administration, and the Cold War",
+     "first_author": "Leffler, Melvyn P",
+     "year": 1992,
+     "loading": 0.119,
+     "citing": 26,
+     "membership": 0.226
+    },
+    {
+     "id": "W:veblen|theory of the eeisure class",
+     "title": "The Theory of the Leisure Class",
+     "first_author": "Veblen, Thorstein",
+     "year": 1899,
+     "loading": 0.117,
+     "citing": 15,
+     "membership": 0.347
+    },
+    {
+     "id": "W:king|budweisers into czechs and germans",
+     "title": "Budweisers into Czechs and Germans: A Local History of Bohemian Politics, 1848-1948",
+     "first_author": "King, Jeremy",
+     "year": 2002,
+     "loading": 0.105,
+     "citing": 19,
+     "membership": 0.142
+    },
+    {
+     "id": "W:moyn|last utopia",
+     "title": "The Last Utopia: Human Rights in History",
+     "first_author": "Moyn, Samuel",
+     "year": 2010,
+     "loading": 0.104,
+     "citing": 19,
+     "membership": 0.239
+    },
+    {
+     "id": "W:acheson|present at the creation",
+     "title": "Present at the Creation: My Years in the State Department",
+     "first_author": "Acheson, Dean",
+     "year": 1969,
+     "loading": 0.097,
+     "citing": 15,
+     "membership": 0.388
+    },
+    {
+     "id": "W:brubaker|nationalism reframed",
+     "title": "Nationalism Reframed: Nationhood and the National Question in the New Europe",
+     "first_author": "Brubaker, Rogers",
+     "year": 1996,
+     "loading": 0.091,
+     "citing": 17,
+     "membership": 0.153
+    },
+    {
+     "id": "W:gilman|mandarins of the future",
+     "title": "Mandarins of the Future: Modernization Theory in Cold War America",
+     "first_author": "Gilman, Nils",
+     "year": 2003,
+     "loading": 0.08,
+     "citing": 25,
+     "membership": 0.152
+    },
+    {
+     "id": "W:borstelmann|1970s",
+     "title": "The 1970s: A New Global History from Civil Rights to Economic Inequality",
+     "first_author": "Borstelmann, Thomas",
+     "year": 2012,
+     "loading": 0.073,
+     "citing": 17,
+     "membership": 0.194
+    },
+    {
+     "id": "W:judson|guardians of the nation",
+     "title": "Guardians of the Nation: Activists on the Language Frontiers of Imperial Austria",
+     "first_author": "Judson, Pieter M",
+     "year": 2006,
+     "loading": 0.073,
+     "citing": 19,
+     "membership": 0.107
     }
    ],
    "top_people": [
     {
-     "name": "Anderson, Benedict",
-     "loading_share": 0.107
+     "name": "Kotkin, Stephen",
+     "loading_share": 0.1023
     },
     {
-     "name": "Hobsbawm, Eric",
-     "loading_share": 0.0775
-    },
-    {
-     "name": "Gellner, Ernest",
-     "loading_share": 0.0601
-    },
-    {
-     "name": "Brubaker, Rogers",
-     "loading_share": 0.0438
-    },
-    {
-     "name": "King, Jeremy",
-     "loading_share": 0.0309
-    },
-    {
-     "name": "Judson, Pieter M",
-     "loading_share": 0.0295
-    },
-    {
-     "name": "Habermas, Jürgen",
-     "loading_share": 0.0288
-    },
-    {
-     "name": "Zahra, Tara",
-     "loading_share": 0.0288
-    },
-    {
-     "name": "Smith, Anthony D",
-     "loading_share": 0.026
-    },
-    {
-     "name": "Arendt, Hannah",
-     "loading_share": 0.0228
-    },
-    {
-     "name": "Weber, Eugen",
-     "loading_share": 0.0212
-    },
-    {
-     "name": "Herf, Jeffrey",
-     "loading_share": 0.0207
-    },
-    {
-     "name": "Blackbourn, David",
-     "loading_share": 0.0207
+     "name": "Yurchak, Alexei",
+     "loading_share": 0.0787
     },
     {
      "name": "Martin, Terry",
-     "loading_share": 0.0205
+     "loading_share": 0.0679
     },
     {
-     "name": "Applegate, Celia",
-     "loading_share": 0.0192
+     "name": "Zubok, Vladislav",
+     "loading_share": 0.0673
+    },
+    {
+     "name": "Taubman, William",
+     "loading_share": 0.0577
+    },
+    {
+     "name": "Naimark, Norman M",
+     "loading_share": 0.0446
+    },
+    {
+     "name": "Hirsch, Francine",
+     "loading_share": 0.0415
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0381
+    },
+    {
+     "name": "Gaddis, John Lewis",
+     "loading_share": 0.0353
+    },
+    {
+     "name": "Judt, Tony",
+     "loading_share": 0.03
+    },
+    {
+     "name": "Westad, Odd Arne",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "Zahra, Tara",
+     "loading_share": 0.0206
+    },
+    {
+     "name": "Suri, Jeremi",
+     "loading_share": 0.0148
+    },
+    {
+     "name": "Berman, Marshall",
+     "loading_share": 0.0131
+    },
+    {
+     "name": "Scott, James C",
+     "loading_share": 0.0126
     }
    ],
    "top_institutions": [
-    [
-     "maryland",
-     16
-    ],
-    [
-     "michigan",
-     15
-    ],
     [
      "unc",
      9
     ],
     [
-     "tennessee",
-     8
-    ],
-    [
-     "vanderbilt",
+     "maryland",
      7
     ],
     [
+     "michigan",
+     6
+    ],
+    [
      "washington",
-     5
+     4
+    ],
+    [
+     "stanford",
+     4
+    ],
+    [
+     "duke",
+     3
     ]
    ],
    "sample_dissertations": [
-    "Balkan Wars between the Lines: Violence and Civilians in Macedonia, 1912-1918",
-    "The Shadow of the Habsburgs: Memory and National Identity in Austrian Politics and Education, 1918-1955",
-    "Bulgaria's Macedonia: Nation-Building and State Building, Centralization and Autonomy in Pirin Macedonia, 1903-1952",
-    "World War II, Displacement, and the Making of the Postwar Ukrainian Diaspora, 1939-1951",
-    "Political Murder and the Victory of Ethnic Nationalism in Interwar Poland.",
-    "Creating a Tatar Capital: National, Cultural, and Linguistic Space in Kazan, 1920-1941",
-    "Fractured Nationalism and the Crises of French Identity, 1789-1899",
-    "Germany's Catholic fraternities and the Weimar Republic"
+    "Did law matter? Law, state and individual in the USSR 1953-1982",
+    "In Search of \"Friendship\": Energy Policy, Trade, and Varieties of Socialism in the Soviet Bloc, 1872-1984",
+    "Ideologues and Pragmatists: World War II, New Communists, and Persistent Dilemmas of the Soviet Party-State, 1941-1953",
+    "The Soviet Sanatorium: Medicine, Nature and Mass Culture in Sochi, 1917-1991",
+    "Revolving Doors of Power: Local Government in Russia’s Revolutions and Civil War, 1917-1923",
+    "Soviet by Design: Fashion, Consumption, and International Competition During Late Socialism, 1948-1982",
+    "Growing Up Soviet?  The Orphans of Stalin's Revolution and Understanding the Soviet Self",
+    "Rearing the Collective: The Evolution of Social Values and Practices in Soviet Schools, 1953–1968"
    ]
   }
  ]
