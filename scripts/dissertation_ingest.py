@@ -314,7 +314,13 @@ def adapter_us_expansion_manifest(src, d):
                 entry = us_entry(rec, r.get('_source_harvest') or rel_root(manifest.parent))
                 entry.update(year=int(year) if str(year or '').isdigit() else None, degree=listify(r.get('degree')),
                              aha_id=m.get('aha_id') or r.get('aha_id') or None)
-                paths = json.loads(m['paths'] or '[]')
+                try:   # the manifest is rewritten by another session; tolerate a half-written row
+                    paths = json.loads(m.get('paths') or '[]')
+                except ValueError:
+                    paths = None
+                if not isinstance(paths, list):
+                    print(f"warning: {manifest.name}: malformed paths for {k}; skipped this round", file=sys.stderr)
+                    continue
                 files = []
                 for i, p in enumerate(paths):
                     sha, size, at = shas.get(os.path.realpath(p), (None, None, None))
