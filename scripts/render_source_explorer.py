@@ -31,14 +31,17 @@ TEMPLATE = r"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta 
 <style>
 .viz-root{color-scheme:light;--surface-1:#fcfcfb;--surface-2:#f2f1ed;--text-primary:#0b0b0b;--text-secondary:#52514e;
  --text-muted:#76756f;--grid:#e3e2dd;--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;--other:#a3a29b;--edge:#c9c8c2;
+ --f0:#008300;--f1:#e34948;--f2:#6250d6;--f3:#e87ba4;--f4:#eda100;--f5:#c9c8c2;
  --seq-0:#f2f1ed;--seq-1:#cde2fb;--seq-2:#9ec5f4;--seq-3:#6da7ec;--seq-4:#3987e5;--seq-5:#256abf;--seq-6:#184f95;--seq-7:#0d366b}
 @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{color-scheme:dark;--surface-1:#1a1a19;
  --surface-2:#242422;--text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;
  --series-2:#d95926;--series-3:#199e70;--other:#6f6e68;--edge:#4a4944;
+ --f0:#008300;--f1:#e66767;--f2:#9085e9;--f3:#d55181;--f4:#c98500;--f5:#4a4944;
  --seq-0:#242422;--seq-1:#0d366b;--seq-2:#104281;--seq-3:#184f95;--seq-4:#1c5cab;--seq-5:#2a78d6;--seq-6:#5598e7;--seq-7:#9ec5f4}}
 :root[data-theme="dark"] .viz-root{color-scheme:dark;--surface-1:#1a1a19;--surface-2:#242422;--text-primary:#f0efec;
  --text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;
- --other:#6f6e68;--edge:#4a4944;--seq-0:#242422;--seq-1:#0d366b;--seq-2:#104281;--seq-3:#184f95;--seq-4:#1c5cab;--seq-5:#2a78d6;
+ --other:#6f6e68;--edge:#4a4944;--f0:#008300;--f1:#e66767;--f2:#9085e9;--f3:#d55181;--f4:#c98500;--f5:#4a4944;
+ --seq-0:#242422;--seq-1:#0d366b;--seq-2:#104281;--seq-3:#184f95;--seq-4:#1c5cab;--seq-5:#2a78d6;
  --seq-6:#5598e7;--seq-7:#9ec5f4}
 body{margin:0}
 .viz-root{background:var(--surface-1);color:var(--text-primary);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
@@ -64,6 +67,9 @@ svg{display:block;width:100%;height:auto}
 .s-EUROPE{stroke:var(--series-3);fill:var(--series-3)}.s-OTHER{stroke:var(--other);fill:var(--other)}
 .line.s-CA,.line.s-US,.line.s-EUROPE,.line.s-OTHER{fill:none}
 .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:22px}@media(max-width:900px){.two{grid-template-columns:1fr}}
+.fleg{display:grid;gap:3px;font-size:12.5px;margin:6px 0 4px}.fleg span{display:flex;gap:7px;align-items:baseline}
+.fleg i{flex:none;width:11px;height:11px;border-radius:2px;display:inline-block;transform:translateY(1px)}.fleg small{color:var(--text-muted)}
+.seg{stroke:var(--surface-1);stroke-width:2}.segt{font-size:10.5px;fill:var(--surface-1);pointer-events:none}
 .periods{display:flex;flex-wrap:wrap;gap:4px;margin:6px 0}
 .periods button{font:inherit;font-size:12px;padding:2px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--surface-1);color:var(--text-secondary);cursor:pointer}
 .periods button.on{background:var(--text-primary);color:var(--surface-1);border-color:var(--text-primary)}
@@ -93,7 +99,10 @@ PhDs) and __NP__ people (__MINP__ or more) can be explored.</p>
 <h2>How to read this</h2><ul class="note">
 <li><b>Share citing</b>: the percentage of a region's strict History PhDs in that period whose bibliography (or notes) cites the source.
 Shares are shown only where a region has at least 15 PhDs in the period; counts are in the tooltips.</li>
-<li><b>Cited with</b>: works (for a work) or people (for a person) that appear in the same dissertations at least __MINS__ times as often as
+<li><b>Who cites it, by field</b>: each placed dissertation is a mixture of citation families found by TF-IDF and NMF over all History PhD
+bibliographies, labelled by their signature works and title terms (labels are provisional). The column shows how the citing dissertations' mixtures
+divide among the source's five largest families. About 40% of dissertations are not placed by the model.</li>
+<li><b>Companions</b>: works (for a work) or people (for a person) that appear in the same dissertations at least __MINS__ times as often as
 chance would give (association strength), ranked by the number of shared dissertations. A citation is not engagement.</li>
 <li><b>Company over time</b>: of the dissertations citing the source in each period, the share that also cite each companion. Rows include
 each period's own leading companions; pale columns have fewer than 10 citing dissertations.</li>
@@ -108,7 +117,7 @@ const DATA=JSON.parse(document.getElementById('data').textContent);
 const P=DATA.periods, R=DATA.regions, NAMES={CA:'Canada',US:'United States',EUROPE:'Europe',OTHER:'Elsewhere'}, L=DATA.labels;
 const byId=new Map(DATA.sources.map(s=>[s.id,s])), byKey=new Map(DATA.sources.map(s=>[L[s.id].key,s]));
 const isPerson=x=>L[x].key.startsWith('P:');
-for(const s of DATA.sources){const m={};for(const [x,a,b] of s.net.nodes)m[x]=[a,b];s.net.nodes=m;}
+const FAM=DATA.families, BASE=DATA.baseline;
 const view=document.getElementById('view'), tip=document.getElementById('tip'), q=document.getElementById('q'), sugg=document.getElementById('sugg');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lab=x=>L[x]?L[x].short:x, full=x=>{const l=L[x];if(!l)return x;if(isPerson(x))return l.short;return (l.author?l.author+', ':'')+l.full+(l.year?` (${l.year})`:'');};
@@ -141,21 +150,20 @@ function lineChart(s){const W=900,H=280,x0=52,x1=858,y0=20,y1=240;
   for(let p=0;p<P.length;p++){const v=share(p,r);if(v==null)continue;const c=s.series[p][R.indexOf(r)],d=DATA.denominators[p][R.indexOf(r)];
    o+=`<circle class="pt s-${r}" cx="${X(p)}" cy="${Y(v)}" r="4.5" data-tip="${esc(NAMES[r])}, ${P[p]}: ${v.toFixed(1)}% (${c} of ${d} History PhDs)"/>`;}}
  return o+'</svg>';}
-function network(s,per){const W=520,H=440,nodes=s.net.nodes,ids=Object.keys(nodes).map(Number);if(ids.length<2)return '<p class="note">Too few companions to draw.</p>';
- // radial: the source at the centre, companions on a ring in the spring layout's angular order
- const comp=ids.filter(k=>k!==s.id).sort((a,b)=>Math.atan2(nodes[a][1],nodes[a][0])-Math.atan2(nodes[b][1],nodes[b][0]));
- const pos={};pos[s.id]=[W/2,H/2];const R0=Math.min(W/2-120,H/2-40);
- comp.forEach((k,i)=>{const a=-Math.PI/2+2*Math.PI*i/comp.length;pos[k]=[W/2+R0*Math.cos(a),H/2+R0*Math.sin(a)];});
- const X=k=>pos[k][0],Y=k=>pos[k][1];
- const row=new Map(s.rows.map(r=>[r[0],r]));const val=x=>{const r=row.get(x);if(!r)return 0;return per<0?100*r[1]/s.n:(r[2][per]??0);};
- let o=`<svg class="net" viewBox="0 0 ${W} ${H}" role="img" aria-label="Works or people cited with the source">`;
- for(const k of ids)if(k!==s.id){const w=val(k);o+=`<line class="lk${w?'':' off'}" x1="${X(s.id)}" y1="${Y(s.id)}" x2="${X(k)}" y2="${Y(k)}" stroke-width="${(0.5+w/12).toFixed(2)}"/>`;}
- for(const [a,b] of s.net.links)if(nodes[a]&&nodes[b])o+=`<line class="lk${val(a)&&val(b)?'':' off'}" x1="${X(a)}" y1="${Y(a)}" x2="${X(b)}" y2="${Y(b)}" stroke-width="0.6" stroke-dasharray="3 3"/>`;
- for(const k of ids){const src=k===s.id,v=val(k),r=src?11:3+Math.sqrt(v)*2.2,x=X(k),y=Y(k);
-  const t=lab(k).length>30?lab(k).slice(0,28)+'…':lab(k), left=!src&&x<W/2-1, tx=src?x:(left?x-r-4:x+r+4), ty=src?y-r-6:y+4;
-  o+=`<g class="${!src&&!v?'off':''}"><circle class="${src?'src':'cn'}" cx="${x}" cy="${y}" r="${r.toFixed(1)}" data-tip="${esc(full(k))}${src?'':` · cited with it in ${v.toFixed(1)}% of its citing PhDs${per<0?'':' ('+P[per]+')'}`}"/>`+
-   `<text x="${tx}" y="${ty}" text-anchor="${src?'middle':left?'end':'start'}"${src?' font-weight="600"':''}>${esc(t)}</text></g>`;}
- return o+'</svg>';}
+function fields(s){const F=s.fields,W=520,H=330,x0=36,x1=510,y0=12,y1=290,cols=P.map((p,i)=>i).filter(i=>F.placed[i]>=5);
+ const totPlaced=F.placed.reduce((a,b)=>a+b,0);
+ let o=`<div class="fleg">${F.fams.map((f,k)=>`<span><i style="background:var(--f${k})"></i><b>${esc(FAM[f].name)}</b> <small>${esc(FAM[f].terms)}</small></span>`).join('')}<span><i style="background:var(--f5)"></i>Other families</span></div>`;
+ if(!cols.length)return o+'<p class="note">Too few placed citing PhDs to show fields.</p>';
+ const bw=Math.min(52,(x1-x0)/cols.length-10),X=k=>x0+(x1-x0)*(k+0.5)/cols.length-bw/2,Y=v=>y1-(y1-y0)*v/100;
+ o+=`<svg viewBox="0 0 ${W} ${H+24}" role="img" aria-label="Fields of the PhDs citing the source, by period">`;
+ for(const v of [0,25,50,75,100])o+=`<line x1="${x0}" x2="${x1}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--grid)"/><text class="tick" x="${x0-6}" y="${Y(v)+4}" text-anchor="end">${v}%</text>`;
+ cols.forEach((p,k)=>{let acc=0;const sh=F.shares[p],other=Math.max(0,100-sh.reduce((a,b)=>a+(b||0),0));
+  [...sh,other].forEach((v,j)=>{if(!v)return;const fam=j<F.fams.length?FAM[F.fams[j]]:null,base=fam?BASE[p][F.fams[j]]:null;
+   const tipT=fam?`${fam.name} (${fam.terms}), ${P[p]}: ${v}% of the citing PhDs' field mix; ${base}% of all History PhDs`:`Other families, ${P[p]}: ${v}%`;
+   o+=`<rect class="seg" x="${X(k)}" y="${Y(acc+v)}" width="${bw}" height="${(Y(acc)-Y(acc+v)).toFixed(1)}" fill="var(--f${j})" data-tip="${esc(tipT)}"/>`;
+   if(v>=12)o+=`<text class="segt" x="${X(k)+bw/2}" y="${(Y(acc+v/2)+4).toFixed(1)}" text-anchor="middle">${v}</text>`;acc+=v;});
+  o+=`<text class="tick" x="${X(k)+bw/2}" y="${H+4}" text-anchor="middle">${P[p].replace('before ','<')}</text><text class="tick" x="${X(k)+bw/2}" y="${H+18}" text-anchor="middle">n=${F.placed[p]}</text>`;});
+ return o+`</svg><p class="note" style="font-size:12.5px">${totPlaced} of ${s.n} citing PhDs are placed by the family model; periods with fewer than 5 are left out.</p>`;}
 function heat(s){const ramp=v=>v==null?'var(--seq-0)':`var(--seq-${Math.min(7,Math.max(1,Math.ceil(v/7)))})`;
  let o='<table class="heat"><thead><tr><th></th>'+P.map(p=>`<th>${p.replace('before ','<')}</th>`).join('')+'</tr></thead><tbody>';
  for(const r of s.rows){o+=`<tr><td class="l" title="${esc(full(r[0]))}">${esc(lab(r[0]))}</td>`;
@@ -177,13 +185,11 @@ function render(s){current=s;per=-1;const tot=DATA.denominators.reduce((a,row)=>
  ${['CA','US','EUROPE'].map(r=>`<div class="tile"><div class="v">${s.n_region[r]||0}</div><div class="k">in ${NAMES[r]}</div></div>`).join('')}</div>
  <h2>Citations over time</h2><p class="note">Share of each region's History PhDs citing ${esc(lab(s.id))}, by period of the degree.</p>
  <div class="legend">${R.map(r=>`<span class="${r}">${NAMES[r]}</span>`).join('')}</div>${lineChart(s)}
- <div class="two"><div><h2>Cited with ${person?'them':'it'}</h2><p class="note">Node size: how often each is cited alongside. Pick a period to see the company then.</p>
- <div class="periods" id="per"><button data-p="-1" class="on">All years</button>${P.map((p,i)=>`<button data-p="${i}" ${s.n_period[i]<10?'disabled title="fewer than 10 citing PhDs"':''}>${p}</button>`).join('')}</div>
- <div id="net">${network(s,-1)}</div></div>
+ <div class="two"><div><h2>Who cites ${person?'them':'it'}, by field</h2><p class="note">The citation families (TF-IDF) of the PhDs citing ${esc(lab(s.id))}, period by period: how the communities citing it shift. Hover for each family's share of all History PhDs.</p>
+ ${fields(s)}</div>
  <div><h2>Company over time</h2><p class="note">Of the PhDs citing ${esc(lab(s.id))} in each period, the % also citing each companion.</p>${heat(s)}</div></div>
  <h2>Company by region</h2><p class="note">Of the PhDs citing ${esc(lab(s.id))} in each region, the % also citing each companion.</p>${regions(s)}`;
- document.getElementById('per').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;per=+b.dataset.p;
-  [...b.parentNode.children].forEach(x=>x.classList.toggle('on',x===b));document.getElementById('net').innerHTML=network(current,per);});}
+}
 view.addEventListener('mousemove',e=>{const t=e.target.closest('[data-tip]');if(t)showTip(e,esc(t.dataset.tip));else hide();});
 view.addEventListener('mouseleave',hide);
 const start=decodeURIComponent(location.hash.slice(1));

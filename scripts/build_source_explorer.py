@@ -18,8 +18,9 @@ by at least ``--min-work`` strict History PhDs; people, as first authors, cited 
 - **company over time**: for the companions, the share of the source's citing theses in each period
   that also cite them, with each period's own leading companions added to the rows;
 - **company by region**: each region's leading companions;
-- **links** among the top companions (shared theses within the source's citing set) and a spring
-  layout of them with the source at the centre.
+- **fields**: the TF-IDF families (``dissertation_tfidf_families.py``, main graph) of its citing theses,
+  by period: the ``--families`` (5) largest and the rest pooled, with the corpus share of each family
+  as a baseline. Only theses the family model places count (about 60%).
 
 Periods are five years from 1990, with earlier years pooled.
 """
@@ -31,7 +32,7 @@ from pathlib import Path
 import sys
 import time
 
-import networkx as nx
+import csv
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dissertation_scope import summary_dir  # noqa: E402
@@ -62,6 +63,7 @@ def main():
     ap.add_argument('--min-person', type=int, default=30)
     ap.add_argument('--min-strength', type=float, default=1.5)
     ap.add_argument('--min-shared', type=int, default=3)
+    ap.add_argument('--families', type=int, default=5, help='TF-IDF families shown per source (the rest pooled)')
     ap.add_argument('--companions', type=int, default=16, help='companion rows kept per source (plus period newcomers, at most 20)')
     args = ap.parse_args()
     t0 = time.time()
@@ -89,6 +91,15 @@ def main():
             label[n['id']] = (proper(n.get('name') or n['id'][2:]), None)
     del g
     print(f'loaded in {time.time() - t0:.0f} s: {len(theses)} strict theses', flush=True)
+    # TF-IDF families (main graph, dissertation_tfidf_families.py): each placed thesis's family mixture
+    fam_dir = summary_dir(args.out) / 'tfidf-families'
+    fam_meta = json.load((fam_dir / 'families.json').open())['families']
+    NF = len(fam_meta)
+    mixture = {}
+    for r in csv.DictReader((fam_dir / 'dissertation-mixtures.csv').open(newline='', encoding='utf-8')):
+        v = [float(r[f'f{f}']) for f in range(NF)]
+        if sum(v) > 0:
+            mixture[r['dissertation_id']] = v
     tids = sorted(theses)
     tix = {t: i for i, t in enumerate(tids)}
     tper = [theses[t][0] for t in tids]
@@ -147,31 +158,24 @@ def main():
         for i in cs:
             by_reg[treg[i]].update(x for x in per_thesis.get(i, ()) if x in strength)
         regional = {r: [[x, round(100 * c / n_reg[r])] for x, c in by_reg[r].most_common(8)] for r in REGIONS if n_reg[r] >= 10}
-        core = top[:12]
-        pair = Counter()
-        coreset = set(core)
+        # Fields citing it: the TF-IDF family mixtures of its citing theses (those the model places)
+        fam_sum = [[0.0] * NF for _ in PERIODS]
+        placed = [0] * len(PERIODS)
         for i in cs:
-            items = [x for x in per_thesis.get(i, ()) if x in coreset]
-            for a in range(len(items)):
-                for b in range(a + 1, len(items)):
-                    pair[tuple(sorted((items[a], items[b])))] += 1
-        G = nx.Graph()
-        G.add_node(src)
-        for x in core:
-            G.add_edge(src, x, weight=co[x] / n)
-        links = []
-        for (a, b), c in sorted(pair.items(), key=lambda kv: -kv[1])[:25]:
-            if c >= max(args.min_shared, 0.15 * min(co[a], co[b])):
-                G.add_edge(a, b, weight=0.5 * c / n)
-                links.append([a, b, c])
-        pos = nx.spring_layout(G, weight='weight', seed=7, iterations=300, center=(0, 0)) if len(G) > 1 else {src: (0, 0)}
-        sx, sy = pos[src]
+            mix = mixture.get(tids[i])
+            if mix:
+                placed[tper[i]] += 1
+                row = fam_sum[tper[i]]
+                for f, v in enumerate(mix):
+                    row[f] += v
+        total = [sum(fam_sum[p][f] for p in range(len(PERIODS))) for f in range(NF)]
+        fams = sorted(range(NF), key=lambda f: -total[f])[:args.families]
+        fields = dict(fams=fams, placed=placed,
+                      shares=[[round(100 * fam_sum[p][f] / sum(fam_sum[p])) if placed[p] else None for f in fams] for p in range(len(PERIODS))])
         return dict(id=src, n=n, series=series,
                     rows=[[x, co[x], grid[k]] for k, x in enumerate(top)],
                     regional=regional, n_period=[n_period[p] for p in range(len(PERIODS))],
-                    n_region={r: n_reg[r] for r in REGIONS},
-                    net=dict(nodes=[[x, round(pos[x][0] - sx, 2), round(pos[x][1] - sy, 2)] for x in [src] + core],
-                             links=links))
+                    n_region={r: n_reg[r] for r in REGIONS}, fields=fields)
 
     sources, labels = [], {}
     work_sources = [w for w, c in work_citing.items() if len(c) >= args.min_work]
@@ -198,14 +202,22 @@ def main():
         s_['id'] = num[s_['id']]
         s_['rows'] = [[num[x], c, g_] for x, c, g_ in s_['rows']]
         s_['regional'] = {r: [[num[x], v] for x, v in lst] for r, lst in s_['regional'].items()}
-        s_['net'] = dict(nodes=[[num[x], a, b] for x, a, b in s_['net']['nodes']],
-                         links=[[num[a], num[b], c] for a, b, c in s_['net']['links']])
     table = [dict(key=k, **labels[k]) for k in keys]
     dest = summary_dir(args.out) / 'explorer'
     dest.mkdir(parents=True, exist_ok=True)
     den_out = [[den[(p, r)] for r in REGIONS] for p in range(len(PERIODS))]
+    # corpus baseline: each family's share of all placed strict theses, by period
+    base_sum = [[0.0] * NF for _ in PERIODS]
+    for i, t in enumerate(tids):
+        mix = mixture.get(t)
+        if mix:
+            for f, v in enumerate(mix):
+                base_sum[tper[i]][f] += v
+    baseline = [[round(100 * x / sum(row), 1) if sum(row) else None for x in row] for row in base_sum]
+    families = [dict(id=f['id'], name=f['provisional_label'].split(' — ')[0], terms=', '.join(f.get('title_terms', [])[:5]))
+                for f in fam_meta]
     (dest / 'explorer.json').write_text(json.dumps(dict(periods=PERIODS, regions=REGIONS, denominators=den_out, sources=sources,
-                                                        labels=table, params=vars(args) | {'out': str(args.out)}),
+                                                        labels=table, families=families, baseline=baseline, params=vars(args) | {'out': str(args.out)}),
                                                    ensure_ascii=False, separators=(',', ':')))
     print(f'wrote {dest / "explorer.json"}: {len(sources)} sources, {len(labels)} labels ({time.time() - t0:.0f} s)')
 

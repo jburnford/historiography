@@ -1013,8 +1013,9 @@ link.
     compiled with Numba; gravity 0.03 separates the regions.
 - **Source explorer** (`build_source_explorer.py`, `render_source_explorer.py`, `summary/comparisons/explorer.html`):
   pick a work (cited by 20+ strict PhDs) or a person (30+) to see its share of citing PhDs by period and region, the
-  works or people cited with it more than chance (association strength at least 1.5, 3+ shared theses), how that
-  company changes by period, and its company in each region. Data is precomputed from `graph.json` (about 11 GB,
+  TF-IDF citation families of the theses citing it by period (its five largest, with each family's corpus share as a
+  baseline; user, 2026-10-23: the companion network repeated the company grid), the works or people cited with it
+  more than chance (association strength at least 1.5, 3+ shared theses) by period, and its company in each region. Data is precomputed from `graph.json` (about 11 GB,
   90 s; cache `summary/explorer/`, gitignored).
 - **Linguistic turn** (`linguistic_turn_citations.py`, `summary/linguistic-turn/`): the share of
   History PhDs citing the theory canon, the historians' turn, Joan Scott and Foucault's power works,
