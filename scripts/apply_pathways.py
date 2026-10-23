@@ -5,8 +5,8 @@
 
 BATCH.json: revision, baseline_revision, date, batch_dir, authorization, summary, edits. Each edit
 names a `pathway`; a new one has `new: true` with title, node_ids, questions and exercise; an
-existing one may carry title_after, node_ids_after, replace_question {from, to}, add_question and
-exercise_after. The graph changes only by a revision_history entry. seminar-pathways.json is pinned
+existing one may carry title_after, node_ids_after, replace_question {from, to}, add_question,
+questions_after (the whole list, from revision 1.153) and exercise_after. The graph changes only by a revision_history entry. seminar-pathways.json is pinned
 by the 1.123 release, so a revision also needs amendment entries there.
 """
 import argparse, hashlib, json, sys
@@ -42,6 +42,8 @@ def transform_pathways(paths, edits):
             p['title'] = e['title_after']
         if 'node_ids_after' in e:
             p['node_ids'] = list(e['node_ids_after'])
+        if 'questions_after' in e:
+            p['questions'] = list(e['questions_after'])
         if 'replace_question' in e:
             i = p['questions'].index(e['replace_question']['from'])
             p['questions'][i] = e['replace_question']['to']

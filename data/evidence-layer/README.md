@@ -3,10 +3,29 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-18)
+## Current local build (2026-10-22)
 
-Practice **v25**, methods **methods-v9** and **mentions-v6** serve graph 1.145. Revision 1.145
-adds the Debate entry *Capitalism, divergence and industrialisation* (`capitalismdebates`):
+Practice **v26**, methods **methods-v9** and **mentions-v6** serve graph 1.153. Revision 1.152
+adds the Debate entry *The languages of class debate* (`languages_of_class`):
+- It is folded into new social history (`approach-folds.csv`, subfield; context only, no evidence of
+  its own).
+- Its family is *Social history*, bridged to *Cultural & intellectual history* (`families-draft.csv`,
+  proposed).
+
+Family shares are unchanged from v25; only family membership changed. The landing audit is
+`audits/landing-1.152`. The person entries added in 1.152 need no evidence rebuild.
+
+```bash
+python3 scripts/build_practice_series.py --version v26
+python3 scripts/audit_landing_evidence.py --series v26 --out data/evidence-layer/audits/landing-1.152
+python3 scripts/build_evidence_asset.py --series v26 --methods methods-v9 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.152/summary.json
+python3 scripts/build_site.py
+```
+
+## Previous build (2026-10-18)
+
+Practice **v25**, methods **methods-v9** and **mentions-v6** served graph 1.145. Revision 1.145
+added the Debate entry *Capitalism, divergence and industrialisation* (`capitalismdebates`):
 - It is folded into economic history (`approach-folds.csv`, subfield; context only, no evidence of
   its own).
 - Its family is *Economy & social science history*, bridged to *Empire, colonialism & the global*

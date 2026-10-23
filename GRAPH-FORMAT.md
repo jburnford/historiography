@@ -1,6 +1,39 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.151 (2026-10-19): post-2000 wave 3
+## Current revision 1.153 (2026-10-22): the question of class, reworked
+
+A pathway revision on 1.152. The user: the pathway was "both too much and not enough; I want to
+focus on the Thompson -> Stedman Jones -> Joan Scott -> Brian Palmer -> Patrick Joyce -> James
+Vernon -> Jon Lawrence debates (this is over simplified) and then how it spilled out into other
+regions of the world." `question_of_class` is now "The question of class: from Thompson to the
+languages of class": 13 entries (Thompson, Stedman Jones, the debate entry, Scott, Palmer, Joyce,
+Vernon, Lawrence, new social history, labour history, Parr, gender history, Chakrabarty), seven new
+questions and a new exercise. Dropped: historical materialism, Dobb, Marxist social history, Dorothy
+Thompson, Althusser, Hobsbawm, the linguistic-turn umbrella, Subaltern Studies, intersectionality,
+Canadian working-class history and the liberal order framework. The graph changes only by a
+`revision_history` entry. A pathway edit may now carry `questions_after` (the whole list). Applied
+by `scripts/apply_pathways.py`; see the [acceptance record](data/production-batches/pathways-1.153/README.md).
+
+## Historical revision 1.152 (2026-10-22): The languages of class debate
+
+**200 entries (98 groups, 102 person entries), 1,208 teaching relationships, 2,257 sources and
+1,309 shared people.**
+
+A new Debate entry, `languages_of_class` ("The languages of class debate"), and four person
+entries: Gareth Stedman Jones, Patrick Joyce, James Vernon and Jon Lawrence. The debate has 12
+strands (the British rounds from Thompson's preface and *Languages of Class* through the first
+critics and the 1987 ILWCH forum, populism, the new political history, "the end of social
+history?", gender, race and class, and the retrospects of 2000–16; and the related controversies in
+the United States, Canada, France, Germany, and South Asia, Africa and Latin America), 47 roster rows
+and 50 dated events (1963–2022), `period` null, reviewed through 2000 with selected later reception
+dated through 2022. 51 new edges (26 contribution, 18 critique, 4 influence, 3 comparison); the
+debate has 21 incident edges, Stedman Jones 11, Joyce 13, Vernon 10 and Lawrence 9. edge_200 is
+re-sourced from History Workshop to Stedman Jones (id kept); edge_920, edge_921, edge_1127 and
+edge_314 are revised; `thompson_making_preface` and `cdnsrc_palmer_1990` now link publisher pages;
+a new strand `political/new_political_history`. 136 new sources, 24 new people records. Sol: accept
+with fixes, all 15 applied. See the [acceptance record](data/production-batches/group-revision-1.152/README.md).
+
+## Historical revision 1.151 (2026-10-19): post-2000 wave 3
 
 **195 entries, 1,157 teaching relationships, 2,121 sources and 1,285 shared people.**
 

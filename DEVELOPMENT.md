@@ -5,6 +5,20 @@ corrected throughout the repository history (user decision), so every commit has
 short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.
 Research agents now cite only DOI, publisher, repository or author pages.
 
+**The languages of class debate (2026-10-22, revisions 1.152–1.153):** the user asked to rework the
+"question of class" pathway ("both too much and not enough") around the Thompson → Stedman Jones →
+Scott → Palmer → Joyce → Vernon → Lawrence debates and their spread to other regions. A new Debate
+entry `languages_of_class` (12 strands, 47 roster rows, 50 events) and person entries for Stedman
+Jones (11 edges), Joyce (13), Vernon (10) and Lawrence (9); 51 edges and 136 sources in all (Sol:
+accept with fixes, all 15 applied; [acceptance](data/production-batches/group-revision-1.152/README.md)).
+The pathway now runs those eight stops, then the fields contested and the spread (Parr, gender
+history, Chakrabarty), with seven new questions ([acceptance](data/production-batches/pathways-1.153/README.md)).
+Its evidence-layer family is *Social history*, bridged to *Cultural & intellectual history*;
+practice v26 folds it into new social history. Unread and flagged: the whole *Social History*
+exchange of 1992–96 (Taylor & Francis 403), Gray 1986, Cooper 1995, *Descent into Discourse*, and
+*Politics and the People* beyond passages quoted by Tilly. Next: the Stone–Joyce "History and
+post-modernism" exchange (P&P 1991–92), identity notes for existing people with new QIDs.
+
 **Post-2000 wave 3 (2026-10-19, revision 1.151):** Chakrabarty, Spivak, Guha and Latour now have
 7–14 edges and 17–28 timeline points each, most after 2000 (Sol: accept with fixes;
 [acceptance](data/production-batches/person-entries-1.151/README.md)). Guha's later books are given through readers; the reception of Latour's late

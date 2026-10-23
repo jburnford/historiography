@@ -1,3 +1,36 @@
+# Revision 1.153: the question of class, reworked (22 October 2026)
+
+A pathway revision. The user: the pathway was "both too much and not enough"; focus on "the Thompson
+-> Stedman Jones -> Joan Scott -> Brian Palmer -> Patrick Joyce -> James Vernon -> Jon Lawrence
+debates (this is over simplified) and then how it spilled out into other regions of the world."
+`question_of_class` is now "The question of class: from Thompson to the languages of class": 13
+entries, seven new questions, a new exercise. The eleven entries dropped (historical materialism,
+Dobb, Marxist social history, Dorothy Thompson, Althusser, Hobsbawm, the linguistic-turn umbrella,
+Subaltern Studies, intersectionality, Canadian working-class history, the liberal order framework)
+remain in the graph; the pathway no longer detours through them. `apply_pathways.py` gains
+`questions_after`. Batch: `data/extension-2026/languages-of-class-2026-10-22/batch-1.153.json`.
+
+# Revision 1.152: The languages of class debate (22 October 2026)
+
+Research of 2026-10-22 (`data/extension-2026/languages-of-class-2026-10-22/`, four evidence files):
+- **`languages_of_class`** (Debate): from Thompson's preface and *Languages of Class* (1983) through
+  Foster, Gray, Epstein, Kirk and the 1987 ILWCH forum, Joyce's populism, the new political history
+  (Vernon, Lawrence), "the end of social history?" (Joyce, Eley and Nield, 1995–96), gender, race and
+  class, and the retrospects of 2000–16; related controversies in the United States (Rancière's
+  ILWCH exchange, Wilentz, Katznelson), Canada (Palmer, Valverde, Parr, Sangster), France (Sewell,
+  Rancière, Reddy), Germany (Canning) and the colonial working classes (Chakrabarty, Chandavarkar,
+  Cooper, Viotti da Costa, James). 12 strands, 47 roster rows, 50 events, 21 edges.
+- **Gareth Stedman Jones** (11 edges, 26 events), **Patrick Joyce** (13, 25), **James Vernon** (10, 18),
+  **Jon Lawrence** (9, 21): person entries; Vernon and Lawrence are new people records.
+- Revisions: edge_200 re-sourced to Stedman Jones; edge_920/921 cite the Temple University Press
+  page and name no excluded route; edge_1127 carries the body of Scott 2000 and the Eley–Nield reply;
+  edge_314 gains Scott's texts; `thompson_making_preface` and `cdnsrc_palmer_1990` link publisher
+  pages; new strand `political/new_political_history`.
+- Sol: accept with fixes; all 15 applied (`release/fixes-1.152.md`). Hostile characterisations
+  (Eley–Nield on Palmer, Scott's "Assent to Discourse", Chandavarkar on Chakrabarty) are the readers'
+  words; the Chandavarkar 1997 quotations await re-verification on an eligible copy. Unread: the
+  *Social History* exchange of 1992–96, Gray 1986, Cooper 1995, *Descent into Discourse*.
+
 # Revision 1.141: explicit chronology throughout the project
 
 The user requested consistent timeline spans, starting with historical meaning,

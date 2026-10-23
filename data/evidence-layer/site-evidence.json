@@ -1,8 +1,8 @@
 {
  "schema_version": "1.0",
- "built": "2026-10-18",
+ "built": "2026-10-22",
  "builds": {
-  "series": "v25",
+  "series": "v26",
   "methods": "methods-v9",
   "mentions": "mentions-v6"
  },
@@ -193,6 +193,10 @@
      },
      {
       "id": "oral",
+      "primary": true
+     },
+     {
+      "id": "languages_of_class",
       "primary": true
      },
      {
@@ -799,6 +803,10 @@
      },
      {
       "id": "cdn_religion_reform",
+      "primary": false
+     },
+     {
+      "id": "languages_of_class",
       "primary": false
      }
     ],
@@ -7541,6 +7549,27 @@
      "lift": 4.24
     }
    ]
+  },
+  "languages_of_class": {
+   "status": "folded",
+   "practised_within": [
+    {
+     "id": "social",
+     "label": "New social history"
+    }
+   ],
+   "relations": [
+    "subfield"
+   ],
+   "coverage": {
+    "mapped_title_contexts": 0,
+    "deposited_records": 0,
+    "first_deposit": null,
+    "first_candidate": null,
+    "qualifying_records": 0,
+    "missing_length": 0,
+    "note": "0 mapped title contexts; 0 distinct deposited records. Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
+   }
   },
   "liberal_order_framework": {
    "status": "folded",
