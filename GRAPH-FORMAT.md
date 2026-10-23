@@ -1,6 +1,16 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.153 (2026-10-22): the question of class, reworked
+## Current revision 1.154 (2026-10-23): the question of class, trimmed
+
+A pathway revision on 1.153. The user asked whether stops 9–13 "really fit" and agreed to the cut:
+`question_of_class` now has 10 entries: the British chain (Thompson, Stedman Jones, Scott, Palmer,
+Joyce, Vernon, Lawrence), the debate entry as the hinge to its regional strands, then Parr and
+Chakrabarty for the spread. New social history, labour history and gender history leave the pathway
+(umbrella fields whose rosters are unrelated to the quarrel). Questions and exercise unchanged. The
+graph changes only by a `revision_history` entry. See the
+[acceptance record](data/production-batches/pathways-1.154/README.md).
+
+## Historical revision 1.153 (2026-10-22): the question of class, reworked
 
 A pathway revision on 1.152. The user: the pathway was "both too much and not enough; I want to
 focus on the Thompson -> Stedman Jones -> Joan Scott -> Brian Palmer -> Patrick Joyce -> James

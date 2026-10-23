@@ -1,3 +1,11 @@
+# Revision 1.154: the question of class, trimmed (23 October 2026)
+
+The user asked whether stops 9–13 "really fit". Three umbrella fields (new social history, labour
+history, gender history) leave the pathway; the debate entry moves to the hinge between the British
+chain and the spread, which Parr and Chakrabarty represent as the only person entries with a book in
+the debate. Ten entries; questions and exercise unchanged. Batch:
+`data/extension-2026/languages-of-class-2026-10-22/batch-1.154.json`.
+
 # Revision 1.153: the question of class, reworked (22 October 2026)
 
 A pathway revision. The user: the pathway was "both too much and not enough"; focus on "the Thompson

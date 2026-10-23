@@ -12,7 +12,9 @@ entry `languages_of_class` (12 strands, 47 roster rows, 50 events) and person en
 Jones (11 edges), Joyce (13), Vernon (10) and Lawrence (9); 51 edges and 136 sources in all (Sol:
 accept with fixes, all 15 applied; [acceptance](data/production-batches/group-revision-1.152/README.md)).
 The pathway now runs those eight stops, then the fields contested and the spread (Parr, gender
-history, Chakrabarty), with seven new questions ([acceptance](data/production-batches/pathways-1.153/README.md)).
+history, Chakrabarty), with seven new questions ([acceptance](data/production-batches/pathways-1.153/README.md)); on 2026-10-23 the
+user cut the three umbrella fields and the debate entry became the hinge to the spread, ten stops in all
+(1.154, [acceptance](data/production-batches/pathways-1.154/README.md)).
 Its evidence-layer family is *Social history*, bridged to *Cultural & intellectual history*;
 practice v26 folds it into new social history. Unread and flagged: the whole *Social History*
 exchange of 1992–96 (Taylor & Francis 403), Gray 1986, Cooper 1995, *Descent into Discourse*, and
