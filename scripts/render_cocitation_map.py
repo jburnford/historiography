@@ -210,7 +210,7 @@ the main map, are left out: __DETACHED__.</li>
 region's. Europe here is all European countries together, France included.</li>
 <li><b>Works</b> are first-author surname and main title, with translations mapped through Wikidata counted as one work. A
 citation is not engagement.</li></ul>
-<p class="note">Built __BUILT__ (<code>scripts/render_cocitation_map.py</code>). See also <a href="europe-ca-us.html">Europe, Canada and
+<p class="note">Built __BUILT__ (<code>scripts/render_cocitation_map.py</code>). See also the <a href="explorer.html">source explorer</a>, <a href="europe-ca-us.html">Europe, Canada and
 the United States</a>, <a href="ca-us.html">Canada and the United States</a>, and the <a href="network-full.html">full network of
 theses and works</a> (5,600 theses, 11,000 works).</p>
 <script id="data" type="application/json">__DATA__</script>

@@ -195,7 +195,7 @@ def main():
         '<li><b>Citation is not engagement.</b> A citation can be a frame, a foil or a ritual reference.</li></ul>',
         f'<p class="note">Built {date.today().isoformat()} from <code>summary/regions/</code> '
         '(<code>scripts/region_top_citations.py</code>, <code>scripts/render_region_comparison.py</code>). '
-        'See also <a href="network.html">the map of the most cited works</a> and <a href="ca-us.html">Canada and the United States</a>.</p>',
+        'See also <a href="explorer.html">the source explorer</a>, <a href="network.html">the map of the most cited works</a> and <a href="ca-us.html">Canada and the United States</a>.</p>',
     ]
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Who History PhDs cite: Europe, Canada and the United States</title>
