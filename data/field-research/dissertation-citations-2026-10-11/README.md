@@ -445,10 +445,109 @@ own with `--country CC` (absent = main graph); see `scripts/dissertation_scope.p
      parts are read as one document in part order. 24 US dissertations are multi-part; 18 of
      them parsed. Undeclared extra bitstreams, such as some Canadian supplementary files, stay
      unread as before.
+   - **Front bibliographies and bibliographies before long annexes (2026-10-21).** Older Laval
+     and French theses often print the bibliography after the table of contents and before the
+     introduction. Others close with a bibliography followed by hundreds of pages of annexes
+     (catalogues, corpora), which puts its heading before 40% of the pages.
+     `find_span_anywhere` is tried only when no heading is found by the rules above:
+     - a strong heading before the introduction or first chapter is a front bibliography. It
+       ends where the body opens (introduction, first chapter, preface, list of abbreviations)
+       or at an appendix or index;
+     - a strong heading after the general conclusion is a closing bibliography, ending at the
+       next appendix, index or vita;
+     - contents pages (dot leaders, page numbers) never count, and headings inside chapters
+       (chapter bibliographies) are left alone.
+
+     The placement is recorded as `bib_placement` (`front` or `back`) in `extraction.jsonl`.
+     Re-extracting the 718 theses with no heading recovered 83 (66 at Laval): 62 front, 8 back
+     and 13 found by the 2026-10-20 fallback headings on retry. Front bibliographies come from
+     older typescripts with OCR text layers and are archive-heavy: 36% of their entries are
+     citable kinds, against 67% for other Laval theses.
+     - Their OCR breaks a printed line into fragments at several x positions. For fallback spans,
+       fragments on one baseline are joined before entries are split (`merge_rows`); spans
+       longer than 200 pages are refused.
+     - **Held out of the graph (2026-10-22).** Even after that join, a judged sample of 60
+       entries found first author right in only 40% and title in 57%, with entries split mid-line
+       and given names glued to surnames. Front-placement theses therefore get
+       `extraction_status = front_unverified` in the graph and give no CITES edges, as suspect
+       spans do. Back placements are kept.
+2b. **Bibliographies rebuilt from notes (2026-10-21).** `extract_dissertation_notes.py` reads
+   the notes of theses with no usable bibliography (`no_bibliography_heading`, `few_entries`,
+   `suspect_span`) and rebuilds one entry per cited work.
+   - **Finding notes:**
+     - footnotes are the block at the foot of a page set smaller than the body text and opening
+       with a note number (a superscript span or a leading number);
+     - in scanned typescripts, where OCR sizes are erratic, the block is the one below the widest
+       gap in the lower part of the page;
+     - endnotes are pages headed Notes or Endnotes;
+     - a number opens a note only in sequence (next number, a restart at 1, or a small jump).
+   - **Citations:**
+     - notes are cut at top-level semicolons, and commentary and signal words (See, Voir, Vgl.
+       hierzu, cited in) before a citation are dropped;
+     - each citation is parsed by the bibliography parser (italics, quotes, years, kinds);
+     - unstyled citations ("Robert Sellar, History of the County of Huntingdon, pp. 512-5") are
+       read in the note form, author then title;
+     - natural-order names are turned to "Surname, Given";
+     - places of publication, classical abbreviations (Cic. *Off.*) and author-date residue are
+       not works.
+   - **Counting:**
+     - *Ibid.*, *id.* and *op. cit.* add a citation to the work they refer to;
+     - short titles join the full title that begins the same way;
+     - each work keeps `citations` (how many notes cite it) and its first page.
+
+   Output: `notes-extraction.jsonl` (status `parsed_notes` at 10 or more works) and
+   `notes-entries.jsonl` (`from_notes: true`). In the graph, such a thesis has
+   `extraction_status = parsed_notes`, and its CITES edges carry `via: notes` and `citations`.
+   - **Counting rule** (user, 2026-10-21): these theses count in the headline figures like any
+     other. The measure stays presence, one edge per work per thesis. Note counts are kept as an
+     attribute and never weight anything, since "if we counted how many notes each source got
+     we'd get a different picture". `build_dissertation_citation_graph.py --notes exclude` leaves
+     them out.
+   - **Measured against real bibliographies.** `score_notes_against_bibliographies.py` scores
+     the notes of 160 theses that also have a parsed bibliography (fixed seed; files in
+     `audit/notes/eval-*`). A notes work is matched when the bibliography has the same surname
+     and title key.
+
+     | Theses with at least 30 note works | Median precision (lower bound) | Median recall of secondary works |
+     | --- | --- | --- |
+     | Canada, US and other non-BASE (53) | 0.64 | 0.54 |
+     | BASE (36) | 0.49 | 0.32 |
+
+     Precision here is a lower bound. Most unmatched works sampled are real works cited but not
+     listed, or listed under a mis-parsed form.
+   - **Judged audit (2026-10-22).** An independent judge read 100 notes works (fixed seed),
+     judging from the raw citation alone, with the rubric of the bibliography audits
+     ([audit/notes/precision.json](audit/notes/precision.json)):
+
+     | Group | Is a work | First author | Title | Boundary | Year |
+     | --- | --- | --- | --- | --- | --- |
+     | Non-BASE (60) | 95% | 90% | 85% | 57% | 46% |
+     | BASE (40) | 93% | 85% | 88% | 73% | 69% |
+
+     Author and title, which key the work, match the bibliography audit (85% and 86%). Boundary
+     and year are weak: separate notes still run together, and the year then comes from a later
+     work. That changes a work's year, not which works a thesis cites.
+   - **Result (2026-10-22 run):** 374 of 782 theses rebuilt (56,900 works from 110,566
+     citations); 332 gave too few works (mostly poor-OCR typescripts and out-of-scope theses),
+     74 had no notes found and 2 have no text layer.
 3. **Build the graph.** A work is keyed by first-author surname and main title (text
    before the first colon, leading articles and volume numbers dropped). Near-identical
    titles under one surname are merged. Articles and chapters are keyed apart from books
    with the same title.
+   - **Comma-less names (2026-10-21).** A first author printed without a comma used to become
+     a whole-name surname, which split works and people: 'GINZBURG Carlo', 'Robert Dallek',
+     'Sassoon D.', 'Zhang Kuitang'. This affected 135,220 citable entries (7.7%), most of them
+     French 'NOM Prénom' in BASE theses. `dissertation_names.py` now reads the surname at load
+     time, in this order:
+     1. trailing or leading initials;
+     2. a run of capitals beside ordinary words;
+     3. otherwise the bibliography's own alphabetisation. If the first words of its comma-less
+        names run in alphabetical order, the first word is the surname; if the last words do,
+        the last word is.
+
+     Particles stay as printed. Corporate and regnal names stay whole. The fix collapses about
+     14,600 duplicate work keys; for example, Foucault's *Surveiller et punir* rises from 56 to
+     80 citing theses and Nora's *Les lieux de mémoire* from 52 to 74.
 4. **Identify authors.** The cited work, not the printed initials, identifies its author.
    - **Spellings across citations:** each work takes its first author from the fullest
      spelling found in any dissertation's citation of it.
@@ -893,6 +992,36 @@ grounding covers only people cited by ten or more dissertations. `atlas_person_c
 marks an exact key match with an atlas roster label; it is a candidate for review, not a
 link.
 
+## Translations, comparison pages and the public release (2026-10-22/23)
+
+- **Translations and editions.** `map_work_translations.py` matches works cited by at least 5 theses,
+  whose first author is grounded in Wikidata, against that author's Wikidata works. It uses their
+  titles in every language and the titles of their editions (P629; editions carrying their own
+  author statement are folded into their work). The builder merges each cluster into its most cited
+  work: 95 clusters on 2026-10-23, including *Discipline and Punish* in five languages. The mapper
+  accumulates rows across runs, because merged works no longer appear separately. The builder
+  carries old work ids to new ones through their raw keys.
+- **Work names.** A merged work is named after its most cited spelling, not the shortest. Before
+  2026-10-23, ids could carry one bibliography's typo (`W:anderson|imagine communities`).
+- **Pages** (`summary/comparisons/`):
+  - `europe-ca-us.html` (`region_top_citations.py`, `render_region_comparison.py`): Europe,
+    Europe without France, Canada and the United States;
+  - `network.html` (`render_cocitation_map.py`): a co-citation map of the 90 most cited works in
+    each region (VOSviewer association strength, 5 strongest links each);
+  - `network-full.html` (`network_layout.py`, `render_network_page.py`): the thesis and work
+    network. It has 5,600 theses and 11,000 works, laid out with a ForceAtlas2-style method
+    compiled with Numba; gravity 0.03 separates the regions.
+- **Linguistic turn** (`linguistic_turn_citations.py`, `summary/linguistic-turn/`): the share of
+  History PhDs citing the theory canon, the historians' turn, Joan Scott and Foucault's power works,
+  by country and period.
+- **Public release** (`build_public_release.py`, `release/<date>/`): dissertations, works,
+  people, citations, authorship and translations as CSV. It contains no text from the
+  dissertations. It carries a data dictionary, method, measured quality and provenance, and is
+  licensed CC BY 4.0. Archived on Zenodo through GitHub releases of this repository
+  (`.zenodo.json`).
+- **Memory.** The builder needs about 13 GB at peak: it drops raw entry text at load and streams
+  `graph.json`. Run it alone; WSL crashed when two builds ran together.
+
 ## Files
 
 Tracked:
@@ -907,6 +1036,9 @@ Tracked:
 - `extraction.jsonl`: extraction status, bibliography page span and entry counts per PDF (and
   `sha256` from 2026-10-20).
 - `person-wikidata.jsonl`: grounding rows, with candidates and tier.
+- `notes-extraction.jsonl`: notes status, note and citation counts per thesis (no text).
+- `work-translations.jsonl`: translation and edition clusters (`map_work_translations.py`).
+- `release/<date>/`: the public release (CC BY 4.0; see below).
 
 Local only (gitignored, large or third-party):
 
@@ -916,6 +1048,9 @@ Local only (gitignored, large or third-party):
   (`logs/verify-pdf-move.json`). Downloads stop when that volume, or C: (which holds the WSL virtual disk), runs
   low on space.
 - `entries.jsonl`: every parsed entry.
+- `notes-entries.jsonl`: works rebuilt from notes. Their raw citation strings can carry fragments
+  of an author's own footnote prose, so they stay local and out of the release.
+- `summary/network/`: the network layout cache (`network_layout.py`).
 - `graph.json` (nodes and edges) and `graph.graphml` (for Gephi).
 - `works.csv` and `cited-people.csv`.
 - `work-authorities.jsonl` and `person-names.json`.

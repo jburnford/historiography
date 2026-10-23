@@ -51,7 +51,11 @@ import unicodedata
 from xml.sax.saxutils import escape
 
 from dissertation_scope import SUBGRAPH_THRESHOLD, record_country, summary_dir
+from dissertation_names import normalise_first_authors
 
+# Entry fields the build uses; the rest (notably the raw citation text) is dropped at load to save memory.
+ENTRY_FIELDS = ('dissertation', 'institution', 'n', 'page', 'first_page', 'section', 'author', 'authors', 'surnames', 'title',
+                'container', 'year', 'kind', 'section_side', 'author_from_dash', 'from_notes', 'citations')
 CITABLE = {'book', 'article', 'chapter', 'thesis', 'book_or_serial', 'unstyled'}
 STOPWORDS = {'the', 'a', 'an', 'le', 'la', 'les', 'l', 'un', 'une', 'des', 'du', 'de'}
 
@@ -337,8 +341,11 @@ def dissertation_year(d):
     return None, None
 
 
-def merge_titles(works_by_surname):
-    """Merge near-identical title keys under the same first-author surname."""
+def merge_titles(works_by_surname, counts=None):
+    """Merge near-identical title keys under the same first-author surname. Clusters form around
+    the shortest key; with ``counts`` (citations per raw key) each cluster is then named after its
+    most cited spelling, so a work id does not carry one bibliography's typo
+    ('imagine communities'; 2026-10-23). Membership is the same either way."""
     alias = {}
     for sur, keys in works_by_surname.items():
         keys = sorted(keys, key=lambda k: (-len(k), k))
@@ -357,6 +364,17 @@ def merge_titles(works_by_surname):
                 alias[(sur, k)] = (sur, target)
             else:
                 reps.append(k)
+    if counts:
+        members = defaultdict(list)
+        for k, r in alias.items():
+            members[r].append(k)
+        for r, ks in members.items():
+            best = max(ks + [r], key=lambda k: (counts.get(k, 0), -len(k[1]), k[1]))
+            for k in ks + [r]:
+                if k == best:
+                    alias.pop(k, None)
+                else:
+                    alias[k] = best
     return alias
 
 
@@ -369,6 +387,9 @@ def main():
                         help='also give these countries a sub-graph when they fall below the threshold, labelled '
                              "'first pass, below threshold' in meta.provisional_subgraphs and in a NOTE.json in their "
                              'summary directory (the threshold itself is unchanged)')
+    parser.add_argument('--notes', choices=['include', 'exclude'], default='include',
+                        help='theses without a usable bibliography use the bibliography rebuilt from their notes '
+                             '(extract_dissertation_notes.py: status parsed_notes; CITES edges carry via=notes)')
     args = parser.parse_args()
     out = args.out
     docs = {d['id']: d for d in json.load((out / 'doctorates.json').open())}
@@ -380,8 +401,43 @@ def main():
         except json.JSONDecodeError:  # truncated line from an interrupted run
             continue
         if e['dissertation'] in extraction:  # re-extraction replaces earlier rows
-            entries[(e['dissertation'], e['n'])] = e
-    entries = list(entries.values())
+            entries[(e['dissertation'], e['n'])] = {k: e[k] for k in ENTRY_FIELDS if k in e}  # 'raw' text is not needed
+    # A re-extraction that yields fewer entries leaves the earlier run's higher-numbered rows
+    # behind: keep only rows within the final extraction's entry count.
+    entries = [e for e in entries.values() if e['n'] < (extraction[e['dissertation']].get('entries') or 0)]
+    # Comma-less first authors ('GINZBURG Carlo', 'Robert Dallek') get a surname read from the
+    # name and the thesis's own alphabetisation (dissertation_names.py, 2026-10-21).
+    per_thesis = defaultdict(list)
+    for e in entries:
+        per_thesis[e['dissertation']].append(e)
+    renamed = sum(normalise_first_authors(sorted(rows, key=lambda e: e['n'])) for rows in per_thesis.values())
+    print(f'comma-less first authors normalised: {renamed}', flush=True)
+    # Front bibliographies (find_span_anywhere, bib_placement 'front') are older OCR typescripts whose
+    # entries split badly (judged audit 2026-10-22: first author 40%, title 57%), so they stay out of
+    # the graph, as suspect spans do, until the parser is improved. 'back' placements are kept.
+    for did, x in list(extraction.items()):
+        if x['status'] == 'parsed' and x.get('bib_placement') == 'front':
+            extraction[did] = dict(x, status='front_unverified')
+    # Bibliographies rebuilt from notes (2026-10-21), only for theses whose own bibliography was
+    # not parsed. Their entries replace any partial bibliography rows (few_entries, suspect_span).
+    notes_used = set()
+    if args.notes == 'include' and (out / 'notes-extraction.jsonl').exists():
+        notes_x = {}
+        for line in (out / 'notes-extraction.jsonl').open():
+            r = json.loads(line)
+            notes_x[r['id']] = r
+        for did, r in notes_x.items():
+            x = extraction.get(did)
+            if x and x['status'] != 'parsed' and r['status'] == 'parsed_notes':
+                extraction[did] = dict(x, status='parsed_notes', bibliography_status=x['status'], entries=r['works'])
+                notes_used.add(did)
+        entries = [e for e in entries if e['dissertation'] not in notes_used]
+        for line in (out / 'notes-entries.jsonl').open():
+            e = json.loads(line)
+            if e['dissertation'] in notes_used:
+                e = {k: e[k] for k in ENTRY_FIELDS if k in e}
+                entries.append(dict(e, n=f"notes-{e['n']}", page=e.get('first_page', e.get('page'))))
+        print(f'theses with a bibliography rebuilt from notes: {len(notes_used)}', flush=True)
 
     # Work identity: first-author surname + main title, then fuzzy merge within surname.
     raw_key = {}
@@ -396,7 +452,21 @@ def main():
             tk += '|a'  # an article and a book with the same title are different works
         raw_key[(e['dissertation'], e['n'])] = (sur, tk)
         by_sur[sur].add(tk)
-    alias = merge_titles(by_sur)
+    alias = merge_titles(by_sur, Counter(raw_key.values()))
+    # Translations and editions of one work, mapped through Wikidata (map_work_translations.py,
+    # 2026-10-22): each cluster's works are merged into its most cited work id.
+    translation_of = {}
+    if (out / 'work-translations.jsonl').exists():
+        for line in (out / 'work-translations.jsonl').open():
+            r = json.loads(line)
+            if r['work_id'] != r['canonical']:
+                translation_of[r['work_id']] = r['canonical']
+        # The mapping was made from an earlier build: a work id is one of its raw keys, but which raw
+        # key represents a merged work can change between builds, so carry old ids to new ones.
+        now = {'W:' + '|'.join(k): 'W:' + '|'.join(alias.get(k, k)) for ks in [set(raw_key.values())] for k in ks}
+        translation_of = {now.get(a, a): now.get(b, b) for a, b in translation_of.items()}
+        translation_of = {a: b for a, b in translation_of.items() if a != b}
+        print(f'works merged as translations or editions: {len(translation_of)}', flush=True)
 
     nodes, edges = {}, []
     persons = defaultdict(lambda: dict(names=Counter(), roles=Counter()))
@@ -429,7 +499,7 @@ def main():
                                  graph_excluded=exclusions.get((d['institution'], did), {}).get('reason'))
         # Only parsed, non-excluded bibliographies give CITES edges; in_analysis marks the strict set.
         n = nodes[f'D:{did}']
-        n['cites_counted'] = x['status'] == 'parsed' and not n['graph_excluded']
+        n['cites_counted'] = x['status'] in ('parsed', 'parsed_notes') and not n['graph_excluded']
         n['in_analysis'] = n['cites_counted'] and elig == 'history_phd'  # strict set, any country
         nodes[f'I:{d["institution"]}'] = dict(id=f'I:{d["institution"]}', type='Institution', name=d['institution'])
         edges.append(dict(source=f'D:{did}', target=f'I:{d["institution"]}', type='AWARDED_BY'))
@@ -451,6 +521,7 @@ def main():
             continue
         key = alias.get(key, key)
         wid = 'W:' + '|'.join(key)
+        wid = translation_of.get(wid, wid)
         w = works[wid]
         w['titles'][e['title']] += 1
         w['kinds'][e['kind']] += 1
@@ -466,7 +537,8 @@ def main():
         w['citing'].add(e['dissertation'])
         w['institutions'].add(e['institution'])
         edges.append(dict(source=f'D:{e["dissertation"]}', target=wid, type='CITES', side=e['section_side'],
-                          section=' > '.join(e['section']), page=e['page'], kind=e['kind']))
+                          section=' > '.join(e['section']), page=e['page'], kind=e['kind'],
+                          **({'via': 'notes', 'citations': e.get('citations')} if e.get('from_notes') else {})))
 
     # A work's authors come from its fullest citation: "Miller, James Rodger" in one
     # bibliography names the "Miller, J.R." of every other citation of that work.
@@ -618,6 +690,9 @@ def main():
                            dissertations=sum(1 for n in nodes.values() if n['type'] == 'Dissertation'),
                            eligibility=dict(Counter(n['eligibility'] for n in nodes.values() if n['type'] == 'Dissertation')),
                            with_bibliography=sum(1 for n in nodes.values() if n['type'] == 'Dissertation' and n['extraction_status'] == 'parsed'),
+                           with_notes_bibliography=sum(1 for n in nodes.values() if n['type'] == 'Dissertation' and n['extraction_status'] == 'parsed_notes'),
+                           in_analysis_from_notes=sum(1 for n in nodes.values() if n['type'] == 'Dissertation' and n['in_analysis']
+                                                      and n['extraction_status'] == 'parsed_notes'),
                            by_country=dict(sorted(Counter(n['country'] for n in nodes.values() if n['type'] == 'Dissertation').items())),
                            in_analysis=len(strict), in_analysis_by_country=dict(sorted(strict_by_country.items())),
                            subgraph_threshold=args.subgraph_threshold, subgraphs=subgraphs,
@@ -625,9 +700,13 @@ def main():
                            works=len(works), persons=len(persons), cites_edges=len(cites),
                            caveats=['Heuristic bibliography parsing; see audit for measured precision.',
                                     'Person nodes are name keys (surname, first name, middle initial) merged by catalogue title evidence and tiered Wikidata grounding; they are not authority-reviewed identities.',
-                                    'Bibliographies list works consulted, not every footnote citation, and not influence.']),
+                                    'Bibliographies list works consulted, not every footnote citation, and not influence.',
+                                    'Theses without a usable bibliography (extraction_status parsed_notes) cite the works rebuilt from their '
+                                    'notes: cited works only, not works consulted; their CITES edges carry via=notes.']),
                  nodes=list(nodes.values()), edges=edges)
-    (out / 'graph.json').write_text(json.dumps(graph, ensure_ascii=False) + '\n')
+    with (out / 'graph.json').open('w') as f:  # streamed: one 1+ GB string would double the peak memory
+        json.dump(graph, f, ensure_ascii=False)
+        f.write('\n')
     write_graphml(out / 'graph.graphml', graph)
 
     # Per-country strict counts: one column per sub-graph country, the rest pooled in cited_by_other.
@@ -689,7 +768,8 @@ def write_summary(out, docs, extraction, entries, nodes, edges, works, cited_by_
           ('restricted', 'no_public_pdf_bitstream', 'http_404', 'embargoed', 'no_public_pdf') else 'pdf_pending_or_error'] += 1
         x = extraction.get(did)
         if x:
-            r['bibliography_parsed' if x['status'] == 'parsed' else 'bibliography_not_parsed'] += 1
+            r['bibliography_parsed' if x['status'] == 'parsed' else 'bibliography_from_notes' if x['status'] == 'parsed_notes'
+              else 'bibliography_not_parsed'] += 1
             if x.get('ocr'):
                 r['ocr'] += 1
         n = nodes.get(f'D:{did}')
@@ -698,7 +778,7 @@ def write_summary(out, docs, extraction, entries, nodes, edges, works, cited_by_
         country[d['institution']] = record_country(d)
         r['citable_entries'] += citable.get(did, 0)
     cols = ['doctorates_harvested', 'pdf_downloaded', 'pdf_restricted_or_missing', 'pdf_pending_or_error',
-            'bibliography_parsed', 'bibliography_not_parsed', 'ocr', 'history_phd_in_graph', 'citable_entries']
+            'bibliography_parsed', 'bibliography_from_notes', 'bibliography_not_parsed', 'ocr', 'history_phd_in_graph', 'citable_entries']
     authors_of = defaultdict(list)
     for e in edges:
         if e['type'] == 'AUTHORED':

@@ -230,6 +230,80 @@ def find_span(doc, fallback=False):
     return start, end
 
 
+TOC_LINE = re.compile(r'(?:\.\s*){4,}|…{2,}|\s\d{1,4}\s*$')
+BODY_OPEN = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:introduction(?:\s+g[ée]n[ée]rale)?|avant-propos|pr[ée]face|foreword|'
+                       r'chapitre\s+(?:premier|1|i)\b|chapter\s+(?:one|1|i)\b|premi[eè]re\s+partie|part\s+(?:one|1|i)\b|'
+                       r'einleitung|introducci[óo]n|introdu[çc][ãa]o|introduzione|inledning|'
+                       r'(?:liste|table)\s+des\s+(?:abr[ée]viations|sigles)|abr[ée]viations|sigles(?:\s+et\s+abr[ée]viations)?|'
+                       r'list\s+of\s+abbreviations|abbreviations)\b', re.I)
+BODY_START = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:introduction(?:\s+g[ée]n[ée]rale)?|chapitre\s+(?:premier|1|i)\b|chapter\s+(?:one|1|i)\b|'
+                        r'premi[eè]re\s+partie|part\s+(?:one|1|i)\b|einleitung|introducci[óo]n|introdu[çc][ãa]o|introduzione|inledning)\b', re.I)
+CLOSING = re.compile(r'^(?:[IVX\d]+\.?\s+)?(?:conclusions?(?:\s+g[ée]n[ée]rales?)?|general\s+conclusion|epilogue|[ée]pilogue|'
+                     r'schluss(?:betrachtung)?|fazit|conclusi[óo]n(?:es)?|conclus[ãa]o|conclusione|slutsats(?:er)?)\s*[:.]?$', re.I)
+
+
+MAX_FALLBACK_PAGES = 200  # a longer span is body text or a catalogue, and parsing it all costs gigabytes
+
+
+def find_span_anywhere(doc):
+    """Fallback when ``find_span`` finds nothing: a bibliography heading before 40% of the pages
+    (added 2026-10-21, user: "figure out the bibliography at the front").
+    - Front bibliography (older Laval and French theses): a heading after the table of contents and
+      before the introduction or first chapter; it ends where the body opens (introduction, first
+      chapter, preface, list of abbreviations) or at an appendix or index.
+    - Closing bibliography followed by long annexes (catalogues, corpora): a heading after the
+      general conclusion; it ends at the next appendix, index or vita, as in ``find_span``.
+    Contents pages (dot leaders, page numbers) never count. Headings inside chapters (chapter
+    bibliographies) are left alone. Returns (start, end, 'front'|'back') or (None, None, None)."""
+    n = len(doc)
+    tops, toc = [], []
+    for i in range(n):
+        lines = [t.strip() for t in doc[i].get_text().splitlines() if t.strip()]
+        tops.append(lines[:6])
+        toc.append(sum(bool(TOC_LINE.search(t)) for t in lines) > 6)
+
+    def strong_at(i):
+        return not toc[i] and any(len(t) < 50 and (STRONG.match(t) or ml_heading(t) and not WEAK_ML.match(t) or START_US.match(t)
+                                                    and not WEAK_US.match(t)) for t in tops[i])
+
+    def first(pattern, lo, hi):
+        return next((i for i in range(lo, hi) if not toc[i] and any(len(t) < 60 and pattern.match(t) for t in tops[i][:4])), None)
+    cands = [i for i in range(1, int(n * 0.4) + 1) if strong_at(i)]
+    if not cands:
+        return None, None, None
+    start = cands[0]
+    body = first(BODY_START, 0, n)
+    if body is not None and start < body:  # front bibliography: before the introduction or first chapter
+        earlier = [w for w in range(max(1, start - 15), start) if not toc[w] and any(len(t) < 50 and (WEAK.match(t) or WEAK_ML.match(t)) for t in tops[w])]
+        start = min(earlier) if earlier else start
+        stop = first(BODY_OPEN, start + 1, n)
+        stop_b = next((i for i in range(start + 1, n) if any(STOP.match(t) and len(t) < 60 for t in tops[i][:4])), n)
+        end = min(x for x in (stop, stop_b) if x is not None)
+        return (start, end, 'front') if 1 <= end - start <= MAX_FALLBACK_PAGES else (None, None, None)
+    closing = [i for i in range(n) if not toc[i] and any(CLOSING.match(t) for t in tops[i][:3])]
+    if closing and closing[0] < start and start - closing[-1] <= 40 and not any(
+            re.match(r'^(?:chapitre|chapter|kapitel|cap[ií]tulo|partie|part)\b', t, re.I) for i in range(closing[-1], start) for t in tops[i][:2]):
+        end = next((i for i in range(start + 1, n) if any(STOP.match(t) and len(t) < 60 for t in tops[i][:4])), n)
+        return (start, end, 'back') if end - start <= MAX_FALLBACK_PAGES else (None, None, None)
+    return None, None, None
+
+
+def merge_rows(lines, tol=3):
+    """Join fragments printed on one baseline (OCR text layers of older typescripts split a line
+    into word groups at several x positions). Used only for spans found by ``find_span_anywhere``."""
+    out = []
+    for l in sorted(lines, key=lambda l: (l['page'], round(l['y0']), l['x0'])):
+        prev = out[-1] if out else None
+        if prev and prev['page'] == l['page'] and abs(prev['y0'] - l['y0']) < tol:
+            prev['spans'] = prev['spans'] + [(' ', False, False, l['spans'][0][3])] + l['spans']
+            prev['text'] = prev['text'] + ' ' + l['text']
+            prev['x0'], prev['x1'] = min(prev['x0'], l['x0']), max(prev['x1'], l['x1'])
+            prev['y1'] = max(prev['y1'], l['y1'])
+        else:
+            out.append(dict(l))
+    return out
+
+
 OCR = False  # set by --ocr: scanned theses get Tesseract text for their closing pages
 
 
@@ -884,7 +958,7 @@ def _process(path, parts=None):
         return dict(file=str(path), status='unreadable', error=str(exc)), []
     pages = len(doc)
     text_chars = sum(len(doc[i].get_text()) for i in range(0, pages, max(1, pages // 12)))
-    ocr = {}
+    ocr, placement = {}, None
     if text_chars < 2000:
         if not OCR:
             return dict(file=str(path), pages=pages, status='no_text_layer'), []
@@ -893,9 +967,13 @@ def _process(path, parts=None):
         start, end = find_span(doc)
         if start is None:  # further English heading forms, tried only when none of the usual ones is found
             start, end = find_span(doc, fallback=True)
+        if start is None:  # a front bibliography, or a closing one before long annexes (2026-10-21)
+            start, end, placement = find_span_anywhere(doc)
     if start is None:
         return dict(file=str(path), pages=pages, status='no_bibliography_heading', ocr=bool(ocr), ocr_pages=len(ocr)), []
     lines = [l for i in range(start, end) for l in (lines_of(*ocr[i]) if ocr else lines_of(doc[i]))]
+    if placement:
+        lines = merge_rows(lines)
     # Drop the opening heading line itself and repeated running headers.
     repeat = Counter(re.sub(r'\d+', '#', l['text']) for l in lines)
     npages = end - start
@@ -914,7 +992,7 @@ def _process(path, parts=None):
         status = 'suspect_span'  # body text or unreadable OCR swallowed: kept out of the graph
     return dict(file=str(path), pages=pages, status=status, bib_pages=[start + 1, end], entries=len(parsed), ocr=bool(ocr),
                 kinds=dict(Counter(p['kind'] for p in parsed)), sides=dict(Counter(p['section_side'] for p in parsed)),
-                **({'parts': len(parts)} if parts else {})), parsed
+                **({'parts': len(parts)} if parts else {}), **({'bib_placement': placement} if placement else {})), parsed
 
 
 def read_log(path):

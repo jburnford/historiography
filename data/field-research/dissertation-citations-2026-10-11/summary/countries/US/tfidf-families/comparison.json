@@ -1,103 +1,137 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 11,
- "louvain_clustered": 730,
- "louvain_vocabulary": 763,
- "nmf_vocabulary": 763,
- "shared_works": 730,
+ "louvain_fields": 10,
+ "louvain_clustered": 816,
+ "louvain_vocabulary": 862,
+ "nmf_vocabulary": 862,
+ "shared_works": 816,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.544,
-  "nmi": 0.669,
+  "adjusted_rand": 0.549,
+  "nmi": 0.686,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.483,
+ "entropy_vs_louvain_link_split_spearman": 0.442,
  "families": [
   {
    "family": 0,
-   "label": "McPherson · Foner · Sellers — jacksonian, radicalism, republic, ideology",
-   "dominated": 197,
-   "member_works": 149,
+   "label": "Foner · McPherson · Sellers — disunion, radicalism, jacksonian, ideology",
+   "dominated": 209,
+   "member_works": 159,
    "best_by_member_works": {
-    "field": "Revolution, early republic & antebellum politics (provisional)",
-    "field_id": 2,
-    "jaccard": 0.481,
-    "field_size": 82
+    "field": "Foner · Bailyn · McPherson",
+    "field_id": 3,
+    "jaccard": 0.485,
+    "field_size": 86
    },
    "best_by_top25": {
-    "field": "Revolution, early republic & antebellum politics (provisional)",
-    "field_id": 2,
-    "jaccard": 0.202,
+    "field": "Foner · Bailyn · McPherson",
+    "field_id": 3,
+    "jaccard": 0.194,
     "top25_inside": 0.72
    },
    "best_by_dissertations": {
-    "field": "Revolution, early republic & antebellum politics (provisional)",
-    "field_id": 2,
-    "jaccard": 0.567,
-    "engaged": 226
+    "field": "Foner · Bailyn · McPherson",
+    "field_id": 3,
+    "jaccard": 0.557,
+    "engaged": 238
    },
    "top25_spread": [
     [
-     "Revolution, early republic & antebellum politics (provisional)",
+     "Foner · Bailyn · McPherson",
      0.72
     ],
     [
      "Genovese · Johnson · McCurry",
-     0.24
+     0.2
     ]
    ]
   },
   {
    "family": 1,
-   "label": "Said · Cohn · Chakrabarty — india, imperial, postcolonial, colonial",
-   "dominated": 129,
-   "member_works": 62,
+   "label": "Said · Cohn · Conklin — india, british, africa, colonialism",
+   "dominated": 160,
+   "member_works": 82,
    "best_by_member_works": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.472,
-    "field_size": 97
+    "jaccard": 0.49,
+    "field_size": 140
    },
    "best_by_top25": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.258,
-    "top25_inside": 1.0
+    "jaccard": 0.17,
+    "top25_inside": 0.96
    },
    "best_by_dissertations": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.295,
-    "engaged": 345
+    "jaccard": 0.273,
+    "engaged": 492
    },
    "top25_spread": [
     [
-     "Theory, empire & the transnational turn (provisional)",
-     1.0
+     "Anderson · Foucault · Said",
+     0.96
     ]
    ]
   },
   {
    "family": 2,
-   "label": "Berlin · Thornton · Scott — atlantic, haitian, americas, africans",
-   "dominated": 119,
-   "member_works": 88,
+   "label": "Ngai · Lee · Kramer — chinese, ethnicity, race, immigration",
+   "dominated": 135,
+   "member_works": 104,
+   "best_by_member_works": {
+    "field": "Ngai · Roediger · Jacobson",
+    "field_id": 9,
+    "jaccard": 0.402,
+    "field_size": 46
+   },
+   "best_by_top25": {
+    "field": "Ngai · Roediger · Jacobson",
+    "field_id": 9,
+    "jaccard": 0.291,
+    "top25_inside": 0.64
+   },
+   "best_by_dissertations": {
+    "field": "Ngai · Roediger · Jacobson",
+    "field_id": 9,
+    "jaccard": 0.379,
+    "engaged": 134
+   },
+   "top25_spread": [
+    [
+     "Ngai · Roediger · Jacobson",
+     0.64
+    ],
+    [
+     "Foucault · Dudziak · Kramer",
+     0.36
+    ]
+   ]
+  },
+  {
+   "family": 3,
+   "label": "Berlin · Thornton · Brown — atlantic, haitian, creoles, many",
+   "dominated": 123,
+   "member_works": 98,
    "best_by_member_works": {
     "field": "Atlantic slavery & the Black Atlantic (provisional)",
-    "field_id": 3,
-    "jaccard": 0.701,
-    "field_size": 77
+    "field_id": 2,
+    "jaccard": 0.685,
+    "field_size": 89
    },
    "best_by_top25": {
     "field": "Atlantic slavery & the Black Atlantic (provisional)",
-    "field_id": 3,
-    "jaccard": 0.325,
+    "field_id": 2,
+    "jaccard": 0.281,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
     "field": "Atlantic slavery & the Black Atlantic (provisional)",
-    "field_id": 3,
-    "jaccard": 0.545,
-    "engaged": 173
+    "field_id": 2,
+    "jaccard": 0.521,
+    "engaged": 204
    },
    "top25_spread": [
     [
@@ -107,27 +141,57 @@
    ]
   },
   {
-   "family": 3,
-   "label": "White · Hämäläinen · Blackhawk — indians, borderlands, indian, native",
-   "dominated": 114,
-   "member_works": 63,
+   "family": 4,
+   "label": "Sugrue · McGirr · Lassiter — suburban, sunbelt, conservatism, postwar",
+   "dominated": 119,
+   "member_works": 85,
+   "best_by_member_works": {
+    "field": "Sugrue · Cohen · Lassiter",
+    "field_id": 1,
+    "jaccard": 0.818,
+    "field_size": 95
+   },
+   "best_by_top25": {
+    "field": "Sugrue · Cohen · Lassiter",
+    "field_id": 1,
+    "jaccard": 0.263,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Sugrue · Cohen · Lassiter",
+    "field_id": 1,
+    "jaccard": 0.439,
+    "engaged": 248
+   },
+   "top25_spread": [
+    [
+     "Sugrue · Cohen · Lassiter",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 5,
+   "label": "White · Hämäläinen · Blackhawk — indians, indian, borderlands, ground",
+   "dominated": 116,
+   "member_works": 66,
    "best_by_member_works": {
     "field": "Native America, borderlands & the West (provisional)",
-    "field_id": 4,
-    "jaccard": 0.849,
-    "field_size": 72
+    "field_id": 6,
+    "jaccard": 0.878,
+    "field_size": 73
    },
    "best_by_top25": {
     "field": "Native America, borderlands & the West (provisional)",
-    "field_id": 4,
-    "jaccard": 0.347,
+    "field_id": 6,
+    "jaccard": 0.342,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
     "field": "Native America, borderlands & the West (provisional)",
-    "field_id": 4,
+    "field_id": 6,
     "jaccard": 0.51,
-    "engaged": 182
+    "engaged": 189
    },
    "top25_spread": [
     [
@@ -137,437 +201,429 @@
    ]
   },
   {
-   "family": 4,
-   "label": "Ngai · Lee · Dudziak — immigration, chinese, ethnicity, race",
-   "dominated": 114,
-   "member_works": 91,
-   "best_by_member_works": {
-    "field": "Immigration, race & whiteness (provisional)",
-    "field_id": 9,
-    "jaccard": 0.385,
-    "field_size": 42
-   },
-   "best_by_top25": {
-    "field": "Immigration, race & whiteness (provisional)",
-    "field_id": 9,
-    "jaccard": 0.264,
-    "top25_inside": 0.56
-   },
-   "best_by_dissertations": {
-    "field": "Immigration, race & whiteness (provisional)",
-    "field_id": 9,
-    "jaccard": 0.356,
-    "engaged": 122
-   },
-   "top25_spread": [
-    [
-     "Immigration, race & whiteness (provisional)",
-     0.56
-    ],
-    [
-     "Gender, sexuality & the United States in the world (provisional)",
-     0.44
-    ]
-   ]
-  },
-  {
-   "family": 5,
-   "label": "Butler · Foucault · Vaughan — latin, mexico, category, limits",
-   "dominated": 113,
-   "member_works": 53,
-   "best_by_member_works": {
-    "field": "Gender, sexuality & the United States in the world (provisional)",
-    "field_id": 6,
-    "jaccard": 0.21,
-    "field_size": 68
-   },
-   "best_by_top25": {
-    "field": "Gender, sexuality & the United States in the world (provisional)",
-    "field_id": 6,
-    "jaccard": 0.224,
-    "top25_inside": 0.68
-   },
-   "best_by_dissertations": {
-    "field": "Gender, sexuality & the United States in the world (provisional)",
-    "field_id": 6,
-    "jaccard": 0.181,
-    "engaged": 193
-   },
-   "top25_spread": [
-    [
-     "Gender, sexuality & the United States in the world (provisional)",
-     0.68
-    ],
-    [
-     "Theory, empire & the transnational turn (provisional)",
-     0.24
-    ]
-   ]
-  },
-  {
    "family": 6,
-   "label": "Sugrue · McGirr · Lassiter — suburban, sunbelt, postwar, seventies",
-   "dominated": 103,
-   "member_works": 70,
+   "label": "Gilmore · Woodward · Ayers — south, struggle, organizing, civil",
+   "dominated": 100,
+   "member_works": 73,
    "best_by_member_works": {
-    "field": "Postwar metropolis, suburbs & the New Right (provisional)",
-    "field_id": 1,
-    "jaccard": 0.744,
-    "field_size": 87
+    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
+    "field_id": 5,
+    "jaccard": 0.716,
+    "field_size": 78
    },
    "best_by_top25": {
-    "field": "Postwar metropolis, suburbs & the New Right (provisional)",
-    "field_id": 1,
-    "jaccard": 0.287,
-    "top25_inside": 1.0
+    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
+    "field_id": 5,
+    "jaccard": 0.304,
+    "top25_inside": 0.96
    },
    "best_by_dissertations": {
-    "field": "Postwar metropolis, suburbs & the New Right (provisional)",
-    "field_id": 1,
-    "jaccard": 0.43,
-    "engaged": 226
+    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
+    "field_id": 5,
+    "jaccard": 0.386,
+    "engaged": 223
    },
    "top25_spread": [
     [
-     "Postwar metropolis, suburbs & the New Right (provisional)",
-     1.0
+     "The South: slavery, Reconstruction & Jim Crow (provisional)",
+     0.96
     ]
    ]
   },
   {
    "family": 7,
-   "label": "Gilmore · Woodward · Chafe — south, struggle, jim, crow",
-   "dominated": 93,
-   "member_works": 65,
+   "label": "Foucault · Butler — analysis, category, danger, gender",
+   "dominated": 85,
+   "member_works": 48,
    "best_by_member_works": {
-    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
-    "field_id": 5,
-    "jaccard": 0.7,
-    "field_size": 71
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.153,
+    "field_size": 140
    },
    "best_by_top25": {
-    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
-    "field_id": 5,
-    "jaccard": 0.315,
-    "top25_inside": 0.92
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.093,
+    "top25_inside": 0.56
    },
    "best_by_dissertations": {
-    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
-    "field_id": 5,
-    "jaccard": 0.394,
-    "engaged": 204
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.097,
+    "engaged": 492
    },
    "top25_spread": [
     [
-     "The South: slavery, Reconstruction & Jim Crow (provisional)",
-     0.92
+     "Anderson · Foucault · Said",
+     0.56
+    ],
+    [
+     "Foucault · Dudziak · Kramer",
+     0.16
     ]
    ]
   },
   {
    "family": 8,
-   "label": "Wiebe · Hofstadter · McGerr — search, order, progressive, reform",
-   "dominated": 82,
-   "member_works": 48,
+   "label": "Wiebe · Hofstadter · Chandler — search, order, progressive, reform",
+   "dominated": 77,
+   "member_works": 45,
    "best_by_member_works": {
-    "field": "Gilded Age & Progressive Era (provisional)",
+    "field": "Scott · Wiebe · Cronon",
     "field_id": 8,
-    "jaccard": 0.603,
-    "field_size": 45
+    "jaccard": 0.465,
+    "field_size": 59
    },
    "best_by_top25": {
-    "field": "Gilded Age & Progressive Era (provisional)",
+    "field": "Scott · Wiebe · Cronon",
     "field_id": 8,
-    "jaccard": 0.429,
-    "top25_inside": 0.84
+    "jaccard": 0.355,
+    "top25_inside": 0.88
    },
    "best_by_dissertations": {
-    "field": "Gilded Age & Progressive Era (provisional)",
+    "field": "Scott · Wiebe · Cronon",
     "field_id": 8,
-    "jaccard": 0.269,
-    "engaged": 154
+    "jaccard": 0.211,
+    "engaged": 221
    },
    "top25_spread": [
     [
-     "Gilded Age & Progressive Era (provisional)",
-     0.84
+     "Scott · Wiebe · Cronon",
+     0.88
     ]
    ]
   },
   {
    "family": 9,
-   "label": "Anderson · Gellner · Hobsbawm — nationalism, nations, bohemian, germany",
-   "dominated": 71,
-   "member_works": 26,
-   "best_by_member_works": {
-    "field": "Theory, empire & the transnational turn (provisional)",
-    "field_id": 0,
-    "jaccard": 0.194,
-    "field_size": 97
-   },
-   "best_by_top25": {
-    "field": "Theory, empire & the transnational turn (provisional)",
-    "field_id": 0,
-    "jaccard": 0.196,
-    "top25_inside": 0.8
-   },
-   "best_by_dissertations": {
-    "field": "Theory, empire & the transnational turn (provisional)",
-    "field_id": 0,
-    "jaccard": 0.146,
-    "engaged": 345
-   },
-   "top25_spread": [
-    [
-     "Theory, empire & the transnational turn (provisional)",
-     0.8
-    ]
-   ]
-  },
-  {
-   "family": 10,
    "label": "Scott · Cronon · White — nature, condition, conservation, wilderness",
-   "dominated": 71,
-   "member_works": 36,
+   "dominated": 73,
+   "member_works": 34,
    "best_by_member_works": {
-    "field": "Environment & the state (provisional)",
-    "field_id": 10,
-    "jaccard": 0.475,
-    "field_size": 23
+    "field": "Scott · Wiebe · Cronon",
+    "field_id": 8,
+    "jaccard": 0.31,
+    "field_size": 59
    },
    "best_by_top25": {
-    "field": "Environment & the state (provisional)",
-    "field_id": 10,
-    "jaccard": 0.5,
-    "top25_inside": 0.64
+    "field": "Scott · Wiebe · Cronon",
+    "field_id": 8,
+    "jaccard": 0.217,
+    "top25_inside": 0.6
    },
    "best_by_dissertations": {
-    "field": "Environment & the state (provisional)",
-    "field_id": 10,
-    "jaccard": 0.48,
-    "engaged": 74
+    "field": "Scott · Wiebe · Cronon",
+    "field_id": 8,
+    "jaccard": 0.195,
+    "engaged": 221
    },
    "top25_spread": [
     [
-     "Environment & the state (provisional)",
-     0.64
+     "Scott · Wiebe · Cronon",
+     0.6
     ],
     [
-     "Postwar metropolis, suburbs & the New Right (provisional)",
+     "Native America, borderlands & the West (provisional)",
      0.12
     ]
    ]
   },
   {
-   "family": 11,
-   "label": "Kotkin · Yurchak · Martin — soviet, union, failed, last",
-   "dominated": 40,
-   "member_works": 12,
+   "family": 10,
+   "label": "Judt · Herf · Peukert — weimar, bohemian, germany, german",
+   "dominated": 50,
+   "member_works": 18,
    "best_by_member_works": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.09,
-    "field_size": 97
+    "jaccard": 0.105,
+    "field_size": 140
    },
    "best_by_top25": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.119,
-    "top25_inside": 0.52
+    "jaccard": 0.154,
+    "top25_inside": 0.88
    },
    "best_by_dissertations": {
-    "field": "Theory, empire & the transnational turn (provisional)",
+    "field": "Anderson · Foucault · Said",
     "field_id": 0,
-    "jaccard": 0.078,
-    "engaged": 345
+    "jaccard": 0.095,
+    "engaged": 492
    },
    "top25_spread": [
     [
-     "Theory, empire & the transnational turn (provisional)",
-     0.52
-    ],
+     "Anderson · Foucault · Said",
+     0.88
+    ]
+   ]
+  },
+  {
+   "family": 11,
+   "label": "Anderson · Gellner · Hobsbawm — nationalism, nations, sphere, memory",
+   "dominated": 47,
+   "member_works": 21,
+   "best_by_member_works": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.081,
+    "field_size": 140
+   },
+   "best_by_top25": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.122,
+    "top25_inside": 0.72
+   },
+   "best_by_dissertations": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.065,
+    "engaged": 492
+   },
+   "top25_spread": [
     [
-     "Gender, sexuality & the United States in the world (provisional)",
-     0.32
+     "Anderson · Foucault · Said",
+     0.72
+    ]
+   ]
+  },
+  {
+   "family": 12,
+   "label": "Vaughan · Zolov · Mallon — mexico, latin, peasant, forms",
+   "dominated": 45,
+   "member_works": 19,
+   "best_by_member_works": {
+    "field": "Foucault · Dudziak · Kramer",
+    "field_id": 4,
+    "jaccard": 0.205,
+    "field_size": 81
+   },
+   "best_by_top25": {
+    "field": "Foucault · Dudziak · Kramer",
+    "field_id": 4,
+    "jaccard": 0.233,
+    "top25_inside": 0.8
+   },
+   "best_by_dissertations": {
+    "field": "Foucault · Dudziak · Kramer",
+    "field_id": 4,
+    "jaccard": 0.141,
+    "engaged": 230
+   },
+   "top25_spread": [
+    [
+     "Foucault · Dudziak · Kramer",
+     0.8
+    ]
+   ]
+  },
+  {
+   "family": 13,
+   "label": "Kotkin · Martin · Yurchak — soviet, stalinism, union, stalin",
+   "dominated": 38,
+   "member_works": 10,
+   "best_by_member_works": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.071,
+    "field_size": 140
+   },
+   "best_by_top25": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.13,
+    "top25_inside": 0.76
+   },
+   "best_by_dissertations": {
+    "field": "Anderson · Foucault · Said",
+    "field_id": 0,
+    "jaccard": 0.066,
+    "engaged": 492
+   },
+   "top25_spread": [
+    [
+     "Anderson · Foucault · Said",
+     0.76
     ]
    ]
   }
  ],
  "louvain_to_nmf": [
   {
-   "field": "Theory, empire & the transnational turn (provisional)",
+   "field": "Anderson · Foucault · Said",
    "field_id": 0,
-   "works": 97,
+   "works": 140,
    "best_family": 1,
-   "family_label": "Said · Cohn · Chakrabarty — india, imperial, postcolonial, colonial",
-   "jaccard": 0.472,
+   "family_label": "Said · Cohn · Conklin — india, british, africa, colonialism",
+   "jaccard": 0.49,
    "work_spread": [
     [
      1,
-     51
+     73
     ],
     [
-     9,
-     20
+     7,
+     25
     ],
     [
-     5,
-     17
+     10,
+     15
     ],
     [
      11,
-     9
+     12
     ]
    ]
   },
   {
-   "field": "Postwar metropolis, suburbs & the New Right (provisional)",
+   "field": "Sugrue · Cohen · Lassiter",
    "field_id": 1,
-   "works": 87,
-   "best_family": 6,
-   "family_label": "Sugrue · McGirr · Lassiter — suburban, sunbelt, postwar, seventies",
-   "jaccard": 0.744,
+   "works": 95,
+   "best_family": 4,
+   "family_label": "Sugrue · McGirr · Lassiter — suburban, sunbelt, conservatism, postwar",
+   "jaccard": 0.818,
    "work_spread": [
     [
+     4,
+     81
+    ],
+    [
      6,
-     67
+     6
+    ],
+    [
+     7,
+     3
+    ],
+    [
+     2,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "Atlantic slavery & the Black Atlantic (provisional)",
+   "field_id": 2,
+   "works": 89,
+   "best_family": 3,
+   "family_label": "Berlin · Thornton · Brown — atlantic, haitian, creoles, many",
+   "jaccard": 0.685,
+   "work_spread": [
+    [
+     3,
+     76
+    ],
+    [
+     0,
+     5
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     11,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "Foner · Bailyn · McPherson",
+   "field_id": 3,
+   "works": 86,
+   "best_family": 0,
+   "family_label": "Foner · McPherson · Sellers — disunion, radicalism, jacksonian, ideology",
+   "jaccard": 0.485,
+   "work_spread": [
+    [
+     0,
+     80
+    ],
+    [
+     8,
+     3
+    ],
+    [
+     7,
+     2
+    ],
+    [
+     10,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Foucault · Dudziak · Kramer",
+   "field_id": 4,
+   "works": 81,
+   "best_family": 2,
+   "family_label": "Ngai · Lee · Kramer — chinese, ethnicity, race, immigration",
+   "jaccard": 0.35,
+   "work_spread": [
+    [
+     2,
+     48
+    ],
+    [
+     12,
+     17
     ],
     [
      7,
      5
     ],
     [
-     10,
-     5
-    ],
-    [
-     8,
-     4
-    ]
-   ]
-  },
-  {
-   "field": "Revolution, early republic & antebellum politics (provisional)",
-   "field_id": 2,
-   "works": 82,
-   "best_family": 0,
-   "family_label": "McPherson · Foner · Sellers — jacksonian, radicalism, republic, ideology",
-   "jaccard": 0.481,
-   "work_spread": [
-    [
-     0,
-     75
-    ],
-    [
-     8,
-     3
-    ],
-    [
-     5,
-     3
-    ],
-    [
-     11,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Atlantic slavery & the Black Atlantic (provisional)",
-   "field_id": 3,
-   "works": 77,
-   "best_family": 2,
-   "family_label": "Berlin · Thornton · Scott — atlantic, haitian, americas, africans",
-   "jaccard": 0.701,
-   "work_spread": [
-    [
-     2,
-     68
-    ],
-    [
      1,
-     4
-    ],
-    [
-     5,
-     2
-    ],
-    [
-     0,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Native America, borderlands & the West (provisional)",
-   "field_id": 4,
-   "works": 72,
-   "best_family": 3,
-   "family_label": "White · Hämäläinen · Blackhawk — indians, borderlands, indian, native",
-   "jaccard": 0.849,
-   "work_spread": [
-    [
-     3,
-     62
-    ],
-    [
-     10,
-     4
-    ],
-    [
-     2,
-     4
-    ],
-    [
-     0,
-     1
+     3
     ]
    ]
   },
   {
    "field": "The South: slavery, Reconstruction & Jim Crow (provisional)",
    "field_id": 5,
-   "works": 71,
-   "best_family": 7,
-   "family_label": "Gilmore · Woodward · Chafe — south, struggle, jim, crow",
-   "jaccard": 0.7,
+   "works": 78,
+   "best_family": 6,
+   "family_label": "Gilmore · Woodward · Ayers — south, struggle, organizing, civil",
+   "jaccard": 0.716,
    "work_spread": [
     [
-     7,
-     56
+     6,
+     63
     ],
     [
      0,
-     10
+     12
     ],
     [
      2,
      1
     ],
     [
-     1,
+     3,
      1
     ]
    ]
   },
   {
-   "field": "Gender, sexuality & the United States in the world (provisional)",
+   "field": "Native America, borderlands & the West (provisional)",
    "field_id": 6,
-   "works": 68,
-   "best_family": 4,
-   "family_label": "Ngai · Lee · Dudziak — immigration, chinese, ethnicity, race",
-   "jaccard": 0.336,
+   "works": 73,
+   "best_family": 5,
+   "family_label": "White · Hämäläinen · Blackhawk — indians, indian, borderlands, ground",
+   "jaccard": 0.878,
    "work_spread": [
     [
-     4,
-     40
-    ],
-    [
      5,
-     21
+     65
     ],
     [
-     8,
+     3,
+     4
+    ],
+    [
+     9,
      2
     ],
     [
@@ -579,96 +635,74 @@
   {
    "field": "Genovese · Johnson · McCurry",
    "field_id": 7,
-   "works": 66,
+   "works": 69,
    "best_family": 0,
-   "family_label": "McPherson · Foner · Sellers — jacksonian, radicalism, republic, ideology",
-   "jaccard": 0.287,
+   "family_label": "Foner · McPherson · Sellers — disunion, radicalism, jacksonian, ideology",
+   "jaccard": 0.303,
    "work_spread": [
     [
      0,
-     48
+     53
+    ],
+    [
+     3,
+     11
     ],
     [
      2,
-     12
+     3
     ],
     [
-     7,
-     2
-    ],
-    [
-     5,
+     6,
      2
     ]
    ]
   },
   {
-   "field": "Gilded Age & Progressive Era (provisional)",
+   "field": "Scott · Wiebe · Cronon",
    "field_id": 8,
-   "works": 45,
+   "works": 59,
    "best_family": 8,
-   "family_label": "Wiebe · Hofstadter · McGerr — search, order, progressive, reform",
-   "jaccard": 0.603,
+   "family_label": "Wiebe · Hofstadter · Chandler — search, order, progressive, reform",
+   "jaccard": 0.465,
    "work_spread": [
     [
      8,
-     35
+     33
+    ],
+    [
+     9,
+     22
     ],
     [
      0,
-     3
+     1
     ],
     [
-     10,
-     3
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Ngai · Roediger · Jacobson",
+   "field_id": 9,
+   "works": 46,
+   "best_family": 2,
+   "family_label": "Ngai · Lee · Kramer — chinese, ethnicity, race, immigration",
+   "jaccard": 0.402,
+   "work_spread": [
+    [
+     2,
+     43
     ],
     [
      9,
      1
-    ]
-   ]
-  },
-  {
-   "field": "Immigration, race & whiteness (provisional)",
-   "field_id": 9,
-   "works": 42,
-   "best_family": 4,
-   "family_label": "Ngai · Lee · Dudziak — immigration, chinese, ethnicity, race",
-   "jaccard": 0.385,
-   "work_spread": [
-    [
-     4,
-     37
-    ],
-    [
-     0,
-     2
     ],
     [
      5,
      1
-    ],
-    [
-     3,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Environment & the state (provisional)",
-   "field_id": 10,
-   "works": 23,
-   "best_family": 10,
-   "family_label": "Scott · Cronon · White — nature, condition, conservation, wilderness",
-   "jaccard": 0.475,
-   "work_spread": [
-    [
-     10,
-     19
-    ],
-    [
-     1,
-     3
     ],
     [
      8,
@@ -679,366 +713,443 @@
  ],
  "louvain_unclustered_works": [
   {
-   "title": "The Production of Space",
-   "first_author": "Lefebvre, Henri",
-   "citing": 49,
-   "entropy": 0.514,
-   "nmf_top": 10,
-   "nmf_top_share": 0.45,
-   "nmf_second": 5,
-   "nmf_second_share": 0.33,
+   "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+   "first_author": "Bederman, Gail",
+   "citing": 68,
+   "entropy": 0.621,
+   "nmf_top": 2,
+   "nmf_top_share": 0.27,
+   "nmf_second": 8,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "River of Dark Dreams: Slavery and Empire in the Cotton Kingdom",
    "first_author": "Johnson, Walter",
-   "citing": 47,
-   "entropy": 0.602,
-   "nmf_top": 2,
-   "nmf_top_share": 0.35,
+   "citing": 55,
+   "entropy": 0.597,
+   "nmf_top": 3,
+   "nmf_top_share": 0.33,
    "nmf_second": 0,
-   "nmf_second_share": 0.28,
+   "nmf_second_share": 0.27,
    "louvain": "unclustered"
   },
   {
-   "title": "The Interpretation of Cultures: Selected Essays",
-   "first_author": "Geertz, Clifford",
-   "citing": 46,
-   "entropy": 0.639,
+   "title": "The Production of Space",
+   "first_author": "Lefebvre, Henri",
+   "citing": 53,
+   "entropy": 0.513,
    "nmf_top": 9,
-   "nmf_top_share": 0.4,
-   "nmf_second": 1,
+   "nmf_top_share": 0.49,
+   "nmf_second": 7,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Straight State: Sexuality and Citizenship in Twentieth-Century America",
+   "first_author": "Canaday, Margot",
+   "citing": 47,
+   "entropy": 0.409,
+   "nmf_top": 2,
+   "nmf_top_share": 0.47,
+   "nmf_second": 4,
+   "nmf_second_share": 0.29,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Gender: A Useful Category of Historical Analysis",
+   "first_author": "Scott, Joan W",
+   "citing": 41,
+   "entropy": 0.328,
+   "nmf_top": 7,
+   "nmf_top_share": 0.79,
+   "nmf_second": 0,
+   "nmf_second_share": 0.06,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Cheap Amusements: Working Women and Leisure in Turn-of-the-Century New York",
+   "first_author": "Peiss, Kathy",
+   "citing": 37,
+   "entropy": 0.652,
+   "nmf_top": 7,
+   "nmf_top_share": 0.26,
+   "nmf_second": 2,
    "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
-   "title": "American Manhood: Transformations in Masculinity from the Revolution to the Modern Era",
-   "first_author": "Rotundo, E. Anthony",
-   "citing": 44,
-   "entropy": 0.492,
-   "nmf_top": 0,
-   "nmf_top_share": 0.51,
-   "nmf_second": 8,
-   "nmf_second_share": 0.27,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Empire of Cotton: A Global History",
-   "first_author": "Beckert, Sven",
-   "citing": 37,
-   "entropy": 0.696,
-   "nmf_top": 10,
-   "nmf_top_share": 0.28,
+   "title": "Laboring Women: Reproduction and Gender in New World Slavery",
+   "first_author": "Morgan, Jennifer L",
+   "citing": 35,
+   "entropy": 0.383,
+   "nmf_top": 3,
+   "nmf_top_share": 0.65,
    "nmf_second": 0,
-   "nmf_second_share": 0.25,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Cultural Front: The Laboring of American Culture in the Twentieth Century",
-   "first_author": "Denning, Michael",
-   "citing": 33,
-   "entropy": 0.54,
-   "nmf_top": 4,
-   "nmf_top_share": 0.39,
-   "nmf_second": 8,
-   "nmf_second_share": 0.27,
+   "nmf_second_share": 0.16,
    "louvain": "unclustered"
   },
   {
    "title": "The Mind of the South",
    "first_author": "Cash, Wilbur J",
-   "citing": 31,
-   "entropy": 0.404,
-   "nmf_top": 7,
-   "nmf_top_share": 0.5,
+   "citing": 32,
+   "entropy": 0.378,
+   "nmf_top": 6,
+   "nmf_top_share": 0.47,
    "nmf_second": 0,
-   "nmf_second_share": 0.36,
+   "nmf_second_share": 0.4,
    "louvain": "unclustered"
   },
   {
-   "title": "The People’s Welfare: Law and Regulation in Nineteenth-Century America",
-   "first_author": "Novak, William J",
-   "citing": 28,
-   "entropy": 0.585,
+   "title": "The Bulldozer in the Countryside: Suburban Sprawl and the Rise of American Environmentalism",
+   "first_author": "Rome, Adam",
+   "citing": 32,
+   "entropy": 0.253,
+   "nmf_top": 9,
+   "nmf_top_share": 0.61,
+   "nmf_second": 4,
+   "nmf_second_share": 0.39,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Scraping By: Wage Labor, Slavery, and Survival in Early Baltimore",
+   "first_author": "Rockman, Seth",
+   "citing": 30,
+   "entropy": 0.598,
    "nmf_top": 0,
-   "nmf_top_share": 0.48,
-   "nmf_second": 8,
-   "nmf_second_share": 0.26,
+   "nmf_top_share": 0.45,
+   "nmf_second": 3,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Centuries of Childhood: A Social History of Family Life",
+   "first_author": "Ariès, Philippe",
+   "citing": 28,
+   "entropy": 0.533,
+   "nmf_top": 7,
+   "nmf_top_share": 0.62,
+   "nmf_second": 0,
+   "nmf_second_share": 0.09,
    "louvain": "unclustered"
   },
   {
    "title": "Manliness & Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
    "first_author": "Bederman, Gail",
-   "citing": 27,
-   "entropy": 0.656,
-   "nmf_top": 4,
-   "nmf_top_share": 0.3,
+   "citing": 28,
+   "entropy": 0.639,
+   "nmf_top": 2,
+   "nmf_top_share": 0.32,
    "nmf_second": 8,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Condition of Postmodernity: An Enquiry into the Origins of Cultural Change",
+   "first_author": "Harvey, David",
+   "citing": 27,
+   "entropy": 0.604,
+   "nmf_top": 9,
+   "nmf_top_share": 0.45,
+   "nmf_second": 4,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Civic Ideals: Conflicting Visions of Citizenship in U.S. History",
+   "first_author": "Smith, Rogers M",
+   "citing": 25,
+   "entropy": 0.589,
+   "nmf_top": 0,
+   "nmf_top_share": 0.4,
+   "nmf_second": 2,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Love and Theft: Blackface Minstrelsy and the American Working Class",
+   "first_author": "Lott, Eric",
+   "citing": 24,
+   "entropy": 0.684,
+   "nmf_top": 0,
+   "nmf_top_share": 0.33,
+   "nmf_second": 2,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Ladies of Labor, Girls of Adventure: Working Women, Popular Culture, and Labor Politics at the Turn of the Twentieth Century",
+   "first_author": "Enstad, Nan",
+   "citing": 23,
+   "entropy": 0.634,
+   "nmf_top": 7,
+   "nmf_top_share": 0.29,
+   "nmf_second": 2,
    "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
-   "title": "The Problem of Slavery in the Age of Revolution, 1770-1823",
-   "first_author": "Davis, David Brion",
-   "citing": 27,
-   "entropy": 0.398,
-   "nmf_top": 0,
-   "nmf_top_share": 0.51,
-   "nmf_second": 2,
-   "nmf_second_share": 0.41,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Black is a Country: Race and the Unfinished Struggle for Democracy",
-   "first_author": "Singh, Nikhil Pal",
-   "citing": 25,
-   "entropy": 0.496,
-   "nmf_top": 4,
-   "nmf_top_share": 0.48,
-   "nmf_second": 7,
-   "nmf_second_share": 0.29,
+   "title": "Environmental Inequalities: Class, Race, and Industrial Pollution in Gary, Indiana, 1945-1980",
+   "first_author": "Hurley, Andrew",
+   "citing": 22,
+   "entropy": 0.234,
+   "nmf_top": 9,
+   "nmf_top_share": 0.69,
+   "nmf_second": 4,
+   "nmf_second_share": 0.31,
    "louvain": "unclustered"
   },
   {
    "title": "All That Is Solid Melts into Air: The Experience of Modernity",
    "first_author": "Berman, Marshall",
-   "citing": 22,
-   "entropy": 0.527,
-   "nmf_top": 5,
-   "nmf_top_share": 0.37,
-   "nmf_second": 10,
-   "nmf_second_share": 0.31,
+   "citing": 21,
+   "entropy": 0.572,
+   "nmf_top": 7,
+   "nmf_top_share": 0.34,
+   "nmf_second": 9,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
-   "title": "The Romance of Reunion: Northerners and the South, 1865-1900",
-   "first_author": "Silber, Nina",
+   "title": "The Practice of Everyday Life",
+   "first_author": "CERTEAU, Michel de",
    "citing": 21,
-   "entropy": 0.431,
-   "nmf_top": 0,
-   "nmf_top_share": 0.62,
+   "entropy": 0.703,
+   "nmf_top": 1,
+   "nmf_top_share": 0.33,
    "nmf_second": 7,
-   "nmf_second_share": 0.19,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
    "title": "The Black Image in the White Mind: The Debate on Afro-American Character and Destiny, 1817-1914",
    "first_author": "Fredrickson, George M",
-   "citing": 20,
-   "entropy": 0.47,
+   "citing": 21,
+   "entropy": 0.486,
    "nmf_top": 0,
-   "nmf_top_share": 0.51,
-   "nmf_second": 7,
-   "nmf_second_share": 0.35,
+   "nmf_top_share": 0.49,
+   "nmf_second": 6,
+   "nmf_second_share": 0.33,
    "louvain": "unclustered"
   },
   {
-   "title": "The Right to Vote: The Contested History of Democracy in the United States",
-   "first_author": "Alexander Keyssar",
-   "citing": 20,
-   "entropy": 0.647,
-   "nmf_top": 7,
-   "nmf_top_share": 0.31,
-   "nmf_second": 0,
-   "nmf_second_share": 0.27,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Gift: The Form and Reason for Exchange in Archaic Societies",
-   "first_author": "Mauss, Marcel",
-   "citing": 20,
-   "entropy": 0.63,
-   "nmf_top": 1,
-   "nmf_top_share": 0.3,
+   "title": "Dispossessed Lives: Enslaved Women, Violence, and the Archive",
+   "first_author": "Fuentes, Marisa J",
+   "citing": 21,
+   "entropy": 0.488,
+   "nmf_top": 3,
+   "nmf_top_share": 0.56,
    "nmf_second": 5,
-   "nmf_second_share": 0.28,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
-   "title": "Disorderly Conduct: Visions of Gender in Victorian America",
-   "first_author": "Smith-Rosenberg, Carroll",
-   "citing": 20,
-   "entropy": 0.553,
-   "nmf_top": 0,
-   "nmf_top_share": 0.54,
-   "nmf_second": 8,
-   "nmf_second_share": 0.2,
+   "title": "Forced Founders: Indians, Debtors, Slaves, and the Making of the American Revolution in Virginia",
+   "first_author": "Holton, Woody",
+   "citing": 21,
+   "entropy": 0.4,
+   "nmf_top": 3,
+   "nmf_top_share": 0.43,
+   "nmf_second": 0,
+   "nmf_second_share": 0.37,
    "louvain": "unclustered"
   },
   {
    "title": "Mystic Chords of Memory: The Transformation of Tradition in American Culture",
    "first_author": "Kammen, Michael",
-   "citing": 19,
-   "entropy": 0.615,
-   "nmf_top": 8,
+   "citing": 20,
+   "entropy": 0.664,
+   "nmf_top": 0,
+   "nmf_top_share": 0.32,
+   "nmf_second": 8,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Postmodern Geographies: The Reassertion of Space in Critical Social Theory",
+   "first_author": "Soja, Edward W",
+   "citing": 20,
+   "entropy": 0.589,
+   "nmf_top": 9,
    "nmf_top_share": 0.4,
-   "nmf_second": 0,
-   "nmf_second_share": 0.3,
+   "nmf_second": 7,
+   "nmf_second_share": 0.18,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "City of Dreadful Delight: Narratives of Sexual Danger in Late-Victorian London",
+   "first_author": "Walkowitz, Judith R",
+   "citing": 20,
+   "entropy": 0.483,
+   "nmf_top": 7,
+   "nmf_top_share": 0.57,
+   "nmf_second": 11,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
    "title": "Mosquito Empires: Ecology and War in the Greater Caribbean, 1620-1914",
    "first_author": "McNeill, John Robert",
    "citing": 19,
-   "entropy": 0.428,
-   "nmf_top": 2,
-   "nmf_top_share": 0.59,
-   "nmf_second": 3,
-   "nmf_second_share": 0.25,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Practice of Everyday Life",
-   "first_author": "CERTEAU, Michel de",
-   "citing": 18,
-   "entropy": 0.733,
-   "nmf_top": 1,
-   "nmf_top_share": 0.38,
-   "nmf_second": 5,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Sick from Freedom: African-American Illness and Suffering during the Civil War and Reconstruction",
-   "first_author": "Downs, Jim",
-   "citing": 18,
-   "entropy": 0.438,
-   "nmf_top": 0,
+   "entropy": 0.449,
+   "nmf_top": 3,
    "nmf_top_share": 0.56,
-   "nmf_second": 7,
+   "nmf_second": 5,
    "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Culture as History: The Transformation of American Society in the Twentieth Century",
+   "first_author": "Susman, Warren",
+   "citing": 19,
+   "entropy": 0.631,
+   "nmf_top": 4,
+   "nmf_top_share": 0.34,
+   "nmf_second": 8,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Slavery in the Cities: The South, 1820-1860",
+   "first_author": "Wade, Richard C",
+   "citing": 19,
+   "entropy": 0.312,
+   "nmf_top": 0,
+   "nmf_top_share": 0.67,
+   "nmf_second": 6,
+   "nmf_second_share": 0.27,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "City of Eros: New York City, Prostitution, and the Commercialization of Sex, 1790-1920",
+   "first_author": "Gilfoyle, Timothy J",
+   "citing": 18,
+   "entropy": 0.551,
+   "nmf_top": 7,
+   "nmf_top_share": 0.38,
+   "nmf_second": 0,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
    "title": "On Collective Memory",
    "first_author": "Halbwachs, Maurice",
    "citing": 18,
-   "entropy": 0.122,
-   "nmf_top": 9,
-   "nmf_top_share": 0.93,
-   "nmf_second": 3,
-   "nmf_second_share": 0.05,
+   "entropy": 0.168,
+   "nmf_top": 11,
+   "nmf_top_share": 0.89,
+   "nmf_second": 10,
+   "nmf_second_share": 0.07,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Land of Desire: Merchants, Power, and the Rise of a New American Culture",
+   "first_author": "Leach, William",
+   "citing": 18,
+   "entropy": 0.473,
+   "nmf_top": 8,
+   "nmf_top_share": 0.63,
+   "nmf_second": 0,
+   "nmf_second_share": 0.12,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Space, Place, and Gender",
+   "first_author": "Massey, Doreen",
+   "citing": 18,
+   "entropy": 0.454,
+   "nmf_top": 7,
+   "nmf_top_share": 0.5,
+   "nmf_second": 9,
+   "nmf_second_share": 0.3,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Between Memory and History: Les Lieux de Mémoire",
+   "first_author": "NORA, Pierre",
+   "citing": 18,
+   "entropy": 0.653,
+   "nmf_top": 7,
+   "nmf_top_share": 0.37,
+   "nmf_second": 11,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
    "title": "The Family, Sex and Marriage in England, 1500-1800",
    "first_author": "Stone, Lawrence",
    "citing": 18,
-   "entropy": 0.547,
-   "nmf_top": 2,
-   "nmf_top_share": 0.34,
-   "nmf_second": 5,
-   "nmf_second_share": 0.29,
+   "entropy": 0.471,
+   "nmf_top": 7,
+   "nmf_top_share": 0.45,
+   "nmf_second": 3,
+   "nmf_second_share": 0.28,
    "louvain": "unclustered"
   },
   {
-   "title": "Affairs of State: Public Life in Late Nineteenth Century America",
-   "first_author": "Keller, Morton",
-   "citing": 17,
-   "entropy": 0.374,
+   "title": "The Theory of the Leisure Class",
+   "first_author": "Veblen, Thorstein",
+   "citing": 18,
+   "entropy": 0.612,
    "nmf_top": 8,
-   "nmf_top_share": 0.48,
-   "nmf_second": 0,
-   "nmf_second_share": 0.43,
+   "nmf_top_share": 0.31,
+   "nmf_second": 13,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
-   "title": "Race over Empire: Racism and U.S. Imperialism, 1865-1900",
-   "first_author": "Love, Eric T. L",
+   "title": "Devil’s Bargains: Tourism in the Twentieth-Century American West",
+   "first_author": "Rothman, Hal K",
    "citing": 17,
-   "entropy": 0.25,
-   "nmf_top": 4,
-   "nmf_top_share": 0.69,
-   "nmf_second": 0,
-   "nmf_second_share": 0.31,
+   "entropy": 0.454,
+   "nmf_top": 9,
+   "nmf_top_share": 0.49,
+   "nmf_second": 5,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
-   "title": "Space, Place, and Gender",
-   "first_author": "Massey, Doreen",
+   "title": "Religion and the Decline of Magic",
+   "first_author": "Thomas, Keith",
    "citing": 17,
-   "entropy": 0.552,
-   "nmf_top": 5,
-   "nmf_top_share": 0.38,
-   "nmf_second": 10,
-   "nmf_second_share": 0.33,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Security, Territory, Population: Lectures at the Collège de France, 1977-1978",
-   "first_author": "Foucault, Michel",
-   "citing": 16,
-   "entropy": 0.627,
-   "nmf_top": 5,
-   "nmf_top_share": 0.5,
-   "nmf_second": 4,
-   "nmf_second_share": 0.15,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Between Memory and History: Les Lieux de Mémoire",
-   "first_author": "Nora, Pierre",
-   "citing": 16,
-   "entropy": 0.649,
-   "nmf_top": 5,
-   "nmf_top_share": 0.48,
-   "nmf_second": 9,
-   "nmf_second_share": 0.17,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Health of the Country: How American Settlers Understood Themselves and Their Land",
-   "first_author": "Valencius, Conevery Bolton",
-   "citing": 16,
-   "entropy": 0.605,
-   "nmf_top": 0,
-   "nmf_top_share": 0.37,
-   "nmf_second": 10,
-   "nmf_second_share": 0.29,
+   "entropy": 0.354,
+   "nmf_top": 7,
+   "nmf_top_share": 0.53,
+   "nmf_second": 3,
+   "nmf_second_share": 0.37,
    "louvain": "unclustered"
   },
   {
    "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
    "first_author": "Winter, Jay",
+   "citing": 17,
+   "entropy": 0.313,
+   "nmf_top": 11,
+   "nmf_top_share": 0.77,
+   "nmf_second": 10,
+   "nmf_second_share": 0.1,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Dialectic of Enlightenment: Philosophical Fragments",
+   "first_author": "Horkheimer, Max",
    "citing": 16,
-   "entropy": 0.208,
+   "entropy": 0.555,
+   "nmf_top": 11,
+   "nmf_top_share": 0.34,
+   "nmf_second": 7,
+   "nmf_second_share": 0.31,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Death and Life of Great American Cities",
+   "first_author": "Jacobs, Jane",
+   "citing": 16,
+   "entropy": 0.39,
    "nmf_top": 9,
-   "nmf_top_share": 0.86,
-   "nmf_second": 8,
-   "nmf_second_share": 0.08,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Birth of Biopolitics: Lectures at the College de France, 1978-1979",
-   "first_author": "Foucault, Michel",
-   "citing": 15,
-   "entropy": 0.687,
-   "nmf_top": 4,
-   "nmf_top_share": 0.3,
-   "nmf_second": 8,
-   "nmf_second_share": 0.2,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Great War and Modern Memory",
-   "first_author": "Fussell, Paul",
-   "citing": 15,
-   "entropy": 0.337,
-   "nmf_top": 9,
-   "nmf_top_share": 0.68,
-   "nmf_second": 8,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Warfare State: World War II Americans and the Age of Big Government",
-   "first_author": "Sparrow, James T",
-   "citing": 15,
-   "entropy": 0.439,
-   "nmf_top": 4,
-   "nmf_top_share": 0.39,
-   "nmf_second": 8,
-   "nmf_second_share": 0.33,
+   "nmf_top_share": 0.58,
+   "nmf_second": 4,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   }
  ],
@@ -1046,433 +1157,433 @@
   "The Middle Ground": {
    "title": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650-1815",
    "first_author": "White, Richard",
-   "citing": 77,
-   "entropy": 0.344,
-   "nmf_top": 3,
-   "nmf_top_share": 0.73,
-   "nmf_second": 2,
-   "nmf_second_share": 0.18,
+   "citing": 81,
+   "entropy": 0.312,
+   "nmf_top": 5,
+   "nmf_top_share": 0.76,
+   "nmf_second": 3,
+   "nmf_second_share": 0.15,
    "louvain": "Native America, borderlands & the West (provisional)"
   },
   "Imagined Communities": {
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
-   "citing": 237,
-   "entropy": 0.359,
-   "nmf_top": 9,
-   "nmf_top_share": 0.78,
+   "citing": 249,
+   "entropy": 0.197,
+   "nmf_top": 11,
+   "nmf_top_share": 0.89,
    "nmf_second": 1,
-   "nmf_second_share": 0.1,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
+   "nmf_second_share": 0.04,
+   "louvain": "Anderson · Foucault · Said"
   },
   "Orientalism": {
    "title": "Orientalism",
    "first_author": "Said, Edward",
-   "citing": 90,
-   "entropy": 0.101,
+   "citing": 97,
+   "entropy": 0.233,
    "nmf_top": 1,
-   "nmf_top_share": 0.95,
-   "nmf_second": 4,
-   "nmf_second_share": 0.04,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
+   "nmf_top_share": 0.81,
+   "nmf_second": 11,
+   "nmf_second_share": 0.14,
+   "louvain": "Anderson · Foucault · Said"
   },
   "Discipline and Punish": {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
-   "citing": 95,
-   "entropy": 0.493,
-   "nmf_top": 5,
-   "nmf_top_share": 0.6,
+   "citing": 107,
+   "entropy": 0.28,
+   "nmf_top": 7,
+   "nmf_top_share": 0.77,
    "nmf_second": 1,
-   "nmf_second_share": 0.24,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
+   "nmf_second_share": 0.18,
+   "louvain": "Anderson · Foucault · Said"
   },
   "The Making of the English Working Class": {
    "title": "The Making of the English Working Class",
-   "first_author": "Thompson, E. P",
-   "citing": 54,
-   "entropy": 0.713,
+   "first_author": "Thompson, Edward P",
+   "citing": 57,
+   "entropy": 0.754,
    "nmf_top": 1,
-   "nmf_top_share": 0.43,
-   "nmf_second": 5,
-   "nmf_second_share": 0.15,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
+   "nmf_top_share": 0.32,
+   "nmf_second": 0,
+   "nmf_second_share": 0.17,
+   "louvain": "Anderson · Foucault · Said"
   },
   "Seeing Like a State": {
    "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
    "first_author": "Scott, James C",
-   "citing": 113,
-   "entropy": 0.35,
-   "nmf_top": 10,
-   "nmf_top_share": 0.75,
-   "nmf_second": 5,
-   "nmf_second_share": 0.11,
-   "louvain": "Environment & the state (provisional)"
+   "citing": 127,
+   "entropy": 0.399,
+   "nmf_top": 9,
+   "nmf_top_share": 0.63,
+   "nmf_second": 1,
+   "nmf_second_share": 0.17,
+   "louvain": "Scott · Wiebe · Cronon"
   },
   "Gender and the Politics of History": {
    "title": "Gender and the Politics of History",
    "first_author": "Scott, Joan W",
-   "citing": 31,
-   "entropy": 0.581,
-   "nmf_top": 5,
-   "nmf_top_share": 0.53,
-   "nmf_second": 1,
-   "nmf_second_share": 0.15,
-   "louvain": "Gender, sexuality & the United States in the world (provisional)"
+   "citing": 34,
+   "entropy": 0.643,
+   "nmf_top": 7,
+   "nmf_top_share": 0.39,
+   "nmf_second": 11,
+   "nmf_second_share": 0.18,
+   "louvain": "Foucault · Dudziak · Kramer"
   },
   "Facing East from Indian Country": {
    "title": "Facing East from Indian Country: A Native History of Early America",
    "first_author": "Richter, Daniel K",
-   "citing": 31,
-   "entropy": 0.293,
-   "nmf_top": 3,
+   "citing": 32,
+   "entropy": 0.27,
+   "nmf_top": 5,
    "nmf_top_share": 0.65,
-   "nmf_second": 2,
-   "nmf_second_share": 0.33,
+   "nmf_second": 3,
+   "nmf_second_share": 0.34,
    "louvain": "Native America, borderlands & the West (provisional)"
   },
   "Britons": {
    "title": "Britons: Forging the Nation, 1707-1837",
    "first_author": "Colley, Linda",
-   "citing": 40,
-   "entropy": 0.458,
-   "nmf_top": 2,
-   "nmf_top_share": 0.45,
-   "nmf_second": 9,
-   "nmf_second_share": 0.33,
+   "citing": 44,
+   "entropy": 0.415,
+   "nmf_top": 11,
+   "nmf_top_share": 0.42,
+   "nmf_second": 3,
+   "nmf_second_share": 0.38,
    "louvain": "Atlantic slavery & the Black Atlantic (provisional)"
   }
  },
  "bridges_top30": [
   {
-   "title": "Silencing the Past: Power and the Production of History",
-   "first_author": "Trouillot, Michel-Rolph",
-   "citing": 62,
-   "entropy": 0.73,
-   "nmf_top": 1,
-   "nmf_top_share": 0.27,
-   "nmf_second": 2,
-   "nmf_second_share": 0.24,
-   "louvain": "Atlantic slavery & the Black Atlantic (provisional)"
-  },
-  {
-   "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
-   "first_author": "Scott, James C",
-   "citing": 51,
-   "entropy": 0.727,
-   "nmf_top": 5,
-   "nmf_top_share": 0.35,
-   "nmf_second": 1,
-   "nmf_second_share": 0.24,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
-  },
-  {
    "title": "The Making of the English Working Class",
-   "first_author": "Thompson, E. P",
-   "citing": 54,
-   "entropy": 0.713,
+   "first_author": "Thompson, Edward P",
+   "citing": 57,
+   "entropy": 0.754,
    "nmf_top": 1,
-   "nmf_top_share": 0.43,
-   "nmf_second": 5,
-   "nmf_second_share": 0.15,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
+   "nmf_top_share": 0.32,
+   "nmf_second": 0,
+   "nmf_second_share": 0.17,
+   "louvain": "Anderson · Foucault · Said"
   },
   {
    "title": "Domination and the Arts of Resistance: Hidden Transcripts",
    "first_author": "Scott, James C",
-   "citing": 48,
-   "entropy": 0.699,
+   "citing": 52,
+   "entropy": 0.735,
    "nmf_top": 1,
-   "nmf_top_share": 0.26,
-   "nmf_second": 5,
+   "nmf_top_share": 0.32,
+   "nmf_second": 7,
+   "nmf_second_share": 0.15,
+   "louvain": "Anderson · Foucault · Said"
+  },
+  {
+   "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
+   "first_author": "Scott, James C",
+   "citing": 55,
+   "entropy": 0.732,
+   "nmf_top": 12,
+   "nmf_top_share": 0.28,
+   "nmf_second": 1,
    "nmf_second_share": 0.25,
-   "louvain": "The South: slavery, Reconstruction & Jim Crow (provisional)"
+   "louvain": "Anderson · Foucault · Said"
   },
   {
    "title": "Empire of Cotton: A Global History",
    "first_author": "Beckert, Sven",
-   "citing": 37,
-   "entropy": 0.696,
-   "nmf_top": 10,
-   "nmf_top_share": 0.28,
+   "citing": 48,
+   "entropy": 0.715,
+   "nmf_top": 9,
+   "nmf_top_share": 0.26,
    "nmf_second": 0,
-   "nmf_second_share": 0.25,
-   "louvain": "unclustered"
+   "nmf_second_share": 0.21,
+   "louvain": "Scott · Wiebe · Cronon"
+  },
+  {
+   "title": "Silencing the Past: Power and the Production of History",
+   "first_author": "Trouillot, Michel-Rolph",
+   "citing": 70,
+   "entropy": 0.683,
+   "nmf_top": 1,
+   "nmf_top_share": 0.27,
+   "nmf_second": 3,
+   "nmf_second_share": 0.22,
+   "louvain": "Anderson · Foucault · Said"
+  },
+  {
+   "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
+   "first_author": "Stoler, Ann Laura",
+   "citing": 39,
+   "entropy": 0.652,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 12,
+   "nmf_second_share": 0.2,
+   "louvain": "Anderson · Foucault · Said"
   },
   {
    "title": "Cheap Amusements: Working Women and Leisure in Turn-of-the-Century New York",
    "first_author": "Peiss, Kathy",
-   "citing": 33,
-   "entropy": 0.69,
-   "nmf_top": 8,
-   "nmf_top_share": 0.24,
-   "nmf_second": 6,
-   "nmf_second_share": 0.22,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
+   "citing": 37,
+   "entropy": 0.652,
+   "nmf_top": 7,
+   "nmf_top_share": 0.26,
+   "nmf_second": 2,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
   },
   {
-   "title": "Race and Manifest Destiny: The Origins of American Racial Anglo-Saxonism",
-   "first_author": "Horsman, Reginald",
-   "citing": 36,
-   "entropy": 0.688,
-   "nmf_top": 4,
-   "nmf_top_share": 0.3,
-   "nmf_second": 3,
-   "nmf_second_share": 0.28,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "The Wages of Whiteness: Race and the Making of the American Working Class",
-   "first_author": "Roediger, David R",
-   "citing": 74,
-   "entropy": 0.654,
-   "nmf_top": 4,
-   "nmf_top_share": 0.36,
-   "nmf_second": 0,
-   "nmf_second_share": 0.33,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
-   "first_author": "Bederman, Gail",
-   "citing": 63,
-   "entropy": 0.641,
-   "nmf_top": 8,
-   "nmf_top_share": 0.34,
-   "nmf_second": 4,
-   "nmf_second_share": 0.24,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
+   "title": "Gender and the Politics of History",
+   "first_author": "Scott, Joan W",
+   "citing": 34,
+   "entropy": 0.643,
+   "nmf_top": 7,
+   "nmf_top_share": 0.39,
+   "nmf_second": 11,
+   "nmf_second_share": 0.18,
+   "louvain": "Foucault · Dudziak · Kramer"
   },
   {
    "title": "The Interpretation of Cultures: Selected Essays",
    "first_author": "Geertz, Clifford",
-   "citing": 46,
-   "entropy": 0.639,
-   "nmf_top": 9,
-   "nmf_top_share": 0.4,
+   "citing": 49,
+   "entropy": 0.636,
+   "nmf_top": 7,
+   "nmf_top_share": 0.38,
+   "nmf_second": 11,
+   "nmf_second_share": 0.2,
+   "louvain": "Anderson · Foucault · Said"
+  },
+  {
+   "title": "Distinction: A Social Critique of the Judgement of Taste",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 37,
+   "entropy": 0.636,
+   "nmf_top": 7,
+   "nmf_top_share": 0.35,
+   "nmf_second": 11,
+   "nmf_second_share": 0.29,
+   "louvain": "Anderson · Foucault · Said"
+  },
+  {
+   "title": "No Place of Grace: Antimodernism and the Transformation of American Culture, 1880-1920",
+   "first_author": "Lears, Jackson",
+   "citing": 34,
+   "entropy": 0.635,
+   "nmf_top": 8,
+   "nmf_top_share": 0.47,
+   "nmf_second": 9,
+   "nmf_second_share": 0.15,
+   "louvain": "Scott · Wiebe · Cronon"
+  },
+  {
+   "title": "Imperial Eyes: Travel Writing and Transculturation",
+   "first_author": "Pratt, Mary Louise",
+   "citing": 49,
+   "entropy": 0.624,
+   "nmf_top": 1,
+   "nmf_top_share": 0.46,
+   "nmf_second": 11,
+   "nmf_second_share": 0.12,
+   "louvain": "Anderson · Foucault · Said"
+  },
+  {
+   "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+   "first_author": "Bederman, Gail",
+   "citing": 68,
+   "entropy": 0.621,
+   "nmf_top": 2,
+   "nmf_top_share": 0.27,
+   "nmf_second": 8,
+   "nmf_second_share": 0.26,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Race and Manifest Destiny: The Origins of American Racial Anglo-Saxonism",
+   "first_author": "Horsman, Reginald",
+   "citing": 37,
+   "entropy": 0.617,
+   "nmf_top": 2,
+   "nmf_top_share": 0.3,
+   "nmf_second": 5,
+   "nmf_second_share": 0.29,
+   "louvain": "Ngai · Roediger · Jacobson"
+  },
+  {
+   "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+   "first_author": "Westad, Odd Arne",
+   "citing": 44,
+   "entropy": 0.61,
+   "nmf_top": 2,
+   "nmf_top_share": 0.47,
    "nmf_second": 1,
-   "nmf_second_share": 0.23,
+   "nmf_second_share": 0.12,
+   "louvain": "Foucault · Dudziak · Kramer"
+  },
+  {
+   "title": "Whiteness of a Different Color: European Immigrants and the Alchemy of Race",
+   "first_author": "Jacobson, Matthew Frye",
+   "citing": 60,
+   "entropy": 0.608,
+   "nmf_top": 2,
+   "nmf_top_share": 0.46,
+   "nmf_second": 8,
+   "nmf_second_share": 0.16,
+   "louvain": "Ngai · Roediger · Jacobson"
+  },
+  {
+   "title": "The Wages of Whiteness: Race and the Making of the American Working Class",
+   "first_author": "Roediger, David R",
+   "citing": 76,
+   "entropy": 0.606,
+   "nmf_top": 2,
+   "nmf_top_share": 0.38,
+   "nmf_second": 0,
+   "nmf_second_share": 0.32,
+   "louvain": "Ngai · Roediger · Jacobson"
+  },
+  {
+   "title": "Protecting Soldiers and Mothers: The Political Origins of Social Policy in the United States",
+   "first_author": "Skocpol, Theda",
+   "citing": 35,
+   "entropy": 0.605,
+   "nmf_top": 8,
+   "nmf_top_share": 0.43,
+   "nmf_second": 2,
+   "nmf_second_share": 0.18,
+   "louvain": "Scott · Wiebe · Cronon"
+  },
+  {
+   "title": "Scraping By: Wage Labor, Slavery, and Survival in Early Baltimore",
+   "first_author": "Rockman, Seth",
+   "citing": 30,
+   "entropy": 0.598,
+   "nmf_top": 0,
+   "nmf_top_share": 0.45,
+   "nmf_second": 3,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "River of Dark Dreams: Slavery and Empire in the Cotton Kingdom",
    "first_author": "Johnson, Walter",
-   "citing": 47,
-   "entropy": 0.602,
-   "nmf_top": 2,
-   "nmf_top_share": 0.35,
+   "citing": 55,
+   "entropy": 0.597,
+   "nmf_top": 3,
+   "nmf_top_share": 0.33,
    "nmf_second": 0,
-   "nmf_second_share": 0.28,
+   "nmf_second_share": 0.27,
    "louvain": "unclustered"
+  },
+  {
+   "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+   "first_author": "BRAUDEL, Fernand",
+   "citing": 37,
+   "entropy": 0.568,
+   "nmf_top": 3,
+   "nmf_top_share": 0.31,
+   "nmf_second": 9,
+   "nmf_second_share": 0.3,
+   "louvain": "Atlantic slavery & the Black Atlantic (provisional)"
+  },
+  {
+   "title": "Sweetness and Power: The Place of Sugar in Modern History",
+   "first_author": "Mintz, Sidney W",
+   "citing": 39,
+   "entropy": 0.561,
+   "nmf_top": 3,
+   "nmf_top_share": 0.47,
+   "nmf_second": 1,
+   "nmf_second_share": 0.18,
+   "louvain": "Atlantic slavery & the Black Atlantic (provisional)"
+  },
+  {
+   "title": "Making a New Deal: Industrial Workers in Chicago, 1919-1939",
+   "first_author": "Cohen, Lizabeth",
+   "citing": 64,
+   "entropy": 0.558,
+   "nmf_top": 8,
+   "nmf_top_share": 0.42,
+   "nmf_second": 4,
+   "nmf_second_share": 0.26,
+   "louvain": "Sugrue · Cohen · Lassiter"
+  },
+  {
+   "title": "Race and the Education of Desire: Foucault’s History of Sexuality and the Colonial Order of Things",
+   "first_author": "Stoler, Ann Laura",
+   "citing": 31,
+   "entropy": 0.556,
+   "nmf_top": 1,
+   "nmf_top_share": 0.49,
+   "nmf_second": 2,
+   "nmf_second_share": 0.16,
+   "louvain": "Anderson · Foucault · Said"
   },
   {
    "title": "Atlantic Crossings: Social Politics in a Progressive Age",
    "first_author": "Rodgers, Daniel T",
-   "citing": 64,
-   "entropy": 0.592,
+   "citing": 70,
+   "entropy": 0.552,
    "nmf_top": 8,
-   "nmf_top_share": 0.48,
-   "nmf_second": 10,
+   "nmf_top_share": 0.5,
+   "nmf_second": 9,
    "nmf_second_share": 0.17,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
+   "louvain": "Scott · Wiebe · Cronon"
   },
   {
-   "title": "Whiteness of a Different Color: European Immigrants and the Alchemy of Race",
-   "first_author": "Jacobson, Matthew Frye",
-   "citing": 55,
-   "entropy": 0.591,
-   "nmf_top": 4,
-   "nmf_top_share": 0.45,
-   "nmf_second": 8,
-   "nmf_second_share": 0.23,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "Protecting Soldiers and Mothers: The Political Origins of Social Policy in the United States",
-   "first_author": "Skocpol, Theda",
-   "citing": 31,
-   "entropy": 0.588,
-   "nmf_top": 8,
-   "nmf_top_share": 0.52,
-   "nmf_second": 4,
-   "nmf_second_share": 0.16,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
-  },
-  {
-   "title": "Gender and the Politics of History",
-   "first_author": "Scott, Joan W",
-   "citing": 31,
-   "entropy": 0.581,
-   "nmf_top": 5,
-   "nmf_top_share": 0.53,
-   "nmf_second": 1,
-   "nmf_second_share": 0.15,
-   "louvain": "Gender, sexuality & the United States in the world (provisional)"
-  },
-  {
-   "title": "Railroaded: The Transcontinentals and the Making of Modern America",
+   "title": "“It’s Your Misfortune and None of My Own”: A New History of the American West",
    "first_author": "White, Richard",
-   "citing": 35,
-   "entropy": 0.571,
-   "nmf_top": 10,
+   "citing": 33,
+   "entropy": 0.547,
+   "nmf_top": 9,
    "nmf_top_share": 0.42,
+   "nmf_second": 5,
+   "nmf_second_share": 0.2,
+   "louvain": "Ngai · Roediger · Jacobson"
+  },
+  {
+   "title": "Good Wives, Nasty Wenches, and Anxious Patriarchs: Gender, Race, and Power in Colonial Virginia",
+   "first_author": "Brown, Kathleen M",
+   "citing": 46,
+   "entropy": 0.543,
+   "nmf_top": 3,
+   "nmf_top_share": 0.36,
+   "nmf_second": 0,
+   "nmf_second_share": 0.36,
+   "louvain": "Genovese · Johnson · McCurry"
+  },
+  {
+   "title": "The People’s Welfare: Law and Regulation in Nineteenth-Century America",
+   "first_author": "Novak, William J",
+   "citing": 31,
+   "entropy": 0.541,
+   "nmf_top": 0,
+   "nmf_top_share": 0.4,
    "nmf_second": 8,
-   "nmf_second_share": 0.27,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
+   "nmf_second_share": 0.37,
+   "louvain": "Scott · Wiebe · Cronon"
+  },
+  {
+   "title": "American Crucible: Race and Nation in the Twentieth Century",
+   "first_author": "Gerstle, Gary",
+   "citing": 44,
+   "entropy": 0.538,
+   "nmf_top": 2,
+   "nmf_top_share": 0.5,
+   "nmf_second": 6,
+   "nmf_second_share": 0.16,
+   "louvain": "Ngai · Roediger · Jacobson"
   },
   {
    "title": "The White Scourge: Mexicans, Blacks, and Poor Whites in Texas Cotton Culture",
    "first_author": "Foley, Neil",
    "citing": 37,
-   "entropy": 0.57,
-   "nmf_top": 4,
-   "nmf_top_share": 0.44,
-   "nmf_second": 7,
-   "nmf_second_share": 0.23,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "American Crucible: Race and Nation in the Twentieth Century",
-   "first_author": "Gerstle, Gary",
-   "citing": 41,
-   "entropy": 0.562,
-   "nmf_top": 4,
-   "nmf_top_share": 0.5,
-   "nmf_second": 8,
-   "nmf_second_share": 0.2,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "From Bondage to Contract: Wage Labor, Marriage, and the Market in the Age of Slave Emancipation",
-   "first_author": "Stanley, Amy Dru",
-   "citing": 34,
-   "entropy": 0.558,
-   "nmf_top": 0,
-   "nmf_top_share": 0.49,
-   "nmf_second": 4,
-   "nmf_second_share": 0.26,
-   "louvain": "Genovese · Johnson · McCurry"
-  },
-  {
-   "title": "“It’s Your Misfortune and None of My Own”: A New History of the American West",
-   "first_author": "White, Richard",
-   "citing": 30,
-   "entropy": 0.546,
-   "nmf_top": 10,
-   "nmf_top_share": 0.38,
-   "nmf_second": 8,
-   "nmf_second_share": 0.27,
-   "louvain": "Immigration, race & whiteness (provisional)"
-  },
-  {
-   "title": "The Cultural Front: The Laboring of American Culture in the Twentieth Century",
-   "first_author": "Denning, Michael",
-   "citing": 33,
-   "entropy": 0.54,
-   "nmf_top": 4,
-   "nmf_top_share": 0.39,
-   "nmf_second": 8,
-   "nmf_second_share": 0.27,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Sweetness and Power: The Place of Sugar in Modern History",
-   "first_author": "Mintz, Sidney W",
-   "citing": 36,
-   "entropy": 0.528,
+   "entropy": 0.537,
    "nmf_top": 2,
-   "nmf_top_share": 0.49,
-   "nmf_second": 1,
-   "nmf_second_share": 0.24,
-   "louvain": "Atlantic slavery & the Black Atlantic (provisional)"
-  },
-  {
-   "title": "Race Rebels: Culture, Politics, and the Black Working Class",
-   "first_author": "Kelley, Robin D. G",
-   "citing": 30,
-   "entropy": 0.527,
-   "nmf_top": 7,
-   "nmf_top_share": 0.42,
-   "nmf_second": 4,
-   "nmf_second_share": 0.33,
-   "louvain": "The South: slavery, Reconstruction & Jim Crow (provisional)"
-  },
-  {
-   "title": "No Place of Grace: Antimodernism and the Transformation of American Culture, 1880-1920",
-   "first_author": "Lears, Jackson",
-   "citing": 32,
-   "entropy": 0.527,
-   "nmf_top": 8,
-   "nmf_top_share": 0.6,
-   "nmf_second": 0,
-   "nmf_second_share": 0.11,
-   "louvain": "Gilded Age & Progressive Era (provisional)"
-  },
-  {
-   "title": "Gay New York: Gender, Urban Culture, and the Making of the Gay Male World, 1890-1940",
-   "first_author": "Chauncey, George",
-   "citing": 40,
-   "entropy": 0.526,
-   "nmf_top": 6,
-   "nmf_top_share": 0.38,
-   "nmf_second": 5,
-   "nmf_second_share": 0.37,
-   "louvain": "Postwar metropolis, suburbs & the New Right (provisional)"
-  },
-  {
-   "title": "Making a New Deal: Industrial Workers in Chicago, 1919-1939",
-   "first_author": "Cohen, Lizabeth",
-   "citing": 59,
-   "entropy": 0.523,
-   "nmf_top": 8,
-   "nmf_top_share": 0.52,
+   "nmf_top_share": 0.44,
    "nmf_second": 6,
-   "nmf_second_share": 0.24,
-   "louvain": "Postwar metropolis, suburbs & the New Right (provisional)"
-  },
-  {
-   "title": "The Production of Space",
-   "first_author": "Lefebvre, Henri",
-   "citing": 49,
-   "entropy": 0.514,
-   "nmf_top": 10,
-   "nmf_top_share": 0.45,
-   "nmf_second": 5,
-   "nmf_second_share": 0.33,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Imperial Eyes: Travel Writing and Transculturation",
-   "first_author": "Pratt, Mary Louise",
-   "citing": 47,
-   "entropy": 0.512,
-   "nmf_top": 1,
-   "nmf_top_share": 0.63,
-   "nmf_second": 10,
-   "nmf_second_share": 0.13,
-   "louvain": "Theory, empire & the transnational turn (provisional)"
-  },
-  {
-   "title": "Good Wives, Nasty Wenches, and Anxious Patriarchs: Gender, Race, and Power in Colonial Virginia",
-   "first_author": "Brown, Kathleen M",
-   "citing": 44,
-   "entropy": 0.511,
-   "nmf_top": 0,
-   "nmf_top_share": 0.41,
-   "nmf_second": 2,
-   "nmf_second_share": 0.36,
-   "louvain": "Genovese · Johnson · McCurry"
-  },
-  {
-   "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
-   "first_author": "Westad, Odd Arne",
-   "citing": 40,
-   "entropy": 0.509,
-   "nmf_top": 4,
-   "nmf_top_share": 0.53,
-   "nmf_second": 11,
-   "nmf_second_share": 0.27,
-   "louvain": "Gender, sexuality & the United States in the world (provisional)"
+   "nmf_second_share": 0.23,
+   "louvain": "Ngai · Roediger · Jacobson"
   }
  ]
 }
