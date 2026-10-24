@@ -116,5 +116,20 @@ class LayerTests(unittest.TestCase):
             batch().transform(g, p)
 
 
+class PeriodTests(unittest.TestCase):
+    def test_period_field_and_period_list(self):
+        g = graph(); g["periods"] = [dict(id="period_3", label="Further turns")]
+        node = g["nodes"][0]; node["period"] = None
+        p = packet([]); p["field_sets"] = [dict(node=node["id"], field="period", expect=None, value="period_4")]
+        p["periods_set"] = dict(expect=[dict(id="period_3", label="Further turns")],
+                                value=[dict(id="period_3", label="Further turns"), dict(id="period_4", label="After 2000")])
+        out = batch().transform(g, p)
+        self.assertEqual([x["id"] for x in out["periods"]], ["period_3", "period_4"])
+        self.assertEqual(next(n for n in out["nodes"] if n["id"] == node["id"])["period"], "period_4")
+        p["periods_set"]["expect"] = [dict(id="stale", label="S")]
+        with self.assertRaises(ValueError):
+            batch().transform(g, p)
+
+
 if __name__ == "__main__":
     unittest.main()

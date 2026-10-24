@@ -1,3 +1,15 @@
+# Revision 1.155: a fifth teaching period, c. 2000– (23 October 2026)
+
+A frame revision, no entry text changes. The period list gains `period_4`, "Layering: new fields under a
+settled canon, c. 2000–", named for what the History PhD citation graph (release 2026-10-23;
+`data/field-research/dissertation-citations-2026-10-11/summary/cohorts/README.md`) shows for the years
+after 2000: the 1963–98 theory canon holds as a shared floor in every cohort, no later debate is co-cited
+by more than 3% of theses, and a layer of regional frameworks and fields was added under the floor. Six
+entries receive a period by their own chronology: settler colonialism, the liberal order framework, Canada's
+1960s, digital history and web history to the new period; the languages of class debate to "Further turns,
+c. 1985–2000". The applier gains `periods_set` and `period` field sets. Batch:
+`data/extension-2026/period4-frame-2026-10-23/batch.json`; [acceptance](data/production-batches/period4-1.155/README.md).
+
 # Revision 1.154: the question of class, trimmed (23 October 2026)
 
 The user asked whether stops 9–13 "really fit". Three umbrella fields (new social history, labour

@@ -15,6 +15,11 @@ The pathway now runs those eight stops, then the fields contested and the spread
 history, Chakrabarty), with seven new questions ([acceptance](data/production-batches/pathways-1.153/README.md)); on 2026-10-23 the
 user cut the three umbrella fields and the debate entry became the hinge to the spread, ten stops in all
 (1.154, [acceptance](data/production-batches/pathways-1.154/README.md)).
+On 2026-10-23 the user asked for the project to be built out after 2000 from the dissertation cohort
+analysis: revision 1.155 adds a fifth teaching period, "Layering: new fields under a settled canon,
+c. 2000–", and assigns six entries ([acceptance](data/production-batches/period4-1.155/README.md));
+wave-1 research for its content (the archive as object; settler colonial studies and Wolfe; environmental
+history, Cronon and Worster) is in `data/extension-2026/period4-wave1-2026-10-23/`.
 Its evidence-layer family is *Social history*, bridged to *Cultural & intellectual history*;
 practice v26 folds it into new social history. Unread and flagged: the whole *Social History*
 exchange of 1992–96 (Taylor & Francis 403), Gray 1986, Cooper 1995, *Descent into Discourse*, and

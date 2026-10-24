@@ -25,7 +25,9 @@ acceptance record for exact baseline recovery). From 1.145: source_field_sets ([
 url|title|citation|verification.note, expect, value}]: correct an existing source record, e.g. replace
 a link to an unauthorised copy with the publisher's page; verification.note from 1.148). From 1.150: field_sets may
 also set a node's layer or scope_note, and layers_set ({expect, value}) replaces the graph's top-level
-timeline band list; the prior list is kept in the acceptance record.
+timeline band list; the prior list is kept in the acceptance record. From 1.155: field_sets may set a
+node's period, and periods_set ({expect, value}) replaces the top-level teaching-period list, kept in the
+acceptance record as prior_periods.
 """
 import argparse
 from copy import deepcopy
@@ -44,7 +46,7 @@ EDGE_KEYS = ['source', 'target', 'relationship', 'type', 'relationship_kind', 'd
 TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
 # Whole-field replacements a batch may make on existing nodes (`field_sets`); prose edits stay
 # exact-string `text_revisions`.
-FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology', 'layer', 'scope_note'}
+FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology', 'layer', 'scope_note', 'period'}
 # List fields on an existing node that a batch may extend (`node_list_additions`), without duplicates.
 NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
 # Existing source-record fields a batch may correct (`source_field_sets`), guarded by `expect`.
@@ -119,7 +121,7 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'field_sets', 'layers_set', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
+        for key in ('text_revisions', 'field_sets', 'layers_set', 'periods_set', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -212,6 +214,10 @@ class Batch:
             if g['layers'] != packet['layers_set']['expect']:
                 raise ValueError('Layer list does not match its expected value')
             g['layers'] = deepcopy(packet['layers_set']['value'])
+        if packet.get('periods_set'):   # the teaching-period list, guarded like the band list (from 1.155)
+            if g['periods'] != packet['periods_set']['expect']:
+                raise ValueError('Period list does not match its expected value')
+            g['periods'] = deepcopy(packet['periods_set']['value'])
         for sf in packet.get('source_field_sets', []):
             if sf['field'] not in SOURCE_FIELDS:
                 raise ValueError(f"Source field not settable: {sf['field']}")
@@ -324,6 +330,8 @@ class Batch:
                 cc['source_records'] = cc['source_records'][:record['previous_claim_source_records']]
             if 'prior_layers' in record:
                 before['layers'] = deepcopy(record['prior_layers'])
+            if 'prior_periods' in record:
+                before['periods'] = deepcopy(record['prior_periods'])
             claims = before['claim_catalogue']['claims']
             for i, c in enumerate(claims):
                 if c['id'] in record.get('prior_claims', {}):
@@ -363,6 +371,8 @@ class Batch:
                         new_sources=len(packet['sources']), source_addenda=len(packet['source_addenda'])))
         if packet.get('layers_set'):   # the band list lives outside TABLES
             record['prior_layers'] = before['layers']
+        if packet.get('periods_set'):   # so does the period list
+            record['prior_periods'] = before['periods']
         if packet.get('claim_reviews'):   # claims live in claim_catalogue, outside TABLES
             ids = {c['claim_id'] for c in packet['claim_reviews']}
             record['prior_claims'] = {c['id']: c for c in before['claim_catalogue']['claims'] if c['id'] in ids}

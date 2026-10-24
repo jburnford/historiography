@@ -68,6 +68,10 @@ now, top to bottom:
 `enduring_fields_and_genres` is no longer used in production; it remains in the archived 2000 view.
 The applier's `field_sets` may now set `layer` and `scope_note`, and `layers_set` replaces the band
 list. See the [acceptance record](data/production-batches/timeline-bands-1.150/README.md).
+From revision 1.155 the same applier's `periods_set` replaces the top-level `periods` list (kept in the
+acceptance record as `prior_periods`) and `field_sets` may set a node's `period`; the list has five
+teaching periods, the fifth "Layering: new fields under a settled canon, c. 2000–"
+([acceptance](data/production-batches/period4-1.155/README.md)).
 
 ## Historical revision 1.149 (2026-10-19): Gramsci and McKay
 
