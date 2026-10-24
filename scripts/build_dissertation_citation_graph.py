@@ -663,6 +663,36 @@ def main():
     edges[:] = merged
     for w in works.values():
         w['authors'] = [alias.get(a, a) for a in w['authors']]
+    # Reviewed splits of merged namesakes (person-splits.csv, 2026-10-23): named works move from a
+    # person whose name key gathers several people (Richard White of Stanford, Toronto and Sydney)
+    # to a separate person. Applied after every merge above, so a split is never merged back.
+    if (out / 'person-splits.csv').exists():
+        rules = defaultdict(list)
+        with (out / 'person-splits.csv').open(newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                rules[r['person']].append((title_key(r['work_title']), r))
+        moves = {}
+        for wid, w in works.items():
+            k = w['authors'][0] if w['authors'] else None
+            base = next((p for p in rules if k and (k == p or k.startswith(p + ' '))), None)
+            if not base:
+                continue
+            tk = wid.split('|', 1)[1].removesuffix('|a') if '|' in wid else ''
+            hit = next((r for key, r in rules[base] if key and (tk == key or tk.startswith(key))), None)
+            if not hit:
+                continue
+            new = hit['new_person']
+            moves[(f'P:{k}', wid)] = f'P:{new}'
+            w['authors'][0] = new
+            persons[new]['names'][hit['new_name']] += 1
+            persons[new]['roles']['cited_author'] += 1
+            if hit.get('qid'):
+                person_ids[new]['qids'] = Counter({hit['qid']: 1})
+                tiers[new] = 'reviewed_split'
+        for e in edges:
+            if e['type'] == 'AUTHORED' and (e['source'], e['target']) in moves:
+                e['source'] = moves[(e['source'], e['target'])]
+        print(f'person splits: {len(moves)} works moved to {len(set(moves.values()))} separate people', flush=True)
     cited_by_person = defaultdict(set)
     for e in edges:
         if e['type'] == 'AUTHORED':

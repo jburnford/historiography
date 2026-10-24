@@ -1025,6 +1025,21 @@ link.
   dissertations. It carries a data dictionary, method, measured quality and provenance, and is
   licensed CC BY 4.0. Archived on Zenodo through GitHub releases of this repository
   (`.zenodo.json`).
+- **Namesakes (2026-10-23).** A cited person is a name key, so one key can gather several people.
+  The case that prompted this was "White, Richard": Stanford (*The Middle Ground*), Toronto (*Planning
+  Toronto*; the Toronto 1995 PhD already separated in the AHA genealogy) and Sydney (*Inventing
+  Australia*).
+  - `person-splits.csv` is a decisions ledger: each row moves the works matching a title from a merged
+    key to a separate person, with evidence and decider. The builder applies it after all merging,
+    so a split is never merged back.
+  - `namesake_review_queue.py` ranks keys for review, writing
+    `summary/identity/namesake-review.csv`. Its signal: a person's works fall into groups with no
+    shared citing PhD. Ranking weighs how differently the groups are read (Jensen-Shannon divergence
+    of regions and TF-IDF families), a Wikidata miss (the grounded person's own works match the main
+    group but not the other), and group size. Groups whose titles are in different languages are
+    marked `translation_likely` and moved to the bottom.
+  - On 2026-10-23 the queue held 1,530 candidates. About half of the top 25 read as genuine
+    namesakes on inspection, so every split stays a reviewed decision.
 - **Memory.** The builder needs about 13 GB at peak: it drops raw entry text at load and streams
   `graph.json`. Run it alone; WSL crashed when two builds ran together.
 
@@ -1043,6 +1058,7 @@ Tracked:
   `sha256` from 2026-10-20).
 - `person-wikidata.jsonl`: grounding rows, with candidates and tier.
 - `notes-extraction.jsonl`: notes status, note and citation counts per thesis (no text).
+- `person-splits.csv`: reviewed splits of merged namesakes (see below).
 - `work-translations.jsonl`: translation and edition clusters (`map_work_translations.py`).
 - `release/<date>/`: the public release (CC BY 4.0; see below).
 
