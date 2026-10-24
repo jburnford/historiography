@@ -1,7 +1,7 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.159**, schema 1.6,
+The curated JSON remains authoritative. Current revision **1.160**, schema 1.6,
 contains **203 entries, 1,261 relationships, 2,445 sources, 1,355 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and five
@@ -21,10 +21,27 @@ The public comparisons include 6,794 dissertations with years, from 7,107 in ana
 The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
 regional numerators/denominators, institution coverage, missing years, notes extraction,
 small samples and provisional family labels remain visible. Examples link to original
-repository records. Teaching links cover Cronon, Worster, Stoler, Trouillot, Thompson and Richard White;
-field panels cover environmental history and the archival turn. They are explicit
-selections, not automatic matches or field-readership estimates. Archived entries retain
-their original selection and do not receive the new context panels.
+repository records. Teaching links cover twenty profiles, including Wrigley, Mokyr,
+Berg, Crafts, Fogel and de Vries. Four field panels cover environmental history, the
+archival turn, economic history and capitalism debates. Archived entries retain their
+original selection.
+
+The economic-history and capitalism panels each compare twelve selected authors or
+primary works. Economic history opens on authors so citations spread across multiple
+books remain visible. A selector updates four regional citation-share curves on a fixed
+scale shared within each comparison mode. Exact period/region and cross-selection tables
+remain available. Both mode and source selections survive resizing and reading-view round
+trips. Counts overlap and do not estimate field readership or influence. These are sampled
+History-programme dissertations, excluding the separate Economics PhD literature.
+
+Reviews are recorded in `data/dissertation-layer/reviews/`. Eleven explicitly reviewed
+records below the normal frequency cutoffs are added to the original 4,037 sources,
+for 4,048 searchable sources. Their distinct dated counts are recomputed from the frozen
+release; companion/family analyses are explicitly unavailable for those additions.
+Existing counts/series and denominator populations remain unchanged. Attribution notes
+retain first-author and namesake limits. Export validation rejects differing first-author
+credits, people outside field rosters and unreviewed work selections. Field panels load
+only the links asset; the index and buckets load when reading details are followed.
 
 `python3 scripts/build_dissertation_site.py` recreates the metadata exports from the local
 explorer and dated release, verifies all 4,037 source counts and region-period denominators,
@@ -48,7 +65,7 @@ allowlisted files, including eight JavaScript modules, two stylesheets, six teac
 and publication-record JSON assets, and 34 dissertation metadata assets. The builder
 validates graphs, checks the dissertation export hashes and refuses unexpected output
 files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The build includes revision 1.159 and the dissertation reading research preview.
+build. The build includes revision 1.160 and the dissertation reading research preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
 the full 7.51 MB graph once. Selected profiles lazily load the separate record

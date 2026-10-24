@@ -1,5 +1,17 @@
 # Historiography: editorial and visualization working plan
 
+**Economic reading correction (2026-10-24, local revision1.160):** user identified
+missing Wrigley, Mokyr, Berg and Crafts. The book-frequency filter was excluding relevant
+authors. Add author/work comparison modes, six named-work bridges (also Fogel and de Vries),
+and eleven reviewed low-count source exceptions. Twenty linked profiles/four fields;
+twelve authors/primary works per economic/capitalism panel. Original4,037 numeric series
+and denominator populations unchanged. Crafts/Harley gain economic roster membership and
+one jointly credited1992 event through an existing scoped source; no new arrows or people.
+First-author/namesake, sample and uncomputed-analysis limits remain explicit. Reviews:
+`data/dissertation-layer/reviews/`. Local preview only; no push requested.
+Next expansion: Indigenous/settler history, then languages of class, after this selection
+correction is reviewed.
+
 **Task 0 expanded — revision 1.159 (2026-10-24, local):** review all 148 remaining
 work candidates, preserve translations/coauthors/editors and flag the one unresolved
 truncated volume. Add supported contribution links alongside bibliography: White to

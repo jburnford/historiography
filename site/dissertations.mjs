@@ -5,6 +5,7 @@ const COLORS = ['#356c91', '#b45331', '#52764b', '#796486'];
 const fmt = n => Number(n).toLocaleString('en');
 const cache = new Map();
 const charts = new WeakMap();
+const contextChoices = new Map();
 const ROOT = 'data/dissertations/';
 export const readingHref = key => `#tab=dissertations${key ? `&source=${encodeURIComponent(key)}` : ''}`;
 export const isReadingHash = hash => new URLSearchParams(hash.replace(/^#/, '')).get('tab') === 'dissertations'
@@ -24,11 +25,15 @@ export function trendTable(data, source) {
   return table('Dissertations citing, by degree period and region', ['Degree period', ...data.regions.map(r => NAMES[r])],
     data.periods.map((p, i) => `<tr><th scope="row">${esc(p)}</th>${data.regions.map((r,j) => `<td>${share(source.series[i][j], data.denominators[i][j])}<small>${fmt(source.series[i][j])} of ${fmt(data.denominators[i][j])}</small></td>`).join('')}</tr>`).join(''));
 }
-export function trendChart(data, source, width=880) {
+export function trendCeiling(data, sources) {
+  const values=sources.flatMap(source=>data.periods.flatMap((_,p)=>data.regions.map((_,r)=>
+    data.denominators[p][r]>=15 ? 100*source.series[p][r]/data.denominators[p][r] : 0)));
+  return Math.ceil(Math.max(1,...values)/4)*4;
+}
+export function trendChart(data, source, width=880, fixedCeiling=null) {
   const W = Math.max(280, Math.min(880, width)), H = 280, left = 42, right = W-20, top = 16, bottom = 230;
   const value = (p, r) => data.denominators[p][r] >= 15 ? 100 * source.series[p][r] / data.denominators[p][r] : null;
-  const max = Math.max(1, ...data.periods.flatMap((_,p) => data.regions.map((_,r) => value(p,r) || 0)));
-  const ceiling = Math.ceil(max / 4) * 4;
+  const ceiling = fixedCeiling ?? trendCeiling(data,[source]);
   const x = p => left + p * (right - left) / (data.periods.length - 1), y = v => bottom - (bottom - top) * v / ceiling;
   let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Citation shares over time. Exact counts and percentages are in the table below.">`;
   for (let k=0;k<=4;k++) svg += `<line class="reading-grid" x1="${left}" x2="${right}" y1="${y(k*ceiling/4)}" y2="${y(k*ceiling/4)}"/><text x="${left-8}" y="${y(k*ceiling/4)+4}" text-anchor="end">${k*ceiling/4}%</text>`;
@@ -53,7 +58,7 @@ function coverage(data) {
     <details><summary>Institutions and countries represented</summary>${table('Dated dissertations by repository institution', ['Region','Country','Institution as recorded','Dissertations'],c.institutions.map(i=>`<tr><td>${NAMES[i.region]}</td><td>${esc(i.country)}</td><th scope="row">${esc(i.institution)}</th><td>${fmt(i.n)}</td></tr>`).join(''))}</details>
     <h3>What is counted</h3><p>A dissertation counts once for a source, however often it cites it. Person counts cover works attributed to that person as first author. ${fmt(c.from_notes_with_year)} dated dissertations use works reconstructed from notes; the others use closing bibliographies. A bibliography can include works consulted without a footnote citation. Notes record cited works. Neither establishes agreement or intellectual influence.</p>
     <h3>Parsing and identities</h3><p>Bibliographic fields are extracted by rules and OCR, then merged by name and title evidence. Person records remain bibliography name keys; namesakes and editions can be joined incorrectly. Reviewed teaching links identify selected keys and retain that limit. The earlier Canadian audit measured 77% fully usable entries; a separate non-English BASE sample measured 32% before subsequent fixes. These samples do not establish current accuracy across all languages. Notes have especially uncertain publication years.</p>
-    <p>Search includes works cited by at least ${data.params.min_work} dated dissertations and people cited by at least ${data.params.min_person}. Lower counts are omitted from search, so an absent result is not evidence of absence from the corpus. Companions meet the research explorer's association-strength threshold of ${data.params.min_strength} and at least ${data.params.min_shared} shared dissertations.</p>
+    <p>Search includes works cited by at least ${data.params.min_work} dated dissertations and people cited by at least ${data.params.min_person}. Reviewed teaching selections below these cutoffs are also included and labelled; other lower counts are omitted, so an absent result is not evidence of absence from the corpus. Companions meet the research explorer's association-strength threshold of ${data.params.min_strength} and at least ${data.params.min_shared} shared dissertations.</p>
     <p><a href="https://github.com/jburnford/historiography/tree/main/data/field-research/dissertation-citations-2026-10-11/release/2026-10-23" target="_blank" rel="noopener noreferrer">Dated data release, methods and measured quality →</a></p>
   </details>`;
 }
@@ -79,6 +84,13 @@ function families(data, source) {
     ${table('Modelled family mixtures among citing dissertations', ['Provisional family', ...data.periods],f.fams.map((id,j)=>`<tr><th scope="row">${esc(data.families[id].name)}<small>${esc(data.families[id].terms)}</small></th>${data.periods.map((_,p)=>`<td>${f.placed[p]>=5 ? `${f.shares[p][j]??0}%` : '—'}<small>${f.placed[p]} placed</small></td>`).join('')}</tr>`).join(''))}
     <p>Shares for fewer than five placed citing dissertations are omitted. The shared-work vocabulary favours frequently cited literature and varies with the corpus; changes in family mixtures are exploratory.</p></details>`;
 }
+function companionSections(data,shard,source) {
+  if(source.analysis_scope==='counts_only')return '<p class="reading-analysis-note">This reviewed selection is included below the usual display threshold. Citation counts were recomputed from the frozen release; companion and citation-family analyses have not been produced for this source.</p>';
+  return `    <section><h4>Cited alongside</h4><p>Among dissertations citing this source, how often does each companion also appear? Companion selection uses shared citations above the corpus baseline. Co-citation does not establish an exchange between authors.</p>${companions(data,shard,source)}</section>
+    <section><h4>Companions across regions</h4><div class="reading-regions">${data.regions.map(r=>`<div><h5>${NAMES[r]} · ${source.n_region[r]||0} citing dissertations</h5>${source.regional[r]?`<ul>${source.regional[r].map(([id,v])=>`<li>${data.sources.some(s=>s.id===id)?sourceLink(shard.labels[id]):esc(shard.labels[id].short)} <strong>${v}%</strong></li>`).join('')}</ul>`:'<p>Fewer than 10 citing dissertations; regional companions are not shown.</p>'}</div>`).join('')}</div></section>
+    ${families(data,source)}
+`;
+}
 export function sourceDetail(data, shard, source, links) {
   const label=shard.labels[source.id];
   const person=label.key.startsWith('P:');
@@ -90,9 +102,7 @@ export function sourceDetail(data, shard, source, links) {
     ${teachings(links,label.key)}
     <section><h4>Citations over time</h4><p>Share of the sampled dissertations in each region and degree period. Exact counts remain visible below; shares with fewer than 15 dissertations in the region-period are suppressed.</p><div class="reading-trend">${trendChart(data,source)}</div><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${trendTable(data,source)}</section>
     ${source.works?.length?`<section><h4>Explore selected works</h4><ul class="reading-work-list">${source.works.map(id=>`<li>${sourceLink(shard.labels[id])}</li>`).join('')}</ul><p class="fine-print">Frequently cited works attributed to this first-author key; an exploratory list, not an authority-reviewed bibliography.</p></section>`:''}
-    <section><h4>Cited alongside</h4><p>Among dissertations citing this source, how often does each companion also appear? Companion selection uses shared citations above the corpus baseline. Co-citation does not establish an exchange between authors.</p>${companions(data,shard,source)}</section>
-    <section><h4>Companions across regions</h4><div class="reading-regions">${data.regions.map(r=>`<div><h5>${NAMES[r]} · ${source.n_region[r]||0} citing dissertations</h5>${source.regional[r]?`<ul>${source.regional[r].map(([id,v])=>`<li>${data.sources.some(s=>s.id===id)?sourceLink(shard.labels[id]):esc(shard.labels[id].short)} <strong>${v}%</strong></li>`).join('')}</ul>`:'<p>Fewer than 10 citing dissertations; regional companions are not shown.</p>'}</div>`).join('')}</div></section>
-    ${families(data,source)}
+    ${companionSections(data,shard,source)}
     <section><h4>Inspect example dissertations</h4><p class="fine-print">Up to two examples per region, selected in source-file order. These illustrate the records behind the counts and are not representative samples. Repository links open the original records.</p><ul class="reading-examples">${examples.map(e=>`<li>${publicUrl(e.item_url)?`<a href="${esc(e.item_url)}" target="_blank" rel="noopener noreferrer">${esc(e.title)}</a>`:esc(e.title)}<p>${esc(e.authors)} · ${esc(e.institution)} · ${esc(e.country)} · ${e.year} · ${e.via==='notes'?'citation reconstructed from notes':'bibliography record'}</p></li>`).join('')}</ul></section></article>`;
 }
 function errorHtml() { return '<p role="status">The dissertation data could not be loaded. <button type="button" data-reading-retry>Try again</button></p>'; }
@@ -108,7 +118,7 @@ export async function mountReading(root, key='') {
       <p class="reading-scope">${fmt(data.coverage.with_year)} dated dissertations · ${fmt(data.sources.filter(s=>s.key.startsWith('W:')).length)} searchable works · ${fmt(data.sources.filter(s=>s.key.startsWith('P:')).length)} searchable people · snapshot ${esc(data.snapshot)}</p>
       <form class="reading-search" role="search"><label for="reading-search">Find a historian or work</label><div><input id="reading-search" type="search" placeholder="Try Cronon, Stoler, Thompson, or a book title" autocomplete="off"><button type="submit">Search</button></div></form>
       <div class="reading-results" aria-live="polite"></div>
-      <nav class="reading-starters" aria-label="Starting points">${Object.values(links.people).map(p=>`<a href="${esc(readingHref(p.source))}">${esc(p.label)}</a>`).join('')}</nav>
+      <details class="reading-starting-points" ${key?'':'open'}><summary>Browse linked historians · ${Object.keys(links.people).length}</summary><nav class="reading-starters" aria-label="Starting points">${Object.values(links.people).map(p=>`<a href="${esc(readingHref(p.source))}">${esc(p.label)}</a>`).join('')}</nav></details>
       <div class="reading-source" aria-live="polite"></div>${coverage(data)}`;
     const input=root.querySelector('input'),results=root.querySelector('.reading-results');
     let hits=[];
@@ -116,7 +126,7 @@ export async function mountReading(root, key='') {
     const search=()=>{
       const terms=norm(input.value).trim().split(/\s+/).filter(Boolean);
       hits=terms.length ? data.sources.filter(s=>terms.every(t=>norm(`${s.short} ${s.full} ${s.author}`).includes(t))).sort((a,b)=>Number(b.key.startsWith('P:'))-Number(a.key.startsWith('P:'))||b.n-a.n):[];
-      results.innerHTML=!terms.length?'':`<p>${fmt(hits.length)} matching sources${hits.length>12?'; showing the first 12':''}.</p><ul>${hits.slice(0,12).map(s=>`<li>${sourceLink(s)} <span>${s.key.startsWith('P:')?'Person':'Work'} · ${fmt(s.n)} citing dissertations</span></li>`).join('')}</ul>`;
+      results.innerHTML=!terms.length?'':`<p>${fmt(hits.length)} matching sources${hits.length>12?'; showing the first 12':''}.</p><ul>${hits.slice(0,12).map(s=>`<li>${sourceLink(s)} <span>${s.key.startsWith('P:')?'Person':'Work'} · ${fmt(s.n)} citing dissertations${s.reviewed_selection?' · reviewed selection below the usual cutoff':''}</span></li>`).join('')}</ul>`;
     };
     input.addEventListener('input',search);
     input.addEventListener('keydown',e=>{if(e.key==='ArrowDown') {results.querySelector('a')?.focus();e.preventDefault();} if(e.key==='Escape'){results.innerHTML='';}});
@@ -140,8 +150,44 @@ export async function mountReading(root, key='') {
 }
 
 export function resizeReading(root) {
-  const state=charts.get(root), box=root?.querySelector('.reading-trend');
-  if(state && box)box.innerHTML=trendChart(state.data,state.source,box.clientWidth);
+  const state=charts.get(root), box=root?.querySelector('.reading-trend, .reading-context-trend');
+  if(state && box)box.innerHTML=trendChart(state.data,state.source,box.clientWidth,state.ceiling);
+}
+
+function contextAuthors(links,pids) {
+  return pids.map(pid=>{const p=links.people[pid];return `<div class="reading-context-person"><h4><a href="${esc(readingHref(p.source))}">${esc(p.label)} →</a></h4><p><strong>${fmt(p.n)}</strong> dated dissertations cite works attributed to this author as first author.</p><ul>${p.works.map(key=>`<li><a href="${esc(readingHref(key))}">${esc(p.work_labels[key])}</a></li>`).join('')}</ul>${p.review_note?`<details class="reading-attribution"><summary>Attribution of these citations</summary><p>${esc(p.review_note)}</p></details>`:''}</div>`;}).join('');
+}
+const comparisonSources=(comparison,mode)=>mode==='authors'?(comparison.authors||[]):comparison.sources;
+const sourceOptions=sources=>sources.map(s=>`<option value="${esc(s.key)}">${esc(s.label)}</option>`).join('');
+function regionalComparison(links,sources,mode) {
+  const authors=mode==='authors';
+  return `<summary>Compare regional counts for all ${sources.length} ${authors?'authors':'works'}</summary><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${table(`Distinct dated dissertations citing ${authors?'works attributed to each selected first author':'each selected work'}; counts overlap`,[authors?'Author':'Work','All regions',...links.regions.map(r=>NAMES[r])],sources.map(s=>`<tr><th scope="row">${sourceLink({key:s.key,short:s.label})}</th><td>${fmt(s.n)}</td>${links.regions.map(r=>`<td>${fmt(s.n_region[r]||0)}</td>`).join('')}</tr>`).join(''))}`;
+}
+export function comparisonSelection(links,comparison,key,width=880) {
+  const authors=key?.startsWith('P:')&&comparison.authors?.length, sources=authors?comparison.authors:comparison.sources;
+  const source=sources.find(s=>s.key===key)||sources[0], person=links.people[source.person_id];
+  return `<div class="reading-selected-heading"><h4><a href="${esc(readingHref(source.key))}">${esc(source.label)} →</a></h4><p><strong>${fmt(source.n)} of ${fmt(links.coverage.with_year)}</strong> dated dissertations cite ${authors?'works attributed to this author as first author':'this work'}. <a href="#person=${esc(source.person_id)}">Read ${esc(person.label)}’s teaching profile →</a></p></div>
+    <div class="reading-context-trend">${trendChart(links,source,width,trendCeiling(links,sources))}</div>
+    <p class="fine-print">Share of sampled dissertations by region and degree period. The vertical scale stays the same when you switch ${authors?'authors':'works'}. Shares with fewer than 15 dissertations in a region-period are omitted.</p>
+    <details class="reading-context-exact"><summary>Exact counts by period and region</summary><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${trendTable(links,source)}</details>`;
+}
+export function readingContextHtml(links,type,id,width=880) {
+  const entry=links.entries[id], pids=type==='person'?(links.people[id]?[id]:[]):entry?.people||[];
+  if(!pids.length)return '';
+  const comparison=type==='entry'&&entry?.comparison;
+  const suffix=`<p class="fine-print">Snapshot ${esc(links.snapshot)}. Bibliography presence and notes citations are distinct from influence. These teaching links were reviewed through named works; the underlying name keys can still contain attribution errors.</p><a class="text-link" href="${readingHref()}">Explore dissertation reading →</a>`;
+  if(!comparison) return `<section class="reading-context"><p class="eyebrow">IN DISSERTATION READING</p><h3>${type==='person'?'Where this scholarship is cited':'What dissertations draw on'}</h3>
+    <p>${type==='person'?'Follow selected works and their use across time and regions.':`Explore ${pids.length} selected authors on this entry’s roster. Their counts describe these authors’ first-author bibliography keys; they do not measure the readership of the whole field.`}</p>${contextAuthors(links,pids)}${suffix}</section>`;
+  const mode=comparison.default_view||'works',sources=comparisonSources(comparison,mode),pickerId='reading-work-'+id;
+  return `<section class="reading-context reading-field-context"><p class="eyebrow">IN DISSERTATION READING · SELECTED AUTHORS AND WORKS</p><h3>What dissertations draw on</h3>
+    <p>${esc(comparison.intro)}</p><p class="reading-context-question">${esc(comparison.question)}</p>${comparison.observation?`<p>${esc(comparison.observation)}</p>`:''}
+    <p class="fine-print">These authors and works are an editorial selection from this entry’s roster; they do not measure the readership of the whole field. A dissertation can cite several of them, so their counts must not be added. Author totals cover provisional first-author name keys; they are not counts for a single book.</p>
+    <div class="reading-work-picker"><label for="reading-view-${esc(id)}">Compare</label><select class="reading-comparison-mode" id="reading-view-${esc(id)}"><option value="authors" ${mode==='authors'?'selected':''}>Authors across their attributed works</option><option value="works" ${mode==='works'?'selected':''}>Individual works</option></select></div>
+    <div class="reading-work-picker"><label for="${esc(pickerId)}">${mode==='authors'?'Follow an author':'Follow a selected work'}</label><select class="reading-source-picker" id="${esc(pickerId)}">${sourceOptions(sources)}</select></div>
+    <div class="reading-context-selected" aria-live="polite">${comparisonSelection(links,comparison,sources[0].key,width)}</div>
+    <details class="reading-context-regions">${regionalComparison(links,sources,mode)}</details>
+    <p class="fine-print">Books published later have fewer cohorts in which to appear. This is a sample of History-programme dissertations, not the separate literature of Economics PhDs. Repository coverage varies; degree years follow repository metadata. The snapshot uses ${fmt(links.coverage.with_year)} dated dissertations; ${fmt(links.coverage.missing_year)} without years are excluded. Reviewed low-count records remain available here even below normal search cutoffs. An omitted title need not be uncited.</p>
+    <details class="reading-context-authors"><summary>Selected authors and teaching profiles</summary>${contextAuthors(links,pids)}</details>${suffix}</section>`;
 }
 
 export async function mountReadingContext(root, type, id) {
@@ -149,11 +195,27 @@ export async function mountReadingContext(root, type, id) {
   try {
     const links=await get('links.json');
     if(!root.isConnected)return;
-    const pids=type==='person'?(links.people[id]?[id]:[]):links.entries[id]?.people||[];
-    if(!pids.length)return;
-    root.innerHTML=`<section class="reading-context"><p class="eyebrow">IN DISSERTATION READING</p><h3>${type==='person'?'Where this scholarship is cited':'What dissertations draw on'}</h3>
-      <p>${type==='person'?'Follow selected works and their use across time and regions.':'Explore two selected authors on this entry’s roster. Their counts describe these authors’ first-author bibliography keys; they do not measure the readership of the whole field.'}</p>
-      ${pids.map(pid=>{const p=links.people[pid];return `<div class="reading-context-person"><h4><a href="${esc(readingHref(p.source))}">${esc(p.label)} →</a></h4><p><strong>${fmt(p.n)}</strong> dated dissertations cite this first-author key.</p><ul>${p.works.map(key=>`<li><a href="${esc(readingHref(key))}">${esc(p.work_labels[key])}</a></li>`).join('')}</ul></div>`;}).join('')}
-      <p class="fine-print">Snapshot ${esc(links.snapshot)}. Bibliography presence and notes citations are distinct from influence. These teaching links were reviewed through named works; the underlying name keys can still contain attribution errors.</p><a class="text-link" href="${readingHref()}">Explore dissertation reading →</a></section>`;
+    root.innerHTML=readingContextHtml(links,type,id,Math.max(280,root.clientWidth-46));
+    const comparison=type==='entry'&&links.entries[id]?.comparison;
+    if(comparison) {
+      const mode=root.querySelector('.reading-comparison-mode'),select=root.querySelector('.reading-source-picker'),box=root.querySelector('.reading-context-selected');
+      const remembered=contextChoices.get(id)||{};
+      mode.value=remembered.mode||comparison.default_view||'works';
+      const configure=()=>{
+        const sources=comparisonSources(comparison,mode.value);
+        select.innerHTML=sourceOptions(sources);
+        select.previousElementSibling.textContent=mode.value==='authors'?'Follow an author':'Follow a selected work';
+        if(sources.some(s=>s.key===remembered[mode.value]))select.value=remembered[mode.value];
+      };
+      const update=()=>{
+        const sources=comparisonSources(comparison,mode.value),source=sources.find(s=>s.key===select.value)||sources[0];
+        remembered.mode=mode.value;remembered[mode.value]=source.key;contextChoices.set(id,remembered);
+        box.innerHTML=comparisonSelection(links,comparison,source.key,Math.max(280,box.clientWidth));
+        root.querySelector('.reading-context-regions').innerHTML=regionalComparison(links,sources,mode.value);
+        charts.set(root,{data:links,source,ceiling:trendCeiling(links,sources)});
+      };
+      mode.addEventListener('change',()=>{configure();update();});select.addEventListener('change',update);
+      configure();update();
+    }
   } catch {if(root.isConnected)root.innerHTML='<p class="fine-print">Dissertation links are temporarily unavailable. <a href="#tab=dissertations">Open dissertation reading →</a></p>';}
 }

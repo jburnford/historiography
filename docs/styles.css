@@ -20,6 +20,7 @@ body[data-compact="1"] .subtitle{display:none}
 .school-tabs a[aria-current]{border-bottom:3px solid var(--green);font-weight:650}
 .school-tabs span{background:#e3e8dc;padding:2px 7px;border-radius:12px;font-size:10px;margin-left:7px}
 .school-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
+.school-layout>section{min-width:0}
 .school-layout .reading-panel{margin-top:0}
 .people-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .people-directory{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
@@ -64,7 +65,7 @@ body[data-compact="1"] .subtitle{display:none}
 .associated-card>a:first-child{font:19px/1.25 var(--serif);text-decoration:none}
 .associated-card .edge-label{position:static;transform:none;max-width:none;font-size:10px}
 @media(max-width:1200px){.school-layout{grid-template-columns:minmax(0,1fr) 300px;gap:22px}.flow-focus h3{font-size:20px}}
-@media(max-width:1000px){.school-layout{grid-template-columns:1fr}.people-directory{grid-template-columns:repeat(2,minmax(0,1fr))}.school-layout .reading-panel{margin-top:10px}}
+@media(max-width:1000px){.school-layout{grid-template-columns:minmax(0,1fr)}.people-directory{grid-template-columns:repeat(2,minmax(0,1fr))}.school-layout .reading-panel{margin-top:10px}}
 @media(max-width:700px){.school-tabs{gap:18px;margin-top:16px}.school-tabs a{font-size:11px}.school-tabs span{font-size:9px;margin-left:3px}.people-grid,.people-directory,.person-contexts{grid-template-columns:1fr}.person-card{padding:22px}.person-card h3{font-size:28px}.person-profile>.section-heading h2{font-size:35px}.person-affiliation{padding:22px}.flow-pagers{grid-template-columns:1fr 1fr}.flow-pagers>span{display:none}.associated-grid{grid-template-columns:1fr}.associated-links .section-heading{align-items:flex-start}.main-nav{column-gap:16px}}
 
 .relationship-summary{display:flex;flex-wrap:wrap;gap:8px 18px;padding:14px 0;border-top:1px solid var(--line);font-size:12px}.relationship-summary strong{flex-basis:100%}.flow-caption{font-size:11px;color:var(--muted);text-align:center;margin:14px 0 24px}

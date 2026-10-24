@@ -17,6 +17,25 @@ REMAINING = ROOT / 'data/extension-2026/remaining-work-review-2026-10-24'
 
 
 class WorkGapTests(unittest.TestCase):
+    def test_crafts_harley_roster_repair_preserves_coauthors_and_existing_graph(self):
+        batch=Batch(ROOT/'data/extension-2026/economic-reading-selection-2026-10-24')
+        before=batch.baseline(); after=batch.check()
+        for table in ['people','sources','edges','scope']:
+            self.assertEqual(before[table],after[table])
+        prior={n['id']:n for n in before['nodes']}
+        for node in after['nodes']:
+            if node['id']!='economic':
+                self.assertEqual(node,prior[node['id']])
+        field=next(n for n in after['nodes'] if n['id']=='economic')
+        roster={r['person_id']:r for r in field['representative_people']}
+        self.assertIn('n_f_r_crafts',roster)
+        self.assertIn('c_knick_harley',roster)
+        event=next(e for e in field['chronology']['events'] if e['id']=='eh160_crafts_harley_1992')
+        self.assertIn('Crafts',event['label']); self.assertIn('Harley',event['label'])
+        self.assertEqual(event['date']['year'],1992)
+        for old in prior['economic']['chronology']['events']:
+            self.assertIn(old,field['chronology']['events'])
+
     def test_reviewed_work_link_prevents_namesake_import(self):
         graph = {'people':[{'id':'rw','label':'Richard White','node_id':'rw'}],
                  'nodes':[{'id':'rw','label':'Richard White','entry_kind':'person','source_ids':[],

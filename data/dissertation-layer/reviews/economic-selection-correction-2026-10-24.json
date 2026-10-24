@@ -1,0 +1,89 @@
+{
+  "schema": "teaching_reading_selection_correction/1",
+  "date": "2026-10-24",
+  "authorization": "User: economic history feels off; no Wrigley, Mokyr, Berg? Crafts?",
+  "cause": "The prior field selection required each displayed work to clear the explorer’s 20-dissertation cutoff. This excluded relevant historians whose citations were spread across multiple books. Crafts also fell below the 30-dissertation person cutoff. This was an editorial/display exclusion, not absence from the release.",
+  "corrected_policy": "Choose verified authors/works for historical relevance first. Include explicitly labelled selected records below normal display thresholds; recompute exact dated counts from the release. No person-key or title merges; no uncomputed companion/family results asserted.",
+  "new_bridges": [
+    {
+      "person_id": "e_a_wrigley",
+      "source": "P:wrigley|edward a",
+      "works": [
+        "W:wrigley|continuity chance and change",
+        "W:wrigley|population history of england 1541 1871"
+      ],
+      "evidence_url": "https://www.cambridge.org/core/books/continuity-chance-and-change/581711F9F88E5B27E710EC2886CB74A0/listing",
+      "checked_on": "2026-10-24",
+      "extent": "CUP publication/author metadata verifies Continuity, Chance and Change (1988); The Population History of England (1981) is joint work with R. S. Schofield. Separate Chris/Christopher/Julia/Richard Wrigley keys and malformed author records are not merged.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    },
+    {
+      "person_id": "joel_mokyr",
+      "source": "P:mokyr|joel",
+      "works": [
+        "W:mokyr|lever of riches",
+        "W:mokyr|enlightened economy"
+      ],
+      "evidence_url": "https://catalogue.bnf.fr/ark%3A/12148/cb37465608w",
+      "checked_on": "2026-10-24",
+      "extent": "National-library author/title/imprint metadata verifies The Lever of Riches (1990). The Enlightened Economy is already named in the teaching entry and verified publisher bibliography. No new book-body reading.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    },
+    {
+      "person_id": "maxine_berg",
+      "source": "P:berg|maxine",
+      "works": [
+        "W:berg|age of manufactures 1700 1820",
+        "W:berg|luxury and pleasure in eighteenth century britain"
+      ],
+      "evidence_url": "https://wrap.warwick.ac.uk/view/author_id/6076.type.html",
+      "checked_on": "2026-10-24",
+      "extent": "Author institutional bibliography verifies The Age of Manufactures and Luxury and Pleasure. Original/second-edition/reissue dates remain separate: the corpus’s 1994 Age of Manufactures record is not treated as its first publication; OUP lists a later Luxury paperback. No new book-body argument.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    },
+    {
+      "person_id": "n_f_r_crafts",
+      "source": "P:crafts|nicholas f",
+      "works": [
+        "W:crafts|british economic growth during the industrial revolution",
+        "W:crafts|output growth and the british industrial revolution|a"
+      ],
+      "evidence_url": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-0289.1992.tb01313.x",
+      "checked_on": "2026-10-24",
+      "extent": "Publisher metadata identifies N. F. R. Crafts with C. K. Harley as joint authors of the 1992 restatement. The 1985 book and this article are already identified in the teaching person record. Crafts’s separate malformed/initialled name keys remain separate; author count is the principal first-author key only, not an exhaustive recovered total.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    },
+    {
+      "person_id": "robert_fogel",
+      "source": "P:fogel|robert w",
+      "works": [
+        "W:fogel|railroads and american economic growth"
+      ],
+      "evidence_url": "https://search.worldcat.org/title/237790",
+      "checked_on": "2026-10-24",
+      "extent": "Existing teaching source fogel_railroads identifies Robert W. Fogel’s 1964 book. Include the relevant low-count book rather than requiring a book above20 dissertations. Earlier cliometric arguments and criticism stay qualified.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    },
+    {
+      "person_id": "jan_de_vries",
+      "source": "P:de vries|jan",
+      "works": [
+        "W:de vries|industrious revolution"
+      ],
+      "evidence_url": "https://www.cambridge.org/core/books/the-industrious-revolution/E79469E295F0526387FB0AEB235AFC98",
+      "checked_on": "2026-10-24",
+      "extent": "CUP author/title metadata identifies Jan de Vries and The Industrious Revolution (2008), already selected in the teaching entry. Do not substitute his distinct 1994 article or transfer the book to another de Vries.",
+      "decision": "Include reviewed low-count work records; preserve original person/work keys and identity splits."
+    }
+  ],
+  "dated_principal_first_author_counts": {
+    "wrigley|edward a": 42,
+    "mokyr|joel": 40,
+    "berg|maxine": 56,
+    "crafts|nicholas f": 15
+  },
+  "crafts_limits": "Principal key has16 dissertations including the one without a usable year;15 appear in the time-comparison sample. Separate malformed author keys include Crafts N. F. R. and a Crafts/Harley record. They are retained and not added without citation-level identity/deduplication review. This is not a complete count of Crafts citations.",
+  "roster_repair": "Revision1.160 adds Crafts and Harley to economic history through their existing qualified1992 source review, plus a dated joint publication fact. No new person nodes or influence arrows.",
+  "sample_scope": "Strict History-programme PhDs in selected repositories, not a census of economic-history scholarship and not a sample of Economics PhDs.",
+  "preservation": "Existing4037 source counts/series, citation records, identity splits, cohort denominators, archive, publication evidence and pathways preserved."
+}

@@ -7,7 +7,7 @@ import {sortName, bySurname, membership, ringOrder, companyLayout, bridges, fitL
   ENTRY_LINE, ENTRY_CHAR, NAME_CHAR} from '../site/people.mjs';
 import {isOverviewHash} from '../site/core.mjs';
 import {recordPanel} from '../site/records.mjs';
-import {readingHref, isReadingHash, share, sourceDetail} from '../site/dissertations.mjs';
+import {readingHref, isReadingHash, share, sourceDetail, readingContextHtml, comparisonSelection, trendCeiling} from '../site/dissertations.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER, frameOf, personMapSubset, personMapLayout, ROLE_BADGE} from '../site/field.mjs';
@@ -45,6 +45,51 @@ test('dissertation details escape metadata, retain counts and reject non-web rep
 test('only the landing and its record toggle may use a reduced graph', () => {
   for (const hash of ['', '#', '#record=reviews']) assert.equal(isOverviewHash(hash),true);
   for (const hash of ['#person=geoff_eley','#node=annales','#range=2000','#family=all','#query=Marx','#tab=people','#focus=annales','#path=x']) assert.equal(isOverviewHash(hash),false,hash);
+});
+test('field reading compares named works with exact regions and a shared scale', () => {
+  const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));
+  const field=links.entries.economic.comparison;
+  const html=readingContextHtml(links,'entry','economic',360);
+  assert.ok(html.includes('Follow an author'));
+  assert.ok(html.includes('do not measure the readership of the whole field'));
+  assert.ok(html.includes('counts must not be added'));
+  assert.ok(html.includes('313 without years are excluded'));
+  assert.ok(html.includes('Reviewed low-count records'));
+  const crafts=field.authors.find(s=>s.person_id==='n_f_r_crafts');
+  assert.ok(comparisonSelection(links,field,crafts.key,360).includes('15 of 6,794'));
+  const source=field.sources.find(s=>s.person_id==='douglass_north');
+  const selected=comparisonSelection(links,field,source.key,360);
+  assert.ok(selected.includes('22 of 6,794'));
+  assert.ok(selected.includes('#person=douglass_north'));
+  assert.ok(selected.includes('Small sample'));
+  assert.ok(trendCeiling(links,field.sources)>=trendCeiling(links,[source]));
+  assert.equal(readingContextHtml(links,'entry','missing'),'');
+  // A source outside this field's selection cannot be injected into the panel.
+  assert.equal(comparisonSelection(links,field,'W:johnson|soul by soul',360),comparisonSelection(links,field,field.sources[0].key,360));
+});
+test('field reading escapes editorial text and retains source metadata unchanged', () => {
+  const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));
+  links.entries.economic.comparison.intro='<img src=x onerror=alert(1)>';
+  links.entries.economic.comparison.question='A & B';
+  links.entries.economic.comparison.authors[0].label='<script>unsafe</script>';
+  links.people.richard_white.review_note='<b>attribution</b>';
+  const before=JSON.stringify(links),html=readingContextHtml(links,'entry','economic',320);
+  assert.equal(JSON.stringify(links),before);
+  assert.ok(html.includes('&lt;img')); assert.ok(!html.includes('<img'));
+  assert.ok(html.includes('A &amp; B')); assert.ok(!html.includes('<script>'));
+  assert.ok(html.includes('&lt;script&gt;unsafe'));
+  assert.ok(html.includes('&lt;b&gt;attribution'));
+});
+test('reviewed low-count details distinguish unavailable analyses from zero companions', () => {
+  const data=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/index.json',import.meta.url)));
+  const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));
+  const item=data.sources.find(s=>s.key==='P:crafts|nicholas f');
+  const shard=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/'+item.asset,import.meta.url)));
+  const html=sourceDetail(data,shard,shard.sources[item.id],links);
+  assert.ok(html.includes('15'));
+  assert.ok(html.includes('have not been produced'));
+  assert.ok(!html.includes('No companions meet'));
+  assert.ok(html.includes('#node=economic'));
 });
 test('record profiles preserve probable tiers and escape source metadata', () => {
   const asset={coverage:'Pilot',identity_note:'Limits',people:{x:{atlas_identity_tier:'probable',counts:{journal_item:1},records:[

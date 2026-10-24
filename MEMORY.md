@@ -1,10 +1,154 @@
 # Project memory and visualization handoff
 
-## Publication authorized — 2026-10-24: canonical-work repair
+## Publication authorized — 2026-10-24: economic-history reading and roster correction
 
-The user explicitly requested **push** for the reviewed local revisions1.157–1.159.
-Preparing a combined commit and deployment; final remote validation status will be
-recorded after GitHub completes. Only task-related changes are included.
+The user explicitly requested **push**, then asked to update memory and start a fresh
+context before bringing a Gemini site review. Publishing the reviewed local batch and
+checking GitHub validation/Pages. Final commit and deployment status will be recorded
+locally after those checks; this section supersedes earlier “not pushed” handoffs.
+
+- Current local revision1.160: author/work comparison modes; Wrigley, Mokyr, Berg,
+  Crafts, Fogel and de Vries bridges;20 profiles/four fields;4048 searchable sources,
+  including11 reviewed low-count exceptions. Crafts/Harley economic roster repair.
+- Tests:100 data-suite cases plus one new roster test,60 JavaScript and54 browser
+  cases pass; rebuilt52 allowlisted files. Existing4037 source statistics preserved.
+- Only reviewed task files and task-related memory updates are included. Unrelated
+  collection work and earlier workspace-memory edits remain local. OpenAlex paused.
+- **Next task: review the user’s forthcoming Gemini site review.** No review has been
+  supplied yet. Start by reading MEMORY.md; read GRAPH-FORMAT.md before graph/render
+  work. Prioritize evaluating the review against the actual current site and dataset.
+
+## Local correction — 2026-10-24: Wrigley, Mokyr, Berg and Crafts
+
+User challenged economic history’s reading selection: “no Wrigley? Mokyr? Berg?” then
+“Crafts?” The original selection privileged works above20 dated dissertations, hiding
+relevant historians whose citations were spread across books. Corrected locally on top
+of the wider-panel batch below. **No commit, push or deployment requested or performed**;
+live remains22e4a48 (1.159). Current local graph revision **1.160**.
+
+- Principal first-author keys: Wrigley42, Mokyr40, Berg56, Crafts15 dated dissertations.
+  Crafts16 includes one without a usable year; malformed/initialled Crafts keys remain
+  separate and are not added. This is not a recovered exhaustive author total. Strict
+  History-programme PhDs in sampled repositories, excluding Economics PhD literature.
+- Six new bridges (also Fogel48 and de Vries60): now20 profiles/four field panels.
+  Both economic/capitalism panels select12 authors and12 primary works (15 distinct
+  primary works across them). Economic opens on authors; capitalism on works. The
+  mode/source controls preserve both choices over resize and reading-view round trips.
+  Fixed chart scales are shared within each mode; exact tables remain available.
+- Eleven reviewed low-count additions (ten works and Crafts’s person record) extend
+  the original4037 sources to4048. Usual20work/30person cutoffs remain; exceptions
+  labelled in search. Counts/time/region series deduplicate dated dissertation IDs.
+  New records explicitly say companion/family analyses were not computed, rather than
+  claiming no companions. New low-count works can appear in existing author work lists.
+- Exporter validation retains named-work and release first-author credit checks. Direct
+  comparison to HEAD confirmed all4037 original index records, counts, time/region
+  series and companion/family calculations unchanged. Denominators unchanged6794dated,
+  7107inanalysis. Existing source IDs and all corpus records/identity splits preserved.
+- Graph1.160: Crafts and C. Knick Harley were absent from economic’s roster although
+  documented in capitalism debates. Add both existing people as contributors, one
+  jointly credited1992 publication fact and work sentence, using existing source
+  cd_crafts_harley_1992 (metadata/abstract only, full article unread). No new people,
+  nodes, edges or sources. Counts203/1261/2445/1355. All other nodes and all edges,
+  people, sources and scope compare unchanged toHEAD; archive/evidence/pathways preserved.
+- Review: data/dissertation-layer/reviews/economic-selection-correction-2026-10-24.json.
+  Graph packet: data/extension-2026/economic-reading-selection-2026-10-24/;
+  reversible acceptance: data/production-batches/economic-roster-1.160/.
+  Sources checked via official publishers, institutional bibliographies and library
+  metadata. Wrigley/Schofield joint credit and Berg original/edition dates qualified;
+  no new whole-book reading. Allen excluded pending a separate namesake audit.
+- Build still52 allowlisted files/34 dissertation assets. Links asset~28KB; no raw
+  citations, research files, PDFs or keys. Preview http://localhost:4192/#node=economic.
+  Tests/logs: /tmp/economic-correction-{data,js,browser}.log;
+  Final validation:100 data-suite tests plus the new roster-preservation test pass;
+  60 JavaScript and54 browser tests pass. Final copy/export rebuild also passes seven
+  export tests and both focused author/work/low-count phone/round-trip cases. Graph
+  validation:0 errors,11 existing warnings. git diff --check passes. Phone screenshot
+  site/test-results/reading-crafts-phone.png inspected. OpenAlex remains paused.
+- Unrelated research/untracked scripts and pre-existing memory edits remain untouched.
+  Next priority is user review of the corrected selection before expanding other fields.
+
+
+## Local preview — 2026-10-24: economic history/capitalism dissertation panels
+
+After publication of22e4a48 the user asked the next step, accepted expanding the
+reading links inside field/person pages, and said **continue**. Completed the
+first batch for economic history and capitalism. **No commit, push or deployment**
+for this batch. Live site remains22e4a48; graph revision/counts remain1.159.
+
+- Eight new named-work bridges: Kenneth Pomeranz, Karl Polanyi, Douglass North,
+  Eric Williams, Seymour Drescher, Sven Beckert, Edward E. Baptist, Walter Johnson.
+  Existing six bridges preserved: now14 linked profiles, four field panels.
+  `links.json` entries economic/capitalismdebates select six/seven works (nine
+  distinct books across them). Johnson’s profile also links Soul by Soul.
+- Primary publisher/author/institutional metadata checked; review record
+  `data/dissertation-layer/reviews/economic-capitalism-2026-10-24.json` records
+  titles, URLs, reading limits, raw-vs-dated counts and omitted candidates. No
+  new whole-book reading or intellectual argument claims. Walter Johnson’s
+  inherited s is not accepted as a middle initial; other Johnson keys remain
+  separate. White’s inherited-d/namesake qualification preserved.
+- `entry_comparisons` pairs explicit person/work keys with a reading question
+  and qualified observation. Builder `validate_links` rejects unknown sources,
+  differing release first-author credit, people outside the existing roster,
+  duplicated work selections and unreviewed field works. No new graph field
+  memberships or identity/citation merges.
+- `site/dissertations.mjs` compares one selected work at a time: four regional
+  curves on one fixed vertical scale shared across a field’s selected works;
+  exact degree-period/region table and a cross-work regional-count table.
+  Counts overlap, are not field readership, and do not identify which argument
+  a dissertation adopts. Bibliography/notes differences, missing years, sample
+  changes, publication timing and existing search thresholds stay explicit.
+  Eight new profiles gain links and accessible attribution disclosures.
+- Panels live in the main column of roster pages, with one compact panel in
+  connection views. Selection persists across mobile/desktop resizing and the
+  reading-view round trip. Tables scroll within their container with a visible
+  phone hint. Fixed a real mobile grid minimum-width overflow revealed by an
+  opened table; desktop/phone screenshots inspected in site/test-results/:
+  reading-economic-desktop.png and reading-capitalism-phone.png.
+- Quantitative example: North Institutions22dated (CA2,US5,Europe15); White
+  Railroaded51 (CA10,US40,Europe1); Williams Capitalism/Slavery56 vs Drescher
+  Econocide21. These are sampled distinct dissertations, not ranked influence.
+  Exact counts for allnine field works are in data/dissertation-layer/README.md.
+- Only links.json changes among34 dissertation exports; source index/all32
+  buckets and all counts/denominators unchanged. Links asset13,679bytes (~14KB).
+  Field panels load this small asset only; opening reading details loads the
+  search index and requested source bucket. Still52 allowlisted browser files.
+  Teaching graph, graph/overview exports, exact2000 archive, publication evidence,
+  profile pilot, pathways and graph IDs remain byte-identical toHEAD. No raw
+  citations, PDFs, research files or credentials in browser assets. OpenAlex paused.
+- Validation:99Python,59JavaScript,53browser cases pass. New phone/table hint
+  polish also passes both focused browser cases; six export/data cases rerun
+  after final review. Build/source files agree. Preview is verified on existing
+  localhost4192, docs only:
+  http://localhost:4192/#node=economic
+  http://localhost:4192/#node=capitalismdebates
+- Unrelated workspace/research and pre-existing memory edits preserved. Next
+  proposed batch: Indigenous/settler history, then languages-of-class pathway,
+  with separate named-work reviews; not implemented or silently auto-linked.
+
+
+## Published — 2026-10-24: canonical-work repair, revisions 1.157–1.159
+
+The user explicitly requested **push**. Commit **22e4a48** is pushed to origin/main.
+Only the reviewed task files and task-related memory handoff were committed;
+unrelated research and pre-existing workspace edits remain local.
+
+- GitHub validation **40126754944 succeeded**, including data tests, view tests,
+  clean-checkout rebuild, browser acceptance and committed docs agreement:
+  https://github.com/jburnford/historiography/actions/runs/40126754944
+- GitHub Pages deployment **40126754560 succeeded**:
+  https://github.com/jburnford/historiography/actions/runs/40126754560
+- The canonical public graph, overview and dissertation teaching-links asset match
+  the committed build byte-for-byte. Live graph revision is **1.159**, including
+  White→economic and White→capitalismdebates. White’s browser round trip on the
+  public site passes, including both field contexts, evidence links, later works
+  and dissertation reading. Live profile:
+  https://jimclifford.ca/historiography/#person=richard_white
+- Current counts:203 entries,1261 edges,2445 sources,1355 people;52 allowlisted
+  site files. All148 work records reviewed:147 resolved/reconciled and the one
+  truncated Foucault volume explicitly unresolved. OpenAlex remains paused.
+
+The local implementation handoffs below record the earlier preparation stages;
+their “not pushed” status is superseded by this verified publication record.
 
 ## Task 0 expanded and White’s missing edges repaired locally — 2026-10-24
 

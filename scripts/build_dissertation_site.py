@@ -38,6 +38,78 @@ def serial(data):
     return json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n'
 
 
+def add_reviewed_sources(data, decisions, graph, work_metadata):
+    """Include reviewed sources even when a search-frequency cutoff hid them.
+
+    Existing source statistics are untouched. New sources get presence counts
+    from the release below, without inventing companion or family analyses.
+    """
+    labels = data['labels']
+    label_ids = {label['key']: i for i, label in enumerate(labels)}
+    existing = {labels[s['id']]['key'] for s in data['sources']}
+    people = {p['id']: p for p in graph['people']}
+    chosen = {row['source'] for row in decisions['people'].values()}
+    chosen |= {key for row in decisions['people'].values() for key in row['works']}
+    person_labels = {row['source']: people[pid]['label'] for pid, row in decisions['people'].items()}
+    added = []
+    for key in sorted(chosen - existing):
+        if key.startswith('W:') and key not in work_metadata:
+            raise ValueError('Reviewed work absent from the release: ' + key)
+        if key not in label_ids:
+            if key.startswith('P:'):
+                label = dict(key=key, short=person_labels[key], full=person_labels[key], year=None, author='')
+            else:
+                row = work_metadata[key]
+                label = dict(key=key, short=row['first_author'].split(',')[0]+', '+row['title'].split(':')[0],
+                             full=row['title'], year=int(row['year']) if row['year'].isdigit() else None,
+                             author=row['first_author'])
+            label_ids[key] = len(labels)
+            labels.append(label)
+        sid = label_ids[key]
+        data['sources'].append(dict(id=sid, n=0, series=[], n_region={}, n_period=[], rows=[], regional={},
+                                    analysis_scope='counts_only'))
+        added.append(key)
+    return set(added)
+
+
+def validate_links(decisions, graph, source_keys, work_authors=None):
+    """A reading bridge requires named works and an existing roster placement.
+
+    This validates an editorial selection, not every attribution behind a person
+    key. The release's first-author credit must agree when rebuilding exports.
+    """
+    people = {p['id'] for p in graph['people']}
+    nodes = {n['id']: n for n in graph['nodes']}
+    for pid, decision in decisions['people'].items():
+        if pid not in people or decision['source'] not in source_keys or not decision['source'].startswith('P:'):
+            raise ValueError('Unknown person reading link: ' + pid)
+        works = decision['works']
+        if not works or len(set(works)) != len(works):
+            raise ValueError('Named works required without duplicates: ' + pid)
+        for key in works:
+            if key not in source_keys or not key.startswith('W:'):
+                raise ValueError('Unknown work reading link: ' + key)
+            if work_authors is not None and work_authors.get(key) != decision['source'][2:]:
+                raise ValueError('First-author credit differs: ' + key)
+    for nid, pids in decisions['entries'].items():
+        if nid not in nodes or not pids or len(set(pids)) != len(pids):
+            raise ValueError('Unknown or duplicate field selection: ' + nid)
+        roster = {r['person_id'] for r in nodes[nid].get('representative_people', [])}
+        if not set(pids) <= roster or not set(pids) <= set(decisions['people']):
+            raise ValueError('Reading selection is outside the reviewed roster: ' + nid)
+    for nid, comparison in decisions.get('entry_comparisons', {}).items():
+        if nid not in decisions['entries'] or not comparison['intro'] or not comparison['question']:
+            raise ValueError('Comparison needs a reviewed field and reading question: ' + nid)
+        works = comparison['works']
+        if not works or len({row['work'] for row in works}) != len(works):
+            raise ValueError('Comparison needs distinct selected works: ' + nid)
+        if {row['person_id'] for row in works} != set(decisions['entries'][nid]):
+            raise ValueError('Comparison and field author selections differ: ' + nid)
+        for row in works:
+            if row['work'] not in decisions['people'][row['person_id']]['works']:
+                raise ValueError('Comparison work is outside the reviewed author selection: ' + row['work'])
+
+
 def main():
     explorer_path = RESEARCH / 'summary/explorer/explorer.json'
     data = json.loads(explorer_path.read_text())
@@ -47,13 +119,6 @@ def main():
     graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
     people = {p['id']: p for p in graph['people']}
     nodes = {n['id']: n for n in graph['nodes']}
-    for pid, decision in decisions['people'].items():
-        assert pid in people and decision['source'] in by_key, pid
-        for key in decision['works']:
-            assert key in by_key, key
-    for nid, pids in decisions['entries'].items():
-        roster = {r['person_id'] for r in nodes[nid]['representative_people']}
-        assert set(pids) <= roster
     # Check the dated release against the explorer's actual time/region denominator.
     theses = {}
     total = 0
@@ -86,14 +151,24 @@ def main():
     author = {}
     works_by_person = defaultdict(list)
     work_ids = {}
+    work_authors = {}
+    selected_work_keys = {key for row in decisions['people'].values() for key in row['works']}
+    work_metadata = {}
     for row in rows('works'):
-        key = 'P:' + row['first_author_key']
+        work_authors[row['work_id']] = row['first_author_key']
+        if row['work_id'] in selected_work_keys:
+            work_metadata[row['work_id']] = row
+    curated = add_reviewed_sources(data, decisions, graph, work_metadata)
+    by_key = {labels[s['id']]['key']: s for s in data['sources']}
+    for work_id, first_author in work_authors.items():
+        key = 'P:' + first_author
         if key in by_key:
-            author[row['work_id']] = by_key[key]['id']
-        if row['work_id'] in by_key:
-            work_ids[row['work_id']] = by_key[row['work_id']]['id']
+            author[work_id] = by_key[key]['id']
+        if work_id in by_key:
+            work_ids[work_id] = by_key[work_id]['id']
             if key in by_key:
-                works_by_person[by_key[key]['id']].append(by_key[row['work_id']]['id'])
+                works_by_person[by_key[key]['id']].append(by_key[work_id]['id'])
+    validate_links(decisions, graph, set(by_key), work_authors)
     samples = defaultdict(lambda: defaultdict(dict))
     cited = defaultdict(set)
     for row in rows('citations'):
@@ -105,6 +180,18 @@ def main():
             reg = region(theses[tid]['country'])
             if tid in samples[sid][reg] or len(samples[sid][reg]) < 2:
                 samples[sid][reg][tid] = {**theses[tid], 'via': row['via']}
+    for key in curated:
+        source = by_key[key]
+        sid = source['id']
+        series = [[0] * len(REGIONS) for _ in data['periods']]
+        for tid in cited[sid]:
+            thesis = theses[tid]
+            year = thesis['year']
+            p = 0 if year < 1990 else min(7, 1 + (year - 1990) // 5)
+            series[p][REGIONS.index(region(thesis['country']))] += 1
+        source.update(n=len(cited[sid]), series=series,
+                      n_period=[sum(row) for row in series],
+                      n_region={r: sum(row[j] for row in series) for j, r in enumerate(REGIONS)})
     index = []
     shards = {f'{i:02x}.json': {'sources': {}, 'labels': {}} for i in range(BUCKETS)}
     for source in data['sources']:
@@ -113,7 +200,8 @@ def main():
         key = label['key']
         assert len(cited[sid]) == source['n'], f'Citation count mismatch: {key}'
         filename = bucket(key)
-        index.append({**label, 'id': sid, 'n': source['n'], 'asset': filename})
+        index.append({**label, 'id': sid, 'n': source['n'], 'asset': filename,
+                      **({'reviewed_selection': True} if key in curated else {})})
         refs = {sid} | {r[0] for r in source['rows']}
         refs |= {r[0] for values in source['regional'].values() for r in values}
         shard = shards[filename]
@@ -122,17 +210,30 @@ def main():
             'examples': [row for reg in REGIONS for row in samples[sid][reg].values()]}
         refs.update(shard['sources'][str(sid)]['works'])
         shard['labels'].update({str(i): labels[i] for i in sorted(refs)})
-    public_links = {**decisions, 'snapshot': '2026-10-23', 'periods': data['periods'],
+    public_links = {**{k: v for k, v in decisions.items() if k != 'entry_comparisons'},
+        'snapshot': '2026-10-23', 'periods': data['periods'], 'regions': data['regions'],
         'denominators': denominators,
+        'coverage': {'in_analysis': total, 'with_year': len(theses), 'missing_year': total - len(theses)},
+        'search_thresholds': {'works': data['params']['min_work'], 'people': data['params']['min_person']},
         'people': {pid: {**row, 'label': people[pid]['label'],
             'n': by_key[row['source']]['n'], 'series': by_key[row['source']]['series'],
             'n_region': by_key[row['source']]['n_region'],
             'work_labels': {key: labels[by_key[key]['id']]['short'] for key in row['works']}}
         for pid, row in decisions['people'].items()},
-        'entries': {nid: {'label': nodes[nid]['label'], 'people': pids}
+        'entries': {nid: {'label': nodes[nid]['label'], 'people': pids,
+                         **({'comparison': {**{k: v for k, v in decisions['entry_comparisons'][nid].items() if k != 'works'},
+                            'authors': [{'key': decisions['people'][pid]['source'], 'person_id': pid,
+                                'label': people[pid]['label'],
+                                **{k: by_key[decisions['people'][pid]['source']][k] for k in ('n', 'n_region', 'series')}} for pid in pids],
+                            'sources': [{'key': row['work'], 'person_id': row['person_id'],
+                                'label': labels[by_key[row['work']]['id']]['short'],
+                                **{k: by_key[row['work']][k] for k in ('n', 'n_region', 'series')}}
+                                for row in decisions['entry_comparisons'][nid]['works']]}}
+                            if nid in decisions.get('entry_comparisons', {}) else {})}
                     for nid, pids in decisions['entries'].items()}}
     payload = {k: data[k] for k in ('periods', 'regions', 'denominators', 'families', 'baseline')}
     payload.update(schema_version='1.0', snapshot='2026-10-23', sources=index,
+        reviewed_selection_count=len(curated),
         params={k: v for k, v in data['params'].items() if k != 'out'},
         coverage={'in_analysis': total, 'with_year': len(theses), 'missing_year': total - len(theses),
                   'from_notes_with_year': notes, 'years': [min(years), max(years)],

@@ -1,6 +1,15 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.159 (2026-10-24): dissertation-guided work review
+## Current revision 1.160 (2026-10-24): economic-history roster repair
+
+Crafts and Harley join the economic-history roster through their jointly credited 1992
+article and its existing qualified source review. One dated publication fact and a selected
+work sentence are added. No new people, nodes, edges or sources; counts remain 203 entries,
+1,261 relationships, 2,445 sources and 1,355 people. The dissertation-reading selection
+separately gains author comparisons and reviewed works below its normal frequency cutoff.
+See [acceptance](data/production-batches/economic-roster-1.160/acceptance.json).
+
+## Historical revision 1.159 (2026-10-24): dissertation-guided work review
 
 All 148 remaining discovery records across 45 individual entries have explicit decisions:
 100 repair or expand bibliography/chronology; 47 are already represented or translated/edition

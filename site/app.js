@@ -224,8 +224,8 @@ function schoolPeople() {
   return `${crumbs([`<a href="${esc(href({node: '', person: '', edge: '', page: 0, section: ''}))}">${state.pathway ? 'Back to pathway' : 'Back to entries'}</a>`, `<span aria-current="page">${esc(n.label)}</span>`])}
     <div class="section-heading"><div><p class="eyebrow">03 / MEET THE HISTORIANS & CONTRIBUTORS</p><h2>${esc(n.label)}</h2></div><span class="count">${reps.length} people in this selection</span></div>
     ${schoolTabs(n)}<div class="school-layout"><section aria-label="Representative people"><p class="context-note">A selective guide to the people behind this entry. The labels distinguish historians, intellectual resources, and critics; inclusion does not imply a shared doctrine or formal membership.</p>
-      ${extensionSection(n)}${strandGuide(n)}<div class="people-grid">${pageSlice(reps, 12).map(rep => personCard(personById.get(rep.person_id), rep)).join('')}</div>${pagination(reps.length, 12)}</section>
-      <aside class="reading-panel" aria-label="Entry details">${nodeDetail(n)}</aside></div>`;
+      <div data-reading-entry="${esc(n.id)}"></div>${extensionSection(n)}${strandGuide(n)}<div class="people-grid">${pageSlice(reps, 12).map(rep => personCard(personById.get(rep.person_id), rep)).join('')}</div>${pagination(reps.length, 12)}</section>
+      <aside class="reading-panel" aria-label="Entry details">${nodeDetail(n,false)}</aside></div>`;
 }
 /* ---------------- Historians & contributors: the company they keep ----------------
    Two levels (people.mjs): the families overview (#tab=people) and one family's ring
@@ -1464,6 +1464,7 @@ function onResize() {
     const rows = document.querySelector('.landing-rows');
     if (rows && Math.abs(rows.clientWidth - landingWidth) > 4) drawLanding();
     if (state.tab === 'dissertations') resizeReading($('dissertation-reading'));
+    document.querySelectorAll('[data-reading-entry]').forEach(resizeReading);
   }, 150);
 }
 
@@ -1535,11 +1536,11 @@ function sourceList(ids, byId = sourceById) {
       <details><summary>${esc(statuses[s.verification?.status] || 'Verification unrecorded')}</summary><p>${esc(s.verification?.note || 'No verification scope has been recorded for this reference.')}</p>${s.verification?.checked_on ? `<p>Checked on ${esc(s.verification.checked_on)}.</p>` : ''}</details></li>`;
   }).join('')}</ul>`;
 }
-function nodeDetail(n) {
+function nodeDetail(n, readingContext=true) {
   const memberPaths = pathways.pathways.filter(p => p.node_ids.includes(n.id));
   return `<div class="reading-header"><p class="eyebrow">THE ENTRY</p><h2 id="detail-title" tabindex="-1">${esc(n.label)}</h2>${layerTag(n)}${huntTag(n)}<a class="hold-link" href="#focus=${esc(n.id)}">Hold in the field →</a></div>
     <p class="date">${esc(chronologyLabel(n) || 'Date not recorded')}</p><p class="period-note">${esc(periodLabel(n.period))}</p>
-    ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}${recordPanel(n)}<div data-reading-entry="${esc(n.id)}"></div><h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
+    ${n.entry_type ? `<p class="entry-type">${esc(n.entry_type)}</p>` : ''}<p class="description">${esc(n.description)}</p>${n.scope_note ? `<h3>Scope & distinctions</h3><p>${esc(n.scope_note)}</p>` : ''}${recordPanel(n)}${readingContext?`<div data-reading-entry="${esc(n.id)}"></div>`:''}<h3>Representative figures & works</h3><p>${esc(n.representative_figures_and_works || 'Not recorded.')}</p>
     ${chronologyOf(n) ? `<section class="entry-chronology"><h3>Dates & historical meaning</h3><p>${esc(n.chronology.selection_note)}</p>${reviewedThrough(n) !== null ? `<p class="chronology-coverage">Editorial coverage: <strong>reviewed through ${reviewedThrough(n)}</strong>. Later selected contributions do not establish a survey of the intervening period.</p>` : ''}${chronologyDetails(n)}</section>` : ''}
     ${n.representative_people?.length ? '' : extensionSection(n)}${n.entry_kind === 'person' && n.claim_ids?.length ? `<details class="entry-claims"><summary>Exact claims behind this entry · ${n.claim_ids.length}</summary><p class="fine-print">Catalogue claims with their own review status and evidence scope; authorship credits are metadata, not influence.</p>${claimCards(n.claim_ids)}</details>` : ''}
     <details class="bibliography" open><summary>References <span>${n.source_ids?.length || 0}</span></summary><p class="fine-print">References offer context; a metadata check does not certify every interpretation.</p>${sourceList(n.source_ids)}</details>
