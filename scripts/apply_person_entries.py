@@ -27,7 +27,9 @@ a link to an unauthorised copy with the publisher's page; verification.note from
 also set a node's layer or scope_note, and layers_set ({expect, value}) replaces the graph's top-level
 timeline band list; the prior list is kept in the acceptance record. From 1.155: field_sets may set a
 node's period, and periods_set ({expect, value}) replaces the top-level teaching-period list, kept in the
-acceptance record as prior_periods.
+acceptance record as prior_periods. From 1.156: a draft without a node (a backfill of an existing person entry)
+may carry wikidata_check and a people_update with identity_note; a draft may carry people_identity_notes
+({person_id: note}) for existing people records that get no entry; people_updates may set identity_note.
 """
 import argparse
 from copy import deepcopy
@@ -83,11 +85,28 @@ class Batch:
                 nodes.append(d['node'])
                 pu = d.get('people_update')   # absent for group entries such as a debate
                 if pu:
-                    people_updates.append(dict(id=pu['id'], node_id=pu['node_id']))
+                    upd = dict(id=pu['id'], node_id=pu['node_id'])
+                    if pu.get('identity_note') and not pu.get('new'):   # from 1.156: a promoted roster person's note
+                        upd['identity_note'] = pu['identity_note']
+                    people_updates.append(upd)
                     if pu.get('new'):
                         new_people.append({k: pu[k] for k in ('id', 'label', 'identity_note') if pu.get(k)})
                 if d.get('wikidata_check'):
                     wikidata.append(dict(person_id=d['node']['id'], **d['wikidata_check']))
+            else:
+                # From 1.156: a backfill of an existing person entry (no node) may still carry its
+                # Wikidata check and an identity note for the existing people record.
+                pu = d.get('people_update')
+                if pu and pu.get('identity_note') and not pu.get('new'):
+                    people_updates.append(dict(id=pu['id'], identity_note=pu['identity_note']))
+                if d.get('wikidata_check'):
+                    wikidata.append(dict(person_id=name, **d['wikidata_check']))   # the folder is the entry id
+            for wc in d.get('wikidata_checks', []):   # roster people grounded during the research (from 1.156)
+                wikidata.append(dict(wc))
+            # From 1.156: identity notes for existing people records that get no entry (roster people
+            # grounded during the research), {person_id: note}.
+            for pid, note in (d.get('people_identity_notes') or d.get('people_identity_notes_for_existing_records') or {}).items():
+                people_updates.append(dict(id=pid, identity_note=note))
             for p in d.get('new_people', []):
                 new_people.append(p)
             for ra in d.get('roster_additions', []):
@@ -167,12 +186,29 @@ class Batch:
                 raise ValueError('Person exists: ' + p['id'])
             g['people'].append(deepcopy(p))
         for upd in packet['people_updates']:
-            next(p for p in g['people'] if p['id'] == upd['id'])['node_id'] = upd['node_id']
+            person = next(p for p in g['people'] if p['id'] == upd['id'])
+            if 'node_id' in upd:
+                person['node_id'] = upd['node_id']
+            if upd.get('identity_note'):   # from 1.156; the prior record is kept in the acceptance record
+                person['identity_note'] = upd['identity_note']
         have = {s['id'] for s in g['sources']}
         for s in packet['sources']:
             if s['id'] in have:
                 raise ValueError('Source exists: ' + s['id'])
             g['sources'].append(deepcopy(s))
+        # From 1.156 source corrections (`source_field_sets`) apply before addenda, so a note's `expect`
+        # is the note as it stood on disk; url-only corrections are order-independent.
+        for sf in packet.get('source_field_sets', []):
+            if sf['field'] not in SOURCE_FIELDS:
+                raise ValueError(f"Source field not settable: {sf['field']}")
+            src = next(x for x in g['sources'] if x['id'] == sf['id'])
+            *parents, leaf = sf['field'].split('.')
+            holder = src
+            for key in parents:
+                holder = holder[key]
+            if holder.get(leaf) != sf['expect']:
+                raise ValueError(f"Source field does not match its expected value: {sf['id']} {sf['field']}")
+            holder[leaf] = sf['value']
         for s in g['sources']:
             add = packet['source_addenda'].get(s['id'])
             if add:
@@ -218,17 +254,6 @@ class Batch:
             if g['periods'] != packet['periods_set']['expect']:
                 raise ValueError('Period list does not match its expected value')
             g['periods'] = deepcopy(packet['periods_set']['value'])
-        for sf in packet.get('source_field_sets', []):
-            if sf['field'] not in SOURCE_FIELDS:
-                raise ValueError(f"Source field not settable: {sf['field']}")
-            src = next(x for x in g['sources'] if x['id'] == sf['id'])
-            *parents, leaf = sf['field'].split('.')
-            holder = src
-            for key in parents:
-                holder = holder[key]
-            if holder.get(leaf) != sf['expect']:
-                raise ValueError(f"Source field does not match its expected value: {sf['id']} {sf['field']}")
-            holder[leaf] = sf['value']
         for nla in packet.get('node_list_additions', []):
             if nla['field'] not in NODE_LIST_FIELDS:
                 raise ValueError(f"Node list not extensible: {nla['field']}")

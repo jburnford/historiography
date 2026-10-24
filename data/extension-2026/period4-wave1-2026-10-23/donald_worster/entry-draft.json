@@ -1,0 +1,589 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-23",
+ "applies_to": null,
+ "applies_to_note": "historiography-1920-2000.json revision 1.155 -> candidate 1.156 (period-4 wave 1, agent C; provisional number) (donald_worster: existing person entry, backfill; no new node). applies_to is null so the applier's wikidata_check person_id falls back to the folder name.",
+ "review_status": "needs_review",
+ "evidence": "data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md",
+ "node_revisions_note": "Node field changes (description, scope_note, representative_figures_and_works, date_label, chronology, source_ids) are carried in batch-fragment-C.json (text_revisions, field_sets, node_list_additions), as in the 1.143 and 1.147 packets; chronology_events_added below is the list the batch field_set appends.",
+ "life_dates_and_posts": "b. 1941 (Wikidata P569, year precision); Ph.D. Yale 1971 (Origins page). Hall Distinguished Professor of American History, University of Kansas, from 1989 until retirement (year not evidenced); Distinguished Foreign Expert and senior professor, School of History, Renmin University of China; former president of the ASEH (years not found). Bancroft Prize for Dust Bowl (Columbia list, 1980 award heading); AHA Award for Scholarly Distinction 2012.",
+ "wikidata_check": {
+  "qid": "Q1240502",
+  "verdict": "confirmed",
+  "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+  "statements_seen": "description 'American historian'; P569 1941 (year precision); P106 historian, university teacher; P108 University of Kansas, Renmin University of China; P214 VIAF 66479787; one item",
+  "checked_on": "2026-10-23"
+ },
+ "people_update": {
+  "id": "donald_worster",
+  "node_id": "donald_worster",
+  "new": false,
+  "label": "Donald Worster",
+  "identity_note": "American environmental historian, b. 1941; Ph.D. Yale 1971; Hall Distinguished Professor of American History, University of Kansas, from 1989 until retirement; senior professor, Renmin University of China; former president of the ASEH. Wikidata Q1240502 confirmed by QLever on 2026-10-23 (the sheet's bulk match of 2026-09-22 is thereby reviewed)."
+ },
+ "proposed_edges": [
+  {
+   "proposal_id": "p4C_rel_20",
+   "source": "carolyn_merchant",
+   "target": "donald_worster",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "'Gender and Environmental History' (1990) called his three levels 'a significant framework for research and writing in this emerging field' but found the essay 'lacks a gender analysis' and added 'a fourth analytical level, that of reproduction'",
+   "map_label": "A fourth level: reproduction, 1990",
+   "evidence_note": "Merchant's round-table response read in full (graph record pe131_merchant_jah_1990, pp. 1117–1121, author-hosted scan): the quoted phrases are already carried in donald_worster's description and scope note. Worster's essay is read in its 1993 reprint by search (graph record). Merchant's own entry is wave 2; this records Worster's reception.",
+   "source_ids": [
+    "pe131_merchant_jah_1990",
+    "pe131_worster_jah_1990"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_22",
+   "source": "donald_worster",
+   "target": "capitalismdebates",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Agricultural capitalism as 'the decisive factor in this nation's use of nature' (Dust Bowl, 1979; 'The Dirty Thirties', 1986) and the West as 'a modern hydraulic society' (Rivers of Empire, 1985): the capitalist transformation of agriculture as the middle level of environmental history (1990)",
+   "map_label": "Agricultural capitalism and hydraulic society, 1979–90",
+   "evidence_note": "No new reading: the quotations stand as recorded in the graph's existing records (Dust Bowl at the page given by Cronon 1992; Rivers of Empire via Hennessey 1987; 'The Dirty Thirties' read in full; the 1990 essay in the 1993 reprint by search) and in the entry's description. Proposed so that the capitalism entry names the environmental historian who made capitalism an ecological category; the coordinator chooses the strand (none of capitalismdebates' eleven strands names him; origin_of_capitalism or transition_debate are the nearest). data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md P6.",
+   "source_ids": [
+    "worster_dust_bowl",
+    "worster_dirty_thirties",
+    "pe131_worster_rivers_1985",
+    "pe131_worster_hennessey_1987",
+    "pe131_worster_jah_1990",
+    "pe131_cronon_place_stories_1992"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_23",
+   "source": "donald_worster",
+   "target": "science",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "A history of ecological ideas, Nature's Economy (1977; 2nd ed. 1994), and the essays 'History as Natural History' and 'The Ecology of Order and Chaos' (1993): a reviewer of his last book recalled 'his wonderful knack for synthesizing complex ideas' in Nature's Economy",
+   "map_label": "The roots of ecology, 1977–94",
+   "evidence_note": "Nature's Economy: graph record (1977, snippets). The Wealth of Nature contents read on OUP (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8: 'History as Natural History', 'The Ecology of Order and Chaos'). Collomb 2017 para. 5 read in full. The 1994 second edition is not verified here. Target strand science/ideas.",
+   "source_ids": [
+    "pe131_worster_natures_economy_1977",
+    "p4c_worster_wealth_oup",
+    "p4c_collomb_2017"
+   ],
+   "classification_basis": "editorial_review",
+   "target_strand": "science/ideas"
+  },
+  {
+   "proposal_id": "p4C_rel_24",
+   "source": "environment",
+   "target": "donald_worster",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "Named objections across a career: McDean on generalising the Dust Bowl region (1986); Collomb on Shrinking the Earth, 'very short on details about the human capacity for adaptation', its 'plea for an earth ethic almost rings hollow' (2017), while calling him 'the greatest US environmental historian'",
+   "map_label": "Readers of Worster, 1986–2017",
+   "evidence_note": "McDean 1986 (graph record, read); Cronon's 1992 reading is carried by p4C_rel_11, not here; Collomb 2017 read in full (paras 3, 12–14) and Gratale 2017 read in full ('a critical and important contribution', para. 11) (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8). Source strands environment/dust_causal_debate and environment/anthropocene_climate.",
+   "source_ids": [
+    "mcdean_dust_historiography",
+    "p4c_collomb_2017",
+    "p4c_gratale_2017"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_27",
+   "source": "aldo_leopold",
+   "target": "donald_worster",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "'Transformations of the Earth' opens on Leopold's call for 'an ecological interpretation of history' and his Kentucky canebrakes (1990/1993), as 'Doing Environmental History' (1988) had grounded the three levels in the same call",
+   "map_label": "An ecological interpretation of history, 1988–93",
+   "evidence_note": "The chapter's abstract on OUP, which is its opening paragraph, read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8); the 1988 appendix read in reprint (graph record pe131_worster_ends_1988). Parallels edge_911 (leopold → environment), which cites the same texts.",
+   "source_ids": [
+    "p4c_worster_wealth_oup",
+    "pe131_worster_ends_1988",
+    "pe131_worster_jah_1990",
+    "leopold_almanac"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_28",
+   "source": "annales",
+   "target": "donald_worster",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Braudel, Febvre and Le Roy Ladurie named as French sources of ideas for environmental history in the 1990 essay and its 1993 reprint",
+   "map_label": "French sources, 1990–93",
+   "evidence_note": "No new reading: the names are as recorded in the graph's records for the 1990 essay and the 1993 reprint (read by search, 2026-10-13) and used by edge_111 (annales → environment). A person-level re-sourcing of that edge.",
+   "source_ids": [
+    "pe131_worster_jah_1990",
+    "pe131_worster_wealth_1993"
+   ],
+   "classification_basis": "editorial_review"
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "donald_worster → biography",
+   "reason": "A River Running West (2001) and A Passion for Nature (2008) are known by metadata only; no review was readable (MUSE and OUP blocked). Propose after a library read of Goetzmann (2001) or Harvey (2009)."
+  },
+  {
+   "pair": "donald_worster → global",
+   "reason": "Shrinking the Earth's world frame is a reviewer's gloss (Collomb); the body is unread."
+  },
+  {
+   "pair": "donald_worster → william_cronon",
+   "reason": "His 1990 round-table reply to Cronon and White is unread."
+  }
+ ],
+ "chronology_events_added": [
+  {
+   "id": "worster_phd_1971",
+   "label": "Ph.D., Yale",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1971,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_worster_origins_bio"
+   ],
+   "support": "Origins author page: 'Ph.D. from Yale University, completed in 1971'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_natures_economy_1977",
+   "label": "Nature's Economy: The Roots of Ecology",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1977,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:pe131_worster_natures_economy_1977"
+   ],
+   "support": "Sierra Club Books 1977 (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_bancroft_1980",
+   "label": "Bancroft Prize for Dust Bowl",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 1980,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_bancroft_list"
+   ],
+   "support": "Columbia's list of previous awards places 'Dust Bowl: The Southern Plains in the 1930s' under the 1980 award heading, with 'Published by Oxford University Press (1979)' as the publication year (page re-read 2026-10-24).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_rivers_1985",
+   "label": "Rivers of Empire: Water, Aridity, and the Growth of the American West",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1985,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:pe131_worster_rivers_1985"
+   ],
+   "support": "Pantheon 1985 (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_dirty_thirties_1986",
+   "label": "“The Dirty Thirties: A Study in Agricultural Capitalism” (Great Plains Quarterly)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1986,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:worster_dirty_thirties"
+   ],
+   "support": "Great Plains Quarterly 6:2 (1986); read in full (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_mcdean_1986",
+   "label": "McDean, “Dust Bowl Historiography”",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1986,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:mcdean_dust_historiography"
+   ],
+   "support": "Great Plains Quarterly 6:2 (1986); read (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_hennessey_1987",
+   "label": "Hennessey's review of Rivers of Empire",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1987,
+    "precision": "month",
+    "month": 10
+   },
+   "source_ids": [
+    "graph:pe131_worster_hennessey_1987"
+   ],
+   "support": "Journal of San Diego History 33:4 (October 1987); read in full (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_doing_1988",
+   "label": "“Appendix: Doing Environmental History” (The Ends of the Earth)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1988,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:pe131_worster_ends_1988"
+   ],
+   "support": "Cambridge 1988; read in an abridged reprint (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_kansas_1989",
+   "label": "Hall Distinguished Professor of American History, University of Kansas",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1989,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_worster_origins_bio"
+   ],
+   "support": "Origins author page: 'from 1989 until his retirement'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_merchant_reply_1990",
+   "label": "Merchant's round-table response, “Gender and Environmental History”",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1990,
+    "precision": "month",
+    "month": 3
+   },
+   "source_ids": [
+    "graph:pe131_merchant_jah_1990"
+   ],
+   "support": "JAH 76:4 (March 1990), 1117–1121; read in full (graph record). White's and Cronon's responses in the same round table are unread.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_cronon_stories_1992",
+   "label": "Cronon's “A Place for Stories” reads Dust Bowl as prophecy",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1992,
+    "precision": "month",
+    "month": 3
+   },
+   "source_ids": [
+    "graph:pe131_cronon_place_stories_1992"
+   ],
+   "support": "JAH 78:4 (March 1992); the Dust Bowl reading is at pp. 1363–1364 (read; graph record), the Bonnifield–Worster opening at pp. 1347–1349.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_wealth_1993",
+   "label": "The Wealth of Nature: Environmental History and the Ecological Imagination",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1993,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:pe131_worster_wealth_1993"
+   ],
+   "support": "OUP 1993 (graph record); OUP's online edition is the paperback of 8 December 1994 (p4c_worster_wealth_oup).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_river_2001",
+   "label": "A River Running West: The Life of John Wesley Powell",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 2001,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_worster_river_2001"
+   ],
+   "support": "OUP 2001; Crossref review records 2001–02; unread.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_muir_essay_2005",
+   "label": "“John Muir and the Modern Passion for Nature” (Environmental History)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 2005,
+    "precision": "month",
+    "month": 1
+   },
+   "source_ids": [
+    "graph:p4c_worster_muir_2005"
+   ],
+   "support": "Environmental History 10:1 (January 2005), 8–19; unread.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_passion_2008",
+   "label": "A Passion for Nature: The Life of John Muir",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 2008,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_worster_passion_2008"
+   ],
+   "support": "OUP 2008; reviews 2009; unread.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_scholarly_distinction_2012",
+   "label": "AHA Award for Scholarly Distinction (with Alfred Crosby)",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 2012,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_aha_scholarly_distinction"
+   ],
+   "support": "AHA list of past recipients: '2012: Donald Worster, Univ. of Kansas'; presented at the January 2013 meeting.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_shrinking_2016",
+   "label": "Shrinking the Earth: The Rise and Decline of American Abundance",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 2016,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_worster_shrinking_2016"
+   ],
+   "support": "OUP 2016; Crossref; known through two read reviews.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_gratale_2017",
+   "label": "Gratale's review (European Journal of American Studies)",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 2017,
+    "precision": "day",
+    "month": 8,
+    "day": 1
+   },
+   "source_ids": [
+    "graph:p4c_gratale_2017"
+   ],
+   "support": "Online 1 August 2017; read in full.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "worster_collomb_2017",
+   "label": "Collomb's review (Miranda 15): 'the greatest US environmental historian'",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 2017,
+    "precision": "day",
+    "month": 9,
+    "day": 20
+   },
+   "source_ids": [
+    "graph:p4c_collomb_2017"
+   ],
+   "support": "Online 20 September 2017; read in full.",
+   "basis": "period4_wave1_2026-10-23"
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "p4c_worster_muir_2005",
+   "title": "Donald Worster, “John Muir and the Modern Passion for Nature,” Environmental History 10, no. 1 (January 2005): 8–19.",
+   "citation": "Donald Worster, “John Muir and the Modern Passion for Nature,” Environmental History 10, no. 1 (January 2005): 8–19.",
+   "url": "https://doi.org/10.1093/envhis/10.1.8",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP page checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §5): paywalled, no abstract; author affiliation University of Kansas. Unread."
+   }
+  },
+  {
+   "id": "p4c_worster_wealth_oup",
+   "title": "Donald Worster, The Wealth of Nature: Environmental History and the Ecological Imagination (New York: Oxford University Press, 1993; paperback 1994), Oxford Academic online edition (2020), with “Transformations of the Earth,” 45–63.",
+   "citation": "Donald Worster, The Wealth of Nature: Environmental History and the Ecological Imagination (New York: Oxford University Press, 1993; paperback 1994), Oxford Academic online edition (2020), with “Transformations of the Earth,” 45–63.",
+   "url": "https://doi.org/10.1093/oso/9780195092646.001.0001",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP page read for the contents and the chapter record (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): 'Published: 8 December 1994' (the paperback); sixteen chapters including 'Paths Across the Levee', 'History as Natural History', 'Transformations of the Earth' (pp. 45–63, DOI 10.1093/oso/9780195092646.003.0007), 'Arranging a Marriage: Ecology and Agriculture', 'The Kingdom, the Power, and the Water', 'Thinking Like a River', 'The Ecology of Order and Chaos', 'John Muir and the Roots of American Environmentalism', 'The Wealth of Nature'. The chapter abstract shown is the opening paragraph: Leopold's call for 'an ecological interpretation of history' and the Kentucky canebrakes. Bodies paywalled."
+   }
+  },
+  {
+   "id": "p4c_worster_river_2001",
+   "title": "Donald Worster, A River Running West: The Life of John Wesley Powell (New York: Oxford University Press, 2001); reviewed by William H. Goetzmann, Isis 92, no. 4 (2001): 795–796, and by Karl Jacoby, Journal of American History 89, no. 1 (2002): 234.",
+   "citation": "Donald Worster, A River Running West: The Life of John Wesley Powell (New York: Oxford University Press, 2001); reviewed by William H. Goetzmann, Isis 92, no. 4 (2001): 795–796, and by Karl Jacoby, Journal of American History 89, no. 1 (2002): 234.",
+   "url": "https://doi.org/10.2307/2700842",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref review records checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8). The Bancroft Prize claimed for this book in the research brief does not appear on Columbia's list of previous awards and is not asserted. Unread."
+   }
+  },
+  {
+   "id": "p4c_worster_passion_2008",
+   "title": "Donald Worster, A Passion for Nature: The Life of John Muir (New York: Oxford University Press, 2008); reviewed by Mark Harvey, Oregon Historical Quarterly 110, no. 2 (2009): 296–298.",
+   "citation": "Donald Worster, A Passion for Nature: The Life of John Muir (New York: Oxford University Press, 2008); reviewed by Mark Harvey, Oregon Historical Quarterly 110, no. 2 (2009): 296–298.",
+   "url": "https://doi.org/10.1353/ohq.2009.0097",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref review records checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8); Project MUSE blocked the review page. Unread."
+   }
+  },
+  {
+   "id": "p4c_worster_shrinking_2016",
+   "title": "Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance (New York: Oxford University Press, 2016); reviewed by Philip Garone, American Historical Review 122, no. 5 (2017): 1603–1604.",
+   "citation": "Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance (New York: Oxford University Press, 2016); reviewed by Philip Garone, American Historical Review 122, no. 5 (2017): 1603–1604.",
+   "url": "https://doi.org/10.1093/ahr/122.5.1603",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref records checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8); OUP's product page sits behind a bot wall. Known here through Collomb (2017) and Gratale (2017), both read in full. Unread."
+   }
+  },
+  {
+   "id": "p4c_collomb_2017",
+   "title": "Jean-Daniel Collomb, review of Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance, Miranda 15 (2017), online 20 September 2017.",
+   "citation": "Jean-Daniel Collomb, review of Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance, Miranda 15 (2017), online 20 September 2017.",
+   "url": "https://doi.org/10.4000/miranda.10800",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Open journal page read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8; paragraph numbers): the 'Second Earth' gave settlers 'the false impression that there was no limit' (para. 2); Worster avoids 'anachronistic self-righteousness, one of the pitfalls of environmental history' (para. 3); 'The reader familiar with Worster's Nature's Economy will recognize his wonderful knack for synthesizing complex ideas' (para. 5); the energy chapter 'environmental history at its best' (para. 8); 'very short on details about the human capacity for adaptation' (para. 12); 'eventual plea for an earth ethic almost rings hollow' (para. 13); 'reflections of the greatest US environmental historian on humankind's future and the Anthropocene' (para. 14)."
+   }
+  },
+  {
+   "id": "p4c_gratale_2017",
+   "title": "Joseph Michael Gratale, review of Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance, European Journal of American Studies, reviews 2017, online 1 August 2017.",
+   "citation": "Joseph Michael Gratale, review of Donald Worster, Shrinking the Earth: The Rise and Decline of American Abundance, European Journal of American Studies, reviews 2017, online 1 August 2017.",
+   "url": "https://doi.org/10.4000/ejas.12175",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Open journal page read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): 'a critical and important contribution to environmental history', 'fascinating to read, erudite, and engrossing' (para. 11); 'Equilibrium became the word of the period' (para. 10); objects to the word 'discovery' (para. 9)."
+   }
+  },
+  {
+   "id": "p4c_aha_scholarly_distinction",
+   "title": "American Historical Association, “Award for Scholarly Distinction: Past Recipients.”",
+   "citation": "American Historical Association, “Award for Scholarly Distinction: Past Recipients.”",
+   "url": "https://www.historians.org/awards-and-grants/awards-and-prizes/award-for-scholarly-distinction",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): '2012: Donald Worster, Univ. of Kansas'; '2012: Alfred Crosby, Univ. of Texas at Austin'. The 2012 awards were presented at the January 2013 annual meeting."
+   }
+  },
+  {
+   "id": "p4c_worster_origins_bio",
+   "title": "Origins: Current Events in Historical Perspective (Ohio State University), author page “Donald Worster.”",
+   "citation": "Origins: Current Events in Historical Perspective (Ohio State University), author page “Donald Worster.”",
+   "url": "https://origins.osu.edu/author/donald-worster",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): Ph.D. Yale 1971; 'Hall Distinguished Professor of American History' at the University of Kansas 'from 1989 until his retirement'; now 'Distinguished Foreign Expert and senior professor in the School of History at Renmin University of China'; 'a former president of the American Society for Environmental History'; six books listed without dates."
+   }
+  }
+ ],
+ "source_addenda": {
+  "pe131_worster_wealth_1993": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1 (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): OUP's online edition is the paperback ('Published: 8 December 1994'); 'Transformations of the Earth' occupies pp. 45–63 (DOI 10.1093/oso/9780195092646.003.0007). The 1993 first edition is retained. The record's url now points to the publisher (batch source_field_sets); the earlier reading note is kept without route identifiers."
+  },
+  "pe131_worster_ends_1988": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1: the record's url now points to the chapter's Crossref DOI (Cambridge University Press; 'Appendix: Doing Environmental History', pp. 289–308, checked 2026-10-24); the earlier readings are kept in the note without route identifiers."
+  }
+ },
+ "new_people": [],
+ "roster_additions": [
+  {
+   "node": "capitalismdebates",
+   "proposal_id": "p4C_rel_22",
+   "row": {
+    "person_id": "donald_worster",
+    "role": "contributor",
+    "context": "Made agricultural capitalism 'the decisive factor in this nation's use of nature' (1979, 1986) and the arid West 'a modern hydraulic society' (1985); the capitalist transformation of agriculture as the middle level of environmental history (1990). Quotations as already recorded in the graph.",
+    "works": "Dust Bowl (1979); Rivers of Empire (1985); 'The Dirty Thirties' (1986); 'Transformations of the Earth' (1990)",
+    "source_ids": [
+     "worster_dust_bowl",
+     "pe131_worster_rivers_1985",
+     "worster_dirty_thirties",
+     "pe131_worster_jah_1990"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "science",
+   "proposal_id": "p4C_rel_23",
+   "row": {
+    "person_id": "donald_worster",
+    "role": "contributor",
+    "context": "A history of ecological ideas (1977; 2nd ed. 1994) and essays on 'The Ecology of Order and Chaos' and 'History as Natural History' (1993); Collomb recalled 'his wonderful knack for synthesizing complex ideas' in Nature's Economy (2017).",
+    "works": "Nature's Economy (1977); The Wealth of Nature (1993)",
+    "source_ids": [
+     "pe131_worster_natures_economy_1977",
+     "p4c_worster_wealth_oup",
+     "p4c_collomb_2017"
+    ],
+    "basis": "source_review"
+   }
+  }
+ ]
+}

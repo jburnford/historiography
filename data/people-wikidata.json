@@ -2,7 +2,7 @@
  "schema_version": "0.1",
  "title": "Wikidata grounding: atlas people",
  "generated_on": "2026-09-26",
- "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0. Second pass, 2026-09-18: eight further person entries (Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith, Daston) were searched the same way, each candidate verified with get_statements before acceptance, and their dates fetched in one SPARQL query over P569/P570 with time precision; Daston's competing birth dates were resolved with get_statement_values on rank. Julia Cherry Spruill was re-tried and remains unmatched. Third pass, 2026-09-26: the 543 roster people in tiers accept_glance and recovered of data/orcid-2026-09-21/roster-grounding-master.csv were applied in bulk by user decision without individual review (wikidata.method = bulk_roster_match_2026-09-22), so that errors show up in the site. Dates were fetched from QLever with rank and precision. The remaining 282 roster people (namesake_risk, disambiguate, manual) are not included. Fourth pass, 2026-09-26: namesake_risk roster rows whose QID carries an ORCID resolving to a person-registry individual with history credits were applied (wikidata.method = roster_orcid_corroborated_2026-09-26). Fifth pass, 2026-10-22: the four person entries of revision 1.152 (Stedman Jones, Joyce, Vernon, Lawrence) were checked by QLever SPARQL label match with statements read (wikidata.method = qlever_label_match_2026-10-22).",
+ "method": "Each person was searched with the WikidataMCP semantic search (search_items), never the REST name search. One candidate was accepted only when its label, nationality and occupation matched the atlas entry; near-namesakes are listed in notes. Birth and death dates were then fetched for all accepted QIDs in one SPARQL query over P569/P570, and statement-level values were inspected where the query result looked wrong (Rodney) or imprecise (Pinchbeck). Wikidata content is CC0. Second pass, 2026-09-18: eight further person entries (Scott, Davis, Hunt, Hall, Davidoff, Higginbotham, Smith, Daston) were searched the same way, each candidate verified with get_statements before acceptance, and their dates fetched in one SPARQL query over P569/P570 with time precision; Daston's competing birth dates were resolved with get_statement_values on rank. Julia Cherry Spruill was re-tried and remains unmatched. Third pass, 2026-09-26: the 543 roster people in tiers accept_glance and recovered of data/orcid-2026-09-21/roster-grounding-master.csv were applied in bulk by user decision without individual review (wikidata.method = bulk_roster_match_2026-09-22), so that errors show up in the site. Dates were fetched from QLever with rank and precision. The remaining 282 roster people (namesake_risk, disambiguate, manual) are not included. Fourth pass, 2026-09-26: namesake_risk roster rows whose QID carries an ORCID resolving to a person-registry individual with history credits were applied (wikidata.method = roster_orcid_corroborated_2026-09-26). Fifth pass, 2026-10-22: the four person entries of revision 1.152 (Stedman Jones, Joyce, Vernon, Lawrence) were checked by QLever SPARQL label match with statements read (wikidata.method = qlever_label_match_2026-10-22). Sixth pass, 2026-10-24: the people of revision 1.156 (person entries Stoler, Trouillot, Wolfe, Cronon, Worster and roster people grounded by the research agents) were checked by QLever SPARQL label match with statements read (wikidata.method = qlever_label_match_2026-10-23); dates fetched from QLever.",
  "status_values": {
   "accepted": "match reviewed and accepted",
   "unmatched": "no item found",
@@ -11,7 +11,7 @@
  },
  "not_covered": "282 roster people remain ungrounded: 69 namesake_risk, 121 disambiguate, 92 manual (see roster-grounding-master.csv).",
  "counts": {
-  "accepted": 680,
+  "accepted": 702,
   "unmatched": 1
  },
  "people": [
@@ -14098,6 +14098,490 @@
     "retrieved": "2026-10-22"
    },
    "notes": "Added with revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/<id>/entry-draft.json wikidata_check)."
+  },
+  {
+   "person_id": "michel_rolph_trouillot",
+   "node_id": "michel_rolph_trouillot",
+   "label": "Michel-Rolph Trouillot",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q6836249",
+    "label": "Michel-Rolph Trouillot",
+    "description": "Haitian academic and anthropologist",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). Label 'Michel-Rolph Trouillot'; description 'Haitian academic and anthropologist'; P569 1949-11-26; P570 2012-07-05; P19 Port-au-Prince; P106 historian, academic, anthropologist; P214 VIAF 2600615. The death date matches the Chicago obituary."
+   },
+   "life": {
+    "birth": "1949-11-26",
+    "death": "2012-07-05",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "patrick_wolfe",
+   "node_id": "patrick_wolfe",
+   "label": "Patrick Wolfe",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q109284663",
+    "label": "Patrick Wolfe",
+    "description": "Australian historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QLever SPARQL on 2026-10-23 (label \"Patrick Wolfe\", P31 human): Q109284663 description \"Australian historian\"; P106 historian; P569 1949-06-12; P570 2016-02-18; P19 Yorkshire; P20 Melbourne; P27 Australia, United Kingdom; P69 London School of Economics and Political Science, University of Melbourne; VIAF 116565018; LC n98039450; GND 1089878249; ISNI 000000008185442X; Open Library OL226928A. Namesakes excluded: Q103193240 (statistician), Q137791276 (Saskatchewan political candidate)."
+   },
+   "life": {
+    "birth": "1949-06-12",
+    "death": "2016-02-18",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "j_r_mcneill",
+   "node_id": null,
+   "label": "J. R. McNeill",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2018092",
+    "label": "John Robert McNeill",
+    "description": "American environmental historian, Professor, Edmund A. Walsh School of Foreign Service, Georgetown University, US",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'American environmental historian, Professor, Edmund A. Walsh School of Foreign Service, Georgetown University, US'; P569 1954-10-06; P108 Georgetown University, Goucher College; P214 VIAF 22162918; single item for 'J. R. McNeill' and 'John Robert McNeill'"
+   },
+   "life": {
+    "birth": "1954-10-06",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "liza_piper",
+   "node_id": null,
+   "label": "Liza Piper",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q131147375",
+    "label": "Liza Piper",
+    "description": "Canadian researcher",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). PROBABLE: description 'Canadian researcher'; P569 1978 (year precision); P108 University of Alberta; P106 historian, researcher, university teacher; single match, no publication statement seen"
+   },
+   "life": {
+    "birth": "1978-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks). Verdict probable; review when a second statement is read."
+  },
+  {
+   "person_id": "graeme_wynn",
+   "node_id": null,
+   "label": "Graeme Wynn",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q58217341",
+    "label": "Graeme Wynn",
+    "description": "Canadian geographer and environmental historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'Canadian geographer and environmental historian'; P569 1946-09-28; P108 University of British Columbia; P106 environmental historian, geographer, historical geographer"
+   },
+   "life": {
+    "birth": "1946-09-28",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "john_sandlos",
+   "node_id": null,
+   "label": "John Sandlos",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q57413196",
+    "label": "John Sandlos",
+    "description": "environmental historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'environmental historian'; P569 1970 (year precision); P108 Memorial University of Newfoundland"
+   },
+   "life": {
+    "birth": "1970-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "matthew_evenden",
+   "node_id": null,
+   "label": "Matthew Evenden",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q123023434",
+    "label": "Matthew Evenden",
+    "description": "Canadian geographer and environmental historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'Canadian geographer and environmental historian'; P569 1971-10-13; P106 environmental historian, geographer, university teacher"
+   },
+   "life": {
+    "birth": "1971-10-13",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "paul_sutter",
+   "node_id": null,
+   "label": "Paul S. Sutter",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q126183373",
+    "label": "Paul Shriver Sutter",
+    "description": "History professor",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). PROBABLE: label 'Paul Shriver Sutter'; description 'History professor'; P108 University of Colorado Boulder; no birth date; namesakes Q117430923 (parson), Q131671572 (politician), Q55629277 (astrophysicist) rejected"
+   },
+   "life": {
+    "birth": null,
+    "death": null,
+    "birth_precision": null,
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks). Verdict probable; review when a second statement is read."
+  },
+  {
+   "person_id": "karl_jacoby",
+   "node_id": null,
+   "label": "Karl Jacoby",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q54917887",
+    "label": "Karl Jacoby",
+    "description": "American historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'American historian'; P569 1965-05-29; P108 Columbia University; four namesakes (1849, 1853, 1862, 1888 births) rejected by dates"
+   },
+   "life": {
+    "birth": "1965-05-29",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "linda_nash",
+   "node_id": null,
+   "label": "Linda Nash",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q104739639",
+    "label": "Linda Nash",
+    "description": "American professor of environmental history",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). description 'American professor of environmental history'; P569 1962-02-19; P106 environmental historian, historian, university teacher"
+   },
+   "life": {
+    "birth": "1962-02-19",
+    "death": "2021-10-17",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "dave_foreman",
+   "node_id": null,
+   "label": "Dave Foreman",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5233747",
+    "label": "David Foreman",
+    "description": "American environmentalist",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). label 'David Foreman'; description 'American environmentalist'; P569 1946-10-18; P106 environmentalist (death date not queried)"
+   },
+   "life": {
+    "birth": "1946-10-18",
+    "death": "2022-09-19",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "lorenzo_veracini",
+   "node_id": null,
+   "label": "Lorenzo Veracini",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q112150999",
+    "label": "Lorenzo Veracini",
+    "description": "Australian historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": null,
+    "death": null,
+    "birth_precision": null,
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "audra_simpson",
+   "node_id": null,
+   "label": "Audra Simpson",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q112536616",
+    "label": "Audra Simpson",
+    "description": "Kahnawà:ke Mohawk anthropologist",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1969-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "glen_coulthard",
+   "node_id": null,
+   "label": "Glen Sean Coulthard",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q91710018",
+    "label": "Glen Coulthard",
+    "description": "Canadian scholar",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1974-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "eve_tuck",
+   "node_id": null,
+   "label": "Eve Tuck",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q28924966",
+    "label": "Eve Tuck",
+    "description": "Indigenous studies scholar",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": null,
+    "death": null,
+    "birth_precision": null,
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "j_kehaulani_kauanui",
+   "node_id": null,
+   "label": "J. Kēhaulani Kauanui",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q59537273",
+    "label": "J. Kēhaulani Kauanui",
+    "description": "American Indigenous Studies professor",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1968-07-17",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "arlette_farge",
+   "node_id": null,
+   "label": "Arlette Farge",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q2861628",
+    "label": "Arlette Farge",
+    "description": "French historian and teacher",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1941-09-14",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "saidiya_hartman",
+   "node_id": null,
+   "label": "Saidiya Hartman",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q7399969",
+    "label": "Saidiya Hartman",
+    "description": "American historian, writer and academic",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1961-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "achille_mbembe",
+   "node_id": null,
+   "label": "Achille Mbembe",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q340234",
+    "label": "Achille Mbembe",
+    "description": "Cameroonian philosopher and political scientist (born 1957)",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1957-07-27",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "antoinette_burton",
+   "node_id": null,
+   "label": "Antoinette Burton",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q4775575",
+    "label": "Antoinette Burton",
+    "description": "American historian",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1961-10-22",
+    "death": null,
+    "birth_precision": "day",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "terry_cook",
+   "node_id": null,
+   "label": "Terry Cook",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q16934246",
+    "label": "Terry Cook",
+    "description": "Canadian archivist (1947–2014)",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1947-06-06",
+    "death": "2014-05-12",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "durba_ghosh",
+   "node_id": null,
+   "label": "Durba Ghosh",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q130604216",
+    "label": "Durba Ghosh",
+    "description": "historian, Cornell University",
+    "method": "qlever_label_match_2026-10-23",
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+   },
+   "life": {
+    "birth": "1967-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (deprecated excluded; precision read where the query allowed)",
+    "retrieved": "2026-10-24"
+   },
+   "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
   }
  ]
 }

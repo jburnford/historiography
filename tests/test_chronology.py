@@ -51,8 +51,13 @@ class ChronologyTests(unittest.TestCase):
         self.assertEqual(after, self.before, 'No relationship, roster, old date, source qualification or archive pointer changes')
 
     def test_review_coverage_remains_separate_from_later_evidence(self):
+        # Adding later chronology events never moves an entry's review year. A review year moves only when
+        # a dated revision records a further reading (from 1.156: settler_colonialism and environment to 2024).
         for old, node in zip(self.before['nodes'], self.graph['nodes']):
-            self.assertEqual(old.get('coverage'), node.get('coverage'), node['id'])
+            if old.get('coverage') != node.get('coverage'):
+                self.assertGreater(node['coverage']['reviewed_through'], old['coverage']['reviewed_through'], node['id'])
+                self.assertRegex(node['coverage']['basis'], r'20\d\d-\d\d-\d\d', node['id'])
+                self.assertIn('read', node['coverage']['basis'].lower(), node['id'])
         web = next(n for n in self.graph['nodes'] if n['id'] == 'web_history')
         self.assertEqual(web['coverage']['reviewed_through'], 2000)
         self.assertTrue(any(e['date'].get('year') == 2026 for e in web['chronology']['events']))

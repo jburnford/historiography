@@ -72,6 +72,11 @@ From revision 1.155 the same applier's `periods_set` replaces the top-level `per
 acceptance record as `prior_periods`) and `field_sets` may set a node's `period`; the list has five
 teaching periods, the fifth "Layering: new fields under a settled canon, c. 2000–"
 ([acceptance](data/production-batches/period4-1.155/README.md)).
+From revision 1.156 a draft without a `node` (a backfill of an existing person entry) may carry `wikidata_check`
+and a `people_update` with `identity_note`; a draft may carry `people_identity_notes` ({person_id: note}) and a
+plural `wikidata_checks` list for roster people grounded during the research; `people_updates` may set
+`identity_note`; and `source_field_sets` apply before `source_addenda`, so a note's `expect` is the note as it
+stood on disk ([acceptance](data/production-batches/group-revision-1.156/README.md)).
 
 ## Historical revision 1.149 (2026-10-19): Gramsci and McKay
 

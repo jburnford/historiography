@@ -1,3 +1,32 @@
+# Revision 1.156: after 2000, wave 1 — the archive, settler colonial studies, environmental history (24 October 2026)
+
+The first content of the fifth teaching period. Research of 2026-10-23 by three agents under
+`data/extension-2026/period4-wave1-2026-10-23/BRIEF.md`, chosen from the citation-graph cohort analysis:
+- **`archival_turn`** ("The archive as object", Research field, period 4): an editorial grouping of distinct
+  inquiries into archives as institutions, practices, sources and objects of interpretation — Trouillot's
+  silences, Stoler's reading along the grain, Farge, Derrida and Steedman on the archive and desire, Hartman
+  and Fuentes on absence and critical fabulation, archive stories and the ethnography of archives, Schwartz
+  and Cook on archives and power. 6 strands, 16 roster rows, 27 events 1989–2024, 9 edges.
+- **Ann Laura Stoler** (promoted from rosters; 9 edges, 15 events) and **Michel-Rolph Trouillot** (new; 8
+  edges, 24 events): person entries in the Historians band. Trouillot's own words await a library copy of
+  *Silencing the Past*; the displayed formulations are Davidson's reproduction and Craipain's quotation.
+- **Settler colonial studies** to 2024: 52 events, 16 strands, 44 roster rows; Wolfe's and Veracini's
+  formulas as two emphases, not a documented exchange; the Indigenous critique (Tuck and Yang, Simpson,
+  Coulthard, Kauanui, Macoun and Strakosch, Englert) in the readers' own words; the Canadian uptake. **Patrick
+  Wolfe** backfilled (2 → 9 edges, 3 → 26 events). edge_882 becomes a directed critique settler_colonialism →
+  post.
+- **Environmental history** to 2024: 25 events, 23 strands (the wilderness debate as a selected exchange;
+  the Anthropocene and climate; Canadian environmental history; conservation, dispossession and neighbouring
+  historiographies), 52 roster rows; the citation graph's reading of the field's co-citation network as
+  diffusion into Indigenous and settler colonial history is stated as the graph's reading, with its method,
+  not as the field's own account. **William Cronon** (4 → 10 edges, 25 events) and **Donald Worster** (1 → 8
+  edges, 21 events) backfilled.
+- 47 new edges, 12 revisions, 132 sources, 46 people, 22 Wikidata rows; 16 source corrections move eight
+  records from excluded or non-publisher routes to publisher pages or DOIs. Sol: accept with fixes, 19
+  findings, applied (`release/fixes-1.156-{A,B,C}.md`). Evidence layer: practice series v27, landing audit
+  1.156. Batch: `data/extension-2026/period4-wave1-2026-10-23/batch.json`;
+  [acceptance](data/production-batches/group-revision-1.156/README.md).
+
 # Revision 1.155: a fifth teaching period, c. 2000– (23 October 2026)
 
 A frame revision, no entry text changes. The period list gains `period_4`, "Layering: new fields under a

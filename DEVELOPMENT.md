@@ -18,8 +18,14 @@ user cut the three umbrella fields and the debate entry became the hinge to the 
 On 2026-10-23 the user asked for the project to be built out after 2000 from the dissertation cohort
 analysis: revision 1.155 adds a fifth teaching period, "Layering: new fields under a settled canon,
 c. 2000–", and assigns six entries ([acceptance](data/production-batches/period4-1.155/README.md));
-wave-1 research for its content (the archive as object; settler colonial studies and Wolfe; environmental
-history, Cronon and Worster) is in `data/extension-2026/period4-wave1-2026-10-23/`.
+wave 1 of its content is revision 1.156 ([acceptance](data/production-batches/group-revision-1.156/README.md)):
+a new field entry `archival_turn` with person entries for Stoler and Trouillot; settler colonial studies
+extended to 2024 with Wolfe backfilled; environmental history extended to 2024 with Cronon and Worster
+backfilled (47 edges, 132 sources; Sol: accept with fixes, 19 applied). Evidence layer: practice v27 folds the
+archive entry into postcolonial history and memory studies, family *Empire, colonialism & the global* bridged
+to *Cultural & intellectual history*. Next: wave 2 (Indigenous borderlands with Richard White, Crosby and
+Merchant; empire, law and sovereignty; a James C. Scott entry; the long 1970s; the international turn; an
+emotions strand; Hartog) and person entries for Veracini, Audra Simpson, Coulthard, J. R. McNeill and Tina Loo.
 Its evidence-layer family is *Social history*, bridged to *Cultural & intellectual history*;
 practice v26 folds it into new social history. Unread and flagged: the whole *Social History*
 exchange of 1992–96 (Taylor & Francis 403), Gray 1986, Cooper 1995, *Descent into Discourse*, and

@@ -1,8 +1,8 @@
 {
  "schema_version": "1.0",
- "built": "2026-10-22",
+ "built": "2026-10-23",
  "builds": {
-  "series": "v26",
+  "series": "v27",
   "methods": "methods-v9",
   "mentions": "mentions-v6"
  },
@@ -807,6 +807,10 @@
      },
      {
       "id": "languages_of_class",
+      "primary": false
+     },
+     {
+      "id": "archival_turn",
       "primary": false
      }
     ],
@@ -3620,6 +3624,10 @@
       "primary": true
      },
      {
+      "id": "archival_turn",
+      "primary": true
+     },
+     {
       "id": "capitalismdebates",
       "primary": false
      }
@@ -6090,6 +6098,35 @@
     "qualifying_records": 0,
     "missing_length": 0,
     "note": "1 mapped title contexts; 0 distinct deposited records. A mapped teaching venue has no collected deposits; blank counts do not mean no journal or scholarship exists."
+   }
+  },
+  "archival_turn": {
+   "status": "folded",
+   "practised_within": [
+    {
+     "id": "global",
+     "label": "World / global / connected history"
+    },
+    {
+     "id": "memory",
+     "label": "Memory studies"
+    },
+    {
+     "id": "none:imperial_colonial_history",
+     "label": "Imperial & colonial history"
+    }
+   ],
+   "relations": [
+    "method_within"
+   ],
+   "coverage": {
+    "mapped_title_contexts": 0,
+    "deposited_records": 0,
+    "first_deposit": null,
+    "first_candidate": null,
+    "qualifying_records": 0,
+    "missing_length": 0,
+    "note": "0 mapped title contexts; 0 distinct deposited records. Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
    }
   },
   "atlantic": {

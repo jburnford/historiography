@@ -131,5 +131,17 @@ class PeriodTests(unittest.TestCase):
             batch().transform(g, p)
 
 
+class IdentityNoteTests(unittest.TestCase):
+    def test_people_update_identity_note(self):
+        g = graph(); g["people"] = [dict(id="p1", label="P One"), dict(id="p2", label="P Two")]
+        p = packet([]); p["people_updates"] = [dict(id="p1", identity_note="Historian (Q1)."), dict(id="p2", node_id="n2")]
+        g["nodes"].append(dict(id="n2", label="N2", layer=g["nodes"][0].get("layer", "historians"), entry_kind="person", source_ids=[]))
+        out = batch().transform(g, p)
+        people = {x["id"]: x for x in out["people"]}
+        self.assertEqual(people["p1"]["identity_note"], "Historian (Q1).")
+        self.assertNotIn("node_id", people["p1"])
+        self.assertEqual(people["p2"]["node_id"], "n2")
+
+
 if __name__ == "__main__":
     unittest.main()

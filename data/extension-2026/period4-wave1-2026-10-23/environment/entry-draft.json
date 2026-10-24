@@ -1,0 +1,1141 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-23",
+ "applies_to": null,
+ "applies_to_note": "historiography-1920-2000.json revision 1.155 -> candidate 1.156 (period-4 wave 1, agent C; provisional number) (environment: existing group entry, extension to 2024; no new node)",
+ "people_identity_notes": {
+  "tina_loo": "Canadian historian (b. 1962), University Killam Professor, University of British Columbia (Ph.D. UBC 1990); States of Nature (2006), 'Disturbing the Peace' (2007), 'Missed Connections' (2014), Moved by the State (2019). Revision 1.128 participant; environment roster row added in the period-4 wave. Wikidata Q97585539 confirmed by QLever on 2026-10-23 (the sheet's unreviewed 1.128 match)."
+ },
+ "review_status": "needs_review",
+ "evidence": "data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md",
+ "node_revisions_note": "description, representative_figures_and_works, scope_note, date_label, coverage, chronology, the strand correction, the four new strands, the Hays row amendment and the five edge revisions are in batch-fragment-C.json.",
+ "proposed_edges": [
+  {
+   "proposal_id": "p4C_rel_41",
+   "source": "environment",
+   "target": "indigenous",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Conservation as dispossession: Indian removal made the 'uninhabited wilderness' of Yellowstone, Glacier and Yosemite (Spence 1999); the Stoney excluded from Banff for game, sport and assimilation (Binnema and Niemi 2006); northern game laws as state authority over hunting cultures (Sandlos 2007)",
+   "map_label": "Conservation as dispossession, 1997–2007",
+   "evidence_note": "Spence's OUP abstract read; the Binnema–Niemi and Piper–Sandlos abstracts read; Sandlos's UBC Press description read. Warren and Jacoby are not on this edge: their books are unread and no reader read here states a dispossession argument for them (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §§6–7). Source strand environment/conservation_dispossession; target strand indigenous/land. Overlaps edge_696 (indigenous ↔ environment, a comparison through Huggins, Bullard, Cronon and Carruthers), which stays.",
+   "source_ids": [
+    "p4c_spence_dispossessing_1999",
+    "p4c_binnema_niemi_2006",
+    "p4c_sandlos_hunters_2007"
+   ],
+   "classification_basis": "editorial_review",
+   "target_strand": "indigenous/land"
+  },
+  {
+   "proposal_id": "p4C_rel_42",
+   "source": "environment",
+   "target": "native_newcomer",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Canadian environmental histories of the fur-trade and northern worlds: the pemmican market that 'nearly wiped out the Canadian bison herds north of the Missouri River' (Colpitts 2014); ecological imperialism as 'a broken frontier' in the North (Piper and Sandlos 2007); Dene and Inuit hunters against conservationists (Sandlos 2007)",
+   "map_label": "Pemmican, the North and conservation, 2007–14",
+   "evidence_note": "Publisher descriptions and the 2007 abstract read; bodies unread (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3). Reduced strength. Source strand environment/canadian_environmental_history; target strand native_newcomer/fur_trade_national_economy.",
+   "source_ids": [
+    "p4c_colpitts_pemmican_2014",
+    "p4c_piper_sandlos_2007",
+    "p4c_sandlos_hunters_2007"
+   ],
+   "classification_basis": "editorial_review",
+   "target_strand": "native_newcomer/fur_trade_national_economy"
+  },
+  {
+   "proposal_id": "p4C_rel_43",
+   "source": "environment",
+   "target": "capitalismdebates",
+   "type": "connection",
+   "relationship_kind": "comparison",
+   "directed": false,
+   "relationship": "Capital against the species: Malm's Fossil Capital (2016) holds that 'steam offered neither cheaper nor more abundant energy' but control over labour; Moore's Capitalism in the Web of Life (2015) and Stoll's 'A Metabolism of Society' (2014) ask what capitalism is for environmental historians; Worster had made agricultural capitalism 'the decisive factor' (1979)",
+   "map_label": "Capital, energy and the Anthropocene, 2014–16",
+   "evidence_note": "Malm's publisher page read; Moore metadata only; Stoll by chapter title in the Oxford Handbook contents; Worster's phrase as recorded in the graph's existing records (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §9). A teaching comparison, not a reception claim. Source strand environment/anthropocene_climate.",
+   "source_ids": [
+    "p4c_malm_fossil_2016",
+    "p4c_moore_web_2015",
+    "p4c_isenberg_handbook_2014",
+    "worster_dust_bowl",
+    "pe131_cronon_place_stories_1992"
+   ],
+   "classification_basis": "editorial_review"
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "settler_colonialism ↔ environment",
+   "reason": "Agent B's p4B_rel_16; evidence for it is in evidence-environment.md §P12."
+  },
+  {
+   "pair": "environment → global (Anthropocene)",
+   "reason": "Carried as a revision of edge_112 in the batch fragment."
+  },
+  {
+   "pair": "environment → urbanhistory (Urban Rivers)",
+   "reason": "Carried as a revision of edge_720."
+  }
+ ],
+ "roster_additions": [
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "tina_loo",
+    "role": "historian",
+    "context": "Conservation, dams and relocation as histories of the Canadian state and of 'the scales of justice' at which environmental change is apprehended (2006–19); asked the field in 2014 to connect with the world. Books known by publisher description; the 2007 abstract read.",
+    "works": "States of Nature (2006); 'Disturbing the Peace' (2007); 'Missed Connections' (2014); Moved by the State (2019)",
+    "source_ids": [
+     "p4c_loo_states_2006",
+     "p4c_loo_disturbing_2007",
+     "pe131_extras_loo_2014",
+     "p4c_loo_moved_2019"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "liza_piper",
+    "role": "historian",
+    "context": "Industry in the subarctic lakes, 1921–60, 'a seam in the Canadian interior where industrial economies took root'; with Sandlos, ecological imperialism as 'a broken frontier' in the North, where 'the broad ecological transformation' of the south never came. Description and abstract read; bodies unread.",
+    "works": "The Industrial Transformation of Subarctic Canada (2009); with John Sandlos, 'A Broken Frontier' (2007)",
+    "source_ids": [
+     "p4c_piper_industrial_2009",
+     "p4c_piper_sandlos_2007"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "alan_maceachern",
+    "role": "historian",
+    "context": "Atlantic Canada's national parks (2001); NiCHE's director in its SSHRC-cluster years; co-editor of the 2007 Canadian number of Environmental History and of Method and Meaning (2009). Book unread; publisher page unreachable.",
+    "works": "Natural Selections (2001); Environmental History 12:4 (2007, ed. with Evenden); Method and Meaning in Canadian Environmental History (2009, ed. with Turkel)",
+    "source_ids": [
+     "p4c_maceachern_natural_2001",
+     "p4c_eh_canada_issue_2007",
+     "p4c_niche_about"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "graeme_wynn",
+    "role": "historian",
+    "context": "Geographer and general editor of UBC Press's Nature | History | Society series ('the interface between nature and society'); wrote the 2007 synthesis Canada and Arctic North America (unread) and in 2003 called the field 'undeveloped in this country, compared with the United States'.",
+    "works": "Canada and Arctic North America (2007); series forewords (2006–)",
+    "source_ids": [
+     "p4c_ubc_nhs_series",
+     "p4c_wynn_canada_2007",
+     "pe131_extras_wynn_2003",
+     "pe131_extras_wynn_2004"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "john_sandlos",
+    "role": "historian",
+    "context": "Game laws, parks and sanctuaries in the Northwest Territories 'helped the state assert authority over traditional hunting cultures' (2007; CHA Clio and FHS Weyerhaeuser awards); Jacoby called it 'a powerful new interpretation'. Description read; body unread.",
+    "works": "Hunters at the Margin (2007); with Liza Piper, 'A Broken Frontier' (2007)",
+    "source_ids": [
+     "p4c_sandlos_hunters_2007",
+     "p4c_piper_sandlos_2007"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "matthew_evenden",
+    "role": "historian",
+    "context": "The Fraser as 'a river basin where development decisions did not ultimately dam the river, but rather conserved its salmon' (2004); urban rivers compared across Europe and North America (2012); co-editor of the 2007 Canadian number. Descriptions read; bodies unread.",
+    "works": "Fish versus Power (2004); Urban Rivers (2012, ed. with Castonguay)",
+    "source_ids": [
+     "p4c_evenden_fish_2004",
+     "p4c_castonguay_evenden_urban_2012",
+     "p4c_eh_canada_issue_2007"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "george_colpitts",
+    "role": "historian",
+    "context": "The pemmican trade as a food market that 'nearly wiped out the Canadian bison herds north of the Missouri River' (2014). Publisher description only.",
+    "works": "Pemmican Empire (2014)",
+    "source_ids": [
+     "p4c_colpitts_pemmican_2014"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "joy_parr",
+    "role": "historian",
+    "context": "Embodied, sensory histories of megaprojects and environmental change in Canada, 1953–2003 (edge_963); the row places her in the Canadian field's cohort of the 2000s.",
+    "works": "Sensing Changes (2010); 'Smells Like?' (2006)",
+    "source_ids": [
+     "pe135_parr_sensing_2010",
+     "pe135_parr_envhist_2006"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "j_r_mcneill",
+    "role": "historian",
+    "context": "World environmental history of the twentieth century (2000; WHA and Weyerhaeuser prizes), a survey of the field's 'nature and culture' (2003), the Anthropocene since 1945 (2016); ASEH president; told the AHA in 2020 that the field 'stands to be disrupted, and with luck enhanced, more than most'. The 2000 and 2016 books unread.",
+    "works": "Something New Under the Sun (2000); 'Observations on the Nature and Culture of Environmental History' (2003); with Engelke, The Great Acceleration (2016)",
+    "source_ids": [
+     "p4c_mcneill_something_new_2000",
+     "pe131_extras_mcneill_2003",
+     "p4c_mcneill_great_acceleration_2016",
+     "p4c_mcneill_wilson_bio",
+     "p4c_mcneill_aha_2020"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "paul_sutter",
+    "role": "historian",
+    "context": "Surveyed the field for the JAH in 2013: environmental historians had 'replaced the once-firm categories of nature and culture with various approaches to environmental hybridity', a turn 'analytically essential' yet leaving the field 'at a moral crossroads' (the editors' summary; the essay is unread); succeeded Cronon as Weyerhaeuser series editor (2014).",
+    "works": "'The World with Us: The State of American Environmental History' (2013); Driven Wild (2002)",
+    "source_ids": [
+     "p4c_sutter_world_2013",
+     "p4c_jah_forum_2013",
+     "p4c_cronon_cv"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "karl_jacoby",
+    "role": "historian",
+    "context": "Cronon's student at Yale; the 'hidden history' of conservation as squatters, poachers and thieves (2001; Marsh and Littleton-Griswold prizes). Book unread; known through the CV and Crossref.",
+    "works": "Crimes against Nature (2001)",
+    "source_ids": [
+     "p4c_jacoby_crimes_2001",
+     "p4c_cronon_cv"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "mark_david_spence",
+    "role": "historian",
+    "context": "Indian removal from Yellowstone, Glacier and Yosemite as the making of 'uninhabited wilderness' (1999). Abstract read; body unread.",
+    "works": "Dispossessing the Wilderness (1999)",
+    "source_ids": [
+     "p4c_spence_dispossessing_1999"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "dave_foreman",
+    "role": "critic",
+    "context": "Wilderness activist who answered the academic critics: the 'Received Wilderness Idea' of 'Baird Callicott, Bill Cronon and other postmodern deconstructionist scholars' is 'a straw dog; it does not exist on the ground' (1999/2000; read in full), against 'the Real Wilderness Idea' that built the National Wilderness Preservation System.",
+    "works": "'Wilderness Areas for Real' (1998); 'The Real Wilderness Idea' (2000)",
+    "source_ids": [
+     "p4c_foreman_real_2000",
+     "p4c_callicott_nelson_1998"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "j_baird_callicott",
+    "role": "contributor",
+    "context": "Co-editor of the anthology; his own position and the editors' introduction were not read. Foreman groups him with Cronon among academic critics of wilderness.",
+    "works": "The Great New Wilderness Debate (ed. with Michael P. Nelson, 1998)",
+    "source_ids": [
+     "p4c_callicott_nelson_1998",
+     "p4c_foreman_real_2000"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "linda_nash",
+    "role": "contributor",
+    "context": "Asked whether nature has agency or agency has a nature in the 2005 anniversary forum and urged 'Furthering the Environmental Turn' in the 2013 forum; disease as environmental history (2006, 2014). Metadata only.",
+    "works": "'The Agency of Nature or the Nature of Agency?' (2005); Inescapable Ecologies (2006); 'Furthering the Environmental Turn' (2013)",
+    "source_ids": [
+     "p4c_eh_whats_next_2005",
+     "p4c_jah_forum_2013",
+     "p4c_isenberg_handbook_2014"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "andrew_isenberg",
+    "role": "contributor",
+    "context": "Edited the Oxford Handbook (2014), whose abstract holds the field 'widely recognized within the mainstream of academic history' since the early 1980s and whose introduction 'focuses on the integration of the insights of environmental history with a host of other subfields'; his 2013 survey is read.",
+    "works": "The Oxford Handbook of Environmental History (ed., 2014); 'From the Periphery to the Center' (2013)",
+    "source_ids": [
+     "p4c_isenberg_handbook_2014",
+     "pe131_crosby_isenberg_2013"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "andreas_malm",
+    "role": "contributor",
+    "context": "Fossil Capital (2016): 'steam offered neither cheaper nor more abundant energy' but control over labour; read on its cover as an answer to the 'Anthropocene narrative'. Publisher page only.",
+    "works": "Fossil Capital (2016)",
+    "source_ids": [
+     "p4c_malm_fossil_2016"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "christophe_bonneuil",
+    "role": "contributor",
+    "context": "With Fressoz, 'the first critical history of the Anthropocene', refusing 'the convenient view of a \"human species\" that upset the Earth system' (2013; English 2016). Publisher description only.",
+    "works": "The Shock of the Anthropocene (2016, with Jean-Baptiste Fressoz)",
+    "source_ids": [
+     "p4c_bonneuil_fressoz_2016"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "jean_baptiste_fressoz",
+    "role": "contributor",
+    "context": "With Bonneuil, 'the first critical history of the Anthropocene' (2013; English 2016). Publisher description only.",
+    "works": "The Shock of the Anthropocene (2016, with Christophe Bonneuil)",
+    "source_ids": [
+     "p4c_bonneuil_fressoz_2016"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "environment",
+   "proposal_id": null,
+   "row": {
+    "person_id": "james_daschuk",
+    "role": "contributor",
+    "context": "Disease, climate and 'Canadian politics' in the loss of Indigenous life on the Plains (2013; GG History Award, Macdonald and Clio prizes); blurbed by McNeill. The settler-colonial reading is on settler_colonialism; its place in PhD bibliographies is in the conservation_dispossession strand.",
+    "works": "Clearing the Plains (2013)",
+    "source_ids": [
+     "p4c_daschuk_clearing_2013"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "global",
+   "proposal_id": null,
+   "row": {
+    "person_id": "j_r_mcneill",
+    "role": "contributor",
+    "context": "A world environmental history of the twentieth century (2000) and, with Engelke, of the Anthropocene since 1945 (2016): 'human dependence on fossil fuels inaugurated the Anthropocene'. Books unread.",
+    "works": "Something New Under the Sun (2000); The Great Acceleration (2016)",
+    "source_ids": [
+     "p4c_mcneill_something_new_2000",
+     "p4c_mcneill_great_acceleration_2016"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "indigenous",
+   "proposal_id": null,
+   "row": {
+    "person_id": "mark_david_spence",
+    "role": "contributor",
+    "context": "Indian removal from Yellowstone, Glacier and Yosemite as the making of 'uninhabited wilderness' (1999): 'the early conception of the wilderness as the place where Indians lived (or should live)' gave way to its idealisation as empty. Abstract read.",
+    "works": "Dispossessing the Wilderness (1999)",
+    "source_ids": [
+     "p4c_spence_dispossessing_1999"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "indigenous",
+   "proposal_id": null,
+   "row": {
+    "person_id": "karl_jacoby",
+    "role": "contributor",
+    "context": "Conservation's 'hidden history' of squatters, poachers and thieves (2001); endorsed Sandlos's Canadian parallel. Book unread.",
+    "works": "Crimes against Nature (2001)",
+    "source_ids": [
+     "p4c_jacoby_crimes_2001",
+     "p4c_sandlos_hunters_2007"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "indigenous",
+   "proposal_id": null,
+   "row": {
+    "person_id": "john_sandlos",
+    "role": "contributor",
+    "context": "Northern game laws, parks and sanctuaries as the state's authority over Dene and Inuit hunting cultures (2007). Description read.",
+    "works": "Hunters at the Margin (2007)",
+    "source_ids": [
+     "p4c_sandlos_hunters_2007"
+    ],
+    "basis": "source_review"
+   }
+  }
+ ],
+ "new_people": [
+  {
+   "id": "j_r_mcneill",
+   "label": "J. R. McNeill",
+   "identity_note": "American environmental historian (b. 1954), University Professor, Georgetown University; Something New Under the Sun (2000); president of the American Society for Environmental History; president of the American Historical Association 2019. Added in the period-4 wave (environment). Not william_h_mcneill (Q1765863), his father."
+  },
+  {
+   "id": "liza_piper",
+   "label": "Liza Piper",
+   "identity_note": "Canadian environmental historian, University of Alberta; The Industrial Transformation of Subarctic Canada (2009); with John Sandlos, 'A Broken Frontier' (2007). Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "graeme_wynn",
+   "label": "Graeme Wynn",
+   "identity_note": "Canadian geographer and environmental historian (b. 1946), University of British Columbia; general editor of UBC Press's Nature | History | Society series; Canada and Arctic North America (2007). Added in the period-4 wave (environment). Not the rugby player Q5592427."
+  },
+  {
+   "id": "john_sandlos",
+   "label": "John Sandlos",
+   "identity_note": "Environmental historian, Memorial University of Newfoundland; Hunters at the Margin (2007). Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "matthew_evenden",
+   "label": "Matthew Evenden",
+   "identity_note": "Canadian geographer and environmental historian (b. 1971), University of British Columbia; Fish versus Power (2004); co-editor of Urban Rivers (2012). Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "alan_maceachern",
+   "label": "Alan MacEachern",
+   "identity_note": "Canadian environmental historian, Western University; NiCHE's director in its SSHRC-cluster years; Natural Selections (2001); co-editor of Method and Meaning in Canadian Environmental History (2009). Added in the period-4 wave (environment). Ungrounded: no label or alias match on QLever (2026-10-23)."
+  },
+  {
+   "id": "george_colpitts",
+   "label": "George Colpitts",
+   "identity_note": "Canadian environmental historian, University of Calgary; Pemmican Empire (2014). Added in the period-4 wave (environment). Ungrounded: no label or alias match on QLever (2026-10-23)."
+  },
+  {
+   "id": "paul_sutter",
+   "label": "Paul S. Sutter",
+   "identity_note": "American environmental historian, University of Colorado Boulder; 'The World with Us' (JAH 2013); Driven Wild (2002); Weyerhaeuser Environmental Books series editor from 2014. Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "karl_jacoby",
+   "label": "Karl Jacoby",
+   "identity_note": "American historian (b. 1965), Columbia University; William Cronon's doctoral student at Yale (Ph.D. 1997); Crimes against Nature (2001). Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "mark_david_spence",
+   "label": "Mark David Spence",
+   "identity_note": "American historian; Dispossessing the Wilderness: Indian Removal and the Making of the National Parks (1999). Added in the period-4 wave (environment). Ungrounded: only a peerage entry 'Mark Spence' (Q75533210) found on QLever (2026-10-23); not asserted."
+  },
+  {
+   "id": "louis_warren",
+   "label": "Louis S. Warren",
+   "identity_note": "American environmental historian; The Hunter's Game (1997); William Cronon's doctoral student at Yale (Ph.D. 1994). Added in the period-4 wave (environment). Not william_w_warren or jean_philippe_warren. Not queried on QLever this session."
+  },
+  {
+   "id": "linda_nash",
+   "label": "Linda Nash",
+   "identity_note": "American environmental historian (b. 1962), University of Washington; Inescapable Ecologies (2006); 'The Agency of Nature or the Nature of Agency?' (2005). Added in the period-4 wave (environment). Not roderick_nash."
+  },
+  {
+   "id": "dave_foreman",
+   "label": "Dave Foreman",
+   "identity_note": "American wilderness activist (b. 1946), co-founder of Earth First! and chairman of The Wildlands Project; 'Wilderness Areas for Real' (1998) and 'The Real Wilderness Idea' (2000), replies to Cronon and Callicott. Added in the period-4 wave (environment)."
+  },
+  {
+   "id": "j_baird_callicott",
+   "label": "J. Baird Callicott",
+   "identity_note": "American environmental philosopher; co-editor with Michael P. Nelson of The Great New Wilderness Debate (1998); named by Foreman with Cronon as a 'deconstructionist'. Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "michael_p_nelson",
+   "label": "Michael P. Nelson",
+   "identity_note": "Environmental philosopher; co-editor of The Great New Wilderness Debate (1998). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "andrew_isenberg",
+   "label": "Andrew C. Isenberg",
+   "identity_note": "American environmental historian (Temple University at the time); editor of The Oxford Handbook of Environmental History (2014); 'From the Periphery to the Center' (2013). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "theodore_binnema",
+   "label": "Theodore Binnema",
+   "identity_note": "Canadian historian, University of Northern British Columbia; with Melanie Niemi, \"'Let the Line Be Drawn Now'\" (2006). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "melanie_niemi",
+   "label": "Melanie Niemi",
+   "identity_note": "Co-author with Theodore Binnema of \"'Let the Line Be Drawn Now'\" (Environmental History, 2006). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "william_turkel",
+   "label": "William J. Turkel",
+   "identity_note": "Canadian historian, Western University; The Archive of Place (2007); co-editor of Method and Meaning in Canadian Environmental History (2009); on NiCHE's Clusters-era executive. Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "stephane_castonguay",
+   "label": "Stéphane Castonguay",
+   "identity_note": "Historian, Université du Québec à Trois-Rivières; co-editor with Matthew Evenden of Urban Rivers (2012); on NiCHE's Clusters-era executive. Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "andreas_malm",
+   "label": "Andreas Malm",
+   "identity_note": "Swedish human ecologist, Lund University; Fossil Capital (2016). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "christophe_bonneuil",
+   "label": "Christophe Bonneuil",
+   "identity_note": "French historian of science (CNRS); with Jean-Baptiste Fressoz, L'Événement Anthropocène (2013; English 2016). Added in the period-4 wave (environment). Not queried on QLever this session."
+  },
+  {
+   "id": "jean_baptiste_fressoz",
+   "label": "Jean-Baptiste Fressoz",
+   "identity_note": "French historian of science and the environment (CNRS); with Christophe Bonneuil, The Shock of the Anthropocene (2016). Added in the period-4 wave (environment). Not queried on QLever this session."
+  }
+ ],
+ "people_updates_for_reviewer": [
+  {
+   "id": "tina_loo",
+   "new": false,
+   "label": "Tina Loo",
+   "identity_note": "Canadian historian (b. 1962), University Killam Professor, University of British Columbia (Ph.D. UBC 1990); States of Nature (2006), 'Disturbing the Peace' (2007), 'Missed Connections' (2014), Moved by the State (2019). Revision 1.128 participant; environment roster row added in the period-4 wave. Wikidata Q97585539 confirmed by QLever on 2026-10-23 (the sheet's unreviewed 1.128 match)."
+  },
+  {
+   "id": "william_cronon",
+   "new": false,
+   "label": "William Cronon",
+   "identity_note": "American environmental historian, b. 11 September 1954, New Haven; Yale 1981–92; University of Wisconsin–Madison 1992–2020 (Frederick Jackson Turner and Vilas Research Professor), emeritus; president of the ASEH 1989–93 and of the AHA 2012–13. Wikidata Q8007305 confirmed by QLever on 2026-10-23 (the sheet's bulk match of 2026-09-22 is thereby reviewed)."
+  },
+  {
+   "id": "donald_worster",
+   "new": false,
+   "label": "Donald Worster",
+   "identity_note": "American environmental historian, b. 1941; Ph.D. Yale 1971; Hall Distinguished Professor of American History, University of Kansas, from 1989 until retirement; senior professor, Renmin University of China; former president of the ASEH. Wikidata Q1240502 confirmed by QLever on 2026-10-23 (the sheet's bulk match of 2026-09-22 is thereby reviewed)."
+  }
+ ],
+ "wikidata_checks": [
+  {
+   "person_id": "j_r_mcneill",
+   "qid": "Q2018092",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'American environmental historian, Professor, Edmund A. Walsh School of Foreign Service, Georgetown University, US'; P569 1954-10-06; P108 Georgetown University, Goucher College; P214 VIAF 22162918; single item for 'J. R. McNeill' and 'John Robert McNeill'"
+  },
+  {
+   "person_id": "liza_piper",
+   "qid": "Q131147375",
+   "verdict": "probable",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'Canadian researcher'; P569 1978 (year precision); P108 University of Alberta; P106 historian, researcher, university teacher; single match, no publication statement seen"
+  },
+  {
+   "person_id": "graeme_wynn",
+   "qid": "Q58217341",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'Canadian geographer and environmental historian'; P569 1946-09-28; P108 University of British Columbia; P106 environmental historian, geographer, historical geographer"
+  },
+  {
+   "person_id": "john_sandlos",
+   "qid": "Q57413196",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'environmental historian'; P569 1970 (year precision); P108 Memorial University of Newfoundland"
+  },
+  {
+   "person_id": "matthew_evenden",
+   "qid": "Q123023434",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'Canadian geographer and environmental historian'; P569 1971-10-13; P106 environmental historian, geographer, university teacher"
+  },
+  {
+   "person_id": "alan_maceachern",
+   "qid": null,
+   "verdict": "ungrounded",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "no label or alias match on QLever (2026-10-23)"
+  },
+  {
+   "person_id": "george_colpitts",
+   "qid": null,
+   "verdict": "ungrounded",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "no label or alias match on QLever (2026-10-23)"
+  },
+  {
+   "person_id": "paul_sutter",
+   "qid": "Q126183373",
+   "verdict": "probable",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "label 'Paul Shriver Sutter'; description 'History professor'; P108 University of Colorado Boulder; no birth date; namesakes Q117430923 (parson), Q131671572 (politician), Q55629277 (astrophysicist) rejected"
+  },
+  {
+   "person_id": "karl_jacoby",
+   "qid": "Q54917887",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'American historian'; P569 1965-05-29; P108 Columbia University; four namesakes (1849, 1853, 1862, 1888 births) rejected by dates"
+  },
+  {
+   "person_id": "mark_david_spence",
+   "qid": null,
+   "verdict": "ungrounded",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "no label or alias match on QLever (2026-10-23)"
+  },
+  {
+   "person_id": "louis_warren",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "linda_nash",
+   "qid": "Q104739639",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'American professor of environmental history'; P569 1962-02-19; P106 environmental historian, historian, university teacher"
+  },
+  {
+   "person_id": "dave_foreman",
+   "qid": "Q5233747",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "label 'David Foreman'; description 'American environmentalist'; P569 1946-10-18; P106 environmentalist (death date not queried)"
+  },
+  {
+   "person_id": "j_baird_callicott",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "michael_p_nelson",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "andrew_isenberg",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "theodore_binnema",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "melanie_niemi",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "william_turkel",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "stephane_castonguay",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "andreas_malm",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "christophe_bonneuil",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "jean_baptiste_fressoz",
+   "qid": null,
+   "verdict": "not_checked",
+   "method": "none (not queried this session)",
+   "statements_seen": "not queried on QLever this session"
+  },
+  {
+   "person_id": "tina_loo",
+   "qid": "Q97585539",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'Canadian historian'; P569 1962-10-07; P106 historian; the namesake Q136396384 (project officer, Naturalis Biodiversity Center, with an ORCID) rejected"
+  },
+  {
+   "person_id": "william_cronon",
+   "qid": "Q8007305",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'American historian'; P569 1954-09-11 (matches the CV); P106 historian, university teacher, geographer, environmental scientist; P108 University of Wisconsin–Madison; P214 VIAF 94368651; one item"
+  },
+  {
+   "person_id": "donald_worster",
+   "qid": "Q1240502",
+   "verdict": "confirmed",
+   "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+   "statements_seen": "description 'American historian'; P569 1941 (year precision); P106 historian, university teacher; P108 University of Kansas, Renmin University of China; P214 VIAF 66479787; one item"
+  }
+ ],
+ "wikidata_method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+ "new_sources": [
+  {
+   "id": "p4c_mcneill_something_new_2000",
+   "title": "J. R. McNeill, Something New Under the Sun: An Environmental History of the Twentieth-Century World (New York: W. W. Norton, 2000).",
+   "citation": "J. R. McNeill, Something New Under the Sun: An Environmental History of the Twentieth-Century World (New York: W. W. Norton, 2000).",
+   "url": "https://wwnorton.com/books/Something-New-Under-the-Sun/",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Norton's page now lists a later edition with Bathsheba Demuth as co-author (date not shown); Crossref reviews of 2000–01 (10.2307/216186; 10.1111/j.1745-7939.2001.tb01615.x); prizes (World History Association Book Prize; Weyerhaeuser Book Prize) from the Wilson Center biography (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.2). Unread."
+   }
+  },
+  {
+   "id": "p4c_mcneill_great_acceleration_2016",
+   "title": "J. R. McNeill and Peter Engelke, The Great Acceleration: An Environmental History of the Anthropocene since 1945 (Cambridge, MA: Belknap Press of Harvard University Press, 2016).",
+   "citation": "J. R. McNeill and Peter Engelke, The Great Acceleration: An Environmental History of the Anthropocene since 1945 (Cambridge, MA: Belknap Press of Harvard University Press, 2016).",
+   "url": "https://www.hup.harvard.edu/books/9780674545038",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.2): publication date 4 April 2016; 'The Earth has entered a new age—the Anthropocene—in which humans are the most powerful influence on global ecology'; 'More than any other factor, human dependence on fossil fuels inaugurated the Anthropocene.' Body unread."
+   }
+  },
+  {
+   "id": "p4c_mcneill_wilson_bio",
+   "title": "Wilson Center, “John McNeill” (biography page).",
+   "citation": "Wilson Center, “John McNeill” (biography page).",
+   "url": "https://www.wilsoncenter.org/person/john-mcneill",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.1): University Professor, Georgetown (School of Foreign Service and History); formerly Cinco Hermanos Chair; Duke MA and PhD; Toynbee Prize 2010; AHA Beveridge Award 2011; president of the American Society for Environmental History (no years); Something New Under the Sun 'won the World History Association Book Prize and the Weyerhaeuser Book Prize'."
+   }
+  },
+  {
+   "id": "p4c_mcneill_aha_2020",
+   "title": "J. R. McNeill, “Peak Document and the Future of Historical Research” (AHA presidential address, delivered 4 January 2020, New York).",
+   "citation": "J. R. McNeill, “Peak Document and the Future of Historical Research” (AHA presidential address, delivered 4 January 2020, New York).",
+   "url": "https://www.historians.org/presidential-address/john-r-mcneill/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Open AHA text read in passages (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.1): the address was delivered at the 134th annual meeting, New York, 4 January 2020; 'environmental history stands to be disrupted, and with luck enhanced, more than most fields'; footnote: 'The surge of work in climate history is a response' to new information and to anxieties about climate destabilisation; author note: 'a former president of the American Society for Environmental History'."
+   }
+  },
+  {
+   "id": "p4c_isenberg_handbook_2014",
+   "title": "Andrew C. Isenberg, ed., The Oxford Handbook of Environmental History (New York: Oxford University Press, 2014); Isenberg, “Introduction: A New Environmental History,” 1–20.",
+   "citation": "Andrew C. Isenberg, ed., The Oxford Handbook of Environmental History (New York: Oxford University Press, 2014); Isenberg, “Introduction: A New Environmental History,” 1–20.",
+   "url": "https://doi.org/10.1093/oxfordhb/9780195324907.001.0001",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP page read for the abstract, dates and contents (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.3): online 2 October 2014, print 16 October 2014; 'Since the early 1980s, environmental history has been widely recognized within the mainstream of academic history'; the Introduction (DOI 10.1093/oxfordhb/9780195324907.013.0026) 'focuses on the integration of the insights of environmental history with a host of other subfields of history'. Twenty-five chapters listed (Carey, Walker, L. Nash, Sutter, Turner, Stoll, Warren, Andrews, Chiang, Graybill among them). Chapters unread."
+   }
+  },
+  {
+   "id": "p4c_sutter_world_2013",
+   "title": "Paul S. Sutter, “The World with Us: The State of American Environmental History,” Journal of American History 100, no. 1 (June 2013): 94–119.",
+   "citation": "Paul S. Sutter, “The World with Us: The State of American Environmental History,” Journal of American History 100, no. 1 (June 2013): 94–119.",
+   "url": "https://doi.org/10.1093/jahist/jat095",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP page paywalled; the opening extract read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §4): the field grew from 'frontier historiography, American studies, the Annales school, historical geography, cultural ecology, and conservation politics' and names Worster's 1990 lead essay. The body, with Sutter's own sentences on 'hybridity' and declension, is unread; the editors' summary is in p4c_jah_forum_2013."
+   }
+  },
+  {
+   "id": "p4c_jah_forum_2013",
+   "title": "“State of the Field: American Environmental History,” Journal of American History 100, no. 1 (June 2013): David Igler, “On Vital Areas, Categories, and New Opportunities,” 120–123; Christof Mauch, “Which World Is with Us? A Tocquevillian View on American Environmental History,” 124–127; Gregg Mitman, “Living in a Material World,” 128–130; Linda Nash, “Furthering the Environmental Turn,” 131–135; Helen M. Rozwadowski, “The Promise of Ocean History for Environmental History,” 136–139; Bron Taylor, “‘It's Not All about Us’: Reflections on the State of American Environmental History,” 140–144; Paul S. Sutter, “Nature Is History,” 145–148.",
+   "citation": "“State of the Field: American Environmental History,” Journal of American History 100, no. 1 (June 2013): David Igler, “On Vital Areas, Categories, and New Opportunities,” 120–123; Christof Mauch, “Which World Is with Us? A Tocquevillian View on American Environmental History,” 124–127; Gregg Mitman, “Living in a Material World,” 128–130; Linda Nash, “Furthering the Environmental Turn,” 131–135; Helen M. Rozwadowski, “The Promise of Ocean History for Environmental History,” 136–139; Bron Taylor, “‘It's Not All about Us’: Reflections on the State of American Environmental History,” 140–144; Paul S. Sutter, “Nature Is History,” 145–148.",
+   "url": "https://doi.org/10.1093/jahist/jat096",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Titles, authors and pages from the OAH's issue page as captured by the Wayback Machine on 23 October 2013 (the live OAH page returns 403), with the editors' summary read there (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §4): Sutter 'paying particular attention to questions of environmental causation and the ways environmental historians have replaced the once-firm categories of nature and culture with various approaches to environmental hybridity. That hybrid turn, Sutter suggests, has been analytically essential, yet it has also left the field at a moral crossroads.' Crossref DOIs for Mauch (jat097), Nash (jat098), Taylor (jat099), Sutter's reply (jat096). Responses unread."
+   }
+  },
+  {
+   "id": "p4c_zasloff_2013",
+   "title": "Jonathan Zasloff, “‘The Past Isn't Dead…’,” Legal Planet, 7 June 2013.",
+   "citation": "Jonathan Zasloff, “‘The Past Isn't Dead…’,” Legal Planet, 7 June 2013.",
+   "url": "https://legal-planet.org/2013/06/07/the-past-isnt-dead/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Open blog post read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §4): a named reader of the Sutter forum: \"it's not clear to me that 'hybridity' can do quite as much work as Sutter says\"; notes that the Journal 'has made all the articles free on its website' (links now dead)."
+   }
+  },
+  {
+   "id": "p4c_eh_whats_next_2005",
+   "title": "“What's Next for Environmental History?” (Anniversary Forum), Environmental History 10, no. 1 (January 2005): 30–109; includes Linda Nash, “The Agency of Nature or the Nature of Agency?,” 67–69.",
+   "citation": "“What's Next for Environmental History?” (Anniversary Forum), Environmental History 10, no. 1 (January 2005): 30–109; includes Linda Nash, “The Agency of Nature or the Nature of Agency?,” 67–69.",
+   "url": "https://doi.org/10.1093/envhis/10.1.30",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP page checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §5): 'Anniversary Forum', 31 authors (Rome, Bess, Giles-Vernick, Guha, Igler, McNeill, L. Nash, Pyne, Ritvo, Sutter, Tsutsui, van Sittert among them); paywalled, no abstract. Nash's pages as given in the research brief; unread."
+   }
+  },
+  {
+   "id": "p4c_niche_about",
+   "title": "NiCHE: Network in Canadian History & Environment, “About.”",
+   "citation": "NiCHE: Network in Canadian History & Environment, “About.”",
+   "url": "https://niche-canada.org/about/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.1): 'NiCHE was founded in fall 2004 by a small team of scholars'; 2007 SSHRC Strategic Knowledge Clusters grant (funding to 2015); 'a Canadian-based confederation of scholars of environmental history, environmental humanities, and historical geography' whose mandate is to 'disseminate the research of those studying the historical relations between people and the rest of nature'; Alan MacEachern 'was director during the SSHRC Clusters years'; Wynn, Turkel, Cameron, Castonguay, Coates, Evenden and Piper on the Clusters-era executive; Loo on the advisory board; more than 400 members."
+   }
+  },
+  {
+   "id": "p4c_ubc_nhs_series",
+   "title": "UBC Press, “Nature | History | Society” (book series; general editor Graeme Wynn).",
+   "citation": "UBC Press, “Nature | History | Society” (book series; general editor Graeme Wynn).",
+   "url": "https://www.ubcpress.ca/nature-history-society",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Series page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.2): 'devoted to the publication of high-quality scholarship in environmental history and allied fields'; 'essential concern is with the interface between nature and society'; general editor Graeme Wynn; 41 titles (15 shown); no founding date on the page."
+   }
+  },
+  {
+   "id": "p4c_maceachern_natural_2001",
+   "title": "Alan MacEachern, Natural Selections: National Parks in Atlantic Canada, 1935–1970 (Montreal and Kingston: McGill-Queen's University Press, 2001).",
+   "citation": "Alan MacEachern, Natural Selections: National Parks in Atlantic Canada, 1935–1970 (Montreal and Kingston: McGill-Queen's University Press, 2001).",
+   "url": "https://doi.org/10.1515/9780773569010",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref record (issued 23 April 2001) checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3); the MQUP and De Gruyter pages were unreachable (404/405). Unread."
+   }
+  },
+  {
+   "id": "p4c_eh_canada_issue_2007",
+   "title": "Matthew Evenden and Alan MacEachern, “From the Editors,” Environmental History 12, no. 4 (October 2007): 755–758 (a Canadian number of the journal).",
+   "citation": "Matthew Evenden and Alan MacEachern, “From the Editors,” Environmental History 12, no. 4 (October 2007): 755–758 (a Canadian number of the journal).",
+   "url": "https://doi.org/10.1093/envhis/12.4.755",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref record checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3); the issue carries Piper and Sandlos (759–795), Loo (895–919) and Binnema's review of Wynn (1015–1016). Unread."
+   }
+  },
+  {
+   "id": "p4c_loo_states_2006",
+   "title": "Tina Loo, States of Nature: Conserving Canada's Wildlife in the Twentieth Century (Vancouver: UBC Press, 2006; Nature | History | Society).",
+   "citation": "Tina Loo, States of Nature: Conserving Canada's Wildlife in the Twentieth Century (Vancouver: UBC Press, 2006; Nature | History | Society).",
+   "url": "https://www.ubcpress.ca/states-of-nature",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): hardcover 24 May 2006 (paperback 2007); foreword by Graeme Wynn; 'Since the early days of the fur trade, wildlife has been powerfully and inspiringly emblematic of Canada'; CHA Sir John A. Macdonald Prize 2007, Harold Adams Innis Prize 2008; Bill Waiser (The Beaver): 'Loo uses the history of Canadian wildlife conservation as a lens through which to view the changing attitude of Canadians'. Body unread."
+   }
+  },
+  {
+   "id": "p4c_loo_disturbing_2007",
+   "title": "Tina Loo, “Disturbing the Peace: Environmental Change and the Scales of Justice on a Northern River,” Environmental History 12, no. 4 (October 2007): 895–919.",
+   "citation": "Tina Loo, “Disturbing the Peace: Environmental Change and the Scales of Justice on a Northern River,” Environmental History 12, no. 4 (October 2007): 895–919.",
+   "url": "https://doi.org/10.1093/envhis/12.4.895",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Abstract read on the OUP page (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): 'examines the environmental and social impacts of damming the Peace River in northern British Columbia' to explore 'the challenges associated with doing environmental justice', which 'is not simply a matter of rectifying the distribution' of harms and benefits but 'requires coming to terms with the different scales' at which environmental change is apprehended, 'scales that have sensual, spatial, and temporal dimensions'. Body paywalled."
+   }
+  },
+  {
+   "id": "p4c_loo_moved_2019",
+   "title": "Tina Loo, Moved by the State: Forced Relocation and Making a Good Life in Postwar Canada (Vancouver: UBC Press, 2019).",
+   "citation": "Tina Loo, Moved by the State: Forced Relocation and Making a Good Life in Postwar Canada (Vancouver: UBC Press, 2019).",
+   "url": "https://www.ubcpress.ca/moved-by-the-state",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): hardcover and e-book 1 June 2019; McLean Family Canadian Studies Series; 'the Canadian government relocated people, often against their will, in order to improve their lives'; CHA Best Book in Political History 2020; chapter 'Decolonizing the North'; Penny Bryden's blurb reads it 'through the lens of high modernism'. Body unread."
+   }
+  },
+  {
+   "id": "p4c_loo_ubc_profile",
+   "title": "University of British Columbia, Department of History, “Tina Loo” (faculty profile).",
+   "citation": "University of British Columbia, Department of History, “Tina Loo” (faculty profile).",
+   "url": "https://history.ubc.ca/profile/tina-loo/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): University Killam Professor; B.Sc. UBC 1984, M.A. Toronto 1986, Ph.D. UBC 1990; Fellow of the Royal Society of Canada 2016; CHA best-article prize 2011 (with Meg Stanley); prizes for States of Nature (2007, 2008). Contact details not recorded."
+   }
+  },
+  {
+   "id": "p4c_piper_industrial_2009",
+   "title": "Liza Piper, The Industrial Transformation of Subarctic Canada (Vancouver: UBC Press, 2009; Nature | History | Society).",
+   "citation": "Liza Piper, The Industrial Transformation of Subarctic Canada (Vancouver: UBC Press, 2009; Nature | History | Society).",
+   "url": "https://www.ubcpress.ca/the-industrial-transformation-of-subarctic-canada",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): hardcover 10 March 2009; foreword by Graeme Wynn; 'Between 1921 and 1960, these lakes comprised a seam in the Canadian interior where industrial economies took root'; CHA Clio Prize (North) 2010 and K. D. Srivastava Prize 2010; Stephen Bocking (Northern Review): 'This history has dirt under its fingernails'. Body unread."
+   }
+  },
+  {
+   "id": "p4c_piper_sandlos_2007",
+   "title": "Liza Piper and John Sandlos, “A Broken Frontier: Ecological Imperialism in the Canadian North,” Environmental History 12, no. 4 (October 2007): 759–795.",
+   "citation": "Liza Piper and John Sandlos, “A Broken Frontier: Ecological Imperialism in the Canadian North,” Environmental History 12, no. 4 (October 2007): 759–795.",
+   "url": "https://doi.org/10.1093/envhis/12.4.759",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Abstract read on the OUP page (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): 'Ecological imperialism is one of the most enduring models of past global environmental change'; applied beyond the temperate zones 'where it worked best'; 'the Canadian North was never subject to the broad ecological transformation that occurred further to the south'. Crosby is not named on the page. Body paywalled."
+   }
+  },
+  {
+   "id": "p4c_sandlos_hunters_2007",
+   "title": "John Sandlos, Hunters at the Margin: Native People and Wildlife Conservation in the Northwest Territories (Vancouver: UBC Press, 2007; Nature | History | Society).",
+   "citation": "John Sandlos, Hunters at the Margin: Native People and Wildlife Conservation in the Northwest Territories (Vancouver: UBC Press, 2007; Nature | History | Society).",
+   "url": "https://www.ubcpress.ca/hunters-at-the-margin",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): hardcover 8 May 2007; foreword by Graeme Wynn ('The Enigmatic North'); game laws, parks and sanctuaries 'helped the state assert authority over traditional hunting cultures'; CHA Clio (North) 2008 and the Forest History Society's Charles A. Weyerhaeuser Book Award 2008; Karl Jacoby's blurb: 'a powerful new interpretation of Canada's conservation policies in the Northwest Territories'; reviewed by William R. Morrison in Environmental History 12:4. Body unread."
+   }
+  },
+  {
+   "id": "p4c_evenden_fish_2004",
+   "title": "Matthew D. Evenden, Fish versus Power: An Environmental History of the Fraser River (Cambridge: Cambridge University Press, 2004; Studies in Environment and History).",
+   "citation": "Matthew D. Evenden, Fish versus Power: An Environmental History of the Fraser River (Cambridge: Cambridge University Press, 2004; Studies in Environment and History).",
+   "url": "https://doi.org/10.1017/CBO9780511512032",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Cambridge Core page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): print 3 May 2004 (online 19 August 2009), 328 pp.; 'a case study of a river basin where development decisions did not ultimately dam the river, but rather conserved its salmon'. Body unread."
+   }
+  },
+  {
+   "id": "p4c_castonguay_evenden_urban_2012",
+   "title": "Stéphane Castonguay and Matthew Evenden, eds., Urban Rivers: Remaking Rivers, Cities, and Space in Europe and North America (Pittsburgh: University of Pittsburgh Press, 2012; History of the Urban Environment).",
+   "citation": "Stéphane Castonguay and Matthew Evenden, eds., Urban Rivers: Remaking Rivers, Cities, and Space in Europe and North America (Pittsburgh: University of Pittsburgh Press, 2012; History of the Urban Environment).",
+   "url": "https://upittpress.org/books/9780822961857/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): May 2012, 256 pp.; case studies 'from Vienna to Manitoba'; Christof Mauch's blurb: 'Hands down, Urban Rivers is the best environmental history of urban industrial rivers'. Body unread."
+   }
+  },
+  {
+   "id": "p4c_colpitts_pemmican_2014",
+   "title": "George Colpitts, Pemmican Empire: Food, Trade, and the Last Bison Hunts in the North American Plains, 1780–1882 (Cambridge: Cambridge University Press, 2014; Studies in Environment and History).",
+   "citation": "George Colpitts, Pemmican Empire: Food, Trade, and the Last Bison Hunts in the North American Plains, 1780–1882 (Cambridge: Cambridge University Press, 2014; Studies in Environment and History).",
+   "url": "https://doi.org/10.1017/CBO9781107045354",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Cambridge Core page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): hardback 5 October 2014, paperback 27 October 2014, 318 pp.; the pemmican market hunt 'nearly wiped out the Canadian bison herds north of the Missouri River'; Elliott West: 'an utterly fresh and revealing look at the oft-studied story of the plains bison'; Brenda Macdougall (Environmental History). Body unread."
+   }
+  },
+  {
+   "id": "p4c_binnema_niemi_2006",
+   "title": "Theodore Binnema and Melanie Niemi, “‘Let the Line Be Drawn Now’: Wilderness, Conservation, and the Exclusion of Aboriginal People from Banff National Park in Canada,” Environmental History 11, no. 4 (October 2006): 724–750.",
+   "citation": "Theodore Binnema and Melanie Niemi, “‘Let the Line Be Drawn Now’: Wilderness, Conservation, and the Exclusion of Aboriginal People from Banff National Park in Canada,” Environmental History 11, no. 4 (October 2006): 724–750.",
+   "url": "https://doi.org/10.1093/envhis/11.4.724",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Abstract read on the OUP page, in the tool's paraphrase rather than verbatim (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): the exclusion of the Stoney from Rocky Mountains (Banff) Park, 1890–1920, served game conservation, sport hunting, tourism and Indian assimilation, in Canada 'and probably' the United States, rather than an ideal of uninhabited wilderness. Cronon and Spence are not named on the page. Body paywalled."
+   }
+  },
+  {
+   "id": "p4c_wynn_canada_2007",
+   "title": "Graeme Wynn, Canada and Arctic North America: An Environmental History (Santa Barbara: ABC-CLIO, 2007; Nature and Human Societies); reviewed by Theodore Binnema, Environmental History 12, no. 4 (2007): 1015–1016.",
+   "citation": "Graeme Wynn, Canada and Arctic North America: An Environmental History (Santa Barbara: ABC-CLIO, 2007; Nature and Human Societies); reviewed by Theodore Binnema, Environmental History 12, no. 4 (2007): 1015–1016.",
+   "url": "https://doi.org/10.1093/envhis/12.4.1015",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref records checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.2): the book record (10.5040/9798400623141) is dated 2006, the review October 2007; the publisher page could not be fetched. Unread."
+   }
+  },
+  {
+   "id": "p4c_daschuk_clearing_2013",
+   "title": "James Daschuk, Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life (Regina: University of Regina Press, 2013; new edition 2019 with a foreword by Elizabeth A. Fenn, retitled “… the Loss of Indigenous Life”).",
+   "citation": "James Daschuk, Clearing the Plains: Disease, Politics of Starvation, and the Loss of Aboriginal Life (Regina: University of Regina Press, 2013; new edition 2019 with a foreword by Elizabeth A. Fenn, retitled “… the Loss of Indigenous Life”).",
+   "url": "https://uofrpress.ca/Books/C/Clearing-the-Plains",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Press page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §6.3): 'the roles that Old World diseases, climate, and, most disturbingly, Canadian politics' played in Indigenous deaths; Governor General's History Award, CHA Clio Prize, Best Scholarly Book in Canadian History and Aboriginal History Prize (2014), Sir John A. Macdonald Prize; blurbs by Elizabeth A. Fenn and J. R. McNeill; Crossref 10.1515/9780889772977 (2013). Content is Agent B's territory (settler_colonialism). Body unread."
+   }
+  },
+  {
+   "id": "p4c_jacoby_crimes_2001",
+   "title": "Karl Jacoby, Crimes against Nature: Squatters, Poachers, Thieves, and the Hidden History of American Conservation (Berkeley: University of California Press, 2001; 2014 edition with a new afterword).",
+   "citation": "Karl Jacoby, Crimes against Nature: Squatters, Poachers, Thieves, and the Hidden History of American Conservation (Berkeley: University of California Press, 2001; 2014 edition with a new afterword).",
+   "url": "https://doi.org/10.1525/9780520957930",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref record of the 2014 edition checked; publisher pages unreachable (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §7). The dissertation (Yale 1997, co-directed by Cronon and Lamar) and the prizes (ASEH George Perkins Marsh Prize and AHA Littleton-Griswold Prize for 2001) from Cronon's CV, p. 11. Unread."
+   }
+  },
+  {
+   "id": "p4c_spence_dispossessing_1999",
+   "title": "Mark David Spence, Dispossessing the Wilderness: Indian Removal and the Making of the National Parks (New York: Oxford University Press, 1999).",
+   "citation": "Mark David Spence, Dispossessing the Wilderness: Indian Removal and the Making of the National Parks (New York: Oxford University Press, 1999).",
+   "url": "https://doi.org/10.1093/acprof:oso/9780195142433.001.0001",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "OUP's online record read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §7): abstract and contents; 'examines the ideal of wilderness preservation in the United States from the antebellum era' and shows how 'the early conception of the wilderness as the place where Indians lived (or should live)' gave way to 'the idealization of uninhabited wilderness'; removal at Yosemite, Yellowstone and Glacier, 1870s–1930s. The online record is dated 2 November 2000; reviews of 2000 (WHQ 31:2; Public Historian 22:2) show a 1999 first printing. Body unread."
+   }
+  },
+  {
+   "id": "p4c_warren_hunters_1997",
+   "title": "Louis S. Warren, The Hunter's Game: Poachers and Conservationists in Twentieth-Century America (New Haven: Yale University Press, 1997).",
+   "citation": "Louis S. Warren, The Hunter's Game: Poachers and Conservationists in Twentieth-Century America (New Haven: Yale University Press, 1997).",
+   "url": "https://doi.org/10.2307/2567366",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref review records (JAH 85:3, 1998; AHR 104:5, 1999; WHQ 29:4, 1998) checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §7); the dissertation (Yale 1994, co-directed by Cronon and Lamar) from Cronon's CV, p. 11. Unread."
+   }
+  },
+  {
+   "id": "p4c_malm_fossil_2016",
+   "title": "Andreas Malm, Fossil Capital: The Rise of Steam Power and the Roots of Global Warming (London: Verso, 2016).",
+   "citation": "Andreas Malm, Fossil Capital: The Rise of Steam Power and the Roots of Global Warming (London: Verso, 2016).",
+   "url": "https://www.versobooks.com/books/2002-fossil-capital",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §9): January 2016, 496 pp.; 'Contrary to established views, steam offered neither cheaper nor more abundant energy' but control over labour; Michael W. Howard's review (Socialism and Democracy), quoted on the page, criticises the 'Anthropocene narrative'; Mike Davis's blurb on the logic of capital. Body unread."
+   }
+  },
+  {
+   "id": "p4c_bonneuil_fressoz_2016",
+   "title": "Christophe Bonneuil and Jean-Baptiste Fressoz, The Shock of the Anthropocene: The Earth, History and Us, trans. David Fernbach (London: Verso, 2016; paperback 2017); French original L'Événement Anthropocène (Paris: Seuil, 2013).",
+   "citation": "Christophe Bonneuil and Jean-Baptiste Fressoz, The Shock of the Anthropocene: The Earth, History and Us, trans. David Fernbach (London: Verso, 2016; paperback 2017); French original L'Événement Anthropocène (Paris: Seuil, 2013).",
+   "url": "https://www.versobooks.com/products/136-the-shock-of-the-anthropocene",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §9): 'The Earth has entered a new epoch: the Anthropocene'; refutes 'the convenient view of a \"human species\" that upset the Earth system, unaware of what it was doing'; 'the first critical history of the Anthropocene'; translator David Fernbach; the page lists the paperback (February 2017). The 2016 English and 2013 French dates come from library records in search results, not from a publisher page. Body unread."
+   }
+  },
+  {
+   "id": "p4c_moore_web_2015",
+   "title": "Jason W. Moore, Capitalism in the Web of Life: Ecology and the Accumulation of Capital (London: Verso, 2015); reviewed by Catherine Larrère, Annales. Histoire, Sciences Sociales 72, no. 2 (2017): 525–528.",
+   "citation": "Jason W. Moore, Capitalism in the Web of Life: Ecology and the Accumulation of Capital (London: Verso, 2015); reviewed by Catherine Larrère, Annales. Histoire, Sciences Sociales 72, no. 2 (2017): 525–528.",
+   "url": "https://doi.org/10.1017/s0395264917000890",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref review records checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §9). Unread."
+   }
+  }
+ ],
+ "source_addenda": {
+  "pe131_extras_mcneill_2003": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1 (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.1): Crossref record confirmed (History and Theory 42:4, pp. 5–43, issued 7 November 2003); the record's url now points to the publisher's DOI (batch source_field_sets); the pages read on 2026-10-13 stand on the earlier note, now without route identifiers. This wave checked metadata only."
+  },
+  "pe131_worster_natures_economy_1977": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1: the record's url now points to the Cambridge University Press record of the 1994 second edition; the 1977 Sierra Club first edition is retained in the citation; the earlier snippet reading is kept in the note without route identifiers."
+  },
+  "pe131_worster_rivers_1985": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1: the record's url now points to the Oxford record of the 1992 paperback; the Pantheon 1985 first edition is retained; the earlier snippet reading is kept in the note without route identifiers."
+  }
+ }
+}

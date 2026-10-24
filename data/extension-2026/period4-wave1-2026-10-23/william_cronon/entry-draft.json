@@ -1,0 +1,646 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-23",
+ "applies_to": null,
+ "applies_to_note": "historiography-1920-2000.json revision 1.155 -> candidate 1.156 (period-4 wave 1, agent C; provisional number) (william_cronon: existing person entry, backfill; no new node). applies_to is null so the applier's wikidata_check person_id falls back to the folder name.",
+ "review_status": "needs_review",
+ "evidence": "data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md",
+ "node_revisions_note": "Node field changes (description, scope_note, representative_figures_and_works, date_label, chronology, source_ids) are carried in batch-fragment-C.json (text_revisions, field_sets, node_list_additions), as in the 1.143 and 1.147 packets; chronology_events_added below is the list the batch field_set appends.",
+ "life_dates_and_posts": "b. 11 September 1954, New Haven (CV p. 1; Wikidata P569). B.A. Wisconsin–Madison 1976; Rhodes Scholar 1976–78; D.Phil. Oxford 1981; Ph.D. Yale December 1990. Yale 1981–92 (tenured 1988); Frederick Jackson Turner Professor, Wisconsin–Madison, 1992–2003; Turner and Vilas Research Professor 2003–20; emeritus 2020–. ASEH president 1989–93; Weyerhaeuser Environmental Books series editor 1994–2014; AHA vice-president 2002–05 and president 2012–13 (CV pp. 1–2, 14–15).",
+ "wikidata_check": {
+  "qid": "Q8007305",
+  "verdict": "confirmed",
+  "method": "QLever SPARQL (qlever.dev/api/wikidata, 2026-10-23): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P106, P108, P214; no wbsearchentities; the WikidataMCP endpoint failed to connect.",
+  "statements_seen": "description 'American historian'; P569 1954-09-11 (matches the CV); P106 historian, university teacher, geographer, environmental scientist; P108 University of Wisconsin–Madison; P214 VIAF 94368651; one item",
+  "checked_on": "2026-10-23"
+ },
+ "people_update": {
+  "id": "william_cronon",
+  "node_id": "william_cronon",
+  "new": false,
+  "label": "William Cronon",
+  "identity_note": "American environmental historian, b. 11 September 1954, New Haven; Yale 1981–92; University of Wisconsin–Madison 1992–2020 (Frederick Jackson Turner and Vilas Research Professor), emeritus; president of the ASEH 1989–93 and of the AHA 2012–13. Wikidata Q8007305 confirmed by QLever on 2026-10-23 (the sheet's bulk match of 2026-09-22 is thereby reviewed)."
+ },
+ "proposed_edges": [
+  {
+   "proposal_id": "p4C_rel_01",
+   "source": "environment",
+   "target": "william_cronon",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "The wilderness debate: Hays found 'a world of abstracted ideas … divorced from the values and ideas inherent in wilderness action' (1996, as quoted by Foreman); Sessions, habitat underweighted (1996); Foreman, that the 'Received Wilderness Idea' of 'Callicott, Cronon and other postmodern deconstructionist scholars' is 'a straw dog; it does not exist on the ground' (1998; 2000)",
+   "map_label": "The trouble with Cronon's wilderness, 1996–2000",
+   "evidence_note": "Foreman 2000 read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.2): pp. 32–33 and the reference list p. 38. Hays's sentence is carried only as quoted by Foreman (p. 32); Hays's comment (Environmental History 1:1, 29–32) is unread and the quotation is marked for re-verification. Sessions 1996 read in full (graph record). Callicott and Nelson 1998 known by publisher description and Foreman's own reference. Cronon's 1996 response (pp. 47–55) is unread: this edge records the critics' words; his 1995 defence of wild-land protection and nonhuman autonomy is on cronon_wilderness (reflow pp. 12, 17–20). Source strand environment/wilderness_debate.",
+   "source_ids": [
+    "p4c_foreman_real_2000",
+    "p4c_eh_wilderness_forum_1996",
+    "sessions_cronon_reply",
+    "p4c_callicott_nelson_1998",
+    "cronon_wilderness"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_02",
+   "source": "william_cronon",
+   "target": "indigenous",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Wilderness as the erasure of Indigenous dwelling: 'The removal of Indians to create an \"uninhabited wilderness\"' shows 'just how invented, just how constructed, the American wilderness really is' (1995); the Apostle Islands, 'inhabited by Ojibwe peoples for centuries', 'a wilderness that has long been a place of human dwelling' (2003)",
+   "map_label": "Uninhabited wilderness as invention, 1995–2003",
+   "evidence_note": "Own words. 1995: author-hosted reflow p. 10 (graph record cronon_wilderness, read in full 2026-10-13). 2003: 'The Riddle of the Apostle Islands', read in full in OCR (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.2, P6): the Ojibwe sentence on the scan's third page (Orion p. 38), 'a wilderness that has long been a place of human dwelling' and 'manage the Apostle Islands as a historical wilderness' (p. 39). Warren (1997) and Jacoby (2001), his doctoral students (CV p. 11), and Spence (1999, abstract read) wrote on the same removal; nothing read here connects their books to this essay, so they are named as context only. Target strand indigenous/land ('Land, identity and colonial change').",
+   "source_ids": [
+    "cronon_wilderness",
+    "p4c_cronon_apostle_2003",
+    "p4c_cronon_cv",
+    "p4c_spence_dispossessing_1999",
+    "p4c_jacoby_crimes_2001"
+   ],
+   "classification_basis": "editorial_review",
+   "target_strand": "indigenous/land"
+  },
+  {
+   "proposal_id": "p4C_rel_03",
+   "source": "william_cronon",
+   "target": "publichistory",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "History for land managers and the public: the Apostle Islands should be managed 'as a historical wilderness' whose policy 'should equally protect stories—stories of wild nature, stories of human history' (2003); as AHA president he asked historians to 'connect our professional stories with the concerns of the wider public' (2013)",
+   "map_label": "Storied wilderness and public stories, 2003–13",
+   "evidence_note": "Own words. 2003 essay read in full in OCR (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.2): the riddle passage (p. 39) and the closing paragraph ('It is a storied wilderness'). 2013 address: open AHA text, passages (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §1.3). CV (read): Trust for Public Land board 2003–20; Wisconsin Historical Society curators 1997–2011; the 2012 column 'The Public Practice of History in and for a Digital Age' (title only). Target strand publichistory/place_preservation.",
+   "source_ids": [
+    "p4c_cronon_apostle_2003",
+    "p4c_cronon_storytelling_2013",
+    "p4c_cronon_cv"
+   ],
+   "classification_basis": "editorial_review",
+   "target_strand": "publichistory/place_preservation"
+  },
+  {
+   "proposal_id": "p4C_rel_04",
+   "source": "william_cronon",
+   "target": "digital_history",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "'The digital revolution has created endless opportunities via blogs, websites, YouTube, and social media' for the historian's stories (2013); presidential columns 'The Public Practice of History in and for a Digital Age' and 'Scholarly Authority in a Wikified World' (2012); 'digital scholarship' named among his fields",
+   "map_label": "History in a digital age, 2012–13",
+   "evidence_note": "Moderate. The 2013 sentence is read (open AHA text, data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §1.3); the 2012 Perspectives columns are known by title from the CV (p. 8) and his AHA-writings page; the CV (p. 1) lists 'digital scholarship' among his fields and (p. 10) the websites he built. The columns themselves are unread. No target strand: the entry's strands are per-work; the coordinator may attach it to the 2005 Cohen–Rosenzweig strand or leave it unattached.",
+   "source_ids": [
+    "p4c_cronon_storytelling_2013",
+    "p4c_cronon_cv"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_06",
+   "source": "aldo_leopold",
+   "target": "william_cronon",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Leopold as teacher and model: the landscape-reading course he drew from Leopold (afterword, 2003), essays on Leopold and A Sand County Almanac (1998), and Leopold among the 'Classics and Precursors' of his reading list (2005)",
+   "map_label": "Leopold's example, 1994–2005",
+   "evidence_note": "Afterword pp. 173–175 (graph record cronon_changes_afterword, read: the Wisconsin landscape training and Leopold's course model); CV p. 9 (read): 'A Voice in the Wilderness: Aldo Leopold' (Wilderness, 1998) and 'A Sand County Almanac' in A Wisconsin Fifteen (1998), titles only; the 2005 reading list (graph record pe131_carson_cronon_readings_2005, read). Parallels edge_911 (leopold → environment), which already cites the afterword.",
+   "source_ids": [
+    "cronon_changes_afterword",
+    "p4c_cronon_cv",
+    "pe131_carson_cronon_readings_2005",
+    "leopold_almanac"
+   ],
+   "classification_basis": "editorial_review"
+  },
+  {
+   "proposal_id": "p4C_rel_11",
+   "source": "william_cronon",
+   "target": "donald_worster",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "'Modes of Prophecy and Production' answered Worster's 1990 agroecological programme (unread; reported by Isenberg 2013); 'A Place for Stories' (1992) read Dust Bowl as a story whose 'chief agent' is capitalism and whose plot 'proclaims an apocalyptic prophecy', set against Bonnifield's progressive plot",
+   "map_label": "Prophecy and production: reading Dust Bowl, 1990–92",
+   "evidence_note": "'A Place for Stories' pp. 1347–1349 and 1363–1364 read (graph record pe131_cronon_place_stories_1992): the 'chief agent' and 'apocalyptic prophecy' sentences are at p. 1363, Worster's few pages on Indians at p. 1364. The 1990 response (JAH 76:4, 1122–31) is unread (OUP 403) and is known through Isenberg 2013, pp. 88–89 (read, graph record pe131_crosby_isenberg_2013); Cronon's CV p. 7 confirms the citation. A critique by reading, not a rejection: Cronon's essay treats both plots as narrative choices.",
+   "source_ids": [
+    "pe131_cronon_place_stories_1992",
+    "pe131_cronon_modes_1990",
+    "pe131_crosby_isenberg_2013",
+    "worster_dust_bowl"
+   ],
+   "classification_basis": "editorial_review"
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "richard_white → william_cronon",
+   "reason": "Co-authored 'Indians and the Land' (1986) and the Handbook chapter (1989), per the CV; White is wave 2."
+  },
+  {
+   "pair": "william_cronon → settler_colonialism",
+   "reason": "No reader read here says so; the dissertation data are not edge evidence. The link between the entries is Agent B's p4B_rel_16."
+  },
+  {
+   "pair": "frederick_jackson_turner → william_cronon",
+   "reason": "No turner node; the 1987 WHQ essay and the Turner professorship stay in the chronology."
+  },
+  {
+   "pair": "william_cronon → biography",
+   "reason": "The Muir (1996) and Eiseley (2016) editions are editorial work, not biographical argument."
+  }
+ ],
+ "chronology_events_added": [
+  {
+   "id": "cronon_born_1954",
+   "label": "Born, New Haven, Connecticut",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1954,
+    "precision": "day",
+    "month": 9,
+    "day": 11
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 1: 'Born September 11, 1954, New Haven, Connecticut'; Wikidata Q8007305 P569 agrees.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_oxford_yale_1981",
+   "label": "D.Phil., Oxford (Coventry's energy, 1860–1950); assistant professor of history, Yale",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1981,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 1 (D.Phil. May 1981; Yale 1981–86).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_parkman_1984",
+   "label": "Francis Parkman Prize for Changes in the Land",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 1984,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 2 (books list): 'Francis Parkman Prize for 1984'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_macarthur_1985",
+   "label": "MacArthur Fellowship (1985–90)",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 1985,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 15: 'MacArthur Fellowship, 1985-90'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_aseh_president_1989",
+   "label": "President, American Society for Environmental History (1989–93)",
+   "kind": "institution_office",
+   "track": "context",
+   "date": {
+    "year": 1989,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 15: 'Elected President, American Society for Environmental History, 1989-93'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_modes_1990",
+   "label": "“Modes of Prophecy and Production: Placing Nature in History” (JAH round table)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1990,
+    "precision": "month",
+    "month": 3
+   },
+   "source_ids": [
+    "graph:pe131_cronon_modes_1990"
+   ],
+   "support": "JAH 76:4 (March 1990), 1122–31; unread (graph record); CV p. 7 confirms.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_phd_1990",
+   "label": "Ph.D., Yale (American history)",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1990,
+    "precision": "month",
+    "month": 12
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 1: 'Ph.D., Yale University, December 1990'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_bancroft_1992",
+   "label": "Bancroft Prize for Nature's Metropolis",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 1992,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_bancroft_list"
+   ],
+   "support": "Columbia's list of previous awards: 1992, 'Nature's Metropolis: Chicago and the Great West'; the CV adds the ASEH's Marsh Prize (1992) and the FHS Weyerhaeuser Award (1993).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_place_stories_1992",
+   "label": "“A Place for Stories: Nature, History, and Narrative” (ABC-Clio Prize 1993)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1992,
+    "precision": "month",
+    "month": 3
+   },
+   "source_ids": [
+    "graph:pe131_cronon_place_stories_1992"
+   ],
+   "support": "JAH 78:4 (March 1992), 1347–1376; read in part (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_wisconsin_1992",
+   "label": "Frederick Jackson Turner Professor of History, Geography and Environmental Studies, University of Wisconsin–Madison",
+   "kind": "life",
+   "track": "context",
+   "date": {
+    "year": 1992,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 1: '1992-2003, Frederick Jackson Turner Professor'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_uses_1993",
+   "label": "“The Uses of Environmental History” (ASEH presidential address)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 1993,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:pe131_cronon_uses_1993"
+   ],
+   "support": "Environmental History Review 17:3 (Fall 1993), 1–22; read (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_weyerhaeuser_1994",
+   "label": "Series editor, Weyerhaeuser Environmental Books, University of Washington Press (to 2014)",
+   "kind": "institution_office",
+   "track": "context",
+   "date": {
+    "year": 1994,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 2: 'I served from 1994-2014 as series editor, acquiring, editing, and writing forewords for all titles'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_eh_forum_1996",
+   "label": "The wilderness essay reprinted in Environmental History 1:1 with comments by Hays, Cohen and Dunlap and his response",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1996,
+    "precision": "month",
+    "month": 1
+   },
+   "source_ids": [
+    "graph:p4c_eh_wilderness_forum_1996"
+   ],
+   "support": "Crossref issue listing (January 1996, pp. 7–55); comments and response unread.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_callicott_nelson_1998",
+   "label": "Callicott and Nelson, eds., The Great New Wilderness Debate (with Foreman's “Wilderness Areas for Real”)",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 1998,
+    "precision": "month",
+    "month": 6
+   },
+   "source_ids": [
+    "graph:p4c_callicott_nelson_1998"
+   ],
+   "support": "UGA Press page: published 1 June 1998; Foreman's chapter per his own reference (2000, p. 38).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_foreman_2000",
+   "label": "Foreman, “The Real Wilderness Idea” (delivered May 1999; printed 2000)",
+   "kind": "reception_publication",
+   "track": "reception",
+   "date": {
+    "year": 2000,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_foreman_real_2000"
+   ],
+   "support": "USDA Forest Service proceedings RMRS-P-15-VOL-1 (2000), 32–38; read in full. The conference date (23–27 May 1999) is on the proceedings header.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_apostle_2003",
+   "label": "“The Riddle of the Apostle Islands” (Orion)",
+   "kind": "publication",
+   "track": "contributions",
+   "date": {
+    "year": 2003,
+    "precision": "month",
+    "month": 5
+   },
+   "source_ids": [
+    "graph:p4c_cronon_apostle_2003"
+   ],
+   "support": "Orion 22:3 (May–June 2003), 36–42; read in full in OCR.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_afterword_2003",
+   "label": "Changes in the Land, 20th-anniversary edition with a new afterword",
+   "kind": "edition_publication",
+   "track": "editions",
+   "date": {
+    "year": 2003,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:cronon_changes_afterword"
+   ],
+   "support": "Hill and Wang 2003; afterword read (graph record).",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_aseh_scholar_2008",
+   "label": "ASEH Distinguished Scholar Award; Fellow of the Forest History Society",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 2008,
+    "precision": "month",
+    "month": 3
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 14: 'Distinguished Scholar Award, American Society for Environmental History, March 2008'; 'Fellow, Forest History Society, March 2008'.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_aha_president_2012",
+   "label": "President of the American Historical Association (2012–13); nine Perspectives on History columns",
+   "kind": "institution_office",
+   "track": "context",
+   "date": {
+    "year": 2012,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 14: 'Elected, President of the American Historical Association, 2012-2013'; columns listed p. 8.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_storytelling_2013",
+   "label": "“Storytelling”, AHA presidential address, New Orleans (AHR 118:1, February 2013)",
+   "kind": "lecture_delivery",
+   "track": "contributions",
+   "date": {
+    "year": 2013,
+    "precision": "day",
+    "month": 1,
+    "day": 4
+   },
+   "source_ids": [
+    "graph:p4c_cronon_storytelling_2013"
+   ],
+   "support": "Delivered 4 January 2013 (Wisconsin department gallery page); published AHR February 2013; open text read in passages.",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_marshall_2014",
+   "label": "Robert Marshall Award, The Wilderness Society; series editorship passes to Paul Sutter",
+   "kind": "award",
+   "track": "context",
+   "date": {
+    "year": 2014,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 14 ('Robert Marshall Award … 2014') and p. 2 ('Paul Sutter succeeded me in this role in 2014').",
+   "basis": "period4_wave1_2026-10-23"
+  },
+  {
+   "id": "cronon_nature_recits_2016",
+   "label": "Nature et Récits: Essais d'histoire environnementale (French selection, Éditions Dehors)",
+   "kind": "edition_publication",
+   "track": "editions",
+   "date": {
+    "year": 2016,
+    "precision": "year"
+   },
+   "source_ids": [
+    "graph:p4c_cronon_cv"
+   ],
+   "support": "CV p. 2: translation by Mathias Lefèvre, preface by Grégory Quenet.",
+   "basis": "period4_wave1_2026-10-23"
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "p4c_cronon_cv",
+   "title": "William Cronon, Curriculum Vita (author's website, PDF, page revision 2018).",
+   "citation": "William Cronon, Curriculum Vita (author's website, PDF, page revision 2018).",
+   "url": "https://www.williamcronon.net/biography/wjc_cv.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read in full (8 pp.) for the period-4 wave (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §1.1): posts, honours, the Weyerhaeuser series editorship 1994–2014, the publication list and the dissertations directed. Page numbers from the running heads 'William Cronon, Vita, Page n'. The site answers only to a browser user-agent. A personal e-mail address printed on p. 1 was not used."
+   }
+  },
+  {
+   "id": "p4c_cronon_storytelling_2013",
+   "title": "William Cronon, “Storytelling” (AHA presidential address, delivered 4 January 2013, New Orleans), American Historical Review 118, no. 1 (February 2013): 1–19.",
+   "citation": "William Cronon, “Storytelling” (AHA presidential address, delivered 4 January 2013, New Orleans), American Historical Review 118, no. 1 (February 2013): 1–19.",
+   "url": "https://doi.org/10.1093/ahr/118.1.1",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Open text on the AHA site (https://www.historians.org/presidential-address/william-cronon/) read in passages (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §1.3): 'I was elected two years ago as the first self-described environmental historian ever to serve as president of the AHA'; 'How do we make the past come alive? By telling stories about it'; 'Our core business is resurrection: helping the dead past live again'; 'The digital revolution has created endless opportunities via blogs, websites, YouTube, and social media'; 'connect our professional stories with the concerns of the wider public'; n. 14 refers to 'A Place for Stories' (1992). The OUP page (paywalled) confirms title, section 'Presidential Address', pp. 1–19 and online date 4 February 2013. Delivery date and place from the Wisconsin history department's gallery page ('delivered on Friday, January 4, 2013 in the New Orleans Marriott')."
+   }
+  },
+  {
+   "id": "p4c_cronon_apostle_2003",
+   "title": "William Cronon, “The Riddle of the Apostle Islands: How Do You Manage a Wilderness Full of Human Stories?,” Orion 22, no. 3 (May–June 2003): 36–42.",
+   "citation": "William Cronon, “The Riddle of the Apostle Islands: How Do You Manage a Wilderness Full of Human Stories?,” Orion 22, no. 3 (May–June 2003): 36–42.",
+   "url": "https://www.williamcronon.net/writing/Cronon_Riddle_Apostle_Islands.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Author-hosted scan (7 pp., no text layer) OCR'd locally and read in full (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.2 and P6); the running head 'MAY | JUNE 2003 ORION 39' fixes the pagination. Passages: the islands 'inhabited by Ojibwe peoples for centuries'; 'a wilderness in which natural and human histories are intimately intermingled'; designation: 'Emphatically yes'; 'manage the Apostle Islands as a historical wilderness'; policy 'should equally protect stories—stories of wild nature, stories of human history. It is a storied wilderness.' Cites Laura Watt on Point Reyes."
+   }
+  },
+  {
+   "id": "p4c_eh_wilderness_forum_1996",
+   "title": "“The Trouble with Wilderness” forum, Environmental History 1, no. 1 (January 1996): William Cronon, “The Trouble with Wilderness: Or, Getting Back to the Wrong Nature,” 7–28; Samuel P. Hays, “Comment: The Trouble with Bill Cronon's Wilderness,” 29–32; Michael P. Cohen, “Comment: Resistance to Wilderness,” 33–42; Thomas R. Dunlap, “Comment: But What Did You Go Out into the Wilderness to See?,” 43–46; William Cronon, “The Trouble with Wilderness: A Response,” 47–55.",
+   "citation": "“The Trouble with Wilderness” forum, Environmental History 1, no. 1 (January 1996): William Cronon, “The Trouble with Wilderness: Or, Getting Back to the Wrong Nature,” 7–28; Samuel P. Hays, “Comment: The Trouble with Bill Cronon's Wilderness,” 29–32; Michael P. Cohen, “Comment: Resistance to Wilderness,” 33–42; Thomas R. Dunlap, “Comment: But What Did You Go Out into the Wilderness to See?,” 43–46; William Cronon, “The Trouble with Wilderness: A Response,” 47–55.",
+   "url": "https://doi.org/10.2307/3985063",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Crossref listing of the issue and the OUP pages checked (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.1): DOIs 10.2307/3985059–3985063; the first number of the merged journal (editor's note by Hal Rothman, p. 6). The comments and the response are unread (OUP: 'This content is only available as a PDF', subscribers only). Hays's words are carried only as quoted by Foreman (2000, p. 32) and are marked for re-verification."
+   }
+  },
+  {
+   "id": "p4c_foreman_real_2000",
+   "title": "Dave Foreman, “The Real Wilderness Idea,” in David N. Cole, Stephen F. McCool, Wayne A. Freimund and Jennifer O'Loughlin, comps., Wilderness Science in a Time of Change Conference, Volume 1: Changing Perspectives and Future Directions; 1999 May 23–27; Missoula, MT, Proceedings RMRS-P-15-VOL-1 (Ogden, UT: USDA Forest Service, Rocky Mountain Research Station, 2000), 32–38.",
+   "citation": "Dave Foreman, “The Real Wilderness Idea,” in David N. Cole, Stephen F. McCool, Wayne A. Freimund and Jennifer O'Loughlin, comps., Wilderness Science in a Time of Change Conference, Volume 1: Changing Perspectives and Future Directions; 1999 May 23–27; Missoula, MT, Proceedings RMRS-P-15-VOL-1 (Ogden, UT: USDA Forest Service, Rocky Mountain Research Station, 2000), 32–38.",
+   "url": "https://www.wilderness.net/NWPS/documents/science1999/Volume1/Foreman_1-5.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "US government publication read in full from the federal wilderness.net archive (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.2). p. 32: 'I come not to praise The Received Wilderness Idea, but to bury it'; 'Baird Callicott, Bill Cronon and other postmodern deconstructionist scholars'; 'This Received Wilderness Idea is a straw dog; it does not exist on the ground'; Hays 1996 quoted: 'Cronon's wilderness is a world of abstracted ideas…but divorced from the values and ideas inherent in wilderness action'. p. 33: his earlier reply 'in the Callicott/Nelson anthology, The Great New Wilderness Debate' (Foreman 1998, pp. 395–407 in his reference list, p. 38). Foreman signs as Chairman, The Wildlands Project."
+   }
+  },
+  {
+   "id": "p4c_callicott_nelson_1998",
+   "title": "J. Baird Callicott and Michael P. Nelson, eds., The Great New Wilderness Debate (Athens: University of Georgia Press, 1998).",
+   "citation": "J. Baird Callicott and Michael P. Nelson, eds., The Great New Wilderness Debate (Athens: University of Georgia Press, 1998).",
+   "url": "https://ugapress.org/book/9780820319841/the-great-new-wilderness-debate/",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-23",
+    "note": "Publisher page read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.3): published 1 June 1998, 712 pp.; 'an expansive, wide-ranging collection that addresses the pivotal environmental issues of the modern era'; thirty-nine essays on 'preservation' and 'wise use'. Contents not on the page; that it reprints Cronon's essay and Foreman's 'Wilderness Areas for Real' (395–407) rests on Foreman's own reference (2000, p. 38). Unread."
+   }
+  },
+  {
+   "id": "p4c_bancroft_list",
+   "title": "Columbia University Libraries, “The Bancroft Prizes: Previous Awards.”",
+   "citation": "Columbia University Libraries, “The Bancroft Prizes: Previous Awards.”",
+   "url": "https://library.columbia.edu/about/awards/bancroft/previous_awards.html",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-23",
+    "note": "Read (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §8): Donald Worster, 'Dust Bowl: The Southern Plains in the 1930s', under the 1980 award heading with 'Published by Oxford University Press (1979)' (re-read 2026-10-24); William Cronon, 'Nature's Metropolis: Chicago and the Great West', under 1992; Susan Lee Johnson, 'Roaring Camp', under 2001. 'A River Running West' does not appear."
+   }
+  }
+ ],
+ "source_addenda": {
+  "cronon": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1 (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §1.1): the author's books page and Columbia's list add the Bancroft Prize 1992 for Nature's Metropolis and the Francis Parkman Prize 1984 for Changes in the Land; Uncommon Ground is dated 1995 (hardback, 'Toward Reinventing Nature') with the 1996 paperback retitled 'Rethinking the Human Place in Nature' (CV p. 2)."
+  },
+  "cronon_wilderness": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1 (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §2.1): the January 1996 journal reprint appeared with comments by Hays (29–32), Cohen (33–42) and Dunlap (43–46) and a response by Cronon (47–55), DOIs 10.2307/3985060–3985063; all four unread (paywalled). Reprint record from the CV (p. 7): Best American Essays 1996; Miller and Rothman, Out of the Woods; abridged in the New York Times Magazine (13 August 1995) and Utne Reader (1996)."
+  },
+  "pe131_cronon_changes_1983": {
+   "status": "bibliographic_metadata_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1: the record's url now points to the author's own books page (Hill and Wang 1983; 20th-anniversary edition 2003); the publisher's page was unreachable (403, 2026-10-24); the earlier chapter reading is kept in the note without the route."
+  },
+  "cronon_changes_afterword": {
+   "status": "supporting_page_checked",
+   "checked_on": "2026-10-23",
+   "note": "Period-4 wave 1: the record's url now points to the author's own books page; the earlier reading of pp. 173–185 stands as recorded, its route no longer named; the publisher's anniversary-edition page was unreachable (403, 2026-10-24)."
+  }
+ },
+ "new_people": [],
+ "roster_additions": [
+  {
+   "node": "indigenous",
+   "proposal_id": "p4C_rel_02",
+   "row": {
+    "person_id": "william_cronon",
+    "role": "contributor",
+    "context": "Held wilderness to be a cultural invention whose making required 'The removal of Indians to create an \"uninhabited wilderness\"' (1995) and asked that the Apostle Islands, 'inhabited by Ojibwe peoples for centuries', be managed 'as a historical wilderness' (2003). Spence (1999) examined Indian removal in the making of national parks.",
+    "works": "'The Trouble with Wilderness' (1995); 'The Riddle of the Apostle Islands' (2003)",
+    "source_ids": [
+     "cronon_wilderness",
+     "p4c_cronon_apostle_2003"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "publichistory",
+   "proposal_id": "p4C_rel_03",
+   "row": {
+    "person_id": "william_cronon",
+    "role": "contributor",
+    "context": "Wrote for land managers and the public: the Apostle Islands as 'a storied wilderness' whose management 'should equally protect stories' (2003); as AHA president asked historians to 'connect our professional stories with the concerns of the wider public' (2013; passages read); Trust for Public Land board 2003–20.",
+    "works": "'The Riddle of the Apostle Islands' (2003); 'Storytelling' (2013)",
+    "source_ids": [
+     "p4c_cronon_apostle_2003",
+     "p4c_cronon_storytelling_2013",
+     "p4c_cronon_cv"
+    ],
+    "basis": "source_review"
+   }
+  },
+  {
+   "node": "digital_history",
+   "proposal_id": "p4C_rel_04",
+   "row": {
+    "person_id": "william_cronon",
+    "role": "contributor",
+    "context": "As AHA president wrote on 'The Public Practice of History in and for a Digital Age' and 'Scholarly Authority in a Wikified World' (2012; titles only) and told the association that 'The digital revolution has created endless opportunities' for historians' stories (2013; passages read).",
+    "works": "Perspectives on History columns (2012); 'Storytelling' (2013)",
+    "source_ids": [
+     "p4c_cronon_storytelling_2013",
+     "p4c_cronon_cv"
+    ],
+    "basis": "source_review"
+   }
+  }
+ ]
+}
