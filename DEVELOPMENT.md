@@ -1,5 +1,23 @@
 # Historiography: editorial and visualization working plan
 
+**Task 0 expanded — revision 1.159 (2026-10-24, local):** review all 148 remaining
+work candidates, preserve translations/coauthors/editors and flag the one unresolved
+truncated volume. Add supported contribution links alongside bibliography: White to
+economic history/capitalism in 1.158; O’Brien to settler colonialism, McKay to public
+history, Cook to Canadian women’s/gender history and Davis to memory in 1.159.
+Every candidate and all 45 relationship reviews are recorded in
+`data/extension-2026/remaining-work-review-2026-10-24/review-decisions.json`.
+No dissertation count is interpreted as an influence claim.
+
+**Task 0 — canonical-work gaps (2026-10-24, revision 1.157, local):** use the dissertation
+record to spot missing works in individual entries before expanding field panels. Richard
+White gains Railroaded (2011), the Republic (2017), earlier omissions and selected work to
+2022; seventeen dated facts, with editions and the 2020 California book discussion typed
+separately. His reading-profile bridge is added. The reproducible audit inventories all104
+individual entries, finds72 matches for review and148 remaining work/chronology candidates;
+name matches and title variants remain provisional. See the
+[task-0 report](data/field-research/canonical-work-gaps-2026-10-24/README.md).
+
 **History rewrite (2026-10-19):** source links to copies that were not official publications were
 corrected throughout the repository history (user decision), so every commit has a new ID. Old
 short IDs cited in these notes resolve through `data/history-rewrite-2026-10-19/commit-map.tsv`.

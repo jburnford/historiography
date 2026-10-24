@@ -94,6 +94,41 @@ class DissertationBrowserTests(unittest.TestCase):
         expect(self.page.locator('.archive-banner')).to_be_visible()
         expect(self.page.locator('.reading-context')).to_have_count(0)
 
+    def test_richard_white_later_work_and_reading_round_trip(self):
+        self.open('#focus=richard_white')
+        expect(self.page.locator('.entry.selected [data-event="rw157_railroaded"]')).to_have_count(1)
+        expect(self.page.locator('.entry.selected [data-event="rw157_jane"]')).to_have_count(1)
+        expect(self.page.locator('.field-panel')).to_contain_text('2022')
+        self.open('#person=richard_white')
+        expect(self.page.locator('.person-profile')).to_contain_text('Railroaded (2011)')
+        expect(self.page.locator('.person-map [data-event="rw157_jane"]')).to_have_count(1)
+        for nid in ['economic','capitalismdebates']:
+            context = self.page.locator('.person-affiliation').filter(has=self.page.locator('.person-evidence')).filter(has=self.page.locator('h3 a[href*="node='+nid+'"]'))
+            expect(context).to_contain_text('Railroaded')
+            context.locator('.person-evidence > summary').click()
+            context.get_by_role('link',name='Inspect the existing relationship').click()
+            expect(self.page.locator('.reading-panel')).to_contain_text('2011')
+            expect(self.page.locator('.reading-panel')).to_contain_text('complete book is unread')
+            self.open('#person=richard_white')
+        self.page.screenshot(path=str(self.artifacts/'reading-white-connections.png'),full_page=True)
+        self.page.locator('.reading-context a',has_text='Railroaded').click()
+        expect(self.page.locator('.reading-detail>h3')).to_have_text('White, Railroaded')
+        expect(self.page.locator('.reading-counts>div').first).to_contain_text('51')
+        self.page.locator('.reading-teaching a[href="#person=richard_white"]').click()
+        expect(self.page.locator('.person-profile')).to_be_visible()
+
+    def test_reviewed_books_credit_and_posthumous_editions(self):
+        for nid, eid, text in [('jean_obrien','cw159_022','Firsting and Lasting'),
+                              ('ian_mckay','cw159_064','Jamie Swift'),
+                              ('natalie_zemon_davis','cw159_125','Randolph Starn')]:
+            self.open('#focus='+nid)
+            expect(self.page.locator('.entry.selected [data-event="'+eid+'"]').first).to_be_visible()
+            self.open('#node='+nid)
+            expect(self.page.locator('.reading-panel')).to_contain_text(text)
+        self.open('#node=foucault')
+        expect(self.page.locator('.reading-panel')).to_contain_text('posthumous')
+        expect(self.page.locator('.reading-panel')).to_contain_text('James D. Faubion')
+
     def test_phone_navigation_and_contained_charts(self):
         for width in (320,390,430,768):
             self.page.set_viewport_size({'width':width,'height':844})

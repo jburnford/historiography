@@ -1,6 +1,40 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.154 (2026-10-23): the question of class, trimmed
+## Current revision 1.159 (2026-10-24): dissertation-guided work review
+
+All 148 remaining discovery records across 45 individual entries have explicit decisions:
+100 repair or expand bibliography/chronology; 47 are already represented or translated/edition
+variants; one truncated Foucault volume remains unresolved. The batch revises 36 individual
+entries, adds 94 dated facts across 39 chronologies (90 individual, four field facts), 45
+scoped bibliography sources and four contribution edges: O’Brien → settler colonialism,
+McKay → public history, Cook → Canadian women’s/gender history, Davis → memory history.
+Credits, original/translation dates, posthumous collections, prior events and review-year
+coverage are preserved. No career interval is inferred. Counts: 203 entries, 1,261
+relationships, 2,445 sources and 1,355 people. See
+[data/production-batches/person-works-1.159/README.md](data/production-batches/person-works-1.159/README.md).
+
+## Historical revision 1.158 (2026-10-24): White’s economic and capitalism connections
+
+Two scoped contributions from Richard White’s *Railroaded* to `economic` and
+`capitalismdebates`, supported by selected first-person interview passages. Both field
+rosters and dated selections include the work; the capitalism entry gains a corporate
+finance/public-power strand. One source added; old edges and review-year coverage remain.
+Counts at this revision: 203 entries, 1,257 relationships, 2,400 sources, 1,355 people.
+See [acceptance](data/production-batches/person-links-1.158/acceptance.json).
+
+## Historical revision 1.157 (2026-10-24): Richard White’s selected works
+
+A dissertation-guided bibliography and chronology repair. Richard White’s individual
+entry retains every earlier relationship and qualification, adds ten scoped sources,
+and expands four dated facts to seventeen through 2022. Original publication, working
+paper, book discussion and edition events are explicit; the 1998 Ahanagran original
+and 2003 paperback, and the 1991 Middle Ground and 2011 anniversary edition remain
+separate. No career interval, new edge or comprehensive later-work review is asserted.
+Counts: 203 entries, 1,255 relationships, 2,399 sources and 1,355 people. See
+[data/production-batches/person-works-1.157/README.md](data/production-batches/person-works-1.157/README.md).
+
+
+## Historical revision 1.154 (2026-10-23): the question of class, trimmed
 
 A pathway revision on 1.153. The user asked whether stops 9–13 "really fit" and agreed to the cut:
 `question_of_class` now has 10 entries: the British chain (Thompson, Stedman Jones, Scott, Palmer,

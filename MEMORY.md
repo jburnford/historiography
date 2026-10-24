@@ -1,5 +1,197 @@
 # Project memory and visualization handoff
 
+## Publication authorized — 2026-10-24: canonical-work repair
+
+The user explicitly requested **push** for the reviewed local revisions1.157–1.159.
+Preparing a combined commit and deployment; final remote validation status will be
+recorded after GitHub completes. Only task-related changes are included.
+
+## Task 0 expanded and White’s missing edges repaired locally — 2026-10-24
+
+User asked **repeat on the remaining 148**, then pointed out missing Richard White
+relationships to economic history/history of capitalism. Completed local revisions
+**1.158–1.159** on top of local 1.157. **No new commit, push or deployment.** Live
+release remains af7049a (1.156). OpenAlex stays paused; unrelated research untouched.
+
+- 1.158: two directed contribution edges, White→economic (edge_1256) and
+  White→capitalismdebates (edge_1257), from selected first-person Railroaded
+  interview passages (Diane Rehm, 13 June 2011), source rw158_rehm_2011. Both
+  field rosters link to their edges, both chronologies include 2011, capitalism
+  gains a corporate-finance/public-power strand. Complete book unread. 1.159
+  also fixes economic’s visible chronology label through 2011.
+- 1.159: all148 frozen candidates reviewed across45 individuals. 62 add a
+  selected work/chapter/collection/edition;38 expand an existing reading or date;
+  13 already represented;34 translation/reprint/retitling reconciliations;1
+  unresolved. **36 individual entries revised,33 individual chronologies,
+  94 new events (90 individual/four field),45 scoped sources, four edges**.
+  O’Brien→settler_colonialism, McKay→publichistory (Bates credited),
+  Cook→cdn_women_gender (Mitchinson credited), Davis→memory (joint Starn
+  introduction to Representations26,1989). No book-body reading, influence or
+  agreement is inferred from counts/metadata. Prior events/edges/source records,
+  field-review years and intervals preserved. No identity/citation merges.
+- All148 per-row decisions +45 individual relationship rationales:
+  data/extension-2026/remaining-work-review-2026-10-24/review-decisions.json.
+  Ledger pins the unchanged after/candidates.csv snapshot at1.157. Human table:
+  data/field-research/canonical-work-gaps-2026-10-24/reviewed/decisions.csv.
+  Audit --review-ledger validates exact coverage, source/event pointers and
+  frozen input; current result1 pending (57 raw title flags,56 reconciled).
+  Pending93 is W:foucault|sexualitetens historia, truncated/mixed-language
+  História da sexualidade, Vol; cannot infer volume or merge into volumeI.
+- Corrected dates/credits include Stoler Sexual Affronts original1992 rather
+  than corpus reprint1997; Greer Colonial Saints is a2000 article, not the2003
+  edited book; Foucault lecture courses and posthumous French/English editions
+  separately dated; Bloch Strange Defeat posthumous1946 rather than1990 reprint.
+- Totals **203 entries,1261 edges,2445 sources,1355 shared people**. Public graph
+  7.51MB;52-file allowlist. Exact2000 graph, publication evidence, profile pilot
+  and seminar pathways remain byte-identical. No PDFs/raw citations/research
+  HTML/local keys published. Dissertation bucket counts unchanged.
+- Packets white-capitalism-2026-10-24 and remaining-work-review-2026-10-24;
+  acceptances person-links-1.158 and person-works-1.159. Exact reconstruction
+  passes. Applier now reverses hash-checked acceptance chains to recover earlier
+  local revisions when ignored snapshots/intermediate commits are absent; test
+  covers all1.157/1.158/1.159 without baseline snapshots.
+- Validation96Python,57JavaScript pass. All51browser cases pass (50 on the full run; White’s expanded relationship
+  check passes after correcting URL/disclosure/strand selectors). Final White
+  log /tmp/canonical-review-white-browser.log; screenshot
+  site/test-results/reading-white-connections.png inspected.
+  Product graph/source exports built; source/build agreement unchanged. Preview
+  may still run on localhost4192, docs only. No push requested for these batches.
+
+
+## Task 0 complete locally — 2026-10-24: canonical-work gaps and Richard White
+
+The user agreed to broader entry/reading integration, then prioritized **task 0**:
+use the dissertation graph to find canonical works missing from individual entries;
+Railroaded is missing from Richard White and his career appears to end in1995.
+Implemented revision **1.157**, local only. **No commit, push or deployment** for
+this task. Previous af7049a dissertation integration remains the live release.
+
+- Richard White: selected chronology grows from4 facts (1980–1995) to17
+  (1980–2022), with every original fact unchanged. Added selected readings include
+  It's Your Misfortune (1991), Remembering Ahanagran (1998), Nationalization of
+  Nature (1999), What is Spatial History? (2010), Railroaded (2011), Republic
+  (2017), California Exposures (documented2020), Who Killed Jane Stanford? (2022).
+  Ahanagran's2003 Washington paperback/Cronon foreword and Middle Ground's2011
+  anniversary edition are separate edition events. The California point dates
+  the documented book discussion, credits photographer Jesse Amble White, and
+  does not claim an independently checked first-publication day.
+- Ten sources added with explicit metadata/description/selected-paragraph limits.
+  New books remain unread. Description/bibliography/date label/scope are expanded;
+  earlier arguments and source qualifications are preserved. No people, edges,
+  roster placements, career intervals or field-review years are added/changed.
+  Totals:203 entries,1255 edges,2399 sources,1355 people. Archive, publication
+  evidence, profile pilot and pathways remain byte-identical toHEAD.
+- Existing person-entry applier, packet
+  `data/extension-2026/canonical-work-gaps-2026-10-24/`, acceptance
+  `data/production-batches/person-works-1.157/`. Exact --check passes both with
+  the local1.156 snapshot and with the snapshot absent (CI-style recovery).
+- Added White's reviewed reading bridge through Railroaded, Middle Ground,
+  Organic Machine and It's Your Misfortune. The inherited `white|richard d`
+  key is not an accepted middle initial. Toronto/Australian namesake work splits
+  remain separate. Bibliography and citation records are otherwise unchanged;
+  public links asset regenerated, source buckets and citation counts unchanged.
+- New reproducible `scripts/audit_canonical_work_gaps.py`, reading the frozen
+  release (no large graph load/network). All104 individual entries inventoried;
+  72 have an explicit teaching link or unique first/surname discovery candidate;
+  unmatched/ambiguous cases retained. Before153 and after148 work/chronology
+  flags. All five White candidates at10+ citing dissertations resolved:
+  Railroaded51, It's Your Misfortune50, Work/Nature20 (timeline only),
+  Nationalization15, Republic10. Counts are distinct dissertations per work
+  record, include missing-year dissertations, and do not sum title variants.
+  The one-citation2021 Railroaded variant is not used to date the2011 book.
+  **The148 are review candidates, not confirmed canonical omissions**; translations,
+  alternate titles, notes, editions and namesakes need checking. No other person's
+  content changed. Outputs/report under
+  `data/field-research/canonical-work-gaps-2026-10-24/{before,after}/`.
+- Tests:92 Python cases,57 JavaScript cases,50 browser cases pass, including a
+  new White timeline/profile/reading round trip and namesake/edition/preservation
+  tests. New data test added toCI. Build refreshed and source/build files match.
+  Current preview remains `http://localhost:4192/#focus=richard_white`; server
+  exec31367 serves docs only. OpenAlex paused. Unrelated files/prior memory edits
+  preserved. Next: review these local changes, then use the candidate queue to
+  select the next individual repairs before wider field-panel expansion.
+
+
+## Published — 2026-10-24: dissertation reading integration
+
+After approving the preview, the user explicitly requested **"push"**. Commit
+**af7049a** (Integrate dissertation reading into History in Conversation) is pushed
+to `origin/main`. The commit includes only the reviewed website, exports, builder,
+tests and relevant documentation. Existing unrelated research/download work and
+prior MEMORY edits remain local and unstaged.
+
+GitHub Pages deployment **40107922031 succeeded**. The live homepage, reading module
+and dissertation search index match the committed build byte-for-byte. Two browser
+checks against the public site pass: a direct Cronon source URL with exact
+counts/lazy loading, and keyboard search → work → teaching profile → reading.
+Public route: `https://jimclifford.ca/historiography/#tab=dissertations`.
+
+Validation **40107922306 succeeded**, including data tests, view tests, the site
+rebuild, browser acceptance and exact committed-build agreement (3m43s). Both
+validation and Pages deployment are green. The earlier local checks and
+implementation details remain in the preview handoff below. OpenAlex is paused;
+no unrelated files, PDFs, raw citation strings or credentials published.
+
+
+## Local preview — 2026-10-24: dissertation reading in History in Conversation
+
+The user asked for a review of residual map/atlas framing and the dissertation graph's
+absence from the main site, then said **"ok, continue with your plan"**. They clarified
+that the comparison HTML in `summary/comparisons/` is not ready but can be built on.
+A new view is implemented in the main frontend; the experimental HTML is preserved
+and is not embedded or copied into the build. **No commit, push or publication in this
+turn.** The live site was verified at revision1.156 before this work. Latest remote
+check/deployment1141910 succeeded; the prior failure79223a3 was a stale roster-count
+expectation already fixed before this task.
+
+- The landing introduces questions and twelve family links before the publication
+  comparison. Dissertation reading is a fourth main navigation route (Reading on
+  phones), alongside families, timeline and circles. Current labels/metadata explain
+  the project; About this project replaces Reading this map. Legacy URL values and
+  internal identifiers remain compatible. Historical bibliography titles are intact.
+- New `site/dissertations.mjs` and `.css`: `#tab=dissertations`, with stable `source`
+  bibliography keys. Search people/works; compare citation shares and exact counts;
+  explore selected works, companions and regional literature; inspect provisional
+  family mixtures and example repository records. The chart fits phone widths;
+  wide tables scroll within their containers and companion detail is collapsible.
+- Frozen research preview: release2026-10-23, **7,107 in analysis, 6,794 with years,
+  313 without years excluded**, **4,037 searchable sources**. The prototype's last
+  bin includes98 degrees dated2026, so the public label is **2020–2026**, partial.
+  Counts themselves are unchanged. Coverage includes institutions/countries,
+  region-period denominators, notes/bibliography differences, parser/identity
+  qualifications, small samples and model limits. These are sampled repositories.
+- Explicit teaching links (`data/dissertation-layer/links.json`): Cronon, Worster,
+  Stoler, Trouillot, Thompson, reviewed through named works; environmental history
+  and archival-turn entry panels select two roster people each. No automatic
+  identity crosswalk, field membership, field-readership estimate or influence
+  relationship is accepted. Current panels are omitted from archived entries.
+- `scripts/build_dissertation_site.py` checks every source count against distinct
+  dated dissertations in the frozen release and exactly reproduces region-period
+  denominators. Outputs: search index, teaching links and32 hashed source buckets,
+  **34 files, 22.67MB total; largest file0.80MB**. Only the index/links and requested
+  bucket load; the landing fetches no dissertation data, and direct reading routes
+  do not load the7.39MB teaching graph. Examples are public metadata, no raw strings.
+- The52-file allowlisted site build copies hash-checked exports from
+  `data/dissertation-layer/site/`. It cannot include research HTML, PDFs, footnote
+  prose, credentials or local paths. CI uses checked-in exports, no large graph load.
+  Workflow label now Check History in Conversation; export checks are added to CI.
+- Validation: **89 Python cases,57 JavaScript cases,49 browser cases pass**.
+  After visual refinements, all ten dissertation/mobile cases pass again. Desktop
+  and phone screenshots inspected in `site/test-results/reading-*`. Graph, pathways,
+  overview, archived graph, publication evidence and profile-pilot assets all match
+  HEAD byte-for-byte. Changed page assets exactly match their built copies.
+- Preview is running outside the sandbox, exec **31367**, port **4192**, serving
+  **docs/** only: `http://localhost:4192/#tab=dissertations`. Curl confirmed it
+  responds. Browser launch and cross-session preview serving need escalation in
+  this environment; the sandbox Chromium launch stalls. No new dependencies.
+- Existing unrelated untracked download/research files and the prior MEMORY edits
+  remain intact. OpenAlex is paused. Next: user review of the integrated research
+  preview, further data/identity checks and wider curated links if useful. Advisor
+  genealogy and the full network remain later work. Publishing requires explicit
+  user instruction per `site/README.md`; none was requested in this turn.
+
+
+
 ## Current handoff — 2026-10-15: whole-project chronology implementation
 
 The user reviewed the historical pilot and requested: **“Can you build this out

@@ -1,8 +1,8 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.156**, schema 1.6,
-contains **203 entries, 1,255 relationships, 2,389 sources, 1,355 shared people and
+The curated JSON remains authoritative. Current revision **1.159**, schema 1.6,
+contains **203 entries, 1,261 relationships, 2,445 sources, 1,355 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
@@ -21,7 +21,7 @@ The public comparisons include 6,794 dissertations with years, from 7,107 in ana
 The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
 regional numerators/denominators, institution coverage, missing years, notes extraction,
 small samples and provisional family labels remain visible. Examples link to original
-repository records. Teaching links cover Cronon, Worster, Stoler, Trouillot and Thompson;
+repository records. Teaching links cover Cronon, Worster, Stoler, Trouillot, Thompson and Richard White;
 field panels cover environmental history and the archival turn. They are explicit
 selections, not automatic matches or field-readership estimates. Archived entries retain
 their original selection and do not receive the new context panels.
@@ -48,10 +48,10 @@ allowlisted files, including eight JavaScript modules, two stylesheets, six teac
 and publication-record JSON assets, and 34 dissertation metadata assets. The builder
 validates graphs, checks the dissertation export hashes and refuses unexpected output
 files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The build includes revision 1.156 and the dissertation reading research preview.
+build. The build includes revision 1.159 and the dissertation reading research preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
-the full 7.39 MB graph once. Selected profiles lazily load the separate record
+the full 7.51 MB graph once. Selected profiles lazily load the separate record
 pilot once. Failed downloads have retries. The pilot retains the weaker teaching-identity
 and source-credit identity link and distinguishes journal items, books reviewed
 and reviews written. See [student trial](../STUDENT-TESTING.md) and

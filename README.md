@@ -22,13 +22,13 @@ their details into view. Search, collapsible filters and full text alternatives 
 **Dissertation reading — research preview.** A fourth main route lets visitors search
 cited people and works, compare their use over time and across regions, inspect companion
 literature and open example dissertation repository records. Environmental history, the
-archival turn and five selected profiles connect the reading record to the teaching entries.
+archival turn and six selected profiles connect the reading record to the teaching entries.
 It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included in analysis;
 coverage and extraction limits accompany the figures. The experimental comparison pages
 remain research prototypes. See [frontend details](site/README.md).
 
-Production data revision **1.156** (schema 1.6): 203 entries,
-1,255 teaching relationships, 2,389 bibliography records, 1,355
+Production data revision **1.159** (schema 1.6): 203 entries,
+1,261 teaching relationships, 2,445 bibliography records, 1,355
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.

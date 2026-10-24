@@ -331,6 +331,23 @@ class Batch:
         record = read(self.out / 'acceptance.json')
         if sha(GRAPH) == record['production_sha256']:
             return read(GRAPH)
+        # Several accepted local batches can precede one commit. Recover them
+        # from the current graph and hash-checked acceptance records, so a clean
+        # checkout need not contain ignored snapshots or intermediate commits.
+        graph = read(GRAPH)
+        while graph['revision_history'][-1]['version'] != self.rev:
+            latest = graph['revision_history'][-1]
+            path = ROOT / latest.get('acceptance_record', '')
+            if not path.is_file():
+                break
+            step = read(path)
+            if not step.get('prior_records') or hashlib.sha256(serial(graph).encode()).hexdigest() != step.get('production_sha256'):
+                break
+            graph = self.restore_baseline(graph, step)
+            if hashlib.sha256(serial(graph).encode()).hexdigest() != step['baseline_sha256']:
+                raise ValueError('Acceptance-chain baseline hash differs: ' + latest['version'])
+        if hashlib.sha256(serial(graph).encode()).hexdigest() == record['production_sha256']:
+            return graph
         from scripts.build_site import load_baseline
         graph, _ = load_baseline(dict(baseline_graph=f'drafts/historiography-1920-2000.v{self.rev}.json',
                                       baseline_sha256=record['production_sha256']))
@@ -338,29 +355,33 @@ class Batch:
             raise ValueError(f'Accepted {self.rev} graph unavailable')
         return graph
 
+    @staticmethod
+    def restore_baseline(graph, record):
+        before = deepcopy(graph)
+        for table, length in record['previous_table_lengths'].items():
+            before[table] = before[table][:length]
+        for table, rows in record['prior_records'].items():
+            for i, row in enumerate(before[table]):
+                if row['id'] in rows:
+                    before[table][i] = deepcopy(rows[row['id']])
+        if 'previous_claim_source_records' in record:
+            cc = before['claim_catalogue']
+            cc['source_records'] = cc['source_records'][:record['previous_claim_source_records']]
+        for field in ('layers', 'periods'):
+            if 'prior_' + field in record:
+                before[field] = deepcopy(record['prior_' + field])
+        claims = before['claim_catalogue']['claims']
+        for i, c in enumerate(claims):
+            if c['id'] in record.get('prior_claims', {}):
+                claims[i] = deepcopy(record['prior_claims'][c['id']])
+        return before
+
     def baseline(self):
         record = read(self.out / 'acceptance.json')
         if self.base.exists():
             before = read(self.base)
         else:
-            before = deepcopy(self.accepted_graph())
-            for table, length in record['previous_table_lengths'].items():
-                before[table] = before[table][:length]
-            for table, rows in record['prior_records'].items():
-                for i, row in enumerate(before[table]):
-                    if row['id'] in rows:
-                        before[table][i] = deepcopy(rows[row['id']])
-            if 'previous_claim_source_records' in record:
-                cc = before['claim_catalogue']
-                cc['source_records'] = cc['source_records'][:record['previous_claim_source_records']]
-            if 'prior_layers' in record:
-                before['layers'] = deepcopy(record['prior_layers'])
-            if 'prior_periods' in record:
-                before['periods'] = deepcopy(record['prior_periods'])
-            claims = before['claim_catalogue']['claims']
-            for i, c in enumerate(claims):
-                if c['id'] in record.get('prior_claims', {}):
-                    claims[i] = deepcopy(record['prior_claims'][c['id']])
+            before = self.restore_baseline(self.accepted_graph(), record)
         if hashlib.sha256(serial(before).encode()).hexdigest() != record['baseline_sha256']:
             raise ValueError(f"Exact {self.cfg['baseline_revision']} baseline recovery differs")
         return before

@@ -12,8 +12,7 @@ region-period denominators. The export contains 6,794 dated dissertations from
 period's label is corrected to 2020–2026 because 98 included records are dated 2026.
 This changes the label, not the underlying bin assignments or research snapshot.
 
-`links.json` records a small editorial selection: Cronon, Worster, Stoler, Trouillot
-and Thompson, connected through named works. Field links select two roster people
+`links.json` records a small editorial selection: Cronon, Worster, Stoler, Trouillot, Thompson and Richard White, connected through named works. Field links select two roster people
 each for environmental history and the archival turn. They do not classify a
 dissertation into a teaching field, estimate a field's readership or independently
 resolve every occurrence behind a bibliography name key. No general identity
@@ -35,3 +34,7 @@ sampling and model limits remain visible.
 Validation covers count reconciliation, public fields, source-label references,
 URL escaping, deep links, loading recovery, keyboard navigation, mobile overflow,
 the teaching round trip, and preservation of archived selections.
+
+Richard White’s link was added by task 0 (revision 1.157), checked through his Stanford
+publication records. The inherited `white|richard d` corpus key is not an accepted
+middle initial. Toronto and Australian namesake splits remain separate.
