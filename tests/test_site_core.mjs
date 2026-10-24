@@ -640,8 +640,8 @@ test('family content exposes rosters and approaches without manufacturing edges'
   const content = familyContent(graph, family);
   /* Indigenous histories holds indigenous and ethnohistory, plus bridged native_newcomer and settler_colonialism (1.128).
      1.140 adds Val Napoleon (critic of Cole Harris, on indigenous). */
-  assert.equal(content.approaches.length, 65);
-  assert.equal(content.people.length, 104);
+  assert.equal(content.approaches.length, 68 /* 1.156: three settler-colonial strands */);
+  assert.equal(content.people.length, 118 /* 1.156: settler colonial and environmental rows */);
   assert.equal(content.people.filter(x => x.person.id === 'cole_harris').length, 1);
   assert.ok(content.approaches.some(x => x.strand.id === 'stolo_community_university'));
   assert.ok(content.connections.some(x => x.edge.id === 'edge_777' && !hasArrow(x.edge)));
