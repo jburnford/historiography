@@ -69,6 +69,47 @@ def divergence(a, b):
     return js / 2
 
 
+DRAFT_FIELDS = ['decision', 'suggestion', 'person', 'work_title', 'new_person', 'new_name', 'qid', 'evidence', 'decided_by', 'date',
+                'rank', 'stays_with_key', 'moves']
+
+
+def write_drafts(out, top):
+    """Draft ledger rows for the top candidates (person-splits-drafts.csv): one row per work title in the
+    group that would move, with a blank decision. Rows already decided (accept or reject) are kept as
+    they are; the builder applies only accepted rows. The group that moves is the one the grounded
+    person's Wikidata works miss, else the smaller one."""
+    path = D / 'person-splits-drafts.csv'
+    kept, notes = [], {}
+    if path.exists():
+        with path.open(newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                if r.get('decision', '').strip():
+                    kept.append(r)
+                elif r.get('suggestion'):
+                    notes[r['person']] = r['suggestion']  # a reviewer's reading survives a rerun
+    decided = {(r['person'], r['work_title']) for r in kept}
+    new_rows = []
+    for rank, r in enumerate([r for r in out if r['verdict'] != 'translation_likely'][:top], 1):
+        surname = r['name'].split(',')[0].strip()
+        given = r['name'].split(',', 1)[1].strip() if ',' in r['name'] else ''
+        new_person = f"{r['person_key']}#{rank}"
+        stays = f"{r['group1_works']} [{r['group1_regions']}; {r['group1_family']}]"
+        moves = f"{r['group2_works']} [{r['group2_regions']}; {r['group2_family']}]"
+        for t in r['_group2_all']:
+            if (r['person_key'], t) in decided:
+                continue
+            new_rows.append(dict(decision='', suggestion=notes.get(r['person_key'], ''), person=r['person_key'], work_title=t[:120], new_person=new_person,
+                                 new_name=f'{surname}, {given} (second person: rename)'.replace(',  (', ' ('), qid='',
+                                 evidence=f"Namesake queue rank {rank} ({r['verdict']}, score {r['score']}): the works share no citing PhD; "
+                                          f"group 2 is read by {r['group2_regions']}, group 1 by {r['group1_regions']}.",
+                                 decided_by='', date='', rank=rank, stays_with_key=stays, moves=moves))
+    with path.open('w', newline='', encoding='utf-8') as f:
+        w = csv.DictWriter(f, fieldnames=DRAFT_FIELDS)
+        w.writeheader()
+        w.writerows(kept + new_rows)
+    print(f'draft ledger rows: {len(new_rows)} new for the top {top} candidates, {len(kept)} already decided -> {path.name}')
+
+
 def rows(path):
     with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
         yield from csv.DictReader(f)
@@ -79,6 +120,7 @@ def main():
     ap.add_argument('--release', type=Path, help='release directory (default: the latest under release/)')
     ap.add_argument('--min-work', type=int, default=2)
     ap.add_argument('--min-minor', type=int, default=5)
+    ap.add_argument('--drafts', type=int, default=25, help='write draft ledger rows for the top N candidates (0: none)')
     args = ap.parse_args()
     rel = args.release or sorted((D / 'release').iterdir())[-1]
     strict = {r['dissertation_id']: region(r['country']) for r in rows(rel / 'dissertations.csv.gz') if r['in_analysis'] == 'True'}
@@ -145,6 +187,7 @@ def main():
             row[f'group{k}_works'] = ' | '.join(title.get(w, w)[:60] for w in top)
             row[f'group{k}_regions'] = ', '.join(f'{r} {n}' for r, n in regs.most_common(3))
             row[f'group{k}_family'] = fams.most_common(1)[0][0] if fams else ''
+            row[f'_group{k}_all'] = sorted({title.get(w, '') for w in c['works'] if title.get(w)}, key=len)
         out.append(row)
     # Wikidata check: does each group contain a work the grounded person wrote?
     def same(a, b):
@@ -185,6 +228,11 @@ def main():
     out.sort(key=lambda r: (r['verdict'] == 'translation_likely', -r['score']))
     dest = D / 'summary' / 'identity'
     dest.mkdir(parents=True, exist_ok=True)
+    if args.drafts:
+        write_drafts(out, args.drafts)
+    for r in out:
+        for k in [k for k in r if k.startswith('_group')]:
+            r.pop(k)
     lead = ['verdict', 'score', 'region_divergence', 'field_divergence', 'languages']
     fields = lead + [k for k in dict.fromkeys(k for r in out for k in r) if k not in lead]
     with (dest / 'namesake-review.csv').open('w', newline='', encoding='utf-8') as f:

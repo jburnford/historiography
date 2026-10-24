@@ -666,11 +666,16 @@ def main():
     # Reviewed splits of merged namesakes (person-splits.csv, 2026-10-23): named works move from a
     # person whose name key gathers several people (Richard White of Stanford, Toronto and Sydney)
     # to a separate person. Applied after every merge above, so a split is never merged back.
-    if (out / 'person-splits.csv').exists():
-        rules = defaultdict(list)
-        with (out / 'person-splits.csv').open(newline='', encoding='utf-8') as f:
+    # Draft rows from namesake_review_queue.py (person-splits-drafts.csv) apply once marked 'accept'.
+    rules = defaultdict(list)
+    for name, accepted_only in (('person-splits.csv', False), ('person-splits-drafts.csv', True)):
+        if not (out / name).exists():
+            continue
+        with (out / name).open(newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
-                rules[r['person']].append((title_key(r['work_title']), r))
+                if not accepted_only or r.get('decision', '').strip().lower() == 'accept':
+                    rules[r['person']].append((title_key(r['work_title']), r))
+    if rules:
         moves = {}
         for wid, w in works.items():
             k = w['authors'][0] if w['authors'] else None
