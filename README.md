@@ -2,10 +2,10 @@
 
 *Historians, ideas and debates through time.*
 
-**Public beta.** An interactive, deliberately contestable map of historiography, from earlier
+**Public beta.** An interactive, deliberately contestable guide to historiography, from earlier
 roots to the present, extended field by field, for MA students who have read Lynn Hunt's *Writing History in the Global Era*.
 
-The site opens on **twelve families**, including *Historiography in Canada*, pairing the map's selected dates with
+The site opens on **twelve families**, including *Historiography in Canada*, pairing selected contribution dates with
 shares of a selected journal and book-review record. Two prominent landing actions open the
 **Timeline** and **people circles**. The circles show the historians shared across families;
 opening a family reveals its entries and everyone they name. Shared context is distinct from
@@ -19,8 +19,16 @@ On phones, the three primary views stay in a sticky navigation bar. Circles and 
 can be explored by touch inside scrollable viewports; selecting a person or entry brings
 their details into view. Search, collapsible filters and full text alternatives remain available.
 
-Production data revision **1.154** (schema 1.6): 200 entries,
-1,208 teaching relationships, 2,257 bibliography records, 1,309
+**Dissertation reading — research preview.** A fourth main route lets visitors search
+cited people and works, compare their use over time and across regions, inspect companion
+literature and open example dissertation repository records. Environmental history, the
+archival turn and five selected profiles connect the reading record to the teaching entries.
+It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included in analysis;
+coverage and extraction limits accompany the figures. The experimental comparison pages
+remain research prototypes. See [frontend details](site/README.md).
+
+Production data revision **1.156** (schema 1.6): 203 entries,
+1,255 teaching relationships, 2,389 bibliography records, 1,355
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
@@ -60,7 +68,7 @@ The [first partial post-2000 release](data/production-batches/extension-1.122/RE
 
 The [digital/web release](data/production-batches/extension-1.123/README.md) adds two field entries, seventeen selected works and twenty-seven historical claims. The revised selection includes practitioners' projects, computational methods, public history and critical scholarship. All coauthors, evidence limits and distinct publication/reception dates remain visible. The exact 2000 view still uses revision 1.121; none of the four extended fields is comprehensively reviewed through 2026.
 
-## How to read the map
+## How to explore the project
 
 - **Points date selected works and events.** Dotted connectors show the extent of
   a selection; they do not establish a career, field lifespan or period of influence.
@@ -73,7 +81,7 @@ The [digital/web release](data/production-batches/extension-1.123/README.md) add
   establish a survey of the intervening period. Unknown historical endings remain
   unknown; the research cutoff is a date of reading. The
   original 1920–2000 experiment (revision 1.121) is kept as an archived view, linked from
-  *Reading this map*.
+  *About this project*.
 - **Every relationship carries a source and an evidence note.** Open one and read what the
   evidence actually supports.
 
@@ -83,7 +91,7 @@ This is a teaching interpretation, not a reference work. Roughly a quarter of en
 objection; the science-studies cluster has none at all. Coverage thins after 1985. Non-Western
 traditions are present unevenly — African history and Subaltern Studies as traditions, but no
 Chinese, Japanese, Korean or Islamic historiography. Most people appear inside a school's roster
-rather than as entries of their own. "Reading this map" in the site states these in full.
+rather than as entries of their own. "About this project" in the site states these in full.
 See [opusreview.md](opusreview.md) for the coverage audit behind that list.
 
 ## Preview the visualization
@@ -93,7 +101,7 @@ python3 scripts/build_site.py
 python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 ```
 
-Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The site requires no frontend dependencies, database, or API key. See [site/README.md](site/README.md) for nesting decisions, navigation, and verification instructions. No deployment has occurred.
+Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The site requires no frontend dependencies, database, or API key. See [site/README.md](site/README.md) for nesting decisions, navigation, and verification instructions. The teaching site includes a dissertation reading research preview.
 
 ## Project files
 
@@ -103,7 +111,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `ONTOLOGY-PROPOSAL.md`: unimplemented proposal to replace historical `entry_kind: group` with explicit editorial category codes and preserve legacy compatibility.
 - `MEMORY.md`: current project memory and handoff for starting the interactive visualization after a context reset.
 - `AGENTS.md`: startup pointer to project memory and graph-format requirements.
-- `historiography-1920-2000.json`: current graph (the file keeps its historical name), 167 entries, 918 interpretive relationships, 1,559 bibliography records, and 1,192 people.
+- `historiography-1920-2000.json`: current teaching graph; the file keeps its historical name.
 - `drafts/historiography-1920-2000.v1.0.json`: preserved original, 51 entries and 127 relationships.
 - `drafts/historiography-1920-2000.v1.2.json`: preserved draft before the Fable merge, including the four individual Caribbean/African thinkers.
 - `drafts/historiography-1920-2000.v1.3.json`: preserved draft after the Fable merge and before the women-historians expansion.
@@ -115,7 +123,7 @@ Open **http://127.0.0.1:4173/**. Serve only the dedicated build directory. The s
 - `REVISION-NOTES.md`: response to the supplied structural and historiographical feedback.
 - `scripts/validate_graph.py`: structural checks for the curated graph and seminar pathways.
 - `site/`: static visualization source and implementation documentation.
-- `scripts/build_site.py`: validated public build allowlist; fifteen files with both graph views, landing aggregates and the profile pilot.
+- `scripts/build_site.py`: validated public build allowlist; an explicit asset allowlist with both graph views, landing aggregates, the profile pilot and dissertation metadata.
 - `tests/test_site_core.mjs` and `tests/test_site_browser.py`: visualization semantics and browser acceptance checks.
 - `journal-panel.json`: proposed comparison journals, identified by ISSN.
 - `scripts/journal_citations.py`: journal coverage audit, outgoing citation harvest, and cited-work metadata lookup.

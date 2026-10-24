@@ -79,7 +79,8 @@ export function readRoute(hash, graph, pathways) {
      Journals are addressable in the field but are not atlas entries. */
   const fieldIds = graph.__fieldNodes || graph.nodes;
   const route = {
-    tab: ['people', 'pathways', 'about', 'browse'].includes(p.get('tab')) ? p.get('tab') : 'map',
+    tab: ['people', 'pathways', 'about', 'browse', 'dissertations'].includes(p.get('tab')) ? p.get('tab') : 'map',
+    source: (p.get('source') || '').slice(0, 2000),
     focus: fieldIds.some(n => n.id === p.get('focus')) ? p.get('focus') : '',
     /* `path` lays a seminar pathway over the field; `pathway` opens its reading page. */
     path: valid('path', pathways.pathways),
@@ -140,4 +141,4 @@ export function routeHash(state) {
 }
 /* Patch for links back to the families overview: clears every detail state (and the mobile
    list default), keeping only `record`. */
-export const OVERVIEW_PATCH = {family: '', focus: '', path: '', node: '', person: '', edge: '', pathway: '', view: '', query: '', layer: '', period: '', hunt: false, hide: '', page: 0, section: '', range: '', kind: '', neighborLayer: ''};
+export const OVERVIEW_PATCH = {family: '', focus: '', path: '', node: '', person: '', edge: '', pathway: '', view: '', query: '', layer: '', period: '', hunt: false, hide: '', page: 0, section: '', range: '', kind: '', neighborLayer: '', source: ''};

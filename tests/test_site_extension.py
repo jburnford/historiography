@@ -132,6 +132,8 @@ class ExtensionViewTests(unittest.TestCase):
         expected = {'index.html', 'styles.css', 'app.js', 'core.mjs', 'field.mjs', 'people.mjs', '.nojekyll',
                     'data/graph.json', 'data/pathways.json', 'data/graph-2000.json'}
         expected.update({'records.mjs', 'data/overview.json'})
+        expected.update({'dissertations.mjs', 'dissertations.css', 'data/dissertations/index.json', 'data/dissertations/links.json'})
+        expected.update(f'data/dissertations/{i:02x}.json' for i in range(32))
         if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-people.json').exists():
             expected.add('data/people-records.json')
         expected.add('landing.mjs')  # landing redesign (2026-09-27): page module

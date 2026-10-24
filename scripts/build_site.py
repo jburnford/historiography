@@ -35,6 +35,8 @@ PAGE_ASSETS = {
     'site/people.mjs': 'people.mjs',
     'site/landing.mjs': 'landing.mjs',
     'site/records.mjs': 'records.mjs',
+    'site/dissertations.mjs': 'dissertations.mjs',
+    'site/dissertations.css': 'dissertations.css',
     'site/.nojekyll': '.nojekyll',
 }
 DATA_ASSETS = {
@@ -48,6 +50,9 @@ EVIDENCE_ASSET = 'data/evidence.json'
 PEOPLE_SOURCE = 'data/evidence-layer/site-people.json'
 PEOPLE_ASSET = 'data/people-records.json'
 OVERVIEW_ASSET = 'data/overview.json'
+READING_SOURCE = ROOT / 'data/dissertation-layer/site'
+READING_FILES = ['index.json', 'links.json', *(f'{i:02x}.json' for i in range(32))]
+READING_ASSETS = {name: f'data/dissertations/{name}' for name in READING_FILES}
 ASSETS = {**PAGE_ASSETS, **DATA_ASSETS}
 
 
@@ -174,7 +179,7 @@ def build(graph_path=None, dest=None, baseline_path=None):
     existing = list(dest.rglob('*')) if dest.exists() else []
     if any(p.is_symlink() for p in existing):
         raise SystemExit('Build output must not contain symlinks.')
-    allowed = set(ASSETS.values()) | {BASELINE_ASSET, EVIDENCE_ASSET, PEOPLE_ASSET, OVERVIEW_ASSET}
+    allowed = set(ASSETS.values()) | {BASELINE_ASSET, EVIDENCE_ASSET, PEOPLE_ASSET, OVERVIEW_ASSET} | set(READING_ASSETS.values())
     unexpected = {str(p.relative_to(dest)) for p in existing if p.is_file()} - allowed
     if unexpected:
         raise SystemExit(f'Unexpected build contents; review before continuing: {sorted(unexpected)}')
@@ -196,6 +201,17 @@ def build(graph_path=None, dest=None, baseline_path=None):
         else:
             print('  No baseline graph available; no 2000 view will be published')
     published = 0
+    # Fixed filenames and hash-pinned exports only. Research pages, PDFs, raw
+    # citation strings and the large upstream graph cannot enter this copy step.
+    reading_manifest = json.loads((READING_SOURCE.parent / 'manifest.json').read_text())
+    for name, target in READING_ASSETS.items():
+        source = READING_SOURCE / name
+        if source.is_symlink() or hashlib.sha256(source.read_bytes()).hexdigest() != reading_manifest['outputs'][name]:
+            raise SystemExit(f'Dissertation export changed: {name}; rebuild and review the export.')
+        out = dest / target
+        out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, out)
+        published += 1
     for source, target in DATA_ASSETS.items():
         out = dest / target
         out.parent.mkdir(parents=True, exist_ok=True)

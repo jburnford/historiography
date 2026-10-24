@@ -1,12 +1,35 @@
-# Historiography atlas prototype
+# History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.154**, schema 1.6,
-contains **200 entries, 1,208 relationships, 2,257 sources, 1,309 shared people and
-14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs atlas dating with a selected
+The curated JSON remains authoritative. Current revision **1.156**, schema 1.6,
+contains **203 entries, 1,255 relationships, 2,389 sources, 1,355 shared people and
+14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and five
-partially extended fields. The atlas has no closing date (1.133); the original 1920–2000 experiment
+partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
+
+
+## Dissertation reading preview
+
+`#tab=dissertations` opens a new view built in the main site, using the research explorer's
+frozen 2026-10-23 calculations. It does not embed or publish the experimental comparison
+HTML. A search index and one of 32 source buckets load on demand. Direct links keep the
+bibliography key in `source`; teaching-profile links load the detailed teaching graph only
+when followed. No dissertation assets load on the families landing.
+
+The public comparisons include 6,794 dissertations with years, from 7,107 in analysis.
+The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
+regional numerators/denominators, institution coverage, missing years, notes extraction,
+small samples and provisional family labels remain visible. Examples link to original
+repository records. Teaching links cover Cronon, Worster, Stoler, Trouillot and Thompson;
+field panels cover environmental history and the archival turn. They are explicit
+selections, not automatic matches or field-readership estimates. Archived entries retain
+their original selection and do not receive the new context panels.
+
+`python3 scripts/build_dissertation_site.py` recreates the metadata exports from the local
+explorer and dated release, verifies all 4,037 source counts and region-period denominators,
+and records hashes in `data/dissertation-layer/manifest.json`. The normal site build uses
+the checked-in exports and requires no local research graph, PDFs or API service.
 
 ## Preview
 
@@ -20,16 +43,16 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
 Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
-pushing requires the user's explicit instruction. The current build publishes 16
-allowlisted files: HTML, CSS, `.nojekyll`, seven JavaScript modules (`app`, `core`,
-`field`, `chronology`, `people`, `landing`, `records`) and six JSON assets (`graph`, `graph-2000`,
-`overview`, `pathways`, `evidence`, `people-records`). The builder validates graphs
-and refuses unexpected output files or symlinks. Tests, captures, credentials and
-unrelated files stay outside the build. This beta has not been deployed.
+pushing requires the user's explicit instruction. The current build publishes 52
+allowlisted files, including eight JavaScript modules, two stylesheets, six teaching
+and publication-record JSON assets, and 34 dissertation metadata assets. The builder
+validates graphs, checks the dissertation export hashes and refuses unexpected output
+files or symlinks. Tests, captures, credentials and unrelated files stay outside the
+build. The build includes revision 1.156 and the dissertation reading research preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
-the full 5.72 MB graph once. Selected profiles lazily load the separate record
-pilot once. Failed downloads have retries. The pilot retains the weaker atlas
+the full 7.39 MB graph once. Selected profiles lazily load the separate record
+pilot once. Failed downloads have retries. The pilot retains the weaker teaching-identity
 and source-credit identity link and distinguishes journal items, books reviewed
 and reviews written. See [student trial](../STUDENT-TESTING.md) and
 [landing audit](../data/evidence-layer/audits/landing-2026-10-10/README.md).

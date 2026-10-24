@@ -7,6 +7,7 @@ import {sortName, bySurname, membership, ringOrder, companyLayout, bridges, fitL
   ENTRY_LINE, ENTRY_CHAR, NAME_CHAR} from '../site/people.mjs';
 import {isOverviewHash} from '../site/core.mjs';
 import {recordPanel} from '../site/records.mjs';
+import {readingHref, isReadingHash, share, sourceDetail} from '../site/dissertations.mjs';
 import {parseSpan, spanOf, journalNodes, fieldNodes, fieldEdges, fieldKinds, fieldLayers,
   relationIndex, buildFieldLayout, focusSetFor, pathwaySet, pathwayEdges, milestoneYears,
   lifeIndex, JOURNAL_LAYER, frameOf, personMapSubset, personMapLayout, ROLE_BADGE} from '../site/field.mjs';
@@ -15,6 +16,32 @@ import {AXIS, MIN_BIN_TOTAL, atlasTrack, recordShares, stripSegments, familyBySl
 const graph = JSON.parse(readFileSync(new URL('../historiography-1920-2000.json', import.meta.url)));
 const pathways = JSON.parse(readFileSync(new URL('../seminar-pathways.json', import.meta.url)));
 const families = JSON.parse(readFileSync(new URL('../data/evidence-layer/site-evidence.json', import.meta.url))).families;
+test('dissertation routes preserve stable source keys and require full data for teaching links', () => {
+  const key='W:cronon|natures metropolis';
+  const hash=readingHref(key), route=readRoute(hash,graph,pathways);
+  assert.equal(route.tab,'dissertations'); assert.equal(route.source,key);
+  assert.equal(isReadingHash(hash),true);
+  for(const h of ['#tab=people','#tab=dissertations&person=william_cronon','#tab=dissertations&range=2000'])
+    assert.equal(isReadingHash(h),false);
+  assert.equal(readRoute('#person=william_cronon',graph,pathways).person,'william_cronon');
+  assert.equal(share(1,0),'Small sample'); assert.equal(share(1,14),'Small sample');
+  assert.equal(share(3,30),'10.0%');
+});
+test('dissertation details escape metadata, retain counts and reject non-web repository links', () => {
+  const data=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/index.json',import.meta.url)));
+  const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));
+  const selected=data.sources.find(s=>s.key===links.people.william_cronon.source);
+  const shard=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/'+selected.asset,import.meta.url)));
+  const source=shard.sources[selected.id];
+  shard.labels[selected.id].short='<img src=x onerror=alert(1)>';
+  source.examples=[{title:'<script>unsafe</script>',authors:'A & B',institution:'test',country:'CA',year:2011,via:'notes',item_url:'javascript:alert(1)'}];
+  const html=sourceDetail(data,shard,source,links);
+  assert.ok(html.includes('&lt;img')); assert.ok(!html.includes('<img'));
+  assert.ok(html.includes('&lt;script&gt;')); assert.ok(!html.includes('javascript:'));
+  assert.ok(html.includes('citation reconstructed from notes'));
+  assert.ok(html.includes('6,794')); assert.ok(html.includes('Small sample'));
+  assert.ok(html.includes('#person=william_cronon'));
+});
 test('only the landing and its record toggle may use a reduced graph', () => {
   for (const hash of ['', '#', '#record=reviews']) assert.equal(isOverviewHash(hash),true);
   for (const hash of ['#person=geoff_eley','#node=annales','#range=2000','#family=all','#query=Marx','#tab=people','#focus=annales','#path=x']) assert.equal(isOverviewHash(hash),false,hash);
@@ -548,11 +575,11 @@ test('landing: rows, cards and table render one item per family', () => {
 test('landing: an open-frame atlas draws no coverage line; a closed one keeps it', () => {
   const open = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`, closed: false});
   assert.ok(!open.includes('coverage-line'));
-  assert.ok(!open.includes('atlas coverage ends'));
+  assert.ok(!open.includes('editorial coverage ends'));
   assert.equal((open.match(/class="family-row"/g) || []).length, 12);
   const closed = rowsSvg({block: families, graph, view: 'all', width: 1100, href: id => `#family=${id}`, closed: true});
   assert.match(closed, /class="coverage-line"/);
-  assert.match(closed, /atlas coverage ends 2000/);
+  assert.match(closed, /editorial coverage ends 2000/);
 });
 test('landing: a long family label wraps onto two lines rather than overflow the row', () => {
   const svg = rowsSvg({block: families, graph, view: 'all', width: 700, href: id => `#family=${id}`});

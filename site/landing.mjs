@@ -135,7 +135,7 @@ export function rowsSvg({block, graph, view = 'all', width = 1000, href, closed 
       return `<rect class="record-bar" x="${x(s.bin).toFixed(1)}" y="${(base - h).toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}"><title>${s.bin}–${s.bin + 4}: ${pct(s.share)} (${s.items.toLocaleString('en')} of ${s.total.toLocaleString('en')})</title></rect>`;
     }).join('');
     const dated = t.dots.length + t.early.length;
-    const label = `${f.label}: ${dated} dated atlas entr${dated === 1 ? 'y' : 'ies'}${t.undated.length ? `, ${t.undated.length} undated` : ''}; share of the record in ${shares.at(-1)?.bin ?? '—'}–${AXIS.end}: ${pct(shares.at(-1)?.share || 0)}. Open its fields.`;
+    const label = `${f.label}: ${dated} dated curated entr${dated === 1 ? 'y' : 'ies'}${t.undated.length ? `, ${t.undated.length} undated` : ''}; share of the record in ${shares.at(-1)?.bin ?? '—'}–${AXIS.end}: ${pct(shares.at(-1)?.share || 0)}. Open its fields.`;
     /* Undated members are not dropped from the row; they surface in its tooltip. */
     const undatedTitle = t.undated.length
       ? `<title>${esc(`Undated: ${t.undated.map(n => n.label).join('; ')}`)}</title>` : '';
@@ -153,8 +153,8 @@ export function rowsSvg({block, graph, view = 'all', width = 1000, href, closed 
   }).join('');
   const cx = x(AXIS.coverage).toFixed(1);
   const wall = !closed ? '' : `<line class="coverage-line" x1="${cx}" x2="${cx}" y1="${top - 6}" y2="${H - foot}"/>` +
-    `<text class="coverage-label" x="${(+cx - 5).toFixed(1)}" y="${top - 10}" text-anchor="end">atlas coverage ends ${AXIS.coverage}</text>`;
-  return `<svg class="landing-svg" viewBox="0 0 ${width} ${H}" width="${width}" height="${H}" role="group" aria-label="Families of historical writing: atlas dating and share of the record, ${AXIS.start}–${AXIS.end}">${grid}${wall}${rows}</svg>`;
+    `<text class="coverage-label" x="${(+cx - 5).toFixed(1)}" y="${top - 10}" text-anchor="end">editorial coverage ends ${AXIS.coverage}</text>`;
+  return `<svg class="landing-svg" viewBox="0 0 ${width} ${H}" width="${width}" height="${H}" role="group" aria-label="Families of historical writing: selected contribution dates and share of the record, ${AXIS.start}–${AXIS.end}">${grid}${wall}${rows}</svg>`;
 }
 
 /* Narrow screens: one card per family, on the same shared scale from 1900. */
@@ -168,7 +168,7 @@ export function cardsHtml({block, graph, view = 'all', href}) {
     /* A decade-derived early year would misstate precision the atlas doesn't claim. */
     const firstText = first == null ? '' : first < AXIS.start ? `, earliest before ${AXIS.start}` : `, earliest ${first}`;
     return `<li><a class="family-card" href="${esc(href(f.id))}"><h3>${esc(f.label)}</h3>` +
-      `<p><strong>${n}</strong> atlas entr${n === 1 ? 'y' : 'ies'}${firstText}</p>` +
+      `<p><strong>${n}</strong> curated entr${n === 1 ? 'y' : 'ies'}${firstText}</p>` +
       `<svg class="card-bars" viewBox="0 0 ${Math.max(9, s.length * 9)} 31" preserveAspectRatio="none" aria-hidden="true">${bars}</svg>` +
       `<p class="fine-print">${s.length ? `${s.at(-1).bin}–${AXIS.end}: ${pct(s.at(-1).share)} of the record (bars from 1900)` : 'No record in this view'}</p></a></li>`;
   }).join('')}</ol>`;
@@ -178,7 +178,7 @@ export function cardsHtml({block, graph, view = 'all', href}) {
 export function tableHtml({block, graph, view = 'all'}) {
   const bins = [...new Set(block.families.flatMap(f => recordShares(f, view).map(s => s.bin)))]
     .sort((a, b) => a - b);
-  const head = `<tr><th scope="col">Family</th><th scope="col">Atlas entries</th><th scope="col">Undated</th>${bins.map(b => `<th scope="col">${b}–${String(b + 4).slice(2)}</th>`).join('')}</tr>`;
+  const head = `<tr><th scope="col">Family</th><th scope="col">Curated entries</th><th scope="col">Undated</th>${bins.map(b => `<th scope="col">${b}–${String(b + 4).slice(2)}</th>`).join('')}</tr>`;
   const rows = block.families.map(f => {
     const t = atlasTrack(graph, f), by = new Map(recordShares(f, view).map(s => [s.bin, s]));
     return `<tr><th scope="row">${esc(f.label)}</th><td>${t.dots.length + t.early.length + t.undated.length}</td><td>${t.undated.length}</td>${bins.map(b => {
@@ -191,6 +191,6 @@ export function tableHtml({block, graph, view = 'all'}) {
   const stripRows = strip.atlas.map(a => `<tr><th scope="row">${esc(a.label)}</th><td>${pct(a.share)}</td><td>${pct(rec.get(a.id) || 0)}</td></tr>`).join('') +
     `<tr><th scope="row">Items no family claims (general, regional &amp; period journals)</th><td>—</td><td>${pct(strip.unclaimed || 0)}</td></tr>`;
   const period = `${strip.period[0]}–${strip.period[1]}`;
-  return `<div class="table-scroll"><table><caption class="sr-only">Atlas entries and share of the record (${esc(VIEWS[view])}) per family and five-year period</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>` +
-    `<div class="table-scroll"><table class="strip-table"><caption>The gap in one line: share of atlas entries and share of research candidates, ${esc(period)}</caption><thead><tr><th scope="col">Family</th><th scope="col">Share of atlas entries</th><th scope="col">Share of research candidates, ${esc(period)}</th></tr></thead><tbody>${stripRows}</tbody></table></div>`;
+  return `<div class="table-scroll"><table><caption class="sr-only">Curated entries and share of the record (${esc(VIEWS[view])}) per family and five-year period</caption><thead>${head}</thead><tbody>${rows}</tbody></table></div>` +
+    `<div class="table-scroll"><table class="strip-table"><caption>The gap in one line: share of curated entries and share of research candidates, ${esc(period)}</caption><thead><tr><th scope="col">Family</th><th scope="col">Share of curated entries</th><th scope="col">Share of research candidates, ${esc(period)}</th></tr></thead><tbody>${stripRows}</tbody></table></div>`;
 }
