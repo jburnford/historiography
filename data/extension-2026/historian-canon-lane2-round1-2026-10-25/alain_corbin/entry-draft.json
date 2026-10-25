@@ -1,0 +1,143 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "alain_corbin",
+    "label": "Alain Corbin",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Les Filles de noce (1978) · Le Miasme et la Jonquille (1982) · Le Monde retrouvé de Louis-François Pinagot (1998)",
+    "description": "A historian of sensory worlds and the socially overlooked. His interview explains how bells, smells and desired landscapes become historical objects, and why recovering an unknown rural person requires a different experiment from a biography built on self-authored testimony.",
+    "representative_figures_and_works": "Les Filles de noce (1978); Le Miasme et la Jonquille (1982); Le Monde retrouvé de Louis-François Pinagot (1998).",
+    "source_ids": [
+      "hc172_alain_corbin_1"
+    ],
+    "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "hc172_alain_corbin_w1",
+          "label": "Les Filles de noce",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc172_alain_corbin_1"
+          ],
+          "support": "Dated publication listed in the consulted bibliography; body unread."
+        },
+        {
+          "id": "hc172_alain_corbin_w2",
+          "label": "Le Miasme et la Jonquille",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1982,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc172_alain_corbin_1"
+          ],
+          "support": "Dated publication listed in the consulted bibliography; body unread."
+        },
+        {
+          "id": "hc172_alain_corbin_w3",
+          "label": "Le Monde retrouvé de Louis-François Pinagot",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1998,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc172_alain_corbin_1"
+          ],
+          "support": "Dated publication listed in the consulted bibliography; body unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works do not establish continuous activity or an ending."
+      },
+      "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.172/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "alain_corbin",
+    "node_id": "alain_corbin",
+    "identity_note": "Alain Corbin, historian identified by Les Filles de noce and Le Miasme et la Jonquille. Distinctive work concordance establishes this new identity; no authority QID assigned.",
+    "new": true,
+    "label": "Alain Corbin"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "hc172_alain_corbin_e1",
+      "source": "alain_corbin",
+      "target": "culture",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Makes changing sensory experience—smells, bells and desires—a historical question.",
+      "evidence_note": "Own interview expressly declines exclusive priority and situates the questions in wider historiographical circumstances.",
+      "source_ids": [
+        "hc172_alain_corbin_1"
+      ]
+    },
+    {
+      "proposal_id": "hc172_alain_corbin_e2",
+      "source": "alain_corbin",
+      "target": "micro",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Experiments with recovering the world of a person who left no self-authored archive.",
+      "evidence_note": "Own account of Pinagot explains the wish to recover an unknown individual; reconstructed context is not that person’s recorded inner voice.",
+      "source_ids": [
+        "hc172_alain_corbin_1"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc172_alain_corbin_1",
+      "title": "Alain Corbin interviewed by Ivan Jablonka, “L’histoire entre rêve et plaisir”, La Vie des idées, 8 November 2013",
+      "url": "https://laviedesidees.fr/L-histoire-entre-reve-et-plaisir",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete French transcript and bibliographic introduction read; video not used. Interview discusses sensory history, bells and Pinagot. Original French publication dates retained; English translations are not substituted."
+      }
+    }
+  ],
+  "roster_additions": [
+    {
+      "node": "culture",
+      "proposal_id": "hc172_alain_corbin_e1",
+      "row": {
+        "person_id": "alain_corbin",
+        "role": "historian",
+        "context": "Makes changing sensory experience—smells, bells and desires—a historical question. Own interview expressly declines exclusive priority and situates the questions in wider historiographical circumstances.",
+        "works": "Les Filles de noce (1978); Le Miasme et la Jonquille (1982); Le Monde retrouvé de Louis-François Pinagot (1998).",
+        "source_ids": [
+          "hc172_alain_corbin_1"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ]
+}

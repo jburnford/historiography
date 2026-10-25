@@ -1,0 +1,156 @@
+{
+  "reviewer": "Astra",
+  "review_date": "2026-10-25",
+  "status": "pass_substantive_review",
+  "scope": [
+    "dissertation-frameworks-2026-10-25",
+    "dissertation-emotions-2026-10-25",
+    "dissertation-imperial-law-2026-10-25",
+    "dissertation-work-backfill-2026-10-25",
+    "dissertation-beckert-2026-10-25",
+    "All 89 qualifying historian biographies, all historian life reviews, and published-only life UI"
+  ],
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "AR1",
+      "severity": "medium",
+      "locator": "dissertation-emotions-2026-10-25/history_of_emotions/entry-draft.json: node.coverage",
+      "issue": "Latest selected publication witness must not silently determine field review coverage.",
+      "resolution": "Reviewed-through retained at project baseline2000; selected2001–2010 events and the lack of a systematic later-field survey are explicitly distinguished.",
+      "verified": true
+    },
+    {
+      "id": "AR2",
+      "severity": "medium",
+      "locator": "dissertation-work-backfill-2026-10-25/carlo_ginzburg/entry-draft.json: roster_additions[carlo_poni].works",
+      "issue": "Copied Ginzburg wording made Carlo Poni appear to coauthor with himself.",
+      "resolution": "Poni roster now identifies Carlo Ginzburg as coauthor.",
+      "verified": true
+    },
+    {
+      "id": "AR3",
+      "severity": "low",
+      "locator": "dissertation-work-backfill-2026-10-25/batch.json: new chronology support strings",
+      "issue": "Several compressed words impaired readability.",
+      "resolution": "New support strings rewritten in plain language before packet freeze.",
+      "verified": true
+    },
+    {
+      "id": "AR4",
+      "severity": "low",
+      "locator": "dissertation-beckert-2026-10-25/batch.json: urbanhistory chronology.label",
+      "issue": "Selected1962–1996label did not qualify the added2001event.",
+      "resolution": "Appended selected-additional-scholarship qualifier; field dates and coverage remain unchanged.",
+      "verified": true
+    },
+    {
+      "id": "AR7",
+      "severity": "high",
+      "locator": "person-entries-1.172/acceptance.json packet_sha256 and accepted release packet",
+      "issue": "Accepted packet was regenerated and its pinned hash no longer matches. Semantic reconstruction equality is insufficient to verify accepted bytes.",
+      "required_correction": "Recover the exact accepted packet bytes without changing acceptance; apply source corrections in later revision.",
+      "status": "Resolved: exact pinned bytes independently verified after restoring original indent=1 serialization."
+    },
+    {
+      "id": "AR8",
+      "severity": "low",
+      "locator": "historian-canon-lane1-round2-2026-10-25, hc174_kerber_iowa verification.note",
+      "issue": "November 2025 edition was incorrectly called future-dated relative to an October 2026 check.",
+      "resolution": "Changed to later edition outside the selected chronology; corrected source, matching life support and README before acceptance.",
+      "verified": true
+    },
+    {
+      "id": "AR5",
+      "severity": "medium",
+      "locator": "Canonical people[].identity_note, Carter1.170 and five1.172promotions",
+      "issue": "Earlier identity qualifications were replaced for Sarah Carter, Doug Owram, Franca Iacovetta, Walter Johnson, David Roediger and Antoinette Burton. Lost text includes namesake exclusions and rejected/qualified authority matches.",
+      "required_correction": "Restore every old note verbatim, followed by the new work-based note as an explicit additive clarification; preserve accepted packets.",
+      "status": "Resolved and independently verified in canonical revision 1.180.",
+      "verified": true
+    },
+    {
+      "id": "AR6",
+      "severity": "medium",
+      "locator": "franca_iacovetta node description and source/edge attribution",
+      "issue": "The joint review discussion of gender/family and resistance partly concerned Zaman rather than Iacovetta; the new primary article must not silently become a description of Gatekeepers.",
+      "required_correction": "Use the named review only for narrower gatekeeping claims; attribute negotiation and gender/family analysis to Iacovetta2019, with matching selected-work and reading-scope text.",
+      "status": "Resolved and independently verified in canonical revision 1.180.",
+      "verified": true
+    }
+  ],
+  "verification_limits": [
+    "SOAS Scott2015interview PDF currently returned403 to independent fetch; Thompson acknowledgement rests on preparer documented primaryp3reading. Metadata independently corroborated by author institutional publication list.",
+    "Every proposed biography relationship and source-scope statement was inspected; independent external verification sampled riskier claims and did not entail reading every cited work in full.",
+    "Life-status review is source-based at the recorded cutoff. Current memberships, scheduled appearances and redistributed interviews retain their confidence and timing limits; they do not guarantee continuous current observation."
+  ],
+  "pending": [
+    "Root final full-suite, browser and clean-checkout release checks; no substantive correction remains."
+  ],
+  "canonical_sha256": "5387ad223d3513c136c834a5e4c2c4e314ab4e782a6958698716795fb265b403",
+  "counts": {
+    "nodes": 312,
+    "people": 1415,
+    "edges": 1492,
+    "sources": 2801,
+    "reviewed_historians": 190,
+    "qualifying_historians_completed": 89,
+    "reading_profiles": 113,
+    "reading_field_selections": 5,
+    "reading_sources": 4053,
+    "dated_dissertations": 6794
+  },
+  "reviewed_canonical_revision": "1.180",
+  "prepared_corrections_sha256": "f5b35784c66b7fa33a6c5372a73585dbd1941ec393795361f210d21ffcff1fb2",
+  "verdict": "No blocking substantive issues remain in canonical revision 1.180. Publication remains subject to the root agent completing final build, browser and clean-checkout checks.",
+  "historical_review_checks": [
+    "Scott primary1989pp33–39 supports intentional resistance, material/symbolic claims, tacit cooperation and potentially adverse outcomes; no inference that all coping is resistance.",
+    "Scott published2008author interview independently read, including firm standardization and qualifications on planning.",
+    "Lefebvre1974journal excerpt checked against primary scan/text; French original, journal excerpt and1991Nicholson-Smith translation distinguished. No conflation with Georges Lefebvre.",
+    "Rosenwein2002selected passages and Plamper2010Reddy/Rosenwein answers checked; divergent regimes/communities approaches preserved.",
+    "Benton2002/2010introductory arguments checked against publisher primary excerpts; imprint versus platform dates and interview date versus upload date preserved.",
+    "Nine proposed arrows retain scoped individual attribution; no frequency-derived influence, generic Guha lineage or Stern influence added.",
+    "Books beyond documented excerpts remain explicitly unread; later bibliography is not presented as primary reading.",
+    "Eight bibliography objects match the frozen nineteen-decision review; nine new dates distinguish Ginzburg/Poni1979original and1981partial translation. Fifteen sources preserve24Octcheckdates.",
+    "Independent comparison with published178f316: all1300old edges,1360old profiles and2503old sources identical; no old IDs lost; all prior node descriptions,date labels,date spans,coverage,scope notes and dated events unchanged.",
+    "All four acceptance baseline/packet SHA256 hashes verified.",
+    "All previous reading person/entry/comparison selections unchanged; exactly five qualified person bridges and one two-work field comparison added. All33baseline numerical shard/metadata hashes unchanged.",
+    "All prior evidence entry counts, all family series and family strip unchanged; five existing H-Emotions reviews move to the named field within the same family.",
+    "Independent targeted unittest run:8tests passed in36.044seconds.",
+    "Beckert: independently checked Monied Metropolis publisher excerpt, preserved LSE2019andHarvard2020primary interview texts; three scoped contribution arrows supported. Existing collective arrows1089/1091/1093correctly remain field-level.",
+    "Beckert: Penn Press confirms joint editorship and2016format dates; Penguin confirms25November2025Capitalism publication. Unread2025book supplies metadata only.",
+    "Applied1.169independent preservation comparison passes: only old person change is Beckert node_id; all old edges and sources unchanged, old fields and events preserved. Fifth acceptance baseline/packet hashes verified.",
+    "Expanded review: inspected all available lane2/lane3 proposed relationships, scoped source records and selected dated facts; inspected lane1round1 and Carter packet.",
+    "Independently verified Brown Gordon Wood2026death, Harvard Akira Iriye2026death and Darnton September2026event; checked Delumeau/Paillard primary page17, Katz own2002quoted statements and Iacovetta2019primary opening.",
+    "Inspected published-only life overlay and UI: unknown status is not automatically living; life dates do not mutate canonical contribution chronology; year precision is not automatically circa.",
+    "Pinned packet hashes for accepted revisions 1.171–1.176 all match; exact 1.172 recovery verified independently.",
+    "All 162 current historian nodes have exactly matching life-review membership; four life-overlay unit tests pass independently.",
+    "Archive docs/data/graph-2000.json remains byte-identical to published revision 1.164; SHA256 94193637b1553825599229640a6af77e2f53168b64175613b8df0b501fafce1c.",
+    "Independently checked Carl Berger family obituary and Joy Parr memorial; the selected dates and Berger year precision agree.",
+    "Independently checked Iacovetta 2019 pp. 29–30 and 39–41: primary argument supports paradoxical pluralism, unequal counselling and negotiated family/gender models.",
+    "All 89 qualifying biography content drafts inspected, including the final ten lane 1 round 3 entries; no additional substantive blockers found.",
+    "All nine lane acceptance packet and baseline hashes through 1.179 match. Five lane 2 identity-note restorations verified; Carter remains pending 1.180.",
+    "Merged life review covers all 190 required historians exactly: 100 living, 89 deceased and one unresolved. Independently verified the new Greene June 2026 firsthand organizational witness and Tosh June 2026 syndicated interview metadata; moderate confidence and schedule/recording-date limits remain explicit.",
+    "Prepared 1.180 packet independently reviewed: exact Carter prefix restored; Iacovetta description, reading scope, selected work and 2019 date separate her own article from the narrower named Gatekeepers review. All four new bibliographic URLs independently checked; metadata-only claims and print/translation/online distinctions are supported."
+  ],
+  "checks": [
+    "All 89 qualifying historians have standalone person entries and reading bridges; theory and mixed-identity holds remain separate.",
+    "All 16 acceptance packet and baseline SHA256 pairs for revisions 1.165–1.180 match. The exact pinned 1.172 packet is restored without modifying acceptance.",
+    "No published 1.164 graph IDs were removed. Every earlier nonempty identity note remains a verbatim prefix. All 1.164 edges and dated chronology events are unchanged.",
+    "The five modified preexisting source records preserve their original verification notes and add explicit reading addenda; Carter reading-status upgrades are bounded to the passages actually consulted.",
+    "Iacovetta description, scope, bibliography and 2019 event distinguish her primary article from Basok/Bastable’s narrower Gatekeepers characterization. Carter’s previous authority caution is restored.",
+    "Life-review membership equals the 190 current standalone historians exactly: 100 living, 89 deceased, one unresolved. Inspected all 20 guarded follow-up decisions; positive institutional, first-person or organizational evidence is distinguished from an absent death record. Jennifer S. H. Brown remains unresolved.",
+    "Life overlay and UI retain unknown status, source notes and date precision; canonical work chronology is not converted into life or career spans.",
+    "Independent record-by-record comparison of all 4,048 prior reading sources preserves IDs, index positions, counts, time series, regional data and other metadata. Five new reviewed selections bring the total to 4,053; original work lists remain subsets of the expanded lists.",
+    "All 25 prior reading profile selections and five field selections are unchanged. The completed export has 113 profiles, including every one of the 89 qualifying historians.",
+    "Append-only reviewed source-ID registry validates frozen base labels, IDs, metadata and ordering rather than assigning new sorted IDs.",
+    "Archived public graph remains byte-identical to published 1.164: 94193637b1553825599229640a6af77e2f53168b64175613b8df0b501fafce1c.",
+    "Published main graph carries the same 190 reviewed life statuses. All dissertation public JSON files match their source exports byte-for-byte.",
+    "Inspected the final people-layout density scaling and grid fallback. Independent existing overview test passes at widths 560, 640, 976 and 1300, retaining every multi-family person and enforcing no dot overlap."
+  ],
+  "independent_final_tests": {
+    "people_overview_four_widths": "Passed: 1 test, 2.206 seconds.",
+    "historian_life_and_dissertation_content": "Initial 15-test run: 14 passed and one stale reading-expansion expectation failed while that test file was concurrently updated. The unchanged loaded expectation rejected the newly authorized profiles.",
+    "updated_reading_preservation_test": "Reran the updated failing method independently: passed, 1 test in 39.681 seconds. Direct independent comparison of all old records also passed."
+  }
+}

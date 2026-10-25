@@ -1,0 +1,146 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.170 to candidate 1.171",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "georges_duby",
+    "label": "Georges Duby",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Le Dimanche de Bouvines (1973) · Les Trois Ordres ou l’Imaginaire du féodalisme (1978) · The Three Orders: Arthur Goldhammer translation (1980)",
+    "description": "A medieval historian whose work connects economic and social arrangements with kinship, imagined orders and representations. Marc Verdure’s Collège de France account situates that method in relation to Bloch and Febvre while identifying distinct subjects rather than an exclusive school allegiance. Le Dimanche de Bouvines also became an example in Lawrence Stone’s narrative debate: the entry retains the difference between a historian’s chosen presentation and abandoning analysis. The Three Orders examines social classification; its imagined hierarchy is not a census of occupations.",
+    "representative_figures_and_works": "Le Dimanche de Bouvines (1973); Les Trois Ordres ou l’Imaginaire du féodalisme (1978); The Three Orders: Feudal Society Imagined, translated by Arthur Goldhammer (1980); Histoire des femmes en Occident, co-directed with Michelle Perrot (1991–1992).",
+    "source_ids": [
+      "duby_orders",
+      "duby_college_context",
+      "stone_revival",
+      "hobsbawm_revival",
+      "duby_perrot_women",
+      "hc171_duby_academie"
+    ],
+    "scope_note": "Existing bounded readings by Verdure, Stone and Hobsbawm remain named and qualified. Duby’s complete books and original inaugural lecture are not newly read. Histoire des femmes remains co-directed with Michelle Perrot and 1991–1992; other contributors’ chapters are not reassigned. No blanket narrative turn, sole authorship or continuous career interval.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_duby_bouvines",
+          "label": "Le Dimanche de Bouvines",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1973,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_duby_academie"
+          ],
+          "support": "Institutional bibliography records original 1973. Stone’s later methodological reading is a separate source."
+        },
+        {
+          "id": "hc171_duby_orders_fr",
+          "label": "Les Trois Ordres ou l’Imaginaire du féodalisme",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:duby_orders",
+            "graph:hc171_duby_academie"
+          ],
+          "support": "French original 1978; book body unread."
+        },
+        {
+          "id": "hc171_duby_orders_en",
+          "label": "The Three Orders: Arthur Goldhammer translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1980,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:duby_orders"
+          ],
+          "support": "English publication separately dated and translator retained. Full book unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "georges_duby",
+    "label": "Georges Duby",
+    "node_id": "georges_duby",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing georges_duby identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in georges_duby/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "annales",
+      "relationship": "Relates medieval economic and social arrangements to imaginaries, kinship and marriage.",
+      "source_ids": [
+        "duby_college_context",
+        "duby_orders"
+      ],
+      "evidence_note": "Methodological characterization attributed to Marc Verdure’s institutional account of the 1970 inaugural lecture, not a fresh reading of that lecture. Existing Orders description/contents are supplementary; their suspect seventh-century wording is not used.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_georges_duby_1",
+      "source": "georges_duby",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "annales"
+    },
+    {
+      "target": "revival",
+      "relationship": "Provides a case for debating the relation between narrative presentation and historical analysis through Le Dimanche de Bouvines.",
+      "source_ids": [
+        "stone_revival",
+        "hobsbawm_revival"
+      ],
+      "evidence_note": "Named substantive readers: Stone 1979, read pp. 3–6 and 13–24 only, and Hobsbawm’s complete 1980 response. Duby’s book itself remains unread. This records the use of his work in the debate, not his acceptance of Stone’s entire historiographical diagnosis.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_georges_duby_2",
+      "source": "georges_duby",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "revival"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc171_duby_academie",
+      "title": "Académie française, Georges Duby: biography and works list.",
+      "citation": "Académie française, Georges Duby: biography and works list.",
+      "url": "https://www.academie-francaise.fr/les-immortels/georges-duby?election=18-06-1987&fauteuil=26",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional biography and selected bibliography checked for original Bouvines 1973, Trois Ordres 1978, birth 1919 and death 3 December 1996. The page’s thesis-defense year is not used: this packet dates publications, not an unresolved defense/publication distinction. Bibliography supports dates only."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

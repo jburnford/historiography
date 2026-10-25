@@ -1,0 +1,132 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "john_higham",
+    "label": "John Higham",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Strangers in the Land (1955) · “The Cult of the American Consensus” (1959) · Send These to Me (1975)",
+    "description": "A historian of American nativism, ethnicity and historiography who combined a commitment to pluralist democracy with criticism of flattened consensus narratives. Dorothy Ross’s retrospective also notes his unease with later fragmentation, rather than assigning him a single unchanging position.",
+    "representative_figures_and_works": "Strangers in the Land (1955); “The Cult of the American Consensus” (1959); Send These to Me (1975).",
+    "source_ids": [
+      "hc178_john_higham_1",
+      "higham_consensus_primary"
+    ],
+    "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "hc178_john_higham_w1",
+          "label": "Strangers in the Land",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1955,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_john_higham_1"
+          ],
+          "support": "Publication year and credited role checked in the cited bibliography; book body unread."
+        },
+        {
+          "id": "hc178_john_higham_w2",
+          "label": "“The Cult of the American Consensus”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1959,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higham_consensus_primary"
+          ],
+          "support": "Original Commentary essay February1959; not memorial’s1962claim of priority."
+        },
+        {
+          "id": "hc178_john_higham_w3",
+          "label": "Send These to Me",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1975,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_john_higham_1"
+          ],
+          "support": "Ross distinguishes1975and1984editions; first date selected."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works do not establish continuous activity or an ending."
+      },
+      "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.178/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "john_higham",
+    "node_id": "john_higham"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "hc178_john_higham_e1",
+      "source": "john_higham",
+      "target": "nationalismstudies",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Studies nativism and ethnic relations as central to American nationalism and pluralism.",
+      "evidence_note": "Dorothy Ross’s substantive retrospective describes the project and later revisions; the nativism interpretation is not an endorsement of exclusion.",
+      "source_ids": [
+        "hc178_john_higham_1"
+      ]
+    },
+    {
+      "proposal_id": "hc178_john_higham_e2",
+      "source": "john_higham",
+      "target": "progressive",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Criticizes consensus narratives that flatten conflict and diversity in American history.",
+      "evidence_note": "Existing complete1959primary reading, with original qualifications preserved; does not imply a wholesale return to older economic dualisms.",
+      "source_ids": [
+        "higham_consensus_primary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc178_john_higham_1",
+      "title": "Dorothy Ross,“John Higham(1920–2003)”, AHA Perspectives,1 October2003",
+      "url": "https://www.historians.org/perspectives-article/john-higham-1920-2003-october-2003/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete memorial text read. Ross substantively discusses Strangers1955,History1965,Send These to Me1975/1984,and changing historiographic positions. Her claim of first naming/criticizing consensus in1962is qualified by the existing1959primary source and not adopted."
+      }
+    }
+  ],
+  "source_addenda": {
+    "higham_consensus_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Existing complete primary reading retained and reused for the individual critique. No new whole-book reading; the original source’s distinctions between Hartz/Boorstin and caveats remain."
+    }
+  }
+}

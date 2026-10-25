@@ -1,0 +1,48 @@
+{
+  "prepared": "2026-10-25",
+  "status": "proposal_ready_for_coordinator_review",
+  "intended_revision": "1.167",
+  "intended_baseline": "1.166",
+  "read_graph_revision": "1.164",
+  "read_graph_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+  "validation_scope": "Packet transformed in memory against currently visible graph with only a local test copy of its baseline_revision adjusted. No canonical mutation, acceptance record or claim of sequential-baseline agreement. Coordinator must rebase exact expected field objects after 1.166.",
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "additions": {
+    "person_nodes": 1,
+    "new_people": 1,
+    "relationships": 3,
+    "sources": 7,
+    "roster_rows": 3,
+    "strands": 3,
+    "person_dated_facts": 5,
+    "field_dated_facts": 3
+  },
+  "preservation_checks": [
+    "Canonical graph bytes unchanged by dry transform.",
+    "Existing field rosters, strands and chronology events are exact preserved prefixes.",
+    "Field coverage/review-through objects unchanged.",
+    "No revisions to old edges or sources.",
+    "No new career intervals or person coverage year."
+  ],
+  "local_raw_policy": "All downloaded PDFs, extracted text and page captures are ignored by this packet’s .gitignore.",
+  "files": {
+    "batch.json": "4662133a7166dc17f3c3037d2160984cccefc936cd10bb95ce8678b8e7f01a2f",
+    "lauren_benton/entry-draft.json": "4c9af9307cbe090fa297f27863d2b4bbb22e7c8150fa732d2d69641b4caeaec5",
+    "lauren_benton/research-notes.json": "9f8ec7dc0f6f561c697b6d246c87f436dfa99c95a4835e2731e5149b26154e27",
+    "chronology-additions.json": "1601e834052eb584814176c439926010de270d3f76a80f32f952de4d1d5f334a",
+    "release/editorial-additions.json": "cc7ead9d427b4df5886642a858f375facd05fcf53dc555ca8e2f03d432acb5a4"
+  }
+}

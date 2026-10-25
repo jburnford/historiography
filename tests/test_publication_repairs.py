@@ -99,7 +99,17 @@ class PublicationRepairTests(unittest.TestCase):
         repair=ROOT/'data/evidence-layer/repairs/2026-10-10'
         with (repair/'before/data/evidence-layer/practice-crosswalk.csv').open() as f: before=list(csv.DictReader(f))
         with (ROOT/'data/evidence-layer/practice-crosswalk.csv').open() as f: current=list(csv.DictReader(f))
-        self.assertEqual(current[:len(before)],before)
+        # The proposed H-Emotions topic gained its own teaching field in1.166.
+        # Its exact former row is retained in a declared promotion record; no
+        # source population, review status or historical snapshot was changed.
+        promotion=json.loads((ROOT/'data/evidence-layer/repairs/2026-10-25/emotions-target-promotion.json').read_text())
+        restored=[dict(r) for r in current[:len(before)]]
+        matching=[i for i,r in enumerate(restored) if r==promotion['after_row']]
+        self.assertEqual(len(matching),1)
+        self.assertEqual(promotion['before_row']['status'],promotion['after_row']['status'])
+        self.assertEqual(set(promotion['changed_fields']),{'target','target_label','note'})
+        restored[matching[0]]=promotion['before_row']
+        self.assertEqual(restored,before)
         repair_rows=current[len(before):len(before)+13]
         self.assertTrue(all(r['status']=='reviewed' and r['note'].startswith('2026-10-10') for r in repair_rows))
         # Rows added after the repair (later journal supplements) stay proposals, never silent reviews.

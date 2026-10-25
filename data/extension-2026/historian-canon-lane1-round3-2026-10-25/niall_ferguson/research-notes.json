@@ -1,0 +1,122 @@
+{
+  "person_id": "niall_ferguson",
+  "label": "Niall Ferguson",
+  "selection": {
+    "name": "Niall Ferguson",
+    "dated_dissertations": 101,
+    "source_key": "P:ferguson|niall",
+    "existing_person_id": null,
+    "current_local_entry_id": null,
+    "threshold_line": "other_historians_gt100",
+    "person_id": "niall_ferguson",
+    "existing_profile": false,
+    "context_ids": [],
+    "bibliography_leads": "Empire: The Rise and Demise of the British World Order and the Lessons for Global Power; The Pity of War; The Shock of the Global: The 1970s in Perspective",
+    "primary_verification_urls": ""
+  },
+  "identity_scope": "The historian identified by the matched publication titles and institutional/primary author records in this packet. New profile; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in niall_ferguson/life-status.json.",
+  "existing_coverage": [],
+  "existing_sources_reused": [],
+  "new_source_scopes": [
+    {
+      "id": "hc177_ferguson_interview",
+      "title": "Huw Spanner, interview with Niall Ferguson, High Profiles / Third Way, November 2007.",
+      "citation": "Huw Spanner, interview with Niall Ferguson, High Profiles / Third Way, November 2007.",
+      "url": "https://highprofiles.info/interview/niall-ferguson/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Own answers on causation/counterfactuals, historical uncertainty, Pity of War and Empire read, plus date/bibliographic notes. Conversations 5 and 10 September 2007; edited interview first published November 2007. Later explanatory footnotes are not automatically part of the 2007 conversation. Full books unread; imperial and military evaluations remain attributed and contested, not independently endorsed."
+      }
+    },
+    {
+      "id": "hc177_ferguson_shock",
+      "title": "The Shock of the Global: The 1970s in Perspective, Belknap Press / Harvard University Press, 2010, title-page witness.",
+      "citation": "The Shock of the Global: The 1970s in Perspective, Belknap Press / Harvard University Press, 2010, title-page witness.",
+      "url": "https://toc.library.ethz.ch/objects/pdf/z01_978-0-674-04904-8_01.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional title-page scan identifies all four editors and 2010 imprint. Harvard Weatherhead Center Spring 2010 newsletter https://projects.iq.harvard.edu/files/wcfia/files/cpspring2010.pdf reports 31 March 2010 launch with the four editors. Metadata/credits only; no introduction or chapter reading, and no solo authorship of collection."
+      }
+    }
+  ],
+  "reading_limit": "New identity matched to historian Niall Ferguson’s interview, title-page credits and current Hoover record. Counterfactual method and specific historical judgments remain his claims; no acceptance inferred from prominence or citation count. UK/US Empire subtitles, 2007 conversation/publication and later footnotes stay separate. The 2010 collection retains all four editors.",
+  "life_status_record": "niall_ferguson/life-status.json",
+  "events": [
+    {
+      "id": "hc177_ferguson_pity",
+      "label": "The Pity of War",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1998,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc177_ferguson_interview"
+      ],
+      "support": "Allen Lane 1998 original identified in contemporary interview notes; body unread."
+    },
+    {
+      "id": "hc177_ferguson_empire",
+      "label": "Empire: How Britain Made the Modern World",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 2003,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc177_ferguson_interview"
+      ],
+      "support": "UK Allen Lane 2003, distinct subtitle from US Empire: The Rise and Demise of the British World Order and the Lessons for Global Power; no chapter collation."
+    },
+    {
+      "id": "hc177_ferguson_shock",
+      "label": "The Shock of the Global: four-editor collection",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 2010,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc177_ferguson_shock"
+      ],
+      "support": "Belknap Press of Harvard University Press 2010; editors Niall Ferguson, Charles S. Maier, Erez Manela and Daniel J. Sargent. Other chapters not assigned to Ferguson."
+    }
+  ],
+  "relations": [
+    {
+      "target": "military",
+      "relationship": "Uses an explicit counterfactual about British nonintervention in 1914 to contest an inevitable-war narrative.",
+      "source_ids": [
+        "hc177_ferguson_interview"
+      ],
+      "evidence_note": "Own 2007 interview answers on alternative futures and The Pity of War. His judgment that a German victory would have been tolerable remains disputed testimony, not this graph’s endorsed conclusion or a current strategic recommendation.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc177_niall_ferguson_1",
+      "source": "niall_ferguson",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "military"
+    },
+    {
+      "target": "philhistory",
+      "relationship": "Argues that causal explanations should state plausible alternative outcomes and preserve contemporaries’ uncertainty.",
+      "source_ids": [
+        "hc177_ferguson_interview"
+      ],
+      "evidence_note": "Own answers to the causation, scientific-method and counterfactual questions. A methodological proposal about explanation, not proof that counterfactuals can be experimentally tested or that every imagined alternative is plausible.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc177_niall_ferguson_2",
+      "source": "niall_ferguson",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "philhistory"
+    }
+  ]
+}

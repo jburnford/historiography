@@ -1,0 +1,123 @@
+{
+  "person_id": "linda_colley",
+  "label": "Linda Colley",
+  "selection": {
+    "name": "Linda Colley",
+    "dated_dissertations": 168,
+    "source_key": "P:colley|linda",
+    "existing_person_id": null,
+    "current_local_entry_id": null,
+    "threshold_line": "other_historians_gt100",
+    "person_id": "linda_colley",
+    "existing_profile": false,
+    "context_ids": [],
+    "bibliography_leads": "Britons: Forging the Nation, 1707-1837; Captives: Britain, Empire and the World, 1600-1850; Britishness and Otherness: An Argument",
+    "primary_verification_urls": ""
+  },
+  "identity_scope": "The historian identified by the matched publication titles and institutional/primary author records in this packet. New profile; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in linda_colley/life-status.json.",
+  "existing_coverage": [],
+  "existing_sources_reused": [],
+  "new_source_scopes": [
+    {
+      "id": "hc171_colley_interview",
+      "title": "Linda Colley, interview, British Academy Review 28 (Summer 2016), online 27 June 2016.",
+      "citation": "Linda Colley, interview, British Academy Review 28 (Summer 2016), online 27 June 2016.",
+      "url": "https://www.thebritishacademy.ac.uk/publishing/review/28/linda-colley-interview/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Written answers on Captives and The Ordeal of Elizabeth Marsh read, through the questions on research travel. Sources, context, reconstruction and subtitle distinctions support the bounded account. No interview audio or full monograph reading claimed; discussion of constitutions not used for a new theory edge."
+      }
+    },
+    {
+      "id": "hc171_colley_princeton",
+      "title": "Princeton University Department of History, Linda Colley faculty profile and selected bibliography.",
+      "citation": "Princeton University Department of History, Linda Colley faculty profile and selected bibliography.",
+      "url": "https://history.princeton.edu/people/linda-colley",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Title/author and 1992, 2002, 2007 publication witnesses checked; the page’s forthcoming-2021 sentence is stale and is not used to date that work. Current course listings for Fall 2025 and ongoing supervision provide positive present activity evidence. Bibliography supports publication facts; interpretive claims use the author interview."
+      }
+    }
+  ],
+  "reading_limit": "New identity linked by the institutional bibliography and matching author interview. Selected book bodies unread; argument claims are attributed to Colley’s own retrospective explanation. The Marsh subtitle variant is not treated as a separate work. No affiliation or mentor arrows, no universal account of Britishness, and no citation-count claim of influence.",
+  "life_status_record": "linda_colley/life-status.json",
+  "events": [
+    {
+      "id": "hc171_colley_britons",
+      "label": "Britons: Forging the Nation",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1992,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc171_colley_princeton"
+      ],
+      "support": "Institutional bibliography identifies 1992; subsequent editions remain distinct. Book body unread."
+    },
+    {
+      "id": "hc171_colley_captives",
+      "label": "Captives",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 2002,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc171_colley_princeton"
+      ],
+      "support": "Institutional bibliography confirms 2002. The author’s later explanation of method is not dated as the book’s original preface."
+    },
+    {
+      "id": "hc171_colley_marsh",
+      "label": "The Ordeal of Elizabeth Marsh: A Woman in World History",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 2007,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc171_colley_princeton",
+        "graph:hc171_colley_interview"
+      ],
+      "support": "2007 publication witness; original subtitle retained. In the interview Colley expressly distinguishes the UK paperback’s longer subtitle."
+    }
+  ],
+  "relations": [
+    {
+      "target": "global",
+      "relationship": "Uses captivity accounts, contextualized with other research, to examine imperial vulnerability and uneven encounters.",
+      "source_ids": [
+        "hc171_colley_interview"
+      ],
+      "evidence_note": "Author’s 2016 interview answers on the genesis and interpretation of Captives. This contribution concerns a research method and its selected object; her monograph has not been read in full.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_linda_colley_1",
+      "source": "linda_colley",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "global"
+    },
+    {
+      "target": "biography",
+      "relationship": "Uses Elizabeth Marsh’s itinerant life to investigate transcontinental connections and women’s place in global history.",
+      "source_ids": [
+        "hc171_colley_interview"
+      ],
+      "evidence_note": "Author’s answers on biography, missing letters and reconstructing Marsh through others’ writings. This identifies a specific biographical project, without treating one life as representative of every woman or attributing the book’s sources to Colley.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_linda_colley_2",
+      "source": "linda_colley",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "biography"
+    }
+  ]
+}

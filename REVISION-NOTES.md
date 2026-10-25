@@ -1,3 +1,35 @@
+# Revision 1.180: full dissertation-guided historian expansion (25 October 2026)
+
+Current graph: **312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed
+people**. The 212 standalone entries comprise **190 historians and 22 theorists**;
+100 group entries remain separate. Revisions 1.170–1.179 complete the 89-person
+qualifying historian queue: seven Canadian-history candidates with at least 150
+dated first-author dissertations, and 82 other historians with more than 100.
+Sarah Carter supplies the Canadian floor. Theory and unresolved name identities
+are excluded from this historian promotion rule; counts select research and do
+not establish influence.
+
+The ten packets add 180 scoped relationships and 283 selected dated facts across
+89 biographies. Substantive claims retain primary-excerpt or named-reader scope;
+original/edition/translation dates and coauthor/editor credits stay explicit.
+Corrections in 1.178 restore five prior identity notes and qualify bibliographic
+and reading witnesses. Revision 1.180 restores Carter's earlier identity caution,
+distinguishes Iacovetta's own 2019 article from the narrower Gatekeepers review,
+and adds metadata-only work/translation concordances. Earlier acceptance packets
+remain frozen. See [content handoff](data/field-research/dissertation-content-2026-10-25/README.md)
+and [final correction acceptance](data/production-batches/historian-corrections-1.180/README.md).
+
+All 190 historian biographies now have a sourced life review: 100 living,
+89 deceased and one unresolved (Jennifer S. H. Brown), checked on 2026-10-25.
+The public main-graph overlay displays supported death dates/years with their
+precision and source limits; it does not turn life dates into work or influence
+intervals or change the exact-2000 archive.
+
+Reading integration reaches 113 profiles and five field panels, with 4,053 sources
+(4,037 original plus 16 reviewed exceptions). Earlier numerical series, source
+IDs, denominators and selections remain preserved. Astra review and release checks pass; publication is authorized. Earlier revision
+notes below keep their historical counts and decisions.
+
 # Revision 1.156: after 2000, wave 1 — the archive, settler colonial studies, environmental history (24 October 2026)
 
 The first content of the fifth teaching period. Research of 2026-10-23 by three agents under

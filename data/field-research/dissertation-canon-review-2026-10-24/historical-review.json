@@ -1,0 +1,771 @@
+{
+  "reviewed_on": "2026-10-24",
+  "scope": "Historical-scholarship content gaps after published revision 1.164; review and research priorities only. No canonical acceptance, graph mutation, publication or OpenAlex work.",
+  "baseline": {
+    "graph_path": "historiography-1920-2000.json",
+    "graph_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+    "nodes": 219,
+    "people": 1360,
+    "standalone_people": 120,
+    "sources": 2503
+  },
+  "corpus": {
+    "release": "data/field-research/dissertation-citations-2026-10-11/release/2026-10-23",
+    "in_analysis": 7107,
+    "dated": 6794,
+    "count_verification_script": "data/field-research/dissertation-canon-review-2026-10-24/historical/counts.py",
+    "exact_counts_file": "data/field-research/dissertation-canon-review-2026-10-24/historical/counts.json",
+    "limits": [
+      "The frozen release is a bounded repository sample of History PhDs; frequencies represent consultation in recovered bibliography/notes, not quality, agreement or influence.",
+      "All-authorship people.csv counts, first-author unions and work counts are different measures. All first-author and work counts here were recomputed from frozen citations/dissertations/works; variant work keys remain separate.",
+      "No top-500 lead count is adopted without release comparison. No count is summed across title variants, countries or author aliases."
+    ]
+  },
+  "prior_work_review": "Reviewed decisions.csv from canonical-work-gaps-2026-10-24. These recommendations do not repeat resolved 148-row person-work chronology/edition findings. Roediger explicitly treated as development, not a missing existing work.",
+  "main_finding": "The clearest historical-scholarship omission is a connected body of US social/political/cultural scholarship: Reconstruction, New Deal labour/consumption, immigration/racialization, masculinity and grassroots conservatism. Global colonial legal history is another substantive gap. Several Canadian/environmental figures lack standalone biographies but their ideas already have detailed content.",
+  "candidates": [
+    {
+      "id": "hist_foner",
+      "label": "Eric Foner: free labour, emancipation and Reconstruction",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "foner|eric",
+      "release_people_all_authorship_in_analysis_count": 215,
+      "release_first_author_key_in_analysis_count": 212,
+      "release_first_author_key_dated_count": 210,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:foner|reconstruction",
+          "title": "Reconstruction: America’s Unfinished Revolution, 1863-1877",
+          "year": "1988",
+          "first_author_key": "foner|eric",
+          "verified_in_analysis": 85,
+          "verified_dated": 84
+        },
+        {
+          "work_id": "W:foner|free soil free labor free men",
+          "title": "Free Soil, Free Labor, Free Men: The Ideology of the Republican Party before the Civil War",
+          "year": "1970",
+          "first_author_key": "foner|eric",
+          "verified_in_analysis": 70,
+          "verified_dated": 69
+        }
+      ],
+      "existing_related_node_ids": [
+        "black",
+        "newleft",
+        "political",
+        "w_e_b_du_bois"
+      ],
+      "specific_content_gap": "No Foner identity, roster, source or named work in canonical graph. Reconstruction itself is already present: black/reconstruction lists Du Bois and John Hope Franklin, and the new Du Bois biography develops Black political agency. Missing is Foner's later reinterpretation and the relationship between antislavery/free-labour ideology, freedom and citizenship.",
+      "recommended_research_and_content": "Research Reconstruction (1988) and Free Soil, Free Labor, Free Men (1970) as contrasting but related interventions; develop the existing Reconstruction strand with explicit historiographical disagreements and the limits of northern antislavery. A person entry is an optional consequence of research, not the initial goal.",
+      "primary_source_checks": [
+        {
+          "url": "https://www.historians.org/person/eric-foner/",
+          "checked_on": "2026-10-24",
+          "scope": "AHA institutional biographical essay identifies both original dates, situates Free Soil against revisionist interpretations, and describes Black political agency/economic autonomy in Reconstruction. Named institutional appraisal, not a direct reading of either book.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "No claim that Black agency or Reconstruction is absent. Do not infer a direct Du Bois-to-Foner influence edge from a shared subject."
+      ]
+    },
+    {
+      "id": "hist_cohen",
+      "label": "Lizabeth Cohen: labour, New Deal politics and consumer citizenship",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "cohen|lizabeth",
+      "release_people_all_authorship_in_analysis_count": 195,
+      "release_first_author_key_in_analysis_count": 194,
+      "release_first_author_key_dated_count": 192,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:cohen|making a new deal",
+          "title": "Making a New Deal: Industrial Workers in Chicago, 1919-1939",
+          "year": "1990",
+          "first_author_key": "cohen|lizabeth",
+          "verified_in_analysis": 80,
+          "verified_dated": 79
+        },
+        {
+          "work_id": "W:cohen|consumers republic",
+          "title": "A Consumer’s Republic: The Politics of Mass Consumption in Postwar America",
+          "year": "2003",
+          "first_author_key": "cohen|lizabeth",
+          "verified_in_analysis": 131,
+          "verified_dated": 130
+        }
+      ],
+      "existing_related_node_ids": [
+        "social",
+        "labourhistory",
+        "consumption",
+        "political",
+        "urbanhistory"
+      ],
+      "specific_content_gap": "No Lizabeth Cohen identity or work in the graph; no New Deal text found in canonical nodes. Existing consumption entry emphasizes commercial change, households, commodity meanings and earlier European/colonial research. Missing is this major US labour-to-consumption/citizenship connection.",
+      "recommended_research_and_content": "Research Making a New Deal (1990) for workers' cultural and political formation in Chicago; connect to the 2003 A Consumers' Republic as explicitly later scholarship on mass consumption, political citizenship and inequality. Add a substantive strand spanning labour/social/political and consumption history before deciding on a standalone biography.",
+      "primary_source_checks": [
+        {
+          "url": "https://www.cambridge.org/core/books/making-a-new-deal/E27B0C6C73EF62AABBDA46D6015AB2CC",
+          "checked_on": "2026-10-24",
+          "scope": "Publisher description and contents: workers, culture, New Deal Democrats and CIO unionists. Listing identifies 1990 first printing separately from later editions.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.penguinrandomhouse.com/books/29448/a-consumers-republic-by-lizabeth-cohen/",
+          "checked_on": "2026-10-24",
+          "scope": "Publisher author/title, 2003 paperback metadata and description connecting consumption, citizenship and inequality. No book text read.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Frozen title says A Consumer’s Republic; publisher title is A Consumers’ Republic. Preserve corpus key/count as observed rather than silently editing release data.",
+        "2003 is later scholarship beyond the principal 1920–2000 map boundary; label it explicitly."
+      ]
+    },
+    {
+      "id": "hist_rodgers",
+      "label": "Daniel T. Rodgers: transnational social policy and reform",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "rodgers|daniel t",
+      "release_people_all_authorship_in_analysis_count": 184,
+      "release_first_author_key_in_analysis_count": 184,
+      "release_first_author_key_dated_count": 182,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:rodgers|atlantic crossings",
+          "title": "Atlantic Crossings: Social Politics in a Progressive Age",
+          "year": "1998",
+          "first_author_key": "rodgers|daniel t",
+          "verified_in_analysis": 101,
+          "verified_dated": 100
+        },
+        {
+          "work_id": "W:rodgers|age of fracture",
+          "title": "Age of Fracture",
+          "year": "2011",
+          "first_author_key": "rodgers|daniel t",
+          "verified_in_analysis": 43,
+          "verified_dated": 42
+        }
+      ],
+      "existing_related_node_ids": [
+        "atlantic",
+        "global",
+        "political",
+        "intellectualhistory"
+      ],
+      "specific_content_gap": "No Rodgers identity or work. Atlantic history is developed around slavery, trade, empire and diaspora; global has comparison and circulation but lacks Rodgers's named transatlantic reform/social-policy research programme.",
+      "recommended_research_and_content": "Research Atlantic Crossings (1998), its methods and reception, to add circulation/adaptation of reform ideas and institutions to Atlantic/global and political history. Include later critiques of the book's geographical, racial and imperial limits; Age of Fracture (2011) is a separate optional later intellectual-history topic.",
+      "primary_source_checks": [
+        {
+          "url": "https://history.princeton.edu/people/daniel-rodgers",
+          "checked_on": "2026-10-24",
+          "scope": "Author's institutional biography verifies Atlantic Crossings (1998) and Age of Fracture (2011).",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://history.princeton.edu/about/publications/atlantic-crossings-social-politics-progressive-age",
+          "checked_on": "2026-10-24",
+          "scope": "Institutional book description details international reform networks and social-policy adaptations. This ISBN listing dates a 2000 edition, distinct from the 1998 original in the faculty biography.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://doi.org/10.1017/S1537781423000221",
+          "checked_on": "2026-10-24",
+          "scope": "2023 authored historiographical roundtable abstract and visible extract identify transnational-turn reception and new questions about colonialism, race and gender; whole roundtable not read.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Do not call transnational or Atlantic history absent. Do not equate Rodgers's Euro-American network with all global reform history."
+      ]
+    },
+    {
+      "id": "hist_bederman",
+      "label": "Gail Bederman: race, masculinity and civilization",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "bederman|gail",
+      "release_people_all_authorship_in_analysis_count": 161,
+      "release_first_author_key_in_analysis_count": 161,
+      "release_first_author_key_dated_count": 160,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:bederman|manliness and civilization",
+          "title": "Manliness and Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+          "year": "1995",
+          "first_author_key": "bederman|gail",
+          "verified_in_analysis": 104,
+          "verified_dated": 103
+        },
+        {
+          "work_id": "W:bederman|manliness civilization",
+          "title": "Manliness & Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+          "year": "1995",
+          "first_author_key": "bederman|gail",
+          "verified_in_analysis": 46,
+          "verified_dated": 46
+        }
+      ],
+      "existing_related_node_ids": [
+        "gender",
+        "culture",
+        "racial_formation",
+        "intersectionality"
+      ],
+      "specific_content_gap": "No Bederman person or work. gender/masculinity is currently Bourke and Dismembering the Male; broader gender/race scholarship exists through Higginbotham and colonial categories. Missing is the specific US historical analysis of masculinity formed through racialized civilization discourse.",
+      "recommended_research_and_content": "Research Manliness and Civilization (1995) to broaden the masculinity strand beyond war and Britain, identifying the conjunction of race, sexuality, gender and national power through its specific cases. Keep US cultural-historical inquiry distinct from Omi/Winant's general racial-formation framework.",
+      "primary_source_checks": [
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3683791.html",
+          "checked_on": "2026-10-24",
+          "scope": "Official publisher author/title, copyright 1995, description and contents, including Wells, Roosevelt, G. Stanley Hall and Gilman. Later format date is not a new original.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Two release title keys are variants (and/ampersand); 103 and 46 dated sets must not be summed as a recovered book total.",
+        "Gender and racial analysis already exist; this is a missing historian/intervention and a thin regional strand."
+      ]
+    },
+    {
+      "id": "hist_ngai",
+      "label": "Mae M. Ngai: immigration restriction, legality and citizenship",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "ngai|mae m",
+      "release_people_all_authorship_in_analysis_count": 119,
+      "release_first_author_key_in_analysis_count": 119,
+      "release_first_author_key_dated_count": 119,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:ngai|impossible subjects",
+          "title": "Impossible Subjects: Illegal Aliens and the Making of Modern America",
+          "year": "2004",
+          "first_author_key": "ngai|mae m",
+          "verified_in_analysis": 106,
+          "verified_dated": 106
+        },
+        {
+          "work_id": "W:ngai|architecture of race in american immigration law|a",
+          "title": "The Architecture of Race in American Immigration Law: A Reexamination of the Immigration Act of 1924",
+          "year": "1999",
+          "first_author_key": "ngai|mae m",
+          "verified_in_analysis": 12,
+          "verified_dated": 12
+        }
+      ],
+      "existing_related_node_ids": [
+        "racial_formation",
+        "political",
+        "cdn_immigration_ethnicity",
+        "settler_colonialism"
+      ],
+      "specific_content_gap": "No Ngai person or work; substring Ngai occurs only inside an unrelated findingaids URL. Canadian immigration/race history is substantive, but US immigration restriction and the historical production of legal/illegal belonging lack this named intervention.",
+      "recommended_research_and_content": "Research the 1999 immigration-law article as an in-period intervention, then Impossible Subjects (2004) as explicitly later scholarship; develop migration/citizenship/racialization content with the legal making of categories, not just an author roster addition. Comparative Canadian connections require separate evidence.",
+      "primary_source_checks": [
+        {
+          "url": "https://history.columbia.edu/person/ngai-mae/",
+          "checked_on": "2026-10-24",
+          "scope": "Author's institutional research profile and bibliography verify identity, immigration/citizenship/nationalism remit, and Impossible Subjects (2004).",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.degruyterbrill.com/document/doi/10.1515/9781400850235-fm/pdf",
+          "checked_on": "2026-10-24",
+          "scope": "Publisher-distributed front-matter search extract identifies first printing 2004, first paperback 2005 and new-foreword edition 2014; metadata only, PDF book unread.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "2004 publication must remain later scholarship, not a field-origin date. No present-day legal-policy guidance or claims about the book's complete argument."
+      ]
+    },
+    {
+      "id": "hist_benton",
+      "label": "Lauren Benton: imperial legal pluralism and uneven sovereignty",
+      "priority": "1-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "benton|lauren a",
+      "release_people_all_authorship_in_analysis_count": 138,
+      "release_first_author_key_in_analysis_count": 137,
+      "release_first_author_key_dated_count": 135,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:benton|search for sovereignty",
+          "title": "A Search for Sovereignty: Law and Geography in European Empires, 1400-1900",
+          "year": "2010",
+          "first_author_key": "benton|lauren a",
+          "verified_in_analysis": 75,
+          "verified_dated": 75
+        },
+        {
+          "work_id": "W:benton|law and colonial cultures",
+          "title": "Law and Colonial Cultures: Legal Regimes in World History, 1400-1900",
+          "year": "2002",
+          "first_author_key": "benton|lauren a",
+          "verified_in_analysis": 63,
+          "verified_dated": 62
+        }
+      ],
+      "existing_related_node_ids": [
+        "global",
+        "post",
+        "spatialhistory",
+        "settler_colonialism",
+        "indigenous"
+      ],
+      "specific_content_gap": "No Benton person, work or named contribution; no legal pluralism or jurisdiction substring in canonical nodes. Existing sovereignty and colonial analysis is substantive, but the comparative history of overlapping imperial jurisdictions and uneven legal space is missing.",
+      "recommended_research_and_content": "Research Benton's legal-pluralism and legal-geography interventions to add a methods/debate strand across global, colonial and spatial history. Assess Indigenous actors' legal practices and competing jurisdictions without reducing them to European state diffusion. This is content research, not an automatic new legal-history field node.",
+      "primary_source_checks": [
+        {
+          "url": "https://www.cambridge.org/core/books/law-and-colonial-cultures/5DE1BB3C38E1F258F57ACC6A437BACF2",
+          "checked_on": "2026-10-24",
+          "scope": "Publisher description and contents identify comparative colonial legal orders and Indigenous legal participation; current page dates print format December 2001.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://lawcat.berkeley.edu/record/81694?ln=en",
+          "checked_on": "2026-10-24",
+          "scope": "Institutional library catalog identifies author, title and 2002 imprint.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.cambridge.org/core/books/search-for-sovereignty/1FCB3767F56B64879CF13618A139866A",
+          "checked_on": "2026-10-24",
+          "scope": "Publisher author/title, description and contents identify legal geography, corridors/enclaves and uneven imperial authority; print listing dates November 2009.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Both principal corpus dates (2002, 2010) differ from publisher format dates (2001, 2009). These are observations to resolve with original front matter, not corrections accepted by this review.",
+        "Most books are after 2000; explicitly label later research. No whole-book reading or new legal claim."
+      ]
+    },
+    {
+      "id": "hist_jacobson",
+      "label": "Matthew Frye Jacobson: changing whiteness and immigrant racialization",
+      "priority": "2-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "jacobson|matthew f",
+      "release_people_all_authorship_in_analysis_count": 152,
+      "release_first_author_key_in_analysis_count": 152,
+      "release_first_author_key_dated_count": 149,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:jacobson|whiteness of a different color",
+          "title": "Whiteness of a Different Color: European Immigrants and the Alchemy of Race",
+          "year": "1998",
+          "first_author_key": "jacobson|matthew f",
+          "verified_in_analysis": 92,
+          "verified_dated": 89
+        },
+        {
+          "work_id": "W:jacobson|barbarian virtues",
+          "title": "Barbarian Virtues: The United States Encounters Foreign Peoples at Home and Abroad, 1876-1917",
+          "year": "2000",
+          "first_author_key": "jacobson|matthew f",
+          "verified_in_analysis": 48,
+          "verified_dated": 48
+        }
+      ],
+      "existing_related_node_ids": [
+        "racial_formation",
+        "cdn_immigration_ethnicity",
+        "culture",
+        "languages_of_class"
+      ],
+      "specific_content_gap": "No Matthew Frye Jacobson identity or work. Claire Jacobson is a different person, a Lévi-Strauss translator in an existing source. Race/whiteness is not absent: Omi/Winant, Perry and Roediger are covered. Missing is this specific US historical account of immigrant groups' shifting racial classification.",
+      "recommended_research_and_content": "Research Whiteness of a Different Color (1998) with historiographical criticism of whiteness studies; connect political/legal classification, immigration and imperial cultural politics. Add a defined historical problem and its evidence, preserving differences from Roediger's working-class formation.",
+      "primary_source_checks": [
+        {
+          "url": "https://history.yale.edu/people/matthew-jacobson",
+          "checked_on": "2026-10-24",
+          "scope": "Author's institutional profile verifies full identity and 1998/2000 books, research on immigration, citizenship, race and expansion.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.jstor.org/stable/j.ctvjk2w15",
+          "checked_on": "2026-10-24",
+          "scope": "Harvard University Press book record, description and contents distributed through JSTOR: 1998, author, title, contingent racial categories and civic assimilation; text unread.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Principal key dated count149 is not all variants; the separate frye jacobson key must not be added.",
+        "Do not claim a new concept of social construction of race."
+      ]
+    },
+    {
+      "id": "hist_berlin",
+      "label": "Ira Berlin: historically variable slave societies and emancipation research",
+      "priority": "2-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "berlin|ira",
+      "release_people_all_authorship_in_analysis_count": 161,
+      "release_first_author_key_in_analysis_count": 161,
+      "release_first_author_key_dated_count": 161,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:berlin|many thousands gone",
+          "title": "Many Thousands Gone: The First Two Centuries of Slavery in North America",
+          "year": "1998",
+          "first_author_key": "berlin|ira",
+          "verified_in_analysis": 83,
+          "verified_dated": 83
+        },
+        {
+          "work_id": "W:berlin|slaves without masters",
+          "title": "Slaves Without Masters: The Free Negro in the Antebellum South",
+          "year": "1974",
+          "first_author_key": "berlin|ira",
+          "verified_in_analysis": 31,
+          "verified_dated": 31
+        }
+      ],
+      "existing_related_node_ids": [
+        "black",
+        "atlantic",
+        "labourhistory",
+        "quant",
+        "capitalismdebates"
+      ],
+      "specific_content_gap": "No Ira Berlin identity or work. Slavery scholarship is already substantial through Du Bois, Williams, Gutman, Fogel/Engerman, Johnson, Baptist and others. Missing is Berlin's comparative temporal/regional reconstruction of slavery and the collaborative documentary-research tradition of emancipation.",
+      "recommended_research_and_content": "Research Many Thousands Gone (1998) and Slaves Without Masters (1974), plus the Freedmen and Southern Society Project's collaborative editorial practice, to distinguish kinds and changes of slave societies from aggregate economics and single plantation narratives. Verify specific conceptual distinctions in book introductions before drafting.",
+      "primary_source_checks": [
+        {
+          "url": "https://koha-public.mdah.ms.gov/cgi-bin/koha/opac-detail.pl?biblionumber=2454",
+          "checked_on": "2026-10-24",
+          "scope": "Mississippi Department of Archives and History catalog verifies Ira Berlin, exact title and 1998 imprint of Many Thousands Gone; bibliographic metadata only.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.columbia.edu/cu/newrec/2421/tmpl/story.9.html",
+          "checked_on": "2026-10-24",
+          "scope": "Contemporaneous Columbia institutional announcement identifies Berlin, Many Thousands Gone and publisher for 1999 Bancroft recognition. Prize is context, not a quality score.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://arhu.umd.edu/news/historian-ira-berlin-challenges-emancipation-assumptions",
+          "checked_on": "2026-10-24",
+          "scope": "Institutional page republishes John David Smith's named reading of the later Long Emancipation, and identifies Slaves Without Masters/Many Thousands Gone. Used as a research lead for emancipation, not passage evidence for the earlier books.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "No claim that slavery or Black agency is absent. All editorial-team credits for documentary volumes need independent checking; release first-author keys cannot establish sole authorship."
+      ]
+    },
+    {
+      "id": "hist_kelley",
+      "label": "Robin D. G. Kelley: Black working-class political culture and everyday resistance",
+      "priority": "2-high",
+      "coverage_class": "source_only_name_missing_core_scholarship",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "kelley|robin d",
+      "release_people_all_authorship_in_analysis_count": 122,
+      "release_first_author_key_in_analysis_count": 116,
+      "release_first_author_key_dated_count": 116,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:kelley|race rebels",
+          "title": "Race Rebels: Culture, Politics, and the Black Working Class",
+          "year": "1994",
+          "first_author_key": "kelley|robin d",
+          "verified_in_analysis": 42,
+          "verified_dated": 42
+        },
+        {
+          "work_id": "W:kelley|hammer and hoe",
+          "title": "Hammer and Hoe: Alabama Communists During the Great Depression",
+          "year": "1990",
+          "first_author_key": "kelley|robin d",
+          "verified_in_analysis": 31,
+          "verified_dated": 31
+        },
+        {
+          "work_id": "W:kelley|freedom dreams",
+          "title": "Freedom Dreams: The Black Radical Imagination",
+          "year": "2002",
+          "first_author_key": "kelley|robin d",
+          "verified_in_analysis": 26,
+          "verified_dated": 26
+        }
+      ],
+      "existing_related_node_ids": [
+        "black",
+        "labourhistory",
+        "newleft",
+        "culturalstudies",
+        "settler_colonialism"
+      ],
+      "specific_content_gap": "Not a wholly absent name: source p4b_kelley_2017 records The Rest of Us and a source-mediated settler-colonial critique. No shared person record, roster or principal books. The Black labour/radical and popular-cultural intervention is missing.",
+      "recommended_research_and_content": "Research Hammer and Hoe (1990) and Race Rebels (1994) to develop Black radical political culture and everyday resistance across Black, labour, social and cultural history. Freedom Dreams (2002) can add an explicitly later strand on political imagination; preserve the existing 2017 source without treating it as coverage of the earlier books.",
+      "primary_source_checks": [
+        {
+          "url": "https://history.ucla.edu/person/robin-d-g-kelley/",
+          "checked_on": "2026-10-24",
+          "scope": "Author's institutional bibliography verifies Race Rebels (1994), Hammer and Hoe (1990), full identity and publication distinctions.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.simonandschuster.com/books/Race-Rebels/Robin-Kelley/9780684826394",
+          "checked_on": "2026-10-24",
+          "scope": "Official publisher description and visible chapter excerpt support this research priority on everyday Black working-class resistance; listing is the June 1996 paperback, not the original 1994 date. Whole book unread.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Robert Kelley is another existing person and must not be reused.",
+        "Black radicalism and resistance already have independent roots in existing nodes; do not invent a new founding narrative."
+      ]
+    },
+    {
+      "id": "hist_mcgirr",
+      "label": "Lisa McGirr: social history of grassroots conservatism",
+      "priority": "2-high",
+      "coverage_class": "absent_person_and_selected_works",
+      "person_id": null,
+      "standalone_node_id": null,
+      "exact_principal_author_key": "mcgirr|lisa",
+      "release_people_all_authorship_in_analysis_count": 106,
+      "release_first_author_key_in_analysis_count": 103,
+      "release_first_author_key_dated_count": 103,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:mcgirr|suburban warriors",
+          "title": "Suburban Warriors: The Origins of the New American Right",
+          "year": "2001",
+          "first_author_key": "mcgirr|lisa",
+          "verified_in_analysis": 90,
+          "verified_dated": 90
+        },
+        {
+          "work_id": "W:mcgirr|war on alcohol",
+          "title": "The War on Alcohol: Prohibition and the Rise of the American State",
+          "year": "2016",
+          "first_author_key": "mcgirr|lisa",
+          "verified_in_analysis": 11,
+          "verified_dated": 11
+        }
+      ],
+      "existing_related_node_ids": [
+        "political",
+        "social",
+        "urbanhistory",
+        "newleft"
+      ],
+      "specific_content_gap": "No McGirr person or book. Existing conservatism mentions concern Kolko's critique of Progressive reform and other regional contexts; no sustained US grassroots New Right historiography appears. Missing is social history applied to conservative mobilization as a historical object.",
+      "recommended_research_and_content": "Research Suburban Warriors (2001) as explicitly later scholarship on postwar conservative organizing, institutions, religion and suburban community. Add a political/social-history strand whose historical subjects extend beyond the Left; it need not be a separate school or a new influence arrow.",
+      "primary_source_checks": [
+        {
+          "url": "https://history.fas.harvard.edu/people/lisa-mcgirr",
+          "checked_on": "2026-10-24",
+          "scope": "Author's institutional profile verifies identity, the book's 2001/2015 editions, and its subject of grassroots conservative politics/social and regional bases.",
+          "whole_work_read": false
+        },
+        {
+          "url": "https://www.si.edu/object/suburban-warriors-origins-new-american-right-lisa-mcgirr:siris_sil_682560",
+          "checked_on": "2026-10-24",
+          "scope": "Smithsonian library record verifies original 2001 and contents, including Goldwater organizing, popular conservatism and evangelicalism; metadata only.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "2001 publication is beyond the principal period boundary; label later scholarship. History of a conservative movement is not an allegation about the historian's politics."
+      ]
+    },
+    {
+      "id": "hist_cooper",
+      "label": "Frederick Cooper: critical concepts and alternatives to empire-to-nation teleology",
+      "priority": "2-development",
+      "coverage_class": "substantial_roster_and_strand_coverage_specific_later_intervention_missing",
+      "person_id": "frederick_cooper",
+      "standalone_node_id": null,
+      "exact_principal_author_key": "cooper|frederick",
+      "release_people_all_authorship_in_analysis_count": 387,
+      "release_first_author_key_in_analysis_count": 304,
+      "release_first_author_key_dated_count": 300,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:cooper|colonialism in question",
+          "title": "Colonialism in Question: Theory, Knowledge, History",
+          "year": "2005",
+          "first_author_key": "cooper|frederick",
+          "verified_in_analysis": 108,
+          "verified_dated": 107
+        }
+      ],
+      "existing_related_node_ids": [
+        "post",
+        "social",
+        "political",
+        "africanhist",
+        "labourhistory",
+        "languages_of_class"
+      ],
+      "specific_content_gap": "Cooper is already a shared person and appears extensively in rosters, strands and mediated relationships on African labour, colonial categories and Tensions of Empire. The post roster itself explicitly says his later criticism requires a separate dated claim. Colonialism in Question (2005) is absent by title from the graph.",
+      "recommended_research_and_content": "Develop the missing 2005 conceptual intervention, especially how identity, globalization, modernity and empire/nation categories are questioned. Preserve the existing contributions and scope; include Rogers Brubaker's coauthorship of the identity chapter. A later critical strand is a higher content priority than a generic biography promotion.",
+      "primary_source_checks": [
+        {
+          "url": "https://www.ucpress.edu/books/colonialism-in-question/pdf",
+          "checked_on": "2026-10-24",
+          "scope": "Official publisher identifies 2005, author, description and contents, including Identity with Rogers Brubaker. Supports research priorities on conceptual categories and alternatives to inevitable empire-to-nation history; no book text read.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "This does not mean Cooper, colonial labour or metropole-colony scholarship is missing.",
+        "2005 is explicitly later scholarship. A criticism edge needs exact targets and passage-level evidence, not just a publisher description."
+      ]
+    },
+    {
+      "id": "hist_roediger",
+      "label": "David R. Roediger: race/class formation beyond a single roster sentence",
+      "priority": "3-development",
+      "coverage_class": "represented_work_thin_substantive_treatment",
+      "person_id": "david_roediger",
+      "standalone_node_id": null,
+      "exact_principal_author_key": "roediger|david r",
+      "release_people_all_authorship_in_analysis_count": 173,
+      "release_first_author_key_in_analysis_count": 163,
+      "release_first_author_key_dated_count": 160,
+      "count_scope": "Exact frozen key, not a merged historical identity; all-authorship release people count is distinct from recomputed first-author union. Named work counts are separate distinct dissertation sets, not added.",
+      "named_work_evidence": [
+        {
+          "work_id": "W:roediger|wages of whiteness",
+          "title": "The Wages of Whiteness: Race and the Making of the American Working Class",
+          "year": "1991",
+          "first_author_key": "roediger|david r",
+          "verified_in_analysis": 122,
+          "verified_dated": 120
+        },
+        {
+          "work_id": "W:roediger|working toward whiteness",
+          "title": "Working Toward Whiteness: How America’s Immigrants Became White",
+          "year": "2005",
+          "first_author_key": "roediger|david r",
+          "verified_in_analysis": 33,
+          "verified_dated": 32
+        }
+      ],
+      "existing_related_node_ids": [
+        "languages_of_class",
+        "labourhistory",
+        "racial_formation",
+        "cdn_immigration_ethnicity"
+      ],
+      "specific_content_gap": "Existing david_roediger is a contributor in languages_of_class, with Wages of Whiteness (1991) and source loc_roediger_wages_1991. An Adele Perry review edge mentions his concept. So Wages is represented; current coverage remains a short publisher-scoped contribution, with no sustained methodological treatment or dedicated labour/racial-formation strand.",
+      "recommended_research_and_content": "Deepen the already accepted race/class/whiteness question through primary introduction reading and named critics. Develop the historical evidence, limits and disagreements in relation to Jacobson and migration studies. Working toward Whiteness (2005) is a separately missing later work, not a reason to call Wages absent.",
+      "primary_source_checks": [
+        {
+          "url": "https://www.versobooks.com/products/2966-the-wages-of-whiteness",
+          "checked_on": "2026-10-24",
+          "scope": "Official current-edition title, author and description read. Supports a research focus on white worker identity and race/class; displayed edition is 2022, not the first 1991 publication recorded by existing source loc_roediger_wages_1991. Body unread.",
+          "whole_work_read": false
+        }
+      ],
+      "qualifications": [
+        "Not a work-omission correction: Wages already appears in roster prose/source and must be retained.",
+        "Later work title/date not independently checked in this review; keep Working toward Whiteness as a corpus-discovered research lead, not ready-to-accept chronology."
+      ]
+    }
+  ],
+  "already_covered_exclusions": [
+    {
+      "person_id": "tina_loo",
+      "standalone_node_id": null,
+      "related_node_ids": [
+        "environment",
+        "moral_regulation",
+        "cdn_political_national"
+      ],
+      "reason": "States of Nature (2006), dams/scale/justice, relocation, and environmental-state research are already explicit. environment/canadian_environmental_history supplies substantial institutional and scholarly coverage of Wynn, MacEachern, Loo, Evenden, Piper, Sandlos, Colpitts and Parr. Standalone absence alone does not justify calling this a content gap."
+    },
+    {
+      "person_id": "joan_sangster",
+      "standalone_node_id": null,
+      "related_node_ids": [
+        "cdn_working_class",
+        "cdn_women_gender",
+        "moral_regulation"
+      ],
+      "reason": "Dreams of Equality, feminist labour-history criticism and the 1995–96 dichotomies debate already have substantive rosters, strands and sourced exchanges. Biography promotion is a different decision."
+    },
+    {
+      "person_id": "craig_heron",
+      "standalone_node_id": null,
+      "related_node_ids": [
+        "cdn_working_class"
+      ],
+      "reason": "Existing working-class history materials already situate this shared person; no candidate for a new concept established in this bounded audit."
+    },
+    {
+      "person_id": "thomas_sugrue",
+      "standalone_node_id": null,
+      "related_node_ids": [
+        "urbanhistory"
+      ],
+      "reason": "Origins of the Urban Crisis already appears in roster and race_industrial_change strand, connecting racial exclusion, institutions and deindustrialization. Could deepen later, but no missing named work here."
+    },
+    {
+      "person_id": "ann_laura_stoler",
+      "standalone_node_id": "ann_laura_stoler",
+      "related_node_ids": [
+        "post",
+        "gender",
+        "archival_turn",
+        "ann_laura_stoler"
+      ],
+      "reason": "Standalone and source/strand coverage already extensive; the recently accepted source/chronology work must not be relabelled a gap."
+    },
+    {
+      "person_id": "richard_white",
+      "standalone_node_id": "richard_white",
+      "related_node_ids": [
+        "richard_white",
+        "environment",
+        "ethnohistory"
+      ],
+      "reason": "Already standalone and was addressed by the previous canonical-work review; do not repeat The Middle Ground as an omission."
+    }
+  ],
+  "implementation_limits": [
+    "No new node or edge is approved by this review. Source identity/contents/description checks establish research feasibility, not acceptance of a full argument.",
+    "A bounded first batch could research Foner, Cohen, Bederman and Ngai as content expansions, with Rodgers/Benton as a second comparison/empire batch. Roediger/Cooper development can reuse existing identities.",
+    "All proposed post-2000 work must remain clearly later scholarship; it must not date field origins or imply completion of a career interval."
+  ]
+}

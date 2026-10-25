@@ -1,5 +1,6 @@
 import sys
 import unittest
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +29,14 @@ SPAN = dict(start=1900, start_kind="earlier_roots", end=None, end_kind="open", p
 
 
 class FieldSetTests(unittest.TestCase):
+    def test_accepted_packet_cannot_be_regenerated(self):
+        with tempfile.TemporaryDirectory() as td:
+            b = batch()
+            b.out = Path(td)
+            (b.out / 'acceptance.json').write_text('{}')
+            with self.assertRaisesRegex(ValueError, 'frozen'):
+                b.build()
+
     def test_sets_absent_span_and_replaces_label(self):
         g = batch().transform(graph(), packet([
             dict(node="military", field="date_span", expect=None, value=SPAN),

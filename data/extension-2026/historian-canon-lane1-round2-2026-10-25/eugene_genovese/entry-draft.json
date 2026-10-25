@@ -1,0 +1,182 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.173 to candidate 1.174",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "eugene_genovese",
+    "label": "Eugene Genovese",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "The Political Economy of Slavery (1965) · Roll, Jordan, Roll (1974) · From Rebellion to Revolution (1979)",
+    "description": "A historian of slavery in the American South whose work joins economic structures, culture and domination. Roll, Jordan, Roll interprets paternalism as a contested relationship of power, not benign treatment. The primary preface and opening retain their own national-culture framing; Walter Johnson’s later review challenges the account’s implications for consent and coercion. A separate reading by N. Gordon Levin discusses the earlier political-economy argument and its problems, preserving the distinction between a named reader’s criticism and Genovese’s own text.",
+    "representative_figures_and_works": "The Political Economy of Slavery (1965; later editions distinct); Roll, Jordan, Roll (1974; preface dated August 1973, Vintage 1976 distinct); From Rebellion to Revolution (1979; 1981 reprint distinct).",
+    "source_ids": [
+      "genovese",
+      "johnson_genovese_review",
+      "hc174_genovese_economy",
+      "hc174_genovese_rebellion",
+      "hc174_genovese_levin"
+    ],
+    "scope_note": "Existing primary preface/opening and named Johnson reading retain all qualifications. Earlier/later political identities do not collapse the writings into one timeless position. Levin is a named substantive reader, not Genovese’s own statement. No direct Gramsci passage has been checked, and acknowledgments do not establish agreement or coauthorship.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_genovese_economy",
+          "label": "The Political Economy of Slavery",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1965,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_genovese_economy"
+          ],
+          "support": "Original Pantheon 1965; not automatically the imprint of every later edition."
+        },
+        {
+          "id": "hc174_genovese_roll",
+          "label": "Roll, Jordan, Roll",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1974,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:genovese"
+          ],
+          "support": "1974 original distinguished from the August 1973 preface, Vintage 1976 and consulted 2011 ebook."
+        },
+        {
+          "id": "hc174_genovese_rebellion",
+          "label": "From Rebellion to Revolution",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1979,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_genovese_rebellion"
+          ],
+          "support": "Smithsonian describes the consulted 1981 item as a reprint of the 1979 edition. Not a new work in 1981."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "eugene_genovese",
+    "label": "Eugene Genovese",
+    "node_id": "eugene_genovese",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing eugene_genovese identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in eugene_genovese/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "newleft",
+      "relationship": "Interprets enslaved culture and paternalism as contested forms within a system of domination.",
+      "source_ids": [
+        "genovese",
+        "johnson_genovese_review"
+      ],
+      "evidence_note": "Existing complete preface and initial paternalism paragraphs, plus Walter Johnson’s complete retrospective, within their recorded scopes. Paternalism is not a benign-slavery claim; Johnson’s consent/coercion criticism remains visible.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_eugene_genovese_1",
+      "source": "eugene_genovese",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "newleft"
+    },
+    {
+      "target": "marx",
+      "relationship": "Makes the relation between slaveholding class power, economic organization and development a problem for Marxist historical interpretation.",
+      "source_ids": [
+        "hc174_genovese_levin",
+        "hc174_genovese_economy"
+      ],
+      "evidence_note": "Specific political-economy intervention mediated by N. Gordon Levin’s substantive review, selected opening pages. This is a contribution to a contested interpretation, not proof that every Marxist shared it, or a direct personal influence from Marx or Gramsci.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_eugene_genovese_2",
+      "source": "eugene_genovese",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "marx"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc174_genovese_economy",
+      "title": "Eugene D. Genovese, The Political Economy of Slavery: Studies in the Economy and Society of the Slave South (Pantheon, 1965).",
+      "citation": "Eugene D. Genovese, The Political Economy of Slavery: Studies in the Economy and Society of the Slave South (Pantheon, 1965).",
+      "url": "https://openlibrary.org/works/OL15149413W/The_political_economy_of_slavery",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Original 1965 Pantheon metadata checked against institutional Edinburgh Compton Collection bibliography https://edwebcontent.ed.ac.uk/sites/default/files/atoms/files/compton_collection_2015.pdf . Book body unread; edition-level listing does not establish all later reprints."
+      }
+    },
+    {
+      "id": "hc174_genovese_rebellion",
+      "title": "Eugene D. Genovese, From Rebellion to Revolution: Afro-American Slave Revolts in the Making of the Modern World (1979; reprint 1981), Smithsonian catalogue.",
+      "citation": "Eugene D. Genovese, From Rebellion to Revolution: Afro-American Slave Revolts in the Making of the Modern World (1979; reprint 1981), Smithsonian catalogue.",
+      "url": "https://www.si.edu/object/siris_sil_130212",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional catalogue explicitly describes 1981 item as reprint of 1979 Baton Rouge edition; author heading 1930–2012. Book body unread; the catalogue’s shortened publisher wording is not expanded into unverified edition details."
+      }
+    },
+    {
+      "id": "hc174_genovese_levin",
+      "title": "N. Gordon Levin, “The Ante-Bellum South as an Underdeveloped Society,” Dissent, review of The Political Economy of Slavery, pp. 327ff.",
+      "citation": "N. Gordon Levin, “The Ante-Bellum South as an Underdeveloped Society,” Dissent, review of The Political Economy of Slavery, pp. 327ff.",
+      "url": "https://www.dissentmagazine.org/wp-content/files_mf/1353951839gordongenovese.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete three-page review, pp. 327–329, read, including the byline N. Gordon Levin on p. 329. Genovese monograph unread. Levin’s class/development and comparative criticisms remain attributed, not independently established. Original book citation gives Pantheon 1965. A precise review issue/date was not established and is not invented; host upload timestamp is not publication date."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "marx",
+      "proposal_id": "hc174_eugene_genovese_2",
+      "row": {
+        "person_id": "eugene_genovese",
+        "role": "historian",
+        "context": "Makes the relation between slaveholding class power, economic organization and development a problem for Marxist historical interpretation.",
+        "works": "The Political Economy of Slavery (1965; later editions distinct); Roll, Jordan, Roll (1974; preface dated August 1973, Vintage 1976 distinct); From Rebellion to Revolution (1979; 1981 reprint distinct).",
+        "source_ids": [
+          "hc174_genovese_levin",
+          "hc174_genovese_economy"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

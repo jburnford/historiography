@@ -1,0 +1,53 @@
+{
+  "schema": "independent_dissertation_canon_review/1",
+  "reviewed_on": "2026-10-24",
+  "reviewer": "Astra independent review agent",
+  "graph_revision": "1.164",
+  "graph_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+  "verdict": "PASS after correction. No remaining blocking issues found for this local research handoff. This does not accept graph content or authorize publication.",
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "ACR1",
+      "severity": "low",
+      "location": "recent-regional-review.json: proposals[neoliberal_deindustrialization] and README.md",
+      "finding": "Initial coverage list omitted existing Steven High and Sugrue deindustrialization strands.",
+      "resolution": "Verified final report and README name cdn_working_class/deindustrialization and urbanhistory/race_industrial_change; gap is explicitly the specific Cowie/Harvey comparison. Producer was corrected by owning agent."
+    },
+    {
+      "id": "ACR2",
+      "severity": "low",
+      "location": "scripts/audit_dissertation_canon.py output guards",
+      "finding": "An earlier inspected version guarded CSV symlinks but not audit-summary.json and omitted public source assets from protected destinations.",
+      "resolution": "Verified final script rejects PUBLIC destinations and preflights all three output names for symlinks; final six-test suite includes the protective behavior."
+    }
+  ],
+  "independent_checks": [
+    "Final audit reproduced 3037 author keys and 1633 works; all three resulting discovery files match checked-in research outputs byte-for-byte.",
+    "Ran final tests.test_dissertation_canon_audit: six cases pass.",
+    "Independently recomputed 94 exact named-work dated counts from frozen citations and in-analysis dissertation tables across the three main thematic reports: zero mismatches.",
+    "All 18 additional-review exact work dated counts match public shards. All additional coverage node/strand references resolve.",
+    "The 19 individual-work decisions match the exact candidate work-ID set and input hash. Previous 148-decision ledger hash is unchanged; event/source references resolve.",
+    "Verified consolidated queue: all five report hashes and producer hash match, 41 unique proposal references become 38 thematic candidates, and each candidate preserves the exact union of referenced work IDs without summing counts.",
+    "Count scopes distinguish all-credit release author totals from dated first-author public charts. Separate work/translation records and raw/dated totals are not conflated.",
+    "Coverage checks distinguish absent identities, roster/strand presence, missing specific work arguments, and bibliographic-only mentions. Scott foreword, Ricœur mediation, Cooper/Roediger coverage, Canadian exclusions and Philip versus Vine Deloria distinctions remain explicit.",
+    "Bibliographic follow-up preserves 8 distinct missing objects, 9 represented translation/edition cases and 2 unresolved records; does not recast collections as wholly new concepts or merge truncated Foucault/Swedish Koselleck records.",
+    "Primary-source spot checks: UC Press confirms Cooper 2005 topics and Brubaker co-credit; Historical Thinking Project confirms joint Seixas/Morton credit and the retained 2012 versus corpus-2013 edition caution. Moyn author page was temporarily unavailable during this independent fetch; its proposal remains a qualified research lead, not a newly accepted claim."
+  ],
+  "reviewed_file_sha256": {
+    "README.md": "52c7bf7ce10720ec4028cd94227c49404e343a64329b2fdb8a53490f2d802380",
+    "audit-summary.json": "d4f55bcb7c7dfbe70ab671da1786364f4217b0be8b4582336f5803c3351ff0f9",
+    "frameworks-review.json": "899c5495167e67892bc71c7eca46cce3213b0447fe8cf3385fff836b02ea1ffb",
+    "historical-review.json": "20205fb53e52860ab3b24162ec49b301a100175566ef874f8c7aace02678512c",
+    "recent-regional-review.json": "55d7c904c92979d4ff5c5ad90548b17816a44770e3bc0055d90b55ab88c9efe0",
+    "additional-content-review.json": "aa2ee2412593b1695e988834bd9e4d663fd4aa076f911339d09659b961b874ce",
+    "individual-work-review.json": "f02ca269aa76cb85b9f700d6d158058e368dc0dd16bfe022810666ac73bd340e",
+    "reviewed-content-queue.json": "8bf66c2a9594fd2d217db61eb4a77bc49d85eef3ea07956f5f9e76c9d90b9215",
+    "build_review_index.py": "7799d42de185963e03212b86c3e47b3f0191c1cef24b49b4652e9a354900df3a"
+  },
+  "limits": [
+    "Selective independent editorial review, not complete reading of all proposed books or passage-level verification of dissertation citation uses.",
+    "Priorities are research choices, not a frequency-derived importance ranking. No new identity, edition merge, influence edge or field membership is accepted.",
+    "Only this review artifact was written in the repository by this reviewer; reproduction output used /tmp. Graph, site, scripts, original ledgers and MEMORY were not edited by this reviewer. OpenAlex remains paused."
+  ]
+}

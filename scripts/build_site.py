@@ -20,6 +20,7 @@ import shutil
 import subprocess
 
 from validate_graph import validate, pathways_within
+from historian_life_review import overlay_historian_life_review
 
 ROOT = Path(__file__).resolve().parents[1]
 # GitHub Pages can serve a branch only from the repository root or `/docs`, so the
@@ -151,7 +152,7 @@ def load_baseline(extension, override=None):
     return None, None
 
 
-def publish_graph(payload):
+def publish_graph(payload, life_review=True):
     """Slim the journal catalogue and overlay accepted Wikidata identities; returns the payload."""
     if 'journal_catalogue' in payload:
         payload['journal_catalogue'] = slim_journal_catalogue(payload['journal_catalogue'])
@@ -159,6 +160,10 @@ def publish_graph(payload):
         enriched = overlay_people_wikidata(payload)
         if enriched:
             print(f'  {enriched} people carry Wikidata identities and life dates in the published copy')
+        review_path = ROOT / 'data/historian-life-review.json'
+        if life_review and review_path.exists():
+            count = overlay_historian_life_review(payload, json.loads(review_path.read_text()))
+            print(f'  {count} historians carry sourced life-status reviews in the published copy')
     return payload
 
 
@@ -223,7 +228,7 @@ def build(graph_path=None, dest=None, baseline_path=None):
         published += 1
     baseline_out = dest / BASELINE_ASSET
     if baseline:
-        baseline_out.write_text(json.dumps(publish_graph(baseline), ensure_ascii=False, separators=(',', ':')))
+        baseline_out.write_text(json.dumps(publish_graph(baseline, life_review=False), ensure_ascii=False, separators=(',', ':')))
         published += 1
         print(f'  2000 baseline published from {origin}')
     elif baseline_out.exists():

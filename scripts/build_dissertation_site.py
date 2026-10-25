@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RESEARCH = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 RELEASE = RESEARCH / 'release/2026-10-23'
 DEST = ROOT / 'data/dissertation-layer/site'
+REVIEWED_IDS = ROOT / 'data/dissertation-layer/reviewed-source-ids.json'
 BUCKETS = 32
 REGIONS = ('CA', 'US', 'EUROPE', 'OTHER')
 EUROPE = set('AT BE BG CH CY CZ DE DK EE ES FI FR GB GR HR HU IE IS IT LI LT LU LV MC ME MK MT NL NO PL PT RO RS SE SI SK UA'.split())
@@ -38,7 +39,7 @@ def serial(data):
     return json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n'
 
 
-def add_reviewed_sources(data, decisions, graph, work_metadata):
+def add_reviewed_sources(data, decisions, graph, work_metadata, registry=None):
     """Include reviewed sources even when a search-frequency cutoff hid them.
 
     Existing source statistics are untouched. New sources get presence counts
@@ -51,8 +52,24 @@ def add_reviewed_sources(data, decisions, graph, work_metadata):
     chosen = {row['source'] for row in decisions['people'].values()}
     chosen |= {key for row in decisions['people'].values() for key in row['works']}
     person_labels = {row['source']: people[pid]['label'] for pid, row in decisions['people'].items()}
+    registry = json.loads(REVIEWED_IDS.read_text()) if registry is None else registry
+    base_hash = hashlib.sha256(json.dumps(labels, ensure_ascii=False, sort_keys=True,
+                                         separators=(',', ':')).encode()).hexdigest()
+    if (registry['base_label_count'] != len(labels)
+            or registry['base_labels_sha256'] != base_hash):
+        raise ValueError('Frozen explorer labels differ from the reviewed source-ID registry')
+    registered = registry['sources']
+    registered_keys = [row['key'] for row in registered]
+    if len(set(registered_keys)) != len(registered_keys):
+        raise ValueError('Duplicate reviewed source-ID registry key')
+    if set(registered_keys) != chosen - existing:
+        raise ValueError('Reviewed selections differ from the append-only source-ID registry: '
+                         + repr(sorted(set(registered_keys) ^ (chosen - existing))))
     added = []
-    for key in sorted(chosen - existing):
+    for registered_label in registered:
+        key = registered_label['key']
+        if registered_label['source_index'] != len(data['sources']):
+            raise ValueError('Reviewed source index/order drift: ' + key)
         if key.startswith('W:') and key not in work_metadata:
             raise ValueError('Reviewed work absent from the release: ' + key)
         if key not in label_ids:
@@ -63,9 +80,13 @@ def add_reviewed_sources(data, decisions, graph, work_metadata):
                 label = dict(key=key, short=row['first_author'].split(',')[0]+', '+row['title'].split(':')[0],
                              full=row['title'], year=int(row['year']) if row['year'].isdigit() else None,
                              author=row['first_author'])
+            if registered_label['id'] != len(labels):
+                raise ValueError('Reviewed source label ID/order drift: ' + key)
             label_ids[key] = len(labels)
             labels.append(label)
         sid = label_ids[key]
+        if {k: v for k, v in registered_label.items() if k != 'source_index'} != {**labels[sid], 'id': sid}:
+            raise ValueError('Reviewed source label metadata/ID drift: ' + key)
         data['sources'].append(dict(id=sid, n=0, series=[], n_region={}, n_period=[], rows=[], regional={},
                                     analysis_scope='counts_only'))
         added.append(key)
@@ -245,7 +266,7 @@ def main():
         (DEST / name).write_text(serial(value))
     manifest = {'snapshot': '2026-10-23',
         'inputs': {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                   for p in [explorer_path, ROOT / 'data/dissertation-layer/links.json',
+                   for p in [explorer_path, ROOT / 'data/dissertation-layer/links.json', REVIEWED_IDS,
                              *(RELEASE / f'{n}.csv.gz' for n in ('dissertations', 'works', 'citations'))]},
         'outputs': {name: hashlib.sha256((DEST / name).read_bytes()).hexdigest() for name in outputs}}
     (DEST.parent / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')

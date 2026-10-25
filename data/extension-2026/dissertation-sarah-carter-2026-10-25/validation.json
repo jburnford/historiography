@@ -1,0 +1,49 @@
+{
+  "status": "passes_in_memory_not_applied",
+  "prepared": "2026-10-25",
+  "baseline_revision": "1.169",
+  "candidate_revision": "1.170",
+  "baseline_sha256": "c11d2e12084f9367ac95ea5e6c747cbb0cff4b515300987013ad6e2236bee44b",
+  "packet_sha256": "7d3a513344ced9f3bb3d7ebb439d4a8080994f29dd26f6a8aa747af2a688b242",
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "checks": [
+    "Owned packet frozen through Batch.build; transform ran in memory only.",
+    "Full graph/chronology/claim/journal/reference validation: zero errors.",
+    "Canonical bytes unchanged.",
+    "All pre-existing edges, claim catalogue and other people exact; Sarah Carter alone receives node_id and a scoped identity note.",
+    "Existing nodes unchanged except declared additive sources/rosters/strand, two Carter roster-edge links, the declared settler roster works/source extension, and one exact historical reading-status clarification.",
+    "All pre-existing chronology, coverage, date labels and other prose exact.",
+    "Three source addenda preserve their complete original notes as prefixes; every other old source exact.",
+    "Historians layer; no Indigenous identity or authority merge.",
+    "Seven publication/edition events; collaborative and editorial credits preserved."
+  ],
+  "added": {
+    "nodes": 1,
+    "people": 0,
+    "edges": 3,
+    "sources": 4,
+    "new_roster_rows": 1,
+    "new_strands": 1,
+    "person_events": 7
+  },
+  "candidate_counts": {
+    "nodes": 224,
+    "people": 1365,
+    "edges": 1315,
+    "sources": 2552
+  },
+  "scope": "No global apply, browser build, acceptance output, shared tests/code, commit or deployment. Astra review pending."
+}

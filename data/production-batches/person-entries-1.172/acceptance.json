@@ -1,0 +1,1398 @@
+{
+  "revision": "1.172",
+  "date": "2026-10-25",
+  "authorization": "User explicitly authorized the complete qualifying missing-historian queue and parallel research; local packet preparation only.",
+  "baseline": "drafts/historiography-1920-2000.v1.171.json",
+  "baseline_sha256": "caeb2c59a566ea42525aab3a939d2aeb8141278efd9010806696a772fac3ade8",
+  "packet": "data/extension-2026/historian-canon-lane2-round1-2026-10-25/release/editorial-additions.json",
+  "packet_sha256": "bc52c76bff04408e1c107de62ee6a6982fab488326ba0e1dd0504750bc486589",
+  "production_sha256": "5c468796bfb4810b42b88b3d567ace87504aba1fced8912f3ef143250e5e8c55",
+  "previous_table_lengths": {
+    "nodes": 234,
+    "people": 1369,
+    "edges": 1335,
+    "sources": 2571,
+    "revision_history": 171
+  },
+  "prior_records": {
+    "people": {
+      "richard_hofstadter": {
+        "id": "richard_hofstadter",
+        "label": "Richard Hofstadter"
+      },
+      "frederick_cooper": {
+        "id": "frederick_cooper",
+        "label": "Frederick Cooper"
+      },
+      "doug_owram": {
+        "id": "doug_owram",
+        "label": "Doug Owram",
+        "identity_note": "Canadian historiography revision 1.128 participant. Roster inclusion does not establish external identity resolution; any Wikidata match is recorded separately."
+      },
+      "franca_iacovetta": {
+        "id": "franca_iacovetta",
+        "label": "Franca Iacovetta",
+        "identity_note": "Canadian historiography revision 1.128 participant. Roster inclusion does not establish external identity resolution; any Wikidata match is recorded separately."
+      },
+      "walter_johnson": {
+        "id": "walter_johnson",
+        "label": "Walter Johnson",
+        "identity_note": "Historian (Harvard); author of River of Dark Dreams (2013). Not the physicist or other namesakes. Added in revision 1.145 (capitalism, divergence and industrialisation). Roster inclusion does not establish external identity resolution; no Wikidata match recorded."
+      },
+      "david_roediger": {
+        "id": "david_roediger",
+        "label": "David R. Roediger",
+        "identity_note": "US labour historian (Kansas); The Wages of Whiteness (1991). Added in revision 1.152. Wikidata Q5239167 checked by QLever (2026-10-22: 'American historian (1952-)', born 1952-07-13); not recorded in data/people-wikidata.json by this batch."
+      },
+      "antoinette_burton": {
+        "id": "antoinette_burton",
+        "label": "Antoinette Burton",
+        "identity_note": "American historian of the British Empire (University of Illinois), b. 1961; ed. Archive Stories (2005). Added in period-4 wave 1. Wikidata Q4775575 checked by QLever on 2026-10-23 ('American historian', born 1961-10-22); Q64707386 (a researcher stub) rejected."
+      }
+    },
+    "edges": {},
+    "sources": {},
+    "nodes": {
+      "black": {
+        "id": "black",
+        "label": "Black history",
+        "date_label": "1800s roots",
+        "layer": "historiographical_developments",
+        "period": "period_0",
+        "hunt_core_paradigm": false,
+        "description": "Challenges racist historical narratives and recovers Black agency, institutions, and political struggle. Abolitionism, community scholarship, and Black institutions provide independent roots, not merely applications of European theory.",
+        "representative_figures_and_works": "William Wells Brown; George Washington Williams (1882–83); Carter G. Woodson; W. E. B. Du Bois, Black Reconstruction (1935). Carter G. Woodson and colleagues founded the Association for the Study of Negro Life and History (now ASALH) in 1915. Postwar and later examples include John Hope Franklin, From Slavery to Freedom (1947), and Darlene Clark Hine, Black Women in White (1989).",
+        "source_ids": [
+          "blackroots",
+          "black",
+          "franklin_freedom",
+          "hine_black_women",
+          "brown_black_man",
+          "woodson_education",
+          "woodson_institutions",
+          "nell_patriots",
+          "porter_wesley",
+          "white_arnt_woman",
+          "higginbotham_race",
+          "higginbotham_righteous"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "william_wells_brown",
+            "role": "historian",
+            "context": "Uses collective biography to contest racist claims of inferiority.",
+            "works": "The Black Man: His Antecedents, His Genius, and His Achievements (1863)",
+            "source_ids": [
+              "brown_black_man",
+              "blackroots"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "george_washington_williams",
+            "role": "historian",
+            "context": "Earlier Black historical writing.",
+            "works": "History of the Negro Race in America (1882–83)",
+            "source_ids": [
+              "blackroots",
+              "black"
+            ],
+            "basis": "curated_entry"
+          },
+          {
+            "person_id": "carter_g_woodson",
+            "role": "historian",
+            "context": "Studies educational effort before emancipation alongside independent publishing and institution building.",
+            "works": "The Education of the Negro Prior to 1861 (1915; 1919 edition)",
+            "source_ids": [
+              "woodson_education",
+              "woodson_institutions",
+              "gb162_woodson_migration_1918",
+              "gb162_woodson_miseducation_1933",
+              "gb162_woodson_nps_2024"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1280"
+          },
+          {
+            "person_id": "w_e_b_du_bois",
+            "role": "historian",
+            "context": "Black historical scholarship and reconstruction history.",
+            "works": "Black Reconstruction (1935)",
+            "source_ids": [
+              "blackroots",
+              "black",
+              "gb162_williams_reconstruction_2022"
+            ],
+            "basis": "curated_entry",
+            "edge_id": "edge_1278"
+          },
+          {
+            "person_id": "john_hope_franklin",
+            "role": "historian",
+            "context": "Postwar synthesis placing African American history within the interpretation of United States history.",
+            "works": "From Slavery to Freedom (1947)",
+            "source_ids": [
+              "franklin_freedom"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "darlene_clark_hine",
+            "role": "historian",
+            "context": "Black women’s work, professional institutions, and the intersection of racial and gender power.",
+            "works": "Black Women in White (1989)",
+            "source_ids": [
+              "hine_black_women",
+              "gb162_hine_inner_lives_1989",
+              "gb162_wintz_hine_1991"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_cooper_nell",
+            "role": "historian",
+            "context": "Recovers military service excluded from patriotic remembrance.",
+            "works": "The Colored Patriots of the American Revolution (1855)",
+            "source_ids": [
+              "nell_patriots"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "dorothy_porter_wesley",
+            "role": "contributor",
+            "context": "Librarian and bibliographer whose collecting makes dispersed Black writing available for research.",
+            "works": "Early Negro Writing, 1760–1837 (1971); Afro-Braziliana: A Working Bibliography (1978)",
+            "source_ids": [
+              "porter_wesley"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "deborah_gray_white",
+            "role": "historian",
+            "context": "Makes enslaved women central to historical questions about labor and reproduction.",
+            "works": "Ar’n’t I a Woman? Female Slaves in the Plantation South (1985)",
+            "source_ids": [
+              "white_arnt_woman"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "evelyn_brooks_higginbotham",
+            "role": "historian",
+            "context": "Studies Black women’s religious organizing and develops historical analysis of race, gender and power.",
+            "works": "“African-American Women’s History and the Metalanguage of Race” (1992); Righteous Discontent (1993)",
+            "source_ids": [
+              "higginbotham_race",
+              "higginbotham_righteous"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sue_bailey_thurman",
+            "role": "contributor",
+            "context": "Participates in the WCWA Black women’s archives committee and presses for a separate archive; inclusion and authority are contested.",
+            "works": "Black women’s archival work and the WCWA encounter, discussed by Voss-Hubbard (1995), citing Bettye Collier-Thomas (1986)",
+            "source_ids": [
+              "beard_voss_archives"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "mary_mcleod_bethune",
+            "role": "contributor",
+            "context": "Her NCNW cooperates with WCWA after she declines the proposed committee chair; Black women’s preservation work exceeds this short-lived collaboration.",
+            "works": "Black women’s archival work and the WCWA encounter, discussed by Voss-Hubbard (1995), citing Bettye Collier-Thomas (1986)",
+            "source_ids": [
+              "beard_voss_archives"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "mary_church_terrell",
+            "role": "contributor",
+            "context": "Terrell’s preserved papers are among the resources Rupp identifies in Flexner’s bibliography. This is a documentary contribution, not a claim of personal advice to Flexner.",
+            "works": "Mary Church Terrell papers at the Library of Congress, cited by Flexner and discussed by Rupp (1992), p. 163",
+            "source_ids": [
+              "flexner_rupp_reception"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "saidiya_hartman",
+            "role": "contributor",
+            "context": "'Critical fabulation', a 'speculative method … which questions historical archives as the sole source of credible information about the past' (MacArthur, 2019); Scenes of Subjection (1997). Unread.",
+            "works": "Scenes of Subjection (1997); 'Venus in Two Acts' (2008); Wayward Lives, Beautiful Experiments (2019)",
+            "source_ids": [
+              "p4a_hartman_macarthur_2019",
+              "p4a_hartman_venus_2008"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marisa_j_fuentes",
+            "role": "contributor",
+            "context": "Dispossessed Lives (2016) combines 'fragmentary sources with interdisciplinary methodologies that include black feminist theory' (publisher description). Unread.",
+            "works": "Dispossessed Lives (2016)",
+            "source_ids": [
+              "p4a_fuentes_dispossessed_2016"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michel_rolph_trouillot",
+            "role": "contributor",
+            "context": "'An unavoidable reference for anyone navigating the streams of Black and Caribbean studies' (Craipain, 2024); 'The Odd and the Ordinary' (1990) against Haitian exceptionalism (as read by Bulamah, Goyatá and Pereira).",
+            "works": "'The Odd and the Ordinary' (1990); Silencing the Past (1995)",
+            "source_ids": [
+              "p4a_craipain_hnet_2024",
+              "p4a_bulamah_vibrant_2020"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1228"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "Independent scholarship, community education, publishing and collecting precede later academic recognition. Biography, national synthesis and Black women’s history pursue different questions. This selection remains weighted toward African American scholarship; diaspora links do not make all Black histories one national tradition.",
+        "strands": [
+          {
+            "id": "institutions",
+            "title": "Independent scholarship and historical institutions",
+            "person_ids": [
+              "william_wells_brown",
+              "george_washington_williams",
+              "carter_g_woodson"
+            ],
+            "focus": "Earlier Black historical writing and institution building precede later academic recognition.",
+            "works": "History of the Negro Race in America (1882–83); The Education of the Negro Prior to 1861 (1915); ASNLH (1915)",
+            "source_ids": [
+              "blackroots",
+              "black",
+              "woodson_education",
+              "woodson_institutions"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "reconstruction",
+            "title": "Reconstruction and national interpretation",
+            "person_ids": [
+              "w_e_b_du_bois",
+              "john_hope_franklin"
+            ],
+            "focus": "Different works recover Black agency and reshape the interpretation of United States history.",
+            "works": "Black Reconstruction; From Slavery to Freedom",
+            "source_ids": [
+              "blackroots",
+              "franklin_freedom"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "women",
+            "title": "Black women and historical explanation",
+            "person_ids": [
+              "darlene_clark_hine",
+              "evelyn_brooks_higginbotham"
+            ],
+            "focus": "Professional life and religious organizing are distinct settings for Black women’s histories; the latter book is currently checked bibliographically.",
+            "works": "Black Women in White (1989); Righteous Discontent (1993)",
+            "source_ids": [
+              "hine_black_women",
+              "higginbotham_righteous"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "biographical_recovery",
+            "title": "Biography, service and public recognition",
+            "focus": "Brown and Nell use different forms of recovery to confront exclusion. Their prefaces state projects, not later disciplinary consensus.",
+            "person_ids": [
+              "william_wells_brown",
+              "william_cooper_nell"
+            ],
+            "works": "The Black Man (1863); The Colored Patriots (1855)",
+            "source_ids": [
+              "brown_black_man",
+              "nell_patriots"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "archives",
+            "title": "Collecting and diaspora bibliography",
+            "focus": "Porter Wesley’s library and bibliographic work supplies research infrastructure across dispersed collections.",
+            "person_ids": [
+              "dorothy_porter_wesley",
+              "saidiya_hartman",
+              "marisa_j_fuentes",
+              "michel_rolph_trouillot"
+            ],
+            "works": "Early Negro Writing (1971); Afro-Braziliana (1978)",
+            "source_ids": [
+              "porter_wesley",
+              "p4a_hartman_macarthur_2019",
+              "p4a_fuentes_dispossessed_2016",
+              "p4a_craipain_hnet_2024"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "enslaved_women",
+            "title": "Enslaved women and historical labor",
+            "focus": "White places women’s productive and reproductive work within the history of slavery.",
+            "person_ids": [
+              "deborah_gray_white"
+            ],
+            "works": "Ar’n’t I a Woman? (1985)",
+            "source_ids": [
+              "white_arnt_woman"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "racial_analysis",
+            "title": "Race, gender and theoretical exchange",
+            "focus": "Higginbotham treats race as historically constructed and consequential for class, sexuality and gender; feminist concepts are both resources and objects of criticism.",
+            "person_ids": [
+              "evelyn_brooks_higginbotham"
+            ],
+            "works": "“African-American Women’s History and the Metalanguage of Race” (1992)",
+            "source_ids": [
+              "higginbotham_race"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1915–1989",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_ca56dfed1360",
+              "label": "Nell, The Colored Patriots",
+              "kind": "publication",
+              "track": "context",
+              "date": {
+                "year": 1855,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:nell_patriots"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_ec642a272bdc",
+              "label": "Brown, The Black Man",
+              "kind": "publication",
+              "track": "context",
+              "date": {
+                "year": 1863,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:brown_black_man"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_e8d3222fc1ae",
+              "label": "ASNLH founded",
+              "kind": "institution_foundation",
+              "track": "contributions",
+              "date": {
+                "year": 1915,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:black"
+              ],
+              "support": "Foundation of an organization, not the beginning of Black historical knowledge. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_7fc7ce80f850",
+              "label": "Franklin, From Slavery to Freedom",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1947,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:franklin_freedom"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_a3b1d137b7b7",
+              "label": "Hine, Black Women in White",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1989,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hine_black_women"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      },
+      "culture": {
+        "id": "culture",
+        "label": "New cultural history",
+        "date_label": "1970s–80s expansion",
+        "layer": "historiographical_developments",
+        "period": "period_2",
+        "hunt_core_paradigm": false,
+        "description": "Meaning, symbols, rituals, representation, and practices help constitute social life. Draws on anthropology and multiple historical traditions.",
+        "representative_figures_and_works": "Natalie Zemon Davis; Lynn Hunt, ed., The New Cultural History (1989), whose “Models for Cultural History” are Foucault (O’Brien), Thompson and Davis (Desan), Geertz (Biersack), and White and LaCapra (Kramer).",
+        "source_ids": [
+          "culture",
+          "james_culture",
+          "ep_thompson_making",
+          "ep_thompson_postscript",
+          "geertz",
+          "chartier_representations",
+          "grenier_lepetit_labrousse",
+          "thompson_making_preface",
+          "thompson_time_discipline",
+          "thompson_moral_economy",
+          "davis_margins_primary",
+          "hunt_culture_intro_primary",
+          "hunt_political_culture",
+          "darnton_cat_intro_primary",
+          "burke_popular_culture",
+          "burke_cultures_primary",
+          "spiegel_romancing_primary",
+          "scott_gender_1986",
+          "scott_experience",
+          "lacapra_rethinking",
+          "clunas_superfluous_primary",
+          "geary_sacred_commodities",
+          "levi_geertzism_1985",
+          "obrien_foucault_1989",
+          "foucault",
+          "biersack_geertz_1989",
+          "hc171_lears_cohen",
+          "hc171_lears_serlin"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "ep_thompson",
+            "role": "historian",
+            "context": "Class is a historical relationship formed through material experience and culture; the Making preface explicitly restricts its study to English developments.",
+            "works": "The Making of the English Working Class (1963); “Time, Work-Discipline, and Industrial Capitalism” (1967); “The Moral Economy of the English Crowd” (1971)",
+            "source_ids": [
+              "ep_thompson_making",
+              "ep_thompson_postscript",
+              "thompson_making_preface",
+              "thompson_time_discipline",
+              "thompson_moral_economy"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_312"
+          },
+          {
+            "person_id": "natalie_zemon_davis",
+            "role": "historian",
+            "context": "Festive misrule and religious riot read as culturally patterned action, with anthropology used for questions tested on historical evidence (1971–75). Hunt’s 1989 volume makes ‘Thompson and Davis’ a model for cultural history in Desan’s chapter.",
+            "works": "“The Reasons of Misrule” (1971); “The Rites of Violence” (1973); Society and Culture in Early Modern France (1975); Women on the Margins (1995), selected passages",
+            "source_ids": [
+              "culture",
+              "davis_margins_primary",
+              "nzd_rites_1973",
+              "nzd_haskins_1997",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1031"
+          },
+          {
+            "person_id": "lynn_hunt",
+            "role": "historian",
+            "context": "Brings plural cultural approaches into debate while investigating political symbols and practices alongside a sociology of revolutionary politics.",
+            "works": "Politics, Culture, and Class in the French Revolution (1984); The New Cultural History (1989), editor and introduction author; Inventing Human Rights (2007), per its reviewers",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary",
+              "hunt_political_culture",
+              "w1_bell_dret_egal_2007"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "geertz",
+            "role": "contributor",
+            "context": "An anthropological resource, not a historian’s membership in a school.",
+            "works": "The Interpretation of Cultures (1973)",
+            "source_ids": [
+              "culture",
+              "geertz",
+              "biersack_geertz_1989"
+            ],
+            "basis": "curated_entry"
+          },
+          {
+            "person_id": "roger_chartier",
+            "role": "historian",
+            "context": "Reading depends on material forms and differentiated practices. Collective representations help explain social divisions; critical fidelity to Annales includes disagreement with Braudel’s hierarchy.",
+            "works": "“Le monde comme représentation” (1989); Lectures et lecteurs dans la France d’Ancien Régime (1987, contextual reference cited in the article); « La nouvelle histoire culturelle existe-t-elle ? » (2003)",
+            "source_ids": [
+              "chartier_representations",
+              "w2_chartier_nhc_2003"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "clr_james",
+            "role": "historian",
+            "context": "Uses cricket and autobiographical social experience to investigate culture and aesthetics.",
+            "works": "Beyond a Boundary (1963)",
+            "source_ids": [
+              "james_culture"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_153"
+          },
+          {
+            "person_id": "donald_f_mckenzie",
+            "role": "contributor",
+            "context": "Chartier explicitly uses McKenzie’s account of the meanings produced by textual forms; conceptual resource, not membership in one historical school.",
+            "works": "Bibliography and the Sociology of Texts (1986; Panizzi Lectures 1985), cited by Chartier (1989)",
+            "source_ids": [
+              "chartier_representations"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "louis_marin",
+            "role": "contributor",
+            "context": "Chartier uses Marin’s analysis of signs and representation in examining the relation between absent objects, present images and conventions of recognition.",
+            "works": "La critique du discours: Étude sur la Logique de Port-Royal et les Pensées de Pascal (1975), discussed by Chartier (1989)",
+            "source_ids": [
+              "chartier_representations"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "paul_ricoeur",
+            "role": "contributor",
+            "context": "The meeting of text and reader supplies Chartier a resource; he also differentiates historically situated appropriation from a universal account of self-understanding.",
+            "works": "Temps et récit, vol. III, Le temps raconté (1985), pp. 228–263 as cited by Chartier (1989)",
+            "source_ids": [
+              "chartier_representations",
+              "grenier_lepetit_labrousse"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "stanley_fish",
+            "role": "contributor",
+            "context": "Interpretive communities help Chartier specify differentiated reading practices, without making all readers in a society identical.",
+            "works": "Is There a Text in This Class? The Authority of Interpretive Communities (1980), pp. 1–17, cited by Chartier (1989)",
+            "source_ids": [
+              "chartier_representations"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robert_darnton",
+            "role": "historian",
+            "context": "Interprets unusual documents as entry points into historical meanings; the reader can contest his interpretations, and he explicitly disclaims a representative sample.",
+            "works": "The Great Cat Massacre (1984), introduction",
+            "source_ids": [
+              "darnton_cat_intro_primary",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "peter_burke",
+            "role": "historian",
+            "context": "Investigates preindustrial popular culture; his later historiographical reflection questions a simple succession of cultural approaches.",
+            "works": "Popular Culture in Early Modern Europe (1978); “From Cultural History to Histories of Cultures” (undated electronic essay)",
+            "source_ids": [
+              "burke_popular_culture",
+              "burke_cultures_primary"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1320"
+          },
+          {
+            "person_id": "carroll_smith_rosenberg",
+            "role": "historian",
+            "context": "Feminist analysis supplies a formative cultural-history resource in Hunt’s account and a directly acknowledged social/textual resource for Spiegel.",
+            "works": "“The Body Politic” (1989), draft and p. 101 cited by Spiegel (1993)",
+            "source_ids": [
+              "hunt_culture_intro_primary",
+              "spiegel_romancing_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "joan_wallach_scott",
+            "role": "historian",
+            "context": "Treats gender and experience as historical questions, joining cultural and institutional interpretation.",
+            "works": "“Gender: A Useful Category of Historical Analysis” (1986); “The Evidence of Experience” (1991)",
+            "source_ids": [
+              "scott_gender_1986",
+              "scott_experience",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "patricia_obrien",
+            "role": "historian",
+            "context": "Examines historical uses of Foucault. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Michel Foucault’s History of Culture, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "suzanne_desan",
+            "role": "historian",
+            "context": "Reconsiders community and ritual through conflict and gender. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Crowds, Community, and Ritual in the Work of E. P. Thompson and Natalie Davis, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "aletta_biersack",
+            "role": "contributor",
+            "context": "An anthropologist comparing interpretive resources and structure/event questions. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Local Knowledge, Local History: Geertz and Beyond, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "lloyd_kramer",
+            "role": "historian",
+            "context": "Distinguishes literary resources in White and LaCapra. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Literature, Criticism, and Historical Imagination: The Literary Challenge of Hayden White and Dominick LaCapra, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "mary_ryan",
+            "role": "historian",
+            "context": "Reads parades as changing representations of social divisions. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "The American Parade: Representations of the Nineteenth-Century Social Order, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "thomas_laqueur",
+            "role": "historian",
+            "context": "Investigates narratives that make suffering a humanitarian concern. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Bodies, Details, and the Humanitarian Narrative, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "randolph_starn",
+            "role": "historian",
+            "context": "Studies visual attention beyond a simple language analogy. Context follows Hunt’s introduction; chapter body remains unread.",
+            "works": "Seeing Culture in a Room for a Renaissance Prince, in Hunt, ed., The New Cultural History (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "craig_clunas",
+            "role": "historian",
+            "context": "Compares connoisseurship prescriptions with administrative classifications of possessions.",
+            "works": "Superfluous Things (1991), chapter 2 excerpt",
+            "source_ids": [
+              "clunas_superfluous_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "patrick_geary",
+            "role": "historian",
+            "context": "Studies contested authentication and the narratives accompanying transferred relics.",
+            "works": "“Sacred Commodities” (1986),186–190",
+            "source_ids": [
+              "geary_sacred_commodities"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "foucault",
+            "role": "contributor",
+            "context": "Hunt’s The New Cultural History (1989) opens its “Models for Cultural History” with O’Brien’s chapter on Foucault, which reads his work as an alternative model for the history of culture and a critique of Marxist, Annaliste and social-historical analysis. A model offered to cultural historians, not membership of a school; his discourse, genealogy and power contexts in other entries remain distinct.",
+            "works": "Histoire de la folie (1961); Discipline and Punish (1975); The History of Sexuality I (1976)",
+            "source_ids": [
+              "obrien_foucault_1989",
+              "culture",
+              "foucault"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_766"
+          },
+          {
+            "person_id": "patrick_joyce",
+            "role": "historian",
+            "context": "From the linguistic turn to material culture and governmentality: the liberal city's infrastructure (2003), the state's 'ordinary things' (2013); 'a new awakening of interest in the nature of materiality in relation to power' (2011).",
+            "works": "The Rule of Freedom (2003); The State of Freedom (2013)",
+            "source_ids": [
+              "loc_joyce_rule_2003",
+              "loc_joyce_state_2013",
+              "loc_koditschek_2014"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1195"
+          },
+          {
+            "person_id": "jackson_lears",
+            "role": "historian",
+            "context": "Defines cultural history through historically situated meanings, conflicting desires and unintended consequences.",
+            "works": "No Place of Grace (1981; Chicago reissue 1994 and later anniversary edition distinct); Fables of Abundance (1994; paperback 1995 distinct); Something for Nothing: Luck in America (2003).",
+            "source_ids": [
+              "hc171_lears_cohen",
+              "hc171_lears_serlin"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1332"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "Anthropological interpretation, historical representations, and class/cultural experience are distinct resources; culture does not arrive after material explanation ends.",
+        "strands": [
+          {
+            "id": "class_cultural_experience",
+            "title": "Class, conflict and cultural experience",
+            "focus": "Culture helps constitute social relationships in early Marxist and Caribbean inquiries; later cultural history does not inaugurate attention to meaning.",
+            "person_ids": [
+              "ep_thompson",
+              "clr_james"
+            ],
+            "works": "The Making (1963); Beyond a Boundary (1963)",
+            "source_ids": [
+              "thompson_making_preface",
+              "james_culture"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "anthropological_interpretation",
+            "title": "Anthropological interpretation and its disputes",
+            "focus": "Historical interpretation adapts anthropology while debating coherence, differences and what documents permit.",
+            "person_ids": [
+              "robert_darnton",
+              "natalie_zemon_davis",
+              "geertz",
+              "aletta_biersack"
+            ],
+            "works": "“The Rites of Violence” (1973); The Great Cat Massacre (1984); The New Cultural History (1989)",
+            "source_ids": [
+              "darnton_cat_intro_primary",
+              "hunt_culture_intro_primary",
+              "nzd_rites_1973"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "gender_community",
+            "title": "Gender, community and conflict",
+            "focus": "Gender contributes to cultural inquiry and complicates unified pictures of communities and rituals.",
+            "person_ids": [
+              "joan_wallach_scott",
+              "carroll_smith_rosenberg",
+              "suzanne_desan"
+            ],
+            "works": "Gender (1986); The Body Politic and Desan chapter (1989)",
+            "source_ids": [
+              "scott_gender_1986",
+              "hunt_culture_intro_primary",
+              "spiegel_romancing_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "material_reading",
+            "title": "Material texts and differentiated readers",
+            "focus": "Textual form, circulation and appropriation help explain meanings and social divisions.",
+            "person_ids": [
+              "roger_chartier",
+              "donald_f_mckenzie",
+              "stanley_fish"
+            ],
+            "works": "Le monde comme représentation (1989)",
+            "source_ids": [
+              "chartier_representations"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "political_representation",
+            "title": "Political symbols and public performance",
+            "focus": "Symbols, practices and public displays enter political and social explanation.",
+            "person_ids": [
+              "lynn_hunt",
+              "mary_ryan"
+            ],
+            "works": "Politics, Culture, and Class (1984); The American Parade (1989)",
+            "source_ids": [
+              "hunt_political_culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "narrative_humanitarian",
+            "title": "Narrative, criticism and humanitarian concern",
+            "focus": "Narrative form is both a problem of historical writing and a historical object.",
+            "person_ids": [
+              "lloyd_kramer",
+              "dominick_lacapra",
+              "thomas_laqueur",
+              "white"
+            ],
+            "works": "Kramer and Laqueur chapters (1989); Rethinking Intellectual History (1983)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary",
+              "lacapra_rethinking"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "visual_practice",
+            "title": "Visual practice and attention",
+            "focus": "Seeing and situated attention need examination beyond a simple analogy between images and language.",
+            "person_ids": [
+              "randolph_starn"
+            ],
+            "works": "Seeing Culture in a Room for a Renaissance Prince (1989)",
+            "source_ids": [
+              "culture",
+              "hunt_culture_intro_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "popular_cultures",
+            "title": "Popular cultures and historical plurality",
+            "focus": "Popular culture is a historical subject with variable practices, not one timeless folk essence.",
+            "person_ids": [
+              "peter_burke"
+            ],
+            "works": "Popular Culture in Early Modern Europe (1978)",
+            "source_ids": [
+              "burke_popular_culture",
+              "burke_cultures_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "objects_text_categories",
+            "title": "Objects and textual categories",
+            "focus": "Clunas asks how prescriptions and inventories classify objects. Their categories shape what historians can reconstruct; surviving museum objects alone cannot supply the whole material world.",
+            "person_ids": [
+              "craig_clunas"
+            ],
+            "works": "Superfluous Things (1991), 45–53",
+            "source_ids": [
+              "clunas_superfluous_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "foucault_model",
+            "title": "Discourse, power and the critique of social history",
+            "person_ids": [
+              "foucault",
+              "roger_chartier",
+              "joan_wallach_scott"
+            ],
+            "focus": "O’Brien presents Foucault’s history of culture as an alternative to Marxist, Annaliste and social-historical analysis. Chartier’s appropriation of his account of discourse and Scott’s use of his conception of power are recorded as separate relationships; this strand does not make them Foucauldians.",
+            "works": "Patricia O’Brien, “Michel Foucault’s History of Culture” (1989)",
+            "source_ids": [
+              "obrien_foucault_1989"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1973–1989",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_b322c4463b86",
+              "label": "James, Beyond a Boundary",
+              "kind": "publication",
+              "track": "context",
+              "date": {
+                "year": 1963,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:james_culture"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_b720f0df088f",
+              "label": "Geertz, Thick Description",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1973,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:geertz"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_0ff7a5c799ec",
+              "label": "Hunt, The New Cultural History",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1989,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:culture"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_cfeadfc158fa",
+              "label": "Chartier, Le monde comme représentation",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1989,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:chartier_representations"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      },
+      "intellectualhistory": {
+        "id": "intellectualhistory",
+        "label": "Intellectual history",
+        "date_label": "Earlier histories of thought · Lovejoy 1936 · Skinner 1969 · plural programmes through the 1990s",
+        "layer": "historiographical_developments",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Studies thought, concepts, arguments and their production, circulation and interpretation in historical settings. History of ideas, contextual political thought, conceptual history, textual criticism and the material history of publishing supply overlapping but disputed methods. Intellectual history extends beyond the Cambridge School and beyond a canon of European philosophers.",
+        "representative_figures_and_works": "Arthur O. Lovejoy: The Great Chain of Being (1936); Quentin Skinner: “Meaning and Understanding in the History of Ideas” (1969); J. G. A. Pocock: “The history of political thought” (1962); The Machiavellian Moment (1975); Annabel S. Brett: Liberty, Right and Nature (1997); Reinhart Koselleck: Futures Past (German 1979; English 1985); Dominick LaCapra: Rethinking Intellectual History (1983); John E. Toews: “Intellectual History after the Linguistic Turn” (1987); Robert Darnton: The Business of Enlightenment (1979); Masao Maruyama: Studies in the Intellectual History of Tokugawa Japan (essays 1940–1944; English 1974); Mikiso Hane: English translation of Maruyama’s Studies (1974).",
+        "source_ids": [
+          "lovejoy_chain_1936",
+          "skinner_meaning_primary",
+          "pocock_method_primary",
+          "pocock_moment_primary",
+          "brett_rights",
+          "koselleck_futures_primary",
+          "lacapra_rethinking",
+          "toews_experience_metadata",
+          "darnton_business_1979",
+          "maruyama_tokugawa_1974"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "arthur_lovejoy",
+            "role": "historian",
+            "context": "Tracks recurring ideas and their changing combinations across disciplines.",
+            "works": "The Great Chain of Being (1936)",
+            "source_ids": [
+              "lovejoy_chain_1936"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "quentin_skinner",
+            "role": "historian",
+            "context": "Studies historically possible interventions rather than extracting timeless doctrines.",
+            "works": "“Meaning and Understanding in the History of Ideas” (1969)",
+            "source_ids": [
+              "skinner_meaning_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "j_g_a_pocock",
+            "role": "historian",
+            "context": "Treats political thinking as historical activity within available languages.",
+            "works": "“The history of political thought” (1962); The Machiavellian Moment (1975)",
+            "source_ids": [
+              "pocock_method_primary",
+              "pocock_moment_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "annabel_brett",
+            "role": "historian",
+            "context": "Investigates rights vocabulary in varied scholastic philosophical contexts.",
+            "works": "Liberty, Right and Nature (1997)",
+            "source_ids": [
+              "brett_rights"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "reinhart_koselleck",
+            "role": "historian",
+            "context": "Distinguishes concepts, social realities and historically varying temporal expectations.",
+            "works": "Futures Past (German 1979; English 1985)",
+            "source_ids": [
+              "koselleck_futures_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "dominick_lacapra",
+            "role": "historian",
+            "context": "Makes close reading and relations among texts and contexts methodological questions.",
+            "works": "Rethinking Intellectual History (1983)",
+            "source_ids": [
+              "lacapra_rethinking"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "john_toews",
+            "role": "historian",
+            "context": "Names meaning and experience as an explicit historiographical problem; detailed argument remains unread.",
+            "works": "“Intellectual History after the Linguistic Turn” (1987)",
+            "source_ids": [
+              "toews_experience_metadata"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "robert_darnton",
+            "role": "historian",
+            "context": "Studies how publishing practices shape the circulation of Enlightenment ideas.",
+            "works": "The Business of Enlightenment (1979)",
+            "source_ids": [
+              "darnton_business_1979"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "masao_maruyama",
+            "role": "historian",
+            "context": "Interprets Tokugawa thought and questions of political transformation in a distinct Japanese project.",
+            "works": "Studies in the Intellectual History of Tokugawa Japan (essays 1940–1944; English 1974)",
+            "source_ids": [
+              "maruyama_tokugawa_1974"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1276"
+          },
+          {
+            "person_id": "mikiso_hane",
+            "role": "contributor",
+            "context": "Translates Maruyama’s study; translation is a named contribution to circulation, not coauthorship of its original arguments.",
+            "works": "English translation of Maruyama’s Studies (1974)",
+            "source_ids": [
+              "maruyama_tokugawa_1974"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "samuel_moyn",
+            "role": "critic",
+            "context": "Distinguishes revolutionary rights from contemporary international human rights, stressing their antirevolutionary appropriation by 1970s dissidents.",
+            "works": "“On the Genealogy of Morals” (The Nation, 2007)",
+            "source_ids": [
+              "w1_moyn_genealogy_2007"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "roger_chartier",
+            "role": "historian",
+            "context": "Follows the mobility of texts across attributions, printed versions, forms of publication, genres and translations, as Jouhaud quotes Éditer et traduire (2021); Cardenio (2011) traces a lost play between Cervantes and Shakespeare, in Boucheron’s account.",
+            "works": "Cardenio entre Cervantès et Shakespeare (2011; English 2013); Éditer et traduire (2021; partial English Won in Translation, 2022)",
+            "source_ids": [
+              "w2_chartier_boucheron_2014",
+              "w2_chartier_jouhaud_2022",
+              "w2_chartier_cdf_annuaire_2024"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1134"
+          },
+          {
+            "person_id": "white",
+            "role": "historian",
+            "context": "Co-wrote two textbooks on the intellectual history of Western Europe (1966, 1970) and essays on intellectual history before Metahistory, as Paul and Sanz Loroño report; Jay (2013, abstract) compares his reflections on the craft with Skinner’s.",
+            "works": "The Emergence of Liberal Humanism (with Coates and Schapiro, 1966); The Ordeal of Liberal Humanism (with Coates, 1970); “The Tasks of Intellectual History”, reprinted in The Fiction of Narrative (2010)",
+            "source_ids": [
+              "w2_white_paul_2019",
+              "w2_white_sanz_lorono_2011",
+              "w2_white_jay_2013"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1141"
+          },
+          {
+            "person_id": "liang_qichao",
+            "role": "historian",
+            "context": "Reinterpreted Qing learning in 1920 as an internally significant intellectual renewal; Blitstein distinguishes this from Hu Shi’s programme.",
+            "works": "Outline of Scholarship in the Qing Dynasty (1920; through Blitstein)",
+            "source_ids": [
+              "gn161_liang_blitstein_2021"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1269"
+          }
+        ],
+        "entry_type": "Research field",
+        "scope_note": "An enduring field with internal disagreements, not a single lineage from Lovejoy to contextualism. The existing Cambridge School and Conceptual history entries retain their specificity. Maruyama supplies one Japanese inquiry with explicit translation credit, not global representation or evidence of Cambridge influence. Social and cultural settings matter without reducing texts to reflections of social position. Women’s intellectual histories and African, Islamic, South Asian and Latin American traditions still need much fuller coverage.",
+        "strands": [
+          {
+            "id": "history_of_ideas",
+            "title": "History of ideas and recurring concepts",
+            "focus": "Lovejoy follows changing combinations of ideas across philosophical, religious and literary materials.",
+            "person_ids": [
+              "arthur_lovejoy"
+            ],
+            "works": "The Great Chain of Being (1936)",
+            "source_ids": [
+              "lovejoy_chain_1936"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "contextual_arguments",
+            "title": "Arguments, languages and historical action",
+            "focus": "Skinner, Pocock and Brett pursue distinct contextual inquiries; they are not interchangeable statements of one method.",
+            "person_ids": [
+              "quentin_skinner",
+              "j_g_a_pocock",
+              "annabel_brett"
+            ],
+            "works": "Skinner (1969); Pocock (1962, 1975); Brett (1997)",
+            "source_ids": [
+              "skinner_meaning_primary",
+              "pocock_method_primary",
+              "pocock_moment_primary",
+              "brett_rights"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "concepts_temporality",
+            "title": "Conceptual change and historical time",
+            "focus": "Koselleck relates semantic change to social history without making concepts and social structures identical.",
+            "person_ids": [
+              "reinhart_koselleck"
+            ],
+            "works": "Futures Past (1979/1985)",
+            "source_ids": [
+              "koselleck_futures_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "texts_experience",
+            "title": "Texts, contexts and experience",
+            "focus": "LaCapra develops textual criticism; Toews’s titled intervention marks a related debate whose detailed claims remain a reading task.",
+            "person_ids": [
+              "dominick_lacapra",
+              "john_toews"
+            ],
+            "works": "Rethinking Intellectual History (1983); Toews (1987)",
+            "source_ids": [
+              "lacapra_rethinking",
+              "toews_experience_metadata"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "publishing_circulation",
+            "title": "Publishing and the circulation of ideas",
+            "focus": "Darnton connects thought with the material and commercial work of producing and distributing books. Chartier’s later studies follow texts’ mobility across attributions, printed versions, genres and translations, in his reviewers’ accounts.",
+            "person_ids": [
+              "robert_darnton",
+              "roger_chartier"
+            ],
+            "works": "The Business of Enlightenment (1979)",
+            "source_ids": [
+              "darnton_business_1979",
+              "w2_chartier_boucheron_2014",
+              "w2_chartier_jouhaud_2022"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "japanese_thought",
+            "title": "Japanese political thought and translation",
+            "focus": "Maruyama’s Tokugawa studies and Hane’s translation widen the selection while leaving its modernization interpretation open to scrutiny.",
+            "person_ids": [
+              "masao_maruyama",
+              "mikiso_hane"
+            ],
+            "works": "Studies in the Intellectual History of Tokugawa Japan (English 1974)",
+            "source_ids": [
+              "maruyama_tokugawa_1974"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1936–1997",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_4b390af0e0e0",
+              "label": "Lovejoy, The Great Chain of Being",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1936,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:lovejoy_chain_1936"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_cee0c34f8685",
+              "label": "Pocock, methodological inquiry",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1962,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:pocock_method_primary"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_31a55f03be6c",
+              "label": "Skinner, Meaning and Understanding",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1969,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:skinner_meaning_primary"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_c4be2b68bd3e",
+              "label": "Brett, Liberty, Right and Nature",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1997,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:brett_rights"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 10,
+    "new_edges": 20,
+    "new_sources": 22,
+    "source_addenda": 0
+  }
+}

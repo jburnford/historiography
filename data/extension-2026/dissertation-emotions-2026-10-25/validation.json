@@ -1,0 +1,55 @@
+{
+  "status": "pass",
+  "observed_canonical_revision": "1.164",
+  "required_actual_baseline": "1.165",
+  "used_in_memory_revision_scaffold": true,
+  "scope": "Structural/reference and preservation checks only against observed 1.164 data with an in-memory 1.165 revision marker; not proof of reconstruction against the actual future 1.165 baseline.",
+  "graph_errors": [],
+  "existing_warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "counts": {
+    "new_group_nodes": 1,
+    "new_roster_identities": 1,
+    "new_edges": 3,
+    "new_sources": 4,
+    "new_strands": 5,
+    "new_dated_events": 6,
+    "person_promotions": 0
+  },
+  "checks": {
+    "all_prior_nodes_people_edges_sources_unchanged": true,
+    "reddy_existing_roster_contexts_unchanged": true,
+    "ids_and_sources_resolve": true,
+    "no_field_origin_duration_or_end_inferred": true,
+    "ordinary_2000_review_baseline_retained": true,
+    "later_selected_event_dates_preserved": true,
+    "no_counts_or_teaching_links_added": true,
+    "no_global_writes": true
+  },
+  "packet_sha256": "262c4c94fcfe0cdbcc2876b52ef335dfa0750ab95ad4c71844e748756724df20",
+  "reviewable_files": [
+    "batch.json",
+    "history_of_emotions/entry-draft.json",
+    "make_packet.py",
+    "release/editorial-additions.json",
+    "research/.gitignore",
+    "research/evidence.json",
+    "validate_packet.py",
+    "validation.json"
+  ],
+  "remaining": [
+    "Independent substantive review",
+    "Coordinator validation against actual 1.165 and canonical application/rebuild, if accepted"
+  ]
+}

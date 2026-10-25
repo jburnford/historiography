@@ -1,6 +1,59 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.164 (2026-10-24): Astra edition correction
+## Current revision 1.180 (2026-10-25): dissertation canon and life review
+
+**312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed people.**
+The 212 individual entries comprise 190 historians and 22 theorists; the 100 group
+entries remain distinct. Schema 1.6 and all stable IDs are retained. Historians
+and theorists occupy separate layers; a theorist such as Marx is not classified
+as a historian because dissertations cite his work.
+
+Revisions 1.170–1.179 complete 89 qualifying historian entries after the separately
+accepted Beckert packet: seven Canadian-history candidates at ≥150 dated first-author
+dissertations and 82 other historians above 100. Each new biography has at least
+three sourced dated facts and two substantive relationships. New identities receive
+sourced group roster contexts. Original works, component essays, translations,
+coauthors and editors retain their credits and date qualifications; bibliographic
+metadata alone creates no argument or influence claim. Revisions 1.178 and 1.180
+restore earlier identity qualifications and make source/attribution corrections
+without rewriting the frozen earlier acceptance packets.
+
+The separate `data/historian-life-review.json` covers all 190 historian biographies:
+100 living, 89 deceased and one unresolved (Jennifer S. H. Brown), checked on
+2026-10-25. The public main-graph overlay adds `people[].life` and `people[].life_review`
+with sources and date precision, leaving canonical work chronologies, relationship
+dates and the exact-2000 archive unchanged. No missing death record implies living,
+and no year-only witness becomes a fabricated day.
+
+The dissertation layer has 113 linked profiles, five field panels and 4,053 sources
+(original 4,037 plus 16 reviewed exceptions). Stable numeric source IDs, earlier
+series, denominator populations and field selections are preserved. See the
+[content handoff](data/field-research/dissertation-content-2026-10-25/README.md),
+[final reading report](data/field-research/dissertation-content-2026-10-25/reading-bridge-integration/final-report.json)
+and [1.180 acceptance](data/production-batches/historian-corrections-1.180/README.md).
+Astra review and release checks pass; publication is authorized. See the implementation report for validation evidence.
+Earlier revision sections below retain their historical counts and qualifications.
+
+
+## Historical revision 1.168 (2026-10-25): dissertation-guided content
+
+**222 entries, 1,309 relationships, 2,542 sources and 1,365 people.** Revisions
+1.165–1.167 add Scott and Benton as individual entries, Lefebvre's spatial-history
+profile/strand and a History of emotions field. The nine relationships distinguish
+named contributions, Rosenwein's Elias critique and Scott's acknowledged Thompson
+resource. The emotions field retains the baseline review boundary of 2000;
+selected 2001–2010 facts do not establish a later-field survey.
+
+Revision 1.168 repairs eight distinct work/collection gaps in five existing
+individual entries, with nine dated facts. Ginzburg and Poni's 1979 joint original
+and 1981 partial translation remain separate; collections retain component dates
+and editors/translators. Poni receives a qualified bibliographic coauthor profile.
+No arrows are inferred from metadata or dissertation counts. Five new reading
+bridges preserve the existing frozen numerical series. The old 19-row review and
+its two unresolved records remain intact. See the
+[content handoff](data/field-research/dissertation-content-2026-10-25/README.md).
+
+## Historical revision 1.164 (2026-10-24): Astra edition correction
 
 **219 entries, 1,300 relationships, 2,503 sources and 1,360 people.** Astra's
 independent review identified Diop's original 1960 title being conflated with the

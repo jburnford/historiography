@@ -117,6 +117,12 @@ function packer(cx, cy, limit, gap = 1.2) {
       const x = tx + c * Math.sqrt(k) * Math.cos(k * 2.39996), y = ty + c * Math.sqrt(k) * Math.sin(k * 2.39996);
       if (Math.hypot(x - cx, y - cy) + r <= limit && free(x, y, r)) { add(x, y, r); return {x, y}; }
     }
+    // A dense roster can leave gaps that the coarse target spiral skips. Search the
+    // whole disc at finer spacing before giving up the preferred neighbourhood.
+    const step = Math.max(1, r / 2);
+    for (let y = cy - limit + r; y <= cy + limit - r; y += step)
+      for (let x = cx - limit + r; x <= cx + limit - r; x += step)
+        if (Math.hypot(x - cx, y - cy) + r <= limit && free(x, y, r)) { add(x, y, r); return {x, y}; }
     add(tx, ty, r); return {x: tx, y: ty};
   };
   return {add, place};
@@ -274,8 +280,15 @@ export function familyOverviewLayout(graph, block, width) {
   });
   const pos = new Map(anchors.map(a => [a.id, a]));
   const owners = new Set((graph.people || []).filter(p => p.node_id).map(p => p.id));
-  const dot = size * 0.0032 + 1.6, ownDot = size * 0.0046 + 2.2;
-  const pk = packer(cx, cy, R - rMax - 4);
+  const limit = R - rMax - 4;
+  let dot = size * 0.0032 + 1.6, ownDot = size * 0.0046 + 2.2;
+  // More standalone biographies enlarge their dots. Keep room between all people
+  // on small screens as the roster grows, while retaining the two relative sizes.
+  const area = [...familiesOf].filter(([, fs]) => fs.length > 1)
+    .reduce((sum, [pid]) => sum + (owners.has(pid) ? ownDot : dot) ** 2, 0);
+  const densityScale = Math.min(1, Math.sqrt(0.25 * limit ** 2 / Math.max(1, area)));
+  dot *= densityScale; ownDot *= densityScale;
+  const pk = packer(cx, cy, limit);
   const groups = new Map();
   for (const [pid, fs] of familiesOf) if (fs.length > 1) { const key = fs.join('|'); if (!groups.has(key)) groups.set(key, []); groups.get(key).push(pid); }
   const entryCount = pid => new Set(byPerson.get(pid).map(r => r.id)).size;

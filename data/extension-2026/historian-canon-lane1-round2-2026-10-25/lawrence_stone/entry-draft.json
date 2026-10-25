@@ -1,0 +1,159 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.173 to candidate 1.174",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "lawrence_stone",
+    "label": "Lawrence Stone",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "The Crisis of the Aristocracy (1965) · The Family, Sex and Marriage in England (1977) · The Family, Sex and Marriage: abridged edition (1979) · “The Revival of Narrative” (1979)",
+    "description": "A historian of early modern England whose studies of social structure and family relations also generated methodological disputes. The selected 1979 abridgment of his family study qualifies change by social strata, reversals and overlapping household types, while making a disputed assumption about surviving personal documents. His 1979 narrative essay identifies a shift among a prominent minority, rather than announcing that quantitative history had ended. Pollock’s source criticism and Hobsbawm’s response remain substantive qualifications to those arguments.",
+    "representative_figures_and_works": "The Crisis of the Aristocracy (1965); The Family, Sex and Marriage in England, 1500–1800 (1977; abridged 1979); “The Revival of Narrative” (1979).",
+    "source_ids": [
+      "stone_family",
+      "stone_family_abridged",
+      "pollock_thesis",
+      "stone_revival",
+      "hobsbawm_revival",
+      "hc174_stone_princeton"
+    ],
+    "scope_note": "Existing lawrence_stone reused. The selected primary abridgment is not conflated with the 1977 text. Pollock’s 1981 thesis remains separate from the 1983 book. Prior source notes and the distinct Tuchman exchange remain untouched; no blanket anti-quantitative position or whole-book reading.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_stone_crisis",
+          "label": "The Crisis of the Aristocracy",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1965,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_stone_princeton"
+          ],
+          "support": "Institutional selected bibliography dates the original 1965. Book body unread."
+        },
+        {
+          "id": "hc174_stone_family",
+          "label": "The Family, Sex and Marriage in England",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1977,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:stone_family"
+          ],
+          "support": "Original 1977 date retained; the metadata record does not settle every edition/imprint."
+        },
+        {
+          "id": "hc174_stone_abridgment",
+          "label": "The Family, Sex and Marriage: abridged edition",
+          "kind": "edition",
+          "track": "editions",
+          "date": {
+            "year": 1979,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:stone_family_abridged"
+          ],
+          "support": "Primary imprint identifies first Harper paperback 1979, copyright 1977/1979. Selected pp. 21–29 are from this abridgment, not assumed identical to 1977."
+        },
+        {
+          "id": "hc174_stone_narrative",
+          "label": "“The Revival of Narrative”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1979,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:stone_revival"
+          ],
+          "support": "Past & Present 85, pp. 3–24. Distinct from the 1978 Tuchman review."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "lawrence_stone",
+    "label": "Lawrence Stone",
+    "node_id": "lawrence_stone",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing lawrence_stone identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in lawrence_stone/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "demography",
+      "relationship": "Offers a qualified interpretation of family change and affective relations whose evidential assumptions Pollock disputes.",
+      "source_ids": [
+        "stone_family_abridged",
+        "pollock_thesis"
+      ],
+      "evidence_note": "Primary abridgment pp. 21–29 and Pollock’s separate 1981 thesis passages, within existing scopes. Stone acknowledges literate-source bias while assuming broad representativeness; neither his trajectory nor that assumption is certified.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_lawrence_stone_1",
+      "source": "lawrence_stone",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "demography"
+    },
+    {
+      "target": "revival",
+      "relationship": "Diagnoses renewed narrative among a prominent minority while acknowledging continuing quantitative and analytical work.",
+      "source_ids": [
+        "stone_revival",
+        "hobsbawm_revival"
+      ],
+      "evidence_note": "Existing primary Stone reading covers pp. 3–6 and 13–24, not 7–12; Hobsbawm response read completely. Diagnosis and examples remain Stone’s situated claims, not a unanimous field transition.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_lawrence_stone_2",
+      "source": "lawrence_stone",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "revival"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc174_stone_princeton",
+      "title": "Princeton University, Lawrence Stone Biography: selected bibliography.",
+      "citation": "Princeton University, Lawrence Stone Biography: selected bibliography.",
+      "url": "https://history.princeton.edu/centers-programs/shelby-cullom-davis-center/about/lawrence-stone-biography",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional life-year heading 1919–99 and selected publication list checked, including Crisis (1965) and Family (1977). This supports dates/identity; celebratory judgments are not adopted as evidence of each book’s argument. No reading of Crisis or all original Family text."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

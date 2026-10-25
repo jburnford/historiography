@@ -1,0 +1,2557 @@
+{
+  "review_type": "Cross-field theory, frameworks and methods dissertation-canon coverage review",
+  "review_date": "2026-10-24",
+  "status": "review_only_no_graph_changes",
+  "canonical_revision": "1.164",
+  "provenance": {
+    "canonical_path": "historiography-1920-2000.json",
+    "canonical_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+    "release_path": "data/field-research/dissertation-citations-2026-10-11/release/2026-10-23",
+    "release_sha256": {
+      "people.csv.gz": "76a2673f43e5d298316c1163c073f0dcfd7ea1809fe1823807fa13e417b0731b",
+      "works.csv.gz": "e0dab1613b8008676d5b0dfccb15914743e20ade690ab307e508f51f1e24801f",
+      "authorship.csv.gz": "e56016db695e8125facde64c624edcd325b2796a178142de29cea7a81c922811",
+      "citations.csv.gz": "8941c08a0b4667533bf6f640287f1a5f271eaebb6418db87922dabce43c55292",
+      "dissertations.csv.gz": "71d44cef45de441ff57cf7c0caebd8633b9c2ea53163baa0126d1c34e1d3b36e"
+    },
+    "count_witness": "framework-evidence/release-counts.json"
+  },
+  "scope_limits": [
+    "The user requested review of missing content, not new graph entries, automatic citation crosswalks, publication, or biography promotion.",
+    "OpenAlex investigation remains paused; no OpenAlex API calls or new identity merges were made.",
+    "This selective 12 candidate review is not an exhaustive canon inventory or a ranking of scholarly importance.",
+    "The prior 148 work/chronology decisions are preserved, including the unresolved truncated Foucault volume; this report does not replace or re-open that ledger.",
+    "Existing graph source qualifications and named mediation are preserved in the coverage evidence. Newly checked descriptions are not whole-book reading or passage-level evidence for graph arrows.",
+    "The frozen release counts all analysis dissertations; its 6794 dated subset is not interchangeable with all 7107 analysis records. Public P: records use first-author works, while release people.csv.gz totals use all authorship positions.",
+    "No totals were formed by adding name keys, variant titles, translations or editions. Work-level counts are the preferred leads when identity is mixed or unresolved."
+  ],
+  "count_definitions": {
+    "all_authorship": "Deduplicated strict in_analysis dissertation IDs joined from citations.csv.gz to authorship.csv.gz for exactly one person_key, every authorship position; validates people.csv.gz. A name key is not necessarily an authority-controlled identity.",
+    "first_author": "Deduplicated strict in_analysis dissertation IDs for work rows with exactly the person_key in first_author_key; this is the scope used by public P: source records. It can differ from all_authorship.",
+    "work": "Deduplicated strict in_analysis dissertation IDs for exactly one work_id; validates cited_by_strict_phds. No sums across title variants/translations/editions."
+  },
+  "denominators": {
+    "in_analysis": 7107,
+    "dated_in_analysis": 6794
+  },
+  "candidates": [
+    {
+      "candidate_id": "framework_scott",
+      "person_key": "scott|james c",
+      "label": "James C. Scott",
+      "status": "research_candidate_only",
+      "priority": "high",
+      "gap_kind": "missing_framework_and_identity",
+      "release_counts": {
+        "all_authorship_strict": 464,
+        "all_authorship_dated": 456,
+        "first_author_strict": 463,
+        "first_author_dated": 455,
+        "qid": "Q3025403",
+        "qid_basis": "catalogue_title_match"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:scott|seeing like a state",
+          "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+          "year": "1998",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "scott|james c",
+          "first_author": "Scott, James C",
+          "cited_by_strict_phds": "257",
+          "cited_by_CA": "119",
+          "cited_by_US": "127",
+          "cited_by_FR": "0",
+          "cited_by_EU": "11",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "264",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 257,
+          "recomputed_dated_strict_phds": 254
+        },
+        {
+          "work_id": "W:scott|weapons of the weak",
+          "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
+          "year": "1985",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "scott|james c",
+          "first_author": "Scott, James C",
+          "cited_by_strict_phds": "104",
+          "cited_by_CA": "38",
+          "cited_by_US": "55",
+          "cited_by_FR": "2",
+          "cited_by_EU": "9",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "105",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 104,
+          "recomputed_dated_strict_phds": 103
+        },
+        {
+          "work_id": "W:scott|domination and the arts of resistance",
+          "title": "Domination and the Arts of Resistance: Hidden Transcripts",
+          "year": "1990",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "scott|james c",
+          "first_author": "Scott, James C",
+          "cited_by_strict_phds": "99",
+          "cited_by_CA": "37",
+          "cited_by_US": "52",
+          "cited_by_FR": "1",
+          "cited_by_EU": "9",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "100",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 99,
+          "recomputed_dated_strict_phds": 96
+        },
+        {
+          "work_id": "W:scott|art of not being governed",
+          "title": "The Art of Not Being Governed: An Anarchist History of Upland Southeast Asia",
+          "year": "2009",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "scott|james c",
+          "first_author": "Scott, James C",
+          "cited_by_strict_phds": "55",
+          "cited_by_CA": "21",
+          "cited_by_US": "28",
+          "cited_by_FR": "1",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "55",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 55,
+          "recomputed_dated_strict_phds": 54
+        }
+      ],
+      "existing_graph": {
+        "person_id": null,
+        "standalone_node_id": null,
+        "coverage_summary": "No indexed person, roster, strand or principal-work coverage. A Guha scope note and sources guha_elementary / pe 137_guha_rule_of_property mention Scott as later foreword author; that bibliographic mediation does not cover his own framework.",
+        "contexts": []
+      },
+      "precise_missing_content": "State legibility, practical knowledge and the limits of high-modernist planning are absent; so are the different arguments about everyday resistance and hidden transcripts. These should remain distinct from one another and from Guha’s insurgent consciousness or Thompson’s moral economy.",
+      "recommended_next_action": "Begin a bounded Scott work-and-method review: compare Seeing Like a State, Weapons of the Weak and Domination and the Arts of Resistance in primary selections, then locate specific historical applications and criticisms. Decide whether a person entry or scoped strands best expose those differences; foreword credit alone warrants no genealogical arrow.",
+      "proposed_research_context_ids": [
+        "historicalsociology",
+        "subaltern",
+        "practice"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "The raw key is not an exhaustive author identity total. Keep scott|james and initialled or malformed keys separate. Counts indicate citation presence, not agreement or a particular dissertation’s use. Yale’s checked page is a 2020 reissue; the release 1998 date still needs edition-level verification before chronology entry.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://yalebooks.yale.edu/book/9780300252989/seeing-like-a-state/",
+          "title": "Yale University Press: Seeing Like a State",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher identifies Scott and describes comparative failures of large state plans; current format is a 2020 reissue. No whole-book reading."
+        },
+        {
+          "url": "https://drupal.yalebooks.yale.edu/sites/default/files/poliscilaw_2019.pdf",
+          "title": "Yale politics/law catalogue 2019",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher catalogue distinguishes Weapons of the Weak from Seeing Like a State and summarizes local practical knowledge. Catalogue descriptions only."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_lefebvre",
+      "person_key": "lefebvre|henri",
+      "label": "Henri Lefebvre",
+      "status": "research_candidate_only",
+      "priority": "high",
+      "gap_kind": "missing_spatial_framework",
+      "release_counts": {
+        "all_authorship_strict": 177,
+        "all_authorship_dated": 174,
+        "first_author_strict": 177,
+        "first_author_dated": 174,
+        "qid": "Q162597",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:lefebvre|production of space",
+          "title": "The Production of Space",
+          "year": "1991",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "lefebvre|henri",
+          "first_author": "Lefebvre, Henri",
+          "cited_by_strict_phds": "101",
+          "cited_by_CA": "35",
+          "cited_by_US": "53",
+          "cited_by_FR": "0",
+          "cited_by_EU": "10",
+          "cited_by_OTHER": "3",
+          "cited_by_all_records": "102",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 101,
+          "recomputed_dated_strict_phds": 99
+        },
+        {
+          "work_id": "W:lefebvre|production de lespace",
+          "title": "La production de l’espace",
+          "year": "1974",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "lefebvre|henri",
+          "first_author": "Lefebvre, Henri",
+          "cited_by_strict_phds": "26",
+          "cited_by_CA": "7",
+          "cited_by_US": "3",
+          "cited_by_FR": "13",
+          "cited_by_EU": "3",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "28",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 26,
+          "recomputed_dated_strict_phds": 26
+        },
+        {
+          "work_id": "W:lefebvre|writings on cities",
+          "title": "Writings on Cities",
+          "year": "1996",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "lefebvre|henri",
+          "first_author": "Lefebvre, Henri",
+          "cited_by_strict_phds": "7",
+          "cited_by_CA": "3",
+          "cited_by_US": "2",
+          "cited_by_FR": "0",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "7",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 7,
+          "recomputed_dated_strict_phds": 7
+        }
+      ],
+      "existing_graph": {
+        "person_id": null,
+        "standalone_node_id": null,
+        "coverage_summary": "No indexed Henri Lefebvre identity, roster, strand or Production of Space source/work. The atlas already has spatialhistory, urbanhistory and geographical resources, including Harvey and de Certeau; spatial approaches themselves are not absent.",
+        "contexts": []
+      },
+      "precise_missing_content": "The production of social space is missing as a distinct theoretical resource. It could sharpen the existing distinction between reconstructing past geographies, interpreting spatial practices and GIS. A work-level review should also distinguish urban political claims from a general philosophy of space.",
+      "recommended_next_action": "Read the work’s introduction and selected chapters and identify a named historian’s use or critique; research a scoped Lefebvre resource within spatialhistory/urbanhistory before deciding on any standalone entry. Preserve existing geography and GIS distinctions.",
+      "proposed_research_context_ids": [
+        "spatialhistory",
+        "urbanhistory"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Do not merge Henri with Georges Lefebvre. English Production of Space 101 and French Production de l’espace 26 are separate released work keys, not a combined 127. Wiley’s checked paperback lists April 1992 while the release English key says 1991; verify original translation/format dates before adding chronology.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://www.wiley.com/en-us/The%2BProduction%2Bof%2BSpace-p-9780631181774",
+          "title": "Wiley: The Production of Space",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Identifies Henri Lefebvre and translator Donald Nicholson-Smith; description and contents connect mental, social and lived space. April 1992 paperback metadata, not validation of 1991 first translation."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_ricoeur",
+      "person_key": "ricoeur|paul",
+      "label": "Paul Ricœur",
+      "status": "research_candidate_only",
+      "priority": "high",
+      "gap_kind": "underdeveloped_historical_epistemology_and_memory",
+      "release_counts": {
+        "all_authorship_strict": 280,
+        "all_authorship_dated": 276,
+        "first_author_strict": 279,
+        "first_author_dated": 275,
+        "qid": "Q192066",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:ricoeur|temps et recit",
+          "title": "Temps et récit",
+          "year": "1983",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "ricoeur|paul",
+          "first_author": "RICOEUR, Paul",
+          "cited_by_strict_phds": "90",
+          "cited_by_CA": "22",
+          "cited_by_US": "3",
+          "cited_by_FR": "46",
+          "cited_by_EU": "9",
+          "cited_by_OTHER": "10",
+          "cited_by_all_records": "92",
+          "wikidata_work": "Q70769071",
+          "recomputed_strict_phds": 90,
+          "recomputed_dated_strict_phds": 89
+        },
+        {
+          "work_id": "W:ricoeur|memoire lhistoire loubli",
+          "title": "La mémoire, l’histoire, l’oubli",
+          "year": "2000",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "ricoeur|paul",
+          "first_author": "RICOEUR, Paul",
+          "cited_by_strict_phds": "33",
+          "cited_by_CA": "8",
+          "cited_by_US": "0",
+          "cited_by_FR": "23",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "33",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 33,
+          "recomputed_dated_strict_phds": 33
+        },
+        {
+          "work_id": "W:ric ur|memoire lhistoire loubli",
+          "title": "La mémoire, l’histoire, l’oubli",
+          "year": "2000",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "ricoeur|paul",
+          "first_author": "RICOEUR, Paul",
+          "cited_by_strict_phds": "27",
+          "cited_by_CA": "5",
+          "cited_by_US": "0",
+          "cited_by_FR": "22",
+          "cited_by_EU": "0",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "29",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 27,
+          "recomputed_dated_strict_phds": 27
+        },
+        {
+          "work_id": "W:ricoeur|memory history forgetting",
+          "title": "Memory, History, Forgetting",
+          "year": "2004",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "ricoeur|paul",
+          "first_author": "RICOEUR, Paul",
+          "cited_by_strict_phds": "18",
+          "cited_by_CA": "8",
+          "cited_by_US": "4",
+          "cited_by_FR": "1",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "18",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 18,
+          "recomputed_dated_strict_phds": 17
+        }
+      ],
+      "existing_graph": {
+        "person_id": "paul_ricoeur",
+        "standalone_node_id": null,
+        "coverage_summary": "Indexed in culture through Chartier’s use of Temps et récit III; edge_1140 also mentions Ricœur’s criticism of White through Herman Paul’s manuscript, explicitly mediated. No independent Ricœur work source or broad treatment of his narrative/memory inquiry was found.",
+        "contexts": [
+          {
+            "node_id": "culture",
+            "label": "New cultural history",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "The meeting of text and reader supplies Chartier a resource; he also differentiates historically situated appropriation from a universal account of self-understanding.",
+                "works": "Temps et récit, vol. III, Le temps raconté (1985), pp. 228–263 as cited by Chartier (1989)",
+                "source_ids": [
+                  "chartier_representations",
+                  "grenier_lepetit_labrousse"
+                ]
+              }
+            ],
+            "strands": []
+          }
+        ]
+      },
+      "precise_missing_content": "Narrative and temporal experience, the evidential limits of historical representation, and the relation among memory, historical knowledge and forgetting need direct work-level treatment. Existing Chartier mediation and the White criticism cover only parts of this corpus.",
+      "recommended_next_action": "Review primary selections from the relevant Time and Narrative volumes and Memory, History, Forgetting. Develop a qualified strand or person proposal connecting narrative, memory and historical knowing; retain Chartier’s differentiation and the mediated status of the current White criticism.",
+      "proposed_research_context_ids": [
+        "culture",
+        "white",
+        "memory",
+        "truthdebate"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Temps et récit 90 is an unnumbered released work key and must not be reported as 90 citations specifically to volumeI orIII. French La mémoire keys 33 and 27 and English 18 remain separate; do not total them. Translation, reprint and original dates require volume-level checks.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/T/bo5962044.html",
+          "title": "Chicago: Time and Narrative, Volume1",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher description/contents identify narrative, temporality, mimesis and historical knowledge; copyright 1984 and named translators. No primary volume read."
+        },
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3613761.html",
+          "title": "Chicago: Memory, History, Forgetting",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher description/contents distinguish memory, historical knowledge and forgetting;2004 translation credits Blamey and Pellauer. No book read."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_goffman",
+      "person_key": "goffman|erving",
+      "label": "Erving Goffman",
+      "status": "research_candidate_only",
+      "priority": "high",
+      "gap_kind": "underdeveloped_interaction_and_institutions",
+      "release_counts": {
+        "all_authorship_strict": 166,
+        "all_authorship_dated": 159,
+        "first_author_strict": 166,
+        "first_author_dated": 159,
+        "qid": "Q314471",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:goffman|presentation of self in everyday life",
+          "title": "The Presentation of Self in Everyday Life",
+          "year": "1959",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "goffman|erving",
+          "first_author": "Goffman, Erving",
+          "cited_by_strict_phds": "51",
+          "cited_by_CA": "12",
+          "cited_by_US": "17",
+          "cited_by_FR": "15",
+          "cited_by_EU": "7",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "53",
+          "wikidata_work": "Q2265892",
+          "recomputed_strict_phds": 51,
+          "recomputed_dated_strict_phds": 49
+        },
+        {
+          "work_id": "W:goffman|asylums",
+          "title": "Asylums: Essays on the Social Situation of Mental Patients and Other Inmates",
+          "year": "1961",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "goffman|erving",
+          "first_author": "Goffman, Erving",
+          "cited_by_strict_phds": "31",
+          "cited_by_CA": "12",
+          "cited_by_US": "8",
+          "cited_by_FR": "5",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "36",
+          "wikidata_work": "Q2866640",
+          "recomputed_strict_phds": 31,
+          "recomputed_dated_strict_phds": 30
+        },
+        {
+          "work_id": "W:goffman|stigma",
+          "title": "Stigma: Notes on the Management of Spoiled Identity",
+          "year": "1963",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "goffman|erving",
+          "first_author": "Goffman, Erving",
+          "cited_by_strict_phds": "19",
+          "cited_by_CA": "6",
+          "cited_by_US": "4",
+          "cited_by_FR": "0",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "4",
+          "cited_by_all_records": "20",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 19,
+          "recomputed_dated_strict_phds": 16
+        }
+      ],
+      "existing_graph": {
+        "person_id": "erving_goffman",
+        "standalone_node_id": null,
+        "coverage_summary": "practice has one roster record: Goffman as a resource for interaction/framing, citing Frame Analysis indirectly through de Certeau note9. No dedicated strand; Presentation of Self, Asylums and Stigma are absent from the canonical bibliography/prose.",
+        "contexts": [
+          {
+            "node_id": "practice",
+            "label": "Practice theory",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Named resource for interaction and framing.",
+                "works": "Frame Analysis (1974), cited in de Certeau note 9",
+                "source_ids": [
+                  "certeau_practice_primary"
+                ]
+              }
+            ],
+            "strands": []
+          }
+        ]
+      },
+      "precise_missing_content": "The dissertation canon points to situated self-presentation and institutional experiences much more strongly than the current Frame Analysis mention reveals. Total institutions and the inmate’s situation offer a concrete missing method/resource for medical and institutional histories.",
+      "recommended_next_action": "Review Presentation of Self and Asylums primary introductions and locate actual historical uptake, especially historians of psychiatry. Add work-specific coverage only after distinguishing dramaturgical interaction from institutional ethnography and from Foucault’s separate prison genealogy.",
+      "proposed_research_context_ids": [
+        "practice",
+        "medicalhistory",
+        "anthropology"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Preserve Erving versus Daniel Goffman. The 51 Presentation key records 1959, which should not be treated as an independently verified first version date. Penguin’s 2022 Asylums page supports content and identity, not original 1961 publication chronology. Citation presence alone cannot justify an influence arrow to medicalhistory.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://www.penguin.co.uk/books/13668/asylums-by-erving-goffman/9780241548004",
+          "title": "Penguin: Asylums",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher identifies Goffman and describes essays about enclosed institutions and inmate/institution relations;2022 edition. Description only."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_agamben",
+      "person_key": "agamben|giorgio",
+      "label": "Giorgio Agamben",
+      "status": "research_candidate_only",
+      "priority": "medium",
+      "gap_kind": "missing_contested_sovereignty_framework",
+      "release_counts": {
+        "all_authorship_strict": 106,
+        "all_authorship_dated": 106,
+        "first_author_strict": 106,
+        "first_author_dated": 106,
+        "qid": "Q311687",
+        "qid_basis": "catalogue_title_match"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:agamben|homo sacer",
+          "title": "Homo Sacer: Sovereign Power and Bare Life",
+          "year": "1998",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "agamben|giorgio",
+          "first_author": "AGAMBEN, Giorgio",
+          "cited_by_strict_phds": "41",
+          "cited_by_CA": "12",
+          "cited_by_US": "15",
+          "cited_by_FR": "5",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "4",
+          "cited_by_all_records": "42",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 41,
+          "recomputed_dated_strict_phds": 41
+        },
+        {
+          "work_id": "W:agamben|state of exception",
+          "title": "State of Exception",
+          "year": "2005",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "agamben|giorgio",
+          "first_author": "AGAMBEN, Giorgio",
+          "cited_by_strict_phds": "30",
+          "cited_by_CA": "13",
+          "cited_by_US": "14",
+          "cited_by_FR": "0",
+          "cited_by_EU": "3",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "30",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 30,
+          "recomputed_dated_strict_phds": 30
+        },
+        {
+          "work_id": "W:agamben|means without end",
+          "title": "Means without End: Notes on Politics",
+          "year": "2000",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "agamben|giorgio",
+          "first_author": "AGAMBEN, Giorgio",
+          "cited_by_strict_phds": "6",
+          "cited_by_CA": "2",
+          "cited_by_US": "4",
+          "cited_by_FR": "0",
+          "cited_by_EU": "0",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "6",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 6,
+          "recomputed_dated_strict_phds": 6
+        }
+      ],
+      "existing_graph": {
+        "person_id": null,
+        "standalone_node_id": null,
+        "coverage_summary": "No indexed identity, roster, source or Homo Sacer / State of Exception work mention was found. Existing Foucault, Arendt, Benjamin and postcolonial resources should remain distinct.",
+        "contexts": []
+      },
+      "precise_missing_content": "Sovereignty, bare life and exceptional legal power are missing as a contested interpretive framework. Treating these as Agamben’s theses, with criticisms and historical limits, would add content beyond the atlas’s existing biopower discussions.",
+      "recommended_next_action": "Research a bounded Homo Sacer / State of Exception packet, beginning with primary selections and a named critique of their relation to Foucault and their use in historical case studies. Decide whether a strand is sufficient. A new debate entry requires evidence of an actual exchange, not a generic comparison.",
+      "proposed_research_context_ids": [
+        "foucault",
+        "historicalsociology"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Homo Sacer 41 and State of Exception 30 remain independent counts. State of Exception is post 2000; adding it requires explicit selective-later-work scope rather than backdating. Publisher lists copyright 2004 while release key says 2005; resolve publication/format metadata before chronology. Stanford Homo Sacer URL returned 403, so no claim of having read that publisher page.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo3534874.html",
+          "title": "Chicago: State of Exception",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher description, contents and translation credit inspected; presents exceptional power as Agamben’s argument, not a settled historical finding."
+        },
+        {
+          "url": "https://press.uchicago.edu/Misc/Chicago/009254.html",
+          "title": "Agamben: A Brief History of the State of Exception",
+          "source_type": "primary_excerpt",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher-hosted primary excerpt inspected for the proposed comparative constitutional-history route; historical examples were not independently checked."
+        },
+        {
+          "url": "https://rauli.cbs.dk/index.php/foucault-studies/article/view/856",
+          "title": "Mika Ojakangas: Impossible Dialogue on Bio-power",
+          "source_type": "primary_critical_article_abstract",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Original 2005 article abstract inspected: explicit criticism of Agamben’s interpretation of Foucault. Body unread."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_certeau",
+      "person_key": "certeau|michel d",
+      "label": "Michel de Certeau",
+      "status": "research_candidate_only",
+      "priority": "high",
+      "gap_kind": "missing_historiographical_operation_beside_existing_practice",
+      "release_counts": {
+        "all_authorship_strict": 269,
+        "all_authorship_dated": 266,
+        "first_author_strict": 269,
+        "first_author_dated": 266,
+        "qid": "Q553887",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:de certeau|practice of everyday life",
+          "title": "The Practice of Everyday Life",
+          "year": "1984",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "certeau|michel d",
+          "first_author": "CERTEAU, Michel de",
+          "cited_by_strict_phds": "47",
+          "cited_by_CA": "22",
+          "cited_by_US": "21",
+          "cited_by_FR": "0",
+          "cited_by_EU": "2",
+          "cited_by_OTHER": "2",
+          "cited_by_all_records": "48",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 47,
+          "recomputed_dated_strict_phds": 46
+        },
+        {
+          "work_id": "W:certeau|practice of everyday life",
+          "title": "The Practice of Everyday Life",
+          "year": "1984",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "certeau|michel d",
+          "first_author": "CERTEAU, Michel de",
+          "cited_by_strict_phds": "42",
+          "cited_by_CA": "15",
+          "cited_by_US": "22",
+          "cited_by_FR": "0",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "44",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 42,
+          "recomputed_dated_strict_phds": 41
+        },
+        {
+          "work_id": "W:certeau|lecriture de lhistoire",
+          "title": "L’écriture de l’histoire",
+          "year": "1975",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "certeau|michel d",
+          "first_author": "CERTEAU, Michel de",
+          "cited_by_strict_phds": "23",
+          "cited_by_CA": "2",
+          "cited_by_US": "0",
+          "cited_by_FR": "19",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "23",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 23,
+          "recomputed_dated_strict_phds": 22
+        },
+        {
+          "work_id": "W:de certeau|lecriture de lhistoire",
+          "title": "L’écriture de l’histoire",
+          "year": "1975",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "certeau|michel d",
+          "first_author": "CERTEAU, Michel de",
+          "cited_by_strict_phds": "14",
+          "cited_by_CA": "6",
+          "cited_by_US": "0",
+          "cited_by_FR": "7",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "15",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 14,
+          "recomputed_dated_strict_phds": 14
+        }
+      ],
+      "existing_graph": {
+        "person_id": "michel_de_certeau",
+        "standalone_node_id": null,
+        "coverage_summary": "practice already distinguishes tactics from strategies; urbanhistory has walking/spatial practice, and biography records Davis’s acknowledged use of stories. These are substantive existing resources, not absence.",
+        "contexts": [
+          {
+            "node_id": "biography",
+            "label": "Biography / life writing",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Davis explicitly draws on his account of stories and dedicates the book partly to him. This specific resource does not make all comparative biography an application of one theory.",
+                "works": "The Practice of Everyday Life, used in Women on the Margins (1995), Glikl opening",
+                "source_ids": [
+                  "davis_margins_primary"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "comparative_margins",
+                "title": "Comparative lives, religion and colonial power",
+                "works": "Women on the Margins (1995), selected primary passages",
+                "source_ids": [
+                  "davis_margins_primary",
+                  "nzd_haskins_1997"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "practice",
+            "label": "Practice theory",
+            "roster": [
+              {
+                "role": "historian",
+                "context": "Distinguishes tactics from strategies with a base of their own; users are not homogeneous.",
+                "works": "The Practice of Everyday Life (1980; English 1984)",
+                "source_ids": [
+                  "certeau_practice_primary"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "tactics",
+                "title": "Everyday tactics",
+                "works": "The Practice of Everyday Life",
+                "source_ids": [
+                  "certeau_practice_primary"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "urbanhistory",
+            "label": "Urban history",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "“Walking in the City” gives urban historians a vocabulary of spatial practice and everyday use. His practice-theory context remains.",
+                "works": "The Practice of Everyday Life (1980; English 1984)",
+                "source_ids": [
+                  "certeau"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "space_capital_culture",
+                "title": "Space, capital and the cultural city",
+                "works": "Social Justice and the City (1973); Das Passagen-Werk (1982); The Practice of Everyday Life (1980/84)",
+                "source_ids": [
+                  "harvey_social_justice_1973",
+                  "benjamin_arcades_project",
+                  "certeau"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "L’écriture de l’histoire / The Writing of History is not represented. The organization and writing of historical knowledge, its disciplinary practices and its handling of absence would broaden coverage beyond everyday tactics.",
+      "recommended_next_action": "Read primary selections of The Writing of History and assess a work-specific historiographical-operation strand, preserving current tactics and Davis reception as different claims. Use the original French and translated versions as edition-level evidence, not a merged citation total.",
+      "proposed_research_context_ids": [
+        "practice",
+        "language",
+        "biography",
+        "archival_turn"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Two Practice of Everyday Life keys 47 and 42 and two Writing of History French keys 23 and 14 remain separate. The checked Columbia paperback is 1992 and does not settle the first English edition. Do not count generic occurrences of the phrase writing of history or Goldstein’s Foucault edited volume as this work.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://cup.columbia.edu/book/the-writing-of-history/9780231055758/",
+          "title": "Columbia: The Writing of History",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher identifies de Certeau and describes his rethinking of historiography through history, religion and psychoanalysis; inspected description,1992 paperback metadata. No book read."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_williams",
+      "person_key": "williams|raymond b",
+      "label": "Raymond Williams",
+      "status": "research_candidate_only",
+      "priority": "medium",
+      "gap_kind": "missing_keyword_method_and_rural_urban_culture",
+      "release_counts": {
+        "all_authorship_strict": 175,
+        "all_authorship_dated": 167,
+        "first_author_strict": 175,
+        "first_author_dated": 167,
+        "qid": "Q394628",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:williams|marxism and literature",
+          "title": "Marxism and Literature",
+          "year": "1977",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "williams|raymond b",
+          "first_author": "Williams, Raymond",
+          "cited_by_strict_phds": "39",
+          "cited_by_CA": "13",
+          "cited_by_US": "18",
+          "cited_by_FR": "3",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "39",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 39,
+          "recomputed_dated_strict_phds": 38
+        },
+        {
+          "work_id": "W:williams|keywords",
+          "title": "Keywords: A Vocabulary of Culture and Society",
+          "year": "1976",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "williams|raymond b",
+          "first_author": "Williams, Raymond",
+          "cited_by_strict_phds": "38",
+          "cited_by_CA": "16",
+          "cited_by_US": "12",
+          "cited_by_FR": "2",
+          "cited_by_EU": "7",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "39",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 38,
+          "recomputed_dated_strict_phds": 35
+        },
+        {
+          "work_id": "W:williams|country and the city",
+          "title": "The Country and the City",
+          "year": "1973",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "williams|raymond b",
+          "first_author": "Williams, Raymond",
+          "cited_by_strict_phds": "25",
+          "cited_by_CA": "11",
+          "cited_by_US": "9",
+          "cited_by_FR": "0",
+          "cited_by_EU": "2",
+          "cited_by_OTHER": "3",
+          "cited_by_all_records": "25",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 25,
+          "recomputed_dated_strict_phds": 24
+        },
+        {
+          "work_id": "W:williams|culture and society 1780 1950",
+          "title": "Culture and Society, 1780-1950",
+          "year": "1958",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "williams|raymond b",
+          "first_author": "Williams, Raymond",
+          "cited_by_strict_phds": "20",
+          "cited_by_CA": "12",
+          "cited_by_US": "4",
+          "cited_by_FR": "0",
+          "cited_by_EU": "2",
+          "cited_by_OTHER": "2",
+          "cited_by_all_records": "21",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 20,
+          "recomputed_dated_strict_phds": 20
+        }
+      ],
+      "existing_graph": {
+        "person_id": "raymond_williams",
+        "standalone_node_id": null,
+        "coverage_summary": "culturalstudies already covers Culture and Society, Marxism and Literature, lived culture, Hall’s assessment and Thompson’s disagreement. Existing source spiegel_romancing_primary also records Williams as a resource mediated through Alan Sinfield’s typescript. Keywords and The Country and the City are absent.",
+        "contexts": [
+          {
+            "node_id": "culturalstudies",
+            "label": "British cultural studies",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Culture as social practice and historical process; Hall discusses Williams’s exchange with Thompson and later use of hegemony.",
+                "works": "Culture and Society (1958); Marxism and Literature (1977)",
+                "source_ids": [
+                  "culturalstudies",
+                  "hall_two_paradigms"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "lived_culture",
+                "title": "Literary criticism and lived culture",
+                "works": "The Uses of Literacy (1957); Culture and Society (1958)",
+                "source_ids": [
+                  "hall_two_paradigms",
+                  "culturalstudies"
+                ]
+              },
+              {
+                "strand_id": "class_experience",
+                "title": "Class, experience and disagreement",
+                "works": "The Making (1963); the Long Revolution exchange (1961), discussed by Hall",
+                "source_ids": [
+                  "hall_two_paradigms"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "Historical analysis of contested cultural vocabularies is a concrete missing method beside the linguistic-turn and conceptual-history approaches. The Country and the City also supplies a separate rural/urban cultural inquiry that the existing lived-culture selection does not identify.",
+      "recommended_next_action": "Read the Keywords introduction and a bounded set of entries, then compare its historical semantics with existing conceptual-history methods without presuming influence. Review Country and City separately if the regional/spatial agenda is chosen. A work/strand addition can precede any biography.",
+      "proposed_research_context_ids": [
+        "culturalstudies",
+        "conceptual",
+        "language",
+        "urbanhistory"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Raw 175 is the exact principal person key; Keywords 38 and Country and City 25 are separate work counts. Pittsburgh’s prose dates Keywords 1976 but its bibliography prints 1975; do not silently resolve that discrepancy. NYU’s methodological account supports the lead; check title pages for accepted edition dates.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://keywords.pitt.edu/williams_keywords.html",
+          "title": "Pittsburgh Keywords Project: Raymond Williams and Keywords",
+          "source_type": "institutional_project_page",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Institutional project description identifies the historical-semantics method and Country and City; its internal date discrepancy is retained."
+        },
+        {
+          "url": "https://keywords.nyupress.org/american-cultural-studies/keywords-an-introduction/",
+          "title": "NYU Press: Keywords, An Introduction",
+          "source_type": "primary_editorial_introduction",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Editors’ introduction explains their acknowledged methodological debt to Williams’s inquiry into contested vocabularies. This is reception evidence, not reading Williams in full."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_butler",
+      "person_key": "butler|judith p",
+      "label": "Judith Butler",
+      "status": "research_candidate_only",
+      "priority": "medium",
+      "gap_kind": "underdeveloped_materialization_and_performativity",
+      "release_counts": {
+        "all_authorship_strict": 247,
+        "all_authorship_dated": 242,
+        "first_author_strict": 242,
+        "first_author_dated": 237,
+        "qid": "Q219368",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:butler|gender trouble",
+          "title": "Gender Trouble: Feminism and the Subversion of Identity",
+          "year": "1990",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "butler|judith p",
+          "first_author": "Butler, Judith",
+          "cited_by_strict_phds": "125",
+          "cited_by_CA": "56",
+          "cited_by_US": "50",
+          "cited_by_FR": "3",
+          "cited_by_EU": "11",
+          "cited_by_OTHER": "5",
+          "cited_by_all_records": "128",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 125,
+          "recomputed_dated_strict_phds": 124
+        },
+        {
+          "work_id": "W:butler|bodies that matter",
+          "title": "Bodies That Matter: On the Discursive Limits of “Sex.”",
+          "year": "1993",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "butler|judith p",
+          "first_author": "Butler, Judith",
+          "cited_by_strict_phds": "53",
+          "cited_by_CA": "22",
+          "cited_by_US": "21",
+          "cited_by_FR": "0",
+          "cited_by_EU": "9",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "54",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 53,
+          "recomputed_dated_strict_phds": 53
+        },
+        {
+          "work_id": "W:butler|performative acts and gender constitution|a",
+          "title": "Performative Acts and Gender Constitution: An Essay in Phenomenology and Feminist Theory",
+          "year": "1988",
+          "kind": "article",
+          "container": "Theatre Journal",
+          "first_author_key": "butler|judith p",
+          "first_author": "Butler, Judith",
+          "cited_by_strict_phds": "17",
+          "cited_by_CA": "9",
+          "cited_by_US": "6",
+          "cited_by_FR": "0",
+          "cited_by_EU": "2",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "17",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 17,
+          "recomputed_dated_strict_phds": 15
+        },
+        {
+          "work_id": "W:butler|undoing gender",
+          "title": "Undoing Gender",
+          "year": "2004",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "butler|judith p",
+          "first_author": "Butler, Judith",
+          "cited_by_strict_phds": "16",
+          "cited_by_CA": "11",
+          "cited_by_US": "3",
+          "cited_by_FR": "0",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "17",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 16,
+          "recomputed_dated_strict_phds": 15
+        }
+      ],
+      "existing_graph": {
+        "person_id": "judith_butler",
+        "standalone_node_id": null,
+        "coverage_summary": "gender and queer already cover Gender Trouble and explicitly qualify performativity against unrestricted choice. queer distinguishes Butler’s gender norms from Sedgwick’s literary method. Butler is not absent.",
+        "contexts": [
+          {
+            "node_id": "gender",
+            "label": "Gender history",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Questions the production of feminist subjects and gender norms; performativity is not unrestricted personal choice.",
+                "works": "Gender Trouble (1990)",
+                "source_ids": [
+                  "butler_trouble"
+                ]
+              }
+            ],
+            "strands": []
+          },
+          {
+            "node_id": "queer",
+            "label": "Sexuality & queer history",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Questions the production of feminist subjects and gender norms; performativity is not unrestricted personal choice.",
+                "works": "Gender Trouble (1990)",
+                "source_ids": [
+                  "butler_trouble"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "theory",
+                "title": "Literary and feminist category analysis",
+                "works": "Epistemology of the Closet; Gender Trouble (both 1990)",
+                "source_ids": [
+                  "sedgwick_closet",
+                  "butler_trouble"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "Bodies That Matter and the 1988 Performative Acts essay are missing. A focused treatment could show how materialization and the reiterated constraints on recognizable bodies complicate the existing brief account of performativity.",
+      "recommended_next_action": "Review primary selections from Bodies That Matter and the 1988 essay, then locate specific historical applications or criticisms. Extend the current work/strand treatment before considering person promotion. Preserve the distinction among performativity, staged performance and gender identity.",
+      "proposed_research_context_ids": [
+        "gender",
+        "queer"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "Judith Butler 247 all-authorship versus 242 first-author is a scope difference, not an error. Do not merge with Jon Butler or initialled Butler keys. The Routledge checked search page is the 2011 Classics edition; establish original 1993 metadata separately before chronology. Publisher description supports a research lead, not proof of historians’ uptake.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://www.routledge.com/Gender-Trouble-Feminism-and-theSubversion-of-Identity/Butler/p/book/9780415610155",
+          "title": "Routledge: Bodies That Matter, ISBN 9780415610155",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Search-indexed publisher description identifies Bodies That Matter despite the misleading URL slug; inspected description of materiality and clarification of performativity.2011 edition; direct corrected-slug fetch returned 403."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_sewell",
+      "person_key": "sewell|william h",
+      "label": "William H. Sewell Jr.",
+      "status": "research_candidate_only",
+      "priority": "medium",
+      "gap_kind": "missing_eventful_temporality_beside_existing_structure",
+      "release_counts": {
+        "all_authorship_strict": 77,
+        "all_authorship_dated": 75,
+        "first_author_strict": 77,
+        "first_author_dated": 75,
+        "qid": "",
+        "qid_basis": ""
+      },
+      "work_leads": [
+        {
+          "work_id": "W:sewell|logics of history",
+          "title": "Logics of History: Social Theory and Social Transformation",
+          "year": "2005",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "sewell|william h",
+          "first_author": "Sewell, William H",
+          "cited_by_strict_phds": "24",
+          "cited_by_CA": "5",
+          "cited_by_US": "13",
+          "cited_by_FR": "0",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "24",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 24,
+          "recomputed_dated_strict_phds": 24
+        },
+        {
+          "work_id": "W:sewell jr|logics of history",
+          "title": "Logics of History: Social Theory and Social Transformation",
+          "year": "2005",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "sewell|william h",
+          "first_author": "Sewell, William H",
+          "cited_by_strict_phds": "5",
+          "cited_by_CA": "1",
+          "cited_by_US": "3",
+          "cited_by_FR": "0",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "5",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 5,
+          "recomputed_dated_strict_phds": 5
+        },
+        {
+          "work_id": "W:sewell|theory of structure|a",
+          "title": "A Theory of Structure: Duality, Agency, and Transformation",
+          "year": "1992",
+          "kind": "article",
+          "container": "American Journal of Sociology",
+          "first_author_key": "sewell|william h",
+          "first_author": "Sewell, William H",
+          "cited_by_strict_phds": "6",
+          "cited_by_CA": "1",
+          "cited_by_US": "4",
+          "cited_by_FR": "1",
+          "cited_by_EU": "0",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "6",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 6,
+          "recomputed_dated_strict_phds": 6
+        },
+        {
+          "work_id": "W:sewell|historical events as transformations of structures|a",
+          "title": "Historical Events as Transformations of Structures: Inventing Revolution at the Bastille",
+          "year": "1996",
+          "kind": "article",
+          "container": "Theory and Society",
+          "first_author_key": "sewell|william h",
+          "first_author": "Sewell, William H",
+          "cited_by_strict_phds": "3",
+          "cited_by_CA": "1",
+          "cited_by_US": "2",
+          "cited_by_FR": "0",
+          "cited_by_EU": "0",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "3",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 3,
+          "recomputed_dated_strict_phds": 3
+        }
+      ],
+      "existing_graph": {
+        "person_id": "william_h_sewell_jr",
+        "standalone_node_id": null,
+        "coverage_summary": "practice already covers A Theory of Structure and the reformulation of Bourdieu/Giddens; historicalsociology has the Skocpol exchange; truthdebate and languages_of_class contain additional distinct interventions. This is extensive contextual coverage.",
+        "contexts": [
+          {
+            "node_id": "practice",
+            "label": "Practice theory",
+            "roster": [
+              {
+                "role": "historian",
+                "context": "Reformulates Bourdieu and Giddens to join agency, change and material/symbolic structure.",
+                "works": "A Theory of Structure (1992)",
+                "source_ids": [
+                  "sewell_structure"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "structure",
+                "title": "Structures and agency",
+                "works": "A Theory of Structure (1992)",
+                "source_ids": [
+                  "sewell_structure",
+                  "giddens_constitution_metadata"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "historicalsociology",
+            "label": "Comparative historical sociology",
+            "roster": [
+              {
+                "role": "critic",
+                "context": "Critic of Skocpol’s treatment of ideology who also values her comparative structural analysis.",
+                "works": "“Ideologies and Social Revolutions: Reflections on the French Case” (1985)",
+                "source_ids": [
+                  "sewell_revolutions",
+                  "skocpol_rejoinder"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "ideology_debate",
+                "title": "Ideology within structural explanation",
+                "works": "Sewell–Skocpol exchange (1985; reprinted 1994)",
+                "source_ids": [
+                  "sewell_revolutions",
+                  "skocpol_rejoinder"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "truthdebate",
+            "label": "Historians’ responses to postmodernism",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Editors emphasize tension between cultural systems and practices rather than replacing one with the other.",
+                "works": "The Concept(s) of Culture (1999)",
+                "source_ids": [
+                  "bonnell_hunt_primary"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "culture_practice_comparison",
+                "title": "Culture, practice and comparison",
+                "works": "Beyond the Cultural Turn (1999), introduction 12–15",
+                "source_ids": [
+                  "bonnell_hunt_primary"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "languages_of_class",
+            "label": "The languages of class debate",
+            "roster": [
+              {
+                "role": "historian",
+                "context": "Work and Revolution in France (1980) treated 'the \"language of labor\" in the broadest sense' (publisher description); respondent to Rancière (1983); 'How Classes Are Made' (1990) and 'Toward a Post-Materialist Rhetoric for Labor History' (1993) are unread; Eley and Nield place him with Stedman Jones and Scott in 'intimate and self-reflexive dialogue with social history' (2000, p. 7).",
+                "works": "Work and Revolution in France (1980); response to Rancière (1983); 'How Classes Are Made' (1990); 'Toward a Post-Materialist Rhetoric for Labor History' (1993)",
+                "source_ids": [
+                  "loc_sewell_work_revolution_1980",
+                  "loc_sewell_response_ranciere_1983",
+                  "loc_kaye_mcclelland_1990",
+                  "loc_berlanstein_1993",
+                  "loc_eley_nield_farewell_2000"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "us_class_formation_1984_93",
+                "title": "The United States: class formation and exceptionalism, 1984–93",
+                "works": "Wilentz, 'Against Exceptionalism', with Salvatore and Hanagan (ILWCH 26, 1984); Katznelson and Zolberg, eds, Working-Class Formation (1986); Berlanstein, ed., Rethinking Labor History (1993); Frader, 'Dissent over Discourse' (1995)",
+                "source_ids": [
+                  "loc_wilentz_ilwch_1984",
+                  "loc_salvatore_ilwch_1984",
+                  "loc_hanagan_ilwch_1984",
+                  "loc_ilwch26_editors_1984",
+                  "loc_katznelson_zolberg_1986",
+                  "loc_berlanstein_1993",
+                  "loc_frader_dissent_1995",
+                  "loc_eley_nield_farewell_2000"
+                ]
+              },
+              {
+                "strand_id": "french_language_of_labor_1980_89",
+                "title": "France: the language of labor and the myth of the artisan, 1980–89",
+                "works": "Sewell, Work and Revolution in France (1980); Rancière, 'The Myth of the Artisan' (ILWCH 24, 1983), with Sewell's and Johnson's responses, and 'A Reply' (1984); Reddy, The Rise of Market Culture (1984), Money and Liberty in Modern Europe (1987); Scott, Gender and the Politics of History (1988), ch. 5",
+                "source_ids": [
+                  "loc_sewell_work_revolution_1980",
+                  "loc_ranciere_myth_1983",
+                  "loc_sewell_response_ranciere_1983",
+                  "loc_johnson_response_ranciere_1983",
+                  "loc_ranciere_reply_1984",
+                  "loc_ilwch24_editors_1983",
+                  "loc_reddy_money_liberty_1987",
+                  "loc_reddy_market_culture_1984",
+                  "w2_scott_class_lost_2000",
+                  "loc_scott_gender_politics_1988"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "Logics of History is absent. Its eventful temporalities and relation of events to structural transformation offer a method question beyond the current agency/structure summary. The relevant 2005 chapters also reuse earlier essays, so the collection must not create invented new origins.",
+      "recommended_next_action": "Read the chapters on temporalities and events with their original-publication credits, then assess an eventful-history strand across practice and historicalsociology. Retain the existing Skocpol and languages-of-class controversies rather than rolling them into a single theoretical trajectory.",
+      "proposed_research_context_ids": [
+        "practice",
+        "historicalsociology",
+        "truthdebate"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "sewell|william h lacks a QID and can mix the historian Jr. with sociologist William H. Sewell Sr.; raw 77 is a key total, not a certified historian total. The 24 Logics work is verified to Jr. by Chicago. The5 sewell-jr title variant remains separate and is not added.2005 is selective later work.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/L/bo3533904.html",
+          "title": "Chicago: Logics of History",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher explicitly credits William H. Sewell Jr.; description and contents identify temporalities, events, structure, culture and the exchanges with Geertz/Sahlins. Contents/description only, not chapter readings."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_bourdieu",
+      "person_key": "bourdieu|pierre y",
+      "label": "Pierre Bourdieu",
+      "status": "research_candidate_only",
+      "priority": "medium",
+      "gap_kind": "missing_capital_conversion_work_beside_existing_habitus",
+      "release_counts": {
+        "all_authorship_strict": 654,
+        "all_authorship_dated": 638,
+        "first_author_strict": 652,
+        "first_author_dated": 636,
+        "qid": "Q156268",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:bourdieu|distinction",
+          "title": "Distinction: A Social Critique of the Judgement of Taste",
+          "year": "1984",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bourdieu|pierre y",
+          "first_author": "Bourdieu, Pierre",
+          "cited_by_strict_phds": "149",
+          "cited_by_CA": "45",
+          "cited_by_US": "37",
+          "cited_by_FR": "31",
+          "cited_by_EU": "27",
+          "cited_by_OTHER": "9",
+          "cited_by_all_records": "156",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 149,
+          "recomputed_dated_strict_phds": 148
+        },
+        {
+          "work_id": "W:bourdieu|outline of a theory of practice",
+          "title": "Outline of a Theory of Practice",
+          "year": "1977",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bourdieu|pierre y",
+          "first_author": "Bourdieu, Pierre",
+          "cited_by_strict_phds": "55",
+          "cited_by_CA": "17",
+          "cited_by_US": "23",
+          "cited_by_FR": "1",
+          "cited_by_EU": "11",
+          "cited_by_OTHER": "3",
+          "cited_by_all_records": "57",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 55,
+          "recomputed_dated_strict_phds": 55
+        },
+        {
+          "work_id": "W:bourdieu|forms of capital|a",
+          "title": "The Forms of Capital",
+          "year": "1986",
+          "kind": "chapter",
+          "container": "Handbook of Theory and Research for the Sociology of Education",
+          "first_author_key": "bourdieu|pierre y",
+          "first_author": "Bourdieu, Pierre",
+          "cited_by_strict_phds": "26",
+          "cited_by_CA": "11",
+          "cited_by_US": "6",
+          "cited_by_FR": "1",
+          "cited_by_EU": "7",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "27",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 26,
+          "recomputed_dated_strict_phds": 25
+        },
+        {
+          "work_id": "W:bourdieu|sens pratique",
+          "title": "Le sens pratique",
+          "year": "1980",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bourdieu|pierre y",
+          "first_author": "Bourdieu, Pierre",
+          "cited_by_strict_phds": "31",
+          "cited_by_CA": "9",
+          "cited_by_US": "0",
+          "cited_by_FR": "18",
+          "cited_by_EU": "3",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "32",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 31,
+          "recomputed_dated_strict_phds": 30
+        },
+        {
+          "work_id": "W:bourdieu|logic of practice",
+          "title": "The Logic of Practice",
+          "year": "1990",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bourdieu|pierre y",
+          "first_author": "Bourdieu, Pierre",
+          "cited_by_strict_phds": "25",
+          "cited_by_CA": "6",
+          "cited_by_US": "12",
+          "cited_by_FR": "1",
+          "cited_by_EU": "5",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "25",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 25,
+          "recomputed_dated_strict_phds": 24
+        }
+      ],
+      "existing_graph": {
+        "person_id": "pierre_bourdieu",
+        "standalone_node_id": null,
+        "coverage_summary": "practice already has habitus, classification/power and historical classification; consumption uses Distinction, biography critically examines unified life narratives, and marx records a specific Thompson resource. Large portions of Bourdieu’s framework are present.",
+        "contexts": [
+          {
+            "node_id": "biography",
+            "label": "Biography / life writing",
+            "roster": [
+              {
+                "role": "critic",
+                "context": "Questions retrospectively unified life stories and examines trajectories across changing social fields. Institutional naming and the interview situation help produce the unity being narrated; this does not rule out every life history.",
+                "works": "“L’illusion biographique” (1986)",
+                "source_ids": [
+                  "bourdieu_biographical_illusion"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "relational_trajectories",
+                "title": "Narrated unity and relational trajectories",
+                "works": "L’illusion biographique (1986)",
+                "source_ids": [
+                  "bourdieu_biographical_illusion"
+                ]
+              },
+              {
+                "strand_id": "scale_agency",
+                "title": "Scale, norms and bounded agency",
+                "works": "Les usages de la biographie (1989)",
+                "source_ids": [
+                  "levi_biography_uses"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "marx",
+            "label": "Marxist social history",
+            "roster": [],
+            "strands": [
+              {
+                "strand_id": "work_time",
+                "title": "Time, labour and industrial discipline",
+                "works": "“Time, Work-Discipline, and Industrial Capitalism” (1967)",
+                "source_ids": [
+                  "thompson_time_discipline"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "practice",
+            "label": "Practice theory",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Studies embodied dispositions, improvisation and the power involved in classification.",
+                "works": "Outline of a Theory of Practice (1972; English 1977); Distinction (1979)",
+                "source_ids": [
+                  "bourdieu_outline_primary",
+                  "distinction"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "habitus",
+                "title": "Habitus and social position",
+                "works": "Outline of a Theory of Practice; Distinction",
+                "source_ids": [
+                  "bourdieu_outline_primary",
+                  "distinction"
+                ]
+              },
+              {
+                "strand_id": "classification_power",
+                "title": "Classification and power",
+                "works": "Outline (1977), 164–165",
+                "source_ids": [
+                  "bourdieu_outline_primary"
+                ]
+              },
+              {
+                "strand_id": "historical_classification",
+                "title": "Historical classifications and their uses",
+                "works": "Distinction (1984), selected conclusion; Vickery (1998), “Elegance”",
+                "source_ids": [
+                  "distinction",
+                  "vickery_elegance_primary"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "consumption",
+            "label": "Consumption & material culture",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Relates tastes and cultural practices to social position; a specific resource alongside other approaches to goods.",
+                "works": "Distinction (French original 1979; English translation 1984)",
+                "source_ids": [
+                  "distinction"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "taste_position",
+                "title": "Taste and social position",
+                "works": "Distinction (1979; English 1984)",
+                "source_ids": [
+                  "distinction"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "The Forms of Capital is missing. Embodied, objectified and institutionalized cultural capital, social capital and the conditions of conversion would give a more precise account of reproduction than treating taste or habitus as the whole framework.",
+      "recommended_next_action": "Read the full essay and compare its account of transmission and conversion with an actual historian’s application. Consider a capital-conversion strand or work addition in practice; a new entry should depend on an independently researched project, not the author’s high count.",
+      "proposed_research_context_ids": [
+        "practice",
+        "consumption",
+        "biography"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "654 all-authorship and 652 first-author are distinct validated key counts.26 Forms of Capital is one released 1986 essay key; do not confuse it with the later similarly titled lecture volume. Le sens pratique and The Logic of Practice have separate release keys, not independent theories or additive edition totals.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://jan.ucc.nau.edu/~sj6/Bourdieu%2C%20The%20Forms%20of%20Capital.pdf",
+          "title": "Bourdieu: The Forms of Capital, university-hosted reprint",
+          "source_type": "primary_reprint_excerpt",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Primary opening and cultural-capital section inspected; reprint credits 1986 Richardson chapter and Richard Nice translation. Not a complete close reading."
+        },
+        {
+          "url": "https://onlinelibrary.wiley.com/doi/10.1002/9780470755679.ch15",
+          "title": "Wiley: The Forms of Capital in Readings in Economic Sociology",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Reprint chapter metadata and section headings inspected;2002 reprint is distinct from 1986 original."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_halbwachs",
+      "person_key": "halbwachs|maurice",
+      "label": "Maurice Halbwachs",
+      "status": "research_candidate_only",
+      "priority": "lower",
+      "gap_kind": "specific_work_and_editorial_history_gap",
+      "release_counts": {
+        "all_authorship_strict": 202,
+        "all_authorship_dated": 200,
+        "first_author_strict": 202,
+        "first_author_dated": 200,
+        "qid": "Q326000",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:halbwachs|on collective memory",
+          "title": "On Collective Memory",
+          "year": "1992",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "halbwachs|maurice",
+          "first_author": "Halbwachs, Maurice",
+          "cited_by_strict_phds": "60",
+          "cited_by_CA": "26",
+          "cited_by_US": "18",
+          "cited_by_FR": "1",
+          "cited_by_EU": "11",
+          "cited_by_OTHER": "4",
+          "cited_by_all_records": "61",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 60,
+          "recomputed_dated_strict_phds": 59
+        },
+        {
+          "work_id": "W:halbwachs|cadres sociaux de la memoire",
+          "title": "Les cadres sociaux de la mémoire",
+          "year": "1994",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "halbwachs|maurice",
+          "first_author": "Halbwachs, Maurice",
+          "cited_by_strict_phds": "45",
+          "cited_by_CA": "18",
+          "cited_by_US": "0",
+          "cited_by_FR": "24",
+          "cited_by_EU": "3",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "46",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 45,
+          "recomputed_dated_strict_phds": 44
+        },
+        {
+          "work_id": "W:halbwachs|memoire collective",
+          "title": "La mémoire collective",
+          "year": "1950",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "halbwachs|maurice",
+          "first_author": "Halbwachs, Maurice",
+          "cited_by_strict_phds": "41",
+          "cited_by_CA": "13",
+          "cited_by_US": "0",
+          "cited_by_FR": "23",
+          "cited_by_EU": "2",
+          "cited_by_OTHER": "3",
+          "cited_by_all_records": "45",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 41,
+          "recomputed_dated_strict_phds": 40
+        },
+        {
+          "work_id": "W:halbwachs|collective memory",
+          "title": "The Collective Memory",
+          "year": "1980",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "halbwachs|maurice",
+          "first_author": "Halbwachs, Maurice",
+          "cited_by_strict_phds": "15",
+          "cited_by_CA": "8",
+          "cited_by_US": "6",
+          "cited_by_FR": "0",
+          "cited_by_EU": "1",
+          "cited_by_OTHER": "0",
+          "cited_by_all_records": "15",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 15,
+          "recomputed_dated_strict_phds": 15
+        }
+      ],
+      "existing_graph": {
+        "person_id": "maurice_halbwachs",
+        "standalone_node_id": null,
+        "coverage_summary": "memory and durkheim already cover social frameworks,1925 and 1992 selection dates, multiple group memories and contact/conflict; epistemology separately uses his statistical work. Framework coverage is substantive.",
+        "contexts": [
+          {
+            "node_id": "epistemology",
+            "label": "Historical epistemology",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "His statistical critique is an explicit resource in Canguilhem’s discussion.",
+                "works": "La théorie de l’homme moyen (1912)",
+                "source_ids": [
+                  "halbwachs_average_1912",
+                  "canguilhem_norm_average_primary"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "social_norms_averages",
+                "title": "Norms, averages and social conditions",
+                "works": "Le normal et le pathologique, Norme et moyenne",
+                "source_ids": [
+                  "canguilhem_norm_average_primary"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "durkheim",
+            "label": "Social facts & collective life",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Develops the social frameworks of remembering as a distinct inquiry. Later critical reuse and his intellectual formation are separate evidentiary questions.",
+                "works": "Les Cadres sociaux de la mémoire (1925); On Collective Memory (edited English collection, 1992)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "assmann_collective"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "memory_language",
+                "title": "Social frameworks of remembering and language",
+                "works": "Les Cadres sociaux de la mémoire (1925); “Comment les mots changent de sens” (1906)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "meillet_meaning"
+                ]
+              }
+            ]
+          },
+          {
+            "node_id": "memory",
+            "label": "Memory studies",
+            "roster": [
+              {
+                "role": "precursor",
+                "context": "Social frameworks make remembering a relational process; later English selections are distinct from the original French works. The original French conclusion also addresses changes in traditions through relations between groups.",
+                "works": "Les cadres sociaux de la mémoire (1925); On Collective Memory, ed. and trans. Lewis Coser (1992 selections)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "halbwachs_cadres_conclusion"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "social_frameworks",
+                "title": "Social frameworks of remembering",
+                "works": "Les cadres sociaux de la mémoire (1925); English selections (1992)",
+                "source_ids": [
+                  "halbwachs_memory",
+                  "assmann_collective"
+                ]
+              },
+              {
+                "strand_id": "traditions_in_contact",
+                "title": "Traditions in contact and conflict",
+                "works": "Les cadres sociaux de la mémoire (1925), final concluding subsection",
+                "source_ids": [
+                  "halbwachs_cadres_conclusion"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "The 1950 posthumous La mémoire collective /1980 English Collective Memory is absent as a separately credited work. Its editorial history and its specific memory/history argument should be distinguished from Les cadres and Coser’s 1992 selected collection.",
+      "recommended_next_action": "Start with a limited bibliographic/content check of the 1950 posthumous volume and the relevant primary chapter. Consider adding a specific work and memory/history discussion to memory rather than creating another general memory framework. Verify the 1980 translation before any date/event.",
+      "proposed_research_context_ids": [
+        "memory",
+        "durkheim"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "41 French 1950 key and 15 English 1980 key are separate; do not sum.45 Cadres key records a 1994 edition, not the first appearance of the framework. BnF confirms Jeanne Alexandre’s posthumous editorial credit. UQAM hosts a 1967 revised edition; prefatory comments are not automatically Halbwachs’s own argument.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://catalogue.bnf.fr/ark%3A/12148/cb322170644",
+          "title": "BnF: La Mémoire collective,1950",
+          "source_type": "national_library_metadata",
+          "checked_on": "2026-10-24",
+          "checked_scope": "National-library record confirms 1950 PUFpublication and posthumous edition by Jeanne Alexandre. Metadata only."
+        },
+        {
+          "url": "https://classiques.uqam.ca/classiques/Halbwachs_maurice/memoire_collective/memoire_collective.html",
+          "title": "UQAM: La mémoire collective",
+          "source_type": "institutional_primary_edition_metadata",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Edition page inspected: digital text derived from 1967 second revised/expanded edition of 1950 work. Primary chapters not yet read."
+        },
+        {
+          "url": "https://press.uchicago.edu/ucp/books/book/chicago/O/bo3619875.html",
+          "title": "Chicago: On Collective Memory",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher contents and Coser credits inspected;1992 selected volume includes Social Frameworks and Legendary Topography sections, not an interchangeable title for the 1950 volume."
+        }
+      ]
+    },
+    {
+      "candidate_id": "framework_bakhtin",
+      "person_key": "bakhtin|mikhail m",
+      "label": "Mikhail Bakhtin",
+      "status": "research_candidate_only",
+      "priority": "lower",
+      "gap_kind": "missing_carnival_work_beside_existing_dialogic_resource",
+      "release_counts": {
+        "all_authorship_strict": 74,
+        "all_authorship_dated": 71,
+        "first_author_strict": 74,
+        "first_author_dated": 71,
+        "qid": "Q185375",
+        "qid_basis": "title_verified"
+      },
+      "work_leads": [
+        {
+          "work_id": "W:bakhtin|rabelais and his world",
+          "title": "Rabelais and His World",
+          "year": "1984",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bakhtin|mikhail m",
+          "first_author": "Bakhtin, Mikhail",
+          "cited_by_strict_phds": "32",
+          "cited_by_CA": "15",
+          "cited_by_US": "13",
+          "cited_by_FR": "0",
+          "cited_by_EU": "3",
+          "cited_by_OTHER": "1",
+          "cited_by_all_records": "34",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 32,
+          "recomputed_dated_strict_phds": 32
+        },
+        {
+          "work_id": "W:bakhtin|dialogic imagination",
+          "title": "The Dialogic Imagination: Four Essays",
+          "year": "1981",
+          "kind": "book",
+          "container": "",
+          "first_author_key": "bakhtin|mikhail m",
+          "first_author": "Bakhtin, Mikhail",
+          "cited_by_strict_phds": "25",
+          "cited_by_CA": "9",
+          "cited_by_US": "8",
+          "cited_by_FR": "0",
+          "cited_by_EU": "6",
+          "cited_by_OTHER": "2",
+          "cited_by_all_records": "26",
+          "wikidata_work": "",
+          "recomputed_strict_phds": 25,
+          "recomputed_dated_strict_phds": 24
+        }
+      ],
+      "existing_graph": {
+        "person_id": "mikhail_bakhtin",
+        "standalone_node_id": null,
+        "coverage_summary": "language includes The Dialogic Imagination as a specifically cited resource for Spiegel’s social logic of texts. It does not make Bakhtin a member of a later historians’ school. No Rabelais and His World content was found; Febvre’s Rabelais work and Walker’s review are different books and debates.",
+        "contexts": [
+          {
+            "node_id": "language",
+            "label": "Linguistic turn / poststructuralism",
+            "roster": [
+              {
+                "role": "contributor",
+                "context": "Socially situated discourse is an explicitly cited resource for Spiegel, not a formal affiliation with a later historians’ school.",
+                "works": "The Dialogic Imagination (English 1981), p. 259 cited by Spiegel (1993)",
+                "source_ids": [
+                  "spiegel_romancing_primary"
+                ]
+              }
+            ],
+            "strands": [
+              {
+                "strand_id": "social_logic_text",
+                "title": "Social sites and textual action",
+                "works": "Romancing the Past (1993), introduction",
+                "source_ids": [
+                  "spiegel_romancing_primary"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "precise_missing_content": "Carnival, popular festivity and grotesque embodiment are missing as Bakhtin’s contested reading of Renaissance culture. The Rabelais work key has 32 dissertations, making this a concrete work-and-method candidate rather than only a biography proposal.",
+      "recommended_next_action": "Verify the cited 1984 Iswolsky edition and read primary selections before researching historians’ adaptations/criticisms of carnival. Distinguish this resource from dialogism and from Febvre’s inquiry into unbelief; a comparative strand requires actual reading, not shared mention of Rabelais.",
+      "proposed_research_context_ids": [
+        "language",
+        "culture",
+        "anthropology"
+      ],
+      "confidence": {
+        "gap_detection": "high",
+        "identity_and_scope_limits": "74 principal-key total does not include the separate bakhtine|mikhail 33 variant. Do not add those person totals or merge titles automatically. MIT’s checked 2025 Sandler translation confirms the work’s subject but cannot validate the pagination/date of the 1984 Iswolsky key. Edition/translation and Bakhtin-circle authorship issues remain separate checks.",
+        "implementation_claim_support": "Not yet accepted. Checked sources support the candidate work or framework, not an automatic influence or contribution edge."
+      },
+      "primary_supporting_sources": [
+        {
+          "url": "https://mitpress.mit.edu/9780262553131/rabelais-and-his-world/",
+          "title": "MIT Press: Rabelais and His World, new translation",
+          "source_type": "publisher_description_or_contents",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Publisher identifies Bakhtin, carnival/laughter/grotesque topics and 2025 Sandler translation with Emerson foreword. This is not the 1984 edition cited in the release."
+        },
+        {
+          "url": "https://opac.duls.du.ac.in/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=134371",
+          "title": "Delhi University Library: Rabelais and His World",
+          "source_type": "institutional_library_metadata",
+          "checked_on": "2026-10-24",
+          "checked_scope": "Institutional library metadata identifies the 1984 Indiana edition and ISBN 9780253203410. Translator/date origin not established by this record."
+        }
+      ]
+    }
+  ],
+  "screened_but_not_queued": [
+    {
+      "person_key": "bell|catherine e",
+      "release_all_authorship_strict": 32,
+      "release_first_author_strict": 31,
+      "decision": "Identity hold: do not treat the raw key as one person.",
+      "reason": "The same key visibly combines Catherine Bell’s ritual theory with Catherine E. Bell’s First Nations cultural-heritage and Aboriginal-rights law books. Ritual Theory, Ritual Practice 16 is a viable isolated work lead, but a 32 person claim is misleading; review identity/title records before any roster or authority link."
+    },
+    {
+      "graph_ids": [
+        "jurgen_habermas",
+        "frankfurt"
+      ],
+      "decision": "Existing framework substantially represented.",
+      "reason": "Public-sphere source/strand and feminist criticism are already present; absence of a standalone Habermas node alone is not a missing-method finding."
+    },
+    {
+      "graph_ids": [
+        "foucault",
+        "geertz",
+        "latour",
+        "gayatri_chakravorty_spivak",
+        "ann_laura_stoler"
+      ],
+      "decision": "Do not reopen solely because of high dissertation counts.",
+      "reason": "These have individual entries or substantive recent work/debate coverage; compare precise missing works against the preserved earlier ledger before proposing new repair."
+    }
+  ],
+  "existing_graph_source_evidence": [
+    {
+      "id": "certeau",
+      "title": "Michel de Certeau, The Practice of Everyday Life, trans. Steven Rendall (University of California Press, 1984; French original 1980).",
+      "url": null,
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work records checked (raw/certeau_1984.openlibrary.json): de Certeau, Arts de faire / The Practice of Everyday Life, University of California Press. Bibliographic identity only; text unread."
+      }
+    },
+    {
+      "id": "culturalstudies",
+      "title": "Raymond Williams, Culture and Society, 1780–1950 (Chatto & Windus, 1958); Stuart Hall, “Cultural Studies: Two Paradigms,” Media, Culture and Society 2 (1980): 57–72.",
+      "url": null,
+      "verification": {
+        "status": "not_checked",
+        "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+      }
+    },
+    {
+      "id": "distinction",
+      "title": "Pierre Bourdieu, Distinction: A Social Critique of the Judgement of Taste, trans. Richard Nice (Harvard University Press, 1984; French original 1979).",
+      "url": "https://books.google.com/books/about/Distinction.html?id=nVaS6gS9Jz4C",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Prior English-edition metadata retained in history. Read complete primary transcription of selected conclusion at https://www.marxists.org/reference/subject/philosophy/works/fr/bourdieu.htm , presented as selections from466–484 of Richard Nice’s1984 translation, not the complete printed conclusion. No print-page collation, introduction, statistical appendices or whole-book check. The excerpt explicitly discusses Duby’s three-orders analysis; Duby’s original book not independently read here. French1979 and English1984 distinguished. Specific Vickery1998 use is supported separately by vickery_elegance_primary; no field-wide reception or universal class mechanism claimed."
+      }
+    },
+    {
+      "id": "chartier_representations",
+      "title": "Roger Chartier: representations and social practices",
+      "url": "https://doi.org/10.3406/ahess.1989.283667",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Full primary article pp. 1505–1520 read from the scan, using OCR. Specific passages: Braudel’s hierarchy p. 1508; Ricœur and McKenzie pp. 1509–1510; appropriation/Foucault pp. 1510–1511; Ginzburg and Fish p. 1512; Durkheim/Mauss and Bourdieu pp. 1513–1514; Marin pp. 1514–1515; Elias pp. 1516–1518; productive Foucault/Certeau use p. 1517; critical Annales fidelity p. 1518. Notes provide contextual work metadata, not evidence that all cited works were read. Grendi date in the scan/OCR is not adopted without collation. These are Chartier’s arguments and attributed receptions, not independent verification of every historical example."
+      }
+    },
+    {
+      "id": "halbwachs_memory",
+      "title": "Maurice Halbwachs: social frameworks of memory",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/O/bo3619875",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher account checked; 1992 is the English collection, not the beginning of Halbwachs’s work. Revision 1.18: the UQAM edition page https://classiques.uqam.ca/classiques/Halbwachs_maurice/cadres_soc_memoire/cadres_soc_memoire.html confirms Les cadres sociaux de la mémoire first published in 1925 and its 1952 reedition. The foreword page yielded no substantive readable passage; this addition checks edition metadata, not the original text."
+      }
+    },
+    {
+      "id": "sewell_structure",
+      "title": "William H. Sewell Jr., “A Theory of Structure: Duality, Agency, and Transformation,” American Journal of Sociology 98, no. 1 (1992): 1–29.",
+      "url": "https://doi.org/10.1086/229967",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Journal abstract checked for the reworking of Giddens and Bourdieu and the relation of agency, meaning, and material resources.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "guha_elementary",
+      "title": "Ranajit Guha, Elementary Aspects of Peasant Insurgency in Colonial India (1983; Duke edition 1999).",
+      "url": "https://www.dukeupress.edu/elementary-aspects-of-peasant-insurgency-in-colonial-india",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Duke description and contents checked for insurgent consciousness, dominance/subordination, deliberate peasant political action and the original 1983 versus 1999 edition. James C. Scott wrote the later foreword. No full primary book read; a search-result PDF proved to be Banerjee’s different 2020 book and was excluded. The intervention does not certify homogeneous peasant consciousness or a single path to nationalism. Addendum 2026-10-14: Primary text now read for the Guha person entry. Introduction pp. 1–17 OCR'd at 300 dpi from a scan of the Duke University Press 1999 printing (foreword by James C. Scott) hosted by Berhampore Girls' College; preface dated Canberra, January 1983; the text keeps the 1983 Oxford pagination, checked against the Digital Library of India scan of the Delhi 1983 edition (Internet Archive dli.bengal.10689.12632; imprint 'First published 1983, Second impression 1986'). Quoted: 'Insurgency was thus the necessary antithesis of colonialism' (p. 2); 'a discourse of power'; the peasant 'denied recognition as a subject of history' (p. 3); 'a consciousness'; spontaneity 'elitist as well as erroneous' (p. 4); Gramsci on spontaneity; Hobsbawm's 'pioneering work' and 'pre-political' (p. 5); 'helps little in understanding the experience of colonial India'; 'nothing ... that was not political' (p. 6); 'a composite apparatus of dominance' (p. 8); 'negative and inversive procedure' (p. 9); limits that define 'the quality of that politics' (p. 10); 'inchoate and naive' (p. 11); Gramsci's 'pillars of politics' and 'elementary aspects' (p. 12); 'its sovereignty, its consistency and its logic' (p. 13); reading rebel consciousness in counter-insurgency records (pp. 14–15). Bibliography: Gramsci, Selections (1971); Hobsbawm, Primitive Rebels (Manchester, 1959); Hobsbawm and Rudé, Captain Swing (1969). Pp. 89–90 (Thompson on the Blacks; Hobsbawm's 'social banditry') read in the 1983 edition's text. Scott's foreword: Elementary Aspects 'became, in effect, the founding document' of 'the Subaltern Studies School' (p. ix). The rest of the book is unread."
+      }
+    },
+    {
+      "id": "sewell_revolutions",
+      "title": "William H. Sewell Jr., “Ideologies and Social Revolutions: Reflections on the French Case,” Journal of Modern History 57(1) (1985): 57–85; reprinted in Social Revolutions in the Modern World (1994).",
+      "url": "https://www.cambridge.org/core/books/abs/social-revolutions-in-the-modern-world/ideologies-and-social-revolutions-reflections-on-the-french-case/24520DBD049812E0EC31D223174D4360",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary opening in the 1994 reprint checked: explicit appreciation of Skocpol’s comparative analysis alongside criticism of her treatment of ideology. Original journal date/pages corroborated at https://www.journals.uchicago.edu/doi/abs/10.1086/242777 . No full French-case analysis read. Sewell is the article’s author; Skocpol is the collection’s author/editorial context, not coauthor of his critique."
+      }
+    },
+    {
+      "id": "skocpol_rejoinder",
+      "title": "Theda Skocpol, “Cultural Idioms and Political Ideologies in the Revolutionary Reconstruction of State Power: A Rejoinder to Sewell” (1985), reprinted in Social Revolutions in the Modern World (Cambridge University Press, 1994), 199–210.",
+      "url": "https://www.cambridge.org/core/books/abs/social-revolutions-in-the-modern-world/cultural-idioms-and-political-ideologies-in-the-revolutionary-reconstruction-of-state-power-a-rejoinder-to-sewell/A039851BA167386F372307A913337B0E",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Expanded direct check of the complete displayed primary opening at the existing Cambridge URL, through the paragraph expressing reservations about anthropological cultural systems. The reply accepts a shortcoming but asks for a less anonymous account. Full 199–210 remains inaccessible and unread; no detailed French case or later distinctions certified. Original publisher issue contents https://www.journals.uchicago.edu/toc/jmh/1985/57/1 confirms March 1985, 57.1, 86–96; original article link DOI 10.1086/242778 returned 403. Previous indexed-only check retained in history."
+      }
+    },
+    {
+      "id": "assmann_collective",
+      "title": "Jan Assmann, “Collective Memory and Cultural Identity,” trans. John Czaplicka, New German Critique 65 (1995): 125–133; German essay 1988.",
+      "url": "https://pconfl.biu.ac.il/files/pconfl/shared/assmann_1995-_collective_memory.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary pp. 125–130 consulted in text; pp. 126 and 128 visually checked. Note 5 credits collaboration with Aleida Assmann; she is not co-author of this translation. The discussion engages Halbwachs, Warburg, oral-history research and, in note 8, Bourdieu’s 1972 Esquisse. Supports intersecting group memories and the communicative/cultural distinction as Assmann’s model, not a settled taxonomy. Original 1988 essay details appear in the opening footnote; cited books were not thereby read."
+      }
+    },
+    {
+      "id": "sedgwick_closet",
+      "title": "Eve Kosofsky Sedgwick, Epistemology of the Closet (University of California Press, 1990).",
+      "url": "https://www.ucpress.edu/books/epistemology-of-the-closet-updated-with-a-new-preface/epub-pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Publisher description/contents checked for literary analysis of sexual categorization; original 1990 confirmed by Duke Library exhibit. Displayed ebook is 2024 and contents include a 2008 preface; neither changes the mapped date. Original introduction/chapters and historian reception unread.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "butler_trouble",
+      "title": "Judith Butler, Gender Trouble: Feminism and the Subversion of Identity (Routledge, 1990).",
+      "url": "https://www.routledge.com/Gender-Trouble-Feminism-and-the-Subversion-of-Identity/Butler/p/book/9780203824979",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Indexed publisher description/contents checked: feminist subjects, sex/gender/desire, psychoanalysis and reiterated gender performance. Original 1990 distinguished from 1999 preface/reissue. Full argument and particular historians’ reception unread; performativity is not described as unrestricted individual choice.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "hall_two_paradigms",
+      "title": "Stuart Hall, “Cultural Studies: Two Paradigms,” Media, Culture & Society 2(1) (1980): 57–72. DOI: 10.1177/016344378000200106.",
+      "url": "https://doi.org/10.1177/016344378000200106",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "University-hosted primary scan: pp. 57–58, 62–66 and 69–71 read with OCR. Hoggart/Williams/Thompson, New Left context, Lévi-Strauss, Althusser, Gramsci and qualified Foucault reception are named. Hall’s situated retrospective interpretation is not a consensual origin story; intervening pages and all works he cites unread.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "meillet_meaning",
+      "title": "Antoine Meillet, “Comment les mots changent de sens,” L’Année sociologique 9 (1904–1905), published 1906, 6–43.",
+      "url": "https://fr.wikisource.org/wiki/Comment_les_mots_changent_de_sens",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary section I opening and selected discussion of social groups, occupational vocabularies, borrowing and semantic change read. Meillet explicitly applies Durkheim’s externality/coercion definition to language. This documents Meillet’s reception, not direct Durkheim influence on Saussure. His introductory equation of languages with nations is a historical assumption, not adopted as a general description of multilingual societies. Individual etymologies not independently checked."
+      }
+    },
+    {
+      "id": "grenier_lepetit_labrousse",
+      "title": "Jean-Yves Grenier and Bernard Lepetit, “L’Expérience historique. À propos de C.-E. Labrousse,” Annales ESC 44, no. 6 (1989): 1337–1360. DOI 10.3406/ahess.1989.283659.",
+      "url": "https://www.cambridge.org/core/journals/annales-histoire-sciences-sociales/article/abs/lexperience-historique-a-propos-de-ce-labrousse/EF2D5BCF2BE562E58EC6B3A617788DCD",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Authors, issue, English abstract, separate editorial headnote and selected bibliographic notes read. Abstract argues that serial reception narrowed Labrousse’s intentions and proposes examining experimental construction of historical facts and demonstrative limits. Main article body unread. Notes establish 1933 Esquisse and original 1944 La Crise, sole published volume; webpage’s unrelated 1977 copyright footer is not the article date."
+      }
+    },
+    {
+      "id": "thompson_time_discipline",
+      "title": "E. P. Thompson, “Time, Work-Discipline, and Industrial Capitalism,” Past & Present 38 (1967): 56–97.",
+      "url": "https://warwick.ac.uk/fac/arts/english/currentstudents/undergraduates/modules/fulllist/second/en229/thompson_time_work-discipline.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Downloaded primary scan: opening pp. 56–62 and selected concluding passages pp. 89–97 read; some extracted passages/notes were truncated, so no full-article reading claimed. Explicit resources include Le Goff, Febvre, Evans-Pritchard and Bourdieu. Employment relations complicate task/clock distinctions; education, religion and coercion matter alongside clocks. Concluding criticism of Moore/Kerr/Siegel contests treating workers as inert inputs. Thompson’s own developmental assumptions and cultural comparisons remain situated arguments, not a proven universal sequence."
+      }
+    },
+    {
+      "id": "bourdieu_biographical_illusion",
+      "title": "Pierre Bourdieu, “L’illusion biographique,” Actes de la recherche en sciences sociales 62–63 (1986), pp. 69–72, DOI 10.3406/arss.1986.2317.",
+      "url": "https://www.persee.fr/doc/arss_0335-5322_1986_num_62_1_2317",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Official metadata checked and complete four printed pages/eight notes visually read in Persée scan mirrored at https://psychaanalyse.com/pdf/BOURDIEU_L_ILLUSION_BIOGRAPHIQUE_5PAGES.pdf. Supports relational trajectories, institutional unity and interview conditions, with explicit Robbe-Grillet resource. Does not reject every life history or all agency; literary and philosophical works cited were not independently read."
+      }
+    },
+    {
+      "id": "levi_biography_uses",
+      "title": "Giovanni Levi, “Les usages de la biographie,” Annales ESC 44/6 (1989), pp. 1325–1336, translated by Olivier Christin, DOI 10.3406/ahess.1989.283658.",
+      "url": "https://www.persee.fr/doc/ahess_0395-2649_1989_num_44_6_283658",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete twelve pages and twenty notes read through official per-page OCR; PDF route returned 403 but public page content was available. OCR loses accents/punctuation, so exact quotations require scan collation. Supports methodological distinctions, bounded agency and specific Chartier criticism. Bourdieu disagreement is explicitly one of emphasis; scientific absurdity refers to an individual/society opposition, not all biography. Roche, Venturi and literary works remain mediated. Notes 18/20 identify Chartier’s Italian collection essay, not automatically another French 1989 article."
+      }
+    },
+    {
+      "id": "davis_margins_primary",
+      "title": "Natalie Zemon Davis, Women on the Margins: Three Seventeenth-Century Lives (1995), consulted third printing/first paperback (1997), selected primary passages.",
+      "url": "https://www.hup.harvard.edu/books/9780674955219",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Public OCR read: title/edition; complete prologue pp. 1–4, conclusion pp. 203–216 and acknowledgments pp. 340–344; selected Glikl opening pp. 6–8 and conclusion notes 1–8/start of 9. Main chapters and remaining notes not fully read. Prologue is an imagined October 1994 dialogue. Certeau and Foucault are explicit resources; editions/translations and collaboration are discussed. Original manuscripts, Glikl editions and clinical work uncollated. Pappenheim was treated by Breuer, not Freud; Davis’s reconstruction of her likely feelings is conjectural. This primary selection supplements, rather than retroactively upgrades, the existing catalogue record."
+      }
+    },
+    {
+      "id": "spiegel_romancing_primary",
+      "title": "Gabrielle M. Spiegel, Romancing the Past: The Rise of Vernacular Prose Historiography in Thirteenth-Century France (1993), introduction and acknowledgments.",
+      "url": "https://publishing.cdlib.org/ucpressebooks/public/book/romancing-the-past-the-rise-of-vernacular-prose-historiography-in-thirteenth-century-france.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Official UC Press/CDL text: full acknowledgments xi–xiii, introduction 1–10 and introduction notes 1–7 on 325 read. Whole book downloaded, but remaining chapters and epilogue unread. Documents changed the initial royalist hypothesis; argument concerns identifiable Franco-Flemish patrons, not all aristocrats. Williams is cited through Alan Sinfield’s typescript; Bakhtin and Smith-Rosenberg are named resources. Smith-Rosenberg read the whole manuscript and supplied a draft paper. Patron psychology and historical case conclusions remain Spiegel’s interpretations. Reading this introduction does not certify the complete 1990 Speculum article."
+      }
+    },
+    {
+      "id": "bourdieu_outline_primary",
+      "title": "Pierre Bourdieu, Outline of a Theory of Practice, translated by Richard Nice (1977; French original 1972).",
+      "url": "https://hugoribeiro.com.br/area-restrita/Bourdieu_Outline_of_a_Theory_of_Practice_Cambridge.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Consulted later reprint listing 1995: title/imprint, contents, Marx epigraph, Nice foreword vii–viii, author 1–2, 72–74, 79 and 164–165 read; adjacent fragments and selected notes also read. English version is revised/reordered and ethnography curtailed, not a literal equivalent of the 1972 French text. Habitus allows unforeseen activity; classification involves power. Full book and French original not read/collated; ethnographic generalizations remain author claims."
+      }
+    },
+    {
+      "id": "certeau_practice_primary",
+      "title": "Michel de Certeau, The Practice of Everyday Life, translated by Steven Rendall (1984; French original 1980).",
+      "url": "https://notesoncraft.org/assets/pdfs/De-Certeau_The-Practice-of-Everyday-Life.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Later paperback reprint: imprint visually checked. Complete English preface ix–x, General Introduction xi–xxiv and its notes 1–35 (205–207) read via OCR because embedded font text is corrupt. Chapter 1 notes 1–21 read, not chapter body. Preface and note 8 credit Giard, Mayol and Ferrier. Notes 3, 9 and 20 specify conceptual resources. Body chapters and French original not collated. Broad colonial, gender and biological formulations are not adopted as facts; erroneous Xun Zi identification in note 24 not copied."
+      }
+    },
+    {
+      "id": "giddens_constitution_metadata",
+      "title": "Anthony Giddens, The Constitution of Society (Polity, 1984).",
+      "url": "https://books.google.com/books/about/The_Constitution_of_Society.html?id=5QVXAAAAYAAJ",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Google Books and Finna luc.992127593806246 metadata checked: 1984 Polity, 402 pages. Book body unread. Sewell’s separately checked 1992 abstract explicitly identifies Giddens’s duality of structure as a resource and object of reformulation."
+      }
+    },
+    {
+      "id": "bonnell_hunt_primary",
+      "title": "Victoria E. Bonnell and Lynn Hunt, eds., Beyond the Cultural Turn (1999), selected primary passages.",
+      "url": "https://www.ucpress.edu/books/beyond-the-cultural-turn/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete preface ix–xi and four notes; contents; introduction 1, 12–25 complete (p. 12 begins mid-sentence from 11, opening clause also read); introduction notes 3–10 complete, 11 partial; White afterword 315–318 complete. PDF extraction reports font-weight warnings but legible text; no exact-quotation certification. Intro 2–11, 26 onward and most notes unread; nine essay bodies unread. Summaries of Biernacki, Jacob, Somers, Halttunen, Feierman, Rose, Bynum and Seigel are specifically the editors’ accounts. Preface records 1994/1996 conferences and White’s participation; introduction explicitly acknowledges his disagreement. White’s Marxian commitment and Lukács reference are his own afterword testimony, not his readers’ common position."
+      }
+    },
+    {
+      "id": "canguilhem_norm_average_primary",
+      "title": "Georges Canguilhem, Le normal et le pathologique (1943 essay, expanded1966; selected later-edition transcriptions).",
+      "url": "https://classiques.uqam.ca/collection_methodologie/canguilhem_georges/normal_et_pathologique/normal_et_pathologique_texte.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read primary extract from start of Norme et moyenne through Vallois/paleopathology discussion (web89–196), not complete96–117range or subsequent selections. Dantier2011preface is separate; bibliography deliberately omitted there. Corroborating full-book transcription https://assets.zyrosite.com/Yan0aOevgxiXWoqQ/le-normal-et-le-pathologique-A85MljeWq5hLJPZP.pdf consulted:1966/1972warnings, complete1950preface, bibliography item53(Halbwachs1912), selected Sorre citations at PDF112–113. Electronic pagination is not print pagination. No complete book or original1943/1955reflex collation. MIT English PDF returned404. Supports his distinction of norms/averages and named resources, including Sorre encountered after drafting. Medical, racial and population claims in historical examples are not independently certified or adopted as current facts."
+      }
+    },
+    {
+      "id": "halbwachs_average_1912",
+      "title": "Maurice Halbwachs, La théorie de l’homme moyen: essai sur Quetelet et la statistique morale (Alcan,1912).",
+      "url": "https://www.cmh.ens.fr/maurice-halbwachs/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Institutional bibliography indexed record confirms1912title and thesis status; Canguilhem bibliography item53 independently identifies same work. Original Halbwachs book unread; specific reception recorded in canguilhem_norm_average_primary. Do not substitute collective-memory books for this statistical intervention."
+      }
+    },
+    {
+      "id": "vickery_elegance_primary",
+      "title": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+      "url": "https://yalebooks.yale.edu/book/9780300102222/the-gentlemans-daughter/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Read available primary transcription: title/imprint, acknowledgments, opening introduction paragraph; chapter5 from opening through household purchasing division and acquisition channels; final discussion from corroborating Shackleton examples through chapter end; notes1–23 and beginning24,81–86. Intervening chapter section unread. Reflow lacks print page markers; no image collation or original manuscript audit. Explicit resources include Bourdieu, Douglas/Isherwood and Appadurai; Kopytoff not explicitly named in checked passages. Original1998 copyright, paperback1999, later ISBN distinguished. Gender/finance findings concern selected genteel households; no universal female consumer. Platform summary ignored."
+      }
+    },
+    {
+      "id": "halbwachs_cadres_conclusion",
+      "title": "Maurice Halbwachs, Les cadres sociaux de la mémoire (1925; digital edition based on the 1952 reedition), concluding subsection.",
+      "url": "https://classiques.uqam.ca/classiques/Halbwachs_maurice/cadres_soc_memoire/cadres_sociaux_memoire.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Read digital pages 205–211, including the complete final concluding subsection beginning on 206. These are electronic pagination, not original 1925 pages. Original French argument consulted in extracted PDF text; no first-edition collation or full-book reading. His claims about family, religion and class remain his sociological interpretation, not independently verified historical generalizations."
+      }
+    },
+    {
+      "id": "harvey_social_justice_1973",
+      "title": "David Harvey, Social Justice and the City (Johns Hopkins University Press, 1973).",
+      "url": "https://openlibrary.org/works/OL3232636W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/harvey_1973.openlibrary.json): Harvey, title, 1973, Johns Hopkins. Book unread."
+      }
+    },
+    {
+      "id": "benjamin_arcades_project",
+      "title": "Walter Benjamin, Das Passagen-Werk (1982); The Arcades Project, trans. Howard Eiland and Kevin McLaughlin (Harvard University Press, 1999).",
+      "url": "https://openlibrary.org/works/OL156207W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-28",
+        "note": "OpenLibrary work record checked (raw/benjamin_1999.openlibrary.json): Benjamin, Passagen-Werk, Belknap/Harvard among publishers. Unfinished work; editions not collated and text unread."
+      }
+    },
+    {
+      "id": "pe137_guha_rule_of_property",
+      "title": "Ranajit Guha, A Rule of Property for Bengal: An Essay on the Idea of Permanent Settlement (Paris: Mouton, 1963).",
+      "url": "https://openlibrary.org/works/OL1932421W",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Metadata only. Open Library work OL1932421W gives first publication 1963 and Mouton, Orient Longman and Duke University Press among publishers. James C. Scott's foreword to the 1999 Duke printing of Elementary Aspects (p. xiii, read) recommends 'his fine earlier work', A Rule of Property for Bengal (Duke, 1996; Paris: Mouton, 1963). The book itself was not read and supports no edge."
+      }
+    },
+    {
+      "id": "nzd_haskins_1997",
+      "title": "Natalie Zemon Davis, A Life of Learning: Charles Homer Haskins Lecture for 1997, ACLS Occasional Paper 39 (New York: American Council of Learned Societies, 1997).",
+      "url": "https://www.acls.org/wp-content/uploads/2021/11/Haskins_1997_NatalieZemonDavis.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-17",
+        "note": "Read for revision 1.143 (data/extension-2026/davis-backfill-2026-10-17/evidence-davis.md §1): read in full in the ACLS PDF text layer. Printed folios 10–23 appear in the text; folios 1–9 were fixed from the constant PDF offset (PDF page = printed page + 6), checked against 10–23. The unsigned ACLS preface is unpaginated and is a separate reader statement. Passages used: Bloch, Strange Defeat (p. 5) and Feudal Society (p. 7); Marx and Weber tested on Lyon (p. 7); history of the book (p. 10); multiple social axes (p. 11); ‘A Trade Union’ (1966) and Hobsbawm (pp. 12–13); Annales histoire totale ‘could not serve as a model’ (p. 13); Van Gennep, Bakhtin, and reading Evans-Pritchard, Turner, Geertz and Mintz ‘eclectically’ (p. 14); Society and Culture and ‘Rites’ (p. 15); the 1971 course with Jill Conway, ‘the first course in women’s history in Canada’ (p. 16); film and ‘anthropological history’ (pp. 17–18); ‘I came to microhistory (or what I called ethnography) via film’ and co-teaching with Geertz (p. 19); Fiction in the Archives and Stone (p. 21); ‘a decentered comparison of three European lives’ (p. 21); margins and colonial intrusion (p. 22); ‘permanently relocated as an historian of Europe’ (p. 23). Retrospective testimony (1997): evidence of how she later described her work, not of what the earlier works say."
+      }
+    },
+    {
+      "id": "w2_scott_class_lost_2000",
+      "title": "Joan W. Scott, “The ‘Class’ We Have Lost,” International Labor and Working-Class History 57 (Spring 2000): 69–75.",
+      "url": "https://doi.org/10.1017/S0147547900212726",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Publisher abstract read for revision 1.147 (via OpenAlex); the article body is unread. Abstract: Eley and Nield's essay is marked by a tension between updating social history by detaching it from materialist assumptions and continuing \"narratives of working-class political agency\"; \"By insisting that class is still the best way of analyzing inequality and mobilizing resistance to it, the authors foreclose other possibilities for thinking about contemporary politics and for writing critical history\"; her questions \"don't exclude class but they don't require it either\". Addendum 2026-10-22: Body read in full for revision 1.152 (Cambridge PDF with text layer, accessible this session though not labelled open access; data/extension-2026/languages-of-class-2026-10-22/evidence-spread.md §6.3): pp. 69–75; the abstract confirmed verbatim; 'Assent to Discourse' (p. 69); 'Patrick Joyce has been expelled from the fold and Kathleen Canning is now at its center' (p. 69); the use of Rancière (pp. 70–71); 'Structures come into being through discourse' (p. 71); the two questions (p. 72)."
+      }
+    },
+    {
+      "id": "loc_berlanstein_1993",
+      "title": "Lenard R. Berlanstein, ed., Rethinking Labor History: Essays on Discourse and Class Analysis (Urbana: University of Illinois Press, 1993).",
+      "url": null,
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "No publisher page (404); known through reviews (Frader 1995; Greene, Science & Society 1995) and Sangster's citations of Sewell's chapter (2000, nn. 108, 110). Unread."
+      }
+    },
+    {
+      "id": "loc_eley_nield_farewell_2000",
+      "title": "Geoff Eley and Keith Nield, “Farewell to the Working Class?,” International Labor and Working-Class History 57 (Spring 2000): 1–30.",
+      "url": "https://doi.org/10.1017/S0147547900002660",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Read in full (Cambridge PDF with text layer; pages from running heads) for revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/evidence-spread.md §6.4). The abstract had been read separately by agent B."
+      }
+    },
+    {
+      "id": "loc_frader_dissent_1995",
+      "title": "Laura L. Frader, “Dissent over Discourse: Labor History, Gender, and the Linguistic Turn,” History and Theory 34, no. 3 (1995): 213–230.",
+      "url": "https://doi.org/10.2307/2505622",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Crossref metadata only; unread; a review essay on Berlanstein and Baron, cited by Sangster (2000)."
+      }
+    },
+    {
+      "id": "loc_hanagan_ilwch_1984",
+      "title": "Michael Hanagan, “Response to Sean Wilentz, ‘Against Exceptionalism’,” International Labor and Working-Class History 26 (1984): 31–36.",
+      "url": "https://doi.org/10.1017/S0147547900008425",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Crossref metadata only; unread; position known from the editors' remarks."
+      }
+    },
+    {
+      "id": "loc_ilwch24_editors_1983",
+      "title": "Helmut Gruber, “Editor's Remarks,” International Labor and Working-Class History 24 (Fall 1983).",
+      "url": "https://doi.org/10.1017/S0147547900008097",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Open Cambridge Core scan read in full (OCRed) for revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/evidence-spread.md §2.1): introduces the 'scholarly controversies' feature with Rancière's essay."
+      }
+    },
+    {
+      "id": "loc_ilwch26_editors_1984",
+      "title": "[David Montgomery], “Editor's Remarks: Class and Parties,” International Labor and Working-Class History 26 (Fall 1984): v–vi.",
+      "url": "https://doi.org/10.1017/S0147547900008395",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Open Cambridge Core scan read in full (OCRed). Signed 'D.M.'; the attribution to Montgomery is an inference from the initials and his editorship."
+      }
+    },
+    {
+      "id": "loc_johnson_response_ranciere_1983",
+      "title": "Christopher H. Johnson, “Response to J. Rancière, ‘Le Mythe de l'Artisan’,” International Labor and Working-Class History 24 (1983): 21–26.",
+      "url": "https://doi.org/10.1017/S0147547900008127",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Crossref metadata only; unread."
+      }
+    },
+    {
+      "id": "loc_katznelson_zolberg_1986",
+      "title": "Ira Katznelson and Aristide R. Zolberg, eds, Working-Class Formation: Nineteenth-Century Patterns in Western Europe and the United States (Princeton: Princeton University Press, 1986).",
+      "url": "https://press.princeton.edu/books/paperback/9780691102078/working-class-formation",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Princeton University Press description and contributor list read; Katznelson's introduction unread (his four-level framework is not quoted)."
+      }
+    },
+    {
+      "id": "loc_kaye_mcclelland_1990",
+      "title": "Harvey J. Kaye and Keith McClelland, eds, E. P. Thompson: Critical Perspectives (Cambridge: Polity; Philadelphia: Temple University Press, 1990), including William H. Sewell Jr., “How Classes Are Made: Critical Reflections on E. P. Thompson's Theory of Working-Class Formation.”",
+      "url": null,
+      "verification": {
+        "status": "not_checked",
+        "checked_on": "2026-10-22",
+        "note": "No publisher page reached; the volume confirmed by Steinberg's ILWCH review (DOI 10.1017/S0147547900011327). Sewell's chapter unread."
+      }
+    },
+    {
+      "id": "loc_ranciere_myth_1983",
+      "title": "Jacques Rancière, “The Myth of the Artisan: Critical Reflections on a Category of Social History,” International Labor and Working-Class History 24 (Fall 1983): 1–16.",
+      "url": "https://doi.org/10.1017/S0147547900008103",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Crossref metadata; body unread; summarised by the editors (1983) and quoted by Scott (2000, pp. 70–71)."
+      }
+    },
+    {
+      "id": "loc_ranciere_reply_1984",
+      "title": "Jacques Rancière, “A Reply,” International Labor and Working-Class History 25 (Spring 1984): 42–46.",
+      "url": "https://doi.org/10.1017/S0147547900001423",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Open Cambridge Core scan read in full (OCRed; pages from running heads) for revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/evidence-spread.md §2.1)."
+      }
+    },
+    {
+      "id": "loc_reddy_market_culture_1984",
+      "title": "William M. Reddy, The Rise of Market Culture: The Textile Trade and French Society, 1750–1900 (Cambridge: Cambridge University Press, 1984).",
+      "url": "https://doi.org/10.1017/CBO9780511549922",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Metadata only; unread."
+      }
+    },
+    {
+      "id": "loc_reddy_money_liberty_1987",
+      "title": "William M. Reddy, Money and Liberty in Modern Europe: A Critique of Historical Understanding (Cambridge: Cambridge University Press, 1987).",
+      "url": "https://doi.org/10.1017/CBO9780511572555",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Cambridge description and contents read (ch. 1 'The Crisis of the Class Concept in Historical Research'); body unread."
+      }
+    },
+    {
+      "id": "loc_salvatore_ilwch_1984",
+      "title": "Nick Salvatore, “Response to Sean Wilentz, ‘Against Exceptionalism’,” International Labor and Working-Class History 26 (1984): 25–30.",
+      "url": "https://doi.org/10.1017/S0147547900008413",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Read in full in the author's institutional deposit (Cornell eCommons, https://hdl.handle.net/1813/76034, '© Cambridge University Press. Reprinted with permission'; OCRed; pages 25–30 from running heads)."
+      }
+    },
+    {
+      "id": "loc_scott_gender_politics_1988",
+      "title": "Joan Wallach Scott, Gender and the Politics of History (New York: Columbia University Press, 1988; rev. ed. 1999; 30th-anniversary ed. 2018).",
+      "url": "https://cup.columbia.edu/book/gender-and-the-politics-of-history/9780231188012",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Contents read on the Columbia page (ch. 3 'On Language, Gender, and Working-Class History'; ch. 4 'Women in The Making of the English Working Class'; ch. 5 'Work Identities for Men and Women'); body unread."
+      }
+    },
+    {
+      "id": "loc_sewell_response_ranciere_1983",
+      "title": "William H. Sewell Jr., “Response to J. Rancière, ‘The Myth of the Artisan’,” International Labor and Working-Class History 24 (1983): 17–20.",
+      "url": "https://doi.org/10.1017/S0147547900008115",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Crossref metadata only; unread; its point on 'skill' as social status is known from Rancière's reply (1984, p. 42)."
+      }
+    },
+    {
+      "id": "loc_sewell_work_revolution_1980",
+      "title": "William H. Sewell Jr., Work and Revolution in France: The Language of Labor from the Old Regime to 1848 (Cambridge: Cambridge University Press, 1980).",
+      "url": "https://doi.org/10.1017/CBO9780511583711",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Cambridge Core description, contents and the chapter 1 opening read; body unread."
+      }
+    },
+    {
+      "id": "loc_wilentz_ilwch_1984",
+      "title": "Sean Wilentz, “Against Exceptionalism: Class Consciousness and the American Labor Movement, 1790–1920,” International Labor and Working-Class History 26 (Fall 1984): 1–24.",
+      "url": "https://doi.org/10.1017/S0147547900008401",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Cambridge page and reference list read; body unread; argument known through the editors' remarks and Salvatore's response."
+      }
+    }
+  ],
+  "existing_graph_source_evidence_note": "Verbatim scoped source metadata from the hashed canonical graph; these prior verification notes are not new primary readings by this reviewer.",
+  "independent_count_recomputation": "Read the frozen dissertations table and retain in_analysis=True. Join citations to authorship for exact person keys and deduplicate dissertation IDs across all authorship positions; separately join works.first_author_key for first-author totals. Work leads count exact work_id citations. Dated counts require a nonempty integer dissertation year. All thirteen screened author-key all-authorship totals and every displayed work total matched the release values; first-author totals were independently computed rather than inferred from those totals."
+}

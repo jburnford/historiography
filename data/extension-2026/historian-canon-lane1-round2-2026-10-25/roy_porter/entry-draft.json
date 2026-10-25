@@ -1,0 +1,182 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.173 to candidate 1.174",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "roy_porter",
+    "label": "Roy Porter",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“Lay Medical Knowledge in the Eighteenth Century” (1985) · “The Patient’s View: Doing Medical History from Below” (1985) · Consumption and the World of Goods: co-edited with John Brewer (1993) · The Greatest Benefit to Mankind (1997)",
+    "description": "A historian of medicine who asks how illness and healing looked from the sufferer’s position. His study of eighteenth-century lay knowledge investigates interpretation and treatment beyond the physician’s office. The published conclusion of “The Patient’s View” places self-help, community action and unequal resources at the centre of medical history, while declining to impose a uniform model on every patient–practitioner encounter. The entry also preserves his co-editorship of a major consumption collection without assigning its contributors’ arguments to him.",
+    "representative_figures_and_works": "“Lay Medical Knowledge in the Eighteenth Century” (1985); “The Patient’s View” (1985); Consumption and the World of Goods, co-edited with John Brewer (1993); The Greatest Benefit to Mankind (1997).",
+    "source_ids": [
+      "roy_porter_lay_1985",
+      "brewer_porter",
+      "hc174_porter_patient",
+      "hc174_porter_benefit"
+    ],
+    "scope_note": "Existing roy_porter reused and distinguished by the matched lay-medicine writings and medical historian obituary. Readings remain the primary opening already recorded and the newly displayed conclusion only. The consumption collection is jointly edited with Brewer; neither a chapter argument nor coauthorship is inferred from its contents.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_porter_lay",
+          "label": "“Lay Medical Knowledge in the Eighteenth Century”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1985,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:roy_porter_lay_1985"
+          ],
+          "support": "Medical History 29, pp. 138–168. Existing primary-opening limit retained."
+        },
+        {
+          "id": "hc174_porter_patient",
+          "label": "“The Patient’s View: Doing Medical History from Below”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1985,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_porter_patient"
+          ],
+          "support": "Theory and Society 14, pp. 175–198, March 1985. Distinct from the same-year Medical History article."
+        },
+        {
+          "id": "hc174_porter_goods",
+          "label": "Consumption and the World of Goods: co-edited with John Brewer",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:brewer_porter"
+          ],
+          "support": "1993 original and joint editorial credit retained; contents are not verification of chapters."
+        },
+        {
+          "id": "hc174_porter_benefit",
+          "label": "The Greatest Benefit to Mankind",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1997,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_porter_benefit"
+          ],
+          "support": "1997 London HarperCollins original; later Norton/Fontana editions not conflated. Book unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "roy_porter",
+    "label": "Roy Porter",
+    "node_id": "roy_porter",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing roy_porter identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in roy_porter/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "medicalhistory",
+      "relationship": "Investigates lay interpretation, domestic treatment and the sufferer’s role in medical encounters.",
+      "source_ids": [
+        "roy_porter_lay_1985",
+        "hc174_porter_patient"
+      ],
+      "evidence_note": "Existing primary opening of Lay Medical Knowledge, supplemented by the publisher’s displayed conclusion of The Patient’s View. Claims are bounded to these passages, not autonomous or equally documented agency for all patients.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_roy_porter_1",
+      "source": "roy_porter",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "medicalhistory"
+    },
+    {
+      "target": "social",
+      "relationship": "Moves the historical gaze toward sickness, self-help and community healing as problems of social history.",
+      "source_ids": [
+        "hc174_porter_patient"
+      ],
+      "evidence_note": "Displayed primary conclusion explicitly connects health and social history and declines premature uniform interaction models. Full article unread. No general claim that professionals were absent or powerless in every context.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_roy_porter_2",
+      "source": "roy_porter",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "social"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc174_porter_patient",
+      "title": "Roy Porter, “The Patient’s View: Doing Medical History from Below,” Theory and Society 14 (March 1985): 175–198.",
+      "citation": "Roy Porter, “The Patient’s View: Doing Medical History from Below,” Theory and Society 14 (March 1985): 175–198.",
+      "url": "https://link.springer.com/article/10.1007/BF00157532",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher page and displayed Conclusion read. It is a primary concluding excerpt, not an abstract or complete article: argues for sufferer-oriented history, self/community help and attention to resources, while refusing a uniform theoretical model. Rest of article and historical sources unread. Publisher metadata confirms March 1985, pages and author."
+      }
+    },
+    {
+      "id": "hc174_porter_benefit",
+      "title": "Roy Porter, The Greatest Benefit to Mankind: A Medical History of Humanity from Antiquity to the Present (London: HarperCollins, 1997): institutional bibliography.",
+      "citation": "Roy Porter, The Greatest Benefit to Mankind: A Medical History of Humanity from Antiquity to the Present (London: HarperCollins, 1997): institutional bibliography.",
+      "url": "https://lib.ihp.sinica.edu.tw/03-rare/MWSP/10/download/d-1.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Academia Sinica’s Roy Porter Collection bibliography, printed p. 96, records London HarperCollins 1997 separately from Norton 1999/c1997. Metadata only; no reading of the medical synthesis. Subsequent US editions do not change original UK year."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "social",
+      "proposal_id": "hc174_roy_porter_2",
+      "row": {
+        "person_id": "roy_porter",
+        "role": "historian",
+        "context": "Moves the historical gaze toward sickness, self-help and community healing as problems of social history.",
+        "works": "“Lay Medical Knowledge in the Eighteenth Century” (1985); “The Patient’s View” (1985); Consumption and the World of Goods, co-edited with John Brewer (1993); The Greatest Benefit to Mankind (1997).",
+        "source_ids": [
+          "hc174_porter_patient"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

@@ -1,10 +1,10 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.164**, schema 1.6,
-contains **219 entries, 1,300 relationships, 2,503 sources, 1,360 shared people and
+The curated JSON remains authoritative. Current production revision **1.180**, schema 1.6,
+contains **312 entries, 1,492 relationships, 2,801 sources, 1,415 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
-publication record. Detailed views render evidenced journal venues and five
+publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
@@ -21,9 +21,9 @@ The public comparisons include 6,794 dissertations with years, from 7,107 in ana
 The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
 regional numerators/denominators, institution coverage, missing years, notes extraction,
 small samples and provisional family labels remain visible. Examples link to original
-repository records. Teaching links cover twenty profiles, including Wrigley, Mokyr,
-Berg, Crafts, Fogel and de Vries. Four field panels cover environmental history, the
-archival turn, economic history and capitalism debates. Archived entries retain their
+repository records. Teaching links cover 113 profiles, including all 89 historians in the
+completed qualifying queue and the earlier theory/field contributors. Five field panels cover environmental history, the
+archival turn, economic history, capitalism debates and emotions history. Archived entries retain their
 original selection.
 
 The economic-history and capitalism panels each compare twelve selected authors or
@@ -34,9 +34,11 @@ remain available. Both mode and source selections survive resizing and reading-v
 trips. Counts overlap and do not estimate field readership or influence. These are sampled
 History-programme dissertations, excluding the separate Economics PhD literature.
 
-Reviews are recorded in `data/dissertation-layer/reviews/`. Eleven explicitly reviewed
+Reviews are recorded in `data/dissertation-layer/reviews/`. Sixteen explicitly reviewed
 records below the normal frequency cutoffs are added to the original 4,037 sources,
-for 4,048 searchable sources. Their distinct dated counts are recomputed from the frozen
+for 4,053 searchable sources. The five newest exceptions cover Duby, Noiriel, Jeremy
+Black, Vovelle and Charle. An append-only reviewed-source ID registry preserves all
+earlier IDs when another exception is added. Their distinct dated counts are recomputed from the frozen
 release; companion/family analyses are explicitly unavailable for those additions.
 Existing counts/series and denominator populations remain unchanged. Attribution notes
 retain first-author and namesake limits. Export validation rejects differing first-author
@@ -60,12 +62,13 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
 Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
-pushing requires the user's explicit instruction. The current build publishes 52
+publication is authorized for this batch. Astra review and final data, JavaScript,
+browser and clean-checkout checks pass; see the implementation report for evidence. The current build contains 52
 allowlisted files, including eight JavaScript modules, two stylesheets, six teaching
 and publication-record JSON assets, and 34 dissertation metadata assets. The builder
 validates graphs, checks the dissertation export hashes and refuses unexpected output
 files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The build includes revision 1.164 and the dissertation reading research preview.
+build. The build includes revision 1.180 and the dissertation reading research preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
 the full teaching graph once. Selected profiles lazily load the separate record
@@ -79,6 +82,22 @@ own localhost server; Playwright Chromium must already be installed. CI runs
 data, evidence/family, JavaScript and browser checks, then checks build drift.
 Research rebuilds additionally require frozen local databases; the public site
 build uses tracked metadata assets and requires no database.
+
+## Historian life metadata
+
+The published main graph overlays `data/historian-life-review.json` for all 190
+individual historian entries: 100 living, 89 deceased and one unresolved (Jennifer
+S. H. Brown), checked on 2026-10-25. Person pages and timeline details show supported
+death years, source links and unresolved status. The overlay supplies `people[].life`
+and `people[].life_review`; it does not alter the canonical work chronology, field
+coverage or exact-2000 archived graph. A year-only source remains year precision,
+and a missing death record never becomes a living assertion.
+
+`python3 scripts/build_historian_life_review.py` rebuilds the merged source review;
+the normal site build validates and applies its tracked derivative. Individual
+sources retain identity rationale, locators, check scope and limits in the review
+records. The [final reading integration report](../data/field-research/dissertation-content-2026-10-25/reading-bridge-integration/final-report.json)
+checks all 89 new biography endpoints and preserves earlier source series and links.
 
 ## Identity and navigation
 
@@ -140,7 +159,7 @@ back to the full field, unfiltered.
 ## The detailed field view
 
 Every entry sits on one time axis, banded by layer, with the 38 linked journals
-in their own band. All 187 graph entries and linked journals have explicit chronology.
+in their own band. All 312 graph entries and linked journals have explicit chronology.
 The shared `chronology.mjs` reader supplies full/family timelines, compact person
 maps, landing dates and text alternatives; prose labels cannot change the geometry.
 

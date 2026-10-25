@@ -1,0 +1,195 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.170 to candidate 1.171",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "jackson_lears",
+    "label": "Jackson Lears",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "No Place of Grace (1981) · Fables of Abundance (1994) · Something for Nothing: Luck in America (2003)",
+    "description": "A cultural historian of the United States whose work connects religious longing, commercial persuasion and the making of meaning. In his written exchange with B. R. Cohen he explains cultural history as an inquiry into meanings formed through lived anxieties and desires, including unintended consequences. Advertising is examined through trust and confidence as well as sales. His conversation with David Serlin describes chance and control as intertwined practices rather than mutually exclusive eras, linking gambling, belief and economic life without claiming that calculation eliminates uncertainty.",
+    "representative_figures_and_works": "No Place of Grace (1981; Chicago reissue 1994 and later anniversary edition distinct); Fables of Abundance (1994; paperback 1995 distinct); Something for Nothing: Luck in America (2003).",
+    "source_ids": [
+      "cic_lears_1981",
+      "hc171_lears_cohen",
+      "hc171_lears_serlin",
+      "hc171_lears_smithsonian"
+    ],
+    "scope_note": "The author is the Rutgers historian also indexed as T. J. Jackson Lears; the matched title list grounds the identity. Existing No Place of Grace publisher-only qualification is unchanged. Two bounded author interviews support selected arguments; no full book reading, automatic McKay influence or broad political genealogy.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_lears_grace",
+          "label": "No Place of Grace",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1981,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cic_lears_1981"
+          ],
+          "support": "Existing metadata distinguishes Pantheon original 1981 from Chicago 1994 and the fortieth-anniversary edition. Book unread."
+        },
+        {
+          "id": "hc171_lears_fables",
+          "label": "Fables of Abundance",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1994,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_lears_serlin",
+            "graph:hc171_lears_smithsonian"
+          ],
+          "support": "Contemporary author biography gives Basic Books 1994; Smithsonian confirms c1994. Later paperback date is not first publication."
+        },
+        {
+          "id": "hc171_lears_luck",
+          "label": "Something for Nothing: Luck in America",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2003,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_lears_serlin"
+          ],
+          "support": "Contemporary interview introduction and author biography give 2003, Viking Penguin. The June 2005 conversation is a separate fact."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "jackson_lears",
+    "label": "Jackson Lears",
+    "node_id": "jackson_lears",
+    "new": true,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. New profile; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in jackson_lears/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "culture",
+      "relationship": "Defines cultural history through historically situated meanings, conflicting desires and unintended consequences.",
+      "source_ids": [
+        "hc171_lears_cohen",
+        "hc171_lears_serlin"
+      ],
+      "evidence_note": "Author answers in the Cohen interview, section II; Serlin interview answers on overlapping chance/control. These are Lears’s stated interpretive methods, not certification of each example or a field-wide consensus.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_jackson_lears_1",
+      "source": "jackson_lears",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "culture"
+    },
+    {
+      "target": "consumption",
+      "relationship": "Connects commercial persuasion to culturally specific practices of confidence, trust and uncertainty.",
+      "source_ids": [
+        "hc171_lears_cohen"
+      ],
+      "evidence_note": "Cohen interview, section I, where Lears discusses Fables of Abundance and the historical settings of confidence. The complete advertising monograph remains unread and no timeless national character is inferred.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_jackson_lears_2",
+      "source": "jackson_lears",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "consumption"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc171_lears_cohen",
+      "title": "B. R. Cohen and T. J. Jackson Lears, “The Confidence Economy: An Interview with T. J. Jackson Lears,” Public Books, online written interview.",
+      "citation": "B. R. Cohen and T. J. Jackson Lears, “The Confidence Economy: An Interview with T. J. Jackson Lears,” Public Books, online written interview.",
+      "url": "https://www.publicbooks.org/the-confidence-economy-an-interview-with-t-j-jackson-lears/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Written sections I–II read. Supports the author’s own account of confidence and cultural history. A reliable publication date was not established from the visible page, so none is invented and no chronology event is dated from crawl metadata. Other sections and complete book bodies not claimed read."
+      }
+    },
+    {
+      "id": "hc171_lears_serlin",
+      "title": "David Serlin and Jackson Lears, “Rolling the Dice: An Interview with Jackson Lears,” Cabinet 19 (Fall 2005); conversation June 2005.",
+      "citation": "David Serlin and Jackson Lears, “Rolling the Dice: An Interview with Jackson Lears,” Cabinet 19 (Fall 2005); conversation June 2005.",
+      "url": "https://www.cabinetmagazine.org/issues/19/serlin_lears.php",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Opening answers on the origins of the chance inquiry and the coexistence of chance/control read, plus introduction and author biography. Distinguishes June conversation from Fall issue. Contemporary bibliography gives Fables (1994) and Something for Nothing (2003); full books unread."
+      }
+    },
+    {
+      "id": "hc171_lears_smithsonian",
+      "title": "Smithsonian Libraries and Archives, Fables of Abundance, record siris_sil_471135.",
+      "citation": "Smithsonian Libraries and Archives, Fables of Abundance, record siris_sil_471135.",
+      "url": "https://www.si.edu/object/siris_sil_471135",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Author authority heading T. J. Jackson Lears 1947- and book date/copyright 1994 checked. Bibliographic facts only; open author date does not prove current living status."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "culture",
+      "proposal_id": "hc171_jackson_lears_1",
+      "row": {
+        "person_id": "jackson_lears",
+        "role": "historian",
+        "context": "Defines cultural history through historically situated meanings, conflicting desires and unintended consequences.",
+        "works": "No Place of Grace (1981; Chicago reissue 1994 and later anniversary edition distinct); Fables of Abundance (1994; paperback 1995 distinct); Something for Nothing: Luck in America (2003).",
+        "source_ids": [
+          "hc171_lears_cohen",
+          "hc171_lears_serlin"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "consumption",
+      "proposal_id": "hc171_jackson_lears_2",
+      "row": {
+        "person_id": "jackson_lears",
+        "role": "historian",
+        "context": "Connects commercial persuasion to culturally specific practices of confidence, trust and uncertainty.",
+        "works": "No Place of Grace (1981; Chicago reissue 1994 and later anniversary edition distinct); Fables of Abundance (1994; paperback 1995 distinct); Something for Nothing: Luck in America (2003).",
+        "source_ids": [
+          "hc171_lears_cohen"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

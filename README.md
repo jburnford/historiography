@@ -22,23 +22,47 @@ their details into view. Search, collapsible filters and full text alternatives 
 **Dissertation reading — research preview.** A fourth main route lets visitors search
 cited people and works, compare their use over time and across regions, inspect companion
 literature and open example dissertation repository records. Environmental history, the
-archival turn, economic history, capitalism debates and twenty selected profiles connect
+archival turn, economic history, capitalism debates, emotions history and 113 selected profiles connect
 the reading record to the teaching entries. Economic-history and capitalism panels compare
 selected authors and works across degree cohorts and regions, with exact counts and linked arguments.
 It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included in analysis;
 coverage and extraction limits accompany the figures. The experimental comparison pages
 remain research prototypes. See [frontend details](site/README.md).
 
-Production data revision **1.164** (schema 1.6): 219 entries,
-1,300 teaching relationships, 2,503 bibliography records, 1,360
-people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
-relations drawn from a catalogue of 1638
-periodicals.
+Current production data revision **1.180** (schema 1.6): **312 entries,
+1,492 teaching relationships, 2,801 bibliography records and 1,415 indexed people**,
+with 14 seminar pathways. The 212 standalone entries distinguish **190 historians
+from 22 theorists**; 100 group entries retain their separate roles. A journal layer
+adds 54 evidenced venue relations from a catalogue of 1,638 periodicals.
+
+The [dissertation-guided content expansion](data/field-research/dissertation-content-2026-10-25/README.md)
+completes the clean queue of **[89 qualifying historians](data/field-research/dissertation-content-2026-10-25/completed-historians.md)**: seven with a Canadian-history
+focus cited by at least 150 dated first-author dissertations, and 82 other historians
+cited by more than 100. Sarah Carter establishes the Canadian floor. These exact-key
+counts select research candidates; theory and unresolved identities stay separate,
+and citation frequency supplies no influence arrow. The earlier Scott, Lefebvre,
+emotions, Benton, work repairs and Beckert packets remain part of this expansion.
+
+All 190 historian biographies have [sourced life-status reviews](data/historian-life-review.json),
+checked on 2026-10-25: **100 living, 89 deceased and one unresolved** (Jennifer S. H. Brown).
+Supported death years and their precision appear as reference metadata, separate from
+work, career and influence dates. Missing death information does not imply living status.
+
+The reading view now contains **4,053 searchable sources**: the original 4,037 and
+16 reviewed exceptions. Its 113 profile links and five field panels preserve existing
+counts, denominators, stable source IDs and earlier selections. Primary excerpts,
+named readers, original editions, translations and coauthor/editor credits remain
+explicit. Astra review and release checks pass: 145 data tests, 60 JavaScript checks,
+60 browser cases after fixture corrections, and a clean checkout reproducing all
+52 public assets. Publication is authorized; see the implementation report for evidence.
+
+The earlier release notes below preserve their historical counts and status at the
+time of each release.
 
 The [Gemini review expansion](data/field-research/gemini-coverage-2026-10-24/implementation.json)
 adds sixteen individual entries across distinct non-Western historiographical projects,
 Black and Atlantic history, microhistory and intellectual history. There are now
-120 standalone people. Contributions, criticism, acknowledged influence and collaboration
+120 standalone people at that revision. Contributions, criticism, acknowledged influence and collaboration
 retain their evidence limits; earlier relationship IDs and the archive are preserved.
 Astra's independent review corrected Diop's 1960 original versus revised 1974
 title through separately qualified library records; the prior acceptances stay frozen.

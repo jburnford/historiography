@@ -18,7 +18,9 @@ class GeminiExpansionTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.before = Batch(PACKETS[0]).baseline()
-        cls.after = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
+        # This acceptance covers the frozen Gemini expansion, including when
+        # later, separately reviewed content adds more people or field facts.
+        cls.after = Batch(PACKETS[-1]).check()
         cls.packets = [json.loads((p / 'release/editorial-additions.json').read_text()) for p in PACKETS]
         cls.nodes = {n['id']: n for n in cls.after['nodes']}
         cls.people = {p['id']: p for p in cls.after['people']}

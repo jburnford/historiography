@@ -1,5 +1,60 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: complete historian queue and life dates
+
+The user clarified Carter is the Canadian floor, not the sole addition. **All89
+qualifying historians are implemented**, with theory kept separate:7Canadian-history
+candidates at≥150 dated first-author dissertations and82other historians>100.
+Counts are exact bibliography keys, never combined variants or inferred influence.
+The user explicitly authorized agents, Astra review, corrections and push.
+
+Canonical **1.180:312entries,1492relationships,2801sources,1415people**;
+**190historians,22theorists,100groups**. Accepted revisions1.165–1.180 add the
+Scott/Lefebvre,emotions,Benton,eight-work repairs,Beckert,Carter and complete
+88-person lane packets. Existing graph IDs,1300oldrelationships,dated events,
+coverage and identity qualifications are preserved. Corrections are additive;
+all16acceptedpacket hashes match,including exact original1.172serialization.
+
+- Full implementation/report:`data/field-research/dissertation-content-2026-10-25/`.
+  `implementation.json` lists all89 completed historians, source keys/counts and
+  release checks. `classification-review.json`/`expanded-scope.json` are frozen
+  screening witnesses;88people in expanded-scope plus Carter's separate1.170packet.
+  Theory,mixed scholarship and11identity holds remain separate. The broader38
+  thematic proposals are not all accepted; two bibliographic holds remain.
+- Astra's final1.180substantive review passes with zero blockers. It independently
+  checked all89entries/readinglinks,accepted hashes,oldidentity prefixes,oldedges
+  and dates. Corrections distinguish Iacovetta's own2019article from Gatekeepers
+  review; repair Foner/Roediger date witnesses; restore sixoldidentity notes;
+  distinguish LeGoff1988manifestation,Katz1986,Calloway1995print and Corbintranslation.
+  Selected texts remain qualified; do not describe unread books as fully read.
+- `data/historian-life-review.json` covers **all190historian bios**:100living in
+  checked sources,89deceased,1unresolved(JenniferS.H.Brown). Checked25Oct2026;
+  positive evidence retains confidence/timing limits. No death-absence inference.
+  Brown's future foreword is insufficient. CarlBerger2026andJoyParr2024deathyears
+  are filled; exact-day conflicts use supported years and retain prior values.
+  `scripts/build_historian_life_review.py` compiles102old+88newrecords with20exact
+  follow-up guards. `scripts/historian_life_review.py` overlays published people
+  only;canonical graph and Wikidata grounding sheet unchanged. UI supports noQID
+  (Spruill),year precision without circa/fakeJanuary1,and explicit unknown status.
+- Reading integration **113profiles,5panels,4053sources=4037original+16reviewed**.
+  All4048oldsource IDs,positions,index metadata,numerics and fields are preserved;
+  only five declared author works lists gain books(Duby,Noiriel,Black,Vovelle,Charle).
+  All25earlier profile links and5panels remain exact. Registry fixes label IDs AND
+  source_index;Charle reuses2708rather than renumbering. Final bridge report and
+  baseline verifier are under `reading-bridge-integration/`. SarahCarter152dated,
+  Beckert112dated; rawall-credit/undated counts remain separate. DanTCarterexcluded.
+- Evidence v28/landing1.168 promotes existing H-Emotions review contexts in the
+  same family; oldcounts/familyseries/strip unchanged. Public output is52allowlisted
+  files,docs/only. Exact2000archive byteidentical. OpenAlex remains paused.
+- Validation:145data tests pass(1029.543s);60JavaScript checks pass;60browser cases all pass with five stale
+  fixtures corrected/retested plus two extra life/layout checks.18focused reading
+  tests pass. Cleancheckout reproduces all52assets,passes32focusedtests,and rebuilds the life
+  master byteidentically without ignoredsnapshots.
+  Dense narrow people overview now scales radii with membership density and has
+  finegrid collision fallback; allfourwidth no-overlap checks pass,Astra reviewed.
+- Main docs and perrevision READMEs reflect1.180. Final release checks pass; commit/push is authorized and next. Preserve unrelated local research and earlier MEMORY
+  edits; stage only this task's memory section. No rawresearch/credentials inassets.
+
 ## Publication authorized — 2026-10-24: Astra review and corrections, revision 1.164
 
 User explicitly asked Astra to review the expansion, make corrections and push.

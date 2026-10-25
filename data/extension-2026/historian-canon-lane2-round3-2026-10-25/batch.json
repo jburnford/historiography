@@ -1,0 +1,94 @@
+{
+  "revision": "1.178",
+  "baseline_revision": "1.177",
+  "date": "2026-10-25",
+  "batch_dir": "person-entries-1.178",
+  "persons": [
+    "steven_shapin",
+    "david_cannadine",
+    "eugen_weber",
+    "peter_n_stearns",
+    "anthony_pagden",
+    "mary_ryan",
+    "lisa_mcgirr",
+    "john_higham",
+    "jean_delumeau"
+  ],
+  "extras": [
+    "iacovetta-correction",
+    "identity-note-restorations"
+  ],
+  "summary": "Nine independently sourced historian biographies.",
+  "authorization": "User explicitly authorized the complete qualifying missing-historian queue and parallel research; local packet preparation only.",
+  "rationale": "Existing identities and field prose preserved. Selected primary interviews/articles or explicitly named substantive readers support individual contributions. Publication metadata supplies dates and credit only. No automatic citation-to-influence conversion, authority merge, career interval, field chronology replacement or OpenAlex research.",
+  "edge_revisions": {
+    "edge_1338": {
+      "evidence_note": "Correction 2026-10-25: Basok/Bastable pp. 211–213 support the gatekeeping/citizenship claim. Immigrant cultural negotiation and resistance are independently supported by Iacovetta’s own 2019 article, pp. 29–30 and 35; the review’s resistance contrast on p. 217 is preserved and is not reversed. No full-book reading.",
+      "source_ids": [
+        "hc172_franca_iacovetta_2",
+        "hc178_iacovetta_primary_2019"
+      ]
+    },
+    "edge_1339": {
+      "relationship": "Places contradictory expectations about marriage, gender and family inside immigrant social-work encounters.",
+      "evidence_note": "Correction 2026-10-25: Iacovetta’s own 2019 article, especially pp. 39–42, analyzes male-breadwinner/female-homemaker and egalitarian marital ideals, domestic-abuse counselling, female clients’ practical negotiations, and the limits of mediated case files. This replaces the earlier attribution to the joint review’s discussion of another author; it is a scoped article reading, not full-book verification.",
+      "source_ids": [
+        "hc178_iacovetta_primary_2019"
+      ]
+    }
+  },
+  "source_merges": {},
+  "source_field_sets": [
+    {
+      "id": "hc172_eric_foner_1",
+      "field": "title",
+      "expect": "Eric Foner, Columbia University biography and bibliography",
+      "value": "Eric Foner, author biography and dated bibliography"
+    },
+    {
+      "id": "hc172_eric_foner_1",
+      "field": "url",
+      "expect": "https://history.columbia.edu/person/foner-eric/",
+      "value": "https://www.ericfoner.com/"
+    },
+    {
+      "id": "hc172_eric_foner_1",
+      "field": "verification.note",
+      "expect": "Institutional identity and dated book list checked; not a full-book reading.",
+      "value": "Institutional identity and dated book list checked; not a full-book reading. Correction2026-10-25: The earlier Columbia directory confirms identity and work titles but its publication list supplies no years. The author homepage explicitly dates Free Soil1970,Reconstruction1988andStory of American Freedom1998,with reissues separately stated. The three chronology years are unchanged; this author bibliography supplies their date witness. No full-book reading."
+    },
+    {
+      "id": "hc172_david_roediger_4",
+      "field": "title",
+      "expect": "Hachette/Basic Books: Working Toward Whiteness",
+      "value": "David Roediger author bibliography: Working Toward Whiteness"
+    },
+    {
+      "id": "hc172_david_roediger_4",
+      "field": "url",
+      "expect": "https://www.hachettebookgroup.com/titles/david-r-roediger/working-toward-whiteness/9780786722105/?lens=basic-books",
+      "value": "https://www.davidroediger.org/books/working-toward-whiteness.php"
+    },
+    {
+      "id": "hc172_david_roediger_4",
+      "field": "verification.note",
+      "expect": "Publisher identifies 2005 original work and separately mentions 2018 introduction; whole book unread.",
+      "value": "Publisher identifies 2005 original work and separately mentions 2018 introduction; whole book unread. Correction2026-10-25: The earlier Hachette ISBN9780786722105page actually dates its ebook8August2006and has promotional text about a2018introduction; it cannot itself establish the original2005publication. The author bibliography explicitly states New York:Basic Books,2005,ISBN9780465070749. The chronology year2005is retained on that new witness. Whole book unread."
+    },
+    {
+      "id": "hc172_franca_iacovetta_2",
+      "field": "verification.note",
+      "expect": "Complete review essay read; Iacovetta discussion especially 209–214. Reviewers analyze surveillance, liberal citizenship, gender/family and immigrant accommodation/resistance, and question the scope of exclusion. Other books in this joint review are not attributed to Iacovetta.",
+      "value": "Complete review essay read; Iacovetta discussion especially 209–214. Reviewers analyze surveillance, liberal citizenship, gender/family and immigrant accommodation/resistance, and question the scope of exclusion. Other books in this joint review are not attributed to Iacovetta. Correction 2026-10-25: The earlier complete-reading claim and attribution were overstated. The Iacovetta-specific discussion is on pp. 211–213 and concerns Cold War gatekeeping, citizenship and bourgeois cultural norms; p. 217 explicitly contrasts Goutor/Iacovetta with Zaman on resistance. The detailed gender/family and resistance discussion of Zaman must not be attributed to Iacovetta. Iacovetta’s own 2019 article, now added as hc178_iacovetta_primary_2019, independently supports gender/family regulation and immigrant negotiation. The review remains a named substantive reader for the narrower gatekeeping claim; no complete monograph reading is asserted."
+    }
+  ],
+  "node_list_additions": [
+    {
+      "node": "franca_iacovetta",
+      "field": "source_ids",
+      "values": [
+        "hc178_iacovetta_primary_2019"
+      ]
+    }
+  ]
+}

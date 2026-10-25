@@ -1,0 +1,49 @@
+{
+  "status": "passes_in_memory_not_applied",
+  "prepared": "2026-10-25",
+  "baseline_revision": "1.164",
+  "candidate_revision": "1.165",
+  "baseline_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+  "packet_sha256": "dd901b270fcea4fc14cd3705ffc9b9732a2317b78c0b613ae327e362f202649b",
+  "checks": [
+    "Batch.build froze only the owned release/editorial-additions.json.",
+    "Batch.transform ran in memory; canonical bytes unchanged.",
+    "Full validate_graph.validate including chronology, claims, journal and reference validation: zero errors.",
+    "Every pre-existing source, person and edge record preserved exactly.",
+    "Every pre-existing node exact except additive roster/source/strand additions in practice, historicalsociology, spatialhistory, and three appended spatialhistory events.",
+    "Existing field chronology records, metadata, prose, date labels and coverage preserved exactly.",
+    "Lefebvre remains profile-only: no node or edge endpoint.",
+    "Scott has seven dated publication facts, two field contributions and one explicitly acknowledged reading influence."
+  ],
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "counts": {
+    "nodes": 220,
+    "people": 1362,
+    "edges": 1303,
+    "sources": 2516
+  },
+  "added": {
+    "nodes": 1,
+    "people": 2,
+    "edges": 3,
+    "sources": 13,
+    "rosters": 3,
+    "strands": 3,
+    "person_events": 7,
+    "field_events": 3
+  },
+  "scope": "Packet validation only. No canonical apply, shared build, tests, docs generation, acceptance writing, commit or deployment."
+}

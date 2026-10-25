@@ -77,6 +77,8 @@ class Batch:
         self.base = ROOT / f"drafts/historiography-1920-2000.v{self.cfg['baseline_revision']}.json"
 
     def build(self):
+        if (self.out / 'acceptance.json').exists():
+            raise ValueError('Accepted packet is frozen; use --check')
         nodes, people_updates, edges, sources, addenda, roster_edges, wikidata = [], [], [], [], {}, [], []
         new_people, roster_additions = [], []
         for name in self.cfg['persons'] + self.cfg.get('extras', []):

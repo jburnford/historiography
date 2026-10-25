@@ -3,7 +3,39 @@
 Derived, rebuildable evidence about historical *practice*, shown beside the atlas's
 interpretation. See [EVIDENCE-LAYER-PLAN.md](../../EVIDENCE-LAYER-PLAN.md).
 
-## Current local build (2026-10-22)
+## Current projection (2026-10-25)
+
+Practice **v28**, methods **methods-v9** and **mentions-v6** accompany teaching
+graph **1.180**. The latest series/audit rebuild was at graph 1.168, recorded in
+[`audits/landing-1.168/summary.json`](audits/landing-1.168/summary.json). Later
+individual biographies and reference-metadata corrections do not require a new
+harvest or practice-series rebuild.
+
+The H-Emotions mapping now targets `history_of_emotions`, retaining its five
+review-context records and primary family *Cultural & intellectual history*.
+The [prior/current mapping witness](repairs/2026-10-25/emotions-target-promotion.json)
+preserves the exact earlier row and the scope of that promotion. Old approach
+counts, family shares and the headline strip remain unchanged; review contexts
+are not a census of emotions scholarship. The earlier archival-turn fold and
+languages-of-class/capitalism contexts remain in the projection.
+
+The current teaching graph has 312 entries, including 190 individual historians
+and 22 theorists. The separate dissertation layer has 113 linked profiles, five
+field panels and 4,053 searchable sources, and its counts remain independent of
+publication-evidence measures. Neither more biographies nor a life-status review
+adds measured journal or review evidence for those people.
+
+```bash
+python3 scripts/build_evidence_asset.py --series v28 --methods methods-v9 --mentions mentions-v6 --audit data/evidence-layer/audits/landing-1.168/summary.json
+python3 scripts/build_site.py
+```
+
+These commands use the selected generated inputs; recreating practice data or
+the audit additionally requires the frozen local catalogues. The normal public
+site build uses tracked metadata assets. OpenAlex remains paused. Earlier build
+sections below preserve their historical version numbers and results.
+
+## Historical build (2026-10-22)
 
 Practice **v26**, methods **methods-v9** and **mentions-v6** serve graph 1.153. Revision 1.152
 adds the Debate entry *The languages of class debate* (`languages_of_class`):

@@ -495,7 +495,9 @@ export function lifeIndex(graph) {
     const year = v => { const m = String(v ?? '').match(/^-?\d+/); return m ? +m[0] : null; };  // BCE-safe
     index.set(p.node_id, {birth: year(p.life.birth), death: year(p.life.death),
       birthPrecision: p.life.birth_precision || null, deathPrecision: p.life.death_precision || null,
-      retrieved: p.life.retrieved || null, qid: p.wikidata?.qid || null});
+      retrieved: p.life.retrieved || null, qid: p.wikidata?.qid || null,
+      status: p.life_review?.status || null, checkedOn: p.life_review?.checked_on || null,
+      sources: p.life_review?.sources || [], reviewNote: p.life_review?.note || ''});
   }
   return index;
 }

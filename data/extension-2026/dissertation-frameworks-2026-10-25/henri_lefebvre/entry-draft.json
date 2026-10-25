@@ -1,0 +1,72 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Canonical 1.164 to candidate 1.165; indexed identity and spatialhistory roster/strand only, no standalone node",
+  "review_status": "needs_review",
+  "new_people": [
+    {
+      "id": "henri_lefebvre",
+      "label": "Henri Lefebvre",
+      "identity_note": "Author of La production de l’espace (Anthropos, 1974), identified as Henri Lefebvre (1901–1991) in BnF record FRBNF35199294; English translation credited to Donald Nicholson-Smith by CiNii Books BA12992226. Distinct from Georges Lefebvre; no authority QID, biography node or automatic dissertation crosswalk."
+    }
+  ],
+  "proposed_edges": [],
+  "new_sources": [
+    {
+      "id": "dc165_lefebvre_space_1974",
+      "title": "Henri Lefebvre, La Production de l’espace (Paris: Éditions Anthropos, 1974), BnF record FRBNF35199294.",
+      "citation": "Henri Lefebvre, La Production de l’espace (Paris: Éditions Anthropos, 1974), BnF record FRBNF35199294.",
+      "url": "https://catalogue.bnf.fr/ark%3A/12148/cb351992940",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "BnF bibliographic record inspected: Henri Lefebvre (1901–1991), title, Anthropos, 1974, 485 pages, Société et urbanisme collection. Supports the French edition’s publication and identity, separately from the translated book. The complete French monograph is unread; substantive claims use the separately identified 1974 primary introduction excerpt."
+      }
+    },
+    {
+      "id": "dc165_lefebvre_excerpt_1974",
+      "title": "Henri Lefebvre, “La production de l’espace,” L’Homme et la société 31–32 (1974): 15–32, DOI 10.3406/homso.1974.1855; excerpt from the book’s introduction.",
+      "citation": "Henri Lefebvre, “La production de l’espace,” L’Homme et la société 31–32 (1974): 15–32, DOI 10.3406/homso.1974.1855; excerpt from the book’s introduction.",
+      "url": "https://doi.org/10.3406/homso.1974.1855",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary excerpt pp. 15–32 read. The official Persée rendering supplied p. 15 and its note identifying an extract from the newly published Anthropos book; a Rhuthmos mirror of the same Persée scan supplied the remaining readable OCR, https://www.rhuthmos.eu/IMG/pdf/henri_lefebvre_la_production_de_l_espace_1974.pdf. Locators: pp. 19–20 reject inventories and purely textual decoding as sufficient explanations; pp. 21–22 discuss capitalism, hegemony and space’s active role; pp. 25–27 seek the processes producing spaces and their codes. Complete French monograph and English translation body unread. Interpretations of Hegel, Marx and other writers in the excerpt remain Lefebvre’s arguments, without new person-to-person arrows."
+      }
+    },
+    {
+      "id": "dc165_lefebvre_translation_1991",
+      "title": "Henri Lefebvre, The Production of Space, translated by Donald Nicholson-Smith (Oxford and Cambridge, MA: Blackwell, 1991), CiNii Books BA12992226.",
+      "citation": "Henri Lefebvre, The Production of Space, translated by Donald Nicholson-Smith (Oxford and Cambridge, MA: Blackwell, 1991), CiNii Books BA12992226.",
+      "url": "https://ci.nii.ac.jp/ncid/BA12992226?l=en",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "National Institute of Informatics union-catalogue record inspected: Blackwell 1991, Henri Lefebvre and translator Donald Nicholson-Smith, French original, LCCN 90021058 and hardcover/paperback ISBNs. Wiley’s indexed UK product page also gives 1991 while its US paperback page gives April 1992; no month, format-specific first date or claim about identical pagination is imported. This supports the translation year/credit only; English body unread and no collation of the translation with the French original."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "spatialhistory",
+      "row": {
+        "person_id": "henri_lefebvre",
+        "role": "contributor",
+        "context": "In a read 1974 introduction excerpt, asks how social practices and power produce space rather than treating it as a passive setting or only a readable code. A specific theoretical resource beside historical reconstruction and GIS.",
+        "works": "La production de l’espace (French book, 1974); introduction excerpt in L’Homme et la société (1974); The Production of Space, translated by Donald Nicholson-Smith (1991; translation body unread)",
+        "source_ids": [
+          "dc165_lefebvre_space_1974",
+          "dc165_lefebvre_excerpt_1974",
+          "dc165_lefebvre_translation_1991"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "No Lefebvre node or graph arrow. The profile and strand carry the bounded content.",
+    "No influence arrow to Harvey, de Certeau or a whole spatial turn from thematic similarity.",
+    "The conceptual triad is not reconstructed from later summaries: this packet’s substantive claim rests on the particular 1974 introduction excerpt."
+  ]
+}

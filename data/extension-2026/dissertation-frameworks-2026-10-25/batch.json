@@ -1,0 +1,297 @@
+{
+  "revision": "1.165",
+  "baseline_revision": "1.164",
+  "date": "2026-10-25",
+  "batch_dir": "person-entries-1.165",
+  "persons": [
+    "james_c_scott"
+  ],
+  "extras": [
+    "henri_lefebvre"
+  ],
+  "summary": "Add James C. Scott as an individual theorist with two distinct field contributions and his specifically acknowledged Thompson reading; add Henri Lefebvre as an indexed spatial-history contributor with a primary-excerpt-based strand, without a standalone Lefebvre entry. Preserve existing prose, identities, field review years, relationships and source qualifications.",
+  "authorization": "User said “continue” after the dissertation-canon review; coordinator assigned this bounded Scott person-entry and Lefebvre profile/strand packet. Root applies and reviews the packet; no publication authorization.",
+  "rationale": "The additions answer concrete missing method/work coverage, not citation rank or absence of standalone nodes alone. Scott’s read 1989 essay and two author interviews distinguish intentional everyday resistance, hidden/public performance and state legibility; one direct retrospective testimony supports the Thompson arrow. Lefebvre’s read 1974 primary introduction supplies a bounded production-of-space resource, with French publication, journal extraction and credited English translation kept distinct. Existing field prose, old chronology events, source qualifiers and coverage metadata remain exact. No OpenAlex investigation, identity merges, automatic dissertation links, career intervals, endpoint repairs or claims of whole-monograph reading.",
+  "edge_revisions": {},
+  "source_merges": {},
+  "new_strands": [
+    {
+      "node": "practice",
+      "strand": {
+        "id": "dc165_everyday_resistance",
+        "title": "Everyday resistance and the limits of public evidence",
+        "person_ids": [
+          "james_c_scott"
+        ],
+        "focus": "Scott’s 1989 essay treats intended efforts against appropriation as political action, including dispersed and concealed acts. Reading them requires attention to cooperation, symbols and the danger of misidentifying motives or outcomes. His categories are a distinct resource, not a synthesis of Bourdieu’s and de Certeau’s projects.",
+        "works": "“Everyday Forms of Resistance” (1989), pp. 33–39",
+        "source_ids": [
+          "dc165_scott_everyday_1989"
+        ],
+        "basis": "editorial_distinction"
+      }
+    },
+    {
+      "node": "historicalsociology",
+      "strand": {
+        "id": "dc165_state_legibility",
+        "title": "State legibility and the limits of imposed plans",
+        "person_ids": [
+          "james_c_scott"
+        ],
+        "focus": "Scott asks how names, addresses, surveys and standards make societies open to administrative intervention, and how planning is altered by the social practices it encounters. His 2008 account also applies standardization to capitalist firms. These are comparative questions with attributed examples, not a single theory of every state.",
+        "works": "Seeing Like a State (1998); “Seeing Like a Society,” author interview (2008)",
+        "source_ids": [
+          "dc165_scott_state_1998",
+          "dc165_scott_archis_2008"
+        ],
+        "basis": "editorial_distinction"
+      }
+    },
+    {
+      "node": "spatialhistory",
+      "strand": {
+        "id": "dc165_production_of_space",
+        "title": "Producing space through social practice and power",
+        "person_ids": [
+          "henri_lefebvre"
+        ],
+        "focus": "Lefebvre’s 1974 introduction asks how spaces and their codes are produced and changed through social practices, planning and power. Space participates in these relations rather than merely containing them. This is his theoretical proposal; the excerpt neither supplies a GIS procedure nor establishes a uniform school of spatial historians.",
+        "works": "La production de l’espace (1974), introduction excerpt pp. 19–27; The Production of Space, trans. Donald Nicholson-Smith (1991, metadata only)",
+        "source_ids": [
+          "dc165_lefebvre_space_1974",
+          "dc165_lefebvre_excerpt_1974",
+          "dc165_lefebvre_translation_1991"
+        ],
+        "basis": "editorial_distinction"
+      }
+    }
+  ],
+  "node_list_additions": [
+    {
+      "node": "practice",
+      "field": "source_ids",
+      "values": [
+        "dc165_scott_everyday_1989",
+        "dc165_scott_weapons_1985",
+        "dc165_scott_domination_1990",
+        "dc165_scott_west_plender_2015"
+      ]
+    },
+    {
+      "node": "historicalsociology",
+      "field": "source_ids",
+      "values": [
+        "dc165_scott_archis_2008",
+        "dc165_scott_state_1998"
+      ]
+    },
+    {
+      "node": "spatialhistory",
+      "field": "source_ids",
+      "values": [
+        "dc165_lefebvre_space_1974",
+        "dc165_lefebvre_excerpt_1974",
+        "dc165_lefebvre_translation_1991"
+      ]
+    }
+  ],
+  "field_sets": [
+    {
+      "node": "spatialhistory",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1955–1995",
+        "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+        "events": [
+          {
+            "id": "event_126bee827440",
+            "label": "Sauer, The Morphology of Landscape",
+            "kind": "publication",
+            "track": "context",
+            "date": {
+              "year": 1925,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:sauer_landscape"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_007a7d7a9250",
+            "label": "Hoskins, The Making of the English Landscape",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1955,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:hoskins_landscape_1955"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_a33e45fc0f8c",
+            "label": "Harley, Deconstructing the Map",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1989,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:harley_deconstructing_1989"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_e45b05cf04c9",
+            "label": "Massey, Places and Their Pasts",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1995,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:massey_places_pasts"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous historical duration or ending is established by this selection."
+        },
+        "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+        "prepared_on": "2026-10-15",
+        "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1955–1995",
+        "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+        "events": [
+          {
+            "id": "event_126bee827440",
+            "label": "Sauer, The Morphology of Landscape",
+            "kind": "publication",
+            "track": "context",
+            "date": {
+              "year": 1925,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:sauer_landscape"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_007a7d7a9250",
+            "label": "Hoskins, The Making of the English Landscape",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1955,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:hoskins_landscape_1955"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_a33e45fc0f8c",
+            "label": "Harley, Deconstructing the Map",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1989,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:harley_deconstructing_1989"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_e45b05cf04c9",
+            "label": "Massey, Places and Their Pasts",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1995,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:massey_places_pasts"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "dc165_lefebvre_french_book",
+            "label": "Lefebvre, La production de l’espace: French book",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:dc165_lefebvre_space_1974"
+            ],
+            "support": "BnF records Anthropos 1974. The read journal excerpt explicitly identifies the newly published book; the complete monograph was not read."
+          },
+          {
+            "id": "dc165_lefebvre_journal_excerpt",
+            "label": "Lefebvre, La production de l’espace: published introduction excerpt",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:dc165_lefebvre_excerpt_1974"
+            ],
+            "support": "L’Homme et la société 31–32 (1974), pp. 15–32. A journal extract from the book’s introduction, not an independent origin of its argument; excerpt read."
+          },
+          {
+            "id": "dc165_lefebvre_english_translation",
+            "label": "Lefebvre, The Production of Space: English translation by Donald Nicholson-Smith",
+            "kind": "translation",
+            "track": "editions",
+            "date": {
+              "year": 1991,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:dc165_lefebvre_translation_1991"
+            ],
+            "support": "CiNii Books records Blackwell 1991 and translator Donald Nicholson-Smith. Year-level translation event; regional publisher listings differ on paperback timing. Translation body unread."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous historical duration or ending is established by this selection."
+        },
+        "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+        "prepared_on": "2026-10-15",
+        "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+      }
+    }
+  ]
+}

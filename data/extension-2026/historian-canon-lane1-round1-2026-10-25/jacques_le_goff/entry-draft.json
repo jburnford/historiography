@@ -1,0 +1,154 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.170 to candidate 1.171",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "jacques_le_goff",
+    "label": "Jacques Le Goff",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“Temps de l’Église et temps du marchand” (1960) · La Civilisation de l’Occident médiéval (1964) · La Naissance du Purgatoire: French original (1981) · The Birth of Purgatory: Arthur Goldhammer translation (1984)",
+    "description": "A medieval historian who connects representations, everyday conditions and social organization. Jean-Claude Schmitt’s account, reproduced in the EPHE institutional notice, describes his medieval synthesis as attentive to material vulnerability, gestures, towns and intellectual activity. His work on purgatory advances a historically specific account of an intermediate place in the afterlife; that chronology remains a thesis to assess. His essays on medieval temporalities also supplied an explicitly acknowledged resource for E. P. Thompson’s discussion of work discipline.",
+    "representative_figures_and_works": "“Au Moyen Âge: temps de l’Église et temps du marchand” (1960); La Civilisation de l’Occident médiéval (1964); La Naissance du Purgatoire (1981); The Birth of Purgatory, translated by Arthur Goldhammer (1984).",
+    "source_ids": [
+      "le_goff_purgatory",
+      "thompson_time_discipline",
+      "hc171_legoff_ephe"
+    ],
+    "scope_note": "The monographs and Le Goff’s 1960/1963 essays are not newly read. Schmitt’s interpretation is attributed; Thompson’s p. 56 provides direct named-use testimony. The original Purgatory publisher/contents qualification remains. French originals and Goldhammer’s translation are distinct; no career interval or exclusive Annales identity.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_legoff_time",
+          "label": "“Temps de l’Église et temps du marchand”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1960,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:thompson_time_discipline"
+          ],
+          "support": "Contemporary bibliographic witness in Thompson’s 1967 p. 56 n. 2 gives Annales E.S.C. XV (1960); the essay itself is not independently read here."
+        },
+        {
+          "id": "hc171_legoff_civilisation",
+          "label": "La Civilisation de l’Occident médiéval",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1964,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_legoff_ephe"
+          ],
+          "support": "EPHE notice records Arthaud 1964. Its separate inconsistency over the year of Les Intellectuels is not adopted."
+        },
+        {
+          "id": "hc171_legoff_purgatoire",
+          "label": "La Naissance du Purgatoire: French original",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1981,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:le_goff_purgatory"
+          ],
+          "support": "Existing French-date witness preserved; book unread."
+        },
+        {
+          "id": "hc171_legoff_purgatory_en",
+          "label": "The Birth of Purgatory: Arthur Goldhammer translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1984,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:le_goff_purgatory"
+          ],
+          "support": "English publication and translator separately recorded; not the original French publication."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "jacques_le_goff",
+    "label": "Jacques Le Goff",
+    "node_id": "jacques_le_goff",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing jacques_le_goff identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in jacques_le_goff/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "annales",
+      "relationship": "Relates medieval representations and everyday material conditions within a social history attentive to belief and vulnerability.",
+      "source_ids": [
+        "hc171_legoff_ephe",
+        "le_goff_purgatory"
+      ],
+      "evidence_note": "Substantive characterization is attributed to Jean-Claude Schmitt’s account reproduced in the EPHE notice. The existing Purgatory publisher record is supplementary; it does not establish that the monograph was read or that its chronology is uncontested.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_jacques_le_goff_1",
+      "source": "jacques_le_goff",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "annales"
+    },
+    {
+      "target": "ep_thompson",
+      "relationship": "Supplies a specifically acknowledged resource on merchant and ecclesiastical temporalities in Thompson’s 1967 time-discipline essay.",
+      "source_ids": [
+        "thompson_time_discipline"
+      ],
+      "evidence_note": "Primary p. 56 and n. 2 checked afresh: Thompson explicitly identifies Le Goff’s contrast and cites the 1960 and 1963 essays. This records that limited use, not the whole derivation of Thompson’s argument or a universal account of modernization. Le Goff’s cited essays remain unread here.",
+      "relationship_kind": "influence",
+      "proposal_id": "hc171_jacques_le_goff_2",
+      "source": "jacques_le_goff",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc171_legoff_ephe",
+      "title": "EPHE prosopographical notice, Jacques Le Goff, reproducing Jean-Claude Schmitt’s substantive account.",
+      "citation": "EPHE prosopographical notice, Jacques Le Goff, reproducing Jean-Claude Schmitt’s substantive account.",
+      "url": "https://prosopo.ephe.psl.eu/jacques-le-goff",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional notice read, including Schmitt-attributed paragraph on the 1964 synthesis and bibliographic list. Argument claims remain mediated by this named reader; Le Goff’s book itself unread. Notice records birth 1924 and death 1 April 2014. Les Intellectuels is dated 1957 in the narrative but 1956 in its list; neither is adopted as a new event."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

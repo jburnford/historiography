@@ -1,0 +1,424 @@
+{
+  "revision": "1.180",
+  "date": "2026-10-25",
+  "authorization": "User explicitly requested the full qualifying historian expansion, life-date review, and earlier Astra review/corrections followed by push. This final additive correction preserves accepted source packets and restores qualifications before publication.",
+  "baseline": "drafts/historiography-1920-2000.v1.179.json",
+  "baseline_sha256": "7278a24f4513f2f4a4472de8ac90d4759ddcdc0910399f3a9c4521a16d650931",
+  "packet": "data/extension-2026/historian-canon-corrections-2026-10-25/release/editorial-additions.json",
+  "packet_sha256": "f5b35784c66b7fa33a6c5372a73585dbd1941ec393795361f210d21ffcff1fb2",
+  "production_sha256": "5387ad223d3513c136c834a5e4c2c4e314ab4e782a6958698716795fb265b403",
+  "previous_table_lengths": {
+    "nodes": 312,
+    "people": 1415,
+    "edges": 1492,
+    "sources": 2797,
+    "revision_history": 179
+  },
+  "prior_records": {
+    "people": {
+      "sarah_carter": {
+        "id": "sarah_carter",
+        "label": "Sarah Carter",
+        "identity_note": "Historian of the Canadian Prairie West, identified by the primary book imprints and publisher/institutional author biographies as the author of Lost Harvests, Capturing Women and Imperial Plots. Existing graph identity reused; no merger with namesakes and no authority QID assigned. Research subject and Native Studies affiliation do not establish Indigenous identity.",
+        "node_id": "sarah_carter"
+      }
+    },
+    "edges": {},
+    "sources": {},
+    "nodes": {
+      "jacques_le_goff": {
+        "id": "jacques_le_goff",
+        "label": "Jacques Le Goff",
+        "layer": "historians",
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "date_label": "“Temps de l’Église et temps du marchand” (1960) · La Civilisation de l’Occident médiéval (1964) · La Naissance du Purgatoire: French original (1981) · The Birth of Purgatory: Arthur Goldhammer translation (1984)",
+        "description": "A medieval historian who connects representations, everyday conditions and social organization. Jean-Claude Schmitt’s account, reproduced in the EPHE institutional notice, describes his medieval synthesis as attentive to material vulnerability, gestures, towns and intellectual activity. His work on purgatory advances a historically specific account of an intermediate place in the afterlife; that chronology remains a thesis to assess. His essays on medieval temporalities also supplied an explicitly acknowledged resource for E. P. Thompson’s discussion of work discipline.",
+        "representative_figures_and_works": "“Au Moyen Âge: temps de l’Église et temps du marchand” (1960); La Civilisation de l’Occident médiéval (1964); La Naissance du Purgatoire (1981); The Birth of Purgatory, translated by Arthur Goldhammer (1984).",
+        "source_ids": [
+          "le_goff_purgatory",
+          "thompson_time_discipline",
+          "hc171_legoff_ephe"
+        ],
+        "scope_note": "The monographs and Le Goff’s 1960/1963 essays are not newly read. Schmitt’s interpretation is attributed; Thompson’s p. 56 provides direct named-use testimony. The original Purgatory publisher/contents qualification remains. French originals and Goldhammer’s translation are distinct; no career interval or exclusive Annales identity.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected publications and translations",
+          "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+          "events": [
+            {
+              "id": "hc171_legoff_time",
+              "label": "“Temps de l’Église et temps du marchand”",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1960,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:thompson_time_discipline"
+              ],
+              "support": "Contemporary bibliographic witness in Thompson’s 1967 p. 56 n. 2 gives Annales E.S.C. XV (1960); the essay itself is not independently read here."
+            },
+            {
+              "id": "hc171_legoff_civilisation",
+              "label": "La Civilisation de l’Occident médiéval",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1964,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc171_legoff_ephe"
+              ],
+              "support": "EPHE notice records Arthaud 1964. Its separate inconsistency over the year of Les Intellectuels is not adopted."
+            },
+            {
+              "id": "hc171_legoff_purgatoire",
+              "label": "La Naissance du Purgatoire: French original",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1981,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:le_goff_purgatory"
+              ],
+              "support": "Existing French-date witness preserved; book unread."
+            },
+            {
+              "id": "hc171_legoff_purgatory_en",
+              "label": "The Birth of Purgatory: Arthur Goldhammer translation",
+              "kind": "translation",
+              "track": "editions",
+              "date": {
+                "year": 1984,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:le_goff_purgatory"
+              ],
+              "support": "English publication and translator separately recorded; not the original French publication."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "Selected publication facts establish no continuous interval or end of activity."
+          },
+          "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+          "prepared_on": "2026-10-25",
+          "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+        }
+      },
+      "franca_iacovetta": {
+        "id": "franca_iacovetta",
+        "label": "Franca Iacovetta",
+        "layer": "historians",
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "date_label": "Such Hardworking People (1992) · Enemies Within (co-edited with Roberto Perin and Angelo Principe) (2000) · Gatekeepers (2006)",
+        "description": "A Canadian historian of gender, migration and class. Gatekeepers investigates how everyday institutions tried to reshape newcomers in Cold War Canada, while keeping immigrant responses and inequalities in view. Her editorial collaborations retain their joint credit.",
+        "representative_figures_and_works": "Such Hardworking People (1992); Enemies Within (co-edited with Roberto Perin and Angelo Principe) (2000); Gatekeepers (2006).",
+        "source_ids": [
+          "hc172_franca_iacovetta_1",
+          "hc172_franca_iacovetta_2",
+          "hc172_franca_iacovetta_3",
+          "hc178_iacovetta_primary_2019"
+        ],
+        "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected writing and publication facts",
+          "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+          "events": [
+            {
+              "id": "hc172_franca_iacovetta_w1",
+              "label": "Such Hardworking People",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1992,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_franca_iacovetta_3"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            },
+            {
+              "id": "hc172_franca_iacovetta_w2",
+              "label": "Enemies Within (co-edited with Roberto Perin and Angelo Principe)",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2000,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_franca_iacovetta_3"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            },
+            {
+              "id": "hc172_franca_iacovetta_w3",
+              "label": "Gatekeepers",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2006,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_franca_iacovetta_1"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "Selected dated works do not establish continuous activity or an ending."
+          },
+          "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+          "prepared_on": "2026-10-25",
+          "editorial_record": "data/production-batches/person-entries-1.172/acceptance.json"
+        }
+      },
+      "alain_corbin": {
+        "id": "alain_corbin",
+        "label": "Alain Corbin",
+        "layer": "historians",
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "date_label": "Les Filles de noce (1978) · Le Miasme et la Jonquille (1982) · Le Monde retrouvé de Louis-François Pinagot (1998)",
+        "description": "A historian of sensory worlds and the socially overlooked. His interview explains how bells, smells and desired landscapes become historical objects, and why recovering an unknown rural person requires a different experiment from a biography built on self-authored testimony.",
+        "representative_figures_and_works": "Les Filles de noce (1978); Le Miasme et la Jonquille (1982); Le Monde retrouvé de Louis-François Pinagot (1998).",
+        "source_ids": [
+          "hc172_alain_corbin_1"
+        ],
+        "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected writing and publication facts",
+          "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+          "events": [
+            {
+              "id": "hc172_alain_corbin_w1",
+              "label": "Les Filles de noce",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1978,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_alain_corbin_1"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            },
+            {
+              "id": "hc172_alain_corbin_w2",
+              "label": "Le Miasme et la Jonquille",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1982,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_alain_corbin_1"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            },
+            {
+              "id": "hc172_alain_corbin_w3",
+              "label": "Le Monde retrouvé de Louis-François Pinagot",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1998,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc172_alain_corbin_1"
+              ],
+              "support": "Dated publication listed in the consulted bibliography; body unread."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "Selected dated works do not establish continuous activity or an ending."
+          },
+          "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+          "prepared_on": "2026-10-25",
+          "editorial_record": "data/production-batches/person-entries-1.172/acceptance.json"
+        }
+      },
+      "michael_b_katz": {
+        "id": "michael_b_katz",
+        "label": "Michael B Katz",
+        "layer": "historians",
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "date_label": "The Irony of Early School Reform (1968) · W.E.B. Du Bois, Race, and the City (co-edited with Thomas J. Sugrue) (1998) · The Price of Citizenship (updated edition) (2008)",
+        "description": "A historian of education, cities and welfare who challenged moralized categories of poverty. His statements on poorhouses question the division between deserving and undeserving people and the belief that punitive institutions can eliminate dependence.",
+        "representative_figures_and_works": "The Irony of Early School Reform (1968); W.E.B. Du Bois, Race, and the City (co-edited with Thomas J. Sugrue) (1998); The Price of Citizenship (updated edition) (2008).",
+        "source_ids": [
+          "hc175_michael_b_katz_1",
+          "hc175_michael_b_katz_2",
+          "hc175_michael_b_katz_3"
+        ],
+        "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected writing and publication facts",
+          "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+          "events": [
+            {
+              "id": "hc175_michael_b_katz_w1",
+              "label": "The Irony of Early School Reform",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1968,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_michael_b_katz_2"
+              ],
+              "support": "Publication year and credit checked in the cited bibliographic record; body unread."
+            },
+            {
+              "id": "hc175_michael_b_katz_w2",
+              "label": "W.E.B. Du Bois, Race, and the City (co-edited with Thomas J. Sugrue)",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1998,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_michael_b_katz_2"
+              ],
+              "support": "Publication year and credit checked in the cited bibliographic record; body unread."
+            },
+            {
+              "id": "hc175_michael_b_katz_w3",
+              "label": "The Price of Citizenship (updated edition)",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2008,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_michael_b_katz_2"
+              ],
+              "support": "Memorial expressly identifies an updated2008 edition; not claimed to be first publication."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "Selected dated works do not establish continuous activity or an ending."
+          },
+          "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+          "prepared_on": "2026-10-25",
+          "editorial_record": "data/production-batches/person-entries-1.175/acceptance.json"
+        }
+      },
+      "colin_g_calloway": {
+        "id": "colin_g_calloway",
+        "label": "Colin G Calloway",
+        "layer": "historians",
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "date_label": "One Vast Winter Count (2003) · The Scratch of a Pen (2006) · The Indian World of George Washington (2018)",
+        "description": "A historian who centres Native peoples within the history of North America. His Washington interview explains land acquisition, warfare and sovereignty as integral to the founding of the United States, while distinguishing his contextual history from a conventional great-man biography.",
+        "representative_figures_and_works": "One Vast Winter Count (2003); The Scratch of a Pen (2006); The Indian World of George Washington (2018).",
+        "source_ids": [
+          "hc175_colin_g_calloway_1",
+          "hc175_colin_g_calloway_2"
+        ],
+        "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected writing and publication facts",
+          "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+          "events": [
+            {
+              "id": "hc175_colin_g_calloway_w1",
+              "label": "One Vast Winter Count",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2003,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_colin_g_calloway_2"
+              ],
+              "support": "Publication year and credit checked in the cited bibliographic record; body unread."
+            },
+            {
+              "id": "hc175_colin_g_calloway_w2",
+              "label": "The Scratch of a Pen",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2006,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_colin_g_calloway_2"
+              ],
+              "support": "Publication year and credit checked in the cited bibliographic record; body unread."
+            },
+            {
+              "id": "hc175_colin_g_calloway_w3",
+              "label": "The Indian World of George Washington",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 2018,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:hc175_colin_g_calloway_2"
+              ],
+              "support": "Publication year and credit checked in the cited bibliographic record; body unread."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "Selected dated works do not establish continuous activity or an ending."
+          },
+          "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+          "prepared_on": "2026-10-25",
+          "editorial_record": "data/production-batches/person-entries-1.175/acceptance.json"
+        }
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 0,
+    "new_edges": 0,
+    "new_sources": 4,
+    "source_addenda": 0
+  }
+}

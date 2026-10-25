@@ -120,8 +120,11 @@ const huntTag = n => n.hunt_core_paradigm ? '<span class="hunt-tag">Hunt’s tea
 const rosterLabel = n => `${n.representative_people?.length || 0} historians & contributors`;
 const lifeSpan = p => {
   if (!p.life?.birth && !p.life?.death) return '';
-  const y = (v, k) => v ? `${['year', 'decade', 'century'].includes(p.life[`${k}_precision`]) ? 'c. ' : ''}${String(v).slice(0, 5).replace(/-$/, '')}` : '';
-  return ` <span class="lifespan">${esc(y(p.life.birth, 'birth'))}–${esc(y(p.life.death, 'death'))}</span>`;
+  const y = (v, k) => v ? `${['decade', 'century'].includes(p.life[`${k}_precision`]) ? 'c. ' : ''}${String(v).slice(0, 5).replace(/-$/, '')}` : '';
+  const birth = y(p.life.birth, 'birth'), death = y(p.life.death, 'death');
+  const label = death ? (birth ? `${birth}–${death}` : `d. ${death}`)
+    : p.life_review?.status === 'living' ? `${birth}–` : `b. ${birth}`;
+  return ` <span class="lifespan">${esc(label)}</span>`;
 };
 /* ---------------- Claim catalogue: exact claims and their evidence ---------------- */
 const CHECK_LABELS = {passage_checked: 'Passage checked', abstract_checked: 'Abstract only checked',
@@ -513,6 +516,7 @@ function personPage() {
     : family ? `<a href="${esc(href({tab: 'map', person: '', node: '', edge: '', focus: '', query: '', view: 'approaches'}))}">${esc(family.label)}</a>` : fromPeople ? back : '<a href="#tab=people">Historians & contributors</a>';
   const basisLabels = {curated_entry: 'Selection recorded in the curated entry', existing_relationship: 'Selection supported by an existing qualified connection', source_review: 'Selection with a scoped source check', editorial_comparison: 'Editorial comparison across constituent fields'};
   return `${crumbs([origin, `<span aria-current="page">${esc(p.label)}</span>`])}<article class="person-profile"><div class="section-heading"><div><p class="eyebrow">A PERSON ACROSS THE PROJECT</p><h2>${esc(p.label)}${lifeSpan(p)}</h2>${p.wikidata?.qid ? `<p class="fine-print">Identity: <a href="https://www.wikidata.org/wiki/${esc(p.wikidata.qid)}" target="_blank" rel="noopener noreferrer">Wikidata ${esc(p.wikidata.qid)}</a>${p.life?.retrieved ? `, dates retrieved ${esc(p.life.retrieved)}` : ''}.</p>` : ''}</div>${own ? `<a class="button-link primary" href="${esc(nodeHref(own.id))}">Full entry & relationships →</a>` : ''}</div>
+    ${own ? lifeLine(own, null) : ''}
     ${personMapSection(p)}
     ${own ? `<p class="profile-introduction">${esc(own.description)}</p>` : '<p class="context-note">Read this person through the works and contexts below. These are selected points of entry, not a complete biography.</p>'}
     <h3>Where to read them</h3><div class="person-contexts">${contexts.map(({node:n, representative:r}) => `<section class="person-affiliation tone-${layerIndex(n.layer)}">${layerTag(n)}<h3><a href="${esc(nodeHref(n.id))}">${esc(n.label)} →</a></h3><span class="role-tag">${esc(PERSON_ROLES[r.role])}</span><p>${esc(r.context)}</p>
@@ -1061,22 +1065,27 @@ function fieldDateNote(n, span) {
   return `${roots}${opening} ${ending}${tickNote}<br><span class="prov">${prov}</span>`;
 }
 
-/* Life dates from Wikidata, when the published people record carries them. */
+/* Life dates and reviewed status, separate from contribution chronology. */
 function lifeLine(n, span) {
   const life = lifeIndex(graph).get(n.id);
-  if (!life || (!life.birth && !life.death)) return '';
-  const approx = k => ['year', 'decade', 'century'].includes(life[`${k}Precision`]) ? 'c. ' : '';
+  if (!life || (!life.birth && !life.death && !life.status)) return '';
+  const approx = k => ['decade', 'century'].includes(life[`${k}Precision`]) ? 'c. ' : '';
   const parts = [];
   if (life.birth) parts.push(`Born ${approx('birth')}${life.birth}`);
-  parts.push(life.death ? `died ${approx('death')}${life.death}` : 'living at retrieval');
+  parts.push(life.death ? `died ${approx('death')}${life.death}`
+    : life.status === 'living' ? 'living in checked sources'
+    : 'death not recorded; living status unconfirmed');
   const posthumous = !chronologyOf(n) && life.death && span && life.death < (openFrame()
     ? (isOpenSpan(n, span) ? solidEnd(n, span) : span.end)
     : span.endKind === 'coverage_limit' ? (span.coverage ?? graph.scope.main_period[1]) : span.end);
   return `<p class="life">${esc(parts.join(' · '))}${life.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(life.qid)}"
       target="_blank" rel="noopener noreferrer">Wikidata ${esc(life.qid)}</a>` : ''}${
-      life.retrieved ? ` <span class="prov">retrieved ${esc(life.retrieved)}</span>` : ''}${
+      life.checkedOn ? ` <span class="prov">checked ${esc(life.checkedOn)}</span>`
+        : life.retrieved ? ` <span class="prov">retrieved ${esc(life.retrieved)}</span>` : ''}${
       posthumous ? `<br><span class="posthumous-note">The hatched part of the mark, after ${life.death},
-      is reception of the work after the author’s death.</span>` : ''}</p>`;
+      is reception of the work after the author’s death.</span>` : ''}</p>${life.sources.length
+      ? `<details class="life-sources"><summary>Life-date sources</summary><ul>${life.sources.map(s =>
+          `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a>${s.locator ? ` · ${esc(s.locator)}` : ''}</li>`).join('')}</ul>${life.reviewNote ? `<p class="fine-print">${esc(life.reviewNote)}</p>` : ''}</details>` : ''}`;
 }
 
 function chronologyDetails(n) {
@@ -1712,7 +1721,7 @@ function about() {
     <p class="person-coverage"><strong>${individualEntries} standalone person entries among ${graph.people.length.toLocaleString()} indexed people.</strong> A standalone entry has its own dated contributions and recorded relationships on the timeline. Other people can still be opened through their profiles, with selected works, roster contexts and references${profileExamples.length ? ` — for example, ${profileExamples.join(', ')}` : ''}. Browse <a href="#tab=people">Historians & contributors</a> and use search or the surname letters to find them. A profile’s presence does not mean its scholarship has the same depth of coverage as a standalone entry; absence from the timeline does not mean absence from the project.</p>
     ${production.chronology_policy ? '<h3>Dates name different kinds of evidence</h3><p>Points identify selected works and events. Dotted connectors show the extent of the contribution selection, not continuous activity or influence. Context, editions and reception have separate markers. Bars represent named, sourced historical intervals; a journal title change is different from cessation. The small outlined square records editorial review coverage separately. Unknown bounds remain unknown, and a first selected work is not a field origin. Open Dated contributions & evidence for date meanings, sources and unresolved questions. The archive retains its original dating conventions.</p>' : ''}
     <h3>Periods are approximate groupings</h3><p>${arch || open ? `The project began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, while dated events distinguish publication, delivery, editions and reception. Entries without assigned periods remain available when you filter by a period. The timeline shows selected dated works and developments, rather than a complete chronology.</p>
-    <h3>Explore what doctoral historians read</h3><p><a href="#tab=dissertations">Dissertation reading</a> follows cited people and works through sampled History PhD bibliographies and notes. Compare degree periods and regions, inspect companion literature and open example repository records. Environmental history, the archival turn, economic history and the capitalism debates have selected links into this record. Corpus coverage, extraction limits and bibliography name keys remain visible beside the comparisons.</p>
+    <h3>Explore what doctoral historians read</h3><p><a href="#tab=dissertations">Dissertation reading</a> follows cited people and works through sampled History PhD bibliographies and notes. Compare degree periods and regions, inspect companion literature and open example repository records. Environmental history, the archival turn, economic history, the capitalism debates and emotions history have selected links into this record. Corpus coverage, extraction limits and bibliography name keys remain visible beside the comparisons.</p>
     <h3>Read the relationship before drawing a conclusion</h3><p>Influence, contribution, and classified critique have arrows. Critique runs from critic toward the position criticized; contribution does not imply founding a field. Comparisons have no direction. Older connections without direction metadata are visibly unclassified and have no arrow, including older records with a legacy critique category.</p>
     <h3>References have limits</h3><p>Bibliographic metadata checks establish the scope stated in their notes. A supporting page check is narrower than a full reading or a passage-level audit of every claim. Missing verification information means unrecorded. Some citations have no web link; relationship references are distinct from entry bibliographies.</p>
     <h3>What this beta does not yet cover</h3><p><strong>Critical exchanges remain unevenly mapped.</strong> ${withoutCritique} of ${graph.nodes.length} entries have no incoming relationship classified as critique. That counts recorded relationships, not the absence of scholarly objections.${nodeById.has('sciencewars') ? ' The <a href="#node=sciencewars&section=connections">Science Wars entry</a> includes the 1990s objections to Kuhn, Latour, SSK and STS, alongside replies and disagreements within science studies; those exchanges are already represented.' : ''}</p>

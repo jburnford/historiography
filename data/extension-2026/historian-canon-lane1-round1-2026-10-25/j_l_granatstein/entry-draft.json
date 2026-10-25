@@ -1,0 +1,158 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.170 to candidate 1.171",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "j_l_granatstein",
+    "label": "J. L. Granatstein",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Canada’s War (1975) · Broken Promises: with J. M. Hitsman (1977) · The Ottawa Men (1982) · Who Killed Canadian History? (1998)",
+    "description": "A Canadian historian whose research connects wartime government, defence policy and military command. In a 2019 written interview he identifies the domestic politics of war and high command as his central interests, distinguishing them from battlefield narrative alone. His argument about the loss of national history also generated a historiographical dispute: the account here attributes that argument to A. B. McKillop’s critical reading and preserves the limits of the unread 1998 book.",
+    "representative_figures_and_works": "Canada’s War (1975); Broken Promises, with J. M. Hitsman (1977); The Ottawa Men (1982); Who Killed Canadian History? (1998; revised 2007).",
+    "source_ids": [
+      "cdng_granatstein_1975",
+      "cdng_granatstein_hitsman_1977",
+      "cdng_granatstein_1982",
+      "cdng_granatstein_1998",
+      "cic_mckillop_1999",
+      "hc171_granatstein_interview"
+    ],
+    "scope_note": "The existing bibliographic witnesses and McKillop abstract are reused within their recorded scopes. No full-book reading, blanket anti-social-history position, or personal influence is inferred. Broken Promises remains jointly credited to J. M. Hitsman. Collective field comparisons retain their endpoints.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_granatstein_war",
+          "label": "Canada’s War",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1975,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cdng_granatstein_1975"
+          ],
+          "support": "Existing edition metadata: original 1975, distinct from the later UTP edition. Book unread."
+        },
+        {
+          "id": "hc171_granatstein_broken",
+          "label": "Broken Promises: with J. M. Hitsman",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1977,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cdng_granatstein_hitsman_1977"
+          ],
+          "support": "Joint author credit retained; 1977 OUP publication, not the 1985 edition. Book unread."
+        },
+        {
+          "id": "hc171_granatstein_ottawa",
+          "label": "The Ottawa Men",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1982,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cdng_granatstein_1982"
+          ],
+          "support": "Original 1982 metadata, distinct from the 1998 UTP edition. Book unread."
+        },
+        {
+          "id": "hc171_granatstein_killed",
+          "label": "Who Killed Canadian History?",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1998,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cdng_granatstein_1998"
+          ],
+          "support": "Original publication; the separately catalogued revised 2007 edition is not backdated."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "j_l_granatstein",
+    "label": "J. L. Granatstein",
+    "node_id": "j_l_granatstein",
+    "new": false,
+    "identity_note": "Canadian historiography revision 1.128 participant. Roster inclusion does not establish external identity resolution; any Wikidata match is recorded separately. Addendum 2026-10-25: The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing j_l_granatstein identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in j_l_granatstein/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "cdn_military",
+      "relationship": "Connects military history to the domestic politics of wartime government and the politics of high command.",
+      "source_ids": [
+        "hc171_granatstein_interview"
+      ],
+      "evidence_note": "Author’s written answer to “Why did you choose to focus so much of your work on Canada’s role in the world wars?” (2019). This is his research emphasis, not an endorsement of every military or political judgment in the interview.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_j_l_granatstein_1",
+      "source": "j_l_granatstein",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "cdn_military"
+    },
+    {
+      "target": "who_killed_debate",
+      "relationship": "Makes the disputed charge that specialization and ideological commitments have displaced national history.",
+      "source_ids": [
+        "cdng_granatstein_1998",
+        "cic_mckillop_1999"
+      ],
+      "evidence_note": "As characterized and challenged in A. B. McKillop’s 1999 abstract, already read in the graph. The polemic itself remains unread. This arrow identifies a contested intervention, not proof of its diagnosis or a general rejection of social history.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_j_l_granatstein_2",
+      "source": "j_l_granatstein",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "who_killed_debate"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc171_granatstein_interview",
+      "title": "J. L. Granatstein, written Q&A, “Behind the scenes with J.L. Granatstein,” Legion Magazine, 3 April 2019.",
+      "citation": "J. L. Granatstein, written Q&A, “Behind the scenes with J.L. Granatstein,” Legion Magazine, 3 April 2019.",
+      "url": "https://legionmagazine.com/readerperks-behind-the-scenes-with-j-l-granatstein/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete displayed written Q&A read, especially the third answer on domestic war politics and high command. No embedded video used; evaluative claims about universities, battles and defence policy remain his testimony rather than independently checked findings."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

@@ -491,7 +491,7 @@ class AtlasBrowserTests(unittest.TestCase):
         panel = self.page.locator('.field-panel')
         expect(panel.locator('.life')).to_contain_text('Born 1886 · died 1944')
         expect(panel.locator('.life a')).to_have_attribute('href', 'https://www.wikidata.org/wiki/Q156585')
-        expect(panel.locator('.life')).to_contain_text('retrieved 2026-09-17')
+        expect(panel.locator('.life')).to_contain_text('checked 2026-10-25')
         # From revision 1.150 a death within the axis is drawn on explicit chronologies too, and ends
         # the dotted line of contributions (user: Nietzsche and Wittgenstein extended past their deaths).
         expect(self.page.locator('.entry.selected .death-mark')).to_have_count(1)
@@ -514,13 +514,13 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.field-panel .life')).to_have_count(0)
         expect(self.page.locator('.entry.selected .death-mark')).to_have_count(0)
         self.open('#focus=roger_chartier')
-        expect(self.page.locator('.field-panel .life')).to_contain_text('living at retrieval')
+        expect(self.page.locator('.field-panel .life')).to_contain_text('living in checked sources')
         self.open('#focus=ivy_pinchbeck')
-        expect(self.page.locator('.field-panel .life')).to_contain_text('c. 1898')
+        expect(self.page.locator('.field-panel .life')).to_contain_text('Born 1898')
         self.open('#person=eric_hobsbawm')
         expect(self.page.locator('.person-profile h2 .lifespan')).to_have_text('1917–2012')
         self.open('#person=julia_cherry_spruill')
-        expect(self.page.locator('.person-profile h2 .lifespan')).to_have_count(0)
+        expect(self.page.locator('.person-profile h2 .lifespan')).to_have_text('1899–1986')
 
     @staticmethod
     def family_scope(slug):
@@ -666,9 +666,9 @@ class AtlasBrowserTests(unittest.TestCase):
         self.page.wait_for_function("() => location.hash.includes('focus=dipesh_chakrabarty')")
         expect(self.page.locator('.entry.selected')).to_have_count(1)
         # A roster-only person: their roster entries, no own entry, no edges.
-        roster = [n['id'] for n in GRAPH['nodes'] if any(r['person_id'] == 'doug_owram' for r in n.get('representative_people', []))]
+        roster = [n['id'] for n in GRAPH['nodes'] if any(r['person_id'] == 'anna_clark' for r in n.get('representative_people', []))]
         self.assertGreaterEqual(len(roster), 3)
-        self.open('#person=doug_owram')
+        self.open('#person=anna_clark')
         expect(self.page.locator('.person-map a.pm-entry')).to_have_count(len(roster))
         expect(self.page.locator('.person-map path.pm-edge')).to_have_count(0)
         expect(self.page.locator('.person-map a.pm-entry.own')).to_have_count(0)

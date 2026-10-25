@@ -1,0 +1,171 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.170 to candidate 1.171",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "philippe_aries",
+    "label": "Philippe Ariès",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Histoire des populations françaises et de leurs attitudes devant la vie (1948) · L’Enfant et la vie familiale sous l’Ancien Régime (1960) · Centuries of Childhood: Robert Baldick translation (1962) · L’Homme devant la mort (1977)",
+    "description": "A historian of family, childhood and attitudes toward death whose work made familiar social arrangements appear historically variable. The childhood argument concerns the historical recognition of childhood; it is not equivalent to claiming that earlier parents never loved their children. Linda Pollock’s criticism questions evidential representativeness and generalization. Jean-Claude Chamboredon’s obituary places Ariès’s studies in dialogue with sociological questions about institutions and modernity, while explaining their politically and professionally unusual setting.",
+    "representative_figures_and_works": "Histoire des populations françaises et de leurs attitudes devant la vie depuis le XVIIIe siècle (1948); L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962); L’Homme devant la mort (1977).",
+    "source_ids": [
+      "aries_childhood",
+      "pollock_children",
+      "hc171_aries_chamboredon"
+    ],
+    "scope_note": "Ariès’s complete books are unread here. Existing Pollock primary-excerpt qualifications are retained and Chamboredon is named as the substantive reader. No absence-of-parental-affection claim. French originals and Baldick’s translation remain distinct. The death-day discrepancy is kept in life research rather than resolved by assumption.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_aries_population",
+          "label": "Histoire des populations françaises et de leurs attitudes devant la vie",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1948,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "Chamboredon’s contemporary account, p. 151, dates this book 1948. Body unread."
+        },
+        {
+          "id": "hc171_aries_enfant",
+          "label": "L’Enfant et la vie familiale sous l’Ancien Régime",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1960,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:aries_childhood",
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "French 1960 original distinguished from the later English publication."
+        },
+        {
+          "id": "hc171_aries_childhood_en",
+          "label": "Centuries of Childhood: Robert Baldick translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1962,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:aries_childhood"
+          ],
+          "support": "English 1962 date preserved, distinct from the 1965 paperback listing."
+        },
+        {
+          "id": "hc171_aries_mort",
+          "label": "L’Homme devant la mort",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1977,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "P. 151 identifies the 1977 synthesis and distinguishes preparatory books from 1974 and 1975. English translation not dated without a separate checked witness."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "philippe_aries",
+    "label": "Philippe Ariès",
+    "node_id": "philippe_aries",
+    "new": false,
+    "identity_note": "The historian identified by the matched publication titles and institutional/primary author records in this packet. Existing philippe_aries identity reused; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in philippe_aries/life-status.json."
+  },
+  "proposed_edges": [
+    {
+      "target": "demography",
+      "relationship": "Makes the historical concept of childhood a problem for family history, while prompting disputes over sources and generalization.",
+      "source_ids": [
+        "aries_childhood",
+        "pollock_children"
+      ],
+      "evidence_note": "The formulation retains Pollock’s distinction between concept and affection and her source criticism (1983 excerpt pp. 1–10, especially 2 and 6–9). It neither endorses Ariès’s chronology nor reassigns later writers’ stronger claims to him.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_philippe_aries_1",
+      "source": "philippe_aries",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "demography"
+    },
+    {
+      "target": "historicalsociology",
+      "relationship": "Historicizes familiar family institutions and social attitudes, opening comparative questions between modernity and earlier arrangements.",
+      "source_ids": [
+        "hc171_aries_chamboredon"
+      ],
+      "evidence_note": "Attributed to Jean-Claude Chamboredon, 1985 pp. 150–151, on the work’s sociological questions and the family/death studies. This is a named reader’s substantive assessment, not a claim that Ariès belonged to a single sociological school.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc171_philippe_aries_2",
+      "source": "philippe_aries",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "historicalsociology"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "hc171_aries_chamboredon",
+      "title": "Jean-Claude Chamboredon, “In memoriam: Philippe Ariès, 1914–1984,” Revue française de sociologie 26:1 (1985): 150–152.",
+      "citation": "Jean-Claude Chamboredon, “In memoriam: Philippe Ariès, 1914–1984,” Revue française de sociologie 26:1 (1985): 150–152.",
+      "url": "https://www.persee.fr/doc/rfsoc_0035-2969_1985_num_26_1_3927",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Printed pp. 150–151 read in Persée extraction, including the sequence of publications, institutional questions, and the meeting with sociological work. P. 152 not read. The substantive interpretation is attributed to Chamboredon; books not thereby read. His 8 February 1984 death date differs from the Humathèque authority’s 9 February, so the life record adopts year precision."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "historicalsociology",
+      "proposal_id": "hc171_philippe_aries_2",
+      "row": {
+        "person_id": "philippe_aries",
+        "role": "historian",
+        "context": "Historicizes familiar family institutions and social attitudes, opening comparative questions between modernity and earlier arrangements.",
+        "works": "Histoire des populations françaises et de leurs attitudes devant la vie depuis le XVIIIe siècle (1948); L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962); L’Homme devant la mort (1977).",
+        "source_ids": [
+          "hc171_aries_chamboredon"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or unacknowledged influence arrows.",
+    "No endpoint repairs to existing collective comparisons.",
+    "No dissertation citation total is an influence claim or universal canon ranking."
+  ]
+}

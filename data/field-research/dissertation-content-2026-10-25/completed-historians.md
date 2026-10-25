@@ -1,0 +1,97 @@
+# Completed historian biographies
+
+All 89 qualifying candidates have standalone timeline biographies at revision 1.180. Canadian-history candidates meet the ≥150 floor; other historians exceed 100. Counts are exact dated first-author dissertation keys, with no sums across variants. Theory and identity holds remain separate.
+
+Sven Beckert was added in the preceding 1.169 packet and is additional to these 89; his existing key has 112 dated dissertations. Lauren Benton and James C. Scott were also added in earlier packets, with Scott placed among theorists.
+
+| Historian | Dated dissertations | Screening line |
+| --- | ---: | --- |
+| [Peter Burke](https://jimclifford.ca/historiography/#focus=peter_burke) | 330 | Other history >100 |
+| [Frederick Cooper](https://jimclifford.ca/historiography/#focus=frederick_cooper) | 300 | Other history >100 |
+| [Pierre Nora](https://jimclifford.ca/historiography/#focus=pierre_nora) | 252 | Other history >100 |
+| [Jacques Le Goff](https://jimclifford.ca/historiography/#focus=jacques_le_goff) | 246 | Other history >100 |
+| [J. L. Granatstein](https://jimclifford.ca/historiography/#focus=j_l_granatstein) | 234 | Canadian history ≥150 |
+| [Doug Owram](https://jimclifford.ca/historiography/#focus=doug_owram) | 223 | Canadian history ≥150 |
+| [Eric Foner](https://jimclifford.ca/historiography/#focus=eric_foner) | 210 | Other history >100 |
+| [Lizabeth Cohen](https://jimclifford.ca/historiography/#focus=lizabeth_cohen) | 192 | Other history >100 |
+| [Philippe Ariès](https://jimclifford.ca/historiography/#focus=philippe_aries) | 189 | Other history >100 |
+| [Desmond Morton](https://jimclifford.ca/historiography/#focus=desmond_morton) | 185 | Canadian history ≥150 |
+| [Daniel T Rodgers](https://jimclifford.ca/historiography/#focus=daniel_t_rodgers) | 182 | Other history >100 |
+| [George L Mosse](https://jimclifford.ca/historiography/#focus=george_l_mosse) | 172 | Other history >100 |
+| [Linda Colley](https://jimclifford.ca/historiography/#focus=linda_colley) | 168 | Other history >100 |
+| [Antoinette Burton](https://jimclifford.ca/historiography/#focus=antoinette_burton) | 167 | Other history >100 |
+| [Joan Sangster](https://jimclifford.ca/historiography/#focus=joan_sangster) | 167 | Canadian history ≥150 |
+| [C. A. Bayly](https://jimclifford.ca/historiography/#focus=ca_bayly) | 166 | Other history >100 |
+| [Georges Duby](https://jimclifford.ca/historiography/#focus=georges_duby) | 166 | Other history >100 |
+| [Richard Hofstadter](https://jimclifford.ca/historiography/#focus=richard_hofstadter) | 163 | Other history >100 |
+| [Ira Berlin](https://jimclifford.ca/historiography/#focus=ira_berlin) | 161 | Other history >100 |
+| [David R. Roediger](https://jimclifford.ca/historiography/#focus=david_roediger) | 160 | Other history >100 |
+| [Franca Iacovetta](https://jimclifford.ca/historiography/#focus=franca_iacovetta) | 160 | Canadian history ≥150 |
+| [Gail Bederman](https://jimclifford.ca/historiography/#focus=gail_bederman) | 160 | Other history >100 |
+| [Bernard Bailyn](https://jimclifford.ca/historiography/#focus=bernard_bailyn) | 159 | Other history >100 |
+| [Jackson Lears](https://jimclifford.ca/historiography/#focus=jackson_lears) | 158 | Other history >100 |
+| [Alain Corbin](https://jimclifford.ca/historiography/#focus=alain_corbin) | 155 | Other history >100 |
+| [Sarah Carter](https://jimclifford.ca/historiography/#focus=sarah_carter) | 152 | Canadian history ≥150 |
+| [Antoine Prost](https://jimclifford.ca/historiography/#focus=antoine_prost) | 151 | Other history >100 |
+| [Paul-André Linteau](https://jimclifford.ca/historiography/#focus=paul_andre_linteau) | 151 | Canadian history ≥150 |
+| [Robert Darnton](https://jimclifford.ca/historiography/#focus=robert_darnton) | 151 | Other history >100 |
+| [Robert H Wiebe](https://jimclifford.ca/historiography/#focus=robert_h_wiebe) | 150 | Other history >100 |
+| [Walter Johnson](https://jimclifford.ca/historiography/#focus=walter_johnson) | 150 | Other history >100 |
+| [Jay Winter](https://jimclifford.ca/historiography/#focus=jay_winter) | 149 | Other history >100 |
+| [Matthew Frye Jacobson](https://jimclifford.ca/historiography/#focus=matthew_frye_jacobson) | 149 | Other history >100 |
+| [Daniel Roche](https://jimclifford.ca/historiography/#focus=daniel_roche) | 147 | Other history >100 |
+| [Roy Porter](https://jimclifford.ca/historiography/#focus=roy_porter) | 146 | Other history >100 |
+| [Linda Gordon](https://jimclifford.ca/historiography/#focus=linda_gordon) | 145 | Other history >100 |
+| [Nancy F. Cott](https://jimclifford.ca/historiography/#focus=nancy_f_cott) | 145 | Other history >100 |
+| [Eugene Genovese](https://jimclifford.ca/historiography/#focus=eugene_genovese) | 141 | Other history >100 |
+| [Arlette Farge](https://jimclifford.ca/historiography/#focus=arlette_farge) | 139 | Other history >100 |
+| [David Armitage](https://jimclifford.ca/historiography/#focus=david_armitage) | 135 | Other history >100 |
+| [Lawrence Stone](https://jimclifford.ca/historiography/#focus=lawrence_stone) | 134 | Other history >100 |
+| [François Hartog](https://jimclifford.ca/historiography/#focus=francois_hartog) | 133 | Other history >100 |
+| [John Brewer](https://jimclifford.ca/historiography/#focus=john_brewer) | 132 | Other history >100 |
+| [Paul Veyne](https://jimclifford.ca/historiography/#focus=paul_veyne) | 131 | Other history >100 |
+| [Alan Taylor](https://jimclifford.ca/historiography/#focus=alan_taylor) | 127 | Other history >100 |
+| [Elaine Tyler May](https://jimclifford.ca/historiography/#focus=elaine_tyler_may) | 127 | Other history >100 |
+| [Philip J Deloria](https://jimclifford.ca/historiography/#focus=philip_j_deloria) | 124 | Other history >100 |
+| [Thomas J. Sugrue](https://jimclifford.ca/historiography/#focus=thomas_sugrue) | 124 | Other history >100 |
+| [Geoff Eley](https://jimclifford.ca/historiography/#focus=geoff_eley) | 123 | Other history >100 |
+| [Frederick Jackson Turner](https://jimclifford.ca/historiography/#focus=frederick_jackson_turner) | 122 | Other history >100 |
+| [Linda K Kerber](https://jimclifford.ca/historiography/#focus=linda_k_kerber) | 122 | Other history >100 |
+| [Mark Mazower](https://jimclifford.ca/historiography/#focus=mark_mazower) | 121 | Other history >100 |
+| [John Lewis Gaddis](https://jimclifford.ca/historiography/#focus=john_lewis_gaddis) | 120 | Other history >100 |
+| [Gérard Noiriel](https://jimclifford.ca/historiography/#focus=gerard_noiriel) | 119 | Other history >100 |
+| [Mae M Ngai](https://jimclifford.ca/historiography/#focus=mae_m_ngai) | 119 | Other history >100 |
+| [Philip Curtin](https://jimclifford.ca/historiography/#focus=philip_curtin) | 118 | Other history >100 |
+| [Michael B Katz](https://jimclifford.ca/historiography/#focus=michael_b_katz) | 116 | Other history >100 |
+| [Robin D. G Kelley](https://jimclifford.ca/historiography/#focus=robin_d_g_kelley) | 116 | Other history >100 |
+| [François Furet](https://jimclifford.ca/historiography/#focus=francois_furet) | 115 | Other history >100 |
+| [Colin G Calloway](https://jimclifford.ca/historiography/#focus=colin_g_calloway) | 113 | Other history >100 |
+| [Daniel K Richter](https://jimclifford.ca/historiography/#focus=daniel_k_richter) | 112 | Other history >100 |
+| [Tony Judt](https://jimclifford.ca/historiography/#focus=tony_judt) | 112 | Other history >100 |
+| [Steven Shapin](https://jimclifford.ca/historiography/#focus=steven_shapin) | 111 | Other history >100 |
+| [James M McPherson](https://jimclifford.ca/historiography/#focus=james_m_mcpherson) | 110 | Other history >100 |
+| [Paul Boyer](https://jimclifford.ca/historiography/#focus=paul_boyer) | 110 | Other history >100 |
+| [Akira Iriye](https://jimclifford.ca/historiography/#focus=akira_iriye) | 109 | Other history >100 |
+| [David Cannadine](https://jimclifford.ca/historiography/#focus=david_cannadine) | 109 | Other history >100 |
+| [Eugen Weber](https://jimclifford.ca/historiography/#focus=eugen_weber) | 109 | Other history >100 |
+| [John Tosh](https://jimclifford.ca/historiography/#focus=john_tosh) | 109 | Other history >100 |
+| [David Brion Davis](https://jimclifford.ca/historiography/#focus=david_brion_davis) | 108 | Other history >100 |
+| [François Dosse](https://jimclifford.ca/historiography/#focus=francois_dosse) | 108 | Other history >100 |
+| [Peter N Stearns](https://jimclifford.ca/historiography/#focus=peter_n_stearns) | 106 | Other history >100 |
+| [Anthony Pagden](https://jimclifford.ca/historiography/#focus=anthony_pagden) | 105 | Other history >100 |
+| [Gary Gerstle](https://jimclifford.ca/historiography/#focus=gary_gerstle) | 105 | Other history >100 |
+| [Odd Arne Westad](https://jimclifford.ca/historiography/#focus=odd_arne_westad) | 105 | Other history >100 |
+| [Philippa Levine](https://jimclifford.ca/historiography/#focus=philippa_levine) | 105 | Other history >100 |
+| [C. Vann Woodward](https://jimclifford.ca/historiography/#focus=c_vann_woodward) | 104 | Other history >100 |
+| [Gordon S. Wood](https://jimclifford.ca/historiography/#focus=gordon_wood) | 104 | Other history >100 |
+| [Jack P Greene](https://jimclifford.ca/historiography/#focus=jack_p_greene) | 104 | Other history >100 |
+| [Mary P. Ryan](https://jimclifford.ca/historiography/#focus=mary_ryan) | 104 | Other history >100 |
+| [Edmund S Morgan](https://jimclifford.ca/historiography/#focus=edmund_s_morgan) | 103 | Other history >100 |
+| [Lisa McGirr](https://jimclifford.ca/historiography/#focus=lisa_mcgirr) | 103 | Other history >100 |
+| [Jeremy Black](https://jimclifford.ca/historiography/#focus=jeremy_black) | 102 | Other history >100 |
+| [John Higham](https://jimclifford.ca/historiography/#focus=john_higham) | 102 | Other history >100 |
+| [Michel Vovelle](https://jimclifford.ca/historiography/#focus=michel_vovelle) | 102 | Other history >100 |
+| [Christophe Charle](https://jimclifford.ca/historiography/#focus=christophe_charle) | 101 | Other history >100 |
+| [Drew Gilpin Faust](https://jimclifford.ca/historiography/#focus=drew_gilpin_faust) | 101 | Other history >100 |
+| [Jean Delumeau](https://jimclifford.ca/historiography/#focus=jean_delumeau) | 101 | Other history >100 |
+| [Niall Ferguson](https://jimclifford.ca/historiography/#focus=niall_ferguson) | 101 | Other history >100 |

@@ -1,0 +1,43 @@
+{
+  "status": "passed",
+  "mode": "Owned release build and in-memory transform only; no apply.",
+  "baseline_revision": "1.170",
+  "revision": "1.171",
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "checks": {
+    "old_edges_exact": true,
+    "old_sources_exact": true,
+    "old_chronology_coverage_exact": true,
+    "all_historians": true,
+    "minimum_three_events": true,
+    "minimum_two_relations": true,
+    "new_people_rosters": true,
+    "canonical_bytes_unchanged": true
+  },
+  "counts_before": {
+    "nodes": 224,
+    "people": 1365,
+    "edges": 1315,
+    "sources": 2552
+  },
+  "counts_candidate": {
+    "nodes": 234,
+    "people": 1369,
+    "edges": 1335,
+    "sources": 2571
+  },
+  "packet_sha256": "599bf1c5bb166aced5c899d46a523e92525c83731d7a5e6d40de1d8be570b937"
+}

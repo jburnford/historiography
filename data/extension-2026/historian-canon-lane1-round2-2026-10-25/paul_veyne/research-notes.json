@@ -1,0 +1,136 @@
+{
+  "person_id": "paul_veyne",
+  "label": "Paul Veyne",
+  "selection": {
+    "name": "Paul Veyne",
+    "dated_dissertations": 131,
+    "source_key": "P:veyne|paul",
+    "existing_person_id": null,
+    "current_local_entry_id": null,
+    "threshold_line": "other_historians_gt100",
+    "person_id": "paul_veyne",
+    "existing_profile": false,
+    "context_ids": [],
+    "bibliography_leads": "Comment on écrit l’histoire; Le pain et le cirque; Como se Escreve a História",
+    "primary_verification_urls": ""
+  },
+  "identity_scope": "The historian identified by the matched publication titles and institutional/primary author records in this packet. New profile; no namesake union or external authority merge is asserted. Life-status evidence is separately recorded in paul_veyne/life-status.json.",
+  "existing_coverage": [],
+  "existing_sources_reused": [
+    {
+      "id": "stone_revival",
+      "title": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "citation": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "url": "https://doi.org/10.1093/past/85.1.3",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Primary PDF read: printed 3–6 and 13–24 complete; 7–12 unread. Page 3 visually inspected, 5 and 13–23 OCR recovered because embedded text clips lines; 4, 6 and 24 read embedded text. Includes all notes on these pages, not all article notes. Starn directs Stone to White; examples and methodological limits are explicit. Broad historiographical diagnoses, dismissive descriptions and implied psychologies remain Stone’s claims. Montaillou citation 1976 is not adopted as first publication; quoted Elias reception/edition shorthand not certified. Prior Oxford metadata retained; book bodies not thereby read."
+      }
+    }
+  ],
+  "new_source_scopes": [
+    {
+      "id": "hc174_veyne_intrigue",
+      "title": "Paul Veyne, selected passages from Comment on écrit l’histoire, reproduced in Bernard Dantier, “Paul Veyne et la construction d’intrigues” (8 September 2005), Classiques des sciences sociales.",
+      "citation": "Paul Veyne, selected passages from Comment on écrit l’histoire, reproduced in Bernard Dantier, “Paul Veyne et la construction d’intrigues” (8 September 2005), Classiques des sciences sociales.",
+      "url": "https://www.classiques.uqam.ca/collection_methodologie/veyne_paul/comment_ecrit_histoire/comment_ecrit_histoire_texte.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary selected extract read from its opening question through the discussion of historical specificity, alongside the separately identified Dantier introduction. Host attributes selection to pp. 50–85 of the book, first edition 1971; omissions are marked and the precise printing is not independently collated. This is an edited excerpt, not all 35 book pages or a whole-book reading. Host date 2005 belongs to the presentation, not original work."
+      }
+    },
+    {
+      "id": "hc174_veyne_metadata",
+      "title": "Collège de France, Paul Veyne bibliography, supplemented by original Comment on écrit l’histoire catalogue witness.",
+      "citation": "Collège de France, Paul Veyne bibliography, supplemented by original Comment on écrit l’histoire catalogue witness.",
+      "url": "https://www.college-de-france.fr/sites/default/files/media/document/2022-09/Paul%20Veyne-Bibliographie.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional bibliography checked for Le Pain et le Cirque 1976 and Les Grecs 1983. It lists Comment on écrit l’histoire 1970, whereas ENSFEA https://bibliotheque.ensfea.fr/index.php?id=144790&lvl=notice_display records Seuil 1971, as does Pierre Boyancé’s contemporary review DOI 10.3406/rea.1971.3892. The event uses the latter 1971 bibliographic witness with discrepancy explicit. No body reading of the 1976/1983 books. The inaccessible 2005 L’Homme interview was not used."
+      }
+    }
+  ],
+  "reading_limit": "New historian identity matched to the ancient-history bibliography and institutional life record. The methodological primary selection is mediated by an identified compiler and contains omissions; no full book reading, relativist-fable claim or direct Stone influence. The 1970/1971 bibliographic disagreement is visible in the original-work fact.",
+  "life_status_record": "paul_veyne/life-status.json",
+  "events": [
+    {
+      "id": "hc174_veyne_comment",
+      "label": "Comment on écrit l’histoire",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1971,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc174_veyne_metadata",
+        "graph:hc174_veyne_intrigue"
+      ],
+      "support": "1971 from ENSFEA catalogue, contemporary 1971 review and the primary-extract attribution. Collège bibliography lists 1970; discrepancy retained, not silently harmonized."
+    },
+    {
+      "id": "hc174_veyne_pain",
+      "label": "Le Pain et le Cirque",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1976,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc174_veyne_metadata"
+      ],
+      "support": "Collège institutional bibliography gives Seuil 1976. Book body unread."
+    },
+    {
+      "id": "hc174_veyne_grecs",
+      "label": "Les Grecs ont-ils cru à leurs mythes?",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1983,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:hc174_veyne_metadata"
+      ],
+      "support": "Collège institutional bibliography gives Seuil 1983. Book body unread; no argument inferred from the question title."
+    }
+  ],
+  "relations": [
+    {
+      "target": "philhistory",
+      "relationship": "Examines how a chosen historical inquiry organizes events and explanations without making their relations arbitrary.",
+      "source_ids": [
+        "hc174_veyne_intrigue"
+      ],
+      "evidence_note": "Selected primary extract, opening on event relevance and the sections on intrigue and the event field. Bernard Dantier’s introductory commentary is separately attributed and not treated as Veyne’s text.",
+      "relationship_kind": "contribution",
+      "proposal_id": "hc174_paul_veyne_1",
+      "source": "paul_veyne",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "philhistory"
+    },
+    {
+      "target": "revival",
+      "relationship": "Provides a comparison with the later narrative debate: Veyne’s intrigue can connect temporal rhythms without requiring a chronological storyline.",
+      "source_ids": [
+        "hc174_veyne_intrigue",
+        "stone_revival"
+      ],
+      "evidence_note": "Explicit editorial methodological comparison between the selected 1971 extract and the bounded 1979 Stone reading. No influence, direct exchange or Veyne affiliation with a narrative movement is asserted.",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "proposal_id": "hc174_paul_veyne_2",
+      "source": "paul_veyne",
+      "type": "connection",
+      "classification_basis": "editorial_review",
+      "roster_row": "revival"
+    }
+  ]
+}

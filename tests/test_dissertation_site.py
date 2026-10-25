@@ -4,10 +4,11 @@ from copy import deepcopy
 import json
 from pathlib import Path
 import unittest
-from scripts.build_dissertation_site import validate_links
+from scripts.build_dissertation_site import add_reviewed_sources, validate_links
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPORT = ROOT / 'data/dissertation-layer'
+INTEGRATION = ROOT / 'data/field-research/dissertation-content-2026-10-25/reading-bridge-integration'
 
 
 class DissertationExportTests(unittest.TestCase):
@@ -52,6 +53,8 @@ class DissertationExportTests(unittest.TestCase):
         graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
         people = {p['id'] for p in graph['people']}
         nodes = {n['id']: n for n in graph['nodes']}
+        self.assertEqual(len(self.links['people']), 113)
+        self.assertEqual(len(self.links['entries']), 5)
         for pid, row in self.links['people'].items():
             self.assertIn(pid, people)
             self.assertIn(row['source'], source_keys)
@@ -61,8 +64,8 @@ class DissertationExportTests(unittest.TestCase):
 
     def test_field_comparisons_keep_exact_work_counts_and_original_sources(self):
         source_index = {s['key']:s for s in self.index['sources']}
-        self.assertEqual(len(source_index),4048)
-        self.assertEqual(self.index['reviewed_selection_count'],11)
+        self.assertEqual(len(source_index),4053)
+        self.assertEqual(self.index['reviewed_selection_count'],16)
         self.assertEqual(sum(not s.get('reviewed_selection') for s in source_index.values()),4037)
         self.assertEqual(self.links['coverage']['with_year'],self.index['coverage']['with_year'])
         self.assertEqual(self.links['denominators'],self.index['denominators'])
@@ -86,7 +89,12 @@ class DissertationExportTests(unittest.TestCase):
         indexed={s['key']:s for s in self.index['sources']}
         for key,n in {'P:wrigley|edward a':42,'P:mokyr|joel':40,'P:berg|maxine':56,
                       'P:crafts|nicholas f':15,'W:crafts|british economic growth during the industrial revolution':4,
-                      'W:wrigley|continuity chance and change':6}.items():
+                      'W:wrigley|continuity chance and change':6,
+                      'W:duby|trois ordres ou limaginaire du feodalisme':13,
+                      'W:noiriel|creuset francais':15,
+                      'W:black|rethinking military history':9,
+                      'W:vovelle|ideologies et mentalites':7,
+                      'W:charle|naissance des intellectuels':18}.items():
             row=indexed[key]
             self.assertEqual(row['n'],n)
             if row.get('reviewed_selection'):
@@ -133,6 +141,73 @@ class DissertationExportTests(unittest.TestCase):
         johnson=self.links['people']['walter_johnson']
         self.assertEqual(johnson['source'],'P:johnson|walter s')
         self.assertIn('not accepted',johnson['review_note'])
+
+    def test_all_qualifying_historians_have_reviewed_named_work_bridges(self):
+        review = json.loads((EXPORT/'reviews/historian-canon-2026-10-25.json').read_text())
+        scope = json.loads((INTEGRATION.parent/'expanded-scope.json').read_text())
+        expected = {p['person_id'] for p in scope['people']} | {'sarah_carter'}
+        self.assertEqual(len(expected), 89)
+        self.assertEqual({p['person_id'] for p in review['people']}, expected)
+        self.assertEqual(review['unresolved'], [])
+        self.assertEqual(review['status'], 'applied')
+        indexed = {s['key']:s for s in self.index['sources']}
+        for person in review['people']:
+            accepted = self.links['people'][person['person_id']]
+            self.assertEqual(accepted['source'], person['source'])
+            self.assertEqual(set(accepted['works']), {w['work_id'] for w in person['verified_work_credits']})
+            self.assertEqual(accepted['n'], person['public_dated_first_author_dissertations'])
+            for work in person['verified_work_credits']:
+                self.assertEqual(work['release_first_author_key'], person['source'][2:])
+                self.assertEqual(work['public_dated_dissertations'], indexed[work['work_id']]['n'])
+                self.assertTrue(work['primary_evidence'])
+                self.assertTrue(all(e['url'].startswith('https://') for e in work['primary_evidence']))
+        carter = self.links['people']['sarah_carter']
+        self.assertEqual(carter['source'], 'P:carter|sarah a')
+        self.assertEqual(set(carter['works']), {'W:carter|lost harvests',
+            'W:carter|capturing women', 'W:carter|importance of being monogamous'})
+        self.assertNotIn('W:carter|politics of rage', carter['works'])
+
+    def test_registry_matches_exported_source_ids_and_positions(self):
+        registry = json.loads((EXPORT/'reviewed-source-ids.json').read_text())
+        self.assertEqual(len(registry['sources']), 16)
+        self.assertEqual(registry['base_label_count'], 12146)
+        reviewed = [s for s in self.index['sources'] if s.get('reviewed_selection')]
+        for registered, exported in zip(registry['sources'], reviewed):
+            self.assertEqual(registered['source_index'], self.index['sources'].index(exported))
+            self.assertEqual({k:v for k,v in registered.items() if k != 'source_index'},
+                             {k:v for k,v in exported.items() if k not in ('n','asset','reviewed_selection')})
+        charle = next(s for s in reviewed if s['key'] == 'W:charle|naissance des intellectuels')
+        self.assertEqual(charle['id'], 2708)  # Reuse the frozen companion-label ID.
+
+    def test_registry_appends_earlier_names_without_shifting_ids_and_rejects_drift(self):
+        labels = [dict(key='P:person|one', short='Person', full='Person', year=None, author=''),
+                  dict(key='W:person|companion', short='Person, Companion', full='Companion', year=2000, author='Person, One')]
+        data = dict(labels=labels, sources=[dict(id=0)])
+        graph = dict(people=[dict(id='person', label='Person')])
+        decisions = dict(people={'person':dict(source='P:person|one',
+            works=['W:person|zzz', 'W:person|companion', 'W:person|aaa'])})
+        metadata = {key:dict(first_author='Person, One', title=title, year='2000')
+                    for key,title in [('W:person|zzz','Zzz'), ('W:person|companion','Companion'), ('W:person|aaa','Aaa')]}
+        registry = dict(base_label_count=2,
+            base_labels_sha256=hashlib.sha256(json.dumps(labels, ensure_ascii=False,
+                sort_keys=True, separators=(',', ':')).encode()).hexdigest(), sources=[
+                dict(key='W:person|zzz', short='Person, Zzz', full='Zzz', year=2000, author='Person, One', id=2, source_index=1),
+                {**labels[1], 'id':1, 'source_index':2},
+                dict(key='W:person|aaa', short='Person, Aaa', full='Aaa', year=2000, author='Person, One', id=3, source_index=3)])
+        result = deepcopy(data)
+        add_reviewed_sources(result, decisions, graph, metadata, registry)
+        self.assertEqual([s['id'] for s in result['sources']], [0,2,1,3])
+        self.assertEqual(result['labels'][2]['key'], 'W:person|zzz')
+        for kind in ('missing', 'id', 'metadata', 'base', 'order'):
+            with self.subTest(kind=kind):
+                wrong = deepcopy(registry)
+                if kind == 'missing': wrong['sources'].pop()
+                if kind == 'id': wrong['sources'][0]['id'] += 1
+                if kind == 'metadata': wrong['sources'][0]['full'] += ' changed'
+                if kind == 'base': wrong['base_label_count'] += 1
+                if kind == 'order': wrong['sources'][1], wrong['sources'][2] = wrong['sources'][2], wrong['sources'][1]
+                with self.assertRaises(ValueError):
+                    add_reviewed_sources(deepcopy(data), decisions, graph, metadata, wrong)
 
 
 if __name__ == '__main__':

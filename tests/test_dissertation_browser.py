@@ -82,6 +82,20 @@ class DissertationBrowserTests(unittest.TestCase):
         self.page.locator('.reading-context h4 a').click()
         expect(self.page.locator('.reading-detail>h3')).to_have_text('Cronon, William')
 
+    def test_beckert_and_carter_have_timeline_bios_and_distinct_reading_keys(self):
+        for pid, name, key, count in [('sven_beckert', 'Sven Beckert', 'P:beckert|sven', 112),
+                                      ('sarah_carter', 'Sarah Carter', 'P:carter|sarah a', 152)]:
+            self.open('#focus=' + pid)
+            expect(self.page.locator('.entry.selected')).to_have_count(1)
+            expect(self.page.locator('.field-panel h2')).to_contain_text(name)
+            self.open('#person=' + pid)
+            expect(self.page.locator('.person-profile')).to_contain_text(name)
+            context = self.page.locator('.person-profile .reading-context')
+            expect(context).to_contain_text(str(count) + ' dated dissertations')
+            context.locator('h4 a').click()
+            self.assertIn('source=' + quote(key, safe=''), self.page.url)
+            expect(self.page.locator('.reading-counts>div').first).to_contain_text(str(count))
+
     def test_two_entry_pilots_and_archive(self):
         for nid, people in [('environment', ['William Cronon','Donald Worster']), ('archival_turn', ['Ann Laura Stoler','Michel-Rolph Trouillot'])]:
             self.open('#node='+nid)
@@ -212,6 +226,42 @@ class DissertationBrowserTests(unittest.TestCase):
         self.open('#node=economic&range=2000')
         expect(self.page.locator('.archive-banner')).to_be_visible()
         expect(self.page.locator('.reading-context')).to_have_count(0)
+
+    def test_emotions_work_and_author_comparison_keeps_distinct_populations(self):
+        self.open('#node=history_of_emotions')
+        panel = self.page.locator('.reading-field-context')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('42 of 6,794')
+        panel.get_by_label('Follow a selected work').select_option('W:rosenwein|worrying about emotions in history|a')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('36 of 6,794')
+        panel.get_by_label('Compare', exact=True).select_option('authors')
+        panel.get_by_label('Follow an author').select_option('P:rosenwein|barbara h')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('90 of 6,794')
+        panel.get_by_label('Follow an author').select_option('P:reddy|william m')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('61 of 6,794')
+        for width in (320, 390, 768, 1440):
+            self.page.set_viewport_size({'width': width, 'height': 900})
+            expect(panel.locator('.reading-selected-heading')).to_contain_text('61 of 6,794')
+            self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), width + 1)
+        panel.locator('.reading-selected-heading h4 a').click()
+        expect(self.page.locator('.reading-detail>h3')).to_have_text('Reddy, William M')
+        self.page.locator('.reading-teaching a[href="#node=history_of_emotions"]').click()
+        expect(self.page.locator('.reading-field-context')).to_be_visible()
+
+    def test_new_content_profiles_and_joint_bibliography_credits(self):
+        for pid, count in [('james_c_scott', 455), ('henri_lefebvre', 174),
+                           ('lauren_benton', 135), ('william_m_reddy', 61),
+                           ('barbara_h_rosenwein', 90)]:
+            self.open('#person=' + pid)
+            panel = self.page.locator('.person-profile .reading-context')
+            expect(panel).to_be_visible()
+            expect(panel).to_contain_text(str(count))
+        self.open('#person=carlo_poni')
+        expect(self.page.locator('.person-profile')).to_contain_text('With Carlo Ginzburg')
+        self.open('#node=reinhart_koselleck')
+        expect(self.page.locator('.reading-panel')).to_contain_text('Alexandre Escudier')
+        expect(self.page.locator('.reading-panel')).to_contain_text('Todd Samuel Presner')
+        self.open('#focus=reinhart_koselleck')
+        expect(self.page.locator('.entry.selected [data-event="dc168_work_04"]')).to_have_count(1)
 
     def test_phone_navigation_and_contained_charts(self):
         for width in (320,390,430,768):

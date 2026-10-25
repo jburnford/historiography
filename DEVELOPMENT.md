@@ -1,5 +1,34 @@
 # Historiography: editorial and visualization working plan
 
+**Current implementation — 2026-10-25, revision 1.180:** the full qualifying
+historian queue is implemented: 89 biographies, including Sarah Carter, selected
+by Canadian-history focus ≥150 dated first-author dissertations and other historians
+strictly above 100. Theory remains separate, with namesake/mixed-key holds excluded.
+The graph has 312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed people;
+190 individual historians and 22 theorists sit alongside 100 group entries.
+Each new biography has ≥3 sourced dated facts and ≥2 substantive relationships;
+new identities have group roster contexts. Earlier identities, source qualifications,
+collective arrows, dates and accepted packets remain preserved, with declared
+identity/attribution corrections in 1.178 and 1.180.
+
+The [completed content handoff](data/field-research/dissertation-content-2026-10-25/README.md)
+links the research, acceptances and independent review. Reading integration now
+has 113 profiles, five field panels and 4,053 sources (4,037 original plus 16
+reviewed exceptions). An append-only registry keeps existing source IDs stable;
+all original counts, denominator populations and earlier selections remain exact.
+The merged life review covers every one of the 190 historian biographies:
+100 living, 89 deceased and one unresolved (Jennifer S. H. Brown), checked on
+2026-10-25. Life metadata is overlaid only on the public main graph; work dates
+and the exact-2000 archived view stay separate.
+
+Practice v28, methods-v9 and mentions-v6 remain the selected publication-evidence
+projection, with landing audit 1.168 and the bounded H-Emotions target promotion.
+New individual biographies do not trigger an evidence harvest or alter family
+series. OpenAlex remains paused. Astra review and final data, JavaScript, browser and clean-checkout checks pass.
+Publication is authorized; the implementation report records validation evidence.
+The dated implementation notes below preserve their historical status.
+
+
 **Astra review correction (2026-10-24, local revision 1.164):** user requested an
 independent Astra review and push after corrections. Review found Diop's 1960
 original conflated with the revised 1974 title. An additive acceptance corrects
