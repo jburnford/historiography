@@ -1,5 +1,82 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: revision1.183, three historian corrections
+
+User explicitly classifies Anderson,Wallerstein,Mintz as HISTORIANS and requests
+specialtreatmentforAnderson; thenasks'almostallonebook?' Allthreeimplemented
+locallyas193historians/22theorists,315entries,1506edges,2836sources,1415people.
+Qualifyinghistqueue92=89previouslypublished+these3;theoryqueue31,mixedreview10,
+identityholds11. EarlierAstra-review/correction/pushauthorizationpersists.
+Additiveamendment:`data/field-research/historian-classification-amendment-2026-10-25/`.
+Original173-rowclassification/discoveryandallacceptedpacketsstayfrozen.
+
+- Accepted1.181Anderson17datedfacts/6edges/17sources;1.182Wallerstein12facts/
+  4edges/7sources;1.183Mintz8facts/4edges/11sources. ExistingpersonIDsreused;
+  alloldedges,datedfacts,identitynotesandqualificationspreserved. Nochronology
+  rebasesneeded. Donotrerunacceptedpacketgenerators. ThreeacceptanceREADMEsdone.
+  AllthreeAstra substantivepass,pluslife/reading/UIverified;reportastra-review.json.
+- **Bookaudit:685of716=95.6704%** datedfirst-authorkeydissertationshaveoneof16
+  positivelymatchedImaginedCommunitiestitle/translationkeys,DEDUPbydissertation.
+  Strictmainkey641=89.5251%. Mainraw647includes6undated;authorrawstrict726
+  differs716dated. All57keysclassified16book,28otherBen,11held,2otherauthors
+  (PerryMarxism;Archer1895trade).9keydissertationshaveonlyheld/contam;keep716
+  provisionaldenominator. Article-labelledcomplete-titlevariantscountastitlefamily
+  presence;whole-book/excerptuseunknown. Noapproval/influenceinference.
+  Auditfolderanderson-book-identity/hasreproducer,20witnesses,6releasehashes,
+  unionIDs/counts. Astraindependentlyreproducedall. Regionfamily280/251/121/33;
+  main266/249/98/28;author292/262/129/33(CA/US/EU/Other). Benleadshistoverall
+  andCA/US;EuropeHobs140Burke131aheadBen129. Rootexplainedthisalready.
+- NewpersonalcomparisononBOTH#person=benedict_andersonand#node=benedict_anderson,
+  defaultworks641/16Under/14Spectre,toggleauthor716;observation685/71695.7%.
+  Newgenericdecisions.person_comparisonsvalidated/exportedpeople[].comparison;
+  nofakegrouproster. Responsivecontrols/regions/cohorts/roundtripwork. Fiveold
+  fieldpanelsunchanged. All116profiles/4055sources=4037original+18exceptions.
+  Old4053sourceIDs/positions/numerics/fields,113profilelinks,16registryrows
+  preserved;onlyBenworkslistgainstwo reviewedbooks. Underreuseslabel5953/index4053;
+  Spectrenewlabel12158/index4054. Readingfinalreportunderreading-integration/.
+- Lifemastercompilerincludesallthreepackets;193histlifechecks=100livinginchecked
+  sources,92deceased,1unresolvedBrown. Threeprimarybirth/deathrecordssourced;
+  lifenotcareer/relationshipdates. Exact2000archiveunchanged;52publicfilesbuilt.
+- Validation:20focuseddataPASS,61JavaScriptPASS. Full61browsercases:60passplus
+  newpersonalcaseinitiallyfailedonlyliteral'the'inexpectedcopy;correctedtestand
+  focusedprofile/entry/phonecasePASS2.208s. All61coveredwithnoruntimeremaining
+  failure. Full148data testsPASSinindependentgroupsforlatency:
+  canonical8(474.896s),Gemini5(335.914s),remaining135(350.062s);logs
+  /tmp/historian-amendment-data-{canonical,gemini,remaining}.log. Allcasescomplete,
+  nocasesomitted. CIworkflowincludesnewtest_historian_amendmentmodule.
+- CleancheckoutPASS:52assetsbyteidentical,193lifemasterbyteidentical,35focused
+  testsPASS,noignoredsnapshots. FinalAstrareviewPASSzero blockers. Rootnext:
+  scopedcommit/pushandverifylive1.183. Noextra
+  approvalneeded. Data/docimplementationreportpendingvalidationfinalization.
+  UnrelatedresearchandearlierMEMORYchangesremainlocal;selectiveindexstaging.
+  OpenAlexpaused. Noexternalmessages.
+
+## Published — 2026-10-25: revision1.180, all validation successful
+
+Commit **f5740b6c55863570a2f4e5d67f110e695f9f7308** is pushed to origin/main.
+**Pages deployment40216799144succeeded; live site is verified at1.180.**
+Live app.js,graph.json andoverview.json match committed bytes. Fourlivebrowser
+cases pass(Beckert/Carter timeline+readingkeys,lifeprovenance,emotions,people
+families); threeadditionalstatuschecks pass(Berger2026,Parr2024,Brownunconfirmed).
+All89queuedhistorians plus earlierBeckert/Benton now havebios; Scott is theory.
+190historians,22theorists,312entries,1492relationships,2801sources,1415people.
+
+Localvalidation:145data tests(1029.543s),60JavaScript,60browsercases afterfive
+fixturecorrections; cleancheckout52assetsbyteidentical+32focusedtests+life
+masterbyteidentical. Astra reviewed finalcontent and corrections,zero blockers.
+**Remote validation40216799506completed SUCCESS**, including data, JavaScript,
+browser acceptance and committed public-file agreement. Publication is complete.
+Final remote result: `/tmp/historian-remote-validation.json`.
+Pages:https://github.com/jburnford/historiography/actions/runs/40216799144
+Validation:https://github.com/jburnford/historiography/actions/runs/40216799506
+Publicationcheckpointer:`/tmp/historian-publication-result.json`.
+
+All530taskfiles committed; no rawdownloads or credentials. Unrelatedresearch
+and earlierMEMORY edits remainlocal. Do notcommit them. No furthergraph/code
+changes pending. Full89list:`data/field-research/dissertation-content-2026-10-25/completed-historians.md`.
+OpenAlexpaused. Ifremotevalidationfails,diagnoseandfixonlythetaskissue,rerun
+appropriatechecks,andpusha scopedcorrection. Do not regenerateacceptedpackets.
+
 ## Ready for publication — 2026-10-25: complete historian queue and life dates
 
 The user clarified Carter is the Canadian floor, not the sole addition. **All89

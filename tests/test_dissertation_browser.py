@@ -96,6 +96,37 @@ class DissertationBrowserTests(unittest.TestCase):
             self.assertIn('source=' + quote(key, safe=''), self.page.url)
             expect(self.page.locator('.reading-counts>div').first).to_contain_text(str(count))
 
+    def test_anderson_book_comparison_on_profile_entry_and_phone(self):
+        self.open('#person=benedict_anderson')
+        panel = self.page.locator('.reading-person-context')
+        expect(panel).to_be_visible()
+        expect(panel).to_contain_text('685 of the 716')
+        expect(panel).to_contain_text('95.7%')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('641 of 6,794')
+        panel.get_by_label('Compare', exact=True).select_option('authors')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('716 of 6,794')
+        panel.locator('.reading-context-regions > summary').click()
+        for value in ('292', '262', '129', '33'):
+            expect(panel.locator('.reading-context-regions')).to_contain_text(value)
+        panel.get_by_label('Compare', exact=True).select_option('works')
+        panel.get_by_label('Follow a selected work').select_option('W:anderson|under three flags')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('16 of 6,794')
+        panel.get_by_label('Follow a selected work').select_option('W:anderson|spectre of comparisons')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('14 of 6,794')
+        # The full entry presents the same personal comparison without a fake group roster.
+        self.open('#node=benedict_anderson')
+        panel = self.page.locator('.reading-person-context')
+        expect(panel.locator('.reading-selected-heading')).to_contain_text('14 of 6,794')
+        for width in (320, 1440, 390):
+            self.page.set_viewport_size({'width': width, 'height': 900})
+            self.page.wait_for_timeout(250)
+            expect(panel).to_contain_text('95.7%')
+            self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), width + 1)
+        panel.locator('.reading-selected-heading h4 a').click()
+        expect(self.page.locator('.reading-detail>h3')).to_contain_text('Spectre')
+        self.page.locator('.reading-teaching a[href="#person=benedict_anderson"]').click()
+        expect(self.page.locator('.reading-person-context .reading-selected-heading')).to_contain_text('14 of 6,794')
+
     def test_two_entry_pilots_and_archive(self):
         for nid, people in [('environment', ['William Cronon','Donald Worster']), ('archival_turn', ['Ann Laura Stoler','Michel-Rolph Trouillot'])]:
             self.open('#node='+nid)

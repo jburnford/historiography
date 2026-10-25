@@ -53,7 +53,7 @@ class DissertationExportTests(unittest.TestCase):
         graph = json.loads((ROOT / 'historiography-1920-2000.json').read_text())
         people = {p['id'] for p in graph['people']}
         nodes = {n['id']: n for n in graph['nodes']}
-        self.assertEqual(len(self.links['people']), 113)
+        self.assertEqual(len(self.links['people']), 116)
         self.assertEqual(len(self.links['entries']), 5)
         for pid, row in self.links['people'].items():
             self.assertIn(pid, people)
@@ -64,8 +64,8 @@ class DissertationExportTests(unittest.TestCase):
 
     def test_field_comparisons_keep_exact_work_counts_and_original_sources(self):
         source_index = {s['key']:s for s in self.index['sources']}
-        self.assertEqual(len(source_index),4053)
-        self.assertEqual(self.index['reviewed_selection_count'],16)
+        self.assertEqual(len(source_index),4055)
+        self.assertEqual(self.index['reviewed_selection_count'],18)
         self.assertEqual(sum(not s.get('reviewed_selection') for s in source_index.values()),4037)
         self.assertEqual(self.links['coverage']['with_year'],self.index['coverage']['with_year'])
         self.assertEqual(self.links['denominators'],self.index['denominators'])
@@ -169,7 +169,7 @@ class DissertationExportTests(unittest.TestCase):
 
     def test_registry_matches_exported_source_ids_and_positions(self):
         registry = json.loads((EXPORT/'reviewed-source-ids.json').read_text())
-        self.assertEqual(len(registry['sources']), 16)
+        self.assertEqual(len(registry['sources']), 18)
         self.assertEqual(registry['base_label_count'], 12146)
         reviewed = [s for s in self.index['sources'] if s.get('reviewed_selection')]
         for registered, exported in zip(registry['sources'], reviewed):

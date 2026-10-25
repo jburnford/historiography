@@ -22,39 +22,48 @@ their details into view. Search, collapsible filters and full text alternatives 
 **Dissertation reading — research preview.** A fourth main route lets visitors search
 cited people and works, compare their use over time and across regions, inspect companion
 literature and open example dissertation repository records. Environmental history, the
-archival turn, economic history, capitalism debates, emotions history and 113 selected profiles connect
+archival turn, economic history, capitalism debates, emotions history and 116 selected profiles connect
 the reading record to the teaching entries. Economic-history and capitalism panels compare
 selected authors and works across degree cohorts and regions, with exact counts and linked arguments.
 It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included in analysis;
 coverage and extraction limits accompany the figures. The experimental comparison pages
 remain research prototypes. See [frontend details](site/README.md).
 
-Current production data revision **1.180** (schema 1.6): **312 entries,
-1,492 teaching relationships, 2,801 bibliography records and 1,415 indexed people**,
-with 14 seminar pathways. The 212 standalone entries distinguish **190 historians
+Current canonical data revision **1.183** (schema 1.6): **315 entries,
+1,506 teaching relationships, 2,836 bibliography records and 1,415 indexed people**,
+with 14 seminar pathways. The 215 standalone entries distinguish **193 historians
 from 22 theorists**; 100 group entries retain their separate roles. A journal layer
 adds 54 evidenced venue relations from a catalogue of 1,638 periodicals.
 
 The [dissertation-guided content expansion](data/field-research/dissertation-content-2026-10-25/README.md)
-completes the clean queue of **[89 qualifying historians](data/field-research/dissertation-content-2026-10-25/completed-historians.md)**: seven with a Canadian-history
+completed the original **89 qualifying historians**: seven with a Canadian-history
 focus cited by at least 150 dated first-author dissertations, and 82 other historians
-cited by more than 100. Sarah Carter establishes the Canadian floor. These exact-key
-counts select research candidates; theory and unresolved identities stay separate,
-and citation frequency supplies no influence arrow. The earlier Scott, Lefebvre,
-emotions, Benton, work repairs and Beckert packets remain part of this expansion.
+cited by more than 100. Sarah Carter establishes the Canadian floor. An additive
+[classification amendment](data/field-research/historian-classification-amendment-2026-10-25/README.md)
+adds Benedict Anderson, Immanuel Wallerstein and Sidney Mintz as historians,
+bringing the completed qualifying queue to **92**. The original classification and
+accepted packets remain frozen. Theory and unresolved identities stay separate;
+exact-key citation counts select research candidates and supply no influence arrow.
 
-All 190 historian biographies have [sourced life-status reviews](data/historian-life-review.json),
-checked on 2026-10-25: **100 living, 89 deceased and one unresolved** (Jennifer S. H. Brown).
-Supported death years and their precision appear as reference metadata, separate from
-work, career and influence dates. Missing death information does not imply living status.
+All 193 historian biographies have [sourced life-status reviews](data/historian-life-review.json),
+checked on 2026-10-25: **100 living, 92 deceased and one unresolved** (Jennifer S. H. Brown).
+Supported death years and precision appear as reference metadata, separate from
+work, career and influence dates. Missing death information does not imply living.
 
-The reading view now contains **4,053 searchable sources**: the original 4,037 and
-16 reviewed exceptions. Its 113 profile links and five field panels preserve existing
-counts, denominators, stable source IDs and earlier selections. Primary excerpts,
-named readers, original editions, translations and coauthor/editor credits remain
-explicit. Astra review and release checks pass: 145 data tests, 60 JavaScript checks,
-60 browser cases after fixture corrections, and a clean checkout reproducing all
-52 public assets. Publication is authorized; see the implementation report for evidence.
+The reading amendment is being integrated with **116 linked profiles, five unchanged
+field panels and 4,055 searchable sources** (4,037 original plus 18 reviewed exceptions).
+A separate personal comparison centers Anderson’s *Imagined Communities*: its main
+work key appears in **641 of 716** dated dissertations assigned to his first-author
+key (**89.5%**), compared with 16 for *Under Three Flags* and 14 for *The Spectre of
+Comparisons*. A separate [title/translation audit](data/field-research/historian-classification-amendment-2026-10-25/anderson-book-identity/README.md)
+deduplicates 16 confirmed *Imagined Communities* keys to **685 of 716 (95.7%)**.
+The chart retains its individual work keys. Bibliography presence establishes no
+whole-book reading; the frozen denominator retains attribution contamination. Primary excerpts, named
+readers, original editions and collaborator credits remain explicit.
+
+Astra’s substantive and UI reviews pass. Release validation passes: 148 data tests,
+61 JavaScript checks, all 61 browser cases after a copy-assertion correction, and a
+clean checkout reproducing all 52 public files. Publication is authorized.
 
 The earlier release notes below preserve their historical counts and status at the
 time of each release.

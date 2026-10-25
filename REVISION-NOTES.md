@@ -1,3 +1,42 @@
+# Revision 1.183: Anderson, Wallerstein and Mintz as historians (25 October 2026)
+
+Current canonical graph: **315 entries, 1,506 relationships, 2,836 sources and
+1,415 indexed people**. The 215 person entries comprise **193 historians and
+22 theorists**, alongside 100 groups. The additive classification amendment brings
+the completed qualifying historian queue from 89 to 92. Original raw classifications,
+counts and accepted packets remain historical witnesses rather than being rewritten.
+
+Revisions [1.181](data/production-batches/person-entries-1.181/README.md),
+[1.182](data/production-batches/person-entries-1.182/README.md) and
+[1.183](data/production-batches/person-entries-1.183/README.md) reuse the existing
+Anderson, Wallerstein and Mintz identities and add 14 scoped relationships,
+35 sources and 37 selected dated facts. Existing collective arrows, roster prose,
+source qualifications, chronology and the exact-2000 archive remain preserved.
+Anderson’s expanded profile centers *Imagined Communities*, distinguishing the
+1983 original, 1991 revision and later afterword-bearing edition; named criticism
+and unfinished research retain their particular evidence limits. Wallerstein’s
+world-economy argument and Brenner’s criticism remain scoped. Mintz’s Caribbean
+history preserves narrated-life, joint-authorship and edition distinctions.
+
+All 193 historian biographies have sourced life reviews: **100 living, 92 deceased
+and one unresolved** (Jennifer S. H. Brown), checked on 2026-10-25. Supported life
+dates and precision stay separate from work chronologies and influence claims.
+
+The reading amendment is being integrated with **116 profiles, five unchanged field
+panels, one new personal Anderson comparison and 4,055 sources** (4,037 original
+plus 18 reviewed exceptions). The principal *Imagined Communities* key occurs in
+641 of Anderson’s 716 dated first-author-key dissertations (89.5%); the selected
+other-work keys have 16 (*Under Three Flags*) and 14 (*Spectre of Comparisons*).
+The separate audited union of 16 confirmed title/translation keys reaches 685/716
+(95.7%); counts are deduplicated by dissertation rather than summed. The chart
+retains its original work keys, and the frozen denominator’s attribution caveat
+remains. Bibliography presence does not prove whole-book reading or influence. No claim places Anderson first in every region: in Europe his 129
+is behind Hobsbawm’s 140 and Burke’s 131 in the frozen sample.
+
+See the [amendment record](data/field-research/historian-classification-amendment-2026-10-25/README.md).
+Astra’s substantive and UI reviews pass. Final data, JavaScript, browser and
+clean-checkout checks pass; publication is authorized. Earlier revision sections retain their historical status.
+
 # Revision 1.180: full dissertation-guided historian expansion (25 October 2026)
 
 Current graph: **312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed

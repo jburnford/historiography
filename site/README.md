@@ -1,8 +1,8 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current production revision **1.180**, schema 1.6,
-contains **312 entries, 1,492 relationships, 2,801 sources, 1,415 shared people and
+The curated JSON remains authoritative. Current canonical revision **1.183**, schema 1.6,
+contains **315 entries, 1,506 relationships, 2,836 sources, 1,415 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
@@ -21,8 +21,8 @@ The public comparisons include 6,794 dissertations with years, from 7,107 in ana
 The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
 regional numerators/denominators, institution coverage, missing years, notes extraction,
 small samples and provisional family labels remain visible. Examples link to original
-repository records. Teaching links cover 113 profiles, including all 89 historians in the
-completed qualifying queue and the earlier theory/field contributors. Five field panels cover environmental history, the
+repository records. The reading amendment is being integrated with 116 profile links, including the
+92 completed qualifying historians and the earlier theory/field contributors. Five field panels cover environmental history, the
 archival turn, economic history, capitalism debates and emotions history. Archived entries retain their
 original selection.
 
@@ -34,10 +34,24 @@ remain available. Both mode and source selections survive resizing and reading-v
 trips. Counts overlap and do not estimate field readership or influence. These are sampled
 History-programme dissertations, excluding the separate Economics PhD literature.
 
-Reviews are recorded in `data/dissertation-layer/reviews/`. Sixteen explicitly reviewed
-records below the normal frequency cutoffs are added to the original 4,037 sources,
-for 4,053 searchable sources. The five newest exceptions cover Duby, Noiriel, Jeremy
-Black, Vovelle and Charle. An append-only reviewed-source ID registry preserves all
+A separate personal comparison for Benedict Anderson is added alongside the five
+unchanged field panels. It defaults to works and compares the main *Imagined
+Communities* key (641 dated dissertations), *Under Three Flags* (16) and *The Spectre
+of Comparisons* (14) with his first-author key (716). The main-key proportion is
+89.5%. A separate audited union of 16 confirmed title/translation keys reaches
+685/716 (95.7%), with 44 additional distinct dissertations beyond the main key.
+The chart retains its individual work selections; overlapping counts are not summed.
+Known attribution contamination remains in the frozen denominator. Bibliography
+presence does not establish whole-book reading. The regional first-author-key
+counts are CA 292/2,212, US 262/2,168, Europe 129/2,025 and Other 33/389. Hobsbawm
+(140) and Burke (131) exceed Anderson’s European count. These sampled bibliography
+keys establish neither individual agreement nor influence.
+
+Reviews are recorded in `data/dissertation-layer/reviews/`. Eighteen explicitly reviewed
+records below the normal frequency cutoffs bring the amended export to 4,055
+searchable sources, from the original 4,037. The two new exceptions are Anderson’s
+Under Three Flags (16 dated dissertations) and The Spectre of Comparisons (14).
+The earlier Duby, Noiriel, Jeremy Black, Vovelle and Charle selections remain. An append-only reviewed-source ID registry preserves all
 earlier IDs when another exception is added. Their distinct dated counts are recomputed from the frozen
 release; companion/family analyses are explicitly unavailable for those additions.
 Existing counts/series and denominator populations remain unchanged. Attribution notes
@@ -62,13 +76,13 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
 Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
-publication is authorized for this batch. Astra review and final data, JavaScript,
-browser and clean-checkout checks pass; see the implementation report for evidence. The current build contains 52
+publication is authorized for this batch. Astra’s substantive and UI reviews pass the three new biographies and personal
+comparison. Final data, JavaScript, browser and clean-checkout checks pass. The current build contains 52
 allowlisted files, including eight JavaScript modules, two stylesheets, six teaching
 and publication-record JSON assets, and 34 dissertation metadata assets. The builder
 validates graphs, checks the dissertation export hashes and refuses unexpected output
 files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The build includes revision 1.180 and the dissertation reading research preview.
+build. The next build targets revision 1.183 and the amended dissertation reading preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
 the full teaching graph once. Selected profiles lazily load the separate record

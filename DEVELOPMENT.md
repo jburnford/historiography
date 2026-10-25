@@ -1,32 +1,39 @@
 # Historiography: editorial and visualization working plan
 
-**Current implementation — 2026-10-25, revision 1.180:** the full qualifying
-historian queue is implemented: 89 biographies, including Sarah Carter, selected
-by Canadian-history focus ≥150 dated first-author dissertations and other historians
-strictly above 100. Theory remains separate, with namesake/mixed-key holds excluded.
-The graph has 312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed people;
-190 individual historians and 22 theorists sit alongside 100 group entries.
-Each new biography has ≥3 sourced dated facts and ≥2 substantive relationships;
-new identities have group roster contexts. Earlier identities, source qualifications,
-collective arrows, dates and accepted packets remain preserved, with declared
-identity/attribution corrections in 1.178 and 1.180.
+**Current implementation — 2026-10-25, revision 1.183:** the original 89-person
+qualifying historian queue is complete, and three additive historian corrections
+bring it to 92: Benedict Anderson, Immanuel Wallerstein and Sidney Mintz. The
+Canadian-history screen remains ≥150 dated first-author dissertations; other
+historians require >100. Theory (31 candidates), mixed scholarship awaiting review
+(10) and identity holds (11) remain separate. Earlier raw classification reports
+and accepted packets stay frozen.
 
-The [completed content handoff](data/field-research/dissertation-content-2026-10-25/README.md)
-links the research, acceptances and independent review. Reading integration now
-has 113 profiles, five field panels and 4,053 sources (4,037 original plus 16
-reviewed exceptions). An append-only registry keeps existing source IDs stable;
-all original counts, denominator populations and earlier selections remain exact.
-The merged life review covers every one of the 190 historian biographies:
-100 living, 89 deceased and one unresolved (Jennifer S. H. Brown), checked on
-2026-10-25. Life metadata is overlaid only on the public main graph; work dates
-and the exact-2000 archived view stay separate.
+The graph has 315 entries, 1,506 relationships, 2,836 sources and 1,415 indexed
+people: 193 individual historians, 22 theorists and 100 groups. The three additions
+supply 37 selected dated facts and 14 scoped relationships, preserving existing
+identities, source qualifications, collective arrows, group prose and chronologies.
+Anderson receives a book-centered profile with original/revised edition distinctions
+and individually attributed criticism; no citation-derived influence is asserted.
 
+The [classification amendment](data/field-research/historian-classification-amendment-2026-10-25/README.md)
+records the three accepted packets and Astra’s substantive pass. Its reading update
+is being integrated: 116 profiles, five unchanged field panels, a separate personal
+Anderson comparison and 4,055 sources (4,037 original plus 18 reviewed exceptions).
+The append-only source registry and exact counts/denominators remain preserved.
+The comparison distinguishes the main work key’s 641 dated dissertations from the
+first-author key’s 716. The separate audited union of 16 confirmed book-title and
+translation keys is 685/716 (95.7%), while chart series retain individual keys.
+The frozen denominator keeps its attribution caveat; bibliography presence does
+not establish whole-book reading or influence.
+
+The life review covers all 193 historian biographies: 100 living, 92 deceased and
+one unresolved (Jennifer S. H. Brown), checked on 2026-10-25. It overlays the public
+main graph, keeping life precision separate from work dates and the archived view.
 Practice v28, methods-v9 and mentions-v6 remain the selected publication-evidence
 projection, with landing audit 1.168 and the bounded H-Emotions target promotion.
-New individual biographies do not trigger an evidence harvest or alter family
-series. OpenAlex remains paused. Astra review and final data, JavaScript, browser and clean-checkout checks pass.
-Publication is authorized; the implementation report records validation evidence.
-The dated implementation notes below preserve their historical status.
+These biographies trigger no evidence harvest or family-series change. OpenAlex
+remains paused. Final data, JavaScript, browser and clean-checkout checks pass; publication
+is authorized. The dated notes below preserve their historical status.
 
 
 **Astra review correction (2026-10-24, local revision 1.164):** user requested an

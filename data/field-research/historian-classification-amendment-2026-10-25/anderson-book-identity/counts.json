@@ -1,0 +1,138 @@
+{
+  "checked_on": "2026-10-25",
+  "release": "data/field-research/dissertation-citations-2026-10-11/release/2026-10-23",
+  "person_key": "anderson|benedict r",
+  "main_work_key": "W:anderson|imagined communities",
+  "input_sha256_verified_against_release_SHA256SUMS": {
+    "works.csv.gz": "e0dab1613b8008676d5b0dfccb15914743e20ade690ab307e508f51f1e24801f",
+    "citations.csv.gz": "8941c08a0b4667533bf6f640287f1a5f271eaebb6418db87922dabce43c55292",
+    "dissertations.csv.gz": "71d44cef45de441ff57cf7c0caebd8633b9c2ea53163baa0126d1c34e1d3b36e",
+    "people.csv.gz": "76a2673f43e5d298316c1163c073f0dcfd7ea1809fe1823807fa13e417b0731b",
+    "authorship.csv.gz": "e56016db695e8125facde64c624edcd325b2796a178142de29cea7a81c922811",
+    "work-translations.csv": "8156e5dd726ddd07e2dd0d78ee941c6db863e5a38be45c57622d95af5f5d897c"
+  },
+  "population_rule": "Dissertation in_analysis == True and a four-digit year; each dissertation_id counted once in each union.",
+  "region_rule": "Exact build_dissertation_site.py CA/US/EUROPE/OTHER country mapping; EUROPE is geography, not EU membership.",
+  "classification_work_key_counts": {
+    "ambiguous_held": 11,
+    "imagined_communities_confirmed": 16,
+    "other_author_confirmed": 2,
+    "other_benedict_confirmed": 28
+  },
+  "metrics": {
+    "GLOBAL": {
+      "dated_in_analysis_dissertations": 6794,
+      "frozen_first_author_P": 716,
+      "strict_main_book_key_W": 641,
+      "confirmed_book_title_family_union": 685,
+      "additional_book_dissertations_beyond_main_key": 44,
+      "main_key_share_of_frozen_P_percent": 89.525139665,
+      "confirmed_book_union_share_of_frozen_P_percent": 95.670391061,
+      "frozen_P_share_of_sample_percent": 10.538710627,
+      "main_key_share_of_sample_percent": 9.434795408,
+      "confirmed_book_union_share_of_sample_percent": 10.08242567
+    },
+    "CA": {
+      "dated_in_analysis_dissertations": 2212,
+      "frozen_first_author_P": 292,
+      "strict_main_book_key_W": 266,
+      "confirmed_book_title_family_union": 280,
+      "additional_book_dissertations_beyond_main_key": 14,
+      "main_key_share_of_frozen_P_percent": 91.095890411,
+      "confirmed_book_union_share_of_frozen_P_percent": 95.890410959,
+      "frozen_P_share_of_sample_percent": 13.200723327,
+      "main_key_share_of_sample_percent": 12.025316456,
+      "confirmed_book_union_share_of_sample_percent": 12.658227848
+    },
+    "US": {
+      "dated_in_analysis_dissertations": 2168,
+      "frozen_first_author_P": 262,
+      "strict_main_book_key_W": 249,
+      "confirmed_book_title_family_union": 251,
+      "additional_book_dissertations_beyond_main_key": 2,
+      "main_key_share_of_frozen_P_percent": 95.038167939,
+      "confirmed_book_union_share_of_frozen_P_percent": 95.801526718,
+      "frozen_P_share_of_sample_percent": 12.084870849,
+      "main_key_share_of_sample_percent": 11.485239852,
+      "confirmed_book_union_share_of_sample_percent": 11.577490775
+    },
+    "EUROPE": {
+      "dated_in_analysis_dissertations": 2025,
+      "frozen_first_author_P": 129,
+      "strict_main_book_key_W": 98,
+      "confirmed_book_title_family_union": 121,
+      "additional_book_dissertations_beyond_main_key": 23,
+      "main_key_share_of_frozen_P_percent": 75.968992248,
+      "confirmed_book_union_share_of_frozen_P_percent": 93.798449612,
+      "frozen_P_share_of_sample_percent": 6.37037037,
+      "main_key_share_of_sample_percent": 4.839506173,
+      "confirmed_book_union_share_of_sample_percent": 5.975308642
+    },
+    "OTHER": {
+      "dated_in_analysis_dissertations": 389,
+      "frozen_first_author_P": 33,
+      "strict_main_book_key_W": 28,
+      "confirmed_book_title_family_union": 33,
+      "additional_book_dissertations_beyond_main_key": 5,
+      "main_key_share_of_frozen_P_percent": 84.848484848,
+      "confirmed_book_union_share_of_frozen_P_percent": 100.0,
+      "frozen_P_share_of_sample_percent": 8.483290488,
+      "main_key_share_of_sample_percent": 7.197943445,
+      "confirmed_book_union_share_of_sample_percent": 8.483290488
+    }
+  },
+  "identity_audit_dated_dissertation_unions": {
+    "confirmed_benedict_any_work_including_book": 707,
+    "confirmed_other_benedict_work_union_including_overlap_with_book": 52,
+    "ambiguous_held_work_union_including_overlap_with_verified": 12,
+    "confirmed_other_author_work_union_including_overlap_with_verified": 2,
+    "frozen_P_without_confirmed_benedict_work_in_this_review": 9,
+    "held_or_other_author_only_dissertations": [
+      "23c74e34-b5ef-4861-a5ec-0380d68cfa93",
+      "36d3e1d5-0887-4e3b-91aa-31995db01649",
+      "41c8d166-99b4-4216-80c4-210101ccc411",
+      "base-55130f91710e3369",
+      "base-63027cfbad45ae29",
+      "bcaada37-f7e3-4520-805d-f2526b3e0d53",
+      "c0aaee70-aba1-4f03-887b-057f0c9f99d8",
+      "ed367c2f-45a0-4c85-8c1e-cb5a938b1cd5",
+      "fb3ff513-f97d-45cd-a4bc-ea948f5f6dd3"
+    ],
+    "confirmed_other_benedict_work_but_no_confirmed_book": 22,
+    "frozen_P_without_confirmed_book": 31
+  },
+  "undated_and_raw_scope": {
+    "main_key_in_analysis_with_or_without_year": 647,
+    "main_key_all_release_records": 658,
+    "first_author_57_keys_in_analysis_with_or_without_year": 726,
+    "first_author_57_keys_all_release_records": 737,
+    "frozen_people_row_unchanged": [
+      {
+        "person_key": "anderson|benedict r",
+        "name": "Anderson, Benedict",
+        "cited_by_dissertations": "726",
+        "cited_by_all": "737",
+        "qid": "Q212993",
+        "qid_basis": "title_verified"
+      }
+    ],
+    "authorship_rows_for_person": 58,
+    "authorship_rows_outside_first_author_scope": [
+      {
+        "person_key": "anderson|benedict r",
+        "work_id": "W:soerjono|on mussos return|a",
+        "position": "2"
+      }
+    ]
+  },
+  "qualifications": [
+    "Confirmed means author/title-family identity from the listed sources, not a claim to have read the books or verified how each dissertation uses them.",
+    "The main work key already coalesces editions. Its raw year 1991 does not mean all 641 citations are to the 1991 edition.",
+    "Book-family union includes positively identified translations and complete-title variants. Article-labelled variants retain raw labels; the union does not distinguish whole-book from excerpt or component use.",
+    "Incomplete subtitles, imprint fragments, generic titles and unmatched identities are held, even if a book mapping seems plausible.",
+    "All 716 dated first-author P records remain the frozen denominator, including confirmed contamination and unresolved records. This audit does not repair or merge raw IDs.",
+    "Work-key citation counts overlap; class and work counts must not be added as dissertation counts.",
+    "Counts describe bibliography presence and not approval, intellectual influence or a full reading of the work.",
+    "Positive source matches establish title identity only; frozen year, kind, container, credited author strings and raw counts remain unchanged."
+  ]
+}

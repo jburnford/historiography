@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "mode": "Owned release build and in-memory transform only; no apply.",
+  "baseline_revision": "1.180",
+  "revision": "1.181",
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "checks": {
+    "no_new_warnings": true,
+    "exactly_six_scoped_relations": true,
+    "old_people_identity_prefixes": true,
+    "old_ids_preserved": true,
+    "old_edges_exact": true,
+    "old_sources_exact_except_declared_addendum": true,
+    "addendum_preserves_prior_note": true,
+    "old_chronology_coverage_prose_exact": true,
+    "old_roster_prose_exact": true,
+    "all_historians": true,
+    "minimum_ten_events": true,
+    "minimum_two_relations": true,
+    "new_people_rosters": true,
+    "standardized_life_records": true,
+    "canonical_bytes_unchanged": true
+  },
+  "counts_before": {
+    "nodes": 312,
+    "people": 1415,
+    "edges": 1492,
+    "sources": 2801
+  },
+  "counts_candidate": {
+    "nodes": 313,
+    "people": 1415,
+    "edges": 1498,
+    "sources": 2818
+  },
+  "selected_events": 17,
+  "packet_sha256": "99a1100658a65b9e79ded7b253168a8c0aa42f6e2de6349d4fc220b33fd17a88"
+}

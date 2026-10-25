@@ -105,15 +105,15 @@ class DissertationContentTests(unittest.TestCase):
         for key in ('entries', 'entry_comparisons'):
             self.assertEqual(current[key], baseline['links'][key], key)
         scope = read(REVIEW / 'expanded-scope.json')
-        historians = {p['person_id'] for p in scope['people']} | {'sarah_carter'}
+        historians = {p['person_id'] for p in scope['people']} | {'sarah_carter', 'benedict_anderson', 'immanuel_wallerstein', 'sidney_mintz'}
         self.assertEqual(set(current['people']), set(baseline['links']['people']) | historians)
-        self.assertEqual(len(current['people']), 113)
+        self.assertEqual(len(current['people']), 116)
 
         site = ROOT / 'data/dissertation-layer/site'
         index = read(site / 'index.json')
         indexed = {s['key']:s for s in index['sources']}
         self.assertEqual(len(baseline['sources']), 4048)
-        self.assertEqual(len(indexed), 4053)
+        self.assertEqual(len(indexed), 4055)
         self.assertEqual(json_hash({k:v for k,v in index.items()
             if k not in ('sources', 'reviewed_selection_count')}), baseline['index_context_sha256'])
         new_books = {
@@ -123,7 +123,7 @@ class DissertationContentTests(unittest.TestCase):
             'P:vovelle|michel': 'W:vovelle|ideologies et mentalites',
             'P:charle|christophe': 'W:charle|naissance des intellectuels'}
         self.assertEqual(set(indexed) - {s['index']['key'] for s in baseline['sources']},
-                         set(new_books.values()))
+                         set(new_books.values()) | {'W:anderson|under three flags', 'W:anderson|spectre of comparisons'})
         shards = {}
         for old_source in baseline['sources']:
             row = old_source['index']
@@ -139,6 +139,8 @@ class DissertationContentTests(unittest.TestCase):
                                  old_source['source_without_works_sha256'])
                 expected_works = ([indexed[new_books[row['key']]]['id']]
                                   if row['key'] in new_books else old_source['work_ids'])
+                if row['key'] == 'P:anderson|benedict r':
+                    expected_works = [*expected_works, indexed['W:anderson|under three flags']['id'], indexed['W:anderson|spectre of comparisons']['id']]
                 self.assertEqual(source['works'], expected_works)
 
     def test_emotions_mapping_preserves_existing_evidence_and_family_shares(self):

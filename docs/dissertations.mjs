@@ -161,7 +161,8 @@ const comparisonSources=(comparison,mode)=>mode==='authors'?(comparison.authors|
 const sourceOptions=sources=>sources.map(s=>`<option value="${esc(s.key)}">${esc(s.label)}</option>`).join('');
 function regionalComparison(links,sources,mode) {
   const authors=mode==='authors';
-  return `<summary>Compare regional counts for all ${sources.length} ${authors?'authors':'works'}</summary><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${table(`Distinct dated dissertations citing ${authors?'works attributed to each selected first author':'each selected work'}; counts overlap`,[authors?'Author':'Work','All regions',...links.regions.map(r=>NAMES[r])],sources.map(s=>`<tr><th scope="row">${sourceLink({key:s.key,short:s.label})}</th><td>${fmt(s.n)}</td>${links.regions.map(r=>`<td>${fmt(s.n_region[r]||0)}</td>`).join('')}</tr>`).join(''))}`;
+  const selection=sources.length===1?`this ${authors?'author':'work'}`:`all ${sources.length} ${authors?'authors':'works'}`;
+  return `<summary>Compare regional counts for ${selection}</summary><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${table(`Distinct dated dissertations citing ${authors?'works attributed to each selected first author':'each selected work'}; counts overlap`,[authors?'Author':'Work','All regions',...links.regions.map(r=>NAMES[r])],sources.map(s=>`<tr><th scope="row">${sourceLink({key:s.key,short:s.label})}</th><td>${fmt(s.n)}</td>${links.regions.map(r=>`<td>${fmt(s.n_region[r]||0)}</td>`).join('')}</tr>`).join(''))}`;
 }
 export function comparisonSelection(links,comparison,key,width=880) {
   const authors=key?.startsWith('P:')&&comparison.authors?.length, sources=authors?comparison.authors:comparison.sources;
@@ -172,21 +173,22 @@ export function comparisonSelection(links,comparison,key,width=880) {
     <details class="reading-context-exact"><summary>Exact counts by period and region</summary><p class="reading-scroll-hint">Scroll the table sideways to compare all regions.</p>${trendTable(links,source)}</details>`;
 }
 export function readingContextHtml(links,type,id,width=880) {
-  const entry=links.entries[id], pids=type==='person'?(links.people[id]?[id]:[]):entry?.people||[];
+  const entry=links.entries[id], personal=type==='person'||(!entry&&Boolean(links.people[id]?.comparison));
+  const pids=personal?(links.people[id]?[id]:[]):entry?.people||[];
   if(!pids.length)return '';
-  const comparison=type==='entry'&&entry?.comparison;
+  const comparison=personal?links.people[id]?.comparison:entry?.comparison;
   const suffix=`<p class="fine-print">Snapshot ${esc(links.snapshot)}. Bibliography presence and notes citations are distinct from influence. These teaching links were reviewed through named works; the underlying name keys can still contain attribution errors.</p><a class="text-link" href="${readingHref()}">Explore dissertation reading →</a>`;
   if(!comparison) return `<section class="reading-context"><p class="eyebrow">IN DISSERTATION READING</p><h3>${type==='person'?'Where this scholarship is cited':'What dissertations draw on'}</h3>
     <p>${type==='person'?'Follow selected works and their use across time and regions.':`Explore ${pids.length} selected authors on this entry’s roster. Their counts describe these authors’ first-author bibliography keys; they do not measure the readership of the whole field.`}</p>${contextAuthors(links,pids)}${suffix}</section>`;
   const mode=comparison.default_view||'works',sources=comparisonSources(comparison,mode),pickerId='reading-work-'+id;
-  return `<section class="reading-context reading-field-context"><p class="eyebrow">IN DISSERTATION READING · SELECTED AUTHORS AND WORKS</p><h3>What dissertations draw on</h3>
+  return `<section class="reading-context reading-field-context${personal?' reading-person-context':''}"><p class="eyebrow">IN DISSERTATION READING · SELECTED AUTHORS AND WORKS</p><h3>${personal?'One author, distinct works':'What dissertations draw on'}</h3>
     <p>${esc(comparison.intro)}</p><p class="reading-context-question">${esc(comparison.question)}</p>${comparison.observation?`<p>${esc(comparison.observation)}</p>`:''}
-    <p class="fine-print">These authors and works are an editorial selection from this entry’s roster; they do not measure the readership of the whole field. A dissertation can cite several of them, so their counts must not be added. Author totals cover provisional first-author name keys; they are not counts for a single book.</p>
+    <p class="fine-print">${personal?'These selected works belong to this author’s reviewed bibliography.':'These authors and works are an editorial selection from this entry’s roster; they do not measure the readership of the whole field.'} A dissertation can cite several of them, so their counts must not be added. Author totals cover provisional first-author name keys; they are not counts for a single book.</p>
     <div class="reading-work-picker"><label for="reading-view-${esc(id)}">Compare</label><select class="reading-comparison-mode" id="reading-view-${esc(id)}"><option value="authors" ${mode==='authors'?'selected':''}>Authors across their attributed works</option><option value="works" ${mode==='works'?'selected':''}>Individual works</option></select></div>
     <div class="reading-work-picker"><label for="${esc(pickerId)}">${mode==='authors'?'Follow an author':'Follow a selected work'}</label><select class="reading-source-picker" id="${esc(pickerId)}">${sourceOptions(sources)}</select></div>
     <div class="reading-context-selected" aria-live="polite">${comparisonSelection(links,comparison,sources[0].key,width)}</div>
     <details class="reading-context-regions">${regionalComparison(links,sources,mode)}</details>
-    <p class="fine-print">Books published later have fewer cohorts in which to appear. This is a sample of History-programme dissertations, not the separate literature of Economics PhDs. Repository coverage varies; degree years follow repository metadata. The snapshot uses ${fmt(links.coverage.with_year)} dated dissertations; ${fmt(links.coverage.missing_year)} without years are excluded. Reviewed low-count records remain available here even below normal search cutoffs. An omitted title need not be uncited.</p>
+    <p class="fine-print">Books published later have fewer cohorts in which to appear. This is a sample of History-programme dissertations${personal?'.':', not the separate literature of Economics PhDs.'} Repository coverage varies; degree years follow repository metadata. The snapshot uses ${fmt(links.coverage.with_year)} dated dissertations; ${fmt(links.coverage.missing_year)} without years are excluded. Reviewed low-count records remain available here even below normal search cutoffs. An omitted title need not be uncited.</p>
     <details class="reading-context-authors"><summary>Selected authors and teaching profiles</summary>${contextAuthors(links,pids)}</details>${suffix}</section>`;
 }
 
@@ -196,7 +198,8 @@ export async function mountReadingContext(root, type, id) {
     const links=await get('links.json');
     if(!root.isConnected)return;
     root.innerHTML=readingContextHtml(links,type,id,Math.max(280,root.clientWidth-46));
-    const comparison=type==='entry'&&links.entries[id]?.comparison;
+    const comparison=type==='person'?links.people[id]?.comparison:
+      links.entries[id]?.comparison||(!links.entries[id]&&links.people[id]?.comparison);
     if(comparison) {
       const mode=root.querySelector('.reading-comparison-mode'),select=root.querySelector('.reading-source-picker'),box=root.querySelector('.reading-context-selected');
       const remembered=contextChoices.get(id)||{};

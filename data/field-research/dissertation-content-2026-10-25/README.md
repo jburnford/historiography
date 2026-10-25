@@ -1,3 +1,17 @@
+> **Subsequent editorial amendment, revision 1.183:** Anderson, Wallerstein and Mintz
+> now have historian entries, expanding the completed qualifying queue from 89 to 92.
+> The current canonical graph has 315 entries, 1,506 relationships, 2,836 sources and
+> 1,415 indexed people: 193 historians, 22 theorists and 100 groups. Life review covers
+> all 193 historians (100 living, 92 deceased, one unresolved). The reading amendment
+> is being integrated with 116 profiles, five unchanged field panels, one personal
+> Anderson comparison and 4,055 sources. A separate title/translation audit finds
+> 685/716 (95.7%) for the confirmed book-family union, retaining strict main-key
+> 641/716 (89.5%) and the frozen attribution caveat. Bibliography presence does not
+> establish whole-book reading. Astra’s substantive review passes all three;
+> final UI/build/release checks and publication remain pending. The original 89-person
+> release below remains the complete historical record at 1.180. See the
+> [additive amendment](../historian-classification-amendment-2026-10-25/README.md).
+
 # Dissertation-guided content: completed historian queue
 
 Current canonical revision **1.180**, prepared **2026-10-25**: **312 entries,

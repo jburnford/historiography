@@ -4,8 +4,8 @@
   "scope": {
     "layer": "historians",
     "entry_kind": "person",
-    "graph_revision": "1.180",
-    "people": 190
+    "graph_revision": "1.183",
+    "people": 193
   },
   "source_report_sha256": {
     "data/field-research/historian-life-review-2026-10-25/results-1.json": "dcc32ecdab8c87ee06f014e8f2aa0f95560a005c5e0ebf7da824736f9e548f79",
@@ -99,6 +99,9 @@
     "data/extension-2026/historian-canon-lane3-round3-2026-10-25/michel_vovelle/life-status.json": "466da96a8e3e10f17ba4e37e619b15c3988897e1c8a96287e72b4c5ff6fd92f3",
     "data/extension-2026/historian-canon-lane3-round3-2026-10-25/odd_arne_westad/life-status.json": "a556c59b877f5d44b2f2c995d4ca1aa7e3a249e59be907d2a60fbadca03fbfb1",
     "data/extension-2026/historian-canon-lane3-round3-2026-10-25/paul_boyer/life-status.json": "e32b37c4a27f658a681c1e4bcb7bf1d916fb7c2595de805a8a575040dd19cf34",
+    "data/extension-2026/historian-anderson-2026-10-25/benedict_anderson/life-status.json": "d567860baeb42f45f93da86786cc743307a58db5d77df17e0e3c938c52bf7ac0",
+    "data/extension-2026/historian-wallerstein-2026-10-25/immanuel_wallerstein/life-status.json": "bccc6156ca15dfe4c72f5690b68cbdc704142a4b602de3add77c90b31c019530",
+    "data/extension-2026/historian-mintz-2026-10-25/sidney_mintz/life-status.json": "a29f780a4f48c80f5aee2b0e3f2b66f3daaaf1d6496785f5d877c24279789904",
     "data/field-research/historian-life-review-2026-10-25/follow-up-decisions.json": "99a7ae77b037f597ce4c5aaee40009fea8bcfd901de1d3a74eaea5fa3f86b3fb"
   },
   "method": "Independent institutional/authority/family-obituary review of existing biographies; primary identity and life evidence in the new biography packets. Missing death is not a living-status decision. Dates are reference metadata and do not imply work, career or influence intervals.",
@@ -522,6 +525,29 @@
         "previous_checked_on": "2026-09-17",
         "scope": "Prior date-sheet statement; current institutional source corroborates death year, not necessarily the day."
       }
+    },
+    {
+      "person_id": "benedict_anderson",
+      "label": "Benedict Anderson",
+      "status": "deceased",
+      "death_year": 2015,
+      "death_date": "2015-12-13",
+      "death_precision": "day",
+      "birth_year": 1936,
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Existing benedict_anderson identity reused: Benedict Richard O’Gorman Anderson (1936–2015), historian of Indonesia and author of Imagined Communities, matched by institutional obituary, primary publications and named-title metadata. Not Perry Anderson, historical trade-report authors or every item assigned to the frozen dissertation author key. No external-authority/name-variant union; source-specific earlier roster qualifications remain. Life evidence separately recorded in benedict_anderson/life-status.json.",
+      "sources": [
+        {
+          "url": "https://news.cornell.edu/stories/2015/12/benedict-anderson-who-wrote-imagined-communities-dies",
+          "title": "Cornell Chronicle institutional obituary, 15 December 2015",
+          "locator": "Opening death report and biographical birth paragraph",
+          "support": "Born 26 August 1936 in Kunming; died 13 December 2015 in East Java, Indonesia, aged 79.",
+          "check_scope": "Complete short institutional obituary read; exact local death place not inferred beyond its East Java wording. Publication/career dates separately corroborated when obituary differs.",
+          "checked_on": "2026-10-25"
+        }
+      ],
+      "confidence": "high",
+      "limits": "Institutional death and birth testimony for this identity; no absence-based living inference. The 2016 English memoir is a posthumous publication, not evidence of life then."
     },
     {
       "label": "Bernard Bailyn",
@@ -2803,6 +2829,47 @@
       "confidence": "high",
       "limits": "Year-only Common Era metadata adopted. No exact day/calendar conversion inferred from medieval dates.",
       "birth_year": 1332
+    },
+    {
+      "label": "Immanuel Wallerstein",
+      "person_id": "immanuel_wallerstein",
+      "status": "deceased",
+      "birth_year": 1930,
+      "birth_date": "1930-09-28",
+      "birth_precision": "day",
+      "death_year": 2019,
+      "death_date": "2019-08-31",
+      "death_precision": "day",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Existing immanuel_wallerstein ID reused. The Yale collection names the scholar with the Columbia/Binghamton/Yale career, and the YaleGlobal memorial identifies the four-volume Modern World-System author; no namesake merger or new authority ID.",
+      "sources": [
+        {
+          "url": "https://hdl.handle.net/10079/fa/mssa.ms.1865",
+          "title": "Yale Library MS 1865: Immanuel Wallerstein collection of African liberation movement posters",
+          "locator": "PDF https://ead-pdfs-new.library.yale.edu/3568.pdf, printed p. 4, Biographical / Historical",
+          "support": "Born 28 September 1930; died in 2019. Direct institutional collection biography.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Printed p. 4 biographical section only; underlying archival holdings not consulted."
+        },
+        {
+          "url": "https://archive-yaleglobal.yale.edu/content/yg-contributor-immanuel-wallerstein-1930-2019",
+          "title": "YaleGlobal: YG Contributor: Immanuel Wallerstein, 1930–2019 (4 September 2019)",
+          "locator": "Opening and repeated biographical paragraph",
+          "support": "Direct institutional memorial repeatedly gives death as 31 August 2019 and identifies the Yale scholar/Modern World-System author.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Memorial opening and biographical paragraphs read."
+        },
+        {
+          "url": "https://archivesspace.binghamton.edu/public/repositories/2/resources/143",
+          "title": "Binghamton University Libraries, Immanuel Wallerstein papers BUA-0012",
+          "locator": "Biographical Note, first sentence and final sentence before obituary quotation",
+          "support": "First sentence gives 28 September 1930–31 August 2019, but a later sentence says 13 August 2019. This internally inconsistent witness is not independently sufficient for death-day precision.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Biographical Note inspected; internal contradiction explicitly retained."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Birth day is supported by Yale Library. Death day uses the direct YaleGlobal memorial, corroborated by Binghamton’s opening date range. Binghamton’s conflicting later 13 August statement is retained as a source inconsistency, not silently normalized or treated as a second death date. No lifespan interval is added to the canonical graph."
     },
     {
       "label": "Ira Berlin",
@@ -5638,6 +5705,39 @@
       },
       "confidence": "moderate",
       "limits": "Positive current institutional/author biography supports living status as checked; directory maintenance and date of last contact are not independently guaranteed. No absent P570 is treated as proof of life."
+    },
+    {
+      "person_id": "sidney_mintz",
+      "label": "Sidney Mintz",
+      "status": "deceased",
+      "birth_year": 1922,
+      "birth_date": "1922-11-16",
+      "birth_precision": "day",
+      "death_year": 2015,
+      "death_date": "2015-12-27",
+      "death_precision": "day",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Sidney Wilfred Mintz, Johns Hopkins anthropology co-founder and author of Worker in the Cane and Sweetness and Power; existing sidney_mintz ID reused. Distinct from historian Steven Mintz and generic Sidney Mintz namesakes.",
+      "sources": [
+        {
+          "url": "https://aspace.library.jhu.edu/repositories/3/resources/583",
+          "title": "Johns Hopkins University Libraries, Sidney W. Mintz papers, collection resource583, Biographical/Historical note.",
+          "locator": "Biographical/Historical note: November16,1922 birth in Dover, New Jersey;1922–2015 collection identity",
+          "support": "Institutional archive establishes supported birth date/year and full identity.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Institutional indexed note inspected; direct page403. Its imprecise1976 title is not adopted."
+        },
+        {
+          "url": "https://hub.jhu.edu/2015/12/29/anthropologist-sidney-mintz-dies-at-age-93/",
+          "title": "Johns Hopkins University Hub staff, “Groundbreaking anthropologist Sidney Mintz dies at age93,” December29,2015.",
+          "locator": "December29,2015 heading and opening death statement; named JHU role",
+          "support": "Primary institutional obituary explicitly records death on December27,2015 at age93.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Full institutional obituary read; death metadata does not extend publications, career or influence timelines."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Exact birth date rests on indexed institutional archive note because direct page403; exact death day is directly stated by JHU obituary. No life-derived interval or last-work date inferred; no reliance on missing death data."
     },
     {
       "label": "Steven Shapin",

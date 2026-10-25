@@ -1,0 +1,124 @@
+{
+  "revision": "1.183",
+  "status": "reviewed_validated_publication_authorized",
+  "authorization": "User explicitly classifies Anderson,Wallerstein,Mintz as historians and requests special treatment for Anderson; earlier independent Astra-review/corrections/push instruction persists.",
+  "counts": {
+    "nodes": 315,
+    "edges": 1506,
+    "sources": 2836,
+    "people": 1415
+  },
+  "standalone_historians": 193,
+  "standalone_theorists": 22,
+  "completed_historian_queue": 92,
+  "new_person_entries": [
+    "benedict_anderson",
+    "immanuel_wallerstein",
+    "sidney_mintz"
+  ],
+  "new_edges": 14,
+  "new_sources": 35,
+  "new_person_dated_facts": 37,
+  "anderson": {
+    "main_work_dated_dissertations": 641,
+    "verified_title_family_union": 685,
+    "author_key_dated_dissertations": 716,
+    "family_share": 0.9567039106145251,
+    "positive_title_family_keys": 16,
+    "work_comparison_counts": [
+      641,
+      16,
+      14
+    ],
+    "author_regions": {
+      "CA": 292,
+      "US": 262,
+      "EUROPE": 129,
+      "OTHER": 33
+    },
+    "title_family_regions": {
+      "CA": 280,
+      "US": 251,
+      "EUROPE": 121,
+      "OTHER": 33
+    },
+    "limits": "Distinct sampled dissertations with title-family bibliography presence. Not whole-book reading, assent or causal influence. Main key and attributed author denominator retain edition and identity noise; held keys are not added. Plots retain separate keys, no aggregate source or citation recount."
+  },
+  "life": {
+    "historians": 193,
+    "living_in_checked_sources": 100,
+    "deceased": 92,
+    "unresolved": [
+      "jennifer_s_h_brown"
+    ]
+  },
+  "reading": "reading-integration/final-report.json",
+  "book_identity_audit": "anderson-book-identity/README.md",
+  "independent_review": "astra-review.json",
+  "preservation": [
+    "All three use existing person IDs; old identity qualifications,1492edges and dated facts survive.",
+    "Original173-row discovery/classification and89-person release remain frozen; the user classification is additive.",
+    "All4053previous reading source records/113profiles/fivefieldpanels/16registryrows retain IDs,index positions,numerics andcontent. Only Ben works list gains two reviewed books.",
+    "New reviewed source UnderThreeFlags reuses label5953;Spectre appends12158.",
+    "Exact2000archive, frozen six-file release and seminar pathways are unchanged.",
+    "Life metadata193people do not alter canonical work/influence dates."
+  ],
+  "validation": {
+    "focused_data": {
+      "passed": 20,
+      "seconds": 3.25
+    },
+    "javascript": {
+      "passed": 61
+    },
+    "browser": {
+      "cases": 61,
+      "full_run_passed": 60,
+      "new_case_initial_failure": "Test expected685 of716; actual copy685 ofthe716. Corrected assertion; no production defect.",
+      "corrected_case_passed": true,
+      "corrected_case_seconds": 2.208
+    },
+    "data_groups": {
+      "passed": 148,
+      "groups": [
+        {
+          "module": "tests.test_canonical_work_gaps",
+          "passed": 8,
+          "seconds": 474.896
+        },
+        {
+          "module": "tests.test_gemini_expansion",
+          "passed": 5,
+          "seconds": 335.914
+        },
+        {
+          "module": "all other modules in workflow data command",
+          "passed": 135,
+          "seconds": 350.062
+        }
+      ],
+      "execution": "Three independent processes; complete workflow module set, no omitted cases."
+    },
+    "clean_checkout": {
+      "status": "pass",
+      "public_assets_byte_identical": 52,
+      "focused_tests_passed": 35,
+      "life_master_byte_identical": true,
+      "ignored_snapshots": 0,
+      "report": "clean-checkout.json"
+    },
+    "log_sha256": {
+      "historian-amendment-data-canonical.log": "9bc41bed07d353175430cd68460dcec723da860176ef86344f7dc6abd6b9a492",
+      "historian-amendment-data-gemini.log": "52ec7aebb09dcd07acfb644e0a7bd9bd701b397060ce61cd299f483d0f469c18",
+      "historian-amendment-data-remaining.log": "2c6e9d14fc864bac5c8a264fe3207ab0f8b3a25803ccc8374646f47b79328a80",
+      "historian-amendment-js.log": "5ddc6a35b00e22a20f18e611b3e5f2571a6fc776053d5d2d12abd17add048955",
+      "historian-amendment-browser.log": "ec6b2bed2dea6de0b1699b8afd71e346381491a1975df8b333f534ccfdabc386",
+      "historian-amendment-person-browser.log": "ce87aec18a9ba4c2527199bfb9acf73124aab14ba3303319455e878145766c1b"
+    }
+  },
+  "sha256": {
+    "historiography-1920-2000.json": "24997c8afa7f17c646e881292646093926080aa695d3c1f06b630cafe3529d33",
+    "data/historian-life-review.json": "8f1e88e2107a4112407387c8a1e6c395dbfbdbc4516e93432847b7e3fff05a9c",
+    "docs/data/graph-2000.json": "94193637b1553825599229640a6af77e2f53168b64175613b8df0b501fafce1c"
+  }
+}

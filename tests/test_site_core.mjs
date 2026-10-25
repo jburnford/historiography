@@ -80,6 +80,33 @@ test('field reading escapes editorial text and retains source metadata unchanged
   assert.ok(html.includes('&lt;script&gt;unsafe'));
   assert.ok(html.includes('&lt;b&gt;attribution'));
 });
+test('personal reading comparisons keep book and author counts distinct on profile and entry routes', () => {
+  const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));
+  const index=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/index.json',import.meta.url)));
+  const pid='william_cronon', person=links.people[pid];
+  const selected=index.sources.find(s=>s.key===person.works[0]);
+  const shard=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/'+selected.asset,import.meta.url)));
+  const work=shard.sources[selected.id];
+  person.comparison={intro:'<script>unsafe</script>',question:'One book or several?',default_view:'works',
+    authors:[{key:person.source,person_id:pid,label:person.label,n:person.n,n_region:person.n_region,series:person.series}],
+    sources:[{key:selected.key,person_id:pid,label:selected.short,n:work.n,n_region:work.n_region,series:work.series}]};
+  const before=JSON.stringify(links);
+  for(const type of ['person','entry']) {
+    const html=readingContextHtml(links,type,pid,320);
+    assert.ok(html.includes('reading-person-context'));
+    assert.ok(html.includes('One author, distinct works'));
+    assert.ok(html.includes('selected works belong to this author'));
+    assert.ok(html.includes('&lt;script&gt;unsafe'));
+    assert.ok(!html.includes('<script>'));
+    assert.ok(!html.includes('separate literature of Economics PhDs'));
+  }
+  const author=comparisonSelection(links,person.comparison,person.source,320);
+  const book=comparisonSelection(links,person.comparison,selected.key,320);
+  assert.ok(author.includes('works attributed to this author as first author'));
+  assert.ok(book.includes('this work'));
+  assert.notEqual(person.n,work.n);
+  assert.equal(JSON.stringify(links),before);
+});
 test('reviewed low-count details distinguish unavailable analyses from zero companions', () => {
   const data=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/index.json',import.meta.url)));
   const links=JSON.parse(readFileSync(new URL('../data/dissertation-layer/site/links.json',import.meta.url)));

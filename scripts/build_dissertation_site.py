@@ -129,6 +129,25 @@ def validate_links(decisions, graph, source_keys, work_authors=None):
         for row in works:
             if row['work'] not in decisions['people'][row['person_id']]['works']:
                 raise ValueError('Comparison work is outside the reviewed author selection: ' + row['work'])
+    for pid, comparison in decisions.get('person_comparisons', {}).items():
+        if pid not in decisions['people'] or not comparison.get('intro') or not comparison.get('question'):
+            raise ValueError('Person comparison needs a reviewed profile and reading question: ' + pid)
+        works = comparison.get('works', [])
+        if not works or len({row['work'] for row in works}) != len(works):
+            raise ValueError('Person comparison needs distinct selected works: ' + pid)
+        for row in works:
+            if row['person_id'] != pid or row['work'] not in decisions['people'][pid]['works']:
+                raise ValueError('Person comparison work is outside this author selection: ' + row['work'])
+
+
+def comparison_payload(comparison, pids, decisions, people, by_key, labels):
+    return {**{k: v for k, v in comparison.items() if k != 'works'},
+        'authors': [{'key': decisions['people'][pid]['source'], 'person_id': pid,
+            'label': people[pid]['label'],
+            **{k: by_key[decisions['people'][pid]['source']][k] for k in ('n', 'n_region', 'series')}} for pid in pids],
+        'sources': [{'key': row['work'], 'person_id': row['person_id'],
+            'label': labels[by_key[row['work']]['id']]['short'],
+            **{k: by_key[row['work']][k] for k in ('n', 'n_region', 'series')}} for row in comparison['works']]}
 
 
 def main():
@@ -231,7 +250,7 @@ def main():
             'examples': [row for reg in REGIONS for row in samples[sid][reg].values()]}
         refs.update(shard['sources'][str(sid)]['works'])
         shard['labels'].update({str(i): labels[i] for i in sorted(refs)})
-    public_links = {**{k: v for k, v in decisions.items() if k != 'entry_comparisons'},
+    public_links = {**{k: v for k, v in decisions.items() if k not in ('entry_comparisons', 'person_comparisons')},
         'snapshot': '2026-10-23', 'periods': data['periods'], 'regions': data['regions'],
         'denominators': denominators,
         'coverage': {'in_analysis': total, 'with_year': len(theses), 'missing_year': total - len(theses)},
@@ -239,17 +258,13 @@ def main():
         'people': {pid: {**row, 'label': people[pid]['label'],
             'n': by_key[row['source']]['n'], 'series': by_key[row['source']]['series'],
             'n_region': by_key[row['source']]['n_region'],
-            'work_labels': {key: labels[by_key[key]['id']]['short'] for key in row['works']}}
+            'work_labels': {key: labels[by_key[key]['id']]['short'] for key in row['works']},
+            **({'comparison': comparison_payload(decisions['person_comparisons'][pid], [pid],
+                decisions, people, by_key, labels)} if pid in decisions.get('person_comparisons', {}) else {})}
         for pid, row in decisions['people'].items()},
         'entries': {nid: {'label': nodes[nid]['label'], 'people': pids,
-                         **({'comparison': {**{k: v for k, v in decisions['entry_comparisons'][nid].items() if k != 'works'},
-                            'authors': [{'key': decisions['people'][pid]['source'], 'person_id': pid,
-                                'label': people[pid]['label'],
-                                **{k: by_key[decisions['people'][pid]['source']][k] for k in ('n', 'n_region', 'series')}} for pid in pids],
-                            'sources': [{'key': row['work'], 'person_id': row['person_id'],
-                                'label': labels[by_key[row['work']]['id']]['short'],
-                                **{k: by_key[row['work']][k] for k in ('n', 'n_region', 'series')}}
-                                for row in decisions['entry_comparisons'][nid]['works']]}}
+                         **({'comparison': comparison_payload(decisions['entry_comparisons'][nid],
+                            pids, decisions, people, by_key, labels)}
                             if nid in decisions.get('entry_comparisons', {}) else {})}
                     for nid, pids in decisions['entries'].items()}}
     payload = {k: data[k] for k in ('periods', 'regions', 'denominators', 'families', 'baseline')}

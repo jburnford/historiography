@@ -34,6 +34,9 @@ def main():
     packets = ROOT / 'data/extension-2026'
     paths = sorted(packets.glob('historian-canon-lane*-2026-10-25/*/life-status.json'))
     paths += sorted((packets / 'dissertation-sarah-carter-2026-10-25').rglob('life-status.json'))
+    for name in ('historian-anderson-2026-10-25', 'historian-wallerstein-2026-10-25',
+                 'historian-mintz-2026-10-25'):
+        paths += sorted((packets / name).rglob('life-status.json'))
     for path in paths:
         source = json.loads(path.read_text())
         # New packet authors use the independent review's per-person schema.

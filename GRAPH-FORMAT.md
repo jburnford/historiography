@@ -1,6 +1,40 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.180 (2026-10-25): dissertation canon and life review
+## Current revision 1.183 (2026-10-25): three historian biographies
+
+**315 entries, 1,506 relationships, 2,836 sources and 1,415 indexed people.**
+The 215 person entries comprise 193 historians and 22 theorists; 100 group entries
+remain separate. Schema 1.6 and all stable IDs are retained.
+
+Revisions 1.181–1.183 promote the existing Benedict Anderson, Immanuel Wallerstein
+and Sidney Mintz identities to individual historian entries. They add 14 scoped
+relationships, 35 sources and 37 selected dated facts. Original publications,
+revisions, translations, retitled editions, joint authorship and named critical
+reception remain distinguished. Existing collective arrows, roster prose, field
+chronologies, source qualifications and the exact-2000 archive are preserved.
+The original 89-person historian release remains frozen; the additive
+[classification amendment](data/field-research/historian-classification-amendment-2026-10-25/README.md)
+brings the completed qualifying queue to 92 without rewriting its earlier reports.
+
+The separate life review covers all 193 historian biographies: 100 living,
+92 deceased and one unresolved (Jennifer S. H. Brown), checked on 2026-10-25.
+Life dates and precision remain reference metadata rather than work dates or
+continuous career/influence intervals. No absence of death information proves life.
+
+The reading amendment is being integrated with 116 linked profiles, five unchanged
+field panels, one new personal Anderson comparison and 4,055 sources (4,037 original
+plus 18 reviewed exceptions). The personal comparison uses the existing profile
+selection and preserves exact keys, old numerical series, source IDs and denominators.
+Its chart retains the individual 641-main-work / 716-author-key comparison. A
+separate title/translation audit deduplicates 16 confirmed book-family keys to
+685/716 (95.7%), preserving the frozen denominator and attribution caveat.
+Bibliography presence establishes neither whole-book reading nor influence. See the [amendment reading record](data/field-research/historian-classification-amendment-2026-10-25/reading-integration/verification.json).
+
+All three additions and the comparison pass Astra’s substantive/UI review. Final
+data, JavaScript, browser and clean-checkout checks pass; publication is authorized. The historical sections
+below retain their counts and qualifications at the stated revisions.
+
+## Historical revision 1.180 (2026-10-25): dissertation canon and life review
 
 **312 entries, 1,492 relationships, 2,801 sources and 1,415 indexed people.**
 The 212 individual entries comprise 190 historians and 22 theorists; the 100 group

@@ -1473,7 +1473,7 @@ function onResize() {
     const rows = document.querySelector('.landing-rows');
     if (rows && Math.abs(rows.clientWidth - landingWidth) > 4) drawLanding();
     if (state.tab === 'dissertations') resizeReading($('dissertation-reading'));
-    document.querySelectorAll('[data-reading-entry]').forEach(resizeReading);
+    document.querySelectorAll('[data-reading-entry], [data-reading-person]').forEach(resizeReading);
     fitConnections();
   }, 150);
 }

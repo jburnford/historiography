@@ -1,0 +1,98 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "status": "pass_substantive_and_ui_review",
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "CA1",
+      "severity": "low",
+      "issue": "Mintz and Wallerstein public descriptions exposed the internal user-classification instruction.",
+      "resolution": "Public descriptions now explain their historical work across disciplinary boundaries; decision history remains in private research records.",
+      "verified": true
+    },
+    {
+      "id": "CA2",
+      "severity": "low",
+      "issue": "Mintz’s 1986 Penguin manifestation and 1992 renamed reissue appeared on the new-contribution track.",
+      "resolution": "Both now use edition events on the editions track; original publication years and joint authorship remain separate.",
+      "verified": true
+    }
+  ],
+  "checks": [
+    "Mintz: independently read author Sugar and Anthropology and History essays; Baud pp. 260 and 263 substantiate the scoped plantation and joint cultural-formation claims. The unread monographs and named-reader mediation remain explicit.",
+    "Mintz: author bibliography, Thomas introduction and Baud corroborate original work dates; Price retains joint authorship and the 1976 original / 1992 renamed reissue distinction. Institutional obituary directly confirms death on 27 December 2015.",
+    "Wallerstein: independently inspected retained 1974 p. 399 OCR and 2013 interview pp. 206–207, preserving disagreement over capitalism and the distinction between Williams’s framing and Wallerstein’s answers.",
+    "Wallerstein: direct Brenner critique is supported by the earlier accepted evidence-brenner.md section 5; it preserves transcription-only and no-new-full-reading limits and leaves collective arrows intact.",
+    "Wallerstein: Institute bibliography distinguishes original volumes from 2011 revised editions. YaleGlobal independently confirms 31 August 2019 death; the internally inconsistent Binghamton witness remains explicitly qualified.",
+    "Both packets reuse existing identities through node_id additions only; no identity note replacement or existing-edge revision proposed.",
+    "Anderson: all six proposed relationships and seventeen dated facts inspected. Independent checks of the 1991 preface, publisher print excerpt, Foo interview and Chatterjee pp. 4–7 support the bounded argument claims. The group-source critique explicitly names Chatterjee and disclaims a field consensus.",
+    "Anderson: original 1983, revised 1991 and afterword-bearing 2006 editions remain distinct. Cornell verifies 1966 circulation versus 1971 publication; coauthor McVey and Bunnell’s assistance retain separate credits. CiNii verifies 2009 Japanese and 2016 first English memoir editions; publisher confirms 2013 retitling of Under Three Flags. Cornell confirms death on 13 December 2015.",
+    "Anderson: Cribb’s named counterargument is restricted to the Indonesian New Order thesis. Unfinished biography testimony is not converted into a published book. New reading source preserves the old opening-only source record.",
+    "Candidate Anderson reading comparison defaults to works and explicitly distinguishes 641 main-work-key dissertations from 716 attributed first-author-key dissertations, retaining contamination, overlap and edition caveats. Generic exporter requires comparison works to belong to the same selected profile.",
+    "Accepted 1.181–1.183 packet and baseline hashes match. All old edges and chronology events are unchanged; all earlier graph IDs survive; old nonempty identity notes remain prefixes and old source-reading notes are preserved within explicit addenda.",
+    "Canonical 1.183 has 315 nodes, 1,506 edges, 2,836 sources and 1,415 people. Life review has 193 historians: 100 living, 92 deceased, one unresolved; the three new biographies add sourced deaths, not inferred living status.",
+    "Anderson book audit independently executed with its output writer replaced by an in-memory collector: reproduced both output objects exactly, including all six frozen-release input hashes. Main key 641; confirmed title-family union 685 of 716 (95.670391%); additional union members 44; regional unions CA 280, US 251, Europe 121, Other 33.",
+    "Inspected all 16 included raw title rows and all 57 classification rationales. Complete-title article-labelled records are included as title-family bibliography presence, not proof of whole-book use. Subtitle fragments and uncertain identity rows remain held; Perry Anderson and Archer contaminations remain in the provisional denominator.",
+    "Generic personal comparison UI distinguishes author and work modes, keeps a common vertical scale within each mode, labels controls, escapes editorial content, supports both profile and entry routes and retains overlap/attribution qualifications.",
+    "Independent read-only execution of final reading verifier passes: all 4,053 old source records, 113 old profile selections, five old field panels and 16 old exception IDs preserved; all four invalid personal comparison cases rejected. Current export has 116 profiles, 4,055 sources and 18 exceptions.",
+    "Published graph revision is 1.183 and all 193 life statuses match the reviewed master. Every public dissertation JSON file and the personal comparison module match their source exports byte-for-byte. The archived graph hash remains unchanged.",
+    "Independent targeted personal-comparison JS test passed; inspected browser regression covering author/work selection, regional counts, shared profile/entry state, phone overflow and reading-detail return navigation."
+  ],
+  "verification_limits": [
+    "No complete Mintz or Wallerstein monograph was independently read.",
+    "The Wallerstein interview was inspected from the preparer’s local publisher PDF text after the web tool failed to fetch the same publisher endpoint.",
+    "The Smithsonian Mintz/Price catalogue endpoint failed independently; the preparer’s indexed institutional witness and the separately checked author bibliography/academic review retain the edition distinction.",
+    "Anderson primary pages were selectively checked, including local scan OCR; no complete monograph or original-versus-revised full collation was performed.",
+    "The title-family audit confirms normalized title/author identity at the release-record level. It does not individually inspect every cited dissertation string or establish full-book reading; article-labelled variants may represent excerpts or components."
+  ],
+  "packets": {
+    "mintz": {
+      "revision": "1.183",
+      "sha256": "097e62d7bca86c95281a1ff08edc869abcd91723103b0efceb1ab0edb6d56093",
+      "status": "prepared substantive pass"
+    },
+    "wallerstein": {
+      "revision": "1.182",
+      "sha256": "7fecb1c4926c2ce529b21598e47f471a9ba80cf1b75d95c9dd2abb4a1ef70b7d",
+      "status": "prepared substantive pass"
+    },
+    "anderson": {
+      "revision": "1.181",
+      "sha256": "99a1100658a65b9e79ded7b253168a8c0aa42f6e2de6349d4fc220b33fd17a88",
+      "status": "prepared substantive pass"
+    }
+  },
+  "pending": [
+    "Root completion of remaining full-data and clean-checkout release checks. No substantive or UI correction remains."
+  ],
+  "canonical_revision": "1.183",
+  "canonical_sha256": "24997c8afa7f17c646e881292646093926080aa695d3c1f06b630cafe3529d33",
+  "verdict": "Final substantive and UI review passes with zero blocking findings. Remaining full-data and clean-checkout checks are the root release gates.",
+  "counts": {
+    "nodes": 315,
+    "edges": 1506,
+    "sources": 2836,
+    "people": 1415,
+    "historian_life_records": 193,
+    "living": 100,
+    "deceased": 92,
+    "unresolved": 1,
+    "reading_profiles": 116,
+    "reading_sources": 4055,
+    "reviewed_source_exceptions": 18,
+    "reading_field_panels": 5,
+    "anderson_main_key": 641,
+    "anderson_confirmed_title_family_union": 685,
+    "anderson_provisional_first_author_key": 716
+  },
+  "validation_handoff": {
+    "reported_by": "Root implementation agent; results supplied after independent source/export verification.",
+    "browser": "All 61 cases covered: 60 passed in the full run. The new personal comparison case initially failed only because its expected copy omitted “the”; after correcting that test literal, the complete profile/entry/phone/author-work/regions/round-trip case passed in 2.208 seconds. No remaining browser failure reported.",
+    "javascript": "61 checks passed.",
+    "focused_data": "20 tests passed in 3.25 seconds.",
+    "full_data": "Gemini group: 5 passed in 335.914 seconds. Canonical 8 and remaining 135 still running at handoff.",
+    "site_build": "52 assets built successfully.",
+    "clean_checkout": "Active at handoff; final result belongs to root release validation."
+  }
+}
