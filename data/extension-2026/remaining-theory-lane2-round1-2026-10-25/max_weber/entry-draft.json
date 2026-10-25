@@ -1,0 +1,163 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "max_weber",
+    "label": "Max Weber",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1904: Objectivity in Social Science and Social Policy · 1904: The Protestant Ethic: first part of the 1904–05 publication · 1905: The Protestant Ethic: completion of the 1904–05 publication · 1920: The Protestant Ethic: revised version",
+    "description": "A social theorist and historical political economist whose interpretive sociology combines meaningful action with causal explanation. His methodological writings distinguish value-relevant selection from the evidential work of explaining particular historical configurations.",
+    "representative_figures_and_works": "Objectivity in Social Science and Social Policy (1904); The Protestant Ethic: first part of the 1904–05 publication (1904); The Protestant Ethic: completion of the 1904–05 publication (1905); The Protestant Ethic: revised version (1920).",
+    "source_ids": [
+      "weber_method_primary",
+      "weber",
+      "tl185_max_weber_revision",
+      "tl185_max_weber_life"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl185_max_weber_w1",
+          "label": "Objectivity in Social Science and Social Policy",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1904,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:weber"
+          ],
+          "support": "Original essay year; later English collection/translation dates are separate."
+        },
+        {
+          "id": "tl185_max_weber_w2",
+          "label": "The Protestant Ethic: first part of the 1904–05 publication",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1904,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_max_weber_revision"
+          ],
+          "support": "Publication metadata only; body unread."
+        },
+        {
+          "id": "tl185_max_weber_w3",
+          "label": "The Protestant Ethic: completion of the 1904–05 publication",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1905,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_max_weber_revision"
+          ],
+          "support": "Publication metadata only; body unread."
+        },
+        {
+          "id": "tl185_max_weber_w4",
+          "label": "The Protestant Ethic: revised version",
+          "kind": "edition_publication",
+          "track": "editions",
+          "date": {
+            "year": 1920,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_max_weber_revision"
+          ],
+          "support": "Revised version, not the original 1904–05 essay. Versions uncollated."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.185/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "max_weber",
+    "node_id": "max_weber"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl185_max_weber_e1",
+      "source": "max_weber",
+      "target": "weber",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Joins interpretive understanding of meaningful social action with a requirement for causal adequacy.",
+      "evidence_note": "Own methodological excerpt, Definition and §7 read; intelligibility alone does not establish a causal account. Excerpt-based contribution, without adopting historical racial/animal asides.",
+      "source_ids": [
+        "weber_method_primary"
+      ]
+    },
+    {
+      "proposal_id": "tl185_max_weber_e2",
+      "source": "max_weber",
+      "target": "historicalsociology",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Explains how value-relevant selection identifies a historical problem while causal explanation still requires evidence.",
+      "evidence_note": "Own Objectivity excerpt’s cultural-significance/value-relevance paragraphs read; the theoretical resource concerns selection and explanation, not an assertion that all comparative sociology follows Weber.",
+      "source_ids": [
+        "weber_method_primary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl185_max_weber_revision",
+      "title": "Springer critical reissue description: Weber’s Protestant Ethic, 1904–05 original and 1920 revision",
+      "url": "https://link.springer.com/book/10.1007/978-3-658-07432-6",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher title/description explicitly distinguishes first version 1904–05 and second version 1920. Used for edition dates only; critical apparatus and versions uncollated."
+      }
+    },
+    {
+      "id": "tl185_max_weber_life",
+      "title": "University of Erfurt, Max Weber: Kurzbiographie",
+      "url": "https://www.uni-erfurt.de/max-weber-kolleg/kolleg/allgemeine-informationen/max-weber",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional biography paragraphs checked: born 21 April 1864, died 14 June 1920. Broader evaluative account is not imported."
+      }
+    }
+  ],
+  "source_addenda": {
+    "weber_method_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "New limited rereading: Definition of Sociology, Methodological Foundations §§1–2 and §7, plus Objectivity paragraphs on cultural significance/value-relevance. Meaningful interpretation must also meet causal evidence; selection is not a licence for arbitrary factual claims. Remaining excerpts not newly reread; prior broader reading and original-German limits preserved."
+    },
+    "weber": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Bibliography and life/work paragraphs rechecked for 1904 Objectivity and the original 1904–05 Protestant Ethic; no new complete-body or all-section reading. Earlier named-reader scope remains."
+    }
+  }
+}

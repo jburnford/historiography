@@ -1,0 +1,35 @@
+{
+  "checked_on": "2026-10-25",
+  "result": "PASS",
+  "cases": 21,
+  "eligible_historians": 9,
+  "primary_source_records": 48,
+  "work_records_preserved": 1072,
+  "decisions": {
+    "eligible_historian_frozen_key_screen": 8,
+    "theory_and_identity_hold": 2,
+    "below_threshold_separated_identities": 1,
+    "below_canadian_threshold": 6,
+    "eligible_historian_clean_subset": 1,
+    "identity_threshold_hold": 1,
+    "below_threshold_after_identity_separation": 2
+  },
+  "checks": [
+    "Five frozen CSV.gz hashes match release SHA256SUMS before/after reproduction",
+    "21 exact frozen dated first-author P unions reproduced",
+    "6794 dated dissertation sample",
+    "Every original work row preserved exactly against captured concordance",
+    "All source references resolve",
+    "Every case has explicit identity pattern",
+    "All9eligible have resolved/proposed distinct person IDs",
+    "Hahn103cleanlowerbound;Alice100upperbound;Paul98upperbound;Trigger64Canadianvs21global unions"
+  ],
+  "artifact_sha256": {
+    "review.json": "060b4963754e509ecee4333b21dc5bf02e0acd3c5799adc314a7573ce3a73745",
+    "sources.json": "5202ad30002b2d3aa1034ed8f1b1f49bc588a26c3a86a3fc8b552c2be1d0c546",
+    "eligible-historian-queue.json": "aa4bc3e0460974ce88836d900356a40014ca304134f7663c63512c46f6ec21c6",
+    "count-witnesses.json": "aa752f09cdee60bdc2b0733be08fd7159a10892da4bd87b2d5fc36357da21252",
+    "reproduce.py": "d595e6ffffe4e008f2ae71e0decbed1dda286cfaa8d4fb5dcd7bba962f059fb8",
+    "README.md": "79909c1bb5534fe4461e85f9761d508ceebf9c9d21a974629a06e4a6adc8147e"
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "sigmund_freud",
+    "label": "Sigmund Freud",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1905: Three Essays on the Theory of Sexuality · 1910: The Origin and Development of Psychoanalysis (Harry W. Chase translation of the 1909 Clark lectures) · 1921: Massenpsychologie und Ich-Analyse (German original) · 1922: Group Psychology and the Analysis of the Ego (James Strachey English translation)",
+    "description": "The founder of psychoanalysis, whose accounts of unconscious processes, identification and group bonds became resources for historical interpretation. Historical use requires evidence about social settings as well as psychological hypotheses; Peter Gay explicitly warns against reducing historical explanation to psychoanalysis.",
+    "representative_figures_and_works": "Three Essays on the Theory of Sexuality (1905); The Origin and Development of Psychoanalysis (Harry W. Chase translation of the 1909 Clark lectures) (1910); Massenpsychologie und Ich-Analyse (German original) (1921); Group Psychology and the Analysis of the Ego (James Strachey English translation) (1922).",
+    "source_ids": [
+      "freud_group_primary",
+      "freud_clark_primary",
+      "tl187_sigmund_freud_gay",
+      "tl187_sigmund_freud_life",
+      "tl187_sigmund_freud_death_variant"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl187_sigmund_freud_w1",
+          "label": "Three Essays on the Theory of Sexuality",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1905,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl187_sigmund_freud_life"
+          ],
+          "support": "Publication metadata only; complete work unread."
+        },
+        {
+          "id": "tl187_sigmund_freud_w2",
+          "label": "The Origin and Development of Psychoanalysis (Harry W. Chase translation of the 1909 Clark lectures)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1910,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:freud_clark_primary"
+          ],
+          "support": "1910 publication is distinct from lecture delivery in September 1909; prior complete-five-lecture reading retained without claiming a new rereading."
+        },
+        {
+          "id": "tl187_sigmund_freud_w3",
+          "label": "Massenpsychologie und Ich-Analyse (German original)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1921,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:freud_group_primary"
+          ],
+          "support": "Original German date from consulted English witness; German text uncollated."
+        },
+        {
+          "id": "tl187_sigmund_freud_w4",
+          "label": "Group Psychology and the Analysis of the Ego (James Strachey English translation)",
+          "kind": "translation_publication",
+          "track": "editions",
+          "date": {
+            "year": 1922,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:freud_group_primary"
+          ],
+          "support": "English translation date and translator explicit; distinct from 1921 original."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.187/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "sigmund_freud",
+    "node_id": "sigmund_freud"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl187_sigmund_freud_e1",
+      "source": "sigmund_freud",
+      "target": "freud",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Makes individual psychology relational by including others as models, helpers, opponents and objects.",
+      "evidence_note": "Own Group Psychology chapter I read in full. Freud questions a sharp individual/group divide and an irreducible primitive group instinct; the explanation is attributed theory, not validated clinical evidence.",
+      "source_ids": [
+        "freud_group_primary"
+      ]
+    },
+    {
+      "proposal_id": "tl187_sigmund_freud_e2",
+      "source": "sigmund_freud",
+      "target": "psychohistory",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Peter Gay treats psychoanalysis as an auxiliary resource for history while requiring evidence about the external social world.",
+      "evidence_note": "Named substantive reader Gay’s own interview answer read. This qualified reception claim does not equate psychoanalysis with an exhaustive historical explanation or endorse every Freudian hypothesis.",
+      "source_ids": [
+        "tl187_sigmund_freud_gay"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl187_sigmund_freud_gay",
+      "title": "Peter Gay interview, The Psychoanalytically Informed Historian, Clio’s Psyche",
+      "url": "https://cliospsyche.org/interviews/the-psychoanalytically-informed-historian-peter-gay",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete question/answer defining psychohistory read: Gay prefers a historian oriented toward psychoanalysis and treats it as an auxiliary discipline, rejecting reductionism and insisting on the external world and evidence. Other interview answers not fully read. Direct requests denied but browser text accessible. Gay’s evaluative remarks about Freud as historian are his judgments, not atlas facts."
+      }
+    },
+    {
+      "id": "tl187_sigmund_freud_life",
+      "title": "Freud Museum London, Who Was Sigmund Freud?",
+      "url": "https://www.freud.org.uk/schools/resources/who-was-sigmund-freud/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Museum biographical passage checked: born 6 May 1856, died 23 September 1939; named work list dates Three Essays to 1905. Other work-list dates not adopted without edition checks. No full biography or monograph reading."
+      }
+    },
+    {
+      "id": "tl187_sigmund_freud_death_variant",
+      "title": "British Psychoanalytical Society, Sigmund Freud dies",
+      "url": "https://psychoanalysis.org.uk/who-we-are/100-years-of-history/sigmund-freud-dies",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional timeline states 24 September 1939, conflicting by one day with the Freud Museum’s 23 September. Death year 1939 is secure; this packet conservatively records year precision and does not silently resolve the disagreement."
+      }
+    }
+  ],
+  "source_addenda": {
+    "freud_group_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "New rereading: title, translator’s note and complete chapter I, printed pp. 1–4. German original 1921 and James Strachey English translation 1922 kept distinct; note records author-requested relocation of passages into footnotes. Chapter IV was read in the earlier accepted source review, but not newly reread here; remaining chapters unread. Universal and clinical claims not independently verified."
+    }
+  }
+}

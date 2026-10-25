@@ -4,8 +4,8 @@
   "scope": {
     "layer": "historians",
     "entry_kind": "person",
-    "graph_revision": "1.183",
-    "people": 193
+    "graph_revision": "1.191",
+    "people": 203
   },
   "source_report_sha256": {
     "data/field-research/historian-life-review-2026-10-25/results-1.json": "dcc32ecdab8c87ee06f014e8f2aa0f95560a005c5e0ebf7da824736f9e548f79",
@@ -102,6 +102,16 @@
     "data/extension-2026/historian-anderson-2026-10-25/benedict_anderson/life-status.json": "d567860baeb42f45f93da86786cc743307a58db5d77df17e0e3c938c52bf7ac0",
     "data/extension-2026/historian-wallerstein-2026-10-25/immanuel_wallerstein/life-status.json": "bccc6156ca15dfe4c72f5690b68cbdc704142a4b602de3add77c90b31c019530",
     "data/extension-2026/historian-mintz-2026-10-25/sidney_mintz/life-status.json": "a29f780a4f48c80f5aee2b0e3f2b66f3daaaf1d6496785f5d877c24279789904",
+    "data/extension-2026/remaining-historians-2026-10-25/alessandro_portelli/life-status.json": "64eaf1c7d58efd320bb0e34cefb44c1d222269676f5e9fb87ba83f0f6b835cb2",
+    "data/extension-2026/remaining-historians-2026-10-25/alexis_de_tocqueville/life-status.json": "0485ac9b1af456b27ed7c03b1ddd0aada5a06fbf84aca6cb47f927d98ce04765",
+    "data/extension-2026/remaining-historians-2026-10-25/charles_tilly/life-status.json": "86bef786bc63a905ff1b2a634d3353455396d924b8b9b6cf443f37b94a49c228",
+    "data/extension-2026/remaining-historians-2026-10-25/jack_goody/life-status.json": "0c29bc69b96d746dd5843e6e1d0b3a6582187703f4a5d7eba9739d9fe8ecc507",
+    "data/extension-2026/remaining-historians-2026-10-25/michel_de_certeau/life-status.json": "de0d63ca7e07fe057fd5c9d7d42c9481550d5a6e941414f888e00252bbb047cc",
+    "data/extension-2026/remaining-historians-2026-10-25/partha_chatterjee/life-status.json": "12b2fff5c36f9310f3472fcccef1734ea136a51818553393b0b45aeefa3e1b08",
+    "data/extension-2026/remaining-historians-2026-10-25/steven_hahn/life-status.json": "0ee9a3371d883100d3e5f1743768934416d88cfc9d15c0b9b8b432aba061a5d6",
+    "data/extension-2026/remaining-historians-2026-10-25/timothy_mitchell/life-status.json": "2a3a450af18b1c3020fc5d232348238968b969f2e8283e47b7e21dac8823d2c4",
+    "data/extension-2026/remaining-historians-2026-10-25/tzvetan_todorov/life-status.json": "74b8e2b3a5e63c22ee08108ca3d0d349fa8fd7860ca61e444777eed1e19130f1",
+    "data/extension-2026/remaining-identity-additions-2026-10-25/peter_brown/life-status.json": "4796d3aba37bb7eaa06e72fc4550f03f87e56b20610c409e75957d744b755723",
     "data/field-research/historian-life-review-2026-10-25/follow-up-decisions.json": "99a7ae77b037f597ce4c5aaee40009fea8bcfd901de1d3a74eaea5fa3f86b3fb"
   },
   "method": "Independent institutional/authority/family-obituary review of existing biographies; primary identity and life evidence in the new biography packets. Missing death is not a living-status decision. Dates are reference metadata and do not imply work, career or influence intervals.",
@@ -210,6 +220,50 @@
       ],
       "confidence": "moderate",
       "limits": "Positive stated institutional/author evidence supports living status with recency limits; no absence-of-death inference."
+    },
+    {
+      "person_id": "alessandro_portelli",
+      "label": "Alessandro Portelli",
+      "status": "living",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Reuse alessandro_portelli. Columbia and original interview match the oral historian/literature scholar. Frozen key’s added initial y is retained and is not an authority identifier.",
+      "sources": [
+        {
+          "url": "https://agone.org/rencontres/lhistoire-orale-entre-recits-imaginaires-et-dialogue-rencontre-avec-alessandro-portelli/",
+          "title": "Editions Agone: rencontre avec Alessandro Portelli, Humathèque/Campus Condorcet, 2 February 2026.",
+          "locator": "Dated event announcement, 2 February 2026, and named participant paragraph",
+          "support": "Positive evidence of scheduled author participation, matched to the Columbia/Sapienza oral historian; attendance is unconfirmed.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the publisher announcement inviting Portelli to discuss workers’ cultures and social struggles with Archambault, Henry and Vigna on 2 February 2026. This is positive evidence of scheduled author participation; attendance is unconfirmed."
+        }
+      ],
+      "confidence": "positive_recent_evidence_with_timing_limit",
+      "limits": "The official publisher announcement documents scheduled participation in a past event. Attendance is unconfirmed. The positive witness is dated 2026; status is not inferred from missing death data. Life metadata creates no work, career or influence interval."
+    },
+    {
+      "person_id": "alexis_de_tocqueville",
+      "label": "Alexis de Tocqueville",
+      "status": "deceased",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Alexis de Tocqueville is identified by his historical works and institutional biography. His political thought remains explicit, and Gustave de Beaumont retains joint credit for the penitentiary study. No external QID is assigned.",
+      "sources": [
+        {
+          "url": "https://www.academie-francaise.fr/les-immortels/alexis-de-tocqueville",
+          "title": "Académie française, Alexis de Tocqueville, biography.",
+          "locator": "Institutional biography birth and death statements",
+          "support": "Explicit birth on 29 July 1805 and death on 16 April 1859.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the biography: birth on 29 July 1805 and death on 16 April 1859. Used for life metadata only. Unverified titles and dates in its works list are not adopted; publication dates use BnF and the primary title page."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Exact dates follow the Académie biography. Unverified items in its works list and a conflicting date in an older parliamentary biographical dictionary are not adopted. Life metadata creates no work, career or influence interval.",
+      "birth_year": 1805,
+      "birth_precision": "day",
+      "death_year": 1859,
+      "death_precision": "day",
+      "birth_date": "1805-07-29",
+      "death_date": "1859-04-16"
     },
     {
       "label": "Alfred W. Crosby",
@@ -859,6 +913,30 @@
       },
       "confidence": "moderate_to_high",
       "limits": "Status is supported by positive recent institutional/author evidence. This is a dated check, not proof against an unreported death after that evidence."
+    },
+    {
+      "person_id": "charles_tilly",
+      "label": "Charles Tilly",
+      "status": "deceased",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Reuse charles_tilly. Columbia memorial identifies Charles and named historical books. Distinguish existing Louise Tilly; joint works retain coauthors.",
+      "sources": [
+        {
+          "url": "https://www.columbia.edu/cu/polisci/fac/newsarchive07-08/tilly/index.html",
+          "title": "Columbia University, “University Mourns Charles Tilly” (2008).",
+          "locator": "Opening death statement; late biography paragraph",
+          "support": "The institutional obituary states death on 29 April 2008 and birth on 27 May 1929.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the full institutional obituary, dates and selected works. It states birth on May 27, 1929 and death on April 29, 2008. Its inconsistent date for The Contentious French is not adopted; an existing publisher-reviewed source independently grounds that publication year."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Birth retained at year precision; supported death day is institutional. Some external memorials differ on birth day; no reconciliation is asserted here. Life metadata creates no work, career or influence interval.",
+      "birth_year": 1929,
+      "birth_precision": "year",
+      "death_year": 2008,
+      "death_precision": "day",
+      "death_date": "2008-04-29"
     },
     {
       "label": "Cheikh Anta Diop",
@@ -3035,6 +3113,31 @@
       "birth_year": 1919
     },
     {
+      "person_id": "jack_goody",
+      "label": "Jack Goody",
+      "status": "deceased",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Reuse jack_goody. Cambridge author/project match establishes historical family/kinship scholar. Joint literacy work retains Ian Watt credit.",
+      "sources": [
+        {
+          "url": "https://therai.org.uk/archives-and-manuscripts/obituaries/jack-goody/",
+          "title": "Royal Anthropological Institute, Jack Goody obituary.",
+          "locator": "Opening obituary",
+          "support": "Explicit birth 27 July 1919 and death 16 July 2015.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the opening obituary: Sir John Rankine (Jack) Goody was born on 27 July 1919 and died on 16 July 2015. Its biographical context matches the Cambridge scholar."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Exact dates follow the professional scholarly institute obituary. Life metadata creates no work, career or influence interval.",
+      "birth_year": 1919,
+      "birth_precision": "day",
+      "death_year": 2015,
+      "death_precision": "day",
+      "birth_date": "1919-07-27",
+      "death_date": "2015-07-16"
+    },
+    {
       "person_id": "jack_p_greene",
       "label": "Jack P Greene",
       "status": "living",
@@ -4454,6 +4557,29 @@
       "limits": "Dated institutional memorial corroborates precise death date; no career interval inferred."
     },
     {
+      "person_id": "michel_de_certeau",
+      "label": "Michel de Certeau",
+      "status": "deceased",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Reuse michel_de_certeau. Frozen person key certeau|michel d contains work IDs beginning both certeau and de certeau; preserve all IDs. Early-modern mysticism project positively identifies the scholar; no key variants merged.",
+      "sources": [
+        {
+          "url": "https://www.llseti.univ-smb.fr/web/llseti/1080-centenaire-michel-de-certeau.php",
+          "title": "Savoie Mont Blanc University LLSETI, Michel de Certeau centenary.",
+          "locator": "Opening institutional biography",
+          "support": "Explicit birth 1925 and death 1986.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the institutional opening biography: born in Chambéry in 1925, died in Paris in 1986. Used for life years only."
+        }
+      ],
+      "confidence": "high",
+      "limits": "Year precision follows the institutional witness; no fabricated day. Life metadata creates no work, career or influence interval.",
+      "birth_year": 1925,
+      "birth_precision": "year",
+      "death_year": 1986,
+      "death_precision": "year"
+    },
+    {
       "label": "Michel-Rolph Trouillot",
       "person_id": "michel_rolph_trouillot",
       "status": "deceased",
@@ -4670,6 +4796,25 @@
       "birth_year": 1920
     },
     {
+      "person_id": "partha_chatterjee",
+      "label": "Partha Chatterjee",
+      "status": "living",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Reuse partha_chatterjee. Columbia matches full name and named colonial/postcolonial histories; no department-based exclusion.",
+      "sources": [
+        {
+          "url": "https://www.thebookreviewindia.org/populism-and-fascism-whats-the-difference/",
+          "title": "Partha Chatterjee, “Populism and Fascism: What’s the Difference?” The Book Review 50.5(May 2026).",
+          "locator": "May 2026 byline and opening first-person lecture statement",
+          "support": "Positive author testimony to delivering the current memorial lecture; the historical scholar is distinct from the politician and SNU economist namesakes.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the byline, May 2026 issue and first-person opening memorial-lecture statement. This is positive current author and lecture evidence matched to the Columbia scholar. Later political claims are not used for graph relationships."
+        }
+      ],
+      "confidence": "positive_recent_evidence_with_timing_limit",
+      "limits": "Positive 2026 author/lecture evidence establishes status in the checked source, with no claim to day-by-day verification through October 25. Columbia biography matches the historical scholar. Life metadata creates no work, career or influence interval."
+    },
+    {
       "label": "Patrick Joyce",
       "person_id": "patrick_joyce",
       "status": "living",
@@ -4822,6 +4967,36 @@
       "limits": "Exact death day comes from BnF; the later announcement day remains distinct.",
       "birth_year": 1930,
       "death_date": "2022-09-29"
+    },
+    {
+      "person_id": "peter_brown",
+      "label": "Peter Brown",
+      "status": "living",
+      "death_year": null,
+      "death_precision": null,
+      "birth_year": 1935,
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Existing peter_brown profile reused for Peter Robert Lamont Brown, born Dublin 1935, Princeton historian of late antiquity. Specific institutional bibliography and primary interviews establish identity; distinct from Peter Hume Brown and other Peter Brown authors. Earlier revival roster and cultural_form strand, including Stone’s portrait-versus-narrative distinction, are preserved. No QID or raw author-key merge.",
+      "sources": [
+        {
+          "url": "https://www.plough.com/articles/augustines-friendship-for-freedom",
+          "title": "Plough: Augustine’s Friendship for Freedom",
+          "locator": "Byline, final conversation-date note and author identification",
+          "support": "Peter Brown of Princeton directly answers an interview conducted 6 July 2026, published 25 September 2026.",
+          "check_scope": "Positive recent primary participation with separate conversation/publication dates, matched to the Princeton late-antique historian.",
+          "checked_on": "2026-10-25"
+        },
+        {
+          "url": "https://history.princeton.edu/document/6",
+          "title": "Princeton: Peter Brown short CV",
+          "locator": "p. 1 opening and bibliography",
+          "support": "Born Dublin, Ireland, 1935; author of Augustine of Hippo, Cult of Saints and Body and Society.",
+          "check_scope": "Primary institutional birth/identity metadata; the older present-tense CV is not used by itself as living evidence.",
+          "checked_on": "2026-10-25"
+        }
+      ],
+      "confidence": "high",
+      "limits": "Living status supported by the explicitly dated July 2026 primary interview. Institution supplies birth year only; exact birth day not guessed. Distinct from Jennifer S. H. Brown and other Brown life records."
     },
     {
       "person_id": "peter_burke",
@@ -5740,6 +5915,25 @@
       "limits": "Exact birth date rests on indexed institutional archive note because direct page403; exact death day is directly stated by JHU obituary. No life-derived interval or last-work date inferred; no reliance on missing death data."
     },
     {
+      "person_id": "steven_hahn",
+      "label": "Steven Hahn",
+      "status": "living",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Steven Hahn, the NYU/Penn historian, is identified by his US slavery and populism books and the OCLC authority for the author born in 1951. Steven C. Hahn of St Olaf, author of the Creek and Mary Musgrove works, is distinct. The raw key hahn|steven c remains unchanged. No external QID is assigned.",
+      "sources": [
+        {
+          "url": "https://www.bklynlibrary.org/calendar/cbh-talk-country-lords-center-for-brooklyn-20260716-0630pm",
+          "title": "Brooklyn Public Library/Center for Brooklyn History: Kim Phillips-Fein in conversation with Steven Hahn, 16 July 2026.",
+          "locator": "Calendar announcement for 16 July 2026 and participant biography",
+          "support": "Scheduled participation in the 16 July 2026 event, with attendance unconfirmed. NYU affiliation and named works match this identity.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the calendar announcement and participant biography identifying the NYU historian and author of A Nation Under Our Feet, A Nation Without Borders and Illiberal America. It documents scheduled participation on 16 July 2026; attendance is unconfirmed. This is not the St Olaf historian Steven C. Hahn."
+        }
+      ],
+      "confidence": "medium",
+      "limits": "The July 2026 calendar announcement documents scheduled participation; attendance is unconfirmed. The participant biography matches the NYU/Penn historian, distinct from Steven C. Hahn. Living status remains a qualified assessment from positive current evidence, not missing death data. Life metadata creates no work, career or influence interval."
+    },
+    {
       "label": "Steven Shapin",
       "person_id": "steven_shapin",
       "status": "living",
@@ -5862,6 +6056,25 @@
       "limits": "Positive dated author-site event record; video itself not inspected."
     },
     {
+      "person_id": "timothy_mitchell",
+      "label": "Timothy Mitchell",
+      "status": "living",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Timothy Mitchell, Columbia historian and political theorist, is identified by Colonising Egypt, Rule of Experts and Carbon Democracy. Mitchell Dean and Juliet Mitchell are distinct existing identities. His interdisciplinary roles remain explicit. No external QID is assigned.",
+      "sources": [
+        {
+          "url": "https://buellcenter.columbia.edu/",
+          "title": "Columbia Buell Center: Abundance Talks, The Alibi of Capital, 22 October 2026.",
+          "locator": "Announcement 22 October 2026",
+          "support": "Positive institutional listing of an author book talk three days before check.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the dated institutional announcement identifying Columbia’s Timothy Mitchell and his scheduled 22 October 2026 talk with Zeynep Çelik Alexander. This is positive current evidence of scheduled participation; attendance is unconfirmed."
+        }
+      ],
+      "confidence": "positive_recent_evidence_with_timing_limit",
+      "limits": "Evidence is current institutional author participation, not absence of a death record; an event listing does not independently establish delivery or survival after its date. Life metadata creates no work, career or influence interval."
+    },
+    {
       "label": "Tony Judt",
       "person_id": "tony_judt",
       "status": "deceased",
@@ -5882,6 +6095,31 @@
       ],
       "confidence": "high",
       "limits": "Death evidence supports the stated life dates only; no career/work interval inferred."
+    },
+    {
+      "person_id": "tzvetan_todorov",
+      "label": "Tzvetan Todorov",
+      "status": "deceased",
+      "checked_on": "2026-10-25",
+      "identity_rationale": "Tzvetan Todorov is identified by his named historical works and the BnF authority distinguishing the older Cvetan Todorov. Richard Howard’s translation and Anthony Pagden’s foreword retain their separate credits. His interdisciplinary roles remain explicit. No external QID is assigned.",
+      "sources": [
+        {
+          "url": "https://catalogue.bnf.fr/ark:/12148/cb11926748n",
+          "title": "BnF authority cb11926748n, Tzvetan Todorov (1939–2017).",
+          "locator": "Authority birth/death and “do not confuse” fields",
+          "support": "Exact birth 1 March 1939 and death 7 February 2017.",
+          "checked_on": "2026-10-25",
+          "check_scope": "Read the authority fields: birth on 1 March 1939 in Sofia and death on 7 February 2017 in Paris. The record distinguishes Cvetan Todorov (1899–1962)."
+        }
+      ],
+      "confidence": "high",
+      "limits": "National-library authority distinguishes the older Bulgarian namesake. Life metadata creates no work, career or influence interval.",
+      "birth_year": 1939,
+      "birth_precision": "day",
+      "death_year": 2017,
+      "death_precision": "day",
+      "birth_date": "1939-03-01",
+      "death_date": "2017-02-07"
     },
     {
       "label": "W. E. B. Du Bois",

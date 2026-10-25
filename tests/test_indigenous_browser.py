@@ -34,7 +34,7 @@ class IndigenousBrowserTests(unittest.TestCase):
 
     def test_expanded_roster_source_limits_and_collective_attribution(self):
         self.page.goto(URL + '#node=indigenous')
-        expect(self.page.locator('.school-tabs')).to_contain_text('56')  # 1.180: additional sourced historian contexts
+        expect(self.page.locator('.school-tabs')).to_contain_text('57')  # 1.190: Pratt's sourced contact-zone context
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
         expect(self.page.locator('.record-panel')).to_contain_text('cannot identify Indigenous authorship')
         self.page.goto(URL + '#person=edward_ahenakew')
@@ -63,7 +63,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('#edition-label')).to_contain_text(CURRENT)
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
         self.page.goto(URL + '#node=indigenous&section=connections')
-        expect(self.page.locator('.core-people li')).to_have_count(56)  # 1.180: additional sourced historian contexts
+        expect(self.page.locator('.core-people li')).to_have_count(57)  # 1.190: Pratt's sourced contact-zone context
         expect(self.page.locator('.core-people [data-person="olive_patricia_dickason"]')).to_be_visible()
 
     def test_collaborators_are_discoverable_without_extra_individual_entries(self):
@@ -101,7 +101,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         # 1.128 bridges native_newcomer and settler_colonialism into this family.
         expect(self.page.locator('.family-content-summary')).to_contain_text('68 approaches')  # 1.156: three settler-colonial strands
         expect(self.page.locator('.family-approach')).to_have_count(68)  # 1.156
-        expect(self.page.locator('.family-people li[data-person]')).to_have_count(122)  # 1.180: additional sourced historian contexts
+        expect(self.page.locator('.family-people li[data-person]')).to_have_count(123)  # 1.190: Pratt's sourced contact-zone context
         expect(self.page.locator('.family-people [data-person="cole_harris"]')).to_have_count(1)
         case = self.page.locator('[data-approach="indigenous/stolo_community_university"]')
         for name in ('John Lutz', 'Keith Thor Carlson', 'David M. Schaepe'):

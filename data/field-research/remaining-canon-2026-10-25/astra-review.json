@@ -1,0 +1,247 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "status": "pass_all_42_content_and_final_integration",
+  "scope": [
+    "Accepted additions 1.184–1.189: all 42 biographies",
+    "Endpoint repair 1.190",
+    "21-case classification/identity review and additive 174-work identity pass",
+    "Compiled historian and new-theorist life reviews, accepted-life discovery, overlays and build integration",
+    "Reading profiles, stable source identifiers, numerical series and Anderson comparison preservation"
+  ],
+  "blocking_findings": [],
+  "packet_hashes": {
+    "1.184": "44d334ed25b8119e44eb3a4e08069dd04663409864e83a80b44848e4697749d9",
+    "1.185": "a73d014ad9084b38ba9c07bceed4557031347f94c6e02410dbbe46daa8777479",
+    "1.186": "64f19cbc5e19b0c600981fd78ac82710cba5f08ecf2bef447a2abe0e8b34ad16",
+    "1.187": "9883ef436aee5e3348ee6c0cbf5eca31af30b4322a645cc14c162706d63ae554",
+    "1.188": "c2b3b940ff7ae44b13a0e5ae40b283258d317d3fd872b8bd305677d4b8435c22",
+    "1.189": "9966e62eccbf3eb62c48d3388d116f59da5eaf370716d58cf95eb9d90f6d522b",
+    "1.190": "dd58e729f0d47ef26cc2ab279af4514efe0d24c9b3b8c4752b4d66c349f8d39b"
+  },
+  "independent_checks": [
+    "Inspected all sixteen individual descriptions, scopes, selected chronology facts, relationships, reading qualifications and life records. Metadata-only books are distinguished from selected primary passages and named reception.",
+    "Sequential in-memory transforms from published commit 597868e preserve all prior node/person/source/edge IDs, all prior edges and node chronologies, all prior identity-note prefixes and source verification-note prefixes. No packet build or application performed.",
+    "Lefebvre retains his exact prior no-biography identity qualification followed by a dated promotion addendum; distinction from Georges Lefebvre remains.",
+    "Re-ran classification reproduction with output writer replaced by an in-memory collector. All three resulting JSON objects exactly equal the checked-in review, count witnesses and eligible queue. Frozen source hashes verified before and after.",
+    "Nine eligible, nine below threshold and three holds reproduced. Hahn qualifies on a positive named-work union of 103 rather than raw key 121. Kessler-Harris optimistic upper bound 100 and Paul Thompson upper bound 98 do not pass >100.",
+    "Trigger focus comparison uses actual Canadian/Wendat title records (union64) versus selected global archaeology titles (union21), with partial-title-family and nonexclusive-geography limitations. Canadian150 floor is not inferred from nationality or department.",
+    "Peter Brown, Charles Taylor and Adam Smith remain identity/count holds; contaminated raw counts are not substituted for named-person evidence.",
+    "Independent institutional/primary spot checks included Habermas German-government death statement, Arendt GHI interview answers, Ricoeur Library of Congress memorial and Bhabha publisher interview. Separate original, translation, revised and posthumous chronology tracks are preserved."
+  ],
+  "source_spotchecks": [
+    {
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/bundeskanzler-merz-zum-tod-von-juergen-habermas-2410956",
+      "supports": "March 2026 death, not living inference."
+    },
+    {
+      "url": "https://germanhistory-intersections.org/en/knowledge-and-education/ghis:document-105",
+      "supports": "Selected Arendt answers on public action and factual truth; not a claim of watching the full broadcast."
+    },
+    {
+      "url": "https://www.loc.gov/loc/lcib/0506-8/ricoeur.html",
+      "supports": "Ricoeur death and lifespan metadata."
+    },
+    {
+      "url": "https://blog.degruyter.com/diaspora-and-home-interview-homi-k-bhabha/",
+      "supports": "Bhabha own interview on discordant cultural translation, minority formation and qualified migration/home experience."
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "RT-1",
+      "severity": "low",
+      "path": "data/extension-2026/remaining-theory-lane2-round1-2026-10-25/karl_marx/entry-draft.json",
+      "locator": "Capital I 1867 chronology event support",
+      "finding": "Publication metadata only; body unread is potentially ambiguous beside the explicitly read chapter 33 passages. The detailed source note already gives the correct limit.",
+      "correction": "Prefer: Publication date verified from metadata; complete volume unread, with selected chapter 33 passages separately scoped. If the packet is already accepted, preserve it and address any desired clarification additively.",
+      "status": "resolved_before_acceptance",
+      "resolution": "Independently reversed only the Capital1867 support and serialized indent1; exact original2554602aa6a14a7a4d6e23a78b50585abf1f23fd599fba22dd1b53bbc23e81c1 restored."
+    }
+  ],
+  "private_classification_note": "Williams is explicitly described as a cultural historian as well as theorist. Current placement is the assigned theoretical-resource function, not exclusion by department. This is a documented editorial placement choice, not a factual claim that he did no historical research.",
+  "limits": [
+    "All 42 content targets (32 theorists, 10 historians), identity decisions and final compiled life/reading/code integration pass independent review. Full release tests, clean-checkout verification and publication remain separate release gates.",
+    "Fresh browser fetches of Ricoeur dialogue and Williams scan failed (timeout/size); do not count those failed fetches as new reading. Their packet reading scopes and primary locators were inspected; no full-book reading is claimed.",
+    "No graph, packet, script, source release, MEMORY or publication changes made by reviewer."
+  ],
+  "round_two_lane_one_review": {
+    "revision": "1.186",
+    "reviewed_sha256": "f441f9eba848d348d2c328b5f171da8f987fff640143c9168ea1d942d1db6f54",
+    "status": "pass",
+    "substantive_blockers": [],
+    "checks": [
+      "All eight descriptions, 30 dated facts, 16 scoped relations, 14 source notes and eight life records inspected. Coauthor/editor/translator roles and original/reprint/translation/interview publication distinctions are explicit.",
+      "Sequential in-memory183→184→185→186 preserves all prior edges, identity prefixes, source-note prefixes and group chronologies.",
+      "Independent primary checks of McClintock pp61–65 support the specifically named Said critique; Douglas2022 pp133–134/138–140 distinguish named-reader introduction from her own answers and1987 interview date; Giddens excerpt pp1–5/24–27 supports duality and situated practice; Deleuze short transcription and LSE Warwick participant statements support bounded claims.",
+      "Brubaker UCLA2026 author account and McClintock PrincetonJuly2026 emeritus/current-research statement independently corroborate medium-confidence life evidence. No death-absence inference found."
+    ],
+    "requested_copy_cleanup": {
+      "id": "RT-2",
+      "path": "data/extension-2026/remaining-theory-lane1-round2-2026-10-25/rogers_brubaker/entry-draft.json",
+      "locator": "node.description final sentence",
+      "finding": "Internal classification-process clause: rather than being excluded because it also supplies social theory.",
+      "correction": "End sentence at cross-disciplinary research. Retain historical/comparative role and theory-resource assignment qualification privately.",
+      "status": "resolved_before_acceptance",
+      "resolution": "Independently reversed only the final sentence and recovered original f441f9eba848d348d2c328b5f171da8f987fff640143c9168ea1d942d1db6f54 exactly."
+    },
+    "limits": "No complete monograph reading or independent audit of every cited historical case; source spot checks match expressly selected passages. Final integrated export/life/UI checks remain pending."
+  },
+  "round_two_lane_two_review": {
+    "revision": "1.187",
+    "status": "pass",
+    "blocking_findings": [],
+    "checks": [
+      "All seven individual descriptions,26facts,14relations,18sources,sixaddenda and seven life records inspected. Coauthorship, translation credits and original/translation/publication distinctions are explicit.",
+      "Independent sequential in-memory transform from published1.183 through all four packets preserves old IDs, edges, identity-note prefixes, source-scope prefixes and chronologies. Final packet matches pinned SHA.",
+      "Independent source checks confirm Said’s specific Huntington criticism and Gay’s qualified auxiliary use of psychoanalysis. Agamben2004 own interview supports paradigmatic method and explicit Foucault resource, with interviewer/editor notes and their incidental errors kept separate.",
+      "Appadurai2025 Q&A is positive dated participation, not a retrospective upload. Quodlibet directly fetched successfully and current Agamben authored column index dates Il popolo innumerabile23October2026; composition-date uncertainty remains appropriate. Gilroy hosted-recording witness is documented with video-unwatched limitation; reviewer fresh web fetch returned403.",
+      "Adorno/Horkheimer and four Authoritarian Personality authors remain credited; Freud1921/1922, Durkheim1895/1919, Huntington1968/1973 and1993/1996, Agamben1995/1998 distinctions remain intact. Freud conflicting death-day witnesses are conservatively represented at year precision."
+    ],
+    "limits": "No new full-book reading asserted. Final life overlays, reading exports, public UI and nine historian packets remain separate integration/review gates."
+  },
+  "historian_packet_review": {
+    "revision": "1.188",
+    "reviewed_sha256": "f2c25321c70d6155664a4d6063c66c3dc0792c45df5584e906db7aa613d7185c",
+    "status": "pass",
+    "substantive_blockers": [],
+    "checks": [
+      "Inspected all nine descriptions,32chronology facts,19relationships,33sources and nine life records. Credits and original/edition/translation dates are explicit.",
+      "In-memory transform against actual accepted1.187 preserves all oldIDs, edges, chronology objects, identity-note prefixes and source-scope prefixes.",
+      "Independent primary spot checks: Todorov Cambridge three-paragraph authored extract is not a blurb; UNESCO2018 posthumous reproduction is not treated as a new dated contribution. Tocqueville1856 second-edition preface supports the two historical-method relations.",
+      "Hahn Penn2009 institutional feature directly quotes his challenge to integration-only narrative and describes his attributed slave-rebellion interpretation. Four-book103 eligibility was independently reproduced earlier; raw121 key remains separate.",
+      "Tilly primary opening supports coercion/resistance mechanism and explicitly rejects future-from-European-past extrapolation. Goody publisher excerpt supports attributed critique of Europe-centred categories, not a proven global consensus.",
+      "Chatterjee May2026 first-person memorial-lecture opening supports positive activity. Other living records use dated author-event evidence; scheduled versus completed participation must remain distinct."
+    ],
+    "requested_copy_cleanup": [
+      {
+        "id": "RT-3",
+        "severity": "low",
+        "locator": "Multiple public chronology support and relationship evidence strings",
+        "finding": "Joined words impair readability, including Moralityof Conquest, conquestof, entirebook, completebookunread and firstoriginalpart.",
+        "correction": "Normalize spacing without altering arguments, dates, source IDs or source qualifications.",
+        "status": "resolved_before_acceptance"
+      },
+      {
+        "id": "RT-4",
+        "severity": "low",
+        "locator": "Steven Hahn life/source record for Brooklyn Public Library July2026 calendar event",
+        "finding": "Announcement supports scheduled participation; current wording can imply actual attendance.",
+        "correction": "Add explicit attendance-unconfirmed limitation as for Mitchell and Portelli; no change to medium-confidence life status required.",
+        "status": "resolved_before_acceptance"
+      }
+    ],
+    "limits": "Nine-biography content is substantively clear for acceptance once copy corrections are verified. Final integrated life/export/UI and the new Taylor/Brown/AdamSmith identity re-evaluation remain unreviewed.",
+    "accepted_review_sha256": "c2b3b940ff7ae44b13a0e5ae40b283258d317d3fd872b8bd305677d4b8435c22"
+  },
+  "final_identity_pass_review": {
+    "status": "pass",
+    "scope": "All174 explicit work decisions and all selected positive/foreign assignments inspected against cited metadata and qualifications.",
+    "reproduction": "Writer replaced by an in-memory collector: all six generated JSON outputs exactly matched. All1072 original rows and frozen citation sets verified;6794 dated population unchanged.",
+    "counts": {
+      "Charles Taylor": {
+        "lower": 102,
+        "upper": 141,
+        "raw": 148,
+        "positive_rows": 17
+      },
+      "Peter Brown": {
+        "lower": 101,
+        "upper": 112,
+        "raw": 114,
+        "positive_rows": 31
+      },
+      "Adam Smith": {
+        "lower": 77,
+        "upper": 100,
+        "raw": 110,
+        "foreign_rows": 6
+      }
+    },
+    "source_checks": [
+      "PUL and BnF independently confirm Rapprocher les solitudes belongs to the philosopher born1931, with Guy Laforest editor/presenter; differing manifestation dates are retained.",
+      "Duke contents separately credit Two Theories of Modernity to Taylor. Taylor/Gutmann and other commentators retain distinct authorship roles; selected volume records do not attribute every chapter to Taylor.",
+      "Brown German Spätantike contents identify his chapter; SDSU indexed contents separately credit Notion of Virginity; Penn indexed chapter metadata credits Decline of Empire of God; Brill frontmatter credits Gregory of Tours introduction. These are individual chapter attributions, not whole edited-volume ownership.",
+      "French/Portuguese/Spanish matches are explicitly title/author-family assignments with original versus translation dates retained, including French2012/2016 and Portuguese1972/later publisher manifestation limits.",
+      "Cambridge records independently distinguish AdamD.Smith2017 from JonathanM.Smith2018; Oxford/Smithsonian foreign US-history records are separate from eighteenth-century philosopher. Excluding only confirmed foreign work rows yields upper100; shared dissertation IDs remain through any retained works."
+    ],
+    "limits": "These are conservative named-work lower bounds and optimistic upper bounds, not repaired raw-key totals, complete authority resolution, whole-work reading or influence measures. Held rows remain unassigned."
+  },
+  "identity_packet_review": {
+    "revision": "1.189",
+    "status": "pass",
+    "blocking_findings": [],
+    "checks": [
+      "All two descriptions,15facts,six relations and13 source records inspected. Selected Recognition passages distinguish Taylor from Gutmann; original1992 and expanded1994 versions separate. Modern Social Imaginaries copyright2004 versus publisher2003 release explicitly bounded.",
+      "Brown original/revised/anniversary chronology is qualified, with Stone’s earlier narrative comparison preserved. Anthropology influence is Brown’s own final NYRB2024 answer, not interviewer framing or collective endorsement.",
+      "Independent source reading confirmed Brown2024 past-integrity/anthropology answers and2026 Plough contextual friendship interview; Plough explicitly dates conversation6July2026. Taylor2024 Stern interview and local primary Recognition selected OCR support scoped relations.",
+      "McGill5June2025 announcement explicitly reports Taylor’s completed2025 seminar, supporting living status; Brown’s current interview replaces the previous unresolved life case with positive dated testimony.",
+      "In-memory187→188→189 preservation checks pass for old edges, chronologies, identity prefixes and source-note prefixes; corrected188 and189 pinned hashes verified."
+    ],
+    "limits": "Final compiled life/export/publicUI remains unreviewed. No complete monograph or universal historical interpretation is certified."
+  },
+  "endpoint_repair_review": {
+    "revision": "1.190",
+    "status": "pass",
+    "packet_sha256": "dd58e729f0d47ef26cc2ab279af4514efe0d24c9b3b8c4752b4d66c349f8d39b",
+    "blocking_findings": [],
+    "checks": [
+      "In-memory transform from actual1.189 changes only edge1498 source and obsolete availability rationale. The requested Chatterjee node source_ids addition is idempotent: chatterjee_fragments is already present, so no node changes occur. All counts, nodes, people, sources and other edges are unchanged.",
+      "Before and after exactly match endpoint-repair.json; preserved evidence is an exact prefix containing both primary-reading qualification sentences.",
+      "The criticism was explicitly attributed to Chatterjee in1.181; person node now exists. This is a supported individual retarget, not a claim that Chatterjee authored every postcolonial critique. Prior routing language belongs in preserved prior_records; no new influence or reading is inferred."
+    ]
+  },
+  "final_integration_review": {
+    "checked_on": "2026-10-25",
+    "revision": "1.190",
+    "status": "pass_independent_content_code_and_public_data_review",
+    "blocking_findings": [],
+    "independent_tests": {
+      "command": "python -m unittest tests.test_theorist_life_review tests.test_remaining_canon",
+      "tests": 7,
+      "result": "pass",
+      "seconds": 5.037
+    },
+    "life_review": {
+      "historians": 203,
+      "historian_statuses": {
+        "living": 105,
+        "deceased": 97,
+        "unresolved": 1
+      },
+      "new_theorists": 32,
+      "theorist_statuses": {
+        "living": 11,
+        "deceased": 21
+      },
+      "checks": [
+        "All prior193 historian review records equal published1.183 records exactly. Current historian identity set equals every current historian biography.",
+        "Theory compiler rerun in memory exactly equals compiled JSON; all referenced source-report hashes match.",
+        "Accepted-life input discovery reads accepted packet folders, filters final identity sets, rejects missing required theory records and duplicate theory records. No currently unaccepted proposal is consumed.",
+        "Published-only overlay preserves nodes, chronology geometry, edges and graph source tables; no missing death is turned into a living inference. Theory targets are checked against the correct layer before mutation.",
+        "Published Habermas death2026-03-14 is present; Brown living has positiveJuly2026 interview evidence. Archived graph remains byte-for-byte unchanged."
+      ]
+    },
+    "reading_review": {
+      "profiles": 157,
+      "sources": 4059,
+      "reviewed_exceptions": 22,
+      "dated_population": 6794,
+      "checks": [
+        "Ran full reading verifier with Path.write_text intercepted; resulting report exactly equals stored verification.json, without repository writes.",
+        "All4055 previous source index entries, IDs, positions and numeric series/regions are preserved;116 previous profile links, five field panels,18 registry entries and Anderson comparison are exact.",
+        "Only four declared source work lists acquire their new reviewed work: Giddens19, Freud8, Adorno16, Goody11. These exceptions remain counts_only, with no invented dissertation rows or regional details.",
+        "181 exact release work credits checked. Hahn103/raw121, Taylor102/raw148 and Brown101/raw114 retain explicit provisional-key/identity limitations in public review notes.",
+        "All34 public reading JSON assets are byte-equal to reviewed exporter assets."
+      ]
+    },
+    "public_and_packet_checks": [
+      "All accepted184–190 packet hashes match acceptance receipts; endpoint190 retarget remains exactly the independently reviewed correction.",
+      "Public graph revision1.190 agrees with canonical; edge/source tables and every work chronology equal canonical data.",
+      "Archived docs/data/graph-2000.json equals published1.183 bytes, SHA94193637b1553825599229640a6af77e2f53168b64175613b8df0b501fafce1c.",
+      "Reviewed compiler/overlay/build integration code and existing life rendering semantics; no further app.js rendering change is introduced by this batch."
+    ],
+    "remaining_release_gates": "Root owns full-suite/browser and clean-checkout confirmation, then authorized publication. These checks were running when this report was saved; their completion is not asserted here.",
+    "reviewer_mutations": "Only this review JSON; no graph, accepted packet, implementation, MEMORY or release-source edits."
+  }
+}

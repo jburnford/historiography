@@ -49,7 +49,9 @@ class HistorianAmendmentTests(unittest.TestCase):
 
     def test_three_historians_retain_old_edges_dated_facts_and_identity_qualifications(self):
         before = Batch(ROOT / 'data/extension-2026/historian-anderson-2026-10-25').baseline()
-        after = read(ROOT / 'historiography-1920-2000.json')
+        # This assertion covers the frozen three-person acceptance. Later reviewed
+        # endpoint repairs are checked separately by the remaining-canon tests.
+        after = Batch(ROOT / 'data/extension-2026/historian-mintz-2026-10-25').check()
         nodes = {n['id']: n for n in after['nodes']}
         people = {p['id']: p for p in after['people']}
         for pid in ('benedict_anderson', 'immanuel_wallerstein', 'sidney_mintz'):

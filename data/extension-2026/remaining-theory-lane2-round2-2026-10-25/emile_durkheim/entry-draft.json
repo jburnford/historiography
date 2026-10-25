@@ -1,0 +1,132 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "emile_durkheim",
+    "label": "Émile Durkheim",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1893: De la division du travail social · 1895: Les Règles de la méthode sociologique · 1912: Les Formes élémentaires de la vie religieuse",
+    "description": "A sociologist whose work makes collective institutions, obligations and representations objects of causal inquiry. His methodological writings distinguish external and constraining social facts from their mere frequency, and distinguish the causes of institutions from the functions they later serve.",
+    "representative_figures_and_works": "De la division du travail social (1893); Les Règles de la méthode sociologique (1895); Les Formes élémentaires de la vie religieuse (1912).",
+    "source_ids": [
+      "durkheim_rules_primary",
+      "tl187_emile_durkheim_life"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl187_emile_durkheim_w1",
+          "label": "De la division du travail social",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1893,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl187_emile_durkheim_life"
+          ],
+          "support": "Publication metadata only; complete work unread."
+        },
+        {
+          "id": "tl187_emile_durkheim_w2",
+          "label": "Les Règles de la méthode sociologique",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1895,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl187_emile_durkheim_life"
+          ],
+          "support": "Original 1895 publication; the read online witness is the later 1919 edition."
+        },
+        {
+          "id": "tl187_emile_durkheim_w3",
+          "label": "Les Formes élémentaires de la vie religieuse",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1912,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl187_emile_durkheim_life"
+          ],
+          "support": "French original; later English translations are not substituted for this date."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.187/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "emile_durkheim",
+    "node_id": "emile_durkheim"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl187_emile_durkheim_e1",
+      "source": "emile_durkheim",
+      "target": "durkheim",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Defines social facts through externality and constraining force, rather than mere prevalence among individuals.",
+      "evidence_note": "Own chapter I opening read, including obligations, conventions and currents. His examples are attributed illustrations, not independently tested universal laws.",
+      "source_ids": [
+        "durkheim_rules_primary"
+      ]
+    },
+    {
+      "proposal_id": "tl187_emile_durkheim_e2",
+      "source": "emile_durkheim",
+      "target": "historicalsociology",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Separates the causal explanation of institutions from their utility or present functions.",
+      "evidence_note": "Own chapter V section I opening read; changed uses and institutional survivals challenge explanation by usefulness alone. This is a methodological resource, without claiming every comparative historian accepted it.",
+      "source_ids": [
+        "durkheim_rules_primary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl187_emile_durkheim_life",
+      "title": "Reinhard Müller, Émile Durkheim (University of Graz archive, March 2002)",
+      "url": "https://agso.uni-graz.at/archive/lexikon/pdfs/durkheim.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional PDF biographical opening and bibliography only checked: born 15 April 1858, died 15 November 1917; bibliography gives Division du travail social 1893, Règles 1895, Formes élémentaires 1912. No complete-book or biographical-archive reading claimed."
+      }
+    }
+  ],
+  "source_addenda": {
+    "durkheim_rules_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "New limited rereading through linked Wikisource Chapitre_1 opening (external obligations, coercion, signs and social currents) and Chapitre_5 section I opening (cause/function distinction, survivals and changed uses). Consulted 1919 Alcan witness, not an original-edition collation. Remaining chapters unread in this pass; prior broader passage qualifications retained."
+    }
+  }
+}

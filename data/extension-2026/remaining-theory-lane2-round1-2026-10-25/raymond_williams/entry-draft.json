@@ -1,0 +1,136 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "raymond_williams",
+    "label": "Raymond Williams",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1958: Culture and Society, 1780–1950 · 1976: Keywords: A Vocabulary of Culture and Society · 1989: The Politics of Modernism (posthumous; edited and introduced by Tony Pinkney)",
+    "description": "A Welsh cultural historian, critic and novelist whose historical research on culture and society informed cultural materialism. He joins ordinary ways of life to artistic creation, while criticizing both restricted cultural privilege and prescriptions that would dictate socialist art in advance.",
+    "representative_figures_and_works": "Culture and Society, 1780–1950 (1958); Keywords: A Vocabulary of Culture and Society (1976); The Politics of Modernism (posthumous; edited and introduced by Tony Pinkney) (1989).",
+    "source_ids": [
+      "tl185_raymond_williams_ordinary",
+      "tl185_raymond_williams_catalogue"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl185_raymond_williams_w1",
+          "label": "Culture and Society, 1780–1950",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1958,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_raymond_williams_catalogue"
+          ],
+          "support": "Publication metadata only; body unread."
+        },
+        {
+          "id": "tl185_raymond_williams_w2",
+          "label": "Keywords: A Vocabulary of Culture and Society",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1976,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_raymond_williams_catalogue"
+          ],
+          "support": "Publication metadata only; body unread."
+        },
+        {
+          "id": "tl185_raymond_williams_w3",
+          "label": "The Politics of Modernism (posthumous; edited and introduced by Tony Pinkney)",
+          "kind": "posthumous_publication",
+          "track": "contributions",
+          "date": {
+            "year": 1989,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_raymond_williams_catalogue"
+          ],
+          "support": "Publication metadata only; body unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.185/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "raymond_williams",
+    "node_id": "raymond_williams"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl185_raymond_williams_e1",
+      "source": "raymond_williams",
+      "target": "culturalstudies",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Joins culture as ordinary social meanings and ways of life with artistic learning and creative work.",
+      "evidence_note": "Own Culture Is Ordinary, pp. 92–94 read; the essay’s conjunction is preserved instead of reducing culture either to elite arts or to an undifferentiated way of life.",
+      "source_ids": [
+        "tl185_raymond_williams_ordinary"
+      ]
+    },
+    {
+      "proposal_id": "tl185_raymond_williams_e2",
+      "source": "raymond_williams",
+      "target": "marx",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Criticizes a prescriptive Marxist account that would dictate cultural meanings and artistic forms from a proposed system of production.",
+      "evidence_note": "Own essay pp. 95–96 read. He retains the importance of production and restricted educational access while rejecting directive cultural prescriptions; this is criticism within his engagement with Marxism, not rejection of all materialist historical analysis.",
+      "source_ids": [
+        "tl185_raymond_williams_ordinary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl185_raymond_williams_ordinary",
+      "title": "Raymond Williams, Culture Is Ordinary (1958), primary essay in teaching-reader scan",
+      "url": "https://www.people.iup.edu/sherwood/Courses/ENGL480S06/Documents/Williams_Culture_Is_Ordinary.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Own essay pp. 92–96 (PDF pp. 2–6) read via OCR, distinct from preceding editor introduction. Reader credits Resources of Hope (1989), pp. 3–14, as source and labels essay 1958. Later essay pages unread; complete books unread."
+      }
+    },
+    {
+      "id": "tl185_raymond_williams_catalogue",
+      "title": "Cardiff University Special Collections, Raymond Williams’s works",
+      "url": "https://www.cardiff.ac.uk/special-collections/explore/other-special-collections/raymond-williams-s-works",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Collection biography and selected bibliographic rows read: Culture and Society original 1958, Keywords (Oxford, 1976), posthumous Politics of Modernism edited/introduced by Tony Pinkney (1989). Biography calls him social/cultural historian, critic and novelist, 1921–1988. Its 1966 Long Revolution is a listed later edition and is not adopted as original. Metadata does not verify book arguments."
+      }
+    }
+  ],
+  "source_addenda": {}
+}

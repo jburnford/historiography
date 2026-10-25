@@ -19,51 +19,76 @@ On phones, the three primary views stay in a sticky navigation bar. Circles and 
 can be explored by touch inside scrollable viewports; selecting a person or entry brings
 their details into view. Search, collapsible filters and full text alternatives remain available.
 
-**Dissertation reading — research preview.** A fourth main route lets visitors search
-cited people and works, compare their use over time and across regions, inspect companion
-literature and open example dissertation repository records. Environmental history, the
-archival turn, economic history, capitalism debates, emotions history and 116 selected profiles connect
-the reading record to the teaching entries. Economic-history and capitalism panels compare
-selected authors and works across degree cohorts and regions, with exact counts and linked arguments.
-It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included in analysis;
-coverage and extraction limits accompany the figures. The experimental comparison pages
-remain research prototypes. See [frontend details](site/README.md).
+**Dissertation reading — research preview.** A fourth main route searches cited
+people and works, compares their use over time and across regions, and opens
+companion literature and example repository records. It uses the frozen snapshot
+of 6,794 dissertations with years, from 7,107 included in analysis. Coverage,
+extraction and attribution limits accompany the figures. See [frontend details](site/README.md).
 
-Current canonical data revision **1.183** (schema 1.6): **315 entries,
-1,506 teaching relationships, 2,836 bibliography records and 1,415 indexed people**,
-with 14 seminar pathways. The 215 standalone entries distinguish **193 historians
-from 22 theorists**; 100 group entries retain their separate roles. A journal layer
-adds 54 evidenced venue relations from a catalogue of 1,638 periodicals.
+Current canonical revision **1.191** (2026-10-25, schema 1.6) contains **357 entries,
+1,595 relationships, 2,951 sources and 1,426 indexed people**. Its 257 individual
+entries comprise **203 historians and 54 theorists**, alongside 100 group entries
+and 14 seminar pathways.
 
-The [dissertation-guided content expansion](data/field-research/dissertation-content-2026-10-25/README.md)
-completed the original **89 qualifying historians**: seven with a Canadian-history
-focus cited by at least 150 dated first-author dissertations, and 82 other historians
-cited by more than 100. Sarah Carter establishes the Canadian floor. An additive
-[classification amendment](data/field-research/historian-classification-amendment-2026-10-25/README.md)
-adds Benedict Anderson, Immanuel Wallerstein and Sidney Mintz as historians,
-bringing the completed qualifying queue to **92**. The original classification and
-accepted packets remain frozen. Theory and unresolved identities stay separate;
-exact-key citation counts select research candidates and supply no influence arrow.
+The [remaining canon review](data/field-research/remaining-canon-2026-10-25/README.md)
+resolves all 52 original candidate cases: **42 eligible additions and 10 below
+threshold**. Revisions 1.184–1.189 add 32 theorists (the original 31 plus Charles
+Taylor) and 10 historians (nine reviewed interdisciplinary/identity cases plus
+Peter Brown). The completed qualifying historian queue is **102**: seven with a
+Canadian-history focus at ≥150 dated first-author dissertations, and 95 others
+at >100. Historical research is assessed by the work, rather than department or
+nationality. This completes the eligible people queue; the original Gemini
+38-theme queue is not claimed complete. Earlier classifications and accepted
+packets remain frozen.
 
-All 193 historian biographies have [sourced life-status reviews](data/historian-life-review.json),
-checked on 2026-10-25: **100 living, 92 deceased and one unresolved** (Jennifer S. H. Brown).
-Supported death years and precision appear as reference metadata, separate from
-work, career and influence dates. Missing death information does not imply living.
+Conservative, positively attributed named-work unions establish Taylor’s **102**
+and Brown’s **101**, separately from their mixed raw-key totals of 148 and 114.
+Hahn qualifies on **103**, separately from raw 121. Adam Smith’s optimistic upper
+bound is **100**, below the strict >100 screen. No candidate-level identity hold
+remains undisposed; unchecked raw work fragments remain unassigned. Eight
+interdisciplinary candidates retain qualified exact-key screens rather than
+complete work-by-work identity audits. Citation presence selects research;
+it establishes neither complete reading nor influence, and overlapping counts
+are never summed.
 
-The reading amendment is being integrated with **116 linked profiles, five unchanged
-field panels and 4,055 searchable sources** (4,037 original plus 18 reviewed exceptions).
-A separate personal comparison centers Anderson’s *Imagined Communities*: its main
-work key appears in **641 of 716** dated dissertations assigned to his first-author
-key (**89.5%**), compared with 16 for *Under Three Flags* and 14 for *The Spectre of
-Comparisons*. A separate [title/translation audit](data/field-research/historian-classification-amendment-2026-10-25/anderson-book-identity/README.md)
-deduplicates 16 confirmed *Imagined Communities* keys to **685 of 716 (95.7%)**.
-The chart retains its individual work keys. Bibliography presence establishes no
-whole-book reading; the frozen denominator retains attribution contamination. Primary excerpts, named
-readers, original editions and collaborator credits remain explicit.
+All **203 historian biographies** have sourced life reviews: **105 living,
+97 deceased and one unresolved** (Jennifer S. H. Brown), checked on 2026-10-25.
+The 32 new theorists have a separate review: **11 living and 21 deceased**, including
+fresh institutional evidence for Habermas’s 2026 death. The earlier theorist
+grounding sheet is unchanged. Life dates retain their supported precision and
+remain separate from work, career and influence dates; missing death information
+never establishes life.
 
-Astra’s substantive and UI reviews pass. Release validation passes: 148 data tests,
-61 JavaScript checks, all 61 browser cases after a copy-assertion correction, and a
-clean checkout reproducing all 52 public files. Publication is authorized.
+The reading integration contains **157 linked profiles and 4,059 sources**
+(4,037 original plus 22 reviewed exceptions). It preserves all 116 earlier profile
+links, five field panels, the separate Anderson comparison, 4,055 earlier source
+records and 18 earlier exception-registry rows; only four parent work lists grow.
+New low-count works are Giddens (19), Freud (8), Adorno (16) and Goody (11).
+Anderson’s confirmed title-family union remains **685/716 (95.7%)**, with individual
+chart keys unchanged: main *Imagined Communities* 641, *Under Three Flags* 16 and
+*The Spectre of Comparisons* 14. Source IDs, numerical series, denominators and
+first-author/attribution qualifications remain preserved.
+
+All **42 new biographies have recorded relationships**. Revision 1.191 corrects
+74 additional legacy endpoints that already name a specific person, after the
+independent [network review](data/field-research/remaining-canon-2026-10-25/network-review.json).
+Together with the preserved 1.190 Chatterjee repair, **75 older relationships are
+rerouted**. Edge IDs, claims, citations, direction and substantive source
+qualifications remain intact. Two obsolete roster edge pointers are cleared;
+all roster prose, roles, works and sources remain exact. Genuine collective claims
+stay on their fields. The repair adds no edge or source; the 89 new relationships
+come from the 42 biographies in revisions 1.184–1.189. Every other old edge,
+chronology, coverage qualification and the exact-2000 archive remains unchanged. Selected excerpts and named readers support substantive relations;
+metadata alone creates no arrow. Original, revised, translated and collected
+works retain their dates and collaborator credits.
+
+Astra’s substantive and preservation reviews pass all 42 additions and the approved
+endpoint repairs. The 52-file build and reading exports pass.
+
+**Release status: verified locally at revision 1.191; ready for publication.**
+
+GitHub Pages publishes `main:/docs`; deployment and the live revision are verified after push.
+OpenAlex remains paused.
 
 The earlier release notes below preserve their historical counts and status at the
 time of each release.

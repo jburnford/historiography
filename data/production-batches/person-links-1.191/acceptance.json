@@ -1,0 +1,1870 @@
+{
+  "revision": "1.191",
+  "date": "2026-10-25",
+  "authorization": "User asks whether all 42 new entries have relationships; coordinator authorizes a bounded additive endpoint correction after independent Astra review. Prepare only; coordinator retains canonical application and publication.",
+  "baseline": "drafts/historiography-1920-2000.v1.190.json",
+  "baseline_sha256": "236c55c32c75aa9bf8ff3a05dc6580948d9fa61c80ac1e75bc88cf37309d2827",
+  "packet": "data/extension-2026/remaining-network-2026-10-25/release/editorial-additions.json",
+  "packet_sha256": "82698080150be7785dd6e86c26b98fe42edbb883a45027f3c19dd407c7b78375",
+  "production_sha256": "07cb6bc74d8a46f1006c432b1cb404ccd43d909db23c90127aa3056585e353ce",
+  "previous_table_lengths": {
+    "nodes": 357,
+    "people": 1426,
+    "edges": 1595,
+    "sources": 2951,
+    "revision_history": 190
+  },
+  "prior_records": {
+    "people": {},
+    "edges": {
+      "edge_003": {
+        "id": "edge_003",
+        "source": "weber",
+        "target": "geertz",
+        "relationship": "Geertz invokes Weber for an interpretive account of culture",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "geertz",
+          "weber"
+        ],
+        "evidence_note": "Primary p. 5 explicitly invokes Weber while presenting meaning as the object of interpretation. This does not make every part of Geertz’s work Weberian.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_026": {
+        "id": "edge_026",
+        "source": "karl",
+        "target": "althusser",
+        "relationship": "Althusser rereads Marx through problematics, epistemological break and structural effectivity",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "althusser",
+          "karl",
+          "althusser_for_marx_intro",
+          "althusser_reading_capital_primary"
+        ],
+        "evidence_note": "The For Marx introduction and Reading Capital opening distinguish a philosophical question about scientific objects from a simple summary of economic results. The break and structural causality remain contested interpretations; the revised foreword qualifies theoreticism.",
+        "classification_basis": "editorial_review",
+        "map_label": "Marx’s questions, objects and structural explanation"
+      },
+      "edge_033": {
+        "id": "edge_033",
+        "source": "economictheory",
+        "target": "karl",
+        "relationship": "Marx critically reworks Smith and Ricardo while treating capitalism as historically specific",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "karl",
+          "marx_capital_afterword"
+        ],
+        "evidence_note": "Marx critically engages classical political economy; nineteenth-century neoclassicism is not treated as the same source. His 1873 afterword discusses Ricardo’s class distribution and Sieber’s account of his debt to Smith and Ricardo; it does not endorse classical political economy without qualification.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_045": {
+        "id": "edge_045",
+        "source": "post",
+        "target": "nationaltradition",
+        "relationship": "Chatterjee questions derivative national models and the exclusions of nationalist history",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "post",
+          "chatterjee",
+          "chatterjee_fragments"
+        ],
+        "evidence_note": "Targets imperial knowledge and nationalist universalism; not every national history makes the same claims. The checked 1993 chapter supplies a specific argument alongside the broader inherited claim.",
+        "classification_basis": "editorial_review",
+        "map_label": "Chatterjee: colonial historical difference"
+      },
+      "edge_053": {
+        "id": "edge_053",
+        "source": "durkheim",
+        "target": "modern",
+        "relationship": "Parsons explicitly draws on Durkheim in his evolutionary comparison",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "modern",
+          "durkheim_division_primary",
+          "parsons_universals"
+        ],
+        "evidence_note": "Durkheim’s book III discussion of failed solidarity still qualifies a simple differentiation story. Parsons’s 1964 p. 341 now supplies actual named reception of a different work, The Elementary Forms of Religious Life, concerning social orientation and religion. This resolves the formerly unsupported generic transmission only in this narrower form; it does not establish that Parsons accepts all Durkheim’s claims.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_054": {
+        "id": "edge_054",
+        "source": "durkheim",
+        "target": "memory",
+        "relationship": "Halbwachs’s sociological account makes social relations central to remembering",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "halbwachs_memory",
+          "assmann_collective"
+        ],
+        "evidence_note": "Halbwachs develops collective-memory analysis within a sociological tradition; Nora’s later project is not identical to it. The 1925 original is now distinguished from the 1992 English collection. Assmann’s critical reuse supplies later reception, not proof of every step in Halbwachs’s Durkheimian formation.",
+        "classification_basis": "editorial_review",
+        "map_label": "Halbwachs: social frameworks"
+      },
+      "edge_055": {
+        "id": "edge_055",
+        "source": "weber",
+        "target": "modern",
+        "relationship": "is selectively read through later sociology, including Parsons",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "weber",
+          "modern",
+          "weber_ethic_primary",
+          "parsons_universals",
+          "lipset_democracy"
+        ],
+        "evidence_note": "Parsons’s selective reception mediates some modernization readings; Weber’s own account is not a simple celebratory stage model. Parsons’s 1930 preface documents translation of the revised 1920 essay; his 1964 pp. 348–349 explicitly use Weber’s bureaucracy analysis. Lipset’s 1959 definitions and conclusion make a different use, including Weber via Pipes to reject guaranteed democratization. These are specified receptions, not one shared stage model.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_056": {
+        "id": "edge_056",
+        "source": "weber",
+        "target": "economic",
+        "relationship": "connects capitalism, institutions, and religious meanings",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "tawney_religion"
+        ],
+        "evidence_note": "Tawney explicitly acknowledges Weber while reserving disagreement, providing a named example of reception within economic history.",
+        "classification_basis": "editorial_review"
+      },
+      "edge_142": {
+        "id": "edge_142",
+        "source": "freud",
+        "target": "lacan",
+        "relationship": "Lacan rereads Freudian dream-work through metaphor and metonymy",
+        "type": "connection",
+        "source_ids": [
+          "lacan",
+          "lacan_letter_primary"
+        ],
+        "evidence_note": "The 1957 essay PDF p. 11 explicitly relates condensation to metaphor and displacement to metonymy; pp. 11–12 present the return to Freud as a polemical correction. This establishes Lacan’s reading, not an independent adjudication of Freud’s whole theory.",
+        "relationship_kind": "influence",
+        "directed": true,
+        "classification_basis": "editorial_review",
+        "map_label": "Freud’s dream-work reread through language"
+      },
+      "edge_148": {
+        "id": "edge_148",
+        "source": "freud",
+        "target": "fanon",
+        "relationship": "provides psychoanalytic resources reworked in an analysis of racialized colonial experience",
+        "type": "connection",
+        "source_ids": [
+          "fanon",
+          "fanon_skin_intro"
+        ],
+        "evidence_note": "Fanon explicitly discusses Freud in the 1952 introduction, extending explanation from individual development to sociogeny. Psychoanalysis remains one resource among several; this does not place Fanon within psychohistory or imply unchanged application.",
+        "relationship_kind": "influence",
+        "directed": true,
+        "classification_basis": "editorial_review"
+      },
+      "edge_158": {
+        "id": "edge_158",
+        "source": "karl",
+        "target": "gramsci",
+        "relationship": "is reworked in an account of hegemony, intellectuals, and political struggle",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "influence",
+        "source_ids": [
+          "gramsci",
+          "gramsci_revolution_capital"
+        ],
+        "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. The1917 essay specifically rejects deterministic staging while reworking Marx; Selections323–325 treats common sense as historically formed. This is selective reconstruction, not abandonment of all material explanation."
+      },
+      "edge_160": {
+        "id": "edge_160",
+        "source": "gramsci",
+        "target": "culturalstudies",
+        "relationship": "Hall uses hegemony and common sense to relate cultural struggle and social organization",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "influence",
+        "source_ids": [
+          "gramsci",
+          "culturalstudies",
+          "hall_two_paradigms"
+        ],
+        "evidence_note": "Primary pp. 62 and 69 discuss Williams’s Gramscian turn and Hall’s use of common sense/organization to address theoretical tensions. This strengthens a specific reception claim; it does not make Gramsci the field’s sole origin.",
+        "map_label": "Hegemony in Williams and Hall"
+      },
+      "edge_168": {
+        "id": "edge_168",
+        "source": "frankfurt",
+        "target": "memory",
+        "relationship": "Winter uses Benjamin’s angel of history to frame tradition and change in Great War remembrance",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "benjamin",
+          "winter_sites",
+          "benjamin_history_primary"
+        ],
+        "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. The publisher’s reprinted conclusion opening explicitly invokes thesis IX. This supplies a named reception mechanism for the inherited Benjamin link; it is not an influence claim about every memory scholar or the Frankfurt School as a whole.",
+        "map_label": "Winter’s explicit use of Benjamin"
+      },
+      "edge_169": {
+        "id": "edge_169",
+        "source": "frankfurt",
+        "target": "culture",
+        "relationship": "Habermas’s public sphere supplies questions about communication, sociability, and power",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "habermas",
+          "habermas_sphere_primary",
+          "fraser_sphere_primary"
+        ],
+        "evidence_note": "Does not assert a documented direct influence on Hunt’s 1984 book; that more specific claim requires evidence. The 1964 article clarifies the public-sphere resource; Fraser’s historical counterexamples complicate access. This does not newly verify a direct Habermas-to-Hunt 1984 reception passage."
+      },
+      "edge_170": {
+        "id": "edge_170",
+        "source": "frankfurt",
+        "target": "political",
+        "relationship": "Habermas’s public sphere connects political authority to public argument and communication",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "habermas",
+          "habermas_sphere_primary",
+          "hohendahl_sphere_primary",
+          "goldman_press_opinion",
+          "sabato_public_spaces_review"
+        ],
+        "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. Habermas distinguishes public discussion from state authority and ends with organizational accountability; Hohendahl records contemporary contestation. A conceptual resource, not proof all political historians adopted one model. A specific Iberoamerican reception is now documented: Goldman (2000), 20, cites Guerra/Lempérière’s discussion of the Habermasian model while favoring plural public spaces; Sábato (2000), 257–259, appraises that adaptation and questions its conceptual and explanatory costs. Neither reading establishes universal adoption or a direct Habermas-to-Goldman textual genealogy beyond the cited mediation."
+      },
+      "edge_174": {
+        "id": "edge_174",
+        "source": "frankfurt",
+        "target": "holocaust",
+        "relationship": "Habermas participates in controversy over historical comparison and Nazi crimes",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "kershaw",
+          "friedlander"
+        ],
+        "evidence_note": "Retargeted from Bielefeld to Holocaust historiography. The Historikerstreit is distinct from the Sonderweg debate; the 1984 Blackbourn–Eley book cannot document a 1986–87 controversy."
+      },
+      "edge_178": {
+        "id": "edge_178",
+        "source": "durkheim",
+        "target": "practice",
+        "relationship": "provides concepts of collective classification reworked in Bourdieu’s sociology",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "influence",
+        "source_ids": [
+          "bourdieu",
+          "bourdieu_outline_primary"
+        ],
+        "evidence_note": "Bourdieu, Outline (1977), 164–165 explicitly reworks Durkheim on classification and power. This supports the particular reception, not a common genealogy for all practice theorists. The English text differs from the 1972 French version."
+      },
+      "edge_179": {
+        "id": "edge_179",
+        "source": "weber",
+        "target": "elias",
+        "relationship": "offers a comparison of state formation, monopolization, and rationalization",
+        "type": "connection",
+        "directed": false,
+        "relationship_kind": "comparison",
+        "source_ids": [
+          "elias",
+          "weber"
+        ],
+        "evidence_note": "Downgraded from influence: the present references support comparison more securely than a specific account of Elias’s borrowing from Weber."
+      },
+      "edge_184": {
+        "id": "edge_184",
+        "source": "culturalstudies",
+        "target": "identity",
+        "relationship": "Hall offers a comparison between historical recovery and changing identifications",
+        "type": "connection",
+        "directed": false,
+        "relationship_kind": "comparison",
+        "source_ids": [
+          "gilroy",
+          "culturalstudies",
+          "hall_diaspora"
+        ],
+        "evidence_note": "Hall’s situated Caribbean argument values recovery while emphasizing transformation and differences. This undirected teaching comparison does not derive identity histories from Birmingham; Gilroy’s critique remains separately specified."
+      },
+      "edge_186": {
+        "id": "edge_186",
+        "source": "culturalstudies",
+        "target": "atlantic",
+        "relationship": "Cultural inquiry supplies resources for Gilroy’s Black Atlantic",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "gilroy"
+        ],
+        "evidence_note": "Gilroy’s preface names Hall among a wider range of resources and analyzes music and cultural movement. This is one explicit route, not the origin of all Atlantic history.",
+        "map_label": "Hall and cultural inquiry in Gilroy"
+      },
+      "edge_211": {
+        "id": "edge_211",
+        "source": "weber",
+        "target": "historicalsociology",
+        "relationship": "Bendix adapts Weber’s comparative resources to authority and citizenship",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "influence",
+        "source_ids": [
+          "skocpol",
+          "bendix_citizenship"
+        ],
+        "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. Publisher biographical evidence explicitly identifies Bendix’s Weber engagement; the new support specifies Bendix rather than certifying every inherited Skocpol claim.",
+        "map_label": "Bendix: Weber, authority and comparison"
+      },
+      "edge_216": {
+        "id": "edge_216",
+        "source": "weber",
+        "target": "bielefeld",
+        "relationship": "Kocka adapts Weberian concepts to industrial organization and bourgeois society",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "influence",
+        "source_ids": [
+          "blackbourn_eley",
+          "kocka_industrial",
+          "kocka_sonderweg"
+        ],
+        "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. The 1999 publisher description explicitly names Weber and Marx; Kocka’s 1988 response also identifies Weber among earlier critical resources.",
+        "map_label": "Kocka: Weber and industrial society"
+      },
+      "edge_231": {
+        "id": "edge_231",
+        "source": "nationalismstudies",
+        "target": "post",
+        "relationship": "Anderson’s account becomes a named interlocutor for Chatterjee’s argument about colonial difference",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "anderson",
+          "chatterjee",
+          "chatterjee_fragments"
+        ],
+        "evidence_note": "Chatterjee is a critic and theorist in his own right; postcolonial accounts do not simply extend Anderson. Chatterjee’s primary 1993 pp. 4–7 praise aspects of Anderson while explicitly disputing modular derivation. A new reverse critique records that productive disagreement.",
+        "map_label": "Anderson as Chatterjee’s interlocutor"
+      },
+      "edge_233": {
+        "id": "edge_233",
+        "source": "modern",
+        "target": "nationalismstudies",
+        "relationship": "Gellner connects national belonging to modern mobility and a shared literate culture",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "gellner",
+          "warwick_nationalism"
+        ],
+        "evidence_note": "Gellner’s own book replaces Anderson as the specific reference; this does not describe every theory of nationalism. The Warwick reply supplies a primary restatement and accepts some premodern cultural continuity; Smith disputes explanatory sufficiency, not the reality of modern transformations.",
+        "map_label": "Gellner: mobility and literate culture"
+      },
+      "edge_245": {
+        "id": "edge_245",
+        "source": "atlantic",
+        "target": "identity",
+        "relationship": "Gilroy challenges nationally bounded and racially essentialist accounts of identity",
+        "type": "critique",
+        "directed": true,
+        "relationship_kind": "critique",
+        "source_ids": [
+          "gilroy"
+        ],
+        "evidence_note": "Retargeted from postcolonial history as a whole to identity categories, matching the stated object of criticism more closely. The primary preface explicitly rejects racial purity and closed categories while presenting conclusions as provisional. This critique is not directed at every recovery of collective identity."
+      },
+      "edge_254": {
+        "id": "edge_254",
+        "source": "practice",
+        "target": "consumption",
+        "relationship": "Bourdieu relates taste and cultural practices to social position",
+        "type": "connection",
+        "directed": true,
+        "relationship_kind": "contribution",
+        "source_ids": [
+          "distinction",
+          "vickery_elegance_primary"
+        ],
+        "evidence_note": "Distinction is the relevant work, rather than using Outline of a Theory of Practice alone as a proxy. Vickery explicitly cites Distinction in chapter5/note9 when distinguishing differentiation from imitation. This establishes a particular historian’s use; the original Bourdieu argument still awaits primary checking. Revision1.79 supplies the previously missing primary check through selected Distinction conclusion passages. It distinguishes practical classification and struggles over recognition from an automatic equation of taste with conscious imitation; Vickery remains the particular historical-use example."
+      },
+      "edge_326": {
+        "id": "edge_326",
+        "source": "weber",
+        "target": "r_h_tawney",
+        "relationship": "is acknowledged and critically discussed in Tawney’s work on religion and capitalism",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "tawney_religion"
+        ],
+        "evidence_note": "Tawney names Weber in his introduction while explicitly reserving disagreement. Chapter IV note 32 makes the criticism specific: causal weighting, nonreligious thought and Calvinist/Puritan differentiation.",
+        "map_label": "Acknowledgment with explicit disagreement"
+      },
+      "edge_353": {
+        "id": "edge_353",
+        "source": "weber",
+        "target": "quant",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Thernstrom draws on Weber to distinguish dimensions of social position",
+        "evidence_note": "The primary opening of Poverty and Progress chapter 5, p. 115, explicitly quotes Weber before examining property/savings alongside occupations. The link records named use in one study, not Weber’s origin of all quantitative history.",
+        "source_ids": [
+          "thernstrom_poverty"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Thernstrom: Weber, occupations and property"
+      },
+      "edge_356": {
+        "id": "edge_356",
+        "source": "historicalsociology",
+        "target": "social",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Tilly connects local claim-making with changing repertoires and wider political/economic processes",
+        "evidence_note": "His 1993–1994 primary essay explains the programme and its Britain/France limits. Movements are not automatically democratic or timeless social organisms.",
+        "source_ids": [
+          "tilly_performances",
+          "tilly_contentious"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Tilly: collective performances and historical change"
+      },
+      "edge_365": {
+        "id": "edge_365",
+        "source": "karl",
+        "target": "bielefeld",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Kocka draws on Marx alongside Weber for industrial and bourgeois social history",
+        "evidence_note": "Explicit publisher support concerns analytical resources, not doctrinal Marxism or all German historians. This productive use coexists with the historical-left criticism already recorded.",
+        "source_ids": [
+          "kocka_industrial"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Kocka: Marx as an analytical resource"
+      },
+      "edge_376": {
+        "id": "edge_376",
+        "source": "freud",
+        "target": "historyworkshop",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Alexander brings psychoanalytic questions into feminist historical inquiry",
+        "evidence_note": "Her participant interview explicitly discusses Freud; the 1994/1995 collection description places psychoanalytic subjectivity within pre-2000 work. Neither source proves the first date of reception or a movement-wide Freudian commitment.",
+        "source_ids": [
+          "alexander_workshop_recollections",
+          "alexander_becoming"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Alexander: psychoanalytic subjectivity"
+      },
+      "edge_377": {
+        "id": "edge_377",
+        "source": "practice",
+        "target": "memory",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Jan Assmann uses Bourdieu in discussing the organization of everyday communication",
+        "evidence_note": "The primary 1995 note 8 cites Bourdieu’s 1972 Esquisse. The arrow is confined to this documented conceptual resource; it does not claim that all embodied-memory scholarship derives from practice theory.",
+        "source_ids": [
+          "assmann_collective"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Bourdieu in Assmann’s communicative-memory account"
+      },
+      "edge_379": {
+        "id": "edge_379",
+        "source": "post",
+        "target": "nationalismstudies",
+        "type": "critique",
+        "directed": true,
+        "relationship_kind": "critique",
+        "relationship": "Chatterjee challenges the modular account associated with Anderson through colonial historical difference",
+        "evidence_note": "Primary pp. 4–7 formulate the objection while retaining print and language as relevant resources. The critique is not a rejection of all national imagining.",
+        "source_ids": [
+          "chatterjee_fragments"
+        ],
+        "map_label": "Chatterjee: whose national imagination?",
+        "classification_basis": "editorial_review"
+      },
+      "edge_418": {
+        "id": "edge_418",
+        "source": "fanon",
+        "target": "identity",
+        "relationship": "Hall uses Fanon to connect historical recovery with colonial dispossession and changing identity",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "hall_diaspora"
+        ],
+        "evidence_note": "Hall’s primary pp. 223–226 name Fanon’s national-culture and colonizing-experience arguments. The contribution concerns this specific diasporic identity discussion, not a genealogy of all identity histories.",
+        "classification_basis": "editorial_review",
+        "map_label": "Fanon in Hall’s identity argument"
+      },
+      "edge_422": {
+        "id": "edge_422",
+        "source": "foucault",
+        "target": "culturalstudies",
+        "relationship": "Hall values Foucault’s concrete historical analyses",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "hall_two_paradigms"
+        ],
+        "evidence_note": "Hall p. 71 identifies a productive resource for historically specific analysis while immediately recording reservations. The opposite-direction critique preserves that disagreement.",
+        "classification_basis": "editorial_review",
+        "map_label": "Concrete historical inquiry in Hall"
+      },
+      "edge_423": {
+        "id": "edge_423",
+        "source": "culturalstudies",
+        "target": "foucault",
+        "relationship": "Hall questions how Foucault relates practices to wider social formations",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "hall_two_paradigms"
+        ],
+        "evidence_note": "Hall p. 71 criticizes a tendency toward non-correspondence and difficulties in relating practices, states and transitions. This is Hall’s 1980 assessment, not a consensus or a verdict on all Foucault’s work.",
+        "classification_basis": "editorial_review",
+        "map_label": "Hall’s critique of social explanation"
+      },
+      "edge_432": {
+        "id": "edge_432",
+        "source": "durkheim",
+        "target": "anthropology",
+        "relationship": "Radcliffe-Brown explicitly adapts Durkheim’s account of function",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "radcliffe_function",
+          "durkheim_rules_primary"
+        ],
+        "evidence_note": "The indexed 1935 primary excerpt credits Durkheim and modifies the language of needs to avoid teleology. This is a named conceptual borrowing, not an origin for the entire discipline. Durkheim’s own Rules chapter V distinguishes causal origins from functions and rejects explanation by utility alone.",
+        "classification_basis": "editorial_review",
+        "map_label": "Function in Radcliffe-Brown"
+      },
+      "edge_433": {
+        "id": "edge_433",
+        "source": "durkheim",
+        "target": "saussure",
+        "relationship": "Meillet explicitly applies Durkheim’s social-fact definition to language",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "meillet_meaning"
+        ],
+        "evidence_note": "The opening of the 1906 essay names Durkheim and applies externality and coercion to language; later passages examine social groups and semantic change. The target represents a broader linguistic context, not Saussure alone. No direct Durkheim-to-Saussure borrowing is established.",
+        "classification_basis": "editorial_review",
+        "map_label": "Meillet: language as a social fact"
+      },
+      "edge_447": {
+        "id": "edge_447",
+        "source": "fernand_braudel",
+        "target": "weber",
+        "relationship": "Braudel disputes a Protestant-origin account of capitalism in his reading of Weber",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "braudel_afterthoughts"
+        ],
+        "evidence_note": "Afterthoughts pp. 65–67 emphasizes geographical shifts and social hierarchy. This records Braudel’s polemical interpretation; it does not equate the full Weber thesis with that summary or establish that religious change was historically irrelevant.",
+        "classification_basis": "editorial_review",
+        "map_label": "Disputing capitalist origins"
+      },
+      "edge_475": {
+        "id": "edge_475",
+        "source": "karl",
+        "target": "maurice_dobb",
+        "relationship": "Dobb explicitly uses Marx’s rent and production categories to frame feudal relations",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "dobb_sweezy_transition"
+        ],
+        "evidence_note": "Reply pp. 157–159 and 164 cites Capital III; he interprets different compulsory surplus forms. This is named conceptual use, not proof of every historical generalization.",
+        "map_label": "Marx: rent and production relations",
+        "classification_basis": "editorial_review"
+      },
+      "edge_502": {
+        "id": "edge_502",
+        "source": "eric_hobsbawm",
+        "target": "nationalismstudies",
+        "relationship": "Hobsbawm questions Gellner’s emphasis on modernization from above",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "hobsbawm_nations_primary"
+        ],
+        "evidence_note": "Introduction pp. 10–11 argues for investigating ordinary people’s differing identifications. This is Gellner-specific.",
+        "map_label": "Gellner: insufficient attention from below",
+        "classification_basis": "editorial_review"
+      },
+      "edge_514": {
+        "id": "edge_514",
+        "source": "r_h_tawney",
+        "target": "weber",
+        "relationship": "Tawney questions Weber’s causal weighting and treatment of religious differences",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "tawney_religion"
+        ],
+        "evidence_note": "Religion chapter IV note 32, pp. 316–317, values the problem while questioning nonreligious omissions and Calvinist/Puritan flattening. It also rejects purely economic reduction; acknowledgment and criticism coexist.",
+        "map_label": "Causal weight and religious differentiation",
+        "classification_basis": "editorial_review"
+      },
+      "edge_565": {
+        "id": "edge_565",
+        "source": "practice",
+        "target": "biography",
+        "relationship": "Bourdieu questions retrospective coherence in biographical accounts",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "bourdieu_biographical_illusion"
+        ],
+        "evidence_note": "The 1986 essay examines institutional naming, interviews and trajectories across changing fields. It criticizes a manner of constructing lives, not every biography or all agency; the practice umbrella is not a unified position.",
+        "map_label": "Bourdieu: the constructed unity of a life",
+        "classification_basis": "editorial_review"
+      },
+      "edge_566": {
+        "id": "edge_566",
+        "source": "practice",
+        "target": "biography",
+        "relationship": "Davis explicitly uses Certeau’s account of stories in interpreting Glikl’s life writing",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "davis_margins_primary"
+        ],
+        "evidence_note": "The selected Glikl opening and acknowledgments document a named resource and intellectual debt. This differs from Bourdieu’s criticism; sharing a teaching umbrella does not collapse their arguments.",
+        "map_label": "Certeau: stories as a resource for Davis",
+        "classification_basis": "editorial_review"
+      },
+      "edge_570": {
+        "id": "edge_570",
+        "source": "lifetradition",
+        "target": "practice",
+        "relationship": "Robbe-Grillet’s challenge to coherent life narration supplies Bourdieu with an explicit literary resource",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "bourdieu_biographical_illusion"
+        ],
+        "evidence_note": "Bourdieu cites Le Miroir qui revient (1984), p. 208, while declining to adopt all the associated philosophy. The original literary work remains mediated; this is a specific resource for the 1986 essay, not the origin of all practice theory.",
+        "map_label": "Robbe-Grillet in Bourdieu’s biographical critique",
+        "classification_basis": "editorial_review"
+      },
+      "edge_574": {
+        "id": "edge_574",
+        "source": "psychohistory",
+        "target": "freud",
+        "relationship": "Schapiro questions the historical evidence of Freud’s Leonardo interpretation",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "schapiro_leonardo_primary"
+        ],
+        "evidence_note": "Translation, manuscript context and alternative explanations constrain inference. Schapiro separates criticism of this application from a rejection of psychoanalysis; his inclusion here is methodological.",
+        "map_label": "Schapiro: evidence for the Leonardo interpretation",
+        "classification_basis": "editorial_review"
+      },
+      "edge_582": {
+        "id": "edge_582",
+        "source": "freud",
+        "target": "althusser",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Althusser invokes Freud in explaining the familial constitution of subjects",
+        "evidence_note": "The interpellation section explicitly names Freud when discussing the expected child and family ideology. The NLR excerpt supplies philosophical context; universal developmental and binary assumptions are attributed, not established facts. This is distinct from Lacan’s methodological contribution.",
+        "source_ids": [
+          "althusser_isa_primary",
+          "althusser_freud_lacan_excerpt"
+        ],
+        "map_label": "Freud and the expected familial subject",
+        "classification_basis": "editorial_review"
+      },
+      "edge_589": {
+        "id": "edge_589",
+        "source": "freud",
+        "target": "derrida",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Derrida reworks Freud’s destruction drive and technical model of memory",
+        "evidence_note": "Archive Fever pp. 7–15 explicitly discusses Civilization and Its Discontents, Beyond the Pleasure Principle and the Mystic Pad, recalling an earlier Derrida essay. The selected pages establish a philosophical appropriation and criticism, not independent validation of the drive or a new reading of every cited original.",
+        "source_ids": [
+          "derrida_archive_primary"
+        ],
+        "map_label": "Freud’s destruction drive and the Mystic Pad",
+        "classification_basis": "editorial_review"
+      },
+      "edge_604": {
+        "id": "edge_604",
+        "source": "subaltern",
+        "target": "nationaltradition",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Chatterjee extends the Subaltern critique from nationalist historiography to nationalist thought as a 'derivative discourse' (1986)",
+        "evidence_note": "Guha's 1982 statement (read) opened the critique of elite historiography; his own critique is the separate edge from his person entry. This edge records the distinct extension to nationalist thought. Sarkar (1997, pp. 91–92, read), a former member, traces how Partha Chatterjee's Nationalist Thought and the Colonial World (1986) carried the critique to the colonized intelligentsia's 'derivative discourses', and objects that 'A project that had started with a trenchant attack on elite nationalist historiography had now chosen as its hero the principal iconic figure of official Indian nationalism' (p. 92). Later reading, labelled: Chakrabarty (2000, p. 25) writes that Chatterjee's book 'extended Guha's criticisms of nationalist historiography into a full-blown, brilliant critique of nationalist thought itself'. The arrow does not claim a denial of all national histories.",
+        "source_ids": [
+          "guha_historiography",
+          "chatterjee",
+          "sarkar_decline"
+        ],
+        "map_label": "Chatterjee: nationalism as derivative discourse, 1986",
+        "classification_basis": "editorial_review"
+      },
+      "edge_615": {
+        "id": "edge_615",
+        "source": "freud",
+        "target": "ryle",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Ryle invokes Freud against an assumption of transparent consciousness",
+        "evidence_note": "The Concept of Mind, p. 14, names Freud’s account of unrecognized impulses as a challenge to an assumption in the official doctrine. This bounded resource does not make Ryle a psychoanalyst or establish agreement with Freud’s whole theory.",
+        "source_ids": [
+          "ryle_concept_primary"
+        ],
+        "map_label": "Freud and the limits of conscious self-knowledge",
+        "classification_basis": "editorial_review"
+      },
+      "edge_621": {
+        "id": "edge_621",
+        "source": "weber",
+        "target": "reinhart_koselleck",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Koselleck uses Weber’s legitimacy typology to distinguish analytical categories",
+        "evidence_note": "Futures Past, chapter 5, p. 92, discusses transformation of historical political vocabulary into a scientific category. This specific example does not establish Weber as a founding inspiration of the entire program; Olsen’s introduction note 9 explicitly disputes that larger genealogy. Endpoint review 2026-10-24: the retained statement names this promoted individual; only its endpoint is repaired. Prior sources, wording and reading qualifications remain. See the individual entry and research packet for the fresh reading scope.",
+        "source_ids": [
+          "koselleck_futures_primary",
+          "koselleck_context"
+        ],
+        "map_label": "Weber’s typology as an analytical example",
+        "classification_basis": "editorial_review"
+      },
+      "edge_623": {
+        "id": "edge_623",
+        "source": "historicalecon",
+        "target": "weber",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Schmoller and the Verein provide an institutional setting for Weber’s agrarian inquiry",
+        "evidence_note": "Kim’s scholarly biographical section identifies mentorship and the agrarian commission. This is a specified research setting, not a claim that Weber simply inherits every methodological position of the German historical school.",
+        "source_ids": [
+          "weber"
+        ],
+        "map_label": "Schmoller, the Verein and agrarian research",
+        "classification_basis": "editorial_review"
+      },
+      "edge_628": {
+        "id": "edge_628",
+        "source": "weber",
+        "target": "karl",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Weber defends materialist historical inquiry against a particular juristic refutation",
+        "evidence_note": "The available Objectivity excerpt rejects the inference that legally regulated economic life must therefore be explained only by conscious legal purposes. Legal forms can persist while their practical social significance changes. This bounded defense is neither wholesale adherence to Marxism nor a complete account of Weber’s disagreements with Marx.",
+        "source_ids": [
+          "weber_method_primary"
+        ],
+        "map_label": "A qualified defense of materialist inquiry",
+        "classification_basis": "editorial_review"
+      },
+      "edge_643": {
+        "id": "edge_643",
+        "source": "weber",
+        "target": "gramsci",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Gramsci uses Weber’s account of German political personnel",
+        "evidence_note": "Intellectuals author noteH explicitly refers to Parliament and Government in the New Order in Germany in discussing Junker control. This is a particular resource, not agreement with Weber’s whole sociology.",
+        "source_ids": [
+          "gramsci"
+        ],
+        "map_label": "Weber on political personnel in Gramsci",
+        "classification_basis": "editorial_review"
+      },
+      "edge_650": {
+        "id": "edge_650",
+        "source": "nietzsche",
+        "target": "frankfurt",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Benjamin explicitly cites Nietzsche on history and life",
+        "evidence_note": "Thesis XII uses Nietzsche’s historical-need formulation within Benjamin’s own argument; this citation does not establish complete agreement.",
+        "source_ids": [
+          "benjamin_history_primary"
+        ],
+        "map_label": "Benjamin’s named Nietzsche resource",
+        "classification_basis": "editorial_review"
+      },
+      "edge_651": {
+        "id": "edge_651",
+        "source": "frankfurt",
+        "target": "historicism",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Benjamin challenges empathetic identification with historical victors",
+        "evidence_note": "Thesis VII targets a quoted prescription by Fustel de Coulanges; this is a specific polemic, not a fair summary of every historicist.",
+        "source_ids": [
+          "benjamin_history_primary"
+        ],
+        "map_label": "Benjamin critiques the victor’s history",
+        "classification_basis": "editorial_review"
+      },
+      "edge_652": {
+        "id": "edge_652",
+        "source": "gender",
+        "target": "frankfurt",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Feminist historical evidence challenges public-sphere exclusion",
+        "evidence_note": "Fraser uses Landes and Ryan alongside Eley to revise Habermas while retaining a normative resource. The historians’ original texts are mediated through Fraser.",
+        "source_ids": [
+          "fraser_sphere_primary"
+        ],
+        "map_label": "Landes and Ryan in Fraser’s critique",
+        "classification_basis": "editorial_review"
+      },
+      "edge_657": {
+        "id": "edge_657",
+        "source": "saussure",
+        "target": "practice",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Benveniste supplies de Certeau’s enunciation resource",
+        "evidence_note": "Introduction xiii and note 3 name the language model; this is a particular appropriation.",
+        "source_ids": [
+          "certeau_practice_primary"
+        ],
+        "map_label": "Benveniste and situated utterance",
+        "classification_basis": "editorial_review"
+      },
+      "edge_658": {
+        "id": "edge_658",
+        "source": "anthropology",
+        "target": "practice",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Mauss and Greek practical intelligence inform de Certeau",
+        "evidence_note": "Notes 9 and 20 cite bodily techniques and Détienne/Vernant; no unified anthropological position is implied.",
+        "source_ids": [
+          "certeau_practice_primary"
+        ],
+        "map_label": "Bodily techniques and practical intelligence",
+        "classification_basis": "editorial_review"
+      },
+      "edge_659": {
+        "id": "edge_659",
+        "source": "practice",
+        "target": "foucault",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "De Certeau questions an emphasis on disciplinary production",
+        "evidence_note": "Introduction xiv–xv seeks users’ operations while drawing on Foucault. This critique also acknowledges a resource.",
+        "source_ids": [
+          "certeau_practice_primary"
+        ],
+        "map_label": "Users’ operations and discipline",
+        "classification_basis": "editorial_review"
+      },
+      "edge_668": {
+        "id": "edge_668",
+        "source": "progressive",
+        "target": "karl",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Hartz disputes Marx’s explanation of socialist ideology",
+        "evidence_note": "Chapter 1 section 2 proposes an alternative relation between feudal heritage and socialist thought. This is Hartz’s claim alone; the existing Beard/materialism comparison remains distinct.",
+        "source_ids": [
+          "hartz_liberal_primary"
+        ],
+        "map_label": "Hartz contests Marx’s historical explanation",
+        "classification_basis": "editorial_review"
+      },
+      "edge_683": {
+        "id": "edge_683",
+        "source": "durkheim",
+        "target": "epistemology",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Halbwachs’s critique of the average person supplies a conceptual resource",
+        "evidence_note": "Canguilhem explicitly uses Halbwachs1912 in examining Quetelet and norms. The claim concerns this work, not a transfer of collective-memory theory.",
+        "source_ids": [
+          "canguilhem_norm_average_primary",
+          "halbwachs_average_1912"
+        ],
+        "map_label": "Halbwachs: statistics and norms",
+        "classification_basis": "editorial_review"
+      },
+      "edge_684": {
+        "id": "edge_684",
+        "source": "durkheim",
+        "target": "ssk",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Durkheim supplies an explicitly named resource for Bloor’s programme",
+        "evidence_note": "Bloor’s opening chapter invokes Elementary Forms and identifies Durkheim among the programme’s resources. This limited reception claim does not certify every later Durkheimian argument.",
+        "source_ids": [
+          "bloor_programme_primary"
+        ],
+        "map_label": "Durkheim in Bloor’s programme",
+        "classification_basis": "editorial_review"
+      },
+      "edge_687": {
+        "id": "edge_687",
+        "source": "weber",
+        "target": "historicalecon",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Weber questions how Knies derives economic method from its subject matter",
+        "evidence_note": "The opening of the1905second article selects logical problems and explicitly disclaims a full historical assessment. This particular critique coexists with Weber’s institutional debts; it does not reject all historical economics.",
+        "source_ids": [
+          "weber_knies_primary"
+        ],
+        "map_label": "Weber’s methodological reading of Knies",
+        "classification_basis": "editorial_review"
+      },
+      "edge_688": {
+        "id": "edge_688",
+        "source": "karl",
+        "target": "economictheory",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Marx criticizes the wage dependence produced by Wakefield’s colonial land scheme",
+        "evidence_note": "Capital I chapter33 attacks a scheme that Mill endorses in V.11§14. Marx does not name Mill in that chapter; this connection identifies a shared policy object, not a direct quotation or comprehensive Indigenous critique.",
+        "source_ids": [
+          "marx_colonisation_primary",
+          "mill_colonisation_primary"
+        ],
+        "map_label": "Colonial land and wage dependence",
+        "classification_basis": "editorial_review"
+      },
+      "edge_692": {
+        "id": "edge_692",
+        "source": "atlantic",
+        "target": "geography",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Massey uses Gilroy’s changing tradition as a resource",
+        "evidence_note": "Places and Their Pasts 184 explicitly invokes The Black Atlantic against a closed account of tradition. This is documented reception, not a new full-book check.",
+        "source_ids": [
+          "massey_places_pasts"
+        ],
+        "map_label": "Gilroy in Massey’s place argument",
+        "classification_basis": "editorial_review"
+      },
+      "edge_700": {
+        "id": "edge_700",
+        "source": "anthropology",
+        "target": "demography",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "relationship": "Goody questions the uniqueness and scale of European marriage comparisons",
+        "evidence_note": "Goody1983,8–9 explicitly discusses Hajnal1965, noting geographic and social variation and counterexamples cited from Tibet and Roman Egypt. Those underlying studies are not newly audited. Hajnal’s own regional qualifications are retained, so this is a specific criticism rather than a claim that he asserted complete uniformity.",
+        "source_ids": [
+          "goody_family_marriage",
+          "hajnal_marriage"
+        ],
+        "map_label": "Goody’s criticism of marriage comparisons",
+        "classification_basis": "editorial_review"
+      },
+      "edge_703": {
+        "id": "edge_703",
+        "source": "historicalsociology",
+        "target": "military",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Tilly’s state-building model informs Lucassen and Zürcher’s recruitment comparison",
+        "evidence_note": "The authors explicitly identify Tilly’s 1990 book as their framework at 406 and note 4. This is a documented use in one study, not a claim about all military historians.",
+        "source_ids": [
+          "lucassen_zurcher_conscription"
+        ],
+        "map_label": "Tilly in recruitment analysis",
+        "classification_basis": "editorial_review"
+      },
+      "edge_972": {
+        "id": "edge_972",
+        "source": "edward_said",
+        "target": "karl",
+        "relationship": "Marx's 1853 writings on British rule in India read as an instance in which Orientalist generalisation overrode his sympathy for Asian suffering (1978), a reading contested in period as a travesty",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "pe137_said_orientalism_1978",
+          "pe137_said_reconsidered_1985",
+          "pe137_said_alazm_1981",
+          "pe137_said_ahmad_in_theory_1992",
+          "pe137_said_irwin_2006"
+        ],
+        "evidence_note": "Said's own in-period statements. Orientalism (Pantheon, 1978; page images checked), pp. 153–156. Marx 'identified the notion of an Asiatic economic system in his 1853 analyses of British rule in India, and then put beside that immediately the human depredation introduced into this system by English colonial interference, rapacity, and outright cruelty' (p. 153). After quoting Marx on England as 'the unconscious tool of history' and his Goethe citation: 'Marx's economic analyses are perfectly fitted thus to a standard Orientalist undertaking, even though Marx's humanity, his sympathy for the misery of people, are clearly engaged. Yet in the end it is the Romantic Orientalist vision that wins out' (p. 154); 'The idea of regenerating a fundamentally lifeless Asia is a piece of pure Romantic Orientalism' (p. 154); 'Marx is no exception. The collective Orient was easier for him to use in illustration of a theory than existential human identities' (p. 155); 'In part, of course, Marx was concerned with vindicating his own theses on socio-economic revolution' (p. 155); Marx is 'the case by which a non-Orientalist's human engagements were first dissolved, then usurped by Orientalist generalizations' (p. 156). The introduction announces it: 'The same kind of paradox is to be found in Marx, as I try to show in this book' (p. 14). In 1985 he names Marx among the historicists whose one human history 'either culminated in or was observed from the vantage point of Europe' ('Orientalism Reconsidered', p. 101). Marx's words appear here only as Said quotes them; the 1853 articles were not read. In-period counter-critique: al-'Azm (Khamsin 1981, read): 'I think that this account of Marx's views and analyses of highly complex historical processes and situations is a travesty'; 'only Said's excessive fascination with the verbal, textual and linguistic could lead him to portray Marx's mind as somehow usurped'; Marx's explanation 'testifies to his theoretical consistency in general, and to his keen realism'. Aijaz Ahmad's criticism of the same pages ('Between Orientalism and Historicism', Studies in History 1991; In Theory, 1992) is known here only from Irwin (2006, n. 32 to p. 296), who reports that Ahmad suggests 'Marx's position on rural Indians was not significantly different from his position on rural Germans'; Ahmad was not read. Later reading, labelled: Irwin (2006, pp. 295–296) calls the treatment a travesty and asks why there is no discussion of 'the Asiatic mode of production, Oriental despotism'.",
+        "classification_basis": "editorial_review",
+        "map_label": "Marx on India as Orientalist, 1978 (contested)",
+        "proposal_id": "pe137_said_rel_05"
+      },
+      "edge_1047": {
+        "id": "edge_1047",
+        "source": "practice",
+        "target": "philip_huang",
+        "relationship": "Bourdieu’s “practice” and “logic of practice” taken into Chinese legal and rural history, recast as practice over historical time (1995–2005)",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "ph_divorce_practice_2005",
+          "ph_rural_class_1995",
+          "w1_huang_ucla_profile"
+        ],
+        "evidence_note": "His acknowledgement, read by the second research pass. 2005 (Modern China 31:2, n. 3): \"Readers familiar with the writings of Pierre Bourdieu will recognize the source of the terms 'practice' and 'logic of practice' as they are used here\"; Bourdieu \"did not consider practice as process over time. My own preference, no doubt partly due to my bias as a historian, is for the study of practice as historical process.\" 1995 (Modern China 21:1, pp. 109–110): Bourdieu extended \"Marxist structural analysis from the objective into the representational (or 'symbolic') realm\" but \"has not 'problematized' possible disjunctions between representational and objective realities\". Civil Justice in China: Representation and Practice in the Qing (1996) carries the terms in its title; the book is unread. A modified borrowing, not adoption of Bourdieu’s whole theory.",
+        "classification_basis": "editorial_review",
+        "map_label": "Practice as historical process, 2005",
+        "proposal_id": "w1_huang_rel_07"
+      },
+      "edge_1103": {
+        "id": "edge_1103",
+        "source": "karl",
+        "target": "robert_brenner",
+        "relationship": "Marx's account of 'so-called primitive accumulation' named as the source of the view (1976)",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "rb_brenner_1976",
+          "rb_harman_brenner_2006"
+        ],
+        "evidence_note": "Brenner 1976, p. 47 n. 40 (read): 'This view obviously derives from Marx's arguments on the barriers to and the class structural bases for the development of capitalism, especially as presented in \"The So-called Primitive Accumulation of Capital\", Capital, i, pt. VIII, and Pre-Capitalist Economic Formations'. In 2004 he argued against Marx's Preface model of the productive forces (transcript, read), so the debt is selective.",
+        "classification_basis": "editorial_review",
+        "map_label": "From Marx on primitive accumulation, 1976",
+        "proposal_id": "rb_rel_11"
+      },
+      "edge_1155": {
+        "id": "edge_1155",
+        "source": "latour",
+        "target": "durkheim",
+        "relationship": "Durkheim’s sociology criticised for taking society as the cause instead of a provisional consequence, against Tarde’s “all things are society”; actor-network theory replaces “the social” with “association” (2002), a programme restated in Reassembling the Social (2005)",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "w3_latour_tarde_2002",
+          "w3_latour_reassembling_2005"
+        ],
+        "evidence_note": "His own words. \"Gabriel Tarde and the End of the Social\", in Patrick Joyce, ed., The Social in Question: New Bearings in History and the Social Sciences (Routledge, 2002), pp. 117–132, read in part in the author's typescript (typescript pp. 1–2, 5, 7, 10): actor-network theory is \"a deliberate attempt at terminating the use of the word 'social' in social theory to replace it with the word 'association'\", and \"ANT actually has a forefather, namely Gabriel Tarde\" (p. 1); \"Instead of saying, like Durkheim, that we 'should treat social facts as a thing', Tarde says that 'all things are society'\" (p. 5); \"Durkheim has taken society as the cause instead of seeing that it is never more than a highly provisional consequence\" (p. 10). He concedes that he had once \"never enquired further than the dismissive footnotes of the Durkheimians\" (p. 2). Durkheim's position is given only as Latour presents it. Reassembling the Social (2005) is unread; the author's description presents sociology as \"the science of associations and not only as the science of the social\". The essay appeared in a volume addressed to historians and social scientists, edited by the historian Patrick Joyce (citation only; Joyce's introduction unread). A critique of Durkheimian sociology, not of the historians who adapted it (durkheim/historical_method).",
+        "classification_basis": "editorial_review",
+        "map_label": "Tarde against Durkheim: the end of the social, 2002–05",
+        "target_strand": "durkheim/social_facts",
+        "proposal_id": "w3_latour_rel_01"
+      },
+      "edge_1291": {
+        "id": "edge_1291",
+        "source": "carlo_ginzburg",
+        "target": "freud",
+        "relationship": "Compares Freud’s reading of small traces with Morelli’s art attribution and Holmes’s detection in the evidential model, in the English Clues collection (1989).",
+        "type": "connection",
+        "relationship_kind": "comparison",
+        "directed": false,
+        "source_ids": [
+          "gm163_ginzburg_clues_1989"
+        ],
+        "evidence_note": "Selected Clues pages 96–101, own text read through scan/OCR. A comparison made by Ginzburg; no Freud-to-Ginzburg transmission is inferred and the psychoanalysis group is used as the existing contextual endpoint. His proposed Morelli-to-Freud connection is not independently checked here.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "gm163_cg_freud"
+      },
+      "edge_1468": {
+        "id": "edge_1468",
+        "source": "mary_ryan",
+        "target": "frankfurt",
+        "relationship": "Provides historical evidence against equating public politics with a single bourgeois public sphere.",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "fraser_sphere_primary"
+        ],
+        "evidence_note": "Fraser61uses Ryan’s findings to critique Habermas; this is Fraser’s mediated deployment of Ryan, not evidence Ryan adopted every element of Fraser’s theory or belonged to the Frankfurt School.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "hc178_mary_ryan_e2"
+      }
+    },
+    "sources": {},
+    "nodes": {
+      "durkheim": {
+        "id": "durkheim",
+        "label": "Social facts & collective life",
+        "date_label": "Division of Labour 1893 · Rules 1895 · Elementary Forms 1912 · later school",
+        "layer": "intellectual_traditions",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Social facts, causes and functions, solidarity, ritual and collective thought provide distinct sociological questions. Hubert, Mauss, Simiand, Halbwachs and Meillet develop particular inquiries; historical and anthropological recipients adapt them selectively.",
+        "representative_figures_and_works": "Émile Durkheim (1858–1917), The Division of Labour in Society (1893); influence on Bloch is substantial but selective and critical.",
+        "source_ids": [
+          "durkheim",
+          "durkheim_rules_primary",
+          "durkheim_division_primary",
+          "durkheim_forms_primary",
+          "hubert_mauss_sacrifice",
+          "mauss_gift",
+          "simiand_method_primary",
+          "burke_annales_context",
+          "halbwachs_memory",
+          "assmann_collective",
+          "meillet_meaning",
+          "bloch_feudal",
+          "halbwachs_average_1912",
+          "canguilhem_norm_average_primary",
+          "bloor_programme_primary"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "emile_durkheim",
+            "role": "contributor",
+            "context": "Defines a sociological object, distinguishes causes from functions, and investigates conditions of solidarity and collective thought. His arguments and ethnographic assumptions require separate assessment.",
+            "works": "De la division du travail social (1893); Les Règles de la méthode sociologique (1895); Les Formes élémentaires de la vie religieuse (1912)",
+            "source_ids": [
+              "durkheim_rules_primary",
+              "durkheim_division_primary",
+              "durkheim_forms_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marcel_mauss",
+            "role": "contributor",
+            "context": "Collaborative research on sacrifice and later work on gifts examine ritual relations and obligations; the two projects are not interchangeable.",
+            "works": "With Henri Hubert, “Essai sur la nature et la fonction du sacrifice” (1899); “Essai sur le don” (1925)",
+            "source_ids": [
+              "hubert_mauss_sacrifice",
+              "mauss_gift"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1548"
+          },
+          {
+            "person_id": "henri_hubert",
+            "role": "contributor",
+            "context": "Coauthors a provisional comparative theory of sacrifice that distinguishes participants, consecration and mediation. His contribution is not absorbed into Mauss’s later gift essay.",
+            "works": "With Marcel Mauss, “Essai sur la nature et la fonction du sacrifice” (1899)",
+            "source_ids": [
+              "hubert_mauss_sacrifice"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "francois_simiand",
+            "role": "contributor",
+            "context": "Pursues the methodological relation between historical evidence and social science. Annales explicitly reprints his intervention in 1960 as part of its continuing dialogue.",
+            "works": "“Méthode historique et science sociale” (1903; Annales reprint, 1960)",
+            "source_ids": [
+              "simiand_method_primary",
+              "burke_annales_context"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "maurice_halbwachs",
+            "role": "contributor",
+            "context": "Develops the social frameworks of remembering as a distinct inquiry. Later critical reuse and his intellectual formation are separate evidentiary questions.",
+            "works": "Les Cadres sociaux de la mémoire (1925); On Collective Memory (edited English collection, 1992)",
+            "source_ids": [
+              "halbwachs_memory",
+              "assmann_collective"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "antoine_meillet",
+            "role": "contributor",
+            "context": "Explicitly applies Durkheim’s social-fact definition to language and investigates social conditions of semantic change.",
+            "works": "“Comment les mots changent de sens” (1906)",
+            "source_ids": [
+              "meillet_meaning"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marc_bloch",
+            "role": "historian",
+            "context": "A selective historical recipient and interlocutor, not a doctrinal adherent. His acknowledgment of Durkheim is documented in the scholarly introduction cited here.",
+            "works": "Feudal Society (1939–40); contextual reception study: Susan W. Friedman, Marc Bloch, Sociology and Geography",
+            "source_ids": [
+              "bloch_feudal",
+              "durkheim"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "latour",
+            "role": "critic",
+            "context": "Presents Gabriel Tarde, against “the dismissive footnotes of the Durkheimians”, as the forefather of actor-network theory, and holds that Durkheim took society as the cause rather than a provisional consequence (2002).",
+            "works": "“Gabriel Tarde and the End of the Social” (2002); Reassembling the Social (2005)",
+            "source_ids": [
+              "w3_latour_tarde_2002",
+              "w3_latour_reassembling_2005"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1155"
+          }
+        ],
+        "entry_type": "Intellectual tradition",
+        "scope_note": "Durkheim and selected collaborators, recipients and interlocutors, not a membership register. Collective explanation does not imply that all institutions are useful or all differentiation creates solidarity. Colonial-era categories and ethnographic generalizations remain claims to assess. Bloch’s engagement is selective; modernization and Bourdieu links still need more precise reception passages.",
+        "strands": [
+          {
+            "id": "social_facts",
+            "title": "Social facts and institutional resistance",
+            "focus": "Durkheim’s examples include obligations, signs and monetary practices. Externality and coercive capacity distinguish his object; mere statistical commonness does not suffice.",
+            "person_ids": [
+              "emile_durkheim"
+            ],
+            "works": "Rules (1895), chapter I",
+            "source_ids": [
+              "durkheim_rules_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "causes_functions",
+            "title": "Origins, functions and critical antecedents",
+            "focus": "Chapter V disputes Comte’s and Spencer’s utility-based explanations: identifying a use does not explain an institution’s origin, and functions can change.",
+            "person_ids": [
+              "emile_durkheim"
+            ],
+            "works": "Rules (1895), chapter V",
+            "source_ids": [
+              "durkheim_rules_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "solidarity",
+            "title": "Differentiation and failures of solidarity",
+            "focus": "Division of labor can produce conflict and anomie. Durkheim’s discussion of crises and capital/labor antagonism qualifies any automatic equation of differentiation with cohesion.",
+            "person_ids": [
+              "emile_durkheim"
+            ],
+            "works": "Division of Labour (1893), book III chapter I",
+            "source_ids": [
+              "durkheim_division_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "religion_categories",
+            "title": "Religious life and collective categories",
+            "focus": "Sacred practices and collective membership are distinguished from a purely private belief. The proposed social formation of categories is an argument to assess, not an established origin of all thought.",
+            "person_ids": [
+              "emile_durkheim"
+            ],
+            "works": "Elementary Forms (1912), introduction and religion definition",
+            "source_ids": [
+              "durkheim_forms_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "sacrifice",
+            "title": "Sacrifice, participants and mediation",
+            "focus": "Hubert and Mauss build on and revise earlier comparative scholarship. Their provisional model distinguishes ritual participants and movement between sacred and profane.",
+            "person_ids": [
+              "henri_hubert",
+              "marcel_mauss"
+            ],
+            "works": "“Essai sur la nature et la fonction du sacrifice” (1899)",
+            "source_ids": [
+              "hubert_mauss_sacrifice"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "historical_method",
+            "title": "Historical evidence and social science",
+            "focus": "Simiand’s methodological challenge and Bloch’s selective historical reception are different forms of engagement; Annales’ later reprint makes one continuing exchange explicit.",
+            "person_ids": [
+              "francois_simiand",
+              "marc_bloch"
+            ],
+            "works": "“Méthode historique et science sociale” (1903; reprinted 1960); Bloch reception in Sociology and Geography",
+            "source_ids": [
+              "simiand_method_primary",
+              "durkheim"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "memory_language",
+            "title": "Social frameworks of remembering and language",
+            "focus": "Halbwachs’s memory inquiry and Meillet’s semantic history develop different objects from social relations. Shared vocabulary alone does not establish identical methods.",
+            "person_ids": [
+              "maurice_halbwachs",
+              "antoine_meillet"
+            ],
+            "works": "Les Cadres sociaux de la mémoire (1925); “Comment les mots changent de sens” (1906)",
+            "source_ids": [
+              "halbwachs_memory",
+              "meillet_meaning"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1893–1912",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_3028969d1f71",
+              "label": "De la division du travail social",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1893,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:durkheim_division_primary"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_92f8ed0740cb",
+              "label": "Les Règles de la méthode sociologique",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1895,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:durkheim_rules_primary"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_1215746a6617",
+              "label": "Les Formes élémentaires de la vie religieuse",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1912,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:durkheim_forms_primary"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      },
+      "practice": {
+        "id": "practice",
+        "label": "Practice theory",
+        "date_label": "Bourdieu · de Certeau · Sewell · 1970s–90s development",
+        "layer": "intellectual_traditions",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "Examines how embodied dispositions and situated activities reproduce or alter social relations. Bourdieu’s habitus and strategies, de Certeau’s tactics, and Sewell’s account of structure offer different ways to connect agency, constraint, and meaning. These are several resources for reassessing cultural history, not a single replacement paradigm.",
+        "representative_figures_and_works": "Bourdieu, Outline of a Theory of Practice (1972; English 1977), Distinction (1979); de Certeau, The Practice of Everyday Life (1980; English 1984); Sewell, “A Theory of Structure” (1992).",
+        "source_ids": [
+          "bourdieu",
+          "certeau",
+          "distinction",
+          "bonnell_hunt",
+          "sewell_structure",
+          "bourdieu_outline_primary",
+          "certeau_practice_primary",
+          "giddens_constitution_metadata",
+          "swidler_action_primary",
+          "ortner_practice_primary",
+          "vickery_elegance_primary",
+          "dc165_scott_everyday_1989",
+          "dc165_scott_weapons_1985",
+          "dc165_scott_domination_1990",
+          "dc165_scott_west_plender_2015",
+          "rt186_giddens_primary"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "pierre_bourdieu",
+            "role": "contributor",
+            "context": "Studies embodied dispositions, improvisation and the power involved in classification.",
+            "works": "Outline of a Theory of Practice (1972; English 1977); Distinction (1979)",
+            "source_ids": [
+              "bourdieu_outline_primary",
+              "distinction"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1507"
+          },
+          {
+            "person_id": "michel_de_certeau",
+            "role": "historian",
+            "context": "Distinguishes tactics from strategies with a base of their own; users are not homogeneous.",
+            "works": "The Practice of Everyday Life (1980; English 1984)",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "william_h_sewell_jr",
+            "role": "historian",
+            "context": "Reformulates Bourdieu and Giddens to join agency, change and material/symbolic structure.",
+            "works": "A Theory of Structure (1992)",
+            "source_ids": [
+              "sewell_structure"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "luce_giard",
+            "role": "contributor",
+            "context": "Investigates cooking in the collaborative everyday-life project.",
+            "works": "Habiter, cuisiner (1980), with Mayol",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "pierre_mayol",
+            "role": "contributor",
+            "context": "Investigates dwelling in the collaborative everyday-life project.",
+            "works": "Habiter, cuisiner (1980), with Giard",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marie_ferrier",
+            "role": "contributor",
+            "context": "Conducts interviews used in Giard’s cooking study.",
+            "works": "Interviews credited in de Certeau’s introduction, note 8 (1984)",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "erving_goffman",
+            "role": "contributor",
+            "context": "Named resource for interaction and framing.",
+            "works": "Frame Analysis (1974), cited in de Certeau note 9",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marcel_detienne",
+            "role": "contributor",
+            "context": "Coauthored inquiry into Greek practical intelligence informs tactics.",
+            "works": "Les Ruses de l’intelligence (1974), with Vernant",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "jean_pierre_vernant",
+            "role": "contributor",
+            "context": "Coauthored inquiry into Greek practical intelligence informs tactics.",
+            "works": "Les Ruses de l’intelligence (1974), with Détienne",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "marcel_mauss",
+            "role": "precursor",
+            "context": "Bodily techniques supply a named resource.",
+            "works": "Techniques du corps, cited in de Certeau note 9",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "anthony_giddens",
+            "role": "contributor",
+            "context": "Sewell explicitly critiques and reformulates his duality of structure.",
+            "works": "The Constitution of Society (1984)",
+            "source_ids": [
+              "giddens_constitution_metadata",
+              "sewell_structure"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1551"
+          },
+          {
+            "person_id": "ann_swidler",
+            "role": "contributor",
+            "context": "Examines repertoires and their different roles under settled and unsettled conditions.",
+            "works": "Culture in Action (1986)",
+            "source_ids": [
+              "swidler_action_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "sherry_ortner",
+            "role": "contributor",
+            "context": "Presents practice as a plural theoretical orientation from an explicitly situated perspective.",
+            "works": "Theory in Anthropology since the Sixties (1984)",
+            "source_ids": [
+              "ortner_practice_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "amanda_vickery",
+            "role": "historian",
+            "context": "Uses Bourdieu in a historical inquiry into purchasing and material meanings.",
+            "works": "The Gentleman’s Daughter (1998), “Elegance,” opening and note9",
+            "source_ids": [
+              "vickery_elegance_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "georges_duby",
+            "role": "contributor",
+            "context": "His three-orders analysis is an explicitly named resource in Bourdieu’s discussion of classification struggles.",
+            "works": "Three-orders research, as discussed in Distinction (1984), selected conclusion",
+            "source_ids": [
+              "distinction"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "philip_huang",
+            "role": "historian",
+            "context": "Takes “practice” and “logic of practice” from Bourdieu into Chinese legal history, preferring practice “as historical process” to Bourdieu’s synchronic Kabyle analysis.",
+            "works": "Civil Justice in China: Representation and Practice in the Qing (1996); “Divorce Law Practices” (2005), n. 3",
+            "source_ids": [
+              "ph_divorce_practice_2005",
+              "ph_rural_class_1995"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1047"
+          },
+          {
+            "person_id": "roger_chartier",
+            "role": "contributor",
+            "context": "Uses Bourdieu’s distinction between practical sense and scholastic reason and his account of social difference, and Certeau’s space of appropriation, while rejecting a reading of Certeau that makes readers’ freedom absolute: constraints can be transgressed, but freedom is always limited, first by reading competence (2007 dialogue with Darnton, read in Portuguese translation).",
+            "works": "« La nouvelle histoire culturelle existe-t-elle ? » (2003), ¶25; dialogue with Robert Darnton at the Collège de France (2007; published 2012), pp. 164–167; with Bourdieu, Le sociologue et l’historien (radio dialogues 1988; book 2010)",
+            "source_ids": [
+              "w2_chartier_nhc_2003",
+              "w2_chartier_darnton_dialogue_2012"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1133"
+          },
+          {
+            "person_id": "james_c_scott",
+            "role": "contributor",
+            "context": "Treats dispersed acts against appropriation as intentional political practices; his 1989 essay asks how they can be investigated when they avoid public records. The actor’s intentions and unintended outcomes need distinction.",
+            "works": "Weapons of the Weak (1985); “Everyday Forms of Resistance” (1989, pp. 33–39 read); Domination and the Arts of Resistance (1990; author interview pp. 2–3)",
+            "source_ids": [
+              "dc165_scott_everyday_1989",
+              "dc165_scott_weapons_1985",
+              "dc165_scott_domination_1990",
+              "dc165_scott_west_plender_2015"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1301"
+          }
+        ],
+        "strands": [
+          {
+            "id": "habitus",
+            "title": "Habitus and social position",
+            "person_ids": [
+              "pierre_bourdieu"
+            ],
+            "focus": "Durable dispositions allow improvisation; neither mechanical obedience nor unconstrained choice.",
+            "works": "Outline of a Theory of Practice; Distinction",
+            "source_ids": [
+              "bourdieu_outline_primary",
+              "distinction"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "tactics",
+            "title": "Everyday tactics",
+            "person_ids": [
+              "michel_de_certeau"
+            ],
+            "focus": "Tactics depend on occasions without an independent base for storing gains.",
+            "works": "The Practice of Everyday Life",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "structure",
+            "title": "Structures and agency",
+            "person_ids": [
+              "william_h_sewell_jr",
+              "anthony_giddens"
+            ],
+            "focus": "Sewell reformulates Giddens and Bourdieu to make transformation and agency part of structure.",
+            "works": "A Theory of Structure (1992)",
+            "source_ids": [
+              "sewell_structure",
+              "giddens_constitution_metadata"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "collaborative_everyday",
+            "title": "Dwelling, cooking and collaborative inquiry",
+            "focus": "Everyday-life research includes specialized studies and interviews.",
+            "person_ids": [
+              "luce_giard",
+              "pierre_mayol",
+              "marie_ferrier"
+            ],
+            "works": "Habiter, cuisiner (1980)",
+            "source_ids": [
+              "certeau_practice_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "classification_power",
+            "title": "Classification and power",
+            "focus": "Bourdieu critically expands Durkheim’s cognitive account toward social power.",
+            "person_ids": [
+              "pierre_bourdieu"
+            ],
+            "works": "Outline (1977), 164–165",
+            "source_ids": [
+              "bourdieu_outline_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "cultural_repertoires",
+            "title": "Cultural repertoires and historical conditions",
+            "focus": "Swidler distinguishes available capacities for action from a values-only explanation.",
+            "person_ids": [
+              "ann_swidler"
+            ],
+            "works": "Culture in Action (1986)",
+            "source_ids": [
+              "swidler_action_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "plural_orientation",
+            "title": "Practice as a plural orientation",
+            "focus": "Ortner’s historical framing is situated and explicitly selective.",
+            "person_ids": [
+              "sherry_ortner"
+            ],
+            "works": "Theory in Anthropology since the Sixties (1984), 127",
+            "source_ids": [
+              "ortner_practice_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "historical_classification",
+            "title": "Historical classifications and their uses",
+            "focus": "Bourdieu relates practical classifications to social positions and struggles over recognition. He uses Duby’s three-orders analysis as an example; Vickery later uses Bourdieu in a different historical inquiry.",
+            "person_ids": [
+              "pierre_bourdieu",
+              "georges_duby",
+              "amanda_vickery"
+            ],
+            "works": "Distinction (1984), selected conclusion; Vickery (1998), “Elegance”",
+            "source_ids": [
+              "distinction",
+              "vickery_elegance_primary"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "dc165_everyday_resistance",
+            "title": "Everyday resistance and the limits of public evidence",
+            "person_ids": [
+              "james_c_scott"
+            ],
+            "focus": "Scott’s 1989 essay treats intended efforts against appropriation as political action, including dispersed and concealed acts. Reading them requires attention to cooperation, symbols and the danger of misidentifying motives or outcomes. His categories are a distinct resource, not a synthesis of Bourdieu’s and de Certeau’s projects.",
+            "works": "“Everyday Forms of Resistance” (1989), pp. 33–39",
+            "source_ids": [
+              "dc165_scott_everyday_1989"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "entry_type": "Method or approach",
+        "scope_note": "Bourdieu, de Certeau, and Sewell offer distinct accounts. Practice theory is not a unified successor to cultural history. Collaborative everyday research, cultural repertoires and Ortner’s plural orientation broaden this selection. Strategy has different meanings across these authors.",
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1972–1992",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_7049addc0277",
+              "label": "Bourdieu, Esquisse d'une théorie de la pratique",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1972,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:bourdieu_outline_primary"
+              ],
+              "support": "French original; English Outline 1977. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_f6aca4b25175",
+              "label": "De Certeau, L'invention du quotidien",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1980,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:certeau"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_cc04b29ae744",
+              "label": "Sewell, A Theory of Structure",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1992,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:sewell_structure"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 0,
+    "new_edges": 0,
+    "new_sources": 0,
+    "source_addenda": 0
+  }
+}

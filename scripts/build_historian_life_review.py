@@ -6,10 +6,12 @@ Refuses missing or conflicting records. No life data enter the canonical graph.
 import hashlib
 import json
 from pathlib import Path
-
-from historian_life_review import validate_review
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.historian_life_review import validate_review
+from scripts.life_review_inputs import accepted_life_paths
 REVIEW = ROOT / 'data/field-research/historian-life-review-2026-10-25'
 OUT = ROOT / 'data/historian-life-review.json'
 
@@ -37,6 +39,7 @@ def main():
     for name in ('historian-anderson-2026-10-25', 'historian-wallerstein-2026-10-25',
                  'historian-mintz-2026-10-25'):
         paths += sorted((packets / name).rglob('life-status.json'))
+    paths += accepted_life_paths(graph, set(historians))
     for path in paths:
         source = json.loads(path.read_text())
         # New packet authors use the independent review's per-person schema.

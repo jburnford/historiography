@@ -1,0 +1,175 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "karl_marx",
+    "label": "Karl Marx",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1848: Manifesto of the Communist Party (with Friedrich Engels) · 1859: A Contribution to the Critique of Political Economy: preface · 1867: Capital I · 1877: Letter to the editorial board of Otechestvenniye Zapiski (writing)",
+    "description": "A critic of political economy whose accounts of production, property and exploitation became resources for historical materialism. His writings contain strong developmental propositions alongside historically qualified arguments; these are preserved as claims to compare, rather than silently harmonized.",
+    "representative_figures_and_works": "Manifesto of the Communist Party (with Friedrich Engels) (1848); A Contribution to the Critique of Political Economy: preface (1859); Capital I (1867); Letter to the editorial board of Otechestvenniye Zapiski (writing) (1877).",
+    "source_ids": [
+      "marx_1859_preface",
+      "marx_colonisation_primary",
+      "tl185_karl_marx_manifesto",
+      "tl185_karl_marx_capital",
+      "tl185_karl_marx_life",
+      "marx_russia_letter"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl185_karl_marx_w1",
+          "label": "Manifesto of the Communist Party (with Friedrich Engels)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1848,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_karl_marx_manifesto"
+          ],
+          "support": "Joint original published February 1848; later English translation separately credited."
+        },
+        {
+          "id": "tl185_karl_marx_w2",
+          "label": "A Contribution to the Critique of Political Economy: preface",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1859,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:marx_1859_preface"
+          ],
+          "support": "Original preface year; selected primary body reread."
+        },
+        {
+          "id": "tl185_karl_marx_w3",
+          "label": "Capital I",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1867,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_karl_marx_capital"
+          ],
+          "support": "Original 1867 publication metadata. Selected chapter 33 passages were read separately; the remainder of the volume and original-edition collation remain unread."
+        },
+        {
+          "id": "tl185_karl_marx_w4",
+          "label": "Letter to the editorial board of Otechestvenniye Zapiski (writing)",
+          "kind": "writing",
+          "track": "contributions",
+          "date": {
+            "year": 1877,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:marx_russia_letter"
+          ],
+          "support": "November 1877 letter, not a claim it was published then."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.185/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "karl_marx",
+    "node_id": "karl_marx"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl185_karl_marx_e1",
+      "source": "karl_marx",
+      "target": "karl",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Makes production relations, productive forces and the forms in which people fight conflicts central historical questions.",
+      "evidence_note": "Own 1859 preface core paragraphs read. Strong forces/relations propositions are Marx’s argument; the existing separately sourced 1877 rejection of a universal Western-European path remains in the group context.",
+      "source_ids": [
+        "marx_1859_preface"
+      ]
+    },
+    {
+      "proposal_id": "tl185_karl_marx_e2",
+      "source": "karl_marx",
+      "target": "economictheory",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Criticizes colonial land restriction as a means of making people dependent on wage labour.",
+      "evidence_note": "Own Capital I chapter 33 opening and colonial-land discussion read. This is a specific criticism of Wakefield; Mill is not named in this passage, and no direct Marx-to-Mill attack or complete Indigenous history is inferred.",
+      "source_ids": [
+        "marx_colonisation_primary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl185_karl_marx_manifesto",
+      "title": "Marx and Engels, Manifesto of the Communist Party: MIA edition metadata",
+      "url": "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Metadata identifies joint Marx/Engels work, written late 1847, first published February 1848; displayed translation is Samuel Moore with Engels (1888), reproduced from 1969 Selected Works. Only metadata/contents checked; full Manifesto not read."
+      }
+    },
+    {
+      "id": "tl185_karl_marx_capital",
+      "title": "Marx, Capital I: MIA edition and contents",
+      "url": "https://www.marxists.org/archive/marx/works/1867-c1/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Original 1867 publication identity checked through archive edition metadata; English transcription is a later translation. Only chapter 33 selected passages read separately; entire volume and edition collation unread."
+      }
+    },
+    {
+      "id": "tl185_karl_marx_life",
+      "title": "Deutsches Historisches Museum, LeMO biography: Karl Marx",
+      "url": "https://www.dhm.de/lemo/biografie/karl-marx",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional biographical chronology identifies 1818–1883 and birth 5 May 1818; year precision retained here. Theoretical interpretation is grounded in separately read Marx passages."
+      }
+    }
+  ],
+  "source_addenda": {
+    "marx_1859_preface": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Newly reread core 1859 preface paragraphs from legal/political forms through forces/relations and Engels collaboration. Strong developmental propositions remain attributed claims. Later website endnotes and complete book unread; original edition uncollated."
+    },
+    "marx_colonisation_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Newly reread chapter 33 opening through the discussion of access to colonial land and the wage-labour relation. Later chapter not newly read. Preserves prior warning that settler/free-land framing is not a complete account of Indigenous dispossession; no full Capital reading."
+    }
+  }
+}

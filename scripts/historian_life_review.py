@@ -50,7 +50,7 @@ def validate_review(review):
     return seen
 
 
-def overlay_historian_life_review(payload, review):
+def overlay_historian_life_review(payload, review, source='data/historian-life-review.json'):
     """Enrich only the published copy; unknown status never becomes 'living'."""
     validate_review(review)
     rows = {r['person_id']: r for r in review['people']}
@@ -98,6 +98,16 @@ def overlay_historian_life_review(payload, review):
     if applied:
         payload.setdefault('published_enrichment', []).append({
             'fields': ['people[].life', 'people[].life_review'],
-            'source': 'data/historian-life-review.json', 'count': applied,
+            'source': source, 'count': applied,
             'note': 'Reviewed life metadata only. Source identities, work chronology, editorial coverage and relationship dates remain unchanged. Missing death data does not establish living status.'})
     return applied
+
+
+def overlay_theorist_life_review(payload, review):
+    """Apply the separately scoped theory review without replacing historian evidence."""
+    ids = validate_review(review)
+    allowed = {n['id'] for n in payload.get('nodes', [])
+               if n.get('entry_kind') == 'person' and n.get('layer') == 'intellectual_connections'}
+    if ids - allowed:
+        raise ValueError('Theory life review targets a different layer: ' + ', '.join(sorted(ids - allowed)))
+    return overlay_historian_life_review(payload, review, source='data/theorist-life-review.json')

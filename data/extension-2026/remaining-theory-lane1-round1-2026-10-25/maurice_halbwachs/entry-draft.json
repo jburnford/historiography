@@ -1,0 +1,172 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.183 to candidate 1.184",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "maurice_halbwachs",
+    "label": "Maurice Halbwachs",
+    "layer": "intellectual_connections",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "La théorie de l’homme moyen (1912) · Les cadres sociaux de la mémoire (1925) · La mémoire collective: posthumous publication (1950) · On Collective Memory: edited and translated selections (1992)",
+    "description": "Studies remembering through social frameworks and the changing relations among groups. The selected French conclusion describes how families and religious communities revise their past as they encounter other groups and new present conditions; memory is neither an isolated mental archive nor a perfectly static inheritance. A separate statistical intervention examines the abstraction of an average human being. Canguilhem’s later discussion explicitly takes up that statistical criticism, a particular reception distinct from the collective-memory books. The English On Collective Memory is an edited and translated selection from earlier work, not the beginning of Halbwachs’s inquiry.",
+    "representative_figures_and_works": "La théorie de l’homme moyen (1912); Les cadres sociaux de la mémoire (1925; reedition 1952); La mémoire collective (posthumous 1950, published by Jeanne Alexandre); On Collective Memory (Lewis A. Coser, editor and translator, 1992 selections).",
+    "source_ids": [
+      "halbwachs_average_1912",
+      "halbwachs_cadres_conclusion",
+      "halbwachs_memory",
+      "canguilhem_norm_average_primary",
+      "assmann_collective",
+      "rt184_halbwachs_cmh",
+      "rt184_halbwachs_1950"
+    ],
+    "scope_note": "Existing identity and three roster contexts preserved. Prior selected French conclusion and named Canguilhem primary reception keep their exact reading limits; newly inspected digital pp. 208–209 do not imply complete-book reading. French original, 1952 reedition, 1950 posthumous work and 1992 edited English selections remain separate. Exact death day is deliberately unresolved across institutional variants; supported year retained.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions, publications and editions",
+      "selection_note": "Selected publication/contribution facts; no lifespan, continuous career interval or exhaustive bibliography. Originals, translations, collections and editions retain separate dates/credits.",
+      "events": [
+        {
+          "id": "rt184_halbwachs_average",
+          "label": "La théorie de l’homme moyen",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1912,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:halbwachs_average_1912",
+            "graph:rt184_halbwachs_cmh"
+          ],
+          "support": "Alcan 1912 thesis; original book unread, Canguilhem reception separately qualified."
+        },
+        {
+          "id": "rt184_halbwachs_cadres",
+          "label": "Les cadres sociaux de la mémoire",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1925,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:halbwachs_cadres_conclusion",
+            "graph:rt184_halbwachs_cmh"
+          ],
+          "support": "Original 1925; selected digital conclusion based on 1952 reedition, not first-edition page collation."
+        },
+        {
+          "id": "rt184_halbwachs_collective",
+          "label": "La mémoire collective: posthumous publication",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1950,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rt184_halbwachs_1950"
+          ],
+          "support": "PUF 1950, posthumous work published by Jeanne Alexandre; body unread."
+        },
+        {
+          "id": "rt184_halbwachs_english",
+          "label": "On Collective Memory: edited and translated selections",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1992,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:halbwachs_memory"
+          ],
+          "support": "Lewis A. Coser editor and translator, Chicago 1992; not a single 1992 authored original."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain exact prior-primary, new selected-primary or named-reader scope; metadata supports dates/credits only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.184/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "maurice_halbwachs",
+    "label": "Maurice Halbwachs",
+    "node_id": "maurice_halbwachs",
+    "new": false,
+    "identity_note": "Existing maurice_halbwachs identity reused. Existing identity and three roster contexts preserved. Prior selected French conclusion and named Canguilhem primary reception keep their exact reading limits; newly inspected digital pp. 208–209 do not imply complete-book reading. French original, 1952 reedition, 1950 posthumous work and 1992 edited English selections remain separate. Exact death day is deliberately unresolved across institutional variants; supported year retained."
+  },
+  "proposed_edges": [
+    {
+      "target": "memory",
+      "relationship": "Reconstructs remembering through social frameworks that change as families, religions and other groups encounter present conditions.",
+      "source_ids": [
+        "halbwachs_cadres_conclusion"
+      ],
+      "evidence_note": "Retained primary conclusion reading digital pp. 205–211, final subsection begins 206, based on 1952 reedition. Newly inspected passage on digital 208–209 corroborates the family/religion examples; electronic pagination is not original 1925 pagination. Generalizations remain the author’s interpretations.",
+      "relationship_kind": "contribution",
+      "proposal_id": "rt184_maurice_halbwachs_1",
+      "source": "maurice_halbwachs",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "memory"
+    },
+    {
+      "target": "epistemology",
+      "relationship": "Supplies Canguilhem with a specifically acknowledged statistical criticism of the abstract average human being.",
+      "source_ids": [
+        "halbwachs_average_1912",
+        "canguilhem_norm_average_primary"
+      ],
+      "evidence_note": "Named Canguilhem reception from retained Norme et moyenne selection and bibliography item 53. Halbwachs’s 1912 original remains unread. This does not substitute his collective-memory books for the statistical intervention or certify medical/racial historical examples as present facts.",
+      "relationship_kind": "contribution",
+      "proposal_id": "rt184_maurice_halbwachs_2",
+      "source": "maurice_halbwachs",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "epistemology"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "rt184_halbwachs_cmh",
+      "title": "Centre Maurice Halbwachs, Maurice Halbwachs: institutional biography and bibliography.",
+      "citation": "Centre Maurice Halbwachs, Maurice Halbwachs: institutional biography and bibliography.",
+      "url": "https://cmh.ens.fr/maurice-halbwachs/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Selected biography and bibliography entries checked: birth 1877, deportation/death March 1945; 1912 average-man thesis, 1925 Cadres and later reedition dates. Body of 1912 work unread. Institution lists multiple collaborations and fields; no collective influence claim follows from membership."
+      }
+    },
+    {
+      "id": "rt184_halbwachs_1950",
+      "title": "BnF, La Mémoire collective: 1950 bibliographic record.",
+      "citation": "BnF, La Mémoire collective: 1950 bibliographic record.",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb322170644",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional record identifies PUF 1950 and posthumous publication by Mme Jeanne Alexandre. Metadata only; complete book and posthumous editorial decisions unread. Do not infer that 1950 is an activity/life date."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or citation-frequency influence arrows.",
+    "No existing collective endpoint repairs or roster-prose replacement.",
+    "No authority-ID guesses or unions of bibliography keys."
+  ]
+}

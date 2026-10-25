@@ -1,0 +1,221 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "michel_de_certeau",
+    "label": "Michel de Certeau",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1970 La Possession de Loudun — selected and presented historical texts · 1975 L’écriture de l’histoire · 1980 L’invention du quotidien, 1",
+    "description": "Michel de Certeau joined historical research on religion and mysticism to questions about how histories are written and how people use cultural forms. La Possession de Loudun presents selected historical texts; L’écriture de l’histoire examines historical practice. In The Practice of Everyday Life, he investigates situated ways of operating within imposed systems. His account of users’ creative activities also questions explanations concerned chiefly with disciplinary power. The English preface distinguishes his volume from Luce Giard and Pierre Mayol’s companion work on dwelling and cooking.",
+    "representative_figures_and_works": "La Possession de Loudun — selected and presented historical texts (1970); L’écriture de l’histoire (1975); L’invention du quotidien, 1: Arts de faire (1980); The Practice of Everyday Life — Steven Rendall’s English translation (1984).",
+    "source_ids": [
+      "rh188_certeau_loudun",
+      "rh188_certeau_writing",
+      "certeau_practice_primary",
+      "rh188_certeau_original",
+      "rh188_certeau_life"
+    ],
+    "scope_note": "Read the English preface ix–x and General Introduction xi–xv via OCR of the later paperback scan. French original and body chapters were not collated. The colonial generalization in the introduction is not adopted as an established fact. The exact frozen first-author key P:certeau|michel d has 266 dated dissertation appearances; this retains the reviewed provisional screening qualification and does not verify every fragment or imply influence. Complete monographs remain unread except the specified selected passages. Existing identities, collective relationships, roster prose and source qualifications remain intact. No continuous career or influence interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publication and edition facts",
+      "selection_note": "Selected works and manifestations, not a complete bibliography or career interval.",
+      "events": [
+        {
+          "label": "La Possession de Loudun — selected and presented historical texts",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1970,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rh188_certeau_loudun"
+          ],
+          "support": "Julliard, 1970. De Certeau is credited as scientific editor and presenter, not author of every historical document.",
+          "id": "rh188_michel_de_certeau_w1"
+        },
+        {
+          "label": "L’écriture de l’histoire",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1975,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rh188_certeau_writing"
+          ],
+          "support": "French original, 1975; later translations remain distinct.",
+          "id": "rh188_michel_de_certeau_w2"
+        },
+        {
+          "label": "L’invention du quotidien, 1: Arts de faire",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1980,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:certeau_practice_primary",
+            "graph:rh188_certeau_original"
+          ],
+          "support": "French original, 1980. The companion volume 2, Habiter, cuisiner, is by Luce Giard and Pierre Mayol, as the English preface at ix explains.",
+          "id": "rh188_michel_de_certeau_w3"
+        },
+        {
+          "label": "The Practice of Everyday Life — Steven Rendall’s English translation",
+          "kind": "edition",
+          "track": "editions",
+          "date": {
+            "year": 1984,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:certeau_practice_primary"
+          ],
+          "support": "The English preface is dated 26 February 1984. This translation of Arts de faire is distinct from the 1980 French original.",
+          "id": "rh188_michel_de_certeau_w4"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works establish neither continuous activity nor an ending."
+      },
+      "interpretation": "Dates and credits use bibliographic witnesses; substantive connections use the explicitly bounded primary passages.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.188/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "michel_de_certeau",
+    "node_id": "michel_de_certeau"
+  },
+  "proposed_edges": [
+    {
+      "target": "practice",
+      "relationship": "Situated ways of operating become objects of historical and cultural inquiry",
+      "evidence_note": "English preface ix and General Introduction xi–xii examine relational practices and refuse an atomistic model of the user; this is a bounded methodological contribution.",
+      "source_ids": [
+        "certeau_practice_primary"
+      ],
+      "relationship_kind": "contribution",
+      "proposal_id": "rh188_michel_de_certeau_e1",
+      "source": "michel_de_certeau",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "consumption",
+      "relationship": "Cultural consumption can transform the uses of imposed representations",
+      "evidence_note": "General Introduction xii–xiv distinguishes representations and purchase/attendance statistics from what users make with cultural products. This does not establish that every consumer resists power.",
+      "source_ids": [
+        "certeau_practice_primary"
+      ],
+      "relationship_kind": "contribution",
+      "proposal_id": "rh188_michel_de_certeau_e2",
+      "source": "michel_de_certeau",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "foucault",
+      "relationship": "Questions an account of discipline centred on the apparatus that produces it",
+      "evidence_note": "General Introduction xiv–xv directly discusses Discipline and Punish and asks how users appropriate or evade disciplinary arrangements. This specific criticism preserves the acknowledged analytical debt.",
+      "source_ids": [
+        "certeau_practice_primary"
+      ],
+      "relationship_kind": "critique",
+      "proposal_id": "rh188_michel_de_certeau_e3",
+      "source": "michel_de_certeau",
+      "type": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "rh188_certeau_life",
+      "title": "Savoie Mont Blanc University LLSETI, Michel de Certeau centenary.",
+      "citation": "Savoie Mont Blanc University LLSETI, Michel de Certeau centenary.",
+      "url": "https://www.llseti.univ-smb.fr/web/llseti/1080-centenaire-michel-de-certeau.php",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read the institutional opening biography: born in Chambéry in 1925, died in Paris in 1986. Used for life years only."
+      }
+    },
+    {
+      "id": "rh188_certeau_loudun",
+      "title": "BnF: La Possession de Loudun, texts selected and presented by Michel de Certeau (Julliard, 1970).",
+      "citation": "BnF: La Possession de Loudun, texts selected and presented by Michel de Certeau (Julliard, 1970).",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb35167432w",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Checked author/editor fields and the 1970 publication. Scientific editing and presentation of historical texts are retained as credits; the volume body remains unread."
+      }
+    },
+    {
+      "id": "rh188_certeau_original",
+      "title": "BnF, La société de consommation: selected bibliography (2024), de Certeau, Arts de faire.",
+      "citation": "BnF, La société de consommation: selected bibliography (2024), de Certeau, Arts de faire.",
+      "url": "https://www.bnf.fr/sites/default/files/2024-09/Bibliographie_La_societe_de_consommation.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "The national-library bibliography explicitly gives 1980 as the original date of L’invention du quotidien, 1: Arts de faire. Date metadata only."
+      }
+    },
+    {
+      "id": "rh188_certeau_writing",
+      "title": "MSH Editions: Das Schreiben der Geschichte; original L’écriture de l’histoire (Gallimard, 1975).",
+      "citation": "MSH Editions: Das Schreiben der Geschichte; original L’écriture de l’histoire (Gallimard, 1975).",
+      "url": "https://www.editions-msh.fr/livre/das-schreiben-der-geschichte/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "The publisher explicitly identifies the French original as 1975. The later German translation is not dated as the original contribution. Metadata only."
+      }
+    }
+  ],
+  "roster_additions": [
+    {
+      "node": "consumption",
+      "proposal_id": "rh188_michel_de_certeau_e2",
+      "row": {
+        "person_id": "michel_de_certeau",
+        "role": "historian",
+        "context": "Examines how the use of cultural products may transform their meaning and operation.",
+        "works": "The Practice of Everyday Life, English translation (1984), xii–xiv",
+        "source_ids": [
+          "certeau_practice_primary"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "source_addenda": {
+    "certeau_practice_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Additional 1.188 review: reread the English preface ix–x and General Introduction xi–xv via OCR of the same later paperback scan. Connections concerning practices and consumption, and the Foucault critique, use only these passages. Giard/Mayol companion-volume and Rendall translation credits remain explicit; no body-chapter or original-language collation is claimed."
+    }
+  },
+  "reading_bridge_qualification": {
+    "source_key": "P:certeau|michel d",
+    "frozen_dated_key_count": 266,
+    "eligibility_count": 266,
+    "eligibility_count_scope": "Existing frozen dated first-author key screen; full fragment-by-fragment identity audit not asserted.",
+    "identity_pattern": "Reuse michel_de_certeau. Frozen person key certeau|michel d contains work IDs beginning both certeau and de certeau; preserve all IDs. Early-modern mysticism project positively identifies the scholar; no key variants merged."
+  }
+}

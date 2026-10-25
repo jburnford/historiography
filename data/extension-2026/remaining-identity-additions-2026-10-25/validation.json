@@ -1,0 +1,58 @@
+{
+  "status": "passed",
+  "checked_on": "2026-10-25",
+  "mode": "Owned release build and in-memory transform only; no apply.",
+  "baseline_revision": "1.188",
+  "revision": "1.189",
+  "preceding_packet_composed": [
+    {
+      "revision": "1.188",
+      "packet_sha256": "c2b3b940ff7ae44b13a0e5ae40b283258d317d3fd872b8bd305677d4b8435c22"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "checks": {
+    "no_new_warnings": true,
+    "two_entries": true,
+    "one_historian_one_theorist": true,
+    "old_ids_preserved": true,
+    "old_edges_exact": true,
+    "old_sources_exact": true,
+    "old_people_identity_prefixes": true,
+    "old_chronology_coverage_prose_exact": true,
+    "old_roster_rows_preserved": true,
+    "minimum_three_events": true,
+    "minimum_two_relations": true,
+    "new_identity_contexts": true,
+    "one_new_identity": true,
+    "standardized_life_records": true,
+    "canonical_bytes_unchanged": true
+  },
+  "counts_before": {
+    "nodes": 355,
+    "people": 1425,
+    "edges": 1589,
+    "sources": 2938
+  },
+  "counts_candidate": {
+    "nodes": 357,
+    "people": 1426,
+    "edges": 1595,
+    "sources": 2951
+  },
+  "selected_events": 15,
+  "packet_sha256": "9966e62eccbf3eb62c48d3388d116f59da5eaf370716d58cf95eb9d90f6d522b"
+}

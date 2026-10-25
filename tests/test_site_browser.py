@@ -522,6 +522,61 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#person=julia_cherry_spruill')
         expect(self.page.locator('.person-profile h2 .lifespan')).to_have_text('1899–1986')
 
+    def test_remaining_canon_life_sources_on_profiles_and_timeline(self):
+        """Both life overlays reach people and timeline details with their own witnesses."""
+        cases = [
+            ('jurgen_habermas', '1929–2026', 'died 2026',
+             'https://www.bundesregierung.de/breg-de/aktuelles/bundeskanzler-merz-zum-tod-von-juergen-habermas-2410956',
+             'older living biographies are not adopted.', True),
+            ('hannah_arendt', '1906–1975', 'died 1975',
+             'https://hac.bard.edu/about/hannaharendt/',
+             'Year precision retained', True),
+            ('jack_goody', '1919–2015', 'died 2015',
+             'https://therai.org.uk/archives-and-manuscripts/obituaries/jack-goody/',
+             'no work, career or influence interval.', True),
+            ('peter_brown', '1935–', 'living in checked sources',
+             'https://www.plough.com/articles/augustines-friendship-for-freedom',
+             'explicitly dated July 2026 primary interview.', False),
+        ]
+        for person_id, lifespan, status, witness, limit, deceased in cases:
+            with self.subTest(person=person_id):
+                self.open(f'#person={person_id}')
+                profile = self.page.locator('.person-profile')
+                expect(profile.locator('h2 .lifespan')).to_have_text(lifespan)
+                expect(profile.locator('.life')).to_contain_text(status)
+                expect(profile.locator('.life')).to_contain_text('checked 2026-10-25')
+                sources = profile.locator('.life-sources')
+                sources.locator('summary').click()
+                expect(sources.locator(f'a[href="{witness}"]')).to_be_visible()
+                expect(sources).to_contain_text(limit)
+
+                self.open(f'#focus={person_id}')
+                panel = self.page.locator('.field-panel')
+                expect(panel.locator('.life')).to_contain_text(status)
+                expect(panel.locator(f'.life-sources a[href="{witness}"]')).to_have_count(1)
+                expect(self.page.locator('.entry.selected .death-mark')).to_have_count(int(deceased))
+
+    def test_remaining_canon_taylor_layer_and_named_chatterjee_critique(self):
+        """The new person endpoints preserve the resource layer and named criticism."""
+        self.open('#node=charles_taylor')
+        expect(self.page.locator('.reading-panel .entry-type')).to_have_text('Individual theorist')
+        self.open('#focus=charles_taylor')
+        expect(self.page.locator('.field-panel .eyebrow')).to_have_text('Individual theorist')
+        expect(self.page.locator('.field-panel .life')).to_contain_text('living in checked sources')
+
+        self.open('#edge=edge_1498')
+        panel = self.page.locator('.reading-panel')
+        expect(panel.locator('#detail-title')).to_have_text('Critique')
+        endpoints = panel.locator('.edge-endpoints a')
+        expect(endpoints).to_have_text(['Partha Chatterjee', 'Benedict Anderson'])
+        for index, node_id in enumerate(['partha_chatterjee', 'benedict_anderson']):
+            route = parse_qs(endpoints.nth(index).get_attribute('href').lstrip('#'))
+            self.assertEqual(route.get('node'), [node_id])
+        expect(panel).to_contain_text('primary The Nation and Its Fragments pp. 4–7 freshly reread')
+        expect(panel).to_contain_text('material/spiritual distinction remains his historically situated claim.')
+        expect(panel).not_to_contain_text('no individual graph node')
+        expect(panel.locator('.sources')).to_contain_text('The Nation and Its Fragments')
+
     @staticmethod
     def family_scope(slug):
         """The family field's entries and relationships, by the rule in landing.mjs familyGraph:

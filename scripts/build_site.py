@@ -20,7 +20,7 @@ import shutil
 import subprocess
 
 from validate_graph import validate, pathways_within
-from historian_life_review import overlay_historian_life_review
+from historian_life_review import overlay_historian_life_review, overlay_theorist_life_review
 
 ROOT = Path(__file__).resolve().parents[1]
 # GitHub Pages can serve a branch only from the repository root or `/docs`, so the
@@ -164,6 +164,10 @@ def publish_graph(payload, life_review=True):
         if life_review and review_path.exists():
             count = overlay_historian_life_review(payload, json.loads(review_path.read_text()))
             print(f'  {count} historians carry sourced life-status reviews in the published copy')
+        theory_review = ROOT / 'data/theorist-life-review.json'
+        if life_review and theory_review.exists():
+            count = overlay_theorist_life_review(payload, json.loads(theory_review.read_text()))
+            print(f'  {count} theorists carry additional sourced life-status reviews in the published copy')
     return payload
 
 

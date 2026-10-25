@@ -1,8 +1,8 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current canonical revision **1.183**, schema 1.6,
-contains **315 entries, 1,506 relationships, 2,836 sources, 1,415 shared people and
+The curated JSON remains authoritative. Current canonical revision **1.191**, schema 1.6,
+contains **357 entries, 1,595 relationships, 2,951 sources, 1,426 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
@@ -21,8 +21,10 @@ The public comparisons include 6,794 dissertations with years, from 7,107 in ana
 The last period is labelled 2020–2026, correcting the prototype's 2020–25 label. Exact
 regional numerators/denominators, institution coverage, missing years, notes extraction,
 small samples and provisional family labels remain visible. Examples link to original
-repository records. The reading amendment is being integrated with 116 profile links, including the
-92 completed qualifying historians and the earlier theory/field contributors. Five field panels cover environmental history, the
+repository records. The reading integration contains 157 profile links, including the
+102 completed qualifying historians and selected theory/field contributors. The 42
+new entries distinguish 32 theoretical resources from 10 historians. The baseline
+116 links remain preserved; Lefebvre already had a link, so 41 are added. Five field panels cover environmental history, the
 archival turn, economic history, capitalism debates and emotions history. Archived entries retain their
 original selection.
 
@@ -47,17 +49,28 @@ counts are CA 292/2,212, US 262/2,168, Europe 129/2,025 and Other 33/389. Hobsba
 (140) and Burke (131) exceed Anderson’s European count. These sampled bibliography
 keys establish neither individual agreement nor influence.
 
-Reviews are recorded in `data/dissertation-layer/reviews/`. Eighteen explicitly reviewed
-records below the normal frequency cutoffs bring the amended export to 4,055
-searchable sources, from the original 4,037. The two new exceptions are Anderson’s
-Under Three Flags (16 dated dissertations) and The Spectre of Comparisons (14).
-The earlier Duby, Noiriel, Jeremy Black, Vovelle and Charle selections remain. An append-only reviewed-source ID registry preserves all
-earlier IDs when another exception is added. Their distinct dated counts are recomputed from the frozen
-release; companion/family analyses are explicitly unavailable for those additions.
-Existing counts/series and denominator populations remain unchanged. Attribution notes
-retain first-author and namesake limits. Export validation rejects differing first-author
-credits, people outside field rosters and unreviewed work selections. Field panels load
-only the links asset; the index and buckets load when reading details are followed.
+Reviews are recorded in `data/dissertation-layer/reviews/` and the
+[remaining-canon reading audit](../data/field-research/remaining-canon-2026-10-25/reading-integration/verification.json).
+The integration contains 4,059 searchable sources: 4,037 original records plus
+22 reviewed exceptions. Four new low-count works are Giddens’s *The Consequences of
+Modernity* (19; source ID 1700, position 4055), Freud’s *Three Essays on the Theory of
+Sexuality* (8; ID 3183, position 4056), Adorno and Horkheimer’s *Dialectic of
+Enlightenment* (16; ID 4028, position 4057), and Goody’s *The Development of the Family
+and Marriage in Europe* (11; ID 12159, position 4058). Positions are zero-based.
+The existing 4,055 records and 18 registry rows remain exact apart from four parent
+work lists gaining their reviewed children. All five field panels and Anderson’s
+personal comparison remain exact. The earlier Duby, Noiriel, Jeremy Black, Vovelle,
+Charle and Anderson exceptions remain.
+
+The append-only registry preserves source IDs. Counts are distinct dated
+dissertation-ID unions from the frozen release; companion/family analyses remain
+unavailable for supplemental works. Earlier counts, series and denominators are
+unchanged. Attribution notes retain exact first-author and namesake limits. Hahn’s
+clean eligibility subset is 103, distinct from the provisional source-key count
+121; Taylor’s and Brown’s clean lower bounds are 102 and 101, distinct from raw
+148 and 114. Export validation rejects differing work credits, people outside
+field rosters and unreviewed work selections. Field panels load only the links
+asset; the index and buckets load when reading details are followed.
 
 `python3 scripts/build_dissertation_site.py` recreates the metadata exports from the local
 explorer and dated release, verifies all 4,037 source counts and region-period denominators,
@@ -75,14 +88,25 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory docs
 
 Open **http://127.0.0.1:4173/**. The build needs Python 3.10+ and its standard library. The browser needs support for JavaScript modules; there is no npm install or external runtime service. Rebuild after editing site code or either dataset, then reload.
 
-Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`;
-publication is authorized for this batch. Astra’s substantive and UI reviews pass the three new biographies and personal
-comparison. Final data, JavaScript, browser and clean-checkout checks pass. The current build contains 52
-allowlisted files, including eight JavaScript modules, two stylesheets, six teaching
-and publication-record JSON assets, and 34 dissertation metadata assets. The builder
-validates graphs, checks the dissertation export hashes and refuses unexpected output
-files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The next build targets revision 1.183 and the amended dissertation reading preview.
+Serve only `docs/`, never the repository root. GitHub Pages serves `main:/docs`.
+Revision 1.191 is accepted locally. All 42 new biographies have relationships;
+74 additional legacy endpoints now name their individual participants, after the
+[network review](../data/field-research/remaining-canon-2026-10-25/network-review.json).
+The earlier 1.190 Chatterjee repair is preserved, for 75 rerouted older edges in
+total. Two obsolete roster pointers are cleared, with prose and sources exact.
+The repair adds no edge or source; the biographies retain their 89 new relationships.
+Astra’s substantive and preservation review passes the approved packet.
+
+The 52-file allowlisted build and reading exports pass at 1.191. The builder checks
+graph validity and dissertation export hashes and refuses unexpected files or
+symlinks. Tests, captures, credentials and unrelated files stay outside the build.
+The baseline 155 regression cases are covered and pass; 61 JavaScript checks,
+61 original browser cases plus two focused regressions passed at 1.190, with all
+52 assets reproduced in a clean checkout and 24 focused checks passing. Post-repair
+verification passes all 54 targeted cases, 63 browser cases and 61 JavaScript checks.
+A fresh checkout reproduces all 52 public files and both life masters, passes 28
+focused checks and preserves the reading export. The verified build targets revision
+1.191 and 157 linked reading profiles; deployment is checked after push.
 
 The landing downloads the reduced overview and aggregates; detail routes load
 the full teaching graph once. Selected profiles lazily load the separate record
@@ -97,21 +121,27 @@ data, evidence/family, JavaScript and browser checks, then checks build drift.
 Research rebuilds additionally require frozen local databases; the public site
 build uses tracked metadata assets and requires no database.
 
-## Historian life metadata
+## Sourced life metadata
 
-The published main graph overlays `data/historian-life-review.json` for all 190
-individual historian entries: 100 living, 89 deceased and one unresolved (Jennifer
-S. H. Brown), checked on 2026-10-25. Person pages and timeline details show supported
-death years, source links and unresolved status. The overlay supplies `people[].life`
-and `people[].life_review`; it does not alter the canonical work chronology, field
-coverage or exact-2000 archived graph. A year-only source remains year precision,
-and a missing death record never becomes a living assertion.
+The main-graph build overlays `data/historian-life-review.json` for all 203
+individual historians: 105 living, 97 deceased and one unresolved (Jennifer S. H.
+Brown), checked on 2026-10-25. A separate `data/theorist-life-review.json` covers the
+32 newly added theorists: 11 living and 21 deceased, including Habermas’s verified
+2026 death. The old theorist grounding sheet remains unchanged; the new review is
+not a fresh status audit of every earlier theorist.
 
-`python3 scripts/build_historian_life_review.py` rebuilds the merged source review;
-the normal site build validates and applies its tracked derivative. Individual
-sources retain identity rationale, locators, check scope and limits in the review
-records. The [final reading integration report](../data/field-research/dissertation-content-2026-10-25/reading-bridge-integration/final-report.json)
-checks all 89 new biography endpoints and preserves earlier source series and links.
+Person pages and timeline details show supported death years, source links and
+unresolved status through `people[].life` and `people[].life_review`. The overlays
+leave canonical work chronology, coverage and the exact-2000 archive unchanged.
+Year-only witnesses retain year precision; a missing death record never becomes
+a living assertion. Scheduled participation remains distinct from confirmed
+attendance, including the Mitchell, Portelli and Hahn witnesses.
+
+`python3 scripts/build_historian_life_review.py` and
+`python3 scripts/build_theorist_life_review.py` rebuild the separate source reviews.
+The normal build validates their tracked derivatives and applies them only to the
+main graph and the appropriate person layer. Sources retain identity rationale,
+locators, checked scope and limits. See the [remaining canon audit](../data/field-research/remaining-canon-2026-10-25/README.md).
 
 ## Identity and navigation
 
@@ -173,7 +203,7 @@ back to the full field, unfiltered.
 ## The detailed field view
 
 Every entry sits on one time axis, banded by layer, with the 38 linked journals
-in their own band. All 312 graph entries and linked journals have explicit chronology.
+in their own band. All 357 graph entries and linked journals have explicit chronology.
 The shared `chronology.mjs` reader supplies full/family timelines, compact person
 maps, landing dates and text alternatives; prose labels cannot change the geometry.
 

@@ -1,3 +1,119 @@
+# Revision 1.191: name the people in inherited relationships (25 October 2026)
+
+Locally accepted canonical revision **1.191** retains **357 entries, 1,595
+relationships, 2,951 sources and 1,426 indexed people**: 203 historians, 54 theorists
+and 100 groups. The 42 new biographies remain 32 theorists and 10 historians,
+with 162 selected dated facts, 89 new relationships and 115 new sources.
+
+All **42 new biographies have recorded relationships**. Revision 1.191 corrects
+74 additional legacy endpoints that already name a specific person, after the
+independent [network review](data/field-research/remaining-canon-2026-10-25/network-review.json).
+Together with the preserved 1.190 Chatterjee repair, **75 older relationships are
+rerouted**. Edge IDs, claims, citations, direction and substantive source
+qualifications remain intact. Two obsolete roster edge pointers are cleared;
+all roster prose, roles, works and sources remain exact. Genuine collective claims
+stay on their fields. The repair adds no edge or source; the 89 new relationships
+come from the 42 biographies in revisions 1.184–1.189. Every other old edge,
+chronology, coverage qualification and the exact-2000 archive remains unchanged.
+
+The [1.191 acceptance](data/production-batches/person-links-1.191/README.md) retains
+full prior edge and roster records. The only dependent edge metadata changes
+clear an obsolete group-strand pointer for Latour’s Durkheim critique and remove
+an obsolete contextual-routing clause from Ginzburg’s Freud comparison. Its
+undirected status, no-transmission qualification and unchecked Morelli connection
+remain. No new historical claim, influence, source reading, date or life record
+is asserted. Accepted packets 1.184–1.190 remain frozen.
+
+Reading remains at 157 profiles and 4,059 sources; the Anderson title-family union
+and individual chart keys remain 685/716 (95.7%) and 641/16/14. Historian life review
+remains 203 people (105 living, 97 deceased, one unresolved Jennifer S. H. Brown);
+the separate new-theorist review remains 32 (11 living, 21 deceased). Compiled life
+reviews and the 52-file build were regenerated for revision 1.191.
+
+The baseline 155 regression cases are covered and passing after correction of a
+Goody parent-key fixture and the complete affected eight-case module rerun. At
+1.190, 61 JavaScript checks and 61 original browser cases plus two new focused
+regressions passed; a clean checkout reproduced 52 public files and passed 24
+focused checks. After the endpoint repair, all 54 targeted cases, 63 browser cases
+and 61 JavaScript checks pass. A fresh checkout reproduces all 52 public files
+and both life masters, passes 28 focused checks and preserves the reading export.
+
+Astra’s substantive and preservation reviews pass all 42 additions and the approved
+endpoint repairs. The 52-file build and reading exports pass.
+
+**Release status: verified locally at revision 1.191; ready for publication.**
+
+GitHub Pages publishes `main:/docs`; deployment and the live revision are verified after push.
+OpenAlex remains paused.
+
+Earlier revision sections below remain unchanged.
+
+# Revision 1.190: remaining eligible people and a named critic endpoint (25 October 2026)
+
+Current canonical revision **1.190** (2026-10-25, schema 1.6) contains **357 entries,
+1,595 relationships, 2,951 sources and 1,426 indexed people**. Its 257 individual
+entries comprise **203 historians and 54 theorists**, alongside 100 group entries
+and 14 seminar pathways.
+
+The [remaining canon review](data/field-research/remaining-canon-2026-10-25/README.md)
+resolves all 52 original candidate cases: **42 eligible additions and 10 below
+threshold**. Revisions 1.184–1.189 add 32 theorists (the original 31 plus Charles
+Taylor) and 10 historians (nine reviewed interdisciplinary/identity cases plus
+Peter Brown). The completed qualifying historian queue is **102**: seven with a
+Canadian-history focus at ≥150 dated first-author dissertations, and 95 others
+at >100. Historical research is assessed by the work, rather than department or
+nationality. This completes the eligible people queue; the original Gemini
+38-theme queue is not claimed complete. Earlier classifications and accepted
+packets remain frozen.
+
+Conservative, positively attributed named-work unions establish Taylor’s **102**
+and Brown’s **101**, separately from their mixed raw-key totals of 148 and 114.
+Hahn qualifies on **103**, separately from raw 121. Adam Smith’s optimistic upper
+bound is **100**, below the strict >100 screen. No candidate-level identity hold
+remains undisposed; unchecked raw work fragments remain unassigned. Eight
+interdisciplinary candidates retain qualified exact-key screens rather than
+complete work-by-work identity audits. Citation presence selects research;
+it establishes neither complete reading nor influence, and overlapping counts
+are never summed.
+
+All **203 historian biographies** have sourced life reviews: **105 living,
+97 deceased and one unresolved** (Jennifer S. H. Brown), checked on 2026-10-25.
+The 32 new theorists have a separate review: **11 living and 21 deceased**, including
+fresh institutional evidence for Habermas’s 2026 death. The earlier theorist
+grounding sheet is unchanged. Life dates retain their supported precision and
+remain separate from work, career and influence dates; missing death information
+never establishes life.
+
+The reading integration targets **157 linked profiles and 4,059 sources**
+(4,037 original plus 22 reviewed exceptions). It preserves all 116 earlier profile
+links, five field panels, the separate Anderson comparison, 4,055 earlier source
+records and 18 earlier exception-registry rows; only four parent work lists grow.
+New low-count works are Giddens (19), Freud (8), Adorno (16) and Goody (11).
+Anderson’s confirmed title-family union remains **685/716 (95.7%)**, with individual
+chart keys unchanged: main *Imagined Communities* 641, *Under Three Flags* 16 and
+*The Spectre of Comparisons* 14. Source IDs, numerical series, denominators and
+first-author/attribution qualifications remain preserved.
+
+Revision 1.190 routes `edge_1498` from the postcolonial field to the newly available
+`partha_chatterjee` entry. Its ID, claim, citations and substantive evidence prefix
+remain exact; the former availability rationale is retained in the acceptance
+receipt. Every other pre-existing edge is unchanged. Earlier group prose,
+chronologies, source and identity qualifications, and the exact-2000 archive remain
+preserved. Selected excerpts and named readers support substantive relations;
+metadata alone creates no arrow. Original, revised, translated and collected
+works retain their dates and collaborator credits.
+
+Astra’s substantive and preservation reviews pass all 42 additions and the endpoint
+repair. **Final integrated exports, UI review, build/release tests and publication
+remain pending and authorized.** Canonical acceptance does not assert that this
+release is live. OpenAlex remains paused.
+
+Revisions 1.184–1.189 add 162 selected dated facts, 89 relationships, 115 sources
+and 11 new indexed identities across 42 biographies. The six [acceptance receipts](data/field-research/remaining-canon-2026-10-25/README.md#accepted-packets)
+pin every packet and resulting canonical hash. Revision [1.190](data/production-batches/person-links-1.190/README.md)
+adds no entry, relationship, source or identity; it repairs only the named critic endpoint.
+Earlier revision sections below remain unchanged.
+
 # Revision 1.183: Anderson, Wallerstein and Mintz as historians (25 October 2026)
 
 Current canonical graph: **315 entries, 1,506 relationships, 2,836 sources and

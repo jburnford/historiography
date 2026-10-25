@@ -1,0 +1,156 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "applies_to": "Baseline 1.185 to candidate 1.186",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "marcel_mauss",
+    "label": "Marcel Mauss",
+    "layer": "intellectual_connections",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“Essai sur la nature et la fonction du sacrifice,” with Henri Hubert (1899) · Sacrifice essay reprinted in Mélanges d’histoire des religions (1909) · “Essai sur le don” (1925) · The Gift: Jane I. Guyer’s expanded English edition (2016)",
+    "description": "Examines obligations and ritual relations across law, religion and economy. The selected Gift introduction asks why apparently voluntary gifts entail giving back and treats exchange as embedded in several institutions rather than as isolated transactions between self-contained individuals. His comparative programme identifies selected areas and documentary limits; its historical vocabulary and sweeping formulations remain attributable to its period. With Henri Hubert, the earlier sacrifice essay offers a provisional account of ritual mediation between sacred and profane. The two projects have different questions and credits, and later translations or collections do not make them interchangeable.",
+    "representative_figures_and_works": "With Henri Hubert, “Essai sur la nature et la fonction du sacrifice” (1899; 1909 reprint); “Essai sur le don” (published 1925 in L’Année sociologique volume labelled 1923–1924); The Gift, expanded English edition translated by Jane I. Guyer (2016).",
+    "source_ids": [
+      "hubert_mauss_sacrifice",
+      "mauss_gift",
+      "certeau_practice_primary",
+      "rt186_mauss_intro"
+    ],
+    "scope_note": "Existing identity and Durkheim/anthropology/practice contexts preserved. New original-language introduction reading supplements but does not erase the older publisher-only gift scope. Sacrifice retains Hubert’s coauthorship. Original, reprint, journal-volume and translation dates differ; Guyer’s 2016 expanded edition is not the start of the work. No whole original essay or detailed cases newly read.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions, publications and editions",
+      "selection_note": "Selected publication/contribution facts; no lifespan, continuous career interval or exhaustive bibliography. Originals, translations, collections and editions retain separate dates/credits.",
+      "events": [
+        {
+          "id": "rt186_mauss_sacrifice",
+          "label": "“Essai sur la nature et la fonction du sacrifice,” with Henri Hubert",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1899,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hubert_mauss_sacrifice"
+          ],
+          "support": "L’Année sociologique 2 (1899), pp. 29–138. Joint authorship retained; consulted text is selected passages in 1909 reprint."
+        },
+        {
+          "id": "rt186_mauss_sacrifice_reprint",
+          "label": "Sacrifice essay reprinted in Mélanges d’histoire des religions",
+          "kind": "edition",
+          "track": "editions",
+          "date": {
+            "year": 1909,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hubert_mauss_sacrifice"
+          ],
+          "support": "Félix Alcan reprint pp. 1–130, not original 1899 publication."
+        },
+        {
+          "id": "rt186_mauss_gift",
+          "label": "“Essai sur le don”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1925,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:mauss_gift",
+            "graph:rt186_mauss_intro"
+          ],
+          "support": "Published 1925 in journal volume labelled 1923–1924; electronic header’s volume years not silently treated as publication year."
+        },
+        {
+          "id": "rt186_mauss_gift_guyer",
+          "label": "The Gift: Jane I. Guyer’s expanded English edition",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 2016,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:mauss_gift"
+          ],
+          "support": "HAU Books 2016, Jane I. Guyer translator. Modern introduction/endorsements are not original Mauss prose."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain exact prior-primary, new selected-primary or named-reader scope; metadata supports dates/credits only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.186/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "marcel_mauss",
+    "label": "Marcel Mauss",
+    "node_id": "marcel_mauss",
+    "new": false,
+    "identity_note": "Existing marcel_mauss identity reused. Existing identity and Durkheim/anthropology/practice contexts preserved. New original-language introduction reading supplements but does not erase the older publisher-only gift scope. Sacrifice retains Hubert’s coauthorship. Original, reprint, journal-volume and translation dates differ; Guyer’s 2016 expanded edition is not the start of the work. No whole original essay or detailed cases newly read."
+  },
+  "proposed_edges": [
+    {
+      "target": "anthropology",
+      "relationship": "Studies obligations to give back and the intersection of legal, religious and economic relations in apparently voluntary exchanges.",
+      "source_ids": [
+        "rt186_mauss_intro"
+      ],
+      "evidence_note": "New primary digital pp. 7–9 read: Programme, Méthode suivie and opening Prestation/Don/Potlatch. Selected-area comparison and local documentary specificity retained; ethnographic cases and universal market/reciprocity claims not independently established.",
+      "relationship_kind": "contribution",
+      "proposal_id": "rt186_marcel_mauss_1",
+      "source": "marcel_mauss",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "anthropology"
+    },
+    {
+      "target": "durkheim",
+      "relationship": "With Henri Hubert, proposes a provisional account of sacrifice as ritual mediation between sacred and profane.",
+      "source_ids": [
+        "hubert_mauss_sacrifice"
+      ],
+      "evidence_note": "Reuses retained primary introduction, selected definitional passages and conclusion in 1909 reprint. Joint authorship and difference from gift essay remain; detailed Sanskrit/Hebrew cases not independently checked. This is a substantive ritual argument, not an affiliation arrow.",
+      "relationship_kind": "contribution",
+      "proposal_id": "rt186_marcel_mauss_2",
+      "source": "marcel_mauss",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "roster_row": "durkheim"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "rt186_mauss_intro",
+      "title": "Marcel Mauss, “Essai sur le don”: selected primary introduction, UQAM digital edition.",
+      "citation": "Marcel Mauss, “Essai sur le don”: selected primary introduction, UQAM digital edition.",
+      "url": "https://classiques.uqam.ca/classiques/mauss_marcel/socio_et_anthropo/2_essai_sur_le_don/essai_sur_le_don.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read electronic pp. 7–9: Programme and comparative method plus opening of total-prestations discussion; epigraph pp. 5–6 and title/contents also inspected. This is digital pagination, not original journal pages; full essay and ethnographic cases unread. Electronic volume header says 1923–1924; retained publisher original-publication witness dates the volume’s publication to 1925. Prior mauss_gift publisher-only/original-unread note stays exact; this new source records the selected primary reading. Historical terms and sweeping comparative assertions remain Mauss’s, not current certified descriptions."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "No generic affiliation or citation-frequency influence arrows.",
+    "No existing collective endpoint repairs or roster-prose replacement.",
+    "No authority-ID guesses or unions of bibliography keys."
+  ]
+}

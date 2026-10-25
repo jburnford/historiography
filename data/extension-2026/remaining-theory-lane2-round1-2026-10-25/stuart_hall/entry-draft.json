@@ -1,0 +1,139 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "stuart_hall",
+    "label": "Stuart Hall",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1973: Encoding and Decoding in the Television Discourse (CCCS paper) · 1980: Cultural Studies: Two Paradigms · 1990: Cultural Identity and Diaspora (in Identity, edited by Jonathan Rutherford)",
+    "description": "A Jamaican-British cultural theorist of media, power and diasporic identity. His encoding/decoding analysis separates production from reception, while his identity essay treats historical rupture and difference as constitutive rather than incidental.",
+    "representative_figures_and_works": "Encoding and Decoding in the Television Discourse (CCCS paper) (1973); Cultural Studies: Two Paradigms (1980); Cultural Identity and Diaspora (in Identity, edited by Jonathan Rutherford) (1990).",
+    "source_ids": [
+      "hall_encoding",
+      "hall_diaspora",
+      "hall_two_paradigms",
+      "tl185_stuart_hall_life"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl185_stuart_hall_w1",
+          "label": "Encoding and Decoding in the Television Discourse (CCCS paper)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1973,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hall_encoding"
+          ],
+          "support": "September 1973 repository/cover date; revised 1980 chapter not conflated."
+        },
+        {
+          "id": "tl185_stuart_hall_w2",
+          "label": "Cultural Studies: Two Paradigms",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1980,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hall_two_paradigms"
+          ],
+          "support": "Original journal article metadata retained from existing source; not newly reread here."
+        },
+        {
+          "id": "tl185_stuart_hall_w3",
+          "label": "Cultural Identity and Diaspora (in Identity, edited by Jonathan Rutherford)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1990,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hall_diaspora"
+          ],
+          "support": "Date of the cited collection, not asserted to be the essay’s first appearance; earlier Framework appearance remains qualified."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.185/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "stuart_hall",
+    "node_id": "stuart_hall"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl185_stuart_hall_e1",
+      "source": "stuart_hall",
+      "target": "culturalstudies",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Analyzes how institutional production and unequal social positions allow differently coded readings of media.",
+      "evidence_note": "Own 1973 paper pp. 1–3 and 16–18 read; encoding and decoding are distinct determinate moments. The early paper’s professional-code position and the later revision remain distinct.",
+      "source_ids": [
+        "hall_encoding"
+      ]
+    },
+    {
+      "proposal_id": "tl185_stuart_hall_e2",
+      "source": "stuart_hall",
+      "target": "identity",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Treats diasporic identity as historically produced positioning, transformation and difference, alongside the political force of recovery.",
+      "evidence_note": "Own essay pp. 222–226 read in the qualified scan witness. Hall recognizes the resistance value of recovery while rejecting an eternally unchanged essence; no identity-history founding claim follows.",
+      "source_ids": [
+        "hall_diaspora"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl185_stuart_hall_life",
+      "title": "Stuart Hall Foundation, About Stuart Hall",
+      "url": "https://www.stuarthallfoundation.org/stuart-hall/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Foundation biographical opening checked: born Kingston in 1932, died London in February 2014. Year precision used; no death day inferred from secondary recollection."
+      }
+    }
+  ],
+  "source_addenda": {
+    "hall_encoding": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "Repository PDF newly checked at cover, pp. 1–3 and 16–18. The early version distinguishes dominant, professional, negotiated and oppositional positions; it is not silently replaced by the revised 1980 three-position account. September 1973 cover/repository date governs; final OCR reads 1975, an existing recorded digit problem. Middle argument/notes not fully reread."
+    },
+    "hall_diaspora": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "New primary rereading of printed pp. 222–226 through https://dl.icdst.org/pdfs/files3/9abb1b80ee9e5795a6d738eee197c052.pdf. Cover says 1994 reader and 227–237, while scanned body retains Identity and 222–237 pagination; witness identity/edition inconsistency retained, not silently collated. Original cited 1990 collection date remains on earlier metadata. CIAD host now returns 404 after certificate mismatch; old URL/qualification preserved. Remaining essay not newly read."
+    }
+  }
+}

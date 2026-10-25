@@ -1,5 +1,66 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: remaining canon and person routing, 1.191
+
+User asks for the rest of the additions and whether all new people have the
+edges needed. All42 accepted biographies (32 theory,10 historians) and their
+relationships are complete locally; prior Astra-review/correct/push authorization
+persists. Root is finalizing a scoped commit/push and live verification. No new
+permission needed. OpenAlex stays paused. Do not regenerate accepted packets.
+
+Canonical1.191:357nodes,1595edges,2951sources,1426people;203historians,
+54theorists,100groups. New biographies add162selectedfacts,89relationships,
+115sources,11indexed identities. The qualified historian queue is102:7Canadian
+history at>=150 and95other history at>100. All52remaining cases disposed:
+42added,10belowthreshold; individual unverified work fragments remain held.
+This finishes the eligible people queue, not all38originalGemini thematic tasks.
+Full list/counts: data/field-research/remaining-canon-2026-10-25/completed-additions.md.
+Hahn positiveunion103/raw121,Taylor102/raw148,Brown101/raw114; Smith upper100
+excluded atstrict>100. No corpus/sourcekeys/counts merged or silently repaired.
+
+Frozen accepted: six biography packets184–189; Chatterjee endpoint190;
+additional routing191. User’s graph question exposed74additional existing
+person-specific legacy arrows: corrected to new individual nodes while keeping
+IDs,claims,type,direction,citations and substantive qualifications. Total75old
+routes changed including1498; allotheroldedges exact. Two obsolete roster
+edge_id pointers clear(durkheim/latour1155,practice/philip_huang1047), allroster
+prose/roles/works/sources exact. edge1155target_strand:null clears oldgroup
+pointer; edge1291 removesonly obsoletegroupendpointclause, undirectedcomparison
+and no-transmission/uncheckedMorelli qualifiers preserved. Generic engine unchanged.
+All42newpeople join maincomponent; soleoldWebhistoryisolate unchanged.
+Networkaudit: remaining-canon/network-review.json; receipt person-links-1.191.
+PacketSHA82698080150be7785dd6e86c26b98fe42edbb883a45027f3c19dd407c7b78375.
+Structuralerrors0,warnings25=11old+14expected distinctclaim endpoint/type repeats;
+Astra approved preserving separate records rather than merging claims/sources.
+
+Life:203historians105living97deceased1unresolvedJenniferS.H.Brown;
+32newtheory11living21deceased. Bothmasters rebuilt scope191; source records and
+historical chronology unchanged. Habermas2026death verified. Existingtheory
+Wikidatagroundingsheet unchanged. Reading157profiles,4059sources(4037original+
+22reviewed);41newlinks becauseLefebvre alreadylinked. Allold4055IDs/positions/
+numerics/metadata,116links,5fieldpanels,18registryrows preserved except4author
+workslists grow. Andersonpersonalcomparison unchanged685/71695.7%,main641,
+otherbooks16/14. ArchiveSHA94193637b1553825599229640a6af77e2f53168b64175613b8df0b501fafce1c.
+
+Astra all42content,identitydecisions,life/reading/codeintegration and finalapplied
+191routing PASSzero blockers. Validation in release-validation.json:
+155baseline190datacases coveredPASS afterGoodyfixturecorrection/full8case
+modulepass; post19154targeteddatacasesPASS28.302s. Historicalamendmenttest
+nowcorrectlyusesitsfrozen183acceptance (current75routes checkedseparately).
+Current61JS PASS,63fullbrowser PASS137.575s, clean19152assetsbyteidentical,
+bothlifemastersbyteidentical,28cleanfocusedtestsPASS andreadingpreservationPASS.
+No product defects or unresolved release failures. Newconnectivityregression
+makesCI156datacases (baseline155+1). Allprior accepted bytes/snapshots preserved.
+Cleanworktree/tmp/remaining-canon-clean-191-msntgys9 retained.
+
+Alltaskfiles staged selectively; unrelated untrackedresearch and priorMEMORY
+changes staylocal. /tmp/remaining-canon-live-verify.py derivesexpectedrevision
+fromcommit andwillcheckall52livefiles,new42bios/life,readingcounts+3livebrowser
+cases. reading_bridge_integration ready: afterpush sendcommit+PagesrunID.
+Savepublicationresult /tmp/remaining-canon-publication-result.json. Previous
+originmain597868e1.183 has successful Pages40224149656/validation40224150073.
+Do not claim1.191live orremoteCIpassed until verified. No external messages.
+
 ## Ready for publication — 2026-10-25: revision1.183, three historian corrections
 
 User explicitly classifies Anderson,Wallerstein,Mintz as HISTORIANS and requests

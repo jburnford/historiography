@@ -1,0 +1,154 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-25",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "walter_benjamin",
+    "label": "Walter Benjamin",
+    "entry_kind": "person",
+    "entry_type": "Individual theorist",
+    "layer": "intellectual_connections",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1940: On the Concept of History (composition) · 1982: Das Passagen-Werk (posthumous; edited by Rolf Tiedemann) · 1999: The Arcades Project (English translation by Howard Eiland and Kevin McLaughlin)",
+    "description": "A critic and philosopher whose reflections on historical time challenge progressive narratives and the victor’s transmission of culture. His remembrance of oppressed predecessors is a theoretical resource, while his unfinished Paris project has a separate posthumous publication history.",
+    "representative_figures_and_works": "On the Concept of History (composition) (1940); Das Passagen-Werk (posthumous; edited by Rolf Tiedemann) (1982); The Arcades Project (English translation by Howard Eiland and Kevin McLaughlin) (1999).",
+    "source_ids": [
+      "benjamin_history_primary",
+      "tl185_walter_benjamin_passagen",
+      "tl185_walter_benjamin_arcades",
+      "tl185_walter_benjamin_life"
+    ],
+    "scope_note": "Selected theoretical contributions and dated texts, with original, revised, translated and posthumous forms distinguished. Source notes state actual reading extent; no complete monograph or comprehensive reception survey is claimed. Existing collective relationships and source/roster qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected originals, components, revisions, translations and posthumous publications; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "tl185_walter_benjamin_w1",
+          "label": "On the Concept of History (composition)",
+          "kind": "writing",
+          "track": "contributions",
+          "date": {
+            "year": 1940,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:benjamin_history_primary"
+          ],
+          "support": "1940 text/composition date; first publication not asserted. Read English witness is Redmond’s 2005 translation."
+        },
+        {
+          "id": "tl185_walter_benjamin_w2",
+          "label": "Das Passagen-Werk (posthumous; edited by Rolf Tiedemann)",
+          "kind": "posthumous_publication",
+          "track": "contributions",
+          "date": {
+            "year": 1982,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_walter_benjamin_passagen"
+          ],
+          "support": "Publication metadata only; body unread."
+        },
+        {
+          "id": "tl185_walter_benjamin_w3",
+          "label": "The Arcades Project (English translation by Howard Eiland and Kevin McLaughlin)",
+          "kind": "translation_publication",
+          "track": "editions",
+          "date": {
+            "year": 1999,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tl185_walter_benjamin_arcades"
+          ],
+          "support": "Posthumous English translation based on the German volume edited by Rolf Tiedemann, not original composition."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected texts do not establish continuous activity or an ending."
+      },
+      "interpretation": "Dates identify the stated writing/publication or edition event, not a field’s origins or a person’s life or influence span.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.185/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "walter_benjamin",
+    "node_id": "walter_benjamin"
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tl185_walter_benjamin_e1",
+      "source": "walter_benjamin",
+      "target": "frankfurt",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Challenges homogeneous progressive time and the inheritance of culture through the victors of history.",
+      "evidence_note": "Own theses VI–IX and XIII–XIV read; this is a contribution associated with Frankfurt critical inquiry, not institutional membership or a single Frankfurt doctrine.",
+      "source_ids": [
+        "benjamin_history_primary"
+      ]
+    },
+    {
+      "proposal_id": "tl185_walter_benjamin_e2",
+      "source": "walter_benjamin",
+      "target": "memory",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "relationship": "Makes remembrance of silenced and oppressed predecessors a demand on historical representation.",
+      "evidence_note": "Own theses II–III, VI and XII read. A conceptual resource, not a title-based claim of influence on every later memory historian; separate specific reception evidence remains unchanged.",
+      "source_ids": [
+        "benjamin_history_primary"
+      ]
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tl185_walter_benjamin_passagen",
+      "title": "Karlsruhe Institute of Technology Library, Das Passagen-Werk, edited by Rolf Tiedemann (1982)",
+      "url": "https://katalog.bibliothek.kit.edu/bib/518280",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Catalogue identifies first-edition 1982 Suhrkamp volume, edited by Rolf Tiedemann, within Gesammelte Schriften. Posthumous unfinished materials, not a completed book published in Benjamin’s lifetime; body unread."
+      }
+    },
+    {
+      "id": "tl185_walter_benjamin_arcades",
+      "title": "Aalto/Finna library catalogue: The Arcades Project (1999)",
+      "url": "https://www.finna.fi/Record/aalto.992987374406526?checkRoute=1",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "1999 Belknap/Harvard English publication, translated by Howard Eiland and Kevin McLaughlin on the German volume edited by Rolf Tiedemann. Later printings separately listed. Metadata only; body unread."
+      }
+    },
+    {
+      "id": "tl185_walter_benjamin_life",
+      "title": "German Resistance Memorial Center, biography: Walter Benjamin",
+      "url": "https://www.gdw-berlin.de/en/recess/biographies/index-of-persons/biographie/view-bio/walter-benjamin/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional biography gives 1892–1940 and describes death during the night of 26/27 September; heading uses 27 September. Other accounts use 26 September, so this record preserves only the supported death year."
+      }
+    }
+  ],
+  "source_addenda": {
+    "benjamin_history_primary": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-25",
+      "note": "New rereading of theses I–XV, especially II–III, VI–IX and XII–XIV, in Dennis Redmond’s 2005 translation. Not a new German collation; the existing complete-theses reading and its translation qualifications remain. 1940 is composition/context, not a newly verified first-publication date."
+    }
+  }
+}

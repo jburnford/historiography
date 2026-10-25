@@ -106,14 +106,16 @@ class DissertationContentTests(unittest.TestCase):
             self.assertEqual(current[key], baseline['links'][key], key)
         scope = read(REVIEW / 'expanded-scope.json')
         historians = {p['person_id'] for p in scope['people']} | {'sarah_carter', 'benedict_anderson', 'immanuel_wallerstein', 'sidney_mintz'}
-        self.assertEqual(set(current['people']), set(baseline['links']['people']) | historians)
-        self.assertEqual(len(current['people']), 116)
+        remaining = read(ROOT / 'data/dissertation-layer/reviews/remaining-canon-2026-10-25.json')
+        remaining_ids = {p['person_id'] for p in remaining['people']}
+        self.assertEqual(set(current['people']), set(baseline['links']['people']) | historians | remaining_ids)
+        self.assertEqual(len(current['people']), 157)
 
         site = ROOT / 'data/dissertation-layer/site'
         index = read(site / 'index.json')
         indexed = {s['key']:s for s in index['sources']}
         self.assertEqual(len(baseline['sources']), 4048)
-        self.assertEqual(len(indexed), 4055)
+        self.assertEqual(len(indexed), 4059)
         self.assertEqual(json_hash({k:v for k,v in index.items()
             if k not in ('sources', 'reviewed_selection_count')}), baseline['index_context_sha256'])
         new_books = {
@@ -121,7 +123,11 @@ class DissertationContentTests(unittest.TestCase):
             'P:noiriel|gerard': 'W:noiriel|creuset francais',
             'P:black|jeremy': 'W:black|rethinking military history',
             'P:vovelle|michel': 'W:vovelle|ideologies et mentalites',
-            'P:charle|christophe': 'W:charle|naissance des intellectuels'}
+            'P:charle|christophe': 'W:charle|naissance des intellectuels',
+            'P:giddens|anthony': 'W:giddens|consequences of modernity',
+            'P:freud|sigmund': 'W:freud|three essays on the theory of sexuality',
+            'P:adorno|theodor w': 'W:adorno|dialectic of enlightenment',
+            'P:goody|jack': 'W:goody|development of the family and marriage in europe'}
         self.assertEqual(set(indexed) - {s['index']['key'] for s in baseline['sources']},
                          set(new_books.values()) | {'W:anderson|under three flags', 'W:anderson|spectre of comparisons'})
         shards = {}
