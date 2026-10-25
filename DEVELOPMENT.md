@@ -1,5 +1,29 @@
 # Historiography: editorial and visualization working plan
 
+**Astra review correction (2026-10-24, local revision 1.164):** user requested an
+independent Astra review and push after corrections. Review found Diop's 1960
+original conflated with the revised 1974 title. An additive acceptance corrects
+the bibliography/event/roster labels, adds two library metadata sources and
+qualifies the earlier publisher witness; no new dated events or relationships.
+The 1.161–1.163 packets remain frozen. Astra verified both findings resolved,
+including removal of the stale download-size figure. Current totals are
+219 entries, 1,300 relationships, 2,503 sources and 1,360 people.
+
+**Gemini review expansion (2026-10-24, local revisions 1.161–1.163):** sixteen
+standalone people across distinct non-Western projects, Black/Atlantic history,
+microhistory and intellectual history. Five new person records and eleven promotions;
+39 new relationships, 56 sources and 88 dated events. Thirteen person-specific
+endpoints are repaired with existing edge IDs, sources and qualifications retained;
+collective field arrows stay on their fields. Old roster prose, field dates/review
+years, archive, publication evidence and dissertation assets are preserved. The
+About page explains profile/entry depth and selective coverage using current counts.
+The original 130-name audit remains frozen at 1.160; the
+[implementation review](data/field-research/gemini-coverage-2026-10-24/implementation.json)
+records sixteen completed standalone entries, ninety remaining roster profiles and
+twenty-four names without indexed person records. This bounded expansion does not
+complete the whole candidate list or systematically cover every named tradition.
+No commit/push/deployment requested. OpenAlex stays paused.
+
 **Economic reading correction (2026-10-24, local revision1.160):** user identified
 missing Wrigley, Mokyr, Berg and Crafts. The book-frequency filter was excluding relevant
 authors. Add author/work comparison modes, six named-work bridges (also Fogel and de Vries),

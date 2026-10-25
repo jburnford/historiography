@@ -1,0 +1,166 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-24",
+  "applies_to": "canonical revision 1.162 to candidate 1.163; existing person ID promoted",
+  "review_status": "needs_review",
+  "node": {
+    "id": "carlo_ginzburg",
+    "label": "Carlo Ginzburg",
+    "date_label": "The Cheese and the Worms: Italian original (1976) · Miti, emblemi, spie: first Italian collection (1986) · Clues, Myths, and the Historical Method: English translation (1989) · Microhistory: Two or Three Things That I Know about It (1993)",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A historian of popular culture and evidentiary inference whose Menocchio study became a central example of Italian microhistory. In his 1993 retrospective he presents microhistory as testing categories through contextual and anomalous cases, without automatically transferring conclusions between scales. He joins awareness that research and narrative are constructed to resistance to skeptical textual reduction. His Clues essay compares interpretation of small traces in art attribution, detection and psychoanalysis. These are his methodological arguments, rather than a definition binding all microhistorians.",
+    "representative_figures_and_works": "The Cheese and the Worms (Italian 1976); Miti, emblemi, spie (Italian collection 1986; Clues, Myths, and the Historical Method, English translation 1989, translated by John and Anne C. Tedeschi; selected essay read); “Microhistory: Two or Three Things That I Know about It” (1993, translated by John and Anne C. Tedeschi).",
+    "source_ids": [
+      "micro",
+      "ginzburg_microhistory",
+      "gm163_ginzburg_clues_1989",
+      "gm163_ginzburg_miti_1986",
+      "friedlander"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "scope_note": "The 1976 book remains unread as a whole; its date and Menocchio context retain the earlier reviewed publisher record. New reading on 2026-10-24: selected Clues pp. 96–101 through the university-hosted scan/OCR; 1993 Microhistory pp. 22–24, 26–30, 32–34 reread. Original Italian, full Clues essay and cited Freud/Morelli works were not collated. The 1986 Italian collection and its 1989 English translation are dated separately from the earlier component essays; the 1989 translation is on the editions track, not an original-contribution milestone. The 1993 retrospective explicitly denies that Kracauer’s work founded his microhistorical practice; retrospective affinity is not transmitted influence. The existing qualified group-endpoint claims about Ginzburg are reattached to this individual entry with their IDs and evidence intact. No life dates, complete career interval or review-through year are asserted.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions and reception · 1976–1993",
+      "selection_note": "Selected works, interventions and reception, not career or lifespan boundaries. Original works, translations, later editions and retrospective accounts remain distinct.",
+      "events": [
+        {
+          "id": "gm163_cg_cheese",
+          "label": "The Cheese and the Worms: Italian original",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1976,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:micro",
+            "graph:ginzburg_microhistory"
+          ],
+          "support": "Original year retained from the existing reviewed book source; the book remains unread as a whole. Ginzburg’s 1993 retrospective and the publisher description support the Menocchio case, not a new chapter-by-chapter reading."
+        },
+        {
+          "id": "gm163_cg_miti",
+          "label": "Miti, emblemi, spie: first Italian collection",
+          "kind": "collection",
+          "track": "contributions",
+          "date": {
+            "year": 1986,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:gm163_ginzburg_miti_1986",
+            "graph:gm163_ginzburg_clues_1989"
+          ],
+          "support": "Italian collection dated by institutional catalogue and publishing archive; selected Clues pages are read in the 1989 English translation. Earlier component essays include Spie (1979); this is a new collection, not the first invention of that argument."
+        },
+        {
+          "id": "gm163_cg_clues",
+          "label": "Clues, Myths, and the Historical Method: English translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1989,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:gm163_ginzburg_clues_1989",
+            "graph:gm163_ginzburg_miti_1986"
+          ],
+          "support": "English translation of the 1986 Italian collection dated by Smithsonian Libraries; selected Clues pages read. Translation is separate from original collection and earlier essay versions."
+        },
+        {
+          "id": "gm163_cg_microhistory",
+          "label": "Microhistory: Two or Three Things That I Know about It",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:ginzburg_microhistory"
+          ],
+          "support": "Own retrospective essay, printed pp. 26–30 and 32–34 reread; a participant’s account with explicit limits on claims of founding influence."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Dates identify selected publications and explicit reception. A retrospective reading can support the account of an earlier work without constituting a reading of that work; the support field states the limit.",
+      "prepared_on": "2026-10-24",
+      "editorial_record": "data/production-batches/person-entries-1.163/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "carlo_ginzburg",
+    "node_id": "carlo_ginzburg",
+    "note": "Promote the existing person ID; no identity merge or new person record."
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "gm163_cg_micro",
+      "source": "carlo_ginzburg",
+      "target": "micro",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Presents Italian microhistory as contextual inquiry through anomalous cases and an experiment in the construction of research, categories, proof and narrative (1993).",
+      "evidence_note": "Ginzburg’s own retrospective, 1993, pp. 32–34, reread. This adds his individual methodological contribution to the field, not another copy of his specific critiques of general social categories or textual reduction, which retain their old edge IDs. He describes a shifting group and warns that his account is a self-portrait, not a uniform school doctrine.",
+      "source_ids": [
+        "ginzburg_microhistory"
+      ],
+      "classification_basis": "editorial_review",
+      "roster_row": "micro"
+    },
+    {
+      "proposal_id": "gm163_cg_freud",
+      "source": "carlo_ginzburg",
+      "target": "freud",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Compares Freud’s reading of small traces with Morelli’s art attribution and Holmes’s detection in the evidential model, in the English Clues collection (1989).",
+      "evidence_note": "Selected Clues pages 96–101, own text read through scan/OCR. A comparison made by Ginzburg; no Freud-to-Ginzburg transmission is inferred and the psychoanalysis group is used as the existing contextual endpoint. His proposed Morelli-to-Freud connection is not independently checked here.",
+      "source_ids": [
+        "gm163_ginzburg_clues_1989"
+      ],
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "gm163_ginzburg_clues_1989",
+      "title": "Carlo Ginzburg, “Clues: Roots of an Evidential Paradigm,” in Clues, Myths, and the Historical Method, trans. John and Anne C. Tedeschi (Johns Hopkins University Press, 1989), selected pp. 96–101.",
+      "citation": "Carlo Ginzburg, “Clues: Roots of an Evidential Paradigm,” in Clues, Myths, and the Historical Method, trans. John and Anne C. Tedeschi (Johns Hopkins University Press, 1989), selected pp. 96–101.",
+      "url": "https://beasley.sdsu.edu/Ginzburg.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-24",
+        "note": "University-hosted primary scan. Printed pp. 96–101 read (pp. 98–101 through OCR of page images); remaining essay and notes unread in this pass. English collection/date independently confirmed by Smithsonian Libraries record siris_sil_435694, https://www.si.edu/object/clues-myths-and-historical-method-carlo-ginzburg-translated-john-and-anne-c-tedeschi%3Asiris_sil_435694 . The 2013 publisher reissue is not the original date. This is the English collection version of an earlier essay, not a claim that the argument originated in 1989. Its Freud/Morelli genealogy is Ginzburg’s argument; Freud’s original text and the Morelli volumes were not independently collated. No direct quotation is newly reproduced."
+      }
+    },
+    {
+      "id": "gm163_ginzburg_miti_1986",
+      "title": "Carlo Ginzburg, Miti, emblemi, spie: morfologia e storia (Torino: Einaudi, 1986), first Italian collection.",
+      "citation": "Carlo Ginzburg, Miti, emblemi, spie: morfologia e storia (Torino: Einaudi, 1986), first Italian collection.",
+      "url": "https://sol.unibo.it/SebinaOpac/resource/miti-emblemi-spie-morfologia-e-storia/UBO00328763",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-24",
+        "note": "Indexed institutional SBN Bologna catalogue record CFI0016674 confirms the 1986 first Italian collection, author, publisher, and earlier component essay dates, including Spie (1979). The Turin State Archive Einaudi originals/proofs inventory, printed p. 206, separately records the 1986 first edition and proof date 18 February 1986: https://archiviodistatotorino.cultura.gov.it/upload/Einaudi_Originali%20e%20bozze_unico.pdf . Metadata only for the Italian volume; direct Italian body and original 1979 essay uncollated. The selected Clues argument is read separately in the English translation of the collection (1989), not dated as newly invented in 1986 or 1989."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "edges_considered_not_proposed": [
+    "Do not clone edge_108, edge_259 or edge_268: each is repaired in place.",
+    "Do not turn Ginzburg’s late discovery of Kracauer into a founding influence.",
+    "No independent reconstruction of the 1992 Just One Witness essay; its original primary-access qualification remains."
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "revision": "1.164",
+  "baseline_revision": "1.163",
+  "date": "2026-10-24",
+  "batch_dir": "person-entries-1.164",
+  "persons": [],
+  "extras": [
+    "corrections"
+  ],
+  "summary": "Astra bibliographic correction: distinguish Diop’s 1960 cultural/technical/industrial original title from the economic/cultural title of the revised 1974 edition. Preserve the 1960 event ID/date and all reading limits; add two library metadata sources. No new people, nodes, edges or dated events.",
+  "authorization": "User, 2026-10-24: ask Astra to review the work and push after making corrections. Independent Astra review identified the edition/title conflation (AR1).",
+  "rationale": "Library edition records are narrower than the retrospective publisher biography used by the earlier packet. The correction changes displayed bibliography/date labels, the existing event label/support and the added anticolonial roster work string; original acceptance records remain frozen and exactly reconstructible. It makes no new argument claim and retains book-unread and named-reader qualifications.",
+  "source_merges": {},
+  "edge_revisions": {},
+  "text_revisions": [
+    {
+      "node": "cheikh_anta_diop",
+      "field": "date_label",
+      "old": "Nations nègres et culture (1954) · Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960) · Antériorité des civilisations nègres (1967) · Civilisation ou barbarie (1981)",
+      "new": "Nations nègres et culture (1954) · Les fondements culturels, techniques et industriels d’un futur État fédéral d’Afrique noire (1960) · Antériorité des civilisations nègres (1967) · Civilisation ou barbarie (1981)",
+      "reason": "Astra AR1: distinguish the 1960 original title from its revised 1974 title using library edition records."
+    },
+    {
+      "node": "cheikh_anta_diop",
+      "field": "representative_figures_and_works",
+      "old": "Nations nègres et culture (1954); Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960); Antériorité des civilisations nègres (1967); Civilisation ou barbarie (1981).",
+      "new": "Nations nègres et culture (1954); Les fondements culturels, techniques et industriels d’un futur État fédéral d’Afrique noire (1960); Antériorité des civilisations nègres (1967); Civilisation ou barbarie (1981). The revised 1974 edition uses the title Les fondements économiques et culturels d’un État fédéral d’Afrique noire (catalogue metadata; book body unread).",
+      "reason": "Astra AR1: distinguish the 1960 original title from its revised 1974 title using library edition records."
+    },
+    {
+      "node": "anticolonial",
+      "person_id": "cheikh_anta_diop",
+      "field": "works",
+      "old": "Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960; mediated)",
+      "new": "Les fondements culturels, techniques et industriels d’un futur État fédéral d’Afrique noire (1960; mediated); revised economic/cultural title (1974; metadata only)",
+      "reason": "Astra AR1: preserve the 1960 work date while using its original title and separately qualifying the later title."
+    }
+  ],
+  "field_sets": [
+    {
+      "node": "cheikh_anta_diop",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected dated contributions, editions and reception",
+        "selection_note": "Selected works and interventions with their reading limits; neither a complete career nor a continuous activity interval.",
+        "events": [
+          {
+            "id": "cad_nations_1954",
+            "label": "Nations nègres et culture",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1954,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_presence",
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "Publisher dates first publication 1954; Tine discusses its historical-restoration project. Whole book unread."
+          },
+          {
+            "id": "cad_federal_1960",
+            "label": "Les fondements économiques et culturels d’un futur État fédéral en Afrique noire",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1960,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_presence",
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "Publisher dates the federal-state platform 1960; Tine reads the historical/cultural basis of the Pan-African project. Book body unread."
+          },
+          {
+            "id": "cad_anteriorite_1967",
+            "label": "Antériorité des civilisations nègres",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1967,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_inha_1967"
+            ],
+            "support": "Metadata-only publication date; book argument not newly read."
+          },
+          {
+            "id": "cad_civilisation_1981",
+            "label": "Civilisation ou barbarie",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1981,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_bnf_1981",
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "French publication 1981; selected historical-consciousness argument is known through Tine’s reading, not a reading of the book."
+          },
+          {
+            "id": "cad_dieng_1989",
+            "label": "Dieng’s criticism of diffusionism, as reported by Tine",
+            "kind": "publication",
+            "track": "reception",
+            "date": {
+              "year": 1989,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "Tine cites Dieng 1989, p. 152; original text unread. Date belongs to critical reception."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous duration, ending or present activity is inferred from these selected dates."
+        },
+        "interpretation": "Writing, publication, translation and later readers remain separate. Mediated accounts are attributed in support notes.",
+        "prepared_on": "2026-10-24",
+        "editorial_record": "data/production-batches/person-entries-1.161/acceptance.json"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected dated contributions, editions and reception",
+        "selection_note": "Selected works and interventions with their reading limits; neither a complete career nor a continuous activity interval.",
+        "events": [
+          {
+            "id": "cad_nations_1954",
+            "label": "Nations nègres et culture",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1954,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_presence",
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "Publisher dates first publication 1954; Tine discusses its historical-restoration project. Whole book unread."
+          },
+          {
+            "id": "cad_federal_1960",
+            "label": "Les fondements culturels, techniques et industriels d’un futur État fédéral d’Afrique noire",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1960,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_presence",
+              "graph:gn161_diop_tine_2005",
+              "graph:ga164_diop_fondements_1960",
+              "graph:ga164_diop_fondements_1974"
+            ],
+            "support": "OCLC 5736086 supplies the original cultural/technical/industrial title and [1960] date. BnF FRBNF35182688 separately identifies the retitled economic/cultural revised edition in 1974. Tine supplies the mediated account of the Pan-African project; neither edition’s body was newly read."
+          },
+          {
+            "id": "cad_anteriorite_1967",
+            "label": "Antériorité des civilisations nègres",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1967,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_inha_1967"
+            ],
+            "support": "Metadata-only publication date; book argument not newly read."
+          },
+          {
+            "id": "cad_civilisation_1981",
+            "label": "Civilisation ou barbarie",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1981,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_bnf_1981",
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "French publication 1981; selected historical-consciousness argument is known through Tine’s reading, not a reading of the book."
+          },
+          {
+            "id": "cad_dieng_1989",
+            "label": "Dieng’s criticism of diffusionism, as reported by Tine",
+            "kind": "publication",
+            "track": "reception",
+            "date": {
+              "year": 1989,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:gn161_diop_tine_2005"
+            ],
+            "support": "Tine cites Dieng 1989, p. 152; original text unread. Date belongs to critical reception."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous duration, ending or present activity is inferred from these selected dates."
+        },
+        "interpretation": "Writing, publication, translation and later readers remain separate. Mediated accounts are attributed in support notes.",
+        "prepared_on": "2026-10-24",
+        "editorial_record": "data/production-batches/person-entries-1.161/acceptance.json"
+      }
+    }
+  ],
+  "node_list_additions": [
+    {
+      "node": "cheikh_anta_diop",
+      "field": "source_ids",
+      "values": [
+        "ga164_diop_fondements_1960",
+        "ga164_diop_fondements_1974"
+      ]
+    }
+  ],
+  "roster_list_additions": [
+    {
+      "node": "anticolonial",
+      "person_id": "cheikh_anta_diop",
+      "source_ids": [
+        "ga164_diop_fondements_1960",
+        "ga164_diop_fondements_1974"
+      ]
+    }
+  ]
+}

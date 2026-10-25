@@ -1,0 +1,438 @@
+{
+  "revision": "1.164",
+  "date": "2026-10-24",
+  "authorization": "User, 2026-10-24: ask Astra to review the work and push after making corrections. Independent Astra review identified the edition/title conflation (AR1).",
+  "baseline": "drafts/historiography-1920-2000.v1.163.json",
+  "baseline_sha256": "78de28c3e0109cd06ccfdb98ac6310fd72f72131afdffffeb0d4e5f00b07fd6d",
+  "packet": "data/extension-2026/gemini-astra-corrections-2026-10-24/release/editorial-additions.json",
+  "packet_sha256": "6cac31b7f67fe5f8a68733437bb89582d4de3e6995dade2499719042f68eee86",
+  "production_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+  "previous_table_lengths": {
+    "nodes": 219,
+    "people": 1360,
+    "edges": 1300,
+    "sources": 2501,
+    "revision_history": 163
+  },
+  "prior_records": {
+    "people": {},
+    "edges": {},
+    "sources": {
+      "gn161_diop_presence": {
+        "id": "gn161_diop_presence",
+        "title": "Présence Africaine, Nations nègres et culture, publisher description and author account.",
+        "citation": "Présence Africaine, Nations nègres et culture, publisher description and author account.",
+        "url": "https://www.presenceafricaine.com/livres-histoire-politique-afrique-caraibes/634-nations-negres-et-culture-9782708706880.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-24",
+          "note": "Search-rendered publisher text read; direct fetch returned403. It identifies 1954 publication and 1960 federal-state platform. Publisher praise and its account of the Cairo symposium are not treated as independent scholarly consensus."
+        }
+      }
+    },
+    "nodes": {
+      "anticolonial": {
+        "id": "anticolonial",
+        "label": "Anti-colonial histories",
+        "date_label": "Earlier roots · 1930s–70s expansion",
+        "layer": "historiographical_developments",
+        "period": "period_0",
+        "hunt_core_paradigm": false,
+        "description": "Recasts empire through slavery, resistance, liberation, and colonized peoples’ historical agency. Caribbean, African, and other projects develop through different political struggles and intellectual traditions; historical scholarship and theories of decolonization overlap without forming one school.",
+        "representative_figures_and_works": "C. L. R. James, The Black Jacobins (1938); Eric Williams, Capitalism and Slavery (1944); Frantz Fanon, The Wretched of the Earth (1961); Walter Rodney, How Europe Underdeveloped Africa (1972). Individual entries distinguish their contributions.",
+        "source_ids": [
+          "james",
+          "williams",
+          "fanon_colonial",
+          "rodney",
+          "james_culture",
+          "fanon",
+          "rodney_excerpt",
+          "rodney_groundings",
+          "cesaire_discourse",
+          "cabral_culture",
+          "naoroji_mill_drain_primary"
+        ],
+        "entry_kind": "group",
+        "representative_people": [
+          {
+            "person_id": "clr_james",
+            "role": "historian",
+            "context": "Recasts revolutionary history through enslaved people’s action; successive versions reflect changing political and dramatic concerns.",
+            "works": "The Black Jacobins (1938; revised 1963)",
+            "source_ids": [
+              "james",
+              "james_culture",
+              "james_lectures"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "eric_williams",
+            "role": "historian",
+            "context": "Makes distinct, disputed arguments about slavery, capitalist development and abolition.",
+            "works": "Capitalism and Slavery (1944)",
+            "source_ids": [
+              "williams",
+              "williams_capitalism_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "fanon",
+            "role": "contributor",
+            "context": "Psychiatrist and political theorist of domination and liberation; not the same kind of historical inquiry as Williams or James.",
+            "works": "The Wretched of the Earth (1961)",
+            "source_ids": [
+              "fanon",
+              "fanon_colonial"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "rodney",
+            "role": "historian",
+            "context": "Connects African economic history, unequal power and popular political education; underdevelopment is a historical relationship.",
+            "works": "How Europe Underdeveloped Africa (1972); The Groundings with My Brothers (1969)",
+            "source_ids": [
+              "rodney",
+              "rodney_excerpt",
+              "rodney_groundings"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "aime_cesaire",
+            "role": "contributor",
+            "context": "Challenges imperial claims to civilization and examines colonialism’s effects on the colonizer.",
+            "works": "Discourse on Colonialism (1950; revised 1955; English 1972)",
+            "source_ids": [
+              "cesaire_discourse"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "amilcar_cabral",
+            "role": "contributor",
+            "context": "Relates culture and liberation to production, class differences and political organization.",
+            "works": "“National Liberation and Culture” (1970), in Return to the Source (1973)",
+            "source_ids": [
+              "cabral_culture"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "dadabhai_naoroji",
+            "role": "precursor",
+            "context": "An Indian precursor who redeploys political economy against colonial assurances; drain analysis does not require rejecting every European theoretical resource.",
+            "works": "Poverty and Un-British Rule in India (1901),55–56",
+            "source_ids": [
+              "naoroji_mill_drain_primary"
+            ],
+            "basis": "source_review"
+          },
+          {
+            "person_id": "michel_rolph_trouillot",
+            "role": "contributor",
+            "context": "Ti dife boule sou istwa Ayiti (Brooklyn, 1977), a Creole history of the revolution written in exile against 'the knowledge embargo imposed by the \"official\" venues' (Lyonel Trouillot, as quoted by Craipain, 2024); English as Stirring the Pot of Haitian History (2021).",
+            "works": "Ti dife boule sou istwa Ayiti (1977)",
+            "source_ids": [
+              "p4a_craipain_hnet_2024",
+              "p4a_trouillot_papers_ead"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1227"
+          },
+          {
+            "person_id": "cheikh_anta_diop",
+            "role": "contributor",
+            "context": "Joined historical and cultural reconstruction to independence and a Pan-African federal project; Tine distinguishes this from Senghor’s competing approach.",
+            "works": "Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960; mediated)",
+            "source_ids": [
+              "gn161_diop_tine_2005",
+              "gn161_diop_presence"
+            ],
+            "basis": "source_review",
+            "edge_id": "edge_1266"
+          }
+        ],
+        "entry_type": "Teaching umbrella",
+        "scope_note": "James, Williams, Fanon, and Rodney make different arguments. Colonial subjects and liberation politics do not establish one school or Marxist identity. Césaire’s polemic and Cabral’s political theory add distinct questions; cultural struggle and economic explanation can interact. The present Caribbean/African selection does not exhaust anti-colonial historical writing in Asia or elsewhere. Naoroji adds one Indian precursor through a specific1901argument; his use of Mill distinguishes theoretical borrowing from acceptance of colonial policy.",
+        "strands": [
+          {
+            "id": "enslaved_revolution",
+            "title": "Enslaved revolutionaries and historical drama",
+            "person_ids": [
+              "clr_james",
+              "michel_rolph_trouillot"
+            ],
+            "focus": "Popular action and leadership are problems within a changing account of revolution.",
+            "works": "The Black Jacobins (1938/1963)",
+            "source_ids": [
+              "james",
+              "p4a_craipain_hnet_2024"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "slavery_capitalism",
+            "title": "Slavery, capitalism and abolition",
+            "person_ids": [
+              "eric_williams"
+            ],
+            "focus": "The financing of economic change and explanations of abolition are related but separable disputed claims.",
+            "works": "Capitalism and Slavery (1944)",
+            "source_ids": [
+              "williams"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "colonial_subject",
+            "title": "Colonial domination and liberation",
+            "person_ids": [
+              "fanon"
+            ],
+            "focus": "Political theory and psychiatry supply questions different from an economic history of slavery.",
+            "works": "The Wretched of the Earth (1961)",
+            "source_ids": [
+              "fanon",
+              "fanon_colonial"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "underdevelopment",
+            "title": "Underdevelopment and unequal power",
+            "person_ids": [
+              "rodney"
+            ],
+            "focus": "Economic change is placed within relations of colonial control and loss of autonomous decisions.",
+            "works": "How Europe Underdeveloped Africa (1972)",
+            "source_ids": [
+              "rodney_excerpt"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "civilizing_claims",
+            "title": "Critique of colonial civilization",
+            "person_ids": [
+              "aime_cesaire"
+            ],
+            "focus": "Imperial violence challenges Europe’s claims about its own moral progress.",
+            "works": "Discourse on Colonialism (1950/1955)",
+            "source_ids": [
+              "cesaire_discourse"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "culture_liberation",
+            "title": "Culture, class and liberation",
+            "person_ids": [
+              "amilcar_cabral"
+            ],
+            "focus": "Culture develops through historical social relations and differs within a people; it is not a timeless national essence.",
+            "works": "“National Liberation and Culture” (1970)",
+            "source_ids": [
+              "cabral_culture"
+            ],
+            "basis": "editorial_distinction"
+          },
+          {
+            "id": "indian_drain",
+            "title": "Indian drain analysis and borrowed categories",
+            "focus": "Naoroji applies Mill’s capital propositions to the loss of India’s resources. This earlier Indian case broadens the selection without standing for all Asian anti-colonial thought.",
+            "person_ids": [
+              "dadabhai_naoroji"
+            ],
+            "works": "Naoroji (1901),55–56",
+            "source_ids": [
+              "naoroji_mill_drain_primary"
+            ],
+            "basis": "editorial_distinction"
+          }
+        ],
+        "coverage": {
+          "reviewed_through": 2000,
+          "basis": "Reviewed through 2000 in the original 1920–2000 experiment. Later work is not yet surveyed for this entry; selected later interventions, where present, are dated individually."
+        },
+        "chronology": {
+          "version": 1,
+          "label": "Selected contributions · 1944–1972",
+          "selection_note": "Selected contributions and witnesses, not a field origin, lifespan or complete history.",
+          "events": [
+            {
+              "id": "event_b1bacee6fef3",
+              "label": "Williams, Capitalism and Slavery",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1944,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:williams"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_63904b59924e",
+              "label": "Fanon, The Wretched of the Earth",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1961,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:fanon_national_consciousness"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            },
+            {
+              "id": "event_3b9f47cf9169",
+              "label": "Rodney, How Europe Underdeveloped Africa",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1972,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:rodney"
+              ],
+              "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+              "basis": "existing_entry_and_bibliography"
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous historical duration or ending is established by this selection."
+          },
+          "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+          "prepared_on": "2026-10-15",
+          "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+        }
+      },
+      "cheikh_anta_diop": {
+        "id": "cheikh_anta_diop",
+        "label": "Cheikh Anta Diop",
+        "date_label": "Nations nègres et culture (1954) · Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960) · Antériorité des civilisations nègres (1967) · Civilisation ou barbarie (1981)",
+        "layer": "historians",
+        "period": null,
+        "hunt_core_paradigm": false,
+        "description": "A Senegalese historian whose restoration of African historical consciousness connected Egypt, cultural continuity and Pan-African political projects. Tine distinguishes his programme from Senghor’s négritude and reports Dieng’s objections to its treatment of nationhood and cultural borrowing. Diop’s propositions about Egypt and cultural diffusion remain attributed and contested; neither a common African essence nor agreement among African historians is asserted.",
+        "representative_figures_and_works": "Nations nègres et culture (1954); Les fondements économiques et culturels d’un futur État fédéral en Afrique noire (1960); Antériorité des civilisations nègres (1967); Civilisation ou barbarie (1981).",
+        "source_ids": [
+          "gn161_diop_tine_2005",
+          "gn161_diop_presence",
+          "gn161_diop_bnf_1981",
+          "gn161_diop_ucad_2023",
+          "gn161_diop_inha_1967"
+        ],
+        "entry_kind": "person",
+        "entry_type": "Individual historian",
+        "scope_note": "Read on 2026-10-24: Tine’s introduction, section 2 and conclusion in an author-authorized repository; the publisher’s search-rendered account; BnF/INHA metadata; UCAD’s centenary programme metadata. Diop’s books and Dieng’s original critiques are unread. Claims from 1981 and 1989 are mediated through Tine. No verdict on the population of ancient Egypt is established by publisher praise or a commemorative programme. Tine’s death-year error is excluded; UCAD gives 1986. Original French titles and later translations are not conflated.",
+        "chronology": {
+          "version": 1,
+          "label": "Selected dated contributions, editions and reception",
+          "selection_note": "Selected works and interventions with their reading limits; neither a complete career nor a continuous activity interval.",
+          "events": [
+            {
+              "id": "cad_nations_1954",
+              "label": "Nations nègres et culture",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1954,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:gn161_diop_presence",
+                "graph:gn161_diop_tine_2005"
+              ],
+              "support": "Publisher dates first publication 1954; Tine discusses its historical-restoration project. Whole book unread."
+            },
+            {
+              "id": "cad_federal_1960",
+              "label": "Les fondements économiques et culturels d’un futur État fédéral en Afrique noire",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1960,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:gn161_diop_presence",
+                "graph:gn161_diop_tine_2005"
+              ],
+              "support": "Publisher dates the federal-state platform 1960; Tine reads the historical/cultural basis of the Pan-African project. Book body unread."
+            },
+            {
+              "id": "cad_anteriorite_1967",
+              "label": "Antériorité des civilisations nègres",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1967,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:gn161_diop_inha_1967"
+              ],
+              "support": "Metadata-only publication date; book argument not newly read."
+            },
+            {
+              "id": "cad_civilisation_1981",
+              "label": "Civilisation ou barbarie",
+              "kind": "publication",
+              "track": "contributions",
+              "date": {
+                "year": 1981,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:gn161_diop_bnf_1981",
+                "graph:gn161_diop_tine_2005"
+              ],
+              "support": "French publication 1981; selected historical-consciousness argument is known through Tine’s reading, not a reading of the book."
+            },
+            {
+              "id": "cad_dieng_1989",
+              "label": "Dieng’s criticism of diffusionism, as reported by Tine",
+              "kind": "publication",
+              "track": "reception",
+              "date": {
+                "year": 1989,
+                "precision": "year"
+              },
+              "source_ids": [
+                "graph:gn161_diop_tine_2005"
+              ],
+              "support": "Tine cites Dieng 1989, p. 152; original text unread. Date belongs to critical reception."
+            }
+          ],
+          "intervals": [],
+          "continuation": {
+            "status": "not_asserted",
+            "basis": "No continuous duration, ending or present activity is inferred from these selected dates."
+          },
+          "interpretation": "Writing, publication, translation and later readers remain separate. Mediated accounts are attributed in support notes.",
+          "prepared_on": "2026-10-24",
+          "editorial_record": "data/production-batches/person-entries-1.161/acceptance.json"
+        }
+      }
+    }
+  },
+  "counts": {
+    "new_person_entries": 0,
+    "new_edges": 0,
+    "new_sources": 2,
+    "source_addenda": 1
+  }
+}

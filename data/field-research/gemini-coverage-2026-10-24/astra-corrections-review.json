@@ -1,0 +1,24 @@
+{
+  "schema": "independent_correction_review/1",
+  "reviewed_on": "2026-10-24",
+  "reviewer": "Astra independent review agent",
+  "revision": "1.164",
+  "baseline_revision": "1.163",
+  "graph_sha256": "54d51ebf33a71fce048cea9d4fc33aa6a0e9cfc9a1eb50ea0b09b805ddfe405a",
+  "verdict": "PASS. AR1 and AR2 resolved; no remaining blocking issues found in the reviewed correction.",
+  "findings": [],
+  "resolved": [
+    "AR1: Correct 1960 original title in Diop date_label, selected works, existing cad_federal_1960 event label/support and anticolonial roster. The 1974 revised title is separately dated and metadata-only.",
+    "AR1: Both library records are referenced from the event, person entry and roster. Original publisher record retains its prior text and gains an explicit correction addendum. Books remain unread; no newly asserted argument or content-change claim.",
+    "AR2: Removed obsolete 7.51 MB size from site/README.md."
+  ],
+  "verification": [
+    "Compared canonical 1.164 to Batch baseline 1.163: only Diop node, anticolonial roster, publisher verification addendum and two new source records change, apart from revision history.",
+    "All previous node IDs, edge records and people records remain unchanged; no new nodes, people or edges.",
+    "All chronology event IDs and date objects remain identical across all entries. No added dated event; cad_federal_1960 stays 1960.",
+    "No occurrence of the conflated economic/cultural futur/en Afrique title remains in the canonical graph.",
+    "New OCLC 5736086 and BnF FRBNF35182688 citations match the institutional records independently checked during the original review.",
+    "Acceptance production and packet SHA256 hashes match; Batch.check reconstructs revision1.164 exactly."
+  ],
+  "scope_note": "Reviewed data/source correction and AR2 only. Broader docs, implementation report, version/count updates and rebuilt browser exports are being handled by root. Prior frozen drafts and acceptance history appropriately retain the former claim; they are not current uncorrected occurrences."
+}

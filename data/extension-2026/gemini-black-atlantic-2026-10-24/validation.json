@@ -1,0 +1,33 @@
+{
+  "method": "In-memory transform over the unchanged current graph with only its latest version label set to the intended baseline 1.161. This is isolated schema/preservation validation, not final chain reconstruction.",
+  "errors": [],
+  "warnings": [
+    "Repeated endpoint/type combination in edge_369",
+    "Repeated endpoint/type combination in edge_610",
+    "Repeated endpoint/type combination in edge_662",
+    "Repeated endpoint/type combination in edge_685",
+    "Repeated endpoint/type combination in edge_776",
+    "Repeated endpoint/type combination in edge_1026",
+    "Repeated endpoint/type combination in edge_1027",
+    "Repeated endpoint/type combination in edge_1051",
+    "Repeated endpoint/type combination in edge_1057",
+    "Repeated endpoint/type combination in edge_1059",
+    "Unconnected node: web_history"
+  ],
+  "counts": {
+    "nodes": 5,
+    "edges": 12,
+    "new_sources": 19,
+    "new_people": 0,
+    "new_rosters": 5
+  },
+  "checks": [
+    "Existing edges and source records byte-equivalent as parsed values",
+    "Existing people fields preserved; node_id added only",
+    "Existing non-roster node fields preserved",
+    "Prior roster role/context/works/basis and source IDs preserved",
+    "Each person has at least two relationships and three contribution events",
+    "No person coverage/date_span or inferred activity intervals",
+    "Hartman/Fuentes project influence has independent date/coeditor metadata plus Fuentes’s explicit inspiration statement"
+  ]
+}

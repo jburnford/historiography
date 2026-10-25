@@ -1465,6 +1465,7 @@ function onResize() {
     if (rows && Math.abs(rows.clientWidth - landingWidth) > 4) drawLanding();
     if (state.tab === 'dissertations') resizeReading($('dissertation-reading'));
     document.querySelectorAll('[data-reading-entry]').forEach(resizeReading);
+    fitConnections();
   }, 150);
 }
 
@@ -1626,18 +1627,43 @@ function neighborhoodMap(rows, n) {
   const renderNeighbor = ({edge:e, node}, i, lane) => {
     const y = rowY(i, lane === 'incoming' ? incoming.length : outgoing.length);
     return `<a class="flow-neighbor neighbor-node ${lane} tone-${layerIndex(node.layer)}" data-edge="${e.id}" style="top:${y}px" href="${esc(connectedNodeHref(node.id))}"><span>${esc(layerLabel(node.layer))}</span><strong>${esc(node.label)}</strong>${e.map_label ? `<span class="neighbor-exchange">${esc(e.map_label)}</span>` : ''}<span class="neighbor-open">Follow connections →</span></a>
-      <a class="flow-label edge-label ${lane} kind-${edgeKind(e)} ${e.id === state.edge ? 'selected' : ''}" style="top:${(y + cy) / 2}px" href="${esc(href({edge:e.id}))}" aria-label="Inspect ${esc(KINDS[edgeKind(e)])} from ${esc(nodeById.get(e.source).label)} to ${esc(nodeById.get(e.target).label)}">${esc(KINDS[edgeKind(e)])} →</a>`;
+      <a class="flow-label edge-label ${lane} kind-${edgeKind(e)} ${e.id === state.edge ? 'selected' : ''}" data-edge="${e.id}" style="top:${(y + cy) / 2}px" href="${esc(href({edge:e.id}))}" aria-label="Inspect ${esc(KINDS[edgeKind(e)])} from ${esc(nodeById.get(e.source).label)} to ${esc(nodeById.get(e.target).label)}">${esc(KINDS[edgeKind(e)])} →</a>`;
   };
   return `<div class="graph-scroll"><div class="flow-graph focus-graph" style="height:${height}px" aria-label="Upstream entries on the left, selected entry in the centre, downstream entries on the right">
     <div class="flow-head incoming">INTO THIS ENTRY · ${incoming.length}</div><div class="flow-head middle">YOUR FOCUS</div><div class="flow-head outgoing">FROM THIS ENTRY · ${outgoing.length}</div>
     <svg class="connections" viewBox="0 0 1000 ${height}" preserveAspectRatio="none" aria-hidden="true"><defs>${['influence','contribution','critique'].map(k => `<marker id="arrow-${k}" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" class="arrow-${k}"/></marker>`).join('')}</defs>
-      ${incoming.map(({edge:e},i) => `<path class="connection incoming kind-${edgeKind(e)} ${state.edge === e.id ? 'active' : ''}" d="M260 ${rowY(i,incoming.length)} C325 ${rowY(i,incoming.length)}, 325 ${cy}, 390 ${cy}" marker-end="url(#arrow-${edgeKind(e)})"/>`).join('')}
-      ${outgoing.map(({edge:e},i) => `<path class="connection outgoing kind-${edgeKind(e)} ${state.edge === e.id ? 'active' : ''}" d="M610 ${cy} C675 ${cy}, 675 ${rowY(i,outgoing.length)}, 740 ${rowY(i,outgoing.length)}" marker-end="url(#arrow-${edgeKind(e)})"/>`).join('')}
+      ${incoming.map(({edge:e},i) => `<path class="connection incoming kind-${edgeKind(e)} ${state.edge === e.id ? 'active' : ''}" data-edge="${e.id}" d="M260 ${rowY(i,incoming.length)} C325 ${rowY(i,incoming.length)}, 325 ${cy}, 390 ${cy}" marker-end="url(#arrow-${edgeKind(e)})"/>`).join('')}
+      ${outgoing.map(({edge:e},i) => `<path class="connection outgoing kind-${edgeKind(e)} ${state.edge === e.id ? 'active' : ''}" data-edge="${e.id}" d="M610 ${cy} C675 ${cy}, 675 ${rowY(i,outgoing.length)}, 740 ${rowY(i,outgoing.length)}" marker-end="url(#arrow-${edgeKind(e)})"/>`).join('')}
     </svg><div class="flow-focus focus-node tone-${layerIndex(n.layer)}" style="top:${cy}px"><h3>${esc(n.label)}</h3><span>${esc(layerLabel(n.layer))}</span></div>
     ${incoming.map((r,i)=>renderNeighbor(r,i,'incoming')).join('')}${outgoing.map((r,i)=>renderNeighbor(r,i,'outgoing')).join('')}
     ${!incoming.length ? '<p class="lane-empty incoming">No incoming directed relationships in this selection.</p>' : ''}${!outgoing.length ? '<p class="lane-empty outgoing">No outgoing directed relationships in this selection.</p>' : ''}
     </div></div><p class="flow-caption">All ${incoming.length + outgoing.length} directed relationships · arrows read left → right</p>
     ${lanes.associated.length ? `<section class="associated-links" aria-label="Comparisons and unclassified connections"><div class="section-heading"><div><p class="eyebrow">ALONGSIDE THIS ENTRY</p><h3>Comparisons & unclassified connections</h3></div><span>${others.length} relationships · all shown</span></div><p class="fine-print">These links have no established upstream or downstream direction. Their labels distinguish explicit comparisons from unclassified older connections.</p><div class="associated-grid">${others.map(({edge:e,node})=>`<article class="associated-card" data-edge="${e.id}"><a href="${esc(connectedNodeHref(node.id))}">${esc(node.label)}</a><a class="edge-label kind-${edgeKind(e)} ${state.edge === e.id ? 'selected' : ''}" href="${esc(href({edge:e.id}))}">${esc(KINDS[edgeKind(e)])} · inspect</a><p class="associated-claim">${esc(e.relationship)}</p></article>`).join('')}</div></section>` : ''}`;
+}
+
+function fitConnections() {
+  const box = document.querySelector('.flow-graph');
+  if (!box) return;
+  const cards = [...box.querySelectorAll('.flow-neighbor')];
+  const spacing = Math.max(155, ...cards.map(card => card.getBoundingClientRect().height + 20));
+  const lanes = ['incoming', 'outgoing'].map(side => cards.filter(card => card.classList.contains(side)));
+  const height = Math.max(320, Math.max(...lanes.map(lane => lane.length)) * spacing + 100), cy = height / 2;
+  box.style.height = `${height}px`;
+  box.querySelector('svg.connections').setAttribute('viewBox', `0 0 1000 ${height}`);
+  box.querySelector('.flow-focus').style.top = `${cy}px`;
+  const positions = new Map();
+  for (const lane of lanes) lane.forEach((card, i) => {
+    const y = cy + (i - (lane.length - 1) / 2) * spacing;
+    card.style.top = `${y}px`; positions.set(card.dataset.edge, y);
+  });
+  for (const path of box.querySelectorAll('.connection[data-edge]')) {
+    const y = positions.get(path.dataset.edge);
+    path.setAttribute('d', path.classList.contains('incoming')
+      ? `M260 ${y} C325 ${y}, 325 ${cy}, 390 ${cy}`
+      : `M610 ${cy} C675 ${cy}, 675 ${y}, 740 ${y}`);
+  }
+  for (const label of box.querySelectorAll('.flow-label[data-edge]'))
+    label.style.top = `${(positions.get(label.dataset.edge) + cy) / 2}px`;
 }
 
 function focused() {
@@ -1671,24 +1697,27 @@ function pathwayPage() {
 }
 function about() {
   const arch = production.scope?.archive, open = openFrame(production);
+  const individualEntries = graph.nodes.filter(n => n.entry_kind === 'person').length;
+  const withoutCritique = graph.nodes.filter(n => !graph.edges.some(e =>
+    e.target === n.id && edgeKind(e) === 'critique' && hasArrow(e))).length;
+  const profileExamples = ['carlo_ginzburg', 'quentin_skinner', 'w_e_b_du_bois', 'saidiya_hartman',
+    'peter_burke', 'gerda_lerner', 'nancy_f_cott', 'john_hope_franklin']
+    .filter(id => personById.has(id) && !personById.get(id).node_id).slice(0, 4)
+    .map(id => `<a href="#person=${esc(id)}">${esc(personById.get(id).label)}</a>`);
+  const traditionExamples = ['romila_thapar', 'cheikh_anta_diop', 'liang_qichao', 'gu_jiegang', 'ibn_khaldun', 'masao_maruyama']
+    .filter(id => nodeById.has(id)).map(id => `<a href="#node=${esc(id)}">${esc(nodeById.get(id).label)}</a>`);
   return `${crumbs(['<span aria-current="page">About this project</span>'])}<article class="about"><p class="eyebrow">SCOPE & INTERPRETATION</p><h2>History as an ongoing conversation.</h2><p class="deck">This is a selective, contestable teaching interpretation of historiography, for MA students reading Lynn Hunt’s <cite>Writing History in the Global Era</cite> (2014).</p>
     <h3>Explore circles, time and connections</h3><p>Open Historians & contributors to explore the people circles: families of historical writing arranged around the historians they share. Open a family to see everyone its entries name. The circles show shared context; proximity and shared membership do not establish influence. Open the Timeline to trace entries through time, across the whole field or within a family. Select an entry and follow its connections, each with an explanation and evidence. The connections view shows all recorded incoming relationships on the left and outgoing relationships on the right; comparisons and unclassified connections appear separately below the flow. A full-text list offers the same relationships. Approaches & people opens each family’s works and contributors; a shared person can appear in several fields with different roles.</p>
     <h3>Nesting is navigation</h3><p>The four layers organize a mixture of people, fields, traditions, methods, and debates. They do not define a historical family tree. Entries can connect across layers; seminar pathways overlap them. Hunt’s four paradigms are an explicit teaching lens, not a universal hierarchy.</p>
+    <p class="person-coverage"><strong>${individualEntries} standalone person entries among ${graph.people.length.toLocaleString()} indexed people.</strong> A standalone entry has its own dated contributions and recorded relationships on the timeline. Other people can still be opened through their profiles, with selected works, roster contexts and references${profileExamples.length ? ` — for example, ${profileExamples.join(', ')}` : ''}. Browse <a href="#tab=people">Historians & contributors</a> and use search or the surname letters to find them. A profile’s presence does not mean its scholarship has the same depth of coverage as a standalone entry; absence from the timeline does not mean absence from the project.</p>
     ${production.chronology_policy ? '<h3>Dates name different kinds of evidence</h3><p>Points identify selected works and events. Dotted connectors show the extent of the contribution selection, not continuous activity or influence. Context, editions and reception have separate markers. Bars represent named, sourced historical intervals; a journal title change is different from cessation. The small outlined square records editorial review coverage separately. Unknown bounds remain unknown, and a first selected work is not a field origin. Open Dated contributions & evidence for date meanings, sources and unresolved questions. The archive retains its original dating conventions.</p>' : ''}
     <h3>Periods are approximate groupings</h3><p>${arch || open ? `The project began as a 1920–2000 experiment and is now being extended field by field, with no closing date. Each entry says how far it has been reviewed; most are reviewed through 2000 so far, and some carry selected later interventions.${arch?.baseline_asset ? ` <a class="archive-link" href="${esc(href({range: '2000', tab: 'map'}))}">Open the original 1920–2000 experiment (archived revision ${esc(arch.baseline_revision || '1.121')}) →</a>` : ''}` : `Coverage is 1920–2000 with earlier roots. ${production.scope?.extension ? `A partial extension after 2000 exists as a ${esc((production.scope.extension.status || '').replace(/_/g, ' '))}: selected interventions in ${production.scope.extension.field_ids?.length || 0} entries, research cutoff ${esc(production.scope.extension.research_cutoff || '')}, latest selected publication ${esc(production.scope.extension.latest_selected_publication || '')}. It is not a survey of any field after 2000; the exact 2000 view remains available.` : 'An extension beyond 2000 has not yet been written.'}`} Periods describe emergence or expansion, not termination, while dated events distinguish publication, delivery, editions and reception. Entries without assigned periods remain available when you filter by a period. The timeline shows selected dated works and developments, rather than a complete chronology.</p>
-    <h3>Explore what doctoral historians read</h3><p><a href="#tab=dissertations">Dissertation reading</a> follows cited people and works through sampled History PhD bibliographies and notes. Compare degree periods and regions, inspect companion literature and open example repository records. Environmental history and the archival turn have selected links into this record. Corpus coverage, extraction limits and bibliography name keys remain visible beside the comparisons.</p>
+    <h3>Explore what doctoral historians read</h3><p><a href="#tab=dissertations">Dissertation reading</a> follows cited people and works through sampled History PhD bibliographies and notes. Compare degree periods and regions, inspect companion literature and open example repository records. Environmental history, the archival turn, economic history and the capitalism debates have selected links into this record. Corpus coverage, extraction limits and bibliography name keys remain visible beside the comparisons.</p>
     <h3>Read the relationship before drawing a conclusion</h3><p>Influence, contribution, and classified critique have arrows. Critique runs from critic toward the position criticized; contribution does not imply founding a field. Comparisons have no direction. Older connections without direction metadata are visibly unclassified and have no arrow, including older records with a legacy critique category.</p>
     <h3>References have limits</h3><p>Bibliographic metadata checks establish the scope stated in their notes. A supporting page check is narrower than a full reading or a passage-level audit of every claim. Missing verification information means unrecorded. Some citations have no web link; relationship references are distinct from entry bibliographies.</p>
-    <h3>What this beta does not yet cover</h3><p>Known gaps to question as you explore. <strong>${open ? 'Many entries record no objection at all' : 'About a quarter of entries record no objection at all'}</strong> —
-    including Kuhn, Latour, SSK and science studies, where the disagreements of the 1990s
-    “science wars” are missing. ${open ? '<strong>Most entries are reviewed only through 2000; work since then is being added field by field</strong>'
-      : '<strong>Coverage thins sharply after 1985</strong>'}, which is the
-    period Hunt writes about most. <strong>Non-Western traditions appear mostly as subject
-    matter rather than as historiography</strong>: African history and Subaltern Studies are here
-    as traditions with their own institutions, but there is no Chinese, Japanese, Korean or
-    Islamic historiography among the people in this graph. <strong>Most people have no entry
-    of their own</strong> — they appear inside a school's roster, so they cannot be opened in the
-    field view. Treat all of these as questions to raise, not as settled scope.</p>
+    <h3>What this beta does not yet cover</h3><p><strong>Critical exchanges remain unevenly mapped.</strong> ${withoutCritique} of ${graph.nodes.length} entries have no incoming relationship classified as critique. That counts recorded relationships, not the absence of scholarly objections.${nodeById.has('sciencewars') ? ' The <a href="#node=sciencewars&section=connections">Science Wars entry</a> includes the 1990s objections to Kuhn, Latour, SSK and STS, alongside replies and disagreements within science studies; those exchanges are already represented.' : ''}</p>
+    <p><strong>Later scholarship is covered selectively.</strong> ${open ? 'Most fields retain a review baseline of 2000; later work is being added field by field.' : 'The original experiment covers 1920–2000, with earlier roots.'}${nodeById.has('archival_turn') ? ' The <a href="#node=archival_turn">archive as object</a>, <a href="#node=settler_colonialism">settler colonialism</a> and <a href="#node=environment">environmental history</a> entries have reviews through 2024; selected individual entries also include later works and reception. This is not comprehensive coverage of twenty-first-century historiography.' : ''}</p>
+    <p><strong>Historiographical traditions beyond Europe and North America need fuller treatment.</strong> African history and Subaltern Studies include their own intellectual and institutional contexts.${nodeById.has('philip_huang') && nodeById.has('r_bin_wong') ? ' <a href="#node=philip_huang">Philip C. C. Huang</a> and <a href="#node=r_bin_wong">R. Bin Wong</a> have individual entries on Chinese history and its historiographical debates.' : ''}${traditionExamples.length ? ` Selected individual entries also examine the work of ${traditionExamples.join(', ')}.` : ''} These distinct projects across different centuries do not amount to systematic accounts of Chinese, Japanese, Korean or Islamic historiographical traditions. Fuller research into their methods, institutions and critical exchanges remains a priority.</p>
     <h3>The journals are a first pass</h3><p>Journals appear only where a specific founding,
     debate or sustained principal-venue claim has a source. A journal that publishes work in a
     field is not, on its own, a link. Over 1,700 further periodicals are catalogued but not
@@ -1766,6 +1795,7 @@ function render() {
   if (onLanding) drawLanding(); else if (onField) wireField();
   if (state.tab === 'people' && !state.person && !state.node) { companyHover = null; drawCompany(); }
   if (state.person) drawPersonMap();
+  fitConnections();
   if (state.tab === 'dissertations' && !state.node && !state.person) mountReading($('dissertation-reading'), state.source);
   if (state.range !== '2000') {
     document.querySelectorAll('[data-reading-person]').forEach(el => mountReadingContext(el, 'person', el.dataset.readingPerson));

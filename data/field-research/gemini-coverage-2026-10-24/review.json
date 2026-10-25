@@ -1,0 +1,2045 @@
+{
+  "schema": "gemini_coverage_review/1",
+  "reviewed_on": "2026-10-24",
+  "reviewed_graph_revision": "1.160",
+  "graph_sha256": "d6fe9f9173e744e793ad8b860f180e45c98a69b90bc354656fcbb1c694708392",
+  "reviewed_commit": "9a46de7e6f3f039c8d1775d1f5172a0b81481393",
+  "feedback_reported_revision": "1.159",
+  "feedback_url": "https://jimclifford.ca/historiography/#family=all&view=map",
+  "method": "Audit all 130 names in the user-supplied missing-standalone column against the canonical graph. Names map only to explicit existing person IDs, with punctuation/accent folding and individually checked name variants. No fuzzy candidate was accepted automatically. Standalone status requires people[].node_id and a person-kind node. Roster/strand joins use the preserved person ID. This is a coverage audit, not a new historical source review or identity merge. Selected incidental references are examples, not an exhaustive full-text inventory.",
+  "counts": {
+    "entries": 203,
+    "people": 1355,
+    "standalone_people": 104,
+    "historians": 83,
+    "theorists": 21,
+    "schools_fields": 79,
+    "traditions_theories": 20,
+    "feedback_candidates": 130,
+    "roster_profile": 101,
+    "no_indexed_person_record": 29
+  },
+  "claims": [
+    {
+      "claim": "Only 104 people have standalone person nodes",
+      "decision": "confirmed",
+      "qualification": "83 historians and 21 theorists; the other 1,251 indexed people have profile routes. A roster placement does not supply a standalone chronology or individual relationship graph."
+    },
+    {
+      "claim": "78 schools and fields",
+      "decision": "correct_count",
+      "qualification": "Current revision has 79 schools and fields, 20 traditions and theories, and 203 entries overall; the feedback names revision 1.159."
+    },
+    {
+      "claim": "Science Wars counterarguments are missing",
+      "decision": "outdated_about_copy",
+      "evidence_edge_ids": [
+        "edge_925",
+        "edge_926",
+        "edge_927",
+        "edge_928",
+        "edge_929",
+        "edge_930",
+        "edge_931",
+        "edge_932",
+        "edge_933",
+        "edge_935",
+        "edge_936",
+        "edge_937",
+        "edge_938"
+      ],
+      "qualification": "Revision 1.135 added the Science Wars entry and objections/replies involving Kuhn, Latour, SSK, STS and historians of science. Existing source qualifications remain; this does not establish complete coverage of every counterargument."
+    },
+    {
+      "claim": "Post-2000 scholarship is absent",
+      "decision": "overgeneralized",
+      "evidence_node_ids": [
+        "archival_turn",
+        "environment",
+        "settler_colonialism",
+        "ann_laura_stoler",
+        "michel_rolph_trouillot",
+        "latour",
+        "dipesh_chakrabarty",
+        "richard_white"
+      ],
+      "qualification": "Three group entries have reviewed_through 2024, while individual entries include selected later works and reception. Most group entries retain a 2000 review baseline. Later coverage remains selective; adding later dates does not establish a complete career review."
+    },
+    {
+      "claim": "No Chinese or Japanese historiography among the people",
+      "decision": "overgeneralized_but_substantive_gap",
+      "evidence_person_ids": [
+        "philip_huang",
+        "r_bin_wong",
+        "masao_maruyama"
+      ],
+      "qualification": "Huang and Wong have standalone entries engaging debates over Chinese history; Maruyama appears in intellectual history. These records do not establish systematic coverage of Chinese, Japanese, Korean or Islamic historiographical traditions. Do not infer nationality or tradition membership from a name."
+    },
+    {
+      "claim": "Most named missing scholars are absent from the project",
+      "decision": "distinguish_profile_from_standalone_entry",
+      "qualification": "All 130 lack standalone person nodes. Of them, 101 have existing roster profiles and 29 have no indexed person record. Several of the latter appear in sources or discussion only. Neither source mention nor profile presence supplies equal depth of historiographical coverage."
+    }
+  ],
+  "next_research_batches": [
+    {
+      "priority": 1,
+      "purpose": "Address traditions underrepresented in their own historiographical terms",
+      "candidates": [
+        "Liang Qichao",
+        "Gu Jiegang",
+        "Romila Thapar",
+        "Cheikh Anta Diop",
+        "Ibn Khaldun",
+        "Masao Maruyama"
+      ],
+      "requirements": "New source research into works, methods, exchanges and institutional contexts; include criticism and internal disagreements. These are research candidates, not accepted additions. Avoid placing distinct traditions in one umbrella or treating all non-Western scholarship as reaction to European theory."
+    },
+    {
+      "priority": 2,
+      "purpose": "Deepen Black and Atlantic historiography across generations",
+      "candidates": [
+        "W. E. B. Du Bois",
+        "Carter G. Woodson",
+        "Darlene Clark Hine",
+        "Saidiya Hartman",
+        "Marisa J. Fuentes"
+      ],
+      "requirements": "Build from existing roster IDs and sources, then establish individual chronologies and supported relationships. Preserve distinct historical projects and the existing reading limits."
+    },
+    {
+      "priority": 3,
+      "purpose": "Give central methodological exchanges individual endpoints",
+      "candidates": [
+        "Carlo Ginzburg",
+        "Giovanni Levi",
+        "Quentin Skinner",
+        "J. G. A. Pocock",
+        "Reinhart Koselleck"
+      ],
+      "requirements": "Promote existing profiles only after reviewing named works and disagreements. Preserve the distinct group entries and all existing IDs; do not mechanically redirect group-level arrows."
+    },
+    {
+      "priority": 4,
+      "purpose": "Balance further expansion across the other named gaps",
+      "candidates": [
+        "Gerda Lerner",
+        "Nancy F. Cott",
+        "Sarah Carter",
+        "Winona Wheeler",
+        "Veronica Strong-Boag",
+        "Steven Shapin",
+        "Simon Schaffer",
+        "Michael Howard",
+        "Raul Hilberg"
+      ],
+      "requirements": "Use the full candidate inventory to select bounded field-specific batches; canonical reputation or citation totals alone do not create a biography or influence relationship."
+    }
+  ],
+  "candidates": [
+    {
+      "area": "Classical roots",
+      "name": "Leopold von Ranke",
+      "person_id": "leopold_von_ranke",
+      "canonical_label": "Leopold von Ranke",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "ranke",
+        "political",
+        "historicism",
+        "philhistory"
+      ],
+      "strand_entry_ids": [
+        "ranke",
+        "wartradition",
+        "political"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Jules Michelet",
+      "person_id": "jules_michelet",
+      "canonical_label": "Jules Michelet",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "nationaltradition",
+        "philhistory"
+      ],
+      "strand_entry_ids": [
+        "nationaltradition",
+        "philhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Jacob Burckhardt",
+      "person_id": "jacob_burckhardt",
+      "canonical_label": "Jacob Burckhardt",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "oldculture"
+      ],
+      "strand_entry_ids": [
+        "oldculture"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Alexis de Tocqueville",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Edward Gibbon",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Herodotus",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "nodes": [
+          "military"
+        ],
+        "sources": [
+          "delbruck_numbers_1913",
+          "grundy_persian_war_1901"
+        ]
+      }
+    },
+    {
+      "area": "Classical roots",
+      "name": "Thucydides",
+      "person_id": "thucydides",
+      "canonical_label": "Thucydides",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "military"
+      ],
+      "strand_entry_ids": [
+        "military"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Sima Qian",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Classical roots",
+      "name": "Ibn Khaldun",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "sources": [
+          "nzd_decentering_2010"
+        ]
+      }
+    },
+    {
+      "area": "Theory",
+      "name": "Karl Marx",
+      "person_id": "karl_marx",
+      "canonical_label": "Karl Marx",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "karl",
+        "economictheory"
+      ],
+      "strand_entry_ids": [
+        "karl",
+        "economictheory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Max Weber",
+      "person_id": "max_weber",
+      "canonical_label": "Max Weber",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "weber",
+        "historicalecon",
+        "conceptual"
+      ],
+      "strand_entry_ids": [
+        "weber",
+        "historicalecon",
+        "conceptual"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Émile Durkheim",
+      "person_id": "emile_durkheim",
+      "canonical_label": "Émile Durkheim",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "durkheim",
+        "ssk"
+      ],
+      "strand_entry_ids": [
+        "durkheim"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Sigmund Freud",
+      "person_id": "sigmund_freud",
+      "canonical_label": "Sigmund Freud",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "freud"
+      ],
+      "strand_entry_ids": [
+        "freud",
+        "psychohistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Wilhelm Dilthey",
+      "person_id": "wilhelm_dilthey",
+      "canonical_label": "Wilhelm Dilthey",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "biography",
+        "historicism",
+        "philhistory"
+      ],
+      "strand_entry_ids": [
+        "biography",
+        "historicism",
+        "philhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "R. G. Collingwood",
+      "person_id": "r_g_collingwood",
+      "canonical_label": "R. G. Collingwood",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "context",
+        "historicism",
+        "philhistory"
+      ],
+      "strand_entry_ids": [
+        "context",
+        "historicism",
+        "philhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Benedetto Croce",
+      "person_id": "benedetto_croce",
+      "canonical_label": "Benedetto Croce",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "ranke",
+        "historicism",
+        "philhistory"
+      ],
+      "strand_entry_ids": [
+        "ranke",
+        "historicism",
+        "philhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Walter Benjamin",
+      "person_id": "walter_benjamin",
+      "canonical_label": "Walter Benjamin",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "frankfurt",
+        "urbanhistory"
+      ],
+      "strand_entry_ids": [
+        "frankfurt",
+        "urbanhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Jürgen Habermas",
+      "person_id": "jurgen_habermas",
+      "canonical_label": "Jürgen Habermas",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "frankfurt"
+      ],
+      "strand_entry_ids": [
+        "frankfurt"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Pierre Bourdieu",
+      "person_id": "pierre_bourdieu",
+      "canonical_label": "Pierre Bourdieu",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "biography",
+        "practice",
+        "consumption"
+      ],
+      "strand_entry_ids": [
+        "biography",
+        "marx",
+        "practice",
+        "consumption"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Stuart Hall",
+      "person_id": "stuart_hall",
+      "canonical_label": "Stuart Hall",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "identity",
+        "post",
+        "culturalstudies"
+      ],
+      "strand_entry_ids": [
+        "identity",
+        "language",
+        "culturalstudies"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Raymond Williams",
+      "person_id": "raymond_williams",
+      "canonical_label": "Raymond Williams",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "culturalstudies"
+      ],
+      "strand_entry_ids": [
+        "culturalstudies"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Judith Butler",
+      "person_id": "judith_butler",
+      "canonical_label": "Judith Butler",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "gender",
+        "queer"
+      ],
+      "strand_entry_ids": [
+        "queer"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Kimberlé Crenshaw",
+      "person_id": "kimberle_crenshaw",
+      "canonical_label": "Kimberlé Crenshaw",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "identity",
+        "intersectionality"
+      ],
+      "strand_entry_ids": [
+        "identity",
+        "intersectionality"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Benedict Anderson",
+      "person_id": "benedict_anderson",
+      "canonical_label": "Benedict Anderson",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "nationalismstudies"
+      ],
+      "strand_entry_ids": [
+        "nationalismstudies"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Theory",
+      "name": "Immanuel Wallerstein",
+      "person_id": "immanuel_wallerstein",
+      "canonical_label": "Immanuel Wallerstein",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "dependency",
+        "capitalismdebates"
+      ],
+      "strand_entry_ids": [
+        "dependency",
+        "capitalismdebates"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Carlo Ginzburg",
+      "person_id": "carlo_ginzburg",
+      "canonical_label": "Carlo Ginzburg",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "micro",
+        "revival",
+        "truthdebate"
+      ],
+      "strand_entry_ids": [
+        "micro",
+        "revival",
+        "truthdebate"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Giovanni Levi",
+      "person_id": "giovanni_levi",
+      "canonical_label": "Giovanni Levi",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "biography",
+        "micro"
+      ],
+      "strand_entry_ids": [
+        "biography",
+        "micro"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Jacques Le Goff",
+      "person_id": "jacques_le_goff",
+      "canonical_label": "Jacques Le Goff",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "annales"
+      ],
+      "strand_entry_ids": [
+        "annales",
+        "marx"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Emmanuel Le Roy Ladurie",
+      "person_id": "emmanuel_le_roy_ladurie",
+      "canonical_label": "Emmanuel Le Roy Ladurie",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "annales",
+        "environment",
+        "capitalismdebates"
+      ],
+      "strand_entry_ids": [
+        "annales",
+        "capitalismdebates"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Georges Duby",
+      "person_id": "georges_duby",
+      "canonical_label": "Georges Duby",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "annales",
+        "practice",
+        "revival"
+      ],
+      "strand_entry_ids": [
+        "annales",
+        "marx",
+        "social",
+        "practice",
+        "revival"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Philippe Ariès",
+      "person_id": "philippe_aries",
+      "canonical_label": "Philippe Ariès",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "demography"
+      ],
+      "strand_entry_ids": [
+        "demography"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Robert Darnton",
+      "person_id": "robert_darnton",
+      "canonical_label": "Robert Darnton",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "culture",
+        "revival",
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "culture",
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "European social and cultural history",
+      "name": "Peter Burke",
+      "person_id": "peter_burke",
+      "canonical_label": "Peter Burke",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "culture"
+      ],
+      "strand_entry_ids": [
+        "culture"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "Quentin Skinner",
+      "person_id": "quentin_skinner",
+      "canonical_label": "Quentin Skinner",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "political",
+        "context",
+        "historicism",
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "context",
+        "conceptual",
+        "historicism",
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "J. G. A. Pocock",
+      "person_id": "j_g_a_pocock",
+      "canonical_label": "J. G. A. Pocock",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "political",
+        "context",
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "context",
+        "conceptual",
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "Reinhart Koselleck",
+      "person_id": "reinhart_koselleck",
+      "canonical_label": "Reinhart Koselleck",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "political",
+        "conceptual",
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "conceptual",
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "Arthur O. Lovejoy",
+      "person_id": "arthur_lovejoy",
+      "canonical_label": "Arthur O. Lovejoy",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "Isaiah Berlin",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Intellectual history",
+      "name": "Hannah Arendt",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "W. E. B. Du Bois",
+      "person_id": "w_e_b_du_bois",
+      "canonical_label": "W. E. B. Du Bois",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black",
+        "identity",
+        "atlantic"
+      ],
+      "strand_entry_ids": [
+        "black",
+        "identity"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Carter G. Woodson",
+      "person_id": "carter_g_woodson",
+      "canonical_label": "Carter G. Woodson",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black"
+      ],
+      "strand_entry_ids": [
+        "black"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "John Hope Franklin",
+      "person_id": "john_hope_franklin",
+      "canonical_label": "John Hope Franklin",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black"
+      ],
+      "strand_entry_ids": [
+        "black"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Darlene Clark Hine",
+      "person_id": "darlene_clark_hine",
+      "canonical_label": "Darlene Clark Hine",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black",
+        "women"
+      ],
+      "strand_entry_ids": [
+        "black",
+        "women"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Eugene Genovese",
+      "person_id": "eugene_genovese",
+      "canonical_label": "Eugene Genovese",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "newleft"
+      ],
+      "strand_entry_ids": [
+        "newleft"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "David Brion Davis",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Ira Berlin",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Paul Gilroy",
+      "person_id": "paul_gilroy",
+      "canonical_label": "Paul Gilroy",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "post",
+        "culturalstudies",
+        "atlantic"
+      ],
+      "strand_entry_ids": [
+        "identity",
+        "culturalstudies",
+        "atlantic"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Robin D. G. Kelley",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "sources": [
+          "p4b_kelley_2017"
+        ]
+      }
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Saidiya Hartman",
+      "person_id": "saidiya_hartman",
+      "canonical_label": "Saidiya Hartman",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black",
+        "atlantic",
+        "archival_turn"
+      ],
+      "strand_entry_ids": [
+        "black",
+        "atlantic",
+        "archival_turn"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Black Atlantic and slavery",
+      "name": "Marisa Fuentes",
+      "person_id": "marisa_j_fuentes",
+      "canonical_label": "Marisa J. Fuentes",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "black",
+        "atlantic",
+        "archival_turn"
+      ],
+      "strand_entry_ids": [
+        "black",
+        "atlantic",
+        "archival_turn"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Frederick Jackson Turner",
+      "person_id": "frederick_jackson_turner",
+      "canonical_label": "Frederick Jackson Turner",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "progressive"
+      ],
+      "strand_entry_ids": [
+        "progressive"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Charles A. Beard",
+      "person_id": "charles_a_beard",
+      "canonical_label": "Charles A. Beard",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "progressive"
+      ],
+      "strand_entry_ids": [
+        "progressive"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Richard Hofstadter",
+      "person_id": "richard_hofstadter",
+      "canonical_label": "Richard Hofstadter",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "progressive"
+      ],
+      "strand_entry_ids": [
+        "progressive"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "C. Vann Woodward",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Bernard Bailyn",
+      "person_id": "bernard_bailyn",
+      "canonical_label": "Bernard Bailyn",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "political",
+        "atlantic"
+      ],
+      "strand_entry_ids": [
+        "political",
+        "atlantic"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Edmund S. Morgan",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Herbert Gutman",
+      "person_id": "herbert_gutman",
+      "canonical_label": "Herbert Gutman",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "social",
+        "quant",
+        "newleft",
+        "labourhistory"
+      ],
+      "strand_entry_ids": [
+        "social",
+        "quant",
+        "newleft",
+        "labourhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "David Montgomery",
+      "person_id": "david_montgomery",
+      "canonical_label": "David Montgomery",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "social",
+        "newleft",
+        "labourhistory"
+      ],
+      "strand_entry_ids": [
+        "newleft",
+        "labourhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "David Roediger",
+      "person_id": "david_roediger",
+      "canonical_label": "David R. Roediger",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "languages_of_class"
+      ],
+      "strand_entry_ids": [
+        "languages_of_class"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Gerda Lerner",
+      "person_id": "gerda_lerner",
+      "canonical_label": "Gerda Lerner",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "women",
+        "identity"
+      ],
+      "strand_entry_ids": [
+        "women",
+        "identity"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Nancy F. Cott",
+      "person_id": "nancy_f_cott",
+      "canonical_label": "Nancy F. Cott",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "women"
+      ],
+      "strand_entry_ids": [
+        "women"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Carroll Smith-Rosenberg",
+      "person_id": "carroll_smith_rosenberg",
+      "canonical_label": "Carroll Smith-Rosenberg",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "culture",
+        "language",
+        "gender"
+      ],
+      "strand_entry_ids": [
+        "culture",
+        "language"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "US social political labour and women",
+      "name": "Laurel Thatcher Ulrich",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "William H. McNeill",
+      "person_id": "william_h_mcneill",
+      "canonical_label": "William H. McNeill",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "global"
+      ],
+      "strand_entry_ids": [
+        "global"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Marshall Hodgson",
+      "person_id": "marshall_hodgson",
+      "canonical_label": "Marshall G. S. Hodgson",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "global"
+      ],
+      "strand_entry_ids": [
+        "global"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "C. A. Bayly",
+      "person_id": "ca_bayly",
+      "canonical_label": "C. A. Bayly",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "global"
+      ],
+      "strand_entry_ids": [
+        "global"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Sanjay Subrahmanyam",
+      "person_id": "sanjay_subrahmanyam",
+      "canonical_label": "Sanjay Subrahmanyam",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "global",
+        "historicalsociology"
+      ],
+      "strand_entry_ids": [
+        "global",
+        "historicalsociology"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Frederick Cooper",
+      "person_id": "frederick_cooper",
+      "canonical_label": "Frederick Cooper",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "political",
+        "social",
+        "post",
+        "africanhist",
+        "labourhistory",
+        "languages_of_class"
+      ],
+      "strand_entry_ids": [
+        "political",
+        "social",
+        "post",
+        "africanhist",
+        "labourhistory",
+        "languages_of_class"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Partha Chatterjee",
+      "person_id": "partha_chatterjee",
+      "canonical_label": "Partha Chatterjee",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "nationaltradition",
+        "subaltern",
+        "post",
+        "nationalismstudies"
+      ],
+      "strand_entry_ids": [
+        "nationaltradition",
+        "subaltern",
+        "post",
+        "nationalismstudies"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Romila Thapar",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Irfan Habib",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Cheikh Anta Diop",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Kenneth Dike",
+      "person_id": "k_o_dike",
+      "canonical_label": "K. O. Dike",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "africanhist"
+      ],
+      "strand_entry_ids": [
+        "africanhist"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Toyin Falola",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Achille Mbembe",
+      "person_id": "achille_mbembe",
+      "canonical_label": "Achille Mbembe",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "archival_turn"
+      ],
+      "strand_entry_ids": [
+        "archival_turn"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Mahmood Mamdani",
+      "person_id": "mahmood_mamdani",
+      "canonical_label": "Mahmood Mamdani",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Tulio Halperín Donghi",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Silvia Rivera Cusicanqui",
+      "person_id": "silvia_rivera_cusicanqui",
+      "canonical_label": "Silvia Rivera Cusicanqui",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "oral",
+        "indigenous",
+        "ethnohistory"
+      ],
+      "strand_entry_ids": [
+        "indigenous",
+        "ethnohistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Liang Qichao",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Gu Jiegang",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Global and non-Western",
+      "name": "Maruyama Masao",
+      "person_id": "masao_maruyama",
+      "canonical_label": "Masao Maruyama",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "intellectualhistory"
+      ],
+      "strand_entry_ids": [
+        "intellectualhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Arthur J. Ray",
+      "person_id": "arthur_j_ray",
+      "canonical_label": "Arthur J. Ray",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "native_newcomer"
+      ],
+      "strand_entry_ids": [
+        "native_newcomer"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "J. R. Miller",
+      "person_id": "james_rodger_miller",
+      "canonical_label": "J. R. Miller",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "indigenous",
+        "native_newcomer",
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "indigenous",
+        "native_newcomer",
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Sarah Carter",
+      "person_id": "sarah_carter",
+      "canonical_label": "Sarah Carter",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "native_newcomer",
+        "cdn_regional",
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "native_newcomer",
+        "cdn_regional",
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Winona Wheeler",
+      "person_id": "winona_wheeler",
+      "canonical_label": "Winona Wheeler",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "indigenous",
+        "native_newcomer"
+      ],
+      "strand_entry_ids": [
+        "indigenous",
+        "native_newcomer"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Blair Stonechild",
+      "person_id": "blair_stonechild",
+      "canonical_label": "Blair Stonechild",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "indigenous"
+      ],
+      "strand_entry_ids": [
+        "indigenous"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Kim TallBear",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Audra Simpson",
+      "person_id": "audra_simpson",
+      "canonical_label": "Audra Simpson",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Leanne Betasamosake Simpson",
+      "person_id": "leanne_betasamosake_simpson",
+      "canonical_label": "Leanne Betasamosake Simpson",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Glen Coulthard",
+      "person_id": "glen_coulthard",
+      "canonical_label": "Glen Sean Coulthard",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "settler_colonialism"
+      ],
+      "strand_entry_ids": [
+        "settler_colonialism"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Philip J. Deloria",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "sources": [
+          "pe131_richard_white_middle_ground_preface_2011"
+        ]
+      }
+    },
+    {
+      "area": "Indigenous and settler colonial",
+      "name": "Ned Blackhawk",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Canada",
+      "name": "Arthur Lower",
+      "person_id": "a_r_m_lower",
+      "canonical_label": "A. R. M. Lower",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_national_tradition"
+      ],
+      "strand_entry_ids": [
+        "cdn_national_tradition"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "W. L. Morton",
+      "person_id": "w_l_morton",
+      "canonical_label": "W. L. Morton",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_national_tradition",
+        "cdn_regional"
+      ],
+      "strand_entry_ids": [
+        "cdn_national_tradition",
+        "cdn_regional"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Lionel Groulx",
+      "person_id": "lionel_groulx",
+      "canonical_label": "Lionel Groulx",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "quebec_historiography"
+      ],
+      "strand_entry_ids": [
+        "quebec_historiography"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Maurice Séguin",
+      "person_id": "maurice_seguin",
+      "canonical_label": "Maurice Séguin",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "quebec_historiography"
+      ],
+      "strand_entry_ids": [
+        "quebec_historiography"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Gérard Bouchard",
+      "person_id": "gerard_bouchard",
+      "canonical_label": "Gérard Bouchard",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "quebec_historiography"
+      ],
+      "strand_entry_ids": [
+        "quebec_historiography"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "J. L. Granatstein",
+      "person_id": "j_l_granatstein",
+      "canonical_label": "J. L. Granatstein",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_military",
+        "cdn_political_national",
+        "who_killed_debate"
+      ],
+      "strand_entry_ids": [
+        "cdn_military",
+        "cdn_political_national",
+        "who_killed_debate"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Michael Bliss",
+      "person_id": "michael_bliss",
+      "canonical_label": "Michael Bliss",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_political_national",
+        "who_killed_debate"
+      ],
+      "strand_entry_ids": [
+        "cdn_political_national",
+        "who_killed_debate"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "A. B. McKillop",
+      "person_id": "a_b_mckillop",
+      "canonical_label": "A. B. McKillop",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_intellectual_cultural",
+        "who_killed_debate"
+      ],
+      "strand_entry_ids": [
+        "cdn_intellectual_cultural",
+        "who_killed_debate"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Veronica Strong-Boag",
+      "person_id": "veronica_strong_boag",
+      "canonical_label": "Veronica Strong-Boag",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_women_gender",
+        "cdn_childhood_youth",
+        "who_killed_debate"
+      ],
+      "strand_entry_ids": [
+        "cdn_women_gender",
+        "cdn_childhood_youth",
+        "who_killed_debate"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Franca Iacovetta",
+      "person_id": "franca_iacovetta",
+      "canonical_label": "Franca Iacovetta",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_women_gender",
+        "cdn_immigration_ethnicity"
+      ],
+      "strand_entry_ids": [
+        "cdn_women_gender",
+        "cdn_immigration_ethnicity"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Constance Backhouse",
+      "person_id": "constance_backhouse",
+      "canonical_label": "Constance Backhouse",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "moral_regulation",
+        "cdn_immigration_ethnicity"
+      ],
+      "strand_entry_ids": [
+        "moral_regulation",
+        "cdn_immigration_ethnicity"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Canada",
+      "name": "Afua Cooper",
+      "person_id": "afua_cooper",
+      "canonical_label": "Afua Cooper",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_black_history"
+      ],
+      "strand_entry_ids": [
+        "cdn_black_history"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "J. R. McNeill",
+      "person_id": "j_r_mcneill",
+      "canonical_label": "J. R. McNeill",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "environment",
+        "global"
+      ],
+      "strand_entry_ids": [
+        "environment"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Roderick Nash",
+      "person_id": "roderick_nash",
+      "canonical_label": "Roderick Nash",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "environment"
+      ],
+      "strand_entry_ids": [],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Samuel P. Hays",
+      "person_id": "samuel_p_hays",
+      "canonical_label": "Samuel P. Hays",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "environment"
+      ],
+      "strand_entry_ids": [
+        "environment"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Ramachandra Guha",
+      "person_id": "ramachandra_guha",
+      "canonical_label": "Ramachandra Guha",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "environment"
+      ],
+      "strand_entry_ids": [
+        "environment",
+        "post"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Richard Grove",
+      "person_id": "richard_grove",
+      "canonical_label": "Richard H. Grove",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "environment"
+      ],
+      "strand_entry_ids": [
+        "environment"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Harriet Ritvo",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Steven Shapin",
+      "person_id": "steven_shapin",
+      "canonical_label": "Steven Shapin",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "science",
+        "sciencewars"
+      ],
+      "strand_entry_ids": [
+        "science",
+        "sciencewars"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Simon Schaffer",
+      "person_id": "simon_schaffer",
+      "canonical_label": "Simon Schaffer",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "science"
+      ],
+      "strand_entry_ids": [
+        "science"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Donna Haraway",
+      "person_id": "donna_haraway",
+      "canonical_label": "Donna Haraway",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "sts"
+      ],
+      "strand_entry_ids": [
+        "sts"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Ian Hacking",
+      "person_id": "ian_hacking",
+      "canonical_label": "Ian Hacking",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "sciencewars"
+      ],
+      "strand_entry_ids": [],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Georges Canguilhem",
+      "person_id": "georges_canguilhem",
+      "canonical_label": "Georges Canguilhem",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "epistemology"
+      ],
+      "strand_entry_ids": [
+        "epistemology"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Roy Porter",
+      "person_id": "roy_porter",
+      "canonical_label": "Roy Porter",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "consumption",
+        "medicalhistory"
+      ],
+      "strand_entry_ids": [
+        "medicalhistory"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "Environment science and medicine",
+      "name": "Charles E. Rosenberg",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Carl von Clausewitz",
+      "person_id": "carl_von_clausewitz",
+      "canonical_label": "Carl von Clausewitz",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "wartradition",
+        "military"
+      ],
+      "strand_entry_ids": [
+        "wartradition"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Michael Howard",
+      "person_id": "michael_howard",
+      "canonical_label": "Michael Howard",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "wartradition",
+        "military"
+      ],
+      "strand_entry_ids": [
+        "wartradition",
+        "military"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "John Keegan",
+      "person_id": "john_keegan",
+      "canonical_label": "John Keegan",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "wartradition",
+        "military"
+      ],
+      "strand_entry_ids": [
+        "wartradition",
+        "military"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Geoffrey Parker",
+      "person_id": "geoffrey_parker",
+      "canonical_label": "Geoffrey Parker",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "military"
+      ],
+      "strand_entry_ids": [
+        "military"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Hew Strachan",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "sources": [
+          "howard_strachan_memoir",
+          "mil1900_strachan_2002_lecture"
+        ]
+      }
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Margaret MacMillan",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "C. P. Stacey",
+      "person_id": "c_p_stacey",
+      "canonical_label": "C. P. Stacey",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_military",
+        "cdn_political_national"
+      ],
+      "strand_entry_ids": [
+        "cdn_military",
+        "cdn_political_national"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Tim Cook",
+      "person_id": "tim_cook",
+      "canonical_label": "Tim Cook",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "cdn_military"
+      ],
+      "strand_entry_ids": [
+        "cdn_military"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Raul Hilberg",
+      "person_id": "raul_hilberg",
+      "canonical_label": "Raul Hilberg",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "holocaust"
+      ],
+      "strand_entry_ids": [
+        "holocaust"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Christopher Browning",
+      "person_id": "christopher_browning",
+      "canonical_label": "Christopher Browning",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "holocaust"
+      ],
+      "strand_entry_ids": [
+        "holocaust"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Saul Friedländer",
+      "person_id": "saul_friedlander",
+      "canonical_label": "Saul Friedländer",
+      "standalone_node_id": null,
+      "roster_entry_ids": [
+        "holocaust"
+      ],
+      "strand_entry_ids": [
+        "holocaust"
+      ],
+      "status": "roster_profile"
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Ian Kershaw",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record",
+      "selected_existing_references": {
+        "sources": [
+          "kershaw"
+        ]
+      }
+    },
+    {
+      "area": "War military and Holocaust",
+      "name": "Timothy Snyder",
+      "person_id": null,
+      "canonical_label": null,
+      "standalone_node_id": null,
+      "roster_entry_ids": [],
+      "strand_entry_ids": [],
+      "status": "no_indexed_person_record"
+    }
+  ]
+}

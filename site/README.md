@@ -1,8 +1,8 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current revision **1.160**, schema 1.6,
-contains **203 entries, 1,261 relationships, 2,445 sources, 1,355 shared people and
+The curated JSON remains authoritative. Current revision **1.164**, schema 1.6,
+contains **219 entries, 1,300 relationships, 2,503 sources, 1,360 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and five
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
@@ -65,10 +65,10 @@ allowlisted files, including eight JavaScript modules, two stylesheets, six teac
 and publication-record JSON assets, and 34 dissertation metadata assets. The builder
 validates graphs, checks the dissertation export hashes and refuses unexpected output
 files or symlinks. Tests, captures, credentials and unrelated files stay outside the
-build. The build includes revision 1.160 and the dissertation reading research preview.
+build. The build includes revision 1.164 and the dissertation reading research preview.
 
 The landing downloads the reduced overview and aggregates; detail routes load
-the full 7.51 MB graph once. Selected profiles lazily load the separate record
+the full teaching graph once. Selected profiles lazily load the separate record
 pilot once. Failed downloads have retries. The pilot retains the weaker teaching-identity
 and source-credit identity link and distinguishes journal items, books reviewed
 and reviews written. See [student trial](../STUDENT-TESTING.md) and

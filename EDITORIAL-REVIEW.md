@@ -1,5 +1,99 @@
 # Whole-map editorial review — 10 September 2026
 
+## Astra review and edition correction on 24 October 2026
+
+Astra independently reviewed the expansion before publication and found one
+substantive edition/title conflation: Diop's 1960 original has the cultural,
+technical and industrial title; the economic/cultural title belongs to the revised
+1974 edition. Revision **1.164** corrects the selected works, original event and
+anticolonial roster using separate OCLC and BnF records. The earlier publisher
+witness remains with an explanatory addendum; the original event ID/date and
+book-unread limits are retained. No new dated event or relationship is added.
+
+The graph now has **219 entries, 1,300 relationships, 2,503 sources and 1,360 people**.
+The three expansion acceptances remain frozen. Astra found no code, preservation
+or navigation blockers and verified the corrections in a
+[follow-up review](data/field-research/gemini-coverage-2026-10-24/astra-corrections-review.json).
+The [original independent review](data/field-research/gemini-coverage-2026-10-24/astra-review.json)
+records the findings and historical/source checks.
+
+## Expansion following Gemini review on 24 October 2026
+
+Local revisions **1.161–1.163** add sixteen standalone entries. The graph now has
+**219 entries, 120 standalone people, 1,300 relationships, 2,501 sources and 1,360
+indexed people**. The [implementation review](data/field-research/gemini-coverage-2026-10-24/implementation.json)
+records every accepted entry, its reading limits and the updated status of all
+130 original candidates; the earlier audit below remains pinned to revision 1.160.
+
+| Batch | Individual entries | New relationships | New sources |
+| --- | --- | ---: | ---: |
+| Non-Western historiographical projects | Thapar, Diop, Liang Qichao, Gu Jiegang, Ibn Khaldun, Maruyama | 16 | 29 |
+| Black and Atlantic history | Du Bois, Woodson, Hine, Hartman, Fuentes | 12 | 19 |
+| Microhistory and intellectual history | Ginzburg, Levi, Skinner, Pocock, Koselleck | 11 | 8 |
+
+The entries retain distinct methods and disagreements. Gu's critical history and
+national-unity writing have conflicting scholarly interpretations; Diop's Egypt
+and cultural-diffusion theses remain contested. Hartman's criticism of Du Bois
+coexists with respect for his work. Fuentes's acknowledged Hartman inspiration
+concerns a jointly edited project, and her Rutgers public history credits Deborah
+Gray White and the collective researchers. The Pocock–Koselleck exchange separates
+its 1992 symposium from the 1996 publication and retains Pocock's language limit.
+
+Thirteen existing relationships now reach the individual explicitly named in
+their claims, with the same edge IDs, sources and original evidence qualifications.
+Collective field-level claims remain. Original publications, writing, collections,
+translations and reception have separate dated events; Ginzburg's 1986 Italian
+collection and 1989 English translation, and Ibn Khaldun's composition phases, are
+explicit examples. The sixteen entries add 88 dated events without career intervals.
+
+Existing roster prose, field chronologies and review years, the archived 2000 graph,
+publication evidence and all dissertation assets are preserved. This is a first
+bounded expansion: **90 of Gemini's candidates still have only roster profiles,
+and 24 still lack indexed person records**. The whole candidate list and the
+historiographical traditions it names require further research.
+
+## Follow-up: Gemini coverage review, 24 October 2026
+
+Reviewed against canonical revision **1.160**, commit `9a46de7`. The older counts and
+decisions below remain a historical record. The current graph has **203 entries**:
+83 historians, 79 schools/fields, 21 theorists and 20 traditions/theories, with
+1,355 indexed people. The feedback names revision 1.159 and counts 78 schools/fields.
+
+The complete [130-name inventory](data/field-research/gemini-coverage-2026-10-24/review.json)
+checks every name in Gemini’s missing-standalone column. **101 have roster profiles;
+29 have no indexed person record; all 130 lack a standalone person node.** Some of
+the 29 occur in bibliography or source notes, including Ian Kershaw, Hew Strachan
+and Robin D. G. Kelley. A profile is not a full individual chronology and connection
+graph, and a source mention is not a profile. No names or existing graph IDs were merged.
+
+The About page had supplied two misleading claims to the review. It still said
+Science Wars objections were absent, despite revision 1.135’s critiques and replies
+for Kuhn, Latour, SSK and STS. It also described Chinese and Japanese historiography
+as absent among the people, overlooking Huang’s and Wong’s individual entries and
+Maruyama’s roster profile. Those selections do not provide systematic accounts of
+Chinese, Japanese, Korean or Islamic historiographical traditions; that substantive
+gap remains. The page now links to the actual entries and distinguishes presence
+from depth of treatment.
+
+Post-2000 coverage remains selective, rather than absent: the archive, settler
+colonialism and environmental-history entries have review coverage through 2024,
+and selected biographies have later works and reception. Most group entries still
+retain a 2000 review baseline. The About page now explains this and derives its
+standalone-person and incoming-critique counts from the displayed graph.
+
+The next research priorities are recorded in the inventory: traditions beyond
+Europe and North America in their own historiographical terms; Black and Atlantic
+historiography across generations; and the microhistorical and intellectual-history
+exchanges whose central figures currently have only roster profiles. Thapar, Diop,
+Liang Qichao, Gu Jiegang, Ibn Khaldun and Maruyama are research candidates for the
+first priority; Du Bois, Woodson, Hine, Hartman and Fuentes for the second; Ginzburg,
+Levi, Skinner, Pocock and Koselleck for the third. These are proposed bounded
+research batches, not accepted biographies or relationships. Individual entries
+require reviewed works, dated contributions and sourced exchanges; reputation,
+roster membership and citation counts alone do not supply them.
+
+## Historical review: revision 1.9
+
 The review addresses a modeling failure: a field’s incidental cross-links were being presented more prominently than its central historians. Kuhn was already in the data, but his unclassified connection did not enter the directional map. The same pattern obscured the Annales historians and the British Marxist historians. Adding isolated names would not correct that display rule.
 
 Editorial revision **1.9**, schema **1.4**, contains **109 graph entries, 66 group rosters, 228 shared people, 277 contextual selections, 331 relationships, 165 bibliography records, and 13 pathways**. There are **73 internal approaches across 22 group entries**. Every group now exposes its entire selected roster above its connections. Focused maps and lists display every matching recorded relationship without pagination.

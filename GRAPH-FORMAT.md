@@ -1,6 +1,42 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.160 (2026-10-24): economic-history roster repair
+## Current revision 1.164 (2026-10-24): Astra edition correction
+
+**219 entries, 1,300 relationships, 2,503 sources and 1,360 people.** Astra's
+independent review identified Diop's original 1960 title being conflated with the
+revised 1974 title. Library metadata now distinguishes those editions in the
+selected bibliography, the existing 1960 event and the anticolonial roster.
+The event ID/date and book-unread qualifications remain; two metadata sources
+and a qualifying addendum preserve the earlier publisher witness. No new people,
+entries, edges or dated events. Earlier acceptance packets remain frozen. See
+[correction acceptance](data/production-batches/person-entries-1.164/acceptance.json)
+and [Astra verification](data/field-research/gemini-coverage-2026-10-24/astra-corrections-review.json).
+
+## Historical revision 1.163 (2026-10-24): individual historiographical projects
+
+**219 entries, 1,300 relationships, 2,501 sources and 1,360 people.** There are now
+120 standalone person entries: 99 historians and 21 theorists; the 99 group entries
+remain unchanged in number. Three source-reviewed batches address the Gemini review:
+
+- **1.161:** Thapar, Diop, Liang Qichao, Gu Jiegang, Ibn Khaldun and Maruyama;
+  five new person records, sixteen new relationships, twenty-nine sources, and
+  Maruyama's existing comparison moved to his person endpoint with its ID retained.
+- **1.162:** Du Bois, Woodson, Hine, Hartman and Fuentes; twelve relationships and
+  nineteen sources, including scoped criticism, acknowledged influence and joint work.
+- **1.163:** Ginzburg, Levi, Skinner, Pocock and Koselleck; eleven relationships,
+  eight sources and twelve existing person-specific endpoint repairs retaining IDs.
+
+The sixteen entries add 88 dated events. Original works, writing, translations,
+collections and reception remain distinct; arguments mediated by named readers retain
+that attribution. No career interval or person-node review-through year is inferred.
+Old roster prose, field chronologies/coverage, source qualifications, group-level
+claims and the exact-2000 archive are preserved. See the
+[implementation review](data/field-research/gemini-coverage-2026-10-24/implementation.json)
+and acceptances for [1.161](data/production-batches/person-entries-1.161/acceptance.json),
+[1.162](data/production-batches/person-entries-1.162/acceptance.json) and
+[1.163](data/production-batches/person-entries-1.163/acceptance.json).
+
+## Historical revision 1.160 (2026-10-24): economic-history roster repair
 
 Crafts and Harley join the economic-history roster through their jointly credited 1992
 article and its existing qualified source review. One dated publication fact and a selected

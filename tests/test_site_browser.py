@@ -386,6 +386,78 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.archive-banner')).to_have_count(0)
         expect(self.page.locator('#edition-label')).to_contain_text(GRAPH['revision_history'][-1]['version'])
 
+    def test_about_distinguishes_coverage_gaps_from_existing_profiles_and_critiques(self):
+        self.open('#tab=about')
+        about = self.page.locator('.about')
+        individuals = sum(n['entry_kind'] == 'person' for n in GRAPH['nodes'])
+        uncriticised = sum(not any(e['target'] == n['id'] and e.get('relationship_kind') == 'critique'
+                                  and e.get('directed') for e in GRAPH['edges']) for n in GRAPH['nodes'])
+        expect(about).to_contain_text(f'{individuals} standalone person entries among {len(GRAPH["people"]):,} indexed people')
+        expect(about).to_contain_text(f'{uncriticised} of {len(GRAPH["nodes"])} entries have no incoming relationship classified as critique')
+        expect(about).to_contain_text('those exchanges are already represented')
+        expect(about).to_contain_text('reviews through 2024')
+        expect(about).not_to_contain_text('“science wars” are missing')
+        expect(about).not_to_contain_text('there is no Chinese, Japanese, Korean')
+        profiles = about.locator('.person-coverage a[href^="#person="]')
+        people = {p['id']: p for p in GRAPH['people']}
+        for href in profiles.evaluate_all('links => links.map(a => a.getAttribute("href"))'):
+            self.assertFalse(people[href.split('=', 1)[1]].get('node_id'), 'Profile-only examples must remain profile-only')
+        label = profiles.first.inner_text()
+        profiles.first.click()
+        expect(self.page.locator('.person-profile')).to_contain_text(label)
+        self.open('#tab=about')
+        about.locator('a[href="#node=sciencewars&section=connections"]').click()
+        expect(self.page.locator('.focus-layout')).to_contain_text('The Science Wars')
+        self.assertTrue(any(e['source'] == 'sciencewars' and e['target'] == 'kuhn'
+                            and e.get('relationship_kind') == 'critique' for e in GRAPH['edges']))
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        self.open('#tab=about')
+        about.locator('a[href="#node=masao_maruyama"]').click()
+        expect(self.page.locator('.reading-header h2')).to_contain_text('Masao Maruyama')
+        self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 391)
+
+    def test_gemini_promotions_open_from_profiles_and_remain_on_the_timeline(self):
+        packets = ['gemini-nonwestern-2026-10-24', 'gemini-black-atlantic-2026-10-24',
+                   'gemini-micro-intellectual-2026-10-24']
+        nodes = [node for packet in packets for node in json.loads(
+            (ROOT / 'data/extension-2026' / packet / 'release/editorial-additions.json').read_text())['nodes']]
+        self.assertTrue(nodes)
+        people = {p['node_id']: p for p in GRAPH['people'] if p.get('node_id')}
+        for node in nodes:
+            self.open('#person=' + people[node['id']]['id'])
+            profile = self.page.locator('.person-profile')
+            expect(profile.locator('.section-heading h2')).to_contain_text(people[node['id']]['label'])
+            profile.locator('.button-link.primary', has_text='Full entry').click()
+            expect(self.page.locator('.reading-header h2')).to_contain_text(node['label'])
+            expect(self.page.locator('.entry-chronology')).to_be_visible()
+            self.open('#family=all&view=map&focus=' + node['id'])
+            expect(self.page.locator('.entry.selected')).to_have_count(1)
+            expect(self.page.locator('.field-panel')).to_contain_text(node['label'])
+        self.open('#node=cheikh_anta_diop&section=connections&view=map')
+        expect(self.page.locator('.reading-panel')).to_contain_text('culturels, techniques et industriels')
+        expect(self.page.locator('.reading-panel')).to_contain_text('revised 1974 edition')
+        for width in (1100, 1440):
+            self.page.set_viewport_size({'width': width, 'height': 1000})
+            self.page.wait_for_timeout(250)
+            for side in ('incoming', 'outgoing'):
+                boxes = self.page.locator('.flow-neighbor.' + side).evaluate_all(
+                    'cards => cards.map(c => {const b=c.getBoundingClientRect(); return {top:b.top,bottom:b.bottom};})')
+                for previous, current in zip(boxes, boxes[1:]):
+                    self.assertLessEqual(previous['bottom'], current['top'])
+
+    def test_gemini_promotions_fit_phones_and_keep_earlier_dates_explicit(self):
+        self.page.set_viewport_size({'width': 390, 'height': 844})
+        packet = json.loads((ROOT / 'data/extension-2026/gemini-nonwestern-2026-10-24/release/editorial-additions.json').read_text())
+        early = next(n for n in packet['nodes'] if 'Khald' in n['label'])
+        self.open('#family=all&view=map&focus=' + early['id'])
+        expect(self.page.locator('.entry.selected .chron-before').first).to_be_visible()
+        self.assertIn('1377', self.page.locator('.entry.selected').inner_html())
+        for nid in [early['id'], 'saidiya_hartman', 'quentin_skinner']:
+            self.open('#node=' + nid + '&section=connections')
+            expect(self.page.locator('.reading-header h2')).to_contain_text(GRAPH_LABELS[nid])
+            self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 391)
+        self.page.screenshot(path=str(self.artifacts / 'gemini-historians-phone.png'), full_page=True)
+
     def test_releasing_a_held_entry(self):
         """Four ways out of a hold: the panel link, the bar itself, empty space, Escape."""
         total = self.page.locator('.entry, .chip')

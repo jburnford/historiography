@@ -1,0 +1,51 @@
+{
+  "schema": "independent_review/1",
+  "reviewed_on": "2026-10-24",
+  "reviewer": "Astra independent review agent",
+  "baseline_commit": "9a46de7e6f3f039c8d1775d1f5172a0b81481393",
+  "reviewed_graph_sha256": "78de28c3e0109cd06ccfdb98ac6310fd72f72131afdffffeb0d4e5f00b07fd6d",
+  "verdict": "One bounded bibliographic correction recommended before push; no code, preservation or navigation blockers found. No additional biography expansion is required.",
+  "findings": [
+    {
+      "id": "AR1",
+      "severity": "medium",
+      "path": "data/extension-2026/gemini-nonwestern-2026-10-24/cheikh_anta_diop/entry-draft.json",
+      "locators": [
+        "node.date_label",
+        "node.representative_figures_and_works",
+        "node.chronology.events[id=cad_federal_1960].label/support",
+        "roster_additions[node=anticolonial].row.works"
+      ],
+      "problem": "The 1960 original is labelled with the later economic/cultural title. The publisher biography retrospectively compresses titles; library edition records distinguish them.",
+      "correction": "Keep the 1960 date and event ID, use Les fondements culturels, techniques et industriels d’un futur État fédéral d’Afrique noire for that original, and qualify the later revised 1974 title separately if mentioned. Cite metadata checks and retain book-unread limits. Regenerate the release, canonical graph, acceptances and exports consistently.",
+      "sources": [
+        {
+          "url": "https://search.worldcat.org/title/5736086",
+          "checked": "OCLC record gives original title and Paris: Presence Africaine, [1960]."
+        },
+        {
+          "url": "https://catalogue.bnf.fr/ark:/12148/cb351826888",
+          "checked": "BnF gives Les Fondements économiques et culturels d’un état fédéral d’Afrique noire, revised and corrected edition, 1974."
+        }
+      ]
+    },
+    {
+      "id": "AR2",
+      "severity": "low",
+      "path": "site/README.md:71",
+      "problem": "Downloaded graph size remains 7.51 MB; reviewed export is 8050364 bytes.",
+      "correction": "Use approximately 8.05 MB or 7.68 MiB, or omit the unstable size."
+    }
+  ],
+  "checks": [
+    "Inspected all 16 new descriptions and dated event sequences, 39 new relationships and 13 endpoint repairs against HEAD. Existing source records are unchanged; revised edge qualifications remain embedded.",
+    "Read acceptance/preservation tests; independently ran all four tests.test_gemini_expansion cases successfully, including reconstruction without local snapshots.",
+    "Inspected site/app.js and docs changes, dynamic About examples, fitConnections card/arrow/label positioning and resize integration.",
+    "Independent Playwright checks: Diop map at 1100px with separated cards, Ibn connections, archived About; phone 390px Ibn timeline has three earlier-date markers and 1377 in selected entry, phone Ibn connections and About remain within viewport. No page errors. Diop screenshot inspected.",
+    "GHI official PDF independently fetched and selected preface/Pocock/Koselleck passages read: confirms 1992 symposium versus 1996 publication, German-reading limit, specific Skinner criticism and qualified interdependence reply.",
+    "Independent Public Seminar interview check supports Hartman’s specific Du Bois critique and 2020 date.",
+    "Independent Cambridge page confirms Hannoum online 16 October 2026 and distinction between earlier receptions and colonial remakings.",
+    "Independent Zheng article check supports the attributed Gu criticism rather than presenting national unity as scholarly consensus."
+  ],
+  "limits": "Selective historical audit, not a new complete reading of every cited work or a full replay of the reported 57-case browser suite. No implementation files changed, no commit, push, deployment or OpenAlex work performed."
+}

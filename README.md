@@ -29,11 +29,19 @@ It uses a dated snapshot of 6,794 dissertations with years, from 7,107 included 
 coverage and extraction limits accompany the figures. The experimental comparison pages
 remain research prototypes. See [frontend details](site/README.md).
 
-Production data revision **1.160** (schema 1.6): 203 entries,
-1,261 teaching relationships, 2,445 bibliography records, 1,355
+Production data revision **1.164** (schema 1.6): 219 entries,
+1,300 teaching relationships, 2,503 bibliography records, 1,360
 people, and 14 seminar pathways. A journal layer adds 54 evidenced venue
 relations drawn from a catalogue of 1638
 periodicals.
+
+The [Gemini review expansion](data/field-research/gemini-coverage-2026-10-24/implementation.json)
+adds sixteen individual entries across distinct non-Western historiographical projects,
+Black and Atlantic history, microhistory and intellectual history. There are now
+120 standalone people. Contributions, criticism, acknowledged influence and collaboration
+retain their evidence limits; earlier relationship IDs and the archive are preserved.
+Astra's independent review corrected Diop's 1960 original versus revised 1974
+title through separately qualified library records; the prior acceptances stay frozen.
 
 The [chronology release](data/production-batches/chronology-1.141/README.md) gives
 every entry and all 38 displayed journals explicit dated evidence: 660 events and
@@ -79,7 +87,7 @@ The [digital/web release](data/production-batches/extension-1.123/README.md) add
 - **Colour is the kind of relationship**, not the kind of entry. Critique, contribution,
   influence and comparison are distinguished, and only directed claims get arrows.
 - **Editorial coverage is separate.** A small outlined square and the entry's text
-  state the review year (2000 for all current groups). Later selected works do not
+  state the review year (2000 for most groups; 2024 for three reviewed fields). Later selected works do not
   establish a survey of the intervening period. Unknown historical endings remain
   unknown; the research cutoff is a date of reading. The
   original 1920–2000 experiment (revision 1.121) is kept as an archived view, linked from
@@ -89,12 +97,16 @@ The [digital/web release](data/production-batches/extension-1.123/README.md) add
 
 ## Known limits
 
-This is a teaching interpretation, not a reference work. Roughly a quarter of entries record no
-objection; the science-studies cluster has none at all. Coverage thins after 1985. Non-Western
-traditions are present unevenly — African history and Subaltern Studies as traditions, but no
-Chinese, Japanese, Korean or Islamic historiography. Most people appear inside a school's roster
-rather than as entries of their own. "About this project" in the site states these in full.
-See [opusreview.md](opusreview.md) for the coverage audit behind that list.
+This is a teaching interpretation, not a reference work. Critical exchanges and work after
+2000 remain unevenly covered. The Science Wars objections and replies are represented;
+the archive, settler-colonial and environmental-history entries have reviews through 2024.
+Historiographical traditions beyond Europe and North America still need systematic treatment
+in their own intellectual and institutional contexts. Most indexed people have roster profiles
+rather than standalone timeline entries; these offer different depths of coverage.
+"About this project" explains these distinctions and links to existing examples.
+See the [current coverage review](EDITORIAL-REVIEW.md) and its
+[130-name audit](data/field-research/gemini-coverage-2026-10-24/review.json).
+[opusreview.md](opusreview.md) preserves an earlier audit whose omissions are partly superseded.
 
 ## Preview the visualization
 

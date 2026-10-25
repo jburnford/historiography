@@ -1,5 +1,140 @@
 # Project memory and visualization handoff
 
+## Publication authorized — 2026-10-24: Astra review and corrections, revision 1.164
+
+User explicitly asked Astra to review the expansion, make corrections and push.
+Astra independently reviewed the sixteen entries, preserved-ID changes and frontend;
+its original review and follow-up are saved under
+`data/field-research/gemini-coverage-2026-10-24/`.
+
+- One substantive finding: Diop's 1960 original title was conflated with the revised
+  1974 title. Additive `gemini-astra-corrections-2026-10-24` / acceptance
+  `person-entries-1.164` fixes date/bibliography/event/roster labels, adds OCLC1960
+  and BnF1974 metadata, and qualifies the earlier publisher witness. No new nodes,
+  edges, people or dated events. Earlier packets/acceptances stay frozen.
+- Current graph: **219 entries, 1,300 edges, 2,503 sources, 1,360 people** and
+  120 standalone people. Astra verified both findings resolved; the minor stale
+  README download-size figure is removed. No code/preservation/navigation blockers.
+- Corrected revision passes **106 data, 60 JavaScript and 57 browser cases**.
+  Clean-checkout build reproduces all52 public files; all20 targeted canonical,
+  export and acceptance cases pass without local snapshots. Publishing only task
+  files and these task-related
+  memory sections, leaving prior unrelated memory edits and research/download
+  files local. Final commit/GitHub/deployment status follows locally. OpenAlex paused.
+
+## Local expansion — 2026-10-24: Gemini review, revisions 1.161–1.163
+
+User explicitly authorized sub-agents and substantial parallel work to address the
+review before returning to other work. Three researched, independently reviewed
+packets are applied locally and reconstruct exactly. No commit, push or deployment;
+live was verified at 1.160. OpenAlex remains paused.
+
+- **1.161:** Thapar, Diop, Liang Qichao, Gu Jiegang, Ibn Khaldun, Maruyama.
+  `data/extension-2026/gemini-nonwestern-2026-10-24/`; acceptance
+  `data/production-batches/person-entries-1.161/`. Five new people records and
+  existing `masao_maruyama` reused; 16 new edges, 29 sources, 34 dated events,
+  12 roster additions. `edge_735` moves to Maruyama, with its ID, original note,
+  sources, comparison kind and direction retained.
+- **1.162:** Du Bois, Woodson, Hine, Hartman, Fuentes.
+  `data/extension-2026/gemini-black-atlantic-2026-10-24/`; acceptance
+  `data/production-batches/person-entries-1.162/`. Five existing identities;
+  12 edges, 19 sources, 25 events, five roster additions. Hartman's explicit
+  2020 Du Bois critique and Fuentes's acknowledged Hartman inspiration are
+  distinct; joint publication/editor/community credits remain explicit.
+- **1.163:** Ginzburg, Levi, Skinner, Pocock, Koselleck.
+  `data/extension-2026/gemini-micro-intellectual-2026-10-24/`; acceptance
+  `data/production-batches/person-entries-1.163/`. Five existing identities;
+  11 new edges, eight sources, 29 events, twelve preserved-ID endpoint repairs.
+  Collective field claims remain. Ginzburg's 1986 Italian collection and 1989
+  English translation are separate; Pocock/Koselleck's 1992 symposium and 1996
+  publication are distinct, with Pocock's language/access limits retained.
+- Totals: **219 entries, 1,300 relationships, 2,501 sources, 1,360 people**;
+  **120 standalone people = 99 historians + 21 theorists**, plus 99 group entries.
+  Across the batches: 16 new entries, 39 new edges, 56 sources, 88 dated events,
+  13 declared endpoint repairs. Every new person has >=2 substantive relationships
+  and >=3 contribution/writing points; source metadata versus reading and named
+  mediation stay explicit. No person `coverage`, career interval or identity merge.
+- Gu's conflicting Jenco/Kim/Zheng readings and Richter's 1926/1927 discrepancy
+  stay qualified. Diop's Egypt/diffusion theses stay contested. Ibn Khaldun's
+  1377 draft, 1378–82 Tunis phase and final recorded autobiographical material
+  through May 1405 are writing evidence, not invented publication/completion dates.
+  Primary sources and named substantial readers support the method/critique edges.
+  Root and peer agents reviewed the substantive claims independently.
+- Original `data/field-research/gemini-coverage-2026-10-24/review.json` remains
+  frozen at 1.160. New `implementation.json` records current graph/packet hashes,
+  acceptances, all 16 entry limits and every original candidate's updated status:
+  **16 standalone, 90 roster profiles, 24 without indexed person records**.
+  This bounded expansion does not finish all 130 biographies or systematically
+  cover every tradition. No automatic dissertation crosswalks were added.
+- Existing source records/qualifications, old roster prose, field chronologies and
+  review years, archive, claim/journal catalogue, pathways, publication evidence,
+  profile pilot and all dissertation assets remain preserved. Build still 52 files;
+  only public app.js, graph.json and overview.json change. Public graph 7.68MB.
+  About now distinguishes profiles/entries dynamically and links the expanded
+  traditions; README's stale Science Wars/absence claims are corrected as well.
+- Browser acceptance exposed a 1px overlap in Diop's long relationship cards;
+  `fitConnections()` now measures card heights and moves nodes/arrows/labels
+  together, including resize. The phone earlier-date test now explicitly requests
+  timeline mode rather than the phone's default list. Focused all 219 connection
+  maps and phone Ibn checks pass; Gu desktop, Ibn phone and Diop map inspected.
+- **105 full data tests, 60 JavaScript checks and four new preservation/acceptance
+  tests pass.** Exact reconstruction includes missing-local-snapshot recovery for
+  all three batches. Two corrected focused browser tests pass. The final full
+  **57-case browser suite passes in 101.7 seconds**, including all 219 focused
+  connection views and Diop resize checks: `/tmp/gemini-expansion-browser-final.log`.
+- Preview serves docs only at `http://127.0.0.1:4192/`; detached PID recorded in
+  `/tmp/gemini-preview-4192.pid`, log `/tmp/gemini-preview-4192.log`. First attempt's
+  tool-owned server ended; detached replacement verified with a Diop browser capture.
+  Existing unrelated research files and prior MEMORY edits remain untouched.
+- Final graph/report hashes, source/build agreement and `git diff --check` pass.
+  Next: user review of the local expansion. Additional candidates remain in the
+  updated inventory; no publication requested.
+
+## Local review — 2026-10-24: Gemini coverage feedback
+
+The user supplied Gemini's review and asked that it be addressed before returning
+to other work. Audited the complete missing-standalone column and corrected the
+About page locally. No commit, push or deployment. Live remains revision 1.160;
+direct public fetch confirms that its app.js still contains the stale Science
+Wars omission claim. OpenAlex remains paused.
+
+- Frozen audit: `data/field-research/gemini-coverage-2026-10-24/review.json`, with
+  canonical graph hash, explicit IDs, roster/strand joins, existing evidence
+  pointers, decisions on the major claims and proposed research batches.
+- **130 named candidates: 101 existing roster profiles, 29 without indexed person
+  records; all 130 lack standalone person nodes.** Some of the 29 appear in sources
+  or discussion only (Kershaw, Strachan, Robin D. G. Kelley, etc.). Profile, source
+  mention and standalone chronology/relationships are distinct depths of coverage.
+  Early chat counts of 102/28 were preliminary and corrected to 101/29.
+- Current totals: 203 entries = 83 historians + 79 schools/fields + 21 theorists +
+  20 traditions/theories; 1,355 people. Gemini's 104 standalone count is right;
+  its 78 schools/fields count is wrong for the current graph.
+- About falsely said the Science Wars critiques were missing; revision 1.135
+  supplied the debate and critiques/replies for Kuhn, Latour, SSK and STS. About
+  now links to that entry and derives the count without incoming classified
+  critique from the displayed graph (91/203 in the current release).
+- About now explains standalone entries versus searchable roster profiles, with
+  example profile links, and selective post-2000 work (three group reviews through
+  2024 plus selected later biographies). Huang/Wong and Maruyama replace its
+  blanket Chinese/Japanese absence claim; systematic treatment of Chinese,
+  Japanese, Korean and Islamic historiographical traditions remains a real gap.
+- Proposed priorities are in the audit and a new dated section of
+  `EDITORIAL-REVIEW.md`: traditions beyond Europe/North America in their own
+  historiographical terms; Black/Atlantic historians across generations; then
+  individual endpoints for microhistory and intellectual-history exchanges.
+  These are research candidates, not accepted biographies or arrows. An optional
+  scope question asks whether to prioritize first or start biography expansion;
+  no answer received during this work. No new historical entries implemented.
+- Only site/app.js and its docs copy change among browser assets. All graph,
+  archive, dissertation data and other public assets remain unchanged; the
+  allowlist still has 52 files. Pre-existing unrelated memory/research files
+  remain intact. Build, audit pointers/hash, source/build agreement, 15 focused
+  Python data cases, 60 JS checks, 11 dissertation browser cases and two focused
+  About/archive browser cases pass. The final full browser suite also passes:
+  **55 cases in 97 seconds**, `/tmp/gemini-review-browser.log`. `git diff --check`
+  passes. No substantive biography expansion started; next step is choosing and
+  researching a bounded batch from the audited priorities.
+
 ## Publication authorized — 2026-10-24: economic-history reading and roster correction
 
 The user explicitly requested **push**, then asked to update memory and start a fresh
