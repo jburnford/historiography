@@ -1,5 +1,50 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: all-entry relationship audit, revision 1.192
+
+User requested agents to investigate missing responses for every graph entry,
+including Turner/metropolitanism and Marc Bloch. All 357 entries now have one
+reasoned semantic screen, with source reading limits distinguished from fresh
+verification. This is not exhaustive proof that every possible edge is present.
+
+Revision 1.192 is accepted and Astra-approved: 357 nodes, 1,657 relationships,
+2,969 sources, 1,426 indexed people (203 historians, 54 theorists, 100 groups).
+Added 62 relationships (31 critiques, 24 influences, 3 comparisons, 4
+contributions), repaired 27 old endpoints, added 18 sources and 27 append-only
+reading addenda. No new biography, life fact, chronology event or corpus count.
+Turner 2→11 edges; Bloch 5→9; Ginzburg 5→12. Careless/Creighton now reach
+Turner directly. All 357 entries share one component. Unresolved named endpoints
+and insufficient readings remain explicit research holds; no degree quota.
+
+Canonical SHA-256: 982cc4542e73146709d6a31176cc17ce1199fd4c9e1bf6b600a0dd969f1b6cb9.
+Frozen packet SHA-256: b229a47725c36d84787e0d6f41cad511299b49e30400be52693a0961315215cc.
+Accepted packet: data/extension-2026/response-edges-2026-10-25/; NEVER regenerate.
+Receipt: data/production-batches/person-links-1.192/acceptance.json.
+Research: data/field-research/response-edge-audit-2026-10-25/README.md.
+All-node-audit.json is the exact preparation input; all-node-audit-result.json
+adds accepted degrees/status and corrects the provisional Skinner/Dunn screen.
+617/618 retain mixed/Dunn routing; separate Kuhn→Skinner is narrowly sourced.
+
+All 61 targeted data tests, 65 browser cases and 61 JavaScript checks PASS.
+Fresh checkout reproduced 52 public files and both life masters, preserved all
+78 tracked reading files and passed 35 focused cases. Report:
+/tmp/response-audit-clean-report.json. Both life masters changed scope revision
+only. Exact-2000 archive, 157 reading profiles/4,059 sources, five field panels
+and Anderson comparison preserved. Structural errors 0; qualified warnings 29.
+
+Previous 1.191 full CI 40238251389 completed 156 cases with one historical
+preservation assertion comparing an old batch to later accepted endpoints.
+That test now checks its own frozen 1.180 acceptance; all 3 module cases pass.
+Current preservation is separately covered. Next full CI has 160 data cases.
+Do not claim remote CI pass before completion. Prior 1.191 Pages/live passed.
+
+User authorization remains: correct, Astra review, push and verify live. Next:
+scoped commit/push, Pages success, all 52 live hashes and targeted browser cases.
+Reading agent prepared /tmp/response-audit-live-verify.py; notify it with commit
+and Pages run ID. OpenAlex remains paused. No raw source bodies, keys or
+unrelated files in assets/commit. Preserve all unrelated local MEMORY edits:
+stage this task header over HEAD:MEMORY.md, never the whole working file.
+
 ## Ready for publication — 2026-10-25: remaining canon and person routing, 1.191
 
 User asks for the rest of the additions and whether all new people have the

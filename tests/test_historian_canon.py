@@ -54,15 +54,20 @@ class HistorianCanonTests(unittest.TestCase):
 
     def test_original_ids_collective_arrows_and_identity_qualifications_survive(self):
         before = Batch(ROOT / 'data/extension-2026/dissertation-frameworks-2026-10-25').baseline()
+        # Preserve the accepted historian expansion at its own revision. Later
+        # reviewed endpoint changes are checked by the remaining/response audits.
+        after = Batch(ROOT / 'data/extension-2026/historian-canon-corrections-2026-10-25').check()
+        nodes = {n['id']: n for n in after['nodes']}
+        people = {p['id']: p for p in after['people']}
         for table in ('nodes', 'people', 'edges', 'sources'):
             self.assertEqual([r['id'] for r in before[table]],
-                             [r['id'] for r in self.graph[table]][:len(before[table])], table)
-        self.assertEqual(before['edges'], self.graph['edges'][:len(before['edges'])])
+                             [r['id'] for r in after[table]][:len(before[table])], table)
+        self.assertEqual(before['edges'], after['edges'][:len(before['edges'])])
         for old in before['people']:
             if old.get('identity_note'):
-                self.assertIn(old['identity_note'], self.people[old['id']]['identity_note'], old['id'])
+                self.assertIn(old['identity_note'], people[old['id']]['identity_note'], old['id'])
         for old in before['nodes']:
-            current = self.nodes[old['id']]
+            current = nodes[old['id']]
             self.assertEqual(old.get('coverage'), current.get('coverage'), old['id'])
             events = {e['id']: e for e in current['chronology']['events']}
             for event in old['chronology']['events']:

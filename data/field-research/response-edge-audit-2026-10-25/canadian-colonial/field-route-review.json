@@ -1,0 +1,161 @@
+{
+  "schema": "response_field_route_review/1",
+  "baseline_revision": "1.191",
+  "repairs": [
+    {
+      "proposal_id": "rea_canadian_route_096",
+      "disposition": "include_source_endpoint_repair",
+      "edge_id": "edge_096",
+      "before": {
+        "id": "edge_096",
+        "source": "post",
+        "target": "modern",
+        "relationship": "Chakrabarty questions Europe as a universal path while retaining critical historical concepts",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "post"
+        ],
+        "evidence_note": "Chakrabarty questions universalizing European historical categories while continuing to use them critically. Primary introduction pp. 3–6 supports this qualified engagement.",
+        "classification_basis": "editorial_review",
+        "map_label": "Chakrabarty: useful but insufficient categories"
+      },
+      "after": {
+        "id": "edge_096",
+        "source": "dipesh_chakrabarty",
+        "target": "modern",
+        "relationship": "Chakrabarty questions Europe as a universal path while retaining critical historical concepts",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "post"
+        ],
+        "evidence_note": "Chakrabarty questions universalizing European historical categories while continuing to use them critically. Primary introduction pp. 3–6 supports this qualified engagement.",
+        "classification_basis": "editorial_review",
+        "map_label": "Chakrabarty: useful but insufficient categories"
+      },
+      "allowed_changes": [
+        "source"
+      ],
+      "reason": "The claim and primary introduction name Chakrabarty alone; retain its qualified engagement with European concepts.",
+      "read_extent": "Fresh publisher introduction pp3–10 read.",
+      "primary_locator": "Provincializing Europe introduction pp3–6",
+      "source_ids": [
+        "post"
+      ],
+      "same_pair_after": []
+    },
+    {
+      "proposal_id": "rea_canadian_route_124",
+      "disposition": "include_source_endpoint_repair",
+      "edge_id": "edge_124",
+      "before": {
+        "id": "edge_124",
+        "source": "post",
+        "target": "global",
+        "relationship": "Chakrabarty’s historical-difference argument tests Europe-centered assumptions in global narratives",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "post",
+          "global"
+        ],
+        "evidence_note": "Postcolonial criticism tests global narratives for Eurocentric assumptions; it does not reject all transregional inquiry. This is a conceptual critique mapped editorially to global history; the checked introduction does not document reception by every global historian.",
+        "classification_basis": "editorial_review",
+        "map_label": "Testing universal historical paths"
+      },
+      "after": {
+        "id": "edge_124",
+        "source": "dipesh_chakrabarty",
+        "target": "global",
+        "relationship": "Chakrabarty’s historical-difference argument tests Europe-centered assumptions in global narratives",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "post",
+          "global"
+        ],
+        "evidence_note": "Postcolonial criticism tests global narratives for Eurocentric assumptions; it does not reject all transregional inquiry. This is a conceptual critique mapped editorially to global history; the checked introduction does not document reception by every global historian.",
+        "classification_basis": "editorial_review",
+        "map_label": "Testing universal historical paths"
+      },
+      "allowed_changes": [
+        "source"
+      ],
+      "reason": "The historical-difference argument is Chakrabarty’s. The mapping to global history remains an editorial conceptual comparison, with no claim of reception by every global historian. Existing edge1145 instead concerns the later globe/planet argument.",
+      "read_extent": "Fresh publisher introduction pp3–10 read; whole book unread.",
+      "primary_locator": "Provincializing Europe introduction pp3–10",
+      "source_ids": [
+        "post",
+        "global"
+      ],
+      "same_pair_after": [
+        "edge_1145"
+      ]
+    },
+    {
+      "proposal_id": "rea_canadian_route_359",
+      "disposition": "include_source_endpoint_repair",
+      "edge_id": "edge_359",
+      "before": {
+        "id": "edge_359",
+        "source": "social",
+        "target": "political",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Cooper’s labor history exposes colonial government’s categories and control over social relations",
+        "evidence_note": "The primary Part I introduction, pp. 23–24, connects classifications of labor with colonial power. This records a particular social-political inquiry, not a claim that labor alone explains decolonization. The Mombasa case (234–241) now supplies a concrete sequence connecting mobilization, wage investigations, differentiated reform and repression.",
+        "source_ids": [
+          "cooper_labour"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Cooper: labor categories and colonial governing"
+      },
+      "after": {
+        "id": "edge_359",
+        "source": "frederick_cooper",
+        "target": "political",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "type": "connection",
+        "relationship": "Cooper’s labor history exposes colonial government’s categories and control over social relations",
+        "evidence_note": "The primary Part I introduction, pp. 23–24, connects classifications of labor with colonial power. This records a particular social-political inquiry, not a claim that labor alone explains decolonization. The Mombasa case (234–241) now supplies a concrete sequence connecting mobilization, wage investigations, differentiated reform and repression.",
+        "source_ids": [
+          "cooper_labour"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Cooper: labor categories and colonial governing"
+      },
+      "allowed_changes": [
+        "source"
+      ],
+      "reason": "The current claim specifically concerns Cooper’s colonial labour inquiry; no other author supplies this arrow.",
+      "read_extent": "Inherited accepted primary PartI introduction and Mombasa partial reading; this audit inspected the current source verification and exact edge note, not a new whole-book reading.",
+      "primary_locator": "Decolonization and African Society pp23–24 and234–241",
+      "source_ids": [
+        "cooper_labour"
+      ],
+      "same_pair_after": []
+    }
+  ],
+  "retained": [
+    {
+      "edge_id": "edge_397",
+      "disposition": "retain_field_bridge",
+      "reason": "Cooper already has an individual African-history contribution at edge1340. This record additionally connects social-history methods to African decolonization through a named example; no new direct response or intellectual debt was found here. Preserve its primary Mombasa evidence and reconsider only if the parent chooses a consistent field/person routing policy."
+    },
+    {
+      "edge_id": "edge_730",
+      "disposition": "retain_identity_guard",
+      "reason": "The author is Paul Carter, not Sarah Carter. The publisher page confirms The Road to Botany Bay, original1987 and later reissue. Paul Carter has no individual node. Do not reroute to Sarah.",
+      "source_id": "carter_botany_1987",
+      "primary_url": "https://www.upress.umn.edu/9780816669974/the-road-to-botany-bay/",
+      "read_extent": "Fresh publisher author/title/original-versus-reissue metadata only; book body unread."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+# Debates lane: bounded semantic relationship audit
+
+Astra screened all 90 assigned entries against their current incoming and outgoing relationship claims at revision 1.191. Each row in `node-review.json` contains an individually reasoned assessment, current edge IDs, a source inventory, the limits of inherited-note inspection, and linked proposals or research holds. This is not a claim to have reread all underlying books or exhausted every intellectual relationship. Low degree alone never establishes an omission.
+
+`proposals.json` offers eleven primary-supported additions for an independent reviewer: nine specific critiques and two explicit analytical resources. `sources.json` contains five new witness records and five append-only reading addenda. Original source text, verification limitations and checked dates must remain intact. No prior edge is replaced. Brubaker's two jointly authored arguments explicitly retain Frederick Cooper's equal authorship; they are not two independent studies. Pratt's use of Anderson is not an accusation that Anderson believed actual nations homogeneous.
+
+`held-cases.json` records sixteen further investigations and six already represented candidates. Holds are not release-ready claims. In particular, Tilly's indexed primary passage needs full-page verification, Harvey's inaccessible Lefebvre passage remains unread, and Douglas's interview dates and reading limits must not be conflated. Said's Huntington critique is already edge_1566.
+
+`validation.json` checks all 1,595 baseline edges and every proposal endpoint. None of the eleven directed pairs exists. The existing Foucault-to-Agamben methodological resource is distinct from Agamben's proposed reverse biopolitical corrective. All 90 assigned IDs occur exactly once.
+
+The final JSON records are the handoff. `build_review.py` is a local research-record producer, not part of the application build: it requires the private `/tmp` context exports and downloaded witnesses used during this review. Witness hashes and public URLs are recorded without committing the full copyrighted texts. The producer does not edit the canonical graph, accepted packets, code, or publication assets. Root or another worker must independently check these proposals before release; this lane does not self-approve its new claims.

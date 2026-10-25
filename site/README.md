@@ -1,13 +1,28 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current canonical revision **1.191**, schema 1.6,
-contains **357 entries, 1,595 relationships, 2,951 sources, 1,426 shared people and
+The curated JSON remains authoritative. Current canonical revision **1.192**, schema 1.6,
+contains **357 entries, 1,657 relationships, 2,969 sources, 1,426 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
+
+## Relationship audit, revision 1.192
+
+All 357 entries received a reasoned semantic relationship screen. The accepted
+packet adds 62 sourced relationships and 18 source records, appends 27 source
+reading notes and reroutes 27 legacy edges. No rendering change or new biography
+was needed. Turner has 11 recorded relationships, Bloch nine, and the formerly
+isolated archived-Web entry now has a sourced undirected comparison with digital
+history. All entries belong to one connected component. Qualified source scopes,
+coauthors, dates and held cases accompany the teaching links; edge counts do not
+certify completeness. See the [audit](../data/field-research/response-edge-audit-2026-10-25/README.md).
+
+The 52-file build remains allowlisted. Dissertation assets and the archived graph
+are unchanged; compiled life reviews retain the same rows with revision metadata
+updated. **1.192 release status: independently reviewed and locally verified; ready for publication.**
 
 ## Dissertation reading preview
 
@@ -105,7 +120,7 @@ The baseline 155 regression cases are covered and pass; 61 JavaScript checks,
 52 assets reproduced in a clean checkout and 24 focused checks passing. Post-repair
 verification passes all 54 targeted cases, 63 browser cases and 61 JavaScript checks.
 A fresh checkout reproduces all 52 public files and both life masters, passes 28
-focused checks and preserves the reading export. The verified build targets revision
+focused checks and preserves the reading export. The historical 1.191 build targets revision
 1.191 and 157 linked reading profiles; deployment is checked after push.
 
 The landing downloads the reduced overview and aggregates; detail routes load

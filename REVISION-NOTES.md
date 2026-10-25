@@ -1,3 +1,49 @@
+# Revision 1.192: audit the intellectual relationships of every entry (25 October 2026)
+
+The graph contains **357 entries, 1,657 relationships, 2,969 sources and 1,426
+indexed people**: 203 historians, 54 theorists and 100 groups. The
+[all-entry relationship audit](data/field-research/response-edge-audit-2026-10-25/README.md)
+records a reasoned semantic screen for **all 357 entries**. It checks named debts,
+responses, collaborators and reception; degree is a diagnostic, not a quota or
+proof of completeness. Fresh selected source reading is recorded for the changes,
+separately from screening inherited entry text and source qualifications.
+
+Revision 1.192 adds **62 sourced relationships and 18 source records**, appends
+27 qualified source-reading notes and repairs **27 existing endpoints**. One
+Johnson–Genovese criticism combines two dated witnesses instead of counting the
+same response twice. Parallel Brubaker/Cooper routes credit the same joint
+arguments, not separate episodes. All earlier IDs, substantive claims, citations,
+chronology, biography records and source qualifications remain; only three
+obsolete endpoint-availability clauses receive explicitly reviewed copy changes.
+No new biography, field, life date or dissertation count is inferred.
+
+| Entry | Relationships before | Relationships after |
+| --- | ---: | ---: |
+| Frederick Jackson Turner | 2 | 11 |
+| Marc Bloch | 5 | 9 |
+| Web history / Archived-web research | 0 | 1 |
+
+Careless’s 1954 metropolitan argument and Creighton’s 1957 critique now reach
+Turner directly. Other Turner responses distinguish criticism, acknowledged use
+and qualified comparison. Bloch’s links include Febvre’s acknowledged ideas,
+gratitude and criticism toward the Durkheimian school, and a named institutional
+reader’s account of Duby’s methodological lineage. This does not substitute
+Durkheim personally for Simiand. Winters’s scoped 2018 comparison connects Web
+history to digital history; all 357 entries now share one connected component.
+
+The [node reviews](data/field-research/response-edge-audit-2026-10-25/node-audit.md)
+and [research holds](data/field-research/response-edge-audit-2026-10-25/research-holds.md)
+retain unresolved readings, identities and unavailable individual endpoints.
+The completed screen does not certify every possible relationship or a complete
+new reading of every bibliography. Original works, translations, coauthors and
+named readers remain explicit. Reading profiles remain 157 with 4,059 sources;
+Anderson’s comparison, all 203 historian life reviews, the separate 32-theorist
+review and the exact-2000 archive remain preserved.
+
+Astra approves the merged packet and its source/preservation checks.
+**1.192 release status: independently reviewed and locally verified; ready for publication.**
+OpenAlex remains paused. Earlier sections retain their historical counts.
+
 # Revision 1.191: name the people in inherited relationships (25 October 2026)
 
 Locally accepted canonical revision **1.191** retains **357 entries, 1,595

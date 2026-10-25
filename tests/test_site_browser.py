@@ -577,6 +577,118 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(panel).not_to_contain_text('no individual graph node')
         expect(panel.locator('.sources')).to_contain_text('The Nation and Its Fragments')
 
+    def test_response_audit_turner_and_bloch_named_connections(self):
+        """The named responses are reachable on the map and timeline, with their limits."""
+        def relation(source, target, kind):
+            matches = [e for e in GRAPH['edges'] if e['source'] == source
+                       and e['target'] == target and e.get('relationship_kind') == kind]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            return matches[0]
+
+        def inspect(edge, source_ids, qualifications):
+            self.assertEqual(edge['source_ids'], source_ids)
+            self.open('#edge=' + edge['id'])
+            panel = self.page.locator('.reading-panel')
+            expect(panel.locator('.edge-endpoints a')).to_have_text(
+                [GRAPH_LABELS[edge['source']], GRAPH_LABELS[edge['target']]])
+            for text in qualifications:
+                expect(panel).to_contain_text(text)
+            for source_id in source_ids:
+                source = next(s for s in GRAPH['sources'] if s['id'] == source_id)
+                expect(panel.locator('.sources > li').filter(
+                    has_text=source.get('citation') or source['title'])).to_have_count(1)
+
+        turner = 'frederick_jackson_turner'
+        critics = ['j_m_s_careless', 'donald_creighton', 'william_cronon',
+                   'richard_white', 'richard_hofstadter', 'philip_j_deloria', 'alan_taylor']
+        critiques = [relation(critic, turner, 'critique') for critic in critics]
+        self.assertEqual([critiques[0]['id'], critiques[1]['id']], ['edge_951', 'edge_957'])
+        self.open('#node=' + turner + '&section=connections&view=map')
+        for edge in critiques:
+            expect(self.page.locator(f'.flow-neighbor.incoming[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[edge['source']])
+            expect(self.page.locator(f'.connection.incoming[data-edge="{edge["id"]}"]')) \
+                .to_have_attribute('marker-end', 'url(#arrow-critique)')
+        self.open('#family=all&view=map&focus=' + turner)
+        for edge in critiques:
+            expect(self.page.locator(f'svg.field .edge.critique[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"] > summary')) \
+                .to_contain_text(GRAPH_LABELS[edge['source']])
+        inspect(critiques[3], ['rea_turner_white_1994_transcription', 'rea_turner_white_steele_1995'],
+                ['Richard W. Steele', 'the full chapter remains unread'])
+        inspect(critiques[4], ['rea_turner_bogue_1994'], ['expressly mediated by Bogue'])
+        resource = relation(turner, 'william_cronon', 'influence')
+        inspect(resource, ['rea_turner_cronon_1987'],
+                ['not endorsement of the frontier thesis or a teacher–student relationship'])
+
+        bloch_edges = [relation('lucien_febvre', 'marc_bloch', 'influence'),
+                       relation('durkheim', 'marc_bloch', 'influence'),
+                       relation('marc_bloch', 'durkheim', 'critique'),
+                       relation('marc_bloch', 'georges_duby', 'influence')]
+        self.open('#node=marc_bloch&section=connections&view=map')
+        for edge in bloch_edges:
+            side = 'outgoing' if edge['source'] == 'marc_bloch' else 'incoming'
+            expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+        # The school's debt and criticism must not become personal Émile Durkheim arrows.
+        expect(self.page.locator('.neighbor-node[href*="node=emile_durkheim"]')).to_have_count(0)
+        self.open('#family=all&view=map&focus=marc_bloch')
+        for edge in bloch_edges:
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')).to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"]')).to_have_count(1)
+        inspect(bloch_edges[0], ['bloch_apologie_primary'],
+                ['written 1941; published 1949', 'other ideas cannot be assigned to only one of them'])
+        inspect(bloch_edges[1], ['bloch_apologie_primary'],
+                ['does not substitute Émile Durkheim personally for Simiand'])
+        school = self.page.locator('.reading-panel .edge-endpoints a').first
+        self.assertEqual(parse_qs(school.get_attribute('href').lstrip('#')).get('node'), ['durkheim'])
+        inspect(bloch_edges[2], ['bloch_apologie_primary'], ['gratitude and respect'])
+        inspect(bloch_edges[3], ['duby_college_context'], ['not evidence of personal supervision'])
+
+    def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
+        """Winters connects the former isolate without turning comparison into descent."""
+        edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}
+                 == {'web_history', 'digital_history'}]
+        self.assertEqual(len(edges), 1)
+        edge = edges[0]
+        self.assertEqual(edge['relationship_kind'], 'comparison')
+        self.assertFalse(edge['directed'])
+        self.assertEqual(edge['source_ids'], ['digital10_source_digital07_winters_web_archives_2018'])
+        for node, other in [('web_history', 'digital_history'), ('digital_history', 'web_history')]:
+            self.open(f'#node={node}&section=connections&view=map')
+            card = self.page.locator(f'.associated-card[data-edge="{edge["id"]}"]')
+            expect(card).to_contain_text(GRAPH_LABELS[other])
+            expect(card.locator('.kind-comparison')).to_contain_text('Comparison')
+            expect(self.page.locator(f'.connection[data-edge="{edge["id"]}"]')).to_have_count(0)
+        card.locator('.edge-label').click()
+        panel = self.page.locator('.reading-panel')
+        expect(panel.locator('#detail-title')).to_have_text('Comparison')
+        expect(panel.locator('.edge-endpoints')).to_contain_text('compared with · no direction')
+        for qualification in ['2018', 'not a current census', 'a field-founding lineage',
+                              'an equivalence between the two fields', 'Final book pagination is not used']:
+            expect(panel).to_contain_text(qualification)
+        witness = panel.locator('.sources > li').filter(has=self.page.locator(
+            'a[href="https://sas-space.sas.ac.uk/9202/1/Web%20archives%20and%20digital%20history.pdf"]'))
+        expect(witness).to_have_count(1)
+        witness.locator('details > summary').click()
+        expect(witness).to_contain_text('whole chapter not newly read')
+        expect(witness).to_contain_text('Repository manuscript pp. 4–6')
+
+        self.open('#family=all&view=map&focus=web_history')
+        expect(self.page.locator('.entry.selected[data-id="web_history"]')).to_have_count(1)
+        expect(self.page.locator('.entry.related[data-id="digital_history"]')).to_have_count(1)
+        path = self.page.locator(f'svg.field .edge.comparison[data-edge="{edge["id"]}"]')
+        expect(path).to_have_count(1)
+        self.assertFalse(path.get_attribute('marker-start') or path.get_attribute('marker-end'))
+        row = self.page.locator(f'details.rel.comparison[data-edge="{edge["id"]}"]')
+        row.locator('> summary').click()
+        expect(row.locator('.evidence')).to_contain_text('not a current census')
+        row.locator('.rel-sources > summary').click()
+        expect(row.locator('.sources > li')).to_have_count(1)
+        expect(row.locator('.sources a')).to_have_attribute(
+            'href', 'https://sas-space.sas.ac.uk/9202/1/Web%20archives%20and%20digital%20history.pdf')
+
     @staticmethod
     def family_scope(slug):
         """The family field's entries and relationships, by the rule in landing.mjs familyGraph:

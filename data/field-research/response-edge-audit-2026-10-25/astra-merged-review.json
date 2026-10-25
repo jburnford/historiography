@@ -1,0 +1,87 @@
+{
+  "schema": "independent_merged_response_review/1",
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "status": "pass_for_application",
+  "blocking_findings": [],
+  "baseline_revision": "1.191",
+  "proposed_revision": "1.192",
+  "packet_sha256": "b229a47725c36d84787e0d6f41cad511299b49e30400be52693a0961315215cc",
+  "baseline_graph_sha256": "07cb6bc74d8a46f1006c432b1cb404ccd43d909db23c90127aa3056585e353ce",
+  "independently_reproduced_production_sha256": "982cc4542e73146709d6a31176cc17ce1199fd4c9e1bf6b600a0dd969f1b6cb9",
+  "counts": {
+    "screened_nodes": 357,
+    "new_edges": 62,
+    "new_sources": 18,
+    "source_addenda": 27,
+    "guarded_endpoint_repairs": 27,
+    "roster_pointer_clears": 0,
+    "result_nodes": 357,
+    "result_edges": 1657,
+    "result_sources": 2969,
+    "result_people": 1426
+  },
+  "resolved_findings": [
+    {
+      "id": "MERGE-COPY-1",
+      "finding": "The combined Johnson evidence note exposed serialized reading-extent data.",
+      "resolution": "The final packet renders both interventions and their distinct reading limits as prose; 2001 and 2003 dates, claims, citations and unread-book limits remain explicit."
+    },
+    {
+      "id": "MERGE-COPY-2",
+      "finding": "Nine source addenda contained a research-stage proposed/not-applied statement that would become false upon acceptance.",
+      "resolution": "The final packet removes that administrative clause and retains the bibliographic-concordance versus whole-book-reading qualification."
+    }
+  ],
+  "independent_checks": [
+    "Pure in-memory Batch transformation against the actual canonical 1.191 graph reproduces the pinned expected production hash.",
+    "All 27 complete before guards match the baseline; all guarded after records match the transformed result. Every other old edge remains exact.",
+    "All nodes and people remain exact, including roster pointers, chronologies, inherited identity qualifications and coverage. Unchanged top-level tables and the entire old revision-history prefix remain exact.",
+    "Old source records without addenda remain exact. Amended old sources preserve all non-verification metadata and the complete old verification-note prefix.",
+    "All included unmerged proposal endpoints, claims, kinds, directions and source IDs match their independently reviewed originals. The only evidence-note deltas are append-only equal-coauthor qualifications on four Brubaker/Cooper records.",
+    "Johnson 2001 and 2003 are consolidated into one relationship with both primary witnesses and separately bounded reading extents. They are not represented as one publication or two independent edges.",
+    "Four Brubaker/Cooper projections explicitly credit two coauthors of the same joint paper and two target-specific arguments, not four independent debate events.",
+    "Judt edge 1137 retains the exact substantive note after removal of its obsolete routing sentence. Cannadine edge 466 retains its exact note after the revised first sentence. Ginzburg edge 454 preserves its argument and scope while removing obsolete group routing.",
+    "Mixed edges 617 and 618 remain on their scoped endpoints; the new Kuhn-to-Skinner relation does not misattribute Dunn’s Ryle use.",
+    "The transformed graph validates with zero errors and 29 warnings. Independent traversal from web_history reaches all 357 nodes; this does not certify exhaustive intellectual coverage.",
+    "All freeze-manifest file hashes match. Public appended edge/source/addendum records contain no checked private path or witness-hash metadata."
+  ],
+  "substantive_review_basis": [
+    "turner/independent-review.json: 17 new relations and seven guarded routes, including fresh selected primary and explicitly mediated source checks.",
+    "roots-methods/independent-review.json: 12 new relations and 17 guarded routes; school versus individual actors, selected-reading scope and named-reader mediation retained.",
+    "roots-methods/supplementary-review.json: three explicitly praised methodological examples supporting contribution relations to Ginzburg, without formative-influence claims.",
+    "Canadian-colonial and additional cross-review records provide independent checking of those proposals; Astra-authored debates proposals received separate root/peer review rather than self-certification."
+  ],
+  "test_review": {
+    "new_response_tests": "Inspected four tests covering all-node review coverage, preservation, justified personal routes and graph connectivity, mixed claims and joint-credit/Johnson deduplication.",
+    "preacceptance_execution": "The new response test module requires the not-yet-created 1.192 acceptance receipt; its pre-application setup failure ran zero tests and is a stage dependency, not a passing test result. Run after acceptance.",
+    "historical_test_boundary": "The historian-canon preservation test correctly checks the frozen 1.180 acceptance rather than expecting later legitimate revisions to remain unchanged. Root reports its three tests passed; this report does not claim an independent execution of those three tests."
+  },
+  "limitations": [
+    "All 357 entries received bounded semantic screening; this is not exhaustive primary reading of every author or every possible intellectual connection.",
+    "This is approval of the exact prepared packet and in-memory result, not confirmation of canonical application, browser behavior, full post-acceptance tests or deployment. Those remain coordinator release gates."
+  ],
+  "decision": "No remaining substantive or copy blocker. Approve application of the pinned packet; preserve accepted packets and run the post-acceptance checks before publication.",
+  "final_applied_review": {
+    "checked_on": "2026-10-25",
+    "status": "pass",
+    "blocking_findings": [],
+    "revision": "1.192",
+    "actual_canonical_sha256": "982cc4542e73146709d6a31176cc17ce1199fd4c9e1bf6b600a0dd969f1b6cb9",
+    "checks": [
+      "Actual acceptance receipt packet, baseline and production hashes match their files and the independently approved values.",
+      "Canonical bytes exactly equal the approved in-memory result; this carries forward the verified 62 new relationships, 27 guarded routes, 18 new sources, 27 append-only source notes, zero roster changes and connected 357-node result.",
+      "Public graph edges, sources and revision history exactly equal canonical records. Public nodes and enriched people exactly equal the prior public graph; no life or profile regression.",
+      "Both life masters differ from HEAD only in scope.graph_revision, now 1.192. All 203 historian and 32 theorist rows and source provenance remain exact.",
+      "All 78 tracked files under data/dissertation-layer and docs/data/dissertations are byte-identical to HEAD, including Anderson comparison and numerical series. Public export still contains 157 profiles and 4,059 sources.",
+      "The unchanged approved source payload retains old reading qualifications and the checked exclusion of private witness paths/hashes."
+    ],
+    "independent_test_result": {
+      "command": "python -m unittest tests.test_response_edge_audit",
+      "tests": 4,
+      "status": "pass",
+      "seconds": 2.645
+    },
+    "remaining_release_gates": "Coordinator full-suite/browser/build and publication verification; this report does not substitute for those checks."
+  }
+}
