@@ -1,0 +1,63 @@
+{
+  "status": "focused_release_checks_pass_broader_data_validation_running",
+  "revision": "1.199",
+  "independent_review": "Five exact dossiers, exact merged packet, applied/public delta and browser fixture PASS Astra.",
+  "focused_data_tests": {
+    "status": "pass",
+    "cases": 9,
+    "test_seconds": 100.554,
+    "log": "/tmp/dedicated-five-04-clean-data.log",
+    "log_sha256": "2709e987409d813c4ca828d50f755d465ce8cf4f7d935bd89cb91690b31195c1"
+  },
+  "recent_release_data_tests": {
+    "status": "running",
+    "pid": 15255,
+    "log": "/tmp/dedicated-five-04-targeted-data-tests.log",
+    "completed_case_markers": 0,
+    "qualification": "Not claimed to pass; remaining historical acceptance reconstruction is still running."
+  },
+  "browser_tests": {
+    "status": "pass",
+    "cases": 72,
+    "test_seconds": 156.119,
+    "log": "/tmp/dedicated-five-04-browser-tests.log",
+    "log_sha256": "6d150ac0ce6e35733fb4070b488e7596da8fd01ea0a06a4fae0428e36ff581a9"
+  },
+  "full_historical_data_tests": {
+    "status": "running",
+    "pid": 10480,
+    "log": "/tmp/dedicated-five-04-data-tests.log",
+    "completed_case_markers": 104,
+    "qualification": "Not claimed to pass; remaining historical acceptance reconstruction is still running."
+  },
+  "javascript_tests": {
+    "status": "pass",
+    "cases": 61,
+    "log": "/tmp/dedicated-five-04-js-tests.log",
+    "log_sha256": "3c4db759e08cceec73a74fa3da8cd2953683cc3b93b511824cfaadf29ba9fc66"
+  },
+  "clean_checkout": {
+    "status": "pass",
+    "worktree": "/tmp/dedicated-five-04-clean-1_o286fg",
+    "staged_tree": "a3c91dc39571f001eabdc6ec98ba97f580a4bd56",
+    "public_files_reproduced": 52,
+    "both_life_masters_reproduced": true,
+    "reading_files_exact": 78,
+    "focused_data_cases": 9,
+    "browser_cases": 3,
+    "report": "/tmp/dedicated-five-04-clean-report.json"
+  },
+  "preservation": {
+    "status": "pass",
+    "public_files": 52,
+    "changed_public_assets": [
+      "data/graph.json",
+      "data/overview.json"
+    ],
+    "frozen_reading_archive_ui_files_exact": 81,
+    "both_life_masters_only_scope_revision_changed": true,
+    "canonical_expected_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+    "preservation_reference": "/tmp/dedicated-five-04-preservation-baseline.json"
+  },
+  "publication": "Authorized scoped push and live verification follow commit; broader data validation is pending, not passed."
+}

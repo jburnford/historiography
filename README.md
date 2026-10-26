@@ -25,7 +25,44 @@ companion literature and example repository records. It uses the frozen snapshot
 of 6,794 dissertations with years, from 7,107 included in analysis. Coverage,
 extraction and attribution limits accompany the figures. See [frontend details](site/README.md).
 
-## Current revision 1.198: third five dedicated historian reviews
+## Current revision 1.199: fourth five dedicated historian reviews
+
+The fourth batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-26-batch04/README.md)
+adds **39 relationships, 18 sources and eight append-only reading notes**.
+Revision1.199 contains **357 entries, 1,805 relationships, 3,050 sources
+and 1,426 indexed people**, with no new biographies or fields.
+
+| Historian | Relationships before → after | Individual neighbors before → after |
+| --- | ---: | ---: |
+| Arlette Farge | 2 → 9 | 0 → 4 |
+| Bernard Bailyn | 3 → 10 | 1 → 8 |
+| Bruce Curtis | 2 → 9 | 0 → 6 |
+| C. A. Bayly | 2 → 10 | 0 → 7 |
+| C. Vann Woodward | 2 → 12 | 0 → 8 |
+
+Farge’s acknowledged resources coexist with particular disagreements about
+archives, social invariance and public judgment. Bailyn’s resources, teaching and
+qualified criticism retain the actual editions and named scholarly mediation.
+Curtis’s use of theory and critical exchanges distinguish an authorial abstract
+from the unread complete article. Bayly’s analytical resources retain named
+credits; Hall’s full archived review and Chakrabarty’s attributed reproduction
+keep their access and mediation limits. Woodward’s criticism of Foner retains
+his published correction; shared editorial work and substantive disagreement
+remain separate claims.
+
+These are bounded reviews with no edge quota or exhaustive-network claim.
+Earlier graph records, biographies, chronology and life facts remain preserved,
+as do the157 reading profiles,4,059 reading sources, dissertation assets and
+exact-2000 archive. Tocqueville remains excluded from the dedicated review
+queue by user direction, with his existing entry unchanged. OpenAlex is paused.
+
+**1.199 status: independently reviewed; focused release checks pass.** All72
+browser cases and61 JavaScript checks pass. A clean checkout reproduces52
+public assets and both life masters; nine focused data cases and three browser
+checks pass there. Broader data suites remain running and are not claimed to
+pass. Ready for publication.
+
+## Historical revision 1.198: third five dedicated historian reviews
 
 The third batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch03/README.md)
 adds **34 relationships, 13 sources and three append-only reading notes**.

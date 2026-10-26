@@ -1,3 +1,38 @@
+## Ready for publication — 2026-10-26: fourth five dedicated historian dossiers, revision1.199
+
+User resumed historian edge work. Farge/Bailyn/Curtis/Bayly/Woodward each have
+one researcher and independent Astra passage+coverage PASS; exact merged packet
+PASS before application. Applied39relationships18sources8append-onlynotes:
+357nodes/1805edges/3050sources/1426people. All oldedges/nodes/people/biographies/
+chronology EXACT. CanonicalSHA50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac.
+PacketSHAaa1c63081810fb427bf6d6e71e1dfe5f906d67a1d76ac54a371c21342dad79f2.
+Research data/field-research/dedicated-historians-five-2026-10-26-batch04/;
+packet data/extension-2026/dedicated-historians-five-2026-10-26-batch04/;
+receipt data/production-batches/person-links-1.199/acceptance.json.
+NEVER regenerate accepted199/198/older packets or mutate manifest-pinned inputs.
+
+Farge’s debts+specific criticisms coexist. Curtis2002critique explicitly own
+abstract only/full articleunread. Bayly’s Hall/Chakrabarty mediation and publisher
+sample limits remain; full Hallarchive preserves power/gendercriticism missing
+from current RiHextraction. WoodwardFoner1988June correction retained; shared
+editorial project distinct from criticism; DuBoisnamed Tandy mediation preserved.
+No edgequota or exhaustive-networkclaim. Tocquevilleexcluded(existingentryexact).
+
+21protocol dossiers complete;136prioritypending. NextfiveCarterG.Woodson,
+ChristopheCharle,ColinG.Calloway,DanielK.Richter,DanielRoche. Manualreview status
+separatefromdegree. Bothlife masters203/32 preserve all rows/provenance, onlyscope
+revision199.52publicfilesbuilt;onlygraph/overviewchanged;78readingfiles+archive+
+2UIassets exact. Helper--checkPASS.72browser/61JS PASS;clean52assets/bothlife/9data/3browser
+PASS. Applied/publicAstra PASS. Broaderdata suitePID10480 and recentrelease
+suitePID15255 stillrunning /tmp/dedicated-five-04-{data,targeted-data}-tests.log;
+NOTclaimedPASS. Cleanreport/tmp/dedicated-five-04-clean-report.json;60tested
+corehashes pinned. Extra checks may continue during publication; inspect results.
+Do not claim runtimechecks/live/remoteCI success before completion. Authorized
+scopedcommit/push/liveverification followQA. StageONLYtaskheaderoverHEADMEMORY;
+fullworkingMEMORYhistory and unrelatedresearch remain local. OpenAlexPAUSED.
+Dissertation500-new threshold and Hopkinsbrowser-only direction remain in force;
+no dissertation extraction/corpus rerun. UC list location supplied whileworkcontinued.
+
 # Project memory and visualization handoff
 
 ## Revision 1.198 — third five dossiers ready for publication

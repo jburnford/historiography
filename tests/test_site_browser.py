@@ -916,6 +916,103 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
             'compared with · no direction')
 
+    def test_fourth_five_dedicated_historians_relationships(self):
+        """Five dossiers expose both directions with corrections and reading limits."""
+        def relation(source, target, kind):
+            matches = [e for e in GRAPH['edges'] if
+                       (e['source'], e['target'], e.get('relationship_kind')) ==
+                       (source, target, kind)]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            return matches[0]
+
+        cases = [
+            ('arlette_farge', 'foucault', 'arlette_farge', 'influence',
+             'distinct from joint authorship'),
+            ('arlette_farge', 'arlette_farge', 'foucault', 'critique',
+             'neither a rejection of Foucault'),
+            ('bernard_bailyn', 'j_g_a_pocock', 'bernard_bailyn', 'contribution',
+             'original 1967 copy'),
+            ('bernard_bailyn', 'bernard_bailyn', 'colin_g_calloway', 'critique',
+             'remain his claims'),
+            ('bruce_curtis', 'foucault', 'bruce_curtis', 'contribution',
+             'Explicit named scholarly mediation'),
+            ('bruce_curtis', 'bruce_curtis', 'foucault', 'critique',
+             'limited to the English/French abstract'),
+            ('ca_bayly', 'catherine_hall', 'ca_bayly', 'critique',
+             'her praise and specific criticism coexist'),
+            ('ca_bayly', 'ca_bayly', 'ranajit_guha', 'critique',
+             'original review and Guha monograph'),
+            ('c_vann_woodward', 'w_e_b_du_bois', 'c_vann_woodward', 'contribution',
+             'complete book and letter remain unread'),
+            ('c_vann_woodward', 'c_vann_woodward', 'eric_foner', 'critique',
+             'not ignorance of comparison'),
+        ]
+        sources = {s['id']: s for s in GRAPH['sources']}
+        grouped = {}
+        for node, source, target, kind, qualification in cases:
+            grouped.setdefault(node, []).append(
+                (relation(source, target, kind), qualification))
+
+        for node, checks in grouped.items():
+            self.open('#node=' + node + '&section=connections&view=map')
+            # Incoming and outgoing claims retain their distinct evidence.
+            for edge, _ in checks:
+                side = 'outgoing' if edge['source'] == node else 'incoming'
+                other = edge['target'] if side == 'outgoing' else edge['source']
+                expect(self.page.locator(
+                    f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                    .to_contain_text(GRAPH_LABELS[other])
+            self.open('#family=all&view=map&focus=' + node)
+            for edge, _ in checks:
+                expect(self.page.locator(
+                    f'svg.field .edge[data-edge="{edge["id"]}"]')).to_have_count(1)
+                expect(self.page.locator(
+                    f'details.rel[data-edge="{edge["id"]}"]')).to_have_count(1)
+            for edge, qualification in checks:
+                self.open('#edge=' + edge['id'])
+                panel = self.page.locator('.reading-panel')
+                expect(panel.locator('.edge-endpoints a')).to_have_text(
+                    [GRAPH_LABELS[edge['source']], GRAPH_LABELS[edge['target']]])
+                expect(panel).to_contain_text(qualification)
+                links = panel.locator('.sources a').evaluate_all(
+                    'els => els.map(el => el.getAttribute("href"))')
+                for sid in edge['source_ids']:
+                    self.assertIn(sources[sid]['url'], links)
+
+        debt = relation('w_e_b_du_bois', 'c_vann_woodward', 'contribution')
+        self.open('#edge=' + debt['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'Explicit named scholarly mediation')
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'scan could not be read')
+
+        # The correction is Woodward's, and both witnesses remain accessible.
+        correction = relation('c_vann_woodward', 'eric_foner', 'critique')
+        self.open('#edge=' + correction['id'])
+        panel = self.page.locator('.reading-panel')
+        expect(panel).to_contain_text('June correction')
+        expect(panel).to_contain_text('Nothing But Freedom')
+        witness = panel.locator('.sources > li').filter(has=self.page.locator(
+            'a[href="https://www.nybooks.com/articles/1988/06/02/comparative-history/"]'))
+        expect(witness).to_have_count(1)
+        witness.locator('details > summary').click()
+        expect(witness).to_contain_text('not a reply written by Foner')
+
+        # Shared editorial work is visible without an arrow or causal priority.
+        comparison = relation('c_vann_woodward', 'richard_hofstadter', 'comparison')
+        self.assertFalse(comparison['directed'])
+        self.open('#node=c_vann_woodward&section=connections&view=map')
+        expect(self.page.locator(
+            f'.associated-card[data-edge="{comparison["id"]}"]')) \
+            .to_contain_text(GRAPH_LABELS['richard_hofstadter'])
+        expect(self.page.locator(
+            f'.connection[data-edge="{comparison["id"]}"]')).to_have_count(0)
+        self.open('#edge=' + comparison['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'without causal priority')
+        expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
+            'compared with · no direction')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}

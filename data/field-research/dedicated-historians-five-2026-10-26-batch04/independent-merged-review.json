@@ -1,0 +1,36 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-26",
+  "verdict": "pass_exact_merged_packet",
+  "blocking_findings": [],
+  "revision": "1.199",
+  "packet_sha256": "aa1c63081810fb427bf6d6e71e1dfe5f906d67a1d76ac54a371c21342dad79f2",
+  "freeze_sha256": "f917b0570cbf21f63fa415c4a0bd4494ad5d847c64b744b7d1b5e504dce94658",
+  "manifest_sha256": "1b4a2a2d1ccfa3caa6251797495b7f7135fb6e7420deea254fd58adfb94c4f84",
+  "expected_canonical_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "counts": {
+    "nodes": 357,
+    "edges": 1805,
+    "sources": 3050,
+    "people": 1426
+  },
+  "new_edges": 39,
+  "new_sources": 18,
+  "source_addenda": 8,
+  "checks": [
+    "prepare.py --check independently passed read-only: all frozen-file and manifest-input hashes verified.",
+    "All39 merged edge dictionaries exactly equal approved five-dossier fields, preserving direction, category, source joins, co-credit and evidence limits.",
+    "All18 new source records and8 append-only notes exactly equal approved researcher files, with all six reviewed hashes per dossier current.",
+    "Independent in-memory transform comparison preserves every old edge, node, person, other top-level table and revision prefix. Old sources differ only by exact expected append notes/status/date; untouched sources exact.",
+    "Expected canonical serialization SHA independently reproduced. No new edge touches Tocqueville. Integration notes preserve raw exclusion, frozen reading/chronology/life-row constraints and accepted-packet immutability."
+  ],
+  "substantive_approval": "Five dedicated passage and coverage reviews pass: Farge7, Bailyn7, Curtis7, Bayly8, Woodward10. Coverage corrections include Curtis abstract-bounded population criticism, Hall-mediated James Scott criticism, Chakrabarty teaching-resource consolidation, Higham source use and explicit absent-endpoint dispositions. No quota or exhaustive-network claim.",
+  "browser_test_review": {
+    "path": "tests/test_site_browser.py",
+    "sha256": "1f16103be23dc918f4ec49abcb609e8a38595464cc71762020e496aff2c64fcd",
+    "verdict": "pass_additive_assertions",
+    "finding": "Only additive fourth-five method in current diff; ten incoming/outgoing cases across all five with focused map/details/endpoints/qualifications/source links, Tandy original-unread mediation, Woodward correction authorship, and separate undirected Hofstadter comparison. Old assertions unchanged. Execution remains pending applied build."
+  },
+  "mutations": "Only this independent review artifact written; owner dossiers and packet untouched.",
+  "release_gate": "Approved to apply exact reviewed packet. Applied/public integrity and release test results remain separate gates."
+}

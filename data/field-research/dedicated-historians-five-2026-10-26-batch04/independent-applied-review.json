@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "reviewer": "Astra",
+  "checked_on": "2026-10-26",
+  "revision": "1.199",
+  "review_kind": "independent applied preservation and public export review",
+  "canonical_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "packet_sha256": "aa1c63081810fb427bf6d6e71e1dfe5f906d67a1d76ac54a371c21342dad79f2",
+  "baseline_sha256": "dbfd46147b00fb5bd824dd6cee4ef14839bf7f0840f153acf77b557e5ca84d52",
+  "acceptance_sha256": "5200a771aa017ac421e1de8c2ae5812319eaef2fb25975383e92e1113ea7edf8",
+  "counts": {
+    "nodes": 357,
+    "edges": 1805,
+    "sources": 3050,
+    "people": 1426
+  },
+  "checks": {
+    "accepted_prepare_check": "PASS: frozen supplement and input hashes, accepted baseline reconstruction, no mutation",
+    "old_edges": "All1766 exact, in order",
+    "nodes_people_other_tables": "All exact against1.198",
+    "new_edges": 39,
+    "new_sources": 18,
+    "source_addenda": [
+      "hc175_arlette_farge_1",
+      "hc173_bernard_bailyn_1",
+      "pe139_curtis_davey_1989",
+      "pe139_curtis_palmer_1993",
+      "lof_christie_2009",
+      "lof_fecteau_2009",
+      "df03_pagden_armitage2000",
+      "hc177_woodward_address"
+    ],
+    "source_qualifications": "Exact expected append-only notes/status/date updates only; all prior source records and untouched fields exact",
+    "public_export": "Edges/sources/revision history exactly accepted canonical; all new source references resolve",
+    "tocqueville": "No node changes or new incident edges",
+    "life_masters": {
+      "data/historian-life-review.json": {
+        "people": 203,
+        "only_change": "scope.graph_revision"
+      },
+      "data/theorist-life-review.json": {
+        "people": 32,
+        "only_change": "scope.graph_revision"
+      }
+    },
+    "preserved_assets": "All81 pinned paths exact:78 reading source/public files, exact2000 archive and2 dissertation UI files",
+    "public_allowlist": "Exactly52 expected regular files; no symlinks or unexpected source bodies/PDFs/images/research files",
+    "changed_public_files": [
+      "data/graph.json",
+      "data/overview.json"
+    ],
+    "prior_dedicated_packets": "No tracked changes in earlier dedicated dossier/packet paths",
+    "browser_fixture": {
+      "path": "tests/test_site_browser.py",
+      "sha256": "1f16103be23dc918f4ec49abcb609e8a38595464cc71762020e496aff2c64fcd",
+      "verdict": "pass_additive_assertions",
+      "finding": "Only additive fourth-five method in current diff; ten incoming/outgoing cases across all five with focused map/details/endpoints/qualifications/source links, Tandy original-unread mediation, Woodward correction authorship, and separate undirected Hofstadter comparison. Old assertions unchanged. Applied test file remains exact to the substantive review; runtime result is reported separately by root."
+    }
+  },
+  "blockers": [],
+  "limitations": [
+    "Applied integrity review follows completed passage, coverage and exact packet reviews; source bodies not reread in this integration pass.",
+    "Full runtime suites and clean-checkout QA are root responsibilities and still running at review time; this report makes no runtime success claim."
+  ]
+}
