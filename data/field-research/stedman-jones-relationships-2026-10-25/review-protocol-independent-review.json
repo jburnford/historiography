@@ -1,0 +1,41 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "verdict": "pass",
+  "blocking_findings": [],
+  "independently_recomputed_counts": {
+    "historians": 203,
+    "under6_total": 132,
+    "under3_person_neighbors": 155,
+    "priority_union": 158
+  },
+  "checks": [
+    "Exactly203 distinct historian rows exhaust the historian layer. Every total degree, distinct person/historian neighbor count, neighbor ID set, kind count and flag independently recomputed from pinned194 graph.",
+    "Neighbor sets collapse directions and repeated claims; only entry_kind=person qualifies, including historian/theorist people, excluding fields and traditions.",
+    "202 rows queue_screen_only; Gareth alone dedicated_review_in_progress. Protocol calls158 priorities, not defects, and retains high-degree overrides.",
+    "Protocol requires fresh selected primary work, precise locators/identity/coauthor/date limits, duplicate/mixed-route review, explicit held outcomes and independent passage review. No edge quota or mandatory positive/negative balance."
+  ],
+  "reviewed_sha256": {
+    "review-queue-baseline-1.194.json": "83dfc5874684964c52bde77fac12374dc04e69a26236dac9679cd6760286a515",
+    "review-protocol.md": "23ec1f155d41e3dd8bcb00af65ccc076e3d2b7f5665306712b92ae3e2e3df8de"
+  },
+  "limitation": "Triage/protocol verification does not establish completeness of any historian network. Gareth remains with its sole dedicated researcher.",
+  "manual_status_safeguard_review": {
+    "verdict": "pass",
+    "clause_locator": "review-protocol.md lines15–17",
+    "assessment": "Correctly separates assigned dossier completion from numerical degree changes. Incidental edges from another person’s review do not complete or discharge this historian’s research assignment; retain pinned queue and explicit outcomes.",
+    "current_protocol_sha256": "e295a2b0714e1cb03bb68f893e94c0c0553a65ca81df26c5d753c4e5d4f0a1ae"
+  },
+  "coverage_challenge_review": {
+    "verdict": "pass",
+    "checked_on": "2026-10-25",
+    "assessment": "Independent review must challenge omitted named exchanges and user-supplied leads, not merely validate submitted edges. One owner retains the dossier; targeted bibliographic and argument checks feed that record. Unresolved leads require explicit status and reason, not silent omission. This strengthens bounded coverage without implying exhaustive discovery.",
+    "current_protocol_sha256": "39af2844e073a0a88b024fc2e0fd74988ec69274b5fc27070ffd3fd268fb05c4"
+  },
+  "named_reader_exception_review": {
+    "checked_on": "2026-10-25",
+    "verdict": "pass_implemented_exception",
+    "assessment": "Permit explicitly attributed substantive named-reader mediation when the original remains unread. Require exact reader locators, clear access/edition limits, separation of the reader’s reconstruction from direct original-author reading, and claims no broader than the inspected evidence. This is not permission to infer an argument from metadata, passing names or an unspecific review. Dorothy/Fontes meets this exception.",
+    "implementation_status": "Step3 now includes the approved bounded exception, exact locators, attribution and unread-original limits."
+  }
+}

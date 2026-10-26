@@ -711,6 +711,43 @@ class AtlasBrowserTests(unittest.TestCase):
             ['Joan Wallach Scott', 'Geoff Eley'])
         expect(self.page.locator('.reading-panel')).to_contain_text('Keith Nield retains equal authorial credit')
 
+    def test_stedman_jones_named_resources_and_reception(self):
+        """Personal resources, criticism and mentoring remain distinct and sourced."""
+        def relation(source, target, kind):
+            matches = [e for e in GRAPH['edges'] if (e['source'], e['target'],
+                       e.get('relationship_kind')) == (source, target, kind)]
+            self.assertEqual(len(matches), 1)
+            return matches[0]
+        node = 'gareth_stedman_jones'
+        incoming = [relation('eric_hobsbawm', node, 'influence'),
+                    relation('dorothy_thompson', node, 'critique'),
+                    relation('bryan_d_palmer', node, 'critique'),
+                    relation('geoff_eley', node, 'critique'),
+                    relation('jon_lawrence', node, 'critique'),
+                    relation('patrick_joyce', node, 'critique'),
+                    relation('james_vernon', node, 'critique')]
+        outgoing = [relation(node, 'eric_hobsbawm', 'critique'),
+                    relation(node, 'jon_lawrence', 'influence')]
+        self.open('#node=' + node + '&section=connections&view=map')
+        for side, edges in [('incoming', incoming), ('outgoing', outgoing)]:
+            for edge in edges:
+                other = edge['source'] if side == 'incoming' else edge['target']
+                expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                    .to_contain_text(GRAPH_LABELS[other])
+        self.open('#family=all&view=map&focus=' + node)
+        for edge in incoming + outgoing:
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')).to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"]')).to_have_count(1)
+        self.open('#edge=' + incoming[1]['id'])
+        panel = self.page.locator('.reading-panel')
+        expect(panel.locator('.edge-endpoints a')).to_have_text(['Dorothy Thompson', 'Gareth Stedman Jones'])
+        expect(panel).to_contain_text('Explicitly mediated through Fontes')
+        expect(panel).to_contain_text('remain unread here')
+        expect(panel.locator('.sources')).to_contain_text('Fontes')
+        self.open('#edge=' + incoming[4]['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text('Miles Taylor')
+        expect(self.page.locator('.reading-panel')).to_contain_text('Mayfield and Thorne')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}

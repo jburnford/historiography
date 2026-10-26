@@ -1,6 +1,35 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.194: Joan Scott’s relationships with historians
+## Current revision 1.195: Stedman Jones and dedicated-person reviews
+
+The [dedicated review](data/field-research/stedman-jones-relationships-2026-10-25/README.md)
+adds **ten relationships, eight sources and three append-only reading notes**.
+Stedman Jones has **21 relationships with ten individual neighbors**, up from 11
+relationships with only Thompson and Scott as individuals. The graph contains
+**357 entries, 1,695 relationships, 2,995 sources and 1,426 indexed people**.
+
+Dorothy Thompson’s critique is expressly attributed through Fontes’s substantive
+reconstruction; her original review remains unread. Hobsbawm’s influence coexists
+with specific criticism; Lawrence’s joint criticism coexists with his acknowledged
+mentoring debt. Palmer, Eley/Nield, Wood, Joyce and Vernon retain their particular
+arguments and positive qualifications. All 27 supplied bibliographic objects have
+explicit metadata/argument dispositions; unread claims are held.
+
+The pinned 1.194 review queue flags 158 historians with fewer than six total
+relationships OR fewer than three distinct personal neighbors. Flags prioritize
+research, not historical importance or mandatory edge counts. One researcher
+owns each dossier; independent review must challenge omissions as well as verify
+claims. Crossing a numerical cutoff does not automatically complete a review.
+Only the Stedman Jones dossier has been assigned under this new protocol.
+
+All prior edges, nodes, biographies, chronology, life facts, dissertation assets
+and the exact-2000 archive are preserved. Astra approves the exact packet;
+all 66 targeted data tests, 68 browser cases and 61 JavaScript checks pass.
+A clean checkout reproduces all 52 public files and both life masters; nine data
+cases and the new browser case also pass there. Ready for publication.
+OpenAlex remains paused.
+
+## Historical revision 1.194: Joan Scott’s relationships with historians
 
 The [focused Scott review](data/field-research/joan-scott-relationships-2026-10-25/README.md)
 adds **12 sourced relationships and repairs one existing endpoint**. Scott has

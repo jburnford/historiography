@@ -1,5 +1,55 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: Stedman Jones1.195 and review protocol
+
+Allcurrentuserrequests handledlocally: under-nsolo-reviewstrategy, Garethonly
+Thompson/Scott, Dorothycriticism,27-referenceChartismdebateconfirmation. Dedicated
+Garethowner+independentpassage/COVERAGEreview+targetedbibliography/argumentchecks.
+Pinned194queue203hist:132under6total,155under3distinctpersons,union158. Flags
+prioritizeresearch,notdefects/edgequota;manualdossierstatusneverself-closesfrom
+higherdegreeafteranothernodeedit. OnlyGarethassignedundernewprotocol;158not
+claimedalreadyreviewed. Protocolallowsexplicitnamed-readerstandingwhenoriginal
+inaccessible,withactualreaderlocatorsandoriginalunread;primarynotfaked.
+
+Accepted19510newedges,8sources,3append-onlynotes;357/1695/2995/1426. Gareth
+11→21relationships,2→10individualneighbors. Alloldedges/nodes/people/biographies/
+chronology EXACT,includingmixed1159,Scott194positive+criticalEPTpreserved.
+NewHobsbawm→JonesjointSamuel/Jones1982prefacedebt;Jones→Hobsbawm1965Fabian
+critique;Palmer1993/EleyNield2000criticisms;Jones→Lawrence1998mentoring;
+LawrenceMilesTaylor1993criticism;Dorothy1987critiqueEXPLICITFontes1999mediation
+withPalmercorroboration(original/latercollectionsUNREAD);Woodselectedrevised1998
+Retreat+separate1995argumentincredited2010Germantranslation;Joyce1991p10and
+Vernon1993p4criticalyetappreciativeprimaryintroductions.
+
+All27userbibliographicobjectscheckedwithargumentdispositions,notallbookbodies.
+1982TheLanguageofChartism3–58;1983Rethinking90–178longer,ackviiisaysPARTearlier,
+notunchangedreprint.ScottjournalHISTORYnotStudies. Dorothyrestrictedcorpus/class
+politicalargumentconfirmedthroughreader;women/Irish/localorganizationdetailsheld.
+AnnaClark1992positivelyfollowsJones;noautoantiJonescamp.Jones1996specificreply
+Joyce/VernonUNVERIFIED(bodyunread);Chase2007synthesisnotuniversalconsensus.
+NoautonewbiosforFoster,Kirk,Epstein,Pickering,Gray,AnnaClark,SallyAlexander,etc.
+
+Frozenpacketdata/extension-2026/stedman-jones-relationships-2026-10-25/ NEVER
+regenerate. PacketSHA99fc8fe52ad006b33e83bc4ea158ad574f0603204987a98c968eb51042f1cfe0.
+CanonicalSHA c5c05b94f612c56c37f661e25095443ae547c13eba50d30459fde2752e2a6e2d.
+Receiptdata/production-batches/person-links-1.195/acceptance.json.
+Researchdata/field-research/stedman-jones-relationships-2026-10-25/README.md;
+confirmed-user-leads.md usefulhuman27-rowaudit,implementation/release-validation.
+ManifestPINSsource/proposal/protocol/coverage/independentreviewinputs:DO NOTedit
+thosepostacceptance.Addcurrentstatusesonlyimplementation/MEMORY/rootAstrareview.
+
+Astraalllane,exactmergedandappliedPASS;9responsecasesPASS20.925s incl192–194
+reconstruction.66targeteddataPASS97.856s,68browserPASS160.645s,61JS PASS1.371s.
+Fresh/tmp/stedman-jones-clean-l0m1uvv1 rebuilds52publicfiles/bothlifemasters,
+9dataPASS51.299s,newbrowser/publicreadingPASS,78readingfilesexact. Archiveexact;
+157readingprofiles4059sources5panels/Andersonpreserved;lifereviews203/32onlyscope195.
+Nextauthorizedscopedcommit/push+Pages/live52hashesand5browsercases viareadingagent
+/tmp/stedman-jones-live-verify.py. Newcase test_stedman_jones_named_resources_and_reception.
+No morefeatureworkpending;finishpublication/continuityandanswerallcurrentquestions.
+193CI40248034359and194CI40249285279 ACTUALSUCCESS.195remoteCIpendingafterpush.
+OpenAlexpaused;raws/keysexcluded;unrelatedMEMORYhistory/researchremainlocal.
+StageONLYthisheaderoverHEADMEMORY;neverwholeworkingMEMORY.
+
 ## Ready for publication — 2026-10-25: Joan Wallach Scott supplement 1.194
 
 User requests more Scott relationships with HISTORIANS, especially her criticism

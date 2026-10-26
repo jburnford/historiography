@@ -1,0 +1,61 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "verdict": "pass_for_acceptance",
+  "blocking_findings": [],
+  "packet_sha256": "99fc8fe52ad006b33e83bc4ea158ad574f0603204987a98c968eb51042f1cfe0",
+  "expected_production_sha256": "c5c05b94f612c56c37f661e25095443ae547c13eba50d30459fde2752e2a6e2d",
+  "independent_checks": [
+    "Ran frozen prepare.py --check successfully; all packet and research input hashes match.",
+    "Independently compared all10 merged edge dictionaries exactly to the two reviewed proposal streams.",
+    "Independently compared all8 source records by ID; only ordering normalized. All3 addenda match input values after documented string normalization and duplicate inherited-prefix removal.",
+    "Independent in-memory standard Batch transform preserves every old edge and every node/person/other table exactly; revision history prefix preserved. Unchanged sources exact; affected source notes retain old prefixes and all other source fields.",
+    "Expected serialized production hash reproduced. No endpoint repairs, dates, biographies or person changes.",
+    "Samuel, Nield and Miles Taylor joint credits retained; Dorothy remains Fontes-mediated with original unread; Wood1998 selected transcription not silently made1986 original reading; German2010translation credits retained.",
+    "All27 bibliographic objects have explicit dispositions, including held1996reply and narrower Dorothy subclaims; no uniform camp or complete-body claim.",
+    "Pinned queue/protocol are research priorities, not158 defects; manual completion and named-reader safeguards remain."
+  ],
+  "counts": {
+    "nodes": 357,
+    "edges": 1695,
+    "sources": 2995,
+    "people": 1426
+  },
+  "new_edges": 10,
+  "new_sources": 8,
+  "source_addenda": 3,
+  "gareth_degree": [
+    11,
+    21
+  ],
+  "distinct_person_neighbors": [
+    2,
+    10
+  ],
+  "remaining_gates": [
+    "Apply exact reviewed packet, verify receipt/public export and run release QA."
+  ],
+  "scope_limit": "Approval is of this bounded documented supplement, not certification of an exhaustive Gareth network.",
+  "final_applied_review": {
+    "checked_on": "2026-10-25",
+    "verdict": "pass",
+    "blocking_findings": [],
+    "canonical_sha256": "c5c05b94f612c56c37f661e25095443ae547c13eba50d30459fde2752e2a6e2d",
+    "checks": [
+      "Acceptance receipt pins approved packet and actual canonical SHA matches expected c5c05b94f612c56c37f661e25095443ae547c13eba50d30459fde2752e2a6e2d.",
+      "Frozen accepted prepare.py --check PASS, reconstructing actual accepted delta.",
+      "Public docs graph edges, sources and revision history exactly match canonical, including all10 new source joins.",
+      "Every old edge exact, including mixed1159 and both194 Scott/EPThompson directions; all old nodes/people exact.",
+      "Gareth21 incident edges and10 distinct personal neighbors independently recomputed.",
+      "Both life masters identical to published194HEAD except scope.graph_revision195;203historian and32theory records preserved.",
+      "All78 tracked dissertation-layer/public-reading files byte-identical to published194HEAD."
+    ],
+    "tests": {
+      "command": "python -m unittest tests.test_response_edge_audit",
+      "passed": 9,
+      "seconds": 20.925,
+      "includes": "Old192/193/194 accepted reconstruction checks."
+    },
+    "remaining_gate": "Root full release checks and publication."
+  }
+}

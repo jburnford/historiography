@@ -1,13 +1,22 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current canonical revision **1.194**, schema 1.6,
-contains **357 entries, 1,685 relationships, 2,987 sources, 1,426 shared people and
+The curated JSON remains authoritative. Current canonical revision **1.195**, schema 1.6,
+contains **357 entries, 1,695 relationships, 2,995 sources, 1,426 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
+
+## Stedman Jones relationship supplement, revision 1.195
+
+Ten source-scoped additions bring Stedman Jones from 11 relationships with two
+individuals to 21 relationships with ten individuals. Dorothy Thompson’s critique
+is explicitly mediated through Fontes; joint credit, qualified praise and edition
+limits remain. All old records and reading assets preserved. No renderer change.
+Astra approves; all 66 targeted data tests, 68 browser cases and 61 JavaScript
+checks pass, with a clean reproducible build.
 
 ## Joan Scott relationship supplement, revision 1.194
 
