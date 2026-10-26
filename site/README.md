@@ -1,15 +1,33 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current canonical revision **1.195**, schema 1.6,
-contains **357 entries, 1,695 relationships, 2,995 sources, 1,426 shared people and
+The curated JSON remains authoritative. Reviewed revision **1.196**, schema 1.6,
+contains **357 entries, 1,706 relationships, 3,005 sources, 1,426 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
 
-## Stedman Jones relationship supplement, revision 1.195
+## Five dedicated historian reviews, revision 1.196
+
+Eleven sourced relationships, ten new sources and two append-only reading notes
+follow independent reviews of Wilson/Waziyatawin, McNickle, Ahenakew, Sioui and
+Adams. Their totals are respectively **4, 2, 3, 4 and 4 relationships**, with
+**2, 1, 1, 3 and 3 distinct individual neighbors**. These are bounded research
+outcomes, not quotas or proof of complete intellectual networks. See the
+[batch dossiers](../data/field-research/dedicated-historians-five-2026-10-25-batch01/README.md).
+
+Named mediation and unread originals remain visible in the evidence. Narrator,
+editor, translator and coauthor credit is preserved; no new biographies or
+influence claims arise from shared identity or bibliographic presence. All
+previous graph records, life-review rows, reading/dissertation assets and the
+exact-2000 archive remain intact. No renderer change is required.
+**Independently reviewed and locally verified.** All 66 targeted data tests,
+69 browser cases and 61 JavaScript checks pass. A clean checkout reproduces
+all 52 public files and both life masters. OpenAlex remains paused.
+
+## Historical revision 1.195: Stedman Jones relationship supplement
 
 Ten source-scoped additions bring Stedman Jones from 11 relationships with two
 individuals to 21 relationships with ten individuals. Dorothy Thompson’s critique

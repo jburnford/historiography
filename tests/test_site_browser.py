@@ -748,6 +748,49 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.reading-panel')).to_contain_text('Miles Taylor')
         expect(self.page.locator('.reading-panel')).to_contain_text('Mayfield and Thorne')
 
+    def test_dedicated_indigenous_historians_named_relationships(self):
+        """Five dossiers expose personal routes and retain each source's limits."""
+        cases = [
+            ('angela_cavender_wilson', 'angela_cavender_wilson', 'philip_j_deloria',
+             'influence', '1997 essay', 'Companion to American Indian History'),
+            ('darcy_mcnickle', 'vine_deloria_jr', 'darcy_mcnickle',
+             'critique', 'Program-level criticism', 'David R. M. Beck'),
+            ('edward_ahenakew', 'edward_ahenakew', 'sarah_carter',
+             'contribution', 'book body remains unread', 'Beatrice Medicine'),
+            ('georges_e_sioui', 'olive_patricia_dickason', 'georges_e_sioui',
+             'critique', 'not wholesale rejection', 'Olive Patricia Dickason'),
+            ('howard_adams', 'howard_adams', 'georges_e_sioui',
+             'critique', 'Sheila Fischman', 'Howard Adams'),
+        ]
+        for node, source, target, kind, qualification, witness in cases:
+            matches = [e for e in GRAPH['edges'] if
+                       (e['source'], e['target'], e.get('relationship_kind')) ==
+                       (source, target, kind)]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            edge = matches[0]
+            side = 'outgoing' if source == node else 'incoming'
+            other = target if side == 'outgoing' else source
+            self.open('#node=' + node + '&section=connections&view=map')
+            expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[other])
+            self.open('#family=all&view=map&focus=' + node)
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+            self.open('#edge=' + edge['id'])
+            panel = self.page.locator('.reading-panel')
+            expect(panel.locator('.edge-endpoints a')).to_have_text(
+                [GRAPH_LABELS[source], GRAPH_LABELS[target]])
+            expect(panel).to_contain_text(qualification)
+            expect(panel.locator('.sources')).to_contain_text(witness)
+        # A credited resource and criticism of its method must both remain reachable.
+        reciprocal = next(e for e in GRAPH['edges'] if
+                          (e['source'], e['target'], e.get('relationship_kind')) ==
+                          ('philip_j_deloria', 'angela_cavender_wilson', 'critique'))
+        self.open('#node=angela_cavender_wilson&section=connections&view=map')
+        expect(self.page.locator(
+            f'.flow-neighbor.incoming[data-edge="{reciprocal["id"]}"]')).to_contain_text(
+                GRAPH_LABELS['philip_j_deloria'])
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}
@@ -953,7 +996,12 @@ class AtlasBrowserTests(unittest.TestCase):
             expect(self.page.locator('.person-map svg.pm-svg')).to_be_visible()
             self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'), fragment)
             box = self.page.locator('.pm-scroll')
-            self.assertLessEqual(box.evaluate('el => el.scrollWidth'), box.evaluate('el => el.clientWidth'), fragment)
+            expect(box).to_be_visible()
+            # ResizeObserver can replace this element between two evaluations.
+            # Read both dimensions from the same visible element in one turn.
+            widths = box.evaluate('el => ({scroll: el.scrollWidth, client: el.clientWidth})')
+            self.assertGreater(widths['client'], 0, fragment)
+            self.assertLessEqual(widths['scroll'], widths['client'], fragment)
         self.page.screenshot(path=str(self.artifacts / 'person-map-mobile.png'), full_page=True)
 
     @staticmethod

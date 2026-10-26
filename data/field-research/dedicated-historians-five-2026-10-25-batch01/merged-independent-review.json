@@ -1,0 +1,27 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "verdict": "pass_for_acceptance",
+  "blocking_findings": [],
+  "packet_sha256": "f8664b46a7157f09f8b1b8166b405d13b7a887f896b51d1758628bd084ce4046",
+  "expected_production_sha256": "ec920e60eb99b201a1ee019e538ae60e2025d7939f53e3a47952c2742c20d456",
+  "counts": {
+    "nodes": 357,
+    "edges": 1706,
+    "sources": 3005,
+    "people": 1426
+  },
+  "new_edges": 11,
+  "new_sources": 10,
+  "source_addenda": 2,
+  "checks": [
+    "Frozen prepare.py --check PASS; all input and output hashes verified.",
+    "Independent exact comparison of every merged edge/source/addendum with five reviewed streams PASS; only source ordering and documented addendum normalization.",
+    "Independent verification of all five review hash maps PASS. Requested stale-review and context/selection baseline guards implemented.",
+    "Independent in-memory transform preserves all old edges, nodes, people and other top-level data; old revision-history prefix exact. Unchanged sources exact; two old verification notes retain exact prefixes and all other fields.",
+    "Expected serialized graph SHA independently reproduced.",
+    "All five dedicated passage/coverage reviews pass. Coauthors, oral narrators, editors, reviewer mediation, edition distinctions and explicit unread-original limits retained.",
+    "Adams→Sioui appears once. No co-field personal inference, extra biographies or life/chronology changes. Missing-endpoint holds remain explicit; no degree-quota completeness claim."
+  ],
+  "remaining_gate": "Apply exact packet, verify receipt/public export and run release QA."
+}

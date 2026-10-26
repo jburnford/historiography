@@ -25,7 +25,43 @@ companion literature and example repository records. It uses the frozen snapshot
 of 6,794 dissertations with years, from 7,107 included in analysis. Coverage,
 extraction and attribution limits accompany the figures. See [frontend details](site/README.md).
 
-## Current revision 1.195: Stedman Jones and dedicated-person reviews
+## Current revision 1.196: five dedicated historian reviews
+
+The first batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch01/README.md)
+adds **11 relationships, ten sources and two append-only reading notes**.
+Revision 1.196 contains **357 entries, 1,706 relationships, 3,005 sources and
+1,426 indexed people**. All five began with one field relationship and no
+individual neighbors.
+
+| Historian | Relationships after this batch | Distinct individual neighbors |
+| --- | ---: | ---: |
+| Angela Cavender Wilson / Waziyatawin | 4 | 2 |
+| D’Arcy McNickle | 2 | 1 |
+| Edward Ahenakew | 3 | 1 |
+| Georges E. Sioui | 4 | 3 |
+| Howard Adams | 4 | 3 |
+
+The additions distinguish credited resources, substantive use and qualified
+criticism. Wilson’s exchange with Philip Deloria and Adams’s criticism of Sioui
+retain their particular arguments. Named scholarly mediation is explicit where
+original passages remain unread; a cited name or shared Indigenous identity does
+not establish influence. Narrators, editors, translators and coauthors retain
+separate credit. Missing individual endpoints and unavailable originals remain
+research holds, with no automatic biographies.
+
+This completes a bounded review of these five people, each with one dossier
+owner and independent evidence review. It does not certify an exhaustive network
+or set an edge quota. All earlier nodes, relationships, biography and chronology
+records remain intact. Existing life-review rows, the 157 reading profiles and
+4,059 reading sources, dissertation assets and the exact-2000 archive are
+preserved.
+
+**1.196 status: independently reviewed and locally verified.** All 66 targeted
+data tests, 69 browser cases and 61 JavaScript checks pass. A clean checkout
+reproduces all 52 public files and both life masters; its nine focused data cases
+and the new browser case pass. OpenAlex remains paused.
+
+## Historical revision 1.195: Stedman Jones and dedicated-person reviews
 
 The [dedicated review](data/field-research/stedman-jones-relationships-2026-10-25/README.md)
 adds **ten relationships, eight sources and three append-only reading notes**.

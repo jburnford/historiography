@@ -1,5 +1,37 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: first five dedicated historian dossiers, 1.196
+
+The user asks agents to continue five at a time. Completed bounded dossiers for
+Angela Cavender Wilson/Waziyatawin, D’Arcy McNickle, Edward Ahenakew, Georges E.
+Sioui and Howard Adams, the first five pending pinned194 entries. One owner each,
+Astra independent passage AND coverage review; all five, exact merged packet and
+applied receipt PASS. New graph357/1706/3005/1426:11 relationships,10 sources,
+2 append-only notes; all old edges/nodes/people/biography/chronology exact.
+Relationships1→4/2/3/4/4; distinct individuals0→2/1/1/3/3. Theory/historian
+layers unchanged. Named mediation/unread originals and absent endpoints explicit;
+no quota, automatic biographies or false universal field origin. Adams–Sioui
+criticism merged once. Manual status separate from degree; next five pinned:
+Leonore Davidoff, Olive Dickason, Ranginui Walker, Akira Iriye, Alain Corbin.
+
+Research data/field-research/dedicated-historians-five-2026-10-25-batch01/;
+packet data/extension-2026/dedicated-historians-five-2026-10-25-batch01/;
+receipt data/production-batches/person-links-1.196/acceptance.json. Accepted packet
+SHAf8664b46a7157f09f8b1b8166b405d13b7a887f896b51d1758628bd084ce4046;
+canonicalSHAec920e60eb99b201a1ee019e538ae60e2025d7939f53e3a47952c2742c20d456.
+Never regenerate accepted196 or195 packets/manifest-pinned inputs. Read-only
+prepare.py --check PASS. 78 reading files exact195,157profiles4059sources5panels
+and Anderson comparison preserved; bothlife203/32 rows/sourcehashes exact except
+scope revision. Archive preserved. OpenAlex paused; raw source bodies ignored.
+66targeteddataPASS96.974s,69browserPASS138.740s,61JSPASS1.202s. Fresh clean
+checkout reproduces52assets/bothlife;9dataPASS62.141s+newbrowserPASS;78reading
+exact. Initial2browserfixturefailures corrected, finalcomplete69PASS. No product
+codechange. Next authorized scoped commit/push/live52hashes+6browser.
+196 not yet pushed. Prior195fullCI40253519307 still running at last check;
+/tmp/stedman-jones-remote-validation.json monitor tracks it. Do not claim passed.
+Unrelated local MEMORY history/research stays local; stage only this header over
+HEAD MEMORY, never the complete working file. Publication authorization persists.
+
 ## Ready for publication — 2026-10-25: Stedman Jones1.195 and review protocol
 
 Allcurrentuserrequests handledlocally: under-nsolo-reviewstrategy, Garethonly

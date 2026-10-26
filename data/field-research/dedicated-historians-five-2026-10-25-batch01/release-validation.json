@@ -1,0 +1,59 @@
+{
+  "status": "local_release_gates_pass",
+  "revision": "1.196",
+  "independent_review": {
+    "all_five_dossiers": "pass",
+    "exact_merged_packet": "pass",
+    "applied_receipt": "pass"
+  },
+  "targeted_data_tests": {
+    "status": "pass",
+    "tests": 66,
+    "elapsed_seconds": 96.974,
+    "log": "/tmp/dedicated-five-data-tests.log"
+  },
+  "javascript_tests": {
+    "status": "pass",
+    "tests": 61,
+    "elapsed_seconds": 1.202,
+    "log": "/tmp/dedicated-five-full-js.log"
+  },
+  "preservation": {
+    "old_edges_nodes_people_chronology": "exact",
+    "old_sources": "append-only qualified notes",
+    "reading_files_byte_exact": 78,
+    "life_master_rows_and_sources": "exact; graph revision only"
+  },
+  "browser_tests": {
+    "status": "pass",
+    "tests": 69,
+    "elapsed_seconds": 138.74,
+    "log": "/tmp/dedicated-five-final-browser.log",
+    "log_sha256": "f60889b2bf3af97dfac762b81a5a796bb23b0cc2a06970771fffda157618defe"
+  },
+  "clean_checkout": {
+    "status": "pass",
+    "worktree": "/tmp/dedicated-five-clean-oh_6yibv",
+    "public_files_reproduced": 52,
+    "both_life_masters_reproduced": true,
+    "focused_data_tests": 9,
+    "focused_data_test_seconds": 62.141,
+    "new_browser_case": "pass",
+    "reading_files_exact": 78,
+    "report": "/tmp/dedicated-five-clean-report.json"
+  },
+  "publication": "Authorized push and live verification follow this locally verified commit.",
+  "local_harness_note": "An extra direct browser invocation without a running server at its default URL failed immediately with ERR_CONNECTION_REFUSED; the proper managed runner is the release gate and includes that same case.",
+  "initial_browser_run": {
+    "tests": 69,
+    "passed": 67,
+    "failed": 2,
+    "disposition": "Source-citation fixture corrected; phone widths measured atomically from one visible element with positive client width. Both isolated affected cases and final complete suite pass. No product code changed."
+  },
+  "affected_browser_rerun": {
+    "status": "pass",
+    "tests": 2,
+    "elapsed_seconds": 2.102
+  },
+  "staging_guard": "Local raw text/HTML bodies initially entered the index during a folder add; all were removed before commit. The batch now ignores every raw directory; final scoped index excludes all source bodies and unrelated workspace files."
+}
