@@ -550,8 +550,12 @@ class AtlasBrowserTests(unittest.TestCase):
                 expect(sources.locator(f'a[href="{witness}"]')).to_be_visible()
                 expect(sources).to_contain_text(limit)
 
+                # Source-summary coordinates may land on another timeline row
+                # after navigation and trigger its intentional hover preview.
+                self.page.mouse.move(0, 0)
                 self.open(f'#focus={person_id}')
                 panel = self.page.locator('.field-panel')
+                expect(self.page.locator('.entry.selected')).to_have_attribute('data-id', person_id)
                 expect(panel.locator('.life')).to_contain_text(status)
                 expect(panel.locator(f'.life-sources a[href="{witness}"]')).to_have_count(1)
                 expect(self.page.locator('.entry.selected .death-mark')).to_have_count(int(deceased))
@@ -1010,6 +1014,100 @@ class AtlasBrowserTests(unittest.TestCase):
         self.open('#edge=' + comparison['id'])
         expect(self.page.locator('.reading-panel')).to_contain_text(
             'without causal priority')
+        expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
+            'compared with · no direction')
+
+    def test_completion_batch_named_relationships_and_reading_limits(self):
+        """Completion claims retain direction, co-credit and retrospective limits."""
+        packet = json.loads((ROOT / 'data' / 'extension-2026' /
+                             'dedicated-historians-completion-2026-10-26-batch01' /
+                             'release' / 'editorial-additions.json').read_text())
+        self.assertEqual(packet['revision'], '1.200')
+        proposals = {e['proposal_id']: e for e in packet['edges']}
+        sources = {s['id']: s for s in GRAPH['sources']}
+
+        def implemented(proposal_id):
+            expected = proposals[proposal_id]
+            matches = [e for e in GRAPH['edges']
+                       if e.get('proposal_id') == proposal_id]
+            self.assertEqual(len(matches), 1, proposal_id)
+            edge = matches[0]
+            for key in ('source', 'target', 'relationship_kind', 'directed',
+                        'relationship', 'evidence_note', 'source_ids'):
+                self.assertEqual(edge[key], expected[key], (proposal_id, key))
+            return edge
+
+        cases = [
+            ('nancy_f_cott', 'hc200_cott_scott_gender',
+             'not a claim that the1986 article shaped the1977 book'),
+            ('nancy_f_cott', 'hc200_cott_bederman_discourse',
+             'neither is made the cause of the other’s earlier work'),
+            ('nancy_f_cott', 'hc200_cott_foucault_retrospective',
+             'not a claim of direct formative reading'),
+            ('nancy_f_cott', 'hc200_bederman_cott_family_feminism',
+             'jointly authored Davidoff/Hall'),
+            ('robin_d_g_kelley', 'hc200_kelley_roediger_whiteness',
+             'no assertion that Roediger coauthored The Many-Headed Hydra'),
+            ('robin_d_g_kelley', 'hc200_kelley_scott_hidden_transcript',
+             'not a simple evolution from silence to revolt'),
+            ('george_l_mosse', 'hc200_mosse_burke_performance_critique',
+             'could have read work published after his death'),
+            ('george_l_mosse', 'hc200_mosse_burke_liturgy_resource',
+             'not merely a publisher’s praise'),
+        ]
+        grouped = {}
+        for node, proposal_id, qualification in cases:
+            grouped.setdefault(node, []).append(
+                (implemented(proposal_id), qualification))
+
+        for node, checks in grouped.items():
+            self.open('#node=' + node + '&section=connections&view=map')
+            for edge, _ in checks:
+                side = 'outgoing' if edge['source'] == node else 'incoming'
+                other = edge['target'] if side == 'outgoing' else edge['source']
+                expect(self.page.locator(
+                    f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                    .to_contain_text(GRAPH_LABELS[other])
+            for edge, qualification in checks:
+                self.open('#edge=' + edge['id'])
+                panel = self.page.locator('.reading-panel')
+                expect(panel.locator('.edge-endpoints a')).to_have_text(
+                    [GRAPH_LABELS[edge['source']], GRAPH_LABELS[edge['target']]])
+                expect(panel).to_contain_text(qualification)
+                links = panel.locator('.sources a').evaluate_all(
+                    'els => els.map(el => el.getAttribute("href"))')
+                for sid in edge['source_ids']:
+                    self.assertIn(sources[sid]['url'], links)
+
+        # One field SVG and its textual detail expose the same implemented claim.
+        retrospective = implemented('hc200_cott_foucault_retrospective')
+        self.open('#family=all&view=map&focus=nancy_f_cott')
+        expect(self.page.locator(
+            f'svg.field .edge[data-edge="{retrospective["id"]}"]')).to_have_count(1)
+        expect(self.page.locator(
+            f'details.rel[data-edge="{retrospective["id"]}"]')).to_have_count(1)
+        self.open('#edge=' + retrospective['id'])
+        source = sources['hc200_cott_bonds2020']
+        witness = self.page.locator('.reading-panel .sources > li').filter(
+            has=self.page.locator('a[href="' + source['url'] + '"]'))
+        expect(witness).to_have_count(1)
+        witness.locator('details > summary').click()
+        expect(witness).to_contain_text('not a complete preface, full book, PDF')
+        expect(witness).to_contain_text('not1970s formation')
+
+        comparison = implemented('hc200_mosse_davis_comparison')
+        self.assertFalse(comparison['directed'])
+        self.open('#node=george_l_mosse&section=connections&view=map')
+        expect(self.page.locator(
+            f'.associated-card[data-edge="{comparison["id"]}"]')) \
+            .to_contain_text(GRAPH_LABELS['natalie_zemon_davis'])
+        expect(self.page.locator(
+            f'.connection[data-edge="{comparison["id"]}"]')).to_have_count(0)
+        self.open('#edge=' + comparison['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'no teacher-pupil relation or direction of influence')
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'he is not Walter Laqueur')
         expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
             'compared with · no direction')
 

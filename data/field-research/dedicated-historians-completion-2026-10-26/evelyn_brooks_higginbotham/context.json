@@ -1,0 +1,307 @@
+{
+  "person_id": "evelyn_brooks_higginbotham",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "evelyn_brooks_higginbotham",
+    "label": "Evelyn Brooks Higginbotham",
+    "date_label": "Selected intervention · 1992",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Argues that race structures the meanings of gender, class and sexuality. Her 1992 intervention challenges insufficient racial analysis in feminist theory and develops an account of race as socially constructed, contested power.",
+    "representative_figures_and_works": "African-American Women’s History and the Metalanguage of Race (1992). Further selected bibliography: Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (1993).",
+    "source_ids": [
+      "higginbotham_race",
+      "promotion01_higginbotham",
+      "higginbotham_righteous"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "A theoretical contribution within Black history as well as feminist historiography. Her opening acknowledges useful feminist resources and earlier Black scholarship; it does not license an indiscriminate critique edge to every cited theorist. Canonical-work review (2026-10-24): added titles and dates are selected bibliography, not a complete career or a new reading of the books. Original works, translations, edited collections and posthumous editions are distinguished; earlier argument and source-reading qualifications remain.",
+    "work_ids": [
+      "work:higginbotham_metalanguage_1992"
+    ],
+    "claim_ids": [
+      "claim:promotions01:authored_evelyn_brooks_higginbotham_higginbotham",
+      "claim:promotions01:higginbotham_race",
+      "claim:promotions01:higginbotham_critique",
+      "claim:promotions01:darlene_clark_hine_feedback",
+      "claim:promotions01:carroll_smith_rosenberg_feedback",
+      "claim:promotions01:presents_evelyn_brooks_higginbotham"
+    ],
+    "chronology": {
+      "version": 1,
+      "label": "Selected dated works and editions · 1992–1993",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_983bda7c43a5",
+          "label": "African-American Women's History and the Metalanguage of Race",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1992,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higginbotham_race"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "cw159_016",
+          "label": "Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higginbotham_righteous"
+          ],
+          "support": "Reuse the graph’s existing bibliographic source for the 1993 work; it was absent from Higginbotham’s individual entry, not from the entire project. Bibliographic date and credit only, except where the source record explicitly describes a passage/description check. Complete work unread for this review; previous source-reading limits remain.",
+          "basis": "canonical_work_review_2026-10-24"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_759",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "black",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Race, gender and historical explanation",
+      "map_label": "Race, gender and historical explanation",
+      "evidence_note": "Higginbotham develops race as a metalanguage shaping gender, class and sexuality and as a contested instrument of power. Her opening programme combines feminist theory with Black intellectual traditions; no single undifferentiated school affiliation. The target is the named strand, displayed under its parent entry.",
+      "source_ids": [
+        "promotion01_higginbotham"
+      ],
+      "classification_basis": "editorial_review",
+      "claim_ids": [
+        "claim:promotions01:higginbotham_race"
+      ],
+      "review_status": "accepted",
+      "claim_projection": {
+        "subject": "person:evelyn_brooks_higginbotham",
+        "object": "concept:black/racial_analysis",
+        "note": "The target is the named strand, displayed under its parent entry."
+      },
+      "target_strand": "black/racial_analysis"
+    },
+    {
+      "id": "edge_1621",
+      "source": "james_c_scott",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham explicitly uses Scott’s infrapolitics for her discussion of micropolitical resistance (1992).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "Her note67 identifies Domination and the Arts of Resistance, pp183–192; James C.Scott is distinct from Joan W.Scott.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_09"
+    },
+    {
+      "id": "edge_1622",
+      "source": "darlene_clark_hine",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham credits Hine’s reading, suggestions and questions on an earlier version of her 1992 article.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "This is a named draft-feedback contribution, not evidence that Hine originated the article’s theory.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_10"
+    },
+    {
+      "id": "edge_1623",
+      "source": "foucault",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham adapts Foucault’s technologies terminology to race, gender and sexuality (1992).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "Her p. 252 n4 names History of Sexuality1 and explains the term alongside Teresa de Lauretis; neither resource is exclusive.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_11"
+    },
+    {
+      "id": "edge_1684",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "joan_wallach_scott",
+      "relationship": "Higginbotham places Scott’s language-and-discourse turn among feminist frameworks she found compelling but insufficiently attentive to race.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "js_reception_higginbotham_2017"
+      ],
+      "evidence_note": "Her 2017 retrospective, printed p.632, names Scott’s 1986 article and 1988 book before explaining her qualified dissatisfaction with feminist theory’s racial presumptions. The criticism concerns a wider body of theory, with Scott a named example, not Scott alone. This is Higginbotham’s retrospective account of the context of her 1992 intervention, not evidence of a private exchange, a 1992 direct denunciation or rejection of every Scott argument. James C.Scott’s separate infrapolitics resource is a different person.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "js_reception_higginbotham_scott_race"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_086",
+      "source": "black",
+      "target": "gender",
+      "relationship": "Black women’s histories reshape analysis of race and gender",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "white_arnt_woman",
+        "higginbotham_race"
+      ],
+      "evidence_note": "White contributes a history of enslaved women; Higginbotham’s 1992 opening challenges thin racial analysis while developing feminist accounts of power. Distinct interventions, not a claim that one theorist founded intersectional inquiry.",
+      "classification_basis": "editorial_review",
+      "map_label": "White and Higginbotham: race and gender"
+    },
+    {
+      "id": "edge_408",
+      "source": "gender",
+      "target": "black",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Feminist theories of power are resources for Higginbotham’s racial analysis",
+      "evidence_note": "Her 1992 opening credits conceptual advances and cites Scott, Butler and others while challenging their racial limits. This later exchange does not explain the origins of Black historiography.",
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Feminist resources in Higginbotham"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "black",
+      "label": "Black history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Studies Black women’s religious organizing and develops historical analysis of race, gender and power.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992); Righteous Discontent (1993)",
+          "source_ids": [
+            "higginbotham_race",
+            "higginbotham_righteous"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "women",
+      "label": "Women’s history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Black women’s histories challenge exclusions and develop distinct historical questions.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992); Righteous Discontent (1993)",
+          "source_ids": [
+            "higginbotham_race",
+            "higginbotham_righteous"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "gender",
+      "label": "Gender history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Uses and revises feminist accounts of power through historical racial analysis.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992)",
+          "source_ids": [
+            "higginbotham_race"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "higginbotham_race",
+      "title": "Evelyn Brooks Higginbotham, “African-American Women’s History and the Metalanguage of Race,” Signs 17, no. 2 (Winter 1992): 251–274.",
+      "citation": "Evelyn Brooks Higginbotham, “African-American Women’s History and the Metalanguage of Race,” Signs 17, no. 2 (Winter 1992): 251–274.",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/EBH_The-Metalanguage-of-Race.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Primary opening pp. 251–252 and notes 1–2 read. Higginbotham credits feminist conceptual resources while criticizing inadequate racial analysis; the notes name Scott, Butler and earlier women-of-color scholarship. Remaining examples and later reception have not been checked in full. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped check. Locators: Signs17.2 (1992), p251 acknowledgment; Signs17.2 (1992), p252 and n4; Signs17.2 (1992), p274 and n67. Reading extents: Fresh primary acknowledgment on printed p251; no date of the feedback meeting is inferred. | Fresh primary p252 and n4; not a fresh full reading of Foucault or de Lauretis. | Fresh primary printed pp251–252 and274 read from the institutional PDF; the remaining article was not reread. Prior verification retained. Bibliographic concordance is not whole-book reading.]",
+        "checked_on": "2026-10-25"
+      }
+    },
+    {
+      "id": "higginbotham_righteous",
+      "title": "Evelyn Brooks Higginbotham, Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (Harvard University Press, 1993).",
+      "citation": "Evelyn Brooks Higginbotham, Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (Harvard University Press, 1993).",
+      "url": "https://history.fas.harvard.edu/people/evelyn-brooks-higginbotham",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "note": "Author’s institutional publication list checked for title, date and subject. No primary chapters read; this record does not verify a detailed interpretation of the politics of respectability. Later coauthored Franklin editions are outside the mapped period.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "js_reception_higginbotham_2017",
+      "title": "Evelyn Brooks Higginbotham, “The Metalanguage of Race,” Then and Now (2017).",
+      "citation": "Evelyn Brooks Higginbotham, “The Metalanguage of Race,” Then and Now, Signs 42, no. 3 (Spring 2017): 628–642, especially 632. DOI 10.1086/689893.",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/Evelyn-Brooks-Higginbotham22The-Metalanguge-of-Race22-Then-and-Now.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Fresh selected primary printed631–632 read;632 visually checked. Publisher DOI metadata corroborates 2017,42.3,628–642. The file begins with preceding bibliography and contains the article from628; PDF page5 is printed632. This is a 2017 retrospective about the 1992 article’s context. Other article sections and Scott’s full works were not newly read."
+      }
+    },
+    {
+      "id": "promotion01_higginbotham",
+      "title": "African-American Women’s History and the Metalanguage of Race — consulted witness",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/EBH_The-Metalanguage-of-Race.pdf",
+      "citation": "African-American Women’s History and the Metalanguage of Race (1992); Wooster-hosted primary Signs article scan.",
+      "scope_note": "Printed 251–253 retained. Initial PDF text clipped words; claims use fresh raster OCR of complete pages. Page 252 visually checked.",
+      "claim_source_record_id": "witness:promotions01:higginbotham"
+    },
+    {
+      "id": "white_arnt_woman",
+      "title": "Deborah Gray White, Ar’n’t I a Woman? Female Slaves in the Plantation South (Norton, 1985); Rutgers interview by Patricia Lamiell.",
+      "citation": "Deborah Gray White, Ar’n’t I a Woman? Female Slaves in the Plantation South (Norton, 1985); Rutgers interview by Patricia Lamiell.",
+      "url": "https://www.rutgers.edu/news/deborah-gray-white",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Retrospective interview and introduction checked for the 1985 book and White’s emphasis on enslaved women’s work and reproduction. The site’s apparent default 1969 date contradicts its contents and is not used as an interview date. Full 1985 book and revised edition unread.",
+        "checked_on": "2026-09-11"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

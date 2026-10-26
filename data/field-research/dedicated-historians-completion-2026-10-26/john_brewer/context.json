@@ -1,0 +1,286 @@
+{
+  "person_id": "john_brewer",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "john_brewer",
+    "label": "John Brewer",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "The Sinews of Power (1989) · Consumption and the World of Goods (coeditor Roy Porter) (1993) · The Pleasures of the Imagination (1997)",
+    "description": "Historian of eighteenth-century Britain whose work crosses state finance, cultural production and consumption. In his2026 memoir Brewer explains that The Sinews of Power challenged the idea of a weak British state while investigating resistance and special interests within fiscal expansion. He resists fixed disciplinary labels and treats literature and the arts as connected historical practices rather than autonomous masterpieces.",
+    "representative_figures_and_works": "The Sinews of Power (1989); Consumption and the World of Goods (coeditor Roy Porter) (1993); The Pleasures of the Imagination (1997).",
+    "source_ids": [
+      "hc176_john_brewer_1",
+      "hc176_john_brewer_2",
+      "hc176_john_brewer_3",
+      "hc176_john_brewer_4",
+      "hc176_john_brewer_5",
+      "hc176_john_brewer_6"
+    ],
+    "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "hc176_john_brewer_w1",
+          "label": "The Sinews of Power",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1989,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc176_john_brewer_3"
+          ],
+          "support": "Publication year and authorship verified; metadata supplies dates, not substantive argument."
+        },
+        {
+          "id": "hc176_john_brewer_w2",
+          "label": "Consumption and the World of Goods (coeditor Roy Porter)",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc176_john_brewer_4"
+          ],
+          "support": "Publication year and authorship verified; metadata supplies dates, not substantive argument."
+        },
+        {
+          "id": "hc176_john_brewer_w3",
+          "label": "The Pleasures of the Imagination",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1997,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc176_john_brewer_5"
+          ],
+          "support": "Publication year and authorship verified; metadata supplies dates, not substantive argument."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works do not establish continuous activity or an ending."
+      },
+      "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.176/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1423",
+      "source": "john_brewer",
+      "target": "political",
+      "relationship": "The Sinews of Power makes taxation, administration and the financing of war central to the eighteenth-century British state.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc176_john_brewer_1"
+      ],
+      "evidence_note": "Brewer’s own2026 research retrospective also emphasizes resistance and policy-shaping by interests; strong state does not mean unlimited state.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc176_john_brewer_e1"
+    },
+    {
+      "id": "edge_1424",
+      "source": "john_brewer",
+      "target": "culture",
+      "relationship": "The Pleasures of the Imagination examines cultural making and reception across arts and provincial settings.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc176_john_brewer_6"
+      ],
+      "evidence_note": "Peter Holland’s1998 substantial opening on Bewick, John Marsh and cultural interpretation; mediated reading, not complete-book verification.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc176_john_brewer_e2"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_251",
+      "source": "economic",
+      "target": "consumption",
+      "relationship": "De Vries links household labor and demand; Brewer and Porter collect wider questions about goods and economic life",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "brewer_porter",
+        "de_vries_industrious",
+        "birth_consumer",
+        "weatherill_consumer_primary",
+        "vickery_elegance_primary"
+      ],
+      "evidence_note": "Editorial comparison of the cited approaches, not a claim of transmission or agreement. The comparison remains undirected. The new separate contribution records the particular industrious-revolution argument, not a general direction for every overlap. The comparison now includes primary McKendrick, Weatherill and Vickery passages: acceleration, ownership, household work and material meanings are different outcomes, with unequal evidence coverage.",
+      "map_label": "Household labor, demand and goods"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "consumption",
+      "label": "Consumption & material culture",
+      "records": [
+        {
+          "person_id": "john_brewer",
+          "role": "historian",
+          "context": "Examines commercialization and politics, then co-edits a wider inquiry into goods, households, cultural practices and exchange.",
+          "works": "Co-author, The Birth of a Consumer Society (1982); with Roy Porter, ed., Consumption and the World of Goods (1993)",
+          "source_ids": [
+            "birth_consumer",
+            "brewer_porter"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "birth_consumer",
+      "title": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+      "citation": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+      "url": "https://www.simonandschuster.com/books/The-Birth-of-a-Consumer-Society/Neil-McKendrick/9781912224265",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Prior publisher/reissue scope retained in history. Added primary transcription of McKendrick’s complete introduction1–6 and chapter1 opening9–10, with part11. Original1982 imprint confirmed. Claims an eighteenth-century acceleration while expressly acknowledging earlier commercial development; social-emulation interpretation is attributed. Remaining chapter, specialist essays, contemporary quotations and quantitative claims not independently verified; no image collation. Does not certify the separate1974 essay quoted by Vickery."
+      },
+      "verification_history": [
+        {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Publisher/distributor description of the 2018 reissue consulted for distinct contributions: McKendrick on fashion/pottery, Brewer on politics and commercialization, Plumb on leisure/children. Original 1982 Europa publication checked in Wellcome https://wellcomecollection.org/works/d7k6uwde . Promotional claims of universal novelty are not endorsed. No full-book reading; de Vries supplies a separately checked critical engagement."
+        }
+      ]
+    },
+    {
+      "id": "brewer_porter",
+      "title": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+      "citation": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+      "url": "https://wellcomecollection.org/works/n2ar4p83",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-11",
+        "note": "Wellcome catalogue checked for 1993 original publication, editors and chapter contents spanning household economy, Asian production, food, women’s possessions, books and design. Contents identify questions and contributors, not verification of each chapter’s argument."
+      },
+      "verification_history": [
+        {
+          "status": "not_checked",
+          "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+        }
+      ]
+    },
+    {
+      "id": "de_vries_industrious",
+      "title": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+      "citation": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+      "url": "https://doi.org/10.1017/S0022050700014467",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "University-hosted primary scan downloaded and visually read at pp. 249–252 and 259–264. Supports household labor/resource reallocation, demand, explicit use of historical demography, and qualifications about intrahousehold interests and ideal types. The article criticizes McKendrick’s gendered wording and discusses Sabean’s household critique. No claim that all households followed this trajectory; quantitative estimates and later reception not independently replicated. Addendum 2026-10-18: Pp. 249–251 re-read for revision 1.145 (page images OCRed): the framing against the revision of Lindert and Williamson, Harley and Crafts, and n. 5 citing Berg and Hudson and Cannadine. Addendum 2026-10-18: Revision 1.146 read the publisher abstract and the reference list on Cambridge Core (doi:10.1017/S0022050700014467); the url is the DOI (source_field_sets). The page readings recorded above were made in earlier revisions and were not repeated in 1.146. The new jan_de_vries entry and the revised edge_1085 quote the 1994 article only from its publisher abstract; previously accepted page-based claims remain as accepted."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_1",
+      "title": "John Brewer, Harvard1980–87, memoir chapter7,30 April2026",
+      "url": "https://johnbrewer.substack.com/p/harvard-1980-87",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Own Sinews research-design section on state growth, taxation and pushback inspected; retrospective2026 recollection, not original1989 text."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_2",
+      "title": "John Brewer, Introduction, memoir draft3 September2026",
+      "url": "https://johnbrewer.substack.com/p/introduction",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Own discussion of interdisciplinary practice, Sinews/Pleasures dual reception and historical imagination read; positive2026 author-life evidence."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_3",
+      "title": "Routledge: The Sinews of Power",
+      "url": "https://www.routledge.com/The-Sinews-of-Power-War-Money-and-the-English-State-1688-1783-1st-Edition/Brewer/p/book/9780415754927",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Explicit first published1989."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_4",
+      "title": "Wellcome Collection: Consumption and the World of Goods",
+      "url": "https://wellcomecollection.org/works/n2ar4p83",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Original1993 edited volume; John Brewer and Roy Porter coeditors, individual chapter credits retained."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_5",
+      "title": "Harvard Early Modern World: John Brewer",
+      "url": "https://earlymodernworld.fas.harvard.edu/John-Brewer",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Bibliographic paragraph dates Pleasures of the Imagination1997."
+      }
+    },
+    {
+      "id": "hc176_john_brewer_6",
+      "title": "Peter Holland, Culture Ho!, NYRB9 April1998",
+      "url": "https://www.nybooks.com/articles/1998/04/09/culture-ho/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Named substantive reader’s opening on Bewick, arts, provincial audiences and moral commentary read; not whole review/book."
+      }
+    },
+    {
+      "id": "vickery_elegance_primary",
+      "title": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+      "citation": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+      "url": "https://yalebooks.yale.edu/book/9780300102222/the-gentlemans-daughter/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Read available primary transcription: title/imprint, acknowledgments, opening introduction paragraph; chapter5 from opening through household purchasing division and acquisition channels; final discussion from corroborating Shackleton examples through chapter end; notes1–23 and beginning24,81–86. Intervening chapter section unread. Reflow lacks print page markers; no image collation or original manuscript audit. Explicit resources include Bourdieu, Douglas/Isherwood and Appadurai; Kopytoff not explicitly named in checked passages. Original1998 copyright, paperback1999, later ISBN distinguished. Gender/finance findings concern selected genteel households; no universal female consumer. Platform summary ignored."
+      }
+    },
+    {
+      "id": "weatherill_consumer_primary",
+      "title": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+      "citation": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+      "url": "https://api.pageplace.de/preview/DT0400.9781134745333_A24930986/preview-9781134745333_A24930986.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Read complete second-edition preface xiii–xx and notes xxi–xxiii; introduction1–3 through the available cutoff.1988 original and1996 additions distinguished;2003 digital edition. Frequency-of-ownership method, middling sample, missing debts/real estate and weak textile coverage are explicit. No main chapters, inventory appendices or data replication. Shammas1990 is read through Weatherill’s comparison and criticism, not its original body. Vickery1993 reception is explicitly named in this1996 preface, not backdated to1988. PDF annotation warnings did not prevent text extraction."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

@@ -1,0 +1,224 @@
+{
+  "person_id": "ibn_khaldun",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "ibn_khaldun",
+    "label": "Ibn Khaldun",
+    "date_label": "First Muqaddimah draft (1377) · Composition and revision of the larger Kitab al-Ibar in Tunis (1378–1382) · Final dated material in the surviving autobiography (1405)",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A fourteenth-century historian formed within the intellectual and political worlds of the Islamic West. The Muqaddimah’s methodological introduction tests historical reports against social and political conditions. Its analysis of solidarity and authority offers a comparative question for historical sociology without making him a displaced modern European founder. Simon distinguishes the initial draft, later work on the larger history, and the surviving autobiography. Hannoum’s 2026 reading places colonial remakings alongside earlier Islamic receptions, keeping the transmission of his work a historical problem in its own right.",
+    "representative_figures_and_works": "Muqaddimah (first draft November 1377); Kitab al-Ibar (larger-history composition/revision in Tunis 1378–1382); autobiography/at-Taʿrif (surviving continuation throughMay 1405). Modern reception is dated separately.",
+    "source_ids": [
+      "gn161_ibn_princeton_intro",
+      "gn161_ibn_simon_2002",
+      "gn161_ibn_sep_2025",
+      "gn161_ibn_hannoum_2026"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "scope_note": "Read on 2026-10-24: selected pages of Princeton’s translated author-text excerpt; Simon pp. 64–65 and 99–103; Stanford section 15; Hannoum’s selected sections. The Arabic originals and the larger history/autobiography themselves are unread; their writing chronology is mediated through Simon. Three separate writing milestones are shown, without turning modern translations into original contributions or assigning an invented single publication date. The 1405 point marks the final dated autobiographical material, not a confidently dated completion. Modern field comparisons do not establish direct intellectual descent, and this entry does not stand for all Islamic historiography.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected dated contributions, editions and reception",
+      "selection_note": "Selected works and interventions with their reading limits; neither a complete career nor a continuous activity interval.",
+      "events": [
+        {
+          "id": "ik_muqaddima_1377",
+          "label": "First Muqaddimah draft",
+          "kind": "writing",
+          "track": "contributions",
+          "date": {
+            "year": 1377,
+            "month": 11,
+            "precision": "month"
+          },
+          "source_ids": [
+            "graph:gn161_ibn_simon_2002"
+          ],
+          "support": "Simon, p. 102, dates completion of the first draft November 1377; a writing milestone, not print publication."
+        },
+        {
+          "id": "ik_tunis_history_1378_82",
+          "label": "Composition and revision of the larger Kitab al-Ibar in Tunis",
+          "kind": "writing",
+          "track": "contributions",
+          "date": {
+            "earliest": 1378,
+            "latest": 1382,
+            "precision": "year_range",
+            "qualifier": "Documented Tunis phase of composition/revision of the larger history, including Berber/Zanata and Islamic-dynasty histories; not a single publication date or career interval."
+          },
+          "source_ids": [
+            "graph:gn161_ibn_simon_2002"
+          ],
+          "support": "Simon, pp. 102–103, distinguishes this historical composition from the earlier Muqaddimah draft and dates the return to Tunis 1378 and departure 1382."
+        },
+        {
+          "id": "ik_autobiography_1405",
+          "label": "Final dated material in the surviving autobiography",
+          "kind": "writing",
+          "track": "contributions",
+          "date": {
+            "year": 1405,
+            "month": 5,
+            "precision": "month"
+          },
+          "source_ids": [
+            "graph:gn161_ibn_simon_2002"
+          ],
+          "support": "Simon, pp. 64–65, reports that the recovered continuation reaches May 1405. This dates the final material recorded, not an exact completion or publication day."
+        },
+        {
+          "id": "ik_hannoum_2026",
+          "label": "Hannoum’s reassessment of colonial translation and reception",
+          "kind": "publication",
+          "track": "reception",
+          "date": {
+            "year": 2026,
+            "month": 10,
+            "day": 16,
+            "precision": "day"
+          },
+          "source_ids": [
+            "graph:gn161_ibn_hannoum_2026"
+          ],
+          "support": "Cambridge online publication date; a modern reception event, not an extension of Ibn Khaldun’s activity."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous duration, ending or present activity is inferred from these selected dates."
+      },
+      "interpretation": "Writing, publication, translation and later readers remain separate. Mediated accounts are attributed in support notes.",
+      "prepared_on": "2026-10-24",
+      "editorial_record": "data/production-batches/person-entries-1.161/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1274",
+      "source": "ibn_khaldun",
+      "target": "philhistory",
+      "relationship": "Historical reports tested against social conditions and explanatory knowledge (Muqaddimah, first draft 1377)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "gn161_ibn_princeton_intro",
+        "gn161_ibn_sep_2025"
+      ],
+      "evidence_note": "The author’s methodological introduction, printed pp. 1–4 and 24–31, tests transmitted stories against logistics, political conditions and historical change. This is an earlier contribution to problems of historical explanation, not membership in a modern analytic school.",
+      "classification_basis": "editorial_review",
+      "map_label": "Historical reports tested against social conditions and explanatory knowledge (Muqaddimah, first draft 1377)",
+      "proposal_id": "ibn_khaldun_rel_01"
+    },
+    {
+      "id": "edge_1275",
+      "source": "ibn_khaldun",
+      "target": "historicalsociology",
+      "relationship": "Group solidarity, state power and dynastic change compared with historical-sociological questions",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "gn161_ibn_sep_2025",
+        "gn161_ibn_hannoum_2026"
+      ],
+      "evidence_note": "Section15 of the Stanford entry discusses asabiyya and political authority. This editorial comparison does not establish a direct genealogy to modern sociology. Hannoum’s 2026 account cautions that modern disciplinary portrayals were shaped by colonial translation and stand alongside earlier Islamic receptions.",
+      "classification_basis": "editorial_review",
+      "map_label": "Group solidarity, state power and dynastic change compared with historical-sociological questions",
+      "proposal_id": "ibn_khaldun_rel_02"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "philhistory",
+      "label": "Explanation & objectivity debates",
+      "records": [
+        {
+          "person_id": "ibn_khaldun",
+          "role": "precursor",
+          "context": "Fourteenth-century critical investigation of historical reports and their conditions of possibility, read in a limited modern translation.",
+          "works": "Muqaddimah (first draft 1377); selected methodological introduction",
+          "source_ids": [
+            "gn161_ibn_princeton_intro",
+            "gn161_ibn_simon_2002"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1274"
+        }
+      ]
+    },
+    {
+      "node_id": "historicalsociology",
+      "label": "Comparative historical sociology",
+      "records": [
+        {
+          "person_id": "ibn_khaldun",
+          "role": "comparison",
+          "context": "Comparative teaching context for group solidarity and political change; no direct influence on the modern field or its named practitioners is established.",
+          "works": "Muqaddimah; retrospective comparison through the Stanford entry and Hannoum",
+          "source_ids": [
+            "gn161_ibn_sep_2025",
+            "gn161_ibn_hannoum_2026"
+          ],
+          "basis": "editorial_comparison",
+          "edge_id": "edge_1275"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "gn161_ibn_hannoum_2026",
+      "title": "Abdelmajid Hannoum, Ibn Khaldûn as a Colonial Archive: Toward an Epistemic Decolonization, Comparative Studies in Society and History, online16 October 2026.",
+      "citation": "Abdelmajid Hannoum, Ibn Khaldûn as a Colonial Archive: Toward an Epistemic Decolonization, Comparative Studies in Society and History, online16 October 2026.",
+      "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/ibn-khaldun-as-a-colonial-archive-toward-an-epistemic-decolonization/9F7D49FB47A3ED6726C615A1B6A38919",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-24",
+        "note": "Cambridge article introduction, Before and Beyond the Colonial Archive, and conclusion read. Hannoum distinguishes medieval contexts, Maghrebi/Ottoman receptions and colonial reconstruction. His argument about translation is attributed, not used to erase earlier Islamic intellectual circulation."
+      }
+    },
+    {
+      "id": "gn161_ibn_princeton_intro",
+      "title": "Ibn Khaldun, The Muqaddimah, author’s introduction, translated by Franz Rosenthal and abridged/edited by N.J.Dawood: Princeton University Press excerpt i10477.",
+      "citation": "Ibn Khaldun, The Muqaddimah, author’s introduction, translated by Franz Rosenthal and abridged/edited by N.J.Dawood: Princeton University Press excerpt i10477.",
+      "url": "https://assets.press.princeton.edu/chapters/i10477.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-24",
+        "note": "Scanned publisher excerpt OCRed and read at printed pp. 1–4 and 24–31; original Arabic not read. The excerpt is Ibn Khaldun’s methodological introduction, not the modern translator’s introduction. OCR supports paraphrase only; no new verbatim quotation imported."
+      }
+    },
+    {
+      "id": "gn161_ibn_sep_2025",
+      "title": "Stanford Encyclopedia of Philosophy, Medieval Political Philosophy (2025), section 15, Ibn Khaldun.",
+      "citation": "Stanford Encyclopedia of Philosophy, Medieval Political Philosophy (2025), section 15, Ibn Khaldun.",
+      "url": "https://plato.stanford.edu/entries/medieval-political/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-24",
+        "note": "Section15 read for scholarly context, social organization and political authority. It does not establish direct influence on modern sociologists or a secular rupture from Islamic scholarship."
+      }
+    },
+    {
+      "id": "gn161_ibn_simon_2002",
+      "title": "Róbert Simon, Ibn Khaldun: History as Science and the Patrimonial Empire, translated by Klára Pogátsa (Akadémiai Kiadó, 2002), 64–65, 99–103.",
+      "citation": "Róbert Simon, Ibn Khaldun: History as Science and the Patrimonial Empire, translated by Klára Pogátsa (Akadémiai Kiadó, 2002), 64–65, 99–103.",
+      "url": "https://real-eod.mtak.hu/18911/1/AkademiaiKiado_000905.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-24",
+        "note": "Selected pages read in the Hungarian Academy repository: dated composition/revision in 1377 and 1378–82, autobiography continuation throughMay 1405. Copyright page identifies English 2002 translation of Hungarian 1999 book. Whole monograph unread."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

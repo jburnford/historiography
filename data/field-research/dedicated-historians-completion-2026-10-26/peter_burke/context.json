@@ -1,0 +1,271 @@
+{
+  "person_id": "peter_burke",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "peter_burke",
+    "label": "Peter Burke",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Popular Culture in Early Modern Europe (1978) · The French Historical Revolution: The Annales School, 1929–89 (1990) · What is Cultural History? (2004)",
+    "description": "A cultural historian of early modern Europe who also writes about historical methods and the history of knowledge. His selected historiographical essay resists describing cultural history as a simple sequence in which each approach displaces the last. In a 2022 interview, he explains how Popular Culture combined wide comparison with attention to regional variation and discusses how changing scale alters historical explanation. The interview also insists on multiple historical voices, connecting structures with individual experience rather than choosing one for every inquiry.",
+    "representative_figures_and_works": "Popular Culture in Early Modern Europe (1978; later revisions distinct); The French Historical Revolution (1990); What is Cultural History? (2004).",
+    "source_ids": [
+      "burke_popular_culture",
+      "burke_cultures_primary",
+      "hc171_burke_interview",
+      "hc171_burke_what"
+    ],
+    "scope_note": "Two bounded primary discussions support method claims; the selected books’ complete bodies are unread here. The original 1978 book and revised editions, original 2004 book and later edition, and conversation/issue dates remain distinct. No blanket influence or affiliation inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_burke_popular",
+          "label": "Popular Culture in Early Modern Europe",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:burke_popular_culture"
+          ],
+          "support": "Original 1978 publication; later revised editions unread and not backdated."
+        },
+        {
+          "id": "hc171_burke_french",
+          "label": "The French Historical Revolution: The Annales School, 1929–89",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1990,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_burke_interview"
+          ],
+          "support": "Interview’s bibliographical introduction records 1990; this is metadata, not a reading of the book."
+        },
+        {
+          "id": "hc171_burke_what",
+          "label": "What is Cultural History?",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2004,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_burke_what"
+          ],
+          "support": "BnF original 2004 Polity record checked. The 2008 second edition is separate and unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1320",
+      "source": "peter_burke",
+      "target": "culture",
+      "relationship": "Questions a simple replacement model of cultural approaches while investigating historical meanings and cultural variation.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "burke_cultures_primary"
+      ],
+      "evidence_note": "Reuse of the existing essay reading, PDF pp. 1–13 and selected opening of p. 14. The arrow adopts its limited anti-succession argument, not all of Burke’s survey or a verified genealogy for every predecessor.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc171_peter_burke_1"
+    },
+    {
+      "id": "edge_1321",
+      "source": "peter_burke",
+      "target": "micro",
+      "relationship": "Explains how changes in research scale alter plausible explanations, linking regional cultural variation with wider comparisons.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc171_burke_interview"
+      ],
+      "evidence_note": "Primary interview, question 7, read. Burke discusses the scale question and describes his own popular-culture research; this is a methodological contribution, not membership in one microhistorical school or a claim that he invented scale analysis.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc171_peter_burke_2"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_036",
+      "source": "oldculture",
+      "target": "culture",
+      "relationship": "provides an earlier cultural tradition that later work transforms",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "oldculture",
+        "culture",
+        "burke_cultures_primary"
+      ],
+      "evidence_note": "Burckhardt and Huizinga are earlier resources; later cultural histories change subject matter, social reach, and method. Burke’s selective account explicitly rejects a simple succession of superior methods and describes the continuing German cultural-history tradition alongside alternatives; it is not a complete transmission chain for every later historian.",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_1741",
+      "source": "anthony_pagden",
+      "target": "david_armitage",
+      "relationship": "Armitage credits Pagden with formative questions and continuing support for the doctoral study that developed into The Ideological Origins of the British Empire.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "df03_pagden_armitage2000"
+      ],
+      "evidence_note": "Armitage’s own acknowledgments p. x explicitly group Pagden with Chris Bayly, Peter Burke, Patrick Collinson and Istvan Hont in this Cambridge phase. All retain credit. This supports the named research contribution, not sole supervision, a particular question whose wording is unknown, or an inference from first meeting or institutional membership. Selected acknowledgments and publication leaves were read; Armitage’s full monograph remains unread.",
+      "proposal_id": "df03_pagden_armitage_questions2000"
+    },
+    {
+      "id": "edge_1788",
+      "source": "ca_bayly",
+      "target": "david_armitage",
+      "relationship": "Armitage credits Bayly with formative questions and continuing support for the doctoral research that became The Ideological Origins of the British Empire.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "df03_pagden_armitage2000"
+      ],
+      "evidence_note": "Own acknowledgments x name Bayly with Burke, Collinson, Hont and Pagden; all retain credit. The preceding Princeton group and later examiners are distinct. This records specified research support, not sole supervision or a known particular question. Full monograph unread.",
+      "proposal_id": "df04_bayly_armitage_questions2000"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "culture",
+      "label": "New cultural history",
+      "records": [
+        {
+          "person_id": "peter_burke",
+          "role": "historian",
+          "context": "Investigates preindustrial popular culture; his later historiographical reflection questions a simple succession of cultural approaches.",
+          "works": "Popular Culture in Early Modern Europe (1978); “From Cultural History to Histories of Cultures” (undated electronic essay)",
+          "source_ids": [
+            "burke_popular_culture",
+            "burke_cultures_primary"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1320"
+        }
+      ]
+    },
+    {
+      "node_id": "micro",
+      "label": "Microhistory / everyday life",
+      "records": [
+        {
+          "person_id": "peter_burke",
+          "role": "historian",
+          "context": "Explains how changes in research scale alter plausible explanations, linking regional cultural variation with wider comparisons.",
+          "works": "Popular Culture in Early Modern Europe (1978; later revisions distinct); The French Historical Revolution (1990); What is Cultural History? (2004).",
+          "source_ids": [
+            "hc171_burke_interview"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1321"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "burke_cultures_primary",
+      "title": "Peter Burke, “From Cultural History to Histories of Cultures,” undated electronic conference essay, selected historiographical discussion.",
+      "citation": "Peter Burke, “From Cultural History to Histories of Cultures,” undated electronic conference essay, selected historiographical discussion.",
+      "url": "https://culturahistorica.org/wp-content/uploads/2020/02/burke-cultural-history.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "PDF pp. 1–13 read via web extraction, through selected opening of p. 14; notes and publication provenance not collated. Use here only the introductory anti-succession qualification and pp. 2–3 on Burckhardt, Warburg, Cassirer, Panofsky, interpretation and continuing alternatives. This is Burke’s selective account, not primary evidence for every named transmission. Later broad characterizations of Marxism, Foucault, other regions and anthropology are not adopted. Local curl returned 503; web PDF text was available. Upload path is not a publication date."
+      }
+    },
+    {
+      "id": "burke_popular_culture",
+      "title": "Peter Burke, Popular Culture in Early Modern Europe (1978; later revised editions).",
+      "citation": "Peter Burke, Popular Culture in Early Modern Europe (1978; later revised editions).",
+      "url": "https://www.routledge.com/Popular-Culture-in-Early-Modern-Europe/Burke/p/book/9781032655482",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Indexed publisher description confirms first publication 1978 and preindustrial European popular culture as the subject; Folger catalogue https://catalog.folger.edu/record/87313 corroborates original metadata. Direct publisher open returned 403. Original book body and later revisions unread; no later content backdated."
+      }
+    },
+    {
+      "id": "culture",
+      "title": "Hunt: The New Cultural History (1989)",
+      "url": "https://www.ucpress.edu/books/the-new-cultural-history/paper",
+      "citation": "Lynn Hunt, ed., The New Cultural History (University of California Press, 1989).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete publisher description, metadata and eight-chapter contents read at https://www.ucpress.edu/books/the-new-cultural-history/pdf . March 1989; chapter titles/authors confirmed. Individual chapter bodies unread. Separate source hunt_culture_intro_primary records the full available introduction OCR. Historical author biography on product page is not a current appointment check."
+      }
+    },
+    {
+      "id": "df03_pagden_armitage2000",
+      "title": "Armitage: Pagden’s formative questions and support (2000)",
+      "url": "https://assets.cambridge.org/97805215/90815/frontmatter/9780521590815_frontmatter.pdf",
+      "citation": "David Armitage, The Ideological Origins of the British Empire (Cambridge University Press, 2000), acknowledgments x.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Publisher frontmatter freshly read: complete acknowledgments x–xi and publication/copyright leaves; p. x visually collated. The second paragraph expressly names Pagden among Bayly/Burke/Collinson/Hont as asking essential questions, then credits continuing support. Do not turn these distinct phases and people into one sole supervisor or infer a particular question. Full monograph unread; the later digital issue is not the original publication date. Addendum 2026-10-26: Dedicated Bayly review: publisher frontmatter re-read at acknowledgments x, visually collated. Chris Bayly is explicitly one of five Cambridge interlocutors asking essential questions, with continuing support credited to the wider preceding list. Pagden, Burke, Collinson and Hont retain credit; no sole-supervisor or particular-question claim. Full monograph remains unread."
+      }
+    },
+    {
+      "id": "hc171_burke_interview",
+      "title": "Peter Burke, interview with Camila Neves Guzmán, Wilson Lermanda Delgado, Daniela Wallffiguer Belmar, Carlos Ibarra Rebolledo and Fernando Venegas Espinoza, Revista de historia (Concepción) 29:1 (2022).",
+      "citation": "Peter Burke, interview with Camila Neves Guzmán, Wilson Lermanda Delgado, Daniela Wallffiguer Belmar, Carlos Ibarra Rebolledo and Fernando Venegas Espinoza, Revista de historia (Concepción) 29:1 (2022).",
+      "url": "https://www.scielo.cl/scielo.php?ORIGINALLANG=en&lng=en&nrm=iso&pid=S0717-88322022000100495&script=sci_arttext&tlng=en",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "English written interview consulted at questions 7, 9–11 and 17, plus bibliographical introduction. Conversation 28 January 2022; issue June 2022, DOI 10.29393/rh29-16aamd20016. His scale discussion and call for polyphony support the selected method claims; other broad diagnoses and all cited books are not independently checked. No audio/video used."
+      }
+    },
+    {
+      "id": "hc171_burke_what",
+      "title": "Peter Burke, What is Cultural History? (Cambridge: Polity Press, 2004), BnF record.",
+      "citation": "Peter Burke, What is Cultural History? (Cambridge: Polity Press, 2004), BnF record.",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb39274914j",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "BnF author, title, original 2004 publication and 152-page description checked. Book unread. Author heading also records birth year 1937."
+      }
+    },
+    {
+      "id": "oldculture",
+      "title": "Burckhardt: cultural history in 1860",
+      "url": "https://www.cambridge.org/core/books/civilisation-of-the-period-of-the-renaissance-in-italy/70187F0F1318450A06F9CABD8D32E299"
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

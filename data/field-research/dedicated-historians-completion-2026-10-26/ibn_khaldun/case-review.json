@@ -1,0 +1,124 @@
+{
+  "person_id": "ibn_khaldun",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "context_sha256": "f9ada93f2383a5b1239e8a200159ab5d47e4dea7f906e1be0eef8b0d40a0ef0a",
+  "checked_on": "2026-10-26",
+  "status": "bounded_research_complete_pending_independent_review",
+  "baseline_incident_edges": [
+    {
+      "id": "edge_1274",
+      "source": "ibn_khaldun",
+      "target": "philhistory",
+      "relationship": "Historical reports tested against social conditions and explanatory knowledge (Muqaddimah, first draft 1377)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "gn161_ibn_princeton_intro",
+        "gn161_ibn_sep_2025"
+      ],
+      "evidence_note": "The author’s methodological introduction, printed pp. 1–4 and 24–31, tests transmitted stories against logistics, political conditions and historical change. This is an earlier contribution to problems of historical explanation, not membership in a modern analytic school.",
+      "classification_basis": "editorial_review",
+      "map_label": "Historical reports tested against social conditions and explanatory knowledge (Muqaddimah, first draft 1377)",
+      "proposal_id": "ibn_khaldun_rel_01"
+    },
+    {
+      "id": "edge_1275",
+      "source": "ibn_khaldun",
+      "target": "historicalsociology",
+      "relationship": "Group solidarity, state power and dynastic change compared with historical-sociological questions",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "gn161_ibn_sep_2025",
+        "gn161_ibn_hannoum_2026"
+      ],
+      "evidence_note": "Section15 of the Stanford entry discusses asabiyya and political authority. This editorial comparison does not establish a direct genealogy to modern sociology. Hannoum’s 2026 account cautions that modern disciplinary portrayals were shaped by colonial translation and stand alongside earlier Islamic receptions.",
+      "classification_basis": "editorial_review",
+      "map_label": "Group solidarity, state power and dynastic change compared with historical-sociological questions",
+      "proposal_id": "ibn_khaldun_rel_02"
+    }
+  ],
+  "relevant_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "philhistory",
+      "label": "Explanation & objectivity debates",
+      "records": [
+        {
+          "person_id": "ibn_khaldun",
+          "role": "precursor",
+          "context": "Fourteenth-century critical investigation of historical reports and their conditions of possibility, read in a limited modern translation.",
+          "works": "Muqaddimah (first draft 1377); selected methodological introduction",
+          "source_ids": [
+            "gn161_ibn_princeton_intro",
+            "gn161_ibn_simon_2002"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1274"
+        }
+      ]
+    },
+    {
+      "node_id": "historicalsociology",
+      "label": "Comparative historical sociology",
+      "records": [
+        {
+          "person_id": "ibn_khaldun",
+          "role": "comparison",
+          "context": "Comparative teaching context for group solidarity and political change; no direct influence on the modern field or its named practitioners is established.",
+          "works": "Muqaddimah; retrospective comparison through the Stanford entry and Hannoum",
+          "source_ids": [
+            "gn161_ibn_sep_2025",
+            "gn161_ibn_hannoum_2026"
+          ],
+          "basis": "editorial_comparison",
+          "edge_id": "edge_1275"
+        }
+      ]
+    }
+  ],
+  "existing_claim_assessment": "Both incident claims, two rosters and four source qualifications read. Fresh selected translation, Simon chronology, Stanford15 and Hannoum context rechecked. Contribution1274 remains supported; append-only opening locator correction printed11–14/PDF1–4 explicit. Comparison1275 preserved as comparative, not genealogy.",
+  "append_only_corrections": [
+    {
+      "source_id": "gn161_ibn_princeton_intro",
+      "affected_edge_id": "edge_1274",
+      "old_locator": "printedpp1–4",
+      "actual_locator": "printedpp11–14(one-basedPDF1–4)",
+      "basis": "Publisher PDF first-folio image and selected OCR; original Arabic unread.",
+      "action": "append_source_reading_note_only_preserve_accepted_baseline_bytes"
+    }
+  ],
+  "new_proposal_ids": [
+    "hc200_ibn_gellner_dynastic_resource",
+    "hc200_ibn_gellner_regional_limit",
+    "hc200_ibn_marx_models_comparison",
+    "hc200_ibn_durkheim_comparison",
+    "hc200_ibn_bloch_comparison",
+    "hc200_ibn_braudel_comparison",
+    "hc200_ibn_white_structure_critique",
+    "hc200_ibn_bourdieu_status_wealth_comparison"
+  ],
+  "coverage": {
+    "resources": "Gellner1961 direct model application; named Hume credit retained. Missing Islamic endpoints and exact modern mediation explicit. Alatas’s own Safavid synthesis of Ibn/Marx/Weber separately dispositioned under its absent recipient endpoint.",
+    "criticism": "Gellner regional qualification through Malešević; White concern through Dale; critical translation/reception held with speaker identity limits.",
+    "comparisons": "Gellner–Marx and Gellner/Dale comparisons with Durkheim, Bloch and Braudel are bounded named comparisons, not direct intellectual descent. Hannoum’s specific Bourdieu status/wealth resemblance now separately proposed without direct borrowing.",
+    "limits": "Arabic originals/full modern monographs unread; selected primary and named substantive mediation only; no edge quota or exhaustive-network claim."
+  },
+  "duplicate_check": "Eight unique pair/kind keys with available person endpoints; no baseline personal pair. Baseline historical-sociology comparison not projected into influence. Final queue-wide check belongs to root.",
+  "raw_policy": "All third-party bodies exclusively ignored raw/.",
+  "output_hashes": {
+    "proposals.json": "f700fc8108648816174f7793f4bfac3af816d1760869bfa44e379f8bf431a705",
+    "sources.json": "66cbfa935bf706f4ba08da7f0eee80d5fe974ecbf110f0b2d10ce3b6e5dba9b9",
+    "held-cases.json": "65c0a7c82b6a461100064141269a8e30cb4d119088fd05918dc126d886e91c86",
+    "README.md": "60de12b95c1bde5ede802900f1f02e25451f98b213d23698c633d1c1e6c162c5",
+    "source-retrieval.json": "f3ccb760b801c511bacb92beb73d30a0e30084b75dc313efe65c78695f8f0b4e"
+  },
+  "review_corrections_2026_10_26": [
+    "Added Hannoum’s specific Bourdieu comparison while preserving unverified transmission hold.",
+    "Added separate Alatas2006p789Safavid synthesis disposition, with author ownership and1993original-unread limit.",
+    "Dale444brief Febvre collective comparison explicitly held, distinct from detailed Bloch reading."
+  ]
+}

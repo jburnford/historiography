@@ -1,0 +1,792 @@
+{
+  "person_id": "alice_clark",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "alice_clark",
+    "label": "Alice Clark",
+    "date_label": "Women, household production, and capitalism · 1919",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Studies women’s paid and unpaid production through overlapping household and capitalist arrangements. Differences of class and marital position shape her account of changing work, training and authority; her chronology and assumptions about earlier households remain contested.",
+    "representative_figures_and_works": "Working Life of Women in the Seventeenth Century (1919). Compare with Pinchbeck’s later-period study to examine how historians explain the relationship between economic change and women’s autonomy.",
+    "source_ids": [
+      "alice_clark",
+      "clark_working_primary",
+      "erickson_clark_introduction"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "The 1919 preface credits Schreiner, Knowles and Power’s unpublished research. Introduction and conclusion distinguish production for use, family enterprise and individual wages, while admitting conjectural medieval comparisons and incomplete causal evidence. Maternal and racial assumptions belong to Clark’s historical position. Erickson’s 1992 introduction values unpaid-work analysis while disputing chronology and household equality. Main occupational cases are not newly read; neither timeless equality nor a uniform decline for all women is established.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1919",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_f4fc6252db5e",
+          "label": "Working Life of Women in the Seventeenth Century",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1919,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:clark_working_primary"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_274",
+      "source": "alice_clark",
+      "target": "women",
+      "relationship": "reconstructs ordinary women’s working lives before the later expansion of the field",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "alice_clark",
+        "clark_working_primary"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. The primary introduction/conclusion include unpaid production and overlapping forms. Medieval comparisons and broad causation remain qualified; maternal/racial assumptions are not endorsed.",
+      "map_label": "Paid and unpaid household production"
+    },
+    {
+      "id": "edge_275",
+      "source": "alice_clark",
+      "target": "economic",
+      "relationship": "connects household production and women’s economic position to historical change",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "alice_clark",
+        "clark_working_primary"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. The primary introduction/conclusion include unpaid production and overlapping forms. Medieval comparisons and broad causation remain qualified; maternal/racial assumptions are not endorsed.",
+      "map_label": "Paid and unpaid household production"
+    },
+    {
+      "id": "edge_276",
+      "source": "alice_clark",
+      "target": "ivy_pinchbeck",
+      "relationship": "invites comparison of periodization and explanations of women’s work",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "alice_clark",
+        "pinchbeck",
+        "clark_working_primary",
+        "erickson_clark_introduction"
+      ],
+      "evidence_note": "Different historical periods and questions; the comparison does not assert agreement, direct supervision, or a simple causal lineage. Their primary arguments distinguish periods and production forms; Erickson’s later introduction makes the contrast explicit without establishing direct transmission.",
+      "map_label": "Different periods and judgments of change"
+    },
+    {
+      "id": "edge_515",
+      "source": "eileen_power",
+      "target": "alice_clark",
+      "relationship": "Power shares unpublished earlier-period research with Clark",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "clark_working_primary"
+      ],
+      "evidence_note": "Clark’s preface explicitly identifies this help in addressing the lack of medieval comparison material. It does not certify every comparison or establish coauthorship.",
+      "map_label": "Sharing unpublished medieval material",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_516",
+      "source": "economic",
+      "target": "alice_clark",
+      "relationship": "Lilian Knowles directs Clark’s historical research",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "clark_working_primary"
+      ],
+      "evidence_note": "Clark’s original preface names sustained guidance. The economic-history arrow identifies Knowles specifically and does not imply one uniform institutional doctrine.",
+      "map_label": "Knowles: sustained research direction",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_517",
+      "source": "women",
+      "target": "alice_clark",
+      "relationship": "Schreiner supplies Clark’s question about women’s past economic conditions",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "clark_working_primary",
+        "schreiner_labour_metadata"
+      ],
+      "evidence_note": "The primary preface explicitly credits Woman and Labour and separately names Gerlach’s encouragement. No wholesale theoretical identity or independent reading of Schreiner’s full book is claimed.",
+      "map_label": "Schreiner: a historical research question",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_522",
+      "source": "women",
+      "target": "alice_clark",
+      "relationship": "Erickson questions Clark’s chronology and assumptions about household equality",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "erickson_clark_introduction"
+      ],
+      "evidence_note": "The 1992 introduction combines criticism with appreciation; main case-by-case discussion remains unread.",
+      "map_label": "Erickson: chronology and household hierarchy",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_524",
+      "source": "alice_clark",
+      "target": "gender",
+      "relationship": "Clark’s treatment of unpaid production remains a resource in Erickson’s reassessment",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "clark_working_primary",
+        "erickson_clark_introduction"
+      ],
+      "evidence_note": "Erickson explicitly values this dimension while disputing other claims. The link concerns a named reception, not every later gender historian.",
+      "map_label": "Unpaid production as a historical resource",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_047",
+      "source": "women",
+      "target": "economic",
+      "relationship": "investigates paid and unpaid labour and household economies",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "alice_clark",
+        "pinchbeck",
+        "power"
+      ],
+      "evidence_note": "Clark and Pinchbeck investigate women’s work; Power links institutions and social life. Paid employment is not all economic activity.",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_311",
+      "source": "marx",
+      "target": "gender",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "relationship": "provides approaches to labour, class, culture, and agency developed and reworked by feminist and gender historians",
+      "source_ids": [
+        "scott_gender_1986",
+        "taylor_thompson_gender",
+        "anna_clark_breeches"
+      ],
+      "evidence_note": "A productive inheritance as well as a disagreement. Concerns particular British Marxist and socialist-feminist strands, not a sole origin of gender history. Anna Clark’s 1995 study supplies a further named integration of class formation, family and radical rhetoric."
+    },
+    {
+      "id": "edge_741",
+      "source": "gender",
+      "target": "labourhistory",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Tilly, Scott and Anna Clark: work, family and gender",
+      "evidence_note": "Feminist inquiry productively expands and criticizes labour categories; its relation to Thompson is not simple rejection.",
+      "source_ids": [
+        "scott_tilly_work",
+        "anna_clark_breeches",
+        "scott_gender_1986"
+      ],
+      "map_label": "Tilly, Scott and Anna Clark: work, family and gender",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_913",
+      "source": "harold_a_innis",
+      "target": "environment",
+      "relationship": "Staples history as a disputed Canadian antecedent of environmental history: Cook's continuity claim (1990) and Forkey's rejection (1998)",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "pe131_extras_cook_1990",
+        "pe131_extras_forkey_1998",
+        "cdng_innis_1930",
+        "cdng_innis_1940",
+        "pe131_extras_wynn_2003",
+        "pe131_extras_wynn_2004",
+        "pe131_extras_loo_2014",
+        "pe131_extras_niche_2024"
+      ],
+      "evidence_note": "In-period texts first; they disagree. (1) Continuity: Ramsay Cook's W. L. Morton Lecture (1990; JCS 25:4, 1990–91) claims a long Canadian concern with environment: 'In a broad sense the writing of Canadian history has always been concerned with the environment' (p. 6). Against reading the older historians as nationalists only, he writes that nationalism 'was not a full-time interest for any of them. Certainly not Harold Innis for whom the fur trade, the cod fisheries and other staple products were the real stuff of history' (p. 6). He also marks a break: 'Innis, Lower and Creighton also struggled with the question of the impact of the North American environment on European women and men', but 'for this earlier generation of historians the exploitation of the environment was accepted as natural and necessary, even though excesses might be deplored' (pp. 6–7), and 'More recent environmental historians have a different focus' (p. 7). (2) Rejection: Neil Forkey (CHR 79:1, 1998) rejects the line: 'Although the environment was an ingredient in the work of Harold A. Innis, Donald Creighton, and Arthur R.M. Lower, their studies do not serve as prototypes for Canadian environmental history'; 'In their approach, the environment exists only as a scaffolding on which human history unfolds, and not as an actor in the process' (p. 70). 'The staples model masks the essential role of social relationships and the dynamic between humans and nature', and 'More appropriate antecedents' are found in the historical geographer Andrew H. Clark (p. 71; n. 6 cites The Fur Trade in Canada and The Cod Fisheries). Classification: 'influence' here records a proposed antecedent that Canadian environmental historians disputed, not an established transmission of method; no in-period text read shows environmental historians taking up staples method, and neither position is presented as the Canadian field's. Later readings (2003–2024), labelled as such and not the evidence this edge rests on: Graeme Wynn (2003 review, p. 96) agrees that Forkey is right 'to puncture' claims 'that the staples approach represents an indigenous form of proto-environmental history'; Wynn (2004, p. 33) writes that the staples works 'focused on human uses of the environment', with 'little concern in this work for the reciprocity and mutuality of relations between people and nature'. Tina Loo (2014, p. 622) reclaims the work: 'it could be argued that some of the most influential work on the country's past was a kind of global environmental history, even if its practitioners did not call it that', naming Innis and Lower. Daniel Macfarlane's entry in NiCHE's 'Crash Course in Canadian Environmental History' (2024) holds that Innis's legacy 'still shapes many key debates and approaches in contemporary Canadian environmental history' and that, through works such as Cronon's Nature's Metropolis, the staples and metropolitan-hinterland theses 'are perhaps Canada's biggest contribution to international environmental history'. The edge records a proposed antecedent the field disagreed over; it does not say that Innis wrote environmental history or founded the field. Innis's books are unread here.",
+      "classification_basis": "editorial_review",
+      "map_label": "Staples history: a disputed antecedent, 1990–98",
+      "proposal_id": "pe131_extras_rel_01"
+    },
+    {
+      "id": "edge_950",
+      "source": "j_m_s_careless",
+      "target": "cdn_national_tradition",
+      "relationship": "Metropolitanism: Canadian history read through metropolitan centres that organize frontiers and hinterlands, proposed as a wider framework than the frontier-environmentalist reading (1954)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cdng_careless_1954",
+        "cdng_davis_1985"
+      ],
+      "evidence_note": "His own in-period statement. 'Frontierism, Metropolitanism, and Canadian History', Canadian Historical Review 35:1 (1954), pp. 1–21, read in full in an Internet Archive scan of the issue. He sorts English-Canadian historiography into 'schools', 'merely for convenience' (p. 2): a Britannic school, a School of Political Nationhood, and 'the Environmentalist School, or North Americans All', which 'built particularly on the concept of the frontier in North American history derived from Turner' (p. 5); he names Munro, Underhill, Sage, Lower, Landon, A. S. Morton and A. L. Burt, adding that 'no tight determinism is intended in thus naming these authors, nor, on the whole, did they display any' (p. 6, n. 6). He finds in them 'a certain tendency to fix values', so that western farmers were 'Good' and eastern business men 'Evil' (p. 12), and 'a tendency to overvalue the influence of native North American forces and the material environment, and a tendency to undervalue forces transferred from Europe and the non-material environment' (pp. 13–14); 'while in no way underrating the very great contributions which frontierism and environmentalism have made', it 'does seem necessary to look for a wider framework' (p. 14). The Laurentian school of Innis and Creighton offered 'a metropolitan rather than a frontier viewpoint', and 'The result was virtually to establish “metropolitanism” in Canadian historiography' (p. 16). The metropolis is 'a city of outstanding size' dominating 'other cities and their countrysides, the whole area being organized by the metropolis, through control of communications, trade, and finance, into one economic and social unit' (p. 17), in 'almost a feudal chain of vassalage' (p. 17); 'the rise of metropolitanism is the other side of the coin to frontier expansion' (p. 18). His examples include the Clear Grits organized around Toronto, the Globe and George Brown (p. 19). He limits the claim: 'if we reject a frontier determinism we should hardly replace it with a metropolitan determinism' (p. 19), and concedes that a metropolitan interpretation may 'only restate old problems in somewhat different terms. It may be so: but what is particularly needed is a restatement' (p. 21). A contribution, not a founding: he credits Lower's Colony to Nation and essays, Masters's The Rise of Toronto (1947) and its source in Gras (p. 17, nn. 30–31), and the Laurentian school (p. 16). In-period reception and criticism, from Donald F. Davis, Urban History Review 14:2 (1985), pp. 95–113, read in full: the article 'heralded the arrival of “metropolitanism” as a “vitalizing approach”'; 'few other journal articles have been more widely cited or more frequently quoted' (p. 95); for most historians it became, in Carl Berger's words as Davis quotes them, 'the programmatic statement of the metropolitan approach' (pp. 95–96). Davis quotes W. L. Morton's objection that the metropolitan thesis, 'which he associated with both Creighton and Careless', 'seems necessarily to minimize the importance of the hinterland' (p. 98), and S. D. Clark's at the 1974 CHA meeting that 'it serves no useful purpose to work with such categories or concepts as metropolis and hinterland when what is metropolis can also be considered hinterland' (p. 107); both are quoted-in witnesses, not read here. Davis's own judgment: Careless, combining Gras's ecological model with the Laurentian school's elites, 'has produced a relatively sterile hybrid', 'of only limited usefulness in guiding research' (p. 102); his interpretation 'fits the mould of “consensus” history' (p. 102); 'the Gras-Careless statement of metropolitanism is weak on causality; it is more taxonomic than explanatory' (p. 103). Davis also reports that Careless disclaimed 'such a metropolitan “thesis”' in 1973 while keeping the 'approach' (p. 96, quoting Acadiensis 3, 1973). edge_800 (urbanhistory → cdn_national_tradition) stays: it records the urban historians' critique at group level.",
+      "classification_basis": "editorial_review",
+      "map_label": "Metropolitanism, 1954",
+      "target_strand": "cdn_national_tradition/metropolitanism",
+      "proposal_id": "pe135_careless_rel_01"
+    },
+    {
+      "id": "edge_1113",
+      "source": "e_a_wrigley",
+      "target": "kenneth_pomeranz",
+      "relationship": "Coal in explanations of British industrialisation, as readers compare them: Mokyr places Pomeranz in a tradition “established by … E.A. Wrigley” (2002); Huang says Pomeranz simplified “Wrigley’s sophisticated argument” (2002); Clark and Jacks find that both “have made coal central to the story” (2007)",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "cd_mokyr_riddle_2002",
+        "huang_pomeranz_review",
+        "cd_clark_jacks_2007",
+        "cd_wrigley_ccc_1988",
+        "pomeranz_divergence"
+      ],
+      "evidence_note": "Readers’ comparisons, read. Mokyr (October 2002 draft, p. 2): Pomeranz’s coal argument “joins a venerable tradition established by Carlo Cipolla, E.A. Wrigley and others that looks at the Industrial Revolution as primarily a revolution of fossil fuel usage”. Huang (JAS 2002, pp. 532–533, read in revision 1.144): Wrigley (1988) is “a very different thing from arguing that chance, or coal, alone mattered”; Pomeranz has turned “Wrigley’s sophisticated argument that chance figured in England’s industrialization into a simple argument that coal and colonies alone mattered.” Clark and Jacks (European Review of Economic History 2007, abstract): “both E. A. Wrigley and Kenneth Pomeranz have made coal central to the story”; their coal-rent estimates imply a negligible income contribution from England’s possession of coal reserves. A comparison, not an influence: no passage in which Pomeranz acknowledges Wrigley’s energy argument was read (the read pages of The Great Divergence cite Wrigley only on England’s early divergence from the continent, p. 6 n. 8). Wrigley’s argument stresses chance and the end of the organic economy; Pomeranz pairs coal with colonies.",
+      "classification_basis": "editorial_review",
+      "map_label": "Coal, compared by readers, 2002–07",
+      "proposal_id": "ew_rel_03"
+    },
+    {
+      "id": "edge_1174",
+      "source": "languages_of_class",
+      "target": "gender",
+      "relationship": "Eley and Nield dated gender's entry into ILWCH's field of vision to Scott's 1987 controversy; the debate developed alongside wider feminist revisions of class history — Canning (1992–96), Rose (1992), Clark (1995), Parr and Sangster in Canada — from which, they wrote, 'the study of class has benefited powerfully' (2000)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "loc_eley_nield_farewell_2000",
+        "wcreq_sangster_2000",
+        "loc_rose_limited_1992",
+        "anna_clark_breeches",
+        "loc_canning_languages_1996"
+      ],
+      "evidence_note": "Eley and Nield 2000, read in full: gender entered the journal's field of vision with Scott's 1987 controversy (p. 4); Katznelson–Zolberg 'notably missed gender entirely' (p. 4); Canning's work 'has disengaged class from the sovereignty of \"objective\" economic and social interests' (p. 8); 'the study of class has benefited powerfully from feminist revisions' (p. 8, n. 24 naming Clark, Rose, Baron, Frader and Rose). Sangster 2000 (read in full), pp. 151, 157, on Parr and the Canadian feminists. Rose: UC Press description only; Clark: existing record. The gender entry's own strands keep each author's work; this arrow records the debate's bearing on the field.",
+      "classification_basis": "editorial_review",
+      "map_label": "Gender and the making of class, 1987–2000",
+      "target_strand": "gender/gender",
+      "proposal_id": "locC_rel_18"
+    },
+    {
+      "id": "edge_1198",
+      "source": "james_vernon",
+      "target": "political",
+      "relationship": "Politics and the People (1993): between 1832 and 1867 'the official political subject was redefined in the image of print' and the public sphere narrowed, so that 'the invention of democracy in England was then a sham' (as quoted by Tilly, 1994); Re-reading the Constitution (1996) gathered the 'new cultural history of British politics' (his phrase, 2004)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "loc_vernon_politics_1993",
+        "loc_tilly_softcore_1994",
+        "loc_vernon_rereading_1996",
+        "loc_vernon_epstein_review_2004",
+        "loc_eley_nield_farewell_2000"
+      ],
+      "evidence_note": "Pp. 107 and 336 as quoted by Tilly (1994, read in full; the book unread): 'despite all the legislation which historians have traditionally seen as heralding a brave new world of mass democratic politics … this period witnessed a marked decline in people's ability to shape the political appeals available to them as the official political subject was redefined in the image of print'; 'The invention of democracy in England was then a sham'. Re-reading the Constitution: contents read (Epstein, Fulcher, Wahrman, Burney, Antony Taylor, Joyce, Clark). The phrase 'the new cultural history of British politics' from his 2004 review of Epstein (opening read). Eley and Nield (2000, p. 8, read) on his 'neglected traces'.",
+      "classification_basis": "editorial_review",
+      "map_label": "The closure of the public sphere, 1993–96",
+      "target_strand": "political/new_political_history",
+      "proposal_id": "locB_rel_12"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "economic",
+      "label": "Economic history",
+      "records": [
+        {
+          "person_id": "alice_clark",
+          "role": "historian",
+          "context": "Counts paid and unpaid production while distinguishing household forms, class and marital position. Her account of capitalist change retains maternalist assumptions and contested medieval comparisons.",
+          "works": "Working Life of Women in the Seventeenth Century (1919), preface, introduction and conclusion",
+          "source_ids": [
+            "alice_clark",
+            "clark_working_primary"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_275"
+        }
+      ]
+    },
+    {
+      "node_id": "women",
+      "label": "Women’s history",
+      "records": [
+        {
+          "person_id": "alice_clark",
+          "role": "historian",
+          "context": "Counts paid and unpaid production while distinguishing household forms, class and marital position. Her account of capitalist change retains maternalist assumptions and contested medieval comparisons.",
+          "works": "Working Life of Women in the Seventeenth Century (1919), preface, introduction and conclusion",
+          "source_ids": [
+            "alice_clark",
+            "clark_working_primary"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_274"
+        }
+      ]
+    },
+    {
+      "node_id": "gender",
+      "label": "Gender history",
+      "records": [
+        {
+          "person_id": "alice_clark",
+          "role": "contributor",
+          "context": "Her inclusion of unpaid production is explicitly valued by Erickson alongside criticism.",
+          "works": "Working Life of Women (1919); reception in Erickson’s introduction (1992)",
+          "source_ids": [
+            "clark_working_primary",
+            "erickson_clark_introduction"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "labourhistory",
+      "label": "Labour history",
+      "records": [
+        {
+          "person_id": "alice_clark",
+          "role": "historian",
+          "context": "Investigates women’s work before the later expansion of feminist labour history.",
+          "works": "Working Life of Women in the Seventeenth Century (1919)",
+          "source_ids": [
+            "clark_working_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "alice_clark",
+      "title": "Alice Clark: Working Life of Women in the Seventeenth Century",
+      "citation": "Alice Clark, Working Life of Women in the Seventeenth Century (George Routledge & Sons, 1919); later Routledge reissues.",
+      "url": "https://books.google.com/books?id=JVT-AQAAQBAJ",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Routledge’s description in the Google Books record identifies the 1919 original, documentary range, economic questions, and contested conclusions. Another Routledge product page labels its reissue 1968: do not use that as the work’s origin.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "anna_clark_breeches",
+      "title": "Anna Clark, The Struggle for the Breeches: Gender and the Making of the British Working Class (1995).",
+      "citation": "Anna Clark, The Struggle for the Breeches: Gender and the Making of the British Working Class (1995).",
+      "url": "https://www.ucpress.edu/books/the-struggle-for-the-breeches/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Publisher description and contents checked for gender, class, work, family and radical rhetoric in Lancashire, Glasgow and London. Displayed paperback is 1997; original 1995 confirmed by author’s Minnesota publication record. Full chapters and cited evidence unread; publisher endorsements are not independent reception checks.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "cd_clark_jacks_2007",
+      "title": "Gregory Clark and David Jacks, “Coal and the Industrial Revolution, 1700–1869,” European Review of Economic History 11, no. 1 (2007): 39–72.",
+      "citation": "Gregory Clark and David Jacks, “Coal and the Industrial Revolution, 1700–1869,” European Review of Economic History 11, no. 1 (2007): 39–72.",
+      "url": "https://doi.org/10.1017/S1361491606001870",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Abstract only: “both E. A. Wrigley and Kenneth Pomeranz have made coal central to the story”; English coal reserves made “a negligible contribution” to incomes."
+      }
+    },
+    {
+      "id": "cd_mokyr_riddle_2002",
+      "title": "Joel Mokyr, “The Enduring Riddle of the European Miracle: The Enlightenment and the Industrial Revolution,” draft paper for the conference “Convergence and Divergence in Historical Perspective”, Riverside, CA, 8–10 November 2002 (version of October 2002).",
+      "citation": "Joel Mokyr, “The Enduring Riddle of the European Miracle: The Enlightenment and the Industrial Revolution,” draft paper for the conference “Convergence and Divergence in Historical Perspective”, Riverside, CA, 8–10 November 2002 (version of October 2002).",
+      "url": "https://faculty.wcas.northwestern.edu/jmokyr/Riverside.PDF",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Author-hosted draft read in part for revision 1.145 (data/extension-2026/capitalism-debate-2026-10-18/evidence-industrialisation.md §1g): pp. 1–4 and 10 (draft pagination). Defines the Industrial Enlightenment (p. 10); names “the so-called California school” (p. 1 n. 1); criticises Pomeranz on coal, ghost acreage and the Needham questions (pp. 2–4). Adapted, he says, from The Gifts of Athena (2002), which is unread. Addendum 2026-10-18: Revision 1.146 re-checked the quotations used on edge_1086 and the new joel_mokyr → kenneth_pomeranz critique against the same author-posted draft: pp. 2–4 and 10 (draft pagination; the Needham sentence runs across pp. 3–4). The title page calls it a “Draft (actually, little more than notes)” for the conference of 8–10 November 2002."
+      }
+    },
+    {
+      "id": "cd_wrigley_ccc_1988",
+      "title": "E. A. Wrigley, Continuity, Chance and Change: The Character of the Industrial Revolution in England (Cambridge: Cambridge University Press, 1988).",
+      "citation": "E. A. Wrigley, Continuity, Chance and Change: The Character of the Industrial Revolution in England (Cambridge: Cambridge University Press, 1988).",
+      "url": "https://assets.cambridge.org/97805213/96578/excerpt/9780521396578_excerpt.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Publisher excerpt read for revision 1.145 (data/extension-2026/capitalism-debate-2026-10-18/evidence-industrialisation.md §1d): introduction pp. 1–6 and chapter 1 pp. 7–8 (page images OCRed). The Ellen McArthur lectures of 1987; the organic and mineral-based economies are defined on pp. 4–6. The rest of the book unread."
+      }
+    },
+    {
+      "id": "cdng_careless_1954",
+      "title": "J. M. S. Careless, \"Frontierism, Metropolitanism, and Canadian History,\" Canadian Historical Review 35, no. 1 (1954): 1–21.",
+      "url": "https://doi.org/10.3138/chr-035-01-01",
+      "citation": "J. M. S. Careless, \"Frontierism, Metropolitanism, and Canadian History,\" Canadian Historical Review 35, no. 1 (1954): 1–21.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Article unread; no abstract available. The metropolitan argument is described here only at title level and through Davis 1985's account of metropolitan theses. Checked against: Crossref DOI record (CHR 35:1, March 1954, pp. 1–21); reprints in One West, Two Myths II (University of Calgary Press, 2007) via Crossref; OpenAlex description of Careless at Work (selected essays) names frontierism and metropolitanism as a main preoccupation. Addendum 2026-10-14: Read in full (pp. 1–21) for the 1.135 person entry in the Internet Archive scan of the issue (sim_canadian-historical-review_1954-03_35_1; OCR checked against the page image for p. 16). The earlier description through Davis is superseded. Quoted: 'frontierism' named 'for want of a more precise term' and the frontier thesis 'proper' never adopted 'as fully or dogmatically in Canada' (p. 1); schools 'merely for convenience' (p. 2); 'the Environmentalist School, or North Americans All' (p. 5); its members and 'no tight determinism is intended' (p. 6, n. 6); Turner's 'open frontier, the hither edge of free land' (p. 6); 'environmental determinism at its most forthright' and the defenders of Turner (p. 7); 'a certain tendency to fix values' (p. 12); overvaluing native and material forces (pp. 13–14); 'a wider framework' (p. 14); the Laurentian 'metropolitan rather than a frontier viewpoint' and 'virtually to establish “metropolitanism”' (p. 16); the metropolis defined and the 'feudal chain of vassalage', Masters and Gras (p. 17, nn. 30–31); 'the other side of the coin to frontier expansion', 'thus is Turner answered', the frontier 'a dependent' (p. 18); 'a metropolitan determinism' and the Clear Grits, Toronto and the Globe (p. 19); frontierism 'borrowed from the United States' (p. 20); 'restates old problems', 'has had its use and its day' (p. 21). Davis (1985) cites the 1967 reprint in Approaches to Canadian History, pp. 78–79."
+      },
+      "scope_note": "Careless's metropolitan interpretation (title level)."
+    },
+    {
+      "id": "cdng_davis_1985",
+      "title": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+      "url": "https://doi.org/10.7202/1017987ar",
+      "citation": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Abstract read: there is no single metropolitan thesis but several approaches; urban historians would do better to abandon the metropolitan approach for its indeterminacy about relations between classes. Checked against: Crossref DOI record with French abstract (Érudit). Addendum 2026-10-14: Read in full (pp. 95–113, text and notes) for the 1.135 person entry, in the Érudit PDF. Quoted: 'Conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner'; 'few other journal articles have been more widely cited or more frequently quoted' (p. 95); Berger's 'the programmatic statement of the metropolitan approach' (pp. 95–96; n. 1 cites Berger in Canada Since 1867, 1977, pp. 87–88); metropolitanism and 'the birth of a new sub-discipline, urban history'; Artibise and Linteau (1984): 'the self-conscious beginning of urban history'; Careless 'the godfather of their subdiscipline'; Stelter (1977): 'the most significant approach to Canadian urban history'; Careless (1973): 'I would disclaim and deny such a metropolitan “thesis”' (p. 96); five approaches, Careless's the 'ecological'; Lower 'some eight years before' (p. 97); W. L. Morton's objection, quoted from 'Canada's History and Historians' (p. 98, n. 19); Careless's own account of his debt to Gras, from a letter of 11 July 1983 (p. 101, nn. 47, 51); 'a relatively sterile hybrid', 'of only limited usefulness', 'fits the mould of “consensus” history' (p. 102); 'fallen into desuetude', Artibise's 'not really a theory', 'weak on causality; it is more taxonomic than explanatory' (p. 103); S. D. Clark at the 1974 CHA meeting (p. 107); Careless on Turner on television (p. 109). The 'near-doctrinal status' remark (p. 96) is from a private letter (n. 2) and is not used. [creighton draft: Read in full for the 1.135 Creighton entry (Érudit PDF via the Internet Archive capture of 26 September 2024; UHR 14:2, October 1985, pp. 95–113). Careless's 1954 article 'conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner' (p. 95); Harrison (1981, p. 25) quoted: Creighton 'probably the first to advance a metropolitanist interpretation, although the closely related \"staples\" thesis had been put forward by Innis much earlier'; Morton's 'Clio in Canada' (1980 reprint, p. 107) quoted: Creighton emphasized 'the preponderant role commercial monopoly and centralized business have played'; Morton ('Canada's History and Historians', reprint pp. 34–35) quoted: the metropolitan thesis, which he associated with Creighton and Careless, 'seems necessarily to minimize the importance of the hinterland' (pp. 97–98); Careless said he drew 'neither from Creighton or Innis' but from medieval social history and N. S. B. Gras, and melded Gras with 'the Laurentian School, then regnant' (p. 101). Morton's texts themselves are unread.]"
+      },
+      "scope_note": "Urban history's critique of metropolitanism."
+    },
+    {
+      "id": "cdng_innis_1930",
+      "title": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930; rev. ed. Toronto: University of Toronto Press, 1956).",
+      "url": "https://openlibrary.org/works/OL762827W",
+      "citation": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930; rev. ed. Toronto: University of Toronto Press, 1956).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Book unread. Its place in the staple approach is attested through Watkins 1963 and Salmon 1997, not a reading of Innis. Checked against: Open Library work record (first 1930; Yale, Oxford/Milford, University of Toronto Press); reviews in AHR 36:1 (1930) doi:10.1086/ahr/36.1.177 and CJEPS 24:4 (1958, revised edition, UTP 1956) doi:10.2307/139095 via Crossref/OpenAlex. Same work also checked as nnreq_innis_1930 (bibliographic_metadata_checked, 2026-10-12; native_newcomer, native_newcomer): Author, title, subtitle and 1930 first publication checked. Book unread; Ray’s credit on a later reissue is noted from the catalogue, not read. Checked against: Open Library work record (first published 1930; later UTP editions 1956-1999, one with Arthur J. Ray credited)."
+      },
+      "scope_note": "Innis's fur-trade study as a founding text of the staple approach (via Watkins 1963; Salmon 1997)."
+    },
+    {
+      "id": "cdng_innis_1940",
+      "title": "Harold A. Innis, The Cod Fisheries: The History of an International Economy (New Haven: Yale University Press; Toronto: Ryerson Press, for the Carnegie Endowment for International Peace, 1940).",
+      "url": "https://openlibrary.org/works/OL762822W",
+      "citation": "Harold A. Innis, The Cod Fisheries: The History of an International Economy (New Haven: Yale University Press; Toronto: Ryerson Press, for the Carnegie Endowment for International Peace, 1940).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Book unread. Watkins 1963 names the cod fisheries and fur trade studies as Innis's pioneering work. Checked against: Open Library work record (first 1940; Yale University Press; Ryerson Press for the Carnegie Endowment)."
+      },
+      "scope_note": "Second of Innis's staple studies named by Watkins."
+    },
+    {
+      "id": "clark_working_primary",
+      "title": "Alice Clark, Working Life of Women in the Seventeenth Century (1919), preface, introduction and conclusion.",
+      "citation": "Alice Clark, Working Life of Women in the Seventeenth Century (1919), preface, introduction and conclusion.",
+      "url": "https://www.gutenberg.org/cache/epub/67936/pg67936-images.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete preface, introduction pp. 1–13 and conclusion pp. 290–308 read. Credits Schreiner, Knowles and Power’s unpublished material; distinguishes overlapping production forms, class and marital position, and paid/unpaid work. Acknowledges conjectural medieval comparisons and tentative causal conclusions. Maternal, racial and civilizational assumptions are historical commitments, not adopted facts. Main occupational chapters unread; quoted Pepys material in conclusion is mediated by Clark."
+      }
+    },
+    {
+      "id": "erickson_clark_introduction",
+      "title": "Amy Louise Erickson, introduction to Alice Clark, Working Life of Women in the Seventeenth Century, third edition (1992), pp. vii–xlii; later Routledge reprint.",
+      "citation": "Amy Louise Erickson, introduction to Alice Clark, Working Life of Women in the Seventeenth Century, third edition (1992), pp. vii–xlii; later Routledge reprint.",
+      "url": "https://api.pageplace.de/preview/DT0400.9781136618321_A23854796/preview-9781136618321_A23854796.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Copyright and introduction pp. vii–xxii read, not the whole introduction or its bibliography. Evaluates chronology, household hierarchy and unpaid work; contrasts Pinchbeck and discusses Power’s editorial context. Original letters and cited later studies unread. 1992 introduction is distinct from 1919 text and 2006 reprint. Broad claims about continuity and earlier scholars remain attributed."
+      }
+    },
+    {
+      "id": "huang_pomeranz_review",
+      "title": "Philip C. C. Huang, “Development or Involution in Eighteenth-Century Britain and China?” Journal of Asian Studies61.2 (May2002),501–538.",
+      "citation": "Philip C. C. Huang, “Development or Involution in Eighteenth-Century Britain and China?” Journal of Asian Studies61.2 (May2002),501–538.",
+      "url": "https://en.lishiyushehui.cn/article/download/7",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Read OCR of printed501–506 and533–535, including conclusion and weights/measures appendix. Map images504–505 not visually inspected; remaining empirical sections and bibliography536–538 unread. Criticism of labor productivity, household production and coal demand is attributed, not a numerical verdict. First-page JSTOR wrapper incorrectly says Greater; article title says Great. Huang’s1990 book is identified in this exchange and Stanford publisher metadata, but its body is unread.2002 is retrospective criticism of mapped work, not a scope extension. Addendum 2026-10-18: Revision 1.144: the whole article was OCRed (tesseract) from the same JSTOR scan; pp. 501–503, 511–512, 515 and 530–535 read closely, the rest searched. p. 501 thanks \"Chris Isett … Robert Brenner\"; p. 502: \"It is not built on original research, but rather relies on past secondary scholarship\"; p. 503: \"what I termed in my work development (involving increased labor productivity), to distinguish it from involution (involving diminishing marginal returns per unit of labor) and intensification (added labor input per unit of land) in the Yangzi delta (1990, 11)\"; p. 512: \"growth (in output) without development (in labor productivity) … the familization of production\"; p. 515 cites Geertz 1963 (pp. 130–43) only for Japan; pp. 530–531 tie his Qing law studies (\"a survival ethic\") to the argument; p. 533: Pomeranz's coal argument \"places the cart before the horse\", and \"Pomeranz, I wish to emphasize, has made a useful contribution\"; p. 534: England and the delta \"were in fact virtually at opposite poles in a continuum from development to involution\". Huang's rejoinder and Pomeranz's second response are in JAS 62:1 (2003), not this issue. The second research pass (evidence-pomeranz.pass2.md §2) OCRed the same scan (all 38 article pages, 200 dpi) and read pp. 501–503, 514–515, 520–521 and 532–534 in full, p. 508 (n. 7) and the reference list pp. 536–538; pp. 520–521: Pomeranz \"tries to take the revolution out of de Vries' industrious revolution\", and Huang (p. 521) \"ignores … the evidence de Vries and others have generated to document the big changes in consumption patterns\", as that pass reads it. Both passes OCRed the whole article; each read only the pages listed closely."
+      }
+    },
+    {
+      "id": "loc_canning_languages_1996",
+      "title": "Kathleen Canning, Languages of Labor and Gender: Female Factory Work in Germany, 1850–1914 (Ithaca: Cornell University Press, 1996; Ann Arbor: University of Michigan Press, 2002).",
+      "citation": "Kathleen Canning, Languages of Labor and Gender: Female Factory Work in Germany, 1850–1914 (Ithaca: Cornell University Press, 1996; Ann Arbor: University of Michigan Press, 2002).",
+      "url": "https://doi.org/10.3998/mpub.8984",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Contents read on the Fulcrum record (https://www.fulcrum.org/concern/monographs/kh04dp923); body unread (library-provided access, no text shown)."
+      }
+    },
+    {
+      "id": "loc_eley_nield_farewell_2000",
+      "title": "Geoff Eley and Keith Nield, “Farewell to the Working Class?,” International Labor and Working-Class History 57 (Spring 2000): 1–30.",
+      "citation": "Geoff Eley and Keith Nield, “Farewell to the Working Class?,” International Labor and Working-Class History 57 (Spring 2000): 1–30.",
+      "url": "https://doi.org/10.1017/S0147547900002660",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read in full (Cambridge PDF with text layer; pages from running heads) for revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/evidence-spread.md §6.4). The abstract had been read separately by agent B. Addendum 2026-10-25: Addendum 2026-10-25 (dedicated Stedman Jones review): selected primary pp. 6–8 and notes 17–21 (pp. 26–27) freshly read from the Cambridge publisher PDF already held locally. Both Eley and Keith Nield equally author the qualified criticism of narrowed Chartist exegesis. Original publication 2000; prior full-reading record unchanged. No newly read Languages of Class or 1997 Jones chapter claimed."
+      }
+    },
+    {
+      "id": "loc_rose_limited_1992",
+      "title": "Sonya O. Rose, Limited Livelihoods: Gender and Class in Nineteenth-Century England (Berkeley: University of California Press, 1992; paperback 1993).",
+      "citation": "Sonya O. Rose, Limited Livelihoods: Gender and Class in Nineteenth-Century England (Berkeley: University of California Press, 1992; paperback 1993).",
+      "url": "https://www.ucpress.edu/books/limited-livelihoods/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "UC Press description and chapter titles read; body unread."
+      }
+    },
+    {
+      "id": "loc_tilly_softcore_1994",
+      "title": "Charles Tilly, “Softcore Solipsism,” Labour/Le Travail 34 (Fall 1994): 259–268.",
+      "citation": "Charles Tilly, “Softcore Solipsism,” Labour/Le Travail 34 (Fall 1994): 259–268.",
+      "url": "https://lltjournal.ca/index.php/llt/article/view/4945",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Read in full in the journal's own PDF (text layer; printed pages from running heads) for revision 1.152 (data/extension-2026/languages-of-class-2026-10-22/evidence-joyce-vernon-lawrence.md §A16). Reviews Joyce, Visions of the People, and Vernon, Politics and the People, together."
+      }
+    },
+    {
+      "id": "loc_vernon_epstein_review_2004",
+      "title": "James Vernon, review of James Epstein, In Practice, Victorian Studies 46, no. 4 (2004).",
+      "citation": "James Vernon, review of James Epstein, In Practice, Victorian Studies 46, no. 4 (2004).",
+      "url": "https://doi.org/10.1353/vic.2005.0024",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-22",
+        "note": "Opening paragraph read (Project Muse)."
+      }
+    },
+    {
+      "id": "loc_vernon_politics_1993",
+      "title": "James Vernon, Politics and the People: A Study in English Political Culture, c.1815–1867 (Cambridge: Cambridge University Press, 1993); reviewed by Ian Dyck, Albion 27, no. 1 (1995): 148–150.",
+      "citation": "James Vernon, Politics and the People: A Study in English Political Culture, c.1815–1867 (Cambridge: Cambridge University Press, 1993); reviewed by Ian Dyck, Albion 27, no. 1 (1995): 148–150.",
+      "url": "https://doi.org/10.2307/4052715",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Body unread; the Cambridge landing page was not reached; passages (pp. 49, 103, 107, 297, 335, 336, 338) known as quoted by Tilly (1994). The URL is the DOI of Dyck's Albion review (metadata only)."
+      }
+    },
+    {
+      "id": "loc_vernon_rereading_1996",
+      "title": "James Vernon, ed., Re-reading the Constitution: New Narratives in the Political History of England's Long Nineteenth Century (Cambridge: Cambridge University Press, 1996).",
+      "citation": "James Vernon, ed., Re-reading the Constitution: New Narratives in the Political History of England's Long Nineteenth Century (Cambridge: Cambridge University Press, 1996).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-22",
+        "note": "Contents read in the OpenAlex record (Vernon, Epstein, Fulcher, Wahrman, Burney, Antony Taylor, Joyce, Clark); the Cambridge landing page was not reached (ISBN 9780521464741). Text unread."
+      }
+    },
+    {
+      "id": "pe131_extras_cook_1990",
+      "title": "Ramsay Cook, “Cabbages Not Kings: Towards an Ecological Interpretation of Early Canadian History,” Journal of Canadian Studies 25, no. 4 (Winter 1990–91): 5–16.",
+      "url": "https://muse.jhu.edu/article/684469",
+      "citation": "Ramsay Cook, “Cabbages Not Kings: Towards an Ecological Interpretation of Early Canadian History,” Journal of Canadian Studies 25:4 (1990–91): 5–16 (W. L. Morton Lecture, Trent University, October 1990). doi:10.3138/jcs.25.4.5.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Project MUSE PDF (University of Saskatchewan access) re-downloaded and read for this draft: pp. 5–7 closely, with notes 1–4; page breaks from the printed folios. Quoted: 'In a broad sense the writing of Canadian history has always been concerned with the environment' (p. 6); nationalism 'was not a full-time interest for any of them. Certainly not Harold Innis for whom the fur trade, the cod fisheries and other staple products were the real stuff of history' (p. 6); 'Innis, Lower and Creighton also struggled with the question of the impact of the North American environment on European women and men' (p. 6); 'for this earlier generation of historians the exploitation of the environment was accepted as natural and necessary, even though excesses might be deplored' (pp. 6–7); 'More recent environmental historians have a different focus' (p. 7). Note 4 cites Richard White, PHR 1985. Crossref 10.3138/jcs.25.4.5. [Also checked under pe131_crosby_cook_1990: Project MUSE PDF (University of Saskatchewan access, downloaded 2026-10-13 for the canon evidence file) re-read at p. 13 and note 35. Crossref 10.3138/jcs.25.4.5: JCS 25(4), issued January 1991, 5–16. 'Contact between Europe and North America, then, must be understood in the widest possible terms'; 'As Alfred W. Crosbie [sic], Jr., demonstrated so brilliantly nearly two decades ago, in his Columbian Exchange The Biological and Cultural Consequences of 1492, contact was even more significantly the interaction of different ecologies or environments. Biological exchange in the form of pathogens that caused epidemic disease in populations where no immunity existed was perhaps the most spectacularly devastating consequence of contact. But the exchange of plants and animals was no less significant' (p. 13). Note 35 cites The Columbian Exchange (Greenwood, 1972) and Larocque (1982) on European diseases among Indigenous peoples in Quebec.] [Also checked under pe131_richard_white_cook_1990: Project MUSE PDF (downloaded 2026-10-13 for canon-evidence-canada.md; re-read at p. 6 and the notes). p. 6: earlier Canadian historians wrote about the environment, as in the United States 'where, as Morton knew, F.J. Turner and Walter Prescott Webb remained important, if declining, influences into the 1950s', note 4: 'Richard White, \"American Environmental History,\" Pacific Historical Review 54, 3 (1985), 297-35[sic]'. Note 22 also cites White, 'Native Americans and the Environment', in W. R. Swagerty, ed., Scholars and the Indian Experience (1989), 179–201.]"
+      },
+      "scope_note": "In-period Canadian programmatic lecture; claims earlier Canadian historians for environmental concern while marking a break."
+    },
+    {
+      "id": "pe131_extras_forkey_1998",
+      "title": "Neil S. Forkey, “Damning the Dam: Ecology and Community in Ops Township, Upper Canada,” Canadian Historical Review 79, no. 1 (March 1998): 68–99.",
+      "url": "https://muse.jhu.edu/article/590229",
+      "citation": "Neil S. Forkey, “Damning the Dam: Ecology and Community in Ops Township, Upper Canada,” Canadian Historical Review 79:1 (1998): 68–99.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Project MUSE PDF (University of Saskatchewan access) re-downloaded and read for this draft: historiographical framing pp. 69–71 with notes 4–6. Quoted: 'Although the environment was an ingredient in the work of Harold A. Innis, Donald Creighton, and Arthur R.M. Lower, their studies do not serve as prototypes for Canadian environmental history' and 'the environment exists only as a scaffolding on which human history unfolds, and not as an actor in the process' (p. 70); 'the staples model masks the essential role of social relationships and the dynamic between humans and nature' and 'More appropriate antecedents ... may be found in the work of historical geographer Andrew H. Clark' (p. 71). Note 5 cites Cronon, 'Modes of Prophecy and Production' (JAH 1990) and White (PHR 1985); n. 6 cites Innis's Fur Trade (1930) and Cod Fisheries (1940), Creighton, Lower, and Clark."
+      },
+      "scope_note": "In-period CHR article: the clearest pre-2000 rejection of staples history as a prototype."
+    },
+    {
+      "id": "pe131_extras_loo_2014",
+      "title": "Tina Loo, “Missed Connections: Why Canadian Environmental History Could Use More of the World, and Vice Versa,” Canadian Historical Review 95, no. 4 (December 2014): 621–627.",
+      "url": "https://muse.jhu.edu/article/563436",
+      "citation": "Tina Loo, “Missed Connections: Why Canadian Environmental History Could Use More of the World, and Vice Versa,” Canadian Historical Review 95:4 (2014): 621–27. doi:10.3138/chr.95.4.hp09.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Project MUSE PDF (University of Saskatchewan access) re-downloaded and read for pp. 621–624 with notes 1–7. Quoted, p. 622: 'it could be argued that some of the most influential work on the country's past was a kind of global environmental history, even if its practitioners did not call it that. Beginning in the 1930s, Harold Innis and Arthur Lower analyzed how factors as diverse as fashion, the geopolitics of empire, and war shaped an international demand for the fish, fur, and timber of the colonies that would become Canada' (n. 5 cites The Fur Trade in Canada and The Cod Fisheries). p. 623: these scholars 'paid less attention to the changes that extraction wrought on the European metropolitan centres'."
+      },
+      "scope_note": "Later reading (2014): reclaims staples history as a kind of global environmental history."
+    },
+    {
+      "id": "pe131_extras_niche_2024",
+      "title": "“A Crash Course in Canadian Environmental History,” NiCHE: Network in Canadian History & Environment, 18 January 2024 (Innis entry by Daniel Macfarlane).",
+      "url": "https://niche-canada.org/2024/01/18/a-crash-course-in-canadian-environmental-history/",
+      "citation": "“A Crash Course in Canadian Environmental History,” NiCHE, 18 January 2024; entry on Harold Innis, The Fur Trade in Canada (1930), by Daniel Macfarlane.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Web page read (Innis entry in full). Quoted: the impact of The Fur Trade in Canada 'is apparent in the work of the early generations of Canadian environmental historians; the legacy of Innis's arguments, at least to my mind still, still shapes many key debates and approaches in contemporary Canadian environmental history'; 'by finding expression in key works such as William Cronon's Nature's Metropolis, those meta-theories are perhaps Canada's biggest contribution to international environmental history'. A blog selection by one scholar."
+      },
+      "scope_note": "Later reading (2024 blog): reclaims Innis as a Canadian legacy in the field."
+    },
+    {
+      "id": "pe131_extras_wynn_2003",
+      "title": "Graeme Wynn, review of Neil S. Forkey, Shaping the Upper Canadian Frontier (2003), Scientia Canadensis 27 (2003): 95–97.",
+      "url": "https://doi.org/10.7202/800460ar",
+      "citation": "Graeme Wynn, review of Forkey, Shaping the Upper Canadian Frontier: Environment, Society, and Culture in the Trent Valley (University of Calgary Press, 2003), Scientia Canadensis 27 (2003): 95–97. doi:10.7202/800460ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Érudit PDF read in full (2 pp.). Quoted, p. 96: 'The field is undeveloped in this country, compared with the United States, and Forkey is right to puncture (as he does, gently, in his first chapter) tired and oft-repeated claims that Canadian history, the story of settlers transforming a new land, is \"necessarily\" environmental, and that the staples approach represents an indigenous form of proto-environmental history.' This is Wynn's report of Forkey's 2003 chapter, which is unread."
+      },
+      "scope_note": "Later reading (2003): endorses Forkey's rejection of staples history as proto-environmental history."
+    },
+    {
+      "id": "pe131_extras_wynn_2004",
+      "title": "Graeme Wynn, “Introduction: ‘Shall We Linger Along Ambitionless?’ Environmental Perspectives on British Columbia,” BC Studies 142/143 (2004): 5–67.",
+      "url": "https://ojs.library.ubc.ca/index.php/bcstudies/article/view/1713",
+      "citation": "Graeme Wynn, “‘Shall We Linger Along Ambitionless?’ Environmental Perspectives on British Columbia,” BC Studies 142/143 (Summer/Autumn 2004): 5–67. doi:10.14288/bcs.v0i142/3.1713.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "UBC OJS PDF read for pp. 31–34 with notes 60–69; printed page = PDF page + 4, checked against running heads. Quoted, p. 33: Canadians 'seemed to wonder what all the fuss was about', citing Cook 1990 (n. 68); staples works 'focused on human uses of the environment'; staple products 'remained commodities for human exploitation'; 'there was little concern in this work for the reciprocity and mutuality of relations between people and nature that proponents of environmental history regard as central to their enterprise'. p. 31 n. 60: 'In 1972 Roderick Nash attempted to give pedagogic shape to the field' (PHR 41, 1972: 362–72); n. 61 pairs Nash's Wilderness and Hays's Conservation and the Gospel of Efficiency as early works."
+      },
+      "scope_note": "Later reading (2004) of the staples question and of the field's US origins."
+    },
+    {
+      "id": "pinchbeck",
+      "title": "Ivy Pinchbeck: Women Workers and the Industrial Revolution",
+      "citation": "Ivy Pinchbeck, Women Workers and the Industrial Revolution, 1750–1850 (George Routledge & Sons, 1930; reprint with new preface, Frank Cass, 1969).",
+      "url": "https://api.pageplace.de/preview/DT0400.9781136936906_A24437986/preview-9781136936906_A24437986.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Additional publisher-preview reading: complete original preface vi, complete introduction pp. 1–5, 1969 reprint preface signed October 1968, and opening chapter I p. 7. Distinguishes occupational visibility, family wages, training, marital status, disruption and claimed eventual gains. Names Knowles, Power, scholarship support and George. The later preface proposes post-1850 research rather than supplying it. Remaining occupational chapters and conclusion unread; optimistic generalization is attributed, not independently proven. Previous scope: Publisher-distributed preview: copyright page confirms 1930 original and 1969 reprint; original preface p. vi acknowledges Eileen Power’s research direction and Lilian Knowles’s earlier guidance; introduction pp. 1–2 addresses women’s work before industrialization. Full book and later reception not audited.",
+        "checked_on": "2026-09-12"
+      }
+    },
+    {
+      "id": "pomeranz_divergence",
+      "title": "Kenneth Pomeranz, The Great Divergence: China, Europe, and the Making of the Modern World Economy (Princeton University Press, 2000; later edition linked).",
+      "citation": "Kenneth Pomeranz, The Great Divergence: China, Europe, and the Making of the Modern World Economy (Princeton University Press, 2000; later edition linked).",
+      "url": "https://www.marcialpons.es/media/pdf/9780691217185.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Expanded primary introduction check in the same later-edition preview: opening3–4; regional-unit discussion from7 through comparison section10; chapter2 household paragraph17/note27; chapter6 overview from20 through geographical-coverage conclusion27. Intervening passages and main chapters unread; selected passages, not full introduction. Explicit resources: Wong1997, Tilly1984 and Mokyr1976; Huang1990 is a named disagreement. Quantitative historical claims not independently tested. This source remains the2000 book, not the later2002 exchange. Tilly title/date corroborated by publisher-supplied BiblioVault record9780871548795; Mokyr1976 title corroborated by journal bibliographic record. Those original books were not newly read. Addendum 2026-10-13: Whole introduction pp. 3–27 re-read in the later-edition preview (pagination of that edition), with contents pp. v–vii and index pages. Quoted for the 1.130 person entry: 'The book thus calls upon the fruits of overseas coercion to help explain the difference between European development and what we see in certain other parts of Eurasia (primarily China and Japan)—not the whole of that development'; 'Thus the book combines comparative analysis, some purely local contingency, and an integrative or global approach'; 'we have, instead, a polycentric world with no dominant center' (p. 4). 'anticipated in important ways by my colleague R. Bin Wong' (p. 7). 'truly reciprocal'; 'Here, too, I am following a procedure outlined in Wong’s recent China Transformed'; 'viewing both sides of the comparison as “deviations” when seen through the expectations of the other, rather than leaving one as always the norm'; n. 13: 'much more about some he does not treat extensively, such as environmental change' (p. 8). 'comparison and the analysis of connections become indistinguishable' (p. 10). Chapter 5 'offers a systematic comparison of ecological constraints in selected key areas of China and Europe'; Europe 'rescued by a combination of overseas resources and England’s breakthrough (partly conditioned by geographic good luck) in the use of subterranean stores of energy'; parallels with Sugihara Kaoru (p. 12). 'Why wasn’t England the Yangzi Delta?'; 'Europe, too, could have wound up on an “east Asian,” labor-intensive path' (p. 13). 'Constraints connected to energy, and ultimately to quantities of land (particularly the shrinking forests of core areas throughout Eurasia), were a far more important looming impediment to further growth' (p. 19). Shortages 'of fuel and building materials' in all the densest cores (p. 20). 'what was truly scarce: land and energy'; 'the fruits of overseas exploitation were probably roughly as important to at least Britain’s economic transformation as its epochal turn to fossil fuels' (p. 23). 'We end, then, with connections and interactions explaining what comparison alone cannot'; 'joining the burgeoning field of “world history,”'; 'adding a few Chinese and Japanese foils to a European story does not make it “world history.”' (p. 25). Contents: Part Three 'Beyond Smith and Malthus: From Ecological Constraints to Sustained Industrial Growth'; chapter 5 'Shared Constraints: Ecological Strain in Western Europe and East Asia' (211); chapter 6 'Abolishing the Land Constraint: The Americas as a New Kind of Periphery' (264). Chapters 1–6 and the appendices are unread; quantitative claims are not tested. Addendum 2026-10-18: Revision 1.144: pp. 14–17 re-read in the same later-edition preview. p. 14: Brenner \"explains divergent development paths within Europe as the result of class struggles that altered property-rights regimes\"; p. 15: \"Brenner winds up rather oddly aligned with Douglass North\"; p. 17: Chinese families supposedly \"producing an 'involuted economy'; I will show that there is little reason to believe this\" (n. 27: \"P. Huang 1990: 11–17; for a related argument see also Goldstone 1996\"); labour deployment resembles \"Europe’s 'industrious revolution'\". Addendum 2026-10-18: Revision 1.145: p. 3 n. 2 (Williams, Frank and Amin), pp. 7–8 and nn. 11–13 (Wong's reciprocal comparison), p. 11 n. (Frank 1998), p. 17 (de Vries) and the contents (p. 186, 'The Williams Thesis Revisited') re-read in the same preview."
+      },
+      "verification_history": [
+        {
+          "status": "supporting_page_checked",
+          "note": "Publisher description indexed by JSTOR checked for comparative development; not a full argument review.",
+          "checked_on": "2026-09-10"
+        },
+        {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Publisher-authored introduction preview hosted by bookseller consulted at printed pp. 3–4 and contents: regional comparisons, overseas coercion/resources, coal location and a polycentric pre-1800 world. This replaces the earlier publisher-description-only scope with a primary introduction check. The preview is for a later edition of the 2000 book; no full-book review or resolution of the divergence debate."
+        }
+      ]
+    },
+    {
+      "id": "power",
+      "title": "Eileen Power: economic and social history at LSE",
+      "citation": "London School of Economics, “Eileen Power”; Power, Medieval People (Methuen, 1924).",
+      "url": "https://www.lse.ac.uk/alumni-friends-and-partners/lse-alumni-shaping-the-world/thought-leaders-and-academics/eileen-power",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Institutional profile checked for economic history, medieval women, the 1924 book, broadcasting, and work with Rhoda Power. Does not certify every later line of reception.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "schreiner_labour_metadata",
+      "title": "Olive Schreiner, Woman and Labour (1911).",
+      "citation": "Olive Schreiner, Woman and Labour (1911).",
+      "url": "https://www.gutenberg.org/files/1440/1440-h/1440-h.htm",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Indexed primary title/year checked; full work unread. Clark’s own preface independently names Schreiner as the source of her research question. Clark’s pluralized title is not used as the canonical title."
+      }
+    },
+    {
+      "id": "scott_gender_1986",
+      "title": "Joan W. Scott: Gender as a category of historical analysis",
+      "citation": "Joan W. Scott, “Gender: A Useful Category of Historical Analysis,” American Historical Review 91, no. 5 (1986): 1053–75, especially 1059–60.",
+      "url": "https://warwick.ac.uk/fac/arts/history/students/modules/archive/sexuality_and_the_body/bibliography/joan_scott_gender_1986.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-17",
+        "note": "Scanned pages 1059–60 checked for Marxist feminist approaches, British socialist-feminist debates, and Scott’s criticism of economic determination. This is her intervention, not a consensus account of all gender history. Additional primary pp. 1067–1068 checked in revision 1.25: Rosaldo and Foucault named, gender defined relationally, institutions and subjective identity distinguished, and universal psychoanalytic claims qualified. Full article remains unreviewed. Additional 2026-09-12 reading: complete printed pp. 1062–1066 through OCR of PDF indices 10–14. Scott finds constructed subjectivity instructive but criticizes universal binary antagonism and insufficient historical variability; she discusses Sally Alexander, de Lauretis and Riley and productively cites Derrida. These are Scott’s readings, not independent readings of every cited work. Original cited Lacanian collections and Alexander essay remain uncollated. Addendum 2026-10-17: Revision 1.143: printed p. 1054 read (OCR of the same scan). Those who wanted ‘a relational notion’ used ‘gender’; ‘Thus Natalie Davis suggested in 1975, “It seems to me that we should be interested in the history of both women and men … Our goal is to understand the significance of the sexes, of gender groups in the historical past …”’ (n. 4: Feminist Studies 3, Winter 1975–76, p. 90). Davis’s words are as Scott quotes them."
+      }
+    },
+    {
+      "id": "scott_tilly_work",
+      "title": "Joan W. Scott and Louise A. Tilly, “Women’s Work and the Family in Nineteenth-Century Europe,” Comparative Studies in Society and History 17, no. 1 (1975): 36–64.",
+      "citation": "Joan W. Scott and Louise A. Tilly, “Women’s Work and the Family in Nineteenth-Century Europe,” Comparative Studies in Society and History 17, no. 1 (1975): 36–64.",
+      "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/abs/womens-work-and-the-family-in-nineteenthcentury-europe/8797EA3119561312A593E7D5E4FB50C9",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Publisher-hosted primary opening extract and original issue metadata read. Questions assumptions that domestic women were unproductive or that paid work and emancipation formed one linear sequence. Remainder of article and data unread; online 2009 date is not original publication.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "taylor_thompson_gender",
+      "title": "Barbara Taylor: E. P. Thompson and feminist historical inquiry",
+      "citation": "Barbara Taylor, “E. P. Thompson and the ‘Woman Problem’,” History Workshop (14 May 2024).",
+      "url": "https://www.historyworkshop.org.uk/womens-history/e-p-thompson-and-the-woman-problem/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "Taylor’s first-person account checked for building on Thompson in Eve and the New Jerusalem (1983), alongside criticism and his resistance. Retrospective testimony; distinguishes her experience from Scott’s arguments and quotes a 1988 interview."
+      }
+    },
+    {
+      "id": "wcreq_sangster_2000",
+      "title": "Joan Sangster, “Feminism and the Making of Canadian Working-Class History: Exploring the Past, Present and Future,” Labour/Le Travail 46 (2000): 127ff.",
+      "url": "https://doi.org/10.2307/25149098",
+      "citation": "Joan Sangster, “Feminism and the Making of Canadian Working-Class History: Exploring the Past, Present and Future,” Labour/Le Travail 46 (2000): 127ff.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Abstract read: thirty years of women’s labour history shaped by feminist, left and labour organizing, international social theory and Canadian historiography; feminist challenges to the initially ‘masculinist’ shape of working-class history, and calls to integrate race and ethnicity, shifted its narrative and paradigms; gender more effectively though not completely integrated into class formation; post-structuralism and the decline of the left unsettle the field. Checked against: Crossref DOI record; OpenAlex abstract (English and French). Addendum 2026-10-14: Read at pp. 130 and 133 and searched for Kealey in the journal's PDF (https://lltjournal.ca/index.php/llt/article/view/5205) for the 1.138 Kealey draft. p. 130 n. 8: Kealey (1995, p. 125) on two overlapping cohorts of the 1960s and 1970s; p. 133: 'One of the first major collections of the new labour history contained not one article on women' (Kealey and Warrian, Essays, 1976); 'Two seminal studies followed by Gregory Kealey and Bryan Palmer. Though differently positioned politically, they examined workers' responses to 19th century industrialization, with a proclivity to centre on skilled male workers and their actions in the public sphere'. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped check. Locators: Labour/Le Travail46 (2000), pp157–158; Scott characterization on p157. Reading extents: Inherited primary full-article reading and exact passage retained on edge1169; this audit checked primary journal metadata/search text but did not freshly reread the whole body. Prior verification retained. Bibliographic concordance is not whole-book reading.] Independent primary spot-check: Fresh primary journal PDF downloaded; both selected pages read in extracted text. Locator: Printed pp. 157–158; n. 108 on p. 157. The Scott-specific characterization occurs on p. 157. Note 108 attributes the separate economy formulation to William Sewell. The existing mixed edge 1169 must remain; this is a personal route for its already documented named criticism. Limits: Only pp. 157–158 independently read; Scott’s and Sewell’s original works unread. Do not treat this as a new controversy or reassign the whole mixed edge. Primary URL: https://lltjournal.ca/index.php/llt/article/download/5205/6074/."
+      },
+      "scope_note": "The feminist critique and remaking of Canadian working-class history."
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

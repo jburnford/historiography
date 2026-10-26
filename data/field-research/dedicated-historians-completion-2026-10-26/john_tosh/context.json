@@ -1,0 +1,198 @@
+{
+  "person_id": "john_tosh",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "john_tosh",
+    "label": "John Tosh",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“What Should Historians Do with Masculinity?” (1994) · A Man’s Place (1999) · Manliness and Masculinities in Nineteenth-Century Britain (2005)",
+    "description": "A historian of masculinity and historical practice. In his 1994 essay he distinguishes public ideals of manliness from the social production of masculine status, linking household, workplace and male associations. His public-history essay argues that historical context, contested interpretation and careful analogy belong to democratic judgment. These are two particular methodological proposals; the entry does not reduce masculinity to an unchanging male essence or treat a later paperback as the original book.",
+    "representative_figures_and_works": "“What Should Historians Do with Masculinity?” (1994); A Man’s Place (1999; paperback 2007); Manliness and Masculinities in Nineteenth-Century Britain (2005).",
+    "source_ids": [
+      "hc177_tosh_article",
+      "hc177_tosh_policy",
+      "hc177_tosh_place",
+      "hc177_tosh_manliness"
+    ],
+    "scope_note": "New identity matched to Roehampton historian and masculinity titles. Primary OCR excerpt and author policy essay support bounded arguments. No claim that OCR is an authenticated exact transcription, that all work is read, or that one masculinity describes all classes and periods. Original, paperback and collected-essay dates distinct.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc177_tosh_masculinity",
+          "label": "“What Should Historians Do with Masculinity?”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1994,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_tosh_article"
+          ],
+          "support": "History Workshop Journal 38, Autumn 1994, pp. 179–202, DOI 10.1093/hwj/38.1.179. Not 1984."
+        },
+        {
+          "id": "hc177_tosh_place",
+          "label": "A Man’s Place",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1999,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_tosh_place"
+          ],
+          "support": "Yale 1999 original in Canterbury institutional record; Yale current page dates paperback to 2007 and ebook to 2008."
+        },
+        {
+          "id": "hc177_tosh_manliness",
+          "label": "Manliness and Masculinities in Nineteenth-Century Britain",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2005,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_tosh_manliness"
+          ],
+          "support": "Original 2005 essay collection; earlier component article remains 1994. No complete collection reading."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.177/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1441",
+      "source": "john_tosh",
+      "target": "gender",
+      "relationship": "Treats masculine status as relational and historically produced across home, work and male associations.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_tosh_article"
+      ],
+      "evidence_note": "Selected primary text, printed pp. 183–188, read in a public OCR transcription, including the linked-arena argument and cautions about manliness as a master concept. OCR was not collated against page images; no exact quotation or entire-article reading claimed.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc177_john_tosh_1"
+    },
+    {
+      "id": "edge_1442",
+      "source": "john_tosh",
+      "target": "publichistory",
+      "relationship": "Advocates historical context, debated interpretations and bounded analogy as resources for democratic citizenship.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_tosh_policy"
+      ],
+      "evidence_note": "Own policy essay, Introduction, History and citizenship, Role of historians and ending read. His Iraq example and assessment of education remain attributed; no current policy advice or automatic lesson from the past.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc177_john_tosh_2"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "gender",
+      "label": "Gender history",
+      "records": [
+        {
+          "person_id": "john_tosh",
+          "role": "historian",
+          "context": "Treats masculine status as relational and historically produced across home, work and male associations.",
+          "works": "“What Should Historians Do with Masculinity?” (1994); A Man’s Place (1999; paperback 2007); Manliness and Masculinities in Nineteenth-Century Britain (2005).",
+          "source_ids": [
+            "hc177_tosh_article"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1441"
+        }
+      ]
+    },
+    {
+      "node_id": "publichistory",
+      "label": "Public history",
+      "records": [
+        {
+          "person_id": "john_tosh",
+          "role": "historian",
+          "context": "Advocates historical context, debated interpretations and bounded analogy as resources for democratic citizenship.",
+          "works": "“What Should Historians Do with Masculinity?” (1994); A Man’s Place (1999; paperback 2007); Manliness and Masculinities in Nineteenth-Century Britain (2005).",
+          "source_ids": [
+            "hc177_tosh_policy"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1442"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "hc177_tosh_article",
+      "title": "John Tosh, “What Should Historians Do with Masculinity? Reflections on Nineteenth-Century Britain,” History Workshop Journal 38 (1994): 179–202.",
+      "citation": "John Tosh, “What Should Historians Do with Masculinity? Reflections on Nineteenth-Century Britain,” History Workshop Journal 38 (1994): 179–202.",
+      "url": "https://academic.oup.com/hwj/article-abstract/38/1/179/643243",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher metadata checked for 1994 and page range. Primary selected pp. 183–188 read through public OCR https://paperzz.com/doc/8829396/john-tosh---what-should-historians-do-with-masculinity . Not collated with images; remaining pages and full collection unread. Prose is paraphrased, avoiding exact quotes from uncollated OCR."
+      }
+    },
+    {
+      "id": "hc177_tosh_manliness",
+      "title": "Routledge, Manliness and Masculinities in Nineteenth-Century Britain, publisher record.",
+      "citation": "Routledge, Manliness and Masculinities in Nineteenth-Century Britain, publisher record.",
+      "url": "https://www.routledge.com/Manliness-and-Masculinities-in-Nineteenth-Century-Britain-Essays-on-Gender-Family-and-Empire/Tosh/p/book/9781315838533",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Indexed publisher metadata checked for 2005 original collection and subtitle Essays on Gender, Family and Empire; direct page returned 403. Description not used as argument evidence; reprinted component essays are not automatically dated 2005."
+      }
+    },
+    {
+      "id": "hc177_tosh_place",
+      "title": "University of Canterbury Library, A Man’s Place, original bibliographic record.",
+      "citation": "University of Canterbury Library, A Man’s Place, original bibliographic record.",
+      "url": "https://libcat.canterbury.ac.nz/Record/685723",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "New Haven: Yale University Press, 1999; title/author metadata only. Current publisher https://yalebooks.yale.edu/book/9780300123623/a-mans-place/ supplies 2007 paperback / 2008 ebook dates. Book body unread."
+      }
+    },
+    {
+      "id": "hc177_tosh_policy",
+      "title": "John Tosh, “Why history matters,” History & Policy, own essay.",
+      "citation": "John Tosh, “Why history matters,” History & Policy, own essay.",
+      "url": "https://historyandpolicy.org/policy-papers/papers/why-history-matters/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Introduction, History and citizenship, Role of historians and conclusion read. The page’s displayed text does not establish a reliable publication day, so no dated website event is invented. Its 2007 paperback reference is not the original date of A Man’s Place."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

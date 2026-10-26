@@ -1,0 +1,1052 @@
+{
+  "revision": "1.200",
+  "date": "2026-10-26",
+  "authorization": "The user resumed all remaining historian reviews with researchers and independent Astra review, then explicitly requested: we’ll pause after this and push. Publish only this reviewed subset, preserving the remaining queue.",
+  "baseline": "drafts/historiography-1920-2000.v1.199.json",
+  "baseline_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "packet": "data/extension-2026/dedicated-historians-completion-2026-10-26-batch01/release/editorial-additions.json",
+  "packet_sha256": "47393fbc1032c2711d7af398f14c1aa4da6ee736ace4e909ca882d2baa3782ea",
+  "production_sha256": "32c406f510e7b0fc71f6e9dc788444dbc42784849e32fa6dffdd45eaa5ebe5a4",
+  "previous_table_lengths": {
+    "nodes": 357,
+    "people": 1426,
+    "edges": 1805,
+    "sources": 3050,
+    "revision_history": 199
+  },
+  "prior_records": {
+    "people": {},
+    "edges": {},
+    "sources": {
+      "brewer_porter": {
+        "id": "brewer_porter",
+        "title": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+        "citation": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+        "url": "https://wellcomecollection.org/works/n2ar4p83",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-09-11",
+          "note": "Wellcome catalogue checked for 1993 original publication, editors and chapter contents spanning household economy, Asian production, food, women’s possessions, books and design. Contents identify questions and contributors, not verification of each chapter’s argument."
+        },
+        "verification_history": [
+          {
+            "status": "not_checked",
+            "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+          }
+        ]
+      },
+      "de_vries_industrious": {
+        "id": "de_vries_industrious",
+        "title": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+        "citation": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+        "url": "https://doi.org/10.1017/S0022050700014467",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-18",
+          "note": "University-hosted primary scan downloaded and visually read at pp. 249–252 and 259–264. Supports household labor/resource reallocation, demand, explicit use of historical demography, and qualifications about intrahousehold interests and ideal types. The article criticizes McKendrick’s gendered wording and discusses Sabean’s household critique. No claim that all households followed this trajectory; quantitative estimates and later reception not independently replicated. Addendum 2026-10-18: Pp. 249–251 re-read for revision 1.145 (page images OCRed): the framing against the revision of Lindert and Williamson, Harley and Crafts, and n. 5 citing Berg and Hudson and Cannadine. Addendum 2026-10-18: Revision 1.146 read the publisher abstract and the reference list on Cambridge Core (doi:10.1017/S0022050700014467); the url is the DOI (source_field_sets). The page readings recorded above were made in earlier revisions and were not repeated in 1.146. The new jan_de_vries entry and the revised edge_1085 quote the 1994 article only from its publisher abstract; previously accepted page-based claims remain as accepted."
+        }
+      },
+      "birth_consumer": {
+        "id": "birth_consumer",
+        "title": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+        "citation": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+        "url": "https://www.simonandschuster.com/books/The-Birth-of-a-Consumer-Society/Neil-McKendrick/9781912224265",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Prior publisher/reissue scope retained in history. Added primary transcription of McKendrick’s complete introduction1–6 and chapter1 opening9–10, with part11. Original1982 imprint confirmed. Claims an eighteenth-century acceleration while expressly acknowledging earlier commercial development; social-emulation interpretation is attributed. Remaining chapter, specialist essays, contemporary quotations and quantitative claims not independently verified; no image collation. Does not certify the separate1974 essay quoted by Vickery."
+        },
+        "verification_history": [
+          {
+            "status": "supporting_page_checked",
+            "checked_on": "2026-09-11",
+            "note": "Publisher/distributor description of the 2018 reissue consulted for distinct contributions: McKendrick on fashion/pottery, Brewer on politics and commercialization, Plumb on leisure/children. Original 1982 Europa publication checked in Wellcome https://wellcomecollection.org/works/d7k6uwde . Promotional claims of universal novelty are not endorsed. No full-book reading; de Vries supplies a separately checked critical engagement."
+          }
+        ]
+      },
+      "cott_beard_letters": {
+        "id": "cott_beard_letters",
+        "title": "Nancy F. Cott, ed., A Woman Making History: Mary Ritter Beard Through Her Letters (Yale University Press, 1991).",
+        "citation": "Nancy F. Cott, ed., A Woman Making History: Mary Ritter Beard Through Her Letters (Yale University Press, 1991).",
+        "url": "https://yalebooks.yale.edu/book/9780300162585/a-woman-making-history/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-12",
+          "note": "Publisher description and publication metadata checked. Documents a collection of 141 letters and Cott’s recovery of correspondence from recipients’ archives. Letters and introductory essay not independently read; promotional founding claims not adopted. This supports editorial recovery, not a particular interpretation attributed to an unread letter."
+        }
+      },
+      "levi_biography_uses": {
+        "id": "levi_biography_uses",
+        "title": "Giovanni Levi, “Les usages de la biographie,” Annales ESC 44/6 (1989), pp. 1325–1336, translated by Olivier Christin, DOI 10.3406/ahess.1989.283658.",
+        "citation": "Giovanni Levi, “Les usages de la biographie,” Annales ESC 44/6 (1989), pp. 1325–1336, translated by Olivier Christin, DOI 10.3406/ahess.1989.283658.",
+        "url": "https://www.persee.fr/doc/ahess_0395-2649_1989_num_44_6_283658",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Complete twelve pages and twenty notes read through official per-page OCR; PDF route returned 403 but public page content was available. OCR loses accents/punctuation, so exact quotations require scan collation. Supports methodological distinctions, bounded agency and specific Chartier criticism. Bourdieu disagreement is explicitly one of emphasis; scientific absurdity refers to an individual/society opposition, not all biography. Roche, Venturi and literary works remain mediated. Notes 18/20 identify Chartier’s Italian collection essay, not automatically another French 1989 article. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped fresh check. rea_roots_bourdieu_levi: Fresh selected official primary OCR read. Later pages and Bourdieu’s own essay are not newly collated; the earlier fuller reading qualification remains. Locators: Annales 44/6(1989),p. 1326; Persée pageT 1_1326. ]"
+        }
+      },
+      "weatherill_consumer_primary": {
+        "id": "weatherill_consumer_primary",
+        "title": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+        "citation": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+        "url": "https://api.pageplace.de/preview/DT0400.9781134745333_A24930986/preview-9781134745333_A24930986.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Read complete second-edition preface xiii–xx and notes xxi–xxiii; introduction1–3 through the available cutoff.1988 original and1996 additions distinguished;2003 digital edition. Frequency-of-ownership method, middling sample, missing debts/real estate and weak textile coverage are explicit. No main chapters, inventory appendices or data replication. Shammas1990 is read through Weatherill’s comparison and criticism, not its original body. Vickery1993 reception is explicitly named in this1996 preface, not backdated to1988. PDF annotation warnings did not prevent text extraction."
+        }
+      },
+      "vickery_elegance_primary": {
+        "id": "vickery_elegance_primary",
+        "title": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+        "citation": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+        "url": "https://yalebooks.yale.edu/book/9780300102222/the-gentlemans-daughter/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Read available primary transcription: title/imprint, acknowledgments, opening introduction paragraph; chapter5 from opening through household purchasing division and acquisition channels; final discussion from corroborating Shackleton examples through chapter end; notes1–23 and beginning24,81–86. Intervening chapter section unread. Reflow lacks print page markers; no image collation or original manuscript audit. Explicit resources include Bourdieu, Douglas/Isherwood and Appadurai; Kopytoff not explicitly named in checked passages. Original1998 copyright, paperback1999, later ISBN distinguished. Gender/finance findings concern selected genteel households; no universal female consumer. Platform summary ignored."
+        }
+      },
+      "wood_rhetoric_reality": {
+        "id": "wood_rhetoric_reality",
+        "title": "Gordon S. Wood, “Rhetoric and Reality in the American Revolution,” William and Mary Quarterly 23.1 (1966), 3–32; reprinted in American Themes: Essays in Historiography (1968), 55–80.",
+        "citation": "Gordon S. Wood, “Rhetoric and Reality in the American Revolution,” William and Mary Quarterly 23.1 (1966), 3–32; reprinted in American Themes: Essays in Historiography (1968), 55–80.",
+        "url": "https://doi.org/10.2307/2936154",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-13",
+          "note": "Read primary opening 55, selected 69–78 and abridged notes 79–80 in 1968 reprint OCR. Title/imprint and reprint notice checked; original journal issue metadata corroborates 1966, 3–32. Wood 71–73 explicitly contrasts Namier with Bailyn and qualifies the criticism by setting; 75–78 proposes Virginia social strains. Reprint annotation is abridged and its note 16 includes the later 1967 Bailyn book; no claim of identical 1966 wording throughout. Original PDF downloads failed; no visual collation or original pamphlet/record audit."
+        }
+      },
+      "cdng_buckner_2000": {
+        "id": "cdng_buckner_2000",
+        "title": "P. A. Buckner, \"'Limited Identities' Revisited: Regionalism and Nationalism in Canadian History,\" Acadiensis 30, no. 1 (Autumn 2000): 4–15.",
+        "url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10765",
+        "citation": "P. A. Buckner, \"'Limited Identities' Revisited: Regionalism and Nationalism in Canadian History,\" Acadiensis 30, no. 1 (Autumn 2000): 4–15.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Pages 4–5 read: Cook coined \"limited identities\" (1967) and Careless popularized it (1969); before the 1960s historians emphasized \"the economic and political unity of Canada as it evolved from a colony into an independent nation-state\"; \"liberal nationalists such as A.R.M. Lower and Frank Underhill, and … conservative nationalists such as Donald Creighton and C.P. Stacey\"; the approach was \"similar to that of the consensus school in the United States\"; Cook and Careless embraced limited identities partly in response to Quebec separatism; Atlantic historians espoused it for other reasons. The rest of the essay is unread. Paragraphs 4–6 read on 2026-10-12 after the Sol review: Ken Windsor \"initiated and eloquently defended the creation of a journal\"; David Earl showed it would be viable; Buckner \"agreed to become the editor\"; the title was revived from David Russell Jack's journal (1901–08). Checked against: UNB Libraries Acadiensis article page and PDF (citation line on p. 4). Addendum 2026-10-14: Re-read for the 1.135 Ramsay Cook entry (UNB PDF, pp. 4–5, 8–10, 12, notes 1–5 and 13–20). Quoted: Cook's 1967 sentence on 'the regional, ethnic and class identities that we do have' and Careless's 'limited identities of region, culture and class referred to by Professor Cook' (p. 4); Cook's 1970 essay, 'a strait-jacket identity' (p. 4) and 'Nationalism by nature tends strongly to centralism and uniformity' (p. 5, quoting The Maple Leaf Forever p. 213); Cook and Careless embraced limited identities partly in response to Quebec separatism; Atlantic historians 'eagerly espoused' it with other motives (p. 5); Cook 'mockingly' recalled being made an honorary Maritimer; fragmentation 'patently absurd, at least when applied to the Atlantic region'; in 1977 Cook 'warned regional historians of the danger of ignoring the “national experience”'; 1983, 'regionalism' 'a concept whose time is gone' (the 1983 page reads 'has gone'); 1995, the phrase 'usually attributed to Maurice Careless and I have decided that he is welcome to it!' (p. 8); Careless 1980 and Bliss, Granatstein and Owram on limited identities having gone too far (p. 9); Atlantic 'legitimate grievances within Confederation' (p. 10); the additive model of identity 'nonsensical'; 'All identities are socially constructed' (p. 12). Note 15 dates 'The Burden of Regionalism' Autumn 1974; the review is of 1977 books and its OJS record is 1977. Note 15 also gives Cook's 2000 CHR essay as 81:2 (June 2000), pp. 260–65. [careless draft: Pages 4–10 read for the 1.135 person entry (Érudit PDF). Added: Cook 1995 on the phrase, 'usually attributed to Maurice Careless and I have decided that he is welcome to it!' (p. 8, n. 15); Careless 'too had come to the conclusion that the search for limited identities had gone too far' (pp. 8–9, citing Manitoba History, cited as 1980, p. 7); the same point made 'somewhat crudely, by Michael Bliss and Jack Granatstein and with greater sophistication by Doug Owram' (p. 9); the 'so-called fragmentation' as 'patently absurd, at least when applied to the Atlantic region' (p. 8); regionalism treated, 'as Careless and Granatstein seem to believe', as 'a construct designed to justify the dismantling of the Canadian state' (p. 10); the 1969 article reprinted in Careless at Work (1990), pp. 281–91 (p. 4, n. 2).]"
+        },
+        "scope_note": "Characterizes the national tradition and the origin of limited identities."
+      },
+      "cdng_davis_1985": {
+        "id": "cdng_davis_1985",
+        "title": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+        "url": "https://doi.org/10.7202/1017987ar",
+        "citation": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Abstract read: there is no single metropolitan thesis but several approaches; urban historians would do better to abandon the metropolitan approach for its indeterminacy about relations between classes. Checked against: Crossref DOI record with French abstract (Érudit). Addendum 2026-10-14: Read in full (pp. 95–113, text and notes) for the 1.135 person entry, in the Érudit PDF. Quoted: 'Conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner'; 'few other journal articles have been more widely cited or more frequently quoted' (p. 95); Berger's 'the programmatic statement of the metropolitan approach' (pp. 95–96; n. 1 cites Berger in Canada Since 1867, 1977, pp. 87–88); metropolitanism and 'the birth of a new sub-discipline, urban history'; Artibise and Linteau (1984): 'the self-conscious beginning of urban history'; Careless 'the godfather of their subdiscipline'; Stelter (1977): 'the most significant approach to Canadian urban history'; Careless (1973): 'I would disclaim and deny such a metropolitan “thesis”' (p. 96); five approaches, Careless's the 'ecological'; Lower 'some eight years before' (p. 97); W. L. Morton's objection, quoted from 'Canada's History and Historians' (p. 98, n. 19); Careless's own account of his debt to Gras, from a letter of 11 July 1983 (p. 101, nn. 47, 51); 'a relatively sterile hybrid', 'of only limited usefulness', 'fits the mould of “consensus” history' (p. 102); 'fallen into desuetude', Artibise's 'not really a theory', 'weak on causality; it is more taxonomic than explanatory' (p. 103); S. D. Clark at the 1974 CHA meeting (p. 107); Careless on Turner on television (p. 109). The 'near-doctrinal status' remark (p. 96) is from a private letter (n. 2) and is not used. [creighton draft: Read in full for the 1.135 Creighton entry (Érudit PDF via the Internet Archive capture of 26 September 2024; UHR 14:2, October 1985, pp. 95–113). Careless's 1954 article 'conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner' (p. 95); Harrison (1981, p. 25) quoted: Creighton 'probably the first to advance a metropolitanist interpretation, although the closely related \"staples\" thesis had been put forward by Innis much earlier'; Morton's 'Clio in Canada' (1980 reprint, p. 107) quoted: Creighton emphasized 'the preponderant role commercial monopoly and centralized business have played'; Morton ('Canada's History and Historians', reprint pp. 34–35) quoted: the metropolitan thesis, which he associated with Creighton and Careless, 'seems necessarily to minimize the importance of the hinterland' (pp. 97–98); Careless said he drew 'neither from Creighton or Innis' but from medieval social history and N. S. B. Gras, and melded Gras with 'the Laurentian School, then regnant' (p. 101). Morton's texts themselves are unread.]"
+        },
+        "scope_note": "Urban history's critique of metropolitanism."
+      },
+      "cdng_dumont_1999": {
+        "id": "cdng_dumont_1999",
+        "title": "Micheline Dumont, \"J.L. Granatstein, Who Killed Canadian History? Harper Collins, 1998 : un compte-rendu,\" Canadian Historical Association Bulletin 25, no. 1 (1999): 12–14.",
+        "url": "https://depot.erudit.org/id/005320dd",
+        "citation": "Micheline Dumont, \"J.L. Granatstein, Who Killed Canadian History? Harper Collins, 1998 : un compte-rendu,\" Canadian Historical Association Bulletin 25, no. 1 (1999): 12–14.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Full text read: Granatstein's information on Quebec schooling is 'erronée'; the 'killers' are 'les acteurs d'une conjoncture inédite'; his 'réquisitoire est féroce contre les praticiens de l'histoire sociale'; he dismisses any Canadian history not aimed at Canadian unity: 'On ne trahit pas plus clairement des visées politiques'; she criticizes the military emphasis from a gender perspective, cites Ferretti's chapter in Comeau and Dionne, eds., À propos de l'histoire nationale (1998), and Létourneau's student surveys, and records the book's shadow over McGill's colloquium 'Giving the Past a Future / L'Avenir de notre passé' (January 1999). Year inferred from vol. 25 and the January 1999 colloquium; the repository date (2020) is the deposit date. Checked against: Érudit repository record https://depot.erudit.org/id/005320dd and PDF (3 pages), read in full for research Q81; answers/research/q81-who-killed-francophone.json."
+        },
+        "scope_note": "A francophone critique of Who Killed that links it to the Quebec debate over national history."
+      },
+      "cic_lears_1981": {
+        "id": "cic_lears_1981",
+        "title": "T. J. Jackson Lears, No Place of Grace: Antimodernism and the Transformation of American Culture, 1880–1920 (New York: Pantheon, 1981).",
+        "url": "https://openlibrary.org/works/OL3473867W",
+        "citation": "T. J. Jackson Lears, No Place of Grace: Antimodernism and the Transformation of American Culture, 1880–1920 (New York: Pantheon, 1981).",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Publisher description read: antimodernism as 'the effort among middle- and upper-class Americans to recapture feelings of authentic experience' in response to 'the emergent culture of corporate capitalism'; it 'helped accommodate Americans to the new order', 'therapeutic rather than oppositional'. First published 1981. Whether McKay drew on Lears is unchecked; the link here is PhD co-citation only. Checked against: Open Library work OL3473867W (Pantheon, 1981; University of Chicago Press, 1994); University of Chicago Press page for the 2021 fortieth-anniversary edition (https://chicagoreference.com/ucp/books/book/chicago/N/bo95485055.html)."
+        },
+        "scope_note": "American comparison: antimodernism among the middle and upper classes as accommodation to corporate capitalism."
+      },
+      "cic_mckay_1994": {
+        "id": "cic_mckay_1994",
+        "title": "Ian McKay, The Quest of the Folk: Antimodernism and Cultural Selection in Twentieth-Century Nova Scotia (Montreal and Kingston: McGill-Queen’s University Press, 1994).",
+        "url": "https://doi.org/10.1515/9780773564688",
+        "citation": "Ian McKay, The Quest of the Folk: Antimodernism and Cultural Selection in Twentieth-Century Nova Scotia (Montreal and Kingston: McGill-Queen’s University Press, 1994).",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Summary and contents read: the conception of Nova Scotians as purer and simpler is false; the tourism industry and cultural producers refashioned the region's identity to project folk values. Chapters on \"The Idea of the Folk\", Helen Creighton and folklore, Mary Black and handicrafts, the simple life, the folk \"under conditions of postmodernity\". Checked against: Crossref DOI record and chapter DOIs (contents); OpenAlex summary; Open Library work OL3109990W."
+        },
+        "scope_note": "Antimodernism and the invented folk."
+      },
+      "nnreq_van_kirk_1980": {
+        "id": "nnreq_van_kirk_1980",
+        "title": "Sylvia Van Kirk, \"Many Tender Ties\": Women in Fur-Trade Society in Western Canada, 1670–1870 (Winnipeg: Watson & Dwyer, 1980).",
+        "url": "https://openlibrary.org/works/OL5914090W",
+        "citation": "Sylvia Van Kirk, \"Many Tender Ties\": Women in Fur-Trade Society in Western Canada, 1670–1870 (Winnipeg: Watson & Dwyer, 1980).",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-12",
+          "note": "Title, subtitle, Watson & Dwyer and 1980 checked; US edition University of Oklahoma Press 1983. Book unread. Checked against: Open Library work record and Winnipeg edition record (subtitle ‘women in fur-trade society in Western Canada’); review by Barry M. Gough, Pacific Historical Review 53:4 (1984), doi:10.2307/3639424. Same work also checked as cdnsrc_vankirk_1980 (bibliographic_metadata_checked, 2026-10-12; cdn_women_gender): Author, title and year checked; Open Library editions give the 1980 Watson & Dwyer subtitle as \"in Western Canada, 1670–1870\" and later editions (Oklahoma 1983; Watson & Dwyer 1996, 1999) without \"in Western Canada\". Book unread. Checked against: Open Library work record (Watson & Dwyer; University of Oklahoma Press); review in Ethnohistory 31:1 (1984), doi:10.2307/482032."
+        },
+        "scope_note": "Women, marriage and families as the subject of fur-trade history (subtitle)."
+      },
+      "qcreq_linteau_1983": {
+        "id": "qcreq_linteau_1983",
+        "title": "Paul-André Linteau, “La nouvelle histoire du Québec vue de l’intérieur,” Liberté 147 (1983): 34–47; reprinted in Éric Bédard and Julien Goyette, eds., Parole d’historiens: anthologie des réflexions sur l’histoire du Québec (Montréal: Presses de l’Université de Montréal, 2006), OpenEdition, chap. 35.",
+        "url": "https://books.openedition.org/pum/13227",
+        "citation": "Paul-André Linteau, “La nouvelle histoire du Québec vue de l’intérieur,” Liberté 147 (1983): 34–47; reprinted in Éric Bédard and Julien Goyette, eds., Parole d’historiens: anthologie des réflexions sur l’histoire du Québec (Montréal: Presses de l’Université de Montréal, 2006), OpenEdition, chap. 35.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Read: a generation born about 1945 and trained at Laval and Montréal in the late 1960s wrote ‘une histoire différente’; it concentrated on c. 1850 to the present to understand industrial, urban Quebec; moved from the history of French Canadians to the history of Quebec’s whole population; social history began in Quebec in the 1960s under Annales influence, but the cohort was shaped more by French and Quebec sociologists and American historians; serial sources; Marxism challenged it but few adopted it fully. Linteau stresses a break around 1970. Checked against: OpenEdition text of the reprint (source note gives Liberté 147, 1983, pp. 34–47); Crossref DOI for the chapter."
+        },
+        "scope_note": "The modernist generation in its own words, including its debts and its distance from the Annales."
+      },
+      "qcreq_linteau_1995": {
+        "id": "qcreq_linteau_1995",
+        "title": "Paul-André Linteau, “De l’équilibre et de la nuance dans l’interprétation de l’histoire du Québec,” Bulletin d’histoire politique 4, no. 2 (1995): 13ff.",
+        "url": "https://doi.org/10.7202/1063524ar",
+        "citation": "Paul-André Linteau, “De l’équilibre et de la nuance dans l’interprétation de l’histoire du Québec,” Bulletin d’histoire politique 4, no. 2 (1995): 13ff.",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-12",
+          "note": "Metadata only; that it answers Rudin is inferred from the issue and title, not read. Checked against: Crossref DOI record (Érudit)."
+        },
+        "scope_note": "A reply from inside the modernist synthesis (title-level)."
+      },
+      "qcreq_rudin_1995": {
+        "id": "qcreq_rudin_1995",
+        "title": "Ronald Rudin, “La quête d’une société normale: critique de la réinterprétation de l’histoire du Québec,” Bulletin d’histoire politique 3, no. 2 (1995): 9–42; reprinted in Éric Bédard and Julien Goyette, eds., Parole d’historiens: anthologie des réflexions sur l’histoire du Québec (Montréal: Presses de l’Université de Montréal, 2006), OpenEdition, chap. 43.",
+        "url": "https://books.openedition.org/pum/13243",
+        "citation": "Ronald Rudin, “La quête d’une société normale: critique de la réinterprétation de l’histoire du Québec,” Bulletin d’histoire politique 3, no. 2 (1995): 9–42; reprinted in Éric Bédard and Julien Goyette, eds., Parole d’historiens: anthologie des réflexions sur l’histoire du Québec (Montréal: Presses de l’Université de Montréal, 2006), OpenEdition, chap. 43.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-12",
+          "note": "Read the opening and summary: ‘révisionnistes’ of the 1970s portrayed Quebec as developing like other Western societies, stressing urbanization, industrialization and class and downplaying ethnic, linguistic, religious and rural distinctiveness; a needed correction of the nationalist narrative that swung too far; a call for a ‘post-révisionniste’ balance. Names Linteau, Robert, Rouillard, Normand Séguin, Durocher, Young, Greer and Dickinson among the revisionists, and Ouellet as a critic of them. Checked against: Crossref DOI record (BHP 3:2, first page 9); OpenEdition reprint with editors’ source note (pp. 9–42)."
+        },
+        "scope_note": "The French version of the critique and its list of ‘revisionists’."
+      },
+      "wcreq_morton_2000": {
+        "id": "wcreq_morton_2000",
+        "title": "Desmond Morton, “Some Millennial Reflections on the State of Canadian Labour History,” Labour/Le Travail 46 (2000): 11ff.",
+        "url": "https://doi.org/10.2307/25149095",
+        "citation": "Desmond Morton, “Some Millennial Reflections on the State of Canadian Labour History,” Labour/Le Travail 46 (2000): 11ff.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Abstract read: the explosive growth of the field in the 1970s and its domination by the team that created Labour/Le Travail concealed stasis and even decline in the past decade; a harsh economic climate sent the labour movement and younger historians in unexpected directions. Checked against: Crossref DOI record; OpenAlex abstract. Addendum 2026-10-14: Read at pp. 11 and 22–27 for the 1.138 Kealey draft in the journal's PDF (https://lltjournal.ca/index.php/llt/article/view/5202; pp. 11–36). Passages: the 'second generation' travelled 'to Warwick, Rochester, and Binghamton, to meet their American and British mentors' (p. 22); Knights of Labor records 'Kealey had been able to study at Rochester'; 'some of the Kealey-Palmer claims for their \"new\" history were challenged'; Ryerson (1981) on the Knights' commitment to 'labour-employer harmony' (p. 23); Toronto as 'the Belfast of North America' (p. 24); the new historians brought labour history back from 'the exceptionalism of Western Canada' to Ontario and the Maritimes, and St. John's became home to L/LT 'and to the group's undoubted inspirational leader' (p. 25 and n. 55); 'nationalism was condemned by Hann and Kealey as \"neo-Creightonism\"' (p. 27)."
+        },
+        "scope_note": "A critique of the field’s state at the end of the period."
+      },
+      "cpl129_mckay_1992_tartanism": {
+        "id": "cpl129_mckay_1992_tartanism",
+        "title": "Ian McKay, “Tartanism Triumphant: The Construction of Scottishness in Nova Scotia, 1933–1954,” Acadiensis 21, no. 2 (Spring 1992): 5–47.",
+        "url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/11913",
+        "citation": "Ian McKay, “Tartanism Triumphant: The Construction of Scottishness in Nova Scotia, 1933–1954,” Acadiensis 21, no. 2 (Spring 1992): 5–47.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-13",
+          "note": "PDF citation line on p. 5: Acadiensis XXI, 2 (Spring 1992), pp. 5–47; author line Ian McKay. Pages 5–9 read closely, with notes 1–13. Nova Scotia 'became Scottish' in the second quarter of the twentieth century; 'hazy generalizations and ethnic stereotypes' became 'a natural and obvious \"commonsense\"'. Broad answer: 'it was part of an international anti-modernist wave, a local version of a general middle-class search for something outside and better than the crisis-ridden modern world it inhabited' (pp. 8–9). Narrow answer: Premier Angus L. Macdonald 'used the state's cultural power' to fuse a romantic, essentialist Scottishness with tourism (p. 9). Note 12 (p. 9) quotes Lears's definition of American antimodernism (No Place of Grace, p. xv) and adds 'and, I would also add, in the \"simple life\" and in \"nature\"'. Pages 13–14 and note 32 also read: the concept of 'invented tradition' is useful 'provided it is acknowledged that all traditions are historically constructed', and Trevor-Roper is said to rely on 'a naive historical realism'. Note 1: a revised version of a paper given to the CHA in 1990. The rest of the article was searched by keyword only, not read. Checked against: UNB Libraries Acadiensis article page and PDF (article/view/11913; PDF download 11913/12757)."
+        },
+        "scope_note": "McKay's own in-period statement of antimodernism as the frame for Nova Scotia's invented identity; his checked use of Lears."
+      },
+      "cpl129_muise_1998": {
+        "id": "cpl129_muise_1998",
+        "title": "D. A. Muise, “Who Owns History Anyway? Reinventing Atlantic Canada for Pleasure and Profit,” Acadiensis 27, no. 2 (Spring 1998): 124–34.",
+        "url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/10846",
+        "citation": "D. A. Muise, “Who Owns History Anyway? Reinventing Atlantic Canada for Pleasure and Profit,” Acadiensis 27, no. 2 (Spring 1998): 124–34.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-13",
+          "note": "Review essay; PDF citation line on p. 124 and signature 'D. A. MUISE'. Pages 124 and 128–32 read (the section on The Quest of the Folk). Muise writes that the book 'examines the origins of the essentialist folk tradition' and that McKay 'explodes the central place of the \"folk\" in understanding Nova Scotia's culture and history'. He describes three case studies (Helen Creighton, Mary Black and handicrafts, and literary producers including the Song Fishermen) and an afterword, 'The Folk under Conditions of Postmodernity'. McKay acknowledges a debt to Whisnant and Raymond Williams and places himself 'within a neo-marxist framework associated with the work of Antonio Gramsci'. Muise quotes the book (p. 306): 'the concept of the Folk was and remains a powerful obstacle to the formation of a counter-hegemonic cultural politics, without which a new, profoundly emancipatory politics of class, gender and racial equality is inconceivable.' Note 9 lists McKay's earlier essays on the theme (1988, 1992, 1993). Pages 125–27 not read; pp. 133–34 only glanced at (to the signature). Checked against: UNB Libraries Acadiensis article page and PDF (article/view/10846; PDF 10846/11670)."
+        },
+        "scope_note": "In-period reception of The Quest of the Folk; its closing argument quoted at p. 306."
+      },
+      "cpl129_wright_1995": {
+        "id": "cpl129_wright_1995",
+        "title": "Donald Wright, “Discourse, Power and Tradition: Approach and Method in Recent English-Canadian Intellectual History,” Acadiensis 24, no. 2 (Spring 1995): 122–34.",
+        "url": "https://journals.lib.unb.ca/index.php/Acadiensis/article/view/12013",
+        "citation": "Donald Wright, “Discourse, Power and Tradition: Approach and Method in Recent English-Canadian Intellectual History,” Acadiensis 24, no. 2 (Spring 1995): 122–34.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Review essay on six other books (Valverde, Anderson, Vipond, Ferguson, Christian, Horton); The Quest of the Folk is not among them. Page 122 (opening, three approaches: discourse analysis, history of political thought, biography) and p. 132 read. Note 29 (p. 132): 'For a very skilled handling of Antonio Gramsci's theory of cultural hegemony by an historian see Ian McKay, The Quest of the Folk ... (Montreal and Kingston, 1994).' This is a footnote recommendation, not a review of the book. Checked against: UNB Libraries Acadiensis article page and PDF (article/view/12013; PDF 12013/12857). Addendum 2026-10-14: Valverde section re-read for the 1.135 person entry, pp. 122–126 (UNB PDF 12013/12857). Wright reviews The Age of Light, Soap, and Water as one of six books. Passages used: 'In her much talked about treatise'; the six authors include 'one a sociologist (Mariana Valverde)'; 'Following Foucault' (p. 122); 'Valverde is quick to avoid a \"descent into discourse\"'; she 'modifies Foucault's archaeology' and 'maintains an important commitment to social agency'; quotes the book's p. 43 on 'the decentring of the subject' (p. 123); quotes p. 166, '[m]oral regulation is an important aspect of ruling, helping to constitute class, gender, sexual, and race relations'; 'the concept of slippages', 'her most exciting, most original, contribution' (p. 124); her conclusion that audiences 'knew precisely what was meant' is 'untenable'; 'the impoverished immigrant and the \"fallen woman\" remain conspicuously silent' (p. 125); 'the silence of the consumer amidst the din of the producer gives the impression of top-down social control, precisely what Valverde sought to avoid' (p. 126)."
+        },
+        "scope_note": "In-period placement of The Quest of the Folk within English-Canadian intellectual history (a single note)."
+      },
+      "pl129_pierson_1992": {
+        "id": "pl129_pierson_1992",
+        "title": "Ruth Roach Pierson, “Colonization and Canadian Women's History,” Journal of Women's History 4, no. 2 (1992): 134–56.",
+        "url": "https://doi.org/10.1353/jowh.2010.0285",
+        "citation": "Ruth Roach Pierson, “Colonization and Canadian Women's History,” Journal of Women's History 4, no. 2 (1992): 134–56.",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-13",
+          "note": "Crossref DOI record (author, title, 4:2, pp. 134–156, September 1992). OpenAlex reference list (W1993218672; 35 matched references) includes Scott 1986 and 1988, with Foucault, Iris Marion Young and Mohanty. No abstract; text not read (Project MUSE bot check)."
+        },
+        "scope_note": "Pierson on Canadian women's history and colonization; cites Scott (reference list only)."
+      },
+      "pe135_parr_owram_2001": {
+        "id": "pe135_parr_owram_2001",
+        "title": "Doug Owram, review of Domestic Goods, by Joy Parr, BC Studies 129 (2001): 103–5.",
+        "url": "https://ojs.library.ubc.ca/index.php/bcstudies/article/view/185199",
+        "citation": "Doug Owram, review of Domestic Goods, by Joy Parr, BC Studies 129 (2001): 103–5.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the journal PDF (article/download/185199/184562/192100); issue 129 and date 2001 from the article page metadata; pages 103–105 from the running heads (OCR'd as 'IOJ', 'I04', 'zo$'). Passages: 'the book's strength is in its parts rather than in some seamless thesis' (p. 103); 'Parr argues, the assumption of consumer sovereignty is facile' (p. 104); 'Canadians, both men and women, preferred Fords to Volvos, and that is what they got' (p. 105)."
+        },
+        "scope_note": "Near-period critical review by a Canadian historian of the postwar years."
+      },
+      "pe137_ouellet_modernisation_1985": {
+        "id": "pe137_ouellet_modernisation_1985",
+        "title": "Fernand Ouellet, “La modernisation de l’historiographie et l’émergence de l’histoire sociale,” Recherches sociographiques 26, no. 1–2 (1985): 11–83.",
+        "url": "https://doi.org/10.7202/056132ar",
+        "citation": "Fernand Ouellet, “La modernisation de l’historiographie et l’émergence de l’histoire sociale,” Recherches sociographiques 26, no. 1–2 (1985): 11–83. doi:10.7202/056132ar. English version: The Socialization of Quebec Historiography since 1960 (Toronto: Robarts Centre for Canadian Studies, 1988; not seen).",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read: pp. 11–29, 38, 47, 51–52, 64–68 and the abstract, from the Érudit PDF (scanned; local French OCR; pages fixed from the running heads); the rest skimmed by name search only. Quoted: until 1963 Quebec historiography 'restée, dans l'ensemble, politique et cléricale' (p. 13); for 'Maurice Séguin, théoricien de l'École néo-nationaliste', leadership of New France belonged to the bourgeoisie, 'de sorte que la décapitation s'était exercée sur l'élite nationale elle-même'; economic inferiority as a preoccupation 'pas étranger à la montée du mouvement indépendantiste québécois', which led historians 'à négliger des secteurs entiers de l'histoire économique' (p. 18); 'Cette thèse avait été épousée par Michel Brunet dès les années 1950'; in the 1970s it 'avait besoin d'être dédramatisée'; 'Ces retouches au modèle de Maurice Séguin furent faites par Gilles Paquet et Jean-Pierre Wallot, en particulier' (p. 19), followed 'presque autant' by Robert, Linteau and Normand Séguin (p. 20); the crisis controversy began 'en 1966 à la suite de la publication de notre Histoire économique et sociale du Québec', with 'la thèse néo-nationaliste enrichie de l'idée de modernité' at its core and the peasant as '«paysan indépendant», sensible au marché et libéré'; Le Goff 'soutint en conclusion l'idée de l'existence d'une crise agricole dès le début du XIXe siècle' (p. 25); Dechêne 'n'a pu faire autrement que de prendre position' (p. 26); on the Patriotes, 'Les mêmes polarisations émergent' among Bernard, Bernier, Bourque, Dubuc, Ouellet and Ryerson (p. 51, n. 128 citing J.-P. Bernard, ed., Les Rébellions de 1837–1838, 1983); 'Fernand Dumont et Jean Hamelin jouèrent un rôle capital d'animation' (p. 67)."
+        },
+        "scope_note": "Ouellet's survey of Quebec historiography since about 1960, in period; Rudin (1995, n. 10) cites it as his critique of the revisionists."
+      },
+      "pe139_brown_ase_1991": {
+        "id": "pe139_brown_ase_1991",
+        "title": "Jennifer S. H. Brown, “Ethnohistorians: Strange Bedfellows, Kindred Spirits,” Ethnohistory 38, no. 2 (1991): 113ff.",
+        "url": "https://doi.org/10.2307/482117",
+        "citation": "Jennifer S. H. Brown, “Ethnohistorians: Strange Bedfellows, Kindred Spirits,” Ethnohistory 38, no. 2 (1991): 113ff.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Crossref DOI record (Ethnohistory 38:2, 1991, first page 113; last page not given). Indexed excerpt only: the abstract field of the OpenAlex record, which reproduces opening text of the address; neither the printed page nor the body (closed) was inspected. Passages: 'the rather obscure niche occupied by our field, methodology, approach, or whatever it is we do when we do ethnohistory'; 'auto-ethnohistory'; 'a useful handle for some reflections about ethnohistory and ethnohistorians, myself included'; Bill Simmons asked her in August 1988 'if I would be a candidate for president of the American Society for Ethnohistory'. Her predecessors as president, Axtell (1990) and Fogelson (1989), are named."
+        },
+        "scope_note": "Indexed excerpt only; her presidential address to the American Society for Ethnohistory (first page recorded as p. 113)."
+      },
+      "pe139_brown_ethnohistorian_2017": {
+        "id": "pe139_brown_ethnohistorian_2017",
+        "title": "Jennifer S. H. Brown, An Ethnohistorian in Rupert's Land: Unfinished Conversations (Edmonton: Athabasca University Press, 2017).",
+        "url": "https://doi.org/10.15215/aupress/9781771991711.01",
+        "citation": "Jennifer S. H. Brown, An Ethnohistorian in Rupert's Land: Unfinished Conversations (Edmonton: Athabasca University Press, 2017).",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Open-access PDF from the publisher (aupress.ca, CC BY-NC-ND 4.0), 368 PDF pages. Read: acknowledgements (pp. vii–viii); part introduction (p. 159: 'I coming from anthropology and Sylvia from history, overlapping yet complementary'); chapter 3, 'The Blind Men and the Elephant' (pp. 61–66; revised reprint of a 1988 conference paper published 1990, citing Conrad Black 2014); chapter 9 opening (pp. 145–46: the title changed from 'The Presbyterian Métis of St. Gabriel Street' because 'the term \"Métis,\" as used in Rupert's Land in the 1800s, referred particularly to Roman Catholics of French Canadian paternal origin' and the children 'cannot be subsumed under any one label'); chapter 11 (her 2012 essay); publication credits (pp. 345–47: 'In a few instances, chapter titles in this book have been somewhat modified from the originals')."
+        },
+        "scope_note": "Later collection (2017); reprints do not witness original wording."
+      },
+      "pe139_brown_gresko_1981": {
+        "id": "pe139_brown_gresko_1981",
+        "title": "Jacqueline Gresko, review of Strangers in Blood, by Jennifer Brown, Canadian Woman Studies / les cahiers de la femme 3, no. 2 (1981): 112–13.",
+        "url": "https://cws.journals.yorku.ca/index.php/cws/article/view/14091",
+        "citation": "Jacqueline Gresko, review of Strangers in Blood, by Jennifer Brown, Canadian Woman Studies / les cahiers de la femme 3, no. 2 (1981): 112–13.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in an Internet Archive capture (22 October 2023) of the journal PDF (cws.journals.yorku.ca/index.php/cws/article/download/14091/13144); the live York site is behind a bot check. The PDF is a two-page scan whose OJS record is titled for the next review on the page (Posner, 'Becoming a Mother'); the article page gives Vol 3, No 2 (1981), Book Reviews, dated 1981-06-01. Printed '112' and '113' read on a 300-dpi re-OCR. Passages: 'any relationship, even familial that the law refused to admit as legitimate'; 'one way of characterizing the meetings of Whites and Indians ... in the fur trade of North America'; 'their common British (and heavily Scottish) facade'; 'strongly related to changing economic pressures'; 'not to assume an active paternal role'; 'still too much in the form of the academic thesis'; 'complicated by seemingly insignificant bits of anthropological theory'; no mention of Jamieson's Indian Women and the Law in Canada (1978). A same-reviewer Atlantis record (6:2, 1981, pp. 213–14, 'Strangers In Blood') was also checked: its PDF holds Gresko's review of Light and Strong-Boag's True Daughters of the North, not of Brown."
+        },
+        "scope_note": "In-period review in a Canadian women's studies journal: summary and criticism."
+      },
+      "pe139_brown_orders_1988": {
+        "id": "pe139_brown_orders_1988",
+        "title": "Jennifer S. H. Brown and Robert Brightman, “The Orders of the Dreamed”: George Nelson on Cree and Northern Ojibwa Religion and Myth, 1823 (Winnipeg: University of Manitoba Press, 1988).",
+        "url": "https://doi.org/10.1515/9780887553059",
+        "citation": "Jennifer S. H. Brown and Robert Brightman, “The Orders of the Dreamed”: George Nelson on Cree and Northern Ojibwa Religion and Myth, 1823 (Winnipeg: University of Manitoba Press, 1988).",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-14",
+          "note": "Title, authors, publisher and 1988 from Brown (2012), n. 8 (2017 reprint, p. 188). OpenAlex records the 2009 De Gruyter e-book (DOI above) and reviews in Journal of the Early Republic (1989), American Indian Quarterly (1990) and Journal of American Folklore (1991). Book and reviews unread."
+        },
+        "scope_note": "Title-level; her Cree and Ojibwe religious history from a trader's text."
+      },
+      "pe139_brown_stories_2012": {
+        "id": "pe139_brown_stories_2012",
+        "title": "Jennifer S. H. Brown, “‘All These Stories About Women’: ‘Many Tender Ties’ and a New Fur Trade History,” in Finding a Way to the Heart: Feminist Writings on Aboriginal and Women's History in Canada, ed. Robin Jarvis Brownlie and Valerie J. Korinek (Winnipeg: University of Manitoba Press, 2012), 25–36; reprinted in Brown, An Ethnohistorian in Rupert's Land (2017), 183–93.",
+        "url": "https://doi.org/10.1515/9780887554216-004",
+        "citation": "Jennifer S. H. Brown, “‘All These Stories About Women’: ‘Many Tender Ties’ and a New Fur Trade History,” in Finding a Way to the Heart, ed. Brownlie and Korinek (Winnipeg: University of Manitoba Press, 2012), 25–36; reprinted in An Ethnohistorian in Rupert's Land (2017), chapter 11.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in the 2017 open-access reprint (chapter 11, pp. 183–92 read; the chapter ends on p. 193); the De Gruyter PDF of the 2012 chapter returned nothing. 2012 pages 25–36 from the publication credits (p. 346) and OpenAlex; quotations carry 2017 page numbers. Passages: Van Kirk's letter of 26 April 1972, 'As an anthropologist you will likely be applying a different set of criteria to the primary source material' (p. 184) and 'the dehumanized way in which our history has been written' (p. 185); E. E. Rich 'seemed not entirely convinced that all these stories about women constituted \"real\" history' (p. 186); 'We became, it seemed, the Bobbsey Twins of fur trade social history, often cited in the same breath or footnote by writers who might or might not have read our books' (p. 187); 'her sphere of work and teaching increasingly became women's history, while mine focused more on Aboriginal history' (p. 191); 'my courses and professors directed me towards broader issues of method and theory'; categories 'which she tended to accept more as given' (pp. 191–92); 'she had a devotion to the ones that worked'; 'my book title, Strangers in Blood, picked up on a different angle' (p. 192)."
+        },
+        "scope_note": "Later reading (2012) by one of the pair; carries no in-period claim."
+      },
+      "pe139_brown_vibert_1996": {
+        "id": "pe139_brown_vibert_1996",
+        "title": "Jennifer S. H. Brown and Elizabeth Vibert, eds., Reading Beyond Words: Contexts for Native History (Peterborough, ON: Broadview Press, 1996).",
+        "url": "https://openlibrary.org/search?q=Reading+Beyond+Words+Contexts+for+Native+History",
+        "citation": "Jennifer S. H. Brown and Elizabeth Vibert, eds., Reading Beyond Words: Contexts for Native History (Peterborough, ON: Broadview Press, 1996).",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-14",
+          "note": "Editors, title, Broadview Press and 1996 from Fiske (2000) bibliography and McPherson (2000) n. 31, both read; OpenAlex lists reviews in Ethnohistory (1998) and AHR (1999). Contents unread. The URL is a catalogue search, not a record."
+        },
+        "scope_note": "Title-level; cited in 2000 for a rhetorical reading of oral and written narratives."
+      },
+      "pe139_brown_woman_centre_1983": {
+        "id": "pe139_brown_woman_centre_1983",
+        "title": "Jennifer S. H. Brown, “Woman as Centre and Symbol in the Emergence of Metis Communities,” Canadian Journal of Native Studies 3, no. 1 (1983): 39–46.",
+        "url": "http://www3.brandonu.ca/library/CJNS/3.1/brown.pdf",
+        "citation": "Jennifer S. H. Brown, “Woman as Centre and Symbol in the Emergence of Metis Communities,” Canadian Journal of Native Studies 3, no. 1 (1983): 39–46.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in an Internet Archive capture (2016) of Brandon University's CJNS archive PDF; the live URL now returns 404. Running head 'THE CANADIAN JOURNAL OF NATIVE STUDIES III, 1(1983):39-46'; byline 'Department of Anthropology, University of Winnipeg'. The issue introduction says the papers were given at a Métis symposium in Winnipeg, 5–6 November 1982. OCR slips corrected ('coiling' to 'calling', 'contriburing' to 'contributing'). Passages: 'Biologically, métissage in North America can be described in a unitary way, as the meeting and mingling of Indian and white racial groups. Socially and culturally, it has had a complex history over many generations'; 'women's studies provide one important perspective, among several'; 'matriorganization'; 'Another starting point for this discussion is the work of Sylvia Van Kirk (1980)' (p. 40); 'patrifocality' (Brown 1980:218); 'by a margin of about two to one'; 'more likely by a two-to-one margin to remain in the Indian country' (p. 41); Asch's 'unilocality'; Île-à-la-Crosse 1823 (p. 42); 'were all in accord in calling attention to the maternal element as formative in metis emergence' (p. 44); 'It is all too easy to learn more about the men than the women' (p. 45). The references list Peterson and Brown, eds., The New Peoples, 'forthcoming', from the Newberry Library Conference on the Metis, Chicago, 1981."
+        },
+        "scope_note": "Her own in-period words on women, descent and Métis emergence, and her ethnohistorical method."
+      },
+      "pe139_vankirk_bowsfield_1981": {
+        "id": "pe139_vankirk_bowsfield_1981",
+        "title": "Hartwell Bowsfield, “Studies in Fur” (review article), Archivaria 12 (Summer 1981): 121–26.",
+        "url": "https://archivaria.ca/index.php/archivaria/article/view/10888",
+        "citation": "Hartwell Bowsfield, “Studies in Fur” (review article), Archivaria 12 (Summer 1981): 121–26.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the journal PDF (article/download/10888/11811); author, date and pp. 121–126 from the article page metadata; issue from the page's issue link ('Archivaria 12', Summer 1981). Printed page numbers checked on each PDF page. Reviews Ray and Freeman, Martin, Judd and Ray, eds., Van Kirk, Brown and Cole. Van Kirk's book is quoted without page references. Passages: 'constituted a social and cultural complex as well as an economic activity'; 'supports the claims of theorists in women's history that sex roles should constitute a category of historical investigation'; 'not a strident one'; 'This may be too complimentary a picture of both native women and European men'; 'using basically the same sources and employing the same macrobiographical approach as Van Kirk'; 'comparison between Hudson's Bay Company and North West Company men as husbands and fathers'; 'the relationship of hinterland to metropolis' (p. 124); 'With Van Kirk and Brown the unique and complex role of women and the fur trade family unit have been opened to investigation'; 'a distinctive Canadian approach to family history' (p. 126)."
+        },
+        "scope_note": "In-period joint review of the two 1980 books."
+      },
+      "pe139_vankirk_fiske_2000": {
+        "id": "pe139_vankirk_fiske_2000",
+        "title": "Jo-Anne Fiske, “By, For, or About?: Shifting Directions in the Representations of Aboriginal Women,” Atlantis 25, no. 1 (Fall 2000): 11–27.",
+        "url": "https://atlantisjournal.ca/atlantis/en/article/view/1542",
+        "citation": "Jo-Anne Fiske, “By, For, or About?: Shifting Directions in the Representations of Aboriginal Women,” Atlantis 25, no. 1 (Fall 2000): 11–27.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the journal PDF (article/download/1542/1331); volume, issue, date and pp. 11–27 from the article page metadata. Pages by PDF order (17 pages for pp. 11–27). Passages: 'Understanding the discursive formation of Aboriginal women's sexuality requires us to build on the early work of Sylvia Van Kirk (1980) and Jennifer Brown (1980) by placing Aboriginal women in the context of the expectations held of settler women and the consequent effacing of Aboriginal women's essential role in colonial society' (p. 12); the literary turn 'promotes taking a rhetorical approach that subjects both oral and written narratives to textual analysis (Brown and Vibert 1996)' (p. 13)."
+        },
+        "scope_note": "In-period review of scholarship on Aboriginal women; cites both books and Brown and Vibert (1996)."
+      },
+      "pe139_vankirk_five_families_1997": {
+        "id": "pe139_vankirk_five_families_1997",
+        "title": "Sylvia Van Kirk, “Tracing the Fortunes of Five Founding Families of Victoria,” BC Studies 115/116 (Autumn/Winter 1997/98): 149–79.",
+        "url": "https://ojs.library.ubc.ca/index.php/bcstudies/article/view/1729",
+        "citation": "Sylvia Van Kirk, “Tracing the Fortunes of Five Founding Families of Victoria,” BC Studies 115/116 (Autumn/Winter 1997/98): 149–79.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Journal PDF (article/download/1729/1862), 32 pages; only pp. 149–151 and parts of 152–55 have a usable text layer, and the file's cross-reference table is broken after its seventh page (the other galley returned an audio file). Pages 149–151 were read. Article page metadata gives pp. 149–180; the printed first page reads 'BC STUDIES, no. 115/116, Autumn/Winter 1997/98, 149'. Passages: 'it obscures the actual mixed-race origins of many of its founding families' (p. 149); 'Little attention has been paid to the fact that this process of acculturation was gendered'; 'a complex interaction of gender and class dynamics, coupled with the particular demographics of early Victoria, enabled the girls to transcend the racist climate of the colony more successfully than the boys' (p. 150). Her acknowledgement thanks Natalie Zemon Davis, Adele Perry and Jennifer Brown, among others (p. 149 n.)."
+        },
+        "scope_note": "Her own in-period words, pp. 149–51 only."
+      },
+      "pe139_vankirk_gagan_turner_1982": {
+        "id": "pe139_vankirk_gagan_turner_1982",
+        "title": "David Gagan and H. E. Turner, “Social History in Canada: A Report on the ‘State of the Art’,” Archivaria 14 (Summer 1982): 27–52.",
+        "url": "https://archivaria.ca/index.php/archivaria/article/view/10938",
+        "citation": "David Gagan and H. E. Turner, “Social History in Canada: A Report on the ‘State of the Art’,” Archivaria 14 (Summer 1982): 27–52.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the journal PDF (article/download/10938/11870); authors from the title page ('by DAVID GAGAN and H.E. TURNER'); pp. 27–52 and issue 14 (Summer 1982) from the article page. Passages: 'two noteworthy recent studies attempt to recreate the whole way of life of a particular group of \"working\" women, those who participated in the Canadian fur trade'; 'the whole woman-wife, mother, labourer, diplomat, chattel, entrepreneur-is revealed' (p. 29; n. 7 cites Brown and Van Kirk); Van Kirk's marriages 'generations of scandalized references notwithstanding, were crucial to the establishment of early western society' (p. 43, n. 115)."
+        },
+        "scope_note": "In-period survey of Canadian social history; places both books under women's history."
+      },
+      "pe139_vankirk_mcpherson_2000": {
+        "id": "pe139_vankirk_mcpherson_2000",
+        "title": "Kathryn McPherson, “Was the ‘Frontier’ Good for Women?: Historical Approaches to Women and Agricultural Settlement in the Prairie West, 1870–1925,” Atlantis 25, no. 1 (Fall 2000): 75–86.",
+        "url": "https://atlantisjournal.ca/atlantis/en/article/view/1548",
+        "citation": "Kathryn McPherson, “Was the ‘Frontier’ Good for Women?: Historical Approaches to Women and Agricultural Settlement in the Prairie West, 1870–1925,” Atlantis 25, no. 1 (Fall 2000): 75–86.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the journal PDF (article/download/1548/1337); volume, issue, date (2000-10-01) and pp. 75–86 from the article page metadata. Pages by PDF order (12 pages for pp. 75–86). Passage, p. 82: 'In her now-classic work Many Tender Ties, Sylvia Van Kirk examined the role of First Nations women in the fur trade society of the Canadian north-west and the negative impact the arrival of white women had on the place of indigenous women. Van Kirk's research and the critical debates it has aroused have played a crucial role in writing Native women into western Canadian history and in bringing cultural difference and conflict into Canadian women's history' (n. 30 cites the book, pp. 201, 240). Note 31 cites Brown and Vibert, eds., Reading Beyond Words (1996)."
+        },
+        "scope_note": "In-period historiographical reading in a Canadian women's studies journal."
+      },
+      "pe139_vankirk_reputation_1986": {
+        "id": "pe139_vankirk_reputation_1986",
+        "title": "Sylvia Van Kirk, “‘The Reputation of a Lady’: Sarah Ballenden and the Foss-Pelly Scandal,” Manitoba History 11 (Spring 1986).",
+        "url": "https://www.mhs.mb.ca/docs/MB_history/11/fosspellyscandal.shtml",
+        "citation": "Sylvia Van Kirk, “‘The Reputation of a Lady’: Sarah Ballenden and the Foss-Pelly Scandal,” Manitoba History 11 (Spring 1986).",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-14",
+          "note": "Read in full in the Manitoba Historical Society's online edition ('by Sylvia Van Kirk, University of Toronto; Manitoba History, Number 11, Spring 1986'). The web edition has no page numbers; quotations are located by paragraph. Passages: 'Other important themes for women's history also emerge'; 'The reasons for such \"unsisterly\" action should be confronted squarely by feminist historians'; 'compounded by the issue of race' (paragraph 3); 'Fur trade society in Rupert's Land had resulted from decades of inter-marriage among incoming white fur traders with Indian and later mixed-blood women'; 'Racist attitudes, particularly with regard to women' (paragraph 4); 'The racism evinced by white women in Red River, while as inexcusable as that of their male counterparts, was aggravated by what, in their view, was a concrete threat to their own welfare in the competition for eligible husbands' (final paragraph)."
+        },
+        "scope_note": "Her own in-period words on women's history, race and fur-trade society."
+      },
+      "cw159_firsting": {
+        "id": "cw159_firsting",
+        "title": "Jean M. O’Brien, Firsting and Lasting: Writing Indians out of Existence in New England (Minnesota, 2010), publisher description and contents.",
+        "url": "https://www.upress.umn.edu/9781452915258/firsting-and-lasting/",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-24",
+          "note": "Checked author, publication year and publisher’s account of local histories, erasure, land and rights. The description supports a scoped contribution to studies of settler colonialism; it does not establish influence on named historians. Metadata only; the complete work has not been read for this review. No influence or agreement is inferred."
+        }
+      },
+      "gn161_ibn_hannoum_2026": {
+        "id": "gn161_ibn_hannoum_2026",
+        "title": "Abdelmajid Hannoum, Ibn Khaldûn as a Colonial Archive: Toward an Epistemic Decolonization, Comparative Studies in Society and History, online16 October 2026.",
+        "citation": "Abdelmajid Hannoum, Ibn Khaldûn as a Colonial Archive: Toward an Epistemic Decolonization, Comparative Studies in Society and History, online16 October 2026.",
+        "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/ibn-khaldun-as-a-colonial-archive-toward-an-epistemic-decolonization/9F7D49FB47A3ED6726C615A1B6A38919",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-24",
+          "note": "Cambridge article introduction, Before and Beyond the Colonial Archive, and conclusion read. Hannoum distinguishes medieval contexts, Maghrebi/Ottoman receptions and colonial reconstruction. His argument about translation is attributed, not used to erase earlier Islamic intellectual circulation."
+        }
+      },
+      "gn161_ibn_princeton_intro": {
+        "id": "gn161_ibn_princeton_intro",
+        "title": "Ibn Khaldun, The Muqaddimah, author’s introduction, translated by Franz Rosenthal and abridged/edited by N.J.Dawood: Princeton University Press excerpt i10477.",
+        "citation": "Ibn Khaldun, The Muqaddimah, author’s introduction, translated by Franz Rosenthal and abridged/edited by N.J.Dawood: Princeton University Press excerpt i10477.",
+        "url": "https://assets.press.princeton.edu/chapters/i10477.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-24",
+          "note": "Scanned publisher excerpt OCRed and read at printed pp. 1–4 and 24–31; original Arabic not read. The excerpt is Ibn Khaldun’s methodological introduction, not the modern translator’s introduction. OCR supports paraphrase only; no new verbatim quotation imported."
+        }
+      },
+      "gn161_ibn_sep_2025": {
+        "id": "gn161_ibn_sep_2025",
+        "title": "Stanford Encyclopedia of Philosophy, Medieval Political Philosophy (2025), section 15, Ibn Khaldun.",
+        "citation": "Stanford Encyclopedia of Philosophy, Medieval Political Philosophy (2025), section 15, Ibn Khaldun.",
+        "url": "https://plato.stanford.edu/entries/medieval-political/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-24",
+          "note": "Section15 read for scholarly context, social organization and political authority. It does not establish direct influence on modern sociologists or a secular rupture from Islamic scholarship."
+        }
+      },
+      "gn161_ibn_simon_2002": {
+        "id": "gn161_ibn_simon_2002",
+        "title": "Róbert Simon, Ibn Khaldun: History as Science and the Patrimonial Empire, translated by Klára Pogátsa (Akadémiai Kiadó, 2002), 64–65, 99–103.",
+        "citation": "Róbert Simon, Ibn Khaldun: History as Science and the Patrimonial Empire, translated by Klára Pogátsa (Akadémiai Kiadó, 2002), 64–65, 99–103.",
+        "url": "https://real-eod.mtak.hu/18911/1/AkademiaiKiado_000905.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-24",
+          "note": "Selected pages read in the Hungarian Academy repository: dated composition/revision in 1377 and 1378–82, autobiography continuation throughMay 1405. Copyright page identifies English 2002 translation of Hungarian 1999 book. Whole monograph unread."
+        }
+      },
+      "hc171_bederman_extract": {
+        "id": "hc171_bederman_extract",
+        "title": "Gail Bederman, Manliness & Civilization (1995), chapter 1 closing passage, printed pp. 42–43: indexed primary extract.",
+        "citation": "Gail Bederman, Manliness & Civilization (1995), chapter 1 closing passage, printed pp. 42–43: indexed primary extract.",
+        "url": "https://files.commons.gc.cuny.edu/wp-content/blogs.dir/4188/files/2018/08/Bederman-Manliness-and-Civilization.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Only the indexed primary passage around printed pp. 42–43 read, on distinct uses of civilization in four cases. Direct PDF retrieval returned 403 in both local and web access; no complete PDF or chapter reading claimed. The extract is bounded evidence supplemented by the separately read named substantive reader, not a publisher description or whole-book certification. Addendum 2026-10-25: After the frozen 1.171 indexed/mediated check, the same public scan was successfully retrieved via its S3 CDN: https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/4188/files/2018/08/Bederman-Manliness-and-Civilization.pdf . Printed pp. 4–9 and 42–43 were then read through page OCR; PDF page 3 (printed 2–3) visually inspected to confirm the two-page scan mapping. Pp. 5–8 define manhood as a historical process relating bodies, identities and authority; pp. 42–43 explain racial/civilizational strategies. P. 43 explicitly limits the selected cases to varied discursive positions rather than representativeness or measured effects on others. Full chapter/book and endnotes remain unread; historical examples are not independently checked. Earlier 403 and indexed/Harvey reading limits remain the historical scope of the earlier check; no claim or edge changes follow."
+        }
+      },
+      "hc171_bederman_harvey": {
+        "id": "hc171_bederman_harvey",
+        "title": "Anne-Marie Harvey, “Sons of the Sun: Making White, Middle-Class Manhood in Jack London’s David Grief Stories and the Saturday Evening Post,” American Studies 39:3 (Fall 1998): 37–68.",
+        "citation": "Anne-Marie Harvey, “Sons of the Sun: Making White, Middle-Class Manhood in Jack London’s David Grief Stories and the Saturday Evening Post,” American Studies 39:3 (Fall 1998): 37–68.",
+        "url": "https://journals.ku.edu/amsj/article/download/2696/2655/3026",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Printed pp. 42–43 read, including the explicit substantive discussion of Bederman’s argument and Harvey’s extension/qualification in her own object. Other pages not claimed read in full. This is a named reader, not Bederman’s own testimony or proof that she studied London in this way."
+        }
+      },
+      "hc171_granatstein_interview": {
+        "id": "hc171_granatstein_interview",
+        "title": "J. L. Granatstein, written Q&A, “Behind the scenes with J.L. Granatstein,” Legion Magazine, 3 April 2019.",
+        "citation": "J. L. Granatstein, written Q&A, “Behind the scenes with J.L. Granatstein,” Legion Magazine, 3 April 2019.",
+        "url": "https://legionmagazine.com/readerperks-behind-the-scenes-with-j-l-granatstein/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Complete displayed written Q&A read, especially the third answer on domestic war politics and high command. No embedded video used; evaluative claims about universities, battles and defence policy remain his testimony rather than independently checked findings."
+        }
+      },
+      "hc171_lears_cohen": {
+        "id": "hc171_lears_cohen",
+        "title": "B. R. Cohen and T. J. Jackson Lears, “The Confidence Economy: An Interview with T. J. Jackson Lears,” Public Books, online written interview.",
+        "citation": "B. R. Cohen and T. J. Jackson Lears, “The Confidence Economy: An Interview with T. J. Jackson Lears,” Public Books, online written interview.",
+        "url": "https://www.publicbooks.org/the-confidence-economy-an-interview-with-t-j-jackson-lears/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Written sections I–II read. Supports the author’s own account of confidence and cultural history. A reliable publication date was not established from the visible page, so none is invented and no chronology event is dated from crawl metadata. Other sections and complete book bodies not claimed read."
+        }
+      },
+      "hc171_lears_serlin": {
+        "id": "hc171_lears_serlin",
+        "title": "David Serlin and Jackson Lears, “Rolling the Dice: An Interview with Jackson Lears,” Cabinet 19 (Fall 2005); conversation June 2005.",
+        "citation": "David Serlin and Jackson Lears, “Rolling the Dice: An Interview with Jackson Lears,” Cabinet 19 (Fall 2005); conversation June 2005.",
+        "url": "https://www.cabinetmagazine.org/issues/19/serlin_lears.php",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Opening answers on the origins of the chance inquiry and the coexistence of chance/control read, plus introduction and author biography. Distinguishes June conversation from Fall issue. Contemporary bibliography gives Fables (1994) and Something for Nothing (2003); full books unread."
+        }
+      },
+      "hc171_lears_smithsonian": {
+        "id": "hc171_lears_smithsonian",
+        "title": "Smithsonian Libraries and Archives, Fables of Abundance, record siris_sil_471135.",
+        "citation": "Smithsonian Libraries and Archives, Fables of Abundance, record siris_sil_471135.",
+        "url": "https://www.si.edu/object/siris_sil_471135",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Author authority heading T. J. Jackson Lears 1947- and book date/copyright 1994 checked. Bibliographic facts only; open author date does not prove current living status."
+        }
+      },
+      "hc173_desmond_morton_1": {
+        "id": "hc173_desmond_morton_1",
+        "title": "John Bullen, review of Desmond Morton with Terry Copp, Working People, Histoire sociale14/28(1981), pp553–555",
+        "url": "https://hssh.journals.yorku.ca/index.php/hssh/article/download/38087/34478",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Indexed opening on labour disputes, synthesis and new labour/social research read; direct PDF endpoint returned browser verification. Named reader’s assessment, not whole-book reading."
+        }
+      },
+      "hc173_desmond_morton_2": {
+        "id": "hc173_desmond_morton_2",
+        "title": "Anne Lagacé Dowson interviews Desmond Morton, McGill Reporter7 November2018",
+        "url": "https://reporter.mcgill.ca/desmond-morton-telling-the-stories-of-canadas-soldiers/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Quoted personal remembrance and final Vimy/national-formation interpretation read. This is his interpretation, not an unqualified nationhood fact."
+        }
+      },
+      "hc173_george_l_mosse_1": {
+        "id": "hc173_george_l_mosse_1",
+        "title": "Steven E. Aschheim, George L. Mosse: Historian of Fascism, Masculinity, and Nationalism, Columbia Mosse Lecture27 April2023 transcript",
+        "url": "https://mosselectures.wisc.edu/2023/04/27/aschheim/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Transcript26:50–30:00 on Fallen Soldiers, Nationalism and Sexuality and Image of Man read, including limits of bourgeois-respectability account. Victoria de Grazia response is separately attributed."
+        }
+      },
+      "hc173_ira_berlin_1": {
+        "id": "hc173_ira_berlin_1",
+        "title": "Ira Berlin, Opening Statement, Forum on Slavery1 October1999",
+        "url": "https://historymatters.gmu.edu/talkinghistory/SlaveryForum/SlaveryForum-1999-October.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own opening statement points1–5 read: Atlantic/global frame, long chronology, northern slavery, negotiation under coercion, cultural exchange. Replies are not attributed to Berlin."
+        }
+      },
+      "hc173_paul_andre_linteau_1": {
+        "id": "hc173_paul_andre_linteau_1",
+        "title": "Paul-André Linteau, Prix du Québec2012 biography and interview quotations",
+        "url": "https://prixduquebec.gouv.qc.ca/recipiendaires/paul-andre-linteau/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own quoted argument at biography opening and urban/economic sections read; bibliographic paragraph dates Maisonneuve1981 and Montreal1992."
+        }
+      },
+      "hc174_gaddis_newcoldwar": {
+        "id": "hc174_gaddis_newcoldwar",
+        "title": "John Lewis Gaddis, “The New Cold War History,” American Diplomacy III:4 (1998), adapted from FPRI keynote, May 1998 / Footnotes, June 1998.",
+        "citation": "John Lewis Gaddis, “The New Cold War History,” American Diplomacy III:4 (1998), adapted from FPRI keynote, May 1998 / Footnotes, June 1998.",
+        "url": "https://ciaotest.cc.columbia.edu/olj/ad/ad_v3_4/gaj01.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Complete short displayed primary essay read. Locators: opening archive/representation discussion; second argument on ideology; third on nuclear weapons. Final note distinguishes May 1–2 institute address and June Footnotes publication from this journal reproduction. Claims about democracies, authoritarian states and nuclear effects remain Gaddis’s assessment; no unanimous synthesis or full-book reading asserted."
+        }
+      },
+      "hc175_elaine_tyler_may_1": {
+        "id": "hc175_elaine_tyler_may_1",
+        "title": "Elaine Tyler May, American Experience Tupperware interview, PBS",
+        "url": "https://www.pbs.org/wgbh/americanexperience/features/tupperware-may/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Written Q&A read, especially baby boom, public policy, Cold War and married women’s work. Book bodies not read. Intro dates Homeward Bound 1988; conflicting Barren year not used."
+        }
+      },
+      "hc175_elaine_tyler_may_2": {
+        "id": "hc175_elaine_tyler_may_2",
+        "title": "OAH 2010 awards/presidential program: Elaine Tyler May",
+        "url": "https://oah.org/site/assets/files/8218/2010-awards-program.pdf",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Presidential biographical citation dates Great Expectations 1980 and Homeward Bound original 1988 versus expanded 2008 edition."
+        }
+      },
+      "hc175_elaine_tyler_may_3": {
+        "id": "hc175_elaine_tyler_may_3",
+        "title": "Free Library Philadelphia catalogue: America and the Pill",
+        "url": "https://catalog.freelibrary.org/Record/1727536",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Catalogue publication statement identifies Basic Books 2010 and Elaine Tyler May."
+        }
+      },
+      "hc175_francois_hartog_1": {
+        "id": "hc175_francois_hartog_1",
+        "title": "François Hartog and Frédéric Worms, “Les grammaires du temps”, ENS",
+        "url": "https://www.ens.psl.eu/actualites/les-grammaires-du-temps",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Written dialogue read, especially Hartog’s first answer on Sahlins, regimes and presentism, and pandemic answer. Worms’s independent positions not attributed to Hartog."
+        }
+      },
+      "hc175_mae_m_ngai_1": {
+        "id": "hc175_mae_m_ngai_1",
+        "title": "Mae Ngai interviewed by Peter Costantini, “Manufacturing illegality”, FPIF, 16 January 2019",
+        "url": "https://fpif.org/manufacturing-illegality-an-interview-with-mae-ngai/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Written interview and quoted author passages read, especially 1924 quotas, racial categories and 1965 restriction. Intro gives Impossible Subjects original2004 and Lucky Ones2010; revised2014 is distinguished."
+        }
+      },
+      "hc175_mae_m_ngai_2": {
+        "id": "hc175_mae_m_ngai_2",
+        "title": "Mae M. Ngai, “The Architecture of Race in American Immigration Law”, Journal of American History86.1(1999),67–92",
+        "url": "https://doi.org/10.2307/2567407",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "DOI and journal citation checked through scholarly bibliography/index results. Article body not used to assert independent passage-level reading."
+        }
+      },
+      "hc175_nancy_f_cott_2": {
+        "id": "hc175_nancy_f_cott_2",
+        "title": "Nancy Cott interviewed by Terry Gross, Fresh Air, 15 April 2004",
+        "url": "https://freshairarchive.org/segments/professor-john-witte-jr",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Cott transcript sections read despite page slug naming another guest. Cott identification, marriage as civil institution, changing gender roles and divorce answers inspected; later Witte segment is not attributed to her."
+        }
+      },
+      "hc175_thomas_sugrue_1": {
+        "id": "hc175_thomas_sugrue_1",
+        "title": "Thomas J. Sugrue interviewed by Julian Zelizer, Journal for MultiMedia History 2.1, 7 April 1999",
+        "url": "https://www.albany.edu/jmmh/vol2no1/sugrue.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Written transcript read, especially book themes and three transforming forces: capital flight, job discrimination, and residential segregation. Audio not used."
+        }
+      },
+      "hc176_daniel_roche_1": {
+        "id": "hc176_daniel_roche_1",
+        "title": "Gil Bartholeyns, Avis de recherche: Dialogue avec Daniel Roche, Modes pratiques, pp170–187",
+        "url": "https://devisu.inha.fr/modespratiques/354",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own answers in Histoire sociale et histoire des représentations and Mode et consommation sections read. Roche criticizes removal of social distinctions from representations and discusses clothing consumption/diffusion."
+        }
+      },
+      "hc176_john_brewer_1": {
+        "id": "hc176_john_brewer_1",
+        "title": "John Brewer, Harvard1980–87, memoir chapter7,30 April2026",
+        "url": "https://johnbrewer.substack.com/p/harvard-1980-87",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own Sinews research-design section on state growth, taxation and pushback inspected; retrospective2026 recollection, not original1989 text."
+        }
+      },
+      "hc176_john_brewer_2": {
+        "id": "hc176_john_brewer_2",
+        "title": "John Brewer, Introduction, memoir draft3 September2026",
+        "url": "https://johnbrewer.substack.com/p/introduction",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own discussion of interdisciplinary practice, Sinews/Pleasures dual reception and historical imagination read; positive2026 author-life evidence."
+        }
+      },
+      "hc176_john_brewer_3": {
+        "id": "hc176_john_brewer_3",
+        "title": "Routledge: The Sinews of Power",
+        "url": "https://www.routledge.com/The-Sinews-of-Power-War-Money-and-the-English-State-1688-1783-1st-Edition/Brewer/p/book/9780415754927",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Explicit first published1989."
+        }
+      },
+      "hc176_john_brewer_4": {
+        "id": "hc176_john_brewer_4",
+        "title": "Wellcome Collection: Consumption and the World of Goods",
+        "url": "https://wellcomecollection.org/works/n2ar4p83",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Original1993 edited volume; John Brewer and Roy Porter coeditors, individual chapter credits retained."
+        }
+      },
+      "hc176_john_brewer_5": {
+        "id": "hc176_john_brewer_5",
+        "title": "Harvard Early Modern World: John Brewer",
+        "url": "https://earlymodernworld.fas.harvard.edu/John-Brewer",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Bibliographic paragraph dates Pleasures of the Imagination1997."
+        }
+      },
+      "hc176_john_brewer_6": {
+        "id": "hc176_john_brewer_6",
+        "title": "Peter Holland, Culture Ho!, NYRB9 April1998",
+        "url": "https://www.nybooks.com/articles/1998/04/09/culture-ho/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Named substantive reader’s opening on Bewick, arts, provincial audiences and moral commentary read; not whole review/book."
+        }
+      },
+      "hc176_robin_d_g_kelley_1": {
+        "id": "hc176_robin_d_g_kelley_1",
+        "title": "Robin D.G.Kelley,Twenty Years of Freedom Dreams,Boston Review1 August2022",
+        "url": "https://www.bostonreview.net/articles/twenty-years-of-freedom-dreams/",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own opening paragraphs on the2002 book,intentions,collective radical imagination and campaigns read; not the complete anniversary edition."
+        }
+      },
+      "hc177_black_sonshi": {
+        "id": "hc177_black_sonshi",
+        "title": "Jeremy Black, written interview with Sonshi.",
+        "citation": "Jeremy Black, written interview with Sonshi.",
+        "url": "https://www.sonshi.com/black.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Complete short written interview read, especially answers on Western-centric military history, strategy/policy and diplomacy. No exact publication day established; introductory forthcoming 2022/2023 titles are not used to invent an interview date. Questions, promotional praise and historical Sun Tzu chronology remain interviewer material, not Black’s scholarly claims. No books read."
+        }
+      },
+      "hc177_charle_interview": {
+        "id": "hc177_charle_interview",
+        "title": "Christophe Charle, “Quels « combats pour l’histoire » aujourd’hui?”, email interview by Michel Pinault, Histoire & sociétés 25–26 (second quarter 2008).",
+        "citation": "Christophe Charle, “Quels « combats pour l’histoire » aujourd’hui?”, email interview by Michel Pinault, Histoire & sociétés 25–26 (second quarter 2008).",
+        "url": "https://sauvonsluniversite.com/IMG/pdf/Histoire_et_societe.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Primary printed pp. 160–162 read. Heading specifies email exchanges during December 2007; publication second quarter 2008. Later interview pages and other texts in PDF not claimed read. His methodological definitions and polemics stay attributed; Bourdieu testimony is not converted into an extra influence arrow."
+        }
+      },
+      "hc177_dosse_primary": {
+        "id": "hc177_dosse_primary",
+        "title": "François Dosse, “L’histoire entre la guerre des mémoires et la Justice,” Études Ricœuriennes / Ricœur Studies 8:1 (2017), DOI 10.5195/errs.2017.403.",
+        "citation": "François Dosse, “L’histoire entre la guerre des mémoires et la Justice,” Études Ricœuriennes / Ricœur Studies 8:1 (2017), DOI 10.5195/errs.2017.403.",
+        "url": "https://ricoeur.pitt.edu/ojs/ricoeur/article/view/403",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Primary PDF abstract and printed pp. 67–69 read, including the distinction between historical and judicial evidentiary practices. Later body unread. Landing record supplies 31 July 2017. PDF cover has inconsistent end pagination (67–141 versus running text ending 82); no full-range claim is adopted. Historical legal assertions remain attributed and are not current legal guidance."
+        }
+      },
+      "hc177_greene_interview": {
+        "id": "hc177_greene_interview",
+        "title": "Miguel Dantas da Cruz, “Atlantic history and other approaches to early modern empires: a conversation with Jack P. Greene,” Ler História 75 (2019): 231–250.",
+        "citation": "Miguel Dantas da Cruz, “Atlantic history and other approaches to early modern empires: a conversation with Jack P. Greene,” Ler História 75 (2019): 231–250.",
+        "url": "https://journals.openedition.org/lerhistoria/6020",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Selected primary answers printed pp. 237–239 and introduction pp. 231–232 read through public ResearchGate journal reproduction https://www.researchgate.net/publication/338368264_Atlantic_History_and_Other_Approaches_to_Early_Modern_Empires_a_Conversation_with_Jack_P_Greene . Publisher direct access blocked; institutional repository direct PDF failed. Conversation February 2019, online 31 December 2019; repository capture dated 25 June 2020 is not the interview/publication date. Not complete interview or book reading. Interviewer’s introductory praise is not an influence claim."
+        }
+      },
+      "hc177_mcpherson_battle": {
+        "id": "hc177_mcpherson_battle",
+        "title": "Dudley T. Cornish, JAH review metadata for Battle Cry of Freedom, 75:4 (1989): 1333–1334.",
+        "citation": "Dudley T. Cornish, JAH review metadata for Battle Cry of Freedom, 75:4 (1989): 1333–1334.",
+        "url": "https://academic.oup.com/jah/article-abstract/75/4/1333/930390",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Contemporary review heading checks McPherson, title and Oxford 1988 imprint. Review body unread; no Cornish interpretation imported."
+        }
+      },
+      "hc177_mcpherson_cause": {
+        "id": "hc177_mcpherson_cause",
+        "title": "Smithsonian Libraries, For Cause and Comrades bibliographic record.",
+        "citation": "Smithsonian Libraries, For Cause and Comrades bibliographic record.",
+        "url": "https://www.si.edu/object/cause-and-comrades-why-men-fought-civil-war-james-m-mcpherson%3Asiris_sil_1053974",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Institutional record supports author, full title and Oxford 1997 publication. The 1997 interview corroborates a newly published book; no later prize year substituted."
+        }
+      },
+      "hc177_mcpherson_interview": {
+        "id": "hc177_mcpherson_interview",
+        "title": "Terry Gross, interview with James McPherson, Fresh Air, 15 May 1997.",
+        "citation": "Terry Gross, interview with James McPherson, Fresh Air, 15 May 1997.",
+        "url": "https://freshairarchive.org/segments/how-civil-war-soldiers-faced-or-fled-violence-combat",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Complete McPherson transcript segment read, from the James McPherson heading through its closing before the separate Randall Kennedy discussion. Archive warns that this is a rush transcript and audio is authoritative; audio not listened to. Paraphrase avoids treating transcription as verified exact quotation. Full monographs unread."
+        }
+      },
+      "hc177_mcpherson_struggle": {
+        "id": "hc177_mcpherson_struggle",
+        "title": "Princeton University Press, Fall 2014 paperback catalogue, The Struggle for Equality anniversary edition.",
+        "citation": "Princeton University Press, Fall 2014 paperback catalogue, The Struggle for Equality anniversary edition.",
+        "url": "https://assets.press.princeton.edu/catalogs/F14Paper.pdf",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Publisher explicitly says original 1964, fiftieth-anniversary 2014 edition with new author preface. Metadata only, not reading of the preface or original book."
+        }
+      },
+      "hc178_eugen_weber_1": {
+        "id": "hc178_eugen_weber_1",
+        "title": "Maurice Agulhon, review of Peasants into Frenchmen, Annales33.4(1978),843–844",
+        "url": "https://www.persee.fr/doc/ahess_0395-2649_1978_num_33_4_293975_t1_0843_0000_001",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Page843 read in Persée text;844not read. Named reader explains spontaneous economic change versus deliberate education/integration, and notes chronological emphasis. Weber’s monograph unread; page’s erroneous Stanford faculty designation not adopted."
+        }
+      },
+      "hc178_eugen_weber_2": {
+        "id": "hc178_eugen_weber_2",
+        "title": "University of California Senate, Eugen Weber memorial, Ronald Mellor, Lynn Hunt, Bariša Krekic and Robert Wohl",
+        "url": "https://senate.universityofcalifornia.edu/_files/inmemoriam/html/eugenweber.html",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Institutional memorial and bibliography inspected: life years1925–2007, France:Fin de Siècle1986, Hollow Years1994; Peasants publication year independently checked."
+        }
+      },
+      "hc178_eugen_weber_3": {
+        "id": "hc178_eugen_weber_3",
+        "title": "Wellcome Collection: Peasants into Frenchmen",
+        "url": "https://wellcomecollection.org/works/eabuywf8",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Stanford1976publication checked;1983French translation remains separate."
+        }
+      },
+      "hc178_jean_delumeau_1": {
+        "id": "hc178_jean_delumeau_1",
+        "title": "Jean Delumeau interviewed by Bernard Paillard,“La peur et l’historien”, Communications57(1993),17–23",
+        "url": "https://www.persee.fr/doc/comm_0588-8018_1993_num_57_1_1863",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Page17introductory account by named interviewer Bernard Paillard read, including interdisciplinary seminar and warnings about weak documentary foundations. Later interview pages18–23not read; introduction is not misrepresented as a verbatim Delumeau answer."
+        }
+      },
+      "hc179_david_brion_davis_1": {
+        "id": "hc179_david_brion_davis_1",
+        "title": "David Brion Davis,Re-Examining the Problem of Slavery in Western Culture,Proceedings American Antiquarian Society118/2(2008),pp247–266",
+        "url": "https://americanantiquarian.org/proceedings/45147497.pdf",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own opening/research origins pp247–253 and conclusion265–266 read. Moral-perception thesis explicitly Davis’s position; he says revolts can be exaggerated,not adopted here as a consensus."
+        }
+      },
+      "hc179_drew_gilpin_faust_1": {
+        "id": "hc179_drew_gilpin_faust_1",
+        "title": "Jim Leach interviews Drew Gilpin Faust,NEH Jefferson Lecture2011 page",
+        "url": "https://www.neh.gov/about/awards/jefferson-lecture/drew-gilpin-faust-biography",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own interview sections on enslaved family ties,Hammond biography,women’s exhaustion and culture/meaning read. David W.Blight’s separately headed appreciation not attributed to Faust."
+        }
+      },
+      "hc179_edmund_s_morgan_1": {
+        "id": "hc179_edmund_s_morgan_1",
+        "title": "Edmund S.Morgan,Slavery and Freedom:The American Paradox,JAH59/1(June1972),pp5–29",
+        "url": "https://academic.oup.com/jah/article-abstract/59/1/5/840298",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own pp5–8 read in public scan https://whataboutthekennedys.com/wp-content/uploads/2012/04/slavery-and-freedom-the-american-paradox.pdf; delivery6 April1972 distinct from June publication."
+        }
+      },
+      "hc179_gordon_wood_1": {
+        "id": "hc179_gordon_wood_1",
+        "title": "Paul Massari interviews Gordon Wood,Harvard GSAS Colloquy,published26 June2026",
+        "url": "https://gsas.harvard.edu/news/colloquy-podcast-gordon-wood-radicalism-american-revolution",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Own answers on hierarchy,representation and sovereignty read; explicitly posthumously published interview,not evidence of survival to26 June."
+        }
+      },
+      "hc179_gordon_wood_2": {
+        "id": "hc179_gordon_wood_2",
+        "title": "Providence Athenæum,Gordon Wood conversation1 May2026 and bibliography",
+        "url": "https://providenceathenaeum.org/media-archives/a-conversation-with-gordon-wood/",
+        "verification": {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-10-25",
+          "note": "Bibliography dates Creation1969,Empire Liberty2009,Power Liberty2021; event page predates death and is not current life evidence."
+        }
+      },
+      "hc179_gordon_wood_3": {
+        "id": "hc179_gordon_wood_3",
+        "title": "Brown University,Passages:Gordon S.Wood,8 June2026",
+        "url": "https://www.brown.edu/news/2026-06-08/gordon-wood-passages",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-25",
+          "note": "Explicit Sunday7 June2026 death; Brown professor and Revolutionary historian identity independently matched."
+        }
+      },
+      "df03_pagden_armitage2000": {
+        "id": "df03_pagden_armitage2000",
+        "title": "Armitage: Pagden’s formative questions and support (2000)",
+        "url": "https://assets.cambridge.org/97805215/90815/frontmatter/9780521590815_frontmatter.pdf",
+        "citation": "David Armitage, The Ideological Origins of the British Empire (Cambridge University Press, 2000), acknowledgments x.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-26",
+          "note": "Publisher frontmatter freshly read: complete acknowledgments x–xi and publication/copyright leaves; p. x visually collated. The second paragraph expressly names Pagden among Bayly/Burke/Collinson/Hont as asking essential questions, then credits continuing support. Do not turn these distinct phases and people into one sole supervisor or infer a particular question. Full monograph unread; the later digital issue is not the original publication date. Addendum 2026-10-26: Dedicated Bayly review: publisher frontmatter re-read at acknowledgments x, visually collated. Chris Bayly is explicitly one of five Cambridge interlocutors asking essential questions, with continuing support credited to the wider preceding list. Pagden, Burke, Collinson and Hont retain credit; no sole-supervisor or particular-question claim. Full monograph remains unread."
+        }
+      },
+      "df04_bailyn_calloway_review1995": {
+        "id": "df04_bailyn_calloway_review1995",
+        "title": "Bernard Bailyn, “An American Tragedy” (1995).",
+        "url": "https://www.nybooks.com/articles/1995/10/05/an-american-tragedy/",
+        "citation": "Bernard Bailyn, “An American Tragedy,” New York Review of Books, 5 October 1995, 14–16, review of Colin G. Calloway, The American Revolution in Indian Country: Crisis and Diversity in Native American Communities.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-26",
+          "note": "Fresh selected publisher HTML: opening assessment, village-study qualification, and final contextual argument. Bailyn acknowledges the documented devastation and nuances while criticizing the broad interpretive framing. The reviewer’s judgments are attributed to Bailyn, not adopted as a verdict on Calloway or Indigenous history. Calloway’s full book and any reply unread; no printed-page collation. Full original HTML saved."
+        }
+      },
+      "df04_bailyn_wood_loa2021": {
+        "id": "df04_bailyn_wood_loa2021",
+        "title": "Gordon S. Wood, answers in “Remembering Bernard Bailyn” (2021).",
+        "url": "https://www.loa.org/news-and-views/1772-remembering-bernard-bailyn/",
+        "citation": "Gordon S. Wood, Richard D. Brown and Robert J. Allison, interview answers in “Remembering Bernard Bailyn,” Library of America, 5 January 2021.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-26",
+          "note": "Fresh Wood answers to the graduate-seminar question, especially his final two paragraphs, read in publisher HTML and saved original HTML. His recollection of entering the seminar in 1958 specifies the intellectual teaching debt. Brown and Allison are separate respondents; their experiences are not assigned to Wood. Retrospective testimony, not a transcript of the original seminar; no whole-book reading."
+        }
+      },
+      "df04_woodward_mcpherson_neh2000": {
+        "id": "df04_woodward_mcpherson_neh2000",
+        "title": "James M.McPherson interviewed by William R.Ferris, NEH Jefferson Lecture profile(2000).",
+        "url": "https://www.neh.gov/about/awards/jefferson-lecture/james-mcpherson-biography",
+        "citation": "National Endowment for the Humanities, “James McPherson,” Jefferson Lecture2000 profile, including interview by William R.Ferris.",
+        "verification": {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-10-26",
+          "note": "Fresh selected primary Interview section, first two questions and answers on Johns Hopkins, Woodward and the Oxford History assignment. Speaker labels separate McPherson’s recollections from profile narration and JamesI.Robertson’s accompanying appreciation. Transcript Van and Hofstetter are spelling variants for the unambiguous named historians; neither constitutes another identity. No complete McPherson monograph read."
+        }
+      }
+    },
+    "nodes": {}
+  },
+  "counts": {
+    "new_person_entries": 0,
+    "new_edges": 321,
+    "new_sources": 108,
+    "source_addenda": 92
+  }
+}

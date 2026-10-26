@@ -1,0 +1,249 @@
+{
+  "person_id": "helen_maud_cam",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "helen_maud_cam",
+    "label": "Helen Maud Cam",
+    "date_label": "Liberties and Communities 1944 · Law-finders and Law-makers 1962",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Reconstructs medieval government through local institutions, legal records and parliamentary representation. Her research examines the making and editing of evidence as well as the relations between communities and central authority. Her contribution also includes teaching, scholarly editing and histories of historians.",
+    "representative_figures_and_works": "Liberties and Communities in Medieval England (1944); studies of legal and constitutional history. IHR identifies local sources and medieval political history as central to her work.",
+    "source_ids": [
+      "helen_cam",
+      "cam_cheney_memoir",
+      "cam_stubbs",
+      "cam_law_editions"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "Studies in the Hundred Rolls (1921) and later collections distinguish documents from the institutions they disclose. Cam’s 1948 Stubbs opening combines appreciation with revision; Cheney identifies Maitland, Vinogradoff and documentary training, while questioning some juristic deductions and larger claims of legal progress. His memoir is a situated assessment, not a substitute for her full cases. Women’s place in scholarship is not confined to women’s-history subjects; the Ranke comparison remains undirected.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1944–1962",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_dac83136b109",
+          "label": "Liberties and Communities in Medieval England",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1944,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:helen_cam"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_fc38b8887dd3",
+          "label": "Stubbs Seventy Years after",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1948,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cam_stubbs"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_01f15d9dd43e",
+          "label": "Law-finders and Law-makers, London edition",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1962,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:cam_law_editions"
+          ],
+          "support": "New York edition appeared in 1963. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_302",
+      "source": "helen_maud_cam",
+      "target": "political",
+      "relationship": "examines medieval government and institutions through local records",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "helen_cam",
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. Cheney identifies criticism of the Hundred Rolls editions and local administration, then county representation and parliamentary practice. His specific reservations remain attributed.",
+      "map_label": "Records, local government and representation"
+    },
+    {
+      "id": "edge_303",
+      "source": "helen_maud_cam",
+      "target": "ranke",
+      "relationship": "invites comparison of documentary criticism and historical institutional inquiry",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "helen_cam",
+        "cam_stubbs",
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Cam’s documented interlocutors include Maitland, Stubbs, and Vinogradoff. This is not an invented direct Ranke → Cam influence claim. Cam’s Stubbs opening and Cheney’s account provide named scholarly resources, without changing this comparison into a Ranke influence.",
+      "map_label": "Document criticism with different interlocutors"
+    },
+    {
+      "id": "edge_525",
+      "source": "political",
+      "target": "helen_maud_cam",
+      "relationship": "Maitland and Stubbs supply scholarly resources; Vinogradoff and documentary teachers support Cam’s work",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir",
+        "cam_stubbs"
+      ],
+      "evidence_note": "Cam’s primary Stubbs opening and Cheney’s account distinguish reading, publication sponsorship and Hall/Jenkinson training. The group arrow names different mechanisms rather than a uniform doctrine.",
+      "map_label": "Reading, documentary training and publication",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_526",
+      "source": "political",
+      "target": "helen_maud_cam",
+      "relationship": "Cheney questions some legal deductions and broad narratives of legal progress",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Memoir pp. 303–305 combines these reservations with substantial appreciation. It does not reject the value of Cam’s local inquiry or independently settle each legal case.",
+      "map_label": "Cheney: juristic inference and broad conclusions",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_527",
+      "source": "helen_maud_cam",
+      "target": "biography",
+      "relationship": "Cam interprets Maitland’s scholarship in a prefatory memoir",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Cheney p. 304 identifies the 1957 memoir for Selected Historical Essays. Its full text is not newly read; this is a documented contribution to historians’ life writing.",
+      "map_label": "A scholarly memoir of Maitland",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "political",
+      "label": "Political history",
+      "records": [
+        {
+          "person_id": "helen_maud_cam",
+          "role": "historian",
+          "context": "Studies records as products of administration, then uses local courts and representation to examine government in practice.",
+          "works": "Studies in the Hundred Rolls (1921); The Hundred and the Hundred Rolls (1930); Liberties and Communities (1944); Law-finders and Law-makers (1962)",
+          "source_ids": [
+            "helen_cam",
+            "cam_cheney_memoir",
+            "cam_law_editions"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_302"
+        }
+      ]
+    },
+    {
+      "node_id": "biography",
+      "label": "Biography / life writing",
+      "records": [
+        {
+          "person_id": "helen_maud_cam",
+          "role": "historian",
+          "context": "Her memoir of Maitland interprets a historian’s scholarship and methods; this is distinct from her medieval institutional research.",
+          "works": "Memoir prefacing Selected Historical Essays of F. W. Maitland (1957)",
+          "source_ids": [
+            "cam_cheney_memoir"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "cam_cheney_memoir",
+      "title": "C. R. Cheney, Helen Maud Cam, 1885–1968, Proceedings of the British Academy 55 (volume designated 1969), pp. 293–310.",
+      "citation": "C. R. Cheney, Helen Maud Cam, 1885–1968, Proceedings of the British Academy 55 (volume designated 1969), pp. 293–310.",
+      "url": "https://www.thebritishacademy.ac.uk/documents/1100/55p293.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete memoir and bibliography read through OCR; p. 304 visually collated. Documents training, publication sponsorship, source criticism, local government and parliamentary work, with reservations about juristic interpretation and generalizations. Quoted Cam passages and named reviews remain mediated. Academy volume page says published 1971; scan footer copyright 1970. Original books, archives and reviews not independently read."
+      }
+    },
+    {
+      "id": "cam_law_editions",
+      "title": "Helen Cam, Law-finders and Law-makers in Medieval England (London: Merlin, 1962; New York: Barnes & Noble, 1963).",
+      "citation": "Helen Cam, Law-finders and Law-makers in Medieval England (London: Merlin, 1962; New York: Barnes & Noble, 1963).",
+      "url": "https://lawcat.berkeley.edu/record/516120",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Indexed Berkeley Law catalogue explicitly gives New York 1963, copyright 1962; direct opening failed. Cheney’s bibliography separately identifies London Merlin 1962. This distinguishes editions without silently accepting IHR’s London 1963 citation as the first edition. Full book unread."
+      }
+    },
+    {
+      "id": "cam_stubbs",
+      "title": "Helen Cam, “Stubbs Seventy Years after,” Cambridge Historical Journal 9/2 (1948), pp. 129–147.",
+      "citation": "Helen Cam, “Stubbs Seventy Years after,” Cambridge Historical Journal 9/2 (1948), pp. 129–147.",
+      "url": "https://doi.org/10.1017/S1474691300001967",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Publisher primary opening and exposed references consulted. Cam defends studying Stubbs while acknowledging subsequent research and changed judgments. Full article behind access options; references alone do not verify its particular corrections. Online 2011 date is not the intervention date."
+      }
+    },
+    {
+      "id": "helen_cam",
+      "title": "Helen Maud Cam: medieval institutions and local sources",
+      "citation": "Institute of Historical Research, Making History, “Cam, Professor Helen Maud (1885–1968)”; Cam, Liberties and Communities in Medieval England (Cambridge University Press, 1944).",
+      "url": "https://archives.history.ac.uk/makinghistory/historians/cam_helen.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "IHR profile checked for medieval political history, local evidence, and institutional settings. It dates Law Finders and Law Makers to 1963 whereas other catalogues give 1962; that unresolved edition discrepancy is not used as a date anchor here. Additional edition check (2026-09-12): Cheney gives London Merlin 1962; Berkeley Law records New York Barnes & Noble 1963, copyright 1962. Use the separate edition record for contextual dates; the earlier IHR discrepancy remains attributed.",
+        "checked_on": "2026-09-12"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

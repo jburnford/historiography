@@ -1,3 +1,19 @@
+## Published historian subset — revision 1.200; remaining work paused
+
+User: “we’ll pause after this and push.” The reviewed subset adds35 complete
+dossiers,321 relationships,108 sources and92 append-only old-source reading notes.
+Graph:357entries/2126relationships/3158sources/1426indexedpeople. Including21
+earlier dossiers,56complete;101priority historians remain paused until user resumes.
+Research audit data/field-research/dedicated-historians-completion-2026-10-26/;
+frozen packet data/extension-2026/dedicated-historians-completion-2026-10-26-batch01/;
+acceptance data/production-batches/person-links-1.200/acceptance.json.
+PacketSHA47393fbc1032c2711d7af398f14c1aa4da6ee736ace4e909ca882d2baa3782ea.
+Never regenerate accepted packet or alter manifest-pinned owner files; --check only.
+Every selected dossier independently reviewed; bounded coverage with no edge quota.
+Prior graph/biographies/chronology/reading assets/archive preserved; life scope only.
+OpenAlex paused. Dissertation extraction/analysis paused until500new threshold;
+Hopkinsbrowseronly. No further historian work without user resumption.
+
 ## Ready for publication — 2026-10-26: fourth five dedicated historian dossiers, revision1.199
 
 User resumed historian edge work. Farge/Bailyn/Curtis/Bayly/Woodward each have

@@ -1,0 +1,7 @@
+# Christophe Charle: bounded relationship dossier
+
+Baseline1.199. Sole researcher complete, pending independent passage/coverage review. Nine proposals distinguish specific resources, a shared Charle/Roche argument, Noiriel methodological proximity, and qualified criticism. Bourdieu debt and Manet criticism coexist; Hartog is explicitly mediated by Bantigny. Lieux de mémoire editor identity is checked through institutional metadata.
+
+All inherited edges, source limits, revised translations and coauthors remain intact. Current source access limits are explicit: the2015 interview opening was available through a public web-tool PDF extract but direct retrieval returned404; the2025 authorial text was read in its public ResearchGate reproduction while publisher routes presented bot checks. No complete monographs or interview recordings claimed read. All named selected leads have dispositions; no quota or exhaustive-network claim. No canonical, site, biography or chronology edits. Bodies only under ignored raw/.
+
+Sources: [Charle/Pinault2008](https://sauvonsluniversite.com/IMG/pdf/Histoire_et_societe.pdf), [Mauger/Pinto2015](https://www.savoir-agir.org/IMG/pdf/SA32GEChristopheCharle.pdf), [Charle/Roche2002](https://scholar.lib.vt.edu/InterNews/LeMonde/issues/2002/monde.20020206.pdf), [Bantigny2013](https://laviedesidees.fr/Les-temps-desaccordes-de-la), [Manet2025 DOI](https://doi.org/10.4000/14z4n).

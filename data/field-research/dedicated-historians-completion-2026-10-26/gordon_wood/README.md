@@ -1,0 +1,7 @@
+# Gordon S. Wood: dedicated relationship dossier
+
+Thirteen bounded proposals distinguish specific conceptual resources from criticism: Arendt supplies a bounded collective-action argument alongside Bailyn; Pocock and Hofstadter supply concepts that Wood also qualifies; Greene supplies imperial evidence alongside methodological disagreement; Morgan’s qualified review runs in the opposite direction to Wood’s earlier critique. Taylor and Turner receive distinct, located criticism. Davis’s specific conspiracy framing is qualified without extending that disagreement to his whole slavery history.
+
+All three inherited incidents, the political roster and five source qualifications were inspected. Original1966 journal pages are now available alongside the previously consulted1968reprint; no full collation or blanket verification upgrade. Bailyn’s accepted seminar influence and Richter’s approved contribution are represented without duplicates; Bailyn’s distinct1965published interpretation supplies a specifically evidenced new contribution. The Richter-owned2006source is reused explicitly for separate Wood criticisms; root must resolve it from the approved queue dossier.
+
+Sources and named holds preserve editions, coauthors/respondents, missing endpoints, unread originals and access failures. This is selected-passage research, not an exhaustive network. No canonical edits, endpoint biographies, OpenAlex or dissertation investigation. Independent review remains external.

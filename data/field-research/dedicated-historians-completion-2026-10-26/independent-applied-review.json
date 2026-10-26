@@ -1,0 +1,122 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-26",
+  "verdict": "pass_applied_public_integrity_and_local_release_checks",
+  "blocking_findings": [],
+  "revision": "1.200",
+  "canonical_sha256": "32c406f510e7b0fc71f6e9dc788444dbc42784849e32fa6dffdd45eaa5ebe5a4",
+  "acceptance_sha256": "6be038592fe3e318ecf386c79c3f29fb415d0e302be15e55221c7b3c44daf168",
+  "packet_sha256": "47393fbc1032c2711d7af398f14c1aa4da6ee736ace4e909ca882d2baa3782ea",
+  "merged_review_sha256": "e856af4e789814b099e344660aca4df881f0ff5673e617e2dcdc0c6e7b881bd8",
+  "counts": {
+    "nodes": 357,
+    "edges": 2126,
+    "sources": 3158,
+    "people": 1426
+  },
+  "new_edges": 321,
+  "new_sources": 108,
+  "old_source_addenda": 92,
+  "reviewed_dossiers": 35,
+  "remaining_priority_dossiers": 101,
+  "preservation": {
+    "protected_paths": 81,
+    "protected_differences": [],
+    "life_reviews": [
+      {
+        "path": "data/historian-life-review.json",
+        "people": 203,
+        "sha256": "a22ef02357412a56e5a9ba1be1db8d4d0c83467c9dd35d12c1db19d4e3d4dd8e",
+        "change": "scope.graph_revision only:1.199→1.200"
+      },
+      {
+        "path": "data/theorist-life-review.json",
+        "people": 32,
+        "sha256": "abe6a230acac714fde530d60a181fc832adad2a5e1c690a4085455ee60b4cc75",
+        "change": "scope.graph_revision only:1.199→1.200"
+      }
+    ],
+    "public_files": 52,
+    "public_changed_files": [
+      "data/graph.json",
+      "data/overview.json"
+    ],
+    "public_changed_sha256": {
+      "data/graph.json": "9cbe85280c6372fca3efded9ad3dbc52284cfab87b352ee259d533c1cdb929c3",
+      "data/overview.json": "99bfbaa746233ee5f509120e98935e1c210bafe986acf887af83148d383baba4"
+    },
+    "public_other50_exact": true
+  },
+  "checks": [
+    "Acceptance receipt restores exact1.199 baseline SHA and deterministic transform recreates exact reviewed1.200 canonical bytes. Frozen packet and all owner/manifest inputs remain exact.",
+    "Public graph edges,sources,revision history exactly match accepted canonical; old public nodes,people,life facts,chronology,rosters and every other field unchanged. Public overview differs solely by revision_history.",
+    "Public allowlist remains52 exact paths; no added raw research documents, PDFs or image captures. The50 unchanged assets include the historical archive, dissertation shards, evidence and people records, UI modules/styles.",
+    "Both life masters preserve all235 person records and source hashes, changing only graph revision.81 protected paths retain exact baseline hashes.",
+    "New acceptance tests now explicitly verify the21 manifest-recorded legacy type normalizations and sole exact Richter/Wood new-source append, with no other reviewed-field exceptions.",
+    "Reviewed staged-path inventory: no raw/PDF/image source-body paths; public staged changes limited to graph and overview. Final tested core hashes match workspace."
+  ],
+  "independent_browser_check": {
+    "status": "pass",
+    "url": "http://127.0.0.1:4173/",
+    "claims": [
+      "hc200_brewer_aries_progress_resource",
+      "hc200_brewer_cannadine_british_model_resource",
+      "hc200_mosse_hobsbawm_tradition"
+    ],
+    "checked": "Fresh Chromium navigation checked actual endpoint direction and visible Ariès/Ginzburg mediation,Cannadine non-endorsement and Mosse two-stage mediation; Brewer incoming route visible; no page errors. Screenshot visually inspected for readable map/detail/evidence/source presentation.",
+    "screenshot_local_only": "/tmp/astra-brewer-aries.png"
+  },
+  "browser_fixture_review": {
+    "path": "tests/test_site_browser.py",
+    "sha256": "6d605cf5c5a8778947b97e2ff422bad395ccc0901b7e00571f849e43cf4c2841",
+    "finding": "Completion fixture checks Cott,Kelley,Mosse qualification/source links, map/text routing and undirected comparison; fresh1-test runtime pass observed. Independent extra browser checks cover final Brewer additions and double mediation.",
+    "life_fixture_correction": "Reviewed pointer reset before direct route navigation and new selected-id assertion; all prior life/witness/death assertions retained. Isolated and complete clean-checkout73-browser reruns pass."
+  },
+  "data_test_sha256": "78ffe4f0be166afa439c8570c60c32ddc2fb06c901595c0f68805b388e9af2c9",
+  "runtime_checks": {
+    "new_acceptance_data": {
+      "status": "pass",
+      "tests": 8,
+      "log": "/tmp/historian-completion-1.200-data-tests.log",
+      "sha256": "3e6f5d674bff2c8d5138c1ff09871fa03786c496b2bf9453cbdc33854d8dc0c2"
+    },
+    "targeted_data": {
+      "status": "pass",
+      "tests": 46,
+      "log": "/tmp/historian-completion-data-tests.log",
+      "sha256": "df7fb26c3f04b352b3420c07be94ac410f94782f46f9b5afd872fb9947c1b889"
+    },
+    "new_browser_fixture": {
+      "status": "pass",
+      "tests": 1,
+      "log": "/tmp/historiography-completion-browser-1.200.log",
+      "sha256": "457de25118cc1a324a6d03f23f50d2a74cc029eda495a0ac74e1f2caa48d5198"
+    },
+    "javascript": {
+      "status": "pass",
+      "tests": 61,
+      "log": "/tmp/historian-completion-js-tests.log",
+      "sha256": "60432768a21affd0e27cd528073ef8682af0d429ed22b1619d587a2ca5261241"
+    },
+    "full_browser": {
+      "status": "pass",
+      "initial_result": "73 tests,182.505s; four subcase failures in one life-source fixture caused by pointer hovering another timeline row after route navigation.",
+      "correction": "Park pointer at0,0 before navigation and assert selected data-id; all prior life/witness/death assertions retained. No product/data change.",
+      "isolated_corrected_test": "pass,1 test,1.321s",
+      "tests": 73,
+      "elapsed_seconds": 145.558,
+      "log": "/tmp/historian-completion-clean-full-browser.log",
+      "sha256": "809b6d1b571d5011622c9461b0abd92307391b763dba7d3566350c3d6a791b1a"
+    },
+    "clean_checkout": {
+      "status": "pass",
+      "report": "/tmp/historian-completion-clean-report.json",
+      "sha256": "7344e3e0038e2768e6a375f4af4c1177f31ebab490bd12a4c55cc6629475df6a",
+      "checked": "Actual terminal report:52assets/bothlife reproduced,81protected exact,17data132.133s,3browser2.965s; corrected full73-browser suite145.558s passes in clean checkout. Independently compared every final tested core hash with current workspace; all exact.",
+      "core_files_checked": 383
+    }
+  },
+  "limitations": "No remote deployment/live result or full historical-data-suite pass claimed in this artifact. Fresh scoped data, complete browser and JavaScript suites plus clean-build checks are recorded individually. Bounded research protocol completion is not exhaustive network coverage;101 remaining dossiers stay pending/paused.",
+  "mutations": "Only this independent review artifact written; canonical,public assets,owner dossiers and frozen packet not modified by reviewer.",
+  "release_gate": "Local release gates passed. Exact reviewed1.200 is ready for authorized commit/push; remote publication and live hash/behavior verification remain parent release work."
+}

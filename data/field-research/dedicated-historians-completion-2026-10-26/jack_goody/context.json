@@ -1,0 +1,286 @@
+{
+  "person_id": "jack_goody",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "jack_goody",
+    "label": "Jack Goody",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "1963 With Ian Watt, The Consequences of Literacy · 1983 The Development of the Family and Marriage in Europe · 2006 The Theft of History",
+    "description": "Jack Goody brought anthropological comparison to histories of kinship, literacy and Eurasian societies. His jointly authored work with Ian Watt examined literacy; The Development of the Family and Marriage in Europe questioned claims about uniquely European family patterns while distinguishing kinship from demographic measures. The Theft of History criticizes accounts that make European experience the template for universal historical development. His comparisons seek similarities and differences across societies; they do not establish a single timeless family system or an undifferentiated East.",
+    "representative_figures_and_works": "With Ian Watt, The Consequences of Literacy (1963); The Development of the Family and Marriage in Europe (1983); The Theft of History (2006).",
+    "source_ids": [
+      "rh188_goody_dates",
+      "goody_family_marriage",
+      "rh188_goody_theft",
+      "rh188_goody_imprint",
+      "rh188_goody_life"
+    ],
+    "scope_note": "Read Family and Marriage 8–9 including note 1, and the selected opening 1–3 of The Theft of History. Empirical studies cited in these passages were not independently checked. Joint authorship with Ian Watt is retained. The exact frozen first-author key P:goody|jack has 125 dated dissertation appearances; this retains the reviewed provisional screening qualification and does not verify every fragment or imply influence. Complete monographs remain unread except the specified selected passages. Existing identities, collective relationships, roster prose and source qualifications remain intact. No continuous career or influence interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publication and edition facts",
+      "selection_note": "Selected works and manifestations, not a complete bibliography or career interval.",
+      "events": [
+        {
+          "label": "With Ian Watt, The Consequences of Literacy",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1963,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rh188_goody_dates"
+          ],
+          "support": "Joint article in Comparative Studies in Society and History 5.3(April 1963), 304–345; the 2009 digital publication is later.",
+          "id": "rh188_jack_goody_w1"
+        },
+        {
+          "label": "The Development of the Family and Marriage in Europe",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1983,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:goody_family_marriage"
+          ],
+          "support": "The publisher preview imprint confirms 1983. Selected passages at 8–9 were read, not the entire book.",
+          "id": "rh188_jack_goody_w2"
+        },
+        {
+          "label": "The Theft of History",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2006,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rh188_goody_theft",
+            "graph:rh188_goody_imprint"
+          ],
+          "support": "Cambridge original, 2006. Later digital posting dates do not redate the contribution.",
+          "id": "rh188_jack_goody_w3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works establish neither continuous activity nor an ending."
+      },
+      "interpretation": "Dates and credits use bibliographic witnesses; substantive connections use the explicitly bounded primary passages.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.188/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_700",
+      "source": "jack_goody",
+      "target": "demography",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "Goody questions the uniqueness and scale of European marriage comparisons",
+      "evidence_note": "Goody1983,8–9 explicitly discusses Hajnal1965, noting geographic and social variation and counterexamples cited from Tibet and Roman Egypt. Those underlying studies are not newly audited. Hajnal’s own regional qualifications are retained, so this is a specific criticism rather than a claim that he asserted complete uniformity.",
+      "source_ids": [
+        "goody_family_marriage",
+        "hajnal_marriage"
+      ],
+      "map_label": "Goody’s criticism of marriage comparisons",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_1578",
+      "source": "jack_goody",
+      "target": "demography",
+      "relationship": "Questions the uniqueness and uniformity of European family patterns",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "goody_family_marriage"
+      ],
+      "evidence_note": "Primary 8–9 distinguishes kinship questions from demographic measures, stresses regional/social variation and considers Tibet/Roman Egypt counterexamples. The cited studies themselves were not independently checked.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rh188_jack_goody_e1"
+    },
+    {
+      "id": "edge_1579",
+      "source": "jack_goody",
+      "target": "global",
+      "relationship": "Challenges Europe-centred templates for world historical comparison",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "rh188_goody_theft"
+      ],
+      "evidence_note": "Introduction 1–3 criticizes projecting European categories onto other societies and asks why Eurasian similarities disappear from divergence narratives. His argument is represented as a comparative challenge, not a proven global consensus.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rh188_jack_goody_e2"
+    },
+    {
+      "id": "edge_1671",
+      "source": "jack_goody",
+      "target": "jacques_le_goff",
+      "relationship": "Le Goff explicitly uses Goody’s Bagre research to explain oral remembering as narrative reconstruction rather than mechanical verbatim repetition.",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "lg_memory_memoria_1990"
+      ],
+      "evidence_note": "Sustained named use in Memória, printed 429–430, alongside 427–428. This credits a specific analytical resource; it does not endorse a universal oral/written divide or establish every claim about LoDagaa culture. Goody’s underlying 1977 article is not independently read.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "lg_memory_goody_legoff"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "anthropology",
+      "label": "Anthropology & ethnography",
+      "records": [
+        {
+          "person_id": "jack_goody",
+          "role": "historian",
+          "context": "Compares kinship and marriage historically while distinguishing his questions from demographic classifications.",
+          "works": "The Development of the Family and Marriage in Europe (1983),8–9",
+          "source_ids": [
+            "goody_family_marriage"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "global",
+      "label": "World / global / connected history",
+      "records": [
+        {
+          "person_id": "jack_goody",
+          "role": "historian",
+          "context": "Uses anthropological comparison to question Europe-centred accounts of Eurasian development.",
+          "works": "The Theft of History (2006), Introduction 1–3",
+          "source_ids": [
+            "rh188_goody_theft"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1579"
+        }
+      ]
+    },
+    {
+      "node_id": "demography",
+      "label": "Historical demography & history of the family",
+      "records": [
+        {
+          "person_id": "jack_goody",
+          "role": "critic",
+          "context": "Questions claims of European uniqueness and stresses regional and social variation in family comparison.",
+          "works": "The Development of the Family and Marriage in Europe (1983),8–9",
+          "source_ids": [
+            "goody_family_marriage"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "goody_family_marriage",
+      "title": "Jack Goody, The Development of the Family and Marriage in Europe (1983),8–9.",
+      "citation": "Jack Goody, The Development of the Family and Marriage in Europe (1983),8–9.",
+      "url": "https://api.pageplace.de/preview/DT0400.9781316040843_A25932943/preview-9781316040843_A25932943.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher preview imprint confirms1983. Read primary8–9 including note1, plus transition into10; not entire chapter or book. Goody explicitly questions geographic/hierarchical uniformity and uniqueness through Tibet and Roman Egypt, while distinguishing his kinship questions from demographic measures. His cited Hopkins/Carrasco studies and medieval Razi/Smith disagreement not independently checked. The criticism does not establish a contrary universal pattern or validate his whole church/property thesis. Addendum 2026-10-25: Additional 1.188 review: reread printed 8–9, including note 1, from the publisher preview. The scope remains distinctions between kinship and demographic questions, regional and social variation, and a qualified challenge to uniqueness. Cited empirical studies were not independently checked; the entire book remains unread."
+      }
+    },
+    {
+      "id": "hajnal_marriage",
+      "title": "John Hajnal, “European Marriage Patterns in Perspective,” in D. V. Glass and D. E. C. Eversley, eds., Population in History (1965): 101–143.",
+      "citation": "John Hajnal, “European Marriage Patterns in Perspective,” in D. V. Glass and D. E. C. Eversley, eds., Population in History (1965): 101–143.",
+      "url": "https://www.econbiz.de/Record/european-marriage-patterns-in-perspective-hajnal-john/10002592150",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Added primary OCR101–107 and selected conclusion130–135. Two-page spreads interleave, numerical tables not visually collated; no table accuracy or whole-essay claim. Platform title/summary ignored. Hajnal103 acknowledges intermediate cases and southern variation;105 questions cross-cultural marriage definitions;107 notes urban migration;134 distinguishes existence from explanation and questions inference from isolated groups. His uniqueness and economic-mechanism claims remain attributed and contestable. Conclusion includes hypotheses in both causal directions, not proof that marriage patterns caused growth. Rest108–129 and appendix not fully read; no original-record audit. Prior metadata/de Vries check retained in history. Goody1983 criticism separately scoped."
+      },
+      "verification_history": [
+        {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-09-11",
+          "note": "Indexed EconBiz catalogue checked for author, title, collection and 1965; direct catalogue denied access and the Berkeley-hosted primary PDF did not return during this check. De Vries’s separately checked 1994 article p. 252 documents use of Hajnal. Detailed geographic boundaries, dates and causal consequences are not verified here."
+        }
+      ]
+    },
+    {
+      "id": "lg_memory_memoria_1990",
+      "title": "Jacques Le Goff, “Memória,” in História e memória, Portuguese translation by Bernardo Leitão and Irene Ferreira (Campinas: Editora da UNICAMP, 1990).",
+      "citation": "Jacques Le Goff, “Memória,” in História e memória (Campinas: Editora da UNICAMP, 1990), selected printed pp. 427–430, 458–460 and 475–478. Chapter translation credited to Bernardo Leitão and Irene Ferreira at its end.",
+      "url": "https://www.mprj.mp.br/documents/20184/151138/le_goff.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary Portuguese translation checked through repository PDF text: catalogue and chapter translator credits; selected passages on Goody (printed 427–430), Yates(458–460), and complete conclusion(475–478). Internal printed-page markers differ from PDF pagination. Corroborating Italian Memoria transcription also checked; neither whole book, French manifestation nor underlying Goody/Yates works newly read. Translation 1990 is not an original essay date. Historical claims and vocabulary remain Le Goff’s situated interpretations."
+      }
+    },
+    {
+      "id": "rh188_goody_dates",
+      "title": "Cambridge: “The Consequences of Literacy, ” by Jack Goody and Ian Watt (1963).",
+      "citation": "Cambridge: “The Consequences of Literacy, ” by Jack Goody and Ian Watt (1963).",
+      "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/abs/consequences-of-literacy/72D83FA8EBC8D43291BE3D7FC1CAEBC0",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Checked the joint byline and the April 1963 issue, 5.3, 304–345. Joint authorship is retained; the 2009 online date is not the original publication. The article body remains unread."
+      }
+    },
+    {
+      "id": "rh188_goody_imprint",
+      "title": "Cambridge: The Theft of History, original front matter (2006).",
+      "citation": "Cambridge: The Theft of History, original front matter (2006).",
+      "url": "https://assets.cambridge.org/052187/0690/frontmatter/0521870690_frontmatter.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "The original publisher copyright and first-publication metadata confirm 2006. No original date is inferred from digital hosting in 2012 or 2014."
+      }
+    },
+    {
+      "id": "rh188_goody_life",
+      "title": "Royal Anthropological Institute, Jack Goody obituary.",
+      "citation": "Royal Anthropological Institute, Jack Goody obituary.",
+      "url": "https://therai.org.uk/archives-and-manuscripts/obituaries/jack-goody/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read the opening obituary: Sir John Rankine (Jack) Goody was born on 27 July 1919 and died on 16 July 2015. Its biographical context matches the Cambridge scholar."
+      }
+    },
+    {
+      "id": "rh188_goody_theft",
+      "title": "Jack Goody, The Theft of History (Cambridge, 2006), Introduction 1–3.",
+      "citation": "Jack Goody, The Theft of History (Cambridge, 2006), Introduction 1–3.",
+      "url": "https://assets.cambridge.org/97805218/70696/excerpt/9780521870696_excerpt.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read selected opening passages on printed 1–3 of the publisher’s primary excerpt. The criticism concerns Europe-centred comparative frameworks and Eurasian similarities. The remaining introduction and book are unread; broad continental claims are not adopted as facts."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

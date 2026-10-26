@@ -1,0 +1,44 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-26",
+  "verdict": "pass_exact_merged_packet",
+  "blocking_findings": [],
+  "revision": "1.200",
+  "packet_sha256": "47393fbc1032c2711d7af398f14c1aa4da6ee736ace4e909ca882d2baa3782ea",
+  "freeze_sha256": "a25b065241395f4ac57a9be3cda452e9c5da8b006e5cb7bb04da5ad9e04d2039",
+  "manifest_sha256": "31b9c537fce67312ebae19d982846d3b7332846454b44e2b7179e0d444ae2c83",
+  "expected_canonical_sha256": "32c406f510e7b0fc71f6e9dc788444dbc42784849e32fa6dffdd45eaa5ebe5a4",
+  "counts": {
+    "nodes": 357,
+    "edges": 2126,
+    "sources": 3158,
+    "people": 1426
+  },
+  "new_edges": 321,
+  "new_sources": 108,
+  "source_addenda": 92,
+  "reviewed_dossiers": 35,
+  "remaining_priority_dossiers": 101,
+  "checks": [
+    "All frozen-file and manifest-input hashes checked independently; all35 PASS reviews pin exact current owner files.",
+    "All321 merged claims retain exact approved fields except21 manifest-recorded display-type normalizations from connection to critique for already-approved critique categories (Wood8/Ibn2/Lears11). All semantic fields, direction, source joins, co-credit and evidence limits exact; no duplicate baseline or selected pair/kind.",
+    "All108 cited new source records equal owner records except exact append of Wood’s approved supplemental reading to Richter-owned hc200_richter_wood2006; original note preserved, sole new-source addendum manifest exact.36 uncited records remain frozen in dossiers and explicit excluded inventory.",
+    "All92 old-source additions reconstructed in queue order, including both Buckner readings. Existing note prefixes retained; only declared status/date updates accompany notes.",
+    "Independent comparison of in-memory transform preserves every old edge/node/person/roster/chronology/other table and revision prefix; new records exactly approved.",
+    "Expected canonical serialization SHA reproduced; Tocqueville excluded; selection35 plus pending101 equals frozen136 scope. No whole-queue completion claim."
+  ],
+  "substantive_approval": "All35 passage and coverage reviews pass after recorded corrections. Named mediation, translations/editions, coauthors, speaker distinctions and original-unread/access limitations remain exact. No edge quota or exhaustive-network claim.",
+  "browser_test_review": {
+    "path": "tests/test_site_browser.py",
+    "sha256": "3cc6beb83f4ac9fa0ab6fa44001034dc93c2996f4c880a0324a9c88f0f54cb87",
+    "verdict": "pass_substantive_additive_fixture",
+    "finding": "New completion method checks eight directed Cott/Kelley/Mosse claims, same-view incoming/outgoing routes, field SVG/text, endpoint/source links, expanded discontinuous-source notes and undirected Mosse/Davis comparison. Cott retrospective chronology, Kelley coauthor limits and Mosse reciprocal qualification remain visible. Execution is separate."
+  },
+  "data_test_review": {
+    "path": "tests/test_historian_completion_1_200.py",
+    "sha256": "78ffe4f0be166afa439c8570c60c32ddc2fb06c901595c0f68805b388e9af2c9",
+    "finding": "Eight acceptance tests cover reviewed subset, hashes, evidence, preserved tables, source filter and notes. Metadata-normalization/shared-source amendments must match manifest; runtime checked separately."
+  },
+  "mutations": "Only independent review artifact written; owner dossiers and packet untouched.",
+  "release_gate": "Approved to apply exact reviewed packet; applied/public integrity and runtime release checks remain separate."
+}

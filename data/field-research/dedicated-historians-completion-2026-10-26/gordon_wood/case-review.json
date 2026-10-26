@@ -1,0 +1,115 @@
+{
+  "person_id": "gordon_wood",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "context_sha256": "5d039a4ec630e55a9203e0d6b398eae82083c3946c01dcab464d3954afb30851",
+  "checked_on": "2026-10-26",
+  "status": "bounded_research_complete_pending_independent_review",
+  "baseline_incident_edges": [
+    {
+      "id": "edge_1485",
+      "source": "gordon_wood",
+      "target": "political",
+      "relationship": "Wood reconstructs popular sovereignty and representation as contested transformations in revolutionary political thought.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc179_gordon_wood_1"
+      ],
+      "evidence_note": "Own Massari interview answers on sovereignty and virtual/actual representation; published after death,recording not misdated.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc179_gordon_wood_e1"
+    },
+    {
+      "id": "edge_1486",
+      "source": "gordon_wood",
+      "target": "social",
+      "relationship": "Wood connects republican transformation to changes in patronage,deference and social dependence.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc179_gordon_wood_1"
+      ],
+      "evidence_note": "Own interview opening on monarchy as a social hierarchy; his transformative thesis is attributed and does not establish equal freedom for all.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc179_gordon_wood_e2"
+    },
+    {
+      "id": "edge_1775",
+      "source": "bernard_bailyn",
+      "target": "gordon_wood",
+      "relationship": "Wood recalls Bailyn’s seminar teaching him historical-mindedness as a way of understanding rather than accumulating facts.",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "df04_bailyn_wood_loa2021"
+      ],
+      "evidence_note": "Wood’s own 2021 interview answer describes his 1958 seminar experience and its intellectual effect. This supports a specific acknowledged teaching debt, without treating all students as a school or assigning Wood the separate recollections of Brown and Allison. No verbatim seminar record or complete later work was read.",
+      "proposal_id": "df04_bailyn_wood_teaching"
+    }
+  ],
+  "relevant_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "political",
+      "label": "Political history",
+      "records": [
+        {
+          "person_id": "gordon_wood",
+          "role": "historian",
+          "context": "Relates revolutionary ideas to social circumstances while questioning the transfer of Namier’s treatment of ideas to America.",
+          "works": "“Rhetoric and Reality in the American Revolution” (1966; consulted 1968 reprint)",
+          "source_ids": [
+            "wood_rhetoric_reality"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "existing_claim_assessment": "All3incident claims,1roster and5source-record qualifications read. Two own-interview field contributions retained; Bailyn1775already represents teaching debt. No candidate named group route. Original1966selected scan freshly verified without projecting1968annotations backward.",
+  "new_proposal_ids": [
+    "hc200_wood_morgan_judicatory_critique",
+    "hc200_wood_morgan_radicalism_critique",
+    "hc200_wood_greene_motive_critique",
+    "hc200_wood_greene_empire_resource",
+    "hc200_wood_pocock_analytic_resource",
+    "hc200_wood_pocock_synthesis_critique",
+    "hc200_wood_hofstadter_causality_resource",
+    "hc200_wood_hofstadter_historical_scope_critique",
+    "hc200_wood_davis_conspiracy_critique",
+    "hc200_wood_taylor_dividedground_critique",
+    "hc200_wood_turner_indigenous_absence_critique",
+    "hc200_wood_bailyn_ideas_social_resource",
+    "hc200_wood_arendt_collective_action_resource"
+  ],
+  "coverage": {
+    "resources": "Own Bailyn1965interpretation, Pocock formulation, Hofstadter personal causality and Greene imperial evidence; conceptual use not mere association. Bailyn’s seminar influence and Richter’s resource already covered. Arendt1963collective action used at1966p23/n44with Bailyn co-credit.",
+    "criticism": "Own Morgan/Greene1966, Hofstadter/Davis1982, Pocock1985, Taylor/Turner2006; Morgan1992reception preserves central endorsement. LaCroix exchange and mediated later reception explicitly held.",
+    "limits": "Selected passages only; no full monographs or cited original books; no exhaustive-network claim or edge quota."
+  },
+  "duplicate_check": "Thirteen unique directed pair/kind keys absent from baseline; Bailyn→Wood contribution differs from baseline1775influence. Approved Richter→Wood contribution only represented. No duplicate source definition for Richter-owned source. Final queue-wide reconciliation belongs to root.",
+  "cross_dossier_source_references": [
+    {
+      "source_id": "hc200_richter_wood2006",
+      "owner": "../daniel_k_richter/sources.json",
+      "source_file_sha256": "5f9f4a8b6b473712c86bd093b70110e213746cb73b864993a8c2ecb050340f58",
+      "approved_proposal_id": "hc200_richter_wood_captivewarfare_resource",
+      "disposition": "reuse_source_only_do_not_duplicate_approved_edge"
+    }
+  ],
+  "raw_policy": "Third-party bodies exclusively ignored raw/.",
+  "output_hashes": {
+    "proposals.json": "9db462143e03ab2c5efb78fc224b607fc1a7602dbc23e657529eae8ac33d3a9c",
+    "sources.json": "aea7b49480ed946ba15f244815917f8693915d6090402dc22975bcc8743118b7",
+    "held-cases.json": "fed8b23d21decacd949a9539af4d5fe1912650f83d1585337c500fd3987f1e21",
+    "README.md": "3f485ce494a7339a753460f04187576ceb826b9c4d07cd8b1e711db23edc0f8b",
+    "source-retrieval.json": "47b715e70eec98d31f33f73e23cfb1ea2287ee53d3f19ee4db317a1eee50b140"
+  },
+  "review_corrections_2026_10_26": [
+    "Added Arendt bounded conceptual contribution after reviewer coverage challenge; historical-actor Tocqueville hold remains explicit."
+  ]
+}

@@ -1,0 +1,414 @@
+{
+  "person_id": "eugene_genovese",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "eugene_genovese",
+    "label": "Eugene Genovese",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "The Political Economy of Slavery (1965) · Roll, Jordan, Roll (1974) · From Rebellion to Revolution (1979)",
+    "description": "A historian of slavery in the American South whose work joins economic structures, culture and domination. Roll, Jordan, Roll interprets paternalism as a contested relationship of power, not benign treatment. The primary preface and opening retain their own national-culture framing; Walter Johnson’s later review challenges the account’s implications for consent and coercion. A separate reading by N. Gordon Levin discusses the earlier political-economy argument and its problems, preserving the distinction between a named reader’s criticism and Genovese’s own text.",
+    "representative_figures_and_works": "The Political Economy of Slavery (1965; later editions distinct); Roll, Jordan, Roll (1974; preface dated August 1973, Vintage 1976 distinct); From Rebellion to Revolution (1979; 1981 reprint distinct).",
+    "source_ids": [
+      "genovese",
+      "johnson_genovese_review",
+      "hc174_genovese_economy",
+      "hc174_genovese_rebellion",
+      "hc174_genovese_levin"
+    ],
+    "scope_note": "Existing primary preface/opening and named Johnson reading retain all qualifications. Earlier/later political identities do not collapse the writings into one timeless position. Levin is a named substantive reader, not Genovese’s own statement. No direct Gramsci passage has been checked, and acknowledgments do not establish agreement or coauthorship.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_genovese_economy",
+          "label": "The Political Economy of Slavery",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1965,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_genovese_economy"
+          ],
+          "support": "Original Pantheon 1965; not automatically the imprint of every later edition."
+        },
+        {
+          "id": "hc174_genovese_roll",
+          "label": "Roll, Jordan, Roll",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1974,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:genovese"
+          ],
+          "support": "1974 original distinguished from the August 1973 preface, Vintage 1976 and consulted 2011 ebook."
+        },
+        {
+          "id": "hc174_genovese_rebellion",
+          "label": "From Rebellion to Revolution",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1979,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_genovese_rebellion"
+          ],
+          "support": "Smithsonian describes the consulted 1981 item as a reprint of the 1979 edition. Not a new work in 1981."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1381",
+      "source": "eugene_genovese",
+      "target": "newleft",
+      "relationship": "Interprets enslaved culture and paternalism as contested forms within a system of domination.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "genovese",
+        "johnson_genovese_review"
+      ],
+      "evidence_note": "Existing complete preface and initial paternalism paragraphs, plus Walter Johnson’s complete retrospective, within their recorded scopes. Paternalism is not a benign-slavery claim; Johnson’s consent/coercion criticism remains visible.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_eugene_genovese_1"
+    },
+    {
+      "id": "edge_1382",
+      "source": "eugene_genovese",
+      "target": "marx",
+      "relationship": "Makes the relation between slaveholding class power, economic organization and development a problem for Marxist historical interpretation.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc174_genovese_levin",
+        "hc174_genovese_economy"
+      ],
+      "evidence_note": "Specific political-economy intervention mediated by N. Gordon Levin’s substantive review, selected opening pages. This is a contribution to a contested interpretation, not proof that every Marxist shared it, or a direct personal influence from Marx or Gramsci.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_eugene_genovese_2"
+    },
+    {
+      "id": "edge_1609",
+      "source": "walter_johnson",
+      "target": "eugene_genovese",
+      "relationship": "Johnson challenges Genovese’s paternalism/hegemony account and a sharp individual/collective resistance opposition (2001), then specifies objections about revolutionary aspiration, coercive force and resistance in “On Agency” (2003), without saying Genovese ignored enslaved agency.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "rea_turner_johnson_genovese_2001_reread",
+        "hc172_walter_johnson_1"
+      ],
+      "evidence_note": "Two separately dated primary interventions consolidated as one relationship. 2001 scholarly rereading: Johnson challenges Genovese’s paternalism/hegemony account and the sharp opposition between individual resistance and collective revolt, while affirming the book’s lasting value (2001). Complete scholarly rereading. Johnson argues for coerced rule and a continuum of resistance; he explicitly rejects the simplistic charge that Genovese denied enslaved people agency. Original historical examples and Roll, Jordan, Roll remain uncollated. Reading extent: Fresh complete review read through the final day-to-day resistance paragraph. Distinguishes Genovese’s hegemony argument from denying enslaved agency; criticizes paternalism, coerced rule and a strict individual/collective resistance opposition while affirming the book’s value. The original book and historical examples are not independently audited. 2003 “On Agency”: Johnson rejects three premises of Genovese’s resistance/hegemony account while rejecting the claim that Roll, Jordan, Roll simply ignores enslaved agency (2003). The named p. 117 criticism concerns revolutionary aspiration, culture versus coercive force, and the individual/collective distinction. It is not a denial that Genovese discussed resistance. Reading extent: Fresh primary pp113–114,117 and122–123 read; Genovese’s books were not newly read. These are not a single publication or a second independent edge. The original Genovese book and underlying historical examples are not independently collated.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_merged_johnson_genovese_2001_2003"
+    },
+    {
+      "id": "edge_1610",
+      "source": "gramsci",
+      "target": "eugene_genovese",
+      "relationship": "Genovese adapts Gramscian hegemony to explain how paternalist relations could mediate slaveholding class rule, as Walter Johnson explicates (2001).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "rea_turner_johnson_genovese_2001_reread"
+      ],
+      "evidence_note": "Johnson’s own substantive account distinguishes Genovese’s use of hegemony from denying agency and then criticizes its application. Named-reader mediation is explicit; no certification of Genovese’s full book or Gramsci originals. The existing mixed Genovese/Gutman edge_162 stays.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_turner_gramsci_genovese"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_161",
+      "source": "gramsci",
+      "target": "marx",
+      "relationship": "informs some historians’ analyses of consent and class relations",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "influence",
+      "source_ids": [
+        "gramsci",
+        "genovese",
+        "hobsbawm_great_gramsci"
+      ],
+      "evidence_note": "Reception varies among Marxist historians. Genovese is an American example, not a British historian; do not attribute a shared Gramscian method to Thompson and Hobsbawm. Hobsbawm’s1974 review provides a specific British reception: he values Gramsci for studying rebellion while questioning parts of the intellectuals schema. It does not establish Thompson’s agreement or a uniform method."
+    },
+    {
+      "id": "edge_162",
+      "source": "gramsci",
+      "target": "newleft",
+      "relationship": "Gramscian resources enter distinct Genovese and Gutman interpretations",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "influence",
+      "source_ids": [
+        "genovese",
+        "gramsci",
+        "gutman_work_primary",
+        "johnson_genovese_review"
+      ],
+      "evidence_note": "One disputed application within a heterogeneous radical historiography, not the origin of the US New Left. Gutman pp. 584–585 explicitly quotes Gramsci through Tilly on elite perceptions of subordinate groups. Genovese’s hegemony application is supported here by Johnson’s retrospective account; a direct original Gramsci passage in Genovese remains unread. These are different mechanisms and evidence scopes."
+    },
+    {
+      "id": "edge_193",
+      "source": "newleft",
+      "target": "black",
+      "relationship": "intersects and contends in interpretations of slavery, resistance, and power",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "novick",
+        "genovese",
+        "johnson_genovese_review"
+      ],
+      "evidence_note": "Black historians’ independent institutions and arguments are not treated as products of the New Left. Genovese’s preface acknowledges alternative national-culture readings; Johnson’s 2001 retrospective review contests consent/coercion in his account. This later assessment qualifies an earlier book without extending mapped coverage."
+    },
+    {
+      "id": "edge_555",
+      "source": "marx",
+      "target": "barbara_tuchman",
+      "relationship": "Fox-Genovese defends narrative interpretation and challenges Stone’s assumptions about crisis and progress",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "fox_stone_tuchman_exchange"
+      ],
+      "evidence_note": "Her December 1978 letter explicitly states that Tuchman does not subscribe to Marxism. This is a supportive critical intervention in reception, not an influence on the completed book or endorsement of every conclusion; Stone’s reply remains visible in the same source.",
+      "map_label": "Fox-Genovese: narrative, crisis and progress",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_633",
+      "source": "quant",
+      "target": "newleft",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Genovese uses Fogel and Engerman’s statistical and analytical work",
+      "evidence_note": "His acknowledgments explicitly credit their supplied work and Engerman’s manuscript reading. This resource does not imply acceptance of all their conclusions and does not cancel Gutman’s separate criticism of Time on the Cross.",
+      "source_ids": [
+        "genovese"
+      ],
+      "map_label": "Fogel and Engerman’s research supplied to Genovese",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_634",
+      "source": "black",
+      "target": "newleft",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Slavery scholarship and source collections provide resources for Genovese",
+      "evidence_note": "The preface and acknowledgments name Rawick, Levine and Litwack; permissions also identify Du Bois and Black historical source collections. This particular use respects Black history’s independent institutions and does not derive that field from the New Left.",
+      "source_ids": [
+        "genovese"
+      ],
+      "map_label": "Slavery scholarship and documentary resources",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "marx",
+      "label": "Marxist social history",
+      "records": [
+        {
+          "person_id": "eugene_genovese",
+          "role": "historian",
+          "context": "Makes the relation between slaveholding class power, economic organization and development a problem for Marxist historical interpretation.",
+          "works": "The Political Economy of Slavery (1965; later editions distinct); Roll, Jordan, Roll (1974; preface dated August 1973, Vintage 1976 distinct); From Rebellion to Revolution (1979; 1981 reprint distinct).",
+          "source_ids": [
+            "hc174_genovese_levin",
+            "hc174_genovese_economy"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1382"
+        }
+      ]
+    },
+    {
+      "node_id": "newleft",
+      "label": "New Left & radical history (US)",
+      "records": [
+        {
+          "person_id": "eugene_genovese",
+          "role": "historian",
+          "context": "Interprets slavery through class, culture and paternalism as contested domination. His preface’s national-culture framing and later criticism remain visible; paternalism is not a claim of benign slavery.",
+          "works": "Roll, Jordan, Roll (1974), preface, acknowledgments and opening paternalism discussion",
+          "source_ids": [
+            "novick",
+            "genovese",
+            "johnson_genovese_review"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1381"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "fox_stone_tuchman_exchange",
+      "title": "Elizabeth Fox-Genovese and Lawrence Stone, “Tuchman and History,” New York Review of Books, 7 December 1978.",
+      "citation": "Elizabeth Fox-Genovese and Lawrence Stone, “Tuchman and History,” New York Review of Books, 7 December 1978.",
+      "url": "https://www.nybooks.com/articles/1978/12/07/tuchman-and-history/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete letter and Stone reply read. Fox-Genovese challenges professional prestige as a criterion and Stone’s crisis/progress assumptions, defending narrative’s treatment of groups and material dislocation while explicitly distinguishing Tuchman from Marxism. Stone defends differences between synthesis and innovative research and qualifies his progress claim. Tuchman is the subject, not an author of this exchange; neither reviewer’s historical claims are independently verified here."
+      }
+    },
+    {
+      "id": "genovese",
+      "title": "Eugene D. Genovese, Roll, Jordan, Roll: The World the Slaves Made (Pantheon, 1974).",
+      "citation": "Eugene D. Genovese, Roll, Jordan, Roll: The World the Slaves Made (Pantheon, 1974).",
+      "url": "https://www.everand.com/book/769864035/Roll-Jordan-Roll-The-World-the-Slaves-Made",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read original-publication statement (Pantheon 1974; Vintage 1976), complete preface dated August 1973 and acknowledgments, and initial On Paternalism paragraphs in the 2011 ebook preview. Class/nationality and paternalism are his contested interpretation. Acknowledgments explicitly credit Rawick, Levine, Litwack, Fogel/Engerman and Elizabeth Fox-Genovese; these do not establish coauthorship or agreement. No complete book or direct Gramsci passage read. White-transcribed dialect and master/slave analogies are not independently validated."
+      }
+    },
+    {
+      "id": "gramsci",
+      "title": "Antonio Gramsci, Selections from the Prison Notebooks, ed. and trans. Quintin Hoare and Geoffrey Nowell Smith (Lawrence & Wishart, 1971).",
+      "citation": "Antonio Gramsci, Selections from the Prison Notebooks, ed. and trans. Quintin Hoare and Geoffrey Nowell Smith (Lawrence & Wishart, 1971).",
+      "url": null,
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read title/imprint, complete editor prefaceix–xv, complete subaltern methodological criteria52–55 with notes, embedded author quotations in editor note5 on55–56, philosophy323–325. Intellectuals3–23 complete body/editor introduction/all notes read via https://www.marxists.org/archive/gramsci/prison_notebooks/problems/intellectuals.htm . Whole book and general introduction unread. Editor apparatus distinguished from author notes; selections rearrange unfinished/revised notebooks. Preface documents Louis Marks1957 English selection and translation roles. OCR reprint date corrupt and not used. Gramsci’s regional, racial, linguistic and peasant generalizations remain attributed, not independently validated. Addendum 2026-10-14: Checked for the Guha person entry: 'Subaltern groups are always subject to the activity of ruling groups, even when they rebel and rise up' ('Notes on Italian History', p. 55), the sentence Guha's 1982 preface quotes; and 'Elements of Politics', p. 144: the 'first elements' which, repeated, 'become the pillars of politics and of any collective action whatsoever', which Elementary Aspects cites (Gramsci: 144)."
+      }
+    },
+    {
+      "id": "gutman_work_primary",
+      "title": "Herbert G. Gutman, “Work, Culture, and Society in Industrializing America, 1815–1919,” American Historical Review 78.3 (June 1973), 531–588.",
+      "citation": "Herbert G. Gutman, “Work, Culture, and Society in Industrializing America, 1815–1919,” American Historical Review 78.3 (June 1973), 531–588.",
+      "url": "https://doi.org/10.1086/ahr/78.3.531",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read 531–537, 585–588 and preceding Gramsci paragraph on 584; 538–539 captions only. Middle argument otherwise unread. Explicit British methods and collaborators; critique includes some New Left labor histories. Article limits itself to free white workers. Gramsci quotation is mediated by Tilly. Census appendix categories/counts not replicated. This article is distinct from the 1976 collection; a failed CUNY mirror was replaced successfully by Pomona."
+      }
+    },
+    {
+      "id": "hc172_walter_johnson_1",
+      "title": "Walter Johnson, “On Agency”, Journal of Social History 37.1 (2003), 113–124",
+      "url": "https://glc.yale.edu/sites/default/files/pdf/on_agency_johnson.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete twelve-page article read. Critique of agency/resistance equivalence and liberal selfhood is methodological; does not deny enslaved people acted or resisted. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped check. Locators: On Agency, Journal of Social History37.1 (2003), p117; notes9–11 on p123; On Agency, p113 and p122 n2. Reading extents: Fresh primary opening and cited note; Gutman has no individual graph node. | Fresh primary pp113–114,117 and122–123 read; Genovese’s books were not newly read. Prior verification retained. Bibliographic concordance is not whole-book reading.]"
+      }
+    },
+    {
+      "id": "hc174_genovese_economy",
+      "title": "Eugene D. Genovese, The Political Economy of Slavery: Studies in the Economy and Society of the Slave South (Pantheon, 1965).",
+      "citation": "Eugene D. Genovese, The Political Economy of Slavery: Studies in the Economy and Society of the Slave South (Pantheon, 1965).",
+      "url": "https://openlibrary.org/works/OL15149413W/The_political_economy_of_slavery",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Original 1965 Pantheon metadata checked against institutional Edinburgh Compton Collection bibliography https://edwebcontent.ed.ac.uk/sites/default/files/atoms/files/compton_collection_2015.pdf . Book body unread; edition-level listing does not establish all later reprints."
+      }
+    },
+    {
+      "id": "hc174_genovese_levin",
+      "title": "N. Gordon Levin, “The Ante-Bellum South as an Underdeveloped Society,” Dissent, review of The Political Economy of Slavery, pp. 327ff.",
+      "citation": "N. Gordon Levin, “The Ante-Bellum South as an Underdeveloped Society,” Dissent, review of The Political Economy of Slavery, pp. 327ff.",
+      "url": "https://www.dissentmagazine.org/wp-content/files_mf/1353951839gordongenovese.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete three-page review, pp. 327–329, read, including the byline N. Gordon Levin on p. 329. Genovese monograph unread. Levin’s class/development and comparative criticisms remain attributed, not independently established. Original book citation gives Pantheon 1965. A precise review issue/date was not established and is not invented; host upload timestamp is not publication date."
+      }
+    },
+    {
+      "id": "hc174_genovese_rebellion",
+      "title": "Eugene D. Genovese, From Rebellion to Revolution: Afro-American Slave Revolts in the Making of the Modern World (1979; reprint 1981), Smithsonian catalogue.",
+      "citation": "Eugene D. Genovese, From Rebellion to Revolution: Afro-American Slave Revolts in the Making of the Modern World (1979; reprint 1981), Smithsonian catalogue.",
+      "url": "https://www.si.edu/object/siris_sil_130212",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional catalogue explicitly describes 1981 item as reprint of 1979 Baton Rouge edition; author heading 1930–2012. Book body unread; the catalogue’s shortened publisher wording is not expanded into unverified edition details."
+      }
+    },
+    {
+      "id": "hobsbawm_great_gramsci",
+      "title": "Eric Hobsbawm, “The Great Gramsci,” New York Review of Books,4April1974, selected sections.",
+      "citation": "Eric Hobsbawm, “The Great Gramsci,” New York Review of Books,4April1974, selected sections.",
+      "url": "https://www.nybooks.com/articles/1974/04/04/the-great-gramsci/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Title/date/books reviewed and body from sectionI through sectionIII paragraph beginning “Warfare requires armies” read (web89–182). Remaining article and endnotes unread. Direct primary reception: praises usefulness for primitive rebellion, links politics and philosophy, and questions organic/traditional distinction and party/class identity. His judgments about communist history and national/intellectual hierarchies are attributed. Does not establish direct use in his1959 Primitive Rebels book."
+      }
+    },
+    {
+      "id": "johnson_genovese_review",
+      "title": "Walter Johnson, “A Nettlesome Classic Turns Twenty-Five,” Commonplace 1.4 (July 2001), retrospective review of Genovese.",
+      "citation": "Walter Johnson, “A Nettlesome Classic Turns Twenty-Five,” Commonplace 1.4 (July 2001), retrospective review of Genovese.",
+      "url": "https://commonplace.online/article/a-nettlesome-classic-turns-twenty-five/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete review read through overlapping web/local extracts. Attributes a Gramscian interpretation and contests paternalism/consent, foregrounding coercion and sale. Johnson’s criticism is an interpretation, not unanimous judgment. The retrospective 2001 source does not extend mapped coverage beyond 2000 or replace an original Genovese Gramsci passage; site modification dates are not publication dates."
+      }
+    },
+    {
+      "id": "novick",
+      "title": "Peter Novick, That Noble Dream: The “Objectivity Question” and the American Historical Profession (Cambridge University Press, 1988).",
+      "citation": "Peter Novick, That Noble Dream: The “Objectivity Question” and the American Historical Profession (Cambridge University Press, 1988).",
+      "url": "https://doi.org/10.1017/CBO9780511816345",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-10",
+        "note": "Cambridge publisher record and copyright page checked for title, 1988 publication, and objectivity theme; individual reception claims are not thereby verified."
+      }
+    },
+    {
+      "id": "rea_turner_johnson_genovese_2001_reread",
+      "title": "Walter Johnson, “A Nettlesome Classic Turns Twenty-Five”",
+      "url": "https://commonplace.online/article/a-nettlesome-classic-turns-twenty-five/",
+      "citation": "Commonplace 1:4 (July 2001), as stated by original-issue note.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Fresh complete review read through the final day-to-day resistance paragraph. Distinguishes Genovese’s hegemony argument from denying enslaved agency; criticizes paternalism, coerced rule and a strict individual/collective resistance opposition while affirming the book’s value. The original book and historical examples are not independently audited."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}

@@ -1,0 +1,180 @@
+{
+  "person_id": "john_higham",
+  "baseline_revision": "1.199",
+  "baseline_graph_sha256": "50123cf43d9e642967d64c3df41972dc634e1cbcaa46735f76dcff610e8bc3ac",
+  "node": {
+    "id": "john_higham",
+    "label": "John Higham",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Strangers in the Land (1955) · “The Cult of the American Consensus” (1959) · Send These to Me (1975)",
+    "description": "A historian of American nativism, ethnicity and historiography who combined a commitment to pluralist democracy with criticism of flattened consensus narratives. Dorothy Ross’s retrospective also notes his unease with later fragmentation, rather than assigning him a single unchanging position.",
+    "representative_figures_and_works": "Strangers in the Land (1955); “The Cult of the American Consensus” (1959); Send These to Me (1975).",
+    "source_ids": [
+      "hc178_john_higham_1",
+      "higham_consensus_primary"
+    ],
+    "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "hc178_john_higham_w1",
+          "label": "Strangers in the Land",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1955,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_john_higham_1"
+          ],
+          "support": "Publication year and credited role checked in the cited bibliography; book body unread."
+        },
+        {
+          "id": "hc178_john_higham_w2",
+          "label": "“The Cult of the American Consensus”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1959,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higham_consensus_primary"
+          ],
+          "support": "Original Commentary essay February1959; not memorial’s1962claim of priority."
+        },
+        {
+          "id": "hc178_john_higham_w3",
+          "label": "Send These to Me",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1975,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_john_higham_1"
+          ],
+          "support": "Ross distinguishes1975and1984editions; first date selected."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works do not establish continuous activity or an ending."
+      },
+      "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.178/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1471",
+      "source": "john_higham",
+      "target": "nationalismstudies",
+      "relationship": "Studies nativism and ethnic relations as central to American nationalism and pluralism.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc178_john_higham_1"
+      ],
+      "evidence_note": "Dorothy Ross’s substantive retrospective describes the project and later revisions; the nativism interpretation is not an endorsement of exclusion.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc178_john_higham_e1"
+    },
+    {
+      "id": "edge_1472",
+      "source": "john_higham",
+      "target": "progressive",
+      "relationship": "Criticizes consensus narratives that flatten conflict and diversity in American history.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "higham_consensus_primary"
+      ],
+      "evidence_note": "Existing complete1959primary reading, with original qualifications preserved; does not imply a wholesale return to older economic dualisms.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc178_john_higham_e2"
+    },
+    {
+      "id": "edge_1805",
+      "source": "john_higham",
+      "target": "c_vann_woodward",
+      "relationship": "Uses Higham’s history of the profession to document American historians’ recovery of intellectual confidence after1945.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_woodward_address"
+      ],
+      "evidence_note": "In the published address associated with1969 delivery, Woodward names Higham’s1965 account and quotes its diagnosis of restored professional self-respect. Notes1/11 credit Higham et al.; Leonard Krieger and Felix Gilbert retain their coauthor credit. The complete1965 book remains unread here; this is a specified historiographical resource, not an exclusive lineage.",
+      "proposal_id": "df04_woodward_higham_profession_history_resource"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "progressive",
+      "label": "Progressive & consensus historiography (US)",
+      "records": [
+        {
+          "person_id": "john_higham",
+          "role": "critic",
+          "context": "Criticizes homogenized accounts while retaining gains from institutional history.",
+          "works": "The Cult of the American Consensus (1959)",
+          "source_ids": [
+            "higham_consensus_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "hc177_woodward_address",
+      "title": "C. Vann Woodward, “The Future of the Past,” AHA presidential address, delivered 29 December 1969.",
+      "citation": "C. Vann Woodward, “The Future of the Past,” AHA presidential address, delivered 29 December 1969.",
+      "url": "https://www.historians.org/presidential-address/c-vann-woodward/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Own text opening and selected final paragraphs on the purposeful past, anachronism and historians’ mediating role read. Middle statistical survey not fully read or audited. AHA heading supports delivery date and later AHR 75:3, pp. 711–726 citation; delivery and journal publication remain distinct. Footer supplies life dates. Addendum 2026-10-26: Dedicated Woodward dossier: fresh selected AHA-published address paragraphs on White’s harsh judgment and Woodward’s qualification(notes28/32), Bloch’s analytical history and uncertainty(notes54/56/58), and Kuhn’s common-paradigm distinction(note57). Delivery29December1969 remains distinct from AHR publication and the hosted textual version; no audio/version collation, full statistical audit or fresh reading of cited White/Bloch/Kuhn originals. Web reading tool served the text; direct local HTTP returned403, so raw receipt preserves selected web-tool passages rather than falsely claiming a local HTML download. Independent coverage challenge: freshly inspected Woodward’s substantive use of Higham’s1965 professional history, paragraph beginning They quoted Friedrich Meinecke and notes1/5/11. Specific quoted claim concerns post1945 restoration of professional confidence. WorldCat392066 confirms the1965 book’s credit to John Higham with Leonard Krieger and Felix Gilbert; no complete book read. Further named resources and absent endpoints receive explicit held-case dispositions."
+      }
+    },
+    {
+      "id": "hc178_john_higham_1",
+      "title": "Dorothy Ross,“John Higham(1920–2003)”, AHA Perspectives,1 October2003",
+      "url": "https://www.historians.org/perspectives-article/john-higham-1920-2003-october-2003/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete memorial text read. Ross substantively discusses Strangers1955,History1965,Send These to Me1975/1984,and changing historiographic positions. Her claim of first naming/criticizing consensus in1962is qualified by the existing1959primary source and not adopted."
+      }
+    },
+    {
+      "id": "higham_consensus_primary",
+      "title": "John Higham, “The Cult of the ‘American Consensus’: Homogenizing Our History,” Commentary (February 1959).",
+      "citation": "John Higham, “The Cult of the ‘American Consensus’: Homogenizing Our History,” Commentary (February 1959).",
+      "url": "https://www.commentary.org/articles/john-higham/the-cult-of-the-american-consensushomogenizing-our-history/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete primary essay and three notes read from publisher HTML downloaded locally after web-tool opens failed. Higham distinguishes Hartz’s concern about conformity from Boorstin’s appraisal and recognizes advantages of institutional work while criticizing minimized conflict. His diagnosis of the profession and his interpretations of books remain attributed; no wholesale return to older dualisms is inferred. Addendum 2026-10-25: Existing complete primary reading retained and reused for the individual critique. No new whole-book reading; the original source’s distinctions between Hartz/Boorstin and caveats remain."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name search candidates only. Shared surnames, other authors, and word fragments never establish identity or a relationship; inspect actual claim."
+}
