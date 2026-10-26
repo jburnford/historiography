@@ -1,15 +1,36 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Reviewed revision **1.196**, schema 1.6,
-contains **357 entries, 1,706 relationships, 3,005 sources, 1,426 shared people and
-14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
+The curated JSON remains authoritative. Proposed revision **1.197**, schema 1.6,
+contains **357 entries, 1,732 relationships, 3,019 sources, 1,426 shared people and
+14 pathways**; independent review and local release validation pass. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
 
-## Five dedicated historian reviews, revision 1.196
+## Second five dedicated historian reviews, revision 1.197
+
+The proposed batch adds **26 relationships, 14 sources and three append-only
+reading notes** for Davidoff, Dickason, Walker, Iriye and Corbin. Their relationship
+totals become **6, 6, 5, 7 and 10**, with **4, 4, 4, 5 and 8 individual neighbors**.
+See the [dossiers](../data/field-research/dedicated-historians-five-2026-10-25-batch02/README.md).
+
+The evidence separates named resources, particular criticism and editorial
+comparison. Davidoff–Hall’s comparison retains equal coauthor credit; McClintock’s
+use of Davidoff and her reverse criticism remain distinct. Dickason’s criticism of
+Sarah Carter coexists with specifically mediated use. Iriye’s particular examples,
+Corbin’s explicit debts and reported disagreements, and Walker’s community and
+edition qualifications remain visible. No broad lineage is inferred.
+
+These bounded reviews have no edge quota and add no biographies. Earlier graph
+records, life facts, 157 reading profiles, 4,059 reading sources, dissertation assets
+and the exact-2000 archive are preserved. No renderer change is proposed.
+**Independently reviewed and locally verified.** All 66 data tests, 70 browser
+cases and 61 JavaScript checks pass, with a reproducible 52-file clean build.
+OpenAlex remains paused.
+
+## Historical revision 1.196: five dedicated historian reviews
 
 Eleven sourced relationships, ten new sources and two append-only reading notes
 follow independent reviews of Wilson/Waziyatawin, McNickle, Ahenakew, Sioui and

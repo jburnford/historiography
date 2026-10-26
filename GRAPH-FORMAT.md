@@ -1,6 +1,41 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.196: five dedicated historian reviews
+## Current revision 1.197: second five dedicated historian reviews
+
+The second batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch02/README.md)
+proposes **26 relationships, 14 sources and three append-only reading notes**.
+The proposed revision contains **357 entries, 1,732 relationships, 3,019 sources
+and 1,426 indexed people**; it adds no biographies or fields.
+
+| Historian | Relationships before → after | Individual neighbors before → after |
+| --- | ---: | ---: |
+| Leonore Davidoff | 1 → 6 | 0 → 4 |
+| Olive Patricia Dickason | 2 → 6 | 1 → 4 |
+| Ranginui Walker | 1 → 5 | 0 → 4 |
+| Akira Iriye | 2 → 7 | 0 → 5 |
+| Alain Corbin | 2 → 10 | 0 → 8 |
+
+Davidoff’s and Catherine Hall’s complementary methods form an explicit teaching
+comparison; coauthorship does not establish influence. McClintock’s credited use
+of Davidoff coexists with her particular criticism. Dickason’s qualified criticism
+of Sarah Carter likewise coexists with a named reader’s account of Carter’s use
+of her work. Iriye’s links identify particular resources and examples, without
+asserting a broader lineage. Corbin’s acknowledged debts and disagreements remain
+specific, including his own recollection of Prost’s criticism. Walker’s own writing
+and named scholarly readers retain their community, coauthor and edition limits.
+
+These are bounded person reviews, with no edge quota or claim that their networks
+are complete. Named mediation and unread originals remain explicit. Earlier graph
+records, biographies, chronology and life facts are preserved, as are the 157 reading
+profiles, 4,059 reading sources, dissertation assets and exact-2000 archive.
+OpenAlex remains paused.
+
+**1.197 status: independently reviewed and locally verified.** All 66 targeted
+data tests, 70 browser cases and 61 JavaScript checks pass. A clean checkout
+reproduces 52 public files and both life masters; its nine focused data cases,
+new browser case and public-reading checks pass.
+
+## Historical revision 1.196: five dedicated historian reviews
 
 The first batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch01/README.md)
 adds **11 relationships, ten sources and two append-only reading notes**.

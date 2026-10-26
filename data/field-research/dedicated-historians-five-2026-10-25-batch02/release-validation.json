@@ -1,0 +1,49 @@
+{
+  "status": "all_local_release_gates_pass",
+  "revision": "1.197",
+  "independent_review": {
+    "five_dossiers": "pass",
+    "merged_packet": "pass",
+    "applied_receipt": "pass",
+    "browser_delta": "pass"
+  },
+  "targeted_data_tests": {
+    "status": "pass",
+    "tests": 66,
+    "elapsed_seconds": 119.147,
+    "log": "/tmp/dedicated-five-02-data-tests.log"
+  },
+  "browser_tests": {
+    "status": "pass",
+    "tests": 70,
+    "elapsed_seconds": 160.201,
+    "log": "/tmp/dedicated-five-02-full-browser.log",
+    "log_sha256": "b9890ca3d990ffdfcfb1391b388047d0ad29d589945e325ca9e41dd8f77a9031"
+  },
+  "javascript_tests": {
+    "status": "pass",
+    "tests": 61,
+    "elapsed_seconds": 1.254,
+    "log": "/tmp/dedicated-five-02-full-js.log",
+    "log_sha256": "38ff1e35dbd084426ac5ebff237a9e9c79ee16755b9a0ccb2c15a93484c5663b"
+  },
+  "clean_checkout": {
+    "status": "pass",
+    "worktree": "/tmp/dedicated-five-02-clean-b_54trl5",
+    "public_files_reproduced": 52,
+    "both_life_masters_reproduced": true,
+    "focused_data_tests": 9,
+    "focused_data_test_seconds": 75.996,
+    "new_browser_case": "pass",
+    "public_reading": "pass",
+    "reading_files_exact": 78,
+    "report": "/tmp/dedicated-five-02-clean-report.json"
+  },
+  "publication": "Authorized push and live verification follow this verified commit.",
+  "preservation": {
+    "old_graph_records": "exact except append-only source-reading notes",
+    "reading_files_byte_exact": 78,
+    "life_master_rows_and_provenance": "exact except scope revision"
+  },
+  "normalization": "Four new Walker status enum labels corrected before acceptance; inverse-hash proof and refreshed reviews pinned; no substantive source-note or claim change."
+}

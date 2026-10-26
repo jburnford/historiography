@@ -1,0 +1,63 @@
+{
+  "person_id": "leonore_davidoff",
+  "baseline_revision": "1.196",
+  "baseline_graph_sha256": "ec920e60eb99b201a1ee019e538ae60e2025d7939f53e3a47952c2742c20d456",
+  "checked_on": "2026-10-25",
+  "status": "bounded_research_complete_pending_independent_review",
+  "baseline_incident_edges": [
+    {
+      "id": "edge_758",
+      "source": "leonore_davidoff",
+      "target": "social",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "With Hall: gender, family and middle-class formation",
+      "map_label": "With Hall: gender, family and middle-class formation",
+      "evidence_note": "Leonore Davidoff, jointly with the other author of Family Fortunes, connects class formation with gender and family. Joint argument; later-edition prologue abstract only. 1780–1850 is the studied period, 1987 the original intervention, not a historical validity interval. The target is the named strand, displayed under its parent entry.",
+      "source_ids": [
+        "promotion01_family"
+      ],
+      "classification_basis": "editorial_review",
+      "claim_ids": [
+        "claim:promotions01:leonore_davidoff_class"
+      ],
+      "review_status": "accepted",
+      "claim_projection": {
+        "subject": "person:leonore_davidoff",
+        "object": "concept:social/gender_family_class",
+        "note": "The target is the named strand, displayed under its parent entry."
+      },
+      "target_strand": "social/gender_family_class"
+    }
+  ],
+  "baseline_person_neighbors": [],
+  "existing_claim_review": [
+    {
+      "edge_id": "edge_758",
+      "assessment": "Retain unchanged. Joint Davidoff/Hall gender-family-class contribution is explicitly limited to later-reissue prologue opening/abstract; no upgrade to full original-book reading and no retarget to Hall."
+    }
+  ],
+  "new_proposal_ids": [
+    "df02_davidoff_douglas_resource1995",
+    "df02_davidoff_weber_resource2015",
+    "df02_davidoff_hall_collaboration1987",
+    "df02_davidoff_mcclintock_critique1995",
+    "df02_davidoff_mcclintock_resource1995"
+  ],
+  "coverage": {
+    "acknowledged_resources": "Douglas direct own acknowledgment; Weber explicitly Hall-mediated. Thompson lead held.",
+    "collaboration": "Hall personal endpoint verified; substantive complementary methods, equal joint authorship. Paul Thompson kept distinct from E. P. Thompson.",
+    "critical_reception": "McClintock fresh selected translated primary; Vickery named mediation held for absent endpoint/original unread. Scott exchange not established. McClintock’s explicit resource acknowledgment is separately proposed in the reverse direction; no artificial positive/negative balance is inferred.",
+    "later_work": "2012 Thicker than Water and 1995 Worlds Between remain bibliographic/reception leads, not newly read bodies or fresh arrows.",
+    "negative_search_limit": "Bounded source research, not an exhaustive search of all books, correspondence or reviews."
+  },
+  "source_ids": [
+    "df02_davidoff_douglas1995",
+    "df02_davidoff_hall2015",
+    "df02_davidoff_usborne2015",
+    "df02_davidoff_mcclintock2003"
+  ],
+  "raw_policy": "Downloaded or extracted bodies remain ignored under raw/. Committed notes are paraphrases and locators only.",
+  "duplicate_check": "All four unordered endpoint pairs absent at revision 1.196. Davidoff→McClintock credited resource and McClintock→Davidoff particular critique are distinct directional claims, not duplicated arguments. Old edge_758 retained unchanged."
+}

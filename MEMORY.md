@@ -1,5 +1,45 @@
 # Project memory and visualization handoff
 
+## Revision 1.197 — second five dossiers ready for publication
+
+User said continue after published1.196; five-person scope remains (later6–7
+message was for another session). Dossiers: Leonore Davidoff, Olive Patricia
+Dickason, Ranginui Walker, Akira Iriye, Alain Corbin. All five passage/coverage
+reviews, exact merged packet, applied receipt and added browser test pass Astra.
+Independent targeted Walker and Davidoff cross-checks pass. No source blockers.
+
+Accepted197 adds26relationships,14sources,3append-only reading notes:
+357nodes/1732edges/3019sources/1426people. Relationship totals become6/6/5/7/10;
+individual neighbors4/4/4/5/8 (theory/historian layers unchanged). Davidoff–Hall
+is explicitly editorial comparison, not coauthorship turned into influence.
+Davidoff–McClintock and Dickason–Carter retain positive use plus criticism.
+Iriye uses specific methodological resources without a formative lineage claim;
+Corbin and Walker retain reported/translated/mediated and community limits.
+
+Research: data/field-research/dedicated-historians-five-2026-10-25-batch02/.
+Packet: data/extension-2026/dedicated-historians-five-2026-10-25-batch02/.
+Receipt: data/production-batches/person-links-1.197/acceptance.json.
+Canonical SHA 79211bf3400bdaada69c3e20822dc15a78f4970159465f5723729985d9bfa625.
+Packet SHA 439947ecc92110ebd2139ed5703d723157ef8250904a7614c54273f125758503.
+NEVER regenerate accepted197/196/older packets or edit pinned research inputs.
+Four Walker source enum labels were normalized BEFORE acceptance; exact inverse
+hash proof preserves all substantive notes. Cross-checks and audit are pinned.
+
+All prior graph entries/edges/biography/chronology/source qualifiers preserved.
+Both life masters203/32 change only scope revision;78reading files exact196;
+157profiles/4059sources/5panels+Anderson and exact2000archive remain.52site files
+rebuilt, prepare.py --check passes.66 data tests PASS119.147s;70 browser cases
+PASS160.201s;61JS PASS1.254s. Clean52files/bothlife/78reading/9data/newbrowser/
+public-reading checks PASS. No renderer changes. Next authorized scoped commit,
+push and live52hashes+7browser cases. QA scripts /tmp/dedicated-five-02-*.py.
+OpenAlex PAUSED. Source bodies ignored and excluded; unrelated local files stay
+local. Stage only this task header over HEAD MEMORY, never the full working file.
+
+195 full CI40253519307 and196CI40256450498 both terminalSUCCESS.
+197remote CI follows push; do not claim it passed until terminal. Next five queued:
+Alessandro Portelli, Alexis de Tocqueville, Alfred Crosby, Anthony Pagden,
+Antoine Prost;147 pinned-priority dossiers remain, not147 proven defects.
+
 ## Ready for publication — 2026-10-25: first five dedicated historian dossiers, 1.196
 
 The user asks agents to continue five at a time. Completed bounded dossiers for

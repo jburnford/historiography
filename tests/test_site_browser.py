@@ -791,6 +791,63 @@ class AtlasBrowserTests(unittest.TestCase):
             f'.flow-neighbor.incoming[data-edge="{reciprocal["id"]}"]')).to_contain_text(
                 GRAPH_LABELS['philip_j_deloria'])
 
+    def test_second_five_dedicated_historians_relationships(self):
+        """Resources, disagreements and a teaching comparison keep their limits."""
+        cases = [
+            ('leonore_davidoff', 'anne_mcclintock', 'leonore_davidoff',
+             'critique', 'not a blanket rejection'),
+            ('olive_patricia_dickason', 'olive_patricia_dickason', 'sarah_carter',
+             'critique', 'book body remains unread'),
+            ('ranginui_walker', 'ranginui_walker', 'linda_tuhiwai_smith',
+             'contribution', 'not inferred mentoring'),
+            ('akira_iriye', 'paul_ricoeur', 'akira_iriye',
+             'contribution', 'Not a refutation'),
+            ('alain_corbin', 'alain_corbin', 'elias',
+             'critique', 'complete account of Elias'),
+        ]
+        sources = {s['id']: s for s in GRAPH['sources']}
+        for node, source, target, kind, qualification in cases:
+            matches = [e for e in GRAPH['edges'] if
+                       (e['source'], e['target'], e.get('relationship_kind')) ==
+                       (source, target, kind)]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            edge = matches[0]
+            side = 'outgoing' if source == node else 'incoming'
+            other = target if side == 'outgoing' else source
+            self.open('#node=' + node + '&section=connections&view=map')
+            expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[other])
+            self.open('#family=all&view=map&focus=' + node)
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+            self.open('#edge=' + edge['id'])
+            panel = self.page.locator('.reading-panel')
+            expect(panel.locator('.edge-endpoints a')).to_have_text(
+                [GRAPH_LABELS[source], GRAPH_LABELS[target]])
+            expect(panel).to_contain_text(qualification)
+            links = panel.locator('.sources a').evaluate_all(
+                'els => els.map(el => el.getAttribute("href"))')
+            for sid in edge['source_ids']:
+                self.assertIn(sources[sid]['url'], links)
+        # McClintock's debt and criticism must coexist as distinct relationships.
+        resource = next(e for e in GRAPH['edges'] if
+                        (e['source'], e['target'], e.get('relationship_kind')) ==
+                        ('leonore_davidoff', 'anne_mcclintock', 'contribution'))
+        self.open('#node=leonore_davidoff&section=connections&view=map')
+        expect(self.page.locator(f'.flow-neighbor.outgoing[data-edge="{resource["id"]}"]')) \
+            .to_contain_text(GRAPH_LABELS['anne_mcclintock'])
+        comparison = next(e for e in GRAPH['edges'] if
+                          {e['source'], e['target']} == {'leonore_davidoff', 'catherine_hall'}
+                          and e.get('relationship_kind') == 'comparison')
+        self.assertFalse(comparison['directed'])
+        expect(self.page.locator(f'.associated-card[data-edge="{comparison["id"]}"]')) \
+            .to_contain_text(GRAPH_LABELS['catherine_hall'])
+        self.open('#edge=' + comparison['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'editorial teaching comparison')
+        expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
+            'compared with · no direction')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}
