@@ -1,5 +1,48 @@
 # Project memory and visualization handoff
 
+## Revision 1.198 — third five dossiers ready for publication
+
+User says continue; SKIP TOCQUEVILLE as a primary source for this review task.
+Explicit queue exclusion recorded; his existing canonical entry and edges are
+unchanged. Five dossiers: Portelli, Crosby, Pagden, Prost, Burton. Dedicated
+owners and independent Astra passage/coverage reviews all PASS; exact merged
+packet reviewed before application. No edge quota or exhaustive network claim.
+
+Accepted198 adds34relationships,13sources,3append-only reading notes:
+357nodes/1766edges/3032sources/1426people. Totals become5/5/8/16/12 and distinct
+individual neighbors3/3/6/12/9. Historians and theorists retain their layers.
+Crosby two same-pair/kind Worster claims consolidated preserving both witnesses.
+Prost’s Dosse-mediated Braudel criticism and Burton’s excerpt-only Cannadine
+criticism resolve independent coverage challenges. Resource use and particular
+criticism coexist, including White/Prost and Said/Burton. No causal priority
+from coauthorship. Expanded2014/second-edition2020/original-unread/reported and
+named-reader limits remain explicit. ExistingCorbin1727 and all earlier edges
+are exact. No new biography, chronology or life fact.
+
+Research: data/field-research/dedicated-historians-five-2026-10-25-batch03/.
+Packet: data/extension-2026/dedicated-historians-five-2026-10-25-batch03/.
+Receipt: data/production-batches/person-links-1.198/acceptance.json.
+Canonical SHA dbfd46147b00fb5bd824dd6cee4ef14839bf7f0840f153acf77b557e5ca84d52.
+Packet SHA c246e143f7b1c946fd8455166a03016f9989e6ba3e0e3627b12b7b9aa949a899.
+NEVER regenerate accepted198/197/older packets or mutate manifest-pinned inputs.
+
+Both life masters203/32 preserve all rows/provenance (only scope revision).
+78reading files remain byte-exact197:157profiles/4059sources/5panels+Anderson,
+exact2000archive and dissertation assets retained.52public files rebuilt;
+prepare.py --check passes. Local66 data PASS140.709s;71 browser PASS167.912s;61JS PASS1.292s.
+Clean52public/bothlife/78reading/9data/newbrowser/publicreading PASS.
+Next authorized scoped commit/push/live52hashes+8browser cases.
+Root scratch QA /tmp/dedicated-five-03-*.py. No renderer change. Source bodies
+ignored and excluded; unrelated workspace files/local key remain local.
+Stage only this task header over HEAD MEMORY; never full working history.
+OpenAlex remains PAUSED. Prior197CI40261940693 still in progress at last check,
+monitored /tmp/dedicated-five-02-remote-validation.json; do not claim terminal
+success. 195/196CI both terminalSUCCESS. 198remoteCI follows push.
+
+16protocol dossiers completed; 141 pending priorities excluding Tocqueville,
+not proven defects. Next five: arlette_farge, bernard_bailyn, bruce_curtis, ca_bayly, c_vann_woodward.
+User authorization for agents/Astra/corrections/push persists.
+
 ## Revision 1.197 — second five dossiers ready for publication
 
 User said continue after published1.196; five-person scope remains (later6–7

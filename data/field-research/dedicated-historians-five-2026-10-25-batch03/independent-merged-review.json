@@ -1,0 +1,36 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "verdict": "pass_exact_merged_packet",
+  "blocking_findings": [],
+  "revision": "1.198",
+  "packet_sha256": "c246e143f7b1c946fd8455166a03016f9989e6ba3e0e3627b12b7b9aa949a899",
+  "expected_canonical_sha256": "dbfd46147b00fb5bd824dd6cee4ef14839bf7f0840f153acf77b557e5ca84d52",
+  "counts": {
+    "nodes": 357,
+    "edges": 1766,
+    "sources": 3032,
+    "people": 1426
+  },
+  "new_edges": 34,
+  "new_sources": 13,
+  "source_addenda": 3,
+  "checks": [
+    "prepare.py --check independently passed read-only: all freeze and manifest hashes and baseline reconstruction.",
+    "All34 merged edge dictionaries exactly equal approved five-dossier fields, including claims, direction/kinds, source joins and evidence limits.",
+    "All13 new source records and3 normalized append notes exactly match approved inputs; canonical verification.status enum satisfied.",
+    "All current four-file independent review hashes match. Selection/context baseline, accepted-packet refusal and pinned protocol/queue guards inspected.",
+    "Independent in-memory transform preserves every existing edge, node, person, other top-level table and revision prefix. Old source metadata/qualification prefixes retained; untouched source records exact.",
+    "No new edge touches Tocqueville; old entry and relationships exact.",
+    "Expected canonical serialization SHA independently reproduced."
+  ],
+  "substantive_approval": "Five dedicated source-and-coverage reviews pass:Portelli3,Crosby3,Pagden5,Prost13,Burton10. Coverage challenges added bounded Braudel and Cannadine criticism; Worster actions consolidated without arbitrary direction/kind change. Named-reader, transcription/edition, co-credit and unread-original limits preserved.",
+  "browser_test_review": {
+    "path": "tests/test_site_browser.py",
+    "sha256": "ef0dec4000a6076aa45e834f138372a3775fa38510bf282f1736194adfa201d4",
+    "verdict": "pass_additive_assertions",
+    "finding": "Current diff solely68 added lines. Five named directed cases check unique pair/kind, profile/map/detail presence, endpoint order, qualification and all source URLs; positive debt coexists with criticism for White/Prost and Said/Burton; Pagden/Chatterjee comparison explicitly undirected. No old assertion weakened. Execution awaits applied build."
+  },
+  "mutations": "Only this independent review artifact written; pinned dossier and packet inputs unchanged.",
+  "release_gate": "Approved for application of exact reviewed packet; applied receipt/public data and release QA remain separate gates."
+}

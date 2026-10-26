@@ -848,6 +848,74 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
             'compared with · no direction')
 
+    def test_third_five_dedicated_historians_relationships(self):
+        """Five dossiers retain named mediation, edition limits and qualified debts."""
+        def relation(source, target, kind):
+            matches = [e for e in GRAPH['edges'] if
+                       (e['source'], e['target'], e.get('relationship_kind')) ==
+                       (source, target, kind)]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            return matches[0]
+
+        cases = [
+            ('alessandro_portelli', 'carlo_ginzburg', 'alessandro_portelli',
+             'critique', 'Neither the 1987 original'),
+            ('alfred_crosby', 'kenneth_pomeranz', 'alfred_crosby',
+             'contribution', 'not projected into the original 1986 book'),
+            ('anthony_pagden', 'anthony_pagden', 'charles_taylor',
+             'critique', 'Explicitly mediated by Keith Thomas'),
+            ('antoine_prost', 'antoine_prost', 'white',
+             'critique', 'not wholesale rejection'),
+            ('antoinette_burton', 'antoinette_burton', 'edward_said',
+             'critique', 'not rejection of Orientalism wholesale'),
+        ]
+        sources = {s['id']: s for s in GRAPH['sources']}
+        for node, source, target, kind, qualification in cases:
+            edge = relation(source, target, kind)
+            side = 'outgoing' if source == node else 'incoming'
+            other = target if side == 'outgoing' else source
+            self.open('#node=' + node + '&section=connections&view=map')
+            expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[other])
+            self.open('#family=all&view=map&focus=' + node)
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"]')) \
+                .to_have_count(1)
+            self.open('#edge=' + edge['id'])
+            panel = self.page.locator('.reading-panel')
+            expect(panel.locator('.edge-endpoints a')).to_have_text(
+                [GRAPH_LABELS[source], GRAPH_LABELS[target]])
+            expect(panel).to_contain_text(qualification)
+            links = panel.locator('.sources a').evaluate_all(
+                'els => els.map(el => el.getAttribute("href"))')
+            for sid in edge['source_ids']:
+                self.assertIn(sources[sid]['url'], links)
+
+        # Explicit resources survive beside criticism of the same named author.
+        for node, source, qualification in [
+                ('antoine_prost', 'white', 'separate criticism'),
+                ('antoinette_burton', 'edward_said', 'separate gender criticism')]:
+            edge = relation(source, node, 'contribution')
+            self.open('#node=' + node + '&section=connections&view=map')
+            expect(self.page.locator(f'.flow-neighbor.incoming[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[source])
+            self.open('#edge=' + edge['id'])
+            expect(self.page.locator('.reading-panel')).to_contain_text(qualification)
+
+        comparison = relation('anthony_pagden', 'partha_chatterjee', 'comparison')
+        self.assertFalse(comparison['directed'])
+        self.open('#node=anthony_pagden&section=connections&view=map')
+        expect(self.page.locator(f'.associated-card[data-edge="{comparison["id"]}"]')) \
+            .to_contain_text(GRAPH_LABELS['partha_chatterjee'])
+        self.open('#edge=' + comparison['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'editorial teaching comparison')
+        expect(self.page.locator('.reading-panel')).to_contain_text(
+            'does not assert a personal reply')
+        expect(self.page.locator('.reading-panel .edge-endpoints')).to_contain_text(
+            'compared with · no direction')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}

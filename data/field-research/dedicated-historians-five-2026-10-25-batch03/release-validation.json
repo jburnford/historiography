@@ -1,0 +1,55 @@
+{
+  "status": "all_local_release_gates_pass",
+  "revision": "1.198",
+  "independent_review": "Five dossier passage/coverage reviews, exact merged packet, applied receipt/public delta and new browser fixture PASS Astra.",
+  "targeted_data_tests": {
+    "status": "pass",
+    "cases": 66,
+    "elapsed_seconds": 140.709,
+    "log": "/tmp/dedicated-five-03-data-tests.log",
+    "log_sha256": "b5a6cc3341f1d8c57ca76095de913e05a0cea57e9a4b37e5082c286d4e08430b"
+  },
+  "browser_tests": {
+    "status": "pass",
+    "exit_code": 0,
+    "elapsed_seconds": 167.912,
+    "log": "/tmp/dedicated-five-03-full-browser.log",
+    "log_sha256": "217d3745bb848bb213dac7cd05fd0ac989918fcd3b3c65b70178c7b60462da60",
+    "summaries": [
+      {
+        "tests": 71,
+        "test_seconds": 166.103
+      }
+    ],
+    "new_case_passed": true,
+    "new_case_log_record": "test_third_five_dedicated_historians_relationships (tests.test_site_browser.AtlasBrowserTests.test_third_five_dedicated_historians_relationships)\nFive dossiers retain named mediation, edition limits and qualified debts. ... ok",
+    "tests": 71,
+    "test_seconds": 166.103
+  },
+  "javascript_tests": {
+    "status": "pass",
+    "exit_code": 0,
+    "elapsed_seconds": 1.645,
+    "log": "/tmp/dedicated-five-03-full-js.log",
+    "log_sha256": "ff68ff1427c67a9da70430aa146dc323a153609d586068199d656f522528b647",
+    "summary": "_ms: 1.146898\n  type: 'test'\n  ...\n# Subtest: unknown journal endings, title changes and venue roles retain their meanings\nok 60 - unknown journal endings, title changes and venue roles retain their meanings\n  ---\n  duration_ms: 1.544306\n  type: 'test'\n  ...\n# Subtest: chronology retains date precision, BCE dates, editions and qualified alternatives\nok 61 - chronology retains date precision, BCE dates, editions and qualified alternatives\n  ---\n  duration_ms: 0.77532\n  type: 'test'\n  ...\n1..61\n# tests 61\n# suites 0\n# pass 61\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1291.621187\n",
+    "tests": 61,
+    "pass": 61,
+    "fail": 0,
+    "skipped": 0,
+    "test_seconds": 1.291621187
+  },
+  "clean_checkout": {
+    "status": "pass",
+    "worktree": "/tmp/dedicated-five-03-clean-7xidylyq",
+    "public_files_reproduced": 52,
+    "both_life_masters_reproduced": true,
+    "focused_data_tests": 9,
+    "focused_data_test_seconds": 85.551,
+    "new_browser_case": "pass",
+    "public_reading": "pass",
+    "reading_files_exact": 78,
+    "report": "/tmp/dedicated-five-03-clean-report.json"
+  },
+  "publication": "Authorized push and live verification follow this verified commit."
+}

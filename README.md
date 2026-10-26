@@ -25,7 +25,45 @@ companion literature and example repository records. It uses the frozen snapshot
 of 6,794 dissertations with years, from 7,107 included in analysis. Coverage,
 extraction and attribution limits accompany the figures. See [frontend details](site/README.md).
 
-## Current revision 1.197: second five dedicated historian reviews
+## Current revision 1.198: third five dedicated historian reviews
+
+The third batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch03/README.md)
+adds **34 relationships, 13 sources and three append-only reading notes**.
+Revision 1.198 contains **357 entries, 1,766 relationships, 3,032 sources
+and 1,426 indexed people**; it adds no biographies or fields.
+
+| Historian | Relationships before → after | Individual neighbors before → after |
+| --- | ---: | ---: |
+| Alessandro Portelli | 2 → 5 | 0 → 3 |
+| Alfred W. Crosby | 2 → 5 | 0 → 3 |
+| Anthony Pagden | 3 → 8 | 1 → 6 |
+| Antoine Prost | 3 → 16 | 1 → 12 |
+| Antoinette Burton | 2 → 12 | 0 → 9 |
+
+Portelli’s specified resources and reported criticism preserve narrators’ agency
+and named mediation. Crosby’s exchange with Worster retains two different
+arguments in one record; his acknowledgment of Pomeranz belongs to the 2004
+preface. Pagden’s resources, criticism and editorial comparison retain translator,
+reader and edition credit. Prost’s methodological resources and disagreements
+use identified later editions; the shared program with Winter retains joint
+authorship. Burton’s named resources and particular criticisms distinguish
+Catherine Hall from Stuart Hall and the selected retrospective from unread
+original works.
+
+These are bounded reviews, with no edge quota or claim of exhaustive networks.
+Selected passages, later editions, named scholarly mediation, coauthors and
+unread originals remain explicit. At the user’s direction, **Alexis de Tocqueville
+is skipped as a primary source in this queue; his existing entry is unchanged**.
+All earlier graph records, chronology and life facts remain preserved, together
+with the 157 reading profiles, 4,059 reading sources, dissertation assets and
+exact-2000 archive. OpenAlex remains paused.
+
+**1.198 status: independently reviewed and locally verified.** All 66 targeted
+data tests, 71 browser cases and 61 JavaScript checks pass. A clean checkout
+reproduces 52 public files and both life masters; nine focused data cases,
+the new browser case and public-reading checks pass.
+
+## Historical revision 1.197: second five dedicated historian reviews
 
 The second batch of five [dedicated historian reviews](data/field-research/dedicated-historians-five-2026-10-25-batch02/README.md)
 proposes **26 relationships, 14 sources and three append-only reading notes**.

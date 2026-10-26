@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "reviewer": "Astra",
+  "revision": "1.198",
+  "review_kind": "independent applied preservation and public export review",
+  "canonical_sha256": "dbfd46147b00fb5bd824dd6cee4ef14839bf7f0840f153acf77b557e5ca84d52",
+  "packet_sha256": "c246e143f7b1c946fd8455166a03016f9989e6ba3e0e3627b12b7b9aa949a899",
+  "baseline_sha256": "79211bf3400bdaada69c3e20822dc15a78f4970159465f5723729985d9bfa625",
+  "counts": {
+    "nodes": 357,
+    "edges": 1766,
+    "sources": 3032,
+    "people": 1426
+  },
+  "checks": {
+    "accepted_prepare_check": "PASS: frozen supplement, input hashes and preservation checks; no mutation",
+    "old_edges": "All 1732 exact, in order",
+    "nodes_people_other_tables": "All exact against 1.197",
+    "new_edges": 34,
+    "new_sources": 13,
+    "source_addenda": [
+      "crosby_ecological",
+      "pe131_cronon_uses_1993",
+      "pe131_worster_jah_1990"
+    ],
+    "source_qualifications": "All prior note prefixes retained; all other old source fields exact outside verification; receipt prior records match baseline",
+    "public_export": "Edges, sources and revision history exactly match accepted canonical; every new source join resolves",
+    "tocqueville": "No canonical changes and no new incident relationship",
+    "life_masters": {
+      "data/historian-life-review.json": {
+        "people": 203,
+        "only_change": "scope.graph_revision"
+      },
+      "data/theorist-life-review.json": {
+        "people": 32,
+        "only_change": "scope.graph_revision"
+      }
+    },
+    "reading_files": "All 78 tracked source/public reading files byte-identical to HEAD",
+    "public_allowlist": "Exactly 52 allowed regular files, no symlinks or unexpected assets"
+  },
+  "blockers": [],
+  "limitations": [
+    "This is the applied integrity check following the completed independent passage, coverage and exact merged-packet reviews; source bodies were not reread.",
+    "The full release data/browser/JavaScript suites are being run by root and the assigned QA agent; this report does not claim those pending results."
+  ]
+}
