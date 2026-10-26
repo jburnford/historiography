@@ -678,6 +678,39 @@ class AtlasBrowserTests(unittest.TestCase):
         expect(panel).to_contain_text('Klapisch-Zuber')
         expect(panel.locator('.sources')).to_contain_text('Entretien avec Jacques Le Goff')
 
+    def test_joan_scott_named_debts_and_critical_exchange(self):
+        """Thompson's positive resource and Scott's criticism coexist in both views."""
+        def relation(source, target, kind):
+            matches = [e for e in GRAPH['edges'] if (e['source'], e['target'],
+                       e.get('relationship_kind')) == (source, target, kind)]
+            self.assertEqual(len(matches), 1)
+            return matches[0]
+        resource = relation('ep_thompson', 'joan_wallach_scott', 'influence')
+        critique = relation('joan_wallach_scott', 'ep_thompson', 'critique')
+        self.open('#node=joan_wallach_scott&section=connections&view=map')
+        expect(self.page.locator(f'.flow-neighbor.incoming[data-edge="{resource["id"]}"]')) \
+            .to_contain_text('E. P. Thompson')
+        expect(self.page.locator(f'.flow-neighbor.outgoing[data-edge="{critique["id"]}"]')) \
+            .to_contain_text('E. P. Thompson')
+        self.open('#family=all&view=map&focus=joan_wallach_scott')
+        for edge in (resource, critique):
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')).to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"]')).to_have_count(1)
+        self.open('#edge=' + critique['id'])
+        panel = self.page.locator('.reading-panel')
+        expect(panel.locator('.edge-endpoints a')).to_have_text(['Joan Wallach Scott', 'E. P. Thompson'])
+        expect(panel).to_contain_text('does not claim that he ignored culture')
+        expect(panel.locator('.sources')).to_contain_text('The Evidence of Experience')
+        expect(panel.locator('.sources')).to_contain_text('July 2024')
+        self.open('#edge=' + resource['id'])
+        expect(self.page.locator('.reading-panel')).to_contain_text('cancel her criticism')
+        expect(self.page.locator('.reading-panel .sources')).to_contain_text('Finding Critical History')
+        # The repaired route keeps the jointly authored reply reachable personally.
+        self.open('#edge=edge_1127')
+        expect(self.page.locator('.reading-panel .edge-endpoints a')).to_have_text(
+            ['Joan Wallach Scott', 'Geoff Eley'])
+        expect(self.page.locator('.reading-panel')).to_contain_text('Keith Nield retains equal authorial credit')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}

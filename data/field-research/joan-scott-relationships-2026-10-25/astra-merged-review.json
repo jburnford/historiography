@@ -1,0 +1,64 @@
+{
+  "reviewer": "Astra",
+  "checked_on": "2026-10-25",
+  "verdict": "pass_for_application",
+  "blocking_findings": [],
+  "packet_sha256": "acbb234733aa7c3ddedb746177efc8c3b894d07d439993f4d989cfce5e383b41",
+  "expected_production_sha256": "f1ac7831698f8d13fa80474560e192e54a1929135b9409c9f82fd8c7fdd92a29",
+  "counts": {
+    "nodes": 357,
+    "edges": 1685,
+    "sources": 2987,
+    "people": 1426
+  },
+  "verification": [
+    "Independent in-memory Batch transform; all12 merged claims exactly equal reviewed lane proposals except explicitly reviewed2024 Thompson qualification/source join.",
+    "Thompson formative influence and Scott1991 critique remain separate directions;2024 own-answer qualification dated, no change-of-mind claim.",
+    "Only oldedge1127 changes; joint Eley/Nield credit and exact old evidence prefix retained.314/1169 unchanged.",
+    "All old nodes/people exact; source joins resolve and no private raw paths in new sources.",
+    "Source append-only scopes and full freeze/input hashes verified by prepare.py --check."
+  ],
+  "scott_incident_before": 18,
+  "scott_incident_after": 30,
+  "independent_source_reviews": [
+    "resources/independent-review.json",
+    "reception/independent-review.json",
+    "eley/independent-review.json"
+  ],
+  "qualification": "Debates4 cross-reviewed by coordinator; this review does not self-certify their original research. Application, public rebuild and postapply QA remain coordinator release gates.",
+  "final_applied_review": {
+    "verdict": "pass",
+    "canonical_sha256": "f1ac7831698f8d13fa80474560e192e54a1929135b9409c9f82fd8c7fdd92a29",
+    "receipt_hashes_match": true,
+    "public_edges_sources_revision_history_exact": true,
+    "counts_before": {
+      "all_edges": 18,
+      "historian_edges": 6,
+      "historian_neighbors": 6
+    },
+    "counts_after": {
+      "all_edges": 30,
+      "historian_edges": 19,
+      "historian_neighbors": 14
+    },
+    "life_preservation": [
+      {
+        "file": "data/historian-life-review.json",
+        "records": 203,
+        "changed_fields": [
+          "scope"
+        ]
+      },
+      {
+        "file": "data/theorist-life-review.json",
+        "records": 32,
+        "changed_fields": [
+          "scope"
+        ]
+      }
+    ],
+    "reading_files_byte_identical_to_published193": 78,
+    "test_status": "Independent python -m unittest tests.test_response_edge_audit:9testsPASS13.751s; includes accepted192/193 reconstruction.",
+    "accepted_batch_check": "prepare.py --check PASS after application"
+  }
+}

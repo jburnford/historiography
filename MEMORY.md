@@ -1,5 +1,45 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: Joan Wallach Scott supplement 1.194
+
+User requests more Scott relationships with HISTORIANS, especially her criticism
+of E.P.Thompson while expanding on him. Three agents and coordinator completed
+source review; Astra independently approves lanes, exact merged packet and applied
+graph. Scott18→30 total, direct historian relationships6→19, unique historians6→14.
+Early19baseline report was a counting-description mistake; exact baseline is18.
+
+Adds12 edges (6critique,2influence,3contribution,1undirected sharedstudy),7sources,
+6append-only reading notes and1guarded old endpoint repair. Current357nodes,
+1685edges,2987sources,1426people. Thompson→Scott formative resource from her
+own2009memoir35; Scott→Thompson criticism from own1991Experience784–786.
+Her2024 own clarification separately acknowledges his cultural class analysis;
+no proven change-of-mind or cancellation-of-debt claim. Stone reciprocal1985,
+Scott’s Palmerreply1987, jointEleyNieldreply2000, HobsbawmjointShoemakers,
+CharlesTillymentorship,Huntmanuscript+methodologicalreception,Parrresource,
+Higginbothamqualified2017retrospective. Existing1127 nowtargetsEley withjoint
+Nieldcredit/oldfieldstrandcleared; substantiveclaims/citations/oldnoteprefixremain.
+Mixed314/1169 EXACT;1988ch4 remainsunread. All oldnodes,people,biographies,
+chronology,corpuscounts unchanged.78readingfiles/2000archive preserved;bothlife
+masters change scope194only. No new bio/life facts/renderer changes.
+
+Accepted data/extension-2026/joan-scott-relationships-2026-10-25/ NEVERregenerate.
+PacketSHA acbb234733aa7c3ddedb746177efc8c3b894d07d439993f4d989cfce5e383b41.
+CanonicalSHA f1ac7831698f8d13fa80474560e192e54a1929135b9409c9f82fd8c7fdd92a29.
+Receipt data/production-batches/person-links-1.194/acceptance.json.
+Research data/field-research/joan-scott-relationships-2026-10-25/README.md.
+All66targeteddataPASS78.618s;67browserPASS139.487s;JS61PASS1.200s. Freshcheckout
+/tmp/joan-scott-clean-xyhg0znw reproduces52publicfiles/bothlifemasters andpreserves
+78readingfiles;9dataPASS29.382s+newbrowser/publicreadingPASS. Reportsresearch
+release-validation.json and /tmp/joan-scott-clean-report.json.
+
+Next: authorizedscopedcommit/push,Pages and52livehash+4browserverification via
+readingagent /tmp/joan-scott-live-verify.py. No new permission needed. Selective
+MEMORYstagingonly(thisheaderoverHEAD); unrelatedlocalhistory/researchexcluded.
+LeGoff193 alreadyLIVEcommit0371ca38084c1b809a37d488d2642debedaa1f80,19edges,
+Pages40248033934SUCCESS,52hashes+3browserPASS.193fullCI40248034359stillpending;
+192fullCI40244261062SUCCESS. Do notclaim194fullCIpassbeforeactualconclusion.
+OpenAlexpaused. PreserveoldIDs/snapshots/qualifications; no rawbodies/keys inassets.
+
 ## Ready for publication — 2026-10-25: Le Goff supplement 1.193; Joan Scott review active
 
 Le Goff’s sparse three edges exposed a substantive gap in the first semantic

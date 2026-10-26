@@ -157,5 +157,59 @@ class LeGoffRelationshipTests(unittest.TestCase):
         self.assertIn('not an original essay date', memoria['verification']['note'])
 
 
+class JoanScottRelationshipTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        batch = Batch(ROOT / 'data/extension-2026/joan-scott-relationships-2026-10-25')
+        cls.before = batch.baseline()
+        cls.after = batch.check()
+        cls.packet = read(batch.packet)
+        cls.edges = {e['id']: e for e in cls.after['edges']}
+
+    def test_prior_records_survive_the_guarded_joint_argument_repair(self):
+        for old in self.before['edges']:
+            current = self.edges[old['id']]
+            self.assertEqual(current, dict(old, **self.packet['edge_revisions'].get(old['id'], {})))
+            for field in ('relationship', 'source_ids', 'type', 'relationship_kind', 'directed'):
+                self.assertEqual(current.get(field), old.get(field), (old['id'], field))
+            self.assertTrue(current.get('evidence_note', '').startswith(old.get('evidence_note', '')))
+        for field in ('nodes', 'people', 'scope', 'layers', 'periods', 'claim_catalogue', 'journal_catalogue'):
+            self.assertEqual(self.before[field], self.after[field], field)
+        sources = {s['id']: s for s in self.after['sources']}
+        for old in self.before['sources']:
+            current = deepcopy(sources[old['id']])
+            if old['id'] in self.packet['source_addenda']:
+                self.assertTrue(current['verification']['note'].startswith(old['verification']['note']))
+                current['verification'] = old['verification']
+            self.assertEqual(current, old, old['id'])
+
+    def test_thompson_is_both_an_acknowledged_resource_and_a_target_of_criticism(self):
+        def match(source, target, kind):
+            found = [e for e in self.after['edges'] if
+                     (e['source'], e['target'], e.get('relationship_kind')) == (source, target, kind)]
+            self.assertEqual(len(found), 1)
+            return found[0]
+        resource = match('ep_thompson', 'joan_wallach_scott', 'influence')
+        critique = match('joan_wallach_scott', 'ep_thompson', 'critique')
+        self.assertIn('jws_resources_scott_finding_2009', resource['source_ids'])
+        self.assertIn('scott_experience', critique['source_ids'])
+        self.assertIn('jws_resources_schuster_scott_2024', critique['source_ids'])
+        self.assertIn('does not claim that he ignored culture', critique['evidence_note'])
+        self.assertIn('cancel her criticism', resource['evidence_note'])
+
+    def test_joint_credit_and_mixed_critic_contexts_remain_distinct(self):
+        before = {e['id']: e for e in self.before['edges']}
+        for eid in ('edge_314', 'edge_1169'):
+            self.assertEqual(self.edges[eid], before[eid], eid)
+        self.assertEqual(self.edges['edge_1127']['target'], 'geoff_eley')
+        self.assertIsNone(self.edges['edge_1127']['target_strand'])
+        self.assertIn('Keith Nield retains equal authorial credit', self.edges['edge_1127']['evidence_note'])
+        shared = [e for e in self.after['edges'] if {e['source'], e['target']}
+                  == {'eric_hobsbawm', 'joan_wallach_scott'}]
+        self.assertEqual(len(shared), 1)
+        self.assertEqual(shared[0]['relationship_kind'], 'comparison')
+        self.assertFalse(shared[0]['directed'])
+
+
 if __name__ == '__main__':
     unittest.main()

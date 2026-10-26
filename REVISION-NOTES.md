@@ -1,3 +1,27 @@
+# Revision 1.194: Joan Scott’s relationships with historians (25 October 2026)
+
+The [focused Scott review](data/field-research/joan-scott-relationships-2026-10-25/README.md)
+adds **12 sourced relationships and repairs one existing endpoint**. Scott has
+**30 relationships**, including **19 direct relationships with 14 historians**,
+up from 18 total and six direct historian connections. The graph contains
+**357 entries, 1,685 relationships, 2,987 sources and 1,426 indexed people**.
+Seven new sources and six append-only reading notes accompany the supplement.
+
+Thompson’s acknowledged formative resource and Scott’s criticism are separately
+represented. Her 2009 memoir,1991 essay and 2024 clarification retain their dates;
+criticism does not cancel intellectual debt. Exchanges with Stone, Palmer,
+Eley/Nield and Higginbotham coexist with resources, contributions and shared
+work involving Hunt, Parr, Tilly and Hobsbawm. Coauthor credit and access limits
+remain explicit; no relationship is inferred from shared field membership.
+
+Only existing edge 1127 is rerouted, preserving its joint Eley/Nield argument.
+Mixed 314/1169 remain unchanged, as do all biographies, chronology, life facts,
+dissertation data and the exact-2000 archive. Astra approves the exact packet;
+all 66 targeted data tests, 67 browser cases and 61 JavaScript checks pass.
+A clean checkout reproduces all 52 public files and both life masters; nine data
+cases and the new Scott browser case also pass there. Ready for publication.
+OpenAlex remains paused.
+
 # Revision 1.193: Le Goff’s resources and critical reception (25 October 2026)
 
 The focused [Le Goff review](data/field-research/le-goff-relationships-2026-10-25/README.md)
