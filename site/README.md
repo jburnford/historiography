@@ -1,13 +1,23 @@
 # History in Conversation frontend
 
 A dependency-free static frontend using native JavaScript modules, HTML, CSS and SVG.
-The curated JSON remains authoritative. Current canonical revision **1.192**, schema 1.6,
-contains **357 entries, 1,657 relationships, 2,969 sources, 1,426 shared people and
+The curated JSON remains authoritative. Current canonical revision **1.193**, schema 1.6,
+contains **357 entries, 1,673 relationships, 2,980 sources, 1,426 shared people and
 14 pathways**. The twelve-family landing (with *Historiography in Canada*) pairs selected contribution dates with a selected
 publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
+
+## Le Goff relationship supplement, revision 1.193
+
+Sixteen source-reviewed relationships bring Le Goff from three connections to
+nineteen. The supplement distinguishes acknowledged resources, joint editorial
+work, attributed influence and qualified criticism; existing claims and all
+biographies and dates remain unchanged. Eleven new sources and an append-only
+EPHE reading note retain their selected-reading limits. No renderer change.
+Astra approves the exact packet. All 63 targeted data tests, 66 browser cases
+and 61 JavaScript checks pass; clean rebuild reproduces all 52 public files.
 
 ## Relationship audit, revision 1.192
 

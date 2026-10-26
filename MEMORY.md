@@ -1,5 +1,41 @@
 # Project memory and visualization handoff
 
+## Ready for publication — 2026-10-25: Le Goff supplement 1.193; Joan Scott review active
+
+Le Goff’s sparse three edges exposed a substantive gap in the first semantic
+screen. Focused primary/qualified-source review by three agents and coordinator
+adds16 relationships (6influences,5contributions,5critiques),11sources and1
+append-only EPHE reading note. Le Goff3→19;357nodes1673edges2980sources1426people.
+All earlier nodes, people, edges, biography and chronology are exact. No new life
+facts/corpus counts;78readingfiles and2000archive unchanged; life masters only
+scope193. Positive debts and qualified criticisms coexist (Braudel,Duby,Brown).
+T.J.A.LeGoff namesake not Jacques; no falseCanadianroute. MissingLadurie,
+Schmitt,Leroi-Gourhan personal endpoints and unreadPocock remain held.
+
+Acceptedpacket data/extension-2026/le-goff-relationships-2026-10-25/ frozen:
+7f938d172ceb24aeb53953497f88a51150b1ae433b3805a0c2398f10ac4f4aa5.
+Canonical d664eed03b062901e8d31f1b4b78af70d813ca6083732ad1e8c33a7c518393d0.
+Receipt data/production-batches/person-links-1.193/acceptance.json.
+Research data/field-research/le-goff-relationships-2026-10-25/README.md;
+Astra exactmerged+applied PASS,6auditcasespass afteraccepted192 reconstruction.
+All63targeteddata,66browser,61JS PASS. Clean/tmp/le-goff-clean-83cto30n
+reproduces52publicfiles/bothlifemasters,6data+1browser,78readingfiles/publicreading
+checksPASS. Reports /tmp/le-goff-clean-report.json andresearchrelease-validation.
+Next authorized scopedcommit/push; askreadingagent /tmp/le-goff-live-verify.py
+withcommit+Pagesrun for52livehashes+3browsercases. Do notregenerateacceptedpacket.
+Previous1.192fullCI40244261062 terminalSUCCESS, allstepspassed (notpending).
+
+WhileQA user adds: 'Scottshouldhavemoreedgeswithhistorians?' clarifiedJOANSCOTT.
+This extends active work; do not stop after LeGoffpublication. Three agents now
+researching JoanWallachScott in data/field-research/joan-scott-relationships-2026-10-25/:
+Astra debates(criticalexchanges),lifeagent resources(historians/collaboration),
+readingagent reception(Canadian/women/genderhistorians). Existinggraph endpoints
+only, freshprimarypassages or explicitqualifiedmediation, nofield→influence.
+RootfinishesLeGoffpush/live whileScott researchcontinues; nextfocusedpacket193→194.
+No automaticnewbios. Need independentreviews/Astramerged,tests,push/live again.
+OpenAlexpaused. ExcludeScottfilesfromLeGoffcommit. Preserve unrelatedlocalMEMORY
+history/research; stage onlythisheader overHEADMEMORY, neverwholeworkingfile.
+
 ## Ready for publication — 2026-10-25: all-entry relationship audit, revision 1.192
 
 User requested agents to investigate missing responses for every graph entry,

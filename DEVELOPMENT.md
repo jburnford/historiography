@@ -1,6 +1,28 @@
 # Historiography: editorial and visualization working plan
 
-## Current revision 1.192: review relationships for every entry
+## Current revision 1.193: Le Goff’s resources and critical reception
+
+The focused [Le Goff review](data/field-research/le-goff-relationships-2026-10-25/README.md)
+adds **16 sourced relationships**, bringing his recorded connections from **3 to
+19**. The graph now contains **357 entries, 1,673 relationships, 2,980 sources and
+1,426 indexed people**. Eleven new sources and one append-only reading note
+support the additions. No prior edge, biography, chronology or corpus count changes.
+
+His acknowledged resources include Bloch, Braudel, Febvre, Nora, Goody and Yates;
+qualified critical exchanges involve Davis, Ariès, Brown, Braudel and Duby.
+Chartier’s specified editorial contribution and Schmitt’s attributed account of
+Lévi-Strauss’s influence retain their separate evidentiary limits. Praise and
+criticism can coexist. Missing individual endpoints and unavailable original
+arguments remain research holds. The earlier all-entry screen did not establish
+complete primary-source coverage; this supplement addresses a substantive gap.
+
+Astra approves the exact packet. Life records, 157 reading profiles and 4,059
+sources, five field panels, Anderson’s comparison and the exact-2000 archive are
+preserved. OpenAlex remains paused. All 63 targeted data tests, 66 browser cases
+and 61 JavaScript checks pass; a clean checkout reproduces all 52 public files.
+The release is locally verified and ready for publication.
+
+## Historical revision 1.192: review relationships for every entry
 
 The graph contains **357 entries, 1,657 relationships, 2,969 sources and 1,426
 indexed people**: 203 historians, 54 theorists and 100 groups. The

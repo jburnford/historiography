@@ -646,6 +646,38 @@ class AtlasBrowserTests(unittest.TestCase):
         inspect(bloch_edges[2], ['bloch_apologie_primary'], ['gratitude and respect'])
         inspect(bloch_edges[3], ['duby_college_context'], ['not evidence of personal supervision'])
 
+    def test_le_goff_named_debts_and_critical_exchange(self):
+        """Le Goff's sources and critics remain navigable in both relationship views."""
+        pairs = [('marc_bloch', 'jacques_le_goff', 'influence'),
+                 ('fernand_braudel', 'jacques_le_goff', 'influence'),
+                 ('lucien_febvre', 'jacques_le_goff', 'contribution'),
+                 ('pierre_nora', 'jacques_le_goff', 'contribution'),
+                 ('natalie_zemon_davis', 'jacques_le_goff', 'critique'),
+                 ('philippe_aries', 'jacques_le_goff', 'critique'),
+                 ('jacques_le_goff', 'georges_duby', 'critique')]
+        edges = []
+        for source, target, kind in pairs:
+            matches = [e for e in GRAPH['edges'] if (e['source'], e['target'],
+                       e.get('relationship_kind')) == (source, target, kind)]
+            self.assertEqual(len(matches), 1, (source, target, kind))
+            edges.append(matches[0])
+        self.open('#node=jacques_le_goff&section=connections&view=map')
+        for edge in edges:
+            side = 'outgoing' if edge['source'] == 'jacques_le_goff' else 'incoming'
+            other = edge['target'] if side == 'outgoing' else edge['source']
+            expect(self.page.locator(f'.flow-neighbor.{side}[data-edge="{edge["id"]}"]')) \
+                .to_contain_text(GRAPH_LABELS[other])
+        self.open('#family=all&view=map&focus=jacques_le_goff')
+        for edge in edges:
+            expect(self.page.locator(f'svg.field .edge[data-edge="{edge["id"]}"]')).to_have_count(1)
+            expect(self.page.locator(f'details.rel[data-edge="{edge["id"]}"]')).to_have_count(1)
+        self.open('#edge=' + edges[-1]['id'])
+        panel = self.page.locator('.reading-panel')
+        expect(panel.locator('.edge-endpoints a')).to_have_text(['Jacques Le Goff', 'Georges Duby'])
+        expect(panel).to_contain_text('balances criticism with praise')
+        expect(panel).to_contain_text('Klapisch-Zuber')
+        expect(panel.locator('.sources')).to_contain_text('Entretien avec Jacques Le Goff')
+
     def test_response_audit_web_history_comparison_is_connected_and_undirected(self):
         """Winters connects the former isolate without turning comparison into descent."""
         edges = [e for e in GRAPH['edges'] if {e['source'], e['target']}

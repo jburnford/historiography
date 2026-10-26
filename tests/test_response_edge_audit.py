@@ -113,5 +113,49 @@ class ResponseEdgeAuditTests(unittest.TestCase):
         self.assertIn('2003', johnson[0]['evidence_note'])
 
 
+class LeGoffRelationshipTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        batch = Batch(ROOT / 'data/extension-2026/le-goff-relationships-2026-10-25')
+        cls.before = batch.baseline()
+        cls.after = batch.check()
+        cls.packet = read(batch.packet)
+
+    def test_supplement_preserves_earlier_claims_biographies_and_source_limits(self):
+        self.assertEqual(self.before['nodes'], self.after['nodes'])
+        self.assertEqual(self.before['people'], self.after['people'])
+        self.assertEqual(self.before['edges'], self.after['edges'][:len(self.before['edges'])])
+        self.assertEqual(self.before['revision_history'], self.after['revision_history'][:-1])
+        after_sources = {s['id']: s for s in self.after['sources']}
+        for old in self.before['sources']:
+            current = deepcopy(after_sources[old['id']])
+            if old['id'] in self.packet['source_addenda']:
+                self.assertTrue(current['verification']['note'].startswith(old['verification']['note']))
+                current['verification'] = old['verification']
+            self.assertEqual(old, current, old['id'])
+        for field in ('scope', 'layers', 'periods', 'claim_catalogue', 'journal_catalogue'):
+            self.assertEqual(self.before[field], self.after[field], field)
+
+    def test_le_goff_has_named_resources_and_qualified_critical_exchange(self):
+        added = self.after['edges'][len(self.before['edges']):]
+        self.assertTrue(all('jacques_le_goff' in (e['source'], e['target']) for e in added))
+        pairs = {(e['source'], e['target'], e['relationship_kind']) for e in added}
+        for source in ('marc_bloch', 'fernand_braudel', 'jack_goody', 'frances_yates'):
+            self.assertIn((source, 'jacques_le_goff', 'influence'), pairs)
+        for source in ('lucien_febvre', 'pierre_nora'):
+            self.assertIn((source, 'jacques_le_goff', 'contribution'), pairs)
+        for source in ('natalie_zemon_davis', 'philippe_aries'):
+            self.assertIn((source, 'jacques_le_goff', 'critique'), pairs)
+        self.assertIn(('jacques_le_goff', 'georges_duby', 'critique'), pairs)
+        self.assertIn(('jacques_le_goff', 'fernand_braudel', 'critique'), pairs)
+        self.assertIn(('jacques_le_goff', 'memory', 'contribution'), pairs)
+        # The Canadian agricultural controversy concerns T. J. A. Le Goff.
+        self.assertFalse(any('pe137_ouellet_le_goff_1974' in e['source_ids'] for e in added))
+        sources = {s['id']: s for s in self.after['sources']}
+        memoria = sources['lg_memory_memoria_1990']
+        self.assertIn('Irene Ferreira', memoria['citation'])
+        self.assertIn('not an original essay date', memoria['verification']['note'])
+
+
 if __name__ == '__main__':
     unittest.main()
