@@ -20,4 +20,9 @@ def accepted_life_paths(graph, person_ids):
         folder = (ROOT / packet).parent.parent
         if folder.name.startswith('remaining-'):
             paths.update(folder.rglob('life-status.json'))
+        else:
+            # From 1.203: other accepted packets contribute only records for entries they added.
+            added = set(revision['added_node_ids']) & person_ids
+            paths.update(path for path in folder.rglob('life-status.json')
+                         if json.loads(path.read_text()).get('person_id') in added)
     return sorted(paths)

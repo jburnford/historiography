@@ -29,7 +29,7 @@ def compile_review(graph, baseline, source_paths):
         hashes[str(path.relative_to(ROOT))] = hashlib.sha256(path.read_bytes()).hexdigest()
     if required - set(rows):
         raise ValueError('New theorist biographies lack reviewed life records: ' + ', '.join(sorted(required - set(rows))))
-    result = {'schema_version': '1.0', 'checked_on': '2026-10-25',
+    result = {'schema_version': '1.0', 'checked_on': max(['2026-10-25'] + [r['checked_on'] for r in rows.values()]),
         'scope': {'layer': 'intellectual_connections', 'entry_kind': 'person',
                   'baseline_revision': baseline['revision'],
                   'graph_revision': graph['revision_history'][-1]['version'],

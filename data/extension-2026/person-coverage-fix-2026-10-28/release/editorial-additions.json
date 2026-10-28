@@ -1,0 +1,54 @@
+{
+ "schema": "atlas_editorial_packet/1",
+ "revision": "1.203",
+ "baseline_revision": "1.202",
+ "prepared": "2026-10-28",
+ "nodes": [],
+ "people_updates": [],
+ "roster_edges": [],
+ "edges": [],
+ "sources": [],
+ "source_addenda": {},
+ "edge_revisions": {},
+ "wikidata": [],
+ "rationale": "Coverage (reviewed_through) is a group-entry field; the open-frame check forbids it on person entries. Reading limits for these four entries are already stated in their scope notes, so nothing is lost. Life-status records live in data/historian-life-review.json and data/theorist-life-review.json and do not change graph content.",
+ "research": {},
+ "field_sets": [
+  {
+   "node": "winona_wheeler",
+   "field": "coverage",
+   "expect": {
+    "reviewed_through": 2021,
+    "basis": "Own writing of 1998 and 2010 read in full; 2005 and 1999 unread; later work not surveyed."
+   },
+   "value": null
+  },
+  {
+   "node": "brenda_macdougall",
+   "field": "coverage",
+   "expect": {
+    "reviewed_through": 2021,
+    "basis": "2010 introduction and 2018 essay read in full; later monographs not surveyed."
+   },
+   "value": null
+  },
+  {
+   "node": "robert_alexander_innes",
+   "field": "coverage",
+   "expect": {
+    "reviewed_through": 2021,
+    "basis": "2018 essays read in full; the 2013 book and earlier articles not read beyond descriptions and excerpts."
+   },
+   "value": null
+  },
+  {
+   "node": "mary_jane_logan_mccallum",
+   "field": "coverage",
+   "expect": {
+    "reviewed_through": 2021,
+    "basis": "The 2018 essay and the 2016 review read in full; the monographs not read beyond descriptions."
+   },
+   "value": null
+  }
+ ]
+}

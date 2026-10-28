@@ -68,7 +68,7 @@ def main():
     if missing:
         raise ValueError('Historian biographies still lack reviewed life records: ' + ', '.join(missing))
     selected = [rows[pid] for pid in sorted(historians)]
-    review = {'schema_version': '1.0', 'checked_on': '2026-10-25',
+    review = {'schema_version': '1.0', 'checked_on': max(['2026-10-25'] + [r['checked_on'] for r in selected]),
         'scope': {'layer': 'historians', 'entry_kind': 'person',
                   'graph_revision': graph['revision_history'][-1]['version'],
                   'people': len(selected)},
