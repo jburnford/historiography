@@ -1,0 +1,2776 @@
+{
+  "revision": "1.204",
+  "baseline_revision": "1.203",
+  "date": "2026-10-28",
+  "batch_dir": "group-revision-1.204",
+  "persons": [],
+  "extras": [
+    "er-A",
+    "er-B",
+    "er-C"
+  ],
+  "summary": "Edge review of the 1.201 Indigenous person entries. Edge review of the 1.201 person entries Winona Wheeler, Brenda Macdougall, Robert Alexander Innes and Mary Jane Logan McCallum (Agent A). All 12 existing edges were checked against their sources: 9 kept, 2 revised and 1 rerouted. edge_2147 gains Wheeler's 2018 reading of Ahenakew. edge_2150 drops 'co-founder of … Shekon Neechie' for her own statements on decolonizing tribal histories. edge_2153, Innes's critique of Daschuk, moves from settler_colonialism/health_starvation to native_newcomer/reserves_schools_state: Innes frames the deaths as colonial genocide. There are 8 new edges: Wolfe → Wheeler, after her adoption of his definition with Denise Henning (2021); postcolonial studies, L. T. Smith and Deloria → Wheeler; Wheeler → indigenous (Indigenous, not ethnic, 1998) and → oral (critique); Macdougall → indigenous/peoplehood (2016); McCallum → native_newcomer (critique, via two reviewers). Also a settler_colonialism roster row for Wheeler and a revised one for McCallum, the McCallum CHR 2017 source moved to its DOI, scope notes, 12 new chronology events and a corrected PhD event. Edge review B (Simpson, Coulthard, Andersen, Trask): Coulthard dissertation locators corrected on five edges, his scope note and the dissertation's source note; edge_2164 no longer attaches Andersen's phrase about John Ralston Saul to historians; target strands set on edges 2129, 2135 and 2144; six new edges in er-B/entry-draft.json. Edge review C (2026-10-28) of LaRocque, L. T. Smith, McNickle and Life Lived Like a Story. Six new LaRocque edges from read dissertation pages: critiques of postcolonial studies, Sioui's autohistory, Mandelbaum's ethnography and fur-trade historians; Fanon and Dickason as resources. Reroutes: edge_2166's target strand to native_newcomer/historians_indian; edge_1003 now leaves from emma_larocque; edge_750 now runs from the packaged entry into ethnohistory/collaboration_authority. edge_775 reworded. Dates: When the Other Is Me corrected to 2010; McNickle's 1966 Regina post; the 1992 CHA prize on Life Lived Like a Story as the CHA lists it. The promotion01_smith citation no longer names the excluded scan host.",
+  "authorization": "User, 2026-10-28: \"I think this confirms Wheeler is engaged with settler colonialism studies as well?\"; \"we need to use research agents to review the edges more carefully\"; \"you should also push the indigenous update\".",
+  "rationale": "Research of 2026-10-28: data/extension-2026/indigenous-edge-review-2026-10-28/review-A.md. Every stage-1 item rests on a passage read, with a locator: the author's own words, or for erA_08 a named reader's explicit statement. Wheeler's texts are linked by DOI, JSTOR stable URL or the journal's site, never through self-posted copies; the dissertation carries no URL. Shekon Neechie essays are paraphrased (OCAP review #12). No Elders' words, teachings, protocol, story content or family detail are used. Abstract-only, publisher-blurb and held items are listed in stage2. Research of 2026-10-28: data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md. The texts were re-read: Simpson 2007 and Trask 1991 in full, Andersen 2014 introduction pp. 3–20, and Coulthard 2009 searched in full text with the pages cited read. Every locator corrected here was checked against the page number printed on the UVic PDF. The Harris → Coulthard edge, held in 1.201 (ihB_rel_11) as a footnote citation, is included at the coordinator's direction: it rests on Coulthard's body text (p. 18, 'generally acknowledged among Canadian historians') and his conclusion (p. 215), not only on n. 48. Trask's target strand follows the coordinator's decision. Research: data/extension-2026/indigenous-edge-review-2026-10-28/review-C.md (2026-10-28). Stage 1 only: every encoded edge rests on the author's own words in pages read with locators (LaRocque 1999 dissertation), or on a named reader read in full (Black 2011; Iverson 1993; Carlson, Lutz and Schaepe 2009, read in full by Agent C on 2026-10-27). Reroutes are guarded endpoint sets; relationships are never removed. erC_07 and erC_08 and the Smith reroutes are in stage2. OCAP: no community knowledge, family detail or narrator words; the identity notes are unchanged.",
+  "source_merges": {},
+  "edge_revisions": {
+    "edge_2147": {
+      "evidence_note": "Wheeler 2010, p. 49 (Cuthand 'followed the path of his mentor Edward Ahenakew'; she met Cuthand in 1982 at Manitoba), p. 53 (Ahenakew, The Plains Cree, on the Old Man as 'an institution in Indian life through the centuries') and p. 56 ('an authentic repository for the annals of his people'). Revision 1.204: in 'their brains were like paper' (Shekon Neechie, 20 June 2018; paraphrased, not reproduced), ¶¶7–12, Wheeler reads Ahenakew's Voices of the Plains Cree (Old Keyam) as a narrative strategy addressed to two audiences, with a subtext legible only to readers who share his cultural repertoire. No story content is used (OCAP).",
+      "source_ids": [
+        "ihc_wheeler_2010",
+        "ierA_wheeler_shekon_2018"
+      ]
+    },
+    "edge_2150": {
+      "relationship": "Decolonizing tribal histories: the 'silencing, marginalization, and patronizing of Indigenous voices' in the writing of Indigenous histories 'epitomizes intellectual colonialism', so decolonization 'must begin from within a tribal context' (2000); Native Studies is 'a revolt against colonialist representations of Indigenous life and history' (2001); oral history belongs 'in history, as history' (2010).",
+      "evidence_note": "Stevenson [Wheeler], Decolonizing Tribal Histories (PhD, UC Berkeley, 2000), abstract (read through OCR). Wheeler, CJNS 21:1 (2001), p. 98 (read in full). Wheeler 2010, p. 48 ('as we carve a space for Indigenous oral history in history, as history'). Revision 1.204 drops the earlier wording 'co-founder of the Indigenous-controlled Shekon Neechie': USask News (2018) records her on the site's managing board, and Innes conceived the site. The board is carried by community_engaged_indigenous/indigenous_historians_institutions.",
+      "source_ids": [
+        "ihc_wheeler_2010",
+        "ierA_wheeler_diss_2000",
+        "ierA_wheeler_cjns_2001"
+      ],
+      "map_label": "Decolonizing tribal histories"
+    },
+    "edge_2153": {
+      "evidence_note": "Paraphrased (Shekon Neechie, community-controlled: cited, not reproduced). 'Clearing the Plains of Accountability' (2018), para. 2 (his aim: to hold Daschuk's argument against the scholars he cites); paras. 5–8 (Tobias 1983, Lux 2004 and Titley 1999 set against Daschuk on Dewdney); para. 14 (whether those who praised the book read the foundational literature). 'Historians and Indigenous Genocide in Saskatchewan', para. 15 (Daschuk's attempt to exonerate Dewdney contradicts previous historians). Daschuk's words are known only through Innes. Revision 1.204 reroutes the edge from settler_colonialism/health_starvation to native_newcomer/reserves_schools_state. The critique concerns Daschuk's account of Dewdney and of the state-policy historians he cites (Tobias, Lux, Titley). Innes frames the deaths as 'colonial genocide' ('Historians and Indigenous Genocide', para. 1 and n. 1), not in settler-colonial terms; 'settler' appears only in his paraphrase of Daschuk ('Clearing the Plains of Accountability', paras. 3, 11)."
+    },
+    "edge_2132": {
+      "evidence_note": "Own words, PhD dissertation (2009), abstract p. iii and pp. 26–27 (the 'commonplace assumption' p. 26; 'can subtly reproduce non-mutual and unfree relations' p. 27), where Taylor's 'The Politics of Recognition' (pp. 32–33) is quoted as the influential statement to be challenged; the 2014 book's subtitle, 'Rejecting the Colonial Politics of Recognition' (publisher). The book itself is unread at first hand. (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md) Locators corrected in revision 1.204 to the printed page numbers of the UVic PDF (rechecked 2026-10-28, data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2133": {
+      "evidence_note": "Own words, dissertation pp. 25–27 (Fanon used against Hegel and liberal recognition) and p. 159: Fanon's notion of self-recognition 'remains an innovative and important contribution', but he was 'less willing to explore the role that these forms might play in providing substantive alternatives'. Influence with explicit qualification. (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md) Locators corrected in revision 1.204 to the printed page numbers of the UVic PDF (rechecked 2026-10-28, data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2134": {
+      "evidence_note": "Own words, dissertation pp. 12–13 ('excessively temporal framing' p. 12; 'historically inevitable' p. 13) and p. 19, restated in the conclusion, p. 215; the 2014 book's 'place-based' reworking (publisher description). A critical reworking, not a rejection of Marx. (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md) Locators corrected in revision 1.204 to the printed page numbers of the UVic PDF (rechecked 2026-10-28, data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2135": {
+      "evidence_note": "Own words, dissertation p. 10, and p. 37: 'Canadian settler-colonialism remains structurally oriented around achieving the same colonial effect it sought in the pre-1969 period: the dispossession of Indigenous peoples of their lands and self-determining authority'; the 2014 book p. 125 as quoted by Englert (2020, read). Wolfe and Veracini are not cited anywhere in the dissertation (full-text search, 2026-10-28); for the settler-colony frame he cites Abele and Stasiulis, 'Canada as a “White Settler Colony”' (1989), at p. 18 n. 47; Englert's own critique of Wolfe is Englert's, not Coulthard's. (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md) Locators corrected in revision 1.204 to the printed page numbers of the UVic PDF (rechecked 2026-10-28, data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2136": {
+      "evidence_note": "Own words, dissertation abstract pp. iii–iv and p. 19. (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md) Locators corrected in revision 1.204 to the printed page numbers of the UVic PDF (rechecked 2026-10-28, data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2164": {
+      "relationship": "Against 'the simplistic tropes of mixedness and hybridity that seem to fascinate so many scholars who write of Métis histories': asked 'Have not fur trade historians … already extensively documented numerous instances of Métis mixedness?', he answers that to understand the Métis 'in terms of some apparently innate mixedness is thus to reproduce the same racist depictions through which less critical commentators – among them scholars – recognize indigeneity' (2014)",
+      "evidence_note": "His own words, 'Métis': Race, Recognition, and the Struggle for Indigenous Peoplehood (UBC Press, 2014), introduction read in the publisher's sample (pp. 3–14; pp. 3–20 rechecked 2026-10-28): p. 4, 'an overly racialized narrative that connected Métis nationhood to fur trade society'; p. 5, 'the simplistic tropes of mixedness and hybridity that seem to fascinate so many scholars who write of Métis histories', in 'a vision premised on the notion that all Indigenous peoples are mixed' (he does not deny mixedness); p. 10, 'Have not fur trade historians … already extensively documented numerous instances of Métis mixedness?'; p. 11, 'To continue to understand the Métis in terms of some apparently innate mixedness is thus to reproduce the same racist depictions'; p. 12, chapter 1 treats 'a strand of long-standing fur trade literature'. In the pages read he names no fur-trade historian, so the arrow targets the frame, not Van Kirk, Brown or Peterson. Their side in their own words: Peers and Podruchny (2010, n. 2) use 'metis' for 'all descendants of European men and Aboriginal women'; Brown, as translated there (pp. 2–3, n. 3): 'there is no single Metis core identity but rather a range along a spectrum'; Brown (2017, p. 57 n. 26) names The New Peoples and Andersen's book as the older and newer poles of the field and (pp. 57–58) offers 'of mixed descent' as a descriptive term beside 'the natives’ own categories'. Chapters 1–5 unread. Person entry, identity note and the book's source record are Agent B's. (data/extension-2026/indigenous-histories-2026-10-27/evidence-older-scholarship.md §§2.1–2.2) Revision 1.204: the phrase 'misrecognized as a hybrid off-shoot of two races' (p. 6) describes John Ralston Saul's 'métis civilization', not historians, and was removed from this edge (data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md)."
+    },
+    "edge_2166": {
+      "evidence_note": "Her own words, dissertation (1999), PDF pp. 135–136, read by Agent B (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md §1.7): Native works are 'gauged with a language of containment. Bruce Trigger's foreword to George Sioui's For An American [sic] Autohistory provides a typical example of containment'; scholars 'must make it their mandate first to comprehend the noxious nature of colonization before dismissing utterances of decolonization merely as “sloganistic,” “bitter,” “biased” or “polemical”' (p. 136). Trigger has no node; the arrow goes to the strand that holds his account of how historians wrote about Native peoples (Trigger 1986), since the passage concerns how scholars gauge Native writing, not his contact-era history (edge review C, 2026-10-28). Sioui is not the target. Requested by Agent B (ihB_rel_17)."
+    },
+    "edge_1003": {
+      "evidence_note": "Emma LaRocque's specified criticism in her 1999 University of Manitoba dissertation (read at PDF pp. 54 and 249); the arrow leaves from her entry since revision 1.204 (it left from the Indigenous history entry before her entry existed). She describes 'the neo cross-cultural approach adopted by Native specialist scholars from about the 1960s-1980s era (Bailey, Jaenen, Trigger, Brown, Van Kirk)', which 'tended to frame all things Native in typical terms of \"cultural differences\" or \"traditions.\"' She grants: 'Compared to earlier racist material, this is, of course, a much improved approach to Native history. And with greater awareness, there is greater improvement.' But 'ethnological descriptions have a \"distancing\" effect', and 'This process results in Othering the very people the researcher is trying to make understandable to his or her audience' (p. 249). Her note 18 names the book: 'See in Many Tender Ties, for example, Van Kirk's listing of all the items of fashion or jewelry metis women were \"very fond of\" (101-103). There is an unstated assumption that such interests are abnormal or \"remarkable\" for these women to acquire' (p. 249, n. 18). In an earlier note she cites the book, with Saum and Ray and Freeman, among fur-trade studies that record Native resistance (PDF p. 54, note). Brown is named in the same list on p. 249 and the criticism is noted on her own entry (pe139_brown_rel_01); one arrow is drawn, to Van Kirk, because the note's example is hers. edge_868 (indigenous → native_newcomer) already carries LaRocque with Sioui and Stevenson (Wheeler) at entry level; this edge records the person-level target. OCR slips in the PDF text layer are corrected ('Van Krk', 'al1', 'hrterests'). The page numbers are PDF pages, as in edge_868. No identity classification is recorded. Later reading, labelled: Perry (2008, p. 163) dates 'sharp post-colonial, anti-racist, and post-structuralist critiques' of Van Kirk's work to the early 1990s; those texts are unread here."
+    },
+    "edge_750": {
+      "relationship": "Read as ethnohistory: the Stó:lō field-school editors take Cruikshank's work with the three Yukon elders as exemplary of 'the new ethnohistorical literature' (2009), and Iverson's survey of American Indian history praises the collaboration (1993).",
+      "map_label": "Collaborative life histories as ethnohistory",
+      "evidence_note": "Rerouted in revision 1.204 from oral → ethnohistory: the edge rested on this book alone, and life_lived_like_a_story → oral (edge_2174) now carries the oral-history link. Carlson, Lutz and Schaepe, 'Turning the Page' (2009), p. 2 and n. 4, read in full by Agent C on 2026-10-27 (data/extension-2026/indigenous-histories-2026-10-27/evidence-community-engaged.md): 'Attention to cultural context has been a hallmark of the new ethnohistorical literature, as exemplified by Julie Cruikshank', citing the book 'in collaboration with Angela Sidney, Kitty Smith, and Annie Ned'. Iverson, introduction to the 1993 reissue of McNickle's Native American Tribalism, p. xvi (read 2026-10-28): 'Julie Cruikshank's recent collaboration with three elderly Yukon women has produced an extraordinary tapestry of Native life in Life Lived Like a Story.' Angela Sidney, Kitty Smith and Annie Ned are named contributors alongside Cruikshank; oral history is not simply raw material collected by an academic. (data/extension-2026/indigenous-edge-review-2026-10-28/review-C.md)",
+      "source_ids": [
+        "cruikshank_life",
+        "cruikshank_legitimacy_primary",
+        "ind127_turning",
+        "ihb_iverson_1993"
+      ]
+    },
+    "edge_775": {
+      "relationship": "Wrote against administrators' 'certainty that native America had vanished before the march of progress' (1973) and helped build Native history's institutions; Iverson (1993) called Native American Tribalism 'a book ahead of its time'.",
+      "map_label": "Against the vanishing Indian, 1949–73",
+      "evidence_note": "Historical synthesis and institution-building: the Newberry finding aid records his 1949 work and participation in creating its history centre in 1972. This is not a claim of a universal field foundation. This teaching link presents the named approach; it does not establish intellectual descent or a contribution to every part of the umbrella field. Revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md): McNickle's 1973 preface (pp. xix–xx, read) challenges administrators' 'certainty that native America had vanished before the march of progress'; Iverson's 1993 introduction (p. iv, read) notes that 'few Native historians have tried to provide an overview of the national Indian experience' and (p. v) that he directed the centre in its first fellowship year, 1973–74. Edge review C (2026-10-28): Iverson, p. vi (read), the book 'was, in many ways, a book ahead of its time. Its general theme seems less innovative or path-breaking perhaps today. However, that changed perception is a commentary on how the field has been altered in ways generally presaged by this book'; Iverson also judges that McNickle's 'early analysis of the Settlement Act in Alaska now appears overly optimistic' (p. vi). (data/extension-2026/indigenous-edge-review-2026-10-28/review-C.md)"
+    }
+  },
+  "text_revisions": [
+    {
+      "node": "winona_wheeler",
+      "field": "description",
+      "old": "She serves on the managing board of Shekon Neechie (2018).",
+      "new": "She serves on the managing board of Shekon Neechie (2018). Her colonial analysis drew on Blauner's colonial model (1998) and on postcolonial and anti-colonial theory (2000, 2010); with Denise Henning (2021) she adopts Wolfe's definition of settler colonialism."
+    },
+    {
+      "node": "settler_colonialism",
+      "person_id": "mary_jane_logan_mccallum",
+      "field": "context",
+      "old": "beside the paradigm, not within it.",
+      "new": "beside the paradigm; her reviewer Carol Williams reads the book 'Following Wolfe' (BC Studies, 2016)."
+    },
+    {
+      "node": "emma_larocque",
+      "field": "description",
+      "old": "When the Other Is Me (2011) is the revised book.",
+      "new": "When the Other Is Me (2010) is the revised book."
+    },
+    {
+      "node": "emma_larocque",
+      "field": "representative_figures_and_works",
+      "old": "When the Other Is Me: Native Resistance Discourse, 1850–1990 (2011).",
+      "new": "When the Other Is Me: Native Resistance Discourse, 1850–1990 (2010)."
+    },
+    {
+      "node": "emma_larocque",
+      "field": "scope_note",
+      "old": "Read: 1999 dissertation, PDF pp. 8, 11, 21, 29, 34, 37–38, 47, 54, 70, 118–119, 135–136, 249. Defeathering the Indian (1975) is catalogue-only; When the Other Is Me (2011) is known through the publisher's description.",
+      "new": "Read: 1999 dissertation, PDF pp. 8, 11–12, 21, 25–26, 29, 34, 37–38, 40, 47–48, 50–51, 54, 70, 102, 107–109, 118–119, 135–136, 190–191, 240–241, 249. Defeathering the Indian (1975) is catalogue-only; When the Other Is Me (2010) is known through the publisher's description and Jason Edward Black's review (AICRJ 2011, read in full)."
+    },
+    {
+      "node": "life_lived_like_a_story",
+      "field": "scope_note",
+      "old": "Later uses read in Carlson, Lutz and Schaepe (2009) and Leddy (2010).",
+      "new": "Later uses read in Carlson, Lutz and Schaepe (2009), Leddy (2010) and Iverson (1993, p. xvi). The Canadian Historical Association lists the book's 1992 prize under 'Julia A. Cruikshank' alone; this entry credits Sidney, Smith, Ned and Cruikshank together, as the book does."
+    }
+  ],
+  "field_sets": [
+    {
+      "node": "winona_wheeler",
+      "field": "scope_note",
+      "expect": "Read in full: 'Cree Intellectual Traditions in History' (AU Press, open access, 2010); the 1998 Saskatchewan History essay (earlier reading); Leddy 2010; the 2018 USask news story; the 2021 open letter. Unread: the 2005 'Reflections' chapter (known through her own n. 1 and Leddy), Part III of 'Indigenous Voices, Indigenous Histories' (1999), her Berkeley dissertation (2000) and later co-authored work. History PhD citation graph, release 2026-10-23: cited by 8 Canadian History PhDs as Wheeler and 17 as Stevenson (the name keys are not merged); context only.",
+      "value": "Read in full: 'Cree Intellectual Traditions in History' (AU Press, open access, 2010); the 1998 Saskatchewan History essay (pp. 24–26 re-read 2026-10-28); '\"Ethnic\" Assimilates \"Indigenous\"' (Wicazo Sa Review, 1998); 'Thoughts on the Responsibilities for Indigenous/Native Studies' (CJNS, 2001); '\"their brains were like paper\"' (Shekon Neechie, 2018); Henning and Wheeler (2021); Leddy 2010; the 2018 USask news story; the 2021 open letter. Pages read through OCR: Decolonizing Tribal Histories (Berkeley PhD, 2000), abstract and pp. 1–27, 62–157. Unread: the 2005 'Reflections' chapter (known through her own n. 1 and Leddy), Part III of 'Indigenous Voices, Indigenous Histories' (1999), the dissertation's Cree case study (pp. 157–354) and the Indigenous Oral History Manual (2023, co-authored; known through catalogue listings). A C Magazine conversation with Joi T. Arcand could not be read (2026-10-28). History PhD citation graph, release 2026-10-23: cited by 8 Canadian History PhDs as Wheeler and 17 as Stevenson (the name keys are not merged); context only."
+    },
+    {
+      "node": "brenda_macdougall",
+      "field": "scope_note",
+      "expect": "Read in full: One of the Family, front matter and introduction (pp. xi–xix, 1–22, publisher's sample); 'Ways of Knowing' (2018); the 2021 open letter. Unread: the book's chapters beyond ch. 1, 'Wahkootowin' (CHR 2006), Contours of a People (co-ed., 2012). Identity: the Gabriel Dumont Institute's Métis Museum biography (cited, not quoted), designated by the coordinator (user decision, 2026-10-27). History PhD citation graph, release 2026-10-23: cited by 50 Canadian History PhDs (the crosswalk QID there is wrong); context only.",
+      "value": "Read in full: One of the Family, front matter and introduction (pp. xi–xix, 1–22, publisher's sample); 'Ways of Knowing' (2018); 'The Power of Legal and Historical Fiction(s)' (International Indigenous Policy Journal, 2016); the 2021 open letter. Unread: the book's chapters beyond ch. 1, 'Wahkootowin' (CHR 2006), Contours of a People (co-ed., 2012). Identity: the Gabriel Dumont Institute's Métis Museum biography (cited, not quoted), designated by the coordinator (user decision, 2026-10-27). History PhD citation graph, release 2026-10-23: cited by 50 Canadian History PhDs (the crosswalk QID there is wrong); context only."
+    },
+    {
+      "node": "robert_alexander_innes",
+      "field": "scope_note",
+      "expect": "Read in full: the two Shekon Neechie essays of 21 June 2018 (the first also reposted on Active History, 12 June 2019; that page returned 403); USask News on Shekon Neechie (2018); the 2021 open letter. Known through publisher pages, a database excerpt or a citing reader: Elder Brother (2013), the 1999–2000 Oral History Forum article, the 2009 AIQ article. The essays' critique is his own; Daschuk's book, Tobias (1983), Lux (2004), Titley (1999) and Woolford's review are known here only as he quotes them. n. 5 of the 2018 essay records that the Canadian Historical Review declined it unless refocused 'away from a critique of historians'. History PhD citation graph, release 2026-10-23: cited by 27 Canadian History PhDs; context only.",
+      "value": "Read in full: the two Shekon Neechie essays of 21 June 2018 (the first also reposted on Active History, 12 June 2019; that page returned 403); USask News on Shekon Neechie (2018); 'Moose on the Loose' (aboriginal policy studies, 2015); the 2021 open letter. The 2018 essays frame the 1880s deaths as 'colonial genocide'; they do not use the settler-colonial frame. Known through publisher pages, a database excerpt or a citing reader: Elder Brother (2013), the 1999–2000 Oral History Forum article, the 2009 AIQ article. The essays' critique is his own; Daschuk's book, Tobias (1983), Lux (2004), Titley (1999) and Woolford's review are known here only as he quotes them. n. 5 of the 2018 essay records that the Canadian Historical Review declined it unless refocused 'away from a critique of historians'. History PhD citation graph, release 2026-10-23: cited by 27 Canadian History PhDs; context only."
+    },
+    {
+      "node": "mary_jane_logan_mccallum",
+      "field": "scope_note",
+      "expect": "Read in full: 'Indigenous People, Archives and History' (2018); Williams's review (BC Studies 191, 2016); the 2021 open letter; the 2020 Lethbridge notice. Known through publisher pages or abstracts: the 2014 book (introduction and conclusion unread), the 2017 CHR essay, the 2009 AIQ article. Unread: Structures of Indifference (with Adele Perry) and Nii Ndahlohke (2022). History PhD citation graph, release 2026-10-23: cited by 44 Canadian History PhDs, rising; context only.",
+      "value": "Read in full: 'Indigenous People, Archives and History' (2018); Williams's review (BC Studies 191, 2016); Harms's review (Manitoba History 80, 2016); the 2021 open letter; the 2020 Lethbridge notice. Known through publisher pages or abstracts: the 2014 book (introduction and conclusion unread), the 2017 CHR essay, the 2009 AIQ article. Known through its publisher page: Structures of Indifference (with Adele Perry, 2018). Unread: Nii Ndahlohke (2022). History PhD citation graph, release 2026-10-23: cited by 44 Canadian History PhDs, rising; context only."
+    },
+    {
+      "node": "winona_wheeler",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1958–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "ww_birth_1958",
+            "label": "Born, Victoria, British Columbia",
+            "kind": "birth",
+            "track": "context",
+            "date": {
+              "year": 1958,
+              "precision": "day",
+              "month": 4,
+              "day": 25
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan: 25 April 1958 (via a summarising fetch)."
+          },
+          {
+            "id": "ww_manitoba_1982",
+            "label": "Begins undergraduate study at Manitoba; meets Stan Cuthand, head of Native Studies",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1982,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010"
+            ],
+            "support": "Wheeler 2010, p. 49."
+          },
+          {
+            "id": "ww_ba_1986",
+            "label": "BA in History, University of Manitoba",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1986,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan."
+          },
+          {
+            "id": "ww_post_1988",
+            "label": "MA in History (UBC); assistant professor, Native Studies, University of Saskatchewan",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 1988,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask",
+              "graph:ihc_wheeler_lethbridge"
+            ],
+            "support": "Encyclopedia of Saskatchewan; Lethbridge: 'a professor of Indigenous Studies since 1988'."
+          },
+          {
+            "id": "ww_fnuniv_1996",
+            "label": "Moves to the Saskatchewan Indian Federated College (First Nations University of Canada), Saskatoon",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 1996,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan."
+          },
+          {
+            "id": "ww_othering_1998",
+            "label": "'Indigenous Voices, Indigenous Histories, Part I: The Othering of Indigenous History' (as Winona Stevenson)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1998,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:nnreq_stevenson_1998"
+            ],
+            "support": "Saskatchewan History 50:2 (Fall 1998): 24–27; read in full."
+          },
+          {
+            "id": "ww_phd_2000",
+            "label": "PhD, University of California, Berkeley",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 2000,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan; dissertation unread."
+          },
+          {
+            "id": "ww_reflections_2005",
+            "label": "'Reflections on the Social Relations of Indigenous Oral History' (Walking a Tightrope)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2005,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010",
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Cited by Wheeler 2010 n. 1 and Leddy 2010 n. 2; unread."
+          },
+          {
+            "id": "ww_cree_2010",
+            "label": "'Cree Intellectual Traditions in History' (The West and Beyond)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010"
+            ],
+            "support": "AU Press, 2010; read in full."
+          },
+          {
+            "id": "ww_leddy_2010",
+            "label": "Leddy takes her words as the epigraph for community-based history",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Leddy 2010, p. 1 and n. 2."
+          },
+          {
+            "id": "ww_shekon_2018",
+            "label": "Managing board, Shekon Neechie",
+            "kind": "institution",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "month",
+              "month": 6
+            },
+            "source_ids": [
+              "graph:ihc_usask_shekon_2018"
+            ],
+            "support": "USask News, June 2018."
+          },
+          {
+            "id": "ww_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Associate Professor, University of Saskatchewan."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1958–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "ww_birth_1958",
+            "label": "Born, Victoria, British Columbia",
+            "kind": "birth",
+            "track": "context",
+            "date": {
+              "year": 1958,
+              "precision": "day",
+              "month": 4,
+              "day": 25
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan: 25 April 1958 (via a summarising fetch)."
+          },
+          {
+            "id": "ww_manitoba_1982",
+            "label": "Begins undergraduate study at Manitoba; meets Stan Cuthand, head of Native Studies",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1982,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010"
+            ],
+            "support": "Wheeler 2010, p. 49."
+          },
+          {
+            "id": "ww_ba_1986",
+            "label": "BA in History, University of Manitoba",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1986,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan."
+          },
+          {
+            "id": "ww_post_1988",
+            "label": "MA in History (UBC); assistant professor, Native Studies, University of Saskatchewan",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 1988,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask",
+              "graph:ihc_wheeler_lethbridge"
+            ],
+            "support": "Encyclopedia of Saskatchewan; Lethbridge: 'a professor of Indigenous Studies since 1988'."
+          },
+          {
+            "id": "ww_fnuniv_1996",
+            "label": "Moves to the Saskatchewan Indian Federated College (First Nations University of Canada), Saskatoon",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 1996,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask"
+            ],
+            "support": "Encyclopedia of Saskatchewan."
+          },
+          {
+            "id": "ww_othering_1998",
+            "label": "'Indigenous Voices, Indigenous Histories, Part I: The Othering of Indigenous History' (as Winona Stevenson)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1998,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:nnreq_stevenson_1998"
+            ],
+            "support": "Saskatchewan History 50:2 (Fall 1998): 24–27; read in full."
+          },
+          {
+            "id": "ww_wicazosa_1998",
+            "label": "'\"Ethnic\" Assimilates \"Indigenous\": A Study in Intellectual Neocolonialism' (as Winona Stevenson)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1998,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierA_wheeler_wicazosa_1998"
+            ],
+            "support": "Wicazo Sa Review 13:1 (Spring 1998): 33–51; first presented at UBC, 2 November 1995 (p. 50 note); read in full."
+          },
+          {
+            "id": "ww_phd_2000",
+            "label": "PhD in Ethnic Studies, University of California, Berkeley: 'Decolonizing Tribal Histories'",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 2000,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_esask",
+              "graph:ierA_wheeler_diss_2000"
+            ],
+            "support": "Encyclopedia of Saskatchewan; title page (Spring 2000; chair Luana Ross), read through OCR with the abstract and pp. 1–27, 62–157."
+          },
+          {
+            "id": "ww_cjns_2001",
+            "label": "'Thoughts on the Responsibilities for Indigenous/Native Studies'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2001,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierA_wheeler_cjns_2001"
+            ],
+            "support": "Canadian Journal of Native Studies 21:1 (2001): 97–104; read in full."
+          },
+          {
+            "id": "ww_reflections_2005",
+            "label": "'Reflections on the Social Relations of Indigenous Oral History' (Walking a Tightrope)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2005,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010",
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Cited by Wheeler 2010 n. 1 and Leddy 2010 n. 2; unread."
+          },
+          {
+            "id": "ww_cree_2010",
+            "label": "'Cree Intellectual Traditions in History' (The West and Beyond)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_wheeler_2010"
+            ],
+            "support": "AU Press, 2010; read in full."
+          },
+          {
+            "id": "ww_leddy_2010",
+            "label": "Leddy takes her words as the epigraph for community-based history",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Leddy 2010, p. 1 and n. 2."
+          },
+          {
+            "id": "ww_shekon_2018",
+            "label": "Managing board, Shekon Neechie",
+            "kind": "institution",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "month",
+              "month": 6
+            },
+            "source_ids": [
+              "graph:ihc_usask_shekon_2018"
+            ],
+            "support": "USask News, June 2018."
+          },
+          {
+            "id": "ww_brains_2018",
+            "label": "'\"their brains were like paper\": Narrative Strategies in Indigenous Oral Histories' (Shekon Neechie)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 20
+            },
+            "source_ids": [
+              "graph:ierA_wheeler_shekon_2018"
+            ],
+            "support": "Posted 20 June 2018; read in full."
+          },
+          {
+            "id": "ww_podcast_2020",
+            "label": "Guest, Shekon Neechie podcast episode 1, 'Pandemics' (with McCallum; host Innes)",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 2020,
+              "precision": "day",
+              "month": 7,
+              "day": 18
+            },
+            "source_ids": [
+              "graph:ierA_shekon_podcast_2020"
+            ],
+            "support": "Episode page, 18 July 2020; audio not heard."
+          },
+          {
+            "id": "ww_landback_2021",
+            "label": "Columbia Oral History MA workshop, 'Land Back! The Importance of Oral History in First Nation Land Claims Cases'",
+            "kind": "lecture_delivery",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 2,
+              "day": 18
+            },
+            "source_ids": [
+              "graph:ierA_ohma_wheeler_2021"
+            ],
+            "support": "Event notice: online, 18 February 2021."
+          },
+          {
+            "id": "ww_henning_2021",
+            "label": "With Denise Henning, 'Rural Indigenous students' postsecondary experiences: North and South of the Medicine Line'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 4,
+              "day": 30
+            },
+            "source_ids": [
+              "graph:ierA_henning_wheeler_2021"
+            ],
+            "support": "New Directions for Student Services 2020, nos. 171–172: 57–67, published online 30 April 2021 (Crossref); read in full."
+          },
+          {
+            "id": "ww_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Associate Professor, University of Saskatchewan."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      }
+    },
+    {
+      "node": "brenda_macdougall",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1994–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "bm_ba_1994",
+            "label": "BA, University of Saskatchewan",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1994,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_phd_2005",
+            "label": "PhD, University of Saskatchewan (with Frank Tough)",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 2005,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016",
+              "graph:ihc_macdougall_2010"
+            ],
+            "support": "Alumni news 2016; One of the Family, p. xii (doctoral research with Tough)."
+          },
+          {
+            "id": "bm_ottawa_2010",
+            "label": "Inaugural Chair in Métis Studies, University of Ottawa",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 2010,
+              "precision": "day",
+              "month": 1,
+              "day": 1
+            },
+            "source_ids": [
+              "graph:ihc_mno_macdougall_2009"
+            ],
+            "support": "MNO, 3 November 2009: begins 1 January 2010."
+          },
+          {
+            "id": "bm_family_2010",
+            "label": "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2010,
+              "precision": "day",
+              "month": 2,
+              "day": 22
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_2010"
+            ],
+            "support": "UBC Press, hardcover 22 February 2010; introduction read in full."
+          },
+          {
+            "id": "bm_clio_2011",
+            "label": "CHA Clio Prize (Prairies) for One of the Family",
+            "kind": "recognition",
+            "track": "reception",
+            "date": {
+              "year": 2011,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_rsc_2016",
+            "label": "Royal Society of Canada, College of New Scholars",
+            "kind": "recognition",
+            "track": "context",
+            "date": {
+              "year": 2016,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_symposium_2018",
+            "label": "Co-hosts 'Ways of Knowing: Promising New Directions for Métis Research' (Ottawa)",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "month",
+              "month": 4
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_ways_2018"
+            ],
+            "support": "27–29 April 2018 (her Shekon Neechie report)."
+          },
+          {
+            "id": "bm_ways_2018",
+            "label": "'Ways of Knowing' report on Shekon Neechie",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_ways_2018"
+            ],
+            "support": "Posted 21 June 2018."
+          },
+          {
+            "id": "bm_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as University Research Chair in Metis Family and Community Traditions, University of Ottawa."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1994–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "bm_ba_1994",
+            "label": "BA, University of Saskatchewan",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 1994,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_phd_2005",
+            "label": "PhD, University of Saskatchewan (with Frank Tough)",
+            "kind": "education",
+            "track": "context",
+            "date": {
+              "year": 2005,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016",
+              "graph:ihc_macdougall_2010"
+            ],
+            "support": "Alumni news 2016; One of the Family, p. xii (doctoral research with Tough)."
+          },
+          {
+            "id": "bm_ottawa_2010",
+            "label": "Inaugural Chair in Métis Studies, University of Ottawa",
+            "kind": "appointment",
+            "track": "context",
+            "date": {
+              "year": 2010,
+              "precision": "day",
+              "month": 1,
+              "day": 1
+            },
+            "source_ids": [
+              "graph:ihc_mno_macdougall_2009"
+            ],
+            "support": "MNO, 3 November 2009: begins 1 January 2010."
+          },
+          {
+            "id": "bm_family_2010",
+            "label": "One of the Family: Metis Culture in Nineteenth-Century Northwestern Saskatchewan",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2010,
+              "precision": "day",
+              "month": 2,
+              "day": 22
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_2010"
+            ],
+            "support": "UBC Press, hardcover 22 February 2010; introduction read in full."
+          },
+          {
+            "id": "bm_clio_2011",
+            "label": "CHA Clio Prize (Prairies) for One of the Family",
+            "kind": "recognition",
+            "track": "reception",
+            "date": {
+              "year": 2011,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_rsc_2016",
+            "label": "Royal Society of Canada, College of New Scholars",
+            "kind": "recognition",
+            "track": "context",
+            "date": {
+              "year": 2016,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_usask_2016"
+            ],
+            "support": "USask alumni news 2016."
+          },
+          {
+            "id": "bm_iipj_2016",
+            "label": "'The Power of Legal and Historical Fiction(s): The Daniels Decision and the Enduring Influence of Colonial Ideology'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2016,
+              "precision": "day",
+              "month": 7,
+              "day": 28
+            },
+            "source_ids": [
+              "graph:ierA_macdougall_iipj_2016"
+            ],
+            "support": "International Indigenous Policy Journal 7:3 (Crossref date 28 July 2016); read in full."
+          },
+          {
+            "id": "bm_symposium_2018",
+            "label": "Co-hosts 'Ways of Knowing: Promising New Directions for Métis Research' (Ottawa)",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "month",
+              "month": 4
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_ways_2018"
+            ],
+            "support": "27–29 April 2018 (her Shekon Neechie report)."
+          },
+          {
+            "id": "bm_ways_2018",
+            "label": "'Ways of Knowing' report on Shekon Neechie",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_macdougall_ways_2018"
+            ],
+            "support": "Posted 21 June 2018."
+          },
+          {
+            "id": "bm_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as University Research Chair in Metis Family and Community Traditions, University of Ottawa."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      }
+    },
+    {
+      "node": "robert_alexander_innes",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1999–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "rai_ohf_1999",
+            "label": "'Oral History Methods in Native Studies: Saskatchewan Aboriginal World War Two Veterans'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1999,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_innes_1999_gladue"
+            ],
+            "support": "Oral History Forum 19–20 (1999–2000): 63–88; excerpt p. 64 read."
+          },
+          {
+            "id": "rai_aiq_2009",
+            "label": "'\"Wait a Second. Who Are You Anyways?\": The Insider/Outsider Debate and American Indian Studies'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_innes_aiq_2009",
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "AIQ 33:4 (Fall 2009): 440–461; Crossref; paraphrased by Leddy 2010 n. 6."
+          },
+          {
+            "id": "rai_elder_2013",
+            "label": "Elder Brother and the Law of the People: Contemporary Kinship and Cowessess First Nation",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2013,
+              "precision": "month",
+              "month": 11
+            },
+            "source_ids": [
+              "graph:ihc_innes_ump_2013"
+            ],
+            "support": "UMP, November 2013; publisher page."
+          },
+          {
+            "id": "rai_shekon_2018",
+            "label": "Conceives and launches Shekon Neechie with six other Indigenous historians",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_usask_shekon_2018"
+            ],
+            "support": "USask News: launched 21 June 2018; Innes on the idea."
+          },
+          {
+            "id": "rai_genocide_2018",
+            "label": "'Historians and Indigenous Genocide in Saskatchewan'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_innes_genocide_2018"
+            ],
+            "support": "Shekon Neechie, 21 June 2018; read in full."
+          },
+          {
+            "id": "rai_daschuk_2018",
+            "label": "'Clearing the Plains of Accountability'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_innes_daschuk_2018"
+            ],
+            "support": "Shekon Neechie, 21 June 2018; read in full."
+          },
+          {
+            "id": "rai_activehistory_2019",
+            "label": "'Historians and Indigenous Genocide in Saskatchewan' reposted on Active History",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 2019,
+              "precision": "day",
+              "month": 6,
+              "day": 12
+            },
+            "source_ids": [
+              "graph:ihc_innes_genocide_2018"
+            ],
+            "support": "Active History, 12 June 2019 (per the user and the brief; the page returned 403 and was not compared)."
+          },
+          {
+            "id": "rai_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Associate Professor, McMaster University."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1999–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "rai_ohf_1999",
+            "label": "'Oral History Methods in Native Studies: Saskatchewan Aboriginal World War Two Veterans'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1999,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_innes_1999_gladue"
+            ],
+            "support": "Oral History Forum 19–20 (1999–2000): 63–88; excerpt p. 64 read."
+          },
+          {
+            "id": "rai_aiq_2009",
+            "label": "'\"Wait a Second. Who Are You Anyways?\": The Insider/Outsider Debate and American Indian Studies'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_innes_aiq_2009",
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "AIQ 33:4 (Fall 2009): 440–461; Crossref; paraphrased by Leddy 2010 n. 6."
+          },
+          {
+            "id": "rai_elder_2013",
+            "label": "Elder Brother and the Law of the People: Contemporary Kinship and Cowessess First Nation",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2013,
+              "precision": "month",
+              "month": 11
+            },
+            "source_ids": [
+              "graph:ihc_innes_ump_2013"
+            ],
+            "support": "UMP, November 2013; publisher page."
+          },
+          {
+            "id": "rai_moose_2015",
+            "label": "'Moose on the Loose: Indigenous Men, Violence, and the Colonial Excuse'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2015,
+              "precision": "day",
+              "month": 3,
+              "day": 29
+            },
+            "source_ids": [
+              "graph:ierA_innes_aps_2015"
+            ],
+            "support": "aboriginal policy studies 4:1, published 29 March 2015; read in full."
+          },
+          {
+            "id": "rai_shekon_2018",
+            "label": "Conceives and launches Shekon Neechie with six other Indigenous historians",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_usask_shekon_2018"
+            ],
+            "support": "USask News: launched 21 June 2018; Innes on the idea."
+          },
+          {
+            "id": "rai_genocide_2018",
+            "label": "'Historians and Indigenous Genocide in Saskatchewan'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_innes_genocide_2018"
+            ],
+            "support": "Shekon Neechie, 21 June 2018; read in full."
+          },
+          {
+            "id": "rai_daschuk_2018",
+            "label": "'Clearing the Plains of Accountability'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_innes_daschuk_2018"
+            ],
+            "support": "Shekon Neechie, 21 June 2018; read in full."
+          },
+          {
+            "id": "rai_activehistory_2019",
+            "label": "'Historians and Indigenous Genocide in Saskatchewan' reposted on Active History",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 2019,
+              "precision": "day",
+              "month": 6,
+              "day": 12
+            },
+            "source_ids": [
+              "graph:ihc_innes_genocide_2018"
+            ],
+            "support": "Active History, 12 June 2019 (per the user and the brief; the page returned 403 and was not compared)."
+          },
+          {
+            "id": "rai_podcast_2020",
+            "label": "Hosts Shekon Neechie podcast episode 1, 'Pandemics' (guests Wheeler and McCallum)",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 2020,
+              "precision": "day",
+              "month": 7,
+              "day": 18
+            },
+            "source_ids": [
+              "graph:ierA_shekon_podcast_2020"
+            ],
+            "support": "Episode page, 18 July 2020; audio not heard."
+          },
+          {
+            "id": "rai_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Associate Professor, McMaster University."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      }
+    },
+    {
+      "node": "mary_jane_logan_mccallum",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 2009–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "mjm_aiq_2009",
+            "label": "'Indigenous Labor and Indigenous History' (American Indian Quarterly 33:4)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_aiq_2009"
+            ],
+            "support": "Crossref; unread."
+          },
+          {
+            "id": "mjm_book_2014",
+            "label": "Indigenous Women, Work, and History, 1940–1980",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2014,
+              "precision": "month",
+              "month": 5
+            },
+            "source_ids": [
+              "graph:p4b_mccallum_2014"
+            ],
+            "support": "UMP, May 2014; publisher page."
+          },
+          {
+            "id": "mjm_williams_2016",
+            "label": "Carol Williams reviews the book in BC Studies",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2016,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_williams_bcs_2016"
+            ],
+            "support": "BC Studies 191 (Autumn 2016); read in full."
+          },
+          {
+            "id": "mjm_chr_2017",
+            "label": "'Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2017,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:healthgeo05_mccallum_health_2017"
+            ],
+            "support": "Existing source; abstract only."
+          },
+          {
+            "id": "mjm_weweni_2018",
+            "label": "Weweni lecture on Indigenous people, archives and history (University of Winnipeg)",
+            "kind": "lecture_delivery",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 3,
+              "day": 7
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_archives_2018"
+            ],
+            "support": "Essay's opening: lecture of 7 March 2018."
+          },
+          {
+            "id": "mjm_archives_2018",
+            "label": "'Indigenous People, Archives and History' (Shekon Neechie)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_archives_2018"
+            ],
+            "support": "Posted 21 June 2018; read in full."
+          },
+          {
+            "id": "mjm_structures_2020",
+            "label": "Lethbridge lecture, 'Structures of Indifference: An Indigenous Life and Death in a Canadian City'",
+            "kind": "lecture_delivery",
+            "track": "context",
+            "date": {
+              "year": 2020,
+              "precision": "day",
+              "month": 10,
+              "day": 30
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_lethbridge_2020"
+            ],
+            "support": "Event notice, 30 October 2020."
+          },
+          {
+            "id": "mjm_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Canada Research Chair in Indigenous Peoples, History, and Archives, University of Winnipeg."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 2009–2021",
+        "selection_note": "Selected dated contributions, posts and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "mjm_aiq_2009",
+            "label": "'Indigenous Labor and Indigenous History' (American Indian Quarterly 33:4)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_aiq_2009"
+            ],
+            "support": "Crossref; unread."
+          },
+          {
+            "id": "mjm_book_2014",
+            "label": "Indigenous Women, Work, and History, 1940–1980",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2014,
+              "precision": "month",
+              "month": 5
+            },
+            "source_ids": [
+              "graph:p4b_mccallum_2014"
+            ],
+            "support": "UMP, May 2014; publisher page."
+          },
+          {
+            "id": "mjm_williams_2016",
+            "label": "Carol Williams reviews the book in BC Studies",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2016,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_williams_bcs_2016"
+            ],
+            "support": "BC Studies 191 (Autumn 2016); read in full."
+          },
+          {
+            "id": "mjm_harms_2016",
+            "label": "Patricia Harms reviews the book in Manitoba History",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2016,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierA_harms_mh_2016"
+            ],
+            "support": "Manitoba History 80 (Spring 2016); read in full."
+          },
+          {
+            "id": "mjm_chr_2017",
+            "label": "'Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History'",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2017,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:healthgeo05_mccallum_health_2017"
+            ],
+            "support": "Existing source; abstract only."
+          },
+          {
+            "id": "mjm_weweni_2018",
+            "label": "Weweni lecture on Indigenous people, archives and history (University of Winnipeg)",
+            "kind": "lecture_delivery",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 3,
+              "day": 7
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_archives_2018"
+            ],
+            "support": "Essay's opening: lecture of 7 March 2018."
+          },
+          {
+            "id": "mjm_archives_2018",
+            "label": "'Indigenous People, Archives and History' (Shekon Neechie)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "day",
+              "month": 6,
+              "day": 21
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_archives_2018"
+            ],
+            "support": "Posted 21 June 2018; read in full."
+          },
+          {
+            "id": "mjm_structures_2018",
+            "label": "With Adele Perry, Structures of Indifference: An Indigenous Life and Death in a Canadian City",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2018,
+              "precision": "month",
+              "month": 9
+            },
+            "source_ids": [
+              "graph:ierA_mccallum_perry_ump_2018"
+            ],
+            "support": "UMP, September 2018; publisher page read; book unread."
+          },
+          {
+            "id": "mjm_podcast_2020",
+            "label": "Guest, Shekon Neechie podcast episode 1, 'Pandemics' (with Wheeler; host Innes)",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 2020,
+              "precision": "day",
+              "month": 7,
+              "day": 18
+            },
+            "source_ids": [
+              "graph:ierA_shekon_podcast_2020"
+            ],
+            "support": "Episode page, 18 July 2020; audio not heard."
+          },
+          {
+            "id": "mjm_structures_2020",
+            "label": "Lethbridge lecture, 'Structures of Indifference: An Indigenous Life and Death in a Canadian City'",
+            "kind": "lecture_delivery",
+            "track": "context",
+            "date": {
+              "year": 2020,
+              "precision": "day",
+              "month": 10,
+              "day": 30
+            },
+            "source_ids": [
+              "graph:ihc_mccallum_lethbridge_2020"
+            ],
+            "support": "Event notice, 30 October 2020."
+          },
+          {
+            "id": "mjm_letter_2021",
+            "label": "Co-signs the Shekon Neechie open letter supporting the CHA genocide statement",
+            "kind": "statement",
+            "track": "contributions",
+            "date": {
+              "year": 2021,
+              "precision": "day",
+              "month": 8,
+              "day": 13
+            },
+            "source_ids": [
+              "graph:ihc_shekon_letter_2021"
+            ],
+            "support": "13 August 2021; signs as Canada Research Chair in Indigenous Peoples, History, and Archives, University of Winnipeg."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      }
+    },
+    {
+      "node": "glen_coulthard",
+      "field": "scope_note",
+      "expect": "Read in part: the 2009 dissertation (abstract; introduction pp. 1–2, 11–20, 27–28; chapter openings pp. 74–75, 158–160). The 2014 book is unread at first hand; its p. 125 is known through Englert (2020). He builds on Canadian historians (Miller, Harris, Lutz) without criticising them in the pages read, and Wolfe is not cited there. In Canadian History PhDs: 27 citing theses; share 0 in 2000–09 and 3.6% in 2018–25 (History PhD citation graph, release 2026-10-23).",
+      "value": "Read in part: the 2009 dissertation (abstract pp. iii–iv; acknowledgements p. vii; introduction pp. 1–27 in part; chapter 2 opening p. 37; pp. 88–89; chapter 5 pp. 157–159; pp. 188–194; conclusion p. 215), and searched in full text: Wolfe and Veracini are not cited anywhere in it. Page numbers are those printed on the UVic PDF (rechecked 2026-10-28; earlier locators were one page high). The 2014 book is unread at first hand; its p. 125 is known through Englert (2020). He builds on Canadian historians and geographers (Miller, Harris, Lutz) without criticising them, and draws on Deloria and on Howard Adams. In Canadian History PhDs: 27 citing theses; share 0 in 2000–09 and 3.6% in 2018–25 (History PhD citation graph, release 2026-10-23)."
+    },
+    {
+      "node": "emma_larocque",
+      "field": "date_label",
+      "expect": "Defeathering the Indian 1975 · dissertation 1999 · When the Other Is Me 2011",
+      "value": "Defeathering the Indian 1975 · dissertation 1999 · When the Other Is Me 2010"
+    },
+    {
+      "node": "emma_larocque",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1974–2011",
+        "selection_note": "Selected dated contributions and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "el_curriculum_1974",
+            "label": "Curriculum research for Alberta's Department of Education",
+            "kind": "research",
+            "track": "contributions",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_thesis"
+            ],
+            "support": "Her 1999 account, PDF p. 37 (the year as in the existing reading of p. 34)."
+          },
+          {
+            "id": "el_defeathering_1975",
+            "label": "Defeathering the Indian",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1975,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_book"
+            ],
+            "support": "Smithsonian catalogue; unread."
+          },
+          {
+            "id": "el_phd_1999",
+            "label": "PhD dissertation, University of Manitoba",
+            "kind": "degree",
+            "track": "contributions",
+            "date": {
+              "year": 1999,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_thesis"
+            ],
+            "support": "Title page; pages listed in the scope note read."
+          },
+          {
+            "id": "el_other_2011",
+            "label": "When the Other Is Me",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2011,
+              "month": 3,
+              "precision": "month"
+            },
+            "source_ids": [
+              "graph:ihb_larocque_ump_2011"
+            ],
+            "support": "Publisher page date (March 2011) for current formats; a 2010 printing reported in some catalogues is unchecked."
+          },
+          {
+            "id": "el_isbister_2011",
+            "label": "Alexander Kennedy Isbister Award for Non-Fiction",
+            "kind": "award",
+            "track": "reception",
+            "date": {
+              "year": 2011,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_larocque_ump_2011"
+            ],
+            "support": "Publisher page."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous career interval is asserted by this selection."
+        },
+        "interpretation": "Contributions dated from her dissertation and the publisher's pages.",
+        "prepared_on": "2026-10-27",
+        "editorial_record": "data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1974–2011",
+        "selection_note": "Selected dated contributions and readings; not career or lifespan boundaries.",
+        "events": [
+          {
+            "id": "el_curriculum_1974",
+            "label": "Curriculum research for Alberta's Department of Education",
+            "kind": "research",
+            "track": "contributions",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_thesis"
+            ],
+            "support": "Her 1999 account, PDF p. 37 (the year as in the existing reading of p. 34)."
+          },
+          {
+            "id": "el_defeathering_1975",
+            "label": "Defeathering the Indian",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1975,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_book"
+            ],
+            "support": "Smithsonian catalogue; unread."
+          },
+          {
+            "id": "el_phd_1999",
+            "label": "PhD dissertation, University of Manitoba",
+            "kind": "degree",
+            "track": "contributions",
+            "date": {
+              "year": 1999,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_larocque_thesis"
+            ],
+            "support": "Title page; pages listed in the scope note read."
+          },
+          {
+            "id": "el_other_2011",
+            "label": "When the Other Is Me",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_larocque_ump_2011",
+              "graph:ierC_black_2011"
+            ],
+            "support": "Black's review header (AICRJ 35:4, 2011, p. 285) gives 'Winnipeg: University of Manitoba Press, 2010'; the publisher page dates current formats to March 2011. Corrected from 2011 in revision 1.204 (event id kept)."
+          },
+          {
+            "id": "el_isbister_2011",
+            "label": "Alexander Kennedy Isbister Award for Non-Fiction",
+            "kind": "award",
+            "track": "reception",
+            "date": {
+              "year": 2011,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_larocque_ump_2011"
+            ],
+            "support": "Publisher page."
+          },
+          {
+            "id": "el_black_2011",
+            "label": "Reviewed by Jason Edward Black in the American Indian Culture and Research Journal",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2011,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierC_black_2011"
+            ],
+            "support": "AICRJ 35:4 (2011): 285–288, read in full; places the book in 'Native studies and postcolonial studies' decolonial theory (p. 285)."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous career interval is asserted by this selection."
+        },
+        "interpretation": "Contributions dated from her dissertation and the publisher's pages; the 2010 imprint from Black's 2011 review (revision 1.204).",
+        "prepared_on": "2026-10-27",
+        "editorial_record": "data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md"
+      }
+    },
+    {
+      "node": "darcy_mcnickle",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Selected contributions · 1904–1993",
+        "selection_note": "Selected dated contributions and life facts; not career boundaries.",
+        "events": [
+          {
+            "id": "event_998b97838247",
+            "label": "They Came Here First",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1949,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_mcnickle"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_9949b991314e",
+            "label": "Newberry Native history centre, institutional contribution",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 1972,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_mcnickle"
+            ],
+            "support": "A named institutional contribution, not sole authorship of a field or a claim of comprehensive institutional history. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "dm_birth_1904",
+            "label": "Born",
+            "kind": "life",
+            "track": "context",
+            "date": {
+              "year": 1904,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. iii gives 18 January 1904 and Wikidata 14 January: the year only."
+          },
+          {
+            "id": "dm_ncai_1944",
+            "label": "Role in founding the National Congress of American Indians, Denver",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 1944,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. iv."
+          },
+          {
+            "id": "dm_workshops_1956",
+            "label": "Workshops on American Indian Affairs begin, with McNickle as adviser",
+            "kind": "program",
+            "track": "contributions",
+            "date": {
+              "year": 1956,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 22: run 'from 1956 through the late 1960s'."
+          },
+          {
+            "id": "dm_organiser_1960",
+            "label": "Organiser of the Workshops on American Indian Affairs",
+            "kind": "post",
+            "track": "contributions",
+            "date": {
+              "year": 1960,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 22: 'beginning in 1960 as organizer of the program'."
+          },
+          {
+            "id": "dm_chicago_1961",
+            "label": "Chairs the steering committee of the American Indian Chicago Conference",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 1961,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_deloria_1965",
+            "label": "Deloria criticises the workshops as a guest speaker",
+            "kind": "reception",
+            "track": "reception",
+            "date": {
+              "year": 1965,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 24 note, citing Parker (1992), p. 195; mediated."
+          },
+          {
+            "id": "dm_tribalism_1973",
+            "label": "Native American Tribalism",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1973,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Oxford University Press, copyright 1973; preface pp. xix–xx read."
+          },
+          {
+            "id": "dm_fellows_1973",
+            "label": "Directs the Newberry centre in its first fellowship year",
+            "kind": "post",
+            "track": "contributions",
+            "date": {
+              "earliest": 1973,
+              "latest": 1974,
+              "precision": "year_range",
+              "qualifier": "the 1973–74 academic year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_death_1977",
+            "label": "Dies",
+            "kind": "life",
+            "track": "context",
+            "date": {
+              "year": 1977,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_reissue_1993",
+            "label": "Native American Tribalism reissued with Iverson's introduction",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 1993,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Oxford University Press preview."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous historical duration or ending is established by this selection."
+        },
+        "interpretation": "Life facts and contributions from Iverson's 1993 introduction and Beck (1995); the existing 1949 and 1972 events are kept.",
+        "prepared_on": "2026-10-27",
+        "editorial_record": "data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md"
+      },
+      "value": {
+        "version": 1,
+        "label": "Selected contributions · 1904–1993",
+        "selection_note": "Selected dated contributions and life facts; not career boundaries.",
+        "events": [
+          {
+            "id": "event_998b97838247",
+            "label": "They Came Here First",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1949,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_mcnickle"
+            ],
+            "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "event_9949b991314e",
+            "label": "Newberry Native history centre, institutional contribution",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 1972,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind126_mcnickle"
+            ],
+            "support": "A named institutional contribution, not sole authorship of a field or a claim of comprehensive institutional history. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+            "basis": "existing_entry_and_bibliography"
+          },
+          {
+            "id": "dm_birth_1904",
+            "label": "Born",
+            "kind": "life",
+            "track": "context",
+            "date": {
+              "year": 1904,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. iii gives 18 January 1904 and Wikidata 14 January: the year only."
+          },
+          {
+            "id": "dm_ncai_1944",
+            "label": "Role in founding the National Congress of American Indians, Denver",
+            "kind": "institution_foundation",
+            "track": "contributions",
+            "date": {
+              "year": 1944,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. iv."
+          },
+          {
+            "id": "dm_workshops_1956",
+            "label": "Workshops on American Indian Affairs begin, with McNickle as adviser",
+            "kind": "program",
+            "track": "contributions",
+            "date": {
+              "year": 1956,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 22: run 'from 1956 through the late 1960s'."
+          },
+          {
+            "id": "dm_organiser_1960",
+            "label": "Organiser of the Workshops on American Indian Affairs",
+            "kind": "post",
+            "track": "contributions",
+            "date": {
+              "year": 1960,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 22: 'beginning in 1960 as organizer of the program'."
+          },
+          {
+            "id": "dm_chicago_1961",
+            "label": "Chairs the steering committee of the American Indian Chicago Conference",
+            "kind": "event",
+            "track": "contributions",
+            "date": {
+              "year": 1961,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_deloria_1965",
+            "label": "Deloria criticises the workshops as a guest speaker",
+            "kind": "reception",
+            "track": "reception",
+            "date": {
+              "year": 1965,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:df01_mcnickle_beck1995_workshops"
+            ],
+            "support": "Beck (1995), p. 24 note, citing Parker (1992), p. 195; mediated."
+          },
+          {
+            "id": "dm_regina_1966",
+            "label": "Head of the anthropology department, University of Saskatchewan, Regina",
+            "kind": "post",
+            "track": "context",
+            "date": {
+              "year": 1966,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierC_amacad_mcnickle",
+              "graph:ind126_mcnickle"
+            ],
+            "support": "AAAS profile: 'That same year, he became head of the anthropology department at the University of Saskatchewan, Regina' (1966). The Newberry finding aid (indexed) records University of Saskatchewan materials; the end of the appointment is not checked, so no interval is asserted."
+          },
+          {
+            "id": "dm_tribalism_1973",
+            "label": "Native American Tribalism",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1973,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Oxford University Press, copyright 1973; preface pp. xix–xx read."
+          },
+          {
+            "id": "dm_fellows_1973",
+            "label": "Directs the Newberry centre in its first fellowship year",
+            "kind": "post",
+            "track": "contributions",
+            "date": {
+              "earliest": 1973,
+              "latest": 1974,
+              "precision": "year_range",
+              "qualifier": "the 1973–74 academic year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_death_1977",
+            "label": "Dies",
+            "kind": "life",
+            "track": "context",
+            "date": {
+              "year": 1977,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson (1993), p. v."
+          },
+          {
+            "id": "dm_reissue_1993",
+            "label": "Native American Tribalism reissued with Iverson's introduction",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 1993,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Oxford University Press preview."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "No continuous historical duration or ending is established by this selection."
+        },
+        "interpretation": "Life facts and contributions from Iverson's 1993 introduction and Beck (1995); the existing 1949 and 1972 events are kept.",
+        "prepared_on": "2026-10-27",
+        "editorial_record": "data/extension-2026/indigenous-histories-2026-10-27/evidence-indigenous-authored.md"
+      }
+    },
+    {
+      "node": "life_lived_like_a_story",
+      "field": "chronology",
+      "expect": {
+        "version": 1,
+        "label": "Making, publication and reception · 1974–2010",
+        "selection_note": "Selected dated events of the collaboration and its reading; not lifespans.",
+        "events": [
+          {
+            "id": "ll_request_1974",
+            "label": "Families ask Cruikshank to record the elders' life stories",
+            "kind": "project_start",
+            "track": "context",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mcclellan_1992"
+            ],
+            "support": "McClellan p. 205."
+          },
+          {
+            "id": "ll_pub_1990",
+            "label": "Life Lived Like a Story published (UBC Press; University of Nebraska Press)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1990,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:cruikshank_life",
+              "graph:ihc_gmelch_1992"
+            ],
+            "support": "Review headers give both presses, 1990."
+          },
+          {
+            "id": "ll_bison_1992",
+            "label": "Bison paperback edition",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 1992,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:cruikshank_life"
+            ],
+            "support": "Existing source record."
+          },
+          {
+            "id": "ll_reviews_1992",
+            "label": "Reviews by McClellan (Arctic) and Gmelch (BC Studies)",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 1992,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mcclellan_1992",
+              "graph:ihc_gmelch_1992"
+            ],
+            "support": "Both read in full."
+          },
+          {
+            "id": "ll_stolo_2009",
+            "label": "Stó:lō field-school editors cite the four as the model for the 'social life of the story'",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_turning"
+            ],
+            "support": "Carlson, Lutz and Schaepe 2009, p. 2 n. 4."
+          },
+          {
+            "id": "ll_leddy_2010",
+            "label": "Leddy cites the four for community collaboration",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Leddy 2010, p. 2 n. 5."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      },
+      "value": {
+        "version": 1,
+        "label": "Making, publication and reception · 1974–2010",
+        "selection_note": "Selected dated events of the collaboration and its reading; not lifespans.",
+        "events": [
+          {
+            "id": "ll_request_1974",
+            "label": "Families ask Cruikshank to record the elders' life stories",
+            "kind": "project_start",
+            "track": "context",
+            "date": {
+              "year": 1974,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mcclellan_1992"
+            ],
+            "support": "McClellan p. 205."
+          },
+          {
+            "id": "ll_pub_1990",
+            "label": "Life Lived Like a Story published (UBC Press; University of Nebraska Press)",
+            "kind": "publication",
+            "track": "contributions",
+            "date": {
+              "year": 1990,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:cruikshank_life",
+              "graph:ihc_gmelch_1992"
+            ],
+            "support": "Review headers give both presses, 1990."
+          },
+          {
+            "id": "ll_bison_1992",
+            "label": "Bison paperback edition",
+            "kind": "edition_publication",
+            "track": "editions",
+            "date": {
+              "year": 1992,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:cruikshank_life"
+            ],
+            "support": "Existing source record."
+          },
+          {
+            "id": "ll_reviews_1992",
+            "label": "Reviews by McClellan (Arctic) and Gmelch (BC Studies)",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 1992,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihc_mcclellan_1992",
+              "graph:ihc_gmelch_1992"
+            ],
+            "support": "Both read in full."
+          },
+          {
+            "id": "ll_cha_prize_1992",
+            "label": "CHA Best Scholarly Book in Canadian History Prize, listed by the CHA under Julia A. Cruikshank",
+            "kind": "award",
+            "track": "reception",
+            "date": {
+              "year": 1992,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ierC_cha_prize_1992"
+            ],
+            "support": "CHA prize-winner page (read 2026-10-28) lists 'Julia A. Cruikshank', Life Lived Like a Story (UBC Press/University of Nebraska Press), 1992. The CHA does not name Sidney, Smith and Ned; this entry credits the four together, as the book does ('in collaboration with'). The prize's 1992 name is not stated on the pages read."
+          },
+          {
+            "id": "ll_iverson_1993",
+            "label": "Iverson's survey of American Indian history names the collaboration",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 1993,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ihb_iverson_1993"
+            ],
+            "support": "Iverson, introduction to the 1993 reissue of McNickle's Native American Tribalism, p. xvi (read 2026-10-28)."
+          },
+          {
+            "id": "ll_stolo_2009",
+            "label": "Stó:lō field-school editors cite the four as the model for the 'social life of the story'",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2009,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_turning"
+            ],
+            "support": "Carlson, Lutz and Schaepe 2009, p. 2 n. 4."
+          },
+          {
+            "id": "ll_leddy_2010",
+            "label": "Leddy cites the four for community collaboration",
+            "kind": "reception_publication",
+            "track": "reception",
+            "date": {
+              "year": 2010,
+              "precision": "year"
+            },
+            "source_ids": [
+              "graph:ind127_leddy_2010"
+            ],
+            "support": "Leddy 2010, p. 2 n. 5."
+          }
+        ],
+        "intervals": [],
+        "continuation": {
+          "status": "not_asserted",
+          "basis": "Selected dated events only; the absence of later events does not mean the practice or career ended."
+        },
+        "prepared_on": "2026-10-27"
+      }
+    },
+    {
+      "node": "life_lived_like_a_story",
+      "field": "date_label",
+      "expect": "Family request 1974 · UBC Press and Nebraska 1990 · paperback 1992 · reviewed 1992 · cited as a model 2009–10",
+      "value": "Family request 1974 · UBC Press and Nebraska 1990 · paperback 1992 · reviewed and CHA prize 1992 · cited as a model 2009–10"
+    },
+    {
+      "node": "life_lived_like_a_story",
+      "field": "coverage",
+      "expect": {
+        "reviewed_through": 2010,
+        "basis": "Contemporary reviews (1992) and uses by historians (2009, 2010) read; the book unread; later reception not surveyed. History PhD citation graph, release 2026-10-23: cited by 25 Canadian History PhDs (under Cruikshank's name)."
+      },
+      "value": {
+        "reviewed_through": 2010,
+        "basis": "Contemporary reviews (1992), the CHA prize listing (1992) and uses by historians (Iverson 1993; Carlson, Lutz and Schaepe 2009; Leddy 2010) read; the book unread; later reception not surveyed. History PhD citation graph, release 2026-10-23: cited by 25 Canadian History PhDs (under Cruikshank's name)."
+      }
+    }
+  ],
+  "source_field_sets": [
+    {
+      "id": "healthgeo05_mccallum_health_2017",
+      "field": "url",
+      "expect": "https://www.researchgate.net/publication/315371195_Starvation_Experimentation_Segregation_and_Trauma_Words_for_Reading_Indigenous_Health_History",
+      "value": "https://doi.org/10.3138/chr.98.1.mccallum"
+    },
+    {
+      "id": "healthgeo05_mccallum_health_2017",
+      "field": "title",
+      "expect": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History — consulted witness",
+      "value": "Mary Jane Logan McCallum, \"Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History,\" Canadian Historical Review 98, no. 1 (2017): 96–113."
+    },
+    {
+      "id": "healthgeo05_mccallum_health_2017",
+      "field": "citation",
+      "expect": "Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History (2017).",
+      "value": "Mary Jane Logan McCallum, \"Starvation, Experimentation, Segregation, and Trauma: Words for Reading Indigenous Health History,\" Canadian Historical Review 98, no. 1 (2017): 96–113."
+    },
+    {
+      "id": "ihb_coulthard_diss_2009",
+      "field": "verification.note",
+      "expect": "UVic institutional repository PDF (issued 30 November 2009), read in part: abstract pp. iv–v; acknowledgements (Tully and Alfred as mentors); introduction pp. 1–2, 11–20, 27–28; chapter openings pp. 74–75 and 158–160. Passages used: 'to challenge the now commonplace assumption that the colonial relationship … can be reconciled via such a politics of recognition' (abstract); Taylor quoted as the influential statement (p. 28); 'Canada is no different than any other settler-colonial power' (p. 11); primitive accumulation's 'excessively temporal framing' (p. 13); 'dispossession, not proletarianization' (p. 20); Fanon 'fails to push us far enough' (p. 160). The 2014 book revises this text; quotations here are dated 2009. Wolfe is not cited in the pages read.",
+      "value": "UVic institutional repository PDF (issued 30 November 2009), read in part: abstract pp. iii–iv; acknowledgements p. vii (Tully and Alfred as mentors); introduction pp. 1–27 in part; chapter 2 opening p. 37; pp. 88–89 (Deloria); chapter 5 pp. 157–159; pp. 188–194 (Howard Adams); conclusion p. 215. Searched in full text 2026-10-28. Passages used: 'to challenge the now commonplace assumption that the colonial relationship … can be reconciled via such a politics of recognition' (abstract); Taylor quoted as the influential statement (p. 27); 'Canada is no different than any other settler-colonial power' (p. 10); primitive accumulation's 'excessively temporal framing' (p. 12); 'dispossession, not proletarianization' (p. 19); Fanon 'fails to push us far enough' (p. 159). The 2014 book revises this text; quotations here are dated 2009. Wolfe and Veracini are not cited anywhere in the dissertation. Page numbers are those printed on the PDF; locators recorded on 2026-10-27 were one page high and were corrected in revision 1.204."
+    },
+    {
+      "id": "promotion01_smith",
+      "field": "citation",
+      "expect": "Decolonizing Methodologies: Research and Indigenous Peoples (1999); University of Bergen-hosted primary book scan.",
+      "value": "Linda Tuhiwai Smith, Decolonizing Methodologies: Research and Indigenous Peoples (London: Zed Books, 1999); publisher record https://doi.org/10.5040/9781350225282 (Bloomsbury)."
+    },
+    {
+      "id": "smith_decolonizing",
+      "field": "verification.note",
+      "expect": "University-hosted 24-page scanned extract downloaded; copyright/second impression 1999 and primary introduction pp. 1–5 read with OCR. Links research to colonial power, self-determination, community priorities and differentiated insider/outsider positions; explicitly cites Said, Foucault and Patricia Hill Collins. Full book, later chapters and particular community protocols unread. This strengthens a methodological critique, not a claim of one universal Indigenous position.",
+      "value": "A 24-page scanned extract was read in September 2026: copyright/second impression 1999 and introduction pp. 1–5, with OCR. Links research to colonial power, self-determination, community priorities and differentiated insider/outsider positions; explicitly cites Said, Foucault and Patricia Hill Collins. That copy came by a route the project's source rule now excludes, so these page claims await re-verification through the publisher (revision 1.204 note). Full book, later chapters and particular community protocols unread. This strengthens a methodological critique, not a claim of one universal Indigenous position."
+    },
+    {
+      "id": "ihb_larocque_ump_2011",
+      "field": "verification.note",
+      "expect": "Publisher page read 2026-10-27: publication date March 2011 for the current formats; winner, Alexander Kennedy Isbister Award for Non-Fiction (2011); description only. Some catalogues report a 2010 printing; not checked.",
+      "value": "Publisher page read 2026-10-27: publication date March 2011 for the current formats; winner, Alexander Kennedy Isbister Award for Non-Fiction (2011); description only. The first printing is 2010: Jason Edward Black's review (AICRJ 35:4, 2011, p. 285; read in full 2026-10-28) gives 'Winnipeg: University of Manitoba Press, 2010'. The source id keeps its old year."
+    },
+    {
+      "id": "ind126_larocque_thesis",
+      "field": "verification.note",
+      "expect": "Downloaded thesis; checked title/date and read p. 34. LaRocque relates her 1974 curriculum research to Defeathering the Indian and describes its pedagogical and resistance purposes. This is her 1999 retrospective account, not a full reading of the 1975 book or dissertation. Addendum 2026-10-14: Addendum 2026-10-14 (Claude, Van Kirk draft): reread at PDF p. 249 and n. 18 and at PDF p. 54 (OCR text layer; slips corrected). On p. 249 she describes 'the neo cross-cultural approach adopted by Native specialist scholars from about the 1960s-1980s era (Bailey, Jaenen, Trigger, Brown, Van Kirk)'. She grants that 'Compared to earlier racist material, this is, of course, a much improved approach to Native history', but writes that 'ethnological descriptions have a \"distancing\" effect' and that 'This process results in Othering the very people the researcher is trying to make understandable to his or her audience'. Note 18 cites Van Kirk's listing of fashion items metis women were 'very fond of' ('Many Tender Ties', pp. 101–103), with 'an unstated assumption that such interests are abnormal or \"remarkable\"'. The note on PDF p. 54 cites Saum, Ray and Freeman, and Van Kirk among fur-trade works that record Native resistance. Addendum 2026-10-27: Reread from the project's earlier lawful download (the repository was in maintenance): PDF pp. 8, 11, 21, 29, 37–38, 47, 70, 118–119, 135–136, 249. Walker's survey 'conservative and inadequate', 'Canadian historiography is not that benign' (p. 119); Trigger's foreword to Sioui 'a typical example of containment' (pp. 135–136); Adams's 'White Ideal' (p. 47); Said's 'pretended suprapolitical objectivity' applied to 'the Canadian academic community and its treatment of Aboriginal history' (p. 70).",
+      "value": "Downloaded thesis; checked title/date and read p. 34. LaRocque relates her 1974 curriculum research to Defeathering the Indian and describes its pedagogical and resistance purposes. This is her 1999 retrospective account, not a full reading of the 1975 book or dissertation. Addendum 2026-10-14: Addendum 2026-10-14 (Claude, Van Kirk draft): reread at PDF p. 249 and n. 18 and at PDF p. 54 (OCR text layer; slips corrected). On p. 249 she describes 'the neo cross-cultural approach adopted by Native specialist scholars from about the 1960s-1980s era (Bailey, Jaenen, Trigger, Brown, Van Kirk)'. She grants that 'Compared to earlier racist material, this is, of course, a much improved approach to Native history', but writes that 'ethnological descriptions have a \"distancing\" effect' and that 'This process results in Othering the very people the researcher is trying to make understandable to his or her audience'. Note 18 cites Van Kirk's listing of fashion items metis women were 'very fond of' ('Many Tender Ties', pp. 101–103), with 'an unstated assumption that such interests are abnormal or \"remarkable\"'. The note on PDF p. 54 cites Saum, Ray and Freeman, and Van Kirk among fur-trade works that record Native resistance. Addendum 2026-10-27: Reread from the project's earlier lawful download (the repository was in maintenance): PDF pp. 8, 11, 21, 29, 37–38, 47, 70, 118–119, 135–136, 249. Walker's survey 'conservative and inadequate', 'Canadian historiography is not that benign' (p. 119); Trigger's foreword to Sioui 'a typical example of containment' (pp. 135–136); Adams's 'White Ideal' (p. 47); Said's 'pretended suprapolitical objectivity' applied to 'the Canadian academic community and its treatment of Aboriginal history' (p. 70). Addendum 2026-10-28: Edge review C (2026-10-28), from the project's earlier lawful download of the repository deposit: PDF pp. 12, 25–26, 40, 48, 50–52, 60–61, 67, 70–72, 102, 107–109, 190–191, 239–241 and 296 read. Postcolonial studies 'cannot' include Native Canadians as 'post-colonials' and its reader excludes Native writers (pp. 40, 50–51); Fanon and Memmi 'the classic sources' on internalization (p. 48); Mandelbaum's Plains Cree (pp. 107–108); fur-trade historians' 'double standard' and E. E. Rich (pp. 102, 109); Dickason's Myth of the Savage 'clearly anti-colonial' (pp. 190–191); Sioui's autohistory 'at times obscure' on method (pp. 240–241). Personal and family passages are not used."
+    },
+    {
+      "id": "ihb_iverson_1993",
+      "field": "verification.note",
+      "expect": "OUP publisher preview: Iverson's introduction pp. iii–v, xvii–xviii and McNickle's preface pp. xix–xx read. Born 18 January 1904 (p. iii; Wikidata gives 14 January, so the year only is used); role in founding the NCAI, 1944, and 'few Native historians have tried to provide an overview of the national Indian experience' (p. iv); chaired the 1961 Chicago conference steering committee, died 1977, Newberry centre's first fellows 1973–74 with McNickle as director, Hoxie's 1992 remark as reported (p. v); Preface: 'the certainty that native America had vanished before the march of progress'; 'Indians had no future as Indians' (pp. xix–xx). Iverson's p. iv attribution of They Came Here First to Collier is an error and is not adopted.",
+      "value": "OUP publisher preview: Iverson's introduction pp. iii–v, xvii–xviii and McNickle's preface pp. xix–xx read. Born 18 January 1904 (p. iii; Wikidata gives 14 January, so the year only is used); role in founding the NCAI, 1944, and 'few Native historians have tried to provide an overview of the national Indian experience' (p. iv); chaired the 1961 Chicago conference steering committee, died 1977, Newberry centre's first fellows 1973–74 with McNickle as director, Hoxie's 1992 remark as reported (p. v); Preface: 'the certainty that native America had vanished before the march of progress'; 'Indians had no future as Indians' (pp. xix–xx). Iverson's p. iv attribution of They Came Here First to Collier is an error and is not adopted. Addendum 2026-10-28: Edge review C (2026-10-28): the whole introduction, pp. iii–xviii, read in the publisher preview. p. vi: Native American Tribalism 'was, in many ways, a book ahead of its time … that changed perception is a commentary on how the field has been altered in ways generally presaged by this book', and McNickle's 'early analysis of the Settlement Act in Alaska now appears overly optimistic'. p. xvi: 'Julie Cruikshank's recent collaboration with three elderly Yukon women has produced an extraordinary tapestry of Native life in Life Lived Like a Story.' p. xv's ancestry passage is not used (OCAP)."
+    }
+  ],
+  "node_list_additions": [
+    {
+      "node": "winona_wheeler",
+      "field": "source_ids",
+      "values": [
+        "ierA_wheeler_wicazosa_1998",
+        "ierA_wheeler_diss_2000",
+        "ierA_wheeler_cjns_2001",
+        "ierA_wheeler_shekon_2018",
+        "ierA_henning_wheeler_2021",
+        "ierA_ohma_wheeler_2021",
+        "ierA_shekon_podcast_2020"
+      ]
+    },
+    {
+      "node": "brenda_macdougall",
+      "field": "source_ids",
+      "values": [
+        "ierA_macdougall_iipj_2016"
+      ]
+    },
+    {
+      "node": "robert_alexander_innes",
+      "field": "source_ids",
+      "values": [
+        "ierA_innes_aps_2015",
+        "ierA_shekon_podcast_2020"
+      ]
+    },
+    {
+      "node": "mary_jane_logan_mccallum",
+      "field": "source_ids",
+      "values": [
+        "ierA_harms_mh_2016",
+        "ierA_mccallum_perry_ump_2018",
+        "ierA_shekon_podcast_2020"
+      ]
+    },
+    {
+      "node": "settler_colonialism",
+      "field": "source_ids",
+      "values": [
+        "ierA_henning_wheeler_2021"
+      ]
+    },
+    {
+      "node": "chris_andersen",
+      "field": "source_ids",
+      "values": [
+        "ierB_andersen_ethnohistory_2011"
+      ]
+    },
+    {
+      "node": "emma_larocque",
+      "field": "source_ids",
+      "values": [
+        "ierC_black_2011"
+      ]
+    },
+    {
+      "node": "darcy_mcnickle",
+      "field": "source_ids",
+      "values": [
+        "ierC_amacad_mcnickle"
+      ]
+    },
+    {
+      "node": "life_lived_like_a_story",
+      "field": "source_ids",
+      "values": [
+        "ierC_cha_prize_1992",
+        "ihb_iverson_1993"
+      ]
+    }
+  ],
+  "roster_list_additions": [
+    {
+      "node": "settler_colonialism",
+      "person_id": "mary_jane_logan_mccallum",
+      "source_ids": [
+        "ihc_williams_bcs_2016"
+      ]
+    }
+  ],
+  "edge_endpoint_sets": [
+    {
+      "edge_id": "edge_2153",
+      "field": "target",
+      "expect": "settler_colonialism",
+      "value": "native_newcomer"
+    },
+    {
+      "edge_id": "edge_2153",
+      "field": "target_strand",
+      "expect": "settler_colonialism/health_starvation",
+      "value": "native_newcomer/reserves_schools_state"
+    },
+    {
+      "edge_id": "edge_2150",
+      "field": "target_strand",
+      "expect": null,
+      "value": "indigenous/methods"
+    },
+    {
+      "edge_id": "edge_2129",
+      "field": "target_strand",
+      "expect": null,
+      "value": "settler_colonialism/recognition_refusal_resurgence"
+    },
+    {
+      "edge_id": "edge_2135",
+      "field": "target_strand",
+      "expect": null,
+      "value": "settler_colonialism/recognition_refusal_resurgence"
+    },
+    {
+      "edge_id": "edge_2144",
+      "field": "target_strand",
+      "expect": null,
+      "value": "settler_colonialism/indigenous_scholars_critique"
+    },
+    {
+      "edge_id": "edge_2166",
+      "field": "target_strand",
+      "expect": "native_newcomer/contact_wendat_representation",
+      "value": "native_newcomer/historians_indian"
+    },
+    {
+      "edge_id": "edge_1003",
+      "field": "source",
+      "expect": "indigenous",
+      "value": "emma_larocque"
+    },
+    {
+      "edge_id": "edge_750",
+      "field": "source",
+      "expect": "oral",
+      "value": "life_lived_like_a_story"
+    },
+    {
+      "edge_id": "edge_750",
+      "field": "target_strand",
+      "expect": null,
+      "value": "ethnohistory/collaboration_authority"
+    }
+  ],
+  "stage2": [
+    {
+      "kind": "edge",
+      "proposal_id": "review-A M2",
+      "entry": "brenda_macdougall",
+      "reason": "brenda_macdougall → chris_andersen (influence): Andersen 2014 pp. 5–6 quotes 'Métis historian Brenda Macdougall (2012, 511)'. Read by Agent B, not re-read by A; the target is B's entry."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "review-A M3",
+      "entry": "brenda_macdougall",
+      "reason": "→ ethnohistory/documentary_method, kinship with genealogical method (Ethnohistory 61:1, 2014). Abstract only."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "review-A C1",
+      "entry": "mary_jane_logan_mccallum",
+      "reason": "→ medicalhistory/extension05_mccallum_health_2017 (CHR 98:1, 2017). Abstract only; the coordinator asked for McCallum edges only where a read passage supports them."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "review-A C2",
+      "entry": "mary_jane_logan_mccallum",
+      "reason": "→ settler_colonialism/health_starvation: her abstract speaks of 'the building of a white settler nation in Canada' (CHR 98:1, 2017). Abstract only; read pp. 96–113 first (UTP returned 403)."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "review-A C4",
+      "entry": "mary_jane_logan_mccallum",
+      "reason": "→ settler_colonialism/canadian_uptake_2009_2020 for Structures of Indifference (with Adele Perry, 2018): rests on the publisher's blurbs (Razack; CHOICE), not a read passage. A co-authored work; decide whether it attaches to adele_perry as well."
+    },
+    {
+      "kind": "roster_text",
+      "node": "settler_colonialism",
+      "person_id": "mary_jane_logan_mccallum",
+      "reason": "Adding her own 2017 phrase 'a white settler nation' to the roster context waits on reading the CHR article (abstract only)."
+    },
+    {
+      "kind": "edge",
+      "entry": "winona_wheeler",
+      "reason": "→ native_newcomer/treaties: 'The Fur Trade, Treaty No. 5 and the Fisher River First Nation', p. 11, on 'livelihood' as 'a relatively recent discovery in the mainstream'. Venue and year not found."
+    },
+    {
+      "kind": "chronology",
+      "entry": "winona_wheeler",
+      "reason": "'Calling Badger and the Symbols of the Spirit Language' (Oral History Forum 19–20; year unverified) and the Indigenous Oral History Manual (Routledge 2023; catalogue only)."
+    },
+    {
+      "kind": "chronology",
+      "entry": "mary_jane_logan_mccallum",
+      "reason": "Foreword to the new edition of Milloy, A National Crime (UMP, 2017), per her 2018 essay; confirm against the publisher."
+    },
+    {
+      "kind": "held",
+      "entry": "brenda_macdougall",
+      "reason": "'Space and Place within Aboriginal Epistemological Traditions' (CHR 98:1, 2017; PDF 403) and 'Urban Métis Communities' in Settler City Limits (UMP 2019, with McCreary, Andersen and Gaudry): unread; the likeliest places for her own settler-colonial engagement."
+    },
+    {
+      "kind": "held",
+      "entry": "robert_alexander_innes",
+      "reason": "'Multicultural Bands … \"Tribal\" Histories' (2012), 'Challenging a Racist Fiction' (2021), the Elder Brother introduction (2013), AIQ 2009, the AAA 2011 paper 'Elder Brother and the Canadian Settler State' (title only), and the JCCH 2015 review of Mohawk Interruptus: all unread."
+    },
+    {
+      "kind": "held",
+      "entry": "winona_wheeler",
+      "reason": "C Magazine conversation with Joi T. Arcand: only the title was served (2026-10-28)."
+    },
+    {
+      "kind": "strand",
+      "node": "indigenous",
+      "strand": "peoplehood",
+      "reason": "Whether brenda_macdougall joins the strand's person_ids, for erA_07, is B's call (B owns the strand)."
+    },
+    {
+      "kind": "edge_revision",
+      "edge_id": "edge_2129",
+      "reason": "Add Simpson's paper at the Chicago symposium 'Conditions of Settler Colonialism' (26 April 2008; programme page read) and Mohawk Interruptus p. 143 'settler sovereignty is historical (as opposed to natural)' as quoted by Barron (2017, read through a fetch tool). Not in the coordinator's stage-1 list; Barron's quotations not checked against a full text."
+    },
+    {
+      "kind": "edge_revision",
+      "edge_id": "edge_2142",
+      "reason": "Add Andersen's own use of 'settler colonialism': paper title 'Mixed Ancestry or Métis? Settler Colonialism, Law and Indigenous Self-Identification in Canada's Maritimes' (Chicago symposium, April 2008; paper unread); state that the 2014 introduction speaks of 'colonial projects', not 'settler colonialism'. Not in the coordinator's stage-1 list."
+    },
+    {
+      "kind": "edge_revision",
+      "edge_id": "edge_2143",
+      "reason": "Optional fairness addition: Trask 1991, p. 165 n. 1, 'Culture is not static, nor is it frozen in objectified moments in time' (read). The adjoining sentence on land stays out (OCAP item 7)."
+    },
+    {
+      "kind": "text_revision",
+      "node": "indigenous",
+      "strand": "peoplehood",
+      "reason": "The focus quotes 'as a hybrid off-shoot of two races … rather than as an Indigenous people' as Andersen's general argument; on p. 6 the phrase describes John Ralston Saul's 'métis civilization'. Suggest adding '(of John Ralston Saul's \"métis civilization\", p. 6)'. Not encoded: outside the coordinator's stage-1 list."
+    },
+    {
+      "kind": "text_revision",
+      "node": "audra_simpson",
+      "field": "description",
+      "reason": "'History-writing, she argued, \"naturalises this occupation\"' compresses p. 75, where the subject is 'a foreign culture that … naturalises this occupation through history-writing'. Suggested: 'the occupying culture, she argued, \"naturalises this occupation through history-writing\"'."
+    },
+    {
+      "kind": "chronology",
+      "reason": "Optional events: Simpson and Andersen at the Chicago symposium (25–26 April 2008); Simpson, 'Settlement's Secret' (2011, bibliographic) and 'Whither Settler Colonialism?' (online 7 March 2016, abstract opening only); Barron's review (26 January 2017); Andersen, Ethnohistory 58:1 (2011); Coulthard, Contemporary Political Theory 6:4 (2007); Trask, 'Settlers of Color' reprinted 2008. Not in the stage-1 list."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "erB_foucault",
+      "entry": "chris_andersen",
+      "reason": "Foucault → Andersen (2009, pp. 80–83): skipped by coordinator decision."
+    },
+    {
+      "kind": "roster_row",
+      "node": "ethnohistory",
+      "person_id": "chris_andersen",
+      "reason": "A critic row for Andersen on ethnohistory would follow erB_01; it rests on an abstract, so it is left for stage 2."
+    },
+    {
+      "kind": "held",
+      "reason": "Unread: A. Simpson, 'Whither Settler Colonialism?' (2016; publisher page blocked) and 'Settlement's Secret' (2011); Mohawk Interruptus chs. 2–3; Red Skin, White Masks (Wolfe citations; ch. 4 on reconciliation); Andersen's 2008 paper, ch. 1 of 'Métis' and the 2017 Sources and Methods introduction; Trask, 'From a Native Daughter' (1987/1993), 'Settlers of Color' (2000) and 'Feminism and Indigenous Hawaiian Nationalism' (Signs 1996). See data/extension-2026/indigenous-edge-review-2026-10-28/review-B.md."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "erC_07",
+      "entry": "emma_larocque",
+      "reason": "LaRocque → settler_colonialism ('original settlers', 're/settlers', PDF pp. 25–26, 51): her 1999 reworking of settler vocabulary, not engagement with Wolfe or settler colonial studies. Read, but held for the coordinator and user to decide whether it belongs on the field. Not encoded."
+    },
+    {
+      "kind": "edge",
+      "proposal_id": "erC_08",
+      "entry": "linda_tuhiwai_smith",
+      "reason": "Fanon → Smith rests on LARB 2021 interview excerpts returned by a fetch tool (para. 28, answering a question about Ngũgĩ). Recheck the paragraph before stage 1. Not encoded."
+    },
+    {
+      "kind": "edge_reroute",
+      "edge_ids": [
+        "edge_419",
+        "edge_127"
+      ],
+      "entry": "linda_tuhiwai_smith",
+      "reason": "B's conditional reroutes to Smith's person node wait for the 1999 introduction to be re-verified through the publisher; Bloomsbury Collections is login-only and the Google Books quota was exhausted on 2026-10-28."
+    },
+    {
+      "kind": "text",
+      "node": "indigenous",
+      "strand": "metis_representation_criticism",
+      "reason": "The strand focus says 'When the Other Is Me (2011) is the revised book'; per Black 2011 the imprint is 2010. Not my node: for agent B or the coordinator."
+    },
+    {
+      "kind": "source",
+      "id": "smith_decolonizing",
+      "field": "verification_history",
+      "reason": "The 2026-09-10 history entry reads 'University-hosted edition indexed'. verification_history is not settable by the applier; it does not name a host."
+    },
+    {
+      "kind": "held",
+      "entry": "emma_larocque",
+      "reason": "Footnote critique of Stalker and Prentice, eds., The Illusion of Inclusion (PDF p. 296 n.): read, but the target is a women-in-academia collection, not a women's-history field. Also p. 241, on pressure to validate research through elders: not a critique of community_engaged_indigenous as such. Neither encoded."
+    },
+    {
+      "kind": "held",
+      "entry": "life_lived_like_a_story",
+      "reason": "Women's-history framing (McClellan p. 205; Gmelch p. 86 on Native women's work) is not a field placement, and the second is close to community knowledge (OCAP). Not encoded."
+    },
+    {
+      "kind": "held",
+      "entry": "darcy_mcnickle",
+      "reason": "'American Indians Who Never Were' (1970/71) unread; Regina appointment end date unchecked (the Newberry series page could not be reached)."
+    }
+  ]
+}

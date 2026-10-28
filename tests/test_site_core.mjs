@@ -739,16 +739,16 @@ test('family content exposes rosters and approaches without manufacturing edges'
   const content = familyContent(graph, family);
   /* Indigenous histories holds indigenous and ethnohistory, plus bridged native_newcomer and settler_colonialism (1.128).
      1.140 adds Val Napoleon (critic of Cole Harris, on indigenous). */
-  assert.equal(content.approaches.length, 68 /* 1.156: three settler-colonial strands */);
-  assert.equal(content.people.length, 123 /* 1.190: Pratt's sourced contact-zone context */);
+  assert.equal(content.approaches.length, 79 /* 1.201: the family split in three fields, with community-engaged research */);
+  assert.equal(content.people.length, 133 /* 1.201: Indigenous person entries and the community-engaged roster */);
   assert.equal(content.people.filter(x => x.person.id === 'cole_harris').length, 1);
   assert.ok(content.approaches.some(x => x.strand.id === 'stolo_community_university'));
   assert.ok(content.connections.some(x => x.edge.id === 'edge_777' && !hasArrow(x.edge)));
   assert.equal(JSON.stringify(graph), before);
   const searched = familyContent(graph, family, 'Carlson');
-  assert.deepEqual(searched.approaches.map(x => x.strand.id), ['stolo_community_university']);
+  assert.deepEqual(searched.approaches.map(x => x.strand.id), ['stolo_historical_consciousness', 'stolo_community_university']);  // 1.201
   assert.deepEqual(searched.people.map(x => x.person.id), ['keith_thor_carlson']);
-  assert.equal(familyContent(graph, family, '', new Set(['indigenous'])).approaches.length, 33);
+  assert.equal(familyContent(graph, family, '', new Set(['indigenous'])).approaches.length, 23);  // 1.201 split
 });
 
 test('family routes open approaches and retain explicit timeline and focus routes', () => {
