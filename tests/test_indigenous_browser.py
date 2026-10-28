@@ -34,7 +34,7 @@ class IndigenousBrowserTests(unittest.TestCase):
 
     def test_expanded_roster_source_limits_and_collective_attribution(self):
         self.page.goto(URL + '#node=indigenous')
-        expect(self.page.locator('.school-tabs')).to_contain_text('36')  # 1.201: split into three fields
+        expect(self.page.locator('.school-tabs')).to_contain_text('47')  # 1.202: Indigenous scholars also named in community-engaged research
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(23)  # 1.201
         expect(self.page.locator('.record-panel')).to_contain_text('cannot identify Indigenous authorship')
         self.page.goto(URL + '#person=edward_ahenakew')
@@ -65,7 +65,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('#edition-label')).to_contain_text(CURRENT)
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(23)  # 1.201
         self.page.goto(URL + '#node=indigenous&section=connections')
-        expect(self.page.locator('.core-people li')).to_have_count(36)  # 1.201: split into three fields
+        expect(self.page.locator('.core-people li')).to_have_count(47)  # 1.202: Indigenous scholars also named in community-engaged research
         expect(self.page.locator('.core-people [data-person="olive_patricia_dickason"]')).to_be_visible()
 
     def test_collaborators_are_discoverable_without_extra_individual_entries(self):
@@ -94,7 +94,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         self.page.goto(URL + '#person=lianne_leddy')
         expect(self.page.locator('.person-profile')).to_contain_text('2010')
         self.page.locator('.person-evidence > summary').first.click()
-        expect(self.page.locator('.person-evidence a[href*="oralhistoryforum.ca"]')).to_be_visible()
+        expect(self.page.locator('.person-evidence a[href*="oralhistoryforum.ca"]').first).to_be_visible()  # 1.202: named in two fields
         self.page.goto(URL + '#person=susan_neylan')
         expect(self.page.locator('.person-profile')).to_contain_text('mentorship')
 
