@@ -1,0 +1,85 @@
+{
+  "fragment": "Z (coordinator)",
+  "persons": [],
+  "extras": [],
+  "summary": "Coordinator: the strand indigenous/land keeps only Jean M. O'Brien's argument; Cronon, Spence, Jacoby and Sandlos, now drawn through native_newcomer/conservation_dispossession and environment/conservation_dispossession, leave its members and sources, and the strand is retitled for what its focus already says. Moved strands keep their old addresses as redirects, and claim-catalogue addresses follow them (derived from the moves at merge). Patrick Wolfe leaves the Indigenous-authored field: edge_1231 (his engagement with Native American and Indigenous Studies, on Goeman's and Kauanui's reading) is rerouted to settler_colonialism/indigenous_scholars_critique, his roster row on indigenous is removed (he keeps his settler_colonialism row), and the metadata-level strand settler_colonial_interlocutor moves to settler_colonialism with its old address redirected.",
+  "rationale": "Coordinator decisions of 2026-10-27 under the user's split ('split off the older scholarship from the newer community engaged scholarship'): the land strand's focus already describes O'Brien's Natick study only, so its settler-scholar members and their sources move with their rows (Agent A). Strand redirects follow the convention of revision 1.120. The OCAP review (OCAP-REVIEW.md) governs all fragment text. Agent A kept edge_1231 on indigenous; the coordinator reroutes it because the split defines indigenous by Indigenous authorship, and the edge's evidence (Goeman 2016, Kauanui 2016) is about settler colonial studies' relation to Indigenous scholarship, which settler_colonialism/indigenous_scholars_critique already treats. Person descriptions lead with the work; nation statements stay in sourced identity notes (OCAP review).",
+  "strand_list_removals": [
+    {
+      "node": "indigenous",
+      "strand": "land",
+      "person_ids": [
+        "william_cronon",
+        "mark_david_spence",
+        "karl_jacoby",
+        "john_sandlos"
+      ],
+      "source_ids": [
+        "cronon_wilderness",
+        "p4c_cronon_apostle_2003",
+        "p4c_spence_dispossessing_1999",
+        "p4c_jacoby_crimes_2001",
+        "p4c_sandlos_hunters_2007",
+        "p4c_binnema_niemi_2006"
+      ]
+    }
+  ],
+  "text_revisions": [
+    {
+      "node": "indigenous",
+      "strand": "land",
+      "field": "title",
+      "old": "Land, identity and colonial change",
+      "new": "Land loss, kinship and the extinction narrative"
+    },
+    {
+      "node": "settler_colonialism",
+      "strand": "settler_colonial_interlocutor",
+      "field": "title",
+      "old": "Related settler-colonial scholarship",
+      "new": "Wolfe's 1999 book: settler colonialism and anthropology"
+    }
+  ],
+  "edge_endpoint_sets": [
+    {
+      "edge_id": "edge_1231",
+      "field": "target",
+      "expect": "indigenous",
+      "value": "settler_colonialism"
+    },
+    {
+      "edge_id": "edge_1231",
+      "field": "target_strand",
+      "expect": "indigenous/settler_colonial_interlocutor",
+      "value": "settler_colonialism/indigenous_scholars_critique"
+    }
+  ],
+  "strand_moves": [
+    {
+      "from_node": "indigenous",
+      "to_node": "settler_colonialism",
+      "strand": "settler_colonial_interlocutor"
+    }
+  ],
+  "roster_removals": [
+    {
+      "node": "indigenous",
+      "person_id": "patrick_wolfe",
+      "expect": {
+        "person_id": "patrick_wolfe",
+        "role": "contributor",
+        "context": "His programme engaged Native American and Indigenous Studies directly (Goeman 2016; Kauanui 2016, both read): 'a key scholar in conceiving of a settler-colonial analytic in relation to Indigenous thinking'; US Indian policy read as modalities of elimination (2006; 'After the Frontier', 2011, unread). A contribution to the conversation, not an origin of the field's methods.",
+        "works": "Settler Colonialism and the Transformation of Anthropology (1999); “Settler Colonialism and the Elimination of the Native” (2006); “After the Frontier” (2011)",
+        "source_ids": [
+          "ind127_wolfe_1999",
+          "screq_wolfe_2006",
+          "p4b_wolfe_2011_after_frontier",
+          "p4b_goeman_2016",
+          "screq_kauanui_2016"
+        ],
+        "basis": "source_review",
+        "edge_id": "edge_1231"
+      }
+    }
+  ]
+}

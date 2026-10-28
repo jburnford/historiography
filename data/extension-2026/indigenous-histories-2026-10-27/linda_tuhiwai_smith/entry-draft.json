@@ -1,0 +1,58 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-27",
+ "applies_to": "historiography-1920-2000.json revision 1.200 -> candidate 1.201 (linda_tuhiwai_smith: existing person entry, backfill; no new node). Node text via batch text_revisions; chronology and date_label via field_sets; source list via node_list_additions.",
+ "review_status": "needs_review",
+ "people_update": {
+  "id": "linda_tuhiwai_smith",
+  "new": false,
+  "label": "Linda Tuhiwai Smith",
+  "identity_note": "Ngāti Awa and Ngāti Porou (Kōmako bibliography record, University of Canterbury). University of Waikato. Wikidata Q16885749, accepted."
+ },
+ "wikidata_check": {
+  "qid": "Q16885749",
+  "verdict": "correct",
+  "method": "QLever SPARQL (https://qlever.dev/api/wikidata, 2026-10-27): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P570, P106, P108; no wbsearchentities; the WikidataMCP endpoint was not used. Already accepted in data/people-wikidata.json.",
+  "statements_seen": "Description 'New Zealand professor of indigenous education'; P569 1950-12-01; P106 professor, pedagogue; P108 University of Waikato."
+ },
+ "proposed_edges": [],
+ "new_sources": [
+  {
+   "id": "ihb_komako_smith",
+   "title": "Kōmako record: Linda Tuhiwai Te Rina Smith.",
+   "citation": "Kōmako: a bibliography of writing by Māori in English, record for Linda Tuhiwai Te Rina Smith.",
+   "url": "https://komako.org.nz/person/988",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-27",
+    "note": "Record read 2026-10-27 (fetch summary): born 1950; Ngāti Awa and Ngāti Porou; Dip. Teaching and BA 1975, MA 1987, PhD in Education 1996 (Auckland); senior lecturer 1987 (full-time 1991), associate professor 1997, director IRI 1998–2002, personal chair 2001, joint director Ngā Pae o te Māramatanga 2002; Churchill Fellowship 1991, Te Tohu Pae Tawhiti 1998, CNZM 2013, NZARE McKenzie Award 2015; publications include Decolonizing Methodologies (1999; 2nd ed. 2012) and, with Judith Simon, A Civilising Mission? (2001)."
+   }
+  },
+  {
+   "id": "ihb_amacad_smith",
+   "title": "American Academy of Arts and Sciences, member page: Linda Tuhiwai Te Rina Smith.",
+   "citation": "American Academy of Arts and Sciences, member page, Linda Tuhiwai Te Rina Smith.",
+   "url": "https://www.amacad.org/person/linda-tuhiwai-te-rina-smith",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-27",
+    "note": "Read 2026-10-27: elected 2021, International Honorary Member; Social and Behavioral Sciences, Education; University of Waikato."
+   }
+  }
+ ],
+ "source_addenda": {},
+ "edges_considered_not_proposed": [
+  {
+   "pair": "edward_said -> linda_tuhiwai_smith",
+   "reason": "Would reroute edge_419; rests on the 1999 introduction, which I did not read (the earlier read route is replaced in this revision). Held."
+  },
+  {
+   "pair": "linda_tuhiwai_smith -> identity",
+   "reason": "Would reroute edge_127; same condition. Held."
+  },
+  {
+   "pair": "paulo_freire -> linda_tuhiwai_smith",
+   "reason": "Her own words, 2022 p. 5 ('Paulo Freire tells us really clearly…'), but Freire has no node."
+  }
+ ]
+}

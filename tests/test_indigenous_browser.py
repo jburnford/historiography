@@ -34,8 +34,8 @@ class IndigenousBrowserTests(unittest.TestCase):
 
     def test_expanded_roster_source_limits_and_collective_attribution(self):
         self.page.goto(URL + '#node=indigenous')
-        expect(self.page.locator('.school-tabs')).to_contain_text('57')  # 1.190: Pratt's sourced contact-zone context
-        expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
+        expect(self.page.locator('.school-tabs')).to_contain_text('36')  # 1.201: split into three fields
+        expect(self.page.locator('.strand-guide > .strand')).to_have_count(23)  # 1.201
         expect(self.page.locator('.record-panel')).to_contain_text('cannot identify Indigenous authorship')
         self.page.goto(URL + '#person=edward_ahenakew')
         expect(self.page.locator('.person-profile')).to_contain_text('1923')
@@ -44,8 +44,10 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.get_by_role('link', name='Full entry & relationships →')).to_be_visible()
         self.page.locator('.person-evidence > summary').first.click()
         notes = self.page.locator('.person-evidence .sources details')
-        for i in range(notes.count()):
-            notes.nth(i).locator('summary').click()
+        for i in range(notes.count()):   # 1.201: some notes nest inside others; open each reachable one once
+            note = notes.nth(i)
+            if note.locator('> summary').is_visible() and not note.evaluate('d => d.open'):
+                note.locator('> summary').click()
         expect(self.page.locator('.person-evidence').first).to_contain_text('No full-book reading')
         expect(self.page.locator('.person-evidence').first).to_contain_text('Article body unread')
         self.page.goto(URL + '#person=chief_thunderchild')
@@ -61,13 +63,13 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('.strand-guide > .strand')).to_have_count(11)
         self.page.locator('.archive-banner a').click()   # no main-view toggle: the banner returns
         expect(self.page.locator('#edition-label')).to_contain_text(CURRENT)
-        expect(self.page.locator('.strand-guide > .strand')).to_have_count(33)
+        expect(self.page.locator('.strand-guide > .strand')).to_have_count(23)  # 1.201
         self.page.goto(URL + '#node=indigenous&section=connections')
-        expect(self.page.locator('.core-people li')).to_have_count(57)  # 1.190: Pratt's sourced contact-zone context
+        expect(self.page.locator('.core-people li')).to_have_count(36)  # 1.201: split into three fields
         expect(self.page.locator('.core-people [data-person="olive_patricia_dickason"]')).to_be_visible()
 
     def test_collaborators_are_discoverable_without_extra_individual_entries(self):
-        self.page.goto(URL + '#node=indigenous')
+        self.page.goto(URL + '#node=community_engaged_indigenous')  # 1.201: moved with the split
         case = self.page.locator('.strand').filter(has=self.page.get_by_text('Stó:lō community–university historical practice', exact=True))
         expect(case).to_contain_text('1997')
         expect(case).to_contain_text('1998')
@@ -79,15 +81,16 @@ class IndigenousBrowserTests(unittest.TestCase):
         self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 390)
 
     def test_2010_method_case_is_separately_marked_and_source_linked(self):
-        self.page.goto(URL + '#node=indigenous')
+        self.page.goto(URL + '#node=community_engaged_indigenous')  # 1.201: moved with the split
         case = self.page.locator('.strand').filter(has_text='Community and academic relationships at Serpent River')
         expect(case).to_contain_text('2010')
         case.locator('> summary').click()
         for name in ('Gertrude Lewis', 'Valerie Commanda', 'Arnelda Jacobs', 'Betty Jacobs', 'Terry Jacobs', 'Peter Johnston'):
             expect(case).to_contain_text(name)
         expect(case).to_contain_text('Leddy cites Wheeler')
-        self.page.goto(URL + '#focus=indigenous')
-        expect(self.page.locator('svg.field .entry[data-id="indigenous"] .chron-event[data-year="2010"]')).to_have_count(1)
+        self.page.goto(URL + '#focus=community_engaged_indigenous')
+        # 1.201: Leddy 2010 beside Wheeler, Kovach, Macdougall and TCPS 2 in the new field's chronology
+        expect(self.page.locator('svg.field .entry[data-id="community_engaged_indigenous"] .chron-event[data-year="2010"]')).to_have_count(5)
         self.page.goto(URL + '#person=lianne_leddy')
         expect(self.page.locator('.person-profile')).to_contain_text('2010')
         self.page.locator('.person-evidence > summary').first.click()
@@ -99,11 +102,11 @@ class IndigenousBrowserTests(unittest.TestCase):
         self.page.goto(URL + '#family=indigenous-histories')
         expect(self.page.locator('.family-explorer')).to_be_visible()
         # 1.128 bridges native_newcomer and settler_colonialism into this family.
-        expect(self.page.locator('.family-content-summary')).to_contain_text('68 approaches')  # 1.156: three settler-colonial strands
-        expect(self.page.locator('.family-approach')).to_have_count(68)  # 1.156
-        expect(self.page.locator('.family-people li[data-person]')).to_have_count(123)  # 1.190: Pratt's sourced contact-zone context
+        expect(self.page.locator('.family-content-summary')).to_contain_text('79 approaches')  # 1.201: three fields and a packaged work
+        expect(self.page.locator('.family-approach')).to_have_count(79)  # 1.201
+        expect(self.page.locator('.family-people li[data-person]')).to_have_count(133)  # 1.201
         expect(self.page.locator('.family-people [data-person="cole_harris"]')).to_have_count(1)
-        case = self.page.locator('[data-approach="indigenous/stolo_community_university"]')
+        case = self.page.locator('[data-approach="community_engaged_indigenous/stolo_community_university"]')
         for name in ('John Lutz', 'Keith Thor Carlson', 'David M. Schaepe'):
             expect(case).to_contain_text(name)
         case.get_by_role('link', name='John Lutz', exact=True).click()
@@ -123,13 +126,14 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('.family-explorer')).to_be_visible()
         self.assertLessEqual(self.page.evaluate('document.documentElement.scrollWidth'), 390)
         self.page.locator('#search').fill('Carlson')
-        expect(self.page.locator('.family-approach')).to_have_count(1)
+        expect(self.page.locator('.family-approach')).to_have_count(2)  # 1.201: Stó:lō practice and Carlson 2010 in ethnohistory
         expect(self.page.locator('.family-people li[data-person]')).to_have_count(1)
-        expect(self.page.locator('.family-approach')).to_contain_text('McHalsie')
-        self.page.locator('.family-approach-sources > summary').click()
-        expect(self.page.locator('.family-approach-sources')).to_contain_text('1997')
+        case = self.page.locator('.family-approach[data-approach="community_engaged_indigenous/stolo_community_university"]')
+        expect(case).to_contain_text('McHalsie')
+        case.locator('.family-approach-sources > summary').click()
+        expect(case.locator('.family-approach-sources')).to_contain_text('1997')
         self.page.get_by_role('link', name='Clear search', exact=True).click()
-        expect(self.page.locator('.family-approach')).to_have_count(68)  # 1.156
+        expect(self.page.locator('.family-approach')).to_have_count(79)  # 1.201
         self.page.locator('.family-views').get_by_role('link', name='Timeline', exact=True).click()
         expect(self.page.locator('.field-table')).to_have_count(0)
         expect(self.page.locator('svg.field')).to_be_visible()
@@ -144,7 +148,7 @@ class IndigenousBrowserTests(unittest.TestCase):
         expect(self.page.locator('[data-approach="indigenous/serpent_river_collaboration"]')).to_have_count(0)
         expect(self.page.locator('.family-people [data-person="lianne_leddy"]')).to_have_count(0)
         self.page.locator('.archive-banner a').click()   # no main-view toggle: the banner returns
-        expect(self.page.locator('.family-approach')).to_have_count(68)  # 1.156
+        expect(self.page.locator('.family-approach')).to_have_count(79)  # 1.201
 
 
 if __name__ == '__main__':

@@ -1,0 +1,307 @@
+{
+ "id": "venue-ihc-1.201-draft",
+ "status": "draft_for_coordinator",
+ "checked_on": "2026-10-27",
+ "source_revision": "1.200",
+ "policy": "Agent C venue proposals for revision 1.201: strong and moderate only (Settler Colonial Studies, AICRJ, Wíčazo Ša Review, American Indian Quarterly, NAIS, Decolonization). Weak candidates (Native Studies Review, Canadian Journal of Native Studies) are held: their records are in new-journal-records.json without edges. Founded_for edges are in founding-batch shape; principal_venue edges must be routed as added_edges in a venue_correction batch (as founding-004/005/006). The 'strength' key is advisory and should be removed on acceptance. Community-controlled sources are not used.",
+ "expected_node_fingerprints": {
+  "journal_59f9468d9cf294be": "d5eee2b0f677142095405eef90f53f629625fd006bf10d60205714990a3d21dc",
+  "journal_ed215a303320fe72": "f37543eaa77ea237aa2911f588a819eca1fc5c197f136ce80069f269c5eb277a"
+ },
+ "fingerprint_note": "Fingerprints of the two existing nodes computed from journal_catalogue in historiography-1920-2000.json (1.200) on 2026-10-27; recompute against the catalogue the batch is applied to. The four new journals need nodes first (new-journal-records.json); their ids follow build_journal_catalogue.stable_id('journal', normalized_title).",
+ "expected_catalogue_fingerprint_at_1.200": "6b08cd7cf92c27385ca0089222282ffac2506abc3e904026f65cad92e845b7bc",
+ "sources": [
+  {
+   "id": "journal_source_ihc_veracini_2011",
+   "title": "Lorenzo Veracini, \"Introducing settler colonial studies,\" Settler Colonial Studies 1:1 (2011): 1–12 (author's deposit)",
+   "url": "https://doi.org/10.25916/sut.26246930.v1",
+   "checked_on": "2026-10-27",
+   "verification": "primary_founding_editorial_read",
+   "note": "Inaugural editorial read in full in the period-4 wave (graph source p4b_veracini_2011_deposit): the journal 'aims to contribute to the consolidation of a new scholarly field' (p. 1); ARC Discovery funding (acknowledgements)."
+  },
+  {
+   "id": "journal_source_ihc_snelgrove_2014",
+   "title": "Corey Snelgrove, Rita Kaur Dhamoon and Jeff Corntassel, \"Unsettling Settler Colonialism,\" Decolonization: Indigeneity, Education & Society 3:2 (2014): 1–32",
+   "url": "https://jps.library.utoronto.ca/index.php/des/article/view/21166",
+   "checked_on": "2026-10-27",
+   "verification": "retrospective_passages_read",
+   "note": "Read in the period-4 wave (graph source screq_snelgrove_dhamoon_corntassel_2014): Settler Colonial Studies first published 2011 in open access and volunteer-run, moving to Taylor & Francis within two years (p. 9); Wolfe's paired 2013 special issues of Settler Colonial Studies 3:3 and AICRJ 37:2 (p. 10)."
+  },
+  {
+   "id": "journal_source_ihc_goeman_2016",
+   "title": "Mishuana Goeman, \"In Memoriam: Patrick Wolfe (February 18, 2016),\" American Indian Culture and Research Journal (2016)",
+   "url": "https://doi.org/10.17953/aicrj.40.1.goeman",
+   "checked_on": "2026-10-27",
+   "verification": "article_read",
+   "note": "Graph source p4b_goeman_2016 (period-4 wave): a memorial to Wolfe in AICRJ, attesting the journal's role in the settler-colonial exchange. URL as recorded there should be checked against the graph record before acceptance."
+  },
+  {
+   "id": "journal_source_ihc_williams_2016",
+   "title": "Carol Williams, review of McCallum, Indigenous Women, Work, and History, BC Studies 191 (2016)",
+   "url": "https://bcstudies.ubc.ca/book_film_review/indigenous-women-work-and-history-1940-1980/",
+   "checked_on": "2026-10-27",
+   "verification": "review_read",
+   "note": "Read in full; cites Wolfe, 'The Settler Complex: An Introduction', AICRJ 37:2 (2013): 1–22."
+  },
+  {
+   "id": "journal_source_ihc_aisc",
+   "title": "UCLA American Indian Studies Center, About us and About AICRJ",
+   "url": "https://main.aisc.ucla.edu/aisc-press/about-aicrj/",
+   "checked_on": "2026-10-27",
+   "verification": "institutional_history_read",
+   "note": "Read: the Center founded 1969 after students, faculty and community members pressed UCLA; AICRJ 'in print since 1971'; a multidisciplinary journal of Native American studies (self-description). Volume 1 under the present title is dated 1974 (Crossref)."
+  },
+  {
+   "id": "journal_source_ihc_ewu_cooklynn_2025",
+   "title": "Eastern Washington University Magazine, \"A Lasting Legacy\" (10 January 2025), on Elizabeth Cook-Lynn",
+   "url": "https://www.ewu.edu/magazine/wp-json/wp/v2/stories/3288",
+   "checked_on": "2026-10-27",
+   "verification": "institutional_history_read",
+   "note": "Read through a summarising fetch: Cook-Lynn 'founder and editor' of the Wicazo Sa Review, a journal devoted to helping Indigenous peoples of the Americas take possession of their own intellectual and creative pursuits; now published by the University of Minnesota Press. Retrospective institutional account; co-founders named elsewhere not verified."
+  },
+  {
+   "id": "journal_source_ihc_crossref_wicazo",
+   "title": "Crossref records for Wicazo Sa Review 1:1–2 (1985)",
+   "url": "https://doi.org/10.2307/1409417",
+   "checked_on": "2026-10-27",
+   "verification": "bibliographic_record_checked",
+   "note": "Vol. 1 nos. 1–2 dated 1985 (ISSN 0749-6427; e-ISSN 1533-7901)."
+  },
+  {
+   "id": "journal_source_ihc_rigney_1999",
+   "title": "Lester-Irabinna Rigney, \"Internationalization of an Indigenous Anticolonial Cultural Critique of Research Methodologies,\" Wicazo Sa Review 14:2 (1999): 109–121",
+   "url": "https://doi.org/10.2307/1409555",
+   "checked_on": "2026-10-27",
+   "verification": "article_metadata_checked",
+   "note": "Graph source rigney_indigenist."
+  },
+  {
+   "id": "journal_source_ihc_miller_2009",
+   "title": "Susan A. Miller, \"Native Historians Write Back: The Indigenous Paradigm in American Indian Historiography,\" Wicazo Sa Review 24:1 (2009): 25–45",
+   "url": "https://doi.org/10.1353/wic.0.0018",
+   "checked_on": "2026-10-27",
+   "verification": "article_opening_read",
+   "note": "Graph source nnreq_s_miller_2009 (opening read)."
+  },
+  {
+   "id": "journal_source_ihc_aiq_1996",
+   "title": "American Indian Quarterly 20:1 (1996), contents (Crossref), incl. Angela Cavender Wilson, pp. 3–5 and 7–13",
+   "url": "https://doi.org/10.2307/1184936",
+   "checked_on": "2026-10-27",
+   "verification": "issue_contents_checked",
+   "note": "Crossref contents: Wilson (two essays), Mihesuah, S. A. Miller, Cook-Lynn, Champagne. Wilson pp. 3–5 read in full (graph wilson_indian_history); the other articles by title only."
+  },
+  {
+   "id": "journal_source_ihc_aiq_2009",
+   "title": "American Indian Quarterly 33:4 (2009), contents (Crossref): Innes, pp. 440–461; McCallum, pp. 523–544; Fixico, pp. 553–560",
+   "url": "https://doi.org/10.1353/aiq.2009.a362024",
+   "checked_on": "2026-10-27",
+   "verification": "issue_contents_checked",
+   "note": "Crossref metadata; Fixico opening read (graph nnreq_fixico_2009); Innes paraphrased by Leddy 2010; McCallum by title."
+  },
+  {
+   "id": "journal_source_ihc_naisa_journal",
+   "title": "NAISA, \"The NAIS Journal\"",
+   "url": "https://naisa.org/journal-nais/",
+   "checked_on": "2026-10-27",
+   "verification": "publisher_scope_read",
+   "note": "Current remit read: interdisciplinary Native American and Indigenous Studies; 'Studies grounded in Indigenous research methodologies are especially encouraged'; empirical studies must document site-specific approvals 'required by Native nations, tribes, or bands'; founding co-editors (2013–2019) Jean M. O'Brien and Robert Warrior. Current remit, not a dated founding statement."
+  },
+  {
+   "id": "journal_source_ihc_crossref_nais",
+   "title": "Crossref records for NAIS 1 (2014) and the editors' introduction on editorial ethics, 8:1 (2021)",
+   "url": "https://doi.org/10.5749/natiindistudj.8.1.0006",
+   "checked_on": "2026-10-27",
+   "verification": "bibliographic_record_checked",
+   "note": "Vol. 1 dated 2014 (ISSN 2332-1261); 'Editors' Introduction: NAIS Editorial Ethics, Principles …' 8:1 (2021) by Lomawaima, McDonough, O'Brien and Warrior, title only."
+  },
+  {
+   "id": "journal_source_ihc_tuck_yang_2012",
+   "title": "Eve Tuck and K. Wayne Yang, \"Decolonization Is Not a Metaphor,\" Decolonization: Indigeneity, Education & Society 1:1 (2012)",
+   "url": "https://jps.library.utoronto.ca/index.php/des/article/view/18630",
+   "checked_on": "2026-10-27",
+   "verification": "article_metadata_checked",
+   "note": "Graph source screq_tuck_yang_2012."
+  },
+  {
+   "id": "journal_source_ihc_des_about",
+   "title": "Decolonization: Indigeneity, Education & Society, About",
+   "url": "https://jps.library.utoronto.ca/index.php/des/about",
+   "checked_on": "2026-10-27",
+   "verification": "publisher_scope_read",
+   "note": "Current remit read: work 'purposefully engaged in the decolonization process, regardless of discipline or field'; qualitative methods; peer review."
+  },
+  {
+   "id": "journal_source_ihc_nsr_mission",
+   "title": "Native Studies Review, mission page and vol. 1 no. 1 contents",
+   "url": "https://publications.usask.ca/nativestudiesreview/mission.html",
+   "checked_on": "2026-10-27",
+   "verification": "institutional_history_read",
+   "note": "Read: began publication in 1984 as a refereed bi-annual journal of the University of Saskatchewan's Native (now Indigenous) Studies Department; multidisciplinary, mainly Canadian. Vol. 1 no. 1 contents at …/issues/Vol1No1.html."
+  },
+  {
+   "id": "journal_source_ihc_cjns_home",
+   "title": "Canadian Journal of Native Studies, Brandon University archive home",
+   "url": "http://www3.brandonu.ca/cjns/",
+   "checked_on": "2026-10-27",
+   "verification": "institutional_history_read",
+   "note": "Read: began as a publication of the Society for the Advancement of Native Studies, whose founder Sam Corrigan was chief editor 1981–2008; anthropological, historical, sociological, political, legal, educational and cultural issues; hosted by Brandon University."
+  },
+  {
+   "id": "journal_source_ihc_crossref_aiq",
+   "title": "Crossref records for American Indian Quarterly vol. 1 (1974)",
+   "url": "https://doi.org/10.2307/1184197",
+   "checked_on": "2026-10-27",
+   "verification": "bibliographic_record_checked",
+   "note": "Vol. 1 nos. 1–4 dated 1974 (ISSN 0095-182X; e-ISSN 1534-1828). Founding sponsor and first editor not verified."
+  }
+ ],
+ "edges": [
+  {
+   "id": "journal_venue_settler_colonial_studies_founding",
+   "source": "journal_ed215a303320fe72",
+   "target": "settler_colonialism",
+   "relationship_kind": "founded_for",
+   "directed": true,
+   "relationship": "Founded in 2011 by Lorenzo Veracini to contribute to the consolidation of settler colonial studies as a scholarly field; open access and volunteer-run at first, with Taylor & Francis from 2013.",
+   "basis": "primary_founding_editorial",
+   "temporal_scope": {
+    "start": 2011,
+    "end": 2011,
+    "precision": "year",
+    "meaning": "founding_event"
+   },
+   "source_ids": [
+    "journal_source_ihc_veracini_2011",
+    "journal_source_ihc_snelgrove_2014"
+   ],
+   "evidence_note": "Veracini's inaugural editorial states the founding programme (p. 1); Snelgrove, Dhamoon and Corntassel (2014, p. 9) record the open-access start and the move to Taylor & Francis. The journal follows Wolfe (1999, 2006); it dates a journal event, not the field's origin.",
+   "checked_on": "2026-10-27",
+   "strength": "strong"
+  },
+  {
+   "id": "journal_venue_aicrj_settler_colonialism_principal",
+   "source": "journal_59f9468d9cf294be",
+   "target": "settler_colonialism",
+   "relationship_kind": "principal_venue",
+   "basis": "editorial_longitudinal_review",
+   "directed": true,
+   "relationship": "Carried Wolfe's 2013 special issue 'The Settler Complex', paired with Settler Colonial Studies, and a 2016 memorial to him: a venue where settler-colonial theory met Native American studies.",
+   "evidence_note": "Snelgrove et al. 2014, p. 10 (the paired 2013 issues, SCS 3:3 and AICRJ 37:2); Williams 2016 cites Wolfe's 'The Settler Complex: An Introduction', AICRJ 37:2 (2013): 1–22; Goeman's 2016 memorial. AICRJ's longer role in Native American studies (AISC: in print since 1971) is not reviewed here.",
+   "selection_note": "Selected for the settler-colonial exchange only; an edge to `indigenous` for the journal's main role awaits a longitudinal source.",
+   "source_ids": [
+    "journal_source_ihc_snelgrove_2014",
+    "journal_source_ihc_williams_2016",
+    "journal_source_ihc_goeman_2016",
+    "journal_source_ihc_aisc"
+   ],
+   "temporal_scope": {
+    "start": 2013,
+    "end": 2016,
+    "precision": "year",
+    "meaning": "reviewed_role_interval",
+    "note": "Selected evidentiary interval; neither the field's lifespan nor a publication start or cessation claim."
+   },
+   "checked_on": "2026-10-27",
+   "strength": "moderate"
+  },
+  {
+   "id": "journal_venue_wicazo_sa_indigenous_founding",
+   "source": "journal_14bd04ae864a9447",
+   "target": "indigenous",
+   "relationship_kind": "founded_for",
+   "directed": true,
+   "relationship": "Founded in 1985 at Eastern Washington University by Elizabeth Cook-Lynn as a journal for Indigenous peoples of the Americas to take possession of their own intellectual and creative pursuits; later carried Rigney (1999) and S. A. Miller (2009).",
+   "basis": "sourced_founding_programme",
+   "temporal_scope": {
+    "start": 1985,
+    "end": 1985,
+    "precision": "year",
+    "meaning": "founding_event"
+   },
+   "source_ids": [
+    "journal_source_ihc_ewu_cooklynn_2025",
+    "journal_source_ihc_crossref_wicazo",
+    "journal_source_ihc_rigney_1999",
+    "journal_source_ihc_miller_2009"
+   ],
+   "evidence_note": "The programme is stated in a 2025 institutional retrospective, not a 1985 editorial; co-founders are not verified. If 'a later launch mission alone is insufficient' is applied strictly, convert to principal_venue 1999–2009 on the Rigney and Miller articles. Target agreed with Agent B (part 2).",
+   "checked_on": "2026-10-27",
+   "strength": "moderate"
+  },
+  {
+   "id": "journal_venue_aiq_community_engaged_principal",
+   "source": "journal_5de425e660712806",
+   "target": "community_engaged_indigenous",
+   "relationship_kind": "principal_venue",
+   "basis": "editorial_longitudinal_review",
+   "directed": true,
+   "relationship": "Two issues carry the field's statements: in 1996 Wilson on tribal and family historians beside Mihesuah, S. A. Miller, Cook-Lynn and Champagne; in 2009 Innes on insider research and McCallum on Indigenous labour.",
+   "evidence_note": "Crossref contents of AIQ 20:1 (1996) and 33:4 (2009); Wilson 1996 pp. 3–5 read in full; Innes 2009 through Leddy 2010; Fixico 2009 opening read; other articles by title. The 1996 issue also serves `indigenous` (part 2).",
+   "selection_note": "A selected interval resting on two issues, not a survey of the journal; its founding (vol. 1, 1974) and sponsor are not verified.",
+   "source_ids": [
+    "journal_source_ihc_aiq_1996",
+    "journal_source_ihc_aiq_2009",
+    "journal_source_ihc_crossref_aiq"
+   ],
+   "temporal_scope": {
+    "start": 1996,
+    "end": 2009,
+    "precision": "year",
+    "meaning": "reviewed_role_interval",
+    "note": "Selected evidentiary interval; neither the field's lifespan nor a publication start or cessation claim."
+   },
+   "checked_on": "2026-10-27",
+   "strength": "moderate"
+  },
+  {
+   "id": "journal_venue_nais_community_engaged_principal",
+   "source": "journal_6e8266b74206012b",
+   "target": "community_engaged_indigenous",
+   "relationship_kind": "principal_venue",
+   "basis": "editorial_longitudinal_review",
+   "directed": true,
+   "relationship": "NAISA's journal from 2014 asks empirical studies to document approvals required by Native nations, tribes or bands, and especially encourages studies grounded in Indigenous research methodologies.",
+   "evidence_note": "NAISA journal page (current remit; founding co-editors O'Brien and Warrior, 2013–2019); Crossref vol. 1 (2014) and the 2021 editors' introduction on editorial ethics (title only). Not founded_for: the remit is current, not a dated founding statement.",
+   "selection_note": "Selected for its research-ethics and methodology remit; not a claim that every article belongs to the field.",
+   "source_ids": [
+    "journal_source_ihc_naisa_journal",
+    "journal_source_ihc_crossref_nais"
+   ],
+   "temporal_scope": {
+    "start": 2014,
+    "end": 2024,
+    "precision": "year",
+    "meaning": "reviewed_role_interval",
+    "note": "Selected evidentiary interval; neither the field's lifespan nor a publication start or cessation claim. The remit was read on the current page."
+   },
+   "checked_on": "2026-10-27",
+   "strength": "moderate"
+  },
+  {
+   "id": "journal_venue_decolonization_settler_colonialism_principal",
+   "source": "journal_37d5887000e627ca",
+   "target": "settler_colonialism",
+   "relationship_kind": "principal_venue",
+   "basis": "editorial_longitudinal_review",
+   "directed": true,
+   "relationship": "Open-access journal from 2012 that carried Tuck and Yang's 'Decolonization Is Not a Metaphor' (2012) and Snelgrove, Dhamoon and Corntassel on settler solidarity (2014).",
+   "evidence_note": "Both articles are graph sources (screq_tuck_yang_2012, screq_snelgrove_dhamoon_corntassel_2014); the about page read. Its remit (decolonization work regardless of discipline) is not a history-field founding.",
+   "selection_note": "Selected for the settler-colonial debate of 2012–14 only.",
+   "source_ids": [
+    "journal_source_ihc_tuck_yang_2012",
+    "journal_source_ihc_snelgrove_2014",
+    "journal_source_ihc_des_about"
+   ],
+   "temporal_scope": {
+    "start": 2012,
+    "end": 2014,
+    "precision": "year",
+    "meaning": "reviewed_role_interval",
+    "note": "Selected evidentiary interval; neither the field's lifespan nor a publication start or cessation claim."
+   },
+   "checked_on": "2026-10-27",
+   "strength": "moderate"
+  }
+ ]
+}

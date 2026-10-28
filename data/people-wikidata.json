@@ -11,8 +11,8 @@
  },
  "not_covered": "282 roster people remain ungrounded: 69 namesake_risk, 121 disambiguate, 92 manual (see roster-grounding-master.csv).",
  "counts": {
-  "accepted": 702,
-  "unmatched": 1
+  "accepted": 713,
+  "unmatched": 4
  },
  "people": [
   {
@@ -12894,21 +12894,21 @@
    "label": "Mary Jane Logan McCallum",
    "status": "accepted",
    "wikidata": {
-    "qid": "Q44610760",
-    "label": "Mary Jane McCallum",
-    "description": "senator",
-    "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: WikidataMCP vector-search recovery gated by surname and first initial. Treat as provisional; report errors by setting status to rejected."
+    "qid": "Q133600621",
+    "label": "Mary Jane Logan McCallum",
+    "description": "Department of History, University of Winnipeg",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: Label 'Mary Jane McCallum'@mul; alias 'Mary Jane  Logan McCallum'@mul; description 'Department of History, University of Winnipeg'; P569 1974 (year); P106 historian; P214 46235590. Rejected namesake Q44610760 (senator, dentist, b. 1952).); label and description re-read 2026-10-28."
    },
    "life": {
-    "birth": "1952-05-01",
+    "birth": "1974-01-01",
     "death": null,
-    "birth_precision": "day",
+    "birth_precision": "year",
     "death_precision": null,
-    "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
-    "retrieved": "2026-09-26"
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
    },
-   "notes": "Tier recovered; 2 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 2 Wikipedia sitelinks; match source vector+gate. Corrected 2026-10-28 (revision 1.201): the previous item Q44610760 is a namesake (Senator Mary Jane McCallum, dentist, born 1952), not the historian."
   },
   {
    "person_id": "nancy_lurie",
@@ -14365,7 +14365,7 @@
   },
   {
    "person_id": "audra_simpson",
-   "node_id": null,
+   "node_id": "audra_simpson",
    "label": "Audra Simpson",
    "status": "accepted",
    "wikidata": {
@@ -14387,7 +14387,7 @@
   },
   {
    "person_id": "glen_coulthard",
-   "node_id": null,
+   "node_id": "glen_coulthard",
    "label": "Glen Sean Coulthard",
    "status": "accepted",
    "wikidata": {
@@ -14582,6 +14582,275 @@
     "retrieved": "2026-10-24"
    },
    "notes": "Added with revision 1.156 (data/extension-2026/period4-wave1-2026-10-23/<id>/entry-draft.json wikidata_check or the entry draft's wikidata_checks)."
+  },
+  {
+   "person_id": "emma_larocque",
+   "node_id": "emma_larocque",
+   "label": "Emma LaRocque",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q43376596",
+    "label": "Emma LaRocque",
+    "description": "Canadian academic",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: Label 'Emma LaRocque'; P31 human; description 'Canadian academic'; P569 1949 (year); P106 academic; P108 University of Manitoba.); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1949-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "chris_andersen",
+   "node_id": "chris_andersen",
+   "label": "Chris Andersen",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q116864823",
+    "label": "Chris Andersen",
+    "description": null,
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: Label 'Chris Andersen'; P31 human; no description; P569 1973 (year); P106 sociologist, university teacher; P800 'Indigenous Identity and Resistance: Researching the diversity of knowledge' (the 2010 collection he co-edited); VIAF 106623373; no employer statement. Agent A independently matched the 19); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1973-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "haunani_kay_trask",
+   "node_id": "haunani_kay_trask",
+   "label": "Haunani-Kay Trask",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5682579",
+    "label": "Haunani-Kay Trask",
+    "description": "Native Hawaiian activist and author (1949–2021)",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: Label 'Haunani-Kay Trask'; P31 human; P569 1949-10-03; P570 2021-07-03; P106 political scientist, activist, writer, politician.); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1949-10-03",
+    "death": "2021-07-03",
+    "birth_precision": "day",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "darcy_mcnickle",
+   "node_id": "darcy_mcnickle",
+   "label": "D’Arcy McNickle",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q5203099",
+    "label": "D'Arcy McNickle",
+    "description": "American writer",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: Label \"D'Arcy McNickle\"; description 'American writer'; P569 1904-01-14; P570 1977-10-10; P106 writer, anthropologist, novelist. The P569 day conflicts with Iverson (1993), who gives 18 January 1904: only the year is used.); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1904-01-01",
+    "death": "1977-10-10",
+    "birth_precision": "year",
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "kathleen_duval",
+   "node_id": null,
+   "label": "Kathleen DuVal",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q30585837",
+    "label": "Kathleen DuVal",
+    "description": "American historian",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: description 'American historian'; P569 1970; P106 university teacher, historian; P108 University of North Carolina at Chapel Hill); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1970-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "pekka_hamalainen",
+   "node_id": null,
+   "label": "Pekka Hämäläinen",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q7161079",
+    "label": "Pekka Hämäläinen",
+    "description": "Finnish historian",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: description 'Finnish historian'; P569 1967; P106 researcher, historian; P108 University of California, Santa Barbara. Namesakes rejected: Q11887117 (ice-hockey player, b. 1953), Q29905861 (politician, b. 1961)); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1967-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "michael_witgen",
+   "node_id": null,
+   "label": "Michael Witgen",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q108757092",
+    "label": "Michael Witgen",
+    "description": "American historian",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: description 'American historian'; P69 Texas Christian University and Q219563; P27 United States. Possible duplicate Q134610962 ('Michael John Witgen', historian, no other statements): flagged, not merged); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": null,
+    "death": null,
+    "birth_precision": null,
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks). A possible duplicate item (Q134610962) was seen and not merged."
+  },
+  {
+   "person_id": "ned_blackhawk",
+   "node_id": null,
+   "label": "Ned Blackhawk",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q15439981",
+    "label": "Ned Blackhawk",
+    "description": "American historian",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: description 'American historian'; P569 1970; P106 university teacher, historian; P108 University of Wisconsin–Madison (matches the Yale profile, 1999–2009)); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1970-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "heidi_bohaker",
+   "node_id": null,
+   "label": "Heidi Bohaker",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q108747368",
+    "label": "Heidi Bohaker",
+    "description": "Canadian historian",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: description 'Canadian historian'; P569 1968; P106 university teacher, historian (existing people record; stage-2 roster row)); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1968-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "leanne_betasamosake_simpson",
+   "node_id": null,
+   "label": "Leanne Betasamosake Simpson",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q22957997",
+    "label": "Leanne Betasamosake Simpson",
+    "description": "indigenous writer and musician in what is known as Canada (born 1971)",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: P569 1971; P106 university teacher, writer, musician.); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1971-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "aileen_moreton_robinson",
+   "node_id": null,
+   "label": "Aileen Moreton-Robinson",
+   "status": "accepted",
+   "wikidata": {
+    "qid": "Q21811399",
+    "label": "Aileen Moreton-Robinson",
+    "description": "Australian academic, feminist, author and activist",
+    "method": "qlever_label_match_2026-10-27",
+    "basis": "Revision 1.201: QLever SPARQL check by the research agent (statements seen: 'Australian academic, feminist, author and activist'; P569 1956-09-01; P108 Queensland University of Technology, University of Queensland and others.); label and description re-read 2026-10-28."
+   },
+   "life": {
+    "birth": "1956-01-01",
+    "death": null,
+    "birth_precision": "year",
+    "death_precision": null,
+    "source": "Wikidata P569/P570 via QLever SPARQL (1 January dates read as year precision; McNickle birth year only, sources disagree on the day)",
+    "retrieved": "2026-10-28"
+   },
+   "notes": "Added with revision 1.201 (data/extension-2026/indigenous-histories-2026-10-27/<id>/entry-draft.json wikidata_check or wikidata_checks)."
+  },
+  {
+   "person_id": "winona_wheeler",
+   "node_id": "winona_wheeler",
+   "label": "Winona Wheeler",
+   "status": "unmatched",
+   "wikidata": null,
+   "life": null,
+   "notes": "Revision 1.201: no Wikidata item found by QLever label/alias search (2026-10-27)."
+  },
+  {
+   "person_id": "brenda_macdougall",
+   "node_id": "brenda_macdougall",
+   "label": "Brenda Macdougall",
+   "status": "unmatched",
+   "wikidata": null,
+   "life": null,
+   "notes": "Revision 1.201: no Wikidata item found by QLever label/alias search (2026-10-27). The QID in the dissertation crosswalk was wrong and is not used."
+  },
+  {
+   "person_id": "robert_alexander_innes",
+   "node_id": "robert_alexander_innes",
+   "label": "Robert Alexander Innes",
+   "status": "unmatched",
+   "wikidata": null,
+   "life": null,
+   "notes": "Revision 1.201: no Wikidata item found by QLever label/alias search (2026-10-27)."
   }
  ]
 }

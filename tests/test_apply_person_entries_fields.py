@@ -152,5 +152,100 @@ class IdentityNoteTests(unittest.TestCase):
         self.assertEqual(people["p2"]["node_id"], "n2")
 
 
+class MoveTests(unittest.TestCase):
+    """Splitting a field: strands and roster rows move between nodes, edges change endpoints."""
+    def graph(self):
+        g = graph()
+        g["nodes"] = [dict(id="a", strands=[dict(id="s1", person_ids=["p"])], representative_people=[dict(person_id="p", role="historian")]),
+                      dict(id="b", strands=[], representative_people=[])]
+        g["edges"] = [dict(id="edge_001", source="p", target="a", target_strand="s1")]
+        return g
+
+    def test_strand_and_roster_row_move_then_text_revision_on_new_home(self):
+        p = packet([])
+        p["strand_moves"] = [dict(from_node="a", to_node="b", strand="s1")]
+        p["roster_moves"] = [dict(from_node="a", to_node="b", person_id="p")]
+        p["text_revisions"] = [dict(node="b", strand="s1", field="title", old="Old", new="New")]
+        g = self.graph()
+        g["nodes"][0]["strands"][0]["title"] = "Old title"
+        out = batch().transform(g, p)
+        a, b = out["nodes"]
+        self.assertEqual((a["strands"], a["representative_people"]), ([], []))
+        self.assertEqual(b["strands"][0]["title"], "New title")
+        self.assertEqual(b["representative_people"][0]["person_id"], "p")
+
+    def test_move_fails_when_missing_or_already_present(self):
+        for move in (dict(from_node="b", to_node="a", strand="s1"), dict(from_node="a", to_node="a", strand="s1")):
+            p = packet([]); p["strand_moves"] = [move]
+            with self.assertRaises(ValueError):
+                batch().transform(self.graph(), p)
+        p = packet([]); p["roster_moves"] = [dict(from_node="b", to_node="a", person_id="p")]
+        with self.assertRaises(ValueError):
+            batch().transform(self.graph(), p)
+
+    def test_guarded_edge_endpoint_set(self):
+        p = packet([])
+        p["edge_endpoint_sets"] = [dict(edge_id="edge_001", field="target", expect="a", value="b"),
+                                   dict(edge_id="edge_001", field="target_strand", expect="s1", value=None)]
+        out = batch().transform(self.graph(), p)
+        self.assertEqual(out["edges"][0]["target"], "b")
+        self.assertNotIn("target_strand", out["edges"][0])
+        for bad in (dict(edge_id="edge_001", field="target", expect="z", value="b"),
+                    dict(edge_id="edge_001", field="relationship", expect=None, value="x")):
+            p = packet([]); p["edge_endpoint_sets"] = [bad]
+            with self.assertRaises(ValueError):
+                batch().transform(self.graph(), p)
+
+    def test_guarded_roster_removal(self):
+        g = self.graph()
+        row = g["nodes"][0]["representative_people"][0]
+        p = packet([]); p["roster_removals"] = [dict(node="a", person_id="p", expect=dict(row))]
+        out = batch().transform(g, p)
+        self.assertEqual(out["nodes"][0]["representative_people"], [])
+        p["roster_removals"] = [dict(node="a", person_id="p", expect=dict(row, role="critic"))]
+        with self.assertRaises(ValueError):
+            batch().transform(self.graph(), p)
+        self.assertIn("a", ape.touched_ids(p)["nodes"])
+
+    def test_strand_redirect_and_claim_entity_address_follow_a_move(self):
+        g = self.graph()
+        g["strand_redirects"] = []
+        g["claim_catalogue"] = dict(claims=[], source_records=[],
+                                    entities=[dict(id="e1", type="concept", legacy_strand_address="a/s1")])
+        p = packet([])
+        p.update(strand_moves=[dict(from_node="a", to_node="b", strand="s1")],
+                 strand_redirects_add=[dict(**{"from": "a/s1", "to": "b/s1"}, reason="split")],
+                 claim_entity_sets=[dict(entity_id="e1", field="legacy_strand_address", expect="a/s1", value="b/s1")])
+        out = batch().transform(g, p)
+        self.assertEqual(out["strand_redirects"], [{"from": "a/s1", "to": "b/s1", "revision": "9.1", "reason": "split"}])
+        self.assertEqual(out["claim_catalogue"]["entities"][0]["legacy_strand_address"], "b/s1")
+        p["claim_entity_sets"][0]["expect"] = "z/s1"
+        with self.assertRaises(ValueError):
+            batch().transform(g, p)
+        # exact recovery: the prior entity and the redirect-list length restore the baseline
+        record = dict(previous_table_lengths={k: len(g[k]) for k in ape.TABLES},
+                      prior_records=dict(nodes={n["id"]: n for n in g["nodes"]}),
+                      prior_claim_entities={"e1": g["claim_catalogue"]["entities"][0]}, previous_strand_redirects=0)
+        self.assertEqual(ape.Batch.restore_baseline(out, record), g)
+
+    def test_guarded_strand_list_removal(self):
+        p = packet([]); p["strand_list_removals"] = [dict(node="a", strand="s1", person_ids=["p"])]
+        out = batch().transform(self.graph(), p)
+        self.assertEqual(out["nodes"][0]["strands"][0]["person_ids"], [])
+        p["strand_list_removals"] = [dict(node="a", strand="s1", person_ids=["absent"])]
+        with self.assertRaises(ValueError):
+            batch().transform(self.graph(), p)
+        self.assertIn("a", ape.touched_ids(p)["nodes"])
+
+    def test_touched_records_include_moves_and_endpoints(self):
+        p = packet([])
+        p.update(strand_moves=[dict(from_node="a", to_node="b", strand="s1")],
+                 roster_moves=[dict(from_node="c", to_node="d", person_id="p")],
+                 edge_endpoint_sets=[dict(edge_id="edge_009", field="target", expect="a", value="b")])
+        t = ape.touched_ids(p)
+        self.assertTrue({"a", "b", "c", "d"} <= t["nodes"])
+        self.assertIn("edge_009", t["edges"])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -577,6 +577,16 @@ plural `wikidata_checks` list for roster people grounded during the research; `p
 `identity_note`; and `source_field_sets` apply before `source_addenda`, so a note's `expect` is the note as it
 stood on disk ([acceptance](data/production-batches/group-revision-1.156/README.md)).
 
+From revision 1.201 a batch can split a field without deleting anything:
+- `strand_moves` and `roster_moves` move a strand or a roster row between nodes. Ids, sources and edge links are kept.
+- `roster_removals` drops a row equal to its `expect` value, when the person already has a row in the receiving field.
+- `strand_list_removals` drops strand members, each of which must be present.
+- `edge_endpoint_sets` reroutes `source`, `target` or `target_strand`, guarded by `expect`. Relationships are never removed.
+- `strand_redirects_add` keeps each moved strand's old address resolving.
+- `claim_entity_sets` updates a claim-catalogue entity's `legacy_strand_address`.
+
+The prior redirect count and the prior claim entities are kept in the acceptance record for exact recovery ([acceptance](data/production-batches/group-revision-1.201/README.md)).
+
 ## Historical revision 1.149 (2026-10-19): Gramsci and McKay
 
 **195 entries, 1,144 teaching relationships, 2,049 sources and 1,282 shared people.**

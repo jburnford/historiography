@@ -1,8 +1,8 @@
 {
  "schema_version": "1.0",
- "built": "2026-10-25",
+ "built": "2026-10-28",
  "builds": {
-  "series": "v28",
+  "series": "v29",
   "methods": "methods-v9",
   "mentions": "mentions-v6"
  },
@@ -3160,6 +3160,14 @@
       "primary": true
      },
      {
+      "id": "community_engaged_indigenous",
+      "primary": true
+     },
+     {
+      "id": "life_lived_like_a_story",
+      "primary": true
+     },
+     {
       "id": "native_newcomer",
       "primary": false
      },
@@ -5523,6 +5531,10 @@
      {
       "id": "cdn_sixties",
       "primary": true
+     },
+     {
+      "id": "community_engaged_indigenous",
+      "primary": false
      }
     ],
     "record_only": [
@@ -6546,6 +6558,31 @@
     "qualifying_records": 554,
     "missing_length": 2360,
     "note": "1 mapped title contexts; 3,520 distinct deposited records. 2,360 article memberships lack calculable lengths; coverage is partial."
+   }
+  },
+  "community_engaged_indigenous": {
+   "status": "folded",
+   "practised_within": [
+    {
+     "id": "indigenous",
+     "label": "Indigenous-authored history & critique"
+    },
+    {
+     "id": "oral",
+     "label": "Oral history"
+    }
+   ],
+   "relations": [
+    "method_within"
+   ],
+   "coverage": {
+    "mapped_title_contexts": 0,
+    "deposited_records": 0,
+    "first_deposit": null,
+    "first_candidate": null,
+    "qualifying_records": 0,
+    "missing_length": 0,
+    "note": "0 mapped title contexts; 0 distinct deposited records. Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
    }
   },
   "conceptual": {
@@ -7651,6 +7688,31 @@
     "note": "0 mapped title contexts; 0 distinct deposited records. Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
    }
   },
+  "life_lived_like_a_story": {
+   "status": "folded",
+   "practised_within": [
+    {
+     "id": "indigenous",
+     "label": "Indigenous-authored history & critique"
+    },
+    {
+     "id": "oral",
+     "label": "Oral history"
+    }
+   ],
+   "relations": [
+    "work_within"
+   ],
+   "coverage": {
+    "mapped_title_contexts": 0,
+    "deposited_records": 0,
+    "first_deposit": null,
+    "first_candidate": null,
+    "qualifying_records": 0,
+    "missing_length": 0,
+    "note": "0 mapped title contexts; 0 distinct deposited records. Teaching venues and selected publication evidence have different scopes; this is not evidence of absent scholarship."
+   }
+  },
   "lifetradition": {
    "status": "folded",
    "practised_within": [
@@ -8143,7 +8205,7 @@
    "invoked_most_in": [
     {
      "id": "indigenous",
-     "label": "Indigenous history & decolonizing methods",
+     "label": "Indigenous-authored history & critique",
      "lift": 3.22
     },
     {

@@ -1,0 +1,39 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-27",
+ "applies_to": "historiography-1920-2000.json revision 1.200 -> candidate 1.201 (darcy_mcnickle: existing person entry, backfill; no new node). Node text via batch text_revisions; chronology, date_label and scope_note via field_sets; edge_775 via edge_revisions.",
+ "review_status": "needs_review",
+ "people_update": {
+  "id": "darcy_mcnickle",
+  "new": false,
+  "label": "D’Arcy McNickle",
+  "identity_note": "Enrolled member at Flathead (Confederated Salish and Kootenai Tribes), per Iverson 1993. 1904–1977 (year of birth only: sources differ on the day). Wikidata Q5203099, accepted."
+ },
+ "wikidata_check": {
+  "qid": "Q5203099",
+  "verdict": "correct",
+  "method": "QLever SPARQL (https://qlever.dev/api/wikidata, 2026-10-27): rdfs:label/skos:altLabel match with P31 Q5, then description, P569, P570, P106, P108; no wbsearchentities; the WikidataMCP endpoint was not used.",
+  "statements_seen": "Label \"D'Arcy McNickle\"; description 'American writer'; P569 1904-01-14; P570 1977-10-10; P106 writer, anthropologist, novelist. The P569 day conflicts with Iverson (1993), who gives 18 January 1904: only the year is used."
+ },
+ "proposed_edges": [],
+ "new_sources": [
+  {
+   "id": "ihb_iverson_1993",
+   "title": "D'Arcy McNickle, Native American Tribalism (OUP, 1973; 1993 reissue with Peter Iverson's introduction), publisher preview.",
+   "citation": "D'Arcy McNickle, Native American Tribalism: Indian Survivals and Renewals (New York: Oxford University Press, 1973; reissued 1993 with an introduction by Peter Iverson).",
+   "url": "https://api.pageplace.de/preview/DT0400.9780198024576_A24389048/preview-9780198024576_A24389048.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-27",
+    "note": "OUP publisher preview: Iverson's introduction pp. iii–v, xvii–xviii and McNickle's preface pp. xix–xx read. Born 18 January 1904 (p. iii; Wikidata gives 14 January, so the year only is used); role in founding the NCAI, 1944, and 'few Native historians have tried to provide an overview of the national Indian experience' (p. iv); chaired the 1961 Chicago conference steering committee, died 1977, Newberry centre's first fellows 1973–74 with McNickle as director, Hoxie's 1992 remark as reported (p. v); Preface: 'the certainty that native America had vanished before the march of progress'; 'Indians had no future as Indians' (pp. xix–xx). Iverson's p. iv attribution of They Came Here First to Collier is an error and is not adopted."
+   }
+  }
+ ],
+ "source_addenda": {},
+ "edges_considered_not_proposed": [
+  {
+   "pair": "darcy_mcnickle -> ethnohistory",
+   "reason": "The Newberry centre's impact on the writing of Native American history (Hoxie, as reported by Iverson 1993, p. v). The edge ends in Agent A's field: requested from A in the fragment rationale."
+  }
+ ]
+}

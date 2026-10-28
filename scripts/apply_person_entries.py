@@ -30,6 +30,13 @@ node's period, and periods_set ({expect, value}) replaces the top-level teaching
 acceptance record as prior_periods. From 1.156: a draft without a node (a backfill of an existing person entry)
 may carry wikidata_check and a people_update with identity_note; a draft may carry people_identity_notes
 ({person_id: note}) for existing people records that get no entry; people_updates may set identity_note.
+From 1.201 (splitting a field): edge_endpoint_sets ([{edge_id, field: source|target|target_strand, expect,
+value}], value null removes target_strand), strand_moves ([{from_node, to_node, strand}]) and roster_moves
+([{from_node, to_node, person_id}]); a move fails unless the item is on from_node once and absent from to_node.
+roster_removals ([{node, person_id, expect}]) drops a row equal to `expect` (for a person already rostered
+in the receiving field); strand_redirects_add ([{from, to, reason}]) keeps a moved strand's old address resolving;
+claim_entity_sets ([{entity_id, field: legacy_strand_address, expect, value}]) follows it in the claim catalogue.
+strand_list_removals ([{node, strand, person_ids?, source_ids?}]) drops members that must be present. They apply before text revisions, and both nodes of a move are kept in the acceptance record.
 """
 import argparse
 from copy import deepcopy
@@ -53,6 +60,25 @@ FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology', 'layer
 NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
 # Existing source-record fields a batch may correct (`source_field_sets`), guarded by `expect`.
 SOURCE_FIELDS = {'url', 'title', 'citation', 'verification.note'}
+# Existing edge fields a batch may reroute (`edge_endpoint_sets`, from 1.201), guarded by `expect`.
+EDGE_ENDPOINT_FIELDS = {'source', 'target', 'target_strand'}
+# Claim-catalogue entity fields a batch may update when a strand moves (`claim_entity_sets`, from 1.201).
+CLAIM_ENTITY_FIELDS = {'legacy_strand_address'}
+# Packet lists whose entries name the node(s) they change; their prior records go to the acceptance record.
+NODE_KEYS = {'roster_edges': ('node',), 'roster_additions': ('node',), 'roster_list_additions': ('node',),
+             'field_sets': ('node',), 'node_list_additions': ('node',), 'text_revisions': ('node',),
+             'strand_list_additions': ('node',), 'new_strands': ('node',),
+             'strand_moves': ('from_node', 'to_node'), 'roster_moves': ('from_node', 'to_node'),
+             'roster_removals': ('node',), 'strand_list_removals': ('node',)}
+
+
+def touched_ids(packet):
+    """Ids of existing records a packet changes, by table, for exact baseline recovery."""
+    return dict(people={u['id'] for u in packet['people_updates']},
+                edges=set(packet['edge_revisions']) | {c['edge_id'] for c in packet.get('claim_reviews', []) if c.get('edge_id')}
+                | {x['edge_id'] for x in packet.get('edge_endpoint_sets', [])},
+                sources=set(packet['source_addenda']) | {x['id'] for x in packet.get('source_field_sets', [])},
+                nodes={r[f] for key, fields in NODE_KEYS.items() for r in packet.get(key, []) for f in fields})
 
 
 def read(path):
@@ -142,7 +168,9 @@ class Batch:
                       research={n: str((self.pkt / n).relative_to(ROOT)) for n in self.cfg['persons'] + self.cfg.get('extras', [])})
         if new_people or roster_additions:
             packet.update(new_people=new_people, roster_additions=roster_additions)
-        for key in ('text_revisions', 'field_sets', 'layers_set', 'periods_set', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions'):   # optional; written only when present
+        for key in ('text_revisions', 'field_sets', 'layers_set', 'periods_set', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions',
+                    'edge_endpoint_sets', 'strand_moves', 'roster_moves', 'roster_removals',
+                    'strand_redirects_add', 'claim_entity_sets', 'strand_list_removals'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -225,6 +253,45 @@ class Batch:
             g['edges'].append(dict(id=new_ids[e['proposal_id']], **deepcopy(e)))
         for eid, upd in packet['edge_revisions'].items():
             next(e for e in g['edges'] if e['id'] == eid).update(deepcopy(upd))
+        # From 1.201 (splitting a field): guarded endpoint changes, then strand and roster-row moves,
+        # all before text revisions so a revision can address a strand or row in its new home.
+        for es in packet.get('edge_endpoint_sets', []):
+            if es['field'] not in EDGE_ENDPOINT_FIELDS:
+                raise ValueError(f"Edge field not settable: {es['field']}")
+            edge = next(e for e in g['edges'] if e['id'] == es['edge_id'])
+            if edge.get(es['field']) != es['expect']:
+                raise ValueError(f"Edge endpoint does not match its expected value: {es['edge_id']} {es['field']}")
+            if es['value'] is None:
+                edge.pop(es['field'], None)
+            else:
+                edge[es['field']] = es['value']
+        for key, list_field, id_field, item in (('strand_moves', 'strands', 'id', 'strand'),
+                                               ('roster_moves', 'representative_people', 'person_id', 'person_id')):
+            for mv in packet.get(key, []):
+                src = next(n for n in g['nodes'] if n['id'] == mv['from_node'])
+                dst = next(n for n in g['nodes'] if n['id'] == mv['to_node'])
+                hits = [x for x in src.get(list_field, []) if x[id_field] == mv[item]]
+                if len(hits) != 1 or any(x[id_field] == mv[item] for x in dst.get(list_field, [])):
+                    raise ValueError(f"Move needs one source and no target copy: {key} {mv['from_node']}->{mv['to_node']} {mv[item]}")
+                src[list_field].remove(hits[0])
+                dst.setdefault(list_field, []).append(hits[0])
+        for rr in packet.get('roster_removals', []):
+            # A row whose person already has a row in the receiving field: removed whole, guarded by the row itself.
+            node = next(n for n in g['nodes'] if n['id'] == rr['node'])
+            hits = [r for r in node['representative_people'] if r['person_id'] == rr['person_id']]
+            if hits != [rr['expect']]:
+                raise ValueError(f"Roster removal does not match its expected row: {rr['node']}/{rr['person_id']}")
+            node['representative_people'].remove(hits[0])
+        for sr in packet.get('strand_redirects_add', []):
+            # Old addresses of moved strands keep resolving (site deep links); the validator checks both ends.
+            g.setdefault('strand_redirects', []).append({'from': sr['from'], 'to': sr['to'], 'revision': self.rev, 'reason': sr['reason']})
+        for ces in packet.get('claim_entity_sets', []):
+            if ces['field'] not in CLAIM_ENTITY_FIELDS:
+                raise ValueError(f"Claim entity field not settable: {ces['field']}")
+            ent = next(e for e in g['claim_catalogue']['entities'] if e['id'] == ces['entity_id'])
+            if ent.get(ces['field']) != ces['expect']:
+                raise ValueError(f"Claim entity does not match its expected value: {ces['entity_id']} {ces['field']}")
+            ent[ces['field']] = ces['value']
         for tr in packet.get('text_revisions', []):
             node = next(n for n in g['nodes'] if n['id'] == tr['node'])
             if tr.get('person_id'):
@@ -295,6 +362,14 @@ class Batch:
                 for x in sla.get(key, []):
                     if x not in strand.setdefault(key, []):
                         strand[key].append(x)
+        for slr in packet.get('strand_list_removals', []):   # from 1.201: members who moved to another field
+            node = next(n for n in g['nodes'] if n['id'] == slr['node'])
+            strand = next(s for s in node['strands'] if s['id'] == slr['strand'])
+            for key in ('person_ids', 'source_ids'):
+                for x in slr.get(key, []):
+                    if x not in strand.get(key, []):
+                        raise ValueError(f"Strand list removal not present: {slr['node']}/{slr['strand']} {key} {x}")
+                    strand[key].remove(x)
         for ns in packet.get('new_strands', []):
             node = next(n for n in g['nodes'] if n['id'] == ns['node'])
             if any(s['id'] == ns['strand']['id'] for s in node['strands']):
@@ -372,6 +447,13 @@ class Batch:
         for field in ('layers', 'periods'):
             if 'prior_' + field in record:
                 before[field] = deepcopy(record['prior_' + field])
+        if 'previous_strand_redirects' in record:
+            before['strand_redirects'] = before['strand_redirects'][:record['previous_strand_redirects']]
+        if 'prior_claim_entities' in record:
+            ents = before['claim_catalogue']['entities']
+            for i, e in enumerate(ents):
+                if e['id'] in record['prior_claim_entities']:
+                    ents[i] = deepcopy(record['prior_claim_entities'][e['id']])
         claims = before['claim_catalogue']['claims']
         for i, c in enumerate(claims):
             if c['id'] in record.get('prior_claims', {}):
@@ -403,13 +485,7 @@ class Batch:
         self.base.write_bytes(GRAPH.read_bytes())
         self.out.mkdir(parents=True, exist_ok=True)
         GRAPH.write_text(serial(graph))
-        touched = dict(people={u['id'] for u in packet['people_updates']},
-                       edges=set(packet['edge_revisions']) | {c['edge_id'] for c in packet.get('claim_reviews', []) if c.get('edge_id')},
-                       sources=set(packet['source_addenda']) | {x['id'] for x in packet.get('source_field_sets', [])},
-                       nodes={r['node'] for r in packet['roster_edges'] + packet.get('roster_additions', [])
-                              + packet.get('roster_list_additions', []) + packet.get('field_sets', [])
-                              + packet.get('node_list_additions', []) + packet.get('text_revisions', [])
-                              + packet.get('strand_list_additions', []) + packet.get('new_strands', [])})
+        touched = touched_ids(packet)
         record = dict(revision=self.rev, date=self.day, authorization=self.cfg['authorization'],
             baseline=str(self.base.relative_to(ROOT)), baseline_sha256=sha(self.base), packet=str(self.packet.relative_to(ROOT)),
             packet_sha256=sha(self.packet), production_sha256=sha(GRAPH),
@@ -425,6 +501,11 @@ class Batch:
             ids = {c['claim_id'] for c in packet['claim_reviews']}
             record['prior_claims'] = {c['id']: c for c in before['claim_catalogue']['claims'] if c['id'] in ids}
             record['previous_claim_source_records'] = len(before['claim_catalogue']['source_records'])
+        if packet.get('strand_redirects_add'):   # the redirect list lives outside TABLES
+            record['previous_strand_redirects'] = len(before.get('strand_redirects', []))
+        if packet.get('claim_entity_sets'):   # so do claim-catalogue entities
+            ids = {c['entity_id'] for c in packet['claim_entity_sets']}
+            record['prior_claim_entities'] = {e['id']: e for e in before['claim_catalogue']['entities'] if e['id'] in ids}
         (self.out / 'acceptance.json').write_text(serial(record))
         return graph
 
