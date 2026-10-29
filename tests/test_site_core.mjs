@@ -469,7 +469,10 @@ test('the people register sorts by surname and the constellation places everyone
   assert.deepEqual(sorted, ['Marc Bloch', 'Eric Hobsbawm', 'Ferdinand de Saussure']);
   const {byPerson, byEntry} = membership(graph);
   const order = ringOrder(graph, byEntry);
-  assert.equal(new Set(order).size, byEntry.size, 'every entry with a roster is on the ring once');
+  // A collaborative work is not a field, so it is not a segment of the ring (user, 2026-10-28).
+  const ringable = [...byEntry.keys()].filter(id => graph.nodes.find(n => n.id === id).entry_type !== 'Collaborative work');
+  assert.equal(new Set(order).size, ringable.length, 'every field with a roster is on the ring once');
+  assert.ok(!order.includes('life_lived_like_a_story') && byEntry.has('life_lived_like_a_story'));
   const L = companyLayout(graph, 1000);
   assert.equal(L.people.length, byPerson.size);
   for (const p of L.people) assert.ok(p.x > 0 && p.x < L.size && p.y > 0 && p.y < L.size, p.id);
@@ -498,9 +501,10 @@ test('people families: each roster entry has one primary family, and a person be
   const idx = familyIndex(graph, families);
   assert.equal(idx.families.length, 12);
   const {byEntry, byPerson} = membership(graph);
-  for (const id of byEntry.keys()) assert.equal(idx.families.filter(f => f.entries.includes(id)).length, 1, id);
+  for (const id of byEntry.keys()) assert.equal(idx.families.filter(f => f.entries.includes(id)).length,
+    graph.nodes.find(n => n.id === id).entry_type === 'Collaborative work' ? 0 : 1, id);
   for (const [pid, rows] of byPerson) {
-    const expected = new Set(rows.map(r => idx.primaryOf.get(r.id)));
+    const expected = new Set(rows.map(r => idx.primaryOf.get(r.id)).filter(Boolean));  // a collaborative work has no family ring
     assert.deepEqual(new Set(idx.familiesOf.get(pid)), expected, pid);
   }
   for (const f of idx.families) assert.deepEqual(new Set(f.people), new Set([...idx.familiesOf].filter(([, fs]) => fs.includes(f.id)).map(([p]) => p)));

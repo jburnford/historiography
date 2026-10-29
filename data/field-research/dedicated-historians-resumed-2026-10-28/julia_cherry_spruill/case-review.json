@@ -1,0 +1,130 @@
+{
+  "person_id": "julia_cherry_spruill",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "checked_on": "2026-10-28",
+  "status": "bounded_research_complete",
+  "baseline_incident_edges": [
+    {
+      "id": "edge_279",
+      "source": "julia_cherry_spruill",
+      "target": "women",
+      "relationship": "contributes a documentary history of women in the southern colonies",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "spruill",
+        "richter_spruill"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. Richter’s 1999 review documents source use, Scott’s reissues and Colonial Williamsburg interpretation, alongside a specific coverage criticism. Original book passages remain mediated.",
+      "map_label": "Everyday institutions and later editorial recovery"
+    },
+    {
+      "id": "edge_280",
+      "source": "julia_cherry_spruill",
+      "target": "social",
+      "relationship": "provides an earlier case of inquiry into everyday work and social relations",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "spruill",
+        "richter_spruill"
+      ],
+      "evidence_note": "Earlier social history is compared with the later field; no direct influence on every postwar social historian is asserted. Richter describes regional, status, work and family questions and reports Scott’s comparison with later methods. No broad direct influence follows from methodological similarity.",
+      "map_label": "Earlier social inquiry and uneven coverage"
+    },
+    {
+      "id": "edge_540",
+      "source": "women",
+      "target": "julia_cherry_spruill",
+      "relationship": "Anne Firor Scott reintroduces Spruill through later editions and recovery of earlier scholarship",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill",
+        "scott_unheard_voices"
+      ],
+      "evidence_note": "Richter documents the 1972 introduction and revised 1998 introduction; Smithsonian records Spruill’s inclusion in Scott’s Unheard Voices (1993). This is editorial reception, not an influence on the original 1938 research.",
+      "map_label": "Scott: reissues and historical recovery",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_541",
+      "source": "women",
+      "target": "julia_cherry_spruill",
+      "relationship": "Julie Richter identifies questions not asked about Black and Native women",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill"
+      ],
+      "evidence_note": "The 1999 review explicitly acknowledges their presence in the book while questioning the scope of inquiry; it also values regional/status distinctions and documents practical use. No total absence or dismissal of the book is asserted.",
+      "map_label": "Richter: racial scope of the inquiry",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_542",
+      "source": "julia_cherry_spruill",
+      "target": "consumption",
+      "relationship": "Spruill examines household material life and separates prescribed ideals from recorded conduct",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill"
+      ],
+      "evidence_note": "Richter describes dwellings, utensils, clothing and books, quoting p. 208 on reading prescriptions. This is a documented earlier research resource, not proof of direct transmission to a later consumption school.",
+      "map_label": "Household objects, reading and prescribed ideals",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "relevant_group_routes": [
+    {
+      "id": "edge_071",
+      "source": "women",
+      "target": "biography",
+      "relationship": "Davis’s comparative biographies develop through women’s-history teaching, source discovery and revised questions of significance",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "mary_ritter_beard",
+        "spruill",
+        "davis_margins",
+        "davis_margins_primary"
+      ],
+      "evidence_note": "Davis names the 1971 course with Conway and Colie’s Glikl suggestion in her acknowledgments. Her prologue and conclusion compare three lives while retaining religious difference and colonial power. This primary selection supplements the existing catalogue description; it is not a full source audit or a claim that women’s history originated biography.",
+      "classification_basis": "editorial_review",
+      "map_label": "Davis, Conway and Colie: teaching into research"
+    },
+    {
+      "id": "edge_092",
+      "source": "women",
+      "target": "social",
+      "relationship": "overlaps in histories of work, family, and everyday life",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "pinchbeck",
+        "spruill"
+      ],
+      "evidence_note": "Work, households, and everyday life are overlapping subjects; women’s history is not a subset originating in postwar social history.",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "existing_claim_assessment": "All5existing qualified relations preserved after fresh complete Richter review and new own1934primary/partial Beard1939checks. No new relationship satisfies both substantive evidence and an authentic available endpoint in this bounded packet. This zero-proposal result follows the evidence and is not a quota failure.",
+  "new_proposal_ids": [],
+  "coverage": "Whole-person incoming/outgoing review checks direct primary resources/corrections, qualified contemporary and later criticism, editorial recovery, endpoint identities, named-group routes, later-reception leads and access limits. Missing people held and incomplete copyrighted bodies not promoted. No exhaustive network claim.",
+  "duplicate_check": "Pair/kind checked against frozen current graph; final cross-dossier and current-graph review still required",
+  "raw_policy": "Raw source bodies/PDF/text/images remain ignored in raw/",
+  "output_hashes": {
+    "proposals.json": "2dcae47426bc385a4b5536d2af5c1b572034e2e96a4072fb1906eadae4f86315",
+    "sources.json": "b52e083dd7935653095453ff89ada3f859fe54c4e19384de2e78bcd9fb1baa3e",
+    "held-cases.json": "5c0775445827658dc66f7dee37f908c6abefb4defffd7ff737d60af1e6bd82b3"
+  }
+}

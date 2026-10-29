@@ -41,6 +41,11 @@ export function sortName(label) {
 export function bySurname(a, b) { return sortName(a.label).key.localeCompare(sortName(b.label).key); }
 
 /* Every entry that names a person, with the role it gives them. */
+/* A collaborative work (Life Lived Like a Story, 1.201) keeps its entry, its credited people and its place in
+   their panels, but it is not a field: drawing it as a segment of the circles is a category error (user,
+   2026-10-28). Its people stay on the circles through their fields. */
+const NOT_A_RING = new Set(['Collaborative work']);
+const ringEntry = (graph, id) => !NOT_A_RING.has(graph.nodes.find(n => n.id === id)?.entry_type);
 export function membership(graph) {
   const byPerson = new Map(), byEntry = new Map();
   for (const n of graph.nodes) {
@@ -71,7 +76,7 @@ function chain(pool, sets) {
 /* Ring order: layers in dataset order; inside a layer, neighbours share people. */
 export function ringOrder(graph, byEntry) {
   const sets = new Map([...byEntry].map(([id, rows]) => [id, new Set(rows.map(r => r.id))]));
-  return graph.layers.flatMap(layer => chain(graph.nodes.filter(n => n.layer === layer.id && byEntry.has(n.id)).map(n => n.id), sets));
+  return graph.layers.flatMap(layer => chain(graph.nodes.filter(n => n.layer === layer.id && byEntry.has(n.id) && !NOT_A_RING.has(n.entry_type)).map(n => n.id), sets));
 }
 const hash = s => { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return ((h >>> 0) % 1000) / 1000; };
 
@@ -238,8 +243,8 @@ export function companyLayout(graph, width) {
 export function familyIndex(graph, block) {
   const {byPerson, byEntry} = membership(graph);
   const families = (block?.families || []).map(f => ({id: f.id, label: f.label,
-    entries: f.members.filter(m => m.primary && byEntry.has(m.id)).map(m => m.id),
-    bridged: f.members.filter(m => !m.primary && byEntry.has(m.id)).map(m => m.id)})).filter(f => f.entries.length);
+    entries: f.members.filter(m => m.primary && byEntry.has(m.id) && ringEntry(graph, m.id)).map(m => m.id),
+    bridged: f.members.filter(m => !m.primary && byEntry.has(m.id) && ringEntry(graph, m.id)).map(m => m.id)})).filter(f => f.entries.length);
   const primaryOf = new Map(families.flatMap(f => f.entries.map(id => [id, f.id])));
   const familiesOf = new Map([...byPerson].map(([pid, rows]) => { const mine = new Set(rows.map(r => primaryOf.get(r.id)));
     return [pid, families.filter(f => mine.has(f.id)).map(f => f.id)]; }));

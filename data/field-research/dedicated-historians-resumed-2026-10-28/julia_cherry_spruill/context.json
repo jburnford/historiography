@@ -1,0 +1,299 @@
+{
+  "person_id": "julia_cherry_spruill",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "julia_cherry_spruill",
+    "label": "Julia Cherry Spruill",
+    "date_label": "Women’s social history in colonial America · 1938",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Investigates women’s everyday life, institutions, work and public activity in the colonial South through varied documentary evidence. Later reissues and public interpretation renew use of her work while exposing limits in whose lives become sustained research questions.",
+    "representative_figures_and_works": "Women’s Life and Work in the Southern Colonies (1938); later reissues associated with Anne Firor Scott show that the field’s expansion also involved renewed attention to earlier scholarship.",
+    "source_ids": [
+      "spruill",
+      "richter_spruill",
+      "scott_unheard_voices"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "Richter’s complete 1999 review mediates Spruill’s shift from attitudes to empirical groundwork and her distinction between prescribed reading and actual behavior. The book examines status and regional differences, but mentions Black and Native women without sustained questions about their life and work, in Richter’s assessment. Scott’s 1972 and 1998 introductions are editorial reception; Colonial Williamsburg use is documented, while Richter’s own proposed slavery research remains an intention. Earlier methods are not membership in postwar social history, and friendship with Beard does not prove transmission.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1938",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_905d1c19355b",
+          "label": "Women's Life and Work in the Southern Colonies",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1938,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:spruill"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_279",
+      "source": "julia_cherry_spruill",
+      "target": "women",
+      "relationship": "contributes a documentary history of women in the southern colonies",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "spruill",
+        "richter_spruill"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. Richter’s 1999 review documents source use, Scott’s reissues and Colonial Williamsburg interpretation, alongside a specific coverage criticism. Original book passages remain mediated.",
+      "map_label": "Everyday institutions and later editorial recovery"
+    },
+    {
+      "id": "edge_280",
+      "source": "julia_cherry_spruill",
+      "target": "social",
+      "relationship": "provides an earlier case of inquiry into everyday work and social relations",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "spruill",
+        "richter_spruill"
+      ],
+      "evidence_note": "Earlier social history is compared with the later field; no direct influence on every postwar social historian is asserted. Richter describes regional, status, work and family questions and reports Scott’s comparison with later methods. No broad direct influence follows from methodological similarity.",
+      "map_label": "Earlier social inquiry and uneven coverage"
+    },
+    {
+      "id": "edge_540",
+      "source": "women",
+      "target": "julia_cherry_spruill",
+      "relationship": "Anne Firor Scott reintroduces Spruill through later editions and recovery of earlier scholarship",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill",
+        "scott_unheard_voices"
+      ],
+      "evidence_note": "Richter documents the 1972 introduction and revised 1998 introduction; Smithsonian records Spruill’s inclusion in Scott’s Unheard Voices (1993). This is editorial reception, not an influence on the original 1938 research.",
+      "map_label": "Scott: reissues and historical recovery",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_541",
+      "source": "women",
+      "target": "julia_cherry_spruill",
+      "relationship": "Julie Richter identifies questions not asked about Black and Native women",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill"
+      ],
+      "evidence_note": "The 1999 review explicitly acknowledges their presence in the book while questioning the scope of inquiry; it also values regional/status distinctions and documents practical use. No total absence or dismissal of the book is asserted.",
+      "map_label": "Richter: racial scope of the inquiry",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_542",
+      "source": "julia_cherry_spruill",
+      "target": "consumption",
+      "relationship": "Spruill examines household material life and separates prescribed ideals from recorded conduct",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "richter_spruill"
+      ],
+      "evidence_note": "Richter describes dwellings, utensils, clothing and books, quoting p. 208 on reading prescriptions. This is a documented earlier research resource, not proof of direct transmission to a later consumption school.",
+      "map_label": "Household objects, reading and prescribed ideals",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_071",
+      "source": "women",
+      "target": "biography",
+      "relationship": "Davis’s comparative biographies develop through women’s-history teaching, source discovery and revised questions of significance",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "mary_ritter_beard",
+        "spruill",
+        "davis_margins",
+        "davis_margins_primary"
+      ],
+      "evidence_note": "Davis names the 1971 course with Conway and Colie’s Glikl suggestion in her acknowledgments. Her prologue and conclusion compare three lives while retaining religious difference and colonial power. This primary selection supplements the existing catalogue description; it is not a full source audit or a claim that women’s history originated biography.",
+      "classification_basis": "editorial_review",
+      "map_label": "Davis, Conway and Colie: teaching into research"
+    },
+    {
+      "id": "edge_092",
+      "source": "women",
+      "target": "social",
+      "relationship": "overlaps in histories of work, family, and everyday life",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "pinchbeck",
+        "spruill"
+      ],
+      "evidence_note": "Work, households, and everyday life are overlapping subjects; women’s history is not a subset originating in postwar social history.",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "women",
+      "label": "Women’s history",
+      "records": [
+        {
+          "person_id": "julia_cherry_spruill",
+          "role": "historian",
+          "context": "Documents everyday institutions, work and public activity in the colonial South. Richter values its status distinctions but questions its limited inquiry into Black and Native women.",
+          "works": "Women’s Life and Work in the Southern Colonies (1938; Scott introductions for 1972 and 1998 reissues)",
+          "source_ids": [
+            "spruill",
+            "richter_spruill"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_279"
+        }
+      ]
+    },
+    {
+      "node_id": "social",
+      "label": "New social history",
+      "records": [
+        {
+          "person_id": "julia_cherry_spruill",
+          "role": "comparison",
+          "context": "Earlier investigation of institutions, regional differences and status offers a methodological comparison; later social-history membership or general influence is not inferred.",
+          "works": "Women’s Life and Work in the Southern Colonies (1938), assessed by Richter (1999)",
+          "source_ids": [
+            "richter_spruill"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "consumption",
+      "label": "Consumption & material culture",
+      "records": [
+        {
+          "person_id": "julia_cherry_spruill",
+          "role": "precursor",
+          "context": "Examines dwellings, utensils, clothing and possible reading as evidence; prescriptive books are not transparent records of actual behavior.",
+          "works": "Women’s Life and Work in the Southern Colonies (1938), chapters discussed and p. 208 quoted by Richter (1999)",
+          "source_ids": [
+            "richter_spruill"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "davis_margins",
+      "title": "Natalie Zemon Davis, Women on the Margins: Three Seventeenth-Century Lives (Harvard University Press, 1995).",
+      "citation": "Natalie Zemon Davis, Women on the Margins: Three Seventeenth-Century Lives (Harvard University Press, 1995).",
+      "url": "https://catalog.folger.edu/record/726751",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Indexed Folger catalogue description consulted for three differently situated women and their surviving writings; original 1995 distinguished from 1997 electronic record. Direct page failed. No full chapters or source reconstructions checked.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "davis_margins_primary",
+      "title": "Natalie Zemon Davis, Women on the Margins: Three Seventeenth-Century Lives (1995), consulted third printing/first paperback (1997), selected primary passages.",
+      "citation": "Natalie Zemon Davis, Women on the Margins: Three Seventeenth-Century Lives (1995), consulted third printing/first paperback (1997), selected primary passages.",
+      "url": "https://www.hup.harvard.edu/books/9780674955219",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Public OCR read: title/edition; complete prologue pp. 1–4, conclusion pp. 203–216 and acknowledgments pp. 340–344; selected Glikl opening pp. 6–8 and conclusion notes 1–8/start of 9. Main chapters and remaining notes not fully read. Prologue is an imagined October 1994 dialogue. Certeau and Foucault are explicit resources; editions/translations and collaboration are discussed. Original manuscripts, Glikl editions and clinical work uncollated. Pappenheim was treated by Breuer, not Freud; Davis’s reconstruction of her likely feelings is conjectural. This primary selection supplements, rather than retroactively upgrades, the existing catalogue record."
+      }
+    },
+    {
+      "id": "mary_ritter_beard",
+      "title": "Mary Ritter Beard: Woman as Force in History",
+      "citation": "Mary Ritter Beard, Woman as Force in History: A Study in Traditions and Realities (Macmillan, 1946); DePauw University archival description.",
+      "url": "https://depauw.libraryhost.com/repositories/2/archival_objects/19172",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Archival description checked for the 1946 work and its argument for women’s active historical contributions; not a complete appraisal of Beard’s claims.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "pinchbeck",
+      "title": "Ivy Pinchbeck: Women Workers and the Industrial Revolution",
+      "citation": "Ivy Pinchbeck, Women Workers and the Industrial Revolution, 1750–1850 (George Routledge & Sons, 1930; reprint with new preface, Frank Cass, 1969).",
+      "url": "https://api.pageplace.de/preview/DT0400.9781136936906_A24437986/preview-9781136936906_A24437986.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Additional publisher-preview reading: complete original preface vi, complete introduction pp. 1–5, 1969 reprint preface signed October 1968, and opening chapter I p. 7. Distinguishes occupational visibility, family wages, training, marital status, disruption and claimed eventual gains. Names Knowles, Power, scholarship support and George. The later preface proposes post-1850 research rather than supplying it. Remaining occupational chapters and conclusion unread; optimistic generalization is attributed, not independently proven. Previous scope: Publisher-distributed preview: copyright page confirms 1930 original and 1969 reprint; original preface p. vi acknowledges Eileen Power’s research direction and Lilian Knowles’s earlier guidance; introduction pp. 1–2 addresses women’s work before industrialization. Full book and later reception not audited.",
+        "checked_on": "2026-09-12"
+      }
+    },
+    {
+      "id": "richter_spruill",
+      "title": "Julie Richter, review of Julia Cherry Spruill, Women’s Life and Work in the Southern Colonies, H-SAWH, March 1999.",
+      "citation": "Julie Richter, review of Julia Cherry Spruill, Women’s Life and Work in the Southern Colonies, H-SAWH, March 1999.",
+      "url": "https://www.h-net.org/reviews/showrev.php?id=2870",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete review read from original H-Net HTML obtained with curl after browser access failed. Quotes Spruill’s original preface and p. 208, describes Scott’s reissue introduction, and documents Colonial Williamsburg use. Criticism concerns questions not asked about Black and Native women, not their total absence. Richter’s planned use for a slavery study is future intent. Book, original preface and Scott introductions remain mediated; friendship with Beard does not establish methodological transmission."
+      }
+    },
+    {
+      "id": "scott_unheard_voices",
+      "title": "Anne Firor Scott, ed., Unheard Voices: The First Historians of Southern Women (University Press of Virginia, 1993).",
+      "citation": "Anne Firor Scott, ed., Unheard Voices: The First Historians of Southern Women (University Press of Virginia, 1993).",
+      "url": "https://www.si.edu/object/unheard-voices-first-historians-southern-women-edited-anne-firor-scott%3Asiris_sil_446960",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-12",
+        "note": "Smithsonian Libraries catalogue checks 1993 date, editor and contents, including Spruill’s “Conjugal felicity” and domestic discord. Richter’s 1999 review separately cites the volume. Full introduction and collected texts unread; contents do not establish agreement among contributors."
+      }
+    },
+    {
+      "id": "spruill",
+      "title": "Julia Cherry Spruill: Women’s Life and Work in the Southern Colonies",
+      "citation": "Julia Cherry Spruill, Women’s Life and Work in the Southern Colonies (University of North Carolina Press, 1938); Norton reissue with introduction by Anne Firor Scott (1998).",
+      "url": "https://books.google.com/books/about/Women_s_Life_and_Work_in_the_Southern_Co.html?id=VnH35jen4NkC",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Norton description checked for original publication in 1938, documentary subject matter, and Scott’s role in later republication. The 1998 listing is a reissue; the book’s treatment of race and class still needs close reading.",
+        "checked_on": "2026-09-10"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

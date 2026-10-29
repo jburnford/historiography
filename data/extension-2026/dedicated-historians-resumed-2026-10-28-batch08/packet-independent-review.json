@@ -1,0 +1,66 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "exact merged packet before application",
+  "research_baseline_revision": "1.204",
+  "research_baseline_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "production_baseline_revision": "1.211",
+  "production_baseline_sha256": "038349d3341cb3d0642941894c6147a7594bb9ecf623b43c11768be954bbbbec",
+  "revision": "1.212",
+  "packet_sha256": "db09bf211ad6187f68833e800894762058a92303f0218216e8224a0522357439",
+  "reviewed_files_sha256": {
+    "batch.json": "327f6fc3a33157160f28614b7d795cad45d1f88ade09fc9ca93e7e6e7c814063",
+    "responses/entry-draft.json": "49c712d0d83ddfc3743acae41772ef27b461a8465fa155d9cd15208613249a07",
+    "release/editorial-additions.json": "db09bf211ad6187f68833e800894762058a92303f0218216e8224a0522357439",
+    "baseline.json": "06bf9fdb72b93139871bda153fa3481baf04dc79547a201509505f9900deeb61",
+    "manifest.json": "06f9815e94f627d31c1ffd131d7e4449f28326edcb77eb28b30ef4b3197d0809",
+    "freeze.json": "1a99b2a660e0058cec5e5077947ed88ddbac62feefb8f6dd5ed4c9bc029c0f13",
+    "verification.json": "f0c3093901ae5b1a4221407d64cb56a7e6f67ab93f927d208d4c5c6ab15aee93",
+    "prepare.py": "9029b35cd971c0ad9cd77a49f5123e492880d4837ae6485b8ac92a4c77a61ff5"
+  },
+  "dossier_review_sha256": {
+    "julia_cherry_spruill": "f6333af49cb62407d4ece80f3825dad9cfc2a44f111aae9a5a24395d0c25242a",
+    "eleanor_flexner": "e7b32437ebd2470d231e6e313ee8a19f77f8cf2830d1a952cda94525f5a2e9c8",
+    "mary_ritter_beard": "0f74638d4fdfe3047d0b54df5847ad862364f8bffeda30531ffd6773f038f2c6",
+    "michel_rolph_trouillot": "07ca6a2c249dfd48c3626caded038d4881889151d29166fe94e26d969e76b02d",
+    "lucy_maynard_salmon": "83fe8c87f15bed5d29f10cf0485fce33ea2f332407936760ffed2d06784d1c68"
+  },
+  "checks": {
+    "all_manifest_and_freeze_hashes_match": true,
+    "frozen_1_204_contexts_preserved": true,
+    "exact_1_210_current_baseline_and_implementation_receipt_verified": true,
+    "selection_35_prior_5_current_61_remaining_disjoint_and_complete": true,
+    "all_21_packet_edges_equal_reviewed_claims": true,
+    "all_3_cited_new_sources_equal_reviewed_records": true,
+    "eight_uncited_held_only_sources_excluded_without_owner_mutation": true,
+    "all_15_append_only_source_notes_exact": true,
+    "all_2453_old_edges_exact": true,
+    "all_other_prior_tables_exact_except_appended_history_and_scoped_sources": true,
+    "no_new_endpoints_or_duplicate_pair_kinds": true,
+    "direction_source_and_legacy_types_consistent": true,
+    "expected_graph_sha256_matches": true,
+    "read_only_prepare_check_passed": true
+  },
+  "excluded_uncited_source_ids": [
+    "hr28_flexner_fitzpatrick1996_selected",
+    "hr28_flexner_lerner2003",
+    "hr28_flexner_moers1976",
+    "hr28_flexner_zinn_ch6",
+    "hr28_salmon_fling1924_metadata",
+    "hr28_salmon_newspaper1923_selected",
+    "hr28_spruill_beard1939_preview",
+    "hr28_spruill_brent1934"
+  ],
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2474,
+    "sources": 3348,
+    "people": 1438
+  },
+  "expected_production_sha256": "1011b5c8bbb77d96e99ee6c21b5b7a894e83671c1586daaf966f5f74f6bf42f8",
+  "qualification": "No new structural warning or typed pair/kind duplicate. Spruill and Salmon zero-arrow dossiers preserve all prior incidents; held-only sources remain excluded. Tocqueville remains outside owned review queue and no primary Tocqueville body is newly read: Mary Beard own explicit counter-testimony may cite the existing endpoint, with every old Tocqueville record and edge exact. All named mediation, coauthorship, access, editions and criticisms remain exact; protected Indigenous baseline unchanged.",
+  "blocking_findings": [],
+  "scope_limit": "Approves this exact additive local packet. Applied preservation and rebuilt public data require separate checks; no exhaustive network or deployment certified.",
+  "owner_or_packet_files_modified": false
+}

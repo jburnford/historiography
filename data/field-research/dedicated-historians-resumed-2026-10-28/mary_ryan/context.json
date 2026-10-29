@@ -1,0 +1,230 @@
+{
+  "person_id": "mary_ryan",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "mary_ryan",
+    "label": "Mary P. Ryan",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Cradle of the Middle Class (1981) · Women in Public (1990) · Civic Wars (1997)",
+    "description": "A historian of gender and American public life whose research follows women’s access to politics beyond formal suffrage. Nancy Fraser’s substantive reading uses Ryan’s evidence of associations, street protest and public participation to question the identification of public life with one bourgeois arena.",
+    "representative_figures_and_works": "Cradle of the Middle Class (1981); Women in Public (1990); Civic Wars (1997).",
+    "source_ids": [
+      "fraser_sphere_primary",
+      "hc178_mary_ryan_2",
+      "hc178_mary_ryan_3"
+    ],
+    "scope_note": " Selected substantive passages and bibliographic records only; complete monographs not read. Existing profile/field prose, collective relationships and earlier verification qualifications remain unchanged. Citation counts selected the research queue; they do not prove importance or influence. Life status is separately documented in this local person folder; no lifespan or career interval is inferred.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected writing and publication facts",
+      "selection_note": "Selected publications, with component/editorial credit retained; not a complete bibliography or career interval.",
+      "events": [
+        {
+          "id": "hc178_mary_ryan_w1",
+          "label": "Cradle of the Middle Class",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1981,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_mary_ryan_2"
+          ],
+          "support": "Publication year and credited role checked in the cited bibliography; book body unread."
+        },
+        {
+          "id": "hc178_mary_ryan_w2",
+          "label": "Women in Public",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1990,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_mary_ryan_3"
+          ],
+          "support": "Publication year and credited role checked in the cited bibliography; book body unread."
+        },
+        {
+          "id": "hc178_mary_ryan_w3",
+          "label": "Civic Wars",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1997,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc178_mary_ryan_2"
+          ],
+          "support": "Publication year and credited role checked in the cited bibliography; book body unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected dated works do not establish continuous activity or an ending."
+      },
+      "interpretation": "Metadata dates publications; substantive interpretation comes from the explicitly scoped reading notes.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.178/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1467",
+      "source": "mary_ryan",
+      "target": "women",
+      "relationship": "Documents women’s public political activity through associations, protests and street participation despite exclusion from suffrage.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "fraser_sphere_primary"
+      ],
+      "evidence_note": "Fraser61explicitly attributes these historical findings to Ryan; different classes/ethnicities use different routes, not one universal female experience.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc178_mary_ryan_e1"
+    },
+    {
+      "id": "edge_1468",
+      "source": "mary_ryan",
+      "target": "jurgen_habermas",
+      "relationship": "Provides historical evidence against equating public politics with a single bourgeois public sphere.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "fraser_sphere_primary"
+      ],
+      "evidence_note": "Fraser61uses Ryan’s findings to critique Habermas; this is Fraser’s mediated deployment of Ryan, not evidence Ryan adopted every element of Fraser’s theory or belonged to the Frankfurt School.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc178_mary_ryan_e2"
+    },
+    {
+      "id": "edge_1951",
+      "source": "mary_ryan",
+      "target": "gail_bederman",
+      "relationship": "Bederman draws on Ryan’s Cradle of the Middle Class to connect early middle-class formation, manly self-restraint and gendered family practices.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_bederman_manliness_selected"
+      ],
+      "evidence_note": "Body11–12 with notes38–40/43–44 explicitly supports these historical explanations. Davidoff and Hall’s joint Family Fortunes is credited alongside Ryan; Blumin, Paul E. Johnson and Cott supply other aspects. No independent collation of Ryan1981 or wholesale adoption of her account.",
+      "proposal_id": "hc200_bederman_ryan_class_gender"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "culture",
+      "label": "New cultural history",
+      "records": [
+        {
+          "person_id": "mary_ryan",
+          "role": "historian",
+          "context": "Reads parades as changing representations of social divisions. Context follows Hunt’s introduction; chapter body remains unread.",
+          "works": "The American Parade: Representations of the Nineteenth-Century Social Order, in Hunt, ed., The New Cultural History (1989)",
+          "source_ids": [
+            "culture",
+            "hunt_culture_intro_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "frankfurt",
+      "label": "Frankfurt School / critical theory",
+      "records": [
+        {
+          "person_id": "mary_ryan",
+          "role": "historian",
+          "context": "Historical work on women’s publics supplies Fraser with counterexamples.",
+          "works": "Women in Public, cited by Fraser (1990), notes 5 and 10",
+          "source_ids": [
+            "fraser_sphere_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "culture",
+      "title": "Hunt: The New Cultural History (1989)",
+      "url": "https://www.ucpress.edu/books/the-new-cultural-history/paper",
+      "citation": "Lynn Hunt, ed., The New Cultural History (University of California Press, 1989).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete publisher description, metadata and eight-chapter contents read at https://www.ucpress.edu/books/the-new-cultural-history/pdf . March 1989; chapter titles/authors confirmed. Individual chapter bodies unread. Separate source hunt_culture_intro_primary records the full available introduction OCR. Historical author biography on product page is not a current appointment check."
+      }
+    },
+    {
+      "id": "fraser_sphere_primary",
+      "title": "Nancy Fraser, “Rethinking the Public Sphere: A Contribution to the Critique of Actually Existing Democracy,” Social Text 25/26 (1990),56–80.",
+      "citation": "Nancy Fraser, “Rethinking the Public Sphere: A Contribution to the Critique of Actually Existing Democracy,” Social Text 25/26 (1990),56–80.",
+      "url": "https://fswg.wordpress.com/wp-content/uploads/2013/08/fraser-rethinking-the-public-sphere.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read 56–62, 67, 75–77 completely; 63 opening, 68 through opening multicultural discussion, 74 tail; notes 1–25. Remaining body/notes unread. Landes/Ryan/Eley mediated through Fraser, their originals unread. Note 9 acknowledges Habermas knew alternative publics; 67 says counterpublics may exclude. Note 22 credits Spivak and Rita Felski for the combined term. Strong/weak publics distinguish decision from opinion, not moral rank. Suspect etymology and bibliographic dates not adopted. Addendum 2026-10-25: Addendum for Mary Ryan entry:61read, with59–62context. Fraser explicitly describes Ryan’s evidence of women’s associations, protest and multiple public arenas. This is named substantive reader mediation; Ryan’s original text not read. Earlier source locators and qualifications remain."
+      }
+    },
+    {
+      "id": "hc178_mary_ryan_2",
+      "title": "UC Press, Civic Wars, publisher metadata and author biography mirrored in Google Books",
+      "url": "https://books.google.com/books/about/Civic_Wars.html?id=cGHwTYIkG3UC",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher-supplied bibliographic/author information checked: Civic Wars1997, Cradle1981, Women in Public1990. Google Books labels the electronic issue reprint/revised; no content argument derived from this metadata."
+      }
+    },
+    {
+      "id": "hc178_mary_ryan_3",
+      "title": "Smithsonian Libraries: Women in Public",
+      "url": "https://www.si.edu/object/women-public-between-banners-and-ballots-1825-1880-mary-p-ryan%3Asiris_sil_398842",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Custodial library record dates original1990; current Hopkins paperback1992distinct."
+      }
+    },
+    {
+      "id": "hc200_bederman_manliness_selected",
+      "title": "Gail Bederman, Manliness & Civilization (Chicago,1995): selected chapter 1 body and actual endnotes.",
+      "citation": "Gail Bederman, Manliness & Civilization: A Cultural History of Gender and Race in the United States,1880–1917 (Chicago: University of Chicago Press,1995), selected printed2–44 and chapter1 notes1–154,241–250.",
+      "url": "https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/4188/files/2018/08/Bederman-Manliness-and-Civilization.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Public CUNY-hosted scan retrieved successfully via S3 CDN. Fresh selected printed2–44 and actual chapter1 endnotes241–250 read through page OCR;24–25 and246–247 visually inspected. Scan has two printed pages per PDF page and discontinuous later extracts, not the full307-page book. Chapter1 opening1, acknowledgments, full later chapters and cited originals unread. PDF page3=printed2–3;14=24–25;73=240–241;74=242–243;76=246–247. Scan marks/annotations are not authorial additions. Sole book author Bederman; Catharine R.Stimpson is series editor, not coauthor.1995 original distinguished from1996 paperback. Note97 prints an unverified1972 date for Power/Knowledge; no automatic correction or assertion of an original edition."
+      }
+    },
+    {
+      "id": "hunt_culture_intro_primary",
+      "title": "Lynn Hunt, “Introduction: History, Culture, and Text,” in The New Cultural History (1989), 1–22.",
+      "citation": "Lynn Hunt, “Introduction: History, Culture, and Text,” in The New Cultural History (1989), 1–22.",
+      "url": "https://doi.org/10.1525/9780520908925-002",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete available introduction OCR read, printed 1–22. Two-page spreads sometimes interleave and words are garbled; no original-image collation or exact quotation certification. Hunt differentiates anthropological, literary, gender and visual approaches and discusses the volume’s chapters. Her broad assessments of Marxism, Annales and Foucault remain attributed interpretations. Chapter bodies and historical examples are not independently checked; platform AI summary ignored. Addendum 2026-10-25: Additional fresh selected-page review,2026-10-25: primary scan https://horomicos.wordpress.com/wp-content/uploads/2018/10/652_hunt_cult_hist.pdf visually checked on printed18–19, especially the paragraph crossing the page break and n.42. Hunt identifies Scott as a forceful example of gender’s methodological implications within her own cultural-history framing. This does not establish the derivation of Hunt’s entire empirical practice; Scott’s full book remains unread here."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

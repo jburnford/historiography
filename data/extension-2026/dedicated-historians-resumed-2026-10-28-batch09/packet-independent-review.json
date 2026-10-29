@@ -1,0 +1,63 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "exact merged packet before application",
+  "research_baseline_revision": "1.204",
+  "research_baseline_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "production_baseline_revision": "1.212",
+  "production_baseline_sha256": "1011b5c8bbb77d96e99ee6c21b5b7a894e83671c1586daaf966f5f74f6bf42f8",
+  "revision": "1.213",
+  "packet_sha256": "4145541ec6e9c3b70515dde69be531b2ca06d50490b92f69aacb5212605a7746",
+  "reviewed_files_sha256": {
+    "batch.json": "f176a28b12c401843cc6337d8f9adad728d8084f60c22c2f36380bee6bf0417c",
+    "responses/entry-draft.json": "ce771b0ee641c938a23d928daa907bd3357299822c54fc3947a1ba4b25197d58",
+    "release/editorial-additions.json": "4145541ec6e9c3b70515dde69be531b2ca06d50490b92f69aacb5212605a7746",
+    "baseline.json": "a8c9acdd08c704eb5f4b5b031cd1b5d7dd476e3215b8af5829a62d2afc70b318",
+    "manifest.json": "fd6557f42f65f8613952db04882a61df096cac33904b878276a422c5eb1bd88d",
+    "freeze.json": "cef0454e9ae30a76a0a341d323cf109c92f0fcb6b726b6f8f0918e5dd1f9227d",
+    "verification.json": "93665d8942d2fe8b1592f0c18a565c8105d692f576a6655923c44119f1a5742d",
+    "prepare.py": "186321eea8aeefa1444871e10cb93d73a0c30325fb81cf81980465659588490c"
+  },
+  "dossier_review_sha256": {
+    "mary_ryan": "a886a5823f33d3c19c7877e9eb7769ca06a0b242ed94e0ae08559912b061465b",
+    "alan_taylor": "856c35a9a559a5d65f602c713dbbd4e42706462bb81ac5702d1709a00f9c1675",
+    "carolyn_merchant": "d3f130204389176bb240e2efa6904d4e8fb32e81317d0f5dc65f3b8c42a57488",
+    "darlene_clark_hine": "9c4bdc93692853bdaf5d3b8f52defdb6307c129a170093a40980b3998f3d58b8",
+    "david_cannadine": "4469fca0b1873a82cf64f243d7173f51830b9477eb94b048b95d632c0b4b3a85"
+  },
+  "checks": {
+    "all_manifest_and_freeze_hashes_match": true,
+    "frozen_1_204_contexts_preserved": true,
+    "exact_1_212_current_baseline_and_implementation_receipt_verified": true,
+    "selection_40_prior_5_current_56_remaining_disjoint_and_complete": true,
+    "all_40_packet_edges_equal_reviewed_claims": true,
+    "all_12_cited_new_sources_equal_reviewed_records": true,
+    "five_uncited_held_only_sources_excluded_without_owner_mutation": true,
+    "all_14_append_only_source_notes_exact": true,
+    "all_2474_old_edges_exact": true,
+    "all_other_prior_tables_exact_except_appended_history_and_scoped_sources": true,
+    "no_new_endpoints_or_duplicate_pair_kinds": true,
+    "direction_source_and_legacy_types_consistent": true,
+    "expected_graph_sha256_matches": true,
+    "read_only_prepare_check_passed": true
+  },
+  "excluded_uncited_source_ids": [
+    "hr28_cannadine_marshall2001",
+    "hr28_merchant_findlen_selected",
+    "hr28_ryan_gilfoyle_extended",
+    "hr28_taylor_colonies_intro",
+    "hr28_taylor_mancall1992_selected"
+  ],
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2514,
+    "sources": 3360,
+    "people": 1438
+  },
+  "expected_production_sha256": "be0c68e92dbc78de3fe9e25e29df38b54c35aef1382abd08537e86040b9ca21f",
+  "qualification": "No new structural warning or typed pair/kind duplicate. All five dossiers preserve prior incidents; five held-only sources remain excluded. Tocqueville remains outside owned review queue and no primary Tocqueville body is newly read: Ryan and Taylor own explicit use or criticism may cite the existing endpoint, with every old Tocqueville record and edge exact. All named mediation, coauthorship, access, editions and criticisms remain exact; protected Indigenous baseline unchanged.",
+  "blocking_findings": [],
+  "scope_limit": "Approves this exact additive local packet. Applied preservation and rebuilt public data require separate checks; no exhaustive network or deployment certified.",
+  "owner_or_packet_files_modified": false
+}

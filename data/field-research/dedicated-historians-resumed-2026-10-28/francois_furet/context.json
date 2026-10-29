@@ -1,0 +1,299 @@
+{
+  "person_id": "francois_furet",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "francois_furet",
+    "label": "François Furet",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“Le Catéchisme révolutionnaire” (1971) · Penser la Révolution française (1978) · Interpreting the French Revolution: Elborg Forster translation (1981) · Le Passé d’une illusion (1995)",
+    "description": "A historian of the French Revolution and political ideas whose work challenged an established social interpretation of revolution. In the opening of his 1971 essay he attacks what he calls a Jacobin historiography, distinguishing its commemorative commitments from critical inquiry. Gérard Grunberg’s substantive 1979 reading identifies a further argument about political language and the representation of popular sovereignty. Both the polemic and its later interpretation remain attributed; the entry does not endorse either a general verdict on Marx or an inevitable path from 1789 to twentieth-century regimes.",
+    "representative_figures_and_works": "“Le Catéchisme révolutionnaire” (1971); Penser la Révolution française (1978, including revised earlier pieces); Interpreting the French Revolution, translated by Elborg Forster (1981); Le Passé d’une illusion (1995).",
+    "source_ids": [
+      "hc174_furet_catechisme",
+      "hc174_furet_grunberg",
+      "hc174_furet_penser",
+      "hc174_furet_translation",
+      "hc174_furet_academie"
+    ],
+    "scope_note": "New identity matched to the French-Revolution historian and BnF/Académie records. Argument support is the bounded original essay and Grunberg’s expressly named reading. Furet/Richet coauthorship of earlier work remains distinct; no group work is reassigned. Original essay, revised collection, translation and later monograph stay separate. His criticism targets a particular historical interpretation, not a personal causal influence or blanket theory classification.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_furet_catechisme",
+          "label": "“Le Catéchisme révolutionnaire”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1971,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_furet_catechisme"
+          ],
+          "support": "Annales 26:2, pp. 255–289. Original article distinguished from revised inclusion in 1978."
+        },
+        {
+          "id": "hc174_furet_penser",
+          "label": "Penser la Révolution française",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_furet_penser"
+          ],
+          "support": "Gallimard 1978; earlier component essays retain 1971 dates."
+        },
+        {
+          "id": "hc174_furet_interpreting",
+          "label": "Interpreting the French Revolution: Elborg Forster translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1981,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_furet_translation"
+          ],
+          "support": "English Cambridge/MSH 1981, separately dated and translator credited."
+        },
+        {
+          "id": "hc174_furet_illusion",
+          "label": "Le Passé d’une illusion",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1995,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_furet_academie"
+          ],
+          "support": "French work dated 1995 in institutional biography; later English translation not assigned this original date. Book unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1395",
+      "source": "francois_furet",
+      "target": "marx",
+      "relationship": "Challenges a specific Marxist/Jacobin historiography of the French Revolution for reproducing revolutionary and commemorative categories.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "hc174_furet_catechisme"
+      ],
+      "evidence_note": "Primary pp. 255–256 read. Furet’s polemical label and diagnosis remain his claims about a specific historiographical dispute, not a critique of every Marxist or a personal arrow to Marx.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_francois_furet_1"
+    },
+    {
+      "id": "edge_1396",
+      "source": "francois_furet",
+      "target": "political",
+      "relationship": "Examines political language and claims to represent the people as mechanisms of revolutionary power.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc174_furet_grunberg"
+      ],
+      "evidence_note": "Named reader Gérard Grunberg, pp. 895 and 897, on Penser. Full book unread; no universal acceptance, deterministic twentieth-century analogy or inference from institutional membership.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_francois_furet_2"
+    },
+    {
+      "id": "edge_1652",
+      "source": "carlo_ginzburg",
+      "target": "francois_furet",
+      "relationship": "Ginzburg disputes Furet’s restriction of subordinate-class history to quantitative and anonymous reconstruction, defending individual cases where the evidence permits.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "rea_debates_ginzburg_cheese_preface"
+      ],
+      "evidence_note": "He explicitly names Furet before defending the possibility of reconstructing individual personalities. This is a methodological criticism, not rejection of quantitative history as such or proof of every Menocchio interpretation. Furet’s underlying text was not newly read.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_cross_ginzburg_furet"
+    },
+    {
+      "id": "edge_1730",
+      "source": "alain_corbin",
+      "target": "francois_furet",
+      "relationship": "Corbin criticizes the republic-centered account he associates with Furet for reducing much of nineteenth-century France to steps toward a later republican outcome.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "df02_corbin_vacarme2006"
+      ],
+      "evidence_note": "Own 2006 answer also names Maurice Agulhon, whose credit is retained here without inventing a standalone endpoint. Corbin argues for studying monarchies, conflicting political emotions and other periods on their own terms. This records his specific historiographical criticism, not a claim that all of Furet’s work is teleological; Furet’s original books remain unread in this dossier.",
+      "proposal_id": "df02_corbin_furet_critique2006"
+    },
+    {
+      "id": "edge_1832",
+      "source": "daniel_roche",
+      "target": "francois_furet",
+      "relationship": "Roche recalls contributing his study of booksellers’ classifications to Furet’s book-history inquiry and receiving Furet’s acknowledgment for it.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_roche_dialogue2"
+      ],
+      "evidence_note": "Own retrospective answer15, printed164, specifically identifies Livre et Société and note16 in Furet’s text. The original Furet acknowledgment was not independently read here. This is a recalled research contribution, not an inference from knowing Furet or sole authorship of the inquiry.",
+      "proposal_id": "hc200_roche_furet_classifications"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "political",
+      "label": "Political history",
+      "records": [
+        {
+          "person_id": "francois_furet",
+          "role": "historian",
+          "context": "Examines political language and claims to represent the people as mechanisms of revolutionary power.",
+          "works": "“Le Catéchisme révolutionnaire” (1971); Penser la Révolution française (1978, including revised earlier pieces); Interpreting the French Revolution, translated by Elborg Forster (1981); Le Passé d’une illusion (1995).",
+          "source_ids": [
+            "hc174_furet_grunberg"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1396"
+        }
+      ]
+    },
+    {
+      "node_id": "marx",
+      "label": "Marxist social history",
+      "records": [
+        {
+          "person_id": "francois_furet",
+          "role": "historian",
+          "context": "Challenges a specific Marxist/Jacobin historiography of the French Revolution for reproducing revolutionary and commemorative categories.",
+          "works": "“Le Catéchisme révolutionnaire” (1971); Penser la Révolution française (1978, including revised earlier pieces); Interpreting the French Revolution, translated by Elborg Forster (1981); Le Passé d’une illusion (1995).",
+          "source_ids": [
+            "hc174_furet_catechisme"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1395"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "df02_corbin_vacarme2006",
+      "title": "Alain Corbin interviewed by Vincent Casanova, Philippe Mangeot and Philippe Masanet, “Ne rien refuser d’entendre” (2006).",
+      "url": "https://vacarme.org/article492.html",
+      "citation": "Alain Corbin, interview by Vincent Casanova, Philippe Mangeot and Philippe Masanet, “Ne rien refuser d’entendre,” Vacarme 35 (3 April 2006).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Fresh selected French primary answers: opening public/civic-history discussion and Prost recollection; empathy and scientificity questions; people without traces and Braudel’s material anthropology; Pinagot’s unknowable feelings; political-history answer naming Elias, Agulhon and Furet; temporalities; named research exchanges and students. Later sexual-history discussion also screened for collaborators. Not a reading of all cited originals, nor of original Prost criticism. The interviewer’s Ginzburg attribution is not silently converted into a new direct self-acknowledgment."
+      }
+    },
+    {
+      "id": "hc174_furet_academie",
+      "title": "Académie française, François Furet biography and selected works.",
+      "citation": "Académie française, François Furet biography and selected works.",
+      "url": "https://www.academie-francaise.fr/les-immortels/francois-furet?election=20-03-1997&fauteuil=1",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional biography records Le Passé d’une illusion 1995, birth 1927 and death 12 July 1997. Bibliographic/life fields only; celebratory evaluation not adopted, and no reading of the communism book or translation claimed."
+      }
+    },
+    {
+      "id": "hc174_furet_catechisme",
+      "title": "François Furet, “Le Catéchisme révolutionnaire,” Annales E.S.C. 26:2 (1971): 255–289.",
+      "citation": "François Furet, “Le Catéchisme révolutionnaire,” Annales E.S.C. 26:2 (1971): 255–289.",
+      "url": "https://www.persee.fr/doc/ahess_0395-2649_1971_num_26_2_422355",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary opening pp. 255–256 read through Persée extraction; p. 257 retrieval failed and remaining article unread. The polemic answers criticism of Furet/Richet’s joint work and labels a particular dominant historiography Marxist/Jacobin. The revised 1978 collection text is not assumed identical to this original. Diagnosis and political judgments stay attributed."
+      }
+    },
+    {
+      "id": "hc174_furet_grunberg",
+      "title": "Gérard Grunberg, review of Furet, Penser la Révolution française, Revue française de science politique 29:4–5 (1979): 895–898.",
+      "citation": "Gérard Grunberg, review of Furet, Penser la Révolution française, Revue française de science politique 29:4–5 (1979): 895–898.",
+      "url": "https://www.persee.fr/doc/rfsp_0035-2950_1979_num_29_4_418652_t1_0895_0000_000",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Selected printed pp. 895 and 897 read, including the relationship among old/new essays and the interpretation of political language and popular sovereignty. Pp. 896 and 898 not claimed read. This named substantive reading is not Évelyne Ritaine’s different review; full Furet book unread."
+      }
+    },
+    {
+      "id": "hc174_furet_penser",
+      "title": "François Furet, Penser la Révolution française (Paris: Gallimard, 1978), BnF original record.",
+      "citation": "François Furet, Penser la Révolution française (Paris: Gallimard, 1978), BnF original record.",
+      "url": "https://catalogue.bnf.fr/ark:/12148/cb34608906f",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Author, original Gallimard 1978, 259-page record checked. Later Folio page counts do not replace original pagination. Book body unread."
+      }
+    },
+    {
+      "id": "hc174_furet_translation",
+      "title": "François Furet, Interpreting the French Revolution, translated by Elborg Forster (Cambridge University Press / Éditions de la Maison des Sciences de l’Homme, 1981).",
+      "citation": "François Furet, Interpreting the French Revolution, translated by Elborg Forster (Cambridge University Press / Éditions de la Maison des Sciences de l’Homme, 1981).",
+      "url": "https://search.worldcat.org/fr/title/461652610",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional bibliographic metadata and contemporary AHR review metadata https://academic.oup.com/ahr/article-abstract/87/4/1103/90379 checked for 1981 co-imprint and Forster translation. English body not read or collated with the French."
+      }
+    },
+    {
+      "id": "hc200_roche_dialogue2",
+      "title": "Roche: resources, disagreements and thesis choices in his2016 dialogue (2018issue/2023online)",
+      "url": "https://devisu.inha.fr/modespratiques/390",
+      "citation": "Gil Bartholeyns interviews Daniel Roche, “Avis de recherche: Dialogue avec Daniel Roche (seconde partie),” Modes pratiques3(2018):157–169; interview1July2016, online26August2023. doi:10.54390/modespratiques.390.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh selected speaker-labelled HTML and official facsimile, selectedpp.160–164 and167–168, notes6–18/20/23/24;160/162/163 visually collated. Questions and DR answers distinguished. The 2018 issue,2016 conversation and2023 online date remain separate. Bracketed Foucault edition dates and an erroneous Labrousse birth year in the transcript are not adopted as new chronology/life facts. Complete books, lecture series and original recording unread."
+      }
+    },
+    {
+      "id": "rea_debates_ginzburg_cheese_preface",
+      "title": "Carlo Ginzburg, The Cheese and the Worms, translated by John and Anne Tedeschi (English 1980; Italian original 1976), preface to the Italian edition.",
+      "url": "https://memoof.me/download/292/pdf/292.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Selected primary printed pp. xvii–xix read by OCR of the scan; title and copyright pages checked for translators, 1976 original, 1980 English and 1992 Hopkins Paperbacks manifestation. Ginzburg credits attention to exclusions while criticizing the treatment of excluded people and refusal of interpretation. The original Italian, French Foucault works and Pierre Riviere collection were not independently read for this audit; this is Ginzburg’s attributed interpretation. Additional independently checked primary coverage, 2026-10-25: printed xviii–xx visually read for the Derrida/Furet responses; the coordinator also checked the examples/praise paragraphs on xvii and xix for Davis, Thompson and Le Goff. The 1976 Italian preface, 1980 joint Tedeschi English translation and 1992 paperback manifestation remain distinct. The cited scholars’ underlying works were not newly read; neither a whole-book reading nor a general formative debt is inferred."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

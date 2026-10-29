@@ -1,0 +1,26 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "applied canonical graph and protected public assets",
+  "production_sha256": "d1c4448b3070c254902f3f6944f87eec2567a549af5a063e7185d3c2d09060cc",
+  "acceptance_sha256": "642dadb841314bfc6766cb032b730566f086633f046c0239102abd77a4ad4496",
+  "packet_review_sha256": "dd9348888079c23df49d2ecb8c80f8fbb345e8db7b8fdb5330db05f3f41a043d",
+  "preservation_inventory_sha256": "dbffa8af471648fcfc74744a629e7fb6fbbcb40064a59ff7997dc882d7408d5a",
+  "checks": {
+    "all_2195_prior_edges_exact": true,
+    "all_prior_nodes_people_and_other_tables_exact": true,
+    "prior_revision_history_exact_prefix": true,
+    "old_source_changes_limited_to_approved_append_only_notes": true,
+    "all_86_protected_file_hashes_exact": true,
+    "applied_graph_matches_reviewed_predicted_sha256": true
+  },
+  "counts": {
+    "nodes": 368,
+    "edges": 2234,
+    "sources": 3266,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "scope_limit": "Local canonical application and protected assets at review time. Public graph/overview rebuild and runtime checks are separate; no deployment or full intellectual-network certification."
+}

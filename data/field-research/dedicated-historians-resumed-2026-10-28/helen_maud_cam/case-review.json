@@ -1,0 +1,105 @@
+{
+  "person_id": "helen_maud_cam",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "checked_on": "2026-10-28",
+  "status": "bounded_research_complete",
+  "baseline_incident_edges": [
+    {
+      "id": "edge_302",
+      "source": "helen_maud_cam",
+      "target": "political",
+      "relationship": "examines medieval government and institutions through local records",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "helen_cam",
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. Cheney identifies criticism of the Hundred Rolls editions and local administration, then county representation and parliamentary practice. His specific reservations remain attributed.",
+      "map_label": "Records, local government and representation"
+    },
+    {
+      "id": "edge_303",
+      "source": "helen_maud_cam",
+      "target": "ranke",
+      "relationship": "invites comparison of documentary criticism and historical institutional inquiry",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "helen_cam",
+        "cam_stubbs",
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Cam’s documented interlocutors include Maitland, Stubbs, and Vinogradoff. This is not an invented direct Ranke → Cam influence claim. Cam’s Stubbs opening and Cheney’s account provide named scholarly resources, without changing this comparison into a Ranke influence.",
+      "map_label": "Document criticism with different interlocutors"
+    },
+    {
+      "id": "edge_525",
+      "source": "political",
+      "target": "helen_maud_cam",
+      "relationship": "Maitland and Stubbs supply scholarly resources; Vinogradoff and documentary teachers support Cam’s work",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir",
+        "cam_stubbs"
+      ],
+      "evidence_note": "Cam’s primary Stubbs opening and Cheney’s account distinguish reading, publication sponsorship and Hall/Jenkinson training. The group arrow names different mechanisms rather than a uniform doctrine.",
+      "map_label": "Reading, documentary training and publication",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_526",
+      "source": "political",
+      "target": "helen_maud_cam",
+      "relationship": "Cheney questions some legal deductions and broad narratives of legal progress",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Memoir pp. 303–305 combines these reservations with substantial appreciation. It does not reject the value of Cam’s local inquiry or independently settle each legal case.",
+      "map_label": "Cheney: juristic inference and broad conclusions",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_527",
+      "source": "helen_maud_cam",
+      "target": "biography",
+      "relationship": "Cam interprets Maitland’s scholarship in a prefatory memoir",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cam_cheney_memoir"
+      ],
+      "evidence_note": "Cheney p. 304 identifies the 1957 memoir for Selected Historical Essays. Its full text is not newly read; this is a documented contribution to historians’ life writing.",
+      "map_label": "A scholarly memoir of Maitland",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "relevant_group_routes": [],
+  "existing_claim_assessment": "Existing302/303/525/526/527 IDs and qualifications preserved; groupresource/Cheneycriticism now freshlychecked with actual passage scope.303 remains undirected editorial documentary comparison, not Ranke personal formation. Two new undirected Cam–Power/Cam–Hilton pairs use explicit Eldridge scholarly comparisons, checkedagainst frozen1.204 with rootproductionrebase stillrequired.",
+  "new_proposal_ids": [
+    "hr28_cam_power_method_comparison",
+    "hr28_cam_hilton_community_comparison"
+  ],
+  "coverage": {
+    "incoming": "MajorMaitland/Stubbs/Vinogradoff/recordtraining/earlyhelp checked with distinctmechanisms and missing endpoints. Namedpositiveandcriticalreception retained, not endpointquota.",
+    "outgoing": "Own1921specificStubbsframingcritique, own1912comparison/transmissioncaution,1948qualifiedappreciation and mediatedBolland/Jolliffereviews. Chibnallbrokering/teaching/collectiveteams distinguished from directtheorydebts.",
+    "editions_and_voices": "1909thesis/1912publication;1921CammonographversusVinogradoffpreface/Ehrlichco-volume;1948vs2011online;1962London/1963NewYorkinheritededitionlimits;Cheney1969volume/1970footer/1971metadata;2021correctedthesisnotlaterbook.",
+    "bounded_coverage": "FreshfullCheneyandselectedprimary/laterreception;twoexplicitcomparisonsandnamedheldroles,notcompletebooksornetwork. Independentreviewpending."
+  },
+  "duplicate_check": "Pair/kind checked against frozen current graph; final cross-dossier and current-graph review still required",
+  "raw_policy": "Raw source bodies/PDF/text/images remain ignored in raw/",
+  "output_hashes": {
+    "proposals.json": "8a3d680e0ec66e72e0260fab6a21381ab4c7f72b9b03b97a08f970bb450fe16b",
+    "sources.json": "0cd5873aa6fbb124ecee74d63613e21542174d89fdeada91dae8ddba46219ddc",
+    "held-cases.json": "6b335da4eaff18d6f8c970a5fd506f862a62151d619298b7e57f9f69aade3039"
+  }
+}

@@ -1,0 +1,881 @@
+{
+  "person_id": "lucy_maynard_salmon",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "lucy_maynard_salmon",
+    "label": "Lucy Maynard Salmon",
+    "date_label": "Social inquiry, evidence, and teaching · 1890s–1920s",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Brings domestic employment, everyday evidence and critical teaching into historical inquiry. Domestic Service combines questionnaires, statistical comparison and historical explanation, treating household work as connected to wider economic change. Her practice depends on respondents, students, librarians and statistical collaborators.",
+    "representative_figures_and_works": "Domestic Service (1897); teaching and research at Vassar, including work with cookbooks and household material evidence. Connects histories of women’s work to a wider reconsideration of what counts as a historical source.",
+    "source_ids": [
+      "salmon",
+      "salmon_works",
+      "salmon_domestic_primary",
+      "salmon_progress_primary",
+      "salmon_underhill_collection"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "The 1897 preface and opening chapters explain response limits and distinguish facts from proposed remedies; the 1901 edition adds European inquiry. Distribution through college and association networks is not established probability sampling, despite Salmon’s claim to representativeness. The 1906 Apologia recalls Tyler’s teaching and describes disciplinary boundaries from her own perspective. Underhill’s manuscript and index work is acknowledged. Vassar documents later source criticism and pedagogy; original newspaper studies and contemporary reviews remain unchecked. Her earlier inquiry is not postwar social-history membership.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1897–1906",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_3ec9ece83473",
+          "label": "Domestic Service",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1897,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:salmon_domestic_primary"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_0ba498c11301",
+          "label": "Progress in the Household",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1906,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:salmon_progress_primary"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_281",
+      "source": "lucy_maynard_salmon",
+      "target": "women",
+      "relationship": "investigates domestic service and household work before postwar expansion",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "salmon_works",
+        "salmon_domestic_primary",
+        "salmon_progress_primary"
+      ],
+      "evidence_note": "Editorial placement based on the cited work or supporting account; not a claim that this historian founded the whole field. Original preface and chapters I–II support the concrete labor inquiry; the 1906 Apologia distinguishes its purpose from household panaceas. Evidence limits and acknowledged collective work remain explicit.",
+      "map_label": "Domestic work, survey evidence and explanation"
+    },
+    {
+      "id": "edge_282",
+      "source": "lucy_maynard_salmon",
+      "target": "social",
+      "relationship": "offers earlier investigations of ordinary life and social evidence",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "salmon",
+        "salmon_domestic_primary"
+      ],
+      "evidence_note": "The Vassar account uses social-history terminology retrospectively; this link does not move Salmon into a school that expanded after her death. The primary opening connects household work with industrial change, while the preface discusses nonresponse. This is an earlier comparison, not postwar movement membership.",
+      "map_label": "Earlier labor inquiry and evidence limits"
+    },
+    {
+      "id": "edge_283",
+      "source": "lucy_maynard_salmon",
+      "target": "consumption",
+      "relationship": "invites comparison through cookbooks, household objects, and everyday evidence",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "salmon",
+        "salmon_works",
+        "salmon_domestic_primary"
+      ],
+      "evidence_note": "A comparison of evidence and questions, not a direct genealogy from Salmon to the 1980s consumption-history literature. The original chapters consider changing household production; Vassar documents material-source pedagogy. Neither establishes a direct genealogy of the later consumption movement.",
+      "map_label": "Household work and everyday evidence"
+    },
+    {
+      "id": "edge_284",
+      "source": "lucy_maynard_salmon",
+      "target": "ranke",
+      "relationship": "shares critical work with sources while extending the range of evidence and subjects",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "salmon",
+        "salmon_progress_primary"
+      ],
+      "evidence_note": "Not an assertion that her pedagogy derived solely from Ranke; source criticism and social inquiry can coexist. Salmon’s Apologia explicitly names Tyler’s instruction on judging a work’s purpose. This adds a specific interlocutor without reclassifying the existing Ranke comparison as influence.",
+      "map_label": "Source criticism with named teaching resources"
+    },
+    {
+      "id": "edge_543",
+      "source": "quant",
+      "target": "lucy_maynard_salmon",
+      "relationship": "Wright and the Massachusetts bureau help design and tabulate the domestic-service inquiry",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "salmon_domestic_primary"
+      ],
+      "evidence_note": "The original preface identifies schedules, advance census data, bureau collation and Wadlin/Pidgin assistance. Named methodological work is distinct from ownership of Salmon’s conclusions or modern probability sampling.",
+      "map_label": "Schedules, census materials and tabulation",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_544",
+      "source": "lucy_maynard_salmon",
+      "target": "economic",
+      "relationship": "Salmon treats household employment as a labor question connected to industrial change",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "salmon_domestic_primary",
+        "salmon_progress_primary"
+      ],
+      "evidence_note": "Chapters I–II challenge the reduction of domestic service to personal relations and describe changing production/division of labor. Her general historical explanation and normative judgments are attributed; proposed remedies are not independently evaluated.",
+      "map_label": "Domestic service within economic change",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_545",
+      "source": "lucy_maynard_salmon",
+      "target": "quant",
+      "relationship": "Salmon combines employer and worker questionnaires with statistical comparisons and discussion of nonresponse",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "salmon_domestic_primary"
+      ],
+      "evidence_note": "Original preface explains network distribution, respondent hesitations and comparative tabulation. This is earlier quantitative practice; no general influence on later cliometrics or independent validation of the tables is claimed.",
+      "map_label": "Household surveys and response limits",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_546",
+      "source": "women",
+      "target": "lucy_maynard_salmon",
+      "relationship": "Vassar women distribute schedules and Underhill supports manuscript production",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "salmon_domestic_primary",
+        "salmon_underhill_collection"
+      ],
+      "evidence_note": "The original preface acknowledges students/alumnae, respondents and A. Underhill’s manuscript, proof and index work. Collection description identifies Adelaide Underhill’s partnership; unnamed respondents remain visible rather than being absorbed into a solitary-author narrative.",
+      "map_label": "Survey networks and Underhill’s editorial work",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_547",
+      "source": "ranke",
+      "target": "lucy_maynard_salmon",
+      "relationship": "Tyler’s teaching supplies Salmon with a principle for evaluating a work by its purpose",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "salmon_progress_primary"
+      ],
+      "evidence_note": "The 1906 Apologia vi explicitly recalls this instruction. The broad critical-scholarship endpoint identifies Tyler’s contextual place, not a demonstrated Ranke-to-Salmon line or proof that all her methods derive from one teacher.",
+      "map_label": "Tyler: evaluating the purpose of a work",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_797",
+      "source": "cdn_national_tradition",
+      "target": "economic",
+      "relationship": "The staple approach as a Canadian contribution to economic history",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cdng_watkins_1963",
+        "cdng_salmon_1997"
+      ],
+      "evidence_note": "Watkins (1963): the staple approach \"is primarily a Canadian innovation; indeed, it is Canada's most distinctive contribution to political economy\", with Innis as \"the leading innovator\". Salmon (1997): the staple thesis gave \"an economic rationale for Canadian political development\". Contribution to the field, not a claim that economic history adopted it generally. The atlas economic entry has no Canadian anchors, so no PhD overlap is computed.",
+      "classification_basis": "editorial_review",
+      "map_label": "Staple approach",
+      "proposal_id": "cdng_nt_rel_02"
+    },
+    {
+      "id": "edge_897",
+      "source": "harold_a_innis",
+      "target": "cdn_national_tradition",
+      "relationship": "The staple studies: Canada read through its exports of fur and fish (1930, 1940)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cpl129_innis_1930_text",
+        "cdng_innis_1930",
+        "cdng_innis_1940",
+        "cdng_watkins_1963",
+        "cpl129_brady_1953",
+        "cdng_salmon_1997",
+        "cdng_mackintosh_1923"
+      ],
+      "evidence_note": "Innis's own statement, 1930 conclusion (pp. 386–397 read): 'The economic history of Canada has been dominated by the discrepancy between the center and the margin of western civilization. Energy has been directed toward the exploitation of staple products and the tendency has been cumulative' (p. 388); 'The northern half of North America remained British because of the importance of fur as a staple product' (p. 396); 'The present Dominion emerged not in spite of geography but because of it' (p. 397). Watkins (1963, opening paragraphs read) calls him 'the leading innovator' whose work 'stamped the “school”', with an approach 'more technological history writ large than a theory of economic growth'. Brady (1953, read in full) traces his study of 'the staple industries, beginning with the fur trade and fisheries' (p. 89). Salmon (1997, pp. 180–181 read): the staple thesis 'provided an economic rationale for Canadian political development'. A contribution, not a founding: Watkins says 'others tilled the same vineyard', Salmon notes that 'Innis never claimed to have originated the staples theory' (n. 2), Brady calls Adam Shortt 'the pioneer in these economic studies' (p. 91), and Mackintosh's 1923 article precedes the book. The Cod Fisheries is checked at catalogue level only. In the sampled corpus, 82 of 1,303 strict History doctoral dissertations dated 2009–2026 cite any of his works; the citation share falls from 7.1% (2009–14) and 6.8% (2015–19) to 4.9% (2020–26). Of the 82, 48 cite The Fur Trade in Canada and 6 The Cod Fisheries. Bibliographies record consultation, not influence.",
+      "classification_basis": "editorial_review",
+      "map_label": "Staple studies, 1930–40",
+      "target_strand": "cdn_national_tradition/staples",
+      "proposal_id": "cpl129_innis_rel_01"
+    },
+    {
+      "id": "edge_910",
+      "source": "richard_white",
+      "target": "environment",
+      "relationship": "Environmental change through land use, subsistence and labour: Island County (1980), the roots of Native dependency (1983) and the Columbia as an organic machine (1995), with an early survey of the field (1985)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pe131_richard_white_land_use_1980",
+        "pe131_richard_white_cronon_foreword_1992",
+        "pe131_richard_white_organic_machine_1995",
+        "pe131_richard_white_roots_1983",
+        "pe131_cronon_uses_1993",
+        "pe131_richard_white_miller_1994",
+        "pe131_richard_white_phr_1985",
+        "pe131_worster_jah_1990",
+        "cronon_environment_syllabus_1994",
+        "pe131_extras_cook_1990",
+        "pe131_richard_white_jah_1990",
+        "pe131_crosby_isenberg_2013"
+      ],
+      "evidence_note": "White's own statements, known for his books only through Google Books search-within snippets (page images not seen) and therefore paraphrased where the wording carries the claim. Land Use, Environment, and Social Change (1980; snippets of the 1992 paperback, whose body text is the 1980 text; p. 7 as given in the snippet results): White presents the book as departing somewhat from recent environmental history, which he describes as mostly a variant of intellectual and political history, by tracing the environmental impact of Indian and later intruding peoples and its consequences for their societies; on the same page he credits James Malin's Great Plains studies, ignored by most historians, as a trail to follow. In the preface to the 1992 edition (November 1991; snippet, folio xviii inferred from Google Books page ids that carry the printed folios xi, xvi and xvii) he judges his own use of ecology: 'I used ecological concepts like community, succession, climax, and ecosystem unproblematically even though within the discipline of ecology those ideas had already come under attack'. Cronon's foreword (October 1991; snippets, folio xi observed) places the book among White's contributions 'to environmental history, to the history of the American West, to Indian history, and to American history generally' and calls it 'a textbook case of an underappreciated classic' (p. xi). The Organic Machine (1995; snippets of the preface, whose printed folios were not visible, and of the conclusion, p. 112 taken from the Google Books page id, not seen as a printed folio), in paraphrase: White examines the Columbia as an organic machine, an energy system modified by human intervention that keeps natural, unmade qualities; human labour is energy as much as the river's flow or the calories salmon store for their journey; environmentalists, he argues, distance humans from nature by favouring the eye over the hand and contemplation over work; and the conclusion finds the nature in us in our labour and energy (p. 112). In-period third-party readings: Cronon (1993; OCR of the author-hosted page scan) footnotes Land Use and The Roots of Dependency (nn. 15, 23) for the lesson that 'the horse was not simply a European invader, but a complex cultural entity' (p. 9); D. R. Miller (1994; PDF read in full) calls him 'The social and environmental historian Richard White' (p. 157) and quotes The Middle Ground that dependency 'is an economic, political, and social relationship, but can also be an environmental relationship' (p. 169). On the 1985 survey (unread; paywalled): Worster (1990, read in the 2002–03 Portuguese translation, n. 5, p. 42) calls it the best effort to trace the field's emergence, 'pelo menos em uma parte influente do mundo', reporting White's view that frontier and western history was the formative influence; Cronon's 1994 graduate syllabus assigns it 'read for main themes' (p. 4); in Canada, Cook (1990) cites it (n. 4) for Turner and Webb as 'important, if declining, influences into the 1950s' (p. 6). A contribution, not a founding. Later readings, not evidence for this edge: Isenberg (2013) names White among historians who 'synthesized the material and cultural approaches to the environment' (p. 87) and quotes his 1990 round-table objection that Worster's scheme reduced culture to 'superstructure in the old vulgar Marxist sense' (pp. 88–89, citing JAH 76, pp. 1112–1113; the JAH text is unread).",
+      "classification_basis": "editorial_review",
+      "map_label": "Land use, labour and the field, 1980–1995",
+      "proposal_id": "pe131_richard_white_rel_02"
+    },
+    {
+      "id": "edge_955",
+      "source": "donald_creighton",
+      "target": "cdn_national_tradition",
+      "relationship": "The Laurentian narrative: the St. Lawrence commercial system as the basis of a transcontinental Canada (1937), carried through Dominion of the North (1944) and the Macdonald biography (1952–55)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pe135_creighton_dominion_1944",
+        "cdng_creighton_1937",
+        "cdng_creighton_macdonald",
+        "pe135_creighton_heaton_1938",
+        "pe135_creighton_brunet_1953",
+        "pe135_creighton_fregault_1955",
+        "pe135_creighton_decline_1969",
+        "pe135_creighton_ouellet_1984",
+        "pe135_creighton_woodcock_1979",
+        "cdng_davis_1985",
+        "cdng_salmon_1997"
+      ],
+      "evidence_note": "In-period, his own text. Dominion of the North (1944; pages read in an open copy): the post at Quebec gave the French 'the one great river system which led to the Atlantic seaboard from the heart of the continent'; 'Inevitably the river came to seem the natural basis of a great commercial empire stretching far into the distant west; and the achievement of this empire became the common objective of successive generations of Canadians, though their methods altered and the staple products of their trade were sometimes changed. The first staple of the St. Lawrence commercial system was beaver fur' (p. 21); the rivalry of 'the northern and southern routes, between Montreal and New York, for the control of the Great Lakes system and the command of the western trade', a conflict that 'was to remain essentially the same' (pp. 24–25); 'Quebec had been the origin of the empire of the St. Lawrence; it was to be the genesis of the Dominion of Canada' (p. 298). In-period reception. Herbert Heaton's review (CJEPS, 1938; first page, p. 565, read) quotes the book as 'an attempt to trace the relations between the commercial system of the St. Lawrence and the political development of Canada' (the book's words as Heaton quotes them; the 1937 book is unread) and reads it as a test of the economic interpretation of history that 'has pleased neither the Marxians nor their enemies'. Michel Brunet (RHAF, 1953, p. 579) calls him 'l'un des maîtres contemporains de l'historiographie anglo-canadienne'; Guy Frégault (RHAF, 1955, p. 446) sums up the Macdonald biography as 'Nationalisme antiaméricain, impérialisme et centralisation : synthèse canadienne, — je veux dire anglo-canadienne'. His own retrospect, 1969 (read in full; a later statement by the author, not evidence of what the 1937 book says): 'This Laurentian theme has its basis in the fact that the St. Lawrence is the one great river system that leads from the Atlantic Seaboard to the heart of the continent of North America'; the river 'has inspired generations of Canadians to build a great territorial empire, both commercial and political, in the western interior of the continent' (p. 16); 'The west, it was believed, would make Canada a nation, and the east-west axis would be its backbone' (p. 17); in choosing Macdonald he had 'stumbled upon the only satisfactory method of writing the second phase', so that he had written 'a trilogy on one theme' (p. 16). The phrase, he says, came to be regarded 'as the inspiration, at least in part, of a new school of Canadian historians and as the genesis of a new historical doctrine, the Laurentian interpretation of Canadian history'; he had 'no wish to disavow the parentage of an idea' (p. 14). Later readings: Ouellet (1984, pp. 226–227) calls him 'le chef de l'Ecole laurentienne'; Salmon (1997) says he 'simplified and expanded Innis' thesis'. Contested in period: Brunet found French-Canadian newspapers unread ('Il n'a pas jugé nécessaire de dépouiller un seul journal canadien-français', p. 580) and 'nombreux préjugés' (p. 581); Frégault asked 'où sont les Canadiens français dans tout cela ? Tout simplement, ils n'y sont pas' (p. 447), while praising the work as 'fondé sur une compréhension exacte de l'histoire du Canada' (p. 444); W. L. Morton, as quoted by Davis (1985), saw in Creighton 'the preponderant role commercial monopoly and centralized business have played' (Davis, p. 97) and held that the metropolitan thesis, which he associated with Creighton and Careless, 'seems necessarily to minimize the importance of the hinterland' (Davis, p. 98); the critic George Woodcock (1979, p. 140) called his treatment of Confederation as centralist 'a major distortion'. A contribution, not a founding.",
+      "classification_basis": "editorial_review",
+      "map_label": "Laurentian narrative, 1937–55",
+      "target_strand": "cdn_national_tradition/laurentian",
+      "proposal_id": "pe135_creighton_rel_01"
+    },
+    {
+      "id": "edge_956",
+      "source": "harold_a_innis",
+      "target": "donald_creighton",
+      "relationship": "Innis's staple studies as a resource for Creighton's Laurentian narrative, as Creighton's own staple vocabulary and later readers show; Creighton rejected the story that the 1937 book grew from their friendship",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "pe135_creighton_dominion_1944",
+        "pe135_creighton_address_1957",
+        "pe135_creighton_innis_1957",
+        "pe135_creighton_brouillette_1957",
+        "pe135_creighton_decline_1969",
+        "pe135_creighton_woodcock_1979",
+        "pe135_creighton_ouellet_1984",
+        "cdng_davis_1985",
+        "cdng_salmon_1997",
+        "cdng_innis_1930",
+        "cdng_innis_1940"
+      ],
+      "evidence_note": "His own texts. Dominion of the North (1944) frames the St. Lawrence system by its staples ('The first staple of the St. Lawrence commercial system was beaver fur', p. 21), and its reading list (pp. 505–507) names Innis's The Fur Trade in Canada (1930) and The Cod Fisheries (1940). The 1957 presidential address recalls 'the 1930's, when the influence of Harold Innis was at its height and everybody was writing and talking about staple production' (p. 3), and exempts Innis from the Marxian fashion: 'most of the professional economists — and especially Innis — refused to accept the simplified Marxian version of historical determinism' (p. 6). In 1957 he also published Harold Adams Innis: Portrait of a Scholar (unread); Benoît Brouillette's review (1957, p. 529, read) reports Creighton's account of Innis's Canada as an east–west system 'marqué par le Saint-Laurent et les Grands-Lacs', at once 'transocéanique et transcontinental'. The qualification, his own (1969, pp. 14–15): 'The Empire of the St. Lawrence, it is sometimes confidently asserted, was the fruit of my friendship with Harold Innis ... These explanations, like most simple generalizations, happen to be wrong'; the subject was suggested 'not by Harold Innis, whom I barely knew at the time, but by W. P. M. Kennedy', and he was 'reluctantly convinced by the weight of his own evidence' about the Montreal merchants (p. 16). Readers: George Woodcock (1979, p. 134): 'Creighton's master was H. A. Innis, especially the Innis of The Fur Trade in Canada, which contained the essential germ out of which — with Innis's encouragement — Creighton built the scenario of his first book'; Fernand Ouellet (1984, p. 226): Creighton started 'partant de la théorie des staples'; Deborah Harrison (1981), as quoted by Davis (1985, p. 97): 'probably the first to advance a metropolitanist interpretation, although the closely related \"staples\" thesis had been put forward by Innis much earlier'; Salmon (1997): he 'simplified and expanded Innis' thesis'. The edge records Innis's work as a resource the Laurentian narrative used, not a teacher–pupil derivation; Creighton's denial concerns the origin of the subject, not the use of the staple framework.",
+      "classification_basis": "editorial_review",
+      "map_label": "Staples behind the Laurentian narrative, contested",
+      "proposal_id": "pe135_creighton_rel_02"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "ranke",
+      "label": "Critical historical scholarship",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "comparison",
+          "context": "Her critical pedagogy and expanded range of evidence supply a comparison with document-based scholarship; a single Ranke-derived genealogy is not claimed.",
+          "works": "“The Teaching of History in Academies and Colleges” (1893); The Newspaper and the Historian (1923), institutionally documented; Progress in the Household (1906), Apologia",
+          "source_ids": [
+            "salmon",
+            "salmon_progress_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "economic",
+      "label": "Economic history",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "historian",
+          "context": "Treats domestic service as labor connected to industrial change, rather than only a private relationship between mistress and maid.",
+          "works": "Domestic Service (1897), preface and chapters I–II; Progress in the Household (1906), Apologia",
+          "source_ids": [
+            "salmon_domestic_primary",
+            "salmon_progress_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "women",
+      "label": "Women’s history",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "historian",
+          "context": "Investigates domestic employment through both employers and workers, historical change and statistical comparison; she distinguishes inquiry from a cure for household difficulties.",
+          "works": "Domestic Service (1897; expanded second edition 1901); Progress in the Household (1906), Apologia",
+          "source_ids": [
+            "salmon_works",
+            "salmon_domestic_primary",
+            "salmon_progress_primary"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_281"
+        }
+      ]
+    },
+    {
+      "node_id": "social",
+      "label": "New social history",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "comparison",
+          "context": "Earlier inquiry relates household labor to industrial change and examines the limits of collected evidence; do not assign her to the postwar movement.",
+          "works": "Domestic Service (1897), preface and chapters I–II",
+          "source_ids": [
+            "salmon",
+            "salmon_domestic_primary"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_282"
+        }
+      ]
+    },
+    {
+      "node_id": "quant",
+      "label": "Quantitative history",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "precursor",
+          "context": "Combines questionnaires and comparative tables with explicit discussion of nonresponse; her claim to representativeness does not establish a probability sample.",
+          "works": "Domestic Service (1897), preface vii–xiv",
+          "source_ids": [
+            "salmon_domestic_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "consumption",
+      "label": "Consumption & material culture",
+      "records": [
+        {
+          "person_id": "lucy_maynard_salmon",
+          "role": "comparison",
+          "context": "Everyday household materials and changing work offer an earlier comparison with consumption inquiry, without a claim that she founded its later movement.",
+          "works": "Domestic Service (1897), chapters I–II; “History in a Back Yard” (1915), institutionally documented",
+          "source_ids": [
+            "salmon_domestic_primary",
+            "salmon"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "cdng_creighton_1937",
+      "title": "Donald Creighton, The Commercial Empire of the St. Lawrence, 1760–1850 (Toronto: Ryerson Press; New Haven: Yale University Press, 1937); reissued as The Empire of the St. Lawrence (1956; Toronto: University of Toronto Press, 2002).",
+      "url": "https://openlibrary.org/works/OL1380120W",
+      "citation": "Donald Creighton, The Commercial Empire of the St. Lawrence, 1760–1850 (Toronto: Ryerson Press; New Haven: Yale University Press, 1937); reissued as The Empire of the St. Lawrence (1956; Toronto: University of Toronto Press, 2002).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Book unread; the review header confirms publishers, series (Relations of Canada and the United States) and 1937. Interpretation via Salmon 1997. Checked against: Open Library work records OL1380120W (1937, Ryerson; Yale for the Carnegie Endowment) and OL1380133W (1956); review in CJEPS 4:4 (1938) doi:10.2307/136622; UTP 2002 reissue doi:10.3138/9781442659889 with Christopher Moore's introduction (Crossref)."
+      },
+      "scope_note": "The Laurentian text (via Salmon 1997)."
+    },
+    {
+      "id": "cdng_creighton_macdonald",
+      "title": "Donald Creighton, John A. Macdonald, 2 vols. (Toronto: Macmillan, 1952, 1955); vol. 2, The Old Chieftain (1955).",
+      "url": "https://openlibrary.org/works/OL24274709W",
+      "citation": "Donald Creighton, John A. Macdonald, 2 vols. (Toronto: Macmillan, 1952, 1955); vol. 2, The Old Chieftain (1955).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Metadata only; volume 1 subtitle not checked. Checked against: Open Library work records OL31789836W (1952, Macmillan Company of Canada) and OL24274709W (The Old Chieftain, 1955, Macmillan). Addendum 2026-10-14: Volume 1 subtitle: The Young Politician (Toronto: Macmillan, 1952), 524 p., per the header of Brunet's 1953 review (pe135_creighton_brunet_1953) and Open Library OL1380140W; volume 2, The Old Chieftain (1955), ix + 630 p., per the header of Frégault's 1955 review. Volumes unread."
+      },
+      "scope_note": "Creighton's political biography of Macdonald."
+    },
+    {
+      "id": "cdng_davis_1985",
+      "title": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+      "url": "https://doi.org/10.7202/1017987ar",
+      "citation": "Donald F. Davis, \"The 'Metropolitan Thesis' and the Writing of Canadian Urban History,\" Urban History Review 14, no. 2 (1985): 95–113.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Abstract read: there is no single metropolitan thesis but several approaches; urban historians would do better to abandon the metropolitan approach for its indeterminacy about relations between classes. Checked against: Crossref DOI record with French abstract (Érudit). Addendum 2026-10-14: Read in full (pp. 95–113, text and notes) for the 1.135 person entry, in the Érudit PDF. Quoted: 'Conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner'; 'few other journal articles have been more widely cited or more frequently quoted' (p. 95); Berger's 'the programmatic statement of the metropolitan approach' (pp. 95–96; n. 1 cites Berger in Canada Since 1867, 1977, pp. 87–88); metropolitanism and 'the birth of a new sub-discipline, urban history'; Artibise and Linteau (1984): 'the self-conscious beginning of urban history'; Careless 'the godfather of their subdiscipline'; Stelter (1977): 'the most significant approach to Canadian urban history'; Careless (1973): 'I would disclaim and deny such a metropolitan “thesis”' (p. 96); five approaches, Careless's the 'ecological'; Lower 'some eight years before' (p. 97); W. L. Morton's objection, quoted from 'Canada's History and Historians' (p. 98, n. 19); Careless's own account of his debt to Gras, from a letter of 11 July 1983 (p. 101, nn. 47, 51); 'a relatively sterile hybrid', 'of only limited usefulness', 'fits the mould of “consensus” history' (p. 102); 'fallen into desuetude', Artibise's 'not really a theory', 'weak on causality; it is more taxonomic than explanatory' (p. 103); S. D. Clark at the 1974 CHA meeting (p. 107); Careless on Turner on television (p. 109). The 'near-doctrinal status' remark (p. 96) is from a private letter (n. 2) and is not used. [creighton draft: Read in full for the 1.135 Creighton entry (Érudit PDF via the Internet Archive capture of 26 September 2024; UHR 14:2, October 1985, pp. 95–113). Careless's 1954 article 'conceived in part as an obituary for the frontier thesis of Frederick Jackson Turner' (p. 95); Harrison (1981, p. 25) quoted: Creighton 'probably the first to advance a metropolitanist interpretation, although the closely related \"staples\" thesis had been put forward by Innis much earlier'; Morton's 'Clio in Canada' (1980 reprint, p. 107) quoted: Creighton emphasized 'the preponderant role commercial monopoly and centralized business have played'; Morton ('Canada's History and Historians', reprint pp. 34–35) quoted: the metropolitan thesis, which he associated with Creighton and Careless, 'seems necessarily to minimize the importance of the hinterland' (pp. 97–98); Careless said he drew 'neither from Creighton or Innis' but from medieval social history and N. S. B. Gras, and melded Gras with 'the Laurentian School, then regnant' (p. 101). Morton's texts themselves are unread.] Addendum 2026-10-26: Fresh complete official Érudit PDF obtained; selected printed96 and109/n3 plus Artibise/Linteau-specific concluding passage read, not entire article reread. Davis quotes their1984 Report4 p6 acknowledgment of Careless’s contribution, coauthorship intact. He separately endorses their complaint about missing immediate-hinterland/suburban studies. Their report’s full PDF remains inaccessible, but selected own printed6 indexed text was freshly read. Davis himself has no graph person endpoint; David Brion Davis/Natalie Zemon Davis are different people."
+      },
+      "scope_note": "Urban history's critique of metropolitanism."
+    },
+    {
+      "id": "cdng_innis_1930",
+      "title": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930; rev. ed. Toronto: University of Toronto Press, 1956).",
+      "url": "https://openlibrary.org/works/OL762827W",
+      "citation": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930; rev. ed. Toronto: University of Toronto Press, 1956).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Book unread. Its place in the staple approach is attested through Watkins 1963 and Salmon 1997, not a reading of Innis. Checked against: Open Library work record (first 1930; Yale, Oxford/Milford, University of Toronto Press); reviews in AHR 36:1 (1930) doi:10.1086/ahr/36.1.177 and CJEPS 24:4 (1958, revised edition, UTP 1956) doi:10.2307/139095 via Crossref/OpenAlex. Same work also checked as nnreq_innis_1930 (bibliographic_metadata_checked, 2026-10-12; native_newcomer, native_newcomer): Author, title, subtitle and 1930 first publication checked. Book unread; Ray’s credit on a later reissue is noted from the catalogue, not read. Checked against: Open Library work record (first published 1930; later UTP editions 1956-1999, one with Arthur J. Ray credited)."
+      },
+      "scope_note": "Innis's fur-trade study as a founding text of the staple approach (via Watkins 1963; Salmon 1997)."
+    },
+    {
+      "id": "cdng_innis_1940",
+      "title": "Harold A. Innis, The Cod Fisheries: The History of an International Economy (New Haven: Yale University Press; Toronto: Ryerson Press, for the Carnegie Endowment for International Peace, 1940).",
+      "url": "https://openlibrary.org/works/OL762822W",
+      "citation": "Harold A. Innis, The Cod Fisheries: The History of an International Economy (New Haven: Yale University Press; Toronto: Ryerson Press, for the Carnegie Endowment for International Peace, 1940).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Book unread. Watkins 1963 names the cod fisheries and fur trade studies as Innis's pioneering work. Checked against: Open Library work record (first 1940; Yale University Press; Ryerson Press for the Carnegie Endowment)."
+      },
+      "scope_note": "Second of Innis's staple studies named by Watkins."
+    },
+    {
+      "id": "cdng_mackintosh_1923",
+      "title": "W. A. Mackintosh, \"Economic Factors in Canadian History,\" Canadian Historical Review 4, no. 1 (1923): 12–25.",
+      "url": "https://doi.org/10.3138/chr-04-01-02",
+      "citation": "W. A. Mackintosh, \"Economic Factors in Canadian History,\" Canadian Historical Review 4, no. 1 (1923): 12–25.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Metadata only; the article is unread. Listed as an early economic interpretation in the CHR, not as the origin of the staple approach. Checked against: Crossref DOI record (CHR 4:1, March 1923, pp. 12–25)."
+      },
+      "scope_note": "An interwar economic interpretation of Canadian history in the national journal."
+    },
+    {
+      "id": "cdng_salmon_1997",
+      "title": "M. Stephen Salmon, \"A Bull Market: The Recent Historiography of Canadian Economic Development,\" Archivaria (1997): 180–188.",
+      "url": "https://archivaria.ca/index.php/archivaria/article/view/12182",
+      "citation": "M. Stephen Salmon, \"A Bull Market: The Recent Historiography of Canadian Economic Development,\" Archivaria (1997): 180–188.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Opening read: Innis's Fur Trade was \"for a generation the most influential English Canadian historical work\"; its staple thesis \"provided an economic rationale for Canadian political development\"; Creighton \"simplified and expanded Innis' thesis by making the English and Scots merchants of early nineteenth-century Montreal the spiritual fathers of Confederation.\" Salmon dates Fur Trade to 1929 (catalogues give 1930). Volume number not checked. Checked against: Archivaria article page metadata (citation_date 1997, pp. 180–188); opening text via OpenAlex W1511360148. Addendum 2026-10-13: Volume: Archivaria 43 (Spring 1997). Note 2: 'Innis never claimed to have originated the staples theory' (citing Berger 1976, pp. 85–111). P. 181: the staple thesis, 'as a model for Upper Canadian development, has been fiercely attacked'."
+      },
+      "scope_note": "Innis-to-Creighton line of the Laurentian interpretation; Creighton's political turn."
+    },
+    {
+      "id": "cdng_watkins_1963",
+      "title": "Melville H. Watkins, \"A Staple Theory of Economic Growth,\" Canadian Journal of Economics and Political Science 29, no. 2 (1963): 141–158.",
+      "url": "https://doi.org/10.2307/139461",
+      "citation": "Melville H. Watkins, \"A Staple Theory of Economic Growth,\" Canadian Journal of Economics and Political Science 29, no. 2 (1963): 141–158.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-12",
+        "note": "Opening paragraphs read: the staple approach is \"primarily a Canadian innovation\" and \"Canada's most distinctive contribution to political economy\"; Innis was \"the leading innovator\" whose work \"stamped the 'school'\"; his approach was \"more technological history writ large than a theory of economic growth\". Checked against: Crossref DOI record with opening text (CJEPS 29:2, May 1963, pp. 141–158)."
+      },
+      "scope_note": "The staple approach as a Canadian school led by Innis; Watkins restates it as growth theory."
+    },
+    {
+      "id": "cpl129_brady_1953",
+      "title": "Alexander Brady, \"Harold Adams Innis, 1894–1952,\" Canadian Journal of Economics and Political Science 19, no. 1 (1953): 87–96.",
+      "url": "https://doi.org/10.1017/S0315489000014122",
+      "citation": "Alexander Brady, \"Harold Adams Innis, 1894–1952,\" Canadian Journal of Economics and Political Science 19, no. 1 (February 1953): 87–96.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Read in full (Cambridge Core PDF; Crossref: CJEPS 19:1, Feb. 1953, pp. 87–96). Born 5 November 1894 near Otterville, died 8 November 1952 (p. 87); Veblen, Clark and Duncan as Chicago influences (pp. 88–89); study of 'the staple industries, beginning with the fur trade and fisheries' (p. 89); The Fur Trade in Canada as 'his first notable achievement in economic interpretation', with themes including 'the relation between the culture of the Indian and the spread of European power' and 'the adaptation of the Indian to the needs of the trade'; 'modern Canada had emerged, not in spite of geography, but because of it'; it 'established the reputation of its author as one of the leading economic historians in North America' (p. 90); 'Adam Shortt, as Innis would promptly admit, was the pioneer in these economic studies' (p. 91); 'after 1940 he became increasingly absorbed by the wider themes of cultural history' and 'more keenly interested in the media of communication' (pp. 91–92); Empire and Communications (1950; the 1948 Beit Lectures) 'served a purpose in setting forth a theme for future social scientists to pursue' (pp. 94–95); president of the Economic History Association, 1942 (p. 95). A colleague's memorial, not a critical assessment."
+      },
+      "scope_note": "In-period memoir: the staple studies, the turn to communication, and Shortt as the earlier pioneer."
+    },
+    {
+      "id": "cpl129_innis_1930_text",
+      "title": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press; London: Humphrey Milford, Oxford University Press, 1930), contents and chapter VI, “Conclusion”, pp. 386–397.",
+      "url": "https://archive.org/details/furtradeincanada0000haro",
+      "citation": "Harold A. Innis, The Fur Trade in Canada: An Introduction to Canadian Economic History (New Haven: Yale University Press, 1930), ch. VI, “Conclusion”, pp. 386–397.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Read in two independent scans of the 1930 Yale edition on the Internet Archive (furtradeincanada0000haro; FURTRADEINCANADA, University of Victoria Libraries copy); their OCR texts agree at the quoted passages. Title page (Yale University Press and Humphrey Milford, 1930; preface by R. M. MacIver), author's preface (dated June 1929), contents and conclusion pp. 386–397 read. Contents: VI. Conclusion: 1. The Importance of Staple Products (386); 2. The Fur Trade (389); 3. The Forest Industries (397); 4. Capitalism and the Staples (401). Quoted: 'The economic history of Canada has been dominated by the discrepancy between the center and the margin of western civilization. Energy has been directed toward the exploitation of staple products and the tendency has been cumulative' (p. 388); 'The history of the fur trade is the history of contact between two civilizations, the European and the North American' and 'The limited cultural background of the North American hunting peoples' (p. 392); 'The northern half of North America remained British because of the importance of fur as a staple product' and 'The Northwest Company was the forerunner of the present confederation' (p. 396); 'Canada has had no serious problems with her native peoples since the fur trade depended primarily on these races', 'We have not yet realized that the Indian and his culture were fundamental to the growth of Canadian institutions' and 'The present Dominion emerged not in spite of geography but because of it' (p. 397). Chapters II–V and pp. 398–410 not read."
+      },
+      "scope_note": "Innis's own 1930 statement of the staple argument and of the fur trade as contact between civilizations."
+    },
+    {
+      "id": "cronon_environment_syllabus_1994",
+      "title": "William Cronon, History 901: Topics in American Environmental History, Fall 1994 syllabus, University of Wisconsin–Madison.",
+      "citation": "William Cronon, History 901: Topics in American Environmental History, Fall 1994 syllabus, University of Wisconsin–Madison.",
+      "url": "https://history.wisc.edu/wp-content/uploads/sites/202/2017/05/history901_fall1994_cronon.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Six-page primary syllabus read through indexed PDF text. Page 4 assigns Sauer’s “Foreword to Historical Geography” (1941), Land and Life 351–379, in the 14 September session, alongside other landscape and environmental-history readings. This establishes a named pre-2001 teaching use, not a claim that the class assigned Morphology (1925), that all students adopted Sauer, or that Sauer alone founded environmental history. The assigned 1941 essay body was not read here beyond its opening on the final image of the separate Morphology scan. Local download returned 404 while web PDF text remained available. Addendum 2026-10-13: Re-read in the Internet Archive capture web.archive.org/web/20201021214718id_/ of the history.wisc.edu PDF (six pages; the original URL now returns 404). Leopold assignments: p. 2, the book list gives 'Aldo Leopold, Sand County Almanac, QH81 L56 1966' (the enlarged edition) beside Nash's Wilderness and the American Mind; p. 4, 28 September, 'READING THE LANDSCAPE, PART I': 'Aldo Leopold, “Good Oak,” A Sand County Almanac, 6-19'; p. 6, 16 November, 'A SPECIAL AFFECTION FOR THINGS WILD': 'Roderick Nash, Wilderness and the American Mind, 1-7, 96-199' and 'Aldo Leopold, A Sand County Almanac, 137-41, 237-95. (If you're using another edition, these are the essays entitled “Thinking Like a Mountain,” and Part IV of the Book, “The Upshot.”)'. An assignment shows teaching use, not assent. [carson draft: Re-read for the 1.131 Carson entry in the Internet Archive capture (20201021). p. 2 lists 'Rachel Carson, Silent Spring, SB 959 C3' among the central texts at the University Bookstore. p. 6: the 30 November session 'TOXIC POLITICS' (guest participant Arthur McEvoy) assigns 'Rachel Carson, Silent Spring, 1-37, 103-27, 187-98. (R)' with McEvoy's 'Working Environments' and 'Toward an Interactive Theory of Nature and Culture', Gottlieb's Forcing the Spring, 162–323, and Crone's Chemicals and Society (optional). The seminar is 'read principally for the theories and methodologies it can offer scholars' (p. 1).]"
+      }
+    },
+    {
+      "id": "pe131_cronon_uses_1993",
+      "title": "William Cronon, “The Uses of Environmental History,” Environmental History Review 17, no. 3 (Fall 1993): 1–22.",
+      "url": "https://www.williamcronon.net/writing/Cronon_Uses_of_Environmental_History_EHR_Fall_1993.pdf",
+      "citation": "William Cronon, “The Uses of Environmental History” (ASEH presidential address), Environmental History Review 17:3 (1993): 1–22. doi:10.2307/3984602.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Author-hosted scan (no text layer) OCR’d locally at 300 dpi; page numbers from the running heads (two pages per image); Crossref 10.2307/3984602 agrees. OCR letter errors corrected only where unambiguous; the p. 8 passage was checked against the page image ('one of a favorite metaphor' is as printed). Read: pp. 1–9, 12–20 and notes pp. 20–22; pp. 10–11 not read closely. Passages used: the new histories 'born or reenergized in the wake of the 1960s' and the interventionist practitioners Nash, Hays, Worster, Merchant, Tarr and Pyne (pp. 2–3, nn. 2–7); 'nature' as 'a fundamental category of historical analysis' (p. 4); the market lesson, 'a central concern of my own work' (p. 8, n. 14); lessons footnoted to Crosby, White, Merchant, McEvoy, Melosi (pp. 8–10, nn. 15–25); 'All human history has a natural context' and 'One important contribution of environmental history' (p. 13); kinship with 'a Braudelian vision of history' (p. 14); 'All environmental knowledge is culturally constructed and historically contingent—including our own' (p. 14) and the realist pairing (p. 15); history as 'parables, not policy recommendations or certainties' (p. 16); the chief moral of Changes in the Land, Leopold’s tree rings and 'material history … spiritual history … political economic history' (p. 19). canon-evidence-international.md (text A) records an independent OCR reading of the same scan. [Also checked under pe131_crosby_cronon_1993: Author-hosted scan, OCR'd for the canon evidence file on 2026-10-13; pp. 8 and 10 and notes 16 and 25 (p. 22) re-read, with page assignment checked against the running heads of the page images. Crossref 10.2307/3984602: Environmental History Review 17(3), September 1993, 1–22 (Cronon's ASEH presidential address). Lessons of the field: 'When people migrate from one ecosystem to another, they carry with them other organisms—plants, animals, microbes—whose success or failure in the new location is often crucial in determining the success or failure of the migration' (p. 8, n. 16); 'Beware of bugs that come from afar' (p. 10, n. 25). Note 16 cites The Columbian Exchange (1972) and Ecological Imperialism (1986); note 25 cites both again. Other drafts in this batch may cite the same address under their own ids; merge at build if so.] [Also checked under pe131_leopold_cronon_1993: Scanned PDF from the author's site, read in full through OCR (pp. 1–22, notes included); superscript note numbers are not reliably readable in the OCR. p. 19: 'Environmental history tries to reconstruct the endless layers of change that we and the earth have traced upon each other. It is the history recorded in Aldo Leopold’s tree rings, the history recorded by the marks of his saw upon the good oak as he cut it down, the history recorded by the memories in the hatted head with its shadow on the stump'; n. 32 (p. 22): 'The echo here is that of Leopold’s “Good Oak,” Sand County Almanac, 6-18.' n. 11 (p. 21): 'At this and several other points in this essay, I trust that readers will hear my echoes of Aldo Leopold's Sand County Almanac (New York: Oxford University Press, 1949), 224-25.' By note order, n. 11 falls on p. 7, where some environmental historians measure 'usefulness' 'by whether or not it contributes to the health and integrity of natural systems'. It places the field's origins in 'the political movement that helped spawn it' (p. 2).] [Also checked under pe131_merchant_cronon_1993: Author-hosted scan OCR'd; pp. 2–3, 8–9 and notes 5, 13 and 18 read for Merchant. 'Carolyn Merchant joined Worster in bringing an environmentalist perspective to the history of science, but combined it with a more feminist approach to argue in The Death of Nature that western science has harmed nature and women in parallel ways; her Radical Ecology, though less historical, is still more activist in its efforts to intervene in contemporary political struggles' (p. 3; n. 5). Lesson footnoted to Death of Nature and Ecological Revolutions (n. 18): 'Men and women often experience the world in very different ways, so that one cannot hope to understand the way a culture relates to an environment without examining the ways it engenders the natural world' (p. 9). Other agents drafting 1.131 entries may cite the same essay under another id; merge at release.] [Also checked under pe131_richard_white_cronon_1993: Author's scanned PDF, OCR'd for canon-evidence-international.md (2026-10-13); the White passages were re-read in that OCR. Among his 'lessons' (pp. 8–9): 'In American history, the horse was not simply a European invader, but a complex cultural entity that became attached to different human communities in very different ways' (p. 9), with n. 23 'White, Roots of Dependency'; n. 15 cites White, Land Use, Environment, and Social Change (1980) and The Roots of Dependency with Calvin Martin. Page attributions follow the canon file's reading of the running heads.] [Also checked under pe131_extras_cronon_uses_1993: Author-hosted scan re-downloaded and OCR'd for this draft (OCR letter errors corrected only where unambiguous). Read pp. 1–3, 8–9, 14–15 and notes pp. 20–22. Quoted: Nash's Wilderness and the American Mind 'has played a significant role in helping frame debates about wilderness protection' (pp. 2–3); Hays's Conservation and the Gospel of Efficiency and Beauty, Health, and Permanence 'speak just as powerfully to major trends in conservation and environmental politics in the twentieth century' (p. 3); 'Steven [sic] Pyne's epic histories of fire have consistently tried to persuade present-day resource managers of the complexity of their task' (p. 3); n. 6 (p. 21): 'Pyne's classic work in American history is Stephen J. Pyne, Fire in America'; lessons: fire (pp. 8–9, n. 17 Pyne) and 'Early conservationists were obsessed with questions of economically efficient production, while later environmentalists have been equally obsessed with questions of ecologically responsible consumption' (p. 9, n. 20 Hays); 'some kinship with a Braudelian vision of history' (p. 14, n. 29 The Mediterranean); n. 27 (p. 22): 'Nash's whig history of wilderness consciousness and the rights of nature'.] Addendum 2026-10-25: Dedicated Crosby review, 2026-10-25: author-hosted scan freshly downloaded from https://williamcronon.net/writing/Cronon_Uses_of_Environmental_History_EHR_Fall_1993.pdf (the www URL returned 406). OCR-assisted selected reading of pp. 8–11 and relevant notes on 21–22; page images checked for p. 8 migration lesson, p. 10 introduced-pathogen lesson, and n. 16 on 21. Note 16 cites The Columbian Exchange and Ecological Imperialism; n. 25 on 22 cites both again. The inherited wording that collectively placed notes 16 and 25 on p. 22 is imprecise: their actual folios are 21 and 22. The old note is retained; this addition records the precise fresh check. This is a specified resource claim, not complete intellectual descent or a fresh full reading of either Crosby book."
+      },
+      "scope_note": "In-period ASEH presidential address: his statement of what environmental history is for."
+    },
+    {
+      "id": "pe131_crosby_isenberg_2013",
+      "title": "Andrew C. Isenberg, “From the Periphery to the Center: North American Environmental History,” Global Environment 6, no. 12 (2013): 80–101.",
+      "url": "https://doi.org/10.3197/ge.2013.061205",
+      "citation": "Andrew C. Isenberg, “From the Periphery to the Center: North American Environmental History,” Global Environment 6, no. 12 (2013): 80–101. doi:10.3197/ge.2013.061205.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Later reading. Full text from environmentandsociety.org (downloaded 2026-10-13 for the canon evidence file); pp. 85–86 and n. 13 re-read. Crossref 10.3197/ge.2013.061205. 'The materialist approach was exemplified by the work of Alfred W. Crosby' (p. 85). 'As Crosby expanded the scope of his analysis, he increasingly depicted people as utterly at the mercy of ecological forces'; he quotes Ecological Imperialism (1986, p. 192, per n. 13) that European colonists 'were seldom masters of the biological changes they triggered' and that 'their role was less often a matter of judgment and choice than of being downstream of a bursting dam'; 'In short, over the course of two decades Crosby's analysis devolved into little more than ecological determinism' (p. 86). The 1986 passage is known here only through this quotation. [Also checked under pe131_richard_white_isenberg_2013: Full text from the Environment & Society Portal, read for canon-evidence-international.md; re-read in that copy at pp. 87–89. p. 87: 'Environmental history emerged as a distinct field in the 1970s and early 1980s when a group of historians, including Wiliam [sic] Cronon, Thomas Dunlap, Carolyn Merchant, Arthur McEvoy, Richard White, and Donald Worster, synthesized the material and cultural approaches to the environment'. pp. 88–89: 'In a response to the essay, Richard White summarized Worster’s argument thusly: “Environmental history has a base (natural history), a structure (production relations or modes of production) and a superstructure (culture and ideology)”. This scheme, White argued, reduced culture to “superstructure in the old vulgar Marxist sense”', n. 21: White, JAH 76 (1990), pp. 1112–1113; 'White and Cronon urged environmental historians to pay more attention to culture'. Crossref 10.3197/ge.2013.061205: Global Environment, pp. 80–101.]"
+      },
+      "scope_note": "Later reading (2013), labelled as such: the ecological-determinism critique."
+    },
+    {
+      "id": "pe131_extras_cook_1990",
+      "title": "Ramsay Cook, “Cabbages Not Kings: Towards an Ecological Interpretation of Early Canadian History,” Journal of Canadian Studies 25, no. 4 (Winter 1990–91): 5–16.",
+      "url": "https://muse.jhu.edu/article/684469",
+      "citation": "Ramsay Cook, “Cabbages Not Kings: Towards an Ecological Interpretation of Early Canadian History,” Journal of Canadian Studies 25:4 (1990–91): 5–16 (W. L. Morton Lecture, Trent University, October 1990). doi:10.3138/jcs.25.4.5.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Project MUSE PDF (University of Saskatchewan access) re-downloaded and read for this draft: pp. 5–7 closely, with notes 1–4; page breaks from the printed folios. Quoted: 'In a broad sense the writing of Canadian history has always been concerned with the environment' (p. 6); nationalism 'was not a full-time interest for any of them. Certainly not Harold Innis for whom the fur trade, the cod fisheries and other staple products were the real stuff of history' (p. 6); 'Innis, Lower and Creighton also struggled with the question of the impact of the North American environment on European women and men' (p. 6); 'for this earlier generation of historians the exploitation of the environment was accepted as natural and necessary, even though excesses might be deplored' (pp. 6–7); 'More recent environmental historians have a different focus' (p. 7). Note 4 cites Richard White, PHR 1985. Crossref 10.3138/jcs.25.4.5. [Also checked under pe131_crosby_cook_1990: Project MUSE PDF (University of Saskatchewan access, downloaded 2026-10-13 for the canon evidence file) re-read at p. 13 and note 35. Crossref 10.3138/jcs.25.4.5: JCS 25(4), issued January 1991, 5–16. 'Contact between Europe and North America, then, must be understood in the widest possible terms'; 'As Alfred W. Crosbie [sic], Jr., demonstrated so brilliantly nearly two decades ago, in his Columbian Exchange The Biological and Cultural Consequences of 1492, contact was even more significantly the interaction of different ecologies or environments. Biological exchange in the form of pathogens that caused epidemic disease in populations where no immunity existed was perhaps the most spectacularly devastating consequence of contact. But the exchange of plants and animals was no less significant' (p. 13). Note 35 cites The Columbian Exchange (Greenwood, 1972) and Larocque (1982) on European diseases among Indigenous peoples in Quebec.] [Also checked under pe131_richard_white_cook_1990: Project MUSE PDF (downloaded 2026-10-13 for canon-evidence-canada.md; re-read at p. 6 and the notes). p. 6: earlier Canadian historians wrote about the environment, as in the United States 'where, as Morton knew, F.J. Turner and Walter Prescott Webb remained important, if declining, influences into the 1950s', note 4: 'Richard White, \"American Environmental History,\" Pacific Historical Review 54, 3 (1985), 297-35[sic]'. Note 22 also cites White, 'Native Americans and the Environment', in W. R. Swagerty, ed., Scholars and the Indian Experience (1989), 179–201.]"
+      },
+      "scope_note": "In-period Canadian programmatic lecture; claims earlier Canadian historians for environmental concern while marking a break."
+    },
+    {
+      "id": "pe131_richard_white_cronon_foreword_1992",
+      "title": "William Cronon, 'Foreword', in Richard White, Land Use, Environment, and Social Change (Seattle: University of Washington Press, 1992 paperback), ending p. xvi.",
+      "url": "https://books.google.com/books?id=KtMhCwAAQBAJ",
+      "citation": "William Cronon, 'Foreword' (dated Yale University, October 1991), in Richard White, Land Use, Environment, and Social Change: The Shaping of Island County, Washington, first paperback edition (University of Washington Press, 1992), ending p. xvi.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Read in Google Books snippets only; it begins 'FOREWORD When it was first published in 1980' on page id PR10 (probably p. x; the folio was not seen) and the folio xi is on PR11; it ends at xvi ('WILLIAM CRONON Yale University October 1991', p. xvi). Quoted: White is 'one of the most productive, rigorous, and creative scholars of his generation', with contributions 'to environmental history, to the history of the American West, to Indian history, and to American history generally'; the book 'earned enthusiastic critical notices when it came out in 1980'; it is 'a textbook case of an underappreciated classic' (p. xi); readers may 'read Land Use, Environment, and Social Change as if all the world were indeed Island County' (p. xiii); 'The book is a slender classic, and deserves to find its audience at last' (p. xvi). Fix pass 2026-10-13 (sol-review-1.131): a re-try to reach page images (Google Books page view) returned 403 on 2026-10-13, so the wording remains snippet-witnessed; atlas text paraphrases White's own framing passages and labels the rest as snippets."
+      },
+      "scope_note": "In-period third-party reading (1991–92) by the series editor; an advocate's foreword, not a review."
+    },
+    {
+      "id": "pe131_richard_white_jah_1990",
+      "title": "Richard White, 'Environmental History, Ecology, and Meaning', Journal of American History 76, no. 4 (1990), from p. 1111.",
+      "url": "https://doi.org/10.2307/2936588",
+      "citation": "Richard White, 'Environmental History, Ecology, and Meaning', in 'Environmental History: A Round Table', Journal of American History 76, no. 4 (March 1990), from p. 1111. doi:10.2307/2936588.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-13",
+        "note": "Response unread: Oxford Academic returned 403. Crossref 10.2307/2936588 confirms title, volume, issue and first page 1111; the end page is not in Crossref and is not given. Known through Isenberg 2013, pp. 88–89 (a later reading), which quotes pp. 1112–1113."
+      },
+      "scope_note": "In-period round-table response, identity only."
+    },
+    {
+      "id": "pe131_richard_white_land_use_1980",
+      "title": "Richard White, Land Use, Environment, and Social Change: The Shaping of Island County, Washington (Seattle: University of Washington Press, 1980; paperback 1992).",
+      "url": "https://books.google.com/books?id=KtMhCwAAQBAJ",
+      "citation": "Richard White, Land Use, Environment, and Social Change: The Shaping of Island County, Washington (Seattle: University of Washington Press, 1980); first paperback edition 1992, with a foreword by William Cronon and a preface to the 1992 edition.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Google Books search-within snippets of the 1992 paperback (third printing 1999; copyright page 'Copyright © 1980 by the University of Washington Press', 'Foreword to the 1992 edition copyright © 1992', 'Preface to the 1992 edition copyright © 1992'). Body text unchanged ('I decided to leave it unchanged', p. xvii). p. 7: 'By attempting to trace the environmental impact of both Indian and (later) intruding peoples and to examine, within the limitations of the evidence, the consequences of this impact for their societies, this study departs somewhat from recent trends in environmental history. Most recent environmental history has been a variant of intellectual and political history'; 'The trail James Malin blazed thirty years ago in his studies of the Great Plains has been ignored by most historians'. Preface to the 1992 edition (signed University of Washington, November 1991): Tom Dunlap's description of the book as 'closer to the land and much closer to natural history and the narrative techniques of nature study' (p. xvii); 'In Land Use, Environment, and Social Change I used ecological concepts like community, succession, climax, and ecosystem unproblematically even though within the discipline of ecology those ideas had already come under attack' (p. xviii); 'In correcting what now seems the book's naivete I am afraid I might eliminate its greatest strength' (p. xix). Google Books page ids PR11, PR16, PR17 carry the printed folios xi, xvi, xvii, so the roman page numbers are the printed ones. Internet Archive copy (landuseenvironme00whit) is lending-restricted. Fix pass 2026-10-13 (sol-review-1.131): a re-try to reach page images (Google Books page view) returned 403 on 2026-10-13, so the wording remains snippet-witnessed; atlas text paraphrases White's own framing passages and labels the rest as snippets."
+      },
+      "scope_note": "In-period primary text: the book's framing (p. 7) and the author's 1991–92 self-assessment."
+    },
+    {
+      "id": "pe131_richard_white_miller_1994",
+      "title": "David Reed Miller, 'Social History Meets Ethnohistory: A Renewed Path for Native Studies', review essay on Richard White, The Middle Ground, Canadian Journal of Native Studies 14, no. 1 (1994): 157–170.",
+      "url": "https://cjns.brandonu.ca/wp-content/uploads/14-1-miller.pdf",
+      "citation": "David Reed Miller, 'Social History Meets Ethnohistory: A Renewed Path for Native Studies', Canadian Journal of Native Studies 14:1 (1994): 157–170.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Read in full (CJNS PDF, 10 pp., found through the University of Saskatchewan iPortal record 99). Author's address: Saskatchewan Indian Federated College, University of Regina. p. 157: 'The social and environmental historian Richard White has produced an extraordinary benchmark in the scholarship of European and Aboriginal relations in the Americas'; 'White demonstrates how the middle ground was a mutual creation of various Aboriginal North Americans and Europeans'. p. 158: 'he deemphasizes the specificity of a small number of groups in the larger Great Lakes region that are neither Iroquoian or Algonquian'. p. 169: White 'addresses the complexity of dependency and suggests that it “is an economic, political, and social relationship, but can also be an environmental relationship” (p.486)'; he 'examines formative influences ethnohistorically, with perspectives and theories drawn from political and economic anthropology, the historiographical insights of Braudel (longue duree) and others of the Annale School, and insights gleaned from the new cultural critique led by Edward Said'. p. 170: 'its impressive new standard for scholarship'; 'The challenge for a similar study with emphasis upon the north side of the Great Lakes is obvious'. Page numbers from the running heads."
+      },
+      "scope_note": "In-period Canadian review essay: the middle ground as benchmark, its environmental dimension and its limits."
+    },
+    {
+      "id": "pe131_richard_white_organic_machine_1995",
+      "title": "Richard White, The Organic Machine: The Remaking of the Columbia River (New York: Hill and Wang, 1995).",
+      "url": "https://books.google.com/books?id=SlExG6vsT4oC",
+      "citation": "Richard White, The Organic Machine: The Remaking of the Columbia River (New York: Hill and Wang, 1995).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Google Books search-within snippets (volume SlExG6vsT4oC, Farrar, Straus and Giroux/Hill and Wang). Internet Archive record organicmachine00whit (Hill and Wang, 1995) is lending-restricted. Preface (page ids PP13–PP14; printed numbers not visible): 'I want to examine the river as an organic machine, as an energy system which, although modified by human interventions, maintains its natural, its “unmade” qualities. I emphasize energy because energy is such a protean and useful concept. The flow of the river is energy, so is the electricity that comes from the dams that block that flow. Human labor is energy; so are the calories stored as fat by salmon for their journey upstream'; 'Environmentalists, for all their love of nature, tend to distance humans from it. Environmentalists stress the eye over the hand, the contemplative over the active, the supposedly undisturbed over the connected. They call for human connections with nature while disparaging all those who claim to have known and appreciated nature through work and labor'; he first knew salmon 'with Indian gillnetters on the Nisqually River'. Conclusion (print pages): 'Our labor, our energy, is the nature in us. And we harness it, just as we harness nature, to social purposes. It is the purposes that matter' (p. 112); the river is still 'tied to larger organic cycles beyond our control' (p. 112). The PA page numbers are taken to be print folios; the preview's edition statement was not seen. Fix pass 2026-10-13 (sol-review-1.131): a re-try to reach page images (Google Books page view) returned 403 on 2026-10-13, so the wording remains snippet-witnessed; atlas text paraphrases White's own framing passages and labels the rest as snippets."
+      },
+      "scope_note": "In-period primary text: the framing preface and conclusion only."
+    },
+    {
+      "id": "pe131_richard_white_phr_1985",
+      "title": "Richard White, 'American Environmental History: The Development of a New Historical Field', Pacific Historical Review 54, no. 3 (1985): 297–335.",
+      "url": "https://doi.org/10.2307/3639634",
+      "citation": "Richard White, 'American Environmental History: The Development of a New Historical Field', Pacific Historical Review 54, no. 3 (August 1985): 297–335. doi:10.2307/3639634.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-13",
+        "note": "Article unread: UC Press (online.ucpress.edu) returned 403 and JSTOR a client challenge on 2026-10-13. Crossref 10.2307/3639634 confirms title, volume, issue and pages. Known through Worster 1990 n. 5 (Portuguese translation), Cronon's 1994 syllabus (assigned 'read for main themes'), Cook 1990 n. 4, and, as later readings, Wynn 2004 (BC Studies 142/143, p. 31 and n. 62, which quotes pp. 300 and 313 and calls it 'a superb historiography essay tracing the early development of the field') and McNeill 2003."
+      },
+      "scope_note": "In-period survey of the field, identity only."
+    },
+    {
+      "id": "pe131_richard_white_roots_1983",
+      "title": "Richard White, The Roots of Dependency: Subsistence, Environment, and Social Change among the Choctaws, Pawnees, and Navajos (Lincoln: University of Nebraska Press, 1983).",
+      "url": "https://archive.org/details/rootsofdependenc0000whit",
+      "citation": "Richard White, The Roots of Dependency: Subsistence, Environment, and Social Change among the Choctaws, Pawnees, and Navajos (Lincoln: University of Nebraska Press, 1983), xix, 433 p.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-13",
+        "note": "Book unread. Edition identity from the Journal of Economic History review header (Leonard Carlson, JEH 44:3, 1984, doi:10.1017/S0022050700032769; 'Lincoln: University of Nebraska Press, 1983. Pp. xix, 433'; review text behind a paywall, only its blurred first-page image seen) and the Internet Archive record of a 1988 printing (rootsofdependenc0000whit, lending-restricted). Cronon (1993) footnotes it (nn. 15, 23). Reviews not read: David Reed Miller, Great Plains Quarterly 5:4 (1985) (UNL Digital Commons blocked automated access); Journal of the Anthropological Society of Oxford 17:2 (1986)."
+      },
+      "scope_note": "In-period work, identity only; its argument is known through its title and others' readings."
+    },
+    {
+      "id": "pe131_worster_jah_1990",
+      "title": "Donald Worster, “Transformations of the Earth: Toward an Agroecological Perspective in History,” Journal of American History 76, no. 4 (March 1990): 1087–1106.",
+      "url": "https://doi.org/10.2307/2936586",
+      "citation": "Donald Worster, “Transformations of the Earth: Toward an Agroecological Perspective in History,” Journal of American History 76:4 (1990): 1087–1106, opening “A Round Table: Environmental History”. doi:10.2307/2936586.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "English JAH text unread: the DOI resolves to the OUP page, which returned 403, and JSTOR returned a bot challenge. Crossref 10.2307/2936586 gives JAH 76:4, first page 1087; Crossref lists the round table's responses: Crosby 'An Enthusiastic Second' (1107), White 'Environmental History, Ecology, and Meaning' (1111), Merchant 'Gender and Environmental History' (1117), Cronon 'Modes of Prophecy and Production' (1122), Pyne 'Firestick History' (1132) and Worster's reply 'Seeing Beyond Culture' (1142). The whole article and notes were read in Portuguese translation ('Transformações da terra', Ambiente & Sociedade 5:2/6:1, 2002–03, pp. 23–44). The English wording quoted in this packet comes from Worster's reprint of the essay in The Wealth of Nature (1993, ch. 4; see pe131_worster_wealth_1993), checked by full-text search. JAH pages are given only where Isenberg 2013 cites them: p. 1091 for 'at once materialist and idealist' and 'the analysis of modes of production as ecological phenomena', both matching the 1993 wording. Worster's reply and the White, Cronon, Crosby and Pyne responses are unread. [Also checked under pe131_leopold_worster_1990: The English original was not seen (JSTOR blocked; no open copy found). Crossref 10.2307/2936586 confirms JAH 76:4 (March 1990), first page 1087. The Portuguese translation was read in the PDF of orgprints eprint 20347 (Worster_transformações.pdf), whose first-page note says the article was first published in the Journal of American History in March 1990. Quoted from the translation: p. 23, 'Há quarenta anos atrás, um homem sábio e visionário, o conservacionista e biólogo da vida selvagem, Aldo Leopold, de Wisconsin, reivindicou uma “interpretação ecológica da História”, pela qual propunha usar as idéias e a pesquisa do emergente campo da ecologia para ajudar a explicar porque os fatos que constituem o passado desenvolveram-se da maneira como os conhecemos'; 'Levou algum tempo para os historiadores darem atenção ao conselho de Leopold, mas finalmente o campo da história ambiental começou a ganhar forma e seus praticantes estão tentando construir a partir de sua iniciativa.' p. 24: 'os fatos no caso são mais complicados do que Leopold poderia ter explorado nos limites de seu ensaio, e eles exigem mais do que uma forma simples de determinismo ambiental, que é o que um leitor menos atento poderia encontrar em seu exemplo'; Kentucky bluegrass 'não era uma espécie nativa, mas uma importação européia', followed by Crosby's 'imperialismo ecológico'. Notes, p. 42: n. 1 cites Leopold, A Sand County Almanac, and Sketches Here and There (1949; reprinted New York, 1987), p. 205; n. 3 says Leopold knew the story was more complex and quotes him (p. 206) that 'we do not even know' where bluegrass came from. English glosses in the atlas are the editor's, not Worster's words. A Bowdoin course guide paraphrasing the essay was seen and not used.] [Also checked under pe131_richard_white_worster_1990: Only the Portuguese translation was read (orgprints eprint 20347 PDF). Note 5 (translation p. 42): 'O melhor esforço para traçar a emergência do campo, pelo menos em uma parte influente do mundo, é o de WHITE, R. “American Environmental History: The Development of a New Historical Field” … White argumenta que o estudo da fronteira e da história do oeste tem sido a influência formativa neste campo. Uma outra fonte de idéias importante, realmente retirada da influência de Frederick Jackson Turner, tem sido a dos historiadores e geógrafos franceses, particularmente Fernand Braudel, Lucien Febvre e Emmanuel Le Roy Ladurie, todos associados à revista dos Annales.' The English wording and JAH page of the note are unchecked.] Addendum 2026-10-13: Re-read for edge_111 (extras packet): note 5 in the Portuguese translation (Ambiente & Sociedade 5:2/6:1, 2002–03, p. 42, n. 5), from the orgprints PDF, names 'Fernand Braudel, Lucien Febvre e Emmanuel Le Roy Ladurie, todos associados à revista dos Annales' as 'Uma outra fonte de idéias importante'. It is attached to the sentence that introduces the new field of ecological or environmental history. The English JAH page remains unread. Addendum 2026-10-25: Dedicated Crosby review, 2026-10-25: selected English primary transcription read at https://www.scribd.com/document/1022124209/2-1-1-Transformations-of-the-Earth-Donald-Worster-1990, printed pp. 1087–1089, particularly 1088 and n. 4. Page labels and note text explicitly identify Crosby’s ecological imperialism and the 1986 book; the Kentucky bluegrass paragraph simultaneously rejects a simple environmental-determinist reading. English page images were not seen. This is a new selected transcription reading, not a claim that the original English article or the round table was freshly read in full. The earlier full Portuguese translation, partial reprint and original access-failure notes remain intact."
+      },
+      "scope_note": "In-period programmatic essay; English pages not seen."
+    },
+    {
+      "id": "pe135_creighton_address_1957",
+      "title": "D. G. Creighton, “Presidential Address,” Report of the Annual Meeting of the Canadian Historical Association 36, no. 1 (1957): 1–12.",
+      "url": "https://doi.org/10.7202/300399ar",
+      "citation": "D. G. Creighton, “Presidential Address,” Report of the Annual Meeting / Rapports annuels de la Société historique du Canada 36, no. 1 (1957): 1–12. doi:10.7202/300399ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (pp. 1–12) from page images of the Érudit PDF, via the Internet Archive capture of 20 November 2022; OCR checked against running heads. Quoted: 'In the 1930's, when the influence of Harold Innis was at its height and everybody was writing and talking about staple production' (p. 3); 'the Liberal Interpretation — or Authorized Version — of Canadian history' begun by Willison and Dafoe (p. 4); historians 'accepted, for historical purposes, the two highly fashionable political theories', 'the Marxian doctrine of the class struggle' and 'the Frontier Theory' (p. 6); the Marxian interpretation 'alien to their experience and unremunerative for their purposes'; Innis 'refused to accept the simplified Marxian version of historical determinism' (p. 6); the LSR claim about 'an economic empire for the entrepreneurs of Montreal' (pp. 6–7); 'a sadly imperfect vehicle for the exemplification of the Marxian verities' (p. 7); Turner 'fixed upon the movement of settlement across the continent as the most important fact in its history' (p. 8); frontier progress 'modified by ... railways, efficient police, governmental supervision', the 1837 rebels 'not from the frontier', 'forest-born' (p. 9); 'How wrong we were!' (p. 11); 'imported intellectual reach-me-downs' and 'less deference for imported theories of historical change' (p. 12)."
+      },
+      "scope_note": "In-period statement of his case against the Liberal, Marxian and frontier interpretations of Canadian history."
+    },
+    {
+      "id": "pe135_creighton_brouillette_1957",
+      "title": "Benoît Brouillette, review of Donald Creighton, Harold Adams Innis: Portrait of a Scholar (1957), L’Actualité économique 33, no. 3 (1957): 528–530.",
+      "url": "https://doi.org/10.7202/1001264ar",
+      "citation": "Benoît Brouillette, review of Creighton, Harold Adams Innis: Portrait of a Scholar (Toronto: University of Toronto Press, 1957), L’Actualité économique 33, no. 3 (octobre–décembre 1957): 528–530. doi:10.7202/1001264ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (Érudit PDF, Internet Archive capture of 21 December 2025). Brouillette reports the biography's account of Innis's Canada: 'L'axe économique du Canada est, au contraire, le système orienté est-ouest, concurrent de son voisin, marqué par le Saint-Laurent et les Grands-Lacs ... Cet axe vital est à la fois transocéanique et transcontinental' (p. 529). It is the reviewer's summary of Creighton's portrait, not Innis's own words."
+      },
+      "scope_note": "In-period review: Creighton's portrait of Innis in Laurentian terms, as reported."
+    },
+    {
+      "id": "pe135_creighton_brunet_1953",
+      "title": "Michel Brunet, review of Donald Creighton, John A. Macdonald: The Young Politician (1952), Revue d’histoire de l’Amérique française 6, no. 4 (1953): 579–582.",
+      "url": "https://doi.org/10.7202/301561ar",
+      "citation": "Michel Brunet, review of Creighton, John A. Macdonald: The Young Politician (Toronto: Macmillan, 1952), Revue d’histoire de l’Amérique française 6, no. 4 (mars 1953): 579–582. doi:10.7202/301561ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (Érudit PDF, Internet Archive capture of 28 March 2023). Quoted: Creighton 'l'un des maîtres contemporains de l'historiographie anglo-canadienne' (p. 579); the biographer's weakness of presenting 'son héros comme le centre-moteur du développement historique'; 'Il n'a pas jugé nécessaire de dépouiller un seul journal canadien-français' (p. 580); 'Il est évident que M. Creighton entretient de nombreux préjugés'; he seems to want to demolish 'tous ceux qui s'opposent, de nos jours, à la centralisation fédérale' (p. 581); the book succeeds only 'à demi' (p. 582). Brunet quotes Creighton's vol. 1, pp. vii and 442–443."
+      },
+      "scope_note": "In-period French-Canadian critique of the Macdonald biography."
+    },
+    {
+      "id": "pe135_creighton_decline_1969",
+      "title": "D. G. Creighton, “The Decline and Fall of the Empire of the St. Lawrence,” Historical Papers / Communications historiques 4, no. 1 (1969): 14–25.",
+      "url": "https://doi.org/10.7202/030704ar",
+      "citation": "D. G. Creighton, “The Decline and Fall of the Empire of the St. Lawrence,” Historical Papers / Communications historiques (Canadian Historical Association) 4, no. 1 (1969): 14–25. doi:10.7202/030704ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (pp. 14–25) from page images of the Érudit PDF, via the Internet Archive capture of 25 July 2024 (the live Érudit site returned a bot-check page); OCR checked against the page order and running heads. Quoted: the phrase 'made its first public appearance in the autumn of 1937' (he names the book The Empire of the St. Lawrence, its 1956 title); regarded 'as the inspiration, at least in part, of a new school of Canadian historians and as the genesis of a new historical doctrine, the Laurentian interpretation of Canadian history'; 'no wish to disavow the parentage of an idea'; the book as 'the fruit of my friendship with Harold Innis' called a simple generalization that 'happen[s] to be wrong' (p. 14); subject suggested 'not by Harold Innis, whom I barely knew at the time, but by W. P. M. Kennedy'; the Chateau Clique merchants and 'Montreal's staple trades' (p. 15); 'reluctantly convinced by the weight of his own evidence'; 'The protagonist of the Empire of the St. Lawrence was the River itself'; Macdonald as 'the only satisfactory method of writing the second phase' and 'a trilogy on one theme'; 'This Laurentian theme ...' and 'a great territorial empire, both commercial and political, in the western interior' (p. 16); 'the east-west axis would be its backbone' (p. 17); Confederation 'not of a cultural compact between two cultural groups' (p. 18); the First World War as 'the great divide' (p. 19); Mackenzie King 'not so much a Canadian citizen as a citizen of North America' (p. 21); 'Canada now stands alone' and 'American economic and military imperialism' (p. 22); 'ethnic and cultural values' (p. 24); duality, bilingualism and a special position for Quebec 'a repudiation of the intentions of the Fathers of Confederation' (p. 25)."
+      },
+      "scope_note": "The author's own retrospect on the Laurentian theme (1969) and his account of its 'decline and fall'; a later statement, not evidence of the 1937 text."
+    },
+    {
+      "id": "pe135_creighton_dominion_1944",
+      "title": "Donald Grant Creighton, Dominion of the North: A History of Canada (Boston: Houghton Mifflin, 1944).",
+      "url": "https://archive.org/details/dominionofnorthh0000dona",
+      "citation": "Donald Grant Creighton, Dominion of the North: A History of Canada (Boston: Houghton Mifflin, 1944), 535 p.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Open Internet Archive copy (dominionofnorthh0000dona; Houghton Mifflin, Riverside Press, copyright 1944). Read: title and copyright pages, contents (pp. v–vii), pp. 3–6, 21, 24–25, 166, 185, 270, 272, 298, 419 and the reading list pp. 505–507; the rest unread. Page numbers from the printed running heads (the OCR's leaf-to-page map is offset). Open Library edition OL6465350M (LCCN 44003898). Quoted: 'the one great river system which led to the Atlantic seaboard from the heart of the continent', 'the natural basis of a great commercial empire stretching far into the distant west', 'The first staple of the St. Lawrence commercial system was beaver fur' (p. 21); the struggle 'between the northern and southern routes, between Montreal and New York' (pp. 24–25); the Grand Trunk 'reinforced the old commercial empire of the St. Lawrence' (p. 270); 'Quebec had been the origin of the empire of the St. Lawrence; it was to be the genesis of the Dominion of Canada' (p. 298); Montreal 'the capital of the fur-trading empire of the St. Lawrence' and 'the triumph of the east-west route' (p. 419); the reading list includes Innis's The Fur Trade in Canada (1930) and The Cod Fisheries (1940) (p. 506) and his own British North America at Confederation (p. 507)."
+      },
+      "scope_note": "In-period text: the Laurentian argument carried across Canadian history for an American readership."
+    },
+    {
+      "id": "pe135_creighton_fregault_1955",
+      "title": "Guy Frégault, review of Donald Creighton, John A. Macdonald: The Old Chieftain (1955), Revue d’histoire de l’Amérique française 9, no. 3 (1955): 443–448.",
+      "url": "https://doi.org/10.7202/301730ar",
+      "citation": "Guy Frégault, review of Creighton, John A. Macdonald: The Old Chieftain (Toronto: Macmillan, 1955), Revue d’histoire de l’Amérique française 9, no. 3 (1955): 443–448. doi:10.7202/301730ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (Érudit PDF, Internet Archive capture of 11 August 2022). Quoted: the work 'fondé sur une compréhension exacte de l'histoire du Canada'; 'un homme ne crée pas une nation. Seule, une société peut y parvenir' (p. 444); 'Nationalisme antiaméricain, impérialisme et centralisation : synthèse canadienne, — je veux dire anglo-canadienne' (p. 446); 'Car où sont les Canadiens français dans tout cela ? Tout simplement, ils n'y sont pas' (p. 447). A mixed review: it praises the book's coherence and calls it worth reading for French Canadians (p. 448)."
+      },
+      "scope_note": "In-period French-Canadian review of the second Macdonald volume: praise with a critique of its anglo-Canadian synthesis."
+    },
+    {
+      "id": "pe135_creighton_heaton_1938",
+      "title": "Herbert Heaton, review of D. G. Creighton, The Commercial Empire of the St. Lawrence, 1760–1850 (1937), Canadian Journal of Economics and Political Science 4, no. 4 (1938): 565–570.",
+      "url": "https://doi.org/10.2307/136622",
+      "citation": "Herbert Heaton, review of Creighton, The Commercial Empire of the St. Lawrence, 1760–1850, Canadian Journal of Economics and Political Science 4, no. 4 (November 1938): 565–570.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "First page only (p. 565), read in the Cambridge Core first-page image (article S0315489000026591); the rest is closed. Crossref: CJEPS 4:4, November 1938, pp. 565–570, author Heaton. Review header: Ryerson Press and Yale University Press, 1937, pp. xx, 441, in the Carnegie Endowment's Relations of Canada and the United States series. Quoted: since Lilian Knowles 'I have often wondered who would pick up her mantle as exponent of the economic interpretation of history ... Now I think my search has ended'; the book quoted as a 'study in commerce and politics' and an 'attempt to trace the relations between the commercial system of the St. Lawrence and the political development of Canada during almost a century of its history' (Heaton's quotation of the book; not checked against the book); 'he certainly has applied the test with uncanny and relentless skill, and has pleased neither the Marxians nor their enemies'."
+      },
+      "scope_note": "In-period reception of the 1937 book by an economic historian (first page)."
+    },
+    {
+      "id": "pe135_creighton_innis_1957",
+      "title": "Donald Creighton, Harold Adams Innis: Portrait of a Scholar (Toronto: University of Toronto Press, 1957).",
+      "url": "https://openlibrary.org/works/OL1380134W",
+      "citation": "Donald Creighton, Harold Adams Innis: Portrait of a Scholar (Toronto: University of Toronto Press, 1957), 146 p.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Book unread. Open Library edition OL213681M (University of Toronto Press, 1957, 146 p., LCCN 58000854); reissued 1978 (OL4287173M). Content known only through Brouillette's review (pe135_creighton_brouillette_1957)."
+      },
+      "scope_note": "Creighton's biography of Innis (catalogue level)."
+    },
+    {
+      "id": "pe135_creighton_ouellet_1984",
+      "title": "Fernand Ouellet, “Les classes dominantes au Québec, 1760–1840. Bilan historiographique,” Revue d’histoire de l’Amérique française 38, no. 2 (1984): 223–243.",
+      "url": "https://doi.org/10.7202/304261ar",
+      "citation": "Fernand Ouellet, “Les classes dominantes au Québec, 1760–1840. Bilan historiographique,” Revue d’histoire de l’Amérique française 38, no. 2 (1984): 223–243. doi:10.7202/304261ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Pp. 225–229 read (Érudit PDF, Internet Archive capture of 15 August 2022, text layer); the rest unread. Quoted: Creighton, 'partant de la théorie des staples pour établir les bases économiques du développement de la nation canadienne', held that New France's economy rested on the fur trade and was led by a bourgeoisie (p. 226, n. 13 citing the 1937 and 1944 books); 'le chef de l'Ecole laurentienne'; his post-Conquest French Canada 'une société semi-féodale décadente devenue hostile aux impératifs économiques'; Ouellet asks whether the later scheme of Séguin, Frégault and Brunet is 'bien différent' (p. 227)."
+      },
+      "scope_note": "A Quebec historiographical survey placing Creighton's Conquest argument before the Montreal school's."
+    },
+    {
+      "id": "pe135_creighton_woodcock_1979",
+      "title": "George Woodcock, “The Servants of Clio: Notes on Creighton & Groulx,” Canadian Literature 83 (1979): 131–141.",
+      "url": "https://ojs.library.ubc.ca/index.php/canlit/article/view/194614",
+      "citation": "George Woodcock, “The Servants of Clio: Notes on Creighton & Groulx,” Canadian Literature 83 (Winter 1979): 131–141.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (journal PDF on UBC's OJS; issue 83, pp. 131–141). A literary critic's essay, not a historian's. Quoted: Creighton 'glorifying the transcontinental conception of the original Dominion-builders', and his Maclean's article 'No More Concessions' (27 June 1977) (p. 133); 'Creighton's master was H. A. Innis ... with Innis's encouragement' (p. 134); the Macdonald volumes 'the first important study of the most interesting political personality Canada has yet produced' (p. 135); 'the dominant vision is spatial even more than temporal' (p. 137); Creighton's 1972 introduction to Towards the Discovery of Canada calling the Liberal view 'almost a complete inversion of my own' (p. 139; quoted by Woodcock, not read); 'a major distortion in Creighton's view of Canadian history' and 'the fallacy that the Fathers of Confederation did not intend to create a genuine federalism' (p. 140)."
+      },
+      "scope_note": "In-period critical essay pairing Creighton and Groulx as national myth-makers."
+    },
+    {
+      "id": "salmon",
+      "title": "Lucy Maynard Salmon: social inquiry and historical teaching at Vassar",
+      "citation": "Vassar Encyclopedia, “Lucy Maynard Salmon”; Salmon, Domestic Service (Macmillan, 1897).",
+      "url": "https://vcencyclopedia.vassar.edu/faculty/prominent-faculty/lucy-maynard-salmon/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Vassar account checked for source criticism, everyday material evidence, and teaching. This early social inquiry is not assigned to the post-1950 new social history school. Rechecked complete institutional article on 2026-09-12: distinguishes source-critical pedagogy, later newspaper studies and institutional conflict. Its retrospective new-social-history language is not treated as membership; bibliography’s Domestic Service 1987 typo is not adopted. Named archival review folder is a lead, not a consulted review.",
+        "checked_on": "2026-09-12"
+      }
+    },
+    {
+      "id": "salmon_domestic_primary",
+      "title": "Lucy Maynard Salmon, Domestic Service (1897; second edition, Macmillan, 1901), prefaces and chapters I–II.",
+      "citation": "Lucy Maynard Salmon, Domestic Service (1897; second edition, Macmillan, 1901), prefaces and chapters I–II.",
+      "url": "https://www.gutenberg.org/files/73921/73921-h/73921-h.htm",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Title/copyright, complete original preface vii–xiv, second-edition preface xv and chapters I–II pp. 1–15 read in Gutenberg transcription. Documents survey distribution, nonresponse, bureau tabulation, named assistance and an economic/historical explanation. Second edition adds a European chapter; it is not attributed to 1897. The self-description as representative or random is not endorsed as modern probability sampling. Remaining chapters, original schedules and numerical calculations not audited; historical generalizations remain Salmon’s arguments."
+      }
+    },
+    {
+      "id": "salmon_progress_primary",
+      "title": "Lucy Maynard Salmon, Progress in the Household (Houghton Mifflin, 1906), Apologia, pp. v–xiv.",
+      "citation": "Lucy Maynard Salmon, Progress in the Household (Houghton Mifflin, 1906), Apologia, pp. v–xiv.",
+      "url": "https://www.gutenberg.org/files/64287/64287-h/64287-h.htm",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Title/copyright and complete Apologia read. Salmon explains the investigation’s institutional origin, differentiates evidence from household panaceas, recalls disciplinary reception, and explicitly invokes Moses Coit Tyler’s instruction to assess a work by its purpose. Her conjectures about economists’ and historians’ reactions are not independently established reviews. Remaining essays unread."
+      }
+    },
+    {
+      "id": "salmon_underhill_collection",
+      "title": "Vassar College Archives & Special Collections, Lucy Maynard Salmon and Adelaide Underhill Collection, New York Heritage.",
+      "citation": "Vassar College Archives & Special Collections, Lucy Maynard Salmon and Adelaide Underhill Collection, New York Heritage.",
+      "url": "https://nyheritage.org/collections/lucy-maynard-salmon-and-adelaide-underhill-collection",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Collection description and creator identities checked. Identifies Underhill as Salmon’s student, librarian and partner, with correspondence and other surviving materials. Supports identity/context alongside the Domestic Service acknowledgment to A. Underhill; individual documents and the implied intentions behind preserving them are not independently assessed."
+      }
+    },
+    {
+      "id": "salmon_works",
+      "title": "Lucy Maynard Salmon: domestic service and household evidence",
+      "citation": "Vassar Quarterly, “About Books” (2001), review of History and the Texture of Modern Life, including Salmon’s Domestic Service (1897).",
+      "url": "https://www.vassar.edu/vq/issues/2001/04/beyond-vassar/about-books.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Institutional review identifies the 1897 study and her work with cookbooks and household material culture; retrospective support, not a contemporary influence record.",
+        "checked_on": "2026-09-10"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

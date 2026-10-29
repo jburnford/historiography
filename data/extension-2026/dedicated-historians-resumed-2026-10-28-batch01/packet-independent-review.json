@@ -1,0 +1,61 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "exact merged packet before application",
+  "baseline_revision": "1.204",
+  "revision": "1.205",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "packet_sha256": "56a583a4e32dcc6768976b0a933d96110fbfbd34868c88f6bff0f50dcde50b3a",
+  "reviewed_files_sha256": {
+    "batch.json": "a1a5adc6ba21bd0f995f0516d0e284cc59222f24486bac7ce3788fc2f6423008",
+    "responses/entry-draft.json": "e63a34fef5101f1eb2ffd443fa93df9183655e1443a98b6fb7352fc11410b637",
+    "release/editorial-additions.json": "56a583a4e32dcc6768976b0a933d96110fbfbd34868c88f6bff0f50dcde50b3a",
+    "baseline.json": "cd723c779769121b1867242089e74ab50c986363fcb1aad1c9adf7545f9ac510",
+    "manifest.json": "b0f4853234e945885e4f95a8ae353e4ab21c57a980f6abdf3c72ea5f613a2720",
+    "freeze.json": "2a28da360a4f8f27234dfdfa0f564c6c6e5ee17cd8724b1c862adfd0db57240f",
+    "verification.json": "2228dafaa8ab335926f714c7bb20f63b99c688208bf5fe1fa69510bc28e50177",
+    "prepare.py": "0f339f88fe88bbfb8232f920f18b8af478610757749a80b41cc571753cd556c8"
+  },
+  "dossier_review_sha256": {
+    "john_higham": "eca15316f3387d5d7bfb51bc9aec2220c2f6a88d7f8704948ff5785f614810b5",
+    "john_tosh": "2167d959ca5c0681799913c592e60c085db7731ec5149aa07fc83e9b145ba194",
+    "linda_colley": "b9aabd376930e359e673bca4a57c65fd9e3b244ec0631f7c0f378cb1fde93e42",
+    "linda_gordon": "3f86a4ab2cf80ed2754199f6de7525c026930f72e86878f5d941b14194c627b1",
+    "linda_k_kerber": "565ca61dd6e65d29345f9cd27041afb04dded3912f98ee15bf40a136751ea61f"
+  },
+  "checks": {
+    "all_manifest_and_freeze_hashes_match": true,
+    "all_owner_files_match_independent_passes": true,
+    "all_39_packet_edges_equal_reviewed_claims_and_qualifications": true,
+    "all_16_new_sources_equal_reviewed_records": true,
+    "all_5_source_addenda_equal_reviewed_records": true,
+    "no_new_endpoints_or_old_edge_edits": true,
+    "all_2195_old_edges_and_ids_exact": true,
+    "all_other_graph_tables_exact_except_appended_history_and_scoped_sources": true,
+    "all_old_sources_exact_except_five_append_only_reading_notes": true,
+    "no_internal_or_baseline_pair_kind_duplicates": true,
+    "direction_and_legacy_types_consistent": true,
+    "source_ids_resolve": true,
+    "predicted_graph_sha256_matches": true,
+    "read_only_prepare_check_passed": true
+  },
+  "changed_old_source_ids": [
+    "higham_consensus_primary",
+    "hc171_colley_interview",
+    "hc174_kerber_spheres",
+    "hc176_linda_gordon_1",
+    "hc177_tosh_article"
+  ],
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2234,
+    "sources": 3266,
+    "people": 1438
+  },
+  "expected_production_sha256": "d1c4448b3070c254902f3f6944f87eec2567a549af5a063e7185d3c2d09060cc",
+  "substantive_review": "All proposal decisions and resolved passage/coverage challenges remain in the five pinned independent reviews. Named mediation, OCR limits, editions, coauthors, positive use plus particular criticism, and explicitly held missing endpoints survive unchanged. Current Indigenous-history changes are protected by full baseline-table and old-edge equality. No source bodies or unrelated dissertation changes enter this packet.",
+  "blocking_findings": [],
+  "scope_limit": "This approves the exact additive packet. Applied graph, protected assets, rebuilds and release checks require separate review; no complete intellectual network or publication is certified.",
+  "owner_or_packet_files_modified": false
+}

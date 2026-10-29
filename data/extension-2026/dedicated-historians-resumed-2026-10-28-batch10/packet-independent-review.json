@@ -1,0 +1,66 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "exact merged packet before application",
+  "research_baseline_revision": "1.204",
+  "research_baseline_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "production_baseline_revision": "1.213",
+  "production_baseline_sha256": "be0c68e92dbc78de3fe9e25e29df38b54c35aef1382abd08537e86040b9ca21f",
+  "revision": "1.214",
+  "packet_sha256": "80a7fd16dc3a01c0833a3f967d748eadbef943fb2e5c9a461531f01ceb44da12",
+  "reviewed_files_sha256": {
+    "batch.json": "8b82c720aaf03e247e9608c219397b3e8653be70ddaa99afc935f18af28fe029",
+    "responses/entry-draft.json": "ff2ec225b06aaba2db7ef927bc4269cf70d0910c2e0f22ed3577cc6b43e8e89f",
+    "release/editorial-additions.json": "80a7fd16dc3a01c0833a3f967d748eadbef943fb2e5c9a461531f01ceb44da12",
+    "baseline.json": "3d373219fa3fa0e3548dbc8404f97f9ca65025f0c252c2676fe853883975e31a",
+    "manifest.json": "c4bc9e9d7c0648f32c42600c608dcfbe639cbfac4866095a70f22efe598502c6",
+    "freeze.json": "0c2a0eb63eda4e6d7b48636f77398f65a06bf644219c46706483d70098992f92",
+    "verification.json": "9cf8aee25b9cf497b1b10bcd2c940ce676e805864ea479fd79f720542e463bdd",
+    "prepare.py": "449e5f604f55e0b8f9803bac0b2f8407fd767ee68a958a978e46d002026bb16b"
+  },
+  "dossier_review_sha256": {
+    "david_roediger": "d4b700e0438eb1ac3b29df4ee70cb06c6af6e8a27428019cef103560e0f2bfe8",
+    "eric_foner": "85f20cda915eaafb4dc593cd4644473e62efe09c11c6790d201301e49cacfaab",
+    "francois_furet": "e38cfc5c1c3b3d2db6ea3313d77e2dcd0d9b31fc20e7a0f0103f797b047db0c1",
+    "gary_gerstle": "a4551d8da9345ec9ec8720d939914a8d41468e8626608884fc3aa2f2d73e7a1f",
+    "harold_a_innis": "96a3a7962fc4dbe0868a2fd99f80f1f6adce3024d0c978c4e9ac1c7094f09d28"
+  },
+  "checks": {
+    "all_manifest_and_freeze_hashes_match": true,
+    "frozen_1_204_contexts_preserved": true,
+    "exact_1_213_current_baseline_and_implementation_receipt_verified": true,
+    "selection_45_prior_5_current_51_remaining_disjoint_and_complete": true,
+    "all_36_packet_edges_equal_reviewed_claims": true,
+    "all_14_cited_new_sources_equal_reviewed_records": true,
+    "eight_uncited_held_only_sources_excluded_without_owner_mutation": true,
+    "all_11_append_only_source_notes_exact": true,
+    "all_2514_old_edges_exact": true,
+    "all_other_prior_tables_exact_except_appended_history_and_scoped_sources": true,
+    "no_new_endpoints_or_duplicate_pair_kinds": true,
+    "direction_source_and_legacy_types_consistent": true,
+    "expected_graph_sha256_matches": true,
+    "read_only_prepare_check_passed": true
+  },
+  "excluded_uncited_source_ids": [
+    "hr28_furet_jordan_reminiscence",
+    "hr28_gerstle_chase2022",
+    "hr28_gerstle_comment2026",
+    "hr28_gerstle_draper1985",
+    "hr28_gerstle_kuttner2022",
+    "hr28_gerstle_racism1993",
+    "hr28_roediger_arnesen2001_selected",
+    "hr28_roediger_stclair2016"
+  ],
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2550,
+    "sources": 3374,
+    "people": 1438
+  },
+  "expected_production_sha256": "28a3042ef4b2068a316bc51fdc7e4ad12476309f2f48baa1294b365c3b055db6",
+  "qualification": "No new structural warning or typed pair/kind duplicate. All five dossiers preserve prior incidents; eight held-only sources remain excluded. Tocqueville remains outside owned review queue and no primary Tocqueville body is newly read: Furet’s own explicit criticism and named mediation of resources may cite the existing endpoint, with every old Tocqueville record and edge exact. All named mediation, coauthorship, access, editions and criticisms remain exact; protected Indigenous baseline unchanged.",
+  "blocking_findings": [],
+  "scope_limit": "Approves this exact additive local packet. Applied preservation and rebuilt public data require separate checks; no exhaustive network or deployment certified.",
+  "owner_or_packet_files_modified": false
+}

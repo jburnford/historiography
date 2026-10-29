@@ -1,0 +1,339 @@
+{
+  "person_id": "philippe_aries",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "philippe_aries",
+    "label": "Philippe Ariès",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Histoire des populations françaises et de leurs attitudes devant la vie (1948) · L’Enfant et la vie familiale sous l’Ancien Régime (1960) · Centuries of Childhood: Robert Baldick translation (1962) · L’Homme devant la mort (1977)",
+    "description": "A historian of family, childhood and attitudes toward death whose work made familiar social arrangements appear historically variable. The childhood argument concerns the historical recognition of childhood; it is not equivalent to claiming that earlier parents never loved their children. Linda Pollock’s criticism questions evidential representativeness and generalization. Jean-Claude Chamboredon’s obituary places Ariès’s studies in dialogue with sociological questions about institutions and modernity, while explaining their politically and professionally unusual setting.",
+    "representative_figures_and_works": "Histoire des populations françaises et de leurs attitudes devant la vie depuis le XVIIIe siècle (1948); L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962); L’Homme devant la mort (1977).",
+    "source_ids": [
+      "aries_childhood",
+      "pollock_children",
+      "hc171_aries_chamboredon"
+    ],
+    "scope_note": "Ariès’s complete books are unread here. Existing Pollock primary-excerpt qualifications are retained and Chamboredon is named as the substantive reader. No absence-of-parental-affection claim. French originals and Baldick’s translation remain distinct. The death-day discrepancy is kept in life research rather than resolved by assumption.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc171_aries_population",
+          "label": "Histoire des populations françaises et de leurs attitudes devant la vie",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1948,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "Chamboredon’s contemporary account, p. 151, dates this book 1948. Body unread."
+        },
+        {
+          "id": "hc171_aries_enfant",
+          "label": "L’Enfant et la vie familiale sous l’Ancien Régime",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1960,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:aries_childhood",
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "French 1960 original distinguished from the later English publication."
+        },
+        {
+          "id": "hc171_aries_childhood_en",
+          "label": "Centuries of Childhood: Robert Baldick translation",
+          "kind": "translation",
+          "track": "editions",
+          "date": {
+            "year": 1962,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:aries_childhood"
+          ],
+          "support": "English 1962 date preserved, distinct from the 1965 paperback listing."
+        },
+        {
+          "id": "hc171_aries_mort",
+          "label": "L’Homme devant la mort",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1977,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc171_aries_chamboredon"
+          ],
+          "support": "P. 151 identifies the 1977 synthesis and distinguishes preparatory books from 1974 and 1975. English translation not dated without a separate checked witness."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.171/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1324",
+      "source": "philippe_aries",
+      "target": "demography",
+      "relationship": "Makes the historical concept of childhood a problem for family history, while prompting disputes over sources and generalization.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "aries_childhood",
+        "pollock_children"
+      ],
+      "evidence_note": "The formulation retains Pollock’s distinction between concept and affection and her source criticism (1983 excerpt pp. 1–10, especially 2 and 6–9). It neither endorses Ariès’s chronology nor reassigns later writers’ stronger claims to him.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc171_philippe_aries_1"
+    },
+    {
+      "id": "edge_1325",
+      "source": "philippe_aries",
+      "target": "historicalsociology",
+      "relationship": "Historicizes familiar family institutions and social attitudes, opening comparative questions between modernity and earlier arrangements.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc171_aries_chamboredon"
+      ],
+      "evidence_note": "Attributed to Jean-Claude Chamboredon, 1985 pp. 150–151, on the work’s sociological questions and the family/death studies. This is a named reader’s substantive assessment, not a claim that Ariès belonged to a single sociological school.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc171_philippe_aries_2"
+    },
+    {
+      "id": "edge_1664",
+      "source": "philippe_aries",
+      "target": "jacques_le_goff",
+      "relationship": "While accepting Le Goff’s medieval cultural turning point, Ariès argues that his focus on purgatory as a place understates enduring older beliefs in repose and waiting (1983).",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "lg_reception_aries_1983"
+      ],
+      "evidence_note": "Printed pp. 153–156. Ariès accepts the terminus ad quem and cultural significance. His diffusion discussion allows regional variation and revises his own earlier late dating; this is no blanket denial of Le Goff’s thesis. French book (1981) not independently read.",
+      "proposal_id": "lg_reception_aries_critique"
+    },
+    {
+      "id": "edge_2030",
+      "source": "philippe_aries",
+      "target": "jean_delumeau",
+      "relationship": "Credits Ariès’s study of childhood and family life as an important model of historical inquiry.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_delumeau_journey2010"
+      ],
+      "evidence_note": "Own2010 retrospective441 names L’enfant et la vie de famille dans la France d’Ancien Régime and calls it a masterpiece while acknowledging criticism of it. Admiration is not converted into agreement with every thesis or a formal teaching relation. Complete original book and criticisms unread.",
+      "proposal_id": "hc200_delumeau_aries_resource"
+    },
+    {
+      "id": "edge_2068",
+      "source": "philippe_aries",
+      "target": "john_brewer",
+      "relationship": "Brewer uses Ariès’s account of criticism of progress moving from the Right toward the Left to explain interest in preindustrial societies and mentalities.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_brewer_microhistory2010"
+      ],
+      "evidence_note": "Own2010 printed93 attributes the claim to Ariès, mediated in n27 by Ginzburg’s1993 Microhistory p20. It contributes to Brewer’s explanation of intellectual disillusionment alongside Gregory and Revel. No direct Ariès work/title or original reading established; the mediated route is explicit, not a formative influence claim.",
+      "proposal_id": "hc200_brewer_aries_progress_resource"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_792",
+      "source": "demography",
+      "target": "cdn_childhood_youth",
+      "relationship": "Childhood and family as historical subjects",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "cdnsrc_parr_1982",
+        "cdnsrc_bradbury_1992",
+        "aries_childhood"
+      ],
+      "evidence_note": "The demography umbrella's strand on childhood evidence (Ariès; Pollock) and its household studies can be read alongside Canadian childhood and family history, which grew from social and family history (Parr, ed., 1982; Bradbury, ed., 1992) more than from family reconstitution. PhD context: 12 of 132 PhDs engaging this group cite Ariès (9% vs 3%; lift 2.96). Comparison; no descent from Ariès is asserted.",
+      "classification_basis": "editorial_review",
+      "map_label": "History of childhood and family",
+      "proposal_id": "ccy_rel_01"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "demography",
+      "label": "Historical demography & history of the family",
+      "records": [
+        {
+          "person_id": "philippe_aries",
+          "role": "historian",
+          "context": "Studies historical conceptions of childhood through images and texts. His argument about recognizing childhood must be distinguished from a claim that parents lacked affection; Pollock challenges historical generalizations and evidence.",
+          "works": "L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood (English 1962)",
+          "source_ids": [
+            "aries_childhood",
+            "pollock_thesis"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1324"
+        }
+      ]
+    },
+    {
+      "node_id": "historicalsociology",
+      "label": "Comparative historical sociology",
+      "records": [
+        {
+          "person_id": "philippe_aries",
+          "role": "historian",
+          "context": "Historicizes familiar family institutions and social attitudes, opening comparative questions between modernity and earlier arrangements.",
+          "works": "Histoire des populations françaises et de leurs attitudes devant la vie depuis le XVIIIe siècle (1948); L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962); L’Homme devant la mort (1977).",
+          "source_ids": [
+            "hc171_aries_chamboredon"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1325"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "aries_childhood",
+      "title": "Philippe Ariès, L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962).",
+      "citation": "Philippe Ariès, L’Enfant et la vie familiale sous l’Ancien Régime (1960); Centuries of Childhood, translated by Robert Baldick (1962).",
+      "url": "https://www.penguinrandomhouse.com/books/4742/centuries-of-childhood-by-philippe-aries/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher description read for historical conceptions of childhood and sources including paintings, diaries, games and school curricula; author note confirms English translation 1962, distinct from listed 1965 paperback. Original French date retained from existing record. Pollock’s primary thesis p. 31 explicitly distinguishes Ariès’s concept argument from parental affection. No full-book reading or blanket endorsement of chronology."
+      }
+    },
+    {
+      "id": "cdnsrc_bradbury_1992",
+      "title": "Bettina Bradbury, ed., Canadian Family History: Selected Readings (Toronto: Copp Clark Pitman, 1992).",
+      "url": "https://openlibrary.org/works/OL18306110W",
+      "citation": "Bettina Bradbury, ed., Canadian Family History: Selected Readings (Toronto: Copp Clark Pitman, 1992).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Editor, title, publisher and year checked. Contents unread. Checked against: Open Library work record (Copp Clark Pitman, 1992; later edition Irwin, 2000)."
+      },
+      "scope_note": "Title-level."
+    },
+    {
+      "id": "cdnsrc_parr_1982",
+      "title": "Joy Parr, ed., Childhood and Family in Canadian History (Toronto: McClelland and Stewart, 1982).",
+      "url": "https://openlibrary.org/works/OL17943663W",
+      "citation": "Joy Parr, ed., Childhood and Family in Canadian History (Toronto: McClelland and Stewart, 1982).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-12",
+        "note": "Editor, title, publisher and year checked. Contents unread. Checked against: Open Library work record (McClelland and Stewart, 1982); review in Canadian Journal of Sociology 9:1 (1984), doi:10.2307/3340471."
+      },
+      "scope_note": "Title-level."
+    },
+    {
+      "id": "hc171_aries_chamboredon",
+      "title": "Jean-Claude Chamboredon, “In memoriam: Philippe Ariès, 1914–1984,” Revue française de sociologie 26:1 (1985): 150–152.",
+      "citation": "Jean-Claude Chamboredon, “In memoriam: Philippe Ariès, 1914–1984,” Revue française de sociologie 26:1 (1985): 150–152.",
+      "url": "https://www.persee.fr/doc/rfsoc_0035-2969_1985_num_26_1_3927",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Printed pp. 150–151 read in Persée extraction, including the sequence of publications, institutional questions, and the meeting with sociological work. P. 152 not read. The substantive interpretation is attributed to Chamboredon; books not thereby read. His 8 February 1984 death date differs from the Humathèque authority’s 9 February, so the life record adopts year precision."
+      }
+    },
+    {
+      "id": "hc200_brewer_microhistory2010",
+      "title": "John Brewer, Microhistory and the Histories of Everyday Life, Cultural and Social History7:1 (2010):87–109, doi:10.2752/147800410X477359; retained primary journal transcription.",
+      "citation": "John Brewer, Microhistory and the Histories of Everyday Life, Cultural and Social History7:1 (2010):87–109, doi:10.2752/147800410X477359; retained primary journal transcription.",
+      "url": "https://studyres.com/doc/17353088/microhistory-and-the-histories-of-everyday-life",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh selected printed87–90,92–104 and notes105–109 read in successful web-tool primary transcription, retained raw/microhistory-studyres-web1–4.txt. Print markers and note text present; no facsimile/image collation or claim that transcription errors are excluded. Direct requests403. Cuni PDF route now login HTML; initial transient PDF response not retained and not basis. Old LMU CAS routes404; LMU record confirms separate CAS eSeries5 (2010), not journal pagination. Publisher journal metadata distinguishes 2010 issue and online1May2015. No full cited works read; source’s obvious bibliographic anomalies explicitly flagged in case. Printed91 read only initial antiquarian/critical tradition context through continuation92. Review extension: recovered complete printed93–94 transition including Vilar, Ariès via Ginzburg and Cannadine policy paragraph, retained microhistory-studyres-web5.txt; nn27/31/33 and further named Tilly/Geertz/deGrazia/Kroen/Rostow/Lipset resources or targets explicitly dispositioned."
+      }
+    },
+    {
+      "id": "hc200_delumeau_journey2010",
+      "title": "The Journey of a Historian",
+      "url": "https://doi.org/10.1353/cat.0.0811",
+      "citation": "Jean Delumeau, The Journey of a Historian, The Catholic Historical Review96(3), July2010,435–448; translated by Daniel V. Frascella.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh complete fourteen-page article read in an issue facsimile hosted at https://isidore.co/misc/Res%20pro%20Deo/Journals/Catholic%20Historical%20Review%20%281995-2023%29/2010_Volume96_Number3.pdf. Selected pages435/441/444 visually collated; rest of issue not claimed read. This is the published English translation by Frascella, not an inspected French original. Retrospective testimony is distinct from formal degree records. Original cited monographs, lecture and earlier essays unread; apparent bibliographic variants or errors in article are not silently certified."
+      }
+    },
+    {
+      "id": "lg_reception_aries_1983",
+      "title": "Philippe Ariès, “Le Purgatoire et la cosmologie de l’Au-delà,” Annales ESC 38.1 (1983): 151–157.",
+      "url": "https://www.persee.fr/doc/ahess_0395-2649_1983_num_38_1_411044",
+      "citation": "Philippe Ariès, “Le Purgatoire et la cosmologie de l’Au-delà” [note critique], Annales. Économies, Sociétés, Civilisations 38, no. 1 (January–February 1983): 151–157. DOI: 10.3406/ahess.1983.411044.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Complete critical note and notes 1–15 freshly read in the publisher’s page-specific OCR. Printed pp. 153, 155 and 156 independently collated with page images. Separate Gurevich rectification beneath the notes on p. 157 is not attributed to Ariès. Le Goff’s 1981 French book remains unread; the review predates Goldhammer’s 1984 translation."
+      }
+    },
+    {
+      "id": "pollock_children",
+      "title": "Linda A. Pollock, Forgotten Children: Parent-Child Relations from 1500 to 1900 (Cambridge University Press, 1983).",
+      "citation": "Linda A. Pollock, Forgotten Children: Parent-Child Relations from 1500 to 1900 (Cambridge University Press, 1983).",
+      "url": "https://assets.cambridge.org/97805212/71332/toc/9780521271332_toc.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-13",
+        "note": "Publisher excerpt printed 1–10 read via OCR at https://beckassets.blob.core.windows.net/product/readingsample/401759/9780521271332_excerpt_001.pdf ; pages 2 and 10 visually collated. Page 2 separates Ariès’s childhood concept from ill-treatment and later writers’ claims about parental formality. Pages 6–9 question generalization from public policy, a royal child and secondary accounts; page 10 records Stone’s fluctuating discipline alongside his claim of increasing concern. Excerpt ends during the literature review; Pollock’s own diary-analysis chapters and endnotes unread. Prior metadata retained in history. The separately checked 1981 thesis is not treated as identical to the 1983 book; Stone’s independently read 1979 abridgment has its own source record."
+      },
+      "verification_history": [
+        {
+          "status": "bibliographic_metadata_checked",
+          "checked_on": "2026-09-11",
+          "note": "Indexed publisher contents checked for evidence issues: representativeness, lower-class coverage, diarists/editors, generalization and attitudes versus behavior. Original 1983 metadata confirmed in Cambridge’s Psychological Medicine review record https://www.cambridge.org/core/journals/psychological-medicine/article/abs/forgotten-children-parentchild-relations-from-1500-to-1900-by-l-a-pollock-pp-334-2500-hb-950-pb-cambridge-university-press-cambridge-1983/0CF99FA3ADFDC012B93C72D92FB98A1F . Book frontmatter download stalled; no full-book reading. The separately recorded 1981 thesis provides primary argument support."
+        }
+      ]
+    },
+    {
+      "id": "pollock_thesis",
+      "title": "Linda A. Pollock, The Forgotten Children (PhD thesis, University of St Andrews, 1981).",
+      "citation": "Linda A. Pollock, The Forgotten Children (PhD thesis, University of St Andrews, 1981).",
+      "url": "https://research-repository.st-andrews.ac.uk/handle/10023/15411",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Repository abstract and downloaded primary thesis read at pp. 31, 96–98 and 143–144. Supports explicit separation of Ariès’s childhood concept from affection, criticism of sweeping change/Stone’s explanatory wording and selective use of diaries, plus attention to literate diarists, censorship and generalization. Thesis and 1983 book are distinct records; no assumption of identical text. OCR dates in the repository abstract are unreliable and not repeated. Additional 2026-09-12 reading: complete section 2.2.3, printed pp. 93–94, criticizes deMause’s source selection and progressive narrative. Laslett/Shore quotations remain mediated; their predictions are not adopted. This is the 1981 thesis, not the independently unread 1983 book criticized by deMause in 1988."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

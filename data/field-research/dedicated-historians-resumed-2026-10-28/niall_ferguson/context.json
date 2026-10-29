@@ -1,0 +1,214 @@
+{
+  "person_id": "niall_ferguson",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "niall_ferguson",
+    "label": "Niall Ferguson",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "The Pity of War (1998) · Empire: How Britain Made the Modern World (2003) · The Shock of the Global: four-editor collection (2010)",
+    "description": "A historian of war, finance and empire whose work makes counterfactual comparison explicit. In his 2007 conversation with Huw Spanner he argues that historians should state plausible alternatives rather than narrate outcomes as inevitable. He uses that approach to defend a disputed interpretation of Britain’s intervention in 1914 and to appraise imperial outcomes. These judgments remain Ferguson’s claims, including their chosen comparisons and values; the entry does not adopt them as settled verdicts on war or empire. His co-editorship of The Shock of the Global is separately credited.",
+    "representative_figures_and_works": "The Pity of War (1998); Empire: How Britain Made the Modern World (UK title, 2003; US title differs); The Shock of the Global: The 1970s in Perspective, co-edited with Charles S. Maier, Erez Manela and Daniel J. Sargent (2010).",
+    "source_ids": [
+      "hc177_ferguson_interview",
+      "hc177_ferguson_shock"
+    ],
+    "scope_note": "New identity matched to historian Niall Ferguson’s interview, title-page credits and current Hoover record. Counterfactual method and specific historical judgments remain his claims; no acceptance inferred from prominence or citation count. UK/US Empire subtitles, 2007 conversation/publication and later footnotes stay separate. The 2010 collection retains all four editors.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc177_ferguson_pity",
+          "label": "The Pity of War",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1998,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_ferguson_interview"
+          ],
+          "support": "Allen Lane 1998 original identified in contemporary interview notes; body unread."
+        },
+        {
+          "id": "hc177_ferguson_empire",
+          "label": "Empire: How Britain Made the Modern World",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2003,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_ferguson_interview"
+          ],
+          "support": "UK Allen Lane 2003, distinct subtitle from US Empire: The Rise and Demise of the British World Order and the Lessons for Global Power; no chapter collation."
+        },
+        {
+          "id": "hc177_ferguson_shock",
+          "label": "The Shock of the Global: four-editor collection",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2010,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc177_ferguson_shock"
+          ],
+          "support": "Belknap Press of Harvard University Press 2010; editors Niall Ferguson, Charles S. Maier, Erez Manela and Daniel J. Sargent. Other chapters not assigned to Ferguson."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.177/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1455",
+      "source": "niall_ferguson",
+      "target": "military",
+      "relationship": "Uses an explicit counterfactual about British nonintervention in 1914 to contest an inevitable-war narrative.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_ferguson_interview"
+      ],
+      "evidence_note": "Own 2007 interview answers on alternative futures and The Pity of War. His judgment that a German victory would have been tolerable remains disputed testimony, not this graph’s endorsed conclusion or a current strategic recommendation.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc177_niall_ferguson_1"
+    },
+    {
+      "id": "edge_1456",
+      "source": "niall_ferguson",
+      "target": "philhistory",
+      "relationship": "Argues that causal explanations should state plausible alternative outcomes and preserve contemporaries’ uncertainty.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_ferguson_interview"
+      ],
+      "evidence_note": "Own answers to the causation, scientific-method and counterfactual questions. A methodological proposal about explanation, not proof that counterfactuals can be experimentally tested or that every imagined alternative is plausible.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc177_niall_ferguson_2"
+    },
+    {
+      "id": "edge_2073",
+      "source": "niall_ferguson",
+      "target": "john_lewis_gaddis",
+      "relationship": "Uses Ferguson’s Virtual History essay as a reference for the situated character of historical judgments.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_gaddis_landscape_indexed2002"
+      ],
+      "evidence_note": "Own first-chapter note17 and attached observer/judgment paragraph, with Evans, Appleby/Hunt/Jacob, Bloch and Carr co-credited. This is a specific cited methodological resource, not a claim Gaddis endorses every counterfactual or Ferguson’s imperial arguments. Original Ferguson essay and remainder of the edited collection unread; edition year not inferred from shortened Gaddis note.",
+      "proposal_id": "hc200_gaddis_ferguson_judgment"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_2072",
+      "source": "lynn_hunt",
+      "target": "john_lewis_gaddis",
+      "relationship": "Cites Telling the Truth about History in acknowledging the situated character of historical judgment.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_gaddis_landscape_indexed2002"
+      ],
+      "evidence_note": "Own first-chapter passage beginning We have, in recent years, embraced postmodernist insights, and note17, co-credit Joyce Appleby and Margaret Jacob as authors of the1994book and also cite Evans/Ferguson/Bloch/Carr. Note24 additionally references the jointly authored book for observer/reconstruction problems. No soleHuntauthorship, no general pupil genealogy, no claim that all these scholars share one theory; original jointbook unread.",
+      "proposal_id": "hc200_gaddis_hunt_situated_judgment"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "military",
+      "label": "Military history",
+      "records": [
+        {
+          "person_id": "niall_ferguson",
+          "role": "historian",
+          "context": "Uses an explicit counterfactual about British nonintervention in 1914 to contest an inevitable-war narrative.",
+          "works": "The Pity of War (1998); Empire: How Britain Made the Modern World (UK title, 2003; US title differs); The Shock of the Global: The 1970s in Perspective, co-edited with Charles S. Maier, Erez Manela and Daniel J. Sargent (2010).",
+          "source_ids": [
+            "hc177_ferguson_interview"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1455"
+        }
+      ]
+    },
+    {
+      "node_id": "philhistory",
+      "label": "Explanation & objectivity debates",
+      "records": [
+        {
+          "person_id": "niall_ferguson",
+          "role": "historian",
+          "context": "Argues that causal explanations should state plausible alternative outcomes and preserve contemporaries’ uncertainty.",
+          "works": "The Pity of War (1998); Empire: How Britain Made the Modern World (UK title, 2003; US title differs); The Shock of the Global: The 1970s in Perspective, co-edited with Charles S. Maier, Erez Manela and Daniel J. Sargent (2010).",
+          "source_ids": [
+            "hc177_ferguson_interview"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1456"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "hc177_ferguson_interview",
+      "title": "Huw Spanner, interview with Niall Ferguson, High Profiles / Third Way, November 2007.",
+      "citation": "Huw Spanner, interview with Niall Ferguson, High Profiles / Third Way, November 2007.",
+      "url": "https://highprofiles.info/interview/niall-ferguson/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Own answers on causation/counterfactuals, historical uncertainty, Pity of War and Empire read, plus date/bibliographic notes. Conversations 5 and 10 September 2007; edited interview first published November 2007. Later explanatory footnotes are not automatically part of the 2007 conversation. Full books unread; imperial and military evaluations remain attributed and contested, not independently endorsed."
+      }
+    },
+    {
+      "id": "hc177_ferguson_shock",
+      "title": "The Shock of the Global: The 1970s in Perspective, Belknap Press / Harvard University Press, 2010, title-page witness.",
+      "citation": "The Shock of the Global: The 1970s in Perspective, Belknap Press / Harvard University Press, 2010, title-page witness.",
+      "url": "https://toc.library.ethz.ch/objects/pdf/z01_978-0-674-04904-8_01.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional title-page scan identifies all four editors and 2010 imprint. Harvard Weatherhead Center Spring 2010 newsletter https://projects.iq.harvard.edu/files/wcfia/files/cpspring2010.pdf reports 31 March 2010 launch with the four editors. Metadata/credits only; no introduction or chapter reading, and no solo authorship of collection."
+      }
+    },
+    {
+      "id": "hc200_gaddis_landscape_indexed2002",
+      "title": "The Landscape of History: selected first-chapter text",
+      "url": "https://balkansbg.eu/en/landscape-history",
+      "citation": "John Lewis Gaddis, The Landscape of History: How Historians Map the Past, Oxford University Press2002, selected first-chapter transcription and notes1–25 hosted by Balkan Identities.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh substantial indexed primary text and notes read through web search, saved in ignored raw/landscape-indexed-primary-read.txt. Direct requests and later page opens repeatedly timed out. The indexed transcription has a gap after Carr’s progress paragraph before note16; it is not a collated complete chapter or book. Selected sections on distance, historical judgment and abstraction are used with specific locators. Source English translation credits for cited works retained; original cited works unread. Original2002 versus2004 paperback not independently collated from a book facsimile. Publisher metadata verifies2002 title; marketing alone is not used to infer a debt."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

@@ -1,0 +1,765 @@
+{
+  "person_id": "roy_porter",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "roy_porter",
+    "label": "Roy Porter",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“Lay Medical Knowledge in the Eighteenth Century” (1985) · “The Patient’s View: Doing Medical History from Below” (1985) · Consumption and the World of Goods: co-edited with John Brewer (1993) · The Greatest Benefit to Mankind (1997)",
+    "description": "A historian of medicine who asks how illness and healing looked from the sufferer’s position. His study of eighteenth-century lay knowledge investigates interpretation and treatment beyond the physician’s office. The published conclusion of “The Patient’s View” places self-help, community action and unequal resources at the centre of medical history, while declining to impose a uniform model on every patient–practitioner encounter. The entry also preserves his co-editorship of a major consumption collection without assigning its contributors’ arguments to him.",
+    "representative_figures_and_works": "“Lay Medical Knowledge in the Eighteenth Century” (1985); “The Patient’s View” (1985); Consumption and the World of Goods, co-edited with John Brewer (1993); The Greatest Benefit to Mankind (1997).",
+    "source_ids": [
+      "roy_porter_lay_1985",
+      "brewer_porter",
+      "hc174_porter_patient",
+      "hc174_porter_benefit"
+    ],
+    "scope_note": "Existing roy_porter reused and distinguished by the matched lay-medicine writings and medical historian obituary. Readings remain the primary opening already recorded and the newly displayed conclusion only. The consumption collection is jointly edited with Brewer; neither a chapter argument nor coauthorship is inferred from its contents.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_porter_lay",
+          "label": "“Lay Medical Knowledge in the Eighteenth Century”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1985,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:roy_porter_lay_1985"
+          ],
+          "support": "Medical History 29, pp. 138–168. Existing primary-opening limit retained."
+        },
+        {
+          "id": "hc174_porter_patient",
+          "label": "“The Patient’s View: Doing Medical History from Below”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1985,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_porter_patient"
+          ],
+          "support": "Theory and Society 14, pp. 175–198, March 1985. Distinct from the same-year Medical History article."
+        },
+        {
+          "id": "hc174_porter_goods",
+          "label": "Consumption and the World of Goods: co-edited with John Brewer",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:brewer_porter"
+          ],
+          "support": "1993 original and joint editorial credit retained; contents are not verification of chapters."
+        },
+        {
+          "id": "hc174_porter_benefit",
+          "label": "The Greatest Benefit to Mankind",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1997,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_porter_benefit"
+          ],
+          "support": "1997 London HarperCollins original; later Norton/Fontana editions not conflated. Book unread."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1379",
+      "source": "roy_porter",
+      "target": "medicalhistory",
+      "relationship": "Investigates lay interpretation, domestic treatment and the sufferer’s role in medical encounters.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "roy_porter_lay_1985",
+        "hc174_porter_patient"
+      ],
+      "evidence_note": "Existing primary opening of Lay Medical Knowledge, supplemented by the publisher’s displayed conclusion of The Patient’s View. Claims are bounded to these passages, not autonomous or equally documented agency for all patients.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_roy_porter_1"
+    },
+    {
+      "id": "edge_1380",
+      "source": "roy_porter",
+      "target": "social",
+      "relationship": "Moves the historical gaze toward sickness, self-help and community healing as problems of social history.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc174_porter_patient"
+      ],
+      "evidence_note": "Displayed primary conclusion explicitly connects health and social history and declines premature uniform interaction models. Full article unread. No general claim that professionals were absent or powerless in every context.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_roy_porter_2"
+    },
+    {
+      "id": "edge_2055",
+      "source": "john_brewer",
+      "target": "roy_porter",
+      "relationship": "Brewer and Porter shared an interdisciplinary consumption project that brought varied historical approaches together in Consumption and the World of Goods.",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "hc200_brewer_ucla2026",
+        "brewer_porter"
+      ],
+      "evidence_note": "Undirected shared editorial/research project, not mutual influence or shared authorship of all essays. Own2026 names Porter as first Clark professor and workshops/lectures format;1993 catalogue identifies both editors and individual chapter authors. Staves and Bermingham led subsequent distinct years/volumes. Disagreement and individual voice retained.",
+      "proposal_id": "hc200_brewer_porter_shared_project"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_241",
+      "source": "black",
+      "target": "atlantic",
+      "relationship": "Du Bois’s double consciousness enters Gilroy’s diaspora argument",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "gilroy",
+        "porter_wesley"
+      ],
+      "evidence_note": "Gilroy explicitly identifies this conceptual resource in his preface. Porter Wesley’s Afro-Brazilian bibliography provides a separate material contribution to diaspora research; neither route makes the umbrella a single school.",
+      "map_label": "Du Bois and diaspora research resources"
+    },
+    {
+      "id": "edge_251",
+      "source": "economic",
+      "target": "consumption",
+      "relationship": "De Vries links household labor and demand; Brewer and Porter collect wider questions about goods and economic life",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "brewer_porter",
+        "de_vries_industrious",
+        "birth_consumer",
+        "weatherill_consumer_primary",
+        "vickery_elegance_primary"
+      ],
+      "evidence_note": "Editorial comparison of the cited approaches, not a claim of transmission or agreement. The comparison remains undirected. The new separate contribution records the particular industrious-revolution argument, not a general direction for every overlap. The comparison now includes primary McKendrick, Weatherill and Vickery passages: acceleration, ownership, household work and material meanings are different outcomes, with unequal evidence coverage.",
+      "map_label": "Household labor, demand and goods"
+    },
+    {
+      "id": "edge_968",
+      "source": "edward_said",
+      "target": "post",
+      "relationship": "Orientalism as discourse and as a style of domination: Western knowledge and representation of 'the Orient' read through knowledge and power, extended to contrapuntal reading of the metropolitan canon with empire (1978–93)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pe137_said_orientalism_1978",
+        "pe137_said_covering_islam_1981",
+        "pe137_said_reconsidered_1985",
+        "pe137_said_culture_imperialism_1993",
+        "pe137_said_lewis_nyrb_1982",
+        "pe137_said_exchange_nyrb_1982",
+        "pe137_said_alazm_1981",
+        "pe132_ohanlon_washbrook_1992",
+        "pe137_said_mcewan_1996",
+        "pe137_said_clifford_1980",
+        "pe137_said_mani_frankenberg_1985",
+        "pe137_said_irwin_2006"
+      ],
+      "evidence_note": "His own in-period statements. Orientalism (New York: Pantheon, 1978, first edition; page images checked): 'The Orient was almost a European invention' (p. 1); Orientalism as 'a style of thought based upon an ontological and epistemological distinction made between \"the Orient\" and (most of the time) \"the Occident\"' (p. 2) and as 'a Western style for dominating, restructuring, and having authority over the Orient' (p. 3). He qualifies it at once: 'it would be wrong to conclude that the Orient was essentially an idea, or a creation with no corresponding reality'; 'The relationship between Occident and Orient is a relationship of power, of domination, of varying degrees of a complex hegemony' (p. 5); and he leaves open 'how one can study other cultures and peoples from a libertarian, or a nonrepressive and nonmanipulative, perspective. But then one would have to rethink the whole complex problem of knowledge and power' (p. 24). Covering Islam (1981, introduction, p. ix): 'The underlying theme of Orientalism is the affiliation of knowledge with power.' 'Orientalism Reconsidered', Cultural Critique 1 (1985), read in full: the issues are 'the representation of other cultures, societies, histories; the relationship between power and knowledge' (p. 89); 'what for the most part got left out of Orientalism was precisely the very history that resisted its ideological as well as political encroachments' (p. 94); 'Orientalism is a praxis of the same sort, albeit in different territories, as male gender dominance, or patriarchy' (p. 103). Culture and Imperialism (New York: Knopf, 1993, first edition): 'What I left out of Orientalism was that response to Western dominance which culminated in the great movement of decolonization' (p. xii); 'we begin to reread it not univocally but contrapuntally, with a simultaneous awareness both of the metropolitan history that is narrated and of those other histories against which (and together with which) the dominating discourse acts' (p. 51); 'contrapuntal reading must take account of both processes, that of imperialism and that of resistance to it' (p. 66). In-period reception and criticism. Bernard Lewis, 'The Question of Orientalism', New York Review of Books, 24 June 1982 (web text, read in full, no page numbers): 'To prove this point, Mr. Said makes a number of very arbitrary decisions. His Orient is reduced to the Middle East, and his Middle East to a part of the Arab world'; 'a history of Arabic studies in Europe without the Germans makes as much sense as would a history of European music or philosophy with the same omission'; 'The most rigorous and penetrating critique of Orientalist scholarship has always been and will remain that of the Orientalists themselves.' Said's reply (NYRB, 12 August 1982): 'It is idiotic to say that Orientalism is a conspiracy or to suggest that \"the West\" is evil', while its 'modern discourse is correctly perceived as a discourse of power'; Lewis answered that 'It is difficult to argue with a scream of rage' and that the book 'takes a genuine problem of real importance, and reduces it to the level of political polemic and personal abuse'. Sadik Jalal al-'Azm, 'Orientalism and Orientalism in Reverse', Khamsin 8 (1981) (web text, read in full) credits 'laying bare Orientalism's persistent belief that there exists a radical ontological difference' between Orient and Occident, but holds that tracing Orientalism back to Homer 'simply lends strength to the essentialistic categories of \"Orient\" and \"Occident\"'. Rosalind O'Hanlon and David Washbrook (CSSH 1992; first-page extract only, as recorded in its source note) call Said's blend of themes 'virtually a paradigm for a new generation of historians and anthropologists' in Indian colonial history. Cheryl McEwan, Journal of Historical Geography 22 (1996), read in full: 'The inspiration behind the critical interest in empire, knowledge and power was undoubtedly Edward Said's groundbreaking and provocative Orientalism' (p. 489); feminist scholars 'argue that the critics of Orientalism and ethnocentric scholarship continue to write out gender' (p. 489); Reina Lewis's Gendering Orientalism (1996) is 'a response to Said in its efforts to destabilize the homogenizing tendencies of twentieth-century critiques of Orientalism' (p. 490). Said answered Dennis Porter's charge that he is 'ahistorical and inconsistent' as 'more weighty in assertion than it is in proof' (1985, p. 90); Porter's essay (1983) was not read. Not read: James Clifford's review essay (History and Theory 19, 1980) and Lata Mani and Ruth Frankenberg, 'The Challenge of Orientalism' (Economy and Society 14, 1985); both are recorded as metadata only. Later reading, labelled: Robert Irwin (2006, p. 299) writes that 'Early reviews of Orientalism were mostly hostile'. A contribution to postcolonial critique; the evidence does not make him its founder. edge_107 (language → post), edge_419 (post → indigenous) and edge_693 (post → geography) name him as a resource for others and stay.",
+      "classification_basis": "editorial_review",
+      "map_label": "Orientalism and contrapuntal reading, 1978–93",
+      "target_strand": "post/imperial_knowledge",
+      "proposal_id": "pe137_said_rel_01"
+    },
+    {
+      "id": "edge_989",
+      "source": "quebec_historiography",
+      "target": "fernand_ouellet",
+      "relationship": "The agricultural-crisis thesis and its portrait of a routine-bound peasantry rejected by Paquet and Wallot (1972), criticised from Montreal by Tousignant (1980) and answered by Greer (1981; and in his 1993 book, as characterised by Dessureault, 1998, and Cardinal, 1999)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "qcreq_paquet_wallot_1972",
+        "pe137_ouellet_tousignant_1980",
+        "pe137_ouellet_greer_1981",
+        "pe137_ouellet_greer_1993",
+        "pe137_ouellet_dessureault_1998",
+        "pe137_ouellet_cardinal_1999",
+        "pe137_ouellet_mythe_1976",
+        "pe137_ouellet_le_goff_1974",
+        "pe137_ouellet_modernisation_1985"
+      ],
+      "evidence_note": "This arrow represents Paquet and Wallot's, Tousignant's and Greer's specified interventions in the agricultural-crisis debate (quebec_historiography/agricultural_crisis_debate), not a verdict of the field, which includes Ouellet and his supporters. Paquet and Wallot (RHAF 1972, read in full): of the 1962 article, 'Cet article contient bien plus une intuition qu'une démonstration' (p. 193); Ouellet's postulates include 'le conservatisme invétéré des habitants, nous dirions même leur irrationalité' (p. 195); 'Comme la plupart de ses prédécesseurs, Ouellet peint les habitants comme des paysans essentiellement conservateurs, peu enclins à innover et désespérément embourbés dans des traditions routinières. Il s'agit là, nous semble-t-il, d'une simplification trop fréquente dans l'historiographie et qui appelle des réserves sérieuses' (pp. 201–202); 'Il n'existe pas de rationalité illimitée' (p. 202); 'les habitants ont adopté un régime agraire rationnel' (p. 221); their alternative, the Canadiens as 'd'astucieux politiques' in an 'équilibre conflictuel' with the British party (pp. 235–236), sought 'au-delà d'un économisme grossier' (p. 236); verdict, 'renvoyer comme irrecevable la thèse Ouellet' (p. 237), with the qualification that 'Quant à savoir si le débat est résolu pour autant, nous ne saurions le dire' (p. 237). Pierre Tousignant (RHAF 1980, read in full), on Le Bas-Canada (1976): the 1966 book 'faisait écho aux vieux préjugés de l'historiographie canadienne-anglaise tout imprégnée de l'idéologie de supériorité de la race anglo-saxonne', but the approach 'qui justifiait la notion désormais dépassée du «retard des mentalités» n'apparaît plus au premier plan dans Le Bas-Canada. C'est une notable amélioration' (p. 416); the periodisation of the export series 'n'est évidemment pas innocent' (p. 417); 'Il ne saurait plus être question de porter au seul compte d'une différence de mentalités l'appauvrissement progressif de la majeure partie de la paysannerie' (p. 419); 'Le professeur Ouellet nourrit de telles préventions contre le parti patriote qu'il a développé des réflexes défensifs à l'égard du parti bureaucrate' (p. 430); yet the book gives 'une intelligibilité vivante' to the period (p. 436, after Nicole Gagnon). Allan Greer (CHA Historical Papers 1981, read in full; n. 41 cites Ouellet's Lower Canada, 1980): 'The dominant explanation of Lower Canada's rural crisis emphasizes two factors, one demographic, the other cultural ... the atavistic mentality of the French-Canadian habitants led to their irrational refusal to accept technical improvements' (p. 213); 'The case of Sorel seems to challenge both elements of this interpretation'; 'To echo the commercial bourgeoisie of Lower Canada in blaming the habitants for their own agrarian predicament would be adding ideological insult to economic injury' (p. 214). On the rebellion, Greer's 1993 book is unread; reviewers say (their words): it 'brise nettement avec les travaux antérieurs de William H. Parker et de Fernand Ouellet pour qui la paysannerie était essentiellement victime de la crise économique et manipulée par des élites ultranationalistes' (Dessureault 1998, p. 206); 'à plusieurs reprises, A. Greer s'en prend aux arguments de cet historien, selon lesquels les habitants canadiens-français avaient une mentalité arriérée' (Cardinal 1999, p. 185). Ouellet's reply (1976, read): his critics 'ont réduit notre analyse à un simple rapport entre nationalisme et malaise agricole' and made the debate 'presque stérile' (p. 116); 'Le débat ne mérite plus d'être poursuivi; c'est la recherche qui exige de l'être' (p. 132). Le Goff's review of the controversy (CHR 1974) is unread; Ouellet reports that it concluded for a crisis from the early nineteenth century (1985, p. 25), so Le Goff is not counted among these critics.",
+      "classification_basis": "editorial_review",
+      "map_label": "Critics of the crisis thesis, 1972–93",
+      "proposal_id": "pe137_ouellet_rel_02"
+    },
+    {
+      "id": "edge_1059",
+      "source": "lorraine_daston",
+      "target": "science",
+      "relationship": "Moral economies of science: certain forms of empiricism, quantification and objectivity “require” a web of affect-saturated values (1995)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "w1_daston_moral_economy_1995"
+      ],
+      "evidence_note": "Her own words, read (Osiris 10, 1995, pp. 3–4). \"certain forms of empiricism, quantification, and objectivity itself are not simply compatible with moral economies; they require moral economies\" (p. 3); a moral economy is \"a web of affect-saturated values that stand and function in well-defined relationship to one another\" (p. 4). n. 2 gathers studies by Hannaway, Porter, Schaffer and Shapin under the rubric. A distinct contribution from the 1992 image article (edge_761); the later book Objectivity (2007, with Galison) is dated in the chronology and read only through a reviewer.",
+      "classification_basis": "editorial_review",
+      "map_label": "Moral economies of science, 1995",
+      "target_strand": "science/moral_economies",
+      "proposal_id": "w1_daston_rel_01"
+    },
+    {
+      "id": "edge_2039",
+      "source": "latour",
+      "target": "jean_obrien",
+      "relationship": "As Jorge M.Escobar explains, O’Brien uses Latour’s purification and translation concepts to analyze settlers’ claims to exclusive modernity and Indigenous disappearance.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_obrien_escobar2019",
+        "hc200_obrien_firsting_indexed"
+      ],
+      "evidence_note": "Explicit named scholarly mediation in Escobar’s actual indexed chapter116and127/n6, corroborated by O’Brien’s own selected indexedxxi–xxii/3–4 passages. Escobar distinguishes purification/translation and applies the framework to New Granada; his extension is not attributed to O’Brien. Full O’Brien chapter/pages and Latour original unread. Escobarn3distinguishes1991French original; O’Brien’s indexed214reference names Catherine Porter’s translation but renders a1991date, not collated against an image or silently certified as an English edition date.",
+      "proposal_id": "hc200_obrien_latour_modernity"
+    },
+    {
+      "id": "edge_2053",
+      "source": "foucault",
+      "target": "john_brewer",
+      "relationship": "Brewer names Foucault’s analysis of authorship and relations between knowledge and power among the resources used in the Cultures of Consumption project.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_brewer_ucla2026"
+      ],
+      "evidence_note": "Own retrospective identifies a specific concept within collective deliberations led by Brewer, Porter, Staves and Bermingham. Diverse participants differed and some ignored theory; no uniform adoption or formative influence by every contributor. Porter’s criticism of Foucault and feminist theories retain separate credit. Original works/editions not specified or read.",
+      "proposal_id": "hc200_brewer_foucault_project_resource"
+    },
+    {
+      "id": "edge_2054",
+      "source": "pierre_bourdieu",
+      "target": "john_brewer",
+      "relationship": "Brewer names Bourdieu’s analysis of taste and distinction among the resources used in the Cultures of Consumption project.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_brewer_ucla2026"
+      ],
+      "evidence_note": "Own retrospective identifies a specific concept within collective deliberations led by Brewer, Porter, Staves and Bermingham. Diverse participants differed and some ignored theory; no uniform adoption or formative influence by every contributor. Porter’s criticism of Foucault and feminist theories retain separate credit. Original works/editions not specified or read.",
+      "proposal_id": "hc200_brewer_bourdieu_project_resource"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "social",
+      "label": "New social history",
+      "records": [
+        {
+          "person_id": "roy_porter",
+          "role": "historian",
+          "context": "Moves the historical gaze toward sickness, self-help and community healing as problems of social history.",
+          "works": "“Lay Medical Knowledge in the Eighteenth Century” (1985); “The Patient’s View” (1985); Consumption and the World of Goods, co-edited with John Brewer (1993); The Greatest Benefit to Mankind (1997).",
+          "source_ids": [
+            "hc174_porter_patient"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1380"
+        }
+      ]
+    },
+    {
+      "node_id": "consumption",
+      "label": "Consumption & material culture",
+      "records": [
+        {
+          "person_id": "roy_porter",
+          "role": "historian",
+          "context": "Co-edits a collection spanning household economies, material objects, knowledge and design; his chapter asks about consumption as a disease of consumer society.",
+          "works": "With John Brewer, ed., Consumption and the World of Goods (1993)",
+          "source_ids": [
+            "brewer_porter"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "medicalhistory",
+      "label": "Medical & health history",
+      "records": [
+        {
+          "person_id": "roy_porter",
+          "role": "historian",
+          "context": "Investigates lay knowledge and action within eighteenth-century medical encounters.",
+          "works": "“Lay Medical Knowledge” (1985)",
+          "source_ids": [
+            "roy_porter_lay_1985"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1379"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "birth_consumer",
+      "title": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+      "citation": "Neil McKendrick, John Brewer and J. H. Plumb, The Birth of a Consumer Society: The Commercialization of Eighteenth-Century England (1982).",
+      "url": "https://www.simonandschuster.com/books/The-Birth-of-a-Consumer-Society/Neil-McKendrick/9781912224265",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Prior publisher/reissue scope retained in history. Added primary transcription of McKendrick’s complete introduction1–6 and chapter1 opening9–10, with part11. Original1982 imprint confirmed. Claims an eighteenth-century acceleration while expressly acknowledging earlier commercial development; social-emulation interpretation is attributed. Remaining chapter, specialist essays, contemporary quotations and quantitative claims not independently verified; no image collation. Does not certify the separate1974 essay quoted by Vickery. Addendum 2026-10-26: Fresh memoir2026 coauthor account distinguishes independently written contributions and criticisms of book framing. Publisher direct403; inherited McKendrick introduction1–6 and chapter opening transcription scope not upgraded to Brewer essays/full volume. McKendrick/Plumb/Brewer credit preserved; no collective unanimity inferred."
+      },
+      "verification_history": [
+        {
+          "status": "supporting_page_checked",
+          "checked_on": "2026-09-11",
+          "note": "Publisher/distributor description of the 2018 reissue consulted for distinct contributions: McKendrick on fashion/pottery, Brewer on politics and commercialization, Plumb on leisure/children. Original 1982 Europa publication checked in Wellcome https://wellcomecollection.org/works/d7k6uwde . Promotional claims of universal novelty are not endorsed. No full-book reading; de Vries supplies a separately checked critical engagement."
+        }
+      ]
+    },
+    {
+      "id": "brewer_porter",
+      "title": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+      "citation": "John Brewer and Roy Porter, eds., Consumption and the World of Goods (Routledge, 1993).",
+      "url": "https://wellcomecollection.org/works/n2ar4p83",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Wellcome catalogue checked for 1993 original publication, editors and chapter contents spanning household economy, Asian production, food, women’s possessions, books and design. Contents identify questions and contributors, not verification of each chapter’s argument. Addendum 2026-10-26: Fresh Wellcome catalogue1993 editors and contents rechecked. Own2026 UCLA memoir specifies collaborative environment; individual essays and theories not all endorsed by both editors. Original complete collection unread."
+      },
+      "verification_history": [
+        {
+          "status": "not_checked",
+          "note": "Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+        }
+      ]
+    },
+    {
+      "id": "de_vries_industrious",
+      "title": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+      "citation": "Jan de Vries, “The Industrial Revolution and the Industrious Revolution,” Journal of Economic History 54(2) (June 1994): 249–270.",
+      "url": "https://doi.org/10.1017/S0022050700014467",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "University-hosted primary scan downloaded and visually read at pp. 249–252 and 259–264. Supports household labor/resource reallocation, demand, explicit use of historical demography, and qualifications about intrahousehold interests and ideal types. The article criticizes McKendrick’s gendered wording and discusses Sabean’s household critique. No claim that all households followed this trajectory; quantitative estimates and later reception not independently replicated. Addendum 2026-10-18: Pp. 249–251 re-read for revision 1.145 (page images OCRed): the framing against the revision of Lindert and Williamson, Harley and Crafts, and n. 5 citing Berg and Hudson and Cannadine. Addendum 2026-10-18: Revision 1.146 read the publisher abstract and the reference list on Cambridge Core (doi:10.1017/S0022050700014467); the url is the DOI (source_field_sets). The page readings recorded above were made in earlier revisions and were not repeated in 1.146. The new jan_de_vries entry and the revised edge_1085 quote the 1994 article only from its publisher abstract; previously accepted page-based claims remain as accepted. Addendum 2026-10-26: Fresh original scan OCR generated for249–252 and259–264; selected252 and262/n39 read,262 visually checked. Printed262/n39 explicitly targets Neil McKendrick’s Home Demand and Economic Growth wording, not Brewer; do not project this criticism to all1982 coauthors. Earlier broader source reading qualifications preserved without claiming their complete repetition; original1974 essay unread."
+      }
+    },
+    {
+      "id": "gilroy",
+      "title": "Paul Gilroy, The Black Atlantic: Modernity and Double Consciousness (Harvard University Press, 1993).",
+      "citation": "Paul Gilroy, The Black Atlantic: Modernity and Double Consciousness (Harvard University Press, 1993).",
+      "url": "https://sites.bc.edu/eng6025/wp-content/uploads/sites/70/2022/10/Gilroy-The-Black-Atlantic-Preface.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary contents and preface pp. ix–xi read in a Verso scan. Gilroy identifies Du Bois’s double consciousness, named theoretical resources and criticism of national/racial closure. Chapters and reception unread. He explicitly acknowledges scant discussion of James and Fanon; this does not establish a uniform lineage. Addendum 2026-10-25: New rereading: title/contents and complete preface ix–xi. Read claims on transnational/intercultural inquiry, slavery and modernity, music, double consciousness and anti-anti-essentialism. Chapters remain unread. His explicit scant treatment of James and Fanon and provisional heuristic are retained; no uniform lineage inferred. Addendum 2026-10-25: [Response audit: Fresh preface ix–xi read in extracted text; printed p. x additionally inspected visually to resolve OCR corruption around Du Bois and double consciousness. The preface expressly identifies double consciousness as a central organizing resource. Chapters remain unread, especially chapter 4; no independent proof of the chapter’s historical claims is asserted. The author’s provisional heuristic, anti-closure argument and scant treatment of Fanon and James remain qualified.]"
+      }
+    },
+    {
+      "id": "hc174_porter_benefit",
+      "title": "Roy Porter, The Greatest Benefit to Mankind: A Medical History of Humanity from Antiquity to the Present (London: HarperCollins, 1997): institutional bibliography.",
+      "citation": "Roy Porter, The Greatest Benefit to Mankind: A Medical History of Humanity from Antiquity to the Present (London: HarperCollins, 1997): institutional bibliography.",
+      "url": "https://lib.ihp.sinica.edu.tw/03-rare/MWSP/10/download/d-1.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Academia Sinica’s Roy Porter Collection bibliography, printed p. 96, records London HarperCollins 1997 separately from Norton 1999/c1997. Metadata only; no reading of the medical synthesis. Subsequent US editions do not change original UK year."
+      }
+    },
+    {
+      "id": "hc174_porter_patient",
+      "title": "Roy Porter, “The Patient’s View: Doing Medical History from Below,” Theory and Society 14 (March 1985): 175–198.",
+      "citation": "Roy Porter, “The Patient’s View: Doing Medical History from Below,” Theory and Society 14 (March 1985): 175–198.",
+      "url": "https://link.springer.com/article/10.1007/BF00157532",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Publisher page and displayed Conclusion read. It is a primary concluding excerpt, not an abstract or complete article: argues for sufferer-oriented history, self/community help and attention to resources, while refusing a uniform theoretical model. Rest of article and historical sources unread. Publisher metadata confirms March 1985, pages and author."
+      }
+    },
+    {
+      "id": "hc200_brewer_ucla2026",
+      "title": "John Brewer, Chapter8: Californication, donors, bureaucrats and projects, UCLA1987–1993, 6 May 2026.",
+      "citation": "John Brewer, Chapter8: Californication, donors, bureaucrats and projects, UCLA1987–1993, 6 May 2026.",
+      "url": "https://johnbrewer.substack.com/p/chapter-8-californication-donors",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh selected Cultures of Consumption program passages from For many years Clark funds through interdisciplinarity discussion read, including first Clark professor Porter, Staves/Bermingham, constructivism, Berger/Luckmann, Foucault/Bourdieu/Habermas, and own retrospective account of Ginzburg/White1990 debate. Individual essays and theoretical positions not uniformly attributed to all participants; whole books and original conference papers unread."
+      }
+    },
+    {
+      "id": "hc200_obrien_escobar2019",
+      "title": "Jorge M.Escobar,Firsting and Lasting in the History of Science (2019), explicit named Latour/O’Brien mediation.",
+      "citation": "Jorge M.Escobar,Firsting and Lasting in the History of Science:Francisco José de Caldas and the Priority Dispute Over Hypsometry,in Lauren Beck(ed.),Firsting in the Early-Modern Atlantic World(Routledge,2019print metadata; publishercopyright2020),115–130,selected116and127/notes2–7,doi10.4324/9780429320002-7.",
+      "url": "https://dokumen.pub/firsting-in-the-early-modern-atlantic-world-9781000228038-9781000207316-9780367334680-9780429320002.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Actual substantive indexed chapter116and127/notes2–7read and retained in raw/google-search-web-capture.json; title/author/range separately checked through publishercontents and Crossrefregistrantmetadata (published-print20June2019). Current Routledgepage sayscopyright2020; both kept, no collapsed date. Direct fullbodyopen/follow-ups timed out; local25-byte response is not a book text. Named mediation and selectedindexed passages only; full chapter/book and O’Brien/Latour originals unread. Escobar’s own NewGranada extension not reassigned to O’Brien."
+      }
+    },
+    {
+      "id": "hc200_obrien_firsting_indexed",
+      "title": "Jean M.O’Brien,Firsting and Lasting (2010), selected public indexed primary passages and acknowledgments.",
+      "citation": "Jean M.O’Brien,Firsting and Lasting:Writing Indians out of Existence in New England(Minneapolis:University of Minnesota Press,2010),selected indexedxvii,xxi–xxii,3–4,56,207–210,214–216.",
+      "url": "https://books.google.com/books?id=a9Y-vMFUTIIC",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh selected public GoogleBooks search-within extracts read, with exact page identifiers retained in raw/preview-*.json and googlebook-*-search.json. These are bounded primary snippets, not full supporting pages, chapter, book or complete acknowledgment reading. Requested publicPR17page image returned image not available; no image certification or access circumvention. Full monograph/endnotes unread. Indexed214names Catherine Porter’s Latour translation but renders1991date; uncollated original/OCR date not silently certified.1997Dispossessionbook remains entirely unread except inherited publisher scope."
+      }
+    },
+    {
+      "id": "pe132_ohanlon_washbrook_1992",
+      "title": "Rosalind O'Hanlon and David Washbrook, “After Orientalism: Culture, Criticism, and Politics in the Third World”, Comparative Studies in Society and History 34, no. 1 (January 1992): 141–167.",
+      "url": "https://doi.org/10.1017/S0010417500017461",
+      "citation": "Rosalind O'Hanlon and David Washbrook, “After Orientalism: Culture, Criticism, and Politics in the Third World”, Comparative Studies in Society and History 34:1 (1992): 141–167. doi:10.1017/S0010417500017461.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Cambridge Core article page read 2026-10-14: citation metadata (CSSH 34:1, January 1992, pp. 141–167), the first-page extract and the article's 70 notes as listed on the page. The body is closed access and was not read. Passages used: Said's blend of themes 'virtually a paradigm for a new generation of historians and anthropologists' in Indian colonial history, directions 'most recently and sharply endorsed in Gyan Prakash's discussion' (first-page extract, p. 141); 'Prakash's notion of what constitutes Marxist history is problematic' (n. 13). No note cites Chakrabarty. The 1.132 adversarial review read an OCR copy that returned only a landing page here; its summary of the argument (pp. 141–149, 153–154) is attributed to the review, not quoted. Prakash's reply, 'Can the “Subaltern” Ride?', follows at pp. 168–184."
+      },
+      "scope_note": "In-period critique of the post-Orientalist programme, principally Prakash's; context for the postcolonial edge, not a criticism of Chakrabarty by name."
+    },
+    {
+      "id": "pe137_ouellet_cardinal_1999",
+      "title": "Linda Cardinal, review of Allan Greer, Habitants et Patriotes (Boréal, 1997), Politique et Sociétés 18, no. 1 (1999): 184–186.",
+      "url": "https://doi.org/10.7202/040161ar",
+      "citation": "Linda Cardinal, review of Allan Greer, Habitants et Patriotes. La Rébellion de 1837 dans les campagnes du Bas-Canada (Montréal: Boréal, 1997), Politique et Sociétés 18, no. 1 (1999): 184–186. doi:10.7202/040161ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full on 2026-10-14 (Érudit PDF text layer) for evidence-quebec.md §2g; not re-fetched after the restart (bot check). Quoted (p. 185): 'Un Fernand Ouellet aurait plutôt décrit ces mêmes personnes comme de miséreux paysans manipulés par une élite qui cherchait à protéger ses privilèges. D'ailleurs, à plusieurs reprises, A. Greer s'en prend aux arguments de cet historien, selon lesquels les habitants canadiens-français avaient une mentalité arriérée.'"
+      },
+      "scope_note": "In-period review; the reviewer’s characterisation."
+    },
+    {
+      "id": "pe137_ouellet_dessureault_1998",
+      "title": "Christian Dessureault, review of Allan Greer, Habitants et Patriotes (Boréal, 1997), Bulletin d’histoire politique 7, no. 1 (1998): 205–207.",
+      "url": "https://doi.org/10.7202/1060312ar",
+      "citation": "Christian Dessureault, review of Allan Greer, Habitants et Patriotes. La Rébellion de 1837 dans les campagnes du Bas-Canada (Montréal: Boréal, 1997), Bulletin d’histoire politique 7, no. 1 (1998): 205–207. doi:10.7202/1060312ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full on 2026-10-14 (Érudit PDF text layer) for data/extension-2026/quebec-historiography-2026-10-14/evidence-quebec.md §2g; the scratch copy was lost in a machine restart and Érudit's bot check blocked a re-fetch, so the quotations are those recorded at first reading. Quoted: Greer writes 'dans une perspective marxiste anticolonialiste, héritière de l'œuvre pionnière de Stanley B. Ryerson' (p. 205); 'Cette nouvelle lecture du phénomène révolutionnaire dans les campagnes bas-canadiennes brise nettement avec les travaux antérieurs de William H. Parker et de Fernand Ouellet pour qui la paysannerie était essentiellement victime de la crise économique et manipulée par des élites ultranationalistes'; for Greer the struggle was fed by 'une forme de républicanisme populaire' (p. 206); Greer 'réfute l'existence de clivages socio-économiques à l'intérieur même de la paysannerie' (p. 207)."
+      },
+      "scope_note": "In-period review; the reviewer’s characterisation of Greer against Ouellet."
+    },
+    {
+      "id": "pe137_ouellet_greer_1981",
+      "title": "Allan Greer, “Fur-Trade Labour and Lower Canadian Agrarian Structures,” Historical Papers / Communications historiques 16, no. 1 (1981): 197–214.",
+      "url": "https://doi.org/10.7202/030875ar",
+      "citation": "Allan Greer, “Fur-Trade Labour and Lower Canadian Agrarian Structures,” Historical Papers / Communications historiques (Canadian Historical Association) 16, no. 1 (1981): 197–214. doi:10.7202/030875ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read in full (pp. 197–214) from the Érudit PDF (scanned; English OCR; pages fixed from the folios). Quoted: subdivision 'often presented as the inevitable result of the inheritance laws of the Custom of Paris or of the French-Canadian habitant's mentality, seems then to have been a local, not a universal phenomenon' (p. 210); 'The dominant explanation of Lower Canada's rural crisis emphasizes two factors, one demographic, the other cultural' and 'the atavistic mentality of the French-Canadian habitants led to their irrational refusal to accept technical improvements and other \"reforms\"' (p. 213; n. 41 cites Ouellet, Lower Canada 1791–1840, 1980); 'The case of Sorel seems to challenge both elements of this interpretation'; poverty arose 'primarily through the introduction of a certain form of capitalism'; blaming the habitants 'would be adding ideological insult to economic injury' (p. 214); n. 42 (p. 214) cites Normand Séguin's Hébertville study. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped check. Locators: Fur-Trade Labour and Lower Canadian Agrarian Structures (1981), pp213–214 and n41. Reading extents: Inherited full primary reading and exact final-page passages retained on edge989; fresh DOI/title concordance only. Direct new body retrieval was unsuccessful. Prior verification retained. Bibliographic concordance is not whole-book reading.] Independent primary spot-check: Fresh primary 19-page scanned PDF downloaded; title/metadata page and images of final two printed pages independently read. Locator: Printed pp. 213–214; n. 41 on p. 213. The demographic-and-cultural explanation is explicitly associated with Ouellet in n. 41. Greer states that Sorel challenges both elements and explains poverty through particular capitalist forces. Existing mixed edge 989 remains. Limits: The rest of the article and Ouellet’s cited 1980 English edition were not newly read. Its 1980 citation is not a claim that Ouellet’s original French work first appeared then. Primary URL: https://www.erudit.org/fr/revues/hp/1981-v16-n1-hp1116/030875ar.pdf."
+      },
+      "scope_note": "In-period critique of the mentality explanation of the rural crisis."
+    },
+    {
+      "id": "pe137_ouellet_greer_1993",
+      "title": "Allan Greer, The Patriots and the People: The Rebellion of 1837 in Rural Lower Canada (Toronto: University of Toronto Press, 1993).",
+      "url": "https://doi.org/10.3138/9781442657328",
+      "citation": "Allan Greer, The Patriots and the People: The Rebellion of 1837 in Rural Lower Canada (Toronto: University of Toronto Press, 1993); French translation Habitants et Patriotes (Montréal: Boréal, 1997).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Crossref book and chapter records checked (Introduction pp. 1–19; ch. 8 'Parish republics' pp. 219–257). Book unread: Internet Archive copy is lending-only and De Gruyter/UTP blocked. Its argument and its relation to Ouellet are cited only through reviews read on 2026-10-14 (Dessureault 1998; Cardinal 1999; Bernard 1996), whose wording is theirs, not Greer's. Addendum 2026-10-14: OpenAlex record (publisher summary, not Greer's words): the book looks 'into the actions, motives, and mentality of the rural plebeians who formed a majority of those involved in the insurrection' and 'brings to light new causes for the revolutionary role of the normally peaceful French-Canadian peasant'. Book still unread."
+      },
+      "scope_note": "Greer’s rural history of the 1837 rebellion; unread."
+    },
+    {
+      "id": "pe137_ouellet_le_goff_1974",
+      "title": "T. J. A. Le Goff, “The Agricultural Crisis in Lower Canada, 1802–12: A Review of a Controversy,” Canadian Historical Review 55, no. 1 (1974): 1–31.",
+      "url": "https://doi.org/10.3138/chr-055-01-01",
+      "citation": "T. J. A. Le Goff, “The Agricultural Crisis in Lower Canada, 1802–12: A Review of a Controversy,” Canadian Historical Review 55, no. 1 (1974): 1–31. doi:10.3138/chr-055-01-01. Reply: Gilles Paquet and Jean-Pierre Wallot, “The Agricultural Crisis in Lower Canada, 1802–12: mise au point. A Response to T.J.A. Le Goff,” CHR 56, no. 2 (1975): 133–161, doi:10.3138/chr-056-02-01.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Metadata only (Crossref records for both articles). Unread: the UTP site returned 403 and no abstract is in Crossref or OpenAlex. Le Goff's position is known here only through Ouellet, who says he 'soutint en conclusion l'idée de l'existence d'une crise agricole dès le début du XIXe siècle' (1985, p. 25) and found his doubts about the Paquet–Wallot revenue series 'légitimes et fondées' (1976, p. 129). Ouellet's notes misdate the two CHR articles (1973; 1975 pp. 134–168)."
+      },
+      "scope_note": "An outside review of the agricultural-crisis controversy; unread."
+    },
+    {
+      "id": "pe137_ouellet_modernisation_1985",
+      "title": "Fernand Ouellet, “La modernisation de l’historiographie et l’émergence de l’histoire sociale,” Recherches sociographiques 26, no. 1–2 (1985): 11–83.",
+      "url": "https://doi.org/10.7202/056132ar",
+      "citation": "Fernand Ouellet, “La modernisation de l’historiographie et l’émergence de l’histoire sociale,” Recherches sociographiques 26, no. 1–2 (1985): 11–83. doi:10.7202/056132ar. English version: The Socialization of Quebec Historiography since 1960 (Toronto: Robarts Centre for Canadian Studies, 1988; not seen).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Read: pp. 11–29, 38, 47, 51–52, 64–68 and the abstract, from the Érudit PDF (scanned; local French OCR; pages fixed from the running heads); the rest skimmed by name search only. Quoted: until 1963 Quebec historiography 'restée, dans l'ensemble, politique et cléricale' (p. 13); for 'Maurice Séguin, théoricien de l'École néo-nationaliste', leadership of New France belonged to the bourgeoisie, 'de sorte que la décapitation s'était exercée sur l'élite nationale elle-même'; economic inferiority as a preoccupation 'pas étranger à la montée du mouvement indépendantiste québécois', which led historians 'à négliger des secteurs entiers de l'histoire économique' (p. 18); 'Cette thèse avait été épousée par Michel Brunet dès les années 1950'; in the 1970s it 'avait besoin d'être dédramatisée'; 'Ces retouches au modèle de Maurice Séguin furent faites par Gilles Paquet et Jean-Pierre Wallot, en particulier' (p. 19), followed 'presque autant' by Robert, Linteau and Normand Séguin (p. 20); the crisis controversy began 'en 1966 à la suite de la publication de notre Histoire économique et sociale du Québec', with 'la thèse néo-nationaliste enrichie de l'idée de modernité' at its core and the peasant as '«paysan indépendant», sensible au marché et libéré'; Le Goff 'soutint en conclusion l'idée de l'existence d'une crise agricole dès le début du XIXe siècle' (p. 25); Dechêne 'n'a pu faire autrement que de prendre position' (p. 26); on the Patriotes, 'Les mêmes polarisations émergent' among Bernard, Bernier, Bourque, Dubuc, Ouellet and Ryerson (p. 51, n. 128 citing J.-P. Bernard, ed., Les Rébellions de 1837–1838, 1983); 'Fernand Dumont et Jean Hamelin jouèrent un rôle capital d'animation' (p. 67). Addendum 2026-10-26: Fresh official DOI-resolved Érudit PDF at https://www.erudit.org/fr/revues/rs/1985-v26-n1-2-rs1566/056132ar.pdf obtained. Selected printed18–20 read by local OCR with20 visually collated (PDF11; cover precedes printed11). Remainder not reread. Ouellet’s broad concern with nationally framed economic history18/n11 directly cites Durocher/Linteau’s1971 anthology;19–20 situates Robert/Linteau/Normand Séguin among revisions of Maurice Séguin’s bourgeoisie thesis and cites their exact works n19. This qualified assessment is not a claim he assigns every later Bourque/Sales criticism to Linteau. Prior broader-reading note retained."
+      },
+      "scope_note": "Ouellet's survey of Quebec historiography since about 1960, in period; Rudin (1995, n. 10) cites it as his critique of the revisionists."
+    },
+    {
+      "id": "pe137_ouellet_mythe_1976",
+      "title": "Fernand Ouellet, “Le mythe de « l’habitant sensible au marché ». Commentaires sur la controverse Le Goff–Wallot et Paquet,” Recherches sociographiques 17, no. 1 (1976): 115–132.",
+      "url": "https://doi.org/10.7202/055711ar",
+      "citation": "Fernand Ouellet, “Le mythe de « l’habitant sensible au marché ». Commentaires sur la controverse Le Goff–Wallot et Paquet,” Recherches sociographiques 17, no. 1 (1976): 115–132. doi:10.7202/055711ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (pp. 115–132) from the Érudit PDF (scanned page images; local French OCR checked against the running heads). Quoted: the habitant defined as 'un paysan traditionnel ayant, au début du Régime britannique, un niveau de pratiques agricoles inférieur à celui de la majorité des paysans européens'; denies calling the eighteenth-century peasant 'morbidement conservateur' (p. 115); from the early nineteenth century 'le paysan, au lieu de transformer ses façons de faire, se durcit et résiste aux pressions en faveur de la rénovation du système agricole'; 'Si notre « habitant » a subi un traumatisme, ce n'est pas au moment de la conquête mais au moment où le système agricole traditionnel ne peut plus fonctionner comme autrefois'; nationalism born 'parmi les professions libérales' and spread 'dans les milieux paysans sous l'effet de l'apparition du problème agricole et des pressions démographiques'; Wallot and Paquet 'ont réduit notre analyse à un simple rapport entre nationalisme et malaise agricole'; their 'problèmes de lecture' made the debate 'presque stérile'; Le Goff's intervention drew attention 'sur la vulnérabilité de la thèse Wallot et Paquet' (p. 116); 'Notre analyse, contrairement à celle des professeurs Wallot et Paquet, porte sur le long terme' (p. 117); exports 1793–1802 vs 1803–12, 'soit un déclin de 30%' (p. 117); 'Si l'habitant avait été aussi sensible au marché que le prétendent les professeurs Wallot et Paquet' (p. 119); Le Goff's doubts about the revenue series 'légitimes et fondées' (p. 129); 'Le débat ne mérite plus d'être poursuivi; c'est la recherche qui exige de l'être' (p. 132). The note's n.* (p. 115) dates Le Goff's CHR article 1973 and Paquet–Wallot's RHAF article pp. 239–270; Crossref gives 1974 and pp. 185–237. Locator reconciled at release (1.138) with evidence-quebec.md §2c, which was written from the printed pages: the long-term sentence is p. 117. The PDF could not be re-fetched (Érudit bot check) to re-verify."
+      },
+      "scope_note": "Ouellet's own reply to his critics, in period."
+    },
+    {
+      "id": "pe137_ouellet_tousignant_1980",
+      "title": "Pierre Tousignant, “Le Bas-Canada : une étape importante dans l’oeuvre de Fernand Ouellet,” note critique, Revue d’histoire de l’Amérique française 34, no. 3 (1980): 415–436.",
+      "url": "https://doi.org/10.7202/303881ar",
+      "citation": "Pierre Tousignant, “Le Bas-Canada : une étape importante dans l’oeuvre de Fernand Ouellet,” Revue d’histoire de l’Amérique française 34, no. 3 (1980): 415–436. doi:10.7202/303881ar.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full (pp. 415–436) from the Érudit PDF (text layer). A review essay on Le Bas-Canada 1791–1840 (1976). Quoted: Ouellet combined quantitative series and 'la voie «sociologique» réduite au modèle weberien d'une typologie différentielle des mentalités', which 'lui a valu d'être porté aux nues, notamment dans les milieux universitaires anglophones'; 'le Fernand Ouellet de l'Histoire économique et sociale du Québec faisait écho aux vieux préjugés de l'historiographie canadienne-anglaise tout imprégnée de l'idéologie de supériorité de la race anglo-saxonne'; the approach 'qui justifiait la notion désormais dépassée du «retard des mentalités» n'apparaît plus au premier plan dans Le Bas-Canada. C'est une notable amélioration'; the crisis thesis subjected to 'un sérieux «examen critique»' by Paquet and Wallot (p. 416); 'Le choix de cette coupure n'est évidemment pas innocent' (p. 417); the 1966 book reproached the peasantry 'son enlisement dans la routine' (p. 418); 'la profondeur du fossé qui séparait Fernand Ouellet de l'école néo-nationaliste de l'Université de Montréal et de son maître à penser, le professeur Maurice Séguin'; 'Il ne saurait plus être question de porter au seul compte d'une différence de mentalités l'appauvrissement progressif de la majeure partie de la paysannerie' (p. 419); 'Lancé sur la voie de l'approche psychanalytique' after having 'raillé le schéma d'interprétation freudien de l'école néo-nationaliste de Montréal à propos du «choc» de la Conquête' (p. 423); 'Le professeur Ouellet nourrit de telles préventions contre le parti patriote' (p. 430); closing credit to 'une formalisation théorique' that gives 'une intelligibilité vivante' (p. 436, after Nicole Gagnon)."
+      },
+      "scope_note": "In-period Montreal critique of Ouellet’s 1976 synthesis and, retrospectively, of the 1966 book."
+    },
+    {
+      "id": "pe137_said_alazm_1981",
+      "title": "Sadik Jalal al-'Azm, “Orientalism and Orientalism in Reverse”, Khamsin 8 (1981): 5–26.",
+      "url": null,
+      "citation": "Sadik Jalal al-'Azm, “Orientalism and Orientalism in Reverse”, Khamsin: Journal of Revolutionary Socialists of the Middle East 8 (1981): 5–26.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full as web text (no page numbers; the page introduces it as published in Khamsin in 1981). Volume and pages (8, 5–26) from Irwin (2006), n. 32, and a bibliographic listing; not seen on a page image. Passages used: Said's 'laying bare Orientalism's persistent belief that there exists a radical ontological difference'; tracing Orientalism to Homer 'simply lends strength to the essentialistic categories of \"Orient\" and \"Occident\"'; representations as 'much more important and informative substitutes for raw reality itself'; on Marx, 'I think that this account of Marx's views and analyses of highly complex historical processes and situations is a travesty', 'only Said's excessive fascination with the verbal, textual and linguistic', and Marx's 'theoretical consistency in general, and ... keen realism'. The web text may differ from the printed text in detail."
+      },
+      "scope_note": "In-period Arab Marxist critique: sympathetic to the thesis, critical of its essentialism and its reading of Marx."
+    },
+    {
+      "id": "pe137_said_clifford_1980",
+      "title": "James Clifford, review essay of Edward W. Said, Orientalism, History and Theory 19, no. 2 (1980): 204–223.",
+      "url": "https://doi.org/10.2307/2504800",
+      "citation": "James Clifford, “Orientalism” (review essay), History and Theory 19:2 (1980): 204–223. doi:10.2307/2504800. Revised as 'On Orientalism' in The Predicament of Culture (1988).",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Metadata only: Crossref record for doi:10.2307/2504800 (title 'Orientalism.', History and Theory 19:2, p. 204, February 1980; contributors Clifford and Said). The article was not read: JSTOR returned a bot challenge, and the Internet Archive copies of The Predicament of Culture (1988) are lending-only. The 1988 reprint title is from secondary listings and was not checked. No claim about Clifford's argument is made in the entry."
+      },
+      "scope_note": "Recorded in-period critic (History and Theory); unread."
+    },
+    {
+      "id": "pe137_said_covering_islam_1981",
+      "title": "Edward W. Said, Covering Islam: How the Media and the Experts Determine How We See the Rest of the World (New York: Pantheon, 1981).",
+      "url": "https://www.penguinrandomhouse.com/books/159777/covering-islam-by-edward-w-said/",
+      "citation": "Edward W. Said, Covering Islam (New York: Pantheon Books, 1981).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Internet Archive item covering-islam (ABBYY OCR of a scan without its imprint page). Its contents (Introduction ix; chapters on 'Islam as News', 'The Iran Story', 'Knowledge and Power'; Index 177) and an introduction that opens 'This is the third and last in a series of books', with no 1997 'Introduction to the Vintage Edition', match the 1981 edition; the publisher and edition are inferred, not seen. Only the introduction's first page was read. Passage used: 'The underlying theme of Orientalism is the affiliation of knowledge with power' (p. ix)."
+      },
+      "scope_note": "Node and edge 1: his own 1981 summary of Orientalism's theme."
+    },
+    {
+      "id": "pe137_said_culture_imperialism_1993",
+      "title": "Edward W. Said, Culture and Imperialism (New York: Alfred A. Knopf, 1993).",
+      "url": "https://www.penguinrandomhouse.com/books/159778/culture-and-imperialism-by-edward-w-said/",
+      "citation": "Edward W. Said, Culture and Imperialism (New York: Alfred A. Knopf, 1993; first edition).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Internet Archive item cultureimperialism2 (file cultureimperiali00edwa.pdf; scan with running heads; imprint 'Copyright © 1993 by Edward W. Said ... Published in the United States by Alfred A. Knopf ... First Edition'). Read: introduction pp. xii–xiv and xxv; pp. 26, 41–42, 51, 66, 240–245, 251, 278 and note 198 (in the notes section). Passages used: 'What I left out of Orientalism' (p. xii); 'two historiographies, one linear and subsuming, the other contrapuntal and often nomadic' (p. xxv); Foucault and Williams, 'the imperial experience is quite irrelevant' (p. 41); 'so-called world historians' (p. 42); 'not univocally but contrapuntally'; 'a very Gramscian one' (p. 51); 'contrapuntal reading must take account of both processes' (p. 66); anti-colonialism and anti-imperialism (pp. 240–241); 'The voyage in' (p. 244); James, Antonius, Guha and Alatas (p. 245); 'history for Guha is critique' (p. 251); Foucault and Fanon, 'microphysics of power', 'swerves away from politics entirely', Frankfurt School silence (p. 278); n. 198 citing 'Foucault and the Imagination of Power' (1986) as 'my critique'. The rest of the book, including the Austen, Kipling, Camus and Verdi readings, is unread."
+      },
+      "scope_note": "In-period book: contrapuntal reading, resistance culture, and his critique of Foucault."
+    },
+    {
+      "id": "pe137_said_exchange_nyrb_1982",
+      "title": "Edward W. Said, Oleg Grabar and Bernard Lewis, “Orientalism: An Exchange”, New York Review of Books (12 August 1982).",
+      "url": "https://www.nybooks.com/articles/1982/08/12/orientalism-an-exchange/",
+      "citation": "Edward W. Said and Oleg Grabar, letters, with a reply by Bernard Lewis, “Orientalism: An Exchange”, The New York Review of Books, 12 August 1982.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full on the NYRB website (web text, no page numbers). Passages used: Said, 'It is idiotic to say that Orientalism is a conspiracy or to suggest that \"the West\" is evil'; its 'modern discourse is correctly perceived as a discourse of power'; Geertz's 'rather trivial arguments against me'; the omission of German scholars explained. Lewis, 'It is difficult to argue with a scream of rage'; 'Mr. Said seems to be unable to conceive that there may be intellectual disagreements which are not political in origin or purpose'; 'The tragedy of Mr. Said’s Orientalism is that it takes a genuine problem of real importance, and reduces it to the level of political polemic and personal abuse.' Grabar's letter was not used."
+      },
+      "scope_note": "In-period exchange: Said's reply to Lewis and Lewis's rejoinder."
+    },
+    {
+      "id": "pe137_said_irwin_2006",
+      "title": "Robert Irwin, Dangerous Knowledge: Orientalism and Its Discontents (Woodstock and New York: Overlook Press, 2006).",
+      "url": "https://www.penguin.co.uk/books/25791/for-lust-of-knowing-by-robert-irwin/9780140289237",
+      "citation": "Robert Irwin, Dangerous Knowledge: Orientalism and Its Discontents (Overlook Press, 2006); published in Britain as For Lust of Knowing: The Orientalists and Their Enemies (Allen Lane, 2006).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in an Internet Archive upload of the Overlook edition (imprint: 'This edition first published in the United States in 2006 by The Overlook Press'; copyright 2006 Robert Irwin); pages from running heads. Read: the opening summary of Orientalism and pp. 289–290, 295–296, 299–300 and n. 32. Passages used: Foucault and Gramsci 'have different and contrasting notions of discourse' (pp. 289–290); Marx's writings 'travestied' and the missing 'Asiatic mode of production, Oriental despotism' (pp. 295–296); 'Early reviews of Orientalism were mostly hostile' (p. 299); al-'Azm and Ahmad (pp. 299–300); n. 32 on Ahmad and al-'Azm. The British title is from secondary knowledge and was not checked. A later (2006) and polemical reading; cited only as labelled later reading."
+      },
+      "scope_note": "Later reading (2006): an Orientalist historian's critique of Said; not in-period evidence."
+    },
+    {
+      "id": "pe137_said_lewis_nyrb_1982",
+      "title": "Bernard Lewis, “The Question of Orientalism”, New York Review of Books (24 June 1982).",
+      "url": "https://www.nybooks.com/articles/1982/06/24/the-question-of-orientalism/",
+      "citation": "Bernard Lewis, “The Question of Orientalism”, The New York Review of Books, 24 June 1982.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full on the NYRB website (web text, no page numbers; volume and issue not recorded). Passages used: the term 'emptied of its previous content and given an entirely new one'; 'To prove this point, Mr. Said makes a number of very arbitrary decisions. His Orient is reduced to the Middle East, and his Middle East to a part of the Arab world'; the omission of the Germans; 'a remarkably arbitrary choice of works'; Said's attitude 'far more negative than that of the most arrogant European imperialist writers'; 'The most rigorous and penetrating critique of Orientalist scholarship has always been and will remain that of the Orientalists themselves.'"
+      },
+      "scope_note": "In-period critique by the leading Orientalist Said criticised."
+    },
+    {
+      "id": "pe137_said_mani_frankenberg_1985",
+      "title": "Lata Mani and Ruth Frankenberg, “The Challenge of Orientalism”, Economy and Society 14, no. 2 (1985): 174–192.",
+      "url": "https://doi.org/10.1080/03085148500000009",
+      "citation": "Lata Mani and Ruth Frankenberg, “The Challenge of Orientalism”, Economy and Society 14:2 (1985): 174–192. doi:10.1080/03085148500000009.",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-14",
+        "note": "Metadata only: Crossref record (Economy and Society 14:2, April 1985, pp. 174–192; authors Mani and Frankenberg). Closed access; not read. No claim about its argument is made."
+      },
+      "scope_note": "Recorded in-period critics; unread."
+    },
+    {
+      "id": "pe137_said_mcewan_1996",
+      "title": "Cheryl McEwan, “Gender, culture and imperialism” (review article on Reina Lewis, Gendering Orientalism, and Anne McClintock, Imperial Leather), Journal of Historical Geography 22, no. 4 (1996): 489–494.",
+      "url": "https://dept.english.wisc.edu/amcclintock/writing/JHG_review.pdf",
+      "citation": "Cheryl McEwan, “Gender, culture and imperialism”, review article, Journal of Historical Geography 22:4 (1996): 489–494.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full in a PDF of the journal pages (running head 'Journal of Historical Geography, 22, 4 (1996) 489–494'; Academic Press 1996) hosted on a University of Wisconsin faculty page. Passages used: 'The inspiration behind the critical interest in empire, knowledge and power was undoubtedly Edward Said's groundbreaking and provocative Orientalism'; feminist scholars 'argue that the critics of Orientalism and ethnocentric scholarship continue to write out gender' (p. 489); Reina Lewis's book 'a response to Said in its efforts to destabilize the homogenizing tendencies of twentieth-century critiques of Orientalism' (p. 490); 'alternative orientalisms which are themselves fragmented, fluid and contestable' (p. 491). Reina Lewis's book itself was not read (Internet Archive copy lending-only)."
+      },
+      "scope_note": "In-period historical-geography review: Said's reception and the feminist critique (Reina Lewis, 1996)."
+    },
+    {
+      "id": "pe137_said_orientalism_1978",
+      "title": "Edward W. Said, Orientalism (New York: Pantheon Books, 1978).",
+      "url": "https://www.penguinrandomhouse.com/books/159783/orientalism-by-edward-w-said/",
+      "citation": "Edward W. Said, Orientalism (New York: Pantheon Books, 1978; first edition). Copy read: Internet Archive item orientalism-edward-said (file orientalism0000said_r4m0.pdf, scan of the Pantheon first edition).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Page images and text layer of a scan of the Pantheon first edition (copyright page: 'Copyright © 1978 by Edward W. Said ... Published in the United States by Pantheon Books ... First Edition'). Running heads give book pages. Read: introduction pp. 1–28 in full; pp. 94, 153–156, 204 and 321. Passages used: 'The Orient was almost a European invention' (p. 1); 'a style of thought based upon an ontological and epistemological distinction' (p. 2); 'a Western style for dominating, restructuring, and having authority over the Orient'; Foucault's 'notion of a discourse, as described by him in The Archaeology of Knowledge and in Discipline and Punish' (p. 3); 'a creation with no corresponding reality'; 'a complex hegemony' (p. 5); Gramsci's civil and political society, consent and hegemony, 'an indispensable concept'; 'flexible positional superiority' (pp. 6–7); 'The same kind of paradox is to be found in Marx'; 'Gramsci, certainly, and Foucault and Raymond Williams in their very different ways' (p. 14); 'unlike Michel Foucault, to whose work I am greatly indebted' and 'the determining imprint of individual writers' (p. 23); 'the whole complex problem of knowledge and power' (p. 24); the Gramscian 'inventory' (p. 25); 'what Michel Foucault calls a discourse, whose material presence or weight' (p. 94); Marx and India (pp. 153–156); 'every European ... was consequently a racist, an imperialist, and almost totally ethnocentric', with the following qualification (p. 204); Bernard Lewis (p. 321). Chapters 1–3 otherwise unread."
+      },
+      "scope_note": "In-period text of the book, used for pages beyond the introduction transcription already in the graph (said_orientalism)."
+    },
+    {
+      "id": "pe137_said_reconsidered_1985",
+      "title": "Edward W. Said, “Orientalism Reconsidered”, Cultural Critique 1 (Autumn 1985): 89–107.",
+      "url": "https://doi.org/10.2307/1354282",
+      "citation": "Edward W. Said, “Orientalism Reconsidered”, Cultural Critique 1 (1985): 89–107.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in full in a JSTOR PDF (cover sheet: Cultural Critique No. 1, Autumn 1985, pp. 89–107; stable URL 0882-4371(198523)0:1<89:OR>2.0.CO;2-6). Crossref record for doi:10.2307/1354282 agrees (Cultural Critique, 1985, first page 89, author Said). Passages used: 'the relationship between power and knowledge' (p. 89); German Orientalism omission 'superficial or trivial'; Dennis Porter's charge 'ahistorical and inconsistent' and 'more weighty in assertion than it is in proof' (p. 90); 'the right of formerly un- or mis-represented human groups to speak for and represent themselves' (p. 91); 'got left out of Orientalism was precisely the very history that resisted'; Geertz's 'self-congratulatory cliches' (p. 94); historicism and 'the science of world history' (Braudel, Wallerstein, Perry Anderson, Wolf) (p. 101); 'theories of accumulation on a world scale ...' and 'the problem is once again historicism' (p. 102); 'a praxis of the same sort ... as male gender dominance, or patriarchy' (p. 103); Subaltern Studies, Spivak and Bhabha among anti-Orientalist projects (pp. 104–105)."
+      },
+      "scope_note": "In-period essay: his reply to critics and his critique of historicism and world history."
+    },
+    {
+      "id": "porter_wesley",
+      "title": "Yale University Library, Guide to the Dorothy Porter Wesley Papers, JWJ MSS 93 (Afua Ferdnance, 2018; updated finding aid).",
+      "citation": "Yale University Library, Guide to the Dorothy Porter Wesley Papers, JWJ MSS 93 (Afua Ferdnance, 2018; updated finding aid).",
+      "url": "https://ead-pdfs.library.yale.edu/994.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Biography p. 4 and research-file descriptions pp. 49, 55–56 checked for Moorland collection building, Early Negro Writing (1971) and Afro-Braziliana (1978). The aid documents research materials and bibliography; manuscripts, full books and reviews remain unread. Later catalogue dates do not extend mapped coverage.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "qcreq_paquet_wallot_1972",
+      "title": "Gilles Paquet and Jean-Pierre Wallot, “Crise agricole et tensions socio-ethniques dans le Bas-Canada, 1802–1812,” Revue d’histoire de l’Amérique française 26, no. 2 (1972): 185ff.; and “À propos de la crise agricole dans le Bas-Canada,” RHAF 27, no. 1 (1973): 84ff.",
+      "url": "https://doi.org/10.7202/303174ar",
+      "citation": "Gilles Paquet and Jean-Pierre Wallot, “Crise agricole et tensions socio-ethniques dans le Bas-Canada, 1802–1812,” Revue d’histoire de l’Amérique française 26, no. 2 (1972): 185ff.; and “À propos de la crise agricole dans le Bas-Canada,” RHAF 27, no. 1 (1973): 84ff.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Metadata only (titles as in Crossref). Bodies unread. Checked against: Crossref DOI records 10.7202/303174ar and 10.7202/303235ar (Érudit). Addendum 2026-10-14: The 1972 article (RHAF 26:2, pp. 185–237) read in full from the Érudit PDF (text layer) for the Ouellet person entry; the 1973 reply in RHAF 27:1 remains unread. Quoted: 'pour un tenant de la position Labrousse comme F. Ouellet, la \"crise agricole\" est le pivot de toute l'interprétation socio-économique de l'histoire du Bas-Canada au tournant du XIXe siècle' (p. 187); n. 5 pairs Creighton's Empire of the St. Lawrence with Ouellet's Histoire (p. 186); Séguin 'de nouer l'économique, le politique et le mental' (p. 190); of Ouellet and Hamelin 1962, 'Cet article contient bien plus une intuition qu'une démonstration' (p. 193); Ouellet's postulates include 'le conservatisme invétéré des habitants, nous dirions même leur irrationalité' (p. 195); 'Ouellet peint les habitants comme des paysans essentiellement conservateurs, peu enclins à innover et désespérément embourbés dans des traditions routinières. Il s'agit là, nous semble-t-il, d'une simplification trop fréquente dans l'historiographie et qui appelle des réserves sérieuses' (pp. 201–202); 'Il n'existe pas de rationalité illimitée' (p. 202); 'les habitants ont adopté un régime agraire rationnel' (p. 221); 'l'erreur initiale de bien des historiens a été d'opter pour la position Labrousse' (p. 235); the Canadiens as 'd'astucieux politiques' (p. 235); 'au-delà d'un économisme grossier' (p. 236); 'renvoyer comme irrecevable la thèse Ouellet' (p. 237)."
+      },
+      "scope_note": "The counter-interpretation of the Lower Canadian agricultural crisis (title-level)."
+    },
+    {
+      "id": "roy_porter_lay_1985",
+      "title": "Roy Porter, “Lay Medical Knowledge in the Eighteenth Century: The Evidence of the Gentleman’s Magazine,” Medical History 29 (1985), 138–168.",
+      "citation": "Roy Porter, “Lay Medical Knowledge in the Eighteenth Century: The Evidence of the Gentleman’s Magazine,” Medical History 29 (1985), 138–168.",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0025727300043970",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-16",
+        "note": "Indexed primary opening read on lay interpretation, domestic treatment and patients’ agency in medical encounters. Full article and underlying magazine sample unread. This particular study does not make all patients autonomous or equally documented."
+      }
+    },
+    {
+      "id": "vickery_elegance_primary",
+      "title": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+      "citation": "Amanda Vickery, The Gentleman’s Daughter: Women’s Lives in Georgian England (1998), selected “Elegance” passages and notes.",
+      "url": "https://yalebooks.yale.edu/book/9780300102222/the-gentlemans-daughter/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Read available primary transcription: title/imprint, acknowledgments, opening introduction paragraph; chapter5 from opening through household purchasing division and acquisition channels; final discussion from corroborating Shackleton examples through chapter end; notes1–23 and beginning24,81–86. Intervening chapter section unread. Reflow lacks print page markers; no image collation or original manuscript audit. Explicit resources include Bourdieu, Douglas/Isherwood and Appadurai; Kopytoff not explicitly named in checked passages. Original1998 copyright, paperback1999, later ISBN distinguished. Gender/finance findings concern selected genteel households; no universal female consumer. Platform summary ignored. Addendum 2026-10-26: Inherited selected primary-transcription scope and gaps inspected. Reflow/no image-collation,1998 original vs1999 paperback limits retained; not freshly re-read or used for a Brewer-specific argument. Vickery’s1993 chapter is separately present in Wellcome contents and Weatherill notes; chapter title alone establishes no personal debt."
+      }
+    },
+    {
+      "id": "w1_daston_moral_economy_1995",
+      "title": "Lorraine Daston, “The Moral Economy of Science,” Osiris 10 (1995): 3–24.",
+      "citation": "Lorraine Daston, “The Moral Economy of Science,” Osiris 10 (1995): 3–24.",
+      "url": "https://pure.mpg.de/rest/items/item_2276978/component/file_3321600/content",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Read in part (pp. 3–4) for revision 1.144 in the Max Planck Society PuRe public PDF (item_2276978). p. 3: \"I will nonetheless claim that not only does science have what I will call a moral economy (indeed, several); these moral economies are moreover constitutive of those features conventionally (and, to my mind, correctly) deemed most characteristic of science as a way of knowing … certain forms of empiricism, quantification, and objectivity itself are not simply compatible with moral economies; they require moral economies.\" p. 3 n. 1: \"my use of the term moral economy diverges significantly from E. P. Thompson's in 'The Moral Economy of the English Crowd in the Eighteenth Century' … My appeal here to 'economies' of affects and values has little to do with Thompson's accounts of corn markets … although it does appeal to a broader sense of 'legitimizing notion.'\" n. 2 gathers Hannaway, Porter, Schaffer and Shapin. p. 4: \"a web of affect-saturated values that stand and function in well-defined relationship to one another\"; \"As Gaston Bachelard decades ago remarked, to imbue objects or actions with emotion is almost always thereby to valorize them\". pp. 5–24 unread. The second research pass (evidence-daston.pass2.md §1) read pp. 3–5 and 21–24 in another scan (www.ias.edu/sites/default/files/sss/pdfs/Moral-Daston.pdf): p. 5, \"To extend Ludwik Fleck's terminology, what is meant here is a Gefühls- as well as a Denkkollektiv\", n. 7 and p. 22 on Elias's \"civilizing process\", pp. 21–22 on mechanical and \"aperspectival objectivity\", and pp. 23–24: moral economies \"are part of what one might call historical epistemology—a history of the categories of facticity, evidence, objectivity, and so forth\". That pass cites the article as pp. 2–24; the article's first page prints \"OSIRIS 1995, 10: 3-24\" and p. 2 is the frontispiece, so 3–24 is kept."
+      }
+    },
+    {
+      "id": "weatherill_consumer_primary",
+      "title": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+      "citation": "Lorna Weatherill, Consumer Behaviour and Material Culture in Britain,1660–1760 (1988; second edition1996), new preface and selected introduction.",
+      "url": "https://api.pageplace.de/preview/DT0400.9781134745333_A24930986/preview-9781134745333_A24930986.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Read complete second-edition preface xiii–xx and notes xxi–xxiii; introduction1–3 through the available cutoff.1988 original and1996 additions distinguished;2003 digital edition. Frequency-of-ownership method, middling sample, missing debts/real estate and weak textile coverage are explicit. No main chapters, inventory appendices or data replication. Shammas1990 is read through Weatherill’s comparison and criticism, not its original body. Vickery1993 reception is explicitly named in this1996 preface, not backdated to1988. PDF annotation warnings did not prevent text extraction. Addendum 2026-10-26: Fresh actual second-edition1996 preview printedxiv/n3 and xxi–xxiii notes checked: credits Brewer/Porter1993 as wide-ranging collection, with Staves1994 and Bermingham1995 separate coedited volumes.1988 original vs1996 preface distinguished. No main chapters or inventory replication."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

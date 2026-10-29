@@ -1,0 +1,35 @@
+{
+  "revision": "1.209",
+  "status": "independently_reviewed_applied_and_locally_verified",
+  "checks": [
+    {
+      "name": "targeted_data",
+      "cases": 73,
+      "status": "pass",
+      "log_sha256": "f2525c54cb80c0ca6567b40db569a2a01466f42ecdfd0d0f543559abdf15f443"
+    },
+    {
+      "name": "javascript",
+      "cases": 61,
+      "status": "pass",
+      "log_sha256": "e21cbea92d7200028904a69ba34195e1404921c9f020f5f9940ae0dc617eb044"
+    },
+    {
+      "name": "focused_browser",
+      "cases": 3,
+      "status": "pass",
+      "log_sha256": "2c15ef27c4e25a159232861c555923004774c7aa0486c466d9d1750480b8008a"
+    }
+  ],
+  "preview_build": {
+    "status": "pass",
+    "allowlisted_files": 52,
+    "graph_and_overview_exactly_copied": true,
+    "other_protected_files_exact": 86
+  },
+  "browser_sequence_note": "Initial profile count check compared current canonical1.209 against still1.208publicdata and failed21versus20. After allowlisted graph/overview refresh, all three focused browser cases pass; no code change was required.",
+  "full_browser_suite": "Not rerun; three relevant existing browser cases pass.",
+  "remaining_priority_dossiers": 76,
+  "research": "continues",
+  "publication": "not_committed_or_pushed"
+}

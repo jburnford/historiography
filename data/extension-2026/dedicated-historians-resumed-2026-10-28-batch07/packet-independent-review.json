@@ -1,0 +1,65 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "exact merged packet before application",
+  "research_baseline_revision": "1.204",
+  "research_baseline_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "production_baseline_revision": "1.210",
+  "production_baseline_sha256": "6bbe24304f0eac4234e866cfe22a2ef424cf6b78561ed52bda0fd9bb2eeef10a",
+  "revision": "1.211",
+  "packet_sha256": "051dbc030dad6798c1f53bca49d49722e97f568ddeee586fcf503371b43df907",
+  "reviewed_files_sha256": {
+    "batch.json": "200317bd5af50e3ffc93af76f0a57dc03728806afad3a5d583eaf4df6e68da22",
+    "responses/entry-draft.json": "e219f88cd4a9e16f5607d8852d19e0f87f8ccc337176d88a9d51fc934098a580",
+    "release/editorial-additions.json": "051dbc030dad6798c1f53bca49d49722e97f568ddeee586fcf503371b43df907",
+    "baseline.json": "601bca6a49ca5bdd288c8772e8ed47a1f170822b938aa46aa679a7d66c414952",
+    "manifest.json": "28f0b3c5756221ab38354e575f1145f260e769045d1cfbc3177d65da2a8f48fe",
+    "freeze.json": "0364941d5f66d41d433dd3a80466b75de24cdaac4edee8e7d7bd6fd6bcc18109",
+    "verification.json": "40d6623e5ecf38e28420a8c45558f101ba96540cdb3eaefda5c2cf462899310a",
+    "prepare.py": "94fe6fc1ef462f2e9d504f1a379cdf12ac0d7e0e1a50e5eb8620b849c13575fa"
+  },
+  "dossier_review_sha256": {
+    "philip_curtin": "352bc42f39d57d8cc624558d38315140a06d0ca79b03d6d0f0af7e5c991aceba",
+    "romila_thapar": "ae40a50c01ef5af75db1ecfa03d9f5f354ed07f4e0fbc483ab2a000b9865bd09",
+    "sven_beckert": "22d06417d6cd34b7226b52fd6636c62d56732af8e76bacb8ff11cdc2db23d319",
+    "sidney_mintz": "12547fc497ec5f04edf052399d2ccbaba1e8b4a16b9db5b59cb05499e1ffe2cf",
+    "helen_maud_cam": "df0d71b0ac9a9cf7971a4f1b6eeaa095b2b1ef42f78b403600f9c93cf0ccd181"
+  },
+  "checks": {
+    "all_manifest_and_freeze_hashes_match": true,
+    "frozen_1_204_contexts_preserved": true,
+    "exact_1_210_current_baseline_and_implementation_receipt_verified": true,
+    "selection_30_prior_5_current_66_remaining_disjoint_and_complete": true,
+    "all_32_packet_edges_equal_reviewed_claims": true,
+    "all_12_cited_new_sources_equal_reviewed_records": true,
+    "seven_uncited_held_only_sources_excluded_without_owner_mutation": true,
+    "all_9_append_only_source_notes_exact": true,
+    "all_2421_old_edges_exact": true,
+    "all_other_prior_tables_exact_except_appended_history_and_scoped_sources": true,
+    "no_new_endpoints_or_duplicate_pair_kinds": true,
+    "direction_source_and_legacy_types_consistent": true,
+    "expected_graph_sha256_matches": true,
+    "read_only_prepare_check_passed": true
+  },
+  "excluded_uncited_source_ids": [
+    "hr28_beckert_lse2026",
+    "hr28_cam_greenway2014",
+    "hr28_cam_powicke1944",
+    "hr28_curtin_address1984",
+    "hr28_curtin_eltis2019",
+    "hr28_curtin_hiring1995",
+    "hr28_thapar_sunder2007"
+  ],
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2453,
+    "sources": 3345,
+    "people": 1438
+  },
+  "expected_production_sha256": "038349d3341cb3d0642941894c6147a7594bb9ecf623b43c11768be954bbbbec",
+  "qualification": "No new structural warning. The inherited legacy validator warning for edge_2272 reflects the already reviewed Vovelle/Delumeau comparison plus distinct reverse contribution; no typed pair/kind duplication. All named mediation, coauthorship, access, editions and criticisms remain exact. First-cohort and protected Indigenous baseline records remain unchanged.",
+  "blocking_findings": [],
+  "scope_limit": "Approves this exact additive local packet. Applied preservation and rebuilt public data require separate checks; no exhaustive network or deployment certified.",
+  "owner_or_packet_files_modified": false
+}

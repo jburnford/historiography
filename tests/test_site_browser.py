@@ -832,7 +832,8 @@ class AtlasBrowserTests(unittest.TestCase):
             links = panel.locator('.sources a').evaluate_all(
                 'els => els.map(el => el.getAttribute("href"))')
             for sid in edge['source_ids']:
-                self.assertIn(sources[sid]['url'], links)
+                if sources[sid].get('url'):   # 1.216 removed links to blocked routes
+                    self.assertIn(sources[sid]['url'], links)
         # McClintock's debt and criticism must coexist as distinct relationships.
         resource = next(e for e in GRAPH['edges'] if
                         (e['source'], e['target'], e.get('relationship_kind')) ==
@@ -894,7 +895,8 @@ class AtlasBrowserTests(unittest.TestCase):
             links = panel.locator('.sources a').evaluate_all(
                 'els => els.map(el => el.getAttribute("href"))')
             for sid in edge['source_ids']:
-                self.assertIn(sources[sid]['url'], links)
+                if sources[sid].get('url'):   # 1.216 removed links to blocked routes
+                    self.assertIn(sources[sid]['url'], links)
 
         # Explicit resources survive beside criticism of the same named author.
         for node, source, qualification in [
@@ -981,7 +983,8 @@ class AtlasBrowserTests(unittest.TestCase):
                 links = panel.locator('.sources a').evaluate_all(
                     'els => els.map(el => el.getAttribute("href"))')
                 for sid in edge['source_ids']:
-                    self.assertIn(sources[sid]['url'], links)
+                    if sources[sid].get('url'):   # 1.216 removed links to blocked routes
+                        self.assertIn(sources[sid]['url'], links)
 
         debt = relation('w_e_b_du_bois', 'c_vann_woodward', 'contribution')
         self.open('#edge=' + debt['id'])
@@ -1034,12 +1037,15 @@ class AtlasBrowserTests(unittest.TestCase):
             edge = matches[0]
             for key in ('source', 'target', 'relationship_kind', 'directed',
                         'relationship', 'evidence_note', 'source_ids'):
-                self.assertEqual(edge[key], expected[key], (proposal_id, key))
+                if key in ('relationship', 'evidence_note'):   # 1.216 restored dropped spaces
+                    self.assertEqual(''.join(edge[key].split()), ''.join(expected[key].split()), (proposal_id, key))
+                else:
+                    self.assertEqual(edge[key], expected[key], (proposal_id, key))
             return edge
 
         cases = [
             ('nancy_f_cott', 'hc200_cott_scott_gender',
-             'not a claim that the1986 article shaped the1977 book'),
+             'not a claim that the 1986 article shaped the 1977 book'),
             ('nancy_f_cott', 'hc200_cott_bederman_discourse',
              'neither is made the cause of the other’s earlier work'),
             ('nancy_f_cott', 'hc200_cott_foucault_retrospective',
@@ -1077,7 +1083,8 @@ class AtlasBrowserTests(unittest.TestCase):
                 links = panel.locator('.sources a').evaluate_all(
                     'els => els.map(el => el.getAttribute("href"))')
                 for sid in edge['source_ids']:
-                    self.assertIn(sources[sid]['url'], links)
+                    if sources[sid].get('url'):   # 1.216 removed links to blocked routes
+                        self.assertIn(sources[sid]['url'], links)
 
         # One field SVG and its textual detail expose the same implemented claim.
         retrospective = implemented('hc200_cott_foucault_retrospective')
@@ -1088,12 +1095,14 @@ class AtlasBrowserTests(unittest.TestCase):
             f'details.rel[data-edge="{retrospective["id"]}"]')).to_have_count(1)
         self.open('#edge=' + retrospective['id'])
         source = sources['hc200_cott_bonds2020']
+        # 1.216 removed this source's link (a blocked route); find it by its citation instead.
+        self.assertIn('Veritas paperback 2020', source['citation'])
         witness = self.page.locator('.reading-panel .sources > li').filter(
-            has=self.page.locator('a[href="' + source['url'] + '"]'))
+            has_text='Veritas paperback 2020')
         expect(witness).to_have_count(1)
         witness.locator('details > summary').click()
         expect(witness).to_contain_text('not a complete preface, full book, PDF')
-        expect(witness).to_contain_text('not1970s formation')
+        expect(witness).to_contain_text('not 1970s formation')
 
         comparison = implemented('hc200_mosse_davis_comparison')
         self.assertFalse(comparison['directed'])
@@ -1329,7 +1338,9 @@ class AtlasBrowserTests(unittest.TestCase):
         """Families by primary membership, as people.mjs familyIndex reads them from the published files."""
         evidence = json.loads((ROOT / 'docs/data/evidence.json').read_text())['families']['families']
         graph = json.loads((ROOT / 'docs/data/graph.json').read_text())
-        rosters = {n['id']: [r['person_id'] for r in n['representative_people']] for n in graph['nodes'] if n.get('representative_people')}
+        # A collaborative work keeps its roster but is not a ring segment (user, 2026-10-28: a category error).
+        rosters = {n['id']: [r['person_id'] for r in n['representative_people']] for n in graph['nodes']
+                   if n.get('representative_people') and n.get('entry_type') != 'Collaborative work'}
         primary = {m['id']: f['id'] for f in evidence for m in f['members'] if m['primary'] and m['id'] in rosters}
         of = {}
         for entry, people in rosters.items():

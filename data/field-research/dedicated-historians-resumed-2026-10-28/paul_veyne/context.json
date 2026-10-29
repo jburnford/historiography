@@ -1,0 +1,254 @@
+{
+  "person_id": "paul_veyne",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "paul_veyne",
+    "label": "Paul Veyne",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Comment on écrit l’histoire (1971) · Le Pain et le Cirque (1976) · Les Grecs ont-ils cru à leurs mythes? (1983)",
+    "description": "A historian of the ancient world who also asks how historians select and explain events. In the selected methodological extract, an event gains relevance within a chosen inquiry, but that choice does not make the relations within it arbitrary. His concept of intrigue can include several temporal rhythms and need not follow a simple chronological sequence. The map compares that position with the later narrative debate without asserting a historical transmission or treating historical narrative as licensed fiction.",
+    "representative_figures_and_works": "Comment on écrit l’histoire (1971 witness; institutional list also gives 1970); Le Pain et le Cirque (1976); Les Grecs ont-ils cru à leurs mythes? (1983).",
+    "source_ids": [
+      "stone_revival",
+      "hc174_veyne_intrigue",
+      "hc174_veyne_metadata"
+    ],
+    "scope_note": "New historian identity matched to the ancient-history bibliography and institutional life record. The methodological primary selection is mediated by an identified compiler and contains omissions; no full book reading, relativist-fable claim or direct Stone influence. The 1970/1971 bibliographic disagreement is visible in the original-work fact.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and translations",
+      "selection_note": "Selected contribution/publication facts; not a lifespan, comprehensive bibliography or continuous career interval. Original publications, translations and consulted editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "hc174_veyne_comment",
+          "label": "Comment on écrit l’histoire",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1971,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_veyne_metadata",
+            "graph:hc174_veyne_intrigue"
+          ],
+          "support": "1971 from ENSFEA catalogue, contemporary 1971 review and the primary-extract attribution. Collège bibliography lists 1970; discrepancy retained, not silently harmonized."
+        },
+        {
+          "id": "hc174_veyne_pain",
+          "label": "Le Pain et le Cirque",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1976,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_veyne_metadata"
+          ],
+          "support": "Collège institutional bibliography gives Seuil 1976. Book body unread."
+        },
+        {
+          "id": "hc174_veyne_grecs",
+          "label": "Les Grecs ont-ils cru à leurs mythes?",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1983,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:hc174_veyne_metadata"
+          ],
+          "support": "Collège institutional bibliography gives Seuil 1983. Book body unread; no argument inferred from the question title."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publication facts establish no continuous interval or end of activity."
+      },
+      "interpretation": "Argument claims retain the exact primary-excerpt or named-reader scopes; bibliographic witnesses establish publication and credit only.",
+      "prepared_on": "2026-10-25",
+      "editorial_record": "data/production-batches/person-entries-1.174/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_1385",
+      "source": "paul_veyne",
+      "target": "philhistory",
+      "relationship": "Examines how a chosen historical inquiry organizes events and explanations without making their relations arbitrary.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc174_veyne_intrigue"
+      ],
+      "evidence_note": "Selected primary extract, opening on event relevance and the sections on intrigue and the event field. Bernard Dantier’s introductory commentary is separately attributed and not treated as Veyne’s text.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_paul_veyne_1"
+    },
+    {
+      "id": "edge_1386",
+      "source": "paul_veyne",
+      "target": "revival",
+      "relationship": "Provides a comparison with the later narrative debate: Veyne’s intrigue can connect temporal rhythms without requiring a chronological storyline.",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "hc174_veyne_intrigue",
+        "stone_revival"
+      ],
+      "evidence_note": "Explicit editorial methodological comparison between the selected 1971 extract and the bounded 1979 Stone reading. No influence, direct exchange or Veyne affiliation with a narrative movement is asserted.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "hc174_paul_veyne_2"
+    },
+    {
+      "id": "edge_1945",
+      "source": "francois_hartog",
+      "target": "paul_veyne",
+      "relationship": "Hartog challenges the transhistorical authority claimed by Veyne’s invariant-based method and asks where the historian’s own discourse is produced.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "hc200_hartog_veyne1978_2025"
+      ],
+      "evidence_note": "Fresh1978primary essay read in Gustavo Ruiz Da Silva’s2025English translation,especially Without Concepts,You Don’t See Anything. It interrogates the relation of invariant models to progress in knowledge and likens classification to a herbarium. OriginalFrench326–327metadata/selectedOCR checked,but key329–330not obtained;no complete French-original reading claimed. Translator’s historical introduction/bracketed additions are distinct;Veyne’s1977lecture unread.",
+      "proposal_id": "hc200_hartog_veyne_transhistorical_eye"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_1752",
+      "source": "antoine_prost",
+      "target": "white",
+      "relationship": "While finding White illuminating, Prost judges his formalism too systematic to be fully convincing.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "df03_prost_lecons_expanded2014"
+      ],
+      "evidence_note": "Narrow objection to formal systematization, not wholesale rejection of narrative theory. Do not attribute the following broader history/fiction discussion or every claim made about Veyne exclusively to White. Selected authorial passage in the expanded digital edition, identified by EPUB ISBN 9782757843765 (BAnQ catalog: April 2014). Read through a public third-party transcription, not a collated print facsimile. No claim that the exact wording was present in 1996; complete book and cited originals unread.",
+      "proposal_id": "df03_prost_white_formalism"
+    },
+    {
+      "id": "edge_1946",
+      "source": "foucault",
+      "target": "francois_hartog",
+      "relationship": "Hartog uses Foucault’s analysis of classical classification to develop his criticism of Veyne’s invariant method.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_hartog_veyne1978_2025"
+      ],
+      "evidence_note": "Own1978essay,read in2025translation,explicitly refers to Les mots et les choses together with François Jacob’s La logique du vivant as the source of the closing natural-history quotations and analogy. Jacob retains separate credit;they are two works,not coauthors. Neither original work nor its exact edition was freshly read;translator commentary is not used as Hartog’s argument.",
+      "proposal_id": "hc200_hartog_foucault_classification_resource"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "philhistory",
+      "label": "Explanation & objectivity debates",
+      "records": [
+        {
+          "person_id": "paul_veyne",
+          "role": "historian",
+          "context": "Examines how a chosen historical inquiry organizes events and explanations without making their relations arbitrary.",
+          "works": "Comment on écrit l’histoire (1971 witness; institutional list also gives 1970); Le Pain et le Cirque (1976); Les Grecs ont-ils cru à leurs mythes? (1983).",
+          "source_ids": [
+            "hc174_veyne_intrigue"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1385"
+        }
+      ]
+    },
+    {
+      "node_id": "revival",
+      "label": "Revival of narrative / debate over quantification",
+      "records": [
+        {
+          "person_id": "paul_veyne",
+          "role": "historian",
+          "context": "Provides a comparison with the later narrative debate: Veyne’s intrigue can connect temporal rhythms without requiring a chronological storyline.",
+          "works": "Comment on écrit l’histoire (1971 witness; institutional list also gives 1970); Le Pain et le Cirque (1976); Les Grecs ont-ils cru à leurs mythes? (1983).",
+          "source_ids": [
+            "hc174_veyne_intrigue",
+            "stone_revival"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_1386"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "df03_prost_lecons_expanded2014",
+      "title": "Antoine Prost, Douze leçons sur l’histoire, expanded digital edition (EPUB identified as 2014).",
+      "url": "https://fr.scribd.com/document/672683151/PROST-Douze-lec-ons-sur-l-histoire",
+      "citation": "Antoine Prost, Douze leçons sur l’histoire (Paris: Seuil), expanded digital edition, EPUB ISBN 9782757843765; selected chapters3, 8, 10–12. BAnQ catalog identifies April 2014, printISBN 9782757820643; consulted transcription frontmatter carries copyright 1996, 2010. Original 1996 edition not collated.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Fresh selected authorial body passages through a public third-party transcription: introduction; chapter 3 Pas de faits sans questions; chapter 8 causal imagination, experience/expectation and uncertainty; chapter 10 Labroussian paradigm; chapter 11 White’s typologies and prefiguration; chapter 12 de Certeau and citation. The ISBN was read in the digital frontmatter and independently matched to BAnQ institutional metadata https://banq.pretnumerique.ca/v1/resources/541c 419c 96c 235e8f 1004686?l=en (April 2014, expanded by two articles). Copyright 1996, 2010 is not an assertion that all consulted wording dates to 1996. Use chapter/section/paragraph locators; tool line numbers and reflowed 456-page host count are not original print pagination. No print-facsimile collation, complete-book reading or fresh reading of the quoted authors’ originals. Publisher/Cairn access failures do not count as body witnesses. Earlier Agulhon/Voldman reviews retain their exact mediation and original-edition limits."
+      }
+    },
+    {
+      "id": "hc174_veyne_intrigue",
+      "title": "Paul Veyne, selected passages from Comment on écrit l’histoire, reproduced in Bernard Dantier, “Paul Veyne et la construction d’intrigues” (8 September 2005), Classiques des sciences sociales.",
+      "citation": "Paul Veyne, selected passages from Comment on écrit l’histoire, reproduced in Bernard Dantier, “Paul Veyne et la construction d’intrigues” (8 September 2005), Classiques des sciences sociales.",
+      "url": "https://www.classiques.uqam.ca/collection_methodologie/veyne_paul/comment_ecrit_histoire/comment_ecrit_histoire_texte.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Primary selected extract read from its opening question through the discussion of historical specificity, alongside the separately identified Dantier introduction. Host attributes selection to pp. 50–85 of the book, first edition 1971; omissions are marked and the precise printing is not independently collated. This is an edited excerpt, not all 35 book pages or a whole-book reading. Host date 2005 belongs to the presentation, not original work."
+      }
+    },
+    {
+      "id": "hc174_veyne_metadata",
+      "title": "Collège de France, Paul Veyne bibliography, supplemented by original Comment on écrit l’histoire catalogue witness.",
+      "citation": "Collège de France, Paul Veyne bibliography, supplemented by original Comment on écrit l’histoire catalogue witness.",
+      "url": "https://www.college-de-france.fr/sites/default/files/media/document/2022-09/Paul%20Veyne-Bibliographie.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-25",
+        "note": "Institutional bibliography checked for Le Pain et le Cirque 1976 and Les Grecs 1983. It lists Comment on écrit l’histoire 1970, whereas ENSFEA https://bibliotheque.ensfea.fr/index.php?id=144790&lvl=notice_display records Seuil 1971, as does Pierre Boyancé’s contemporary review DOI 10.3406/rea.1971.3892. The event uses the latter 1971 bibliographic witness with discrepancy explicit. No body reading of the 1976/1983 books. The inaccessible 2005 L’Homme interview was not used."
+      }
+    },
+    {
+      "id": "hc200_hartog_veyne1978_2025",
+      "title": "Hartog: Veyne critique and Foucault/Jacob resource in English translation(1978/2025)",
+      "url": "https://critinq.wordpress.com/2025/09/05/paul-veyne-naturalist-history-is-a-herbarium/",
+      "citation": "François Hartog,“Paul Veyne Naturalist:History Is a Herbarium,”translated by Gustavo Ruiz Da Silva,In the Moment(Critical Inquiryblog),5September2025;original“Paul Veyne naturaliste:l’histoire est un herbier,”AnnalesESC33,no.2(March–April1978),326–330,doi:10.3406/ahess.1978.293930.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh English primary translation read,especiallyWithoutConcepts section andclosingclassification/notes17–21. OriginalFrench326–327selectedPerseeOCRandmetadata consulted;key329–330anddirectPDFnotobtained,so no completeFrenchoriginalreading. Translator’s appended institutionalhistory andbracketed explanations not attributed toHartog. Veyne’s lecture delivered1976,published1977,distinct from1978critique and2025translation. OriginalVeyne,FoucaultandJacobbooksunread."
+      }
+    },
+    {
+      "id": "stone_revival",
+      "title": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "citation": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "url": "https://doi.org/10.1093/past/85.1.3",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Primary PDF read: printed 3–6 and 13–24 complete; 7–12 unread. Page 3 visually inspected, 5 and 13–23 OCR recovered because embedded text clips lines; 4, 6 and 24 read embedded text. Includes all notes on these pages, not all article notes. Starn directs Stone to White; examples and methodological limits are explicit. Broad historiographical diagnoses, dismissive descriptions and implied psychologies remain Stone’s claims. Montaillou citation 1976 is not adopted as first publication; quoted Elias reception/edition shorthand not certified. Prior Oxford metadata retained; book bodies not thereby read."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

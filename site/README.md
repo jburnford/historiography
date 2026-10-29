@@ -6,6 +6,314 @@ publication record. Detailed views render evidenced journal venues and selected
 partially extended fields. The project has no closing date (1.133); the original 1920–2000 experiment
 (revision 1.121) is an archived view at `#range=2000`.
 
+## Current revision 1.216: text and link repair
+
+Revisions 1.200–1.215 wrote many reading notes with the spaces between words
+dropped (for example "Own2005pp14–15" or "distinguishespoliticalhistoryfromeventhistory").
+This repair restores them in **1,432 text fields** — relationship sentences, evidence notes,
+source titles, citations and verification notes, and some node text — by inserting spaces
+only; every change was reviewed per record and checked to alter nothing but spacing.
+Three hyphenated names lost in the run-ons (Smith-Rosenberg, Evans-Pritchard,
+Calmann-Lévy) are restored.
+
+Source links now follow the project's source rule: **53 links** to document-sharing
+sites, shadow libraries or unauthorised reposts are replaced by the publisher's DOI
+(20) or removed (33), and 35 notes and citations that named such a route are reworded
+neutrally. The readings themselves are unchanged. `scripts/source_hosts.py` lists the
+blocked hosts and `tests/test_source_hosts.py` fails if the graph links or names one;
+licensed publisher previews and teaching copies of single chapters or articles remain
+acceptable.
+
+No entries, relationships, sources or people are added or removed: the graph still
+contains **368 entries, 2,572 relationships, 3,381 sources and 1,438 indexed people**.
+The packet is in `data/extension-2026/text-and-link-repair-2026-10-29/`.
+
+Also in this release (site only): People Circles no longer draw a collaborative work
+(*Life Lived Like a Story*) as a segment of the ring beside the fields; its entry,
+connections and its people's panels are unchanged.
+
+## Historical revision 1.215: five further historian relationship reviews
+
+Jennifer S. H. Brown, Richard Hofstadter, Tony Judt, Lizabeth Cohen and Philippe Ariès
+add **22 relationships, 7 sources and 11 append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,572 relationships, 3,381 sources and
+1,438 indexed people**. **111 priority dossiers are complete and 46 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.214 graph. All 2,550 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 121 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.214: five further historian relationship reviews
+
+David R. Roediger, Eric Foner, François Furet, Gary Gerstle and Harold A. Innis
+add **36 relationships, 14 sources and 11 append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,550 relationships, 3,374 sources and
+1,438 indexed people**. **106 priority dossiers are complete and 51 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.213 graph. All 2,514 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 113 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.213: five further historian relationship reviews
+
+Mary P. Ryan, Alan Taylor, Carolyn Merchant, Darlene Clark Hine and David Cannadine
+add **40 relationships, 12 sources and 14 append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,514 relationships, 3,360 sources and
+1,438 indexed people**. **101 priority dossiers are complete and 56 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.212 graph. All 2,474 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 105 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.212: five further historian relationship reviews
+
+Julia Cherry Spruill, Eleanor Flexner, Mary Ritter Beard, Michel-Rolph Trouillot and Lucy Maynard Salmon
+add **21 relationships, 3 sources and 15 append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,474 relationships, 3,348 sources and
+1,438 indexed people**. **96 priority dossiers are complete and 61 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.211 graph. All 2,453 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 97 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.211: five further historian relationship reviews
+
+Philip Curtin, Romila Thapar, Sven Beckert, Sidney Mintz and Helen Maud Cam
+add **32 relationships, 12 sources and nine append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,453 relationships, 3,345 sources and
+1,438 indexed people**. **91 priority dossiers are complete and 66 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.210 graph. All 2,421 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 89 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.210: five further historian relationship reviews
+
+Gu Jiegang, Jay Winter, Lauren Benton, Liang Qichao and Masao Maruyama
+add **22 relationships, five sources and 13 append-only reading notes** after
+independent dossier, combined packet and applied preservation reviews.
+The graph contains **368 entries, 2,421 relationships, 3,333 sources and
+1,438 indexed people**. **86 priority dossiers are complete and 71 remain.**
+
+The additions distinguish substantive resources from particular disagreements
+and scholarly comparisons. Joint authors, translators, reprints and retrospective
+accounts retain their qualifications. Central missing interlocutors stay in
+the [research holds](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+There is no edge quota or exhaustive-network claim.
+
+Research contexts remain at revision 1.204; application was guarded against
+the exact 1.209 graph. All 2,399 earlier relationships and every other graph
+table remain intact apart from the approved source-note additions. Indigenous
+history changes, life records, dissertation assets and snapshots are preserved.
+OpenAlex remains paused; UK collection is separate.
+
+**Applied and locally verified:** 81 targeted data cases, 61 JavaScript checks
+and three focused browser cases pass. The 52-file preview builds successfully.
+Only graph and overview replace public files; 86 other protected files remain
+exact. No commit or push yet. Research continues through the remaining list.
+
+## Historical revision 1.209: five further historian relationship reviews
+
+Five independently reviewed dossiers—Steven Shapin, Timothy Mitchell,
+Tzvetan Todorov, Carl Berger and Cheikh Anta Diop—add **44 relationships,
+14 sources and eight append-only reading notes**. The graph contains
+**368 entries, 2,399 relationships, 3,328 sources and 1,438 indexed people**.
+
+**81 priority dossiers are complete and 76 remain.** Research continues in the
+[resumed audit](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+Specific resources, criticism and comparisons retain named mediation, joint
+authors, translations, retrospective accounts, editions and access limits.
+Missing endpoints stay in the research holds. No edge quota or exhaustive network
+is claimed.
+
+Research contexts remain frozen at revision 1.204; application is separately
+guarded against the exact 1.208 graph. All 2,355 earlier relationships and every
+other graph table remain intact, apart from reviewed source-note additions.
+Indigenous-history changes, life records, dissertation assets and the exact-2000
+archive are preserved. OpenAlex stays paused; UK collection is separate.
+
+**1.209 status: independently reviewed, applied and locally verified.** All 73
+targeted data cases, 61 JavaScript checks and three focused browser cases pass.
+The 52-file allowlisted preview builds successfully. Only graph and overview
+replace public files; 86 other public, life and dissertation files remain exact.
+No commit or push yet.
+
+## Historical revision 1.208: five further historian relationship reviews
+
+Five independently reviewed dossiers—Philippa Levine, Robert H. Wiebe,
+Roy Porter, Sherry Olson and Steven Hahn—add **30 relationships, 15 sources
+and eight append-only reading notes**. The graph contains **368 entries,
+2,355 relationships, 3,314 sources and 1,438 indexed people**.
+
+**76 priority dossiers are complete and 81 remain.** Research continues in the
+[resumed audit](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+The additions retain specific positive resources and criticism, joint authors,
+precise page locators, named scholarly mediation and access limits. Missing
+endpoints remain held. There is no edge quota or exhaustive network claim.
+
+Frozen research contexts remain at revision 1.204; application is separately
+guarded against the exact 1.207 graph. All 2,325 earlier relationships and every
+other graph table remain intact, apart from reviewed source-note additions.
+Indigenous-history updates, life records, dissertation assets and the exact-2000
+archive remain preserved. OpenAlex stays paused; UK downloads continue separately.
+
+**1.208 status: independently reviewed, applied and locally verified.** All 65
+targeted data cases, 61 JavaScript checks and three focused browser cases pass.
+The 52-file allowlisted preview builds successfully. Only graph and overview
+replace public files; 86 other public, life and dissertation files remain exact.
+No commit or push yet.
+
+## Historical revision 1.207: five further historian relationship reviews
+
+Five independently reviewed dossiers—Odd Arne Westad, Paul Boyer, Paul Veyne,
+Peter Burke and Peter N. Stearns—add **44 relationships, 15 sources and five
+append-only reading notes**. The graph contains **368 entries, 2,325
+relationships, 3,299 sources and 1,438 indexed people**.
+
+**71 priority dossiers are complete and 86 remain.** Research continues in the
+[resumed audit](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+The evidence preserves particular resources and disagreements, joint authors,
+named mediation, interview speakers, later editions and partial access. Missing
+endpoints remain in the research holds. There is no edge quota or exhaustive
+network claim.
+
+Frozen research contexts remain at revision 1.204; application is separately
+guarded against the exact 1.206 graph. All 2,281 earlier relationships and every
+other graph table remain intact, apart from the reviewed source-note additions.
+Indigenous-history updates, life records, dissertation assets and the exact-2000
+archive remain preserved. OpenAlex stays paused; UK downloads continue separately.
+
+**1.207 status: independently reviewed, applied and locally verified.** All 57
+targeted data cases, 61 JavaScript checks and three focused browser cases pass.
+The 52-file allowlisted preview builds successfully. Only graph and overview
+replace public files; 86 other public, life and dissertation files remain exact.
+No commit or push yet.
+
+## Historical revision 1.206: five further historian relationship reviews
+
+Five independently reviewed dossiers—Mark Mazower, Matthew Frye Jacobson,
+Michael Katz, Michel Vovelle and Niall Ferguson—add **47 relationships,
+18 sources and four append-only reading notes**. The graph contains **368
+entries, 2,281 relationships, 3,284 sources and 1,438 indexed people**.
+
+**66 priority dossiers are complete and 91 remain.** Research continues in the
+[resumed audit](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md).
+The additions preserve positive resources alongside particular criticisms,
+coauthors, named scholarly mediation, later retrospectives and editions, partial
+access and unread originals. Missing endpoints stay in the research holds;
+there is no edge quota or exhaustive-network claim.
+
+The frozen research contexts remain at revision 1.204; application is separately
+guarded against the exact 1.205 graph. All 2,234 earlier relationships and every
+entry, biography, chronology, roster and other graph table remain intact.
+Earlier source notes receive only the reviewed additions. Indigenous-history
+updates, life records, dissertation assets and the exact-2000 archive are
+preserved. OpenAlex stays paused; UK downloads continue separately.
+
+**1.206 status: independently reviewed, applied and locally verified.** All 49
+targeted data cases, 61JavaScript checks and three focused browser cases pass.
+The 52-file allowlisted preview builds successfully. Only graph and overview
+replace public files; 86 other public, life and dissertation files remain exact.
+No commit or push yet.
+
+
+## Historical revision 1.205: resumed leading-historian relationship research
+
+Five independently reviewed dossiers—John Higham, John Tosh, Linda Colley,
+Linda Gordon and Linda Kerber—add **39 relationships, 16 sources and five
+append-only reading notes**. The graph contains **368 entries, 2,234
+relationships, 3,266 sources and 1,438 indexed people**.
+
+The [resumed research audit](../data/field-research/dedicated-historians-resumed-2026-10-28/README.md)
+keeps research, independent review and implementation separate. **61 priority
+dossiers are now complete and 96 remain**; research continues. This is a bounded
+review of selected passages, with no edge quota or exhaustive-network claim.
+Acknowledged resources and particular disagreements remain distinct. Named
+mediation, coauthors, later recollections and editions, partial access and unread
+originals stay explicit in the evidence notes.
+
+All prior entries, relationships, biography and chronology records are preserved,
+including the Indigenous-history changes in revisions 1.201–1.204. Source notes
+append to earlier qualifications. Life records, dissertation assets and the
+exact-2000 archive are unchanged. Tocqueville remains excluded from this queue;
+OpenAlex remains paused. UK dissertation collection continues separately.
+
+**1.205 status: independently reviewed, applied and locally verified.** All 86
+targeted data cases, 61 JavaScript checks and three focused browser cases pass.
+The allowlisted preview build succeeds; only its graph and overview replace
+public files, preserving 86 other public, life and dissertation files exactly.
+Research continues. No commit or push yet.
+
 
 ## Reviewed historian supplement, revision 1.200
 

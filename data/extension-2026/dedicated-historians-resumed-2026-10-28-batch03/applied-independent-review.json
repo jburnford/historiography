@@ -1,0 +1,33 @@
+{
+  "reviewer": "Independent Astra reviewer",
+  "checked_on": "2026-10-28",
+  "verdict": "pass",
+  "stage": "applied canonical graph and protected assets",
+  "revision": "1.207",
+  "baseline_revision": "1.206",
+  "baseline_snapshot": "drafts/historiography-1920-2000.v1.206.json",
+  "baseline_sha256": "0b0d1fd222df3791db4a8b84504b8348331cf6e93d826117c74324572976f9e4",
+  "production_sha256": "42d96f5f77efb0f7f8c4c5d2876f094eeffb6875500bbd96ffcd159223e86a59",
+  "acceptance_sha256": "6301d8054dbb9ef9f23b40281c0212c6bc0cccbd6bc54b7ce29e9b08f3d0a15d",
+  "packet_review_sha256": "3f4a7000c23f68101be878c50fa7dca6f495217aa73abb8c7e6c9c5c4da162e5",
+  "preservation_inventory_sha256": "dbffa8af471648fcfc74744a629e7fb6fbbcb40064a59ff7997dc882d7408d5a",
+  "checks": {
+    "all_frozen_packet_pins_still_exact": true,
+    "all_2281_prior_edges_exact": true,
+    "all_prior_nodes_people_and_other_tables_exact": true,
+    "prior_revision_history_exact_prefix": true,
+    "old_sources_exact_except_five_approved_append_only_notes": true,
+    "acceptance_prior_source_records_match_snapshot": true,
+    "all_86_protected_file_hashes_exact": true,
+    "applied_graph_matches_reviewed_predicted_sha256_and_exact_transform": true,
+    "read_only_prepare_check_passed": true
+  },
+  "counts": {
+    "nodes": 368,
+    "edges": 2325,
+    "sources": 3299,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "scope_limit": "Local canonical application and protected assets at review time. Public graph/overview rebuild and runtime checks are separate; no commit, push, deployment or exhaustive intellectual-network certification."
+}
