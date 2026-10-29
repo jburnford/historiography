@@ -667,3 +667,5 @@ body[data-view=field] .filter-options{display:none}
   .family-people{max-height:none}
   .reading-panel,.family-approach,.person-card{font-size:14px}
 }
+/* Nine top-level links (Canon map added 2026-10-29) need tighter spacing on tablets. */
+@media(min-width:701px) and (max-width:900px){.main-nav{gap:20px}}

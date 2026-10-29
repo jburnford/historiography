@@ -79,7 +79,7 @@ export function readRoute(hash, graph, pathways) {
      Journals are addressable in the field but are not atlas entries. */
   const fieldIds = graph.__fieldNodes || graph.nodes;
   const route = {
-    tab: ['people', 'pathways', 'about', 'browse', 'dissertations'].includes(p.get('tab')) ? p.get('tab') : 'map',
+    tab: ['people', 'pathways', 'about', 'browse', 'dissertations', 'canon'].includes(p.get('tab')) ? p.get('tab') : 'map',
     source: (p.get('source') || '').slice(0, 2000),
     focus: fieldIds.some(n => n.id === p.get('focus')) ? p.get('focus') : '',
     /* `path` lays a seminar pathway over the field; `pathway` opens its reading page. */

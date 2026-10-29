@@ -1463,6 +1463,7 @@ class AtlasBrowserTests(unittest.TestCase):
         expected.update({'records.mjs', 'data/overview.json'})
         expected.update({'dissertations.mjs', 'dissertations.css', 'data/dissertations/index.json', 'data/dissertations/links.json'})
         expected.update(f'data/dissertations/{i:02x}.json' for i in range(32))
+        expected.update({'canon.mjs', 'data/dissertations/canon-map.json'})   # canon map, hash-pinned in the dissertation manifest
         if (Path(__file__).resolve().parents[1] / 'data/evidence-layer/site-people.json').exists():
             expected.add('data/people-records.json')
         expected.update({'landing.mjs', 'chronology.mjs'})

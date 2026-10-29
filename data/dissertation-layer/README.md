@@ -4,6 +4,10 @@ The main site presents the dissertation record through its own navigation and de
 The comparison HTML under `dissertation-citations-2026-10-11/summary/comparisons/`
 remains experimental research material and is not copied into the public build.
 
+One research page has a public counterpart: the canon map. Its data block, and not the HTML, is exported to
+`site/canon-map.json` by `scripts/export_canon_map.py` and hash-pinned under `canon_map` in `manifest.json`.
+`build_dissertation_site.py` keeps that entry when it rewrites the manifest. See `site/README.md`.
+
 `scripts/build_dissertation_site.py` exports the existing source-explorer calculations
 and repository-linked examples from the frozen 2026-10-23 CSV release. It verifies
 all 4,037 source counts against distinct dated dissertations and reproduces the

@@ -284,6 +284,9 @@ def main():
                    for p in [explorer_path, ROOT / 'data/dissertation-layer/links.json', REVIEWED_IDS,
                              *(RELEASE / f'{n}.csv.gz' for n in ('dissertations', 'works', 'citations'))]},
         'outputs': {name: hashlib.sha256((DEST / name).read_bytes()).hexdigest() for name in outputs}}
+    previous = DEST.parent / 'manifest.json'
+    if previous.exists() and 'canon_map' in (prior := json.loads(previous.read_text())):
+        manifest['canon_map'] = prior['canon_map']   # scripts/export_canon_map.py owns this entry
     (DEST.parent / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
     print(f'Exported {len(index):,} sources, {len(theses):,} dated dissertations in {len(outputs)} assets; '
           f'{sum((DEST / name).stat().st_size for name in outputs) / 1e6:.2f} MB total.')

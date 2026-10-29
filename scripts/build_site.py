@@ -37,6 +37,7 @@ PAGE_ASSETS = {
     'site/landing.mjs': 'landing.mjs',
     'site/records.mjs': 'records.mjs',
     'site/dissertations.mjs': 'dissertations.mjs',
+    'site/canon.mjs': 'canon.mjs',
     'site/dissertations.css': 'dissertations.css',
     'site/.nojekyll': '.nojekyll',
 }
@@ -54,6 +55,8 @@ OVERVIEW_ASSET = 'data/overview.json'
 READING_SOURCE = ROOT / 'data/dissertation-layer/site'
 READING_FILES = ['index.json', 'links.json', *(f'{i:02x}.json' for i in range(32))]
 READING_ASSETS = {name: f'data/dissertations/{name}' for name in READING_FILES}
+# Canon map: exported by scripts/export_canon_map.py, hash-pinned under `canon_map` in the manifest.
+CANON_ASSET = 'data/dissertations/canon-map.json'
 ASSETS = {**PAGE_ASSETS, **DATA_ASSETS}
 
 
@@ -188,7 +191,7 @@ def build(graph_path=None, dest=None, baseline_path=None):
     existing = list(dest.rglob('*')) if dest.exists() else []
     if any(p.is_symlink() for p in existing):
         raise SystemExit('Build output must not contain symlinks.')
-    allowed = set(ASSETS.values()) | {BASELINE_ASSET, EVIDENCE_ASSET, PEOPLE_ASSET, OVERVIEW_ASSET} | set(READING_ASSETS.values())
+    allowed = set(ASSETS.values()) | {BASELINE_ASSET, EVIDENCE_ASSET, PEOPLE_ASSET, OVERVIEW_ASSET, CANON_ASSET} | set(READING_ASSETS.values())
     unexpected = {str(p.relative_to(dest)) for p in existing if p.is_file()} - allowed
     if unexpected:
         raise SystemExit(f'Unexpected build contents; review before continuing: {sorted(unexpected)}')
@@ -221,6 +224,12 @@ def build(graph_path=None, dest=None, baseline_path=None):
         out.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, out)
         published += 1
+    canon = reading_manifest['canon_map']
+    source = READING_SOURCE.parent / canon['output']
+    if source.is_symlink() or hashlib.sha256(source.read_bytes()).hexdigest() != canon['output_sha256']:
+        raise SystemExit('Canon map export changed; rerun scripts/export_canon_map.py and review it.')
+    shutil.copyfile(source, dest / CANON_ASSET)
+    published += 1
     for source, target in DATA_ASSETS.items():
         out = dest / target
         out.parent.mkdir(parents=True, exist_ok=True)

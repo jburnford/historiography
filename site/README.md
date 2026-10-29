@@ -467,6 +467,34 @@ The 52-file build remains allowlisted. Dissertation assets and the archived grap
 are unchanged; compiled life reviews retain the same rows with revision metadata
 updated. **1.192 release status: independently reviewed and locally verified; ready for publication.**
 
+## Canon map (2026-10-29)
+
+`#tab=canon` (More menu, and a button on Dissertation reading) shows the people History PhDs cite,
+linked by co-citation: two people are linked when the same theses cite them both. The user asked
+for "a canon visualization based on the full dissertation graph; a network without the
+dissertations", "with a filter for low count historians".
+
+- **Data.** `scripts/historian_cocitation_network.py` builds the research page
+  (`summary/comparisons/historian-network.html`). `scripts/export_canon_map.py` copies its data
+  block to `data/dissertation-layer/site/canon-map.json` and pins it in the manifest under `canon_map`.
+  The published copy holds people, layouts and pair counts only, with no thesis records.
+  `build_site.py` publishes it as `data/dissertations/canon-map.json` only when the hash matches.
+- **Loading.** `site/canon.mjs` loads the file (1.8 MB) when the tab opens. The landing page and
+  Dissertation reading never request it.
+- **What the page offers.**
+  - The threshold snaps to 40–300 citing theses, and each step has its own layout.
+  - Links can be drawn by raw co-citation count or by association strength.
+  - A name search, zoom buttons and Ctrl/⌘ + scroll to zoom. Plain scrolling still scrolls the page.
+  - A profile panel shows a person's most co-cited partners.
+  - A table lists the strongest pairs.
+- **Links to Dissertation reading.** 2,059 of the 2,801 people link to Dissertation reading, where
+  exactly one person there has the same name.
+- **A different build.** The map uses the build of 2026-10-28/29, which includes 1,730 UK theses.
+  The reading export is the frozen 2026-10-23 release, and the page says the counts can differ.
+- **Tests.**
+  - `tests/test_dissertation_site.py`: hash, fields and edges.
+  - `tests/test_dissertation_browser.py`: lazy load, search, partner navigation and threshold.
+
 ## Dissertation reading preview
 
 `#tab=dissertations` opens a new view built in the main site, using the research explorer's

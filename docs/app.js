@@ -8,6 +8,7 @@ import {AXIS, MIN_BIN_TOTAL, VIEWS, stripSegments, familyBySlug, familyGraph, fa
 import {recordPanel as publicationPanel} from './records.mjs';
 import {chronologyOf, chronologyLabel, chronologyEvents, contributionSpan, dateText} from './chronology.mjs';
 import {isReadingHash, mountReading, mountReadingContext, resizeReading} from './dissertations.mjs';
+import {mountCanon} from './canon.mjs';
 
 const $ = id => document.getElementById(id);
 const phone = () => matchMedia('(max-width: 700px)').matches;
@@ -1273,7 +1274,8 @@ function landingPage() {
   return `<div class="landing-page">
     <div class="timeline-entry"><div class="exploration-actions"><a class="button-link" href="#family=all&amp;view=map">Explore the timeline →</a>
       <a class="button-link" href="#tab=people">Explore the people circles →</a>
-      <a class="button-link" href="#tab=dissertations">Explore dissertation reading →</a></div>
+      <a class="button-link" href="#tab=dissertations">Explore dissertation reading →</a>
+      <a class="button-link" href="#tab=canon">See the canon map →</a></div>
       <p>Trace arguments through time, meet historians across shared fields, or explore the scholarship doctoral historians draw on. Select an entry to examine its works, disagreements and evidence.</p></div>
     <div class="section-heading"><div><p class="eyebrow">FIND YOUR WAY IN</p>
       <h2>Twelve families of historical writing</h2></div></div>
@@ -1795,6 +1797,7 @@ function render() {
     : onLanding ? landingPage() : onField ? fieldPage()
     : state.tab === 'people' ? peopleDirectory()
     : state.tab === 'dissertations' ? '<div class="dissertation-reading" id="dissertation-reading"></div>'
+    : state.tab === 'canon' ? '<div class="dissertation-reading canon-map" id="canon-map"></div>'
     : state.tab === 'about' ? about()
     : state.tab === 'pathways' ? pathwayPage()
     : state.layer || state.query || state.period || state.hunt ? directory() : overview();
@@ -1806,6 +1809,7 @@ function render() {
   if (state.person) drawPersonMap();
   fitConnections();
   if (state.tab === 'dissertations' && !state.node && !state.person) mountReading($('dissertation-reading'), state.source);
+  if (state.tab === 'canon' && !state.node && !state.person) mountCanon($('canon-map'));
   if (state.range !== '2000') {
     document.querySelectorAll('[data-reading-person]').forEach(el => mountReadingContext(el, 'person', el.dataset.readingPerson));
     document.querySelectorAll('[data-reading-entry]').forEach(el => mountReadingContext(el, 'entry', el.dataset.readingEntry));
@@ -1814,7 +1818,8 @@ function render() {
     : state.pathway ? pathways.pathways.find(p => p.id === state.pathway).title
     : onLanding ? '' : onField ? activeFamily()?.label || 'Timeline'
     : state.tab === 'people' ? 'Historians & contributors' : state.tab === 'browse' ? 'Browse entries'
-    : state.tab === 'pathways' ? 'Seminar pathways' : state.tab === 'dissertations' ? 'Dissertation reading' : 'About this project';
+    : state.tab === 'pathways' ? 'Seminar pathways' : state.tab === 'dissertations' ? 'Dissertation reading'
+    : state.tab === 'canon' ? 'Canon map' : 'About this project';
   document.title = [pageLabel, production.title].filter(Boolean).join(' · ');
   $('announcement').textContent = onLanding ? `Twelve families of historical writing: selected contributions beside the publication record. Record view: ${VIEWS[recordView()]}.`
     : state.tab === 'map' && !state.node && !state.person
@@ -1824,7 +1829,7 @@ function render() {
          ? `${activeFamily().label}. Approaches, works and contributors.`
          : `${activeFamily().label}. ${shownIds().size} entries on a time axis.`
        : `Field view. ${fieldNodes(graph).length} entries on a time axis.`)
-    : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : state.tab === 'dissertations' ? 'Dissertation reading.' : 'About this project.';
+    : state.person ? personById.get(state.person).label : state.node ? `${nodeById.get(state.node).label}. ${state.section === 'connections' ? 'Connections view.' : rosterLabel(nodeById.get(state.node))}` : state.tab === 'people' ? `${filterPeople(graph,state).length} matching people.` : state.tab === 'map' ? `${filterNodes(graph.nodes,state,graph.people).length} matching entries.` : state.pathway ? pathways.pathways.find(p=>p.id===state.pathway).title : state.tab === 'pathways' ? 'Seminar pathways.' : state.tab === 'dissertations' ? 'Dissertation reading.' : state.tab === 'canon' ? 'Canon map: people cited together in History PhDs.' : 'About this project.';
   const resetLanes = {page:0};
   $('kind-filter')?.addEventListener('change', e => change({kind: e.target.value, ...resetLanes}));
   $('neighbor-layer')?.addEventListener('change', e => change({neighborLayer: e.target.value, ...resetLanes}));

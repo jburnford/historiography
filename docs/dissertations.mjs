@@ -8,7 +8,7 @@ const charts = new WeakMap();
 const contextChoices = new Map();
 const ROOT = 'data/dissertations/';
 export const readingHref = key => `#tab=dissertations${key ? `&source=${encodeURIComponent(key)}` : ''}`;
-export const isReadingHash = hash => new URLSearchParams(hash.replace(/^#/, '')).get('tab') === 'dissertations'
+export const isReadingHash = hash => ['dissertations', 'canon'].includes(new URLSearchParams(hash.replace(/^#/, '')).get('tab'))
   && !['node','person','edge','focus','path','pathway','hold','letter','range'].some(k => new URLSearchParams(hash.replace(/^#/, '')).get(k));
 async function get(name) {
   if (!cache.has(name)) cache.set(name, fetch(ROOT + name, {signal: AbortSignal.timeout(15000)})
@@ -115,6 +115,7 @@ export async function mountReading(root, key='') {
     if(!root.isConnected)return;
     root.innerHTML=`<div class="section-heading"><div><p class="eyebrow">THE READING RECORD · RESEARCH PREVIEW</p><h2>Dissertation reading</h2></div></div>
       <p class="reading-intro">What scholarship do doctoral historians draw on? Explore a cited historian or work, compare its use across time and regions, and follow the literature cited alongside it.</p>
+      <p class="reading-canon-link"><a class="button-link" href="#tab=canon">See the canon as a map →</a> <span>Who doctoral historians cite together</span></p>
       <p class="reading-scope">${fmt(data.coverage.with_year)} dated dissertations · ${fmt(data.sources.filter(s=>s.key.startsWith('W:')).length)} searchable works · ${fmt(data.sources.filter(s=>s.key.startsWith('P:')).length)} searchable people · snapshot ${esc(data.snapshot)}</p>
       <form class="reading-search" role="search"><label for="reading-search">Find a historian or work</label><div><input id="reading-search" type="search" placeholder="Try Cronon, Stoler, Thompson, or a book title" autocomplete="off"><button type="submit">Search</button></div></form>
       <div class="reading-results" aria-live="polite"></div>

@@ -326,5 +326,32 @@ class DissertationBrowserTests(unittest.TestCase):
         expect(self.page.locator('.reading-results')).to_contain_text('0 matching sources')
 
 
+    def test_canon_map_loads_on_demand_and_finds_a_person(self):
+        self.open('#tab=dissertations')
+        expect(self.page.locator('.reading-canon-link a')).to_have_attribute('href', '#tab=canon')
+        self.assertFalse(any(r.endswith('/data/dissertations/canon-map.json') for r in self.requests))
+        self.open('#tab=canon')
+        expect(self.page.locator('.canon-map h2')).to_have_text('Canon map')
+        self.page.wait_for_selector('.canon-node')
+        self.assertFalse(any('/data/graph.json' in r for r in self.requests))
+        self.assertEqual(self.page.title(), 'Canon map · History in Conversation')
+        find = self.page.locator('.canon-find')
+        find.fill('Innis, Harold A.')
+        find.dispatch_event('change')
+        expect(self.page.locator('.canon-detail h3')).to_have_text('Innis, Harold A.')
+        expect(self.page.locator('.canon-detail a[href^="#tab=dissertations&source="]')).to_have_count(1)
+        partner = self.page.locator('.canon-partners button').first
+        name = partner.inner_text()
+        partner.click()
+        expect(self.page.locator('.canon-detail h3')).to_have_text(name)
+        before = self.page.locator('.canon-threshold-value').inner_text()
+        self.page.locator('.canon-threshold').fill('0')
+        expect(self.page.locator('.canon-threshold-value')).not_to_have_text(before)
+        self.page.select_option('.canon-measure', 'assoc')
+        self.assertGreater(self.page.locator('.canon-node').count(), 1000)
+        self.assertGreater(self.page.locator('.canon-pairs tbody tr').count(), 100)
+        self.page.screenshot(path=str(self.artifacts/'canon-map-desktop.png'))
+
+
 if __name__ == '__main__':
     unittest.main()

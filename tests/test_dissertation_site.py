@@ -38,6 +38,31 @@ class DissertationExportTests(unittest.TestCase):
                 for ref in [*(r[0] for r in source['rows']), *source['works']]:
                     self.assertIn(str(ref), data['labels'])
 
+    def test_canon_map_is_pinned_aggregate_and_links_resolve(self):
+        manifest = json.loads((EXPORT / 'manifest.json').read_text())['canon_map']
+        path = EXPORT / manifest['output']
+        self.assertFalse(path.is_symlink())
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), manifest['output_sha256'])
+        data = json.loads(path.read_text())
+        # people, layouts and pair counts only: no thesis records travel with the map
+        self.assertEqual(set(data), {'nodes', 'views', 'co', 'steps', 'default', 'leans', 'theses', 'snapshot', 'region_theses'})
+        self.assertEqual(data['snapshot'], manifest['snapshot'])
+        self.assertEqual(sum(data['region_theses'].values()), data['theses'])
+        keys = {s['key'] for s in self.index['sources']}
+        for n in data['nodes']:
+            self.assertLessEqual(set(n), {'name', 'label', 'qid', 'cited', 'lean', 'shares', 'top', 'reading'})
+            self.assertGreaterEqual(n['cited'], data['steps'][0])
+            self.assertIn(n['lean'], data['leans'])
+            if 'reading' in n:
+                self.assertIn(n['reading'], keys)
+        for key, view in data['views'].items():
+            self.assertEqual(len(view['ids']), len(view['xy']), key)
+            shown = set(view['ids'])
+            for a, b in view['edges']:
+                self.assertIn(a, shown)
+                self.assertIn(b, shown)
+                self.assertIn(f'{min(a, b)},{max(a, b)}', data['co'])
+
     def test_missing_years_are_excluded_and_last_period_names_2026(self):
         coverage = self.index['coverage']
         self.assertEqual(coverage['in_analysis'], 7107)
