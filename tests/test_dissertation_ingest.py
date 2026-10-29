@@ -169,6 +169,28 @@ def test_file_checks_part_recent_top_level_missing(world):
     assert appended == []
 
 
+def test_registered_top_level_files_are_taken_only_with_matching_sha(world):
+    """Browser downloads stay at the top of the store; a download log with their SHA-256 admits them."""
+    exp, store = world['exp'], world['store']
+    good, changed = store / 'qtgood0001.pdf', store / 'qtchanged01.pdf'
+    sha_good = pdf(good, 'registered uc dissertation')
+    sha_changed = pdf(changed, 'registered then overwritten')
+    pdf(changed, 'a different file now')
+    log = exp / 'manual-uc' / 'downloads.jsonl'
+    log.parent.mkdir(parents=True)
+    log.write_text(''.join(json.dumps(dict(institution='ucla', id=i, status='downloaded',
+                                           files=[dict(path=str(p), bytes=p.stat().st_size, sha256=s)])) + '\n'
+                           for i, p, s in [('g', good, sha_good), ('c', changed, sha_changed)]))
+    write_manifest(exp / 'collection-manifest.csv', [
+        mrow('ucla', 'g', 'A Registered Browser Download Title', 'A, B', 2015, [good]),
+        mrow('ucla', 'c', 'An Overwritten Browser Download Title', 'C, D', 2016, [changed])])
+    src = dict(name='exp', adapter='us_expansion_manifest', manifests=str(exp / 'collection-manifest.csv'),
+               records=[], logs=[str(log)])
+    appended, rows, report = run(world, [src])
+    assert [e['id'] for e in appended] == ['g']
+    assert report['sources']['exp']['file_problems'] == {'top_level_sha_mismatch': 1}
+
+
 def test_base_adapter_country_label_tolerant_log_and_dry(world):
     d, store, tmp = world['d'], world['store'], world['tmp']
     clusters = [

@@ -1,974 +1,1230 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 27,
- "louvain_clustered": 2645,
- "louvain_vocabulary": 2783,
- "nmf_vocabulary": 2783,
- "shared_works": 2645,
+ "louvain_fields": 25,
+ "louvain_clustered": 4089,
+ "louvain_vocabulary": 4302,
+ "nmf_vocabulary": 4302,
+ "shared_works": 4089,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.479,
-  "nmi": 0.637,
+  "adjusted_rand": 0.477,
+  "nmi": 0.645,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.412,
+ "entropy_vs_louvain_link_split_spearman": 0.471,
  "families": [
   {
    "family": 0,
-   "label": "Foucault · Butler · Scott — category, sex, gender, analysis",
-   "dominated": 503,
-   "member_works": 312,
+   "label": "Said · Fanon · Cohn — postcolonial, colonial, africa, colonialism",
+   "dominated": 465,
+   "member_works": 308,
    "best_by_member_works": {
-    "field": "Geertz · Kantorowicz · Elias",
+    "field": "Fanon · Weber",
     "field_id": 11,
-    "jaccard": 0.225,
-    "field_size": 91
+    "jaccard": 0.279,
+    "field_size": 137
    },
    "best_by_top25": {
-    "field": "Geertz · Kantorowicz · Elias",
+    "field": "Fanon · Weber",
     "field_id": 11,
-    "jaccard": 0.074,
-    "top25_inside": 0.32
+    "jaccard": 0.045,
+    "top25_inside": 0.28
    },
    "best_by_dissertations": {
-    "field": "Geertz · Kantorowicz · Elias",
+    "field": "Fanon · Weber",
     "field_id": 11,
-    "jaccard": 0.212,
-    "engaged": 247
+    "jaccard": 0.326,
+    "engaged": 401
    },
    "top25_spread": [
     [
-     "Geertz · Kantorowicz · Elias",
-     0.32
+     "Empire, colonialism & postcolonial theory",
+     0.68
     ],
     [
-     "Foucault · Butler · Scott",
+     "Fanon · Weber",
      0.28
-    ],
-    [
-     "Bourdieu · Foucault · Habermas",
-     0.12
     ]
    ]
   },
   {
    "family": 1,
-   "label": "Valverde · Owram · Iacovetta — unemployment, postwar, montreal, youth",
-   "dominated": 461,
-   "member_works": 382,
+   "label": "Valverde · Owram · Iacovetta — unemployment, immigrant, montreal, postwar",
+   "dominated": 384,
+   "member_works": 356,
    "best_by_member_works": {
-    "field": "Liberal order, religion & the state",
-    "field_id": 9,
-    "jaccard": 0.308,
-    "field_size": 153
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.545,
+    "field_size": 520
    },
    "best_by_top25": {
-    "field": "Valverde · McKay · Gleason",
-    "field_id": 14,
-    "jaccard": 0.189,
-    "top25_inside": 0.56
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.048,
+    "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Liberal order, religion & the state",
-    "field_id": 9,
-    "jaccard": 0.436,
-    "engaged": 415
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.383,
+    "engaged": 934
    },
    "top25_spread": [
     [
-     "Valverde · McKay · Gleason",
-     0.56
-    ],
-    [
-     "Berger · Vance · Owram",
-     0.24
-    ],
-    [
-     "Liberal order, religion & the state",
-     0.2
+     "Valverde · Berger · McKay",
+     1.0
     ]
    ]
   },
   {
    "family": 2,
-   "label": "Said · Chakrabarty · Cohn — colonial, postcolonial, africa, colonialism",
-   "dominated": 397,
-   "member_works": 245,
+   "label": "Thompson · Davidoff · Bourdieu — oral, class, working, english",
+   "dominated": 346,
+   "member_works": 253,
    "best_by_member_works": {
-    "field": "Empire, colonialism & postcolonial theory",
-    "field_id": 3,
-    "jaccard": 0.644,
-    "field_size": 222
+    "field": "Thompson · Scott · Davidoff",
+    "field_id": 12,
+    "jaccard": 0.451,
+    "field_size": 136
    },
    "best_by_top25": {
-    "field": "Empire, colonialism & postcolonial theory",
-    "field_id": 3,
-    "jaccard": 0.113,
-    "top25_inside": 1.0
+    "field": "Thompson · Scott · Davidoff",
+    "field_id": 12,
+    "jaccard": 0.158,
+    "top25_inside": 0.88
    },
    "best_by_dissertations": {
-    "field": "Empire, colonialism & postcolonial theory",
-    "field_id": 3,
-    "jaccard": 0.424,
-    "engaged": 715
+    "field": "Thompson · Scott · Davidoff",
+    "field_id": 12,
+    "jaccard": 0.345,
+    "engaged": 434
    },
    "top25_spread": [
     [
-     "Empire, colonialism & postcolonial theory",
-     1.0
+     "Thompson · Scott · Davidoff",
+     0.88
     ]
    ]
   },
   {
    "family": 3,
-   "label": "NORA · BLOCH · VEYNE — temps, mémoire, histoire, oubli",
-   "dominated": 345,
-   "member_works": 144,
+   "label": "Colley · Pocock · Brewer — inquiry, ideological, enlightenment, understanding",
+   "dominated": 328,
+   "member_works": 249,
    "best_by_member_works": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.564,
-    "field_size": 197
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 2,
+    "jaccard": 0.335,
+    "field_size": 384
    },
    "best_by_top25": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.127,
-    "top25_inside": 1.0
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 2,
+    "jaccard": 0.06,
+    "top25_inside": 0.92
    },
    "best_by_dissertations": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.4,
-    "engaged": 660
+    "field": "Empire, colonialism & postcolonial theory",
+    "field_id": 2,
+    "jaccard": 0.187,
+    "engaged": 1263
    },
    "top25_spread": [
     [
-     "Bourdieu · Foucault · Habermas",
-     1.0
+     "Empire, colonialism & postcolonial theory",
+     0.92
     ]
    ]
   },
   {
    "family": 4,
-   "label": "White · Smith · Van Kirk — fur, indians, indian, aboriginal",
-   "dominated": 272,
-   "member_works": 212,
+   "label": "BLOCH · VEYNE · HARTOG — histoire, mémoire, temps, historien",
+   "dominated": 321,
+   "member_works": 156,
    "best_by_member_works": {
-    "field": "Perry · Van Kirk · Deloria",
-    "field_id": 8,
-    "jaccard": 0.658,
-    "field_size": 161
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.599,
+    "field_size": 159
    },
    "best_by_top25": {
-    "field": "Perry · Van Kirk · Deloria",
-    "field_id": 8,
-    "jaccard": 0.148,
-    "top25_inside": 0.96
-   },
-   "best_by_dissertations": {
-    "field": "Perry · Van Kirk · Deloria",
-    "field_id": 8,
-    "jaccard": 0.513,
-    "engaged": 389
-   },
-   "top25_spread": [
-    [
-     "Perry · Van Kirk · Deloria",
-     0.96
-    ]
-   ]
-  },
-  {
-   "family": 5,
-   "label": "Foner · McPherson — south, disunion, civil, reconstruction",
-   "dominated": 245,
-   "member_works": 224,
-   "best_by_member_works": {
-    "field": "Foner · Genovese · Blight",
-    "field_id": 1,
-    "jaccard": 0.738,
-    "field_size": 240
-   },
-   "best_by_top25": {
-    "field": "Foner · Genovese · Blight",
-    "field_id": 1,
-    "jaccard": 0.104,
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.157,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Foner · Genovese · Blight",
-    "field_id": 1,
-    "jaccard": 0.412,
-    "engaged": 526
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.413,
+    "engaged": 548
    },
    "top25_spread": [
     [
-     "Foner · Genovese · Blight",
+     "Bourdieu · Foucault · White",
      1.0
     ]
    ]
   },
   {
-   "family": 6,
-   "label": "Berlin · Thornton · Brown — atlantic, haitian, seamen, slavery",
-   "dominated": 245,
-   "member_works": 220,
+   "family": 5,
+   "label": "White · Smith · Van Kirk — indians, fur, lakes, ground",
+   "dominated": 309,
+   "member_works": 274,
    "best_by_member_works": {
-    "field": "Trouillot · Colley · Gilroy",
-    "field_id": 6,
-    "jaccard": 0.597,
-    "field_size": 176
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 4,
+    "jaccard": 0.756,
+    "field_size": 279
    },
    "best_by_top25": {
-    "field": "Trouillot · Colley · Gilroy",
-    "field_id": 6,
-    "jaccard": 0.142,
-    "top25_inside": 1.0
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 4,
+    "jaccard": 0.082,
+    "top25_inside": 0.92
    },
    "best_by_dissertations": {
-    "field": "Trouillot · Colley · Gilroy",
-    "field_id": 6,
-    "jaccard": 0.426,
-    "engaged": 408
+    "field": "New France, early modern empire & the Atlantic",
+    "field_id": 4,
+    "jaccard": 0.437,
+    "engaged": 615
    },
    "top25_spread": [
     [
-     "Trouillot · Colley · Gilroy",
+     "New France, early modern empire & the Atlantic",
+     0.92
+    ]
+   ]
+  },
+  {
+   "family": 6,
+   "label": "Foner · McPherson · Genovese — disunion, jacksonian, civil, south",
+   "dominated": 271,
+   "member_works": 271,
+   "best_by_member_works": {
+    "field": "Scott · Foner · Genovese",
+    "field_id": 1,
+    "jaccard": 0.595,
+    "field_size": 418
+   },
+   "best_by_top25": {
+    "field": "Scott · Foner · Genovese",
+    "field_id": 1,
+    "jaccard": 0.06,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Scott · Foner · Genovese",
+    "field_id": 1,
+    "jaccard": 0.303,
+    "engaged": 839
+   },
+   "top25_spread": [
+    [
+     "Scott · Foner · Genovese",
      1.0
     ]
    ]
   },
   {
    "family": 7,
-   "label": "Wiebe · Ngai · Higham — mexicans, different, progressive, strangers",
-   "dominated": 236,
-   "member_works": 196,
+   "label": "Shapin · Latour · Kuhn — scientific, science, objectivity, knowledge",
+   "dominated": 256,
+   "member_works": 161,
    "best_by_member_works": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.464,
-    "field_size": 230
+    "field": "Kuhn · Latour · Foucault",
+    "field_id": 13,
+    "jaccard": 0.443,
+    "field_size": 119
    },
    "best_by_top25": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.094,
-    "top25_inside": 0.88
+    "field": "Kuhn · Latour · Foucault",
+    "field_id": 13,
+    "jaccard": 0.2,
+    "top25_inside": 0.96
    },
    "best_by_dissertations": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.273,
-    "engaged": 654
+    "field": "Kuhn · Latour · Foucault",
+    "field_id": 13,
+    "jaccard": 0.299,
+    "engaged": 369
    },
    "top25_spread": [
     [
-     "Wiebe · Roediger · Ngai",
-     0.88
+     "Kuhn · Latour · Foucault",
+     0.96
     ]
    ]
   },
   {
    "family": 8,
-   "label": "Scott · Cronon · White — have, wilderness, condition, nature",
-   "dominated": 215,
-   "member_works": 132,
+   "label": "Duffy · Dickens · Thomas — reformation, england, papists, elizabethan",
+   "dominated": 220,
+   "member_works": 144,
    "best_by_member_works": {
-    "field": "Scott · Cronon",
-    "field_id": 13,
-    "jaccard": 0.555,
-    "field_size": 81
+    "field": "Appadurai · Elias · Thomas",
+    "field_id": 9,
+    "jaccard": 0.48,
+    "field_size": 192
    },
    "best_by_top25": {
-    "field": "Scott · Cronon",
-    "field_id": 13,
-    "jaccard": 0.277,
-    "top25_inside": 0.92
+    "field": "Appadurai · Elias · Thomas",
+    "field_id": 9,
+    "jaccard": 0.13,
+    "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Scott · Cronon",
-    "field_id": 13,
-    "jaccard": 0.36,
-    "engaged": 265
+    "field": "Appadurai · Elias · Thomas",
+    "field_id": 9,
+    "jaccard": 0.303,
+    "engaged": 486
    },
    "top25_spread": [
     [
-     "Scott · Cronon",
-     0.92
+     "Appadurai · Elias · Thomas",
+     1.0
     ]
    ]
   },
   {
    "family": 9,
-   "label": "Lassiter · Sugrue · McGirr — sunbelt, suburban, conservatism, conservative",
-   "dominated": 207,
-   "member_works": 179,
+   "label": "McGirr · Sugrue · Lassiter — suburban, sunbelt, flight, conservative",
+   "dominated": 215,
+   "member_works": 208,
    "best_by_member_works": {
-    "field": "Cohen · Sugrue · Lefebvre",
-    "field_id": 4,
-    "jaccard": 0.654,
-    "field_size": 198
+    "field": "Cohen · Sugrue · McGirr",
+    "field_id": 5,
+    "jaccard": 0.565,
+    "field_size": 252
    },
    "best_by_top25": {
-    "field": "Cohen · Sugrue · Lefebvre",
-    "field_id": 4,
-    "jaccard": 0.121,
+    "field": "Cohen · Sugrue · McGirr",
+    "field_id": 5,
+    "jaccard": 0.095,
     "top25_inside": 0.96
    },
    "best_by_dissertations": {
-    "field": "Cohen · Sugrue · Lefebvre",
-    "field_id": 4,
-    "jaccard": 0.369,
-    "engaged": 487
+    "field": "Cohen · Sugrue · McGirr",
+    "field_id": 5,
+    "jaccard": 0.333,
+    "engaged": 558
    },
    "top25_spread": [
     [
-     "Cohen · Sugrue · Lefebvre",
+     "Cohen · Sugrue · McGirr",
      0.96
     ]
    ]
   },
   {
    "family": 10,
-   "label": "Anderson · Gellner · Hobsbawm — nationalism, nations, groups, nationhood",
-   "dominated": 177,
-   "member_works": 97,
+   "label": "Scott · Cronon · White — wilderness, poachers, machine, conservation",
+   "dominated": 210,
+   "member_works": 166,
    "best_by_member_works": {
-    "field": "Halbwachs · Lowenthal · Connerton",
-    "field_id": 19,
-    "jaccard": 0.186,
-    "field_size": 24
+    "field": "Scott · Cronon · Lefebvre",
+    "field_id": 14,
+    "jaccard": 0.572,
+    "field_size": 117
    },
    "best_by_top25": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.094,
-    "top25_inside": 0.64
-   },
-   "best_by_dissertations": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.15,
-    "engaged": 438
-   },
-   "top25_spread": [
-    [
-     "Anderson · Hobsbawm",
-     0.64
-    ],
-    [
-     "Halbwachs · Lowenthal · Connerton",
-     0.16
-    ]
-   ]
-  },
-  {
-   "family": 11,
-   "label": "Westad · Gaddis · Leffler — cold, truman, détente, security",
-   "dominated": 155,
-   "member_works": 93,
-   "best_by_member_works": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.228,
-    "field_size": 230
-   },
-   "best_by_top25": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.094,
+    "field": "Scott · Cronon · Lefebvre",
+    "field_id": 14,
+    "jaccard": 0.183,
     "top25_inside": 0.88
    },
    "best_by_dissertations": {
-    "field": "Wiebe · Roediger · Ngai",
-    "field_id": 2,
-    "jaccard": 0.154,
-    "engaged": 654
+    "field": "Scott · Cronon · Lefebvre",
+    "field_id": 14,
+    "jaccard": 0.358,
+    "engaged": 420
    },
    "top25_spread": [
     [
-     "Wiebe · Roediger · Ngai",
+     "Scott · Cronon · Lefebvre",
      0.88
     ]
    ]
   },
   {
-   "family": 12,
-   "label": "BRAUDEL · Horden · McCormick — mediterranean, ages, roman, medieval",
-   "dominated": 148,
-   "member_works": 60,
+   "family": 11,
+   "label": "Judt · Naimark · Herf — nazi, germany, hitler, weimar",
+   "dominated": 205,
+   "member_works": 138,
    "best_by_member_works": {
-    "field": "BRAUDEL · Horden · Barth",
-    "field_id": 25,
-    "jaccard": 0.129,
-    "field_size": 10
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.478,
+    "field_size": 227
    },
    "best_by_top25": {
-    "field": "BRAUDEL · Horden · Barth",
-    "field_id": 25,
-    "jaccard": 0.25,
-    "top25_inside": 0.28
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.11,
+    "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "BRAUDEL · Horden · Barth",
-    "field_id": 25,
-    "jaccard": 0.08,
-    "engaged": 14
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.26,
+    "engaged": 599
    },
    "top25_spread": [
     [
-     "Geertz · Kantorowicz · Elias",
-     0.32
+     "Anderson · Hobsbawm · Gellner",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 12,
+   "label": "Wiebe · Gilmore · Woodward — south, jim, crow, black",
+   "dominated": 192,
+   "member_works": 181,
+   "best_by_member_works": {
+    "field": "Scott · Foner · Genovese",
+    "field_id": 1,
+    "jaccard": 0.165,
+    "field_size": 418
+   },
+   "best_by_top25": {
+    "field": "Scott · Foner · Genovese",
+    "field_id": 1,
+    "jaccard": 0.035,
+    "top25_inside": 0.6
+   },
+   "best_by_dissertations": {
+    "field": "Cohen · Sugrue · McGirr",
+    "field_id": 5,
+    "jaccard": 0.163,
+    "engaged": 558
+   },
+   "top25_spread": [
+    [
+     "Scott · Foner · Genovese",
+     0.6
     ],
     [
-     "BRAUDEL · Horden · Barth",
+     "Cohen · Sugrue · McGirr",
      0.28
-    ],
-    [
-     "Trouillot · Colley · Gilroy",
-     0.2
     ]
    ]
   },
   {
    "family": 13,
-   "label": "Stacey · Morton — army, war, mackenzie, great",
-   "dominated": 139,
-   "member_works": 103,
+   "label": "Clanchy · Gransden · Moore — twelfth, written, record, medieval",
+   "dominated": 190,
+   "member_works": 102,
    "best_by_member_works": {
-    "field": "Berger · Vance · Owram",
-    "field_id": 0,
-    "jaccard": 0.358,
-    "field_size": 265
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.404,
+    "field_size": 204
    },
    "best_by_top25": {
-    "field": "Berger · Vance · Owram",
-    "field_id": 0,
-    "jaccard": 0.094,
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.123,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Berger · Vance · Owram",
-    "field_id": 0,
-    "jaccard": 0.215,
-    "engaged": 561
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.32,
+    "engaged": 494
    },
    "top25_spread": [
     [
-     "Berger · Vance · Owram",
+     "Kantorowicz · Horden · Clanchy",
      1.0
     ]
    ]
   },
   {
    "family": 14,
-   "label": "Judt · Herf · Naimark — nazi, germany, weimar, german",
-   "dominated": 136,
-   "member_works": 87,
+   "label": "Ngai · Sanchez · Lee — angeles, mexican, los, subjects",
+   "dominated": 189,
+   "member_works": 181,
    "best_by_member_works": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.401,
-    "field_size": 161
+    "field": "Roediger · Ngai · Wiebe",
+    "field_id": 3,
+    "jaccard": 0.454,
+    "field_size": 309
    },
    "best_by_top25": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.155,
+    "field": "Roediger · Ngai · Wiebe",
+    "field_id": 3,
+    "jaccard": 0.081,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.245,
-    "engaged": 438
+    "field": "Roediger · Ngai · Wiebe",
+    "field_id": 3,
+    "jaccard": 0.219,
+    "engaged": 817
    },
    "top25_spread": [
     [
-     "Anderson · Hobsbawm",
+     "Roediger · Ngai · Wiebe",
      1.0
     ]
    ]
   },
   {
    "family": 15,
-   "label": "Kotkin · Martin · Hirsch — soviet, stalinism, russia, stalin",
-   "dominated": 84,
-   "member_works": 42,
+   "label": "Berlin · Thornton · Williams — slavery, haitian, atlantic, creoles",
+   "dominated": 185,
+   "member_works": 195,
    "best_by_member_works": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.253,
-    "field_size": 161
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.565,
+    "field_size": 229
    },
    "best_by_top25": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.155,
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.109,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
-    "field": "Anderson · Hobsbawm",
-    "field_id": 7,
-    "jaccard": 0.178,
-    "engaged": 438
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.338,
+    "engaged": 488
    },
    "top25_spread": [
     [
-     "Anderson · Hobsbawm",
+     "Trouillot · Gilroy · Berlin",
      1.0
     ]
    ]
   },
   {
    "family": 16,
-   "label": "Foucault · LE GOFF — archaeology, história, memória, knowledge",
-   "dominated": 75,
-   "member_works": 23,
+   "label": "Anderson · Gellner · Hobsbawm — nationalism, nations, nationhood, nation",
+   "dominated": 184,
+   "member_works": 128,
    "best_by_member_works": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.073,
-    "field_size": 197
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.127,
+    "field_size": 227
    },
    "best_by_top25": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.083,
-    "top25_inside": 0.68
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.077,
+    "top25_inside": 0.72
    },
    "best_by_dissertations": {
-    "field": "Bourdieu · Foucault · Habermas",
-    "field_id": 5,
-    "jaccard": 0.062,
-    "engaged": 660
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.15,
+    "engaged": 599
    },
    "top25_spread": [
     [
-     "Bourdieu · Foucault · Habermas",
-     0.68
+     "Anderson · Hobsbawm · Gellner",
+     0.72
     ],
     [
-     "Kuhn · Latour · Foucault",
+     "Empire, colonialism & postcolonial theory",
      0.12
     ]
    ]
   },
   {
    "family": 17,
-   "label": "Rüsen · White · Zander — och, som, historia, till",
-   "dominated": 75,
-   "member_works": 32,
+   "label": "Westad · Gaddis · Leffler — cold, truman, security, détente",
+   "dominated": 182,
+   "member_works": 127,
    "best_by_member_works": {
-    "field": "Koselleck · Carr · Collingwood",
-    "field_id": 17,
-    "jaccard": 0.727,
-    "field_size": 25
+    "field": "Westad · Moyn · Leffler",
+    "field_id": 18,
+    "jaccard": 0.318,
+    "field_size": 43
    },
    "best_by_top25": {
-    "field": "Koselleck · Carr · Collingwood",
-    "field_id": 17,
-    "jaccard": 0.667,
+    "field": "Westad · Moyn · Leffler",
+    "field_id": 18,
+    "jaccard": 0.417,
     "top25_inside": 0.8
    },
    "best_by_dissertations": {
-    "field": "Koselleck · Carr · Collingwood",
-    "field_id": 17,
-    "jaccard": 0.424,
-    "engaged": 46
+    "field": "Westad · Moyn · Leffler",
+    "field_id": 18,
+    "jaccard": 0.407,
+    "engaged": 122
    },
    "top25_spread": [
     [
-     "Koselleck · Carr · Collingwood",
+     "Westad · Moyn · Leffler",
      0.8
     ],
     [
-     "Bourdieu · Foucault · Habermas",
+     "Roediger · Ngai · Wiebe",
+     0.12
+    ]
+   ]
+  },
+  {
+   "family": 18,
+   "label": "Foucault · Butler — birth, madness, asylum, collège",
+   "dominated": 178,
+   "member_works": 131,
+   "best_by_member_works": {
+    "field": "Foucault · Butler · Scott",
+    "field_id": 15,
+    "jaccard": 0.201,
+    "field_size": 114
+   },
+   "best_by_top25": {
+    "field": "Douglas · Foucault",
+    "field_id": 20,
+    "jaccard": 0.098,
+    "top25_inside": 0.16
+   },
+   "best_by_dissertations": {
+    "field": "Foucault · Butler · Scott",
+    "field_id": 15,
+    "jaccard": 0.072,
+    "engaged": 415
+   },
+   "top25_spread": [
+    [
+     "Foucault · Butler · Scott",
+     0.36
+    ],
+    [
+     "Douglas · Foucault",
      0.16
+    ],
+    [
+     "Bourdieu · Foucault · White",
+     0.12
+    ]
+   ]
+  },
+  {
+   "family": 19,
+   "label": "Vance · Morton · Harris — army, war, great, mackenzie",
+   "dominated": 172,
+   "member_works": 122,
+   "best_by_member_works": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.223,
+    "field_size": 520
+   },
+   "best_by_top25": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.048,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.157,
+    "engaged": 934
+   },
+   "top25_spread": [
+    [
+     "Valverde · Berger · McKay",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 20,
+   "label": "Vaughan · Joseph · Mallon — mexico, peru, chilean, postrevolutionary",
+   "dominated": 157,
+   "member_works": 107,
+   "best_by_member_works": {
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.196,
+    "field_size": 229
+   },
+   "best_by_top25": {
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.045,
+    "top25_inside": 0.44
+   },
+   "best_by_dissertations": {
+    "field": "Trouillot · Gilroy · Berlin",
+    "field_id": 6,
+    "jaccard": 0.14,
+    "engaged": 488
+   },
+   "top25_spread": [
+    [
+     "Roediger · Ngai · Wiebe",
+     0.52
+    ],
+    [
+     "Trouillot · Gilroy · Berlin",
+     0.44
+    ]
+   ]
+  },
+  {
+   "family": 21,
+   "label": "BRAUDEL · Horden · Setton — mediterranean, ottoman, venice, sea",
+   "dominated": 147,
+   "member_works": 85,
+   "best_by_member_works": {
+    "field": "Hobsbawm · Todorova",
+    "field_id": 19,
+    "jaccard": 0.268,
+    "field_size": 38
+   },
+   "best_by_top25": {
+    "field": "Hobsbawm · Todorova",
+    "field_id": 19,
+    "jaccard": 0.125,
+    "top25_inside": 0.28
+   },
+   "best_by_dissertations": {
+    "field": "Hobsbawm · Todorova",
+    "field_id": 19,
+    "jaccard": 0.195,
+    "engaged": 86
+   },
+   "top25_spread": [
+    [
+     "Empire, colonialism & postcolonial theory",
+     0.32
+    ],
+    [
+     "Kantorowicz · Horden · Clanchy",
+     0.28
+    ],
+    [
+     "Hobsbawm · Todorova",
+     0.28
+    ]
+   ]
+  },
+  {
+   "family": 22,
+   "label": "Kotkin · Martin · Hirsch — soviet, stalinism, stalin, russia",
+   "dominated": 104,
+   "member_works": 54,
+   "best_by_member_works": {
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.238,
+    "field_size": 227
+   },
+   "best_by_top25": {
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.11,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Anderson · Hobsbawm · Gellner",
+    "field_id": 7,
+    "jaccard": 0.154,
+    "engaged": 599
+   },
+   "top25_spread": [
+    [
+     "Anderson · Hobsbawm · Gellner",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 23,
+   "label": "Wickham · Jones · Heather — later, roman, function, antiquity",
+   "dominated": 104,
+   "member_works": 43,
+   "best_by_member_works": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.205,
+    "field_size": 204
+   },
+   "best_by_top25": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.123,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.201,
+    "engaged": 494
+   },
+   "top25_spread": [
+    [
+     "Kantorowicz · Horden · Clanchy",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 24,
+   "label": "Syme · Gruen · Broughton — roman, rome, commentary, greek",
+   "dominated": 103,
+   "member_works": 50,
+   "best_by_member_works": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.227,
+    "field_size": 204
+   },
+   "best_by_top25": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.123,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Kantorowicz · Horden · Clanchy",
+    "field_id": 8,
+    "jaccard": 0.187,
+    "engaged": 494
+   },
+   "top25_spread": [
+    [
+     "Kantorowicz · Horden · Clanchy",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 25,
+   "label": "Linteau · Lamonde · Dumont — québec, histoire, quand, québécoise",
+   "dominated": 93,
+   "member_works": 52,
+   "best_by_member_works": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.09,
+    "field_size": 520
+   },
+   "best_by_top25": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.048,
+    "top25_inside": 1.0
+   },
+   "best_by_dissertations": {
+    "field": "Valverde · Berger · McKay",
+    "field_id": 0,
+    "jaccard": 0.089,
+    "engaged": 934
+   },
+   "top25_spread": [
+    [
+     "Valverde · Berger · McKay",
+     1.0
+    ]
+   ]
+  },
+  {
+   "family": 26,
+   "label": "White · Rüsen · Zander — och, som, historia, till",
+   "dominated": 84,
+   "member_works": 40,
+   "best_by_member_works": {
+    "field": "Halbwachs · Lowenthal · Carr",
+    "field_id": 16,
+    "jaccard": 0.387,
+    "field_size": 89
+   },
+   "best_by_top25": {
+    "field": "Halbwachs · Lowenthal · Carr",
+    "field_id": 16,
+    "jaccard": 0.226,
+    "top25_inside": 0.84
+   },
+   "best_by_dissertations": {
+    "field": "Halbwachs · Lowenthal · Carr",
+    "field_id": 16,
+    "jaccard": 0.188,
+    "engaged": 258
+   },
+   "top25_spread": [
+    [
+     "Halbwachs · Lowenthal · Carr",
+     0.84
+    ],
+    [
+     "Bourdieu · Foucault · White",
+     0.16
+    ]
+   ]
+  },
+  {
+   "family": 27,
+   "label": "Foucault · LE GOFF — história, archaeology, memória, knowledge",
+   "dominated": 60,
+   "member_works": 20,
+   "best_by_member_works": {
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.085,
+    "field_size": 159
+   },
+   "best_by_top25": {
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.102,
+    "top25_inside": 0.68
+   },
+   "best_by_dissertations": {
+    "field": "Bourdieu · Foucault · White",
+    "field_id": 10,
+    "jaccard": 0.059,
+    "engaged": 548
+   },
+   "top25_spread": [
+    [
+     "Bourdieu · Foucault · White",
+     0.68
     ]
    ]
   }
  ],
  "louvain_to_nmf": [
   {
-   "field": "Berger · Vance · Owram",
+   "field": "Valverde · Berger · McKay",
    "field_id": 0,
-   "works": 265,
-   "best_family": 13,
-   "family_label": "Stacey · Morton — army, war, mackenzie, great",
-   "jaccard": 0.358,
+   "works": 520,
+   "best_family": 1,
+   "family_label": "Valverde · Owram · Iacovetta — unemployment, immigrant, montreal, postwar",
+   "jaccard": 0.545,
    "work_spread": [
     [
      1,
-     142
+     309
     ],
     [
-     13,
-     97
+     19,
+     117
     ],
     [
-     14,
-     7
+     25,
+     47
     ],
     [
-     7,
-     4
+     16,
+     9
     ]
    ]
   },
   {
-   "field": "Foner · Genovese · Blight",
+   "field": "Scott · Foner · Genovese",
    "field_id": 1,
-   "works": 240,
-   "best_family": 5,
-   "family_label": "Foner · McPherson — south, disunion, civil, reconstruction",
-   "jaccard": 0.738,
+   "works": 418,
+   "best_family": 6,
+   "family_label": "Foner · McPherson · Genovese — disunion, jacksonian, civil, south",
+   "jaccard": 0.595,
    "work_spread": [
-    [
-     5,
-     197
-    ],
     [
      6,
-     24
+     257
     ],
     [
-     0,
-     9
+     12,
+     85
     ],
     [
-     7,
-     8
-    ]
-   ]
-  },
-  {
-   "field": "Wiebe · Roediger · Ngai",
-   "field_id": 2,
-   "works": 230,
-   "best_family": 7,
-   "family_label": "Wiebe · Ngai · Higham — mexicans, different, progressive, strangers",
-   "jaccard": 0.464,
-   "work_spread": [
-    [
-     7,
-     135
+     3,
+     43
     ],
     [
-     11,
-     60
-    ],
-    [
-     2,
-     10
-    ],
-    [
-     8,
-     8
+     15,
+     17
     ]
    ]
   },
   {
    "field": "Empire, colonialism & postcolonial theory",
-   "field_id": 3,
-   "works": 222,
-   "best_family": 2,
-   "family_label": "Said · Chakrabarty · Cohn — colonial, postcolonial, africa, colonialism",
-   "jaccard": 0.644,
-   "work_spread": [
-    [
-     2,
-     183
-    ],
-    [
-     0,
-     13
-    ],
-    [
-     3,
-     6
-    ],
-    [
-     10,
-     5
-    ]
-   ]
-  },
-  {
-   "field": "Cohen · Sugrue · Lefebvre",
-   "field_id": 4,
-   "works": 198,
-   "best_family": 9,
-   "family_label": "Lassiter · Sugrue · McGirr — sunbelt, suburban, conservatism, conservative",
-   "jaccard": 0.654,
-   "work_spread": [
-    [
-     9,
-     149
-    ],
-    [
-     5,
-     16
-    ],
-    [
-     7,
-     14
-    ],
-    [
-     8,
-     7
-    ]
-   ]
-  },
-  {
-   "field": "Bourdieu · Foucault · Habermas",
-   "field_id": 5,
-   "works": 197,
+   "field_id": 2,
+   "works": 384,
    "best_family": 3,
-   "family_label": "NORA · BLOCH · VEYNE — temps, mémoire, histoire, oubli",
-   "jaccard": 0.564,
+   "family_label": "Colley · Pocock · Brewer — inquiry, ideological, enlightenment, understanding",
+   "jaccard": 0.335,
    "work_spread": [
     [
      3,
-     123
+     159
     ],
     [
      0,
-     42
-    ],
-    [
-     16,
-     15
-    ],
-    [
-     17,
-     5
-    ]
-   ]
-  },
-  {
-   "field": "Trouillot · Colley · Gilroy",
-   "field_id": 6,
-   "works": 176,
-   "best_family": 6,
-   "family_label": "Berlin · Thornton · Brown — atlantic, haitian, seamen, slavery",
-   "jaccard": 0.597,
-   "work_spread": [
-    [
-     6,
      148
     ],
     [
-     12,
-     11
-    ],
-    [
      2,
-     7
+     22
     ],
     [
-     0,
-     7
+     21,
+     21
     ]
    ]
   },
   {
-   "field": "Anderson · Hobsbawm",
-   "field_id": 7,
-   "works": 161,
+   "field": "Roediger · Ngai · Wiebe",
+   "field_id": 3,
+   "works": 309,
    "best_family": 14,
-   "family_label": "Judt · Herf · Naimark — nazi, germany, weimar, german",
-   "jaccard": 0.401,
+   "family_label": "Ngai · Sanchez · Lee — angeles, mexican, los, subjects",
+   "jaccard": 0.454,
    "work_spread": [
     [
      14,
-     71
+     153
     ],
     [
-     15,
-     41
+     20,
+     44
     ],
     [
-     10,
-     33
+     12,
+     27
     ],
     [
-     2,
-     9
-    ]
-   ]
-  },
-  {
-   "field": "Perry · Van Kirk · Deloria",
-   "field_id": 8,
-   "works": 161,
-   "best_family": 4,
-   "family_label": "White · Smith · Van Kirk — fur, indians, indian, aboriginal",
-   "jaccard": 0.658,
-   "work_spread": [
-    [
-     4,
-     148
-    ],
-    [
-     8,
-     5
-    ],
-    [
-     1,
-     4
-    ],
-    [
-     2,
-     3
-    ]
-   ]
-  },
-  {
-   "field": "Liberal order, religion & the state",
-   "field_id": 9,
-   "works": 153,
-   "best_family": 1,
-   "family_label": "Valverde · Owram · Iacovetta — unemployment, postwar, montreal, youth",
-   "jaccard": 0.308,
-   "work_spread": [
-    [
-     1,
-     126
-    ],
-    [
-     3,
-     7
-    ],
-    [
-     8,
-     6
-    ],
-    [
-     4,
-     4
+     17,
+     23
     ]
    ]
   },
   {
    "field": "New France, early modern empire & the Atlantic",
-   "field_id": 10,
-   "works": 95,
-   "best_family": 4,
-   "family_label": "White · Smith · Van Kirk — fur, indians, indian, aboriginal",
-   "jaccard": 0.181,
+   "field_id": 4,
+   "works": 279,
+   "best_family": 5,
+   "family_label": "White · Smith · Van Kirk — indians, fur, lakes, ground",
+   "jaccard": 0.756,
    "work_spread": [
     [
-     4,
-     47
+     5,
+     238
     ],
     [
-     6,
-     33
-    ],
-    [
-     0,
-     10
-    ],
-    [
-     12,
-     2
-    ]
-   ]
-  },
-  {
-   "field": "Geertz · Kantorowicz · Elias",
-   "field_id": 11,
-   "works": 91,
-   "best_family": 0,
-   "family_label": "Foucault · Butler · Scott — category, sex, gender, analysis",
-   "jaccard": 0.225,
-   "work_spread": [
-    [
-     0,
-     74
-    ],
-    [
-     12,
-     14
+     15,
+     7
     ],
     [
      10,
-     1
-    ],
-    [
-     2,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Foucault · Butler · Scott",
-   "field_id": 12,
-   "works": 89,
-   "best_family": 9,
-   "family_label": "Lassiter · Sugrue · McGirr — sunbelt, suburban, conservatism, conservative",
-   "jaccard": 0.107,
-   "work_spread": [
-    [
-     0,
-     36
-    ],
-    [
-     9,
-     26
-    ],
-    [
-     7,
-     15
+     6
     ],
     [
      1,
-     5
+     6
     ]
    ]
   },
   {
-   "field": "Scott · Cronon",
-   "field_id": 13,
-   "works": 81,
-   "best_family": 8,
-   "family_label": "Scott · Cronon · White — have, wilderness, condition, nature",
-   "jaccard": 0.555,
+   "field": "Cohen · Sugrue · McGirr",
+   "field_id": 5,
+   "works": 252,
+   "best_family": 9,
+   "family_label": "McGirr · Sugrue · Lassiter — suburban, sunbelt, flight, conservative",
+   "jaccard": 0.565,
    "work_spread": [
     [
-     8,
-     76
-    ],
-    [
-     2,
-     3
-    ],
-    [
-     7,
-     1
+     9,
+     166
     ],
     [
      12,
-     1
+     53
+    ],
+    [
+     14,
+     10
+    ],
+    [
+     17,
+     6
     ]
    ]
   },
   {
-   "field": "Valverde · McKay · Gleason",
-   "field_id": 14,
-   "works": 63,
-   "best_family": 1,
-   "family_label": "Valverde · Owram · Iacovetta — unemployment, postwar, montreal, youth",
-   "jaccard": 0.159,
+   "field": "Trouillot · Gilroy · Berlin",
+   "field_id": 6,
+   "works": 229,
+   "best_family": 15,
+   "family_label": "Berlin · Thornton · Williams — slavery, haitian, atlantic, creoles",
+   "jaccard": 0.565,
    "work_spread": [
     [
-     1,
-     61
+     15,
+     153
     ],
     [
+     20,
+     55
+    ],
+    [
+     21,
+     7
+    ],
+    [
+     0,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Anderson · Hobsbawm · Gellner",
+   "field_id": 7,
+   "works": 227,
+   "best_family": 11,
+   "family_label": "Judt · Naimark · Herf — nazi, germany, hitler, weimar",
+   "jaccard": 0.478,
+   "work_spread": [
+    [
+     11,
+     118
+    ],
+    [
+     22,
+     54
+    ],
+    [
+     16,
+     40
+    ],
+    [
+     0,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Kantorowicz · Horden · Clanchy",
+   "field_id": 8,
+   "works": 204,
+   "best_family": 13,
+   "family_label": "Clanchy · Gransden · Moore — twelfth, written, record, medieval",
+   "jaccard": 0.404,
+   "work_spread": [
+    [
      13,
-     1
+     88
+    ],
+    [
+     24,
+     47
+    ],
+    [
+     23,
+     42
+    ],
+    [
+     21,
+     8
+    ]
+   ]
+  },
+  {
+   "field": "Appadurai · Elias · Thomas",
+   "field_id": 9,
+   "works": 192,
+   "best_family": 8,
+   "family_label": "Duffy · Dickens · Thomas — reformation, england, papists, elizabethan",
+   "jaccard": 0.48,
+   "work_spread": [
+    [
+     8,
+     109
+    ],
+    [
+     2,
+     36
+    ],
+    [
+     3,
+     27
+    ],
+    [
+     7,
+     10
+    ]
+   ]
+  },
+  {
+   "field": "Bourdieu · Foucault · White",
+   "field_id": 10,
+   "works": 159,
+   "best_family": 4,
+   "family_label": "BLOCH · VEYNE · HARTOG — histoire, mémoire, temps, historien",
+   "jaccard": 0.599,
+   "work_spread": [
+    [
+     4,
+     118
+    ],
+    [
+     27,
+     14
+    ],
+    [
+     18,
+     9
+    ],
+    [
+     2,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Fanon · Weber",
+   "field_id": 11,
+   "works": 137,
+   "best_family": 0,
+   "family_label": "Said · Fanon · Cohn — postcolonial, colonial, africa, colonialism",
+   "jaccard": 0.279,
+   "work_spread": [
+    [
+     0,
+     97
+    ],
+    [
+     17,
+     15
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     18,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Thompson · Scott · Davidoff",
+   "field_id": 12,
+   "works": 136,
+   "best_family": 2,
+   "family_label": "Thompson · Davidoff · Bourdieu — oral, class, working, english",
+   "jaccard": 0.451,
+   "work_spread": [
+    [
+     2,
+     121
+    ],
+    [
+     18,
+     8
+    ],
+    [
+     1,
+     2
     ],
     [
      8,
@@ -978,724 +1234,752 @@
   },
   {
    "field": "Kuhn · Latour · Foucault",
-   "field_id": 15,
-   "works": 34,
-   "best_family": 8,
-   "family_label": "Scott · Cronon · White — have, wilderness, condition, nature",
-   "jaccard": 0.071,
+   "field_id": 13,
+   "works": 119,
+   "best_family": 7,
+   "family_label": "Shapin · Latour · Kuhn — scientific, science, objectivity, knowledge",
+   "jaccard": 0.443,
    "work_spread": [
     [
-     0,
-     12
+     7,
+     86
     ],
     [
      8,
-     11
+     9
     ],
     [
-     12,
-     3
+     0,
+     8
     ],
     [
-     6,
-     3
+     18,
+     5
     ]
    ]
   },
   {
-   "field": "Mallon · Stepan · Joseph",
-   "field_id": 16,
-   "works": 26,
-   "best_family": 11,
-   "family_label": "Westad · Gaddis · Leffler — cold, truman, détente, security",
-   "jaccard": 0.044,
+   "field": "Scott · Cronon · Lefebvre",
+   "field_id": 14,
+   "works": 117,
+   "best_family": 10,
+   "family_label": "Scott · Cronon · White — wilderness, poachers, machine, conservation",
+   "jaccard": 0.572,
    "work_spread": [
     [
-     0,
-     14
+     10,
+     103
     ],
     [
-     11,
+     7,
+     5
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     0,
+     2
+    ]
+   ]
+  },
+  {
+   "field": "Foucault · Butler · Scott",
+   "field_id": 15,
+   "works": 114,
+   "best_family": 18,
+   "family_label": "Foucault · Butler — birth, madness, asylum, collège",
+   "jaccard": 0.201,
+   "work_spread": [
+    [
+     18,
+     41
+    ],
+    [
+     9,
+     32
+    ],
+    [
+     12,
+     10
+    ],
+    [
+     2,
+     8
+    ]
+   ]
+  },
+  {
+   "field": "Halbwachs · Lowenthal · Carr",
+   "field_id": 16,
+   "works": 89,
+   "best_family": 26,
+   "family_label": "White · Rüsen · Zander — och, som, historia, till",
+   "jaccard": 0.387,
+   "work_spread": [
+    [
+     26,
+     36
+    ],
+    [
+     16,
+     23
+    ],
+    [
+     4,
+     6
+    ],
+    [
+     2,
+     6
+    ]
+   ]
+  },
+  {
+   "field": "Pomeranz · Duara · Hucker",
+   "field_id": 17,
+   "works": 47,
+   "best_family": 7,
+   "family_label": "Shapin · Latour · Kuhn — scientific, science, objectivity, knowledge",
+   "jaccard": 0.209,
+   "work_spread": [
+    [
+     7,
+     36
+    ],
+    [
+     16,
      5
     ],
     [
      10,
-     4
+     3
+    ],
+    [
+     17,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Westad · Moyn · Leffler",
+   "field_id": 18,
+   "works": 43,
+   "best_family": 17,
+   "family_label": "Westad · Gaddis · Leffler — cold, truman, security, détente",
+   "jaccard": 0.318,
+   "work_spread": [
+    [
+     17,
+     41
     ],
     [
      16,
      1
+    ],
+    [
+     2,
+     1
     ]
    ]
   },
   {
-   "field": "Koselleck · Carr · Collingwood",
-   "field_id": 17,
-   "works": 25,
-   "best_family": 17,
-   "family_label": "Rüsen · White · Zander — och, som, historia, till",
-   "jaccard": 0.727,
+   "field": "Hobsbawm · Todorova",
+   "field_id": 19,
+   "works": 38,
+   "best_family": 21,
+   "family_label": "BRAUDEL · Horden · Setton — mediterranean, ottoman, venice, sea",
+   "jaccard": 0.268,
    "work_spread": [
     [
-     17,
-     24
+     21,
+     26
+    ],
+    [
+     16,
+     8
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     2,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Douglas · Foucault",
+   "field_id": 20,
+   "works": 20,
+   "best_family": 18,
+   "family_label": "Foucault · Butler — birth, madness, asylum, collège",
+   "jaccard": 0.127,
+   "work_spread": [
+    [
+     18,
+     17
     ],
     [
      11,
      1
-    ]
-   ]
-  },
-  {
-   "field": "Scott · Walkowitz",
-   "field_id": 18,
-   "works": 25,
-   "best_family": 0,
-   "family_label": "Foucault · Butler · Scott — category, sex, gender, analysis",
-   "jaccard": 0.073,
-   "work_spread": [
+    ],
     [
      0,
-     23
-    ],
-    [
-     10,
      1
     ],
     [
-     2,
+     3,
      1
     ]
    ]
   },
   {
-   "field": "Halbwachs · Lowenthal · Connerton",
-   "field_id": 19,
-   "works": 24,
-   "best_family": 10,
-   "family_label": "Anderson · Gellner · Hobsbawm — nationalism, nations, groups, nationhood",
-   "jaccard": 0.186,
-   "work_spread": [
-    [
-     10,
-     19
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     7,
-     1
-    ],
-    [
-     14,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Foucault",
-   "field_id": 20,
-   "works": 17,
-   "best_family": 0,
-   "family_label": "Foucault · Butler · Scott — category, sex, gender, analysis",
-   "jaccard": 0.041,
-   "work_spread": [
-    [
-     0,
-     13
-    ],
-    [
-     2,
-     2
-    ],
-    [
-     14,
-     1
-    ],
-    [
-     1,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Duara · Pomeranz · Hucker",
+   "field": "Leach · Marchand · Lears",
    "field_id": 21,
-   "works": 15,
-   "best_family": 10,
-   "family_label": "Anderson · Gellner · Hobsbawm — nationalism, nations, groups, nationhood",
-   "jaccard": 0.047,
-   "work_spread": [
-    [
-     10,
-     5
-    ],
-    [
-     2,
-     4
-    ],
-    [
-     12,
-     3
-    ],
-    [
-     8,
-     2
-    ]
-   ]
-  },
-  {
-   "field": "Leach · Lears · Marchand",
-   "field_id": 22,
-   "works": 13,
+   "works": 19,
    "best_family": 1,
-   "family_label": "Valverde · Owram · Iacovetta — unemployment, postwar, montreal, youth",
-   "jaccard": 0.029,
-   "work_spread": [
-    [
-     1,
-     11
-    ],
-    [
-     8,
-     1
-    ],
-    [
-     0,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Stern · Connelly · Kevles",
-   "field_id": 23,
-   "works": 13,
-   "best_family": 1,
-   "family_label": "Valverde · Owram · Iacovetta — unemployment, postwar, montreal, youth",
-   "jaccard": 0.013,
-   "work_spread": [
-    [
-     1,
-     5
-    ],
-    [
-     0,
-     3
-    ],
-    [
-     8,
-     1
-    ],
-    [
-     14,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Weber · Mann · Parker",
-   "field_id": 24,
-   "works": 11,
-   "best_family": 12,
-   "family_label": "BRAUDEL · Horden · McCormick — mediterranean, ages, roman, medieval",
-   "jaccard": 0.076,
-   "work_spread": [
-    [
-     12,
-     5
-    ],
-    [
-     0,
-     3
-    ],
-    [
-     14,
-     1
-    ],
-    [
-     2,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "BRAUDEL · Horden · Barth",
-   "field_id": 25,
-   "works": 10,
-   "best_family": 12,
-   "family_label": "BRAUDEL · Horden · McCormick — mediterranean, ages, roman, medieval",
-   "jaccard": 0.129,
-   "work_spread": [
-    [
-     12,
-     8
-    ],
-    [
-     10,
-     2
-    ]
-   ]
-  },
-  {
-   "field": "Foucault · Starr · Sontag",
-   "field_id": 26,
-   "works": 10,
-   "best_family": 0,
-   "family_label": "Foucault · Butler · Scott — category, sex, gender, analysis",
+   "family_label": "Valverde · Owram · Iacovetta — unemployment, immigrant, montreal, postwar",
    "jaccard": 0.025,
    "work_spread": [
     [
-     0,
-     8
+     1,
+     9
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     9,
+     3
+    ],
+    [
+     10,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Stern · Starr · Connelly",
+   "field_id": 22,
+   "works": 15,
+   "best_family": 1,
+   "family_label": "Valverde · Owram · Iacovetta — unemployment, immigrant, montreal, postwar",
+   "jaccard": 0.016,
+   "work_spread": [
+    [
+     1,
+     6
+    ],
+    [
+     18,
+     2
     ],
     [
      7,
      2
+    ],
+    [
+     9,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Parker · Mann",
+   "field_id": 23,
+   "works": 12,
+   "best_family": 21,
+   "family_label": "BRAUDEL · Horden · Setton — mediterranean, ottoman, venice, sea",
+   "jaccard": 0.054,
+   "work_spread": [
+    [
+     21,
+     5
+    ],
+    [
+     10,
+     1
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     24,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Clausewitz · Huntington · Weigley",
+   "field_id": 24,
+   "works": 10,
+   "best_family": 17,
+   "family_label": "Westad · Gaddis · Leffler — cold, truman, security, détente",
+   "jaccard": 0.038,
+   "work_spread": [
+    [
+     17,
+     5
+    ],
+    [
+     21,
+     2
+    ],
+    [
+     19,
+     2
+    ],
+    [
+     6,
+     1
     ]
    ]
   }
  ],
  "louvain_unclustered_works": [
   {
-   "title": "The Making of the English Working Class",
-   "first_author": "Thompson, Edward P",
-   "citing": 165,
-   "entropy": 0.615,
-   "nmf_top": 0,
-   "nmf_top_share": 0.39,
-   "nmf_second": 1,
-   "nmf_second_share": 0.17,
+   "title": "Discipline and Punish: The Birth of the Prison",
+   "first_author": "Foucault, Michel",
+   "citing": 438,
+   "entropy": 0.035,
+   "nmf_top": 18,
+   "nmf_top_share": 0.98,
+   "nmf_second": 27,
+   "nmf_second_share": 0.02,
    "louvain": "unclustered"
   },
   {
-   "title": "Domination and the Arts of Resistance: Hidden Transcripts",
+   "title": "Imperial Eyes: Travel Writing and Transculturation",
+   "first_author": "Pratt, Mary Louise",
+   "citing": 176,
+   "entropy": 0.531,
+   "nmf_top": 0,
+   "nmf_top_share": 0.38,
+   "nmf_second": 7,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Interpretation of Cultures",
+   "first_author": "Geertz, Clifford",
+   "citing": 163,
+   "entropy": 0.827,
+   "nmf_top": 16,
+   "nmf_top_share": 0.2,
+   "nmf_second": 24,
+   "nmf_second_share": 0.08,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
    "first_author": "Scott, James C",
-   "citing": 99,
-   "entropy": 0.681,
-   "nmf_top": 0,
-   "nmf_top_share": 0.28,
-   "nmf_second": 2,
-   "nmf_second_share": 0.26,
+   "citing": 134,
+   "entropy": 0.683,
+   "nmf_top": 20,
+   "nmf_top_share": 0.27,
+   "nmf_second": 0,
+   "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
-   "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
-   "first_author": "Davidoff, Leonore",
-   "citing": 88,
-   "entropy": 0.409,
-   "nmf_top": 0,
-   "nmf_top_share": 0.56,
-   "nmf_second": 1,
-   "nmf_second_share": 0.25,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Centuries of Childhood: A Social History of Family Life",
-   "first_author": "Ariès, Philippe",
-   "citing": 80,
-   "entropy": 0.215,
-   "nmf_top": 0,
-   "nmf_top_share": 0.83,
-   "nmf_second": 3,
-   "nmf_second_share": 0.07,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "No Place of Grace: Antimodernism and the Transformation of American Culture, 1880-1920",
-   "first_author": "Lears, Jackson",
-   "citing": 78,
-   "entropy": 0.61,
-   "nmf_top": 7,
-   "nmf_top_share": 0.31,
-   "nmf_second": 1,
-   "nmf_second_share": 0.24,
+   "title": "Capital: A Critique of Political Economy",
+   "first_author": "Marx, Karl",
+   "citing": 118,
+   "entropy": 0.568,
+   "nmf_top": 2,
+   "nmf_top_share": 0.46,
+   "nmf_second": 10,
+   "nmf_second_share": 0.14,
    "louvain": "unclustered"
   },
   {
    "title": "Economy and Society: An Outline of Interpretive Sociology",
    "first_author": "Weber, Max",
-   "citing": 72,
-   "entropy": 0.586,
-   "nmf_top": 12,
-   "nmf_top_share": 0.32,
-   "nmf_second": 0,
-   "nmf_second_share": 0.25,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "American Manhood: Transformations in Masculinity from the Revolution to the Modern Era",
-   "first_author": "Rotundo, E. Anthony",
-   "citing": 71,
-   "entropy": 0.503,
-   "nmf_top": 5,
-   "nmf_top_share": 0.33,
-   "nmf_second": 7,
-   "nmf_second_share": 0.26,
+   "citing": 100,
+   "entropy": 0.606,
+   "nmf_top": 21,
+   "nmf_top_share": 0.3,
+   "nmf_second": 18,
+   "nmf_second_share": 0.17,
    "louvain": "unclustered"
   },
   {
    "title": "Rule of Experts: Egypt, Techno-Politics, Modernity",
    "first_author": "Mitchell, Timothy",
+   "citing": 93,
+   "entropy": 0.355,
+   "nmf_top": 10,
+   "nmf_top_share": 0.51,
+   "nmf_second": 0,
+   "nmf_second_share": 0.35,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Comanche Empire",
+   "first_author": "Hämäläinen, Pekka",
+   "citing": 83,
+   "entropy": 0.388,
+   "nmf_top": 5,
+   "nmf_top_share": 0.55,
+   "nmf_second": 14,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "American Manhood: Transformations in Masculinity from the Revolution to the Modern Era",
+   "first_author": "Rotundo, E. Anthony",
+   "citing": 81,
+   "entropy": 0.542,
+   "nmf_top": 6,
+   "nmf_top_share": 0.37,
+   "nmf_second": 1,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
+   "first_author": "Foucault, Michel",
+   "citing": 79,
+   "entropy": 0.685,
+   "nmf_top": 18,
+   "nmf_top_share": 0.33,
+   "nmf_second": 0,
+   "nmf_second_share": 0.1,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Violence over the Land: Indians and Empires in the Early American West",
+   "first_author": "Blackhawk, Ned",
+   "citing": 75,
+   "entropy": 0.326,
+   "nmf_top": 5,
+   "nmf_top_share": 0.63,
+   "nmf_second": 14,
+   "nmf_second_share": 0.21,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Art of Not Being Governed: An Anarchist History of Upland Southeast Asia",
+   "first_author": "Scott, James C",
+   "citing": 74,
+   "entropy": 0.57,
+   "nmf_top": 0,
+   "nmf_top_share": 0.29,
+   "nmf_second": 10,
+   "nmf_second_share": 0.26,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Gift: The Form and Reason for Exchange in Archaic Societies",
+   "first_author": "Mauss, Marcel",
    "citing": 66,
-   "entropy": 0.306,
-   "nmf_top": 8,
-   "nmf_top_share": 0.56,
-   "nmf_second": 2,
-   "nmf_second_share": 0.36,
+   "entropy": 0.665,
+   "nmf_top": 13,
+   "nmf_top_share": 0.27,
+   "nmf_second": 7,
+   "nmf_second_share": 0.18,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "All That Is Solid Melts into Air: The Experience of Modernity",
+   "first_author": "Berman, Marshall",
+   "citing": 64,
+   "entropy": 0.652,
+   "nmf_top": 10,
+   "nmf_top_share": 0.25,
+   "nmf_second": 16,
+   "nmf_second_share": 0.14,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Wilsonian Moment: Self-Determination and the International Origins of Anticolonial Nationalism",
+   "first_author": "Manela, Erez",
+   "citing": 64,
+   "entropy": 0.488,
+   "nmf_top": 17,
+   "nmf_top_share": 0.39,
+   "nmf_second": 0,
+   "nmf_second_share": 0.28,
    "louvain": "unclustered"
   },
   {
    "title": "Promise of Eden: The Canadian Expansionist Movement and the Idea of the West, 1856-1900",
    "first_author": "Owram, Doug",
    "citing": 64,
-   "entropy": 0.406,
-   "nmf_top": 4,
-   "nmf_top_share": 0.39,
-   "nmf_second": 1,
-   "nmf_second_share": 0.39,
+   "entropy": 0.372,
+   "nmf_top": 1,
+   "nmf_top_share": 0.42,
+   "nmf_second": 5,
+   "nmf_second_share": 0.33,
    "louvain": "unclustered"
   },
   {
-   "title": "Empire of Cotton: A Global History",
-   "first_author": "Beckert, Sven",
-   "citing": 63,
-   "entropy": 0.596,
-   "nmf_top": 6,
-   "nmf_top_share": 0.28,
-   "nmf_second": 8,
-   "nmf_second_share": 0.26,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "American Crucible: Race and Nation in the Twentieth Century",
-   "first_author": "Gerstle, Gary",
-   "citing": 61,
-   "entropy": 0.367,
-   "nmf_top": 7,
-   "nmf_top_share": 0.64,
-   "nmf_second": 9,
-   "nmf_second_share": 0.23,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Purity and Danger: An Analysis of Concepts of Pollution and Taboo",
-   "first_author": "Douglas, Mary",
-   "citing": 58,
-   "entropy": 0.527,
-   "nmf_top": 0,
-   "nmf_top_share": 0.51,
-   "nmf_second": 10,
+   "title": "The Cheese and the Worms: The Cosmos of a Sixteenth-Century Miller",
+   "first_author": "Ginzburg, Carlo",
+   "citing": 59,
+   "entropy": 0.72,
+   "nmf_top": 8,
+   "nmf_top_share": 0.23,
+   "nmf_second": 2,
    "nmf_second_share": 0.15,
    "louvain": "unclustered"
   },
   {
-   "title": "All That Is Solid Melts into Air: The Experience of Modernity",
-   "first_author": "Berman, Marshall",
-   "citing": 54,
-   "entropy": 0.661,
-   "nmf_top": 8,
-   "nmf_top_share": 0.31,
-   "nmf_second": 0,
-   "nmf_second_share": 0.2,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Social Life of Things: Commodities in Cultural Perspective",
-   "first_author": "Appadurai, Arjun",
-   "citing": 52,
-   "entropy": 0.743,
-   "nmf_top": 3,
-   "nmf_top_share": 0.24,
-   "nmf_second": 12,
-   "nmf_second_share": 0.2,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Ceremonies of Possession in Europe’s Conquest of the New World, 1492-1640",
-   "first_author": "Seed, Patricia",
-   "citing": 52,
-   "entropy": 0.387,
-   "nmf_top": 6,
-   "nmf_top_share": 0.62,
-   "nmf_second": 4,
-   "nmf_second_share": 0.17,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Social Passion: Religion and Social Reform in Canada, 1914-1928",
-   "first_author": "Allen, Richard",
-   "citing": 50,
-   "entropy": 0.182,
-   "nmf_top": 1,
-   "nmf_top_share": 0.78,
-   "nmf_second": 13,
+   "title": "Manliness & Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
+   "first_author": "Bederman, Gail",
+   "citing": 55,
+   "entropy": 0.592,
+   "nmf_top": 14,
+   "nmf_top_share": 0.23,
+   "nmf_second": 10,
    "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
-   "title": "How the Irish Became White",
-   "first_author": "Ignatiev, Noel",
-   "citing": 50,
-   "entropy": 0.556,
-   "nmf_top": 7,
-   "nmf_top_share": 0.42,
-   "nmf_second": 1,
-   "nmf_second_share": 0.25,
+   "title": "The Birth of Biopolitics: Lectures at the Collège de France, 1978-1979",
+   "first_author": "Foucault, Michel",
+   "citing": 54,
+   "entropy": 0.666,
+   "nmf_top": 18,
+   "nmf_top_share": 0.3,
+   "nmf_second": 9,
+   "nmf_second_share": 0.11,
    "louvain": "unclustered"
   },
   {
-   "title": "The Death of Luigi Trastulli and Other Stories: Form and Meaning in Oral History",
-   "first_author": "Portelli, Alessandro",
-   "citing": 47,
-   "entropy": 0.626,
-   "nmf_top": 10,
-   "nmf_top_share": 0.32,
-   "nmf_second": 1,
-   "nmf_second_share": 0.18,
+   "title": "The Discovery of the Asylum: Social Order and Disorder in the New Republic",
+   "first_author": "Rothman, David J",
+   "citing": 51,
+   "entropy": 0.267,
+   "nmf_top": 18,
+   "nmf_top_share": 0.6,
+   "nmf_second": 6,
+   "nmf_second_share": 0.34,
    "louvain": "unclustered"
   },
   {
-   "title": "The Voice of the Past: Oral History",
-   "first_author": "Thompson, Paul",
-   "citing": 43,
-   "entropy": 0.521,
-   "nmf_top": 1,
-   "nmf_top_share": 0.37,
-   "nmf_second": 10,
-   "nmf_second_share": 0.36,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Practice of Everyday Life",
-   "first_author": "CERTEAU, Michel de",
-   "citing": 42,
-   "entropy": 0.645,
-   "nmf_top": 0,
-   "nmf_top_share": 0.37,
-   "nmf_second": 8,
-   "nmf_second_share": 0.17,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "National Dreams: Myth, Memory, and Canadian History",
-   "first_author": "Francis, Daniel",
-   "citing": 41,
-   "entropy": 0.521,
-   "nmf_top": 1,
-   "nmf_top_share": 0.29,
-   "nmf_second": 13,
-   "nmf_second_share": 0.27,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The End of History and the Last Man",
-   "first_author": "Fukuyama, Francis",
-   "citing": 40,
-   "entropy": 0.729,
-   "nmf_top": 3,
-   "nmf_top_share": 0.27,
-   "nmf_second": 11,
-   "nmf_second_share": 0.19,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Understanding Media: The Extensions of Man",
-   "first_author": "McLuhan, Marshall",
-   "citing": 40,
-   "entropy": 0.672,
-   "nmf_top": 10,
-   "nmf_top_share": 0.27,
-   "nmf_second": 1,
-   "nmf_second_share": 0.21,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "On War",
-   "first_author": "Clausewitz, Carl von",
-   "citing": 38,
-   "entropy": 0.385,
-   "nmf_top": 11,
-   "nmf_top_share": 0.66,
-   "nmf_second": 13,
-   "nmf_second_share": 0.12,
+   "title": "Global Community: The Role of International Organizations in the Making of the Contemporary World",
+   "first_author": "Iriye, Akira",
+   "citing": 48,
+   "entropy": 0.387,
+   "nmf_top": 17,
+   "nmf_top_share": 0.52,
+   "nmf_second": 0,
+   "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
    "title": "The Problem of Slavery in the Age of Revolution, 1770-1823",
    "first_author": "Davis, David Brion",
-   "citing": 37,
-   "entropy": 0.3,
-   "nmf_top": 6,
-   "nmf_top_share": 0.51,
-   "nmf_second": 5,
-   "nmf_second_share": 0.44,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Making Sex: Body and Gender from the Greeks to Freud",
-   "first_author": "Laqueur, Thomas",
-   "citing": 37,
-   "entropy": 0.009,
-   "nmf_top": 0,
-   "nmf_top_share": 1.0,
-   "nmf_second": 14,
-   "nmf_second_share": 0.0,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Labor and Monopoly Capital: The Degradation of Work in the Twentieth Century",
-   "first_author": "Braverman, Harry",
-   "citing": 35,
-   "entropy": 0.557,
-   "nmf_top": 1,
+   "citing": 47,
+   "entropy": 0.371,
+   "nmf_top": 15,
    "nmf_top_share": 0.38,
-   "nmf_second": 8,
-   "nmf_second_share": 0.23,
+   "nmf_second": 6,
+   "nmf_second_share": 0.35,
    "louvain": "unclustered"
   },
   {
-   "title": "The Great Land Rush and the Making of the Modern World, 1650-1900",
-   "first_author": "Weaver, John C",
-   "citing": 35,
-   "entropy": 0.566,
-   "nmf_top": 4,
-   "nmf_top_share": 0.38,
-   "nmf_second": 8,
+   "title": "The Culture of Time and Space, 1880-1918",
+   "first_author": "Kern, Stephen",
+   "citing": 46,
+   "entropy": 0.651,
+   "nmf_top": 10,
+   "nmf_top_share": 0.24,
+   "nmf_second": 7,
+   "nmf_second_share": 0.14,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Evangelicalism in Modern Britain: A History from the 1730s to the 1980s",
+   "first_author": "Bebbington, David W",
+   "citing": 45,
+   "entropy": 0.483,
+   "nmf_top": 2,
+   "nmf_top_share": 0.46,
+   "nmf_second": 3,
+   "nmf_second_share": 0.24,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Fundamentalism and American Culture",
+   "first_author": "Marsden, George M",
+   "citing": 45,
+   "entropy": 0.587,
+   "nmf_top": 9,
+   "nmf_top_share": 0.23,
+   "nmf_second": 12,
    "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
-   "title": "Primitive Rebels: Studies in Archaic Forms of Social Movement in the 19th and 20th Centuries",
-   "first_author": "Hobsbawm, Eric",
-   "citing": 34,
-   "entropy": 0.715,
-   "nmf_top": 10,
-   "nmf_top_share": 0.3,
-   "nmf_second": 7,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Out to Work: A History of Wage-Earning Women in the United States",
-   "first_author": "Kessler-Harris, Alice",
-   "citing": 33,
-   "entropy": 0.556,
-   "nmf_top": 1,
-   "nmf_top_share": 0.37,
-   "nmf_second": 9,
+   "title": "Understanding Media: The Extensions of Man",
+   "first_author": "McLuhan, Marshall",
+   "citing": 45,
+   "entropy": 0.723,
+   "nmf_top": 16,
+   "nmf_top_share": 0.23,
+   "nmf_second": 1,
    "nmf_second_share": 0.17,
    "louvain": "unclustered"
   },
   {
    "title": "Rabelais and His World",
    "first_author": "Bakhtin, Mikhail",
-   "citing": 32,
-   "entropy": 0.662,
-   "nmf_top": 0,
-   "nmf_top_share": 0.35,
-   "nmf_second": 16,
-   "nmf_second_share": 0.18,
+   "citing": 43,
+   "entropy": 0.663,
+   "nmf_top": 18,
+   "nmf_top_share": 0.25,
+   "nmf_second": 8,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
-   "title": "A Shared Authority: Essays on the Craft and Meaning of Oral and Public History",
-   "first_author": "Frisch, Michael",
-   "citing": 32,
-   "entropy": 0.606,
+   "title": "Governmentality",
+   "first_author": "Foucault, Michel",
+   "citing": 43,
+   "entropy": 0.579,
    "nmf_top": 0,
-   "nmf_top_share": 0.26,
-   "nmf_second": 1,
+   "nmf_top_share": 0.28,
+   "nmf_second": 18,
    "nmf_second_share": 0.26,
    "louvain": "unclustered"
   },
   {
-   "title": "Modernity at Large: Cultural Dimensions of Globalization",
-   "first_author": "Appadurai, Arjun",
-   "citing": 31,
-   "entropy": 0.587,
-   "nmf_top": 2,
-   "nmf_top_share": 0.42,
-   "nmf_second": 10,
-   "nmf_second_share": 0.24,
+   "title": "Out to Work: A History of Wage-Earning Women in the United States",
+   "first_author": "Kessler-Harris, Alice",
+   "citing": 42,
+   "entropy": 0.54,
+   "nmf_top": 1,
+   "nmf_top_share": 0.28,
+   "nmf_second": 2,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
-   "title": "Settler Sovereignty: Jurisdiction and Indigenous People in America and Australia, 1788-1836",
-   "first_author": "Ford, Lisa",
-   "citing": 31,
-   "entropy": 0.513,
-   "nmf_top": 4,
-   "nmf_top_share": 0.41,
-   "nmf_second": 6,
+   "title": "Gunfighter Nation: The Myth of the Frontier in Twentieth-Century America",
+   "first_author": "Slotkin, Richard",
+   "citing": 42,
+   "entropy": 0.573,
+   "nmf_top": 5,
+   "nmf_top_share": 0.31,
+   "nmf_second": 14,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Great Cat Massacre and Other Episodes in French Cultural History",
+   "first_author": "Darnton, Robert",
+   "citing": 40,
+   "entropy": 0.73,
+   "nmf_top": 8,
+   "nmf_top_share": 0.24,
+   "nmf_second": 18,
+   "nmf_second_share": 0.16,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "On Borderlands",
+   "first_author": "Hämäläinen, Pekka",
+   "citing": 39,
+   "entropy": 0.491,
+   "nmf_top": 5,
+   "nmf_top_share": 0.46,
+   "nmf_second": 14,
    "nmf_second_share": 0.23,
    "louvain": "unclustered"
   },
   {
-   "title": "Asylums: Essays on the Social Situation of Mental Patients and Other Inmates",
-   "first_author": "Goffman, Erving",
-   "citing": 31,
-   "entropy": 0.277,
-   "nmf_top": 0,
-   "nmf_top_share": 0.8,
-   "nmf_second": 3,
-   "nmf_second_share": 0.1,
+   "title": "The Rise and Fall of the Great Powers: Economic Change and Military Conflict from 1500 to 2000",
+   "first_author": "Kennedy, Paul",
+   "citing": 39,
+   "entropy": 0.583,
+   "nmf_top": 17,
+   "nmf_top_share": 0.38,
+   "nmf_second": 19,
+   "nmf_second_share": 0.15,
    "louvain": "unclustered"
   },
   {
-   "title": "Colonizing the Body: State Medicine and Epidemic Disease in Nineteenth-Century India",
-   "first_author": "Arnold, David",
-   "citing": 30,
-   "entropy": 0.201,
-   "nmf_top": 2,
-   "nmf_top_share": 0.82,
+   "title": "The Dialogic Imagination: Four Essays",
+   "first_author": "Bakhtin, Mikhail",
+   "citing": 38,
+   "entropy": 0.645,
+   "nmf_top": 16,
+   "nmf_top_share": 0.27,
    "nmf_second": 0,
-   "nmf_second_share": 0.12,
+   "nmf_second_share": 0.17,
    "louvain": "unclustered"
   },
   {
-   "title": "Peasant, Lord, and Merchant: Rural Society in Three Quebec Parishes, 1740-1840",
-   "first_author": "Greer, Allan",
-   "citing": 30,
-   "entropy": 0.512,
-   "nmf_top": 4,
-   "nmf_top_share": 0.43,
-   "nmf_second": 1,
-   "nmf_second_share": 0.24,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Scraping By: Wage Labor, Slavery, and Survival in Early Baltimore",
-   "first_author": "Rockman, Seth",
-   "citing": 30,
-   "entropy": 0.489,
+   "title": "The Great Land Rush and the Making of the Modern World, 1650-1900",
+   "first_author": "Weaver, John C",
+   "citing": 38,
+   "entropy": 0.497,
    "nmf_top": 5,
-   "nmf_top_share": 0.44,
-   "nmf_second": 6,
-   "nmf_second_share": 0.22,
+   "nmf_top_share": 0.39,
+   "nmf_second": 10,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
-   "title": "Banal Nationalism",
-   "first_author": "Billig, Michael",
-   "citing": 29,
-   "entropy": 0.38,
+   "title": "A Just Measure of Pain: The Penitentiary in the Industrial Revolution, 1750-1850",
+   "first_author": "Ignatieff, Michael",
+   "citing": 37,
+   "entropy": 0.207,
+   "nmf_top": 18,
+   "nmf_top_share": 0.81,
+   "nmf_second": 3,
+   "nmf_second_share": 0.09,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Wild Things: Nature, Culture, and Tourism in Ontario, 1790-1914",
+   "first_author": "Jasen, Patricia",
+   "citing": 37,
+   "entropy": 0.412,
    "nmf_top": 10,
-   "nmf_top_share": 0.53,
-   "nmf_second": 17,
-   "nmf_second_share": 0.35,
+   "nmf_top_share": 0.42,
+   "nmf_second": 1,
+   "nmf_second_share": 0.31,
    "louvain": "unclustered"
   },
   {
-   "title": "Epic Encounters: Culture, Media, and U.S. Interests in the Middle East, 1945-2000",
-   "first_author": "McAlister, Melani",
-   "citing": 29,
-   "entropy": 0.427,
-   "nmf_top": 11,
-   "nmf_top_share": 0.57,
-   "nmf_second": 9,
-   "nmf_second_share": 0.21,
+   "title": "The Origins of American Social Science",
+   "first_author": "Ross, Dorothy",
+   "citing": 37,
+   "entropy": 0.638,
+   "nmf_top": 9,
+   "nmf_top_share": 0.2,
+   "nmf_second": 12,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Venus in Two Acts",
+   "first_author": "Hartman, Saidiya",
+   "citing": 35,
+   "entropy": 0.499,
+   "nmf_top": 15,
+   "nmf_top_share": 0.48,
+   "nmf_second": 18,
+   "nmf_second_share": 0.16,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Man and the Natural World: Changing Attitudes in England, 1500-1800",
+   "first_author": "Thomas, Keith",
+   "citing": 35,
+   "entropy": 0.535,
+   "nmf_top": 8,
+   "nmf_top_share": 0.36,
+   "nmf_second": 10,
+   "nmf_second_share": 0.27,
    "louvain": "unclustered"
   }
  ],
@@ -1703,466 +1987,466 @@
   "The Middle Ground": {
    "title": "The Middle Ground: Indians, Empires, and Republics in the Great Lakes Region, 1650-1815",
    "first_author": "White, Richard",
-   "citing": 182,
-   "entropy": 0.361,
-   "nmf_top": 4,
-   "nmf_top_share": 0.64,
-   "nmf_second": 6,
-   "nmf_second_share": 0.24,
+   "citing": 213,
+   "entropy": 0.352,
+   "nmf_top": 5,
+   "nmf_top_share": 0.73,
+   "nmf_second": 15,
+   "nmf_second_share": 0.06,
    "louvain": "New France, early modern empire & the Atlantic"
   },
   "Imagined Communities": {
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
-   "citing": 647,
-   "entropy": 0.119,
-   "nmf_top": 10,
-   "nmf_top_share": 0.94,
-   "nmf_second": 7,
-   "nmf_second_share": 0.01,
-   "louvain": "Anderson · Hobsbawm"
+   "citing": 815,
+   "entropy": 0.158,
+   "nmf_top": 16,
+   "nmf_top_share": 0.9,
+   "nmf_second": 18,
+   "nmf_second_share": 0.02,
+   "louvain": "Anderson · Hobsbawm · Gellner"
   },
   "Orientalism": {
    "title": "Orientalism",
    "first_author": "Said, Edward",
-   "citing": 310,
-   "entropy": 0.32,
-   "nmf_top": 2,
+   "citing": 403,
+   "entropy": 0.308,
+   "nmf_top": 0,
    "nmf_top_share": 0.76,
-   "nmf_second": 10,
-   "nmf_second_share": 0.09,
+   "nmf_second": 16,
+   "nmf_second_share": 0.08,
    "louvain": "Empire, colonialism & postcolonial theory"
   },
   "Discipline and Punish": {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
-   "citing": 346,
-   "entropy": 0.286,
-   "nmf_top": 0,
-   "nmf_top_share": 0.78,
-   "nmf_second": 16,
-   "nmf_second_share": 0.11,
-   "louvain": "Foucault"
+   "citing": 438,
+   "entropy": 0.035,
+   "nmf_top": 18,
+   "nmf_top_share": 0.98,
+   "nmf_second": 27,
+   "nmf_second_share": 0.02,
+   "louvain": "unclustered"
   },
   "The Making of the English Working Class": {
    "title": "The Making of the English Working Class",
-   "first_author": "Thompson, Edward P",
-   "citing": 165,
-   "entropy": 0.615,
-   "nmf_top": 0,
-   "nmf_top_share": 0.39,
-   "nmf_second": 1,
-   "nmf_second_share": 0.17,
-   "louvain": "unclustered"
+   "first_author": "Thompson, E. P",
+   "citing": 231,
+   "entropy": 0.036,
+   "nmf_top": 2,
+   "nmf_top_share": 0.98,
+   "nmf_second": 15,
+   "nmf_second_share": 0.01,
+   "louvain": "Thompson · Scott · Davidoff"
   },
   "Seeing Like a State": {
    "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
    "first_author": "Scott, James C",
-   "citing": 257,
-   "entropy": 0.374,
-   "nmf_top": 8,
-   "nmf_top_share": 0.69,
-   "nmf_second": 2,
-   "nmf_second_share": 0.14,
-   "louvain": "Scott · Cronon"
+   "citing": 319,
+   "entropy": 0.428,
+   "nmf_top": 10,
+   "nmf_top_share": 0.57,
+   "nmf_second": 0,
+   "nmf_second_share": 0.15,
+   "louvain": "Scott · Cronon · Lefebvre"
   },
   "Gender and the Politics of History": {
    "title": "Gender and the Politics of History",
    "first_author": "Scott, Joan W",
-   "citing": 102,
-   "entropy": 0.325,
-   "nmf_top": 0,
-   "nmf_top_share": 0.71,
-   "nmf_second": 1,
-   "nmf_second_share": 0.2,
-   "louvain": "Scott · Walkowitz"
+   "citing": 118,
+   "entropy": 0.548,
+   "nmf_top": 2,
+   "nmf_top_share": 0.35,
+   "nmf_second": 18,
+   "nmf_second_share": 0.24,
+   "louvain": "Thompson · Scott · Davidoff"
   },
   "Facing East from Indian Country": {
    "title": "Facing East from Indian Country: A Native History of Early America",
    "first_author": "Richter, Daniel K",
-   "citing": 55,
-   "entropy": 0.264,
-   "nmf_top": 4,
-   "nmf_top_share": 0.52,
-   "nmf_second": 6,
-   "nmf_second_share": 0.47,
+   "citing": 70,
+   "entropy": 0.293,
+   "nmf_top": 5,
+   "nmf_top_share": 0.67,
+   "nmf_second": 15,
+   "nmf_second_share": 0.16,
    "louvain": "New France, early modern empire & the Atlantic"
   },
   "Britons": {
    "title": "Britons: Forging the Nation, 1707-1837",
    "first_author": "Colley, Linda",
-   "citing": 123,
-   "entropy": 0.528,
-   "nmf_top": 6,
-   "nmf_top_share": 0.33,
-   "nmf_second": 10,
-   "nmf_second_share": 0.3,
-   "louvain": "Trouillot · Colley · Gilroy"
+   "citing": 200,
+   "entropy": 0.313,
+   "nmf_top": 3,
+   "nmf_top_share": 0.63,
+   "nmf_second": 16,
+   "nmf_second_share": 0.17,
+   "louvain": "Empire, colonialism & postcolonial theory"
   },
   "The Liberal Order Framework": {
    "title": "The Liberal Order Framework: A Prospectus for a Reconnaissance of Canadian History",
    "first_author": "McKay, Ian",
    "citing": 107,
-   "entropy": 0.423,
+   "entropy": 0.44,
    "nmf_top": 1,
-   "nmf_top_share": 0.57,
-   "nmf_second": 4,
-   "nmf_second_share": 0.19,
-   "louvain": "Liberal order, religion & the state"
+   "nmf_top_share": 0.53,
+   "nmf_second": 5,
+   "nmf_second_share": 0.14,
+   "louvain": "Valverde · Berger · McKay"
   },
   "Many Tender Ties": {
    "title": "Many Tender Ties: Women in Fur-Trade Society, 1670-1870",
    "first_author": "Van Kirk, Sylvia",
-   "citing": 82,
-   "entropy": 0.136,
-   "nmf_top": 4,
-   "nmf_top_share": 0.91,
+   "citing": 83,
+   "entropy": 0.192,
+   "nmf_top": 5,
+   "nmf_top_share": 0.83,
    "nmf_second": 1,
-   "nmf_second_share": 0.05,
-   "louvain": "Perry · Van Kirk · Deloria"
+   "nmf_second_share": 0.11,
+   "louvain": "New France, early modern empire & the Atlantic"
   },
   "Colonizing Bodies": {
-   "title": "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-50",
+   "title": "Colonizing Bodies: Aboriginal Health and Healing in British Columbia, 1900-1950",
    "first_author": "Kelm, Mary-Ellen",
-   "citing": 53,
-   "entropy": 0.264,
-   "nmf_top": 4,
-   "nmf_top_share": 0.61,
+   "citing": 54,
+   "entropy": 0.249,
+   "nmf_top": 5,
+   "nmf_top_share": 0.53,
    "nmf_second": 1,
-   "nmf_second_share": 0.37,
-   "louvain": "Perry · Van Kirk · Deloria"
+   "nmf_second_share": 0.44,
+   "louvain": "New France, early modern empire & the Atlantic"
   }
  },
  "bridges_top30": [
   {
-   "title": "Marxism and Literature",
-   "first_author": "Williams, Raymond",
-   "citing": 39,
-   "entropy": 0.849,
-   "nmf_top": 0,
-   "nmf_top_share": 0.16,
-   "nmf_second": 7,
-   "nmf_second_share": 0.13,
-   "louvain": "Empire, colonialism & postcolonial theory"
-  },
-  {
-   "title": "Keywords: A Vocabulary of Culture and Society",
-   "first_author": "Williams, Raymond",
-   "citing": 38,
-   "entropy": 0.814,
-   "nmf_top": 8,
-   "nmf_top_share": 0.19,
-   "nmf_second": 10,
-   "nmf_second_share": 0.14,
-   "louvain": "Berger · Vance · Owram"
-  },
-  {
-   "title": "The Interpretation of Cultures: Selected Essays",
+   "title": "The Interpretation of Cultures",
    "first_author": "Geertz, Clifford",
-   "citing": 129,
-   "entropy": 0.807,
-   "nmf_top": 12,
-   "nmf_top_share": 0.22,
-   "nmf_second": 10,
-   "nmf_second_share": 0.21,
-   "louvain": "Geertz · Kantorowicz · Elias"
-  },
-  {
-   "title": "Eyewitnessing: The Uses of Images as Historical Evidence",
-   "first_author": "Burke, Peter",
-   "citing": 40,
-   "entropy": 0.793,
-   "nmf_top": 3,
-   "nmf_top_share": 0.18,
-   "nmf_second": 0,
-   "nmf_second_share": 0.18,
-   "louvain": "Bourdieu · Foucault · Habermas"
-  },
-  {
-   "title": "That Noble Dream: The “Objectivity Question” and the American Historical Profession",
-   "first_author": "Novick, Peter",
-   "citing": 45,
-   "entropy": 0.76,
-   "nmf_top": 17,
-   "nmf_top_share": 0.24,
-   "nmf_second": 7,
-   "nmf_second_share": 0.15,
-   "louvain": "Liberal order, religion & the state"
-  },
-  {
-   "title": "The Practice of Everyday Life",
-   "first_author": "CERTEAU, Michel de",
-   "citing": 47,
-   "entropy": 0.752,
-   "nmf_top": 0,
-   "nmf_top_share": 0.28,
-   "nmf_second": 2,
-   "nmf_second_share": 0.22,
-   "louvain": "Cohen · Sugrue · Lefebvre"
-  },
-  {
-   "title": "The Tourist Gaze: Leisure and Travel in Contemporary Societies",
-   "first_author": "John Urry",
-   "citing": 40,
-   "entropy": 0.75,
-   "nmf_top": 8,
-   "nmf_top_share": 0.33,
-   "nmf_second": 2,
-   "nmf_second_share": 0.13,
-   "louvain": "Scott · Cronon"
-  },
-  {
-   "title": "The Social Life of Things: Commodities in Cultural Perspective",
-   "first_author": "Appadurai, Arjun",
-   "citing": 52,
-   "entropy": 0.743,
-   "nmf_top": 3,
-   "nmf_top_share": 0.24,
-   "nmf_second": 12,
-   "nmf_second_share": 0.2,
+   "citing": 163,
+   "entropy": 0.827,
+   "nmf_top": 16,
+   "nmf_top_share": 0.2,
+   "nmf_second": 24,
+   "nmf_second_share": 0.08,
    "louvain": "unclustered"
   },
   {
-   "title": "The End of History and the Last Man",
-   "first_author": "Fukuyama, Francis",
-   "citing": 40,
-   "entropy": 0.729,
-   "nmf_top": 3,
-   "nmf_top_share": 0.27,
-   "nmf_second": 11,
-   "nmf_second_share": 0.19,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Protestant Ethic and the Spirit of Capitalism",
-   "first_author": "Weber, Max",
-   "citing": 45,
-   "entropy": 0.728,
-   "nmf_top": 14,
-   "nmf_top_share": 0.28,
-   "nmf_second": 0,
-   "nmf_second_share": 0.24,
-   "louvain": "Weber · Mann · Parker"
-  },
-  {
-   "title": "Selections from the Prison Notebooks of Antonio Gramsci",
-   "first_author": "Gramsci, Antonio",
-   "citing": 63,
-   "entropy": 0.724,
-   "nmf_top": 1,
-   "nmf_top_share": 0.25,
-   "nmf_second": 2,
-   "nmf_second_share": 0.23,
-   "louvain": "Liberal order, religion & the state"
-  },
-  {
-   "title": "The Theory of the Leisure Class",
-   "first_author": "Veblen, Thorstein",
-   "citing": 43,
-   "entropy": 0.72,
-   "nmf_top": 0,
-   "nmf_top_share": 0.23,
-   "nmf_second": 12,
-   "nmf_second_share": 0.19,
-   "louvain": "Geertz · Kantorowicz · Elias"
-  },
-  {
-   "title": "Primitive Rebels: Studies in Archaic Forms of Social Movement in the 19th and 20th Centuries",
-   "first_author": "Hobsbawm, Eric",
-   "citing": 34,
-   "entropy": 0.715,
-   "nmf_top": 10,
-   "nmf_top_share": 0.3,
-   "nmf_second": 7,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Silencing the Past: Power and the Production of History",
-   "first_author": "Trouillot, Michel-Rolph",
-   "citing": 126,
-   "entropy": 0.711,
+   "title": "The Logic of Practice",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 39,
+   "entropy": 0.802,
    "nmf_top": 2,
-   "nmf_top_share": 0.25,
-   "nmf_second": 6,
-   "nmf_second_share": 0.24,
-   "louvain": "Trouillot · Colley · Gilroy"
-  },
-  {
-   "title": "The Mismeasure of Man",
-   "first_author": "Gould, Stephen Jay",
-   "citing": 32,
-   "entropy": 0.71,
-   "nmf_top": 7,
-   "nmf_top_share": 0.22,
-   "nmf_second": 2,
-   "nmf_second_share": 0.21,
-   "louvain": "Empire, colonialism & postcolonial theory"
-  },
-  {
-   "title": "Meaning and Understanding in the History of Ideas",
-   "first_author": "Skinner, Quentin",
-   "citing": 30,
-   "entropy": 0.71,
-   "nmf_top": 0,
-   "nmf_top_share": 0.23,
-   "nmf_second": 3,
-   "nmf_second_share": 0.16,
-   "louvain": "Bourdieu · Foucault · Habermas"
+   "nmf_top_share": 0.18,
+   "nmf_second": 18,
+   "nmf_second_share": 0.11,
+   "louvain": "Bourdieu · Foucault · White"
   },
   {
    "title": "Beyond ‘Identity.’",
    "first_author": "Brubaker, Rogers",
-   "citing": 39,
-   "entropy": 0.709,
-   "nmf_top": 10,
-   "nmf_top_share": 0.3,
-   "nmf_second": 15,
-   "nmf_second_share": 0.19,
-   "louvain": "Anderson · Hobsbawm"
+   "citing": 51,
+   "entropy": 0.777,
+   "nmf_top": 16,
+   "nmf_top_share": 0.2,
+   "nmf_second": 22,
+   "nmf_second_share": 0.15,
+   "louvain": "Anderson · Hobsbawm · Gellner"
   },
   {
-   "title": "The Structure of Scientific Revolutions",
-   "first_author": "Kuhn, Thomas S",
-   "citing": 75,
-   "entropy": 0.708,
-   "nmf_top": 8,
-   "nmf_top_share": 0.25,
-   "nmf_second": 16,
-   "nmf_second_share": 0.21,
-   "louvain": "Kuhn · Latour · Foucault"
+   "title": "Eyewitnessing: The Uses of Images as Historical Evidence",
+   "first_author": "Burke, Peter",
+   "citing": 42,
+   "entropy": 0.765,
+   "nmf_top": 18,
+   "nmf_top_share": 0.14,
+   "nmf_second": 4,
+   "nmf_second_share": 0.13,
+   "louvain": "Halbwachs · Lowenthal · Carr"
   },
   {
-   "title": "Capital: A Critique of Political Economy",
-   "first_author": "Marx, Karl",
-   "citing": 81,
-   "entropy": 0.706,
+   "title": "The Practice of Everyday Life",
+   "first_author": "CERTEAU, Michel de",
+   "citing": 54,
+   "entropy": 0.763,
+   "nmf_top": 0,
+   "nmf_top_share": 0.14,
+   "nmf_second": 10,
+   "nmf_second_share": 0.12,
+   "louvain": "Scott · Cronon · Lefebvre"
+  },
+  {
+   "title": "The Practice of Everyday Life",
+   "first_author": "CERTEAU, Michel de",
+   "citing": 63,
+   "entropy": 0.75,
    "nmf_top": 2,
-   "nmf_top_share": 0.27,
+   "nmf_top_share": 0.29,
+   "nmf_second": 7,
+   "nmf_second_share": 0.12,
+   "louvain": "Scott · Cronon · Lefebvre"
+  },
+  {
+   "title": "Outline of a Theory of Practice",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 75,
+   "entropy": 0.745,
+   "nmf_top": 16,
+   "nmf_top_share": 0.14,
+   "nmf_second": 7,
+   "nmf_second_share": 0.13,
+   "louvain": "Bourdieu · Foucault · White"
+  },
+  {
+   "title": "The Protestant Ethic and the Spirit of Capitalism",
+   "first_author": "Weber, Max",
+   "citing": 65,
+   "entropy": 0.743,
+   "nmf_top": 3,
+   "nmf_top_share": 0.16,
    "nmf_second": 8,
-   "nmf_second_share": 0.19,
+   "nmf_second_share": 0.14,
+   "louvain": "Appadurai · Elias · Thomas"
+  },
+  {
+   "title": "Rethinking the Public Sphere: A Contribution to the Critique of Actually Existing Democracy",
+   "first_author": "Fraser, Nancy",
+   "citing": 34,
+   "entropy": 0.737,
+   "nmf_top": 2,
+   "nmf_top_share": 0.17,
+   "nmf_second": 20,
+   "nmf_second_share": 0.13,
    "louvain": "Empire, colonialism & postcolonial theory"
   },
   {
-   "title": "The Culture of Time and Space, 1880-1918",
-   "first_author": "Kern, Stephen",
-   "citing": 31,
-   "entropy": 0.704,
-   "nmf_top": 2,
-   "nmf_top_share": 0.21,
-   "nmf_second": 8,
+   "title": "Ways of Seeing",
+   "first_author": "Berger, John",
+   "citing": 30,
+   "entropy": 0.737,
+   "nmf_top": 26,
+   "nmf_top_share": 0.19,
+   "nmf_second": 1,
    "nmf_second_share": 0.17,
-   "louvain": "Scott · Cronon"
+   "louvain": "Halbwachs · Lowenthal · Carr"
   },
   {
-   "title": "Mystic Chords of Memory: The Transformation of Tradition in American Culture",
-   "first_author": "Kammen, Michael",
-   "citing": 39,
-   "entropy": 0.697,
-   "nmf_top": 10,
-   "nmf_top_share": 0.25,
-   "nmf_second": 7,
-   "nmf_second_share": 0.19,
-   "louvain": "Halbwachs · Lowenthal · Connerton"
+   "title": "The Sources of Social Power",
+   "first_author": "Mann, Michael",
+   "citing": 36,
+   "entropy": 0.73,
+   "nmf_top": 24,
+   "nmf_top_share": 0.17,
+   "nmf_second": 21,
+   "nmf_second_share": 0.14,
+   "louvain": "Parker · Mann"
   },
   {
-   "title": "Homo Sacer: Sovereign Power and Bare Life",
-   "first_author": "AGAMBEN, Giorgio",
-   "citing": 41,
-   "entropy": 0.696,
-   "nmf_top": 0,
-   "nmf_top_share": 0.31,
-   "nmf_second": 16,
-   "nmf_second_share": 0.17,
-   "louvain": "Foucault"
-  },
-  {
-   "title": "Futures Past: On the Semantics of Historical Time",
-   "first_author": "Koselleck, Reinhart",
-   "citing": 46,
-   "entropy": 0.687,
-   "nmf_top": 17,
-   "nmf_top_share": 0.32,
-   "nmf_second": 2,
-   "nmf_second_share": 0.17,
-   "louvain": "Koselleck · Carr · Collingwood"
-  },
-  {
-   "title": "The Liberal Tradition in America",
-   "first_author": "Hartz, Louis",
-   "citing": 33,
-   "entropy": 0.683,
-   "nmf_top": 5,
-   "nmf_top_share": 0.34,
-   "nmf_second": 7,
+   "title": "The Great Cat Massacre and Other Episodes in French Cultural History",
+   "first_author": "Darnton, Robert",
+   "citing": 40,
+   "entropy": 0.73,
+   "nmf_top": 8,
+   "nmf_top_share": 0.24,
+   "nmf_second": 18,
    "nmf_second_share": 0.16,
-   "louvain": "Foner · Genovese · Blight"
+   "louvain": "unclustered"
   },
   {
-   "title": "Domination and the Arts of Resistance: Hidden Transcripts",
-   "first_author": "Scott, James C",
-   "citing": 99,
-   "entropy": 0.681,
-   "nmf_top": 0,
-   "nmf_top_share": 0.28,
-   "nmf_second": 2,
-   "nmf_second_share": 0.26,
+   "title": "Understanding Media: The Extensions of Man",
+   "first_author": "McLuhan, Marshall",
+   "citing": 45,
+   "entropy": 0.723,
+   "nmf_top": 16,
+   "nmf_top_share": 0.23,
+   "nmf_second": 1,
+   "nmf_second_share": 0.17,
    "louvain": "unclustered"
   },
   {
    "title": "The Cheese and the Worms: The Cosmos of a Sixteenth-Century Miller",
    "first_author": "Ginzburg, Carlo",
-   "citing": 42,
-   "entropy": 0.679,
-   "nmf_top": 0,
-   "nmf_top_share": 0.33,
-   "nmf_second": 12,
-   "nmf_second_share": 0.18,
-   "louvain": "Geertz · Kantorowicz · Elias"
-  },
-  {
-   "title": "Understanding Media: The Extensions of Man",
-   "first_author": "McLuhan, Marshall",
-   "citing": 40,
-   "entropy": 0.672,
-   "nmf_top": 10,
-   "nmf_top_share": 0.27,
-   "nmf_second": 1,
-   "nmf_second_share": 0.21,
+   "citing": 59,
+   "entropy": 0.72,
+   "nmf_top": 8,
+   "nmf_top_share": 0.23,
+   "nmf_second": 2,
+   "nmf_second_share": 0.15,
    "louvain": "unclustered"
   },
   {
-   "title": "Two Treatises of Government",
-   "first_author": "Locke, John",
-   "citing": 33,
-   "entropy": 0.671,
+   "title": "Domination and the Arts of Resistance: Hidden Transcripts",
+   "first_author": "Scott, James C",
+   "citing": 134,
+   "entropy": 0.718,
    "nmf_top": 0,
-   "nmf_top_share": 0.29,
-   "nmf_second": 6,
-   "nmf_second_share": 0.21,
-   "louvain": "Foner · Genovese · Blight"
+   "nmf_top_share": 0.23,
+   "nmf_second": 20,
+   "nmf_second_share": 0.16,
+   "louvain": "Scott · Foner · Genovese"
+  },
+  {
+   "title": "Space and Place: The Perspective of Experience",
+   "first_author": "Tuan, Yi-Fu",
+   "citing": 42,
+   "entropy": 0.712,
+   "nmf_top": 16,
+   "nmf_top_share": 0.19,
+   "nmf_second": 10,
+   "nmf_second_share": 0.16,
+   "louvain": "Scott · Cronon · Lefebvre"
+  },
+  {
+   "title": "The Forms of Capital",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 38,
+   "entropy": 0.706,
+   "nmf_top": 2,
+   "nmf_top_share": 0.3,
+   "nmf_second": 24,
+   "nmf_second_share": 0.14,
+   "louvain": "Bourdieu · Foucault · White"
+  },
+  {
+   "title": "That Noble Dream: The “Objectivity Question” and the American Historical Profession",
+   "first_author": "Novick, Peter",
+   "citing": 57,
+   "entropy": 0.703,
+   "nmf_top": 26,
+   "nmf_top_share": 0.27,
+   "nmf_second": 12,
+   "nmf_second_share": 0.15,
+   "louvain": "Halbwachs · Lowenthal · Carr"
+  },
+  {
+   "title": "The Theory of Communicative Action",
+   "first_author": "Habermas, Jürgen",
+   "citing": 31,
+   "entropy": 0.697,
+   "nmf_top": 16,
+   "nmf_top_share": 0.14,
+   "nmf_second": 2,
+   "nmf_second_share": 0.14,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Marxism and Literature",
+   "first_author": "Williams, Raymond",
+   "citing": 47,
+   "entropy": 0.697,
+   "nmf_top": 2,
+   "nmf_top_share": 0.38,
+   "nmf_second": 27,
+   "nmf_second_share": 0.09,
+   "louvain": "Kuhn · Latour · Foucault"
+  },
+  {
+   "title": "Bowling Alone: The Collapse and Revival of American Community",
+   "first_author": "Putnam, Robert D",
+   "citing": 32,
+   "entropy": 0.695,
+   "nmf_top": 2,
+   "nmf_top_share": 0.3,
+   "nmf_second": 9,
+   "nmf_second_share": 0.19,
+   "louvain": "Foucault · Butler · Scott"
+  },
+  {
+   "title": "Keywords: A Vocabulary of Culture and Society",
+   "first_author": "Williams, Raymond",
+   "citing": 62,
+   "entropy": 0.695,
+   "nmf_top": 2,
+   "nmf_top_share": 0.22,
+   "nmf_second": 16,
+   "nmf_second_share": 0.16,
+   "louvain": "Thompson · Scott · Davidoff"
+  },
+  {
+   "title": "Freedom Dreams: The Black Radical Imagination",
+   "first_author": "Kelley, Robin D. G",
+   "citing": 37,
+   "entropy": 0.694,
+   "nmf_top": 12,
+   "nmf_top_share": 0.14,
+   "nmf_second": 0,
+   "nmf_second_share": 0.13,
+   "louvain": "Cohen · Sugrue · McGirr"
+  },
+  {
+   "title": "Sources of the Self: The Making of the Modern Identity",
+   "first_author": "Taylor, Charles",
+   "citing": 43,
+   "entropy": 0.689,
+   "nmf_top": 18,
+   "nmf_top_share": 0.23,
+   "nmf_second": 3,
+   "nmf_second_share": 0.15,
+   "louvain": "Empire, colonialism & postcolonial theory"
+  },
+  {
+   "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
+   "first_author": "Foucault, Michel",
+   "citing": 79,
+   "entropy": 0.685,
+   "nmf_top": 18,
+   "nmf_top_share": 0.33,
+   "nmf_second": 0,
+   "nmf_second_share": 0.1,
+   "louvain": "unclustered"
   },
   {
    "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
    "first_author": "Scott, James C",
-   "citing": 104,
-   "entropy": 0.67,
-   "nmf_top": 2,
-   "nmf_top_share": 0.3,
+   "citing": 134,
+   "entropy": 0.683,
+   "nmf_top": 20,
+   "nmf_top_share": 0.27,
    "nmf_second": 0,
-   "nmf_second_share": 0.21,
+   "nmf_second_share": 0.23,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "How to Do Things with Words",
+   "first_author": "Austin, J. L",
+   "citing": 34,
+   "entropy": 0.681,
+   "nmf_top": 13,
+   "nmf_top_share": 0.27,
+   "nmf_second": 27,
+   "nmf_second_share": 0.14,
    "louvain": "Empire, colonialism & postcolonial theory"
   },
   {
-   "title": "State of Exception",
-   "first_author": "AGAMBEN, Giorgio",
-   "citing": 30,
-   "entropy": 0.668,
-   "nmf_top": 2,
-   "nmf_top_share": 0.33,
-   "nmf_second": 0,
-   "nmf_second_share": 0.23,
-   "louvain": "Foucault"
+   "title": "The Tourist Gaze: Leisure and Travel in Contemporary Societies",
+   "first_author": "Urry, John",
+   "citing": 44,
+   "entropy": 0.68,
+   "nmf_top": 10,
+   "nmf_top_share": 0.31,
+   "nmf_second": 16,
+   "nmf_second_share": 0.12,
+   "louvain": "Scott · Cronon · Lefebvre"
+  },
+  {
+   "title": "On Violence",
+   "first_author": "Arendt, Hannah",
+   "citing": 32,
+   "entropy": 0.679,
+   "nmf_top": 0,
+   "nmf_top_share": 0.22,
+   "nmf_second": 18,
+   "nmf_second_share": 0.15,
+   "louvain": "Fanon · Weber"
+  },
+  {
+   "title": "Orality and Literacy: The Technologizing of the Word",
+   "first_author": "Ong, Walter J",
+   "citing": 35,
+   "entropy": 0.678,
+   "nmf_top": 8,
+   "nmf_top_share": 0.19,
+   "nmf_second": 13,
+   "nmf_second_share": 0.17,
+   "louvain": "Kuhn · Latour · Foucault"
   }
  ]
 }

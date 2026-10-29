@@ -42,6 +42,7 @@ from collections import Counter, defaultdict
 from datetime import datetime
 import csv
 import difflib
+import gzip
 import json
 import os
 from pathlib import Path
@@ -760,6 +761,19 @@ def main():
         wr.writerow(['person_key', 'name', 'cited_by_dissertations', 'cited_by_all', 'roles', 'qid', 'qid_basis', 'atlas_person_candidate'] + country_heads)
         for n in sorted((n for n in nodes.values() if n['type'] == 'Person'), key=lambda n: (-n['cited_by_dissertations'], -n['cited_by_all'])):
             wr.writerow([n['key'], n['name'], n['cited_by_dissertations'], n['cited_by_all'], json.dumps(n['roles']), n.get('qid', ''), n.get('qid_basis', ''), n.get('atlas_person_candidate', '')] + country_cols(n))
+    # Per-dissertation links for weighted shares (render_country_comparison.py): strict PhDs only.
+    with gzip.open(out / 'strict-citations.csv.gz', 'wt', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['dissertation_id', 'work_id'])
+        for wid, w in works.items():
+            for d in sorted(w['citing'] & strict):
+                wr.writerow([d, wid])
+    with gzip.open(out / 'authored.csv.gz', 'wt', newline='') as f:
+        wr = csv.writer(f)
+        wr.writerow(['person_key', 'work_id'])
+        for e in edges:
+            if e['type'] == 'AUTHORED':
+                wr.writerow([e['source'][2:], e['target']])
     with (out / 'dissertations.csv').open('w', newline='') as f:
         wr = csv.writer(f)
         wr.writerow(['id', 'institution', 'eligibility', 'scope_status', 'year', 'year_source', 'author', 'title', 'extraction_status', 'bibliography_entries', 'cited_works_in_graph', 'graph_excluded', 'in_analysis', 'country', 'subgraph'])

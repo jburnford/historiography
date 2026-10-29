@@ -273,8 +273,9 @@ def main():
     supervision = dict(
         dissertations=len(diss), with_supervisor=len(supervised), cite_supervisor=sum(cited_sup.values()),
         supervisors=len(sups), supervisors_3plus=len(multi),
-        pooled_student_share=round(sum(r['students_citing'] for r in multi) / sum(r['students'] for r in multi), 3),
-        mean_peer_share=round(sum(r['peer_share'] for r in multi) / len(multi), 3),
+        # None when no supervisor has 3+ students (e.g. the UK records, which carry no supervisor names).
+        pooled_student_share=round(sum(r['students_citing'] for r in multi) / sum(r['students'] for r in multi), 3) if multi else None,
+        mean_peer_share=round(sum(r['peer_share'] for r in multi) / len(multi), 3) if multi else None,
         never_cited=sum(r['students_citing'] == 0 for r in multi),
         by_institution=sorted(([i, v[0], round(v[1] / v[0], 3)] for i, v in by_inst.items() if v[0] >= 10), key=lambda r: -r[2]),
         by_period=[[p, by_period[p][0], round(by_period[p][1] / by_period[p][0], 3)] for p in

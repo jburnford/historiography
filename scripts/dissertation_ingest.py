@@ -167,7 +167,11 @@ class Store:
             rel = real.relative_to(self.root)
         except ValueError:
             return 'outside_pdf_store', dict(path=str(path))
-        if len(rel.parts) < 2:
+        # The top level is the user's browser download folder, personal files included. Take
+        # only files a download log registered with a SHA-256 after validation (manual-uc,
+        # manual-johnshopkins), and only while the file still has that hash.
+        top_level = len(rel.parts) < 2
+        if top_level and not declared_sha:
             return 'top_level_file_ignored', dict(path=str(path))
         if not real.exists():
             return 'missing_file', dict(path=str(path))
@@ -178,6 +182,8 @@ class Store:
             return 'still_downloading', dict(path=str(path))
         if declared_bytes and int(declared_bytes) != st.st_size:
             return 'size_mismatch', dict(path=str(path), bytes=st.st_size, declared=declared_bytes)
+        if top_level and self.sha256(real, st) != declared_sha:
+            return 'top_level_sha_mismatch', dict(path=str(path))
         sha = declared_sha or self.sha256(real, st)
         return 'ok', dict(rel=str(rel), bytes=st.st_size, sha256=sha)
 
@@ -469,7 +475,70 @@ def adapter_japan_records(src, d):
         yield candidate(entry, [files[k]])
 
 
+def adapter_uk_openaire(src, d):
+    """UK doctorates from the OpenAIRE/UK-repository collector
+    (data/field-research/openaire-uk-downloads-2026-10-26). The collector's own rule decides which
+    records are verified UK doctorates (``unique_doctorates`` after re-checking saved repository
+    metadata, as its supervisor does; read-only here). ``uk_dissertation_scope.classify`` then
+    screens for History from the department, LC subject classes, school community or title.
+    Several PDFs of one record are its volumes, in the collector's order."""
+    from collections import defaultdict
+    from download_openaire_export import unique_doctorates, verification
+    from uk_dissertation_scope import classify
+    out = resolve(src['root'], d)
+    storage = Path(src['storage'])
+    rows, origin = {}, {}
+    for folder in src['folders']:
+        for r in read_jsonl(out / folder / 'downloads.jsonl'):
+            if r.get('id'):
+                rows[r['id']] = r
+                origin[r['id']] = folder
+    for row in rows.values():
+        prior = row.get('degree_verification', {})
+        if (row.get('status') in {'downloaded', 'already_held'} and prior.get('status') != 'verified_uk_doctoral'
+                and row.get('repository_metadata')):
+            checked = verification({'Title': row['title']}, row['repository_metadata'])
+            if checked['status'] == 'verified_uk_doctoral':
+                row['degree_verification'] = checked
+    discovery = {}
+    for folder in src['folders']:
+        path = out / f'{folder}-history-candidates.csv'
+        if folder and path.exists():
+            with open(path, newline='', encoding='utf-8') as fh:
+                for c in csv.DictReader(fh):
+                    discovery[(folder, fold(c.get('Title') or ''))] = c.get('Discovery subjects') or ''
+    for row in unique_doctorates(rows.values()):
+        fields = defaultdict(list)
+        for page in row.get('repository_metadata', []):
+            for k, v in page.get('fields', {}).items():
+                fields[k].extend(v)
+        folder = origin[row['id']]
+        title = (next(iter(fields['citation_title']), None) or row['title']).strip()
+        authors = fields['citation_author'] or [a.strip() for a in (row.get('authors') or '').split(';') if a.strip()]
+        awarding = row['degree_verification']['awarding_institution'] or ['unknown']
+        inst = re.sub(r'^university of |^the university of | university$', '', awarding[0].casefold().strip())
+        inst = 'uk:' + re.sub(r'[^a-z0-9]+', '-', inst).strip('-')
+        scope, basis = classify(row['title'], fields['department'], discovery.get((folder, fold(row['title'])), ''), folder)
+        m = re.match(r'(\d{4})', str(row.get('publication_year') or ''))
+        year = m.group(1) if m else None
+        entry = dict(institution=inst, id=row['id'], title=title, authors=authors, advisors=[],
+                     issued_dates=[year] if year else [], graduation_dates=[], copyright_dates=[],
+                     history_scope=scope, language=fields['dc.language'][:1],
+                     item_url=row.get('landing_url') or next(iter(row.get('candidate_links') or []), ''),
+                     source_harvest=str(out.relative_to(ROOT)) if out.is_relative_to(ROOT) else str(out),
+                     country='GB', eligibility_basis=f"UK doctorate verified by the collector ({row['degree_verification'].get('evidence', '')}); {basis}",
+                     access_category='open_pdf', year=int(year) if year else None,
+                     degree=row['degree_verification'].get('doctoral_degree', [])[:1], awarding_institution=awarding[0])
+        files = row.get('files') or []
+        multi = len(files) > 1
+        yield candidate(entry, [file_spec(storage / f['path'] if not Path(f['path']).is_absolute() else Path(f['path']),
+                                          f.get('bytes'), f.get('sha256'), i + 1 if multi else None,
+                                          Path(f['path']).name, row.get('checked_at'))
+                                for i, f in enumerate(files)])
+
+
 ADAPTERS = {
+    'uk_openaire': adapter_uk_openaire,
     'canadian_harvest': adapter_canadian_harvest,
     'us_records': adapter_us_records,
     'us_expansion_manifest': adapter_us_expansion_manifest,

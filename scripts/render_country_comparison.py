@@ -12,6 +12,12 @@ self-contained HTML page (inline SVG, no external assets) to
 Shares are per country: the percentage of that country's strict History PhDs that cite the work
 or person. Works are the graph's resolved work nodes; a few title variants stay unmerged, so
 counts are slight undercounts.
+
+When the second country is the US, a like-for-like section compares both countries' PhDs from
+2010 on, with the US weighted by programme against the AHA directory
+(``dissertation_weights.py``), plus a per-decade coverage table. It needs per-dissertation
+citation links (``strict-citations.csv.gz`` from the builder, else the newest public release)
+and is skipped with a warning if those links do not reproduce ``works.csv``.
 """
 import argparse
 import csv
@@ -21,10 +27,12 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
+import dissertation_weights as dw
+
 ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
-NAMES = {'CA': 'Canada', 'US': 'United States'}
-PROSE = {'US': 'the United States'}
+NAMES = {'CA': 'Canada', 'US': 'United States', 'GB': 'United Kingdom'}
+PROSE = {'US': 'the United States', 'GB': 'the United Kingdom'}
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)
 
 
@@ -73,7 +81,7 @@ def dumbbell(items, a, b, na, nb, title_id):
                    f'<text class="tick" x="{x(t):.1f}" y="{h - 10}" text-anchor="middle">{t}%</text>')
     for k, i in enumerate(items):
         y = top + row_h * k + row_h / 2
-        tip = (f"{i['label']}|{na}: {i['ka']} PhDs ({i['sa']:.1f}%)|{nb}: {i['kb']} PhDs ({i['sb']:.1f}%)")
+        tip = i.get('tip') or (f"{i['label']}|{na}: {i['ka']} PhDs ({i['sa']:.1f}%)|{nb}: {i['kb']} PhDs ({i['sb']:.1f}%)")
         out.append(f'<g class="row" data-tip="{esc(tip)}">'
                    f'<rect class="hit" x="0" y="{y - row_h / 2:.1f}" width="{width}" height="{row_h}"/>'
                    f'<text class="lab" x="{left - 10}" y="{y + 4:.1f}" text-anchor="end">{esc(i["label"])}</text>'
@@ -90,6 +98,97 @@ def table(items, na, nb, cols=('label',), extra=None):
     body = ''.join(f'<tr><td>{esc(i["label"])}</td><td class="num">{i["ka"]}</td><td class="num">{i["sa"]:.1f}</td>'
                    f'<td class="num">{i["kb"]}</td><td class="num">{i["sb"]:.1f}</td></tr>' for i in items)
     return f'<table><thead>{head}</thead><tbody>{body}</tbody></table>'
+
+
+def weighted_section(a, b, na, nb, works, people, top):
+    """Like-for-like comparison from dw.SINCE: country a unweighted, US weighted by programme."""
+    citations, authorship = dw.citation_files()
+    if not citations:
+        print('weighted section skipped: no per-dissertation citation links')
+        return []
+    rows_a, rows_b = dw.strict_rows(a), dw.strict_rows(b)
+    aha = dw.load_aha()
+    w, rep = dw.weights(rows_b, aha)
+    win_a = {d for d, _, y in rows_a if y and y >= dw.SINCE}
+    all_b = {d for d, _, _ in rows_b}
+    by_work, by_person = dw.citing_sets(win_a | all_b, citations, authorship)
+    # The links must reproduce works.csv's US counts, or they come from another build.
+    stale = [r['work_id'] for r in sorted(works, key=lambda r: -r['kb'])[:50]
+             if len(by_work.get(r['work_id'], set()) & all_b) != r['kb']]
+    if stale:
+        print(f'weighted section skipped: {citations} does not match works.csv ({len(stale)} of the top 50 US works differ)')
+        return []
+    n_a, n_b = len(win_a), len(w)
+
+    def shares(r, citing):
+        ca, us = citing & win_a, citing & w.keys()
+        sa, sraw = 100 * len(ca) / n_a, 100 * len(us) / n_b
+        sb = 100 * sum(w[d] for d in us) / n_b
+        return dict(r, ka=len(ca), kb=len(us), sa=sa, sb=sb, sraw=sraw,
+                    tip=f"{r['label']}|{na} {dw.SINCE}–: {len(ca)} PhDs ({sa:.1f}%)|"
+                        f"{nb} {dw.SINCE}–, weighted: {sb:.1f}% (unweighted {len(us)} PhDs, {sraw:.1f}%)")
+
+    wworks = [shares(r, by_work.get(r['work_id'], set())) for r in works]
+    wpeople = [shares(r, by_person.get(r['person_key'], set())) for r in people]
+    canon = sorted(wworks, key=lambda r: -(r['sa'] + r['sb']))[:top]
+    canon_people = sorted(wpeople, key=lambda r: -(r['sa'] + r['sb']))[:top]
+    movers = sorted((r for r in wworks if r['kb'] >= 25), key=lambda r: -abs(r['sb'] - r['sraw']))[:15]
+
+    def wtable(items):
+        head = (f'<tr><th>Work or person</th><th class="num">{esc(na)} PhDs</th><th class="num">{esc(na)} %</th>'
+                f'<th class="num">{esc(nb)} PhDs</th><th class="num">{esc(nb)} % unweighted</th>'
+                f'<th class="num">{esc(nb)} % weighted</th></tr>')
+        body = ''.join(f'<tr><td>{esc(i["label"])}</td><td class="num">{i["ka"]}</td><td class="num">{i["sa"]:.1f}</td>'
+                       f'<td class="num">{i["kb"]}</td><td class="num">{i["sraw"]:.1f}</td><td class="num">{i["sb"]:.1f}</td></tr>'
+                       for i in items)
+        return f'<table><thead>{head}</thead><tbody>{body}</tbody></table>'
+
+    decades = dw.decade_coverage(rows_b, aha)
+    dec_rows = ''.join(
+        f'<tr><td>{"before 1960" if c["period"] < 1960 else str(c["period"]) + "s"}</td><td class="num">{c["n"]:,}</td><td class="num">{c["institutions"]}</td>'
+        f'<td class="num">{c["aha"]:,}</td><td class="num">{100 * c["aha_covered"]:.0f}%</td>'
+        f'<td>{esc(c["top"])} ({100 * c["top_share"]:.0f}%)</td>'
+        f'<td>{"weighted" if c["period"] >= dw.SINCE else "too thin to weight"}</td></tr>' for c in decades)
+    cov = dw.coverage({s for _, s, _ in rows_b}, since=dw.SINCE, aha=aha)
+    def university(dept):  # 'Univ. of California, Los Angeles, Meyer and Renee Luskin Dept. of History' -> 'Univ. of California, Los Angeles'
+        keep = []
+        for part in dept.split(', '):
+            if any(k in part for k in ('Dept', 'Program', 'History')):
+                break
+            keep.append(part)
+        return ', '.join(keep) or dept
+    missing = '; '.join(f'{university(n)} ({k})' for n, k in cov['missing_top'])
+    print(f"weighted section: {n_a} {a} and {n_b} {b} PhDs from {dw.SINCE}; effective {b} n {rep['n_eff']:.0f}")
+    return [f'<h2 id="t-weighted">Like for like, {dw.SINCE}–: {na} and {PROSE.get(b, nb)} weighted by programme</h2>',
+            f'<p class="note">The {nb} corpus over-represents universities with open repositories. Here both countries are '
+            f'limited to PhDs from {dw.SINCE} on, and each {nb} PhD is weighted so that institutions count in proportion to '
+            f'their completed History PhDs in the AHA directory, decade by decade (<code>scripts/dissertation_weights.py</code>). '
+            f'{nb}: {n_b:,} PhDs at {rep["institutions"]} institutions, effective sample about {rep["n_eff"]:,.0f}. '
+            f'{na}: {n_a:,} PhDs, unweighted. Weighting cannot add programmes we hold nothing from: since {dw.SINCE} the institutions held '
+            f'award {100 * cov["share_held"]:.0f}% of US History PhDs, and these top-{cov["top"]} programmes have none: {esc(missing)}.</p>',
+            '<div class="tiles">',
+            f'<div class="tile"><div class="v">{n_a:,}</div><div class="k">{na} PhDs, {dw.SINCE}–</div></div>',
+            f'<div class="tile"><div class="v">{n_b:,}</div><div class="k">{nb} PhDs, {dw.SINCE}–</div></div>',
+            f'<div class="tile"><div class="v">{rep["n_eff"]:,.0f}</div><div class="k">{nb} effective sample after weighting</div></div>',
+            f'<div class="tile"><div class="v">{100 * cov["share_held"]:.0f}%</div><div class="k">of {nb} History PhDs since {dw.SINCE} are at institutions we hold</div></div>',
+            '</div>',
+            f'<h3>Shared canon, {dw.SINCE}–</h3>',
+            dumbbell(canon, a, b, na, nb, 't-weighted'),
+            f'<details><summary>Table view</summary>{wtable(canon)}</details>',
+            f'<h3>Most-cited people, {dw.SINCE}–</h3>',
+            dumbbell(canon_people, a, b, na, nb, 't-weighted'),
+            f'<details><summary>Table view</summary>{wtable(canon_people)}</details>',
+            f'<h3>What weighting changes</h3>',
+            f'<p class="note">{nb} works cited by at least 25 PhDs since {dw.SINCE}, with the largest gap between weighted and unweighted share.</p>',
+            wtable(movers),
+            f'<h3>How far back the {nb} corpus reaches</h3>',
+            f'<p class="note">Per decade: our strict {nb} History PhDs, the institutions they come from, the share of the AHA directory\'s '
+            f'{nb} History PhDs awarded by those institutions in that decade, and the largest single institution. Before {dw.SINCE} '
+            f'one or two universities supply most of each decade, so weighting would magnify them; those decades are not weighted '
+            f'and do not represent {PROSE.get(b, nb)}.</p>',
+            f'<table><thead><tr><th>Decade</th><th class="num">PhDs</th><th class="num">Institutions</th>'
+            f'<th class="num">AHA PhDs (all US)</th><th class="num">AHA output covered</th><th>Largest institution</th>'
+            f'<th>Use</th></tr></thead><tbody>{dec_rows}</tbody></table>']
 
 
 def families(cc):
@@ -228,14 +327,18 @@ def main():
              f'<p class="lede">Bibliographies of strict History PhDs in the dissertation citation graph, compared country by country. '
              f'Shares are the percentage of each country\'s PhDs that cite a work or person. Generated {date.today().isoformat()} '
              f'by <code>scripts/render_country_comparison.py</code>.'
-             + (f' The US sub-graph is <strong>provisional</strong>: it is just under the 2,000-dissertation threshold and '
-                f'Harvard is still being added.' if provisional else '') + '</p>',
+             + (f' The {nb} sub-graph is <strong>provisional</strong>: it is just under the 2,000-dissertation threshold'
+                + {'GB': ' and Edinburgh theses are still being added.', 'US': ' and Harvard is still being added.'}.get(b, '.')
+                if provisional else '') + '</p>',
              '<div class="tiles">',
              f'<div class="tile"><div class="v">{Na:,}</div><div class="k">{na}: strict History PhDs</div></div>',
              f'<div class="tile"><div class="v">{Nb:,}</div><div class="k">{nb}: strict History PhDs</div></div>',
              f'<div class="tile"><div class="v">{both500}</div><div class="k">works in both countries\' top 500</div></div>',
              f'<div class="tile"><div class="v">{len(fa["families"]) if fa else "–"} / {len(fb["families"]) if fb else "–"}</div>'
              f'<div class="k">TF-IDF families ({na} / {nb})</div></div>', '</div>',
+             (f'<p class="note">Shares in the next sections are unweighted and cover all years. The {nb} corpus is mostly '
+              f'2010s and leans to universities with open repositories; for a like-for-like comparison see '
+              f'<a href="#t-weighted">{dw.SINCE}– weighted by programme</a>.</p>' if b == 'US' else ''),
              f'<div class="legend"><span class="l1">{na}</span><span class="l2">{nb}</span></div>',
              f'<h2 id="t-works">The shared canon: most-cited works across both countries</h2>',
              f'<p class="note">Top {args.top} works by combined share. A long bar means one country cites the work far more.</p>',
@@ -249,6 +352,8 @@ def main():
              '<div class="cols">',
              f'<div><h3 class="k1">Mostly {na}</h3>{table(nat_a, na, nb)}</div>',
              f'<div><h3 class="k2">Mostly {nb}</h3>{table(nat_b, na, nb)}</div>', '</div>']
+    if b == 'US':
+        parts += weighted_section(a, b, na, nb, works, people, args.top)
     if fa and fb:
         parts += ['<h2>Families of sources (TF-IDF and NMF)</h2>',
                   '<p class="note">Each family is a group of works that tend to appear together in bibliographies, after '
@@ -275,9 +380,9 @@ def main():
     parts += ['<h2>Notes and limits</h2><ul class="note">',
               '<li>Only strict History PhDs count; non-History and unparsed theses are excluded.</li>',
               '<li>Works are resolved citation records; a few title variants remain unmerged, so counts are slight undercounts.</li>',
-              f'<li>The {nb} corpus is weighted towards universities with open repositories; elite private departments '
-              '(Yale, Chicago, Columbia, Princeton) are scarce. Families cover only theses that cite at least 3 widely cited works, '
-              'which under-represents older theses.</li>',
+              f'<li>The {nb} corpus leans towards universities with open repositories and towards the 2010s; several of the '
+              'largest programmes are missing (see the weighted section). Families cover only theses that cite at least 3 widely '
+              'cited works, which under-represents older theses.</li>',
               '<li>Source data: <code>works.csv</code>, <code>cited-people.csv</code>, <code>dissertations.csv</code> and '
               '<code>summary/countries/&lt;CC&gt;/tfidf-families/</code>.</li></ul>',
               f'<div id="tip"></div><script>{JS}</script></div></body></html>']

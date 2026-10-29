@@ -256,6 +256,50 @@ Their agreement with the Louvain fields is adjusted Rand 0.48 and NMI 0.65. Most
 match a field one to one. The NMF splits out two groups the co-citation fields merge into
 "Theory, empire": nationalism and Central Europe, and South Asian postcolonial history.
 
+## UK first pass (2026-10-28/29)
+
+**Source.** On 2026-10-28 the user's UK collection was ingested through the `uk_openaire` adapter in
+`dissertation_ingest.py`:
+- The collection is `data/field-research/openaire-uk-downloads-2026-10-26/` (an OpenAIRE export, supplemented by DataCite and repository harvests).
+- The adapter reads the collector's `downloads.jsonl` files (read-only) and keeps only the collector's verified UK doctorates.
+- Country is `GB`, and institutions are recorded as `uk:<slug>`.
+- 3,304 UK records are in the manifest.
+
+**History screen.** `scripts/uk_dissertation_scope.py` takes the first rule that applies, in this order:
+1. department;
+2. LC class with a historical title;
+3. the Edinburgh School of History, Classics and Archaeology with a title screen;
+4. the OpenAIRE history search with a title screen.
+
+Only `explicit_history*` scopes are strict. The user also asked for history and philosophy of science departments to count as History.
+
+**Hand review.** A spot check of 149 excluded records found that the title screens missed about 25–40% of history theses. All 659 titles left in those weak groups were then read, and the review is recorded as overrides in `eligibility-overrides.csv`:
+- 106 titles were judged history;
+- 9 rows add Cambridge HPS theses;
+- 1 record was taken out of strict.
+
+**Result.** There are 1,730 strict UK History PhDs. They run from 1921 to 2026, and 1,037 are from 2010 or later. The largest holdings:
+
+| Institution | Strict History PhDs |
+| --- | --- |
+| Edinburgh | 514 |
+| Glasgow | 371 |
+| Oxford | 282 |
+| Birmingham | 191 |
+| Cambridge | 133 |
+| St Andrews | 104 |
+| Sussex | 70 |
+
+This is below the 2,000 threshold, so the UK is a **provisional** sub-graph:
+- It is built with `--provisional-subgraph GB` and written to `summary/countries/GB/`, with `NOTE.json` stating its status.
+- The main graph now counts the UK on its own. The region page `europe-ca-us.html` still pools it inside "Europe" and has not been regenerated.
+
+**Comparison pages.** `scripts/render_country_comparison.py --countries CA GB` (and `US GB`) writes `summary/comparisons/ca-gb.html` and `us-gb.html`, and `ca-us.html` was refreshed. Weighted shares come from `strict-citations.csv.gz` and `authored.csv.gz`. The builder writes both files, and they stay local because of their size.
+
+**Known gaps.**
+- Oxford is undercounted. About 200 Oxford theses filed under Classics, Oriental Studies or Modern Languages are outside the screen. The DataCite records for Oxford (prefix 10.5287) name supervisors, and the supervisors of the Oxford History theses already counted point to about 400 further candidates.
+- The strict side of the Edinburgh and OpenAIRE routes is estimated to include about 5% literature theses, not yet sampled.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:

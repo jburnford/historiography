@@ -237,7 +237,7 @@ for (const f of fields) {
 const S = V.supervision;
 const tiles = document.getElementById('tiles');
 const tile = (label, value, ctx) => { const t = h('div', null, tiles, 'tile'); h('div', label, t, 'label'); h('div', value, t, 'value'); h('div', ctx, t, 'ctx'); };
-tile('Students citing their supervisor', pct(S.cite_supervisor / S.with_supervisor), `${S.cite_supervisor} of ${S.with_supervisor} dissertations with a recorded supervisor`);
+tile('Students citing their supervisor', pct(S.with_supervisor ? S.cite_supervisor / S.with_supervisor : null), `${S.cite_supervisor} of ${S.with_supervisor} dissertations with a recorded supervisor`);
 tile('Same-university peers citing that supervisor', pct(S.mean_peer_share), `mean over ${S.supervisors_3plus} supervisors with 3+ students`);
 tile('Supervisors never cited by their students', String(S.never_cited), `of ${S.supervisors_3plus} with 3+ students`);
 (function periodChart() {
