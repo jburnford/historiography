@@ -1326,10 +1326,12 @@ class AtlasBrowserTests(unittest.TestCase):
             self.assertTrue(self.page.evaluate('document.documentElement.scrollWidth <= innerWidth'), fragment)
             box = self.page.locator('.pm-scroll')
             expect(box).to_be_visible()
-            # ResizeObserver can replace this element between two evaluations.
-            # Read both dimensions from the same visible element in one turn.
-            widths = box.evaluate('el => ({scroll: el.scrollWidth, client: el.clientWidth})')
-            self.assertGreater(widths['client'], 0, fragment)
+            # ResizeObserver can replace this element, and a fresh replacement reads 0 wide until
+            # laid out. Wait for a laid-out one, then read both dimensions from it in one turn.
+            widths = self.page.wait_for_function(
+                """() => { const el = document.querySelector('.pm-scroll');
+                           return el && el.isConnected && el.clientWidth > 0
+                               && {scroll: el.scrollWidth, client: el.clientWidth}; }""").json_value()
             self.assertLessEqual(widths['scroll'], widths['client'], fragment)
         self.page.screenshot(path=str(self.artifacts / 'person-map-mobile.png'), full_page=True)
 
