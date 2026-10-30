@@ -13,6 +13,7 @@ is given), the build also publishes that baseline, slimmed like the main graph, 
 object so the site can offer the exact 2000 view as an archive.
 """
 import argparse
+import datetime
 import hashlib
 import json
 from pathlib import Path
@@ -20,7 +21,7 @@ import shutil
 import subprocess
 
 from validate_graph import validate, pathways_within
-from historian_life_review import overlay_historian_life_review, overlay_theorist_life_review
+from historian_life_review import overlay_historian_life_review, overlay_theorist_life_review, withhold_living_birth
 
 ROOT = Path(__file__).resolve().parents[1]
 # GitHub Pages can serve a branch only from the repository root or `/docs`, so the
@@ -171,6 +172,8 @@ def publish_graph(payload, life_review=True):
         if life_review and theory_review.exists():
             count = overlay_theorist_life_review(payload, json.loads(theory_review.read_text()))
             print(f'  {count} theorists carry additional sourced life-status reviews in the published copy')
+        withheld = withhold_living_birth(payload, datetime.date.today().year)
+        print(f'  {withheld} birth dates of people presumed living withheld from the published copy')
     return payload
 
 

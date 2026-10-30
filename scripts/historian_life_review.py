@@ -111,3 +111,33 @@ def overlay_theorist_life_review(payload, review):
     if ids - allowed:
         raise ValueError('Theory life review targets a different layer: ' + ', '.join(sorted(ids - allowed)))
     return overlay_historian_life_review(payload, review, source='data/theorist-life-review.json')
+
+
+def withhold_living_birth(payload, this_year, presumed_dead_after=120):
+    """Drop birth dates of people presumed living from the published copy (user decision 2026-10-30).
+
+    The site visualization does not need living people's birth years; the knowledge graph and the
+    repository data keep them. A person counts as dead if a death date is recorded, if a reviewed status
+    says deceased, or if they were born more than `presumed_dead_after` years ago; everyone else,
+    including people with no birth year, is presumed living."""
+    withheld = 0
+    for person in payload.get('people', []):
+        life = person.get('life')
+        if not life or not life.get('birth'):
+            continue
+        status = (person.get('life_review') or {}).get('status')
+        born = year_of(life['birth'])
+        if life.get('death') or status == 'deceased' or (born is not None and born < this_year - presumed_dead_after):
+            continue
+        life['birth'] = None
+        life['birth_precision'] = None
+        previous = (person.get('life_review') or {}).get('previous_dates')
+        if previous:
+            previous['birth'] = previous['birth_precision'] = None
+        withheld += 1
+    if withheld:
+        payload.setdefault('published_enrichment', []).append({
+            'fields': ['people[].life.birth'], 'count': withheld, 'source': 'withheld',
+            'note': 'Birth dates of people presumed living (no recorded death, born within the last '
+                    f'{presumed_dead_after} years) are withheld from the published copy; the repository keeps them.'})
+    return withheld
