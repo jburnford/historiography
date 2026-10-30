@@ -6,11 +6,13 @@ Canada". Counts come from the graph's CITES edges for strict History PhDs (``in_
 a work's share in a region is the percentage of that region's PhDs citing it (presence, one
 count per thesis). A person's share is the percentage citing any work of theirs (first author).
 
-Regions: CA, US, EUROPE (European countries in the graph), and EUROPE_EX_FR, because France
-is about half of the European PhDs and would otherwise set the European list.
+Regions (user, 2026-10-30: "make France its own and then Europe (other) for the rest"): CA, US,
+GB (a sub-graph since the Oxford expansion), FR, and EUO, the other European countries. Until
+then Europe was pooled, with a Europe-without-France series.
 
-Output: ``summary/regions/top-works.csv``, ``top-people.csv`` and ``distinctive.csv`` (works
-much more cited in Europe than in North America and the reverse), and a printed summary.
+Output: ``summary/regions/top-works.csv``, ``top-people.csv`` and ``distinctive.csv`` (for each
+work, its share in each region and how far its highest region leads the next), and a printed
+summary.
 """
 import argparse
 from collections import defaultdict
@@ -26,15 +28,14 @@ EUROPE = {'FR', 'DE', 'IT', 'ES', 'PT', 'BE', 'NL', 'LU', 'CH', 'AT', 'SE', 'NO'
           'PL', 'CZ', 'SK', 'HU', 'SI', 'HR', 'RS', 'BA', 'ME', 'MK', 'AL', 'RO', 'BG', 'EE', 'LV', 'LT', 'UA', 'BY', 'MD'}
 
 
+REGIONS = ['CA', 'US', 'GB', 'FR', 'EUO']
+REGION_NAMES = {'CA': 'Canada', 'US': 'United States', 'GB': 'Britain', 'FR': 'France', 'EUO': 'Rest of Europe'}
+
+
 def regions_of(country):
-    out = []
-    if country in ('CA', 'US'):
-        out.append(country)
-    if country in EUROPE:
-        out.append('EUROPE')
-        if country != 'FR':
-            out.append('EUROPE_EX_FR')
-    return out
+    if country in ('CA', 'US', 'GB', 'FR'):
+        return [country]
+    return ['EUO'] if country in EUROPE else []
 
 
 def main():
@@ -67,7 +68,7 @@ def main():
                 if e['target'] in first_author:
                     pcite[first_author[e['target']]][r].add(e['source'])
     del g
-    regs = ['EUROPE', 'EUROPE_EX_FR', 'CA', 'US']
+    regs = REGIONS
     share = lambda d, r: round(100 * len(d.get(r, ())) / n[r], 1) if n[r] else 0  # noqa: E731
     dest = summary_dir(args.out) / 'regions'
     dest.mkdir(parents=True, exist_ok=True)
@@ -90,27 +91,23 @@ def main():
     write('top-people.csv', pcite, pl)
     dist = []
     for k, d in wcite.items():
-        eu, na = share(d, 'EUROPE'), max(share(d, 'CA'), share(d, 'US'))
-        if eu >= 2 or na >= 2:
-            dist.append(dict(id=k, label=wl(k), share_EUROPE=eu, share_EUROPE_EX_FR=share(d, 'EUROPE_EX_FR'),
-                             share_CA=share(d, 'CA'), share_US=share(d, 'US'), europe_minus_na=round(eu - na, 1)))
-    dist.sort(key=lambda r: -r['europe_minus_na'])
+        s = {r: share(d, r) for r in regs}
+        if max(s.values()) >= 2:
+            lead, second = sorted(regs, key=lambda r: -s[r])[:2]
+            dist.append(dict(id=k, label=wl(k), **{f'share_{r}': s[r] for r in regs}, lead=lead,
+                             lead_margin=round(s[lead] - s[second], 1)))
+    dist.sort(key=lambda r: -r['lead_margin'])
     with (dest / 'distinctive.csv').open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=list(dist[0]))
         w.writeheader()
         w.writerows(dist)
     print('strict PhDs:', dict(n))
+    head = ' | '.join(regs)
     for title, table, label in (('PEOPLE', pcite, pl), ('WORKS', wcite, wl)):
-        print(f'\n== {title}: top 25 in Europe (share of PhDs citing, %: Europe | Europe ex-France | Canada | US)')
-        for k in sorted(table, key=lambda k: -len(table[k].get('EUROPE', ())))[:25]:
-            print(f"  {label(k)[:60]:60} {share(table[k], 'EUROPE'):5} {share(table[k], 'EUROPE_EX_FR'):5} {share(table[k], 'CA'):5} {share(table[k], 'US'):5}")
-    print('\n== WORKS much more cited in Europe than in Canada or the US')
-    for r in dist[:15]:
-        print(f"  {r['label'][:60]:60} EU {r['share_EUROPE']:5} exFR {r['share_EUROPE_EX_FR']:5} CA {r['share_CA']:5} US {r['share_US']:5}")
-    print('\n== WORKS much more cited in North America than in Europe')
-    for r in dist[-15:][::-1]:
-        print(f"  {r['label'][:60]:60} EU {r['share_EUROPE']:5} exFR {r['share_EUROPE_EX_FR']:5} CA {r['share_CA']:5} US {r['share_US']:5}")
-
+        for reg in regs:
+            print(f'\n== {title}: top 10 in {REGION_NAMES[reg]} (share of PhDs citing, %: {head})')
+            for k in sorted(table, key=lambda k: -len(table[k].get(reg, ())))[:10]:
+                print(f"  {label(k)[:60]:60} " + ' '.join(f'{share(table[k], r):5}' for r in regs))
 
 if __name__ == '__main__':
     main()

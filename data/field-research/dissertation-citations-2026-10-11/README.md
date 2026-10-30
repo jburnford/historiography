@@ -292,7 +292,7 @@ Only `explicit_history*` scopes are strict. The user also asked for history and 
 
 At this first pass, below the 2,000 threshold, the UK was a **provisional** sub-graph (superseded below):
 - It is built with `--provisional-subgraph GB` and written to `summary/countries/GB/`, with `NOTE.json` stating its status.
-- The main graph now counts the UK on its own. The region page `europe-ca-us.html` still pools it inside "Europe" and has not been regenerated.
+- The main graph now counts the UK on its own. On 2026-10-30 the region page `europe-ca-us.html` was rebuilt with five regions. The user said "make France its own and then Europe (other) for the rest". The regions are Canada 2,249, United States 2,864, Britain 2,498, France 1,130 and rest of Europe 1,041. The page is built by `region_top_citations.py` and `render_region_comparison.py`, and its sections are: most cited people and works by mean regional share, the top works in Britain, France and the rest of Europe, the works most distinctive of each region, and common ground. The user wants France brought to 2,000.
 
 **Comparison pages.** `scripts/render_country_comparison.py --countries CA GB` (and `US GB`) writes `summary/comparisons/ca-gb.html` and `us-gb.html`, and `ca-us.html` was refreshed. Weighted shares come from `strict-citations.csv.gz` and `authored.csv.gz`. The builder writes both files, and they stay local because of their size.
 

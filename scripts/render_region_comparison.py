@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Render the Europe / Canada / United States citation comparison page.
+"""Render the five-region citation comparison page: Canada, the United States, Britain, France and the
+rest of Europe.
 
 User (2026-10-22): "could you create a webpage with this comparison visualized". Reads the
 region tables written by ``region_top_citations.py`` (``summary/regions/top-people.csv``,
@@ -11,8 +12,9 @@ self-contained page (inline SVG, no external assets) to
     python3 scripts/render_region_comparison.py
 
 Shares are per region: the percentage of the region's strict History PhDs that cite the person
-or work (presence, one count per thesis). Colours follow the Canada-US page (Canada blue, United
-States orange) with Europe in aqua; Europe without France is a hollow aqua ring.
+or work (presence, one count per thesis). Colours: Canada blue, United States orange, Britain
+purple, France green, and the rest of Europe a hollow green ring. User (2026-10-30): "make France
+its own and then Europe (other) for the rest"; until then Europe was pooled.
 """
 import csv
 from collections import Counter
@@ -22,14 +24,14 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from region_top_citations import regions_of  # noqa: E402
+from region_top_citations import REGIONS, REGION_NAMES, regions_of  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 REG = D / 'summary' / 'regions'
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)  # noqa: E731
-SERIES = [('CA', 'Canada', 's1', 'dot'), ('US', 'United States', 's2', 'dot'), ('EUROPE', 'Europe', 's3', 'dot'),
-          ('EUROPE_EX_FR', 'Europe without France', 's3', 'ring')]
+SERIES = [('CA', 'Canada', 's1', 'dot'), ('US', 'United States', 's2', 'dot'), ('GB', 'Britain', 's4', 'dot'),
+          ('FR', 'France', 's3', 'dot'), ('EUO', 'Rest of Europe', 's3', 'ring')]
 
 
 def proper(name):
@@ -123,7 +125,25 @@ def section(heading, hid, intro, rows, caption):
 
 
 LEGEND = ('<div class="legend"><span class="l1">Canada</span><span class="l2">United States</span>'
-          '<span class="l3">Europe</span><span class="l4">Europe without France</span></div>')
+          '<span class="l5">Britain</span><span class="l3">France</span><span class="l4">Rest of Europe</span></div>')
+
+
+IN = {'CA': 'Canada', 'US': 'the United States', 'GB': 'Britain', 'FR': 'France', 'EUO': 'the rest of Europe'}
+
+
+def overall(rows, n):
+    """Ranked by the mean of the five regional shares, so no single region sets the list."""
+    return sorted(unique(rows), key=lambda r: -sum(r[f'share_{c}'] for c in REGIONS) / len(REGIONS))[:n]
+
+
+def distinctive(region, n):
+    rows = [r for r in csv.DictReader((REG / 'distinctive.csv').open(newline='', encoding='utf-8')) if r['lead'] == region]
+    for r in rows:
+        for k in list(r):
+            if k.startswith('share_'):
+                r[k] = float(r[k])
+        r['label'] = work_label(r)
+    return sorted(rows, key=lambda r: -float(r['lead_margin']))[:n]
 
 
 def main():
@@ -132,81 +152,68 @@ def main():
         if r['in_analysis'] == 'True':
             for g in regions_of(r['country']):
                 counts[g] += 1
-            if r['country'] == 'FR':
-                counts['FR'] += 1
     wanted = {r['id'] for r in csv.DictReader((REG / 'top-works.csv').open(newline='', encoding='utf-8'))}
+    wanted |= {r['id'] for r in csv.DictReader((REG / 'distinctive.csv').open(newline='', encoding='utf-8'))}
     csv.field_size_limit(10 ** 8)
     for r in csv.DictReader((D / 'works.csv').open(newline='', encoding='utf-8')):
         if r['work_id'] in wanted and r['authors']:
             AUTHORS[r['work_id']] = proper(r['authors'].split(';')[0].split(',')[0].strip())
     people, works = load('top-people.csv'), load('top-works.csv')
-    pool = unique(works)
-    na = lambda r: max(r['share_CA'], r['share_US'])  # noqa: E731
-    eu_fav = sorted((r for r in pool if r['share_EUROPE'] - na(r) > 0), key=lambda r: na(r) - r['share_EUROPE'])[:15]
-    na_fav = sorted((r for r in pool if na(r) - r['share_EUROPE'] > 0), key=lambda r: r['share_EUROPE'] - na(r))[:15]
-    exfr = top(works, 'EUROPE_EX_FR', 15)
-    lead = top(works, 'EUROPE', 1)[0]
-    shared = sorted((r for r in pool if min(r['share_EUROPE'], r['share_CA'], r['share_US']) >= 1.0),
-                    key=lambda r: -min(r['share_EUROPE'], r['share_CA'], r['share_US']))[:12]
-    tiles = ''.join(f'<div class="tile"><div class="v">{v:,}</div><div class="k">{esc(k)}</div></div>' for k, v in (
-        ('History PhDs in Europe', counts['EUROPE']), ('of them in France', counts['FR']),
-        ('History PhDs in Canada', counts['CA']), ('History PhDs in the United States', counts['US'])))
+    shared = sorted((r for r in unique(works) if min(r[f'share_{c}'] for c in REGIONS) >= 1.0),
+                    key=lambda r: -min(r[f'share_{c}'] for c in REGIONS))[:15]
+    tiles = ''.join(f'<div class="tile"><div class="v">{counts[c]:,}</div><div class="k">History PhDs: {esc(REGION_NAMES[c])}</div></div>'
+                    for c in REGIONS)
+    def lead_sentence(c):
+        w = top(works, c, 1)[0]
+        return (f'The most cited work in {IN[c]} is '
+                f'<i>{esc(w["label"].split(" (")[0])}</i>, cited by {w[f"share_{c}"]:.1f}% of its History PhDs.')
     body = [
-        '<h1>Who History PhDs cite: Europe, Canada and the United States</h1>',
+        '<h1>Who History PhDs cite: Canada, the United States, Britain, France and the rest of Europe</h1>',
         '<p class="lede">The share of each region\'s History PhDs whose bibliography cites a person or work, from the '
         'dissertation citation graph. One count per thesis: a thesis that cites a work twenty times counts once. '
         'Translations and editions of a work mapped through Wikidata count as one work.</p>',
         f'<div class="tiles">{tiles}</div>',
-        '<p class="note">France is about half of the European PhDs, so each chart also shows Europe without France '
-        '(hollow ring). Hover over a row for the four values; every chart has a table below it.</p>',
-        section('The most cited people in Europe', 'people',
-                'Ranked by the share of European History PhDs citing any work by the person (first author). Foucault is '
-                'the one figure cited about equally everywhere; the French historians of the Annales and of the '
-                "historian's craft are cited far more in Europe than in North America.", top(people, 'EUROPE', 25),
-                'most cited people in Europe'),
-        section('The most cited works in Europe', 'works',
-                f'European citation is more dispersed than North American: the most cited work in Europe, '
-                f'<i>{esc(lead["label"].split(" (")[0])}</i>, is cited by {lead["share_EUROPE"]:.1f}% of European History PhDs, '
-                f'against {lead["share_CA"]:.1f}% in Canada and {lead["share_US"]:.1f}% in the United States.',
-                top(works, 'EUROPE', 20), 'most cited works in Europe'),
-        section('Cited in Europe, rare in North America', 'eu-fav',
-                'Works whose European share most exceeds the higher of the Canadian and US shares: mostly French '
-                'reflection on history, memory and the historian\'s craft, with Swedish work on the uses of history.',
-                eu_fav, 'works cited more in Europe'),
-        section('Cited in North America, rare in Europe', 'na-fav',
-                'Works whose Canadian or US share most exceeds the European share. Each country\'s own staples (Canadian '
-                'liberal order and imperialism, US urban, Sunbelt and immigration history) and the North American '
-                'theory canon barely travel to Europe.', na_fav, 'works cited more in North America'),
-        section('Europe without France', 'exfr',
-                'The most cited works in the other European countries (Sweden, Germany, Italy, Spain, Belgium and '
-                'others): the shared theory canon, Koselleck and Weber, and a Swedish canon on the uses of history.',
-                exfr, 'most cited works in Europe without France'),
+        '<p class="note">Hover over a row for the five values; every chart has a table below it. The regions differ in '
+        'size, and the rest of Europe pools many national traditions (Sweden, Germany, Spain, Italy, Belgium and others), '
+        'so its shares are thinner than any one country\'s would be.</p>',
+        section('The most cited people', 'people',
+                'Ranked by the mean of the five regional shares of History PhDs citing any work by the person (first author).',
+                overall(people, 25), 'most cited people across the five regions'),
+        section('The most cited works', 'works',
+                'Ranked by the mean of the five regional shares.', overall(works, 20), 'most cited works across the five regions'),
+        *(section(f'The most cited works in {IN[c]}', f'top-{c.lower()}',
+                  lead_sentence(c), top(works, c, 15), f'most cited works in {REGION_NAMES[c]}') for c in ('GB', 'FR', 'EUO')),
+        *(section(f'Read in {IN[c]} more than anywhere else', f'dist-{c.lower()}',
+                  'Works cited by at least 2% of some region\'s History PhDs, whose share here most exceeds the next '
+                  'highest region\'s.', distinctive(c, 10), f'works most distinctive of {REGION_NAMES[c]}') for c in REGIONS),
         section('Common ground', 'shared',
-                'Works cited by at least 1% of the History PhDs in each of Europe, Canada and the United States, ranked '
-                'by the lowest of the three shares.', shared, 'works cited in all three regions'),
+                'Works cited by at least 1% of the History PhDs in every one of the five regions, ranked by the lowest of the '
+                'five shares.', shared, 'works cited in all five regions'),
         '<h2 id="notes">How to read this</h2><ul class="note">'
         '<li><b>Sources.</b> Strict History PhDs (explicit History programme or department) with a parsed bibliography '
-        'or a bibliography rebuilt from their notes. European theses come mostly from the BASE harvest, where non-English '
-        'bibliographies parse less cleanly than Canadian and US ones, so European shares are, if anything, low.</li>'
+        'or a bibliography rebuilt from their notes. British theses come from UK repositories (the OpenAIRE collection and '
+        'Oxford\'s ORA). French and other European theses come mostly from the BASE harvest, where non-English '
+        'bibliographies parse less cleanly than English ones, so their shares are, if anything, low.</li>'
         '<li><b>Works.</b> A work is first-author surname plus main title. Translations are merged only where Wikidata maps '
         'them to one work: some remain split (Weber\'s French <i>Économie et société</i>, Foucault\'s French <i>Histoire de '
-        'la sexualité</i>), which lowers those works\' European shares.</li>'
+        'la sexualité</i>), which lowers those works\' shares outside their language.</li>'
         '<li><b>People.</b> First authors only; a person\'s share counts theses citing any of their works.</li>'
         '<li><b>Citation is not engagement.</b> A citation can be a frame, a foil or a ritual reference.</li></ul>',
         f'<p class="note">Built {date.today().isoformat()} from <code>summary/regions/</code> '
         '(<code>scripts/region_top_citations.py</code>, <code>scripts/render_region_comparison.py</code>). '
-        'See also <a href="explorer.html">the source explorer</a>, <a href="network.html">the map of the most cited works</a> and <a href="ca-us.html">Canada and the United States</a>.</p>',
+        'See also <a href="ca-us.html">Canada and the United States</a>, <a href="ca-gb.html">Canada and Britain</a> '
+        'and <a href="us-gb.html">the United States and Britain</a>.</p>',
     ]
     page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Who History PhDs cite: Europe, Canada and the United States</title>
+<title>Who History PhDs cite: Canada, the United States, Britain, France and the rest of Europe</title>
 <style>
 .viz-root{{color-scheme:light;--surface-1:#fcfcfb;--surface-2:#f2f1ed;--text-primary:#0b0b0b;--text-secondary:#52514e;
- --text-muted:#76756f;--grid:#e3e2dd;--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;--link:#b8b7b0}}
+ --text-muted:#76756f;--grid:#e3e2dd;--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;--series-4:#8a5cc9;--link:#b8b7b0}}
 @media (prefers-color-scheme:dark){{:root:where(:not([data-theme="light"])) .viz-root{{color-scheme:dark;--surface-1:#1a1a19;
  --surface-2:#242422;--text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;
- --series-2:#d95926;--series-3:#199e70;--link:#5b5a54}}}}
+ --series-2:#d95926;--series-3:#199e70;--series-4:#9a70d6;--link:#5b5a54}}}}
 :root[data-theme="dark"] .viz-root{{color-scheme:dark;--surface-1:#1a1a19;--surface-2:#242422;--text-primary:#f0efec;
- --text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;--link:#5b5a54}}
+ --text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;--series-4:#9a70d6;--link:#5b5a54}}
 body{{margin:0}}
 .viz-root{{background:var(--surface-1);color:var(--text-primary);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
  padding:28px max(20px,calc(50vw - 520px))}}
@@ -219,12 +226,12 @@ a{{color:var(--series-1)}}code{{font-size:13px}}
 .legend{{display:flex;flex-wrap:wrap;gap:18px;color:var(--text-secondary);font-size:13px;margin:6px 0}}
 .legend span::before{{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;box-sizing:border-box}}
 .legend .l1::before{{background:var(--series-1)}}.legend .l2::before{{background:var(--series-2)}}
-.legend .l3::before{{background:var(--series-3)}}.legend .l4::before{{border:2px solid var(--series-3)}}
+.legend .l3::before{{background:var(--series-3)}}.legend .l4::before{{border:2px solid var(--series-3)}}.legend .l5::before{{background:var(--series-4)}}
 svg.dots{{width:100%;min-width:680px;height:auto;display:block}}.scroll{{overflow-x:auto}}
 svg .grid{{stroke:var(--grid);stroke-width:1}}svg .tick{{fill:var(--text-muted);font-size:11px}}
 svg .lab{{fill:var(--text-primary);font-size:12.5px}}svg .link{{stroke:var(--link);stroke-width:2}}
 svg .dot{{stroke:var(--surface-1);stroke-width:2}}svg .s1{{fill:var(--series-1)}}svg .s2{{fill:var(--series-2)}}
-svg .dot.s3{{fill:var(--series-3)}}svg .ring{{fill:var(--surface-1);stroke:var(--series-3);stroke-width:2.5}}
+svg .dot.s3{{fill:var(--series-3)}}svg .dot.s4{{fill:var(--series-4)}}svg .ring{{fill:var(--surface-1);stroke:var(--series-3);stroke-width:2.5}}
 svg .hit{{fill:transparent}}svg .row:hover .hit{{fill:var(--surface-2)}}
 #tip{{position:fixed;pointer-events:none;background:var(--surface-1);color:var(--text-primary);border:1px solid var(--grid);
  border-radius:6px;padding:6px 9px;font-size:12.5px;max-width:360px;box-shadow:0 2px 8px rgba(0,0,0,.12);display:none}}
@@ -245,7 +252,7 @@ document.querySelectorAll('g.row').forEach(g=>{{
 """
     dest = D / 'summary' / 'comparisons' / 'europe-ca-us.html'
     dest.write_text(page, encoding='utf-8')
-    print(f'wrote {dest.relative_to(ROOT)} (Europe {counts["EUROPE"]}, France {counts["FR"]}, Canada {counts["CA"]}, US {counts["US"]})')
+    print(f'wrote {dest.relative_to(ROOT)} (' + ', '.join(f'{REGION_NAMES[c]} {counts[c]}' for c in REGIONS) + ')')
 
 
 if __name__ == '__main__':
