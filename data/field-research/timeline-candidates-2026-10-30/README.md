@@ -33,7 +33,7 @@ The rule was set on the 2026-10-23 release: 6,794 dated strict theses, of which 
 
 **Revised bar (user, 2026-10-30): "I think Paul Thompson is the better cut off".**
 - Other historians now need at least 136 dated strict theses (1.37%), the count of Paul Thompson the oral historian after his namesakes are removed.
-- The Canadian-history bar stays at ≥150 unless the user lowers it.
+- The Canadian-history bar stays at ≥150. The user confirmed this on 2026-10-30: "yes, keep Canada at 150". Bothwell 139, Stacey 138, Strong-Boag 136 and Trigger 141 are not added.
 - Under the ≥146 rule the list below was 13. The 136–145 band adds the names in *Band 136–145* at the end of this file.
 
 ## Candidates under the adopted rule
@@ -186,4 +186,4 @@ Every person in the band was checked for namesakes by their cited works. Name va
 
 Each count is after namesakes are removed, including Ryan's "Ryan, Mary" variant and Rosenberg's "Rosenberg, Charles" variant.
 
-**Total if the Canadian bar stays at 150:** 2 Canadian, 27 other by the bar, and 3 editorial additions, which makes 32.
+**Final queue (2026-10-30):** 32 historians. That is 2 Canadian (Christie, J. R. Miller), 27 other by the bar, and 3 editorial additions (Kathleen Wilson, Mary P. Ryan, Charles E. Rosenberg).
