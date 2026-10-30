@@ -176,4 +176,14 @@ Every person in the band was checked for namesakes by their cited works. Name va
 
 **Canadian history between 136 and 149 (bar ≥150):** Bothwell 139, Stacey 138, Strong-Boag 136, Trigger 141 (see above).
 
-**Total if the Canadian bar stays at 150:** 2 Canadian, 27 other.
+**Editorial additions below the bar (user, 2026-10-30):** "Kathleen Wilson, Mary Ryan and Charles Rosenberg should be added; they give us two more women and a key sub field".
+
+| Historian | Theses | Reason |
+| --- | --- | --- |
+| Kathleen Wilson | 135 | New imperial history and the British empire |
+| Mary P. Ryan | 135 | Women's and gender history of the US middle class and public life |
+| Charles E. Rosenberg | 127 | History of medicine; the key sub-field |
+
+Each count is after namesakes are removed, including Ryan's "Ryan, Mary" variant and Rosenberg's "Rosenberg, Charles" variant.
+
+**Total if the Canadian bar stays at 150:** 2 Canadian, 27 other by the bar, and 3 editorial additions, which makes 32.
