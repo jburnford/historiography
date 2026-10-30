@@ -29,7 +29,9 @@ The rule was set on the 2026-10-23 release: 6,794 dated strict theses, of which 
 
 **Recommendation.** Keep the Canadian bar at ≥150 and express the other bar as a share of the corpus. At the time, more than 100 of 6,794 was 1.47%. Today that is **more than 146** of 9,908, and it scales as further countries are added.
 
-## Candidates under the recommended rule
+**Decision (user, 2026-10-30):** "1.47 seems like a good cut off for now". The Canadian-history bar stays at ≥150. Other historians must exceed 1.47% of dated strict theses, which is more than 146 in the 2026-10-30 build.
+
+## Candidates under the adopted rule
 
 **Canadian history, ≥150 (unchanged bar):**
 - Nancy Christie, 161.
