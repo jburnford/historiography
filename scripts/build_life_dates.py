@@ -15,6 +15,11 @@ every agreeing source is listed; when years disagree, the row is flagged `confli
 listed for review. The chosen year is the one most sources give; a tie follows source order
 (LC 046 > reviewed > Wikidata > LC heading); within the chosen year the most precise value wins.
 
+Conflicts are then checked by hand against the sources each side cites
+(data/person-facts/date-review-2026-10-30.csv): a `resolved` decision sets the value and the check to
+`reviewed`; `unresolved` and `traditional` keep the computed value and the conflict flag, with the
+reasons in `{part}_review`.
+
 The graph keeps every date, including living people's. Site exports must apply the living rule
 (scripts/historian_life_review.withhold_living_birth): `status` here says `deceased`, `living` (a
 sourced review), or `presumed_living` (no death recorded, born within 120 years).
@@ -91,6 +96,9 @@ def main():
     for k, part, value, prec, src, ref in lc_rows(state):
         facts[k].append((part, value, prec, src, ref))
 
+    with (OUT / 'date-review-2026-10-30.csv').open(newline='', encoding='utf-8') as f:
+        hand = {(r['key'], r['part']): r for r in csv.DictReader(f)}
+
     this_year = datetime.date.today().year
     rows, stats = [], Counter()
     for k in sorted(facts, key=lambda x: int(x.split('-')[1])):
@@ -99,7 +107,8 @@ def main():
             vals = [f for f in facts[k] if f[0] == part and year(f[1]) is not None]
             years = {year(v) for _, v, *_ in vals}
             if not vals:
-                row.update({part: '', f'{part}_precision': '', f'{part}_sources': '', f'{part}_check': ''})
+                row.update({part: '', f'{part}_precision': '', f'{part}_sources': '', f'{part}_check': '',
+                            f'{part}_review': ''})
                 continue
             votes = Counter(year(f[1]) for f in vals)          # one vote per source assertion
             top = max(votes.values())
@@ -115,9 +124,15 @@ def main():
             day_conflict = len({f[1] for f in pool if PRECISION.get(f[2], 0) == 3}) > 1
             check = ('conflict' if len(years) > 1 else 'day_conflict' if day_conflict else
                      'agree' if len({f[3] for f in vals}) > 1 else 'single_source')
+            value, precision, review = best[1], best[2], ''
+            if (h := hand.get((k, part))) and check in ('conflict', 'day_conflict'):
+                review = f"{h['decision']}: {h['basis']}"
+                if h['decision'] == 'resolved':
+                    value, precision, check = h['value'], h['precision'], 'reviewed'
             stats[f'{part}_{check}'] += 1
-            row.update({part: best[1], f'{part}_precision': best[2],
-                        f'{part}_sources': ' '.join(sorted({f'{f[4]}={f[1]}' for f in vals})), f'{part}_check': check})
+            row.update({part: value, f'{part}_precision': precision,
+                        f'{part}_sources': ' '.join(sorted({f'{f[4]}={f[1]}' for f in vals})), f'{part}_check': check,
+                        f'{part}_review': review})
         born = year(row['birth'])
         row['status'] = ('deceased' if row['death'] or status.get(k) == 'deceased' else
                          'living' if status.get(k) == 'living' else
@@ -126,8 +141,8 @@ def main():
         rows.append(row)
 
     OUT.mkdir(parents=True, exist_ok=True)
-    fields = ['key', 'label', 'status', 'birth', 'birth_precision', 'birth_check', 'birth_sources', 'death',
-              'death_precision', 'death_check', 'death_sources', 'qid_review']
+    fields = ['key', 'label', 'status', 'birth', 'birth_precision', 'birth_check', 'birth_sources', 'birth_review',
+              'death', 'death_precision', 'death_check', 'death_sources', 'death_review', 'qid_review']
     with (OUT / 'life-dates.csv').open('w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
