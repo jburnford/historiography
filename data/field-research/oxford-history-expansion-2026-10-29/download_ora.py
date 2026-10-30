@@ -4,7 +4,8 @@ Input: raw/ora-landing.jsonl (ora_landing.py) and raw/datacite-oxford.json (auth
 A row is downloaded when ORA records an Oxford doctoral award, the department screen in
 scripts/uk_dissertation_scope.py places it in History (or history and philosophy of science), and
 the landing page offers an open PDF (citation_pdf_url). Other departments are listed in
-outside-history.csv for title review; nothing is downloaded for them yet.
+outside-history.csv for title review. Titles accepted as History in title-review-2026-10-30.csv are
+downloaded too; their eligibility is carried by record-level rows in eligibility-overrides.csv.
 
 Robots.txt allows /objects/ and /files/. One request every 5 seconds. A file is kept only if it
 starts with %PDF. Output: downloads.jsonl (resumable; one row per DOI), PDFs under STORAGE.
@@ -14,6 +15,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import shutil
 import sys
 import time
 import urllib.request
@@ -34,11 +36,15 @@ def slug(doi):
 def main():
     if not STORAGE.parent.is_dir():
         raise SystemExit('E: is not mounted')
+    if shutil.disk_usage(STORAGE.parent).free < 4e9:
+        raise SystemExit('less than 4 GB free on E:')
     STORAGE.mkdir(exist_ok=True)
     meta = json.loads((HERE / 'raw/datacite-oxford.json').read_text())
     out = HERE / 'downloads.jsonl'
     done = {json.loads(l)['doi'] for l in out.open()} if out.exists() else set()
     outside = []
+    review = HERE / 'title-review-2026-10-30.csv'
+    accepted = {r['doi'] for r in csv.DictReader(review.open()) if r['decision'] == 'history'} if review.exists() else set()
     rows = [json.loads(l) for l in (HERE / 'raw/ora-landing.jsonl').open() if l.strip()]
     with out.open('a') as f:
         for r in rows:
@@ -48,9 +54,14 @@ def main():
             if not scope.startswith('explicit_history'):
                 outside.append(dict(doi=r['doi'], year=r['year'], department=r.get('department') or '', scope=scope,
                                     pdf=bool(r.get('pdf_url')), title=r['title']))
-                continue
+                if r['doi'] not in accepted:
+                    continue
+                basis = f'{basis}; History by title review 2026-10-30'
             if r['doi'] in done:
                 continue
+            if shutil.disk_usage(STORAGE.parent).free < 4e9:
+                print('stopping: less than 4 GB free on E:', file=sys.stderr)
+                break
             m = meta.get(r['doi'], {})
             rec = dict(doi=r['doi'], id='ora-' + slug(r['doi']), url=r['url'], title=r['title'], year=r['year'],
                        authors=m.get('creators', []), supervisors=m.get('supervisors') or r.get('supervisors', []),

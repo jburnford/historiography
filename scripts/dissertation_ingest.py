@@ -559,7 +559,40 @@ def adapter_oxford_ora(src, d):
         yield candidate(entry, [file_spec(Path(row['path']), row.get('bytes'), row.get('sha256'), None,
                                           Path(row['path']).name, row.get('checked_at'))])
 
+
+def adapter_france_thesesfr(src, d):
+    """French History doctorates from the ABES open-data export (data.gouv.fr, "Thèses soutenues en
+    France depuis 1985"), screened for History disciplines and online access, with files fetched
+    through theses.fr (data/field-research/france-theses-2026-10-30). The discipline, a national
+    record of the defended doctorate, is the History screen."""
+    out = resolve(src['root'], d)
+    meta = {c['nnt']: c for c in json.loads((out / 'candidates.json').read_text())}
+    for row in read_jsonl(out / 'downloads.jsonl'):
+        if row.get('status') != 'downloaded' or row['nnt'] not in meta:
+            continue
+        c = meta[row['nnt']]
+        titles = c.get('titres') or {}
+        title = titles.get('fr') or next(iter(titles.values()), '')
+        year = (c.get('date_soutenance') or '')[:4] or None
+        etab = (c.get('etablissements_soutenance') or [{}])[0].get('nom') or c.get('code_etab') or 'unknown'
+        authors = [f"{a.get('nom', '')}, {a.get('prenom', '')}".strip(', ') for a in c.get('auteurs') or []]
+        advisors = [f"{a.get('nom', '')}, {a.get('prenom', '')}".strip(', ') for a in c.get('directeurs_these') or []
+                    if 'inconnu' not in (a.get('nom') or '')]
+        entry = dict(institution='fr:' + re.sub(r'[^a-z0-9]+', '-', fold(etab)).strip('-'), id='thesesfr-' + row['nnt'],
+                     title=title, authors=authors, advisors=advisors, issued_dates=[year] if year else [],
+                     graduation_dates=[c['date_soutenance']] if c.get('date_soutenance') else [], copyright_dates=[],
+                     history_scope='explicit_history_discipline', language=c.get('langues') or [],
+                     item_url=f"https://theses.fr/{row['nnt']}",
+                     source_harvest=str(out.relative_to(ROOT)) if out.is_relative_to(ROOT) else str(out),
+                     country='FR', nnt=row['nnt'],
+                     eligibility_basis=f"National thesis record (theses.fr {row['nnt']}); discipline: {c.get('discipline')}",
+                     access_category='open_pdf', year=int(year) if year else None, degree=['doctorat'],
+                     awarding_institution=etab)
+        yield candidate(entry, [file_spec(Path(row['path']), row.get('bytes'), row.get('sha256'), None,
+                                          Path(row['path']).name, row.get('checked_at'))])
+
 ADAPTERS = {
+    'france_thesesfr': adapter_france_thesesfr,
     'uk_openaire': adapter_uk_openaire,
     'oxford_ora': adapter_oxford_ora,
     'canadian_harvest': adapter_canadian_harvest,

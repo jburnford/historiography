@@ -322,6 +322,11 @@ At this first pass, below the 2,000 threshold, the UK was a **provisional** sub-
 **Known gaps.**
 - About 37 Oxford History theses, mostly typescripts from the 1960s to the 1990s, still have no bibliography that can be read.
 - `oxford-history-expansion-2026-10-29/outside-history.csv` lists the Oxford candidates in other departments, and those with no department recorded, for a later title review.
+- **Title review (2026-10-30).** 931 of those 1,353 have an open PDF. 392 of the 931 were screened as history-like: they come from departments other than literature, the arts, archaeology and the sciences, and their titles carry dates, periods or history terms. All 392 titles were read. **153 were accepted as History** in `title-review-2026-10-30.csv`, 21 of them ancient. The review used the earlier Oxford rule:
+  - In: political, social, economic, religious, legal and diplomatic history, including Politics and Social Studies doctorates on past events and church history from Theology.
+  - Out: literary, art, music and textual studies, theory, and contemporary politics.
+  - Not screened: titles with no dates or history terms.
+  - `download_ora.py` downloads the accepted titles. The matching `eligibility-overrides.csv` rows are added when they are downloaded. They are waiting for space on E: (about 4.5 GB at Oxford's average of 29 MB).
 - The strict side of the Edinburgh and OpenAIRE routes is estimated to include about 5% literature theses, not yet sampled.
 
 ## Corpus and eligibility

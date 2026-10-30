@@ -292,3 +292,30 @@ def test_oxford_ora_adapter_takes_downloaded_rows_with_supervisors(world):
     (e,) = appended
     assert (e['institution'], e['country'], e['advisors']) == ('uk:oxford', 'GB', ['Posada-Carbó, Eduardo'])
     assert e['history_scope'] == 'explicit_history_department' and e['year'] == 2022
+
+
+def test_france_thesesfr_adapter_takes_downloaded_rows_and_latest_retry(world):
+    fr = world['tmp'] / 'fr'
+    fr.mkdir()
+    p = world['tmp'] / 'E' / 'fr' / '2023SORUL048.pdf'
+    sha = pdf(p, 'fr')
+    cands = [dict(nnt='2023SORUL048', titres={'fr': 'Les ouvriers de Lorraine, 1871-1914', 'en': 'Lorraine workers'},
+                  date_soutenance='2023-11-20', discipline='Histoire contemporaine',
+                  etablissements_soutenance=[{'nom': 'Sorbonne Université'}],
+                  auteurs=[{'nom': 'Martin', 'prenom': 'Claire'}],
+                  directeurs_these=[{'nom': 'Dupont', 'prenom': 'Jean'}, {'nom': 'inconnu', 'prenom': ''}]),
+             dict(nnt='2021UBFCC029', titres={'fr': 'Réservé'}, date_soutenance='2021-06-01', discipline='Histoire')]
+    (fr / 'candidates.json').write_text(json.dumps(cands))
+    rows = [dict(nnt='2023SORUL048', status='not_pdf', links=['https://theses.hal.science/tel-04318036']),
+            dict(nnt='2021UBFCC029', status='error', error='HTTPError: HTTP Error 403: '),
+            dict(nnt='2023SORUL048', status='downloaded', url='https://theses.hal.science/tel-04318036/document',
+                 path=str(p), bytes=p.stat().st_size, sha256=sha, checked_at='2026-10-30T17:36:25Z')]
+    (fr / 'downloads.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+    src = dict(name='france_thesesfr', adapter='france_thesesfr', root=str(fr))
+    appended, _, report = run(world, [src])
+    assert report['sources']['france_thesesfr']['candidates'] == 1
+    (e,) = appended
+    assert (e['institution'], e['country'], e['id']) == ('fr:sorbonne-universite', 'FR', 'thesesfr-2023SORUL048')
+    assert e['title'] == 'Les ouvriers de Lorraine, 1871-1914' and e['year'] == 2023
+    assert e['authors'] == ['Martin, Claire'] and e['advisors'] == ['Dupont, Jean']
+    assert e['history_scope'] == 'explicit_history_discipline'
