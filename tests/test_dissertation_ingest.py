@@ -271,3 +271,24 @@ def test_restricted_run_keeps_other_sources_rows(world):
     manifest, appended, rows, report = ing.merge(d, [src, other], store, only=['browser'])
     ing.write_outputs(d, manifest, appended, rows, report, False)
     assert (d / 'downloads-ingest.jsonl').read_text() == before
+
+
+def test_oxford_ora_adapter_takes_downloaded_rows_with_supervisors(world):
+    ox = world['tmp'] / 'ox'
+    ox.mkdir()
+    p = world['tmp'] / 'E' / 'ora' / 'ora-ora-abc.pdf'
+    sha = pdf(p, 'ox')
+    rows = [dict(doi='10.5287/ora-abc', id='ora-ora-abc', url='https://ora.ox.ac.uk/objects/uuid:1', year=2022,
+                 title='The Fourth Republic and the practicing of democracy in Brazil, 1930-1968',
+                 authors=['Silva, Ana'], supervisors=['Posada-Carbó, Eduardo'], department='History Faculty',
+                 award_type='DPhil', history_scope='explicit_history_department', basis='department: History Faculty',
+                 status='downloaded', path=str(p), bytes=p.stat().st_size, sha256=sha),
+            dict(doi='10.5287/ora-def', id='ora-ora-def', url='u', year=2021, title='No open file here at all',
+                 history_scope='explicit_history_department', basis='b', status='no_open_pdf')]
+    (ox / 'downloads.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+    src = dict(name='oxford_ora', adapter='oxford_ora', root=str(ox))
+    appended, _, report = run(world, [src])
+    assert report['sources']['oxford_ora']['candidates'] == 1
+    (e,) = appended
+    assert (e['institution'], e['country'], e['advisors']) == ('uk:oxford', 'GB', ['Posada-Carbó, Eduardo'])
+    assert e['history_scope'] == 'explicit_history_department' and e['year'] == 2022

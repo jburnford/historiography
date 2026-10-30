@@ -290,14 +290,38 @@ Only `explicit_history*` scopes are strict. The user also asked for history and 
 | St Andrews | 104 |
 | Sussex | 70 |
 
-This is below the 2,000 threshold, so the UK is a **provisional** sub-graph:
+At this first pass, below the 2,000 threshold, the UK was a **provisional** sub-graph (superseded below):
 - It is built with `--provisional-subgraph GB` and written to `summary/countries/GB/`, with `NOTE.json` stating its status.
 - The main graph now counts the UK on its own. The region page `europe-ca-us.html` still pools it inside "Europe" and has not been regenerated.
 
 **Comparison pages.** `scripts/render_country_comparison.py --countries CA GB` (and `US GB`) writes `summary/comparisons/ca-gb.html` and `us-gb.html`, and `ca-us.html` was refreshed. Weighted shares come from `strict-citations.csv.gz` and `authored.csv.gz`. The builder writes both files, and they stay local because of their size.
 
+**Oxford expansion and full sub-graph (2026-10-29/30).** The user said "yes, we need more oxford coverage".
+- **Title review.** 82 Oxford theses filed under Classics, Literae Humaniores, Oriental Studies, Modern Languages, Law, Social Studies, Continuing Education and Theology were read by title. They became History overrides, 41 of them marked `ancient_topic`. The rule was ancient history of politics and society, not literature or archaeology. One Greek-literature commentary that the screen had counted as History was set to `adjacent`.
+- **Candidates.** About 2,400 candidates came from two routes. The first was DataCite (prefix 10.5287): theses supervised by people who supervised the Oxford History theses already held. The second was a history-like screen of the titles and FAST subjects of all 23,359 Oxford DataCite records.
+- **ORA check.** `data/field-research/oxford-history-expansion-2026-10-29/` read each candidate's ORA landing page for its department, award and open PDF:
+  - 757 were in History departments;
+  - 634 open DPhil PDFs were downloaded;
+  - 314 had no open file.
+
+  The source is `oxford_ora` in `ingest-sources.json`. Its adapter carries the DataCite supervisors into `advisors`.
+- **Footnote pass.** `extract_dissertation_notes.py` ran over 439 theses with no usable bibliography, mostly British. It recovered 85 British theses as `parsed_notes`. Older Oxford typescripts mostly yield too few note works.
+- **Result.** The build of 2026-10-29/30 counts **2,498** strict UK History PhDs. That passes the 2,000 threshold, so `NOTE.json` is gone and the UK is a full sub-graph. The largest holdings:
+
+| Institution | Strict History PhDs |
+| --- | --- |
+| Oxford | 929 (282 before) |
+| Edinburgh | 615 |
+| Glasgow | 377 |
+| Birmingham | 196 |
+| Cambridge | 136 |
+| St Andrews | 110 |
+
+  The main graph counts 10,229 strict History PhDs: US 2,864, UK 2,498, Canada 2,249 and France 1,130.
+
 **Known gaps.**
-- Oxford is undercounted. About 200 Oxford theses filed under Classics, Oriental Studies or Modern Languages are outside the screen. The DataCite records for Oxford (prefix 10.5287) name supervisors, and the supervisors of the Oxford History theses already counted point to about 400 further candidates.
+- About 37 Oxford History theses, mostly typescripts from the 1960s to the 1990s, still have no bibliography that can be read.
+- `oxford-history-expansion-2026-10-29/outside-history.csv` lists the Oxford candidates in other departments, and those with no department recorded, for a later title review.
 - The strict side of the Edinburgh and OpenAIRE routes is estimated to include about 5% literature theses, not yet sampled.
 
 ## Corpus and eligibility

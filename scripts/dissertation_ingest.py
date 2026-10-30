@@ -537,8 +537,31 @@ def adapter_uk_openaire(src, d):
                                 for i, f in enumerate(files)])
 
 
+
+def adapter_oxford_ora(src, d):
+    """Oxford DPhil theses found through DataCite (prefix 10.5287) and checked on their ORA landing
+    pages (data/field-research/oxford-history-expansion-2026-10-29). ``download_ora.py`` keeps
+    Oxford doctoral awards whose department passes ``uk_dissertation_scope.classify`` and downloads
+    the open PDF. Supervisors come from DataCite and fill ``advisors``."""
+    out = resolve(src['root'], d)
+    for row in read_jsonl(out / 'downloads.jsonl'):
+        if row.get('status') != 'downloaded':
+            continue
+        year = str(row['year']) if row.get('year') else None
+        entry = dict(institution='uk:oxford', id=row['id'], title=row['title'], authors=row.get('authors') or [],
+                     advisors=row.get('supervisors') or [], issued_dates=[year] if year else [], graduation_dates=[],
+                     copyright_dates=[], history_scope=row['history_scope'], language=[], item_url=row['url'],
+                     source_harvest=str(out.relative_to(ROOT)) if out.is_relative_to(ROOT) else str(out),
+                     country='GB', doi=row['doi'],
+                     eligibility_basis=f"Oxford {row.get('award_type') or 'doctoral'} award recorded on ORA; {row['basis']}",
+                     access_category='open_pdf', year=int(year) if year else None,
+                     degree=[row['award_type']] if row.get('award_type') else [], awarding_institution='University of Oxford')
+        yield candidate(entry, [file_spec(Path(row['path']), row.get('bytes'), row.get('sha256'), None,
+                                          Path(row['path']).name, row.get('checked_at'))])
+
 ADAPTERS = {
     'uk_openaire': adapter_uk_openaire,
+    'oxford_ora': adapter_oxford_ora,
     'canadian_harvest': adapter_canadian_harvest,
     'us_records': adapter_us_records,
     'us_expansion_manifest': adapter_us_expansion_manifest,
