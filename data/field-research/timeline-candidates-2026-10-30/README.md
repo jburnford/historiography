@@ -27,9 +27,9 @@ The rule was set on the 2026-10-23 release: 6,794 dated strict theses, of which 
 
   The bar would move with whatever we harvest next. France is to be raised to 2,000.
 
-**Recommendation.** Keep the Canadian bar at ≥150 and express the other bar as a share of the corpus. At the time, more than 100 of 6,794 was 1.47%. Today that is **more than 146** of 9,908, and it scales as further countries are added.
+**Recommendation.** Keep the Canadian bar at ≥150 and express the other bar as a share of the corpus. At the time, more than 100 of 6,794 was 1.47%. Today that is **at least 146** of 9,908 (more than 145.8), and it scales as further countries are added.
 
-**Decision (user, 2026-10-30):** "1.47 seems like a good cut off for now". The Canadian-history bar stays at ≥150. Other historians must exceed 1.47% of dated strict theses, which is more than 146 in the 2026-10-30 build.
+**Decision (user, 2026-10-30):** "1.47 seems like a good cut off for now". The Canadian-history bar stays at ≥150. Other historians must exceed 1.47% of dated strict theses, which is 145.8 in the 2026-10-30 build, so **at least 146** theses (100 of 6,794 = 1.4719%).
 
 ## Candidates under the adopted rule
 
@@ -54,7 +54,7 @@ Callum Brown's works are filed under the garbled key "brown|katherine e". Every 
 - Nancy Christie, 161.
 - J. R. Miller, 163. A settler scholar; the ≥150 rule applies to him and he clears it.
 
-**Qualify. Other history, more than 146:**
+**Qualify. Other history, at least 146:**
 
 | Historian | Theses | Note |
 | --- | --- | --- |
@@ -74,6 +74,49 @@ Callum Brown's works are filed under the garbled key "brown|katherine e". Every 
 - Arthur Schlesinger Jr., 106.
 - John Herd Thompson, 113.
 - Paul Thompson, 136.
+
+**Variant review (user, 2026-10-30: "yes, we need to do the review looking for name variations").**
+
+1. **Grouping.** Keys cited by at least 3 dated theses were grouped by folded surname and first initial. Given names had to agree (Jim = James; full first names must match). An initial-only key joins every group with that initial.
+2. **Screen.** 42 groups had an upper bound, the distinct theses citing any key in the group, at or above the bar, while no single key reached 150. They are in `variant-review-packet.json`, with the top works per key.
+3. **Reading.** Each group's works were read. Most hold different people with the same name: the David, Robert and John Smiths; Christopher Clark of *Iron Kingdom* and Christopher Clark of *Roots of Rural Capitalism*; the three David Potters.
+4. **Recount.** Where one person was split, the count is the person's main key plus the matching works under the variant keys.
+
+| Person | Keys | Theses | Outcome |
+| --- | --- | --- | --- |
+| **T. M. Devine** | "Devine, Thomas M" + "Devine, Tom" | **147** | Qualifies |
+| **Richard J. Evans** | "Evans, Richard J" + "Evans, Richard" (*Epidemics and Revolutions*, *The German Underworld*, the German *In Defence of History*) | **146** | Qualifies |
+| W. E. B. Du Bois | "Du Bois" + "DuBois" | 211 | Already has an entry |
+| Todorov | | 153 | Already has an entry |
+| Agamben | | 147 | Already has an entry |
+| F. J. Turner | | | Already has an entry |
+| David Brion Davis | | 146 | Already has an entry |
+| Gordon Wood | | 144 | Already has an entry |
+| J. R. McNeill | | 144 | Below the bar; one work under the key is another John McNeill's |
+| Daniel Richter | | 140 | Below the bar |
+| David Arnold | | 141 | Below the bar |
+| Christopher Hill | | 136 | Below the bar |
+| R. C. Brown | | ≤133 | Below the bar |
+| Robert Self | | 133 | Below the bar |
+
+**Not covered.**
+- Variants that differ in surname spelling ("Hobsbawn" for "Hobsbawm").
+- Garbled given names. Callum Brown's works sit under "Brown, Katherine E" and were caught only by reading.
+
+**Final list: 13 to add.**
+- Canadian history: Christie 161, J. R. Miller 163.
+- Other history:
+  - Keith Thomas 197
+  - Elliott 168
+  - Rosenwein 167
+  - MacKenzie 167
+  - Callum Brown 166
+  - Bourke 164
+  - Israel 163
+  - Greenblatt 153 (mixed scholarship)
+  - Parker 151
+  - Devine 147
+  - Richard J. Evans 146
 
 **Caveat.** Only these keys were resolved. A person whose citations are split across several key variants, as J. R. Miller's were, can sit below the bar on every single key. A systematic merge of variants by cited works would catch such cases.
 
