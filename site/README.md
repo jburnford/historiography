@@ -487,9 +487,9 @@ dissertations", "with a filter for low count historians".
   - A name search, zoom buttons and Ctrl/⌘ + scroll to zoom. Plain scrolling still scrolls the page.
   - A profile panel shows a person's most co-cited partners.
   - A table lists the strongest pairs.
-- **Links to Dissertation reading.** 2,059 of the 2,801 people link to Dissertation reading, where
+- **Links to Dissertation reading.** 2,106 of the 3,268 people link to Dissertation reading, where
   exactly one person there has the same name.
-- **A different build.** The map uses the build of 2026-10-28/29, which includes 1,730 UK theses.
+- **A different build.** The map uses the build of 2026-10-30 (10,229 History PhDs, including 2,498 UK theses after the Oxford expansion).
   The reading export is the frozen 2026-10-23 release, and the page says the counts can differ.
 - **Tests.**
   - `tests/test_dissertation_site.py`: hash, fields and edges.
