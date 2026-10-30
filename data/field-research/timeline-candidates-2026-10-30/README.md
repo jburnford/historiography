@@ -31,6 +31,11 @@ The rule was set on the 2026-10-23 release: 6,794 dated strict theses, of which 
 
 **Decision (user, 2026-10-30):** "1.47 seems like a good cut off for now". The Canadian-history bar stays at ≥150. Other historians must exceed 1.47% of dated strict theses, which is 145.8 in the 2026-10-30 build, so **at least 146** theses (100 of 6,794 = 1.4719%).
 
+**Revised bar (user, 2026-10-30): "I think Paul Thompson is the better cut off".**
+- Other historians now need at least 136 dated strict theses (1.37%), the count of Paul Thompson the oral historian after his namesakes are removed.
+- The Canadian-history bar stays at ≥150 unless the user lowers it.
+- Under the ≥146 rule the list below was 13. The 136–145 band adds the names in *Band 136–145* at the end of this file.
+
 ## Candidates under the adopted rule
 
 **Namesakes resolved by cited works.** The user said "the citations have the books/articles, so it shouldn't be hard". `namesake-resolution.json` assigns each cited work to its author by title, across every key variant. Counts are distinct dated strict theses citing any of that author's works.
@@ -130,3 +135,45 @@ Callum Brown's works are filed under the garbled key "brown|katherine e". Every 
 - Life review.
 
 These follow the established queue procedure once the user settles the bar.
+
+## Band 136–145 (bar revised to Paul Thompson's 136)
+
+Every person in the band was checked for namesakes by their cited works. Name variants were merged after a second variant screen at 136, which included compound surnames split at the hyphen or space ("Walker Bynum", "Kessler-Harris").
+
+**New candidates without an entry (other history, at least 136):**
+
+| Historian | Theses | Note |
+| --- | --- | --- |
+| Caroline Walker Bynum | about 166 | With "Bynum, C" and "Walker Bynum, Caroline"; she would also have cleared 146 |
+| Thomas Laqueur | 145 | |
+| Charles S. Maier | 145 | |
+| E. H. Carr | 143 | |
+| Judith Walkowitz | 143 | |
+| Paul Kennedy | 142 | |
+| T. C. Smout | 141 | |
+| David Arnold | 141 | |
+| J. R. McNeill | 140 | Without the works of a namesake John McNeill (Presbyterian Church) |
+| Sheila Fitzpatrick | 140 | |
+| Patrick Geary | 140 | "Geary, Patrick J" + "Geary, Patrick" |
+| Mike Davis | 138 | Writer and urban historian; mixed-scholarship review |
+| Robert Bartlett | 137 | |
+| Hugh Trevor-Roper | 136 | |
+| Peter Gay | 136 | |
+| Paul Thompson | 136 | |
+
+**Bruce Trigger, 141.** *The Children of Aataentsic* and *Natives and Newcomers* are Canadian history, so the ≥150 bar applies unless he is classed as anthropology or archaeology. Flagged for the user.
+
+**Already have entries:** François Furet 136, Michael B. Katz 140, Adele Perry 136, Christopher Hill 136 (135 + 1 variant), Daniel K. Richter 140.
+
+**Below 136 after resolution:**
+- A. H. M. Jones, 130. The key "Jones, Arnold H" also holds UAW, Baptist mission and Greenland-trade works.
+- Kathleen Wilson, 135.
+- Mary P. Ryan, 135.
+- Charles Rosenberg, 127.
+- Alice Kessler-Harris, 119.
+
+**Excluded as primary-source authors:** Lenin, Hume, Hobbes.
+
+**Canadian history between 136 and 149 (bar ≥150):** Bothwell 139, Stacey 138, Strong-Boag 136, Trigger 141 (see above).
+
+**Total if the Canadian bar stays at 150:** 2 Canadian, 27 other.
