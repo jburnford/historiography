@@ -11,6 +11,13 @@ The key store described in [PID-PLAN.md](../../PID-PLAN.md), version 2.
 
 The log then held 15,073 events and 14,646 keys, 4,071 of them people.
 
+**Re-key after the atlas QID review (d0e04dd):**
+- the corrected QIDs for Kant, Ferenczi and Savin became exact anchors on their atlas keys;
+- Kant's canon-map entry joined his atlas key (`p-598`);
+- Patrick O'Brien, previously blocked from a false join to Patricia O'Brien, got his own key (`p-4072`).
+
+The log now holds 4,072 people.
+
 Known blemish: the 143 claim-catalogue claims carry doubled aliases and anchors
 (`claim:claim:breadth:milligan_2019`), because the catalogue's own IDs already start with `claim:`.
 The builder keeps producing that form so that matching stays stable. A clean alias can be attached
@@ -95,7 +102,7 @@ why keying reads the committed atlas.
 
 - **Rebuild check.** Applying that proposal to a scratch store and re-running against the next atlas
   commit (7ef0086) produced **no operations**.
-- **People.** 171 atlas people have exact QIDs as anchors. 542 more have bulk QIDs, held back as
+- **People.** 171 atlas people have exact QIDs as anchors (174 after the re-key). 542 more have bulk QIDs, held back as
   close matches.
 - **Journals.** One ISSN is shared by two journal titles and is left off both.
 
@@ -109,21 +116,21 @@ why keying reads the committed atlas.
 is anchored on its dissertation-graph person key (`diss-person:foucault|michel`), recovered from the
 same build's co-citation pairs table.
 
-**Joins to existing atlas person keys (427):**
+**Joins to existing atlas person keys (427; 428 after the re-key):**
 
 | Route | People |
 | --- | ---: |
 | Reviewed reading-layer bridges (`data/dissertation-layer/links.json`) | 149 |
-| QID agreement: the dissertation graph's automatic QID equals the atlas QID, and the first given names agree (initials-only keys need the same initial sequence or a title-verified QID) | 278 |
+| QID agreement: the dissertation graph's automatic QID equals the atlas QID, and the first given names agree (initials-only keys need the same initial sequence or a title-verified QID) | 278 (279 with Kant) |
 
 Joined people are `established`.
 
-**New keys (2,633):** these are `unresolved` (user decision A, 2026-10-30: one key series, with
+**New keys (2,633; 2,634 with Patrick O'Brien):** these are `unresolved` (user decision A, 2026-10-30: one key series, with
 unresolved as a status). Their dissertation QIDs are kept as evidence
 (`dissertation-qid:<QID>:<tier>`), not as anchors.
 
-**Deferred, no key yet (208).** Listed in
-[canon-map-2026-10-30/merge-review-queue.json](canon-map-2026-10-30/merge-review-queue.json):
+**Deferred, no key yet (208; 206 after the re-key).** The current list is
+[canon-map-2026-10-30/rekey-d0e04dd/merge-review-queue.json](canon-map-2026-10-30/rekey-d0e04dd/merge-review-queue.json):
 - **205 name-only matches to an atlas roster person.** Name equality alone never joins.
   - 125 have a dissertation QID but no atlas QID (e.g. Stuart Hall).
   - 29 have an atlas QID but no dissertation QID (Marc Bloch, Roger Chartier).
@@ -135,7 +142,8 @@ unresolved as a status). Their dissertation QIDs are kept as evidence
   - Jackson Lears.
 
 **Problems found in the atlas while keying** (not fixed here):
-- `immanuel_kant` carries Q78129, which is Gustav Teichmüller. It was a bulk QID and is published.
+- `immanuel_kant` carried Q78129, which is Gustav Teichmüller. **Fixed** by the atlas QID review
+  (d0e04dd; see `data/field-research/atlas-qid-review-2026-10-30`).
 - `t_j_jackson_lears` and `jackson_lears` are the same historian, entered twice.
 - `jane_m_jacobs` is an Australian geographer, while the dissertations cite the urbanist Jane Jacobs
   (Q234335). Check which one the atlas means.
