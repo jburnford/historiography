@@ -3,11 +3,13 @@
 
 Reads the data block of the research page that scripts/historian_cocitation_network.py writes
 (summary/comparisons/historian-network.html) and writes data/dissertation-layer/site/canon-map.json
-with three additions:
+with these additions:
 - ``snapshot``: the build date the page states;
 - ``region_theses``: the per-region thesis counts the page states;
 - ``nodes[].reading``: the person's key in the Dissertation reading export, where exactly one person
   there has the same display name. This is a link only. The two use different builds.
+- ``nodes[].key``, ``nodes[].key_status``: the person's internal key and its status (established or
+  unresolved) from data/identifiers/events.jsonl. People awaiting merge review have none yet.
 - ``nodes[].label``: the name with initials written out ('Thompson, E. P', 'Du Bois, W.e.b' become
   'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it.
 The output hash, the source hash and the snapshot go into data/dissertation-layer/manifest.json under
@@ -36,6 +38,24 @@ def label(name):
 NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Rest of Europe': 'EU', 'elsewhere': 'OTHER'}
 
 
+def attach_keys(nodes):
+    """``key`` and ``key_status`` from the identifier log (PID-PLAN.md), via the person's graph key.
+
+    People deferred for merge review have no key yet and carry neither field."""
+    from identifiers import State
+    from key_canon_map import canon_keys
+    state = State.load(ROOT / 'data/identifiers/events.jsonl')
+    graph_key = canon_keys(nodes)
+    keyed = 0
+    for n in nodes:
+        found = state.lookup(f"diss-person:{graph_key[n['name'], n['qid']]}")
+        if len(found) == 1:
+            n['key'] = found[0]
+            n['key_status'] = state.keys[found[0]]['resolution']
+            keyed += 1
+    return keyed
+
+
 def main():
     page = SOURCE.read_text(encoding='utf-8')
     data = json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>', page, re.S).group(1))
@@ -56,6 +76,7 @@ def main():
         if len(keys) == 1:
             n['reading'] = keys[0]
             linked += 1
+    keyed = attach_keys(data['nodes'])
     text = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
     OUT.write_text(text, encoding='utf-8')
     manifest_path = LAYER / 'manifest.json'
@@ -68,7 +89,7 @@ def main():
         output_sha256=hashlib.sha256(text.encode('utf-8')).hexdigest())
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
     print(f"wrote {OUT.relative_to(ROOT)} ({len(text) / 1e6:.2f} MB): {len(data['nodes'])} people, "
-          f"{linked} linked to Dissertation reading, snapshot {data['snapshot']}")
+          f"{linked} linked to Dissertation reading, {keyed} keyed, snapshot {data['snapshot']}")
 
 
 if __name__ == '__main__':

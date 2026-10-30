@@ -50,11 +50,19 @@ class DissertationExportTests(unittest.TestCase):
         self.assertEqual(sum(data['region_theses'].values()), data['theses'])
         keys = {s['key'] for s in self.index['sources']}
         for n in data['nodes']:
-            self.assertLessEqual(set(n), {'name', 'label', 'qid', 'cited', 'lean', 'shares', 'top', 'reading'})
+            self.assertLessEqual(set(n), {'name', 'label', 'qid', 'cited', 'lean', 'shares', 'top', 'reading',
+                                          'key', 'key_status'})
             self.assertGreaterEqual(n['cited'], data['steps'][0])
             self.assertIn(n['lean'], data['leans'])
             if 'reading' in n:
                 self.assertIn(n['reading'], keys)
+            # internal person keys (PID-PLAN.md): both fields or neither; one key per person
+            self.assertEqual('key' in n, 'key_status' in n)
+            if 'key' in n:
+                self.assertRegex(n['key'], r'^p-[1-9][0-9]*$')
+                self.assertIn(n['key_status'], {'established', 'unresolved'})
+        person_keys = [n['key'] for n in data['nodes'] if 'key' in n]
+        self.assertEqual(len(person_keys), len(set(person_keys)))
         for key, view in data['views'].items():
             self.assertEqual(len(view['ids']), len(view['xy']), key)
             shown = set(view['ids'])
