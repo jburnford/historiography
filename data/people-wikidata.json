@@ -11,8 +11,9 @@
  },
  "not_covered": "282 roster people remain ungrounded: 69 namesake_risk, 121 disambiguate, 92 manual (see roster-grounding-master.csv).",
  "counts": {
-  "accepted": 713,
-  "unmatched": 4
+  "accepted": 708,
+  "unmatched": 4,
+  "rejected": 5
  },
  "people": [
   {
@@ -421,7 +422,8 @@
     "label": "Norbert Elias",
     "description": "German sociologist (1897–1990)",
     "query": "Norbert Elias sociologist",
-    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description"
+    "basis": "WikidataMCP vector search; candidate matches name, nationality and occupation; identity checked against the entry description",
+    "review_2026_10_30": "confirmed: Norbert Elias (1897–1990), correct. The dissertation graph's Q124644194 is Ann Elias, an art historian."
    },
    "life": {
     "birth": "1897-06-22",
@@ -7246,21 +7248,21 @@
    "label": "Immanuel Kant",
    "status": "accepted",
    "wikidata": {
-    "qid": "Q78129",
-    "label": "Gustav Teichmüller",
-    "description": "German philosopher (1832–1888)",
-    "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "qid": "Q9312",
+    "label": "Immanuel Kant",
+    "description": "German philosopher (1724-1804)",
+    "method": "qid_review_2026-10-30",
+    "basis": "Correction 2026-10-30: the bulk roster match had assigned Q78129 (Gustav Teichmüller, 1832–1888). Q9312 checked on the Wikidata Query Service: label Immanuel Kant, German philosopher, born 1724-04-22, died 1804-02-12."
    },
    "life": {
-    "birth": "1832-11-19",
-    "death": "1888-05-22",
+    "birth": "1724-04-22",
+    "death": "1804-02-12",
     "birth_precision": "day",
     "death_precision": "day",
-    "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
-    "retrieved": "2026-09-26"
+    "source": "Wikidata P569/P570 via the Wikidata Query Service",
+    "retrieved": "2026-10-30"
    },
-   "notes": "Tier accept_glance; 9 Wikipedia sitelinks; match source exact-label."
+   "notes": "Corrected 2026-10-30 from Q78129 (Gustav Teichmüller), found while keying the canon map: the dissertation graph grounds Kant to Q9312."
   },
   {
    "person_id": "jackie_huggins",
@@ -8438,7 +8440,8 @@
     "label": "Angela Sidney",
     "description": "Storyteller, author",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: Storyteller and author, b. 1902: matches the Tagish and Tlingit elder credited in the atlas."
    },
    "life": {
     "birth": "1902-01-04",
@@ -8944,7 +8947,8 @@
     "label": "Milton Rogovin",
     "description": "American photographer (1909–2011)",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: American documentary photographer (1909–2011): matches the oral history entry."
    },
    "life": {
     "birth": "1909-12-20",
@@ -11691,19 +11695,19 @@
    "label": "Sándor Ferenczi",
    "status": "accepted",
    "wikidata": {
-    "qid": "Q12355577",
+    "qid": "Q335466",
     "label": "Sándor Ferenczi",
-    "description": "Hungarian archaeologist",
-    "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "description": "Hungarian psychoanalyst (1873–1933)",
+    "method": "qid_review_2026-10-30",
+    "basis": "Correction 2026-10-30 (atlas QID review): Q12355577 (a Hungarian archaeologist, 1894–1945) was one of three namesakes the bulk match listed. The atlas cites Ferenczi in the Freud entry (transference), so the person is the psychoanalyst Q335466."
    },
    "life": {
-    "birth": "1894-10-01",
-    "death": "1945-06",
+    "birth": "1873-07-07",
+    "death": "1933-05-22",
     "birth_precision": "day",
-    "death_precision": "month",
-    "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
-    "retrieved": "2026-09-26"
+    "death_precision": "day",
+    "source": "Wikidata P569/P570 via the Wikidata Query Service (best rank)",
+    "retrieved": "2026-10-30"
    },
    "notes": "Tier accept_glance; 2 Wikipedia sitelinks; match source exact-label. Other same-name candidates: Q335466(Hungarian psychoanalyst (1873–1933)) ; Q1000541(Hungarian science writer and journalist )"
   },
@@ -11757,19 +11761,20 @@
    "label": "Alexander Savine",
    "status": "accepted",
    "wikidata": {
-    "qid": "Q103846282",
-    "label": "Alexander Savine",
-    "description": "American composer, conductor and vocal teacher (1881-1949)",
-    "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "qid": "Q16514980",
+    "label": "Aleksandr Savin",
+    "description": "Russian historian (1873-1923)",
+    "method": "qid_review_2026-10-30",
+    "basis": "Correction 2026-10-30 (atlas QID review): Q103846282 is Alexander Savine, an American composer (1881–1949). The atlas cites Savine's agrarian research through Tawney. Q16514980 is Aleksandr Nikolayevich Savin, a historian of English agrarian history, doctoral student of Paul Vinogradoff, who died in London in 1923.",
+    "review_2026_10_30": "confirmed: Savine is the contemporary English transliteration of Savin; identity checked through his Vinogradoff doctorate and agrarian research (see basis)."
    },
    "life": {
-    "birth": "1881-04-26",
-    "death": "1949-01-19",
+    "birth": "1873-07-16",
+    "death": "1923-01-29",
     "birth_precision": "day",
     "death_precision": "day",
-    "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
-    "retrieved": "2026-09-26"
+    "source": "Wikidata P569/P570 via the Wikidata Query Service (best rank)",
+    "retrieved": "2026-10-30"
    },
    "notes": "Tier accept_glance; 1 Wikipedia sitelinks; match source exact-label."
   },
@@ -11827,7 +11832,8 @@
     "label": "Armida de la Vara",
     "description": "Mexican poet",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: Mexican poet and writer; spouse of Luis González y González (P26), which matches the San José de Gracia collaboration."
    },
    "life": {
     "birth": "1926-01-01",
@@ -11871,7 +11877,8 @@
     "label": "Donald McKenzie",
     "description": "New Zealand bibliographer and literary scholar (1931–1999)",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: New Zealand bibliographer and literary scholar (1931–1999): matches."
    },
    "life": {
     "birth": "1931-06-05",
@@ -11981,7 +11988,8 @@
     "label": "George Sessions",
     "description": "ecologist",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: Ecologist b. 1938: matches the deep-ecology writer in the environment entry. Item is thin; no better candidate found."
    },
    "life": {
     "birth": "1938",
@@ -12025,7 +12033,8 @@
     "label": "Jane M. Jacobs",
     "description": "Australian geographer",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: Australian geographer: the atlas cites her verified coauthorship. The dissertations cite a different person, the urbanist Jane Jacobs (Q234335)."
    },
    "life": {
     "birth": "1958-05-02",
@@ -12326,16 +12335,10 @@
     "label": "Quintin Hoare",
     "description": "British translator",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: British translator; the only item with this name. Its dates (1900, 2025) are year-only placeholders, so the life dates are removed from this sheet rather than published."
    },
-   "life": {
-    "birth": "1900",
-    "death": "2025",
-    "birth_precision": "year",
-    "death_precision": "year",
-    "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
-    "retrieved": "2026-09-26"
-   },
+   "life": null,
    "notes": "Tier accept_glance; 1 Wikipedia sitelinks; match source exact-label."
   },
   {
@@ -12392,7 +12395,8 @@
     "label": "Rita Huggins",
     "description": "Australian Indigenous activist",
     "method": "bulk_roster_match_2026-09-22",
-    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected."
+    "basis": "Bulk roster match, applied by user decision on 2026-09-26 WITHOUT individual review: unique exact label/alias match among Wikidata humans, confidence by sitelinks. Treat as provisional; report errors by setting status to rejected.",
+    "review_2026_10_30": "confirmed: Australian Indigenous activist, b. 1921: matches the author of Auntie Rita (1994)."
    },
    "life": {
     "birth": "1921-08-10",
@@ -12804,7 +12808,7 @@
    "person_id": "deborah_gordon",
    "node_id": "deborah_gordon",
    "label": "Deborah A. Gordon",
-   "status": "accepted",
+   "status": "rejected",
    "wikidata": {
     "qid": "Q2310251",
     "label": "Deborah M. Gordon",
@@ -12820,7 +12824,7 @@
     "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
     "retrieved": "2026-09-26"
    },
-   "notes": "Tier recovered; 5 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 5 Wikipedia sitelinks; match source vector+gate. Rejected 2026-10-30 (atlas QID review): Q2310251 is a biologist and myrmecologist (b. 1955). The atlas person is Deborah A. Gordon, the anthropologist who co-edited Women Writing Culture (1995) with Ruth Behar. No Wikidata item for her was found (MCP search)."
   },
   {
    "person_id": "sue_bailey_thurman",
@@ -12936,7 +12940,7 @@
    "person_id": "patricia_obrien",
    "node_id": "patricia_obrien",
    "label": "Patricia O’Brien",
-   "status": "accepted",
+   "status": "rejected",
    "wikidata": {
     "qid": "Q7145777",
     "label": "Patricia O'Brien",
@@ -12952,7 +12956,7 @@
     "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
     "retrieved": "2026-09-26"
    },
-   "notes": "Tier recovered; 2 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 2 Wikipedia sitelinks; match source vector+gate. Rejected 2026-10-30 (atlas QID review): Q7145777 is Patricia Colleen O'Brien, a Canadian accounting economist (University of Waterloo). The atlas person is the historian who wrote the Foucault chapter in Hunt, The New Cultural History (1989). No Wikidata item for her was found (MCP search)."
   },
   {
    "person_id": "hilda_sabato",
@@ -12980,7 +12984,7 @@
    "person_id": "peter_mcclelland",
    "node_id": "peter_mcclelland",
    "label": "Peter D. McClelland",
-   "status": "accepted",
+   "status": "rejected",
    "wikidata": {
     "qid": "Q47356633",
     "label": "Peter McClelland",
@@ -12996,13 +13000,13 @@
     "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
     "retrieved": "2026-09-26"
    },
-   "notes": "Tier recovered; 1 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 1 Wikipedia sitelinks; match source vector+gate. Rejected 2026-10-30 (atlas QID review): Q47356633 is Peter McClelland, a Canadian rower (b. 1983). No Wikidata item for Peter D. McClelland, the economic historian, was found (MCP search; Query Service exact label)."
   },
   {
    "person_id": "peter_pesic",
    "node_id": "peter_pesic",
    "label": "Peter Pesic",
-   "status": "accepted",
+   "status": "rejected",
    "wikidata": {
     "qid": "Q136036202",
     "label": "Petar Pesic",
@@ -13018,13 +13022,13 @@
     "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
     "retrieved": "2026-09-26"
    },
-   "notes": "Tier recovered; 1 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 1 Wikipedia sitelinks; match source vector+gate. Rejected 2026-10-30 (atlas QID review): Q136036202 is Petar Pesic, a Serbian basketball referee (b. 1990). No Wikidata item for Peter Pesic, the historian of science, was found (MCP search; Query Service exact label)."
   },
   {
    "person_id": "kitty_smith",
    "node_id": "kitty_smith",
    "label": "Kitty Smith",
-   "status": "accepted",
+   "status": "rejected",
    "wikidata": {
     "qid": "Q119117255",
     "label": "Kitty Paviour-Smith",
@@ -13040,7 +13044,7 @@
     "source": "Wikidata P569/P570 via QLever SPARQL (best rank, deprecated excluded)",
     "retrieved": "2026-09-26"
    },
-   "notes": "Tier recovered; 0 Wikipedia sitelinks; match source vector+gate."
+   "notes": "Tier recovered; 0 Wikipedia sitelinks; match source vector+gate. Rejected 2026-10-30 (atlas QID review): Q119117255 is a New Zealand–British entomologist (1930–2017). No Wikidata item for Kitty Smith, the Southern Tutchone and Tlingit elder and narrator, was found (MCP search; Query Service exact label)."
   },
   {
    "person_id": "cameron_campbell",
@@ -14065,7 +14069,8 @@
     "label": "James Vernon",
     "description": "historian",
     "method": "qlever_label_match_2026-10-22",
-    "basis": "Revision 1.152 person entry: QLever SPARQL (qlever.dev/api/wikidata) exact label/alias match among humans (P31 Q5), statements read and matched to the atlas entry; the WikidataMCP endpoint was down and the REST name search was not used. Statements seen: Description 'historian'; P569 1965-03-02; P19 United Kingdom; P108 University of California, Berkeley; P166 Guggenheim Fellowship."
+    "basis": "Revision 1.152 person entry: QLever SPARQL (qlever.dev/api/wikidata) exact label/alias match among humans (P31 Q5), statements read and matched to the atlas entry; the WikidataMCP endpoint was down and the REST name search was not used. Statements seen: Description 'historian'; P569 1965-03-02; P19 United Kingdom; P108 University of California, Berkeley; P166 Guggenheim Fellowship.",
+    "review_2026_10_30": "confirmed: Historian b. 1965, matches the identity note. The dissertation graph grounds this name to Q6144651, an English politician (1646–1727); that is the dissertation side's error."
    },
    "life": {
     "birth": "1965-03-02",
@@ -14087,7 +14092,8 @@
     "label": "Jon Lawrence",
     "description": "British historian",
     "method": "qlever_label_match_2026-10-22",
-    "basis": "Revision 1.152 person entry: QLever SPARQL (qlever.dev/api/wikidata) exact label/alias match among humans (P31 Q5), statements read and matched to the atlas entry; the WikidataMCP endpoint was down and the REST name search was not used. Statements seen: Description 'British historian'; P569 1961 (year precision); P69 King's College, Cambridge; P463 Royal Historical Society; VIAF present."
+    "basis": "Revision 1.152 person entry: QLever SPARQL (qlever.dev/api/wikidata) exact label/alias match among humans (P31 Q5), statements read and matched to the atlas entry; the WikidataMCP endpoint was down and the REST name search was not used. Statements seen: Description 'British historian'; P569 1961 (year precision); P69 King's College, Cambridge; P463 Royal Historical Society; VIAF present.",
+    "review_2026_10_30": "confirmed: British historian b. 1961, matches the identity note. The dissertation graph's Q64594177 (Jon M. Lawrence, researcher) is a different person."
    },
    "life": {
     "birth": "1961",
@@ -14329,7 +14335,8 @@
     "label": "David Foreman",
     "description": "American environmentalist",
     "method": "qlever_label_match_2026-10-23",
-    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). label 'David Foreman'; description 'American environmentalist'; P569 1946-10-18; P106 environmentalist (death date not queried)"
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). label 'David Foreman'; description 'American environmentalist'; P569 1946-10-18; P106 environmentalist (death date not queried)",
+    "review_2026_10_30": "confirmed: American environmentalist, co-founder of Earth First!: matches the identity note."
    },
    "life": {
     "birth": "1946-10-18",
@@ -14527,7 +14534,8 @@
     "label": "Antoinette Burton",
     "description": "American historian",
     "method": "qlever_label_match_2026-10-23",
-    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23)."
+    "basis": "Revision 1.156: QLever SPARQL label/alias match among humans with statements read (the WikidataMCP endpoint was down; the REST name search was not used). QID confirmed by the research agent's QLever check recorded in its identity note (evidence files of 2026-10-23).",
+    "review_2026_10_30": "confirmed: American historian b. 1961, matches the identity note. The dissertation graph's Q133344893 is Eric Burton, another historian."
    },
    "life": {
     "birth": "1961-10-22",
