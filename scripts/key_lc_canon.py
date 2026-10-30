@@ -1,6 +1,7 @@
-"""LC name authorities from the canon-map route -> the key log (PID-PLAN.md section 6). Writes a proposal; never mints.
+"""LC name authorities from the canon-map or atlas route -> the key log (PID-PLAN.md section 6). Writes a proposal; never mints.
 
-Input: a run of scripts/lc_canon_people.py (canon-people-lc.csv). For each resolved person with a key:
+Input: a run of scripts/lc_canon_people.py (canon-people-lc.csv) or of scripts/lc_atlas_people.py
+(--file atlas-people-lc.csv). For each resolved person with a key:
 - tier `exact`: attach `lcnaf:<id>` as an **anchor**, and set an `unresolved` key to `established`
   (the LC authority is its public identifier);
 - any `candidate_*` tier: attach `lcnaf-candidate:<id>:<tier>` as a **member** only. Members never drive
@@ -11,7 +12,7 @@ dissertation graph can split one person across name-variant keys, e.g. 'Taylor, 
 or the authority already anchors another key, no anchor is attached for any of them: each gets a
 `lcnaf-candidate:<id>:shared` member and the group goes to the merge-review queue. (identifiers.plan()
 only sees anchors already in the log, so two new identical anchors would otherwise fail the whole
-proposal.)
+proposal.) A key that already has a different `lcnaf:` anchor gets a candidate member and a review entry.
 
 Each attach carries a structured `evidence` record (route, run, tier, confirmations, cited works, LC
 record title), so an anchor can later be cited as a Wikidata reference. People deferred for merge review
@@ -34,9 +35,10 @@ def main():
     ap.add_argument('--run', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--file', default='canon-people-lc.csv', help='atlas-people-lc.csv for the atlas route')
     args = ap.parse_args()
     state = State.load(args.state / 'events.jsonl')
-    with (args.run / 'canon-people-lc.csv').open(newline='', encoding='utf-8') as f:
+    with (args.run / args.file).open(newline='', encoding='utf-8') as f:
         rows = [r for r in csv.DictReader(f) if r['outcome'] == 'resolved']
     report, queue = Counter(), []
 
@@ -68,8 +70,13 @@ def main():
         k, lc, tier = r['key'], r['lcnaf'], r['tier']
         if tier == 'exact' and lc in shared:
             tier = 'shared'
+        other = sorted(a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:') and a != f'lcnaf:{lc}')
+        if tier == 'exact' and other:           # a second, different LC authority for one key: review
+            tier = 'conflicts_existing'
+            queue.append(dict(kind='key_has_other_lcnaf', key=k, lcnaf=lc, existing=other, label=r['label']))
         # cited work ids contain spaces; each starts 'W:'
-        evidence = dict(route='lc_canon_people', run=str(args.run), tier=tier, confirmations=r['confirmations'].split(),
+        evidence = dict(route='lc_canon_people' if args.file.startswith('canon') else 'lc_atlas_wikidata_p244',
+                        run=str(args.run), tier=tier, confirmations=r['confirmations'].split(),
                         works=re.split(r' (?=W:)', r['evidence_works']), lc_record_title=r['evidence_title'], lc_via=r['via'])
         if tier == 'exact':
             anchor = f'lcnaf:{lc}'

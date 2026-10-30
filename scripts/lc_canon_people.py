@@ -164,6 +164,12 @@ def main():
     by_id = names[0]
     print(f'{len(nodes)} canon people; {sum(map(len, books.values()))} books to try; {len(by_id):,} LC names', flush=True)
     fetch = Fetcher(args.cache, args.delay)
+    surnames = {' '.join(words(n['label'].partition(', ')[0])) for n in nodes}
+    by_surname = defaultdict(list)          # live, differentiated personal names with a canon surname
+    for lcid, a in by_id.items():
+        s = ' '.join(words(a['label'].partition(', ')[0]))
+        if s in surnames and not a['deprecated'] and not a['undifferentiated'] and a['sources']:
+            by_surname[s].append(lcid)
 
     rows, stats, streak = [], Counter(), 0
     for k, n in enumerate(nodes, 1):
@@ -172,7 +178,28 @@ def main():
         family = n['label'].partition(', ')[0]
         person = as_credit(n['label'])
         found, tried, outcome = [], 0, 'no_book'
-        for b in books.get(gk, []):
+        # Offline first: an authority with a compatible name whose 670 sources cite one of the person's
+        # cited books. LC's own record of what the person wrote; no catalogue request needed.
+        offline = {}
+        for lcid in by_surname.get(' '.join(words(family)), ()):
+            a = by_id[lcid]
+            fam, _, given = a['label'].partition(', ')
+            given = given.split(', ')[0]
+            fuller = given.split(' (')[1].rstrip(')') if ' (' in given else ''
+            if not (compatible(person, given.split(' (')[0], fam) or (fuller and compatible(person, fuller, fam))):
+                continue
+            hits = [b for b in books.get(gk, []) if source_names_title(a['sources'], b['title'])]
+            if hits:
+                offline[lcid] = hits
+        if len(offline) == 1:
+            lcid, hits = next(iter(offline.items()))
+            src = by_id[lcid]['sources']
+            found = [dict(lcid=lcid, via='lc_670', book=h,
+                          record_title=next((s for s in src if source_names_title([s], h['title'])), ''))
+                     for h in hits]
+        elif offline:
+            outcome = 'offline_670_ambiguous'      # several namesakes cite the same title; try the catalogue
+        for b in ([] if found else books.get(gk, [])):
             q = query(b['title'], family)
             r = fetch.get(SRU5 + urllib.parse.quote(q))
             if r['status'] == 0:

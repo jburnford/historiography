@@ -87,10 +87,17 @@ def edtf_year(v):
     return m.group(1) if m and 'X' not in v[:4] else ''
 
 
-def load_names(path):
+def load_names(path, lcids=None):
+    """The LC personal-name index as dicts. The full index takes about 6 GB of memory; pass `lcids` to load
+    only those records, and never run two full loads at once (two crashed WSL on 2026-10-30)."""
     db = duckdb.connect()
+    where = ''
+    if lcids is not None:
+        db.execute('CREATE TABLE want(lcid VARCHAR)')
+        db.executemany('INSERT INTO want VALUES (?)', [(x,) for x in lcids])
+        where = 'WHERE lcid IN (SELECT lcid FROM want)'
     rows = db.execute(f"""SELECT lcid, label, variants, birth, death, undifferentiated, deprecated, use_instead,
-                                 external, sources FROM read_parquet('{path}')""").fetchall()
+                                 external, sources FROM read_parquet('{path}') {where}""").fetchall()
     by_id, by_label, by_variant, by_open = {}, defaultdict(set), defaultdict(set), defaultdict(set)
     for lcid, label, variants, birth, death, undiff, dep, use, ext, src in rows:
         by_id[lcid] = dict(label=label, birth=birth, death=death, undifferentiated=undiff, deprecated=dep,
