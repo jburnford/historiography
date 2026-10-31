@@ -338,12 +338,14 @@ class DissertationBrowserTests(unittest.TestCase):
         find = self.page.locator('.canon-find')
         find.fill('Innis, Harold A.')
         find.dispatch_event('change')
-        expect(self.page.locator('.canon-detail h3')).to_have_text('Innis, Harold A.')
+        # Since cd0e66a the heading carries LC life years for the dead only (Innis died 1952).
+        expect(self.page.locator('.canon-detail h3')).to_contain_text('Innis, Harold A.')
+        expect(self.page.locator('.canon-detail h3 .canon-life')).to_have_text('1894–1952')
         expect(self.page.locator('.canon-detail a[href^="#tab=dissertations&source="]')).to_have_count(1)
         partner = self.page.locator('.canon-partners button').first
         name = partner.inner_text()
         partner.click()
-        expect(self.page.locator('.canon-detail h3')).to_have_text(name)
+        expect(self.page.locator('.canon-detail h3')).to_contain_text(name)
         before = self.page.locator('.canon-threshold-value').inner_text()
         self.page.locator('.canon-threshold').fill('0')
         expect(self.page.locator('.canon-threshold-value')).not_to_have_text(before)
