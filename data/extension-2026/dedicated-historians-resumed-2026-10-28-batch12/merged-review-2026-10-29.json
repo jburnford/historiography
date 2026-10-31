@@ -1,0 +1,26 @@
+{
+  "verdict": "pass",
+  "reviewer": "Codex combined packet and preservation review",
+  "checked_on": "2026-10-29",
+  "packet_sha256": "b99015b4b60800f8f4f90ce9151394b5907355dbb607fe7984edbfd86f7fc0d4",
+  "manifest_sha256": "02d8cebe8502f3fcda1fe559783f144fdce11350aa674cdb5ea10ddb64b01bcb",
+  "freeze_sha256": "7b05b7d0d6e791d0f10db164808719bf4547730ca071918c27e4916c9f02b520",
+  "expected_production_sha256": "d07cec01db273fc0e321aca0882fd44f3c8f6478acda79d9d3e8647409ee837c",
+  "person_ids": [
+    "franca_iacovetta",
+    "geoff_eley",
+    "jack_goody",
+    "marisa_j_fuentes",
+    "philip_j_deloria"
+  ],
+  "checks": [
+    "Every dossier review matches its exact owner hashes; the reviewer identity for each new review is explicit.",
+    "Every dossier has a matching source-access review under the current restrictions.",
+    "All 50 claims use existing endpoints; no repeated current or internal directed pair/kind.",
+    "New display prose differs from reviewed owner text only by inserted spaces; the pre-review Pagden bibliographic correction is in the owner dossier.",
+    "Only the 12 edge-cited new sources are included; held-only sources remain in dossiers.",
+    "All earlier edges and graph tables remain exact, apart from 12 append-only source notes.",
+    "The repaired 1.216 graph is the exact production baseline; original 1.204 research contexts and accepted 1.205–1.216 packets remain unchanged."
+  ],
+  "blocking_findings": []
+}

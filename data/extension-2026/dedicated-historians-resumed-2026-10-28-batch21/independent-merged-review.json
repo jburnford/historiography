@@ -1,0 +1,113 @@
+{
+  "revision": "1.226",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_c; independent of all four selected researchers and coordinator",
+  "verdict": "pass",
+  "review_scope": "Exact frozen Noiriel/Pinchbeck/Van Kirk/de Vries integration against live1.225; prior independent passage review pins inspected, no new primary reading claimed.",
+  "baseline_revision": "1.225",
+  "baseline_graph_sha256": "0871e02fd04d5aa6c42f44d46156bd4bed39eb63cc17a6ad0443348bddbf7f6b",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2747,
+    "sources": 3426,
+    "people": 1438
+  },
+  "packet_sha256": "8db378b958f194911540b5dfb5362f0d8d99678553b6d32bb96cecc23cbd725d",
+  "freeze_sha256": "4255f1ec76df206d820b3e5fcf2a2cff5eb2c92d394d5103c25326520c59d91c",
+  "manifest_sha256": "8426938a98a3136951d1fa8cc3d996bb315634468c53faf2f1a2f8f833713198",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "c45db2c80b292bceca2113894dd06d4d4f5132cc2c3085c2b5af77d2796e2fc8",
+    "responses/entry-draft.json": "166d575331102aff96ec295bd817b8442a6778c85c9f53eb391f6422adbae55c",
+    "release/editorial-additions.json": "8db378b958f194911540b5dfb5362f0d8d99678553b6d32bb96cecc23cbd725d",
+    "verification.json": "838eb43f9f445825f79c40d5395ed4f48b6d7fce8e2164ad0449090a95f1820c",
+    "baseline.json": "200676343e52a5e10f72d7cff744c3bd3af48b646947cf21a13b9015bed9ba6c",
+    "manifest.json": "8426938a98a3136951d1fa8cc3d996bb315634468c53faf2f1a2f8f833713198",
+    "prepare.py": "bf454787b708a160a0b0b5f59e24c0ea7807a1af2b1b36d08a0292817820d0d1",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 80,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "gerard_noiriel": "312df319ddb40b70c95ea1759b1801e36fe40eb07c9ed80f0b43fa5abd5c7923",
+    "ivy_pinchbeck": "0dd7c7d59f292a475f5b4664b327a9ddade7acc250d4f83a2e7e14dafc330ab2",
+    "sylvia_van_kirk": "0936b5891be471a8fd1dcdb0f1c1f5330f0d02c37881c7dd774986a8069d0675",
+    "jan_de_vries": "dad79737556fffbc11de6adb43b76d562738407fadca16c22492169e4a955e23"
+  },
+  "owner_to_packet_mapping": {
+    "gerard_noiriel": {
+      "proposals": 12,
+      "cited_new_sources": 3,
+      "excluded_held_only_sources": [],
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "ivy_pinchbeck": {
+      "proposals": 2,
+      "cited_new_sources": 1,
+      "excluded_held_only_sources": [],
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    },
+    "sylvia_van_kirk": {
+      "proposals": 2,
+      "cited_new_sources": 1,
+      "excluded_held_only_sources": [
+        "hr30_vankirk_transborder2008"
+      ],
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "jan_de_vries": {
+      "proposals": 4,
+      "cited_new_sources": 0,
+      "excluded_held_only_sources": [],
+      "source_addenda": 3,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "excluded_uncited_new_sources": {
+    "hr30_vankirk_transborder2008": [
+      "sylvia_van_kirk"
+    ]
+  },
+  "checks": {
+    "all_owner_access_raw_and_review_pins_exact": true,
+    "all20proposals_exact_to_draft_and_packet": true,
+    "five_cited_sources_exact_sorted": true,
+    "eight_addenda_exact": true,
+    "held_only_vankirk_chapter_excluded": true,
+    "empty_spacing_overlay": true,
+    "no_existing_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_sources_resolve": true,
+    "historical_edges_exact": true,
+    "historical_sources_exact_except_eight_verification_appends": true,
+    "nodes_people_chronology_other_fields_exact": true,
+    "revision_history_exact_prefix": true,
+    "request_partition": "82 prior +4 selected +15 remaining =101;86 implemented after subset.",
+    "noiriel": "Own interviews retain plural resources and particular critique; Hamman mediates bounded joint Roche/Chartier resources and contested Elias distinction. Positive Elias debt and criticism coexist. Rorty/Bouveresse stronger missing holds retained.",
+    "pinchbeck": "Burnette interpretive comparison with joint Davidoff/Hall work stays undirected and mediated, not direct criticism or transmission; class scope, joint credit, own transition losses and unread conclusion retained.",
+    "vankirk": "All nine live incidents exact; Brown joint Nelson collaboration distinct from existing comparison1002, opposite influence2551 and critique2553. Perry positive intimacy tools retain Brown credit and critical limits alongside1022. Only held-only own2008 chapter excluded; final pre-PASS spacing corrections and pins exact.",
+    "devries": "All nine live incidents and eight group routes checked in independent review, including2623 reverse resource; Peer Vries distinct from Jan. Brewer invitation project effect, Wrigley standard, Thompson co-target Pollard and Stearns co-target Miles remain qualified; stronger missing Hayami/Becker/Crafts/Harley/Hajnal debts held.",
+    "prepare_check": "PASS",
+    "source_host_unittests": "3 cases PASS",
+    "source_route_findings": 0,
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 20,
+    "sources": 5,
+    "source_addenda": 8
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2767,
+    "sources": 3431,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "e2367ae0881c6ca12ee25d48dd60a96b0228f8e8fd01ce52aaf90cb6e3eb48ec",
+  "blocking_findings": [],
+  "frozen_inputs_modified": false,
+  "limitations": "Pre-application integration audit only. Existing independent passage reviews remain frozen; no applied approval, graph, public export, build mutation or publication."
+}

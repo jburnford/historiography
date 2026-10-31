@@ -1,0 +1,9 @@
+# Donald Creighton: independent passage and coverage review
+
+PASS — Codex /root/research_c, independently reviewing /root/research_a, 30 October 2026.
+
+Both proposals are supported by actual original journal passages. Ouellet’s 1984 pages 223–229 specifically challenge the national bourgeoisie/social-decapitation account, while preserving differences among authors, his own revision about Conquest effects on the nobility and Creighton’s pioneering contribution. This criticism coexists with the earlier positive Ouellet–Hamelin borrowing. Davis’s 1985 comparison at 97–98 and 101–103 is explicitly mediated and undirected: actual 101 and note 47 at 110 record Careless’s denial of original Creighton/Innis inspiration, with medieval history and Gras credited. No causal teaching lineage is invented.
+
+The reviewer read selected own 1957 pages 1–6 and 1969 pages 14–16, plus selected original DCB biographical paragraphs, after provenance checks. Actual 1969 page 15, Ouellet 228 and Davis 101 were visually collated. Kennedy’s first-project suggestion, Innis qualifications and disciplinary polemics preserve their boundaries. Reviewer challenges added explicit missing history-as-drama teachers Brebner, Humphrey Hume Wrong and George Malcolm Smith, and clarified that Edward Kylie is a memorial scholarship namesake rather than a teacher.
+
+All eight current incidents and nine named group routes were checked. New Greer/Cook routes, reciprocal Ouellet evaluation, Desmond versus W. L. Morton, joint Artibise/Linteau credit and Helen Creighton’s separate identity remain exact. Final six owner hashes, source-access, receipt and 33 raw hashes match. No blocker remains; no owner or raw file was modified by the reviewer. Original books, full addresses, private letters and the complete biography are not newly read, and no exhaustive-network or integration approval is claimed.

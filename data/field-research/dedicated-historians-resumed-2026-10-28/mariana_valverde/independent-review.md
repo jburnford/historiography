@@ -1,0 +1,7 @@
+# Mariana Valverde: independent review PASS
+
+Both proposed relationships are supported by actual passages. The complete original 2016 article expressly identifies her Foucauldian tradition and particular use of power/knowledge; printed174 was visually checked. The complete original 1995 review uses Derrida to challenge the theory/politics and ideal/material binaries, with339–340 reservations about undeconstructible justice and its mystical context retained. All notes, Weir acknowledgment and relevant Wright122–126 reception were read.
+
+All five live incidents and ten named group routes remain exact. Strong missing Bakhtin, Santos and Weir resources remain visible. Review requested an explicit Ahmad criticism hold and a jointly credited Walkowitz/Ross panel hold. The final dossier correctly records both panel participants as missing full endpoints, after correcting the reviewer’s initial mistaken availability assumption. Coediting titles, passing mentions and earlier unrenewed readings do not become new debts. Praise and criticism coexist.
+
+Six owner hashes, source-access review, private raw receipt and all nine pinned files match; failed/challenge files are not treated as article bodies. One new cited source and two addenda. No blockers, current endpoint-kind duplicates or prohibited-route findings. Codex /root/research_c is independent of researcher /root/research_b; no owner, raw, graph or frozen file edited. Original cited books and1992body remain unread in this continuation.

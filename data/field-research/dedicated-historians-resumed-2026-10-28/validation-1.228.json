@@ -1,0 +1,38 @@
+{
+  "revision": "1.228",
+  "status": "reviewed_applied_and_locally_verified",
+  "production_sha256": "2be7bbd9afb0c6a6f38a1fcf90085405bd1a90d564ed657270ebaaed0e10112e",
+  "checks": [
+    {
+      "name": "data",
+      "cases": 20,
+      "status": "pass",
+      "log_sha256": "aea0ee8709aa69c67edb8aafc0c7096a54e974ab1c3d95223250ad75193a6de1"
+    },
+    {
+      "name": "javascript_core",
+      "cases": 61,
+      "status": "pass",
+      "log_sha256": "08cf157fca29a25d63154f0bfb19f27ad44cb458d06368a242c76255f11adb23"
+    }
+  ],
+  "preview_build": {
+    "status": "pass",
+    "allowlisted_files": 54,
+    "log_sha256": "5052dbabdc573ad78cd92aaa593299a77198b7faf9d6d251222ff1a0f755138e"
+  },
+  "public_export": {
+    "graph_and_overview_refreshed": true,
+    "accepted_relationships_and_sources_exact": true,
+    "existing_people_enrichment_preserved": true
+  },
+  "independent_reviews_sha256": {
+    "independent-merged-review.json": "9ba4bb4b2fc528be230cb903488700b77d2bb33e5ca6370e9f6dfa1d063ee1d0",
+    "independent-applied-review.json": "4018f2727d2e07c699ac6d452780a6e8744d9dd8d6cf169a6a1b1750301406af"
+  },
+  "structural_errors": 0,
+  "structural_warnings": 46,
+  "remaining_priority_dossiers": 7,
+  "publication": "not_committed_or_pushed",
+  "validation_harness_note": "Initial test encountered optional citation field absence in the exact reviewed Yates source. Test now compares only citation when present, matching the source schema and prepare script; all20data tests pass on rerun. Frozen owner metadata, reviews and accepted graph were unchanged."
+}

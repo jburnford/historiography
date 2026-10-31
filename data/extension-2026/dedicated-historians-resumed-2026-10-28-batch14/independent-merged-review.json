@@ -1,0 +1,90 @@
+{
+  "revision": "1.219",
+  "reviewer": "Codex independent merged-packet reviewer /root/historian_review; separate agent from researcher/coordinator",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "review_scope": "Frozen pre-application Carter and Greer merge; this is not an applied audit. Earlier independent passage and coverage reviews remain pinned and unchanged.",
+  "baseline_revision": "1.218",
+  "baseline_graph_sha256": "a47760c530e646464751792a2ea277f63ff937db456ba78eb2b2ddc1c46dfc60",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2636,
+    "sources": 3399,
+    "people": 1438
+  },
+  "packet_sha256": "fd84d0009644c47cfa3f32b00d0a100b2dfc7cd9c996879567665fb400ade037",
+  "freeze_sha256": "6370a0d8081cb710027efd47101baeaccec9ad359d1f0910c80abdb4d93d0596",
+  "manifest_sha256": "503c52e35ad95141ac0384565f67410103756750a6f30ee62a0ea66edc4ca552",
+  "text_spacing_sha256": "ff4bb29150503ec47367b0c21d4351c11361c7d5e93f59ade22a041f78c9574a",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "fb8d05107fb37effc0edba1aec563ac2f82f15c769b61cfc3a7754709218b868",
+    "responses/entry-draft.json": "f33836b07914964d9ae127e2d24ef800786925200a607d5458a80456850db371",
+    "release/editorial-additions.json": "fd84d0009644c47cfa3f32b00d0a100b2dfc7cd9c996879567665fb400ade037",
+    "verification.json": "f9fa2408a63e619ae9754ec97381405dd0e5dfabbc66d772d11a95adf9b5694b",
+    "baseline.json": "48a6e6ea17be8d5653dece63c0fcff08ffe0770744e2d110b7a0c9d75c87c719",
+    "manifest.json": "503c52e35ad95141ac0384565f67410103756750a6f30ee62a0ea66edc4ca552",
+    "prepare.py": "d70ebe4b20db8af049fe9f23a4f3b1e091671fcac960344a16dc48af54231095",
+    "text-spacing.json": "ff4bb29150503ec47367b0c21d4351c11361c7d5e93f59ade22a041f78c9574a"
+  },
+  "manifest_input_count": 50,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "sarah_carter": "058ba338ac0610bdc6445e7e4bef6706a4291e6c6f3c29f615edd7cd5d6726ba",
+    "allan_greer": "9e055ab5f97a833f1ba853390418b9967bc0bcdee09a7a2b58cfaa23434cec24"
+  },
+  "owner_to_packet_mapping": {
+    "sarah_carter": {
+      "edges": 10,
+      "new_cited_sources": 1,
+      "source_addenda": 4,
+      "all_reviewed_fields_exact_after_space_only_overlay": true
+    },
+    "allan_greer": {
+      "edges": 11,
+      "new_cited_sources": 0,
+      "source_addenda": 4,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "checks": {
+    "independent_owner_and_access_hashes_match": true,
+    "all_21_proposals_map_to_draft_and_packet": true,
+    "no_kind_type_or_direction_changes": true,
+    "legacy_normalizations": {},
+    "all_15_overlay_entries_verified_space_only": true,
+    "all_overlay_old_values_match_frozen_owners": true,
+    "new_source_exact_after_overlay": "hr30_carter_burton_editor_identity",
+    "excluded_uncited_source": "hr30_carter_jacobs2017 remains held-only in the frozen owner; absent from packet and simulated graph. Its two overlay entries were verified before exclusion.",
+    "all_eight_source_addenda_exact_after_overlay": true,
+    "no_current_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_source_ids_resolve": true,
+    "all_2636_historical_edges_exact": true,
+    "all_3399_old_sources_exact_except_eight_specified_verification_appends": true,
+    "verification_status_and_date_changes_only_as_reviewed": true,
+    "nodes_people_chronology_and_all_other_tables_exact": true,
+    "revision_history_exact_prefix": true,
+    "no_extra_mutation_fields": true,
+    "namesake_hold": "carter_paul_namesake_route remains frozen, preserving edge_730 and excluding Paul Carter/The Road to Botany Bay as Sarah evidence.",
+    "source_restrictions": "Packet and draft have zero prohibited-route findings. Prior actual-body passage reviews are exact. Combined Coulthard body remains unread/excluded; no new reading is inferred by merge.",
+    "prepare_check": "python3 data/extension-2026/dedicated-historians-resumed-2026-10-28-batch14/prepare.py --check passed with no mutation.",
+    "source_host_tests": "python3 -m unittest tests.test_source_hosts: 3 tests passed.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 21,
+    "sources": 1,
+    "source_addenda": 8
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2657,
+    "sources": 3400,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0",
+  "blocking_findings": [],
+  "limitations": "Pre-application simulation only. No publication, push, source-original reading beyond the prior bounded independent reviews, or exhaustive network claim. Frozen inputs, graph and website files were not edited.",
+  "frozen_inputs_modified": false
+}

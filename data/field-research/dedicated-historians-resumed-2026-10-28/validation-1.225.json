@@ -1,0 +1,38 @@
+{
+  "revision": "1.225",
+  "status": "reviewed_applied_and_locally_verified",
+  "production_sha256": "0871e02fd04d5aa6c42f44d46156bd4bed39eb63cc17a6ad0443348bddbf7f6b",
+  "checks": [
+    {
+      "name": "data",
+      "cases": 20,
+      "status": "pass",
+      "log_sha256": "219dcf833fba9a62b8ac63abae2c489079d6440013ffed064a132824cec25d9d"
+    },
+    {
+      "name": "javascript_core",
+      "cases": 61,
+      "status": "pass",
+      "log_sha256": "8d0cf978391f73ad1b087aabc09f6cfb2f5b4216ff2e47a847192a1cccea2481"
+    }
+  ],
+  "preview_build": {
+    "status": "pass",
+    "allowlisted_files": 54,
+    "log_sha256": "f349c1eba701da90f565b932fae82ca5871f1e9a6d5393ab8282057f371e1ec2"
+  },
+  "public_export": {
+    "graph_and_overview_refreshed": true,
+    "accepted_relationships_and_sources_exact": true,
+    "existing_people_enrichment_preserved": true
+  },
+  "independent_reviews_sha256": {
+    "independent-merged-review.json": "599a4463ff879fd75d54e0c6b2f08f1e065ba07cfb0277d0fd9b27ea75936a26",
+    "independent-applied-review.json": "8fb767d94e711fe8d12721879687fff5b73d434e4ab6f67d8766bf5a8c98e094"
+  },
+  "structural_errors": 0,
+  "structural_warnings": 46,
+  "remaining_priority_dossiers": 19,
+  "publication": "not_committed_or_pushed",
+  "test_harness_note": "Initial new-batch harness expected passage_checks only; Stoler and Anderson frozen reviews use source_checks for the same explicit actual-passage evidence. Updated only the new harness to accept either nonempty review field. Frozen dossiers, reviews, manifests, packet and graph unchanged; all20data cases then pass."
+}

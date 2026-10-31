@@ -1,0 +1,79 @@
+{
+  "person_id": "cv_wedgwood",
+  "reviewer": "Codex independent passage and coverage reviewer /root/research_c; separate agent from researcher /root/research_b",
+  "checked_on": "2026-10-30",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "live_graph_checked_revision": "1.220",
+  "live_graph_checked_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "verdict": "pass",
+  "reviewed_sha256": {
+    "context.json": "3bfdb8499ecdcfd131f4e5cbece68b83931d78f4ffc7ede48f31e930e0da0470",
+    "proposals.json": "20ae04d1e61c26d22b29578fac9313dd653d90e502d1c9ec608637f5343fb95d",
+    "sources.json": "cbde7111954980a69f005e3de2ea363692914f75f16c556cd95dd0b90b60b3fc",
+    "held-cases.json": "c52b52ba357ebcfee8f9410be42919224bcf15d6a9238ddb7a7ec37931037993",
+    "case-review.json": "379c9164ec2abd8e962b28af4ff7df94dff0c2cab54754f492493fefc211cd1e",
+    "README.md": "5393e2f569453f343ed656aeb52754c906117b3011945f23692d3d507a0b8686"
+  },
+  "source_access_review_sha256": "1ab5c1915caf6cf112257a8dbb3398fc21717384b6665cc7c9069403533ab7e9",
+  "raw_receipt_sha256": "8e3b896a001a7428ddb012ab10c1de648b30f0014cba92d6c25e332d3d657dcb",
+  "raw_hashes_verified": true,
+  "proposal_count": 2,
+  "new_source_count": 2,
+  "source_addendum_count": 1,
+  "proposal_decisions": [
+    {
+      "proposal_id": "hr30_wedgwood_bloch_acknowledgment",
+      "decision": "include",
+      "checked_locator": [
+        "Original AJR March1960:6, column1, first own paragraph"
+      ],
+      "finding": "The signed first-person acknowledgment explicitly names Bloch as an influence while giving Burckhardt stronger emphasis. Editorial introduction is separate. Exact particular work, doctrine, contact and exclusive genealogy are not inferred."
+    },
+    {
+      "proposal_id": "hr30_wedgwood_stone_regicide_critique",
+      "decision": "include",
+      "checked_locator": [
+        "Original NYRB 10September1964 complete review; paragraph anchors One wonders / How far / If Miss Wedgwood / The objection"
+      ],
+      "finding": "Actual publisher HTML review criticizes explanatory omissions, court composition, quotation checking, dramatic reconstruction and emotional framing, while praising narrative skill. Proposal preserves attribution and limits rather than adopting Stone’s historical verdict. This specific1964 intervention differs from the existing1979 narrative comparison."
+    }
+  ],
+  "passage_checks": [
+    {
+      "source_id": "hr30_wedgwood_schiller1960",
+      "route": "Actual original publisher archive PDF,12leaves; leaf6 matches retained page image.",
+      "read_scope": "Complete three-column signed essay printed6, visually read in high-resolution page image; OCR collated at influence paragraph and through all three columns.",
+      "finding": "Bloch is explicit. Stronger detailed Schiller/Burckhardt/Trevelyan/Neale/Canetti roles remain held for missing full endpoints. Gibbon/Maitland/Carlyle/Michelet/Croce/Collingwood names verified; Ranke group not confused with personal endpoint."
+    },
+    {
+      "source_id": "hr30_stone_wedgwood1964",
+      "route": "Actual original NYRB HTML; title,author,date and canonical URL checked against markup.",
+      "read_scope": "Complete body from In January1649 through final weightier-cause sentence; navigation/ads/recommendations excluded.",
+      "finding": "Praise and specific objection coexist. Book title andMacmillan identity confirmed in review heading. Unidentified final critic is not supplied with a guessed name; reviewed book and archival sources remain unread. Paragraph anchors are authoritative where line breaks split typography."
+    },
+    {
+      "source_id": "wedgwood_woolrych",
+      "route": "Actual original British Academy15-leafPDF with portrait, plus corresponding extracted text.",
+      "read_scope": "Complete521–534 and14notes read; actualPDF textlayer spot-collated against original, portrait distinguished.",
+      "finding": "Nine existing incidents remain exact. Personal teaching/advice,critical reassessment and stronger missing readers distinguishable. Woolrych528 polemic remains his voice;529–530 qualifies narrative/analysis as partial approaches.533Festschrift list does not prove shared doctrine;534art/science quotation is a mediated1958text, not a new original reading."
+    }
+  ],
+  "coverage_challenges": [
+    {
+      "challenge": "Available-endpoint bias and stronger omissions",
+      "finding": "Schiller’s subject/literary role, Burckhardt’s strongest influence, Trevelyan’s advice, Neale’s rewriting and Canetti translation are explicit holds. Full-node lookup confirms absence; no quota-based field edges."
+    },
+    {
+      "challenge": "Named critics and reciprocal response",
+      "finding": "Stone original is fresh. Hill1958original remains unread; mere Festschrift presence is insufficient. No Wedgwood response found in bounded search, which is not proof of universal absence. Parker1984original and exact prefaces remain unread; existing mediated qualifications unchanged."
+    },
+    {
+      "challenge": "Cooper identity, rosters, directions and duplicates",
+      "finding": "J.P.Cooper not Frederick; Ranke group not personal endpoint. ExistingTawney seminar and allnine incidents retained. Bloch→Wedgwood influence andStone→Wedgwood critique do not duplicate current directed pair/kind keys or replace group interpretations."
+    }
+  ],
+  "blocking_findings": [],
+  "limitations": "Bounded independent passage/coverage and preservation review only. No full monograph or original1958lecture reading; no graph mutation, merged-packet approval, build or publication claim.",
+  "frozen_inputs_modified": false
+}

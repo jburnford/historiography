@@ -1,0 +1,724 @@
+{
+  "person_id": "rodney",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "rodney",
+    "label": "Walter Rodney",
+    "date_label": "African history and political education · 1960s–80",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Explains underdevelopment through historically unequal relations of slavery, colonial extraction and capitalism. Regional African research, Guyanese labor history and popular education give his work distinct scales and audiences. His account of systemic constraints also investigates changing societies; dependency analysis captures only part of his scholarship and politics.",
+    "representative_figures_and_works": "The Groundings with My Brothers (1969); How Europe Underdeveloped Africa (1972). Further selected bibliography: A History of the Upper Guinea Coast, 1545–1800 (1970); A History of the Guyanese Working People, 1881–1905 (posthumous 1981).",
+    "source_ids": [
+      "rodney",
+      "rodney_groundings",
+      "rodney_excerpt",
+      "rodney_upper_guinea",
+      "rodney_guyanese",
+      "rodney_marxism",
+      "james_rodney_power",
+      "wallerstein_rodney"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "A History of the Upper Guinea Coast, 1545–1800 (1970, from a 1966 thesis) reconstructs regional change; The Groundings with My Brothers (1969) concerns political education; How Europe Underdeveloped Africa (1972) offers a didactic synthesis. A History of the Guyanese Working People, 1881–1905 (posthumous, 1981) examines labor and racial divisions. His 1975 Marxism lecture distinguishes method from fixed European conclusions. James’s later strategic criticism coexists with formative intellectual exchange. Canonical-work review (2026-10-24): added titles and dates are selected bibliography, not a complete career or a new reading of the books. Original works, translations, edited collections and posthumous editions are distinguished; earlier argument and source-reading qualifications remain.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1970–1981",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_6e2be0af618b",
+          "label": "A History of the Upper Guinea Coast",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1970,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rodney_upper_guinea"
+          ],
+          "support": "Book, distinct from the 1966 doctoral thesis. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_29c2ca2000f0",
+          "label": "How Europe Underdeveloped Africa",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1972,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rodney"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_054ceb6a70d6",
+          "label": "Marxism and African Liberation",
+          "kind": "speech",
+          "track": "contributions",
+          "date": {
+            "year": 1975,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rodney_marxism"
+          ],
+          "support": "Speech, distinct from its 1986 reproduction. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_96cd6538236b",
+          "label": "A History of the Guyanese Working People",
+          "kind": "posthumous_publication",
+          "track": "contributions",
+          "date": {
+            "year": 1981,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:rodney_guyanese"
+          ],
+          "support": "Posthumous work as qualified in the entry's evidence. Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_149",
+      "source": "rodney",
+      "target": "dependency",
+      "relationship": "develops an African historical account of relational underdevelopment",
+      "type": "connection",
+      "source_ids": [
+        "rodney_excerpt",
+        "wallerstein_rodney"
+      ],
+      "evidence_note": "Rodney’s checked excerpt supplies unequal power; Wallerstein’s 1986 reading distinguishes systemic constraint from simple stagnation. That sympathetic interpretation does not settle disputes over African agency or absorb all Rodney’s work into dependency theory.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_150",
+      "source": "rodney",
+      "target": "anticolonial",
+      "relationship": "connects historical research with Pan-African politics and popular education",
+      "type": "connection",
+      "source_ids": [
+        "rodney_groundings"
+      ],
+      "evidence_note": "The Foundation describes dialogue with working people and Rastafarians in Jamaica, alongside scholarship and political activity. This is an institutional account of practice; the original Groundings text still needs a passage check.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_156",
+      "source": "clr_james",
+      "target": "rodney",
+      "relationship": "Caribbean historical writing and London Marxist study inform Rodney’s formation",
+      "type": "connection",
+      "source_ids": [
+        "rodney",
+        "rodney_groundings",
+        "james",
+        "james_rodney_power"
+      ],
+      "evidence_note": "West’s assessment identifies The Black Jacobins. The Foundation names C. L. R. and Selma James in London study; James’s 1981 retrospective locates Rodney within a Caribbean intellectual inheritance. These sources support formation but not agreement on strategy or every textual debt.",
+      "relationship_kind": "influence",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_157",
+      "source": "eric_williams",
+      "target": "rodney",
+      "relationship": "informs Rodney’s intellectual formation through Capitalism and Slavery",
+      "type": "connection",
+      "source_ids": [
+        "rodney",
+        "rodney_groundings",
+        "williams"
+      ],
+      "evidence_note": "Michael West’s 2018 assessment reproduced by Verso names Capitalism and Slavery as formative. This remains a secondary attribution: no direct Rodney passage was located in this batch, and the two historical explanations are not identical.",
+      "relationship_kind": "influence",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_271",
+      "source": "rodney",
+      "target": "africanhist",
+      "relationship": "Rodney contributes African research and a critique of underdevelopment through unequal power",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "rodney",
+        "rodney_excerpt",
+        "ranger_interview",
+        "rodney_upper_guinea"
+      ],
+      "evidence_note": "The earlier Upper Guinea project adds regional research to the 1972 power argument and Ranger’s Dar recollection. Neither the thesis abstract nor the retrospective testimony verifies the full monograph; Dar es Salaam remains intellectually plural.",
+      "map_label": "Rodney: research, power and Dar es Salaam"
+    },
+    {
+      "id": "edge_398",
+      "source": "karl",
+      "target": "rodney",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Rodney adapts materialist method to historical time and place",
+      "evidence_note": "His 1975 lecture explicitly separates method from conclusions about nineteenth-century Europe. This is his account of a conceptual resource, not a claim that African/Caribbean history derives wholly from European theory.",
+      "source_ids": [
+        "rodney_marxism"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Rodney: method and historical specificity"
+    },
+    {
+      "id": "edge_399",
+      "source": "rodney",
+      "target": "atlantic",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Upper Guinea research connects regional change and Atlantic slave trading",
+      "evidence_note": "The 1966 thesis abstract identifies European and intra-African forces; the 1970 book contributes regional scholarship. This does not certify every argument of the unread book or make Africans a single responding actor.",
+      "source_ids": [
+        "rodney_upper_guinea"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Upper Guinea: regional and Atlantic relations"
+    },
+    {
+      "id": "edge_400",
+      "source": "rodney",
+      "target": "social",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Guyanese working people become subjects of differentiated labor history",
+      "evidence_note": "The posthumous 1981 book addresses immigration, race, class, resistance and accommodation. Mapping it here identifies substantive social history, not membership in a unified school. Publisher-level support retains its limits.",
+      "source_ids": [
+        "rodney_guyanese"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Guyana: labor, race and class divisions"
+    },
+    {
+      "id": "edge_401",
+      "source": "clr_james",
+      "target": "rodney",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "James criticizes Rodney’s political preparation for taking power",
+      "evidence_note": "The 1981 memorial lecture offers a strategic disagreement alongside admiration. James’s diagnosis is not adopted as an explanation of the assassination or proof of what Rodney did not know. This differs from the formative influence in edge_156.",
+      "source_ids": [
+        "james_rodney_power"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "James’s retrospective strategic criticism"
+    },
+    {
+      "id": "edge_2101",
+      "source": "rodney",
+      "target": "robin_d_g_kelley",
+      "relationship": "Names Rodney’s How Europe Underdeveloped Africa as a model that drew him toward historical and revolutionary study.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_kelley_solidarity"
+      ],
+      "evidence_note": "In his own named-resources answer, Kelley describes Rodney’s book as opening dependency/underdevelopment literature, then places it with Du Bois and James among three formative historical texts. Samir Amin and Andre Gunder Frank retain credit in that pathway. Original Rodney book remains unread for this dossier; retrospective self-report is not an exclusive genealogy.",
+      "proposal_id": "hc200_kelley_rodney_model"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_044",
+      "source": "anticolonial",
+      "target": "nationaltradition",
+      "relationship": "James, Williams and Césaire challenge different imperial historical narratives",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "james",
+        "williams",
+        "rodney",
+        "cesaire_discourse"
+      ],
+      "evidence_note": "James, Williams, and Rodney challenge different imperial narratives; national liberation is not a single explanatory position. Césaire’s checked opening attacks civilizing claims; Williams’s economic propositions remain disputed.",
+      "classification_basis": "editorial_review",
+      "map_label": "Different challenges to imperial narratives"
+    },
+    {
+      "id": "edge_062",
+      "source": "economic",
+      "target": "dependency",
+      "relationship": "extends analysis to unequal international relations",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "williams",
+        "rodney_excerpt",
+        "frank_underdevelopment_primary"
+      ],
+      "evidence_note": "Williams and Rodney make empire, slavery, and unequal development historical problems. This does not derive all dependency theory from a generic field. Frank’s notes add particular Latin American histories, including Furtado and Góngora, used selectively rather than as a generic economics origin.",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_089",
+      "source": "anticolonial",
+      "target": "dependency",
+      "relationship": "Rodney and Williams connect empire with distinct explanations of unequal economic change",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "rodney_excerpt",
+        "williams"
+      ],
+      "evidence_note": "Rodney and Williams provide distinct arguments concerning empire and economic change; neither stands for every dependency theorist. Rodney’s primary excerpt emphasizes power and control; its broad loss-of-agency rhetoric remains his argument.",
+      "classification_basis": "editorial_review",
+      "map_label": "Rodney’s power relations; Williams’s slavery debate"
+    },
+    {
+      "id": "edge_236",
+      "source": "anticolonial",
+      "target": "africanhist",
+      "relationship": "Liberation politics and critiques of colonial knowledge contribute to distinct African historical projects",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "rodney",
+        "dike",
+        "unesco_project",
+        "ranger_interview"
+      ],
+      "evidence_note": "Decolonization supplies important contexts, not a sole origin of African historiography. Ki-Zerbo’s opening calls for critical reconstruction rather than reversing inherited myths; Ranger recalls institutional variety.",
+      "map_label": "Historical reconstruction amid decolonization"
+    },
+    {
+      "id": "edge_237",
+      "source": "africanhist",
+      "target": "dependency",
+      "relationship": "Rodney connects African history to an account of underdevelopment structured by unequal power",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "rodney",
+        "rodney_excerpt"
+      ],
+      "evidence_note": "Rodney’s work replaces Vansina as the pertinent theoretical reference; the field is broader than dependency analysis. The primary excerpt strengthens the argument check; neither its generalizations nor dependency theory define the field.",
+      "map_label": "Rodney: underdevelopment and political power"
+    },
+    {
+      "id": "edge_883",
+      "source": "anticolonial",
+      "target": "settler_colonialism",
+      "relationship": "Decolonization-era usage and later theory",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "source_ids": [
+        "screq_veracini_2013",
+        "screq_mamdani_2001",
+        "p4b_veracini_2011_deposit",
+        "screq_tuck_yang_2012"
+      ],
+      "evidence_note": "Veracini dates a usage, until the late 1970s, naming a diehard hyper-colonialism challenged by anti-colonial insurgencies. Mamdani revisits the first postcolonial generation's political economy (Rodney) to ask how settler and native became political identities. Comparison: no line of descent from liberation politics to the later field is asserted. Addendum 2026-10-23 (data/extension-2026/period4-wave1-2026-10-23/evidence-settler-colonial.md P.6, p4B_rel_13): Veracini 2011, pp. 5–7 (read in full), 'Decolonisation is not settler decolonisation': 'arguing against colonialism is not the same thing as condemning settler colonialism'; 'if colonialism ends with the coloniser's departure … settler colonialism ends with an indigenous ultimate permanence'. Tuck and Yang 2012, p. 31 (read): 'Decolonization is not equivocal to other anti-colonial struggles. It is incommensurable.' Both keep the two decolonisations apart, which is why a comparison and not a descent is drawn.",
+      "classification_basis": "editorial_review",
+      "map_label": "Anti-colonial usage of 'settler colonialism'",
+      "proposal_id": "screq_rel_05"
+    },
+    {
+      "id": "edge_2102",
+      "source": "w_e_b_du_bois",
+      "target": "robin_d_g_kelley",
+      "relationship": "Credits Black Reconstruction as one of the formative historical models that drew him into the discipline.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_kelley_solidarity"
+      ],
+      "evidence_note": "Kelley explicitly names Du Bois’s book alongside James’s Black Jacobins and Rodney’s How Europe Underdeveloped Africa. The three are co-credited; this is stronger than a shared Black-history topic or bibliographic mention. The original Du Bois book remains unread here.",
+      "proposal_id": "hc200_kelley_dubois_model"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "karl",
+      "label": "Historical materialism",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "Distinguishes materialist method from conclusions about nineteenth-century Europe and asks how to investigate African histories in their own time and place.",
+          "works": "Marxism and African Liberation (1975 speech)",
+          "source_ids": [
+            "rodney_marxism"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "anticolonial",
+      "label": "Anti-colonial histories",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "Connects African economic history, unequal power and popular political education; underdevelopment is a historical relationship.",
+          "works": "How Europe Underdeveloped Africa (1972); The Groundings with My Brothers (1969)",
+          "source_ids": [
+            "rodney",
+            "rodney_excerpt",
+            "rodney_groundings"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "social",
+      "label": "New social history",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "Studies Guyanese working people through labor, racial divisions and colonial constraints.",
+          "works": "A History of the Guyanese Working People, 1881–1905 (1981, posthumous)",
+          "source_ids": [
+            "rodney_guyanese"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_400"
+        }
+      ]
+    },
+    {
+      "node_id": "dependency",
+      "label": "Dependency / world-systems",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "African historical explanation in a wider political project.",
+          "works": "How Europe Underdeveloped Africa (1972)",
+          "source_ids": [
+            "dependency",
+            "worldsystems_origins",
+            "rodney",
+            "rodney_groundings",
+            "rodney_excerpt"
+          ],
+          "basis": "curated_entry"
+        }
+      ]
+    },
+    {
+      "node_id": "africanhist",
+      "label": "African history: postwar institutional expansion",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "Analyzes underdevelopment and colonial power; contributes to a varied Dar es Salaam intellectual setting.",
+          "works": "How Europe Underdeveloped Africa (1972)",
+          "source_ids": [
+            "rodney",
+            "rodney_excerpt",
+            "ranger_interview"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_271"
+        }
+      ]
+    },
+    {
+      "node_id": "atlantic",
+      "label": "Atlantic & diaspora histories",
+      "records": [
+        {
+          "person_id": "rodney",
+          "role": "historian",
+          "context": "Connects Upper Guinea societies to Atlantic trade while examining regional forces.",
+          "works": "A History of the Upper Guinea Coast, 1545–1800 (1970)",
+          "source_ids": [
+            "rodney_upper_guinea"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_399"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "cesaire_discourse",
+      "title": "Aimé Césaire, Discourse on Colonialism (French 1950, revised 1955; trans. Joan Pinkham, 1972).",
+      "citation": "Aimé Césaire, Discourse on Colonialism (French 1950, revised 1955; trans. Joan Pinkham, 1972).",
+      "url": "https://monthlyreview.org/9781583670255/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Primary scan title/copyright and pp. 9–13 visually read: criticism of colonial civilizing claims and damage to the colonizer. Copyright identifies revised French 1955 and English 1972; Monthly Review’s November 1999 introduction identifies the earlier 1950 original. Full essay and differences between French versions unread.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "dependency",
+      "title": "Wallerstein: The Modern World-System I",
+      "url": "https://www.ucpress.edu/books/the-modern-world-system-i/paper"
+    },
+    {
+      "id": "dike",
+      "title": "K. Onwuka Dike, Trade and Politics in the Niger Delta, 1830–1885 (Clarendon Press, 1956).",
+      "citation": "K. Onwuka Dike, Trade and Politics in the Niger Delta, 1830–1885 (Clarendon Press, 1956).",
+      "url": "https://search.worldcat.org/title/926039503",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Catalogue confirms Clarendon 1956 book. KCL institutional account https://www.kcl.ac.uk/news/how-a-kings-history-student-founded-a-school-of-historical-of-thought-in-1950s-africa consulted for Ibadan’s oral/written methods and Dike’s archival/curricular work; broad first-African priority claims are not adopted. The 1950 thesis and 1956 book have different endpoints. Full book unread. Previous scope: Bibliographic proposal; neither a URL nor a citation certifies the associated historical relationships."
+      }
+    },
+    {
+      "id": "frank_underdevelopment_primary",
+      "title": "André Gunder Frank, “The Development of Underdevelopment” (Monthly Review, September 1966, 17–31), reprinted in Mingst/Snyder, Essential Readings in World Politics, second edition (2004), 86–93.",
+      "citation": "André Gunder Frank, “The Development of Underdevelopment” (Monthly Review, September 1966, 17–31), reprinted in Mingst/Snyder, Essential Readings in World Politics, second edition (2004), 86–93.",
+      "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/e/11338/files/2016/01/ER-x2a1c6.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read the complete reproduced sections I–IX and displayed abridged notes, plus reader title/imprint, PDF indices 95–102. Metropolitan–satellite relations and export/latifundia hypotheses are Frank’s contestable claims. Notes identify selective Furtado/Pinto, Guerra and Góngora resources and criticism of Borah. Original Monthly Review scan not collated; neither all 493 reader pages nor empirical claims verified."
+      }
+    },
+    {
+      "id": "hc200_kelley_solidarity",
+      "title": "Solidarity Is Not a Market Exchange: interview, parts1–2",
+      "url": "https://black-ink.info/2020/01/16/solidarity-is-not-a-market-exchange-an-interview-with-robin-d-g-kelley/",
+      "citation": "Robin D. G. Kelley, interviewed by Jack Amariglio and Lucas Wilson, Rethinking Marxism 30 (4), 2018, 568–598, part 1, DOI10.1080/08935696.2018.1552420;31(2),2019,152–172, part 2, DOI10.1080/08935696.2019.1592407; authorial transcript repost 16 January 2020.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh substantial primary interview transcript retrieved in HTML. Selected answers on early Marx reading, named intellectual resources, Black Marxism/Robinson, feminism, dialectics, race, primitive accumulation, utopia and Hountondji/diaspora read with surrounding questions; not all 150k characters or original typeset PDFs read/collated. Publisher records distinguish 2018 issue/online 22 January 2019 part 1 and 2019 issue/online 20 May 2019 part 2 from 2020 repost. Repost supplies no reliable original page divisions: locators use question/answer beginnings. Interviewer statements distinguished from Kelley’s answers; named mediation and coauthors retained. No present legal/geopolitical claims or new biographical timeline adopted."
+      }
+    },
+    {
+      "id": "james",
+      "title": "Rachel Douglas, Making The Black Jacobins (2019)",
+      "url": "https://dukeupress.edu/making-the-black-jacobins",
+      "notes": "Retrospective study of James’s 1938 and revised 1963 editions and his changing Marxist engagements.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher description of Douglas’s retrospective study checked for the 1938/1963 editions, theatre and changing Marxist engagements. No entire James or Douglas book read in this batch; the later study is evidence about earlier work."
+      }
+    },
+    {
+      "id": "james_rodney_power",
+      "title": "C. L. R. James, Walter Rodney and the Question of Power (1981 lecture; Race Today, 1983).",
+      "citation": "C. L. R. James, Walter Rodney and the Question of Power (1981 lecture; Race Today, 1983).",
+      "url": "https://www.marxists.org/archive/james-clr/works/1981/01/rodney.htm",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary opening and strategic criticism read, together with Race Today’s 1983 introduction. James locates Rodney in a Caribbean intellectual inheritance and criticizes his preparation for taking power. This is James’s retrospective diagnosis, not a neutral explanation of Rodney’s assassination; erroneous book dates and priority claims in the lecture are not imported."
+      }
+    },
+    {
+      "id": "p4b_veracini_2011_deposit",
+      "title": "Lorenzo Veracini, \"Introducing settler colonial studies,\" Settler Colonial Studies 1, no. 1 (2011): 1–12; author's deposit, Swinburne Research Bank.",
+      "citation": "Lorenzo Veracini, \"Introducing settler colonial studies,\" Settler Colonial Studies 1, no. 1 (2011): 1–12; author's deposit, Swinburne Research Bank.",
+      "url": "https://doi.org/10.25916/sut.26246930.v1",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-23",
+        "note": "Read in full on 2026-10-23 (the journal's own 2011 PDF, \"© settler colonial studies 1 (2011), ISSN 1838-0743\", deposited by the author under CC BY-NC-ND 3.0; handle 1959.3/156165). Passages: \"you, work for me\" against \"you, go away\" (p. 1); \"settler colonialism, by contrast, extinguishes itself\" and \"the structure persistently pursues a specific end point\" (p. 3, note 11 citing Wolfe 1999, p. 163); postcolonial studies \"failed to detect the settler colonial 'situation' in its specific operation\" (p. 5); \"Decolonisation is not settler decolonisation\" (p. 5); \"impervious to regime change\" quoted from Wolfe (p. 5); \"settler colonialism ends with an indigenous ultimate permanence\" (p. 7); the politics of recognition \"cannot be considered a genuinely decolonising move\" (p. 8); \"Reconciliation should be a practice and not a process\" (p. 9); ARC grant DP0986984 (acknowledgements)."
+      }
+    },
+    {
+      "id": "ranger_interview",
+      "title": "Diana Jeater, interview with Terence Ranger (2009), “Terence Ranger: Life as Historiography,” History Workshop (2011).",
+      "citation": "Diana Jeater, interview with Terence Ranger (2009), “Terence Ranger: Life as Historiography,” History Workshop (2011).",
+      "url": "https://www.historyworkshop.org.uk/empire-decolonisation/terence-ranger-life-as-historiography/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Selected primary retrospective passages consulted: archival/oral practice, Peasant Consciousness, and the varied Dar es Salaam syllabus including shared teaching with Rodney. Ranger explicitly disputes a uniform nationalist-school characterization. The interview is later evidence about pre-2000 work, not an extension of mapped chronology; contemporary critics still need direct passage checks.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "rodney",
+      "title": "Walter Rodney, How Europe Underdeveloped Africa (1972): Verso edition",
+      "url": "https://www.versobooks.com/en-gb/products/788-how-europe-underdeveloped-africa",
+      "notes": "Distinguish the 1972 original from later editions. Michael West’s assessment reproduced on this page identifies James and Williams as intellectual influences.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher description and reproduced Michael West 2018 assessment checked. West names James and Williams as intellectual influences; no direct Rodney testimony about Williams was established here. Later edition dates and Davis’s unread foreword do not date or verify the 1972 original."
+      }
+    },
+    {
+      "id": "rodney_excerpt",
+      "title": "Walter Rodney: excerpt on colonial underdevelopment",
+      "url": "https://www.versobooks.com/blogs/news/4810-colonialism-as-a-system-for-underdeveloping-africa",
+      "notes": "A primary-text excerpt from How Europe Underdeveloped Africa, republished online in 2026. The webpage date is not the date of Rodney’s argument.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary publisher excerpt consulted for power, institutional control and the relation between colonialism and underdevelopment, including Rodney’s explicit Memmi use. Its sweeping claims about loss of African historical agency and women’s status are not adopted as uncontested descriptions. This is a later posting of the 1972 argument; full book unread."
+      }
+    },
+    {
+      "id": "rodney_groundings",
+      "title": "Walter Rodney Foundation: scholar, activist, and Groundings",
+      "url": "https://www.walterrodneyfoundation.org/about-walter-rodney",
+      "notes": "Supports Rodney’s Caribbean political education and the 1969 publication context of The Groundings with My Brothers.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Foundation account checked for London study-group participation with C. L. R. and Selma James, Jamaican dialogue with working people and Rastafarians, and Dar es Salaam context. Commemorative institutional account; full Groundings unread. Its displayed 1972 epigraph date does not replace the original 1969 publication date."
+      }
+    },
+    {
+      "id": "rodney_guyanese",
+      "title": "Walter Rodney, A History of the Guyanese Working People, 1881–1905 (Johns Hopkins University Press, 1981).",
+      "citation": "Walter Rodney, A History of the Guyanese Working People, 1881–1905 (Johns Hopkins University Press, 1981).",
+      "url": "https://www.press.jhu.edu/books/title/1025/history-guyanese-working-people-1881-1905",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher description and contents checked: labor, immigration, class divisions, race, resistance and accommodation. Completed before Rodney’s 1980 death and published posthumously. No primary chapter read; the publisher’s characterization of class fragmentation is not treated as an uncontested conclusion."
+      }
+    },
+    {
+      "id": "rodney_marxism",
+      "title": "Walter Rodney, “Marxism and African Liberation” (1975 speech; reproduced in From Yes to Marxism!, 1986).",
+      "citation": "Walter Rodney, “Marxism and African Liberation” (1975 speech; reproduced in From Yes to Marxism!, 1986).",
+      "url": "https://www.marxists.org/subject/africa/rodney-walter/works/marxismandafrica.htm",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary opening and methodology section read. Archive dates speech to 1975 and identifies the 1986 source collection. Distinguishes materialist method from fixed European conclusions; his claim of method’s universal applicability remains his position. Full speech and original recording unchecked."
+      }
+    },
+    {
+      "id": "rodney_upper_guinea",
+      "title": "Walter Rodney, A History of the Upper Guinea Coast, 1545–1800 (Clarendon Press, 1970); doctoral thesis, 1966.",
+      "citation": "Walter Rodney, A History of the Upper Guinea Coast, 1545–1800 (Clarendon Press, 1970); doctoral thesis, 1966.",
+      "url": "https://soas-repository.worktribe.com/output/393521/a-history-of-the-upper-guinea-coast-1545-1800",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Indexed SOAS author abstract consulted for the thesis’s regional and external-force questions; direct repository access returned 403. Folger catalogue https://catalog.folger.edu/record/11576 confirms the 1970 book. Thesis abstract is not a reading of the revised book; European and intra-African forces are both identified."
+      }
+    },
+    {
+      "id": "screq_mamdani_2001",
+      "title": "Mahmood Mamdani, \"Beyond Settler and Native as Political Identities: Overcoming the Political Legacy of Colonialism,\" Comparative Studies in Society and History 43, no. 4 (2001): 651–664.",
+      "url": "https://www.cambridge.org/core/journals/comparative-studies-in-society-and-history/article/beyond-settler-and-native-as-political-identities-overcoming-the-political-legacy-of-colonialism/A1919DC1C4418B5229BBE876C18BFCFB",
+      "citation": "Mahmood Mamdani, \"Beyond Settler and Native as Political Identities: Overcoming the Political Legacy of Colonialism,\" Comparative Studies in Society and History 43, no. 4 (2001): 651–664.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-12",
+        "note": "Opening read: the first postcolonial generation in Africa saw colonialism's impact as mainly economic (citing Rodney), while no one wrote of how Europe ruled. Crossref did not resolve the DOI on 2026-10-12; Cambridge lists it."
+      }
+    },
+    {
+      "id": "screq_tuck_yang_2012",
+      "title": "Eve Tuck and K. Wayne Yang, \"Decolonization Is Not a Metaphor,\" Decolonization: Indigeneity, Education & Society 1, no. 1 (2012).",
+      "url": "https://jps.library.utoronto.ca/index.php/des/article/view/18630",
+      "citation": "Eve Tuck and K. Wayne Yang, \"Decolonization Is Not a Metaphor,\" Decolonization: Indigeneity, Education & Society 1, no. 1 (2012).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-23",
+        "note": "Title, authors, volume and issue checked; page range not shown on the page. Argument read only through Garba & Sorentino's 2020 abstract (settler–native–slave triad). Addendum 2026-10-23: The journal's PDF (pp. 1–40; CC BY-NC 3.0; published 2012-09-08; SUNY New Paltz and UC San Diego) read on 2026-10-23: pages 1–15, 19–20, 28–29, 35–36; moves V–VI and the bibliographies of incommensurability skimmed. \"Decolonization brings about the repatriation of Indigenous land and life; it is not a metaphor\" (p. 1); \"settler colonialism is built upon an entangled triad structure of settler-native-slave\" (p. 1); \"This is why Patrick Wolfe (1999) emphasizes that settler colonialism is a structure and not an event\" (p. 5); Wolfe 2006, p. 387, quoted at length on opposed racialisations (p. 12; their reference list misdates it 2007); \"settler moves to innocence\" (p. 10); \"Reconciliation is about rescuing settler normalcy\" (p. 35); \"Decolonization is not an 'and'. It is an elsewhere\" (p. 36). The earlier note's reading through Garba and Sorentino's abstract is superseded."
+      }
+    },
+    {
+      "id": "screq_veracini_2013",
+      "title": "Lorenzo Veracini, \"'Settler Colonialism': Career of a Concept,\" Journal of Imperial and Commonwealth History 41, no. 2 (2013): 313–333.",
+      "url": "https://doi.org/10.1080/03086534.2013.768099",
+      "citation": "Lorenzo Veracini, \"'Settler Colonialism': Career of a Concept,\" Journal of Imperial and Commonwealth History 41, no. 2 (2013): 313–333.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-23",
+        "note": "Abstract read: three earlier passages. Until the 1960s settlement was seen as unrelated to colonialism, with Indigenous presence disavowed. To the late 1970s 'settler colonialism' named a diehard hyper-colonialism challenged by anti-colonial insurgencies. In the late 1970s–1980s it was linked to development. Addendum 2026-10-23: Author's accepted manuscript read in abstract, opening and conclusion on 2026-10-23 (p4b_veracini_2013_deposit)."
+      }
+    },
+    {
+      "id": "unesco_project",
+      "title": "B. A. Ogot, “Description of the Project”; Joseph Ki-Zerbo, “General Introduction,” General History of Africa I: Methodology and African Prehistory (1981).",
+      "citation": "B. A. Ogot, “Description of the Project”; Joseph Ki-Zerbo, “General Introduction,” General History of Africa I: Methodology and African Prehistory (1981).",
+      "url": "https://www.idee-benin.com/Telecharge/General_History_of_Africa_I_Ki_Zerbo.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Primary Ogot pp. xxiii–xxiv and Ki-Zerbo pp. 1–3 read, with contents and imprint. The downloaded UNESCO reprint identifies original English 1981. Supports collaborative editorial practice, methodological plurality and a stated African perspective; does not certify the whole volume or all historical claims.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "wallerstein_rodney",
+      "title": "Immanuel Wallerstein, “Walter Rodney: The Historian as Spokesman for Historical Forces,” American Ethnologist 13.2 (1986): 330–337.",
+      "citation": "Immanuel Wallerstein, “Walter Rodney: The Historian as Spokesman for Historical Forces,” American Ethnologist 13.2 (1986): 330–337.",
+      "url": "https://krieger.jhu.edu/arrighi/wp-content/uploads/sites/29/2020/02/Wallerstein-review-of-Rodney-books.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Primary reception evidence: selected pp. 330–333 read in university-hosted journal scan. Wallerstein differentiates the books’ evidence/audiences and interprets agency and systemic constraints. His sympathetic world-systems reading is one interpretation; Rodney passages quoted here are mediated, not direct full-book checks."
+      }
+    },
+    {
+      "id": "williams",
+      "title": "Eric Williams, Capitalism and Slavery (1944): UNC Press third edition",
+      "url": "https://uncpress.org/9781469663685/capitalism-and-slavery-third-edition/",
+      "notes": "Supports Williams’s arguments and the continuing debates they generated. The original date is 1944; the linked book is a later edition.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-11",
+        "note": "Publisher description identifies the 1944 original and distinguishes claims about slavery’s contribution to capitalist development from mature capitalism and abolition. These remain debated arguments, not settled facts. Linked 2021 foreword unread; full original text unread in this batch."
+      }
+    },
+    {
+      "id": "worldsystems_origins",
+      "title": "Immanuel Wallerstein, World-Systems Analysis: An Introduction (2004)",
+      "url": "https://www.dukeupress.edu/world-systems-analysis",
+      "notes": "Retrospective account by Wallerstein. Used alongside the Marx reference for an editorial synthesis of conceptual resources; does not establish one Marxist origin for all dependency theorists.",
+      "verification": {
+        "note": "Addendum 2026-10-25: Duke publisher page rechecked for title, author and August 2004 publication. Body unread; no substantive relationship is inferred from publisher metadata.",
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}

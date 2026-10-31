@@ -1,0 +1,114 @@
+{
+  "person_id": "peter_brown",
+  "reviewer": "Codex independent passage and coverage reviewer /root/historian_review; separate agent from researcher/coordinator",
+  "checked_on": "2026-10-30",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "live_graph_checked_revision": "1.219",
+  "live_graph_checked_sha256": "5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0",
+  "verdict": "pass",
+  "reviewed_sha256": {
+    "context.json": "946f15110a71563bdb2a97da3c985b468cc6b070e7ec35778ecf1a79caa0ebc0",
+    "proposals.json": "d4cab0aec16f9a6265eebe06adeaea5746345776ed2489107080949cdb46672d",
+    "sources.json": "498a59713637149031ddeb1a26e36b46c78f06d8ae40a69c1fac854fa6936edc",
+    "held-cases.json": "c3e1303d637a819062435d9fbb83fc50cb66d969bdcf3a97a02ea47934fd3803",
+    "case-review.json": "9c937f1f3998ce9d94b1ffea498c8a311c0879c41126214022b055d846628610",
+    "README.md": "e706c308a53aafdbe9c5d61fd1f038ae5729578c53c0550c422b78efcfd7fd92"
+  },
+  "source_access_review_sha256": "e4aa1059b9d839939bbd1bd55da9ff918cd1c7193e086d224b4f42dadc2b1495",
+  "raw_receipt_sha256": "162269d949f43c05a6dda13c7afb65439d3390f990f3de31cee0188d9200ae87",
+  "raw_hashes_verified": true,
+  "proposal_count": 2,
+  "new_source_count": 3,
+  "cited_new_source_count": 2,
+  "held_only_new_source_count": 1,
+  "source_addendum_count": 1,
+  "proposal_decisions": [
+    {
+      "proposal_id": "hr30_brown_douglas_reading",
+      "decision": "include",
+      "checked_locator": [
+        "Haskins2003:2–3,9;context12–14"
+      ],
+      "finding": "Own Haskins2003:2–3 expressly rejects a seminar genealogy, identifies1968tea, private PurityandDanger reading and NaturalSymbols manuscript on trains. Printed9 reiterates reading in a distinct intellectual setting;12–14 distinguishes earlier social-functional explanation from later inward attention. This supports concrete reading/conversational influence with no formal seminar or original-book reading claim."
+    },
+    {
+      "proposal_id": "hr30_brown_foucault_reading_exchange",
+      "decision": "include",
+      "checked_locator": [
+        "Haskins2003:2–3,13–14",
+        "Anabases2022:255/n12,bibliography257"
+      ],
+      "finding": "Own Haskins2003:2–3 describes late1980conversation and informal friendship;13–14 expressly acknowledges Foucault’s work while giving Hadot priority. Own Anabases2022:255/n12/bibliography257 affirmatively uses posthumous2018Lesaveuxdelachair. This later uptake is not projected backwards as cause of1988BodyandSociety; NYRB introductory framing is not misrepresented as Brown’s own testimony."
+    }
+  ],
+  "passage_checks": [
+    {
+      "source_id": "hr30_brown_haskins2003",
+      "route": "Actual retained original ACLS learned-society publisher PDF,34leaves. Current web request returned403; that response is not counted as body text.",
+      "read_scope": "Complete Brown lecture1–20/PDFleaves13–32, with biographical frontmatter and Oakley introductionvii–ix separately identified. Selected lecture transcript matches actual PDF text after whitespace/ligature normalization; printed14 visually collated.",
+      "finding": "Informal encounters and private reading differ from seminar attendance. Hadot’s emphatic priority, Momigliano’s mentorship and broader library/teaching/travel context prevent exclusive Douglas/Foucault formation. Biographical1972manifestation does not revise canonical WorldofLateAntiquity1971."
+    },
+    {
+      "source_id": "hr30_brown_anabases2022",
+      "route": "Actual retained original OpenEdition journal PDF,17leaves. Current web request returned a challenge, not fresh article text.",
+      "read_scope": "Complete245–257 and bibliography/PDFleaves2–14 plus metadata cover. Transcript matches actual PDF text; printed255/n12 visually collated.",
+      "finding": "Print2November2022 and online2November2024 are distinct. Own answers identify major debts and substantive resources, with coauthors/student roles specified; later2018Foucault citation is correctly dated. No cited-original or memoir reading inferred."
+    },
+    {
+      "source_id": "hr30_brown_roundtable2024",
+      "route": "Actual retained original Cambridge open-access PDF,20leaves; DOI/current web endpoint unavailable, not counted as fresh body retrieval.",
+      "read_scope": "Selected introduction841–842; complete Bogdanović847–850, López850–853 and Brown response858–860. Actual PDF text matches retained selected leaves; printed852/n5 visually collated. Other signed sections not completely read; adjacent boundary text is not complete-section evidence.",
+      "finding": "López’s religion/outsider/optimism interpretation, Bogdanović’s architectural/gender emphasis and Brown’s response remain separate voices. Finley criticism is expressly mediated through memoir389; neither memoir nor original review read.2024issue and2025copyright are distinct. Held-only source does not enter either proposal."
+    },
+    {
+      "source_id": "ri189_brown_nyrb_interview",
+      "route": "Current original NYRB publisher page, independently opened and read.",
+      "read_scope": "Complete displayed June1,2024interview, own answers90–116 and separate editorial introduction82–87.",
+      "finding": "Own conclusion explicitly credits anthropology; strangeness/context is distinct from facile present analogy. Editorial Foucault attribution is not the primary basis of the personal influence edge. No audio or memoir reading."
+    }
+  ],
+  "coverage_challenges": [
+    {
+      "challenge": "Strongest formation and endpoint availability",
+      "finding": "Momigliano/Marrou have explicit priority in2022:245–247; Hadot comes first at2003:13–14 and2022:247; Patlagean explicitly shapes later wealth/poverty work at247/253. These missing full endpoints are preserved rather than down-ranked to favor the two available proposals. Momigliano’s incomplete dissertation supervision, later seminars, mentorship and Marrou’s reading/personal contact/JeanneMarrou translation remain distinct."
+    },
+    {
+      "challenge": "Other substantive resources and criticism",
+      "finding": "Gurevich’s third-time formulation254–255 and Pirenne continuity debate250 are substantive held leads, with neither full node. Finley also lacks a full node; mediated memoir-based criticism stays held. Rebillard, Lepelley, Caner, Tannous and Rousselle/Carrié roles are specific. Former student Tannous is not made Brown’s teacher; Betsy’s expertise is explicitly acknowledged in Brown’s own860answer rather than inferred from marriage."
+    },
+    {
+      "challenge": "Available Braudel/Bloch endpoints",
+      "finding": "Braudel’s brief planned-Iran-project phrase in López852 does not demonstrate a particular work or detailed methodological debt; no automatic edge. No new Bloch debt is established in complete own primary witnesses. Both available endpoints are correctly differentiated from missing-endpoint holds."
+    },
+    {
+      "challenge": "Namesakes and historical route preservation",
+      "finding": "WilliamWellsBrown,Radcliffe-Brown and JenniferS.H.Brown matches do not identify Peter. Tuchman Brown/Henneman advice remains identity-unestablished. Six historical incidents and23group routes are retained as research context; live preservation must use exact1.219 records. One old incident has only inherited display spacing differing from its1.204context, explicitly recorded below."
+    }
+  ],
+  "structural_checks": {
+    "six_owner_hashes_match_access_review": true,
+    "case_output_hashes_match": true,
+    "eight_local_raw_hashes_verified": true,
+    "all_three_selected_transcripts_match_actual_PDF_text": true,
+    "existing_endpoints": true,
+    "no_internal_or_current_pair_kind_duplicates": true,
+    "directions_and_kinds_consistent": true,
+    "source_ids_resolve": true,
+    "two_cited_new_sources_and_one_held_only_source_distinguished": true,
+    "context_source_records_match_repaired_live_canonical_records": true,
+    "five_context_incidents_equal_live_exactly": true,
+    "all_23_context_group_routes_equal_live_exactly": true,
+    "sixth_incident_context_difference": {
+      "edge_id": "edge_2034",
+      "field": "evidence_note",
+      "finding": "Research-context/case text has earlier spacing (Own2010 and note22’s1980); current1.219 has spaces (Own 2010 and note 22’s 1980). Removing ASCII spaces yields identical text. Keep historical research context and exact live edge unchanged; do not restore earlier spacing at application."
+    },
+    "source_host_checks": "All six owner outputs scanned without prohibited-route findings; three tests in tests.test_source_hosts pass.",
+    "graph_unchanged_during_review": true
+  },
+  "blocking_findings": [],
+  "limitations": "Bounded complete own lecture/interview and selected signed reception plus complete displayed NYRB interview. No full memoir, cited originals, original Finley review, complete roundtable or new earlier LeGoff-body reading. Historical and institutional generalizations remain attributed. Review adds only this file; six owner files frozen at exact hashes.",
+  "owner_files_modified": false,
+  "freeze_owner_files_on_pass": true
+}

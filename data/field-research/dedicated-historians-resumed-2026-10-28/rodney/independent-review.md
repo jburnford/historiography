@@ -1,0 +1,3 @@
+# Walter Rodney: independent passage and coverage review
+
+PASS. Codex /root independently read the selected actual original publisher article, licensed ebook preface/foreword and joint introduction, and full publisher James lecture with displayed notes. All six owner/access/receipt/fifteen raw pins match. Three claims retain two-reader mediation, joint credit, continued debt and exact edition/reading limits. Eleven live incidents and eight current group routes were checked; the context-seven coverage gap is explicitly supplemented without rewriting the context. Stronger missing contributors and unread evidence remain holds. Exact findings and independent scopes are in independent-review.json. No owner file changed.

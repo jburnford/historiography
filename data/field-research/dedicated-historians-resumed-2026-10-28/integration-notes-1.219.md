@@ -1,0 +1,7 @@
+Two whole-person dossiers, Sarah Carter and Allan Greer, use original research contexts1.204and exact production baseline1.218. The previous64, these two and the remaining35partition the resumed101-person request. Build and apply only after both exact independent passage/coverage reviews pass.
+
+The source restrictions govern actual reading. Used bodies are original publishers, original journals and permitted repository text. The combined Coulthard teaching file remains unread/excluded; a lead does not become a citation edge. Carter's Paul Carter namesake route is explicitly held and preserved, not assigned to Sarah. Other authors, coeditors, translations, original-unread works and partial reading extents remain explicit.
+
+A separate, exact space-only overlay formats Carter's newly displayed prose without changing frozen owner files or their non-space content. Greer was formatted before review. All earlier graph records and accepted packets remain exact except append-only source notes. New preparation checks baseline table counts before building, in addition to the exact graph SHA; this guards against the descriptive-count inheritance error recorded separately for1.218.
+
+No edge quota, invented biography, group surrogate, life/chronology change, Indigenous/dissertation rewrite, new corpus analysis or OpenAlex. Reviewer identity is explicit and no additional model identity is claimed. No commit or push.

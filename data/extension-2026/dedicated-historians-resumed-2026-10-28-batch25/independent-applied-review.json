@@ -1,0 +1,55 @@
+{
+  "revision": "1.230",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent applied-batch reviewer /root/research_c; independent of all three selected researchers and coordinator",
+  "verdict": "pass",
+  "graph_path": "historiography-1920-2000.json",
+  "graph_sha256": "d94e10d996ac7731b3fcaacd80b8f020115bd0152d70205ec4242e4d59ac7b27",
+  "acceptance_sha256": "8144e0b39c63547436c7591879974474bc9cbd4503fe00f02bc4f2d8c3e21735",
+  "packet_sha256": "55d55713e0ede317a24070365c8c816618ff2b37dbf3ab08f4efa65e3fa87a4f",
+  "freeze_sha256": "6681978b12d01d14d8440e59df25a028ade579cdf8527c5bcc15fa19060ffacc",
+  "manifest_sha256": "8c96433071df98b156aa9fb9d8f916f0a78e7377ef38693a1ae9fa3f088f465d",
+  "independent_merged_review_sha256": "dbed052e4186395ed69becfaefa5bae5522bb53e25f13bd4911fb7d307baa19c",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "a1a734e29860a3a0a20935d6628110cb60d2b0343f794ca401abe64306a9d53c",
+    "responses/entry-draft.json": "cf5047a4faa315d7829b24a13aa47a3b37fdb11f64936a60ecc87eef46f7492e",
+    "release/editorial-additions.json": "55d55713e0ede317a24070365c8c816618ff2b37dbf3ab08f4efa65e3fa87a4f",
+    "verification.json": "a1b1ce78275a1ef95c49f85c6bcd15105ee9c2b26df5c078cfcd182b254d65ed",
+    "baseline.json": "6508cd78ec283ba45df41cef6cffcfda564c0cb30f0623c36adf867954e621eb",
+    "manifest.json": "8c96433071df98b156aa9fb9d8f916f0a78e7377ef38693a1ae9fa3f088f465d",
+    "prepare.py": "8e0811801d0238f7cbbbd65c331b0a9f77786c794b05baf166643b1e009687c2",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 80,
+  "all_frozen_and_manifest_inputs_hash_verified": true,
+  "expected_production_matches_live_and_acceptance": true,
+  "baseline_revision": "1.229",
+  "restored_baseline_sha256": "33197b6f840ba17c8fb7378c6843283f1c3c6d6c3ce1fbe26b5ec7ed84d9d184",
+  "baseline_snapshot_path": "drafts/historiography-1920-2000.v1.229.json",
+  "baseline_snapshot_sha256": "33197b6f840ba17c8fb7378c6843283f1c3c6d6c3ce1fbe26b5ec7ed84d9d184",
+  "checks": {
+    "independent_acceptance_restoration": "Recorded table truncations and seven prior source records restore the exact serialized 1.229 baseline and snapshot independently.",
+    "production_reconstruction": "Frozen packet independently transforms restored 1.229 into exact live 1.230; Batch.check agrees.",
+    "preservation": "All 2807 historical edges and all node, people, chronology, other tables and revision prefix remain exact; only seven authorized source verification appends differ.",
+    "added_edges": "Edges 2808 through 2821 match frozen packet order, IDs and all fields.",
+    "new_sources": "One cited new source matches complete frozen packet metadata; no held-only source included.",
+    "coverage": "All reviewed source voices, shared credit, current incident/group supplements, namesakes, dates and unread limits remain exact. Parr criticism and prior Scott resource coexist; Ouellet self-revision and prior borrowing coexist; Rodney positive and critical Fanon routes preserve scholarly mediation and readers’ correction of Rodney.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_restored_baseline": true
+  },
+  "applied_delta": {
+    "edges": 14,
+    "sources": 1,
+    "source_addenda": 7
+  },
+  "live_counts": {
+    "nodes": 368,
+    "edges": 2821,
+    "sources": 3440,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "limitations": "Independent graph/acceptance preservation audit for batch25 only. Separate known prior Wolfe hold correction is being reviewed outside these frozen inputs; this report does not claim it resolved or silently change accepted history. Data/JavaScript/build/export/browser checks remain coordinator work. No graph, owner, raw, frozen or product file modified.",
+  "frozen_inputs_modified": false
+}

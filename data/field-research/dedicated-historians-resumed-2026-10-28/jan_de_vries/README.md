@@ -1,0 +1,7 @@
+# Jan de Vries: bounded relationship dossier
+
+Four proposals distinguish Brewer’s concrete project stimulus, Wrigley’s acknowledged scholarly model, and specific criticisms of Thompson’s work discipline account and Stearns’s consumerism definition. Hayami, Becker and other stronger missing resources retain explicit credit and holds. Critical claims remain de Vries’s interpretations, with exploitation, co-targets and positive uses preserved.
+
+Fresh actual reading covers the complete 2008 preface ix–xii and selected excerpt 4–10, with page 5 note 13 and preface xi visually collated. Selected actual 1994 article pages 251–252 and 255–260 were read through OCR, with 258 and note 26 visually collated. The single article teaching share is explicitly linked from UC Davis Economics 210A, Fall 2008. Complete original Voth review and references were read; strong approval, joint draft uptake and behavioral economics objection remain distinct. Full books, the remainder of the 1994 article and cited originals remain unread.
+
+Nine current incidents and eight pinned named group routes were inspected. Wrigley’s newer reverse resource edge 2623 retains van der Woude’s co-credit. Peer Vries namesakes and bibliographic mediation do not become Jan’s arguments. Existing IDs and field routes remain exact. No new source record is necessary: three append-only readings extend existing sources. Private receipts and bodies remain ignored; no graph, shared progress, OpenAlex, commit or push is changed.

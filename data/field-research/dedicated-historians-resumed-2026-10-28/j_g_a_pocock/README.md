@@ -1,0 +1,9 @@
+# J. G. A. Pocock: bounded relationship review
+
+Four proposals distinguish a plural Bailyn/Robbins debt, qualified Kuhn influence, limits on transferring paradigms into political history, and a critically extended Skinner resource. Fourteen live incidents, including two accepted after the 1.204 research baseline, and six named group routes were inspected. Existing critiques and opposite resource arrows remain exact.
+
+Fresh primary reading: complete Cambridge publisher preface vii–xvi and all 17 notes, imprint, contents and acknowledgments xvii. The supplied imprint states first published 2008 while established publisher bibliographies cite the book as 2009; both are reported without revising earlier dates. The lightly edited reprint statement does not certify identical early essay texts. No book chapter or cited original was freshly read.
+
+Fresh selected reception: Samuel James’s Cambridge repository accepted DOCX manuscript, sections I–II and IV–V/conclusion, including its criticism of a simple Laslett/linguistic-philosophy origin story; John Robertson’s original publisher PDF from Cambridge repository, printed 1–4. DOCX main text and notes are extracted separately and no printed-page equivalence is invented. James’s underlying archival sources, interview and letters remain unread. Robertson’s and Pocock’s respective historical judgments remain attributed.
+
+Butterfield, Laslett, Oakeshott and Robbins are stronger missing full-node leads, explicitly held. No general philosopher list or uniform Cambridge school is converted into personal influence. No earlier retained ineligible book body was read. Unfrozen context source records are aligned to current canonical bibliographic/access wording, preserving research baseline and original incidents. Private raw sources remain ignored. No graph, shared progress, biography, life fact, corpus, OpenAlex, frozen file, commit or push is changed.

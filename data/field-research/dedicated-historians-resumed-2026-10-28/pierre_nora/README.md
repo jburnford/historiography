@@ -1,0 +1,7 @@
+# Pierre Nora: bounded relationship review
+
+Three proposals record Ariès’s explicitly acknowledged inspiration for ego-history, Nora’s specific editorial assembly of Furet’s book and Le Goff’s expansion of their collective project. Eight live incidents, including the newer positive and critical Winter relationships, were inspected with substantive notes. The original six-incident research context and zero group-route inventory remain unchanged.
+
+The complete original French interview with Florian Louis, dated 1 December 2022, was freshly read in the publisher’s web rendering; its later memorial heading is kept distinct. The ordinary network request failed and that response is named separately, never treated as a body. The successful complete web rendering is pinned privately. Lavabre’s original journal opening at 480 was freshly read in Persée; the remaining pages are unread. Her critical account of the memory moment and joint 1974 publication context is held for a missing full node.
+
+Stronger formation and collaboration leads, precise editor-versus-author roles, the Foucault and Hobsbawm disputes and their unread original exchanges remain explicit. Existing same-direction Nora-to-Le Goff contribution is not duplicated. No earlier ineligible book or article body was read. Unfrozen context source metadata is aligned to canonical records, without changing the research baseline or old incidents. No graph, shared tracker, biography, life record, corpus, OpenAlex, frozen file, commit or push is changed.

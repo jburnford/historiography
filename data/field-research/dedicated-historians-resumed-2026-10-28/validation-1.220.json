@@ -1,0 +1,51 @@
+{
+  "revision": "1.220",
+  "status": "reviewed_applied_and_locally_verified",
+  "crash_recovery": true,
+  "production_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "checks": [
+    {
+      "name": "data",
+      "cases": 20,
+      "status": "pass",
+      "log_sha256": "2c28f115714c37ce22d0bff2d6fef8443f1cbb590de8730b539ee585603f2444"
+    },
+    {
+      "name": "javascript_core",
+      "cases": 61,
+      "status": "pass",
+      "log_sha256": "e7f12b59c9a547d3164638bc4340ec0bac320f77814056486db19bbfc19ce3ca"
+    },
+    {
+      "name": "browser_preview",
+      "cases": 3,
+      "status": "pass",
+      "log_sha256": "421060aefd3e8fb47be82613a19a2bd3fd929d89be01e478478e10087a7abcfd"
+    }
+  ],
+  "preview_build": {
+    "status": "pass",
+    "allowlisted_files": 54
+  },
+  "public_export": {
+    "revision": "1.220",
+    "all_relationships_and_sources_match_preview": true,
+    "overview_matches_preview": true,
+    "retained_people_overlay": "Existing public people and published_enrichment left unchanged; current builder adds living-birth withholding. No unrelated life enrichment was replaced during recovery."
+  },
+  "preservation": {
+    "protected_product_file_count": 110,
+    "current_checkpoint_exact": true,
+    "checkpoint_sha256": "6dd403fc8b8b877c4392b798a88b10da7fa6e0a59ce09f2e1f54597cf2d87a1b",
+    "scope": "Current recovery checkpoint; no claim to reconstruct the lost pre-crash process state."
+  },
+  "independent_reviews_sha256": {
+    "independent-merged-review.json": "b6688f4c5ea304093c44b3d4a4d8317103767345c5af0dfcf3a19baee5448bb2",
+    "independent-applied-review.json": "2c4c8ce2bd8382e124031cc124e0c8d0b7c78a8ed33014cb5232dcb73060fed3"
+  },
+  "structural_errors": 0,
+  "structural_warnings": 46,
+  "new_structural_warnings": 0,
+  "remaining_priority_dossiers": 33,
+  "publication": "not_committed_or_pushed"
+}

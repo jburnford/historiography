@@ -1,0 +1,7 @@
+PASS — independent applied audit, Codex /root/historian_review, 2026-10-30.
+
+Live revision 1.219 exactly matches the merged review’s expected graph SHA `5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0`. Acceptance SHA: `cf8f03c42e7f68455556389809aa34e2942b6fe918633f9ee5b308872bfc4138`; packet SHA: `fd84d0009644c47cfa3f32b00d0a100b2dfc7cd9c996879567665fb400ade037`; freeze SHA: `6370a0d8081cb710027efd47101baeaccec9ad359d1f0910c80abdb4d93d0596`. All eight frozen-file and 50 manifest-input hashes remain exact.
+
+Independent restoration from the live graph and acceptance record reproduces baseline 1.218 SHA `a47760c530e646464751792a2ea277f63ff937db456ba78eb2b2ddc1c46dfc60`, matching the snapshot. Reapplication reproduces live production exactly. All 2,636 old edges and all other graph tables survive; eight source records have only their specified verification additions/status/date updates. The 21 new edges (edge_2637–edge_2657), one source and eight addenda match the frozen packet. Held-only Jacobs remains excluded; the Paul Carter namesake hold and old edge remain intact.
+
+Current counts: 368 nodes / 2,657 edges / 3,400 sources / 1,438 people. prepare.py --check and three source-host tests pass; zero structural errors and the same 46 historical warnings. No blockers. Separate browser, JavaScript, data-suite and build checks are not claimed here. Only these two review files were added.

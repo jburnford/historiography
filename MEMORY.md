@@ -1,3 +1,15 @@
+## Historian relationship queue complete — revision 1.231, 2026-10-30
+
+All **33 historians remaining after recovery are complete**, with independent passage, coverage, merged-packet and applied reviews. The continuation adds **148 relationships and 36 cited sources** beyond revision 1.220. All 101 resumed dossiers are applied, bringing the protocol total to 157; **zero remain**.
+
+The current graph contains **368 entries, 2,822 relationships, 3,440 sources and 1,438 indexed people**. The final three-person batch covers Joy Parr, Donald Creighton and Walter Rodney. A separately reviewed correction adds Wolfe’s qualified criticism of Fanon and clarifies Todorov’s citation-only hold. Explicit unread-evidence and missing-endpoint holds remain; completion describes the bounded dossiers, not an exhaustive intellectual network.
+
+Validation passes: 23 data cases including source-host checks, 61 JavaScript checks, three browser cases including all 368 focused relationship views, and the 54-file preview. All recovered relationships and other graph tables are preserved, with only approved source-note appends to earlier sources. All ten continuation packets and the separate coverage correction reconstruct exactly. Public graph and overview are refreshed; the accepted people enrichment and 110 protected product files remain exact. Structural validation has zero errors and the same 46 reviewed warnings. Changes are committed locally; no push or deployment. OpenAlex remains paused.
+
+Production SHA256: `a31ae20e8df36b1663469598f9a7a9cc1fe59ef6b51fda5ef5606148d6fe7b1e`. Current state and proof: `data/field-research/dedicated-historians-resumed-2026-10-28/completion-2026-10-30.json`, `progress.json`, `validation-1.231.json`, final frozen batch25, and the separate historian-coverage-correction-2026-10-30 packet. The three existing research lanes have finished; there is no remaining assigned historian work. Do not rerun frozen dossier writers. Source restrictions, stable IDs, old editorial qualifications, snapshots, unrelated corpus/site work and the paused OpenAlex investigation remain in force. The user authorized a local commit on 31 October 2026. No push or deployment was requested.
+
+The checkpoints below are historical and superseded by this completion record.
+
 ## Published historian subset — revision 1.200; remaining work paused
 
 User: “we’ll pause after this and push.” The reviewed subset adds35 complete

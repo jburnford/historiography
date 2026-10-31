@@ -1,0 +1,42 @@
+{
+  "revision": "1.221",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent applied-batch reviewer /root/research_a; separate from researchers /root/research_b and /root/research_c and coordinator /root",
+  "verdict": "pass",
+  "graph_path": "historiography-1920-2000.json",
+  "graph_sha256": "9f15f1922926d0e9a087833faa218a095ca635f2fc460490e62284ea4cf1bd85",
+  "acceptance_sha256": "45f1bcaeb5bf76d31ac5ff5bc85c6e163466bf3b07d8b685028d1beb37d3aafc",
+  "packet_sha256": "902dc40fe58e47ad353d4cd1637ea644d2ac0a4c1cf6dd4c5931bd81d0d5402f",
+  "freeze_sha256": "c9da8cf244944200bb956435bc807d11c81ee3b8c0884cd4cb4b136580f731b5",
+  "manifest_sha256": "16cdbd75fd1ef5b3d0439ccc948333a2ad9117623e156cd88d5732d0b004e421",
+  "independent_merged_review_sha256": "0bc12739552b36a98e455680b6d88e6c1d0df69285c30f57f25e2317ee96e55f",
+  "all_frozen_and_manifest_inputs_hash_verified": true,
+  "expected_production_matches_live_and_acceptance": true,
+  "baseline_revision": "1.220",
+  "restored_baseline_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "baseline_snapshot_path": "drafts/historiography-1920-2000.v1.220.json",
+  "baseline_snapshot_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "checks": {
+    "independent_restoration": "Only acceptance-recorded table tails truncated and four prior source records restored; exact1.220snapshot and SHA recovered.",
+    "reconstruction": "Frozen packet applied to restored baseline matches live1.221 exactly; Batch.baseline/check agree.",
+    "preservation": "All2674earlier edges and all nodes,people,other tables and revision-history prefix exact. Only approved four source verification appends/status/date updates plus two new sources.",
+    "added_edges": "edge_2675 through edge_2682 match frozen packet in order and every field.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "warnings_unchanged": true
+  },
+  "applied_delta": {
+    "edges": 8,
+    "sources": 2,
+    "source_addenda": 4
+  },
+  "live_counts": {
+    "nodes": 368,
+    "edges": 2682,
+    "sources": 3406,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "limitations": "Applied graph/preservation audit only. Coordinator data/JS/browser/build/export checks are separate and not claimed here. No frozen owner,graph,accepted historical or website file edited.",
+  "frozen_inputs_modified": false
+}

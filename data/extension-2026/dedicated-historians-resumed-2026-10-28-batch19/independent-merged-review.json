@@ -1,0 +1,109 @@
+{
+  "revision": "1.224",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_c; independent of all three selected researchers and coordinator",
+  "verdict": "pass",
+  "review_scope": "Exact frozen Kuhn/Nora/Darnton integration against live 1.223; independent passage review pins inspected, no new primary reading claimed.",
+  "baseline_revision": "1.223",
+  "baseline_graph_sha256": "96457e47349ca094f9bf404d367569b278eb03598a3eea79fecb49b7c3713fcd",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2704,
+    "sources": 3413,
+    "people": 1438
+  },
+  "packet_sha256": "03bea65ff7ba679aa5bfacbd6e37748df6675559857895835c642a145b9c5505",
+  "freeze_sha256": "14e550c37d8b3d3e94277aa92ceee02b3676244deea7314a8499497aa3f8bffc",
+  "manifest_sha256": "8f5f04e88bf1ac6f55efd356fbf61bc0093cac649bbec2bd745788f057832d6d",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "1dfbb31ff8ff4b625ef1e23ce04e32cbece21742bd3e1b3a0fd69cbfc3d65ef0",
+    "responses/entry-draft.json": "6d06890df2404a4bd50e9c1b4dfcefd1554a9e3473201a8f30ee63e02d66f00d",
+    "release/editorial-additions.json": "03bea65ff7ba679aa5bfacbd6e37748df6675559857895835c642a145b9c5505",
+    "verification.json": "f987f9d8755c5a8ba748f23cf822695f223bf49645bd8e40a6c6c07f0784d2bd",
+    "baseline.json": "c6ec67cec67c98e0687f83ecf2698d0cf276d0c163f418867ff8b46f199cad95",
+    "manifest.json": "8f5f04e88bf1ac6f55efd356fbf61bc0093cac649bbec2bd745788f057832d6d",
+    "prepare.py": "85e5435a60786afffd73210efd8fec89955defcd33a27c926728dd56560f89a2",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 68,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "kuhn": "9677ab0e02cdf02388023cd079eb89fd2e9ffb391d4afaa74bdccc5776f8ca80",
+    "pierre_nora": "53db8bc75d31427ccb42685ab869b03529e5ae96aef146c44858961a18f970fc",
+    "robert_darnton": "efd0b5a31b431b8d4de188c38a77e32860ed02f5285e1b75a52d9eaa158b8bdf"
+  },
+  "owner_to_packet_mapping": {
+    "kuhn": {
+      "proposals": 2,
+      "cited_new_sources": 2,
+      "excluded_held_only_sources": [],
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "pierre_nora": {
+      "proposals": 3,
+      "cited_new_sources": 1,
+      "excluded_held_only_sources": [
+        "hr30_nora_lavabre1994"
+      ],
+      "source_addenda": 0,
+      "all_reviewed_fields_exact": true
+    },
+    "robert_darnton": {
+      "proposals": 14,
+      "cited_new_sources": 2,
+      "excluded_held_only_sources": [
+        "hr30_darnton_geertz2007"
+      ],
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "excluded_uncited_new_sources": {
+    "hr30_nora_lavabre1994": [
+      "pierre_nora"
+    ],
+    "hr30_darnton_geertz2007": [
+      "robert_darnton"
+    ]
+  },
+  "checks": {
+    "all_owner_access_raw_and_review_pins_exact": true,
+    "all19_proposals_exact_to_draft_and_packet": true,
+    "five_cited_sources_exact_sorted": true,
+    "three_addenda_exact": true,
+    "two_held_only_sources_excluded": true,
+    "empty_spacing_overlay": true,
+    "no_existing_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_sources_resolve": true,
+    "historical_edges_exact": true,
+    "historical_sources_exact_except_three_verification_appends": true,
+    "nodes_people_chronology_other_fields_exact": true,
+    "revision_history_exact_prefix": true,
+    "request_partition": "75 prior +3 selected +23 remaining =101; 78 implemented after subset.",
+    "kuhn_coverage": "Independent review supplements 15 researcher-live incidents with accepted Pocock2702/2703; both retained. Mediated Kindi/Pirozelli scope, limited Foucault familiarity and Popper/Shapin holds preserved.",
+    "nora_coverage": "Independent review covers eight live incidents including Winter2403/2404; own retrospective editorial roles remain distinct from authorship/endorsement. Lavabre held-only excluded.",
+    "darnton_coverage": "Independent review covers six live incidents and seven group routes. Group1859 old snapshot differs only spacing; actual live edge is preserved byte-for-byte. Existing Vovelle critique, Chartier rejection of absolute freedom, named-reader limits and translator/coauthor credit remain exact.",
+    "prepare_check": "PASS",
+    "source_host_unittests": "3 cases PASS",
+    "source_route_findings": 0,
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 19,
+    "sources": 5,
+    "source_addenda": 3
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2723,
+    "sources": 3418,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "cd99de2697b02aa5bc6664abf23d0f236dcda36f714d48646a39cd821ab8fcb3",
+  "blocking_findings": [],
+  "frozen_inputs_modified": false,
+  "limitations": "Pre-application integration audit only. Existing independent passage reviews remain frozen; no applied approval, graph/public export/build mutation or publication."
+}

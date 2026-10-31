@@ -1,0 +1,92 @@
+{
+  "revision": "1.231",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_b; separate from correction researcher/coordinator /root and passage reviewer /root/research_a",
+  "verdict": "pass",
+  "review_scope": "Independent integration simulation against exact live 1.230. No new primary passage reading asserted.",
+  "baseline_revision": "1.230",
+  "baseline_graph_sha256": "d94e10d996ac7731b3fcaacd80b8f020115bd0152d70205ec4242e4d59ac7b27",
+  "packet_sha256": "7179b1f1f8c5f606ce24b0ff0f8a239c370361300fd08a85cba32a41460b786a",
+  "freeze_sha256": "f4d927edbfe9792a46882d5717226a69bfb42b333b141712ede7c34c002003a5",
+  "manifest_sha256": "9b37a313fdc3681abd54d13486f5bc20377b615783e10101c6a4a79713bd7143",
+  "reviewed_frozen_files_sha256": {
+    "prepare.py": "f662a0d1bacaf76e4021a8158883d087634cbf25529dc0cb3ad141efcc310362",
+    "baseline.json": "ec35303a234101a6d27f5be62f80797930251ad3c0bc249393102fa97a65f234",
+    "batch.json": "1e8d7b7d7fdd62bb0e18a7b978351460dc52502d1275e3ea374121eeb3b40cba",
+    "responses/entry-draft.json": "b1bf35a0f0f53026f951beb7e75304a5625fe20e94919601befad670e451d688",
+    "release/editorial-additions.json": "7179b1f1f8c5f606ce24b0ff0f8a239c370361300fd08a85cba32a41460b786a",
+    "verification.json": "e34a01bc595199a39b1a8a24c8c0dc14579d55338244a5778e3a006ebe69c093",
+    "manifest.json": "9b37a313fdc3681abd54d13486f5bc20377b615783e10101c6a4a79713bd7143"
+  },
+  "manifest_input_count": 7,
+  "all_manifest_inputs_hash_verified": true,
+  "research_supplement_sha256": "6dab3b26d45381f39c6df300bfaa6aaf3a9d95b7ff7bbd0e79ea534f012ba59c",
+  "independent_passage_review_sha256": "61a8f90f420600831d918fc1ce966fcd85dcceff0e4c43798d4d9cf4e1b3b17f",
+  "frozen_original_dossiers_verified": {
+    "patrick_wolfe": {
+      "six_owner_sha256": {
+        "context.json": "060ff05884865a9da986c652a0ce71b22c0dbf13c6f337467c700c5010df0a87",
+        "proposals.json": "527682cc59920cf1a50fda4ecafcc03e666dbe06a3dbec2cf5bb9e281536084c",
+        "sources.json": "c8104d82d125fe130c3d59242c485e2cdd2597b72d1b366950093f406592c5e5",
+        "held-cases.json": "6e94963172a4f756ad298ba30bdc1ff31464aa0597e6638526a91a4bc97d9aec",
+        "case-review.json": "75dd3a8a3ecdc02d274cea3a96c79b75198d206273c286aeb828c9ca306c82dc",
+        "README.md": "1c87187a3079287d937c6ad4b95077e8f890fd3c76000f6b89942067948aa1a8"
+      },
+      "source_access_sha256": "5d3fc95291160f700f797a9ad821a1946b461c7afde19d5f4bdb0a9d09f7cc06",
+      "independent_review_sha256": "8bf1acebd113319c44ff0b517ff1e24bec8a5c700f466823e3539860a0ea5fbd",
+      "raw_receipt_sha256": "b5911352043326053fff189690767a0b663fee943e2b548d607054db3a98116f",
+      "raw_file_count": 2
+    },
+    "mariana_valverde": {
+      "six_owner_sha256": {
+        "context.json": "9b8d0370736d5b53b404a995971e75573829ae7fa6d932d771bfd29f3ee4817c",
+        "proposals.json": "ed533bb607029dba81edcfe33fbfc6a0ca0f5df0e67d3ab772bd59c44d36373b",
+        "sources.json": "c7032f5a091b6aefb9c8fe718b70001ea3a77fd491846a9c70c63ce166b2995e",
+        "held-cases.json": "18f7f331b804dd3eb290e14a306db78ff852aaa3b6c48b1abb318dc3048a17ea",
+        "case-review.json": "019d82ba5f23c362a0a01545de3c3a1738cb6c7040102d5dee29ddfc38315c93",
+        "README.md": "4585c175ad2cdf1bd02da3c4f0b905b6933be8d013ce09f97aa7b49a9829ed7c"
+      },
+      "source_access_sha256": "241abe7c4cb77a216a752a1e5f3b75f41af6b2a5d45986d21f4f858c96aabb6d",
+      "independent_review_sha256": "4c12dbd898e73ecc69a02e7d18a88b7514a8b7a5b30812e8075b689ddf541e0c",
+      "raw_receipt_sha256": "d34ada743a98891bd15ba207dfa0c02eee4e4867988029d34939a4158485035b",
+      "raw_file_count": 9
+    }
+  },
+  "checks": {
+    "exact_one_proposal_mapping": true,
+    "no_new_source_or_uncited_source": true,
+    "exact_one_verification_append": true,
+    "all_2821_prior_edges_exact": true,
+    "all_other_tables_and_revision_prefix_exact": true,
+    "current_incidents_equal_recorded_lists": true,
+    "all_94_supplemental_group_records_exact": true,
+    "no_endpoint_kind_duplicate": true,
+    "fanon_and_todorov_full_nodes_resolve": true,
+    "group_comparison_1234_and_englert_objection_exact": true,
+    "no_valverde_or_todorov_edge_added": true,
+    "zero_new_historian_completions": true,
+    "remaining_queue_zero": true,
+    "prepare_check": "PASS",
+    "source_host_unittests": "3 PASS",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true,
+    "qualifications": "Qualified labor-dependent model criticism preserves contextual African optimism, Cabral co-context, original Fanon/Cabral unread limits and Englert’s separate Algeria objection. Todorov endpoint clarification does not establish distinct adoption. Existing group 1234 remains a comparison, and frozen historical mistakes are transparently corrected by this separate supplement."
+  },
+  "expected_delta": {
+    "edges": 1,
+    "sources": 0,
+    "source_addenda": 1,
+    "new_completed_dossiers": 0
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2822,
+    "sources": 3440,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "a31ae20e8df36b1663469598f9a7a9cc1fe59ef6b51fda5ef5606148d6fe7b1e",
+  "blocking_findings": [],
+  "frozen_inputs_modified": false,
+  "limitations": "Integration audit only, with prior actual passage review independently pinned. No source body, frozen owner, old review, raw, graph, build, export or publication file changed by this reviewer."
+}

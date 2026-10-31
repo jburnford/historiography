@@ -1,0 +1,593 @@
+{
+  "person_id": "evelyn_brooks_higginbotham",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "evelyn_brooks_higginbotham",
+    "label": "Evelyn Brooks Higginbotham",
+    "date_label": "Selected intervention · 1992",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Argues that race structures the meanings of gender, class and sexuality. Her 1992 intervention challenges insufficient racial analysis in feminist theory and develops an account of race as socially constructed, contested power.",
+    "representative_figures_and_works": "African-American Women’s History and the Metalanguage of Race (1992). Further selected bibliography: Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (1993).",
+    "source_ids": [
+      "higginbotham_race",
+      "promotion01_higginbotham",
+      "higginbotham_righteous"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "A theoretical contribution within Black history as well as feminist historiography. Her opening acknowledges useful feminist resources and earlier Black scholarship; it does not license an indiscriminate critique edge to every cited theorist. Canonical-work review (2026-10-24): added titles and dates are selected bibliography, not a complete career or a new reading of the books. Original works, translations, edited collections and posthumous editions are distinguished; earlier argument and source-reading qualifications remain.",
+    "work_ids": [
+      "work:higginbotham_metalanguage_1992"
+    ],
+    "claim_ids": [
+      "claim:promotions01:authored_evelyn_brooks_higginbotham_higginbotham",
+      "claim:promotions01:higginbotham_race",
+      "claim:promotions01:higginbotham_critique",
+      "claim:promotions01:darlene_clark_hine_feedback",
+      "claim:promotions01:carroll_smith_rosenberg_feedback",
+      "claim:promotions01:presents_evelyn_brooks_higginbotham"
+    ],
+    "chronology": {
+      "version": 1,
+      "label": "Selected dated works and editions · 1992–1993",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_983bda7c43a5",
+          "label": "African-American Women's History and the Metalanguage of Race",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1992,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higginbotham_race"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "cw159_016",
+          "label": "Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:higginbotham_righteous"
+          ],
+          "support": "Reuse the graph’s existing bibliographic source for the 1993 work; it was absent from Higginbotham’s individual entry, not from the entire project. Bibliographic date and credit only, except where the source record explicitly describes a passage/description check. Complete work unread for this review; previous source-reading limits remain.",
+          "basis": "canonical_work_review_2026-10-24"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_759",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "black",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Race, gender and historical explanation",
+      "map_label": "Race, gender and historical explanation",
+      "evidence_note": "Higginbotham develops race as a metalanguage shaping gender, class and sexuality and as a contested instrument of power. Her opening programme combines feminist theory with Black intellectual traditions; no single undifferentiated school affiliation. The target is the named strand, displayed under its parent entry.",
+      "source_ids": [
+        "promotion01_higginbotham"
+      ],
+      "classification_basis": "editorial_review",
+      "claim_ids": [
+        "claim:promotions01:higginbotham_race"
+      ],
+      "review_status": "accepted",
+      "claim_projection": {
+        "subject": "person:evelyn_brooks_higginbotham",
+        "object": "concept:black/racial_analysis",
+        "note": "The target is the named strand, displayed under its parent entry."
+      },
+      "target_strand": "black/racial_analysis"
+    },
+    {
+      "id": "edge_1621",
+      "source": "james_c_scott",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham explicitly uses Scott’s infrapolitics for her discussion of micropolitical resistance (1992).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "Her note67 identifies Domination and the Arts of Resistance, pp183–192; James C.Scott is distinct from Joan W.Scott.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_09"
+    },
+    {
+      "id": "edge_1622",
+      "source": "darlene_clark_hine",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham credits Hine’s reading, suggestions and questions on an earlier version of her 1992 article.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "This is a named draft-feedback contribution, not evidence that Hine originated the article’s theory.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_10"
+    },
+    {
+      "id": "edge_1623",
+      "source": "foucault",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham adapts Foucault’s technologies terminology to race, gender and sexuality (1992).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "evidence_note": "Her p. 252 n4 names History of Sexuality1 and explains the term alongside Teresa de Lauretis; neither resource is exclusive.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_canadian_11"
+    },
+    {
+      "id": "edge_1684",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "joan_wallach_scott",
+      "relationship": "Higginbotham places Scott’s language-and-discourse turn among feminist frameworks she found compelling but insufficiently attentive to race.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "js_reception_higginbotham_2017"
+      ],
+      "evidence_note": "Her 2017 retrospective, printed p.632, names Scott’s 1986 article and 1988 book before explaining her qualified dissatisfaction with feminist theory’s racial presumptions. The criticism concerns a wider body of theory, with Scott a named example, not Scott alone. This is Higginbotham’s retrospective account of the context of her 1992 intervention, not evidence of a private exchange, a 1992 direct denunciation or rejection of every Scott argument. James C.Scott’s separate infrapolitics resource is a different person.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "js_reception_higginbotham_scott_race"
+    },
+    {
+      "id": "edge_1808",
+      "source": "carter_g_woodson",
+      "target": "evelyn_brooks_higginbotham",
+      "relationship": "Higginbotham recalls that her father’s devotion to Woodson’s historical mission led her into history, a commitment she later deepened through reading Woodson.",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "hc200_woodson_higginbotham2011"
+      ],
+      "evidence_note": "Own oral-history testimony,16June2011, transcribed by Ashley Robertson in the2012 NPS study, printed185 and188. Albert N. D. Brooks is the essential intermediary; this does not make Woodson her personal academic supervisor. Higginbotham also identifies insufficient attention to African American women in the earlier scholars’ groundwork at188; admiration does not erase that qualification. Her father’s recollections, her childhood visits and her later reading remain distinct. Only selected transcript passages were read; no interview recording or full monograph reading is claimed.",
+      "proposal_id": "hc200_woodson_higginbotham_family_transmission"
+    },
+    {
+      "id": "edge_1950",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "gail_bederman",
+      "relationship": "Bederman credits Higginbotham’s analysis of race and gender among recent theoretical discussions informing the intersection she investigates.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_bederman_manliness_selected"
+      ],
+      "evidence_note": "At5 Bederman explicitly adopts Hazel Carby’s call to interrogate racial specificity and whiteness. Note23 also identifies Higginbotham’s African-American Women’s History and the Metalanguage of Race, together with Berger/Brown/Hewitt and Lerner, as important recent theoretical discussions. This plural, bounded historiographic resource does not replace the more direct Carby credit or imply exclusive derivation. Higginbotham original unread; no guessed correction of the date as printed in Bederman’s note.",
+      "proposal_id": "hc200_bederman_higginbotham_race_gender"
+    },
+    {
+      "id": "edge_2117",
+      "source": "evelyn_brooks_higginbotham",
+      "target": "thomas_sugrue",
+      "relationship": "Cites Higginbotham’s analysis of race alongside Fields when arguing for historically specific studies of racial practices.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc200_sugrue_segmented1996"
+      ],
+      "evidence_note": "Sugrue393 makes Fields’s construction argument the explicit starting point and n7 adds Higginbotham’s African-American Women’s History and the Metalanguage of Race, continuing onto394. This establishes a specific supporting resource, not a transfer of Fields’s primary credit to Higginbotham or proof of full agreement. The original article remains unread; neither an editorial tribute nor a citation-chain inference supplies the relationship.",
+      "proposal_id": "hc200_sugrue_higginbotham_race"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_086",
+      "source": "black",
+      "target": "gender",
+      "relationship": "Black women’s histories reshape analysis of race and gender",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "white_arnt_woman",
+        "higginbotham_race"
+      ],
+      "evidence_note": "White contributes a history of enslaved women; Higginbotham’s 1992 opening challenges thin racial analysis while developing feminist accounts of power. Distinct interventions, not a claim that one theorist founded intersectional inquiry.",
+      "classification_basis": "editorial_review",
+      "map_label": "White and Higginbotham: race and gender"
+    },
+    {
+      "id": "edge_408",
+      "source": "gender",
+      "target": "black",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Feminist theories of power are resources for Higginbotham’s racial analysis",
+      "evidence_note": "Her 1992 opening credits conceptual advances and cites Scott, Butler and others while challenging their racial limits. This later exchange does not explain the origins of Black historiography.",
+      "source_ids": [
+        "higginbotham_race"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Feminist resources in Higginbotham"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "black",
+      "label": "Black history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Studies Black women’s religious organizing and develops historical analysis of race, gender and power.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992); Righteous Discontent (1993)",
+          "source_ids": [
+            "higginbotham_race",
+            "higginbotham_righteous"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "women",
+      "label": "Women’s history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Black women’s histories challenge exclusions and develop distinct historical questions.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992); Righteous Discontent (1993)",
+          "source_ids": [
+            "higginbotham_race",
+            "higginbotham_righteous"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "gender",
+      "label": "Gender history",
+      "records": [
+        {
+          "person_id": "evelyn_brooks_higginbotham",
+          "role": "historian",
+          "context": "Uses and revises feminist accounts of power through historical racial analysis.",
+          "works": "“African-American Women’s History and the Metalanguage of Race” (1992)",
+          "source_ids": [
+            "higginbotham_race"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "hc200_bederman_manliness_selected",
+      "title": "Gail Bederman, Manliness & Civilization (Chicago,1995): selected chapter 1 body and actual endnotes.",
+      "citation": "Gail Bederman, Manliness & Civilization: A Cultural History of Gender and Race in the United States,1880–1917 (Chicago: University of Chicago Press,1995), selected printed2–44 and chapter1 notes1–154,241–250.",
+      "url": "https://s3.amazonaws.com/files.commons.gc.cuny.edu/wp-content/blogs.dir/4188/files/2018/08/Bederman-Manliness-and-Civilization.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Public CUNY-hosted scan retrieved successfully via S3 CDN. Fresh selected printed 2–44 and actual chapter 1 endnotes 241–250 read through page OCR; 24–25 and 246–247 visually inspected. Scan has two printed pages per PDF page and discontinuous later extracts, not the full 307-page book. Chapter 1 opening 1, acknowledgments, full later chapters and cited originals unread. PDF page 3=printed 2–3; 14=24–25; 73=240–241; 74=242–243; 76=246–247. Scan marks/annotations are not authorial additions. Sole book author Bederman; Catharine R. Stimpson is series editor, not coauthor. 1995 original distinguished from 1996 paperback. Note 97 prints an unverified 1972 date for Power/Knowledge; no automatic correction or assertion of an original edition."
+      }
+    },
+    {
+      "id": "hc200_sugrue_segmented1996",
+      "title": "Segmented Work, Race-Conscious Workers",
+      "url": "https://doi.org/10.1017/S0020859000114075",
+      "citation": "Thomas J. Sugrue, Segmented Work, Race-Conscious Workers: Structure, Agency and Division in the CIO Era, International Review of Social History 41(3), December 1996, 389–406; online 2009.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh full official Cambridge PDF obtained. Selected 389–398 and 400–406 text/notes read, plus preceding 399 argument as retained in excerpt; 395 visually collated. Supports named resources and explicit Roediger reservation. December 1996 issue is distinct from online 20 February 2009. Original cited books/essays and Nelson’s initial article remain unread. Cohen’s bibliography n5 prints 1989; this variant is not propagated as a corrected publication date. Methods and disputed historical examples remain attributed to Sugrue rather than independently certified."
+      }
+    },
+    {
+      "id": "hc200_woodson_higginbotham2011",
+      "title": "Higginbotham: oral-history account of Woodson’s mediated influence (2011/2012)",
+      "url": "https://npshistory.com/publications/cawo/hrs.pdf",
+      "citation": "Evelyn Brooks Higginbotham, interview by Enimini Ekong, 16 June 2011, transcribed by Ashley Robertson, in Pero Gaglo Dagbovie, “Willing to Sacrifice” (NPS, April 2012), appendix A, 185–188.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Fresh selected respondent’s own transcript read: heading185 identifies date/interviewer/transcriber;185 directly identifies her father’s devotion to Woodson as leading her into history;188 distinguishes inherited knowledge, later reading and the missing women’s perspective. Interview recording not heard; other speakers in appendix not assigned to Higginbotham. Father Albert N. D. Brooks retains intermediary credit."
+      }
+    },
+    {
+      "id": "higginbotham_race",
+      "title": "Evelyn Brooks Higginbotham, “African-American Women’s History and the Metalanguage of Race,” Signs 17, no. 2 (Winter 1992): 251–274.",
+      "citation": "Evelyn Brooks Higginbotham, “African-American Women’s History and the Metalanguage of Race,” Signs 17, no. 2 (Winter 1992): 251–274.",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/EBH_The-Metalanguage-of-Race.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Primary opening pp. 251–252 and notes 1–2 read. Higginbotham credits feminist conceptual resources while criticizing inadequate racial analysis; the notes name Scott, Butler and earlier women-of-color scholarship. Remaining examples and later reception have not been checked in full. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped check. Locators: Signs 17.2 (1992), p251 acknowledgment; Signs 17.2 (1992), p252 and n4; Signs 17.2 (1992), p274 and n67. Reading extents: Fresh primary acknowledgment on printed p251; no date of the feedback meeting is inferred. | Fresh primary p252 and n4; not a fresh full reading of Foucault or de Lauretis. | Fresh primary printed pp251–252 and 274 read from the institutional PDF; the remaining article was not reread. Prior verification retained. Bibliographic concordance is not whole-book reading.] Addendum 2026-10-28: Fresh public Wooster institutional PDF retrieved 200; selected actual 266/n44 and 272–273 read, 266 visually checked. 266 explicitly uses Hine’s dissemblance argument within discussion of racialized sexuality and political discourse, especially middle-class women. 272–273 also addresses repression of folk expression and silencing of AIDS/gender/class/sexual-orientation problems: this is Higginbotham’s extension/qualification of racial uplift and silence, not automatically a personal polemic against Hine. Earlier 251 draft-feedback reading preserved as a different relation/kind. Remaining examples not freshly reread and cited originals unread.",
+        "checked_on": "2026-10-28"
+      }
+    },
+    {
+      "id": "higginbotham_righteous",
+      "title": "Evelyn Brooks Higginbotham, Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (Harvard University Press, 1993).",
+      "citation": "Evelyn Brooks Higginbotham, Righteous Discontent: The Women’s Movement in the Black Baptist Church, 1880–1920 (Harvard University Press, 1993).",
+      "url": "https://history.fas.harvard.edu/people/evelyn-brooks-higginbotham",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "note": "Author’s institutional publication list checked for title, date and subject. No primary chapters read; this record does not verify a detailed interpretation of the politics of respectability. Later coauthored Franklin editions are outside the mapped period.",
+        "checked_on": "2026-09-11"
+      }
+    },
+    {
+      "id": "js_reception_higginbotham_2017",
+      "title": "Evelyn Brooks Higginbotham, “The Metalanguage of Race,” Then and Now (2017).",
+      "citation": "Evelyn Brooks Higginbotham, “The Metalanguage of Race,” Then and Now, Signs 42, no. 3 (Spring 2017): 628–642, especially 632. DOI 10.1086/689893.",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/Evelyn-Brooks-Higginbotham22The-Metalanguge-of-Race22-Then-and-Now.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Fresh selected primary printed 631–632 read; 632 visually checked. Publisher DOI metadata corroborates 2017, 42.3, 628–642. The file begins with preceding bibliography and contains the article from 628; PDF page 5 is printed 632. This is a 2017 retrospective about the 1992 article’s context. Other article sections and Scott’s full works were not newly read."
+      }
+    },
+    {
+      "id": "promotion01_higginbotham",
+      "title": "African-American Women’s History and the Metalanguage of Race — consulted witness",
+      "url": "https://blackwomenintheblackfreedomstruggle.voices.wooster.edu/wp-content/uploads/sites/210/2019/01/EBH_The-Metalanguage-of-Race.pdf",
+      "citation": "African-American Women’s History and the Metalanguage of Race (1992); Wooster-hosted primary Signs article scan.",
+      "scope_note": "Printed 251–253 retained. Initial PDF text clipped words; claims use fresh raster OCR of complete pages. Page 252 visually checked.",
+      "claim_source_record_id": "witness:promotions01:higginbotham"
+    },
+    {
+      "id": "white_arnt_woman",
+      "title": "Deborah Gray White, Ar’n’t I a Woman? Female Slaves in the Plantation South (Norton, 1985); Rutgers interview by Patricia Lamiell.",
+      "citation": "Deborah Gray White, Ar’n’t I a Woman? Female Slaves in the Plantation South (Norton, 1985); Rutgers interview by Patricia Lamiell.",
+      "url": "https://www.rutgers.edu/news/deborah-gray-white",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Retrospective interview and introduction checked for the 1985 book and White’s emphasis on enslaved women’s work and reproduction. The site’s apparent default 1969 date contradicts its contents and is not used as an interview date. Full 1985 book and revised edition unread.",
+        "checked_on": "2026-09-11"
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match",
+  "source_context_alignment": "Unfrozen source metadata aligned to current canonical records, with original node, incidents and named rosters preserved.",
+  "live_coverage_supplement": {
+    "revision": "1.227",
+    "graph_sha256": "0d40483fd7064ed46896c1899df51104d8d9543356a3a18dab898b31c8732610",
+    "incident_edges": [
+      {
+        "id": "edge_759",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "black",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Race, gender and historical explanation",
+        "map_label": "Race, gender and historical explanation",
+        "evidence_note": "Higginbotham develops race as a metalanguage shaping gender, class and sexuality and as a contested instrument of power. Her opening programme combines feminist theory with Black intellectual traditions; no single undifferentiated school affiliation. The target is the named strand, displayed under its parent entry.",
+        "source_ids": [
+          "promotion01_higginbotham"
+        ],
+        "classification_basis": "editorial_review",
+        "claim_ids": [
+          "claim:promotions01:higginbotham_race"
+        ],
+        "review_status": "accepted",
+        "claim_projection": {
+          "subject": "person:evelyn_brooks_higginbotham",
+          "object": "concept:black/racial_analysis",
+          "note": "The target is the named strand, displayed under its parent entry."
+        },
+        "target_strand": "black/racial_analysis"
+      },
+      {
+        "id": "edge_1621",
+        "source": "james_c_scott",
+        "target": "evelyn_brooks_higginbotham",
+        "relationship": "Higginbotham explicitly uses Scott’s infrapolitics for her discussion of micropolitical resistance (1992).",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "higginbotham_race"
+        ],
+        "evidence_note": "Her note 67 identifies Domination and the Arts of Resistance, pp183–192; James C. Scott is distinct from Joan W. Scott.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "rea_canadian_09"
+      },
+      {
+        "id": "edge_1622",
+        "source": "darlene_clark_hine",
+        "target": "evelyn_brooks_higginbotham",
+        "relationship": "Higginbotham credits Hine’s reading, suggestions and questions on an earlier version of her 1992 article.",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "higginbotham_race"
+        ],
+        "evidence_note": "This is a named draft-feedback contribution, not evidence that Hine originated the article’s theory.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "rea_canadian_10"
+      },
+      {
+        "id": "edge_1623",
+        "source": "foucault",
+        "target": "evelyn_brooks_higginbotham",
+        "relationship": "Higginbotham adapts Foucault’s technologies terminology to race, gender and sexuality (1992).",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "higginbotham_race"
+        ],
+        "evidence_note": "Her p. 252 n4 names History of Sexuality1 and explains the term alongside Teresa de Lauretis; neither resource is exclusive.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "rea_canadian_11"
+      },
+      {
+        "id": "edge_1684",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "joan_wallach_scott",
+        "relationship": "Higginbotham places Scott’s language-and-discourse turn among feminist frameworks she found compelling but insufficiently attentive to race.",
+        "type": "critique",
+        "relationship_kind": "critique",
+        "directed": true,
+        "source_ids": [
+          "js_reception_higginbotham_2017"
+        ],
+        "evidence_note": "Her 2017 retrospective, printed p.632, names Scott’s 1986 article and 1988 book before explaining her qualified dissatisfaction with feminist theory’s racial presumptions. The criticism concerns a wider body of theory, with Scott a named example, not Scott alone. This is Higginbotham’s retrospective account of the context of her 1992 intervention, not evidence of a private exchange, a 1992 direct denunciation or rejection of every Scott argument. James C.Scott’s separate infrapolitics resource is a different person.",
+        "classification_basis": "editorial_review",
+        "proposal_id": "js_reception_higginbotham_scott_race"
+      },
+      {
+        "id": "edge_1808",
+        "source": "carter_g_woodson",
+        "target": "evelyn_brooks_higginbotham",
+        "relationship": "Higginbotham recalls that her father’s devotion to Woodson’s historical mission led her into history, a commitment she later deepened through reading Woodson.",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "hc200_woodson_higginbotham2011"
+        ],
+        "evidence_note": "Own oral-history testimony, 16 June 2011, transcribed by Ashley Robertson in the 2012 NPS study, printed 185 and 188. Albert N. D. Brooks is the essential intermediary; this does not make Woodson her personal academic supervisor. Higginbotham also identifies insufficient attention to African American women in the earlier scholars’ groundwork at 188; admiration does not erase that qualification. Her father’s recollections, her childhood visits and her later reading remain distinct. Only selected transcript passages were read; no interview recording or full monograph reading is claimed.",
+        "proposal_id": "hc200_woodson_higginbotham_family_transmission"
+      },
+      {
+        "id": "edge_1950",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "gail_bederman",
+        "relationship": "Bederman credits Higginbotham’s analysis of race and gender among recent theoretical discussions informing the intersection she investigates.",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "hc200_bederman_manliness_selected"
+        ],
+        "evidence_note": "At5 Bederman explicitly adopts Hazel Carby’s call to interrogate racial specificity and whiteness. Note23 also identifies Higginbotham’s African-American Women’s History and the Metalanguage of Race, together with Berger/Brown/Hewitt and Lerner, as important recent theoretical discussions. This plural, bounded historiographic resource does not replace the more direct Carby credit or imply exclusive derivation. Higginbotham original unread; no guessed correction of the date as printed in Bederman’s note.",
+        "proposal_id": "hc200_bederman_higginbotham_race_gender"
+      },
+      {
+        "id": "edge_2117",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "thomas_sugrue",
+        "relationship": "Cites Higginbotham’s analysis of race alongside Fields when arguing for historically specific studies of racial practices.",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "hc200_sugrue_segmented1996"
+        ],
+        "evidence_note": "Sugrue 393 makes Fields’s construction argument the explicit starting point and n7 adds Higginbotham’s African-American Women’s History and the Metalanguage of Race, continuing onto 394. This establishes a specific supporting resource, not a transfer of Fields’s primary credit to Higginbotham or proof of full agreement. The original article remains unread; neither an editorial tribute nor a citation-chain inference supplies the relationship.",
+        "proposal_id": "hc200_sugrue_higginbotham_race"
+      },
+      {
+        "id": "edge_2231",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "linda_k_kerber",
+        "relationship": "Kerber expressly credits Higginbotham’s interpretation of race as a resource for her discussion of Black women and the separate-spheres framework.",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "hc174_kerber_spheres",
+          "hr28_kerber_higginbotham_cv_identity"
+        ],
+        "evidence_note": "Own 1988 printed26/n30 acknowledges an interpretive debt to Evelyn Brooks, The Problem of Race in Women’s History, alongside separately credited work by the Hortons, Sterling, Jones and Deborah Gray White. Higginbotham’s own Harvard CV establishes the identity through that distinctive chapter title and editor; metadata does not itself establish the debt. Kerber’s forthcoming volume title is preserved, not silently replaced with the later 1989 title. Printed9 also thanks Evelyn Brooks for counsel on earlier drafts, among many colleagues; no individual task or final chapter edition is inferred. Higginbotham chapter itself unread.",
+        "proposal_id": "hr28_kerber_higginbotham_race_interpretation"
+      },
+      {
+        "id": "edge_2496",
+        "source": "evelyn_brooks_higginbotham",
+        "target": "darlene_clark_hine",
+        "relationship": "Hine uses Higginbotham’s account of churches as safe spaces to support her explanation of Black institutions that nurtured political discussion and resistance under segregation.",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "hr28_hine_briggs_2004"
+        ],
+        "evidence_note": "Own Briggs 1066/n48 explicitly points to Righteous Discontent (1993), 10 for the church’s safe-space role. This particular historical resource supports Hine’s account of parallel institutions, not full adoption of every claim about respectability or proof of personal training. Kevin Gaines’s 1997 review is separately cited in the same note and is not erased. Original book/review unread; 1989 n9 earlier Burroughs chapter separately held with identity/source limits.",
+        "proposal_id": "hr28_hine_higginbotham_safe_spaces"
+      },
+      {
+        "id": "edge_2497",
+        "source": "darlene_clark_hine",
+        "target": "evelyn_brooks_higginbotham",
+        "relationship": "Higginbotham explicitly uses Hine’s culture of dissemblance to explain Black women’s protective silence about sexuality and the political significance of their self-representation.",
+        "type": "connection",
+        "relationship_kind": "influence",
+        "directed": true,
+        "source_ids": [
+          "gb162_hine_inner_lives_1989",
+          "higginbotham_race"
+        ],
+        "evidence_note": "Recipient’s own 1992 printed 266/n44 names and develops Hine’s argument, particularly for middle-class women, within a discussion of racialized sexuality and double-voiced discourse. This conceptual resource differs from existing 1622 Hine’s named draft feedback on 251. Higginbotham 272–273 also addresses costs of respectability/silencing; resource use does not mean complete agreement or that Hine originated every component of Higginbotham’s framework. Original cited Hine 1989 freshly checked; other cited scholars unread.",
+        "proposal_id": "hr28_hine_higginbotham_dissemblance_resource"
+      }
+    ],
+    "named_group_routes": [
+      {
+        "id": "edge_086",
+        "source": "black",
+        "target": "gender",
+        "relationship": "Black women’s histories reshape analysis of race and gender",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "source_ids": [
+          "white_arnt_woman",
+          "higginbotham_race"
+        ],
+        "evidence_note": "White contributes a history of enslaved women; Higginbotham’s 1992 opening challenges thin racial analysis while developing feminist accounts of power. Distinct interventions, not a claim that one theorist founded intersectional inquiry.",
+        "classification_basis": "editorial_review",
+        "map_label": "White and Higginbotham: race and gender"
+      },
+      {
+        "id": "edge_408",
+        "source": "gender",
+        "target": "black",
+        "type": "connection",
+        "relationship_kind": "contribution",
+        "directed": true,
+        "relationship": "Feminist theories of power are resources for Higginbotham’s racial analysis",
+        "evidence_note": "Her 1992 opening credits conceptual advances and cites Scott, Butler and others while challenging their racial limits. This later exchange does not explain the origins of Black historiography.",
+        "source_ids": [
+          "higginbotham_race"
+        ],
+        "classification_basis": "editorial_review",
+        "map_label": "Feminist resources in Higginbotham"
+      }
+    ]
+  }
+}

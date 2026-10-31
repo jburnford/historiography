@@ -1,0 +1,92 @@
+{
+  "revision": "1.223",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_b; separate from selected researchers /root/research_a and /root/research_c and coordinator",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "review_scope": "Independent integration audit and pre-application simulation of frozen McGirr/Hartman/Pocock; prior passage reviews pinned, no new primary reading in this merge audit.",
+  "baseline_revision": "1.222",
+  "baseline_graph_sha256": "087eee8add8e65c7a1da0a60b285b16c22e1fe29bbefabf4512fa18c53373a87",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2694,
+    "sources": 3409,
+    "people": 1438
+  },
+  "packet_sha256": "544596bd9cd0e6256ddc8a6eabf558457c2bd10e65798dfb363bf2b6192973af",
+  "freeze_sha256": "40c28e435fa80246cbd4fc666905fd1b83998b8496c69711e3386cca0a4af905",
+  "manifest_sha256": "201fb64b78c78b72bc008f02787272f9ac8324f115678344b52d96371ac4f8c4",
+  "text_spacing_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "6a8b7ab8c8b1456d8070e7eb61332c0c5075fcedf7914f71b4d0db39424f8f42",
+    "responses/entry-draft.json": "a4f828e868e06d2c5905eae212e203ba73216ce735d03b0515174a3b881e3f35",
+    "release/editorial-additions.json": "544596bd9cd0e6256ddc8a6eabf558457c2bd10e65798dfb363bf2b6192973af",
+    "verification.json": "c0abe0b2035c717b5b2136672defb783f34d1d784b290e12cad553ebbac01439",
+    "baseline.json": "34ecc28cf74e0acbe2ea9870dc4ae696a463be9c4a3c155b7b931bc991a3e639",
+    "manifest.json": "201fb64b78c78b72bc008f02787272f9ac8324f115678344b52d96371ac4f8c4",
+    "prepare.py": "af834bebf4eec30004823fd6f9c50489b7faee77ca5d31589761161a5418daa5",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 66,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "lisa_mcgirr": "33ca13a770e84554e09d17438f3e96a85eead7e62373ea5c0c008426f26a8ab2",
+    "saidiya_hartman": "d9bfcde7e76411b7647444567fbdfee18fbdfe9ed959458c41fe57a4e815c0ee",
+    "j_g_a_pocock": "00c06b0ca0aebf6285fefccdaf2b8c7e563acf352c75b418c8e5b397c0bc3a73"
+  },
+  "owner_to_packet_mapping": {
+    "lisa_mcgirr": {
+      "edges": 1,
+      "new_cited_sources": 1,
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    },
+    "saidiya_hartman": {
+      "edges": 5,
+      "new_cited_sources": 2,
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "j_g_a_pocock": {
+      "edges": 4,
+      "new_cited_sources": 1,
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "checks": {
+    "six_owner_access_and_raw_receipt_pins": true,
+    "all_ten_proposals_exact_to_draft_and_packet": true,
+    "no_type_kind_direction_or_spacing_changes": true,
+    "four_cited_sources_and_four_addenda_exact": true,
+    "excluded_held_only_sources": [
+      "hr30_mcgirr_stein2001",
+      "hr30_pocock_james2018"
+    ],
+    "all_current_and_internal_pairs_distinct": true,
+    "all_old_2694_edges_exact": true,
+    "all_old_3409_sources_exact_except_four_verification_appends": true,
+    "all_other_tables_and_revision_prefix_exact": true,
+    "request_partition": "72 previous +3 selected +26 remaining =101; after selected75 complete.",
+    "substantive_limits": "McGirr credits earlier attention to ordinary adherents and retains conspiratorial rhetoric while criticizing psychological explanations. Hartman retains positive Du Bois formal debt alongside existing criticism, qualified Foucault debt alongside specific domination criticism, Butler joint context and bounded Scott comparative use. Pocock retains Robbins/Oakeshott joint resources, Kuhn self-critical transfer qualification and distinct Skinner trajectories. No inferred unread original or missing-endpoint claim added.",
+    "prepare_check": "PASS without mutation",
+    "source_host_tests": "3 passed",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 10,
+    "sources": 4,
+    "source_addenda": 4
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2704,
+    "sources": 3413,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "96457e47349ca094f9bf404d367569b278eb03598a3eea79fecb49b7c3713fcd",
+  "blocking_findings": [],
+  "limitations": "Pre-application integration only; not applied approval or new primary passage research. Frozen and owner files unchanged.",
+  "frozen_inputs_modified": false
+}

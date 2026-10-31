@@ -1,3 +1,118 @@
+## Current revision 1.231: historian relationship queue complete
+
+All **33 historians remaining after recovery are complete**, with independent passage, coverage, merged-packet and applied reviews. The continuation adds **148 relationships and 36 cited sources** beyond revision 1.220. All 101 resumed dossiers are applied, bringing the protocol total to 157; **zero remain**.
+
+The current graph contains **368 entries, 2,822 relationships, 3,440 sources and 1,438 indexed people**. The final three-person batch covers Joy Parr, Donald Creighton and Walter Rodney. A separately reviewed correction adds Wolfe’s qualified criticism of Fanon and clarifies Todorov’s citation-only hold. Explicit unread-evidence and missing-endpoint holds remain; completion describes the bounded dossiers, not an exhaustive intellectual network.
+
+Validation passes: 23 data cases including source-host checks, 61 JavaScript checks, three browser cases including all 368 focused relationship views, and the 54-file preview. All recovered relationships and other graph tables are preserved, with only approved source-note appends to earlier sources. All ten continuation packets and the separate coverage correction reconstruct exactly. Public graph and overview are refreshed; the accepted people enrichment and 110 protected product files remain exact. Structural validation has zero errors and the same 46 reviewed warnings. Changes are committed locally; no push or deployment. OpenAlex remains paused.
+
+## Historical revision 1.229: further historian relationship reviews
+
+Patrick Wolfe, R. Bin Wong, Evelyn Brooks Higginbotham, Gregory S. Kealey add **21 relationships, 2 cited sources and 6 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,807 relationships, 3,439 sources and 1,438 indexed people**. **154 priority dossiers are complete; 3 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.228: further historian relationship reviews
+
+Alice Clark, Ernest Labrousse, Frances A. Yates, Eric Williams add **8 relationships, 2 cited sources and 8 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,786 relationships, 3,437 sources and 1,438 indexed people**. **150 priority dossiers are complete; 7 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.227: further historian relationship reviews
+
+Jon Lawrence, C. L. R. James, Ian McKay, Cole Harris add **11 relationships, 4 cited sources and 8 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,778 relationships, 3,435 sources and 1,438 indexed people**. **146 priority dossiers are complete; 11 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.226: further historian relationship reviews
+
+Gérard Noiriel, Ivy Pinchbeck, Sylvia Van Kirk, Jan de Vries add **20 relationships, 5 cited sources and 8 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,767 relationships, 3,431 sources and 1,438 indexed people**. **142 priority dossiers are complete; 15 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.225: further historian relationship reviews
+
+Ann Laura Stoler, Benedict Anderson, Walter Johnson, Mariana Valverde add **24 relationships, 8 cited sources and 4 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,747 relationships, 3,426 sources and 1,438 indexed people**. **138 priority dossiers are complete; 19 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.224: further historian relationship reviews
+
+Thomas Kuhn, Pierre Nora, Robert Darnton add **19 relationships, 5 cited sources and 3 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,723 relationships, 3,418 sources and 1,438 indexed people**. **134 priority dossiers are complete; 23 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.223: further historian relationship reviews
+
+Lisa McGirr, Saidiya Hartman, J. G. A. Pocock add **10 relationships, 4 cited sources and 4 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,704 relationships, 3,413 sources and 1,438 indexed people**. **131 priority dossiers are complete; 26 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.222: further historian relationship reviews
+
+Richard White, Ramsay Cook add **12 relationships, 3 cited sources and 6 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,694 relationships, 3,409 sources and 1,438 indexed people**. **128 priority dossiers are complete; 29 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.221: further historian relationship reviews
+
+C. V. Wedgwood, Joel Mokyr add **8 relationships, 2 cited sources and 4 append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,682 relationships, 3,406 sources and 1,438 indexed people**. **126 priority dossiers are complete; 31 remain.**
+
+The frozen dossiers preserve specific resources and disagreements, named coauthors, original/reprint/translation dates and limits on reading. Stronger missing interlocutors and unsupported leads remain explicit holds; there is no edge quota or exhaustive-network claim. All earlier graph records remain exact except the approved append-only source notes.
+
+Checks pass: 20 data cases, 61 JavaScript checks and a 54-file preview. Public graph and overview are refreshed, retaining existing people enrichment. Structural validation reports zero errors and 46 reviewed warnings. No commit or push. OpenAlex remains paused; research continues.
+
+## Historical revision 1.220: Cooper and Peter Brown relationship reviews
+
+Frederick Cooper and Peter Brown add **17 relationships, four cited sources and three append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,674 relationships, 3,404 sources and 1,438 indexed people**. **124 priority dossiers are complete; 33 remain.**
+
+Cooper’s specific debts coexist with reciprocal Eley–Nield criticism, named coauthors and limits on retrospective dating. Brown’s testimony distinguishes Mary Douglas’s resource from a qualified Foucault exchange; missing interlocutors and unread originals remain explicit holds. The exact accepted graph and frozen reviews survived the crash.
+
+Recovery checks pass: 20 data cases, 61 JavaScript checks, three browser cases and a 54-file preview. The public export has every accepted relationship and source; its existing people enrichment remains unchanged. All 110 product files in the recovery checkpoint remain exact. Earlier graph records are unchanged except the approved source notes. No new structural warnings, commit or push. OpenAlex remains paused; research continues.
+
+## Revision 1.218: four further historian relationship reviews
+
+## Historical revision 1.219: Carter and Greer relationship reviews
+
+Sarah Carter and Allan Greer add **21 relationships, one cited source and eight append-only source notes** after independent passage, coverage, merged-packet and applied reviews. The graph contains **368 entries, 2,657 relationships, 3,400 sources and 1,438 indexed people**. **122 priority dossiers are complete; 35 remain.**
+
+Carter’s resources retain precise chapter, edition and shared-credit limits. The namesake Paul Carter route is excluded from Sarah’s evidence without changing the existing graph record. Greer’s use of Wolfe coexists with his specific criticism of the settlement/exploitation dyad; other critics retain their own claims. Missing teachers, coeditors, manuscript readers and unread originals remain explicit research holds.
+
+Every earlier graph record remains exact except the approved append-only source notes. Frozen owner files retain their independent reviews; a pinned space-only overlay improves Carter’s display prose. Checks pass: 30 data cases, the JavaScript core runner, three browser cases and a 54-file preview. Only public graph and overview were refreshed; 86 protected files remain exact. No new structural warnings, commit or push. OpenAlex remains paused and research continues.
+
+
+E. A. Wrigley, Eugene Genovese, Partha Chatterjee and Barbara W. Tuchman add **14 relationships, 6 cited sources and 14 append-only source notes**. The graph contains **368 entries, 2,636 relationships, 3,399 sources and 1,438 indexed people**. **120 priority dossiers are complete; 37 remain.**
+
+The reviews distinguish joint data and mathematical resources, qualified use of Du Bois, conceptual uptake alongside criticism, and Wood’s particular objections to Tuchman. A candidate James influence on Genovese is held because the supporting note remains unread through permitted routes; a licensed preview’s general appraisal does not establish influence. Source access and reviewer identities are explicit. No additional Astra run is claimed.
+
+Every earlier graph record remains exact except the approved append-only source notes. A separate baseline-counts amendment corrects inherited descriptive counts while preserving the frozen selection, packet, manifest and acceptance receipt. The baseline SHA and graph delta were correct. Checks pass: 29 data cases, the JavaScript core runner, three browser cases and a 54-file preview. Only public graph and overview were refreshed; six concurrent app-asset changes were preserved. No new structural warnings, commit or push. Research continues; OpenAlex remains paused.
+
+## Revision 1.217: five further historian relationship reviews
+
+Franca Iacovetta, Geoff Eley, Jack Goody, Marisa J. Fuentes and Philip J. Deloria add **50 relationships, 12 cited sources and 12 append-only source notes**. The graph contains **368 entries, 2,622 relationships, 3,393 sources and 1,438 indexed people**. **116 priority dossiers are complete; 41 remain.**
+
+The batch preserves the repaired 1.216 graph, including every earlier relationship and qualification. Source access was checked against the 29 October restrictions. Frozen owner files remain exact; a separately pinned spacing overlay makes the new display prose readable without changing non-space characters. Stronger missing teachers, coauthors, critical reception and unread originals retain explicit holds; no edge quota or exhaustive-network claim.
+
+Iacovetta, Goody and Fuentes retain their prior independent Astra reviews. Eley and Deloria received Codex passage and coverage reviews of the prior researcher dossiers; no additional Astra run is claimed. The original 1.204 research baseline remains distinct from the repaired production baseline.
+
+Local checks pass: 100 data cases, the JavaScript core runner, three browser cases and a 52-file preview. Only public graph and overview were refreshed; 86 protected files remain exact. No new structural warnings, commit or push. OpenAlex remains paused; research continues.
+
 ## Revision 1.216: text and link repair
 
 Revisions 1.200–1.215 wrote many reading notes with the spaces between words

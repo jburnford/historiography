@@ -1,0 +1,48 @@
+{
+  "revision": "1.219",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent applied-batch reviewer /root/historian_review; separate agent from researcher/coordinator",
+  "verdict": "pass",
+  "graph_path": "historiography-1920-2000.json",
+  "graph_sha256": "5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0",
+  "acceptance_path": "data/production-batches/person-links-1.219/acceptance.json",
+  "acceptance_sha256": "cf8f03c42e7f68455556389809aa34e2942b6fe918633f9ee5b308872bfc4138",
+  "packet_sha256": "fd84d0009644c47cfa3f32b00d0a100b2dfc7cd9c996879567665fb400ade037",
+  "freeze_sha256": "6370a0d8081cb710027efd47101baeaccec9ad359d1f0910c80abdb4d93d0596",
+  "manifest_sha256": "503c52e35ad95141ac0384565f67410103756750a6f30ee62a0ea66edc4ca552",
+  "independent_merged_review_sha256": "d336fc14f2d8cb781d19a697e932674b5b9d09d8ab7f6e9b694cc67f18631706",
+  "independent_merged_review_md_sha256": "c6923bdefdbdabc12ad402642da5fea0948e174989df5f792291e7e44581d7be",
+  "all_eight_frozen_files_and_50_manifest_inputs_hash_verified": true,
+  "expected_production_matches_live_and_acceptance": true,
+  "baseline_revision": "1.218",
+  "restored_baseline_sha256": "a47760c530e646464751792a2ea277f63ff937db456ba78eb2b2ddc1c46dfc60",
+  "baseline_snapshot_path": "drafts/historiography-1920-2000.v1.218.json",
+  "baseline_snapshot_sha256": "a47760c530e646464751792a2ea277f63ff937db456ba78eb2b2ddc1c46dfc60",
+  "checks": {
+    "independent_acceptance_restoration": "Truncated only the five recorded tables and restored exactly the eight prior source records; serialized result matches exact1.218 SHA and on-disk snapshot. No nodes, people or edges require prior-record replacements.",
+    "production_reconstruction": "Applying frozen packet to independently restored baseline produces the live1.219 graph exactly; Batch.check and Batch.restore_baseline agree.",
+    "preservation": "All2636 earlier edges, all nodes/people/chronology/other tables and the entire old revision-history prefix remain exact. Only eight specified existing-source verification appends and reviewed status/date changes; the complete preceding1.216repair state is preserved within exact1.218 restoration.",
+    "added_edges": "edge_2637 through edge_2657 match the frozen packet in order, identifiers and every field.",
+    "source_exclusion": "Only hr30_carter_burton_editor_identity added; Jacobs held-only source absent from production. No changed owner or held-case files; Paul Carter namesake edge_730 remains exact.",
+    "source_restrictions": "Earlier bounded actual-body reviews and merge PASS remain exact; no fresh source reading or expansion of scope in this applied audit.",
+    "prepare_check": "python3 data/extension-2026/dedicated-historians-resumed-2026-10-28-batch14/prepare.py --check passed.",
+    "source_host_tests": "python3 -m unittest tests.test_source_hosts:3passed.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_restored_baseline": true
+  },
+  "applied_delta": {
+    "edges": 21,
+    "sources": 1,
+    "source_addenda": 8
+  },
+  "live_counts": {
+    "nodes": 368,
+    "edges": 2657,
+    "sources": 3400,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "limitations": "Graph/acceptance audit only. This review does not claim root’s separate data/JavaScript/browser/build or public graph/overview checks. No applied, frozen, owner, accepted historical or website files edited.",
+  "frozen_inputs_modified": false
+}

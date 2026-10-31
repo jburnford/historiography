@@ -1,0 +1,3 @@
+# Eric Williams: independent passage and coverage review
+
+PASS. Codex /root independently read the selected original Cambridge article passages and licensed publisher preface, visually collated the two key journal leaves, and checked all six owner files, access review, receipt and eight raw hashes. Both James claims retain explicit scholarly mediation, their distinct targets, constructive credit and critical qualifications. Eleven live incidents and36 identity-screened group routes were checked. Stronger missing contributors and unread originals remain explicit holds. Exact findings and independent reading scopes are in independent-review.json. No owner file changed.

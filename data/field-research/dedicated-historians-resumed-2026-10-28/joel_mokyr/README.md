@@ -1,0 +1,9 @@
+# Joel Mokyr: bounded relationship review
+
+Research context stays at 1.204; live preservation and duplicate checking is against 1.220. Six proposals distinguish conceptual resources, a specific causal disagreement and an attributed divergence criticism. No edge quota or exhaustive genealogy is claimed.
+
+Fresh selected readings use the actual retained author-hosted February and October 2002 draft PDFs and the author-posted 2007 EUI lecture. Exact passages and private hashes are recorded in the retrieval receipt. February printed 4/note 4 was visually collated. These drafts are not substituted for later published books; no complete monograph, cited original, full lecture or full draft was newly read. The 2007 network retrieval failed, so it is the retained actual PDF that supplies evidence.
+
+All original incidents and named group routes, plus the new opposite Wrigley resource edge, were inspected. Existing statements remain exact. Ryle’s analogy retains Polanyi/Scheffler/Loasby credit; Burke’s specific historical resource does not become sole theoretical origin. Mokyr’s argument against Marx remains conditional and narrower than a verdict on all his thought. Wong disagreement coexists with substantial agreement. Braudel and Wrigley supply different resources from the preserved group coal comparison and Wrigley’s numerical use of Mokyr.
+
+Original EH.Net reception supplies praise and criticism, with missing reviewer endpoints held. The Snowdon publisher interview body remains unread. Arrow, Kuznets, Nelson and other missing central resources and coauthors are explicit holds; availability does not substitute for intellectual importance. Private raw bodies are excluded from browser assets. No graph, biography, life fact, shared progress, accepted batch, corpus, OpenAlex, commit or push is changed.

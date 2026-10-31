@@ -1,0 +1,108 @@
+{
+  "revision": "1.228",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_c; independent of all four selected dossier researchers and coordinator",
+  "verdict": "pass",
+  "review_scope": "Exact frozen Clark, Labrousse, Yates and Williams integration against live 1.227. Prior independent passage and coverage review pins checked; no new primary passage reading claimed in this integration audit.",
+  "baseline_revision": "1.227",
+  "baseline_graph_sha256": "0d40483fd7064ed46896c1899df51104d8d9543356a3a18dab898b31c8732610",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2778,
+    "sources": 3435,
+    "people": 1438
+  },
+  "packet_sha256": "e51ad5a252998101097c4c05e807a3a7c2431e96399c77758bfa2f7aa23a16f1",
+  "freeze_sha256": "f64eaefd4376ea9fdd9d29d8205f654b0f65b35ea48885614bb3296ee058edec",
+  "manifest_sha256": "7af58ee1c05cf9eadb7c5d248be2e4272b0f1792da5ee47abda65693619ca1a7",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "68f7c4047c924078898e6d041dac57196fa08fff277346078450c9be60703afc",
+    "responses/entry-draft.json": "e67ecef2652ff4710b05323faa957533e45ac7f122ab166515cf7a2e79316855",
+    "release/editorial-additions.json": "e51ad5a252998101097c4c05e807a3a7c2431e96399c77758bfa2f7aa23a16f1",
+    "verification.json": "bd0fab031d396da633c2ad2885ac73e22e48f4683255c8c014cfac650f9f51c8",
+    "baseline.json": "3e941ea2e8c43ce732459e69b140430dd1730be192c9e1dabec8716db4243126",
+    "manifest.json": "7af58ee1c05cf9eadb7c5d248be2e4272b0f1792da5ee47abda65693619ca1a7",
+    "prepare.py": "f59ba7a233644863b28a1f045aa860433de5407f3e8b620693f5aab656ef4981",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 84,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "alice_clark": "f54b201d1f1d57743a516d9625fdee06fde792cb288f506d7f6979e347c14671",
+    "ernest_labrousse": "a9150753b823cf82e5dc27594620b38c67b3894d39334cc34f08c916737a6f7e",
+    "frances_yates": "dfffcf56509a74ba6549adb3ce3d05d5288bcd62d39ab859fecedfde06ea4452",
+    "eric_williams": "4dd66143035dbca58f6ab65f5389253374beafc6eadacecc6cd5e52bddc9727c"
+  },
+  "owner_to_packet_mapping": {
+    "alice_clark": {
+      "proposals": 1,
+      "cited_new_sources": 0,
+      "excluded_held_only_sources": [],
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "ernest_labrousse": {
+      "proposals": 4,
+      "cited_new_sources": 0,
+      "excluded_held_only_sources": [],
+      "source_addenda": 4,
+      "all_reviewed_fields_exact": true
+    },
+    "frances_yates": {
+      "proposals": 1,
+      "cited_new_sources": 1,
+      "excluded_held_only_sources": [],
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    },
+    "eric_williams": {
+      "proposals": 2,
+      "cited_new_sources": 1,
+      "excluded_held_only_sources": [],
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "excluded_uncited_new_sources": {},
+  "checks": {
+    "all_owner_access_raw_and_review_pins_exact": true,
+    "all_eight_proposals_exact_to_draft_and_packet": true,
+    "two_cited_sources_exact_sorted": true,
+    "eight_addenda_exact": true,
+    "all_source_fields_preserved": true,
+    "yates_optional_citation": "Yates source has no citation key. Its title, URL, type, authors, year and verification exactly match frozen owner record; no citation invented, existing metadata lost or source record normalized.",
+    "empty_spacing_overlay": true,
+    "no_existing_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_sources_resolve": true,
+    "historical_edges_exact": true,
+    "historical_sources_exact_except_eight_verification_appends": true,
+    "nodes_people_chronology_other_fields_exact": true,
+    "revision_history_exact_prefix": true,
+    "request_partition": "90 prior + 4 selected + 7 remaining = 101; 94 implemented after selected subset.",
+    "clark": "Erickson-mediated undirected Tilly/Scott production-form comparison retains Louise Tilly equal credit and chronological criticism, without direct transmission or a guessed full endpoint.",
+    "labrousse": "Own retrospective Marx resource preserves Simiand and Aftalion instruments, lack of direct teaching and indirect Durkheim limit; Febvre and Braudel resources preserve individual agency. Reverse Braudel criticism of short time retains praise and original printed date variant, distinct from reverse contribution445.",
+    "yates": "Hill own criticism remains particular explanatory/political disagreement with praise and acknowledged Yates hints; reverse Yates resource506 stays exact. Memorial voice and missing formation resources remain bounded.",
+    "williams": "Both James routes remain explicitly mediated through Brandon, distinct constructive draft/chapter intervention versus criticism of1942forecast. Padmore/shared witness credit, original reading limits, later political divergence and missing stronger helpers retained. No James-dossier overlap.",
+    "prepare_check": "PASS",
+    "source_host_unittests": "3 cases PASS",
+    "source_route_findings": 0,
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 8,
+    "sources": 2,
+    "source_addenda": 8
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2786,
+    "sources": 3437,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "2be7bbd9afb0c6a6f38a1fcf90085405bd1a90d564ed657270ebaaed0e10112e",
+  "blocking_findings": [],
+  "frozen_inputs_modified": false,
+  "limitations": "Pre-application integration audit only; no applied approval, primary original audit, graph, export, build mutation or publication claimed."
+}

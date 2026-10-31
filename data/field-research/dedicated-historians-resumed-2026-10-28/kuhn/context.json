@@ -1,0 +1,708 @@
+{
+  "person_id": "kuhn",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "kuhn",
+    "label": "Thomas Kuhn",
+    "date_label": "Scientific revolutions · 1962 onward",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Explains scientific development through normal science, disciplinary commitments, crises, and revolutions. Paradigms organize problems and standards of inquiry. Later sociologists adapt these arguments, sometimes in ways Kuhn disputes; this is not a universal law that all intellectual history moves through discrete paradigms. His preface acknowledges Koyré, Metzger, Maier and Fleck as distinct resources. The later distinction between shared disciplinary commitments and exemplary solutions makes “paradigm” more precise. In his 1970 exchange, Kuhn stresses substantial agreement with Popper while distinguishing tests of puzzle solutions from challenges to basic theory. Popper accepts that normal research exists but disputes its educational desirability; Lakatos later proposes appraisal of research programmes through novel predictions. Their accusations of irrationalism are criticisms of Kuhn, not his own stated position. Skinner, Dunn and deMause use Kuhn for different historical purposes.",
+    "representative_figures_and_works": "The Structure of Scientific Revolutions (1962; expanded second edition 1970). Distinguish his analysis of scientific communities from loose uses of paradigm to mean any school of historical writing. Read the 1962 preface alongside the 1969 postscript included in the second edition: sources of the argument and later clarification are different evidence.",
+    "source_ids": [
+      "kuhn",
+      "kuhn_preface",
+      "kuhn_structure",
+      "kuhn_discovery_debate",
+      "popper_normal_debate",
+      "lakatos_science_pseudoscience",
+      "skinner_meaning_primary",
+      "dunn_identity_primary",
+      "demause_childhood_reply"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1962",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_f7de85ea617f",
+          "label": "The Structure of Scientific Revolutions",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1962,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:kuhn_structure"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_131",
+      "source": "kuhn",
+      "target": "science",
+      "relationship": "Kuhn’s paradigms, normal science, and scientific revolutions reorient explanations of scientific change",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "kuhn_structure"
+      ],
+      "evidence_note": "A contribution to an existing field, not its foundation. Kuhn’s 1962 account of scientific communities, normal science, and revolutions is central here. He transforms an existing field rather than founding it.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "map_label": "Kuhn: paradigms and revolutions"
+    },
+    {
+      "id": "edge_132",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "provides resources for sociological accounts of scientific communities, with disputed extensions",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "ssk"
+      ],
+      "evidence_note": "Kuhn’s reception in sociology is selective; influence does not imply endorsement of later programmes. Bloor and other sociologists draw on and extend Kuhn’s questions; Kuhn contested some sociological appropriations.",
+      "relationship_kind": "influence",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_332",
+      "source": "science",
+      "target": "kuhn",
+      "relationship_kind": "influence",
+      "directed": true,
+      "type": "connection",
+      "relationship": "Kuhn acknowledges Koyré, Metzger, Maier and Fleck as resources for his historical account",
+      "evidence_note": "The 1962 preface identifies named debts; this arrow concerns those works, not every historian of science.",
+      "source_ids": [
+        "kuhn_preface"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Koyré, Metzger, Maier and Fleck"
+    },
+    {
+      "id": "edge_577",
+      "source": "kuhn",
+      "target": "psychohistory",
+      "relationship": "deMause invokes paradigm change to explain resistance to his childhood-history program",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "demause_childhood_reply"
+      ],
+      "evidence_note": "His 1988 conclusion and note 116 cite The Structure of Scientific Revolutions (1962). This records an appropriation of Kuhn, not Kuhn’s endorsement or proof that criticism signals scientific validity.",
+      "map_label": "deMause’s appeal to Kuhn",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_617",
+      "source": "kuhn",
+      "target": "context",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Skinner and Dunn explicitly use Kuhn among interpretive resources",
+      "evidence_note": "Skinner (1969), p. 7, invokes the priority of paradigms and chapter V of Structure; Dunn’s notes also acknowledge the work. This bounded methodological use does not derive the entire Cambridge grouping from a theory of scientific revolutions.",
+      "source_ids": [
+        "skinner_meaning_primary",
+        "dunn_identity_primary"
+      ],
+      "map_label": "Kuhn as a specified interpretive resource",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_931",
+      "source": "sciencewars",
+      "target": "kuhn",
+      "relationship": "Physicists blame an \"immoderate\" Kuhn for founding relativism about science, while sparing the \"moderate\" Kuhn and leaving him to historians (1996–98)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_sokal_bricmont_1998",
+        "ss136_weinberg_1996",
+        "ss136_weinberg_1998",
+        "ss136_sokal_transgressing_1996"
+      ],
+      "evidence_note": "In-period texts read. Sokal and Bricmont (1998; Profile 1999/2003 printing), following Tim Maudlin, separate \"a moderate Kuhn and his immoderate brother\": \"We have no objection of principle to the moderate Kuhn, and we leave to historians the task of investigating the extent to which these ideas are correct in concrete situations. By contrast, the immoderate Kuhn - who became, perhaps involuntarily, one of the founding fathers of contemporary relativism - thinks that changes of paradigm are due principally to non-empirical factors\" (p. 70). Weinberg (1996) lists Kuhn, \"as I understand them\", among those who deny \"The objective nature of scientific knowledge\"; in 1998 he wrote that Kuhn's later conclusions \"have made Kuhn a hero to the philosophers, historians, sociologists, and cultural critics who question the objective character of scientific knowledge\", and that \"Kuhn made the shift from one paradigm to another seem more like a religious conversion than an exercise of reason.\" Sokal's parody (1996, n. 2) cites Kuhn (1970) first among the \"revisionist studies\" it mocks. This is a critique of Kuhn and of his reception; Kuhn died in 1996 and did not reply. His own earlier rejection of irrationalism (\"labels which I categorically reject\", 1970) is recorded on the science → kuhn edge.",
+      "classification_basis": "editorial_review",
+      "map_label": "The \"immoderate Kuhn\" blamed, 1996–98",
+      "proposal_id": "ss136_sw_rel_07"
+    },
+    {
+      "id": "edge_935",
+      "source": "science",
+      "target": "kuhn",
+      "relationship": "Popper, Lakatos and the historian L. Pearce Williams criticise Kuhn's normal science and theory change: indoctrination, irrationalism, \"mob psychology\" and too little history (1965–70), answered by Kuhn",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "popper_normal_debate",
+        "ss136_cgk_1970",
+        "ss136_kuhn_postscript_1970"
+      ],
+      "evidence_note": "In-period texts read in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970; the 1965 Bedford College symposium). Popper, already a critic on the science roster: the normal scientist \"has been taught in a dogmatic spirit: he is a victim of indoctrination\" (p. 53); \"Kuhn's logic is the logic of historical relativism\" (p. 55); the Myth of the Framework \"is, in our time, the central bulwark of irrationalism\" (p. 56); yet \"'Normal' science, in Kuhn's sense, exists\" (p. 52). Lakatos, a contributor on the science roster: Kuhn's message \"had some authoritarian and irrationalist overtones\" (p. 92 n. 3); \"in Kuhn's view scientific revolution is irrational, a matter for mob psychology\" (p. 178, italicised in the original); he also absorbs Kuhn, offering his research programmes as a reconstruction of Kuhn's \"socio-psychological concept of 'paradigm'\" (p. 179 n. 1). L. Pearce Williams, a historian of science, aims at Kuhn and Popper alike: \"the history of science cannot bear such a load at this time. We simply do not know enough to permit a philosophical structure to be erected on a historical foundation\"; \"As a historian, then, I must view both Popper and Kuhn with a somewhat jaundiced eye\" (p. 50), while continuing to use both as guides. Kuhn's replies: charges of \"irrationality, relativism, and the defence of mob rule\" are \"labels which I categorically reject\" (p. 234); such misinterpretations \"are voiced only by philosophers\" (p. 260); to Pearce Williams, \"There is no area in which I am more deeply conscious of the need for additional historical research, though I dissent from the conclusions Pearce Williams draws from that need\" (pp. 251–252); and in the 1970 Postscript, good reasons \"function as values\" (p. 199) and \"That is not a relativist's position\" (p. 206). The irrationalism charge came from philosophers on the science roster; the historian's objection was evidential. edge_332 (science → kuhn, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "Normal science and irrationalism disputed, 1965–70",
+      "proposal_id": "ss136_cr_rel_01"
+    },
+    {
+      "id": "edge_938",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "Kuhn calls the strong programme's claims \"absurd: an example of deconstruction gone mad\" (1991)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_kuhn_road_2000"
+      ],
+      "evidence_note": "Kuhn's own words, read: \"The Trouble with the Historical Philosophy of Science\" (Rothschild Lecture, Harvard, 19 November 1991; published 1992; in The Road Since Structure, 2000): \"I am among those who have found the claims of the strong program absurd: an example of deconstruction gone mad. And the more qualified sociological and historical formulations that currently strive to replace it are, in my view, scarcely more satisfactory\" (p. 110); the strong program \"has been widely understood as claiming that power and interest are all there are\" (p. 110). In the 1995 Athens interview (same volume) he says of Shapin and Schaffer's Leviathan and the Air-Pump, \"The scholarship is often damn good!\", while objecting that they \"totally miss\" the barometer's \"vastly greater explanatory power\" (pp. 316–317); that remark concerns the science roster's practice strand and is context only. No SSK reply to the lecture was read. The SSK reading of Kuhn ran the other way, as appropriation (Barnes, T. S. Kuhn and Social Science, 1982, unread); edge_132 (kuhn → ssk, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "\"Deconstruction gone mad\", 1991",
+      "target_strand": "ssk/strong_programme",
+      "proposal_id": "ss136_cr_rel_04"
+    },
+    {
+      "id": "edge_1647",
+      "source": "kuhn",
+      "target": "quentin_skinner",
+      "relationship": "Skinner explicitly uses Kuhn’s priority-of-paradigms discussion in framing anachronistic interpretation in the history of ideas (1969).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "skinner_meaning_primary"
+      ],
+      "evidence_note": "Meaning and Understanding, printed p. 7 and note 18, directly cites Structure, chapterV. Gombrich is a separately credited resource; Kuhn is not made the founder of Skinner’s method or the entire Cambridge grouping. Mixed Skinner/Dunn edge 617 remains unchanged; Ryle’s use by Dunn in 618 is not reassigned to Skinner.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_roots_kuhn_skinner"
+    },
+    {
+      "id": "edge_1797",
+      "source": "kuhn",
+      "target": "c_vann_woodward",
+      "relationship": "Uses Kuhn’s account of common scientific paradigms to distinguish historians’ recurrent examination of first principles.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_woodward_address"
+      ],
+      "evidence_note": "The published address, paragraph beginning Unlike the sciences also and note57, cites The Structure of Scientific Revolutions(1962),162. Woodward doubts history will gain the same release from methodological questioning; he does not simply adopt a Kuhnian historical model. The cited book remains unread here.",
+      "proposal_id": "df04_woodward_kuhn_resource_address"
+    }
+  ],
+  "named_group_routes": [
+    {
+      "id": "edge_137",
+      "source": "epistemology",
+      "target": "science",
+      "relationship": "provides histories of scientific concepts and discontinuities as one intellectual tradition",
+      "type": "connection",
+      "source_ids": [
+        "foucault",
+        "science_history",
+        "chimisso_epistemology",
+        "canguilhem_normal"
+      ],
+      "evidence_note": "Locates the Bachelard–Canguilhem tradition within histories of scientific knowledge; does not identify it with Kuhn or SSK. Bachelard and Canguilhem form a particular French conceptual-history tradition, not the origin of every history of science.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "map_label": "Bachelard and Canguilhem: scientific concepts"
+    },
+    {
+      "id": "edge_299",
+      "source": "frances_yates",
+      "target": "science",
+      "relationship": "investigates connections between memory systems and histories of knowledge",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "yates",
+        "yates_memory_primary"
+      ],
+      "evidence_note": "The Art of Memory’s contents include scientific-method questions; this does not equate Yates’s approach with Kuhn, SSK, or STS. Complete chapter XVII pp. 368–389 now supports an attributed argument about mnemonic ordering, combinatory projects and methods. Stronger causal and secret-transmission hypotheses remain unverified.",
+      "map_label": "Mnemonic ordering and changing methods"
+    },
+    {
+      "id": "edge_907",
+      "source": "carolyn_merchant",
+      "target": "environment",
+      "relationship": "Ecological revolutions: tensions between ecology, production and reproduction reshape consciousness of nature, with gender analysed at every level (1987–1990)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pe131_merchant_structure_1987",
+        "pe131_merchant_ecorev_1989",
+        "pe131_merchant_jah_1990",
+        "pe131_merchant_steinberg_1991",
+        "pe131_cronon_uses_1993",
+        "pe131_extras_mcneill_2003"
+      ],
+      "evidence_note": "Merchant's own statement of the framework, 'The Theoretical Structure of Ecological Revolutions', Environmental Review 11:4 (1987), read in full: 'My thesis is that ecological revolutions are major transformations in human relations with non-human nature. They arise from changes, tensions, and contradictions that develop between a society’s mode of production and its ecology, and between its modes of production and reproduction. Those dynamics in turn support the acceptance of new forms of consciousness, ideas, images, and world views' (pp. 265–266). 'The concepts most useful for this approach to environmental history are ecology, production, reproduction, and consciousness' (p. 267); 'An ecological approach to history asserts the idea of nature as a historical actor' (p. 267); production is twofold, 'reproduction is fourfold, having both biological and social articulations' (p. 270); 'Under capitalist patriarchy, reproduction is subordinate to production' (p. 271). Ecological Revolutions (1989), chapter 1 (reprint, Dolbeare 1996, p. 578): in each revolution 'The relations between men and women through which daily life was maintained and reproduced were radically changed.' In the 1990 JAH round table she writes that Worster's essay 'lacks a gender analysis' and that 'environmental history needs a fourth analytical level, that of reproduction, which interacts with the other three levels' (p. 1117); shifts of power are 'not only those between indigenous and invading cultures but also those between men and women' (p. 1121). In-period readings: Steinberg (Technology and Culture, 1991, read in full) calls her theorizing, 'especially its integration of gender into the analysis', 'a signal contribution', but adds 'There are painfully few people making history in this book' (p. 399); Cronon (1993) footnotes to Death of Nature and Ecological Revolutions the lesson that one cannot understand how a culture relates to an environment 'without examining the ways it engenders the natural world' (p. 9, n. 18). A contribution, not a founding: she takes Kuhn's and Marx's theories of revolution as 'starting points' and rejects 'the determinism Marx assigns to the economic base' (1987, p. 266), draws reproduction from Meillassoux, Peterson and Bridenthal (pp. 270–271), and adds to Worster's levels rather than replacing them (1990, p. 1117). McNeill (2003, pp. 38–39) is a later reading: the scheme 'has not attracted wide imitation within environmental history'.",
+      "classification_basis": "editorial_review",
+      "map_label": "Ecological revolutions and reproduction, 1987–90",
+      "target_strand": "environment/merchant_material_ideas",
+      "proposal_id": "pe131_merchant_rel_01"
+    },
+    {
+      "id": "edge_1060",
+      "source": "lorraine_daston",
+      "target": "sts",
+      "relationship": "Science studies and the history of science diverged during the 1990s: the history of science “became ever more historical and science studies ever less”; science studies stayed “undisciplined”, and historicizing objectivity is not debunking it (2009)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "w1_daston_science_studies_2009"
+      ],
+      "evidence_note": "Her own words, read in full (Critical Inquiry 35, 2009). The fields \"came to diverge … as the history of science became ever more historical and science studies ever less\" (p. 800); science studies read Kuhn \"as a manifesto of relativism\", historians took from him that \"teleology must be repudiated\" (p. 802); the history of science \"has … become a discipline\", while science studies \"has remained interdisciplinary—and, even on the testimony of some insiders, undisciplined\" (p. 811); its assumptions are \"Manichean\" (p. 812). In the terms of the Science Wars she answers the relativism charge: \"to historicize the category of the fact, objectivity, or proof is not thereby to debunk it\" (p. 812); \"'If historical, then relative' is a non sequitur\" (p. 813), citing Latour's \"Why Has Critique Run out of Steam?\" (2004). Qualifications: she credits \"intensive and fruitful exchanges\" in the 1970s and 1980s (p. 800), doubts that disciplinarity is an unmixed good (p. 811 n. 30) and calls for \"a new form of interdisciplinarity\" (p. 813).",
+      "classification_basis": "editorial_review",
+      "map_label": "Daston: history of science versus science studies, 2009",
+      "proposal_id": "w1_daston_rel_02"
+    }
+  ],
+  "relevant_rosters": [
+    {
+      "node_id": "context",
+      "label": "Contextual intellectual history / Cambridge School",
+      "records": [
+        {
+          "person_id": "kuhn",
+          "role": "contributor",
+          "context": "Skinner invokes the priority of paradigms in interpreting evidence; Dunn also acknowledges the work among methodological resources.",
+          "works": "The Structure of Scientific Revolutions (1962), chapter V, reception in Skinner (1969), p. 7",
+          "source_ids": [
+            "skinner_meaning_primary",
+            "dunn_identity_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "science",
+      "label": "History of science",
+      "records": [
+        {
+          "person_id": "kuhn",
+          "role": "historian",
+          "context": "History and philosophy of science.",
+          "works": "The Structure of Scientific Revolutions (1962)",
+          "source_ids": [
+            "kuhn_structure",
+            "kuhn"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_131"
+        }
+      ]
+    },
+    {
+      "node_id": "ssk",
+      "label": "Sociology of scientific knowledge / SSK",
+      "records": [
+        {
+          "person_id": "kuhn",
+          "role": "critic",
+          "context": "Although sociologists drew on Structure, Kuhn called the claims of the strong program \"absurd: an example of deconstruction gone mad\" (1991 lecture).",
+          "works": "\"The Trouble with the Historical Philosophy of Science\" (1991; published 1992)",
+          "source_ids": [
+            "ss136_kuhn_road_2000"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_938"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "canguilhem_normal",
+      "title": "Georges Canguilhem, On the Normal and the Pathological (English edition, 1978; original essay 1943, expanded French volume 1966).",
+      "citation": "Georges Canguilhem, On the Normal and the Pathological (English edition, 1978; original essay 1943, expanded French volume 1966).",
+      "url": "https://link.springer.com/book/10.1007/978-94-009-9853-7",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-09-10",
+        "note": "Publisher contents identify the 1943 essay, norms, averages, pathology and later reflections. Full chapters not consulted; 1966 French date also documented in Chimisso’s manuscript."
+      }
+    },
+    {
+      "id": "chimisso_epistemology",
+      "title": "Cristina Chimisso, “Narrative and epistemology: Georges Canguilhem’s concept of scientific ideology,” Studies in History and Philosophy of Science 54 (2015): 64–73.",
+      "citation": "Cristina Chimisso, “Narrative and epistemology: Georges Canguilhem’s concept of scientific ideology,” Studies in History and Philosophy of Science 54 (2015): 64–73.",
+      "url": "https://oro.open.ac.uk/44474/8/Chimisso_Scientific%20Ideology.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "Accepted manuscript, pp. 1–5 and 16–18, plus bibliography: differences within French epistemology and contextual works. Pagination differs from publication; retrospective scholarship, not post-2000 mapped development."
+      }
+    },
+    {
+      "id": "demause_childhood_reply",
+      "title": "Lloyd deMause, “On Writing Childhood History,” The Journal of Psychohistory 16/2 (Fall 1988), selected passages.",
+      "citation": "Lloyd deMause, “On Writing Childhood History,” The Journal of Psychohistory 16/2 (Fall 1988), selected passages.",
+      "url": "https://psychohistory.com/articles/on-writing-childhood-history/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read opening through the start of the first Hippler quotation; later complete concluding discussion from the paragraph introducing Miller/Rutschky/Pollock to the end, plus notes 95–110 and 116. Middle sections remain unread. Supports his Pollock criticism, coexistence of childrearing modes and explicit Kuhn resource. Pollock’s 1983 book, Pleck and other quoted critics remain mediated; no independent diary collation or empirical verdict. Colonial stereotypes and universal group diagnoses are not adopted."
+      }
+    },
+    {
+      "id": "dunn_identity_primary",
+      "title": "John Dunn, “The Identity of the History of Ideas,” Philosophy 43.164 (1968), 85–104, DOI 10.1017/S0031819100008986.",
+      "citation": "John Dunn, “The Identity of the History of Ideas,” Philosophy 43.164 (1968), 85–104, DOI 10.1017/S0031819100008986.",
+      "url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/6AAF16B4F05C314B32284628F3BE21F7/S0031819100008986a.pdf/the-identity-of-the-history-of-ideas.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Read pp. 85–88, 92–95, 99–101 and 103–104, not the entire essay. Distinguishes logical propositions from statements as historical acts and rejects deduction of a complete text from social givens. Page 94 and note 20 p. 103 explicitly discuss Ryle’s Plato’s Progress (1966); notes acknowledge Kuhn/Gombrich and Laslett/Skinner discussions, with agreement and contrast. Ryle’s book and Laslett’s Locke introduction not themselves read."
+      }
+    },
+    {
+      "id": "foucault",
+      "title": "Stanford Encyclopedia: Foucault and his intellectual background",
+      "url": "https://plato.stanford.edu/entries/foucault/"
+    },
+    {
+      "id": "hc177_woodward_address",
+      "title": "C. Vann Woodward, “The Future of the Past,” AHA presidential address, delivered 29 December 1969.",
+      "citation": "C. Vann Woodward, “The Future of the Past,” AHA presidential address, delivered 29 December 1969.",
+      "url": "https://www.historians.org/presidential-address/c-vann-woodward/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-26",
+        "note": "Own text opening and selected final paragraphs on the purposeful past, anachronism and historians’ mediating role read. Middle statistical survey not fully read or audited. AHA heading supports delivery date and later AHR 75:3, pp. 711–726 citation; delivery and journal publication remain distinct. Footer supplies life dates. Addendum 2026-10-26: Dedicated Woodward dossier: fresh selected AHA-published address paragraphs on White’s harsh judgment and Woodward’s qualification (notes 28/32), Bloch’s analytical history and uncertainty (notes 54/56/58), and Kuhn’s common-paradigm distinction (note 57). Delivery 29 December 1969 remains distinct from AHR publication and the hosted textual version; no audio/version collation, full statistical audit or fresh reading of cited White/Bloch/Kuhn originals. Web reading tool served the text; direct local HTTP returned 403, so raw receipt preserves selected web-tool passages rather than falsely claiming a local HTML download. Independent coverage challenge: freshly inspected Woodward’s substantive use of Higham’s 1965 professional history, paragraph beginning They quoted Friedrich Meinecke and notes 1/5/11. Specific quoted claim concerns post 1945 restoration of professional confidence. WorldCat 392066 confirms the 1965 book’s credit to John Higham with Leonard Krieger and Felix Gilbert; no complete book read. Further named resources and absent endpoints receive explicit held-case dispositions."
+      }
+    },
+    {
+      "id": "kuhn",
+      "title": "Stanford Encyclopedia of Philosophy: Thomas Kuhn",
+      "url": "https://plato.stanford.edu/entries/thomas-kuhn/",
+      "notes": "Supports the 1962 work, paradigms, historical change in science, and selective later sociological reception.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "SEP sections on normal science and sociological reception checked; supports disciplinary matrices and Kuhn’s disagreement with some Strong Programme appropriations. No certification of all connected edges."
+      }
+    },
+    {
+      "id": "kuhn_discovery_debate",
+      "title": "Thomas S. Kuhn, “Logic of Discovery or Psychology of Research?,” in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970), 1–22, selected opening.",
+      "citation": "Thomas S. Kuhn, “Logic of Discovery or Psychology of Research?,” in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970), 1–22, selected opening.",
+      "url": "https://homes.luddy.indiana.edu/jbollen/I501F13/readings/kuhn_en.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Downloaded image-only university PDF; local Tesseract OCR read printed1–6 complete and7 opening paragraph, including opening notes. Remaining essay unread. Scan text mostly legible, minor OCR errors; no quotation certification or complete visual collation. Publisher chapter metadata at https://www.cambridge.org/core/books/abs/criticism-and-the-growth-of-knowledge/logic-of-discovery-or-psychology-of-research/AEEDF747C8822D4F5A053BBD4B4890BC . Kuhn states both agreements and different emphases, and distinguishes testing puzzle solutions from fundamental theory change. His historical generalizations remain attributed. Note3 records hearing Popper at Harvard1950 but explicitly cannot specify a precise debt; no new transmission arrow inferred."
+      }
+    },
+    {
+      "id": "kuhn_preface",
+      "title": "Thomas S. Kuhn, The Structure of Scientific Revolutions (1962), preface, pp. v–vii.",
+      "citation": "Thomas S. Kuhn, The Structure of Scientific Revolutions (1962), preface, pp. v–vii.",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo13179781.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "Consulted university-hosted transcription, PDF pp. 5–7: named historians, Fleck and scientific communities. This is Kuhn’s retrospective acknowledgment, not a full reconstruction of each debt."
+      }
+    },
+    {
+      "id": "kuhn_structure",
+      "title": "Thomas Kuhn: The Structure of Scientific Revolutions",
+      "citation": "Thomas S. Kuhn, The Structure of Scientific Revolutions (1962; 50th-anniversary edition, 2012).",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo13179781.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "Publisher description and edition metadata checked; distinguishes the 1962 book from its anniversary edition."
+      }
+    },
+    {
+      "id": "lakatos_science_pseudoscience",
+      "title": "Imre Lakatos, Science and Pseudoscience (1973 radio talk; transcript incorporating subsequent printed additions).",
+      "citation": "Imre Lakatos, Science and Pseudoscience (1973 radio talk; transcript incorporating subsequent printed additions).",
+      "url": "https://doi.org/10.1017/CBO9780511621123.002",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete seven-page mirrored LSE transcript read, including editorial warning that brackets mark later printed additions and bold originally marks omissions. Plain extraction does not preserve all bold distinctions: no claim that every line was broadcast. Former LSE transcript URL and newer /philosophy/science-and-pseudoscience-overview-and-transcript fail to fetch; current memorial page has no transcript link. University syllabus https://bweslake.org/teaching/2008/reason confirms 30 June 1973 broadcast and 1974 printed version. Supports research programmes, novel predictions, gradual appraisal and his criticisms of Popper/Kuhn. Sweeping Marxism verdict and claims about scientific/political history are not independently certified. Waseda 1970 paper local download failed 403 both normal/escalated; web PDF has no extracted text. An abridgment (pp. 170–175) has interleaved columns; not substituted for a full 1970 reading."
+      }
+    },
+    {
+      "id": "pe131_cronon_uses_1993",
+      "title": "William Cronon, “The Uses of Environmental History,” Environmental History Review 17, no. 3 (Fall 1993): 1–22.",
+      "url": "https://www.williamcronon.net/writing/Cronon_Uses_of_Environmental_History_EHR_Fall_1993.pdf",
+      "citation": "William Cronon, “The Uses of Environmental History” (ASEH presidential address), Environmental History Review 17:3 (1993): 1–22. doi:10.2307/3984602.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-28",
+        "note": "Author-hosted scan (no text layer) OCR’d locally at 300 dpi; page numbers from the running heads (two pages per image); Crossref 10.2307/3984602 agrees. OCR letter errors corrected only where unambiguous; the p. 8 passage was checked against the page image ('one of a favorite metaphor' is as printed). Read: pp. 1–9, 12–20 and notes pp. 20–22; pp. 10–11 not read closely. Passages used: the new histories 'born or reenergized in the wake of the 1960s' and the interventionist practitioners Nash, Hays, Worster, Merchant, Tarr and Pyne (pp. 2–3, nn. 2–7); 'nature' as 'a fundamental category of historical analysis' (p. 4); the market lesson, 'a central concern of my own work' (p. 8, n. 14); lessons footnoted to Crosby, White, Merchant, McEvoy, Melosi (pp. 8–10, nn. 15–25); 'All human history has a natural context' and 'One important contribution of environmental history' (p. 13); kinship with 'a Braudelian vision of history' (p. 14); 'All environmental knowledge is culturally constructed and historically contingent—including our own' (p. 14) and the realist pairing (p. 15); history as 'parables, not policy recommendations or certainties' (p. 16); the chief moral of Changes in the Land, Leopold’s tree rings and 'material history … spiritual history … political economic history' (p. 19). canon-evidence-international.md (text A) records an independent OCR reading of the same scan. [Also checked under pe131_crosby_cronon_1993: Author-hosted scan, OCR'd for the canon evidence file on 2026-10-13; pp. 8 and 10 and notes 16 and 25 (p. 22) re-read, with page assignment checked against the running heads of the page images. Crossref 10.2307/3984602: Environmental History Review 17 (3), September 1993, 1–22 (Cronon's ASEH presidential address). Lessons of the field: 'When people migrate from one ecosystem to another, they carry with them other organisms—plants, animals, microbes—whose success or failure in the new location is often crucial in determining the success or failure of the migration' (p. 8, n. 16); 'Beware of bugs that come from afar' (p. 10, n. 25). Note 16 cites The Columbian Exchange (1972) and Ecological Imperialism (1986); note 25 cites both again. Other drafts in this batch may cite the same address under their own ids; merge at build if so.] [Also checked under pe131_leopold_cronon_1993: Scanned PDF from the author's site, read in full through OCR (pp. 1–22, notes included); superscript note numbers are not reliably readable in the OCR. p. 19: 'Environmental history tries to reconstruct the endless layers of change that we and the earth have traced upon each other. It is the history recorded in Aldo Leopold’s tree rings, the history recorded by the marks of his saw upon the good oak as he cut it down, the history recorded by the memories in the hatted head with its shadow on the stump'; n. 32 (p. 22): 'The echo here is that of Leopold’s “Good Oak,” Sand County Almanac, 6-18.' n. 11 (p. 21): 'At this and several other points in this essay, I trust that readers will hear my echoes of Aldo Leopold's Sand County Almanac (New York: Oxford University Press, 1949), 224-25.' By note order, n. 11 falls on p. 7, where some environmental historians measure 'usefulness' 'by whether or not it contributes to the health and integrity of natural systems'. It places the field's origins in 'the political movement that helped spawn it' (p. 2).] [Also checked under pe131_merchant_cronon_1993: Author-hosted scan OCR'd; pp. 2–3, 8–9 and notes 5, 13 and 18 read for Merchant. 'Carolyn Merchant joined Worster in bringing an environmentalist perspective to the history of science, but combined it with a more feminist approach to argue in The Death of Nature that western science has harmed nature and women in parallel ways; her Radical Ecology, though less historical, is still more activist in its efforts to intervene in contemporary political struggles' (p. 3; n. 5). Lesson footnoted to Death of Nature and Ecological Revolutions (n. 18): 'Men and women often experience the world in very different ways, so that one cannot hope to understand the way a culture relates to an environment without examining the ways it engenders the natural world' (p. 9). Other agents drafting 1.131 entries may cite the same essay under another id; merge at release.] [Also checked under pe131_richard_white_cronon_1993: Author's scanned PDF, OCR'd for canon-evidence-international.md (2026-10-13); the White passages were re-read in that OCR. Among his 'lessons' (pp. 8–9): 'In American history, the horse was not simply a European invader, but a complex cultural entity that became attached to different human communities in very different ways' (p. 9), with n. 23 'White, Roots of Dependency'; n. 15 cites White, Land Use, Environment, and Social Change (1980) and The Roots of Dependency with Calvin Martin. Page attributions follow the canon file's reading of the running heads.] [Also checked under pe131_extras_cronon_uses_1993: Author-hosted scan re-downloaded and OCR'd for this draft (OCR letter errors corrected only where unambiguous). Read pp. 1–3, 8–9, 14–15 and notes pp. 20–22. Quoted: Nash's Wilderness and the American Mind 'has played a significant role in helping frame debates about wilderness protection' (pp. 2–3); Hays's Conservation and the Gospel of Efficiency and Beauty, Health, and Permanence 'speak just as powerfully to major trends in conservation and environmental politics in the twentieth century' (p. 3); 'Steven [sic] Pyne's epic histories of fire have consistently tried to persuade present-day resource managers of the complexity of their task' (p. 3); n. 6 (p. 21): 'Pyne's classic work in American history is Stephen J. Pyne, Fire in America'; lessons: fire (pp. 8–9, n. 17 Pyne) and 'Early conservationists were obsessed with questions of economically efficient production, while later environmentalists have been equally obsessed with questions of ecologically responsible consumption' (p. 9, n. 20 Hays); 'some kinship with a Braudelian vision of history' (p. 14, n. 29 The Mediterranean); n. 27 (p. 22): 'Nash's whig history of wilderness consciousness and the rights of nature'.] Addendum 2026-10-25: Dedicated Crosby review, 2026-10-25: author-hosted scan freshly downloaded from https://williamcronon.net/writing/Cronon_Uses_of_Environmental_History_EHR_Fall_1993.pdf (the www URL returned 406). OCR-assisted selected reading of pp. 8–11 and relevant notes on 21–22; page images checked for p. 8 migration lesson, p. 10 introduced-pathogen lesson, and n. 16 on 21. Note 16 cites The Columbian Exchange and Ecological Imperialism; n. 25 on 22 cites both again. The inherited wording that collectively placed notes 16 and 25 on p. 22 is imprecise: their actual folios are 21 and 22. The old note is retained; this addition records the precise fresh check. This is a specified resource claim, not complete intellectual descent or a fresh full reading of either Crosby book. Addendum 2026-10-28: Fresh actual public preview selected authored 3, 9 and notes 21–22 read, not full article/images. 3 discusses Merchant 1980/1992 specific activist histories; 9 lesson requires gender analysis of cultures’ environmental relations, n18 explicitly cites Merchant Death of Nature and Ecological Revolutions 1989. Bounded positive uptake, not Cronon’s entire theory from Merchant. Preview gaps and variable HTML line count preserved; printed pages primary locators. Other authors in Cronon notes are his resources not Merchant’s. Raw cronon1993-selected-receipt.json and notes receipt; not underlying books."
+      },
+      "scope_note": "In-period ASEH presidential address: his statement of what environmental history is for."
+    },
+    {
+      "id": "pe131_extras_mcneill_2003",
+      "title": "J. R. McNeill, “Observations on the Nature and Culture of Environmental History,” History and Theory 42, no. 4 (December 2003): 5–43.",
+      "url": "https://doi.org/10.1046/j.1468-2303.2003.00255.x",
+      "citation": "J. R. McNeill, “Observations on the Nature and Culture of Environmental History,” History and Theory 42:4 (2003): 5–43. doi:10.1046/j.1468-2303.2003.00255.x.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Text-layer PDF of the article, read for pp. 8, 14–16 with notes 15, 34–35, 39, 42 (copy obtained on 2026-10-13; the route is not reused). Quoted: Hays 'Among the American pioneers in this field' (p. 8; n. 15 lists Conservation and the Gospel of Efficiency and Beauty, Health, and Permanence); 'the Annales historians were, many of them, strangely blind to evolving environments'; Braudel 'normally imagined it as an unchanging force'; Le Roy Ladurie 'embraced environmental change in two of his major books' (n. 35: Les paysans de Languedoc; Times of Feast, Times of Famine); 'To a very limited extent, then, Annales historians were engaged in environmental history avant la lettre'; 'Their general approach however proved inspirational' (all p. 14); n. 39 (p. 15): Nash 'in 1970 offered one of the very first courses in environmental history' (McNeill cites PHR '363 (1974)', a slip for 41, 1972); n. 42 (p. 16): 'The most important book in this vein probably was Roderick Nash, Wilderness and the American Mind'. Fix pass 2026-10-13 (sol-review-1.131): pp. 14 and 37–39 re-read. p. 14 as quoted above. p. 37: 'The most cogent was probably the one elaborated in slightly different versions by both Donald Worster and Arthur McEvoy', and such theories 'have sparked no groundswells of enthusiasm nor attracted sizable schools of followers'; pp. 38–39: Merchant's scheme 'has not attracted wide imitation within environmental history'. [Also checked under pe131_crosby_mcneill_2003: later reading of the same copy; pp. 18–19, 24, 32–33 and 42 re-read for Crosby, page assignment from running heads. 'the American historians, especially Worster, Cronon, and Crosby, were read almost wherever environmental history aroused interest' (p. 19). The Columbian Exchange is 'one of the landmark works in environmental history' (p. 24). Ecological Imperialism is 'Perhaps the best-known among the thematically defined global-scale environmental histories' (p. 32) and 'contains one of the most elegant arguments found anywhere in environmental history'; 'Some readers felt that Crosby had relocated historical agency (and responsibility for genocide and colonialism) from humans to wheat and whooping cough' (p. 33). Crosby 'did not have much to say about the transplanting of agronomic practice' (p. 42).] [Also checked under pe131_richard_white_mcneill_2003: the White passage re-read: 'Richard White’s concept of “middle ground,” which he developed in the context of Native American–white relations in North America, struck historians of Japan and medieval Austria as useful for their own studies' (p. 37), n. 131 citing The Middle Ground and Brett Walker, The Conquest of Ainu Lands (2001).] Crossref 10.1046/j.1468-2303.2003.00255.x: History and Theory 42:4, 5–43. The linked publisher page (Wiley) is paywalled and did not supply the text read above. Addendum 2026-10-23: Period-4 wave 1 (data/extension-2026/period4-wave1-2026-10-23/evidence-environment.md §3.1): Crossref record confirmed (History and Theory 42:4, pp. 5–43, issued 7 November 2003); the record's url now points to the publisher's DOI (batch source_field_sets); the pages read on 2026-10-13 stand on the earlier note, now without route identifiers. This wave checked metadata only."
+      },
+      "scope_note": "Later reading (2003): international self-account of the field; used only as a labelled later reading."
+    },
+    {
+      "id": "pe131_merchant_ecorev_1989",
+      "title": "Carolyn Merchant, Ecological Revolutions: Nature, Gender, and Science in New England (Chapel Hill: University of North Carolina Press, 1989).",
+      "url": "https://r830.cnr.berkeley.edu/cmerchant/articles/45.pdf",
+      "citation": "Carolyn Merchant, Ecological Revolutions: Nature, Gender, and Science in New England (Chapel Hill: University of North Carolina Press, 1989), xv + 379 p.; excerpts from chapter 1 and the epilogue reprinted in Kenneth M. Dolbeare, ed., American Political Thought, 3rd ed. (Chatham, NJ: Chatham House, 1996), 577–590.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Book itself unread (Internet Archive copies ecologicalrevolu00caro and ecologicalrevolu005 are lending-only; search-inside returned 403). Read instead: the author-hosted scan of the Dolbeare 1996 reprint, pp. 577–590, which reproduces parts of chapter 1 ('Ecology and History') and of the epilogue ('The Global Ecological Revolution'), credited 'Reprinted from ... Copyright © 1989 by the University of North Carolina Press'. Pages cited are the reprint's: two revolutions, and 'The relations between men and women through which daily life was maintained and reproduced were radically changed' (p. 578); the thesis, matching the 1987 article (p. 578); Kuhn and Marx (pp. 578–580); 'Nonhuman nature is an actor; human and nonhuman interactions constitute the drama' (pp. 584–585; page boundary uncertain in the two-page scan); a global ecological revolution would 'reconstruct gender relations between women and men and between humans and nature' (p. 589); radical feminism 'runs the risk of perpetuating the very value hierarchies it seeks to overthrow', socialist feminism views 'knowledge and reality as historically and socially constructed' (p. 590). Book pages 2–3, 143 and 187 are known only as quoted by Steinberg (1991). Edition: Steinberg's review gives UNC Press 1989, xv + 379 p.; Internet Archive metadata gives Chapel Hill, UNC Press, 1989; Open Library work OL2911252W."
+      },
+      "scope_note": "In-period book, read through reprinted excerpts of the framework chapter and epilogue."
+    },
+    {
+      "id": "pe131_merchant_jah_1990",
+      "title": "Carolyn Merchant, “Gender and Environmental History,” Journal of American History 76, no. 4 (March 1990): 1117–1121.",
+      "url": "https://r830.cnr.berkeley.edu/cmerchant/articles/32.pdf",
+      "citation": "Carolyn Merchant, “Gender and Environmental History,” Journal of American History 76:4 (1990): 1117–1121, in the round table “Environmental History” responding to Donald Worster, “Transformations of the Earth.” doi:10.2307/2936589.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-28",
+        "note": "Read in full, pp. 1117–1121 with notes, from the author-hosted JSTOR scan (JSTOR stable 2936589; OpenAlex W2326065961; OUP page gives pp. 1117–1121). Worster's essay 'lacks a gender analysis'; gender analysis of each of his three levels and 'a fourth analytical level, that of reproduction' (p. 1117); women's and men's roles in production in subsistence, colonial and industrial economies (pp. 1117–1118); women conservationists, and 'the efforts of thousands of women were directly responsible for many of the country’s most significant conservation achievements' (p. 1119); cognition, nature as mother and the mechanistic framework (p. 1119); reproduction 'dialectically related to the other three' and its four aspects (p. 1120); forms of patriarchy and shifts of power 'between men and women'; 'both offers a more balanced and complete picture ... and advances its theoretical frameworks' (p. 1121). This is the round-table response the canon-evidence file could not access (item D); the other responses and Worster's reply remain unread. [Also checked under pe131_worster_merchant_1990: Author-hosted JSTOR scan (stable 2936589), OCR'd locally at 300 dpi because the text layer is garbled; p. 1117 read closely, pp. 1120–1121 read. p. 1117: Worster's essay, 'while a rich and provocative approach to the field of environmental history, lacks a gender analysis. His conceptual levels of ecology (natural history), production (technology and its socioeconomic relations), and cognition (the mental realm of ideas, ethics, myths, and so on) are a significant framework for research and writing in this emerging field. His use of the mode-of-production concept in differing ecological and cultural contexts and his account of the changing history of ecological ideas in his major books have propelled environmental history to new levels of sophistication.' 'environmental history needs a fourth analytical level, that of reproduction, which interacts with the other three levels' (p. 1117). p. 1121: 'the shifts of power that Worster argues occurs in different environments are not only those between indigenous and invading cultures but also those between men and women.' The Merchant packet in this batch records the same article as pe131_merchant_jah_1990; the two records should be merged at release.] Addendum 2026-10-28: Fresh author-hosted complete 1117–1121 including notes read. 1117 praises Worster framework while adding gender/reproduction; existing Merchant→Worster critique 1247 retained, no automatic duplicate. 1119 Carson as nature writer field scope not same as own Carson formation; 1121/n10 Cott/Epstein/Bloch/Welter collective basis for historical gender roles, not all uniform personal mentors. 1117/n2 self-cites 1987 as 251–274 although fresh actual 1987 scan 265–274; discrepancy retained. Raw gender1990.pdf/.txt."
+      },
+      "scope_note": "In-period: Merchant's gender-and-reproduction addition to Worster's framework."
+    },
+    {
+      "id": "pe131_merchant_steinberg_1991",
+      "title": "Theodore Steinberg, review of Carolyn Merchant, Ecological Revolutions: Nature, Gender, and Science in New England (1989), Technology and Culture 32, no. 2 (April 1991): 398–399.",
+      "url": "https://doi.org/10.1353/tech.1991.0103",
+      "citation": "Theodore Steinberg, review of Merchant, Ecological Revolutions, Technology and Culture 32:2, part 1 (1991): 398–399. doi:10.1353/tech.1991.0103.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-13",
+        "note": "Read in full in the Project MUSE PDF (article 888747), OCR'd because the text layer is unreadable. Merchant's 'work has played an important role in forging the field'; the book's definition of ecological revolutions (book pp. 2–3); 'An imbalance between the forces of production and reproduction spurred the shift to the capitalist mode of production'; 'Patriarchy ... had come into conflict with ecology' (book p. 187); 18th-century cosmos with 'rocks and minerals as living, growing things' (book p. 143) (p. 398). 'the book’s theorizing about ecological and social change—especially its integration of gender into the analysis—is a signal contribution. But Merchant’s quest for theoretical rigor may have come at the expense of a more nuanced, richly textured narrative. There are painfully few people making history in this book' (p. 399)."
+      },
+      "scope_note": "In-period review: praise for the gender analysis and criticism of the narrative."
+    },
+    {
+      "id": "pe131_merchant_structure_1987",
+      "title": "Carolyn Merchant, “The Theoretical Structure of Ecological Revolutions,” Environmental Review 11, no. 4 (Winter 1987): 265–274.",
+      "url": "https://r830.cnr.berkeley.edu/cmerchant/articles/27.pdf",
+      "citation": "Carolyn Merchant, “The Theoretical Structure of Ecological Revolutions,” Environmental Review 11:4, special issue “Theories of Environmental History” (1987): 265–274. doi:10.2307/3984135.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-28",
+        "note": "Read in full, pp. 265–274 with notes, from the author-hosted JSTOR scan (JSTOR stable 3984135; OpenAlex W2321626821). Thesis pp. 265–266; Kuhn and Marx as 'starting points' and Marx's 'determinism' rejected p. 266; ecology, production, reproduction and consciousness as the concepts of the approach, and 'nature as a historical actor', p. 267; Figure 1 (conceptual framework) p. 268; twofold production and fourfold reproduction pp. 270–271 (Meillassoux, Peterson, Bridenthal); 'Under capitalist patriarchy, reproduction is subordinate to production' p. 271; partible inheritance and landless sons pp. 271–272; consciousness, the 'primal gaze' and visual and analytic consciousness pp. 272–273; summary p. 273. Note 1 says the theory is drawn from her 'forthcoming book, Ecological Revolutions'. Her 1990 JAH note 2 cites this article as pp. 251–74; the article itself runs 265–274. Addendum 2026-10-28: Fresh actual author-hosted PDF read 265–274 includingnotes; page 266 and 272/274 visually collated. Kuhn first edition framework praised and limited 265–266, though n1 cites 2nd ed 1970; discrepancy retained. Marx and Engels joint framework 266/269, own Marx 1859 preface quoted via 1968 Selected Works 182–183n2; originals unread. Charles Taylor 272/n8 supplies normative worldview connection, exact 1973 edited reprint 139–170, esp 144–146/154–155. Reproduction sources and theoretical notes kept coauthored/editorial/translated. Raw structure1987.pdf/.txt and selected images; current pdf 265–274, not 1990 self-citation 251–274."
+      },
+      "scope_note": "In-period statement of the ecological-revolutions framework in Merchant's own words."
+    },
+    {
+      "id": "popper_normal_debate",
+      "title": "Karl R. Popper, “Normal Science and its Dangers,” in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970), 51–58.",
+      "citation": "Karl R. Popper, “Normal Science and its Dangers,” in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970), 51–58.",
+      "url": "https://earthweb.ess.washington.edu/roe/Knowability_590/Week1/Normal%20Science%20and%20its%20Dangers.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Downloaded image-only university PDF, local OCR read 51–53 and 56–58; 54–55 extraction interleaves facing pages and is not certified as a complete reading. Scan 52–53 visually inspected; text of 53 note clarified against image. Page 58 neighboring Masterman opening is not treated as part of Popper. Publisher chapter metadata checked at https://www.cambridge.org/core/books/abs/criticism-and-the-growth-of-knowledge/normal-science-and-its-dangers/D08D4FDB6011FFF9F30ECF858473B933 . Popper acknowledges normal research but criticizes uncritical training and defends cross-framework criticism. His characterization of Kuhn as relativist and polemics about other disciplines remain his assessments, not established verdicts. Addendum 2026-10-14: Re-read for revision 1.135 in the Internet Archive scan of Criticism and the Growth of Knowledge (1970), pp. 51–58 complete, including pp. 54–55 not certified in 2026-09. Quoted: \"'Normal' science, in Kuhn's sense, exists\" (p. 52); the normal scientist \"is a victim of indoctrination\" (p. 53); \"Kuhn's logic is the logic of historical relativism\" (p. 55); the Myth of the Framework \"is, in our time, the central bulwark of irrationalism\" (p. 56)."
+      }
+    },
+    {
+      "id": "science_history",
+      "title": "History of Science Society: Daniel J. Kevles, 2024 Hazen Lecture on the field since Sarton",
+      "url": "https://hssonline.org/events/EventDetails.aspx?id=1830324",
+      "notes": "Institutional retrospective supporting the field’s earlier establishment, including the Society’s foundation in 1924; not a complete account of its approaches."
+    },
+    {
+      "id": "skinner_meaning_primary",
+      "title": "Quentin Skinner, “Meaning and Understanding in the History of Ideas,” History and Theory 8.1 (1969), 3–53, DOI 10.2307/2504188.",
+      "citation": "Quentin Skinner, “Meaning and Understanding in the History of Ideas,” History and Theory 8.1 (1969), 3–53, DOI 10.2307/2504188.",
+      "url": "https://doi.org/10.2307/2504188",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-25",
+        "note": "Read JSTOR title/source leaf and complete printed pp. 3–12, 35–53, repeating clipped pp. 40–41. Pages 13–34 and the later revised version remain unread. Supports attributed arguments about historical interventions, causal conditions and public conventions; explicit resources include Gombrich/Kuhn p. 7, Wittgenstein/Collingwood pp. 37–38, Anscombe/Austin pp. 44–46. Pages 50–51 criticize a particular Collingwood inference. Polemics about other historians are not independently verified judgments of their entire works. Addendum 2026-10-25: [Response audit: Response-edge audit, separately scoped fresh check. rea_roots_kuhn_skinner: Fresh complete printed p. 7 and its notes read; cited Kuhn chapter and full article not newly reread. Locators: History and Theory 8/1(1969),p. 7,n 18; downloaded PDFpage 6. ]"
+      }
+    },
+    {
+      "id": "ss136_cgk_1970",
+      "title": "Imre Lakatos and Alan Musgrave, eds., Criticism and the Growth of Knowledge (Cambridge: Cambridge University Press, 1970).",
+      "url": "https://doi.org/10.1017/CBO9781139171434",
+      "citation": "Imre Lakatos and Alan Musgrave, eds., Criticism and the Growth of Knowledge: (Cambridge: Cambridge University Press, 1970).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-kuhn-critics.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Internet Archive scan with OCR; printed pages checked against running heads and chapter openings. Read: Watkins pp. 25–37; Toulmin pp. 39–47; L. Pearce Williams pp. 49–50; Popper pp. 51–58; Masterman pp. 59–66; Lakatos pp. 92–93 and 177–180; Feyerabend pp. 197–202, 207, 219; Kuhn, \"Reflections on my Critics\", pp. 231–238, 249–254, 256, 259–264 and notes on pp. 266 and 269. Used: Pearce Williams, \"the history of science cannot bear such a load at this time. We simply do not know enough to permit a philosophical structure to be erected on a historical foundation\" (p. 50); Lakatos, Kuhn's message \"had some authoritarian and irrationalist overtones\" (p. 92 n. 3) and \"in Kuhn's view scientific revolution is irrational, a matter for mob psychology\" (p. 178); Kuhn, \"labels which I categorically reject\" (p. 234), the misinterpretations \"are voiced only by philosophers\" (p. 260), and his reply to Pearce Williams (pp. 251–252)."
+      },
+      "scope_note": "In-period proceedings of the 1965 Bedford College symposium on Kuhn."
+    },
+    {
+      "id": "ss136_kuhn_postscript_1970",
+      "title": "Thomas S. Kuhn, The Structure of Scientific Revolutions, 2nd ed., enlarged (Chicago: University of Chicago Press, 1970), “Postscript—1969”.",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/S/bo13179781.html",
+      "citation": "Thomas S. Kuhn, “Postscript—1969,” in The Structure of Scientific Revolutions, 2nd ed., enlarged (Chicago: University of Chicago Press, 1970).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-kuhn-critics.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. University-hosted transcription (the file already used for kuhn_preface), with page footers. Read pp. 174–176, 181, 185–186, 198–200, 204–208. Used: \"I am occasionally accused of glorifying subjectivity and even irrationality\" (p. 186); reasons such as accuracy and simplicity \"function as values\" (p. 199); \"That is not a relativist's position, and it displays the sense in which I am a convinced believer in scientific progress\" (p. 206)."
+      },
+      "scope_note": "In-period reply by Kuhn to his critics."
+    },
+    {
+      "id": "ss136_kuhn_road_2000",
+      "title": "Thomas S. Kuhn, The Road Since Structure: Philosophical Essays, 1970–1993, with an Autobiographical Interview, ed. James Conant and John Haugeland (Chicago: University of Chicago Press, 2000).",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/R/bo3639271.html",
+      "citation": "Thomas S. Kuhn, “The Trouble with the Historical Philosophy of Science” (Rothschild Lecture, 19 November 1991; published 1992), and the 1995 Athens interview, both in The Road Since Structure (Chicago, 2000).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-kuhn-critics.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Internet Archive scan, djvu text with running heads. Read pp. 109–111 and 316–317. Used: \"I am among those who have found the claims of the strong program absurd: an example of deconstruction gone mad. And the more qualified sociological and historical formulations that currently strive to replace it are, in my view, scarcely more satisfactory\" (p. 110); the strong program \"has been widely understood as claiming that power and interest are all there are\" (p. 110); on Leviathan and the Air-Pump, \"The scholarship is often damn good!\" (pp. 316–317)."
+      },
+      "scope_note": "In-period lecture (1991) and interview (1995), published 2000."
+    },
+    {
+      "id": "ss136_sokal_bricmont_1998",
+      "title": "Alan Sokal and Jean Bricmont, Intellectual Impostures: Postmodern Philosophers' Abuse of Science (London: Profile Books, 1998); French original Impostures intellectuelles (Paris: Odile Jacob, 1997).",
+      "url": "https://openlibrary.org/works/OL27704032W",
+      "citation": "Alan Sokal and Jean Bricmont, Intellectual Impostures (London: Profile Books, 1998); US edition Fashionable Nonsense (1998); French original Impostures intellectuelles (1997).",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-science-wars.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Read pp. 49–96 (ch. 4, \"Intermezzo: Epistemic relativism in the philosophy of science\") and pp. 115–123 (ch. 6, on Latour and relativity) in an Internet Archive upload of the Profile printing \"published in 1999, 2003\"; printed pages, not checked against the 1998 first printing. The French original and the chapters on Lacan, Kristeva, Irigaray, Baudrillard, Deleuze and Guattari and Virilio were not read. Used: pp. 51, 69–70 (the moderate and the \"immoderate Kuhn\"), 79, 81, 84–85, 86 n. 120, 90, 115, 120–121. Page locators throughout refer to the consulted Profile Books printing (1999/2003 reprint of the 1998 English edition); neither the French original (1997) nor the first 1998 printing was checked page by page."
+      },
+      "scope_note": "In-period book by two physicists."
+    },
+    {
+      "id": "ss136_sokal_transgressing_1996",
+      "title": "Alan D. Sokal, “Transgressing the Boundaries: Toward a Transformative Hermeneutics of Quantum Gravity,” Social Text 46/47 (1996): 217–252.",
+      "url": "https://physics.nyu.edu/sokal/transgress_v2/transgress_v2_singlefile.html",
+      "citation": "Alan D. Sokal, “Transgressing the Boundaries: Toward a Transformative Hermeneutics of Quantum Gravity,” Social Text 46/47 (1996): 217–252. doi:10.2307/466856.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-science-wars.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Author's web copy, without print pages; cited by note. Used: the opening claim that \"revisionist studies in the history and philosophy of science have cast further doubt on its credibility\" (n. 2 cites Kuhn, Feyerabend, Latour, Aronowitz and Bloor), and the feminist and poststructuralist critiques of n. 3 (Merchant, Keller, Harding, Haraway)."
+      },
+      "scope_note": "In-period parody; its notes show whom it cited, not whom it argued against."
+    },
+    {
+      "id": "ss136_weinberg_1996",
+      "title": "Steven Weinberg, “Sokal's Hoax,” New York Review of Books 43, no. 13 (8 August 1996): 11–15.",
+      "url": "https://www.nybooks.com/articles/1996/08/08/sokals-hoax/",
+      "citation": "Steven Weinberg, “Sokal's Hoax,” The New York Review of Books 43:13 (8 August 1996): 11–15; reproduction on the ELTE HPS mirror.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-science-wars.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Web reproduction without internal pages. Used: \"The objective nature of scientific knowledge has been denied by Andrew Ross and Bruno Latour and (as I understand them) by the influential philosophers Richard Rorty and the late Thomas Kuhn\"; \"Some historians do not deny the reality of the laws of nature, but nevertheless refuse to take present scientific knowledge into account in describing the scientific work of the past\"; \"What Herbert Butterfield called the Whig interpretation of history is legitimate in the history of science in a way that it is not in the history of politics or culture\"."
+      },
+      "scope_note": "In-period essay by a physicist."
+    },
+    {
+      "id": "ss136_weinberg_1998",
+      "title": "Steven Weinberg, “The Revolution That Didn't Happen,” New York Review of Books, 8 October 1998.",
+      "url": "https://www.nybooks.com/articles/1998/10/08/the-revolution-that-didnt-happen/",
+      "citation": "Steven Weinberg, “The Revolution That Didn't Happen,” The New York Review of Books, 8 October 1998; reproduction on the ELTE HPS mirror.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-14",
+        "note": "Read in the 2026-10-14 research phase (data/extension-2026/science-studies-critique-2026-10-14/evidence-science-wars.md); quotations re-checked against the saved copy on 2026-10-14 for this draft. Web reproduction without internal pages. Used: Kuhn's later conclusions \"have made Kuhn a hero to the philosophers, historians, sociologists, and cultural critics who question the objective character of scientific knowledge\"; \"Kuhn made the shift from one paradigm to another seem more like a religious conversion than an exercise of reason.\""
+      },
+      "scope_note": "In-period essay on Kuhn by a physicist, two years after Kuhn's death."
+    },
+    {
+      "id": "ssk",
+      "title": "David Bloor, Knowledge and Social Imagery (1976; second edition 1991)",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/K/bo3684600.html",
+      "notes": "Publisher description and contents identify the Strong Programme and its debates. The displayed edition is 1991, not the first publication.",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-10",
+        "note": "Publisher description and contents checked: original 1976 edition, 1991 second edition, Strong Programme and Durkheimian discussion. Not a full reading of the programme."
+      }
+    },
+    {
+      "id": "w1_daston_science_studies_2009",
+      "title": "Lorraine Daston, “Science Studies and the History of Science,” Critical Inquiry 35, no. 4 (Summer 2009): 798–813.",
+      "citation": "Lorraine Daston, “Science Studies and the History of Science,” Critical Inquiry 35, no. 4 (Summer 2009): 798–813.",
+      "url": "https://pure.mpg.de/rest/items/item_2279417_9/component/file_3047837/content",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-18",
+        "note": "Read in full for revision 1.144 in the Max Planck Society PuRe public PDF (item_2279417). p. 799 author note: director of the Max Planck Institute for the History of Science; books \"Classical Probability in the Enlightenment (1988) and, with Katharine Park, Wonders and the Order of Nature, 1150–1750 (1998)\"; \"Objectivity, coauthored with Peter Galison, was published in 2007\". p. 800: the two fields \"came to diverge … as the history of science became ever more historical and science studies ever less\". p. 802: science studies read Kuhn \"as a manifesto of relativism\"; historians took the lesson \"that teleology must be repudiated\". p. 809: the call to heed context, followed \"with a vengeance\", left the fields \"ever less to say to one another\"; the counterweight \"has been supplied not by science studies but by a still more thoroughgoing form of historicism, namely, the philosophical history of Michel Foucault\". p. 810: \"Topics like proof, experience, and objectivity, which historians had previously assigned to the timeless contemplations of the philosophers, suddenly seemed fair game.\" p. 811: history of science \"has … become a discipline\", science studies \"has remained interdisciplinary—and, even on the testimony of some insiders, undisciplined\"; n. 30: the price of disciplinarity, \"fewer clunkers, but also fewer meteors\". p. 812: science studies' assumptions are \"Manichean\"; \"to historicize the category of the fact, objectivity, or proof is not thereby to debunk it\". p. 813: \"'If historical, then relative' is a non sequitur\"; \"A new form of interdisciplinarity must be forged. Philosophy, anyone?\" She cites Latour 2004 (pp. 799 n. 3, 812 n. 32)."
+      }
+    },
+    {
+      "id": "yates",
+      "title": "Frances A. Yates: The Art of Memory",
+      "citation": "Frances A. Yates, The Art of Memory (Routledge & Kegan Paul, 1966); University of Chicago Press edition.",
+      "url": "https://press.uchicago.edu/ucp/books/book/chicago/A/bo91674300.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Publisher description and contents checked for the 1966 work, mnemonic practices, Renaissance culture, and scientific-method questions. Mnemonic arts are distinguished from collective-memory studies; no Cambridge School affiliation is inferred.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "yates_memory_primary",
+      "title": "Frances A. Yates, The Art of Memory (1966), preface and chapter XVII; later reprint scan.",
+      "citation": "Frances A. Yates, The Art of Memory (1966), preface and chapter XVII; later reprint scan.",
+      "url": "https://www.aproged.pt/biblioteca/Yatestheartofmemory.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Title/copyright leaves, contents, complete preface xi–xv and chapter XVII pp. 368–389 read. Scan includes 1984 ARK and 1999 reprint preliminaries. Records collaborators and Rossi resource; differentiates mnemonic traditions and argues for their transformation in scientific method. Other chapters unread. Leibniz/calculus claims, secret-society conjecture and quoted early-modern passages are not independently established; retain Yates’s own limits and hypotheses."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match",
+  "source_record_alignment": {
+    "checked_on": "2026-10-30",
+    "live_revision": "1.222",
+    "source_ids": [
+      "hc177_woodward_address",
+      "lakatos_science_pseudoscience",
+      "pe131_cronon_uses_1993",
+      "pe131_merchant_jah_1990",
+      "pe131_merchant_structure_1987",
+      "popper_normal_debate",
+      "skinner_meaning_primary"
+    ],
+    "note": "Align unfrozen source metadata to repaired canonical records only. Research baseline, original node and incident snapshots remain unchanged."
+  }
+}

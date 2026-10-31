@@ -1,0 +1,347 @@
+{
+  "person_id": "jan_de_vries",
+  "checked_on": "2026-10-30",
+  "researcher": "Codex /root/research_a",
+  "baseline_revision": "1.204",
+  "live_graph_checked_revision": "1.225",
+  "live_graph_checked_sha256": "0871e02fd04d5aa6c42f44d46156bd4bed39eb63cc17a6ad0443348bddbf7f6b",
+  "existing_incident_edges_inspected": [
+    {
+      "id": "edge_204",
+      "source": "demography",
+      "target": "jan_de_vries",
+      "relationship": "De Vries uses demographic research on marriage, mortality, fertility and households to revise accounts of early modern economic change",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "campop",
+        "de_vries_industrious",
+        "hajnal_marriage"
+      ],
+      "evidence_note": "Editorial synthesis supported by the listed bibliography; the specific relationship remains subject to passage-level review. His 1994 article, p. 252, explicitly discusses demographic contributions and cites Henry, Laslett, Hajnal, Wrigley and Schofield among others. This named use strengthens the formerly generic field link. Hajnal’s own primary argument is now checked separately: it includes category/geography limits and economic hypotheses in both causal directions. De Vries’s particular use does not convert these into a proved general mechanism.",
+      "map_label": "De Vries: demographic patterns complicate growth histories"
+    },
+    {
+      "id": "edge_347",
+      "source": "jan_de_vries",
+      "target": "economic",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "type": "connection",
+      "relationship": "De Vries links expanding demand with household labor and resource reallocation",
+      "evidence_note": "The 1994 article provides a named demand-and-labor intervention in explanations of industrialization, while qualifying household unity and universal stages. It does not make consumption history the sole source of the argument.",
+      "source_ids": [
+        "de_vries_industrious"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "De Vries: demand and the industrious revolution"
+    },
+    {
+      "id": "edge_1085",
+      "source": "jan_de_vries",
+      "target": "capitalismdebates",
+      "relationship": "The “industrious revolution”: a household-level, demand-side change that preceded the supply-side Industrial Revolution (1994), built on the revision that cut British growth estimates “by more than half” and dated to roughly 1650–1850 (2008); reviewers asked whether consumption had become a new “deus ex machina” (2009), and papermaking evidence challenged its chronology and mechanism (2016)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "de_vries_industrious",
+        "cd_devries_2008",
+        "cd_crafts_harley_1992",
+        "ip_voth_devries_2009",
+        "cd_vnm_review_2009",
+        "cd_rosenband_2016"
+      ],
+      "evidence_note": "His own words, read. JEH 1994, abstract (Cambridge Core): “The Industrial Revolution as a historical concept has many shortcomings. A new concept—the ‘industrious revolution’—is proposed to place the Industrial Revolution in a broader historical setting … The industrious revolution was a household-level change with important demand-side features that preceded the Industrial Revolution, a supply-side phenomenon.” The Industrious Revolution (2008, publisher excerpt, pp. 6–10): “the accumulating evidence for an earlier increase of per capita income in northwestern Europe paired with a major refinement of material life casts serious doubt on the orthodoxy that the Industrial Revolution was the actual starting point for long-term economic growth” (pp. 6–7); among the literatures that “guided my thinking” is “The Revisionist Macroeconomics of the British Industrial Revolution”, which “reduces the earlier growth estimates by more than half” (pp. 7–8, citing Crafts and Harley 1992); the approach would “question the claims of the twin revolutions – the British Industrial and the French political – to function as gatekeepers to modern history” (p. 9); households “acted to reallocate their productive resources (which are chiefly the time of their members)” during “a long eighteenth century, roughly 1650–1850” (p. 10). Reviewers, read: Voth (EH.Net, 2009) finds the book “on all the main points, convincing”, with “the almost complete disconnect with behavioral economics” as its weakness; van Nederveen Meerkerk (TSEG, 2009) finds that consumption becomes “een nieuwe ‘deus ex machina’” (p. 176). Rosenband (2016, abstract): papermaking raises “fundamental challenges to this model”; “paperworkers already labored exhausting hours at the outset of de Vries's period of newfound industriousness”, and “women and adolescent workers toiled for wages in paper mills long before the seventeenth and eighteenth centuries”. The 1994 article’s pages read in earlier revisions are not quoted here. Revision 1.145 drew this arrow from consumption because de Vries had no entry; revision 1.146 re-sources it to jan_de_vries and keeps its id. Pomeranz’s use of the concept is now on jan_de_vries → kenneth_pomeranz; the household mechanism stays on consumption/household_labor.",
+      "classification_basis": "editorial_review",
+      "map_label": "Industrious revolution, 1994–2016",
+      "target_strand": "capitalismdebates/protoindustry_industrious",
+      "proposal_id": "cd_rel_ci4"
+    },
+    {
+      "id": "edge_1114",
+      "source": "jan_de_vries",
+      "target": "kenneth_pomeranz",
+      "relationship": "The “industrious revolution” applied to Chinese household labour (2000), and de Vries’s 1976 book cited as “a good general critique of the overseas extraction thesis”",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "pomeranz_divergence",
+        "huang_pomeranz_review",
+        "de_vries_industrious",
+        "ip_devries_crisis_1976"
+      ],
+      "evidence_note": "Pomeranz’s own words, The Great Divergence (2000; later-edition preview, read): labour deployment in Chinese families “seems to closely resemble the reorientation of labor, leisure, and consumption toward the market that Jan DeVries has called Europe’s ‘industrious revolution’” (p. 17; n. 28 cites DeVries 1994b); the contents list a section “Family Labor in China and Europe: ‘Involution’ and the ‘Industrious Revolution’”; “A good general critique of the overseas extraction thesis is DeVries 1976” (p. 3 n. 2). Huang (JAS 2002, pp. 520–521, read in revision 1.144) reads the borrowing critically: “it is surprising that Pomeranz would have tried to equate the Yangzi delta with de Vries’ industrious revolution”, “along the same lines as R. Bin Wong’s brief discussion earlier (1997, 30–31)”; “he tries to take the revolution out of de Vries’ industrious revolution.” The use is Pomeranz’s; de Vries’s own later judgement of The Great Divergence (Historically Speaking, 2011) is unread and not drawn. The Huang–Pomeranz dispute over involution is on edges 1043–1044.",
+      "classification_basis": "editorial_review",
+      "map_label": "Industrious households in China, 2000",
+      "proposal_id": "jdv_rel_01"
+    },
+    {
+      "id": "edge_1115",
+      "source": "jan_de_vries",
+      "target": "economic",
+      "relationship": "With van der Woude, the Dutch Republic as “the first modern economy”, 1500–1815, against readings of its achievement as “backward looking”, joining Annales structural history to the New Economic History (1997); van Zanden doubted that Dutch growth was much faster than England’s (2002)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "ip_devries_vdwoude_1997",
+        "ip_vanzanden_2002"
+      ],
+      "evidence_note": "De Vries and van der Woude, The First Modern Economy (1997, chapter 1, pp. 1–5 read in the publisher excerpt, OCRed): historians including Hobsbawm, Braudel and Wallerstein “felt certain that the Dutch achievement was essentially backward looking, the culmination of something with no future” (p. 1); they quote North and Thomas, for whom the Netherlands was “the first country to achieve sustained economic growth” (p. 2); “With this work we accept the challenge of the modern historical schools; indeed, we even seek to integrate them”: the Annales school, which “advocated a break with ‘event-centered history’”, and cliometrics, which “shifted the focus of the literature from politics and institutions to markets and rational decision makers” (p. 4); “This book, in short, presents the history of the first modern economy” (p. 4). Van Zanden (EHR 2002, abstract, read): “economic growth in the Netherlands was probably not much faster than in England, as is clear from the development of real wages”, and its modernity “appears to be a product of economic and institutional changes in the middle ages.” The book’s sectoral and analytical chapters are unread; the claim is the co-authors’ framing. De Vries’s criticism of the “backward looking” reading is recorded here, not as arrows to Braudel or Hobsbawm, because one paragraph groups them with Barbour and Wallerstein.",
+      "classification_basis": "editorial_review",
+      "map_label": "The first modern economy, 1997",
+      "proposal_id": "jdv_rel_02"
+    },
+    {
+      "id": "edge_1116",
+      "source": "demography",
+      "target": "jan_de_vries",
+      "relationship": "The Cambridge Group’s finding that the western European nuclear family long predated industrialisation, with Hajnal’s marriage pattern, as one of the literatures that “guided my thinking” (2008)",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "cd_devries_2008",
+        "de_vries_industrious",
+        "campop"
+      ],
+      "evidence_note": "The Industrious Revolution (2008, p. 8, publisher excerpt, read): among four “modern developments in history and economics” that “have guided my thinking”, “3. The Western European Marriage Pattern. The pioneering work of ‘The Cambridge Group for the History of Population and Social Structure’ established the view that the nuclear family structures of modern western European countries and their offshoots are not a product of industrialization but have much earlier origins”, with “the seminal articles of John Hajnal”; “its distinctive economic behavior remains an open question.” The 1994 article’s reference list (Cambridge Core, metadata) cites Wrigley and Schofield (1981), Laslett (1965, 1977) and Hajnal (1965). The influence is credited to the Cambridge Group and Hajnal, not to Wrigley alone; demography/john_hajnal already records Hajnal as a resource for de Vries.",
+      "classification_basis": "editorial_review",
+      "map_label": "Household demography, 1994–2008",
+      "proposal_id": "jdv_rel_03"
+    },
+    {
+      "id": "edge_1117",
+      "source": "jan_de_vries",
+      "target": "joel_mokyr",
+      "relationship": "Demand restored against the supply-side orthodoxy, which de Vries illustrates with Mokyr’s view that the Industrial Revolution’s “when,” “where” and “how fast” are “to be sought first and foremost in supply” (1977; 2008)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "cd_devries_2008",
+        "ip_mokyr_demand_1977",
+        "de_vries_industrious"
+      ],
+      "evidence_note": "The Industrious Revolution (2008, pp. 6–7, publisher excerpt, read): “Studies of modern economic growth are inevitably founded on a decisive ‘supply-side’ advance”; Adam Smith left no doubt that “The consumer responds to the developing productive forces, not the other way around”, with n. 17 quoting Mokyr’s “Demand vs. Supply in the Industrial Revolution” (JEH 1977, p. 1005): “The determination of ‘when,’ ‘where,’ and ‘how fast’ are to be sought first and foremost in supply, not demand-related processes”; “What began as an effort to restore demand as one of the cutting blades of Marshall’s supply and demand scissors” (p. 7). Mokyr’s 1977 abstract (Cambridge Core, read): demand factors “were definitely of a secondary order of importance”. The 1994 article’s reference list cites the 1977 article. Qualification: de Vries cites Mokyr as an exemplar of a general orthodoxy; this is not a reply to a Mokyr text on the industrious revolution, and no reply by Mokyr was read.",
+      "classification_basis": "editorial_review",
+      "map_label": "De Vries restores demand, citing Mokyr (2008)",
+      "proposal_id": "jdv_rel_04"
+    },
+    {
+      "id": "edge_1790",
+      "source": "jan_de_vries",
+      "target": "ca_bayly",
+      "relationship": "Bayly uses de Vries’s industrious revolutions to describe regional changes in production and consumption that new globalizing powers sought to connect and exploit.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "df04_bayly_sample2004"
+      ],
+      "evidence_note": "Own chapter1 pp.44–45 names de Vries and retains uneven change and persistent bodily practices. This particular resource is distinct from the p.40 reference to the first modern economy, whose joint-book credit was not checked. Neither all of de Vries’s account nor a sole economic cause is asserted.",
+      "proposal_id": "df04_bayly_devries_resource2004"
+    },
+    {
+      "id": "edge_2623",
+      "source": "jan_de_vries",
+      "target": "e_a_wrigley",
+      "relationship": "Wrigley uses de Vries’s urbanization research and the joint work of de Vries and van der Woude to compare English growth with earlier Dutch development.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hr28_wrigley_quest2003"
+      ],
+      "evidence_note": "Own Quest (2003), 152–155, notes 12–23, uses European Urbanization (1984) and the JOINT de Vries/van der Woude First Modern Economy (1997) to compare urban growth, occupations, productivity and incomes. Van der Woude retains equal credit. Bairoch, Batou and Chèvre supply a separate 1988 dataset with a different geographical scope (note 13); the calculations are not all de Vries’s alone. This is an empirical and comparative resource, not formal mentorship or independent verification of every figure. The Smithian limits discussed at 157 do not automatically constitute criticism of de Vries.",
+      "proposal_id": "hr28_wrigley_devries_resource"
+    }
+  ],
+  "named_group_routes_inspected": [
+    {
+      "id": "edge_251",
+      "source": "economic",
+      "target": "consumption",
+      "relationship": "De Vries links household labor and demand; Brewer and Porter collect wider questions about goods and economic life",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "brewer_porter",
+        "de_vries_industrious",
+        "birth_consumer",
+        "weatherill_consumer_primary",
+        "vickery_elegance_primary"
+      ],
+      "evidence_note": "Editorial comparison of the cited approaches, not a claim of transmission or agreement. The comparison remains undirected. The new separate contribution records the particular industrious-revolution argument, not a general direction for every overlap. The comparison now includes primary McKendrick, Weatherill and Vickery passages: acceleration, ownership, household work and material meanings are different outcomes, with unequal evidence coverage.",
+      "map_label": "Household labor, demand and goods"
+    },
+    {
+      "id": "edge_1050",
+      "source": "capitalismdebates",
+      "target": "kenneth_pomeranz",
+      "relationship": "Broadberry and Gupta place the advanced parts of Asia with Europe's stagnating periphery on wages and prices (2006); Vries finds differences, not 'surprising resemblances' (2009); Allen and colleagues dispute Chinese–English urban real-wage parity (2011); Broadberry, Guan and Li place divergence between leading regions around 1700 (2021)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "kp_broadberry_gupta_2006",
+        "cd_vries_2009",
+        "w1_allen_wages_china_2011",
+        "w1_broadberry_guan_li_2021",
+        "pomeranz_divergence"
+      ],
+      "evidence_note": "This arrow represents named interventions within the debate entry, not a verdict of it; the entry includes Pomeranz and his allies, and each intervention establishes something different. Broadberry and Gupta (EHR 59:1, 2006; summary and pp. 2–3 read), on wages and prices: \"Contrary to the claims of Pomeranz, Parthasarathi, and other 'world historians', the prosperous parts of Asia between 1500 and 1800 look similar to the stagnating southern, central, and eastern parts of Europe … The 'great divergence' … was already well underway before 1800\" (p. 2). Vries ('A World of Surprising Resemblances?', 2009, pp. 35–38, 47–48 read), on agriculture and the state: 'I would not call that a \"surprising resemblance\"' (p. 38); 'Coal and colonies definitely were fundamental in the Rise of the West. But reference to them cannot suffice to explain it' (p. 48). Allen, Bassino, Ma, Moll-Murata and van Zanden (EHR 2011, read pp. 8–9, 29–31), on urban real wages: 'our findings also dispute the revisionists’ claim that the advanced parts of China, such as the Yangzi Delta, were on a par with England'; 'Adam Smith’s pessimism looks closer to the truth than the revisionists’ optimism' (p. 31); they also find Chinese urban wages on a par with central and southern Europe, against the 'rise of the west' literature (pp. 30–31). Broadberry, Guan and Li (JEH 2021, read pp. 958–959), on regional GDP per capita: 'The Great Divergence thus began around 1700, earlier than originally suggested by the California School, but later than implied by earlier writers' (p. 958); the qualified chronology is theirs alone. None endorses Huang's involution, whose dispute with Pomeranz is drawn on its own arrows. Revision 1.145 moved this arrow from economic to the debate entry capitalismdebates, and moved Brenner and Isett's 2002 critique to its own arrow (robert_brenner → kenneth_pomeranz), as this note had foreseen. Revision 1.146 likewise moved Mokyr's 2002 critique to its own arrow (joel_mokyr → kenneth_pomeranz), since Mokyr became a person entry; the four interventions above remain.",
+      "classification_basis": "editorial_review",
+      "map_label": "Wages, the state and regional GDP, 2006–2021",
+      "proposal_id": "w1_pomeranz_rel_01"
+    },
+    {
+      "id": "edge_1082",
+      "source": "historicalecon",
+      "target": "capitalismdebates",
+      "relationship": "Toynbee's Lectures (1884) define the Industrial Revolution as 'the substitution of competition for the medieval regulations', the concept the later debate revises",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "toynbee_industrial",
+        "de_vries_industrious"
+      ],
+      "evidence_note": "Toynbee, Lectures on the Industrial Revolution in England (posthumous, 1884), Saylor transcription without print pages, read by lecture: Lecture I describes 'England on the eve of the Industrial Revolution'; Lecture VIII: 'The essence of the industrial Revolution is the substitution of competition for the medieval regulations which had previously controlled the production and distribution of wealth'; 'The effects of the industrial Revolution prove that free competition may produce wealth without producing well-being.' A reader's warrant: de Vries (1994, p. 249) calls the Industrial Revolution 'By far the most important such monument in economic history'. No claim that Toynbee coined the term or founded the debate; the chain to the 1980s passes through Clapham and Cannadine, unread here.",
+      "classification_basis": "editorial_review",
+      "map_label": "Toynbee's Industrial Revolution, 1884",
+      "target_strand": "capitalismdebates/ir_concept_revision",
+      "proposal_id": "cd_rel_ci1"
+    },
+    {
+      "id": "edge_1083",
+      "source": "economic",
+      "target": "capitalismdebates",
+      "relationship": "Economic historians' measurement and its critics: Crafts and Harley's slower British growth with 'an important discontinuity' reasserted (1992), against Berg and Hudson's case that growth accounting 'mis-specified' the Industrial Revolution (1990/1992)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cd_crafts_harley_1992",
+        "cd_berg_hudson_1990",
+        "cd_berg_hudson_1992",
+        "de_vries_industrious"
+      ],
+      "evidence_note": "Crafts and Harley (1992, abstract, read): 'insofar as any adjustment is required the effect is slightly to lower the estimated growth rate … The idea of the industrial revolution as an important discontinuity is reasserted.' Berg and Hudson, working paper (May 1990, read in part): 'the gradualist perspective has appeared to triumph … because of a growing preoccupation with growth accounting' (p. 1); 'N. F. R. Crafts and others may not be able to find the industrial revolution because, in addition to using problematic data, they have mis-specified their subject' (pp. 4–5); 'It is time to move on from the macro accounting framework' (pp. 38–39); 1992 abstract: 'Gradualist perspectives now dominate'. De Vries (1994, pp. 250–251, read) on Lindert and Williamson, Harley and Crafts: 'cleansing the temple of the \"false god of the take off,\" not … pulling down the pillars'. 'Gradualist' is the critics' label; Crafts and Harley reassert a discontinuity.",
+      "classification_basis": "editorial_review",
+      "map_label": "Growth accounting and rehabilitation, 1985–94",
+      "target_strand": "capitalismdebates/ir_concept_revision",
+      "proposal_id": "cd_rel_ci2"
+    },
+    {
+      "id": "edge_1087",
+      "source": "kenneth_pomeranz",
+      "target": "capitalismdebates",
+      "relationship": "Pomeranz's reassessment of divergence timing, 2011, as reported by Vries: he 'probably overstated the lateness and suddenness of the Great Divergence', and parity had probably gone by 1750 'if not in 1700'",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cd_vries_2013"
+      ],
+      "evidence_note": "Vries, Escaping Poverty (2013, p. 17, read), on Pomeranz's 'Ten Years After' (2011, unread): 'the most important Californian, Kenneth Pomeranz, very recently admitted that he probably overstated the lateness and suddenness of the Great Divergence and that economic parity between the two extremes of Eurasia probably had already disappeared in 1750 if not in 1700' (n. 23 cites de Vries's 'after ten years' and Pomeranz's 'Ten years after'). A contribution to the debate's chronology by its principal author, known through one reader's report; a concession, not a critique. Moderate. Pomeranz's 2002–2003 replies concern Huang and stay on edges 1043–1044.",
+      "classification_basis": "editorial_review",
+      "map_label": "Pomeranz reassesses the timing, 2011 (Vries)",
+      "target_strand": "capitalismdebates/great_divergence",
+      "proposal_id": "cd_rel_gd2"
+    },
+    {
+      "id": "edge_1088",
+      "source": "global",
+      "target": "capitalismdebates",
+      "relationship": "Reciprocal comparison as the California School's method: Wong (1997), Pomeranz (2000) and Parthasarathi's 'parallels in Eurasia' (2011), read by Vries as 'a new kind of comparative reciprocal history that suits global historians' (2013)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pomeranz_divergence",
+        "wong_china_primary",
+        "cd_parthasarathi_2011",
+        "cd_vries_2013"
+      ],
+      "evidence_note": "Pomeranz (2000, pp. 7–8, read): a regional approach 'anticipated in important ways by my colleague R. Bin Wong'; 'Here, too, I am following a procedure outlined in Wong's recent China Transformed … viewing both sides of the comparison as \"deviations\" when seen through the expectations of the other'. Parthasarathi (2011, publisher excerpt): earlier explanations 'all identify something that made Europe different … This book takes a different approach … it rejects claims for European difference' (p. 1); 'Kenneth Pomeranz builds upon this work' (p. 5). Vries (2013, pp. 14–15, read): 'The Californians, moreover, experiment with a new kind of comparative reciprocal history that suits global historians who not only want to juxtapose but also connect.' The method strands stay on global/comparison and global/reciprocal_comparison_resources.",
+      "classification_basis": "editorial_review",
+      "map_label": "Reciprocal comparison, 1997–2013",
+      "target_strand": "capitalismdebates/great_divergence",
+      "proposal_id": "cd_rel_gd3"
+    },
+    {
+      "id": "edge_1089",
+      "source": "dependency",
+      "target": "capitalismdebates",
+      "relationship": "Frank's ReOrient (1998) as the polemical wing of the divergence debate: Asia central until 1800, a debate with Landes announced for December 1998 and an endorsement of Pomeranz (2001)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cd_landes_debate_1998",
+        "cd_frank_pomeranz_2001",
+        "cd_mokyr_parthasarathi_2012",
+        "cd_vries_2013",
+        "cd_burnard_riello_2020"
+      ],
+      "evidence_note": "Notice announcing the Landes–Frank debate (Northeastern University, scheduled for 2 December 1998; read; written from Frank's side; whether the debate took place as announced is not independently confirmed): 'FRANK retorts that … Received social theory … is vitiated by the ingrained EUROCENTRISM of historiography'; Asia 'remained predominant in the world until at 1800'; 'LANDES retorts that Frank and his echoes are a magnet for fallacies and fantasies'. Frank's review of Pomeranz (JAS 2001; author's manuscript read): 'bar none, the biggest and most important contribution'; Pomeranz is 'the most important … member of what Jack Goldstone has called the new \"California School\"'. Mokyr (EH.Net 2012, read): 'The California School, most notably embodied in Kenneth Pomeranz's Great Divergence and Andre Gunder Frank's Re-Orient'. Vries (2013, pp. 15–16) quotes ReOrient (pp. 75, 259) and calls one passage 'a quite silly statement'. Burnard and Riello (2020, p. 228 n.): Beckert 'is heavily influenced by [world-systems theory's] axioms'. ReOrient itself is unread. Distinct from edge_1053 (Pomeranz → dependency).",
+      "classification_basis": "editorial_review",
+      "map_label": "ReOrient and the divergence debate, 1998–2001",
+      "target_strand": "capitalismdebates/great_divergence",
+      "proposal_id": "cd_rel_gd5"
+    },
+    {
+      "id": "edge_1090",
+      "source": "historicalsociology",
+      "target": "capitalismdebates",
+      "relationship": "Goldstone's 'efflorescences' of pre-modern growth (2002), and the 'California School' label that readers attribute to him",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "cd_goldstone_2002",
+        "cd_frank_pomeranz_2001",
+        "cd_vries_2009",
+        "goldstone_rebellion"
+      ],
+      "evidence_note": "Goldstone (JWH 2002, abstract): 'many premodern and non-Western economies show spurts or efflorescences of economic growth … Medieval Europe, Golden Age Holland, and Qing China'; the distinctive Western combination 'developed from the seventeenth to nineteenth centuries only in Britain'. The label: Frank (2001, read), 'what Jack Goldstone has called the new \"California School\"'; Vries (2009, p. 35 n. 1, read), 'The term was introduced by Jack Goldstone.' Goldstone's own first use was not found. Vries (2009, p. 48) adds that Californians should 'broaden their approach, as some, e.g. Jack Goldstone, have already done'. Goldstone's earlier comparative work stays on historicalsociology/demographic_crises.",
+      "classification_basis": "editorial_review",
+      "map_label": "Efflorescences and the California label, 2001–09",
+      "target_strand": "capitalismdebates/great_divergence",
+      "proposal_id": "cd_rel_gd6"
+    }
+  ],
+  "new_proposal_ids": [
+    "hr30_devries_brewer_reactivated_project",
+    "hr30_devries_wrigley_scholarly_standard",
+    "hr30_devries_thompson_imposed_discipline",
+    "hr30_devries_stearns_consumerism_definition"
+  ],
+  "source_context_alignment_ids": [
+    "birth_consumer",
+    "brewer_porter",
+    "cd_berg_hudson_1990",
+    "cd_burnard_riello_2020",
+    "cd_frank_pomeranz_2001",
+    "de_vries_industrious",
+    "hajnal_marriage",
+    "huang_pomeranz_review",
+    "pomeranz_divergence",
+    "vickery_elegance_primary",
+    "weatherill_consumer_primary",
+    "wong_china_primary"
+  ],
+  "duplicate_check": {
+    "no_current_pair_kind_duplicates": true
+  },
+  "coverage": {
+    "primary": "Complete2008 preface and selected chapter excerpt; selected1994 actual article, critical locators visually checked.",
+    "reception": "Complete original Voth review and references; other reception scopes and failed retrieval explicit.",
+    "holds": "Strong conceptual resources, collective credits, generic acknowledgments, namesakes and unread originals explicit."
+  }
+}

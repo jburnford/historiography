@@ -1,0 +1,494 @@
+{
+  "person_id": "kuhn",
+  "checked_on": "2026-10-30",
+  "baseline_revision": "1.204",
+  "existing_incident_edges": [
+    {
+      "id": "edge_131",
+      "source": "kuhn",
+      "target": "science",
+      "relationship": "Kuhn’s paradigms, normal science, and scientific revolutions reorient explanations of scientific change",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "kuhn_structure"
+      ],
+      "evidence_note": "A contribution to an existing field, not its foundation. Kuhn’s 1962 account of scientific communities, normal science, and revolutions is central here. He transforms an existing field rather than founding it.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "map_label": "Kuhn: paradigms and revolutions"
+    },
+    {
+      "id": "edge_132",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "provides resources for sociological accounts of scientific communities, with disputed extensions",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "ssk"
+      ],
+      "evidence_note": "Kuhn’s reception in sociology is selective; influence does not imply endorsement of later programmes. Bloor and other sociologists draw on and extend Kuhn’s questions; Kuhn contested some sociological appropriations.",
+      "relationship_kind": "influence",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_332",
+      "source": "science",
+      "target": "kuhn",
+      "relationship_kind": "influence",
+      "directed": true,
+      "type": "connection",
+      "relationship": "Kuhn acknowledges Koyré, Metzger, Maier and Fleck as resources for his historical account",
+      "evidence_note": "The 1962 preface identifies named debts; this arrow concerns those works, not every historian of science.",
+      "source_ids": [
+        "kuhn_preface"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Koyré, Metzger, Maier and Fleck"
+    },
+    {
+      "id": "edge_577",
+      "source": "kuhn",
+      "target": "psychohistory",
+      "relationship": "deMause invokes paradigm change to explain resistance to his childhood-history program",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "demause_childhood_reply"
+      ],
+      "evidence_note": "His 1988 conclusion and note 116 cite The Structure of Scientific Revolutions (1962). This records an appropriation of Kuhn, not Kuhn’s endorsement or proof that criticism signals scientific validity.",
+      "map_label": "deMause’s appeal to Kuhn",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_617",
+      "source": "kuhn",
+      "target": "context",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Skinner and Dunn explicitly use Kuhn among interpretive resources",
+      "evidence_note": "Skinner (1969), p. 7, invokes the priority of paradigms and chapter V of Structure; Dunn’s notes also acknowledge the work. This bounded methodological use does not derive the entire Cambridge grouping from a theory of scientific revolutions.",
+      "source_ids": [
+        "skinner_meaning_primary",
+        "dunn_identity_primary"
+      ],
+      "map_label": "Kuhn as a specified interpretive resource",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_931",
+      "source": "sciencewars",
+      "target": "kuhn",
+      "relationship": "Physicists blame an \"immoderate\" Kuhn for founding relativism about science, while sparing the \"moderate\" Kuhn and leaving him to historians (1996–98)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_sokal_bricmont_1998",
+        "ss136_weinberg_1996",
+        "ss136_weinberg_1998",
+        "ss136_sokal_transgressing_1996"
+      ],
+      "evidence_note": "In-period texts read. Sokal and Bricmont (1998; Profile 1999/2003 printing), following Tim Maudlin, separate \"a moderate Kuhn and his immoderate brother\": \"We have no objection of principle to the moderate Kuhn, and we leave to historians the task of investigating the extent to which these ideas are correct in concrete situations. By contrast, the immoderate Kuhn - who became, perhaps involuntarily, one of the founding fathers of contemporary relativism - thinks that changes of paradigm are due principally to non-empirical factors\" (p. 70). Weinberg (1996) lists Kuhn, \"as I understand them\", among those who deny \"The objective nature of scientific knowledge\"; in 1998 he wrote that Kuhn's later conclusions \"have made Kuhn a hero to the philosophers, historians, sociologists, and cultural critics who question the objective character of scientific knowledge\", and that \"Kuhn made the shift from one paradigm to another seem more like a religious conversion than an exercise of reason.\" Sokal's parody (1996, n. 2) cites Kuhn (1970) first among the \"revisionist studies\" it mocks. This is a critique of Kuhn and of his reception; Kuhn died in 1996 and did not reply. His own earlier rejection of irrationalism (\"labels which I categorically reject\", 1970) is recorded on the science → kuhn edge.",
+      "classification_basis": "editorial_review",
+      "map_label": "The \"immoderate Kuhn\" blamed, 1996–98",
+      "proposal_id": "ss136_sw_rel_07"
+    },
+    {
+      "id": "edge_935",
+      "source": "science",
+      "target": "kuhn",
+      "relationship": "Popper, Lakatos and the historian L. Pearce Williams criticise Kuhn's normal science and theory change: indoctrination, irrationalism, \"mob psychology\" and too little history (1965–70), answered by Kuhn",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "popper_normal_debate",
+        "ss136_cgk_1970",
+        "ss136_kuhn_postscript_1970"
+      ],
+      "evidence_note": "In-period texts read in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970; the 1965 Bedford College symposium). Popper, already a critic on the science roster: the normal scientist \"has been taught in a dogmatic spirit: he is a victim of indoctrination\" (p. 53); \"Kuhn's logic is the logic of historical relativism\" (p. 55); the Myth of the Framework \"is, in our time, the central bulwark of irrationalism\" (p. 56); yet \"'Normal' science, in Kuhn's sense, exists\" (p. 52). Lakatos, a contributor on the science roster: Kuhn's message \"had some authoritarian and irrationalist overtones\" (p. 92 n. 3); \"in Kuhn's view scientific revolution is irrational, a matter for mob psychology\" (p. 178, italicised in the original); he also absorbs Kuhn, offering his research programmes as a reconstruction of Kuhn's \"socio-psychological concept of 'paradigm'\" (p. 179 n. 1). L. Pearce Williams, a historian of science, aims at Kuhn and Popper alike: \"the history of science cannot bear such a load at this time. We simply do not know enough to permit a philosophical structure to be erected on a historical foundation\"; \"As a historian, then, I must view both Popper and Kuhn with a somewhat jaundiced eye\" (p. 50), while continuing to use both as guides. Kuhn's replies: charges of \"irrationality, relativism, and the defence of mob rule\" are \"labels which I categorically reject\" (p. 234); such misinterpretations \"are voiced only by philosophers\" (p. 260); to Pearce Williams, \"There is no area in which I am more deeply conscious of the need for additional historical research, though I dissent from the conclusions Pearce Williams draws from that need\" (pp. 251–252); and in the 1970 Postscript, good reasons \"function as values\" (p. 199) and \"That is not a relativist's position\" (p. 206). The irrationalism charge came from philosophers on the science roster; the historian's objection was evidential. edge_332 (science → kuhn, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "Normal science and irrationalism disputed, 1965–70",
+      "proposal_id": "ss136_cr_rel_01"
+    },
+    {
+      "id": "edge_938",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "Kuhn calls the strong programme's claims \"absurd: an example of deconstruction gone mad\" (1991)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_kuhn_road_2000"
+      ],
+      "evidence_note": "Kuhn's own words, read: \"The Trouble with the Historical Philosophy of Science\" (Rothschild Lecture, Harvard, 19 November 1991; published 1992; in The Road Since Structure, 2000): \"I am among those who have found the claims of the strong program absurd: an example of deconstruction gone mad. And the more qualified sociological and historical formulations that currently strive to replace it are, in my view, scarcely more satisfactory\" (p. 110); the strong program \"has been widely understood as claiming that power and interest are all there are\" (p. 110). In the 1995 Athens interview (same volume) he says of Shapin and Schaffer's Leviathan and the Air-Pump, \"The scholarship is often damn good!\", while objecting that they \"totally miss\" the barometer's \"vastly greater explanatory power\" (pp. 316–317); that remark concerns the science roster's practice strand and is context only. No SSK reply to the lecture was read. The SSK reading of Kuhn ran the other way, as appropriation (Barnes, T. S. Kuhn and Social Science, 1982, unread); edge_132 (kuhn → ssk, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "\"Deconstruction gone mad\", 1991",
+      "target_strand": "ssk/strong_programme",
+      "proposal_id": "ss136_cr_rel_04"
+    },
+    {
+      "id": "edge_1647",
+      "source": "kuhn",
+      "target": "quentin_skinner",
+      "relationship": "Skinner explicitly uses Kuhn’s priority-of-paradigms discussion in framing anachronistic interpretation in the history of ideas (1969).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "skinner_meaning_primary"
+      ],
+      "evidence_note": "Meaning and Understanding, printed p. 7 and note 18, directly cites Structure, chapterV. Gombrich is a separately credited resource; Kuhn is not made the founder of Skinner’s method or the entire Cambridge grouping. Mixed Skinner/Dunn edge 617 remains unchanged; Ryle’s use by Dunn in 618 is not reassigned to Skinner.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_roots_kuhn_skinner"
+    },
+    {
+      "id": "edge_1797",
+      "source": "kuhn",
+      "target": "c_vann_woodward",
+      "relationship": "Uses Kuhn’s account of common scientific paradigms to distinguish historians’ recurrent examination of first principles.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_woodward_address"
+      ],
+      "evidence_note": "The published address, paragraph beginning Unlike the sciences also and note57, cites The Structure of Scientific Revolutions(1962),162. Woodward doubts history will gain the same release from methodological questioning; he does not simply adopt a Kuhnian historical model. The cited book remains unread here.",
+      "proposal_id": "df04_woodward_kuhn_resource_address"
+    }
+  ],
+  "live_incident_edges": [
+    {
+      "id": "edge_131",
+      "source": "kuhn",
+      "target": "science",
+      "relationship": "Kuhn’s paradigms, normal science, and scientific revolutions reorient explanations of scientific change",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "kuhn_structure"
+      ],
+      "evidence_note": "A contribution to an existing field, not its foundation. Kuhn’s 1962 account of scientific communities, normal science, and revolutions is central here. He transforms an existing field rather than founding it.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "map_label": "Kuhn: paradigms and revolutions"
+    },
+    {
+      "id": "edge_132",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "provides resources for sociological accounts of scientific communities, with disputed extensions",
+      "type": "connection",
+      "source_ids": [
+        "kuhn",
+        "ssk"
+      ],
+      "evidence_note": "Kuhn’s reception in sociology is selective; influence does not imply endorsement of later programmes. Bloor and other sociologists draw on and extend Kuhn’s questions; Kuhn contested some sociological appropriations.",
+      "relationship_kind": "influence",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_332",
+      "source": "science",
+      "target": "kuhn",
+      "relationship_kind": "influence",
+      "directed": true,
+      "type": "connection",
+      "relationship": "Kuhn acknowledges Koyré, Metzger, Maier and Fleck as resources for his historical account",
+      "evidence_note": "The 1962 preface identifies named debts; this arrow concerns those works, not every historian of science.",
+      "source_ids": [
+        "kuhn_preface"
+      ],
+      "classification_basis": "editorial_review",
+      "map_label": "Koyré, Metzger, Maier and Fleck"
+    },
+    {
+      "id": "edge_577",
+      "source": "kuhn",
+      "target": "psychohistory",
+      "relationship": "deMause invokes paradigm change to explain resistance to his childhood-history program",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "demause_childhood_reply"
+      ],
+      "evidence_note": "His 1988 conclusion and note 116 cite The Structure of Scientific Revolutions (1962). This records an appropriation of Kuhn, not Kuhn’s endorsement or proof that criticism signals scientific validity.",
+      "map_label": "deMause’s appeal to Kuhn",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_617",
+      "source": "kuhn",
+      "target": "context",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "Skinner and Dunn explicitly use Kuhn among interpretive resources",
+      "evidence_note": "Skinner (1969), p. 7, invokes the priority of paradigms and chapter V of Structure; Dunn’s notes also acknowledge the work. This bounded methodological use does not derive the entire Cambridge grouping from a theory of scientific revolutions.",
+      "source_ids": [
+        "skinner_meaning_primary",
+        "dunn_identity_primary"
+      ],
+      "map_label": "Kuhn as a specified interpretive resource",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_931",
+      "source": "sciencewars",
+      "target": "kuhn",
+      "relationship": "Physicists blame an \"immoderate\" Kuhn for founding relativism about science, while sparing the \"moderate\" Kuhn and leaving him to historians (1996–98)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_sokal_bricmont_1998",
+        "ss136_weinberg_1996",
+        "ss136_weinberg_1998",
+        "ss136_sokal_transgressing_1996"
+      ],
+      "evidence_note": "In-period texts read. Sokal and Bricmont (1998; Profile 1999/2003 printing), following Tim Maudlin, separate \"a moderate Kuhn and his immoderate brother\": \"We have no objection of principle to the moderate Kuhn, and we leave to historians the task of investigating the extent to which these ideas are correct in concrete situations. By contrast, the immoderate Kuhn - who became, perhaps involuntarily, one of the founding fathers of contemporary relativism - thinks that changes of paradigm are due principally to non-empirical factors\" (p. 70). Weinberg (1996) lists Kuhn, \"as I understand them\", among those who deny \"The objective nature of scientific knowledge\"; in 1998 he wrote that Kuhn's later conclusions \"have made Kuhn a hero to the philosophers, historians, sociologists, and cultural critics who question the objective character of scientific knowledge\", and that \"Kuhn made the shift from one paradigm to another seem more like a religious conversion than an exercise of reason.\" Sokal's parody (1996, n. 2) cites Kuhn (1970) first among the \"revisionist studies\" it mocks. This is a critique of Kuhn and of his reception; Kuhn died in 1996 and did not reply. His own earlier rejection of irrationalism (\"labels which I categorically reject\", 1970) is recorded on the science → kuhn edge.",
+      "classification_basis": "editorial_review",
+      "map_label": "The \"immoderate Kuhn\" blamed, 1996–98",
+      "proposal_id": "ss136_sw_rel_07"
+    },
+    {
+      "id": "edge_935",
+      "source": "science",
+      "target": "kuhn",
+      "relationship": "Popper, Lakatos and the historian L. Pearce Williams criticise Kuhn's normal science and theory change: indoctrination, irrationalism, \"mob psychology\" and too little history (1965–70), answered by Kuhn",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "popper_normal_debate",
+        "ss136_cgk_1970",
+        "ss136_kuhn_postscript_1970"
+      ],
+      "evidence_note": "In-period texts read in Lakatos and Musgrave, eds., Criticism and the Growth of Knowledge (1970; the 1965 Bedford College symposium). Popper, already a critic on the science roster: the normal scientist \"has been taught in a dogmatic spirit: he is a victim of indoctrination\" (p. 53); \"Kuhn's logic is the logic of historical relativism\" (p. 55); the Myth of the Framework \"is, in our time, the central bulwark of irrationalism\" (p. 56); yet \"'Normal' science, in Kuhn's sense, exists\" (p. 52). Lakatos, a contributor on the science roster: Kuhn's message \"had some authoritarian and irrationalist overtones\" (p. 92 n. 3); \"in Kuhn's view scientific revolution is irrational, a matter for mob psychology\" (p. 178, italicised in the original); he also absorbs Kuhn, offering his research programmes as a reconstruction of Kuhn's \"socio-psychological concept of 'paradigm'\" (p. 179 n. 1). L. Pearce Williams, a historian of science, aims at Kuhn and Popper alike: \"the history of science cannot bear such a load at this time. We simply do not know enough to permit a philosophical structure to be erected on a historical foundation\"; \"As a historian, then, I must view both Popper and Kuhn with a somewhat jaundiced eye\" (p. 50), while continuing to use both as guides. Kuhn's replies: charges of \"irrationality, relativism, and the defence of mob rule\" are \"labels which I categorically reject\" (p. 234); such misinterpretations \"are voiced only by philosophers\" (p. 260); to Pearce Williams, \"There is no area in which I am more deeply conscious of the need for additional historical research, though I dissent from the conclusions Pearce Williams draws from that need\" (pp. 251–252); and in the 1970 Postscript, good reasons \"function as values\" (p. 199) and \"That is not a relativist's position\" (p. 206). The irrationalism charge came from philosophers on the science roster; the historian's objection was evidential. edge_332 (science → kuhn, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "Normal science and irrationalism disputed, 1965–70",
+      "proposal_id": "ss136_cr_rel_01"
+    },
+    {
+      "id": "edge_938",
+      "source": "kuhn",
+      "target": "ssk",
+      "relationship": "Kuhn calls the strong programme's claims \"absurd: an example of deconstruction gone mad\" (1991)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "ss136_kuhn_road_2000"
+      ],
+      "evidence_note": "Kuhn's own words, read: \"The Trouble with the Historical Philosophy of Science\" (Rothschild Lecture, Harvard, 19 November 1991; published 1992; in The Road Since Structure, 2000): \"I am among those who have found the claims of the strong program absurd: an example of deconstruction gone mad. And the more qualified sociological and historical formulations that currently strive to replace it are, in my view, scarcely more satisfactory\" (p. 110); the strong program \"has been widely understood as claiming that power and interest are all there are\" (p. 110). In the 1995 Athens interview (same volume) he says of Shapin and Schaffer's Leviathan and the Air-Pump, \"The scholarship is often damn good!\", while objecting that they \"totally miss\" the barometer's \"vastly greater explanatory power\" (pp. 316–317); that remark concerns the science roster's practice strand and is context only. No SSK reply to the lecture was read. The SSK reading of Kuhn ran the other way, as appropriation (Barnes, T. S. Kuhn and Social Science, 1982, unread); edge_132 (kuhn → ssk, influence) stays.",
+      "classification_basis": "editorial_review",
+      "map_label": "\"Deconstruction gone mad\", 1991",
+      "target_strand": "ssk/strong_programme",
+      "proposal_id": "ss136_cr_rel_04"
+    },
+    {
+      "id": "edge_1647",
+      "source": "kuhn",
+      "target": "quentin_skinner",
+      "relationship": "Skinner explicitly uses Kuhn’s priority-of-paradigms discussion in framing anachronistic interpretation in the history of ideas (1969).",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "skinner_meaning_primary"
+      ],
+      "evidence_note": "Meaning and Understanding, printed p. 7 and note 18, directly cites Structure, chapterV. Gombrich is a separately credited resource; Kuhn is not made the founder of Skinner’s method or the entire Cambridge grouping. Mixed Skinner/Dunn edge 617 remains unchanged; Ryle’s use by Dunn in 618 is not reassigned to Skinner.",
+      "classification_basis": "editorial_review",
+      "proposal_id": "rea_roots_kuhn_skinner"
+    },
+    {
+      "id": "edge_1797",
+      "source": "kuhn",
+      "target": "c_vann_woodward",
+      "relationship": "Uses Kuhn’s account of common scientific paradigms to distinguish historians’ recurrent examination of first principles.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hc177_woodward_address"
+      ],
+      "evidence_note": "The published address, paragraph beginning Unlike the sciences also and note57, cites The Structure of Scientific Revolutions(1962),162. Woodward doubts history will gain the same release from methodological questioning; he does not simply adopt a Kuhnian historical model. The cited book remains unread here.",
+      "proposal_id": "df04_woodward_kuhn_resource_address"
+    },
+    {
+      "id": "edge_2198",
+      "source": "kuhn",
+      "target": "john_higham",
+      "relationship": "Higham explicitly adapts the language of paradigm while defining it more loosely than Kuhn’s usage for his account of changing American historiography.",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "hr28_higham_paradigms1989"
+      ],
+      "evidence_note": "Own1989 note1 identifies The Structure of Scientific Revolutions(1962) and expressly limits paradigm here to a conceptual framework and/or its presuppositions. This records acknowledged terminology with an explicit departure, not adoption of Kuhn’s full theory or proof of a formative lineage. Kuhn’s original book unread.",
+      "proposal_id": "hr28_higham_kuhn_loose_paradigm"
+    },
+    {
+      "id": "edge_2356",
+      "source": "kuhn",
+      "target": "steven_shapin",
+      "relationship": "Shapin identifies Kuhn’s Structure of Scientific Revolutions as a major formative reading that presented science-making as a human endeavor.",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "hr28_shapin_interview2025"
+      ],
+      "evidence_note": "Own 2024 recollection, published 2025, 4–5 explicitly distinguishes encountering books from knowing their authors. Koestler and C. P. Snow retain credit as other important undergraduate readings; Kuhn is not a sole influence or an inferred supervisor. The original Structure edition remains unread by this dossier.",
+      "proposal_id": "hr28_shapin_kuhn_formation"
+    },
+    {
+      "id": "edge_2357",
+      "source": "steven_shapin",
+      "target": "kuhn",
+      "relationship": "Questions the internalist/externalist division associated with Kuhn’s1968 history-of-science essay, treating the boundary itself as a historical problem.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "hr28_shapin_interview2025"
+      ],
+      "evidence_note": "Own 2024 reply, published 2025, 7 contrasts the inherited framing with the joint Air-Pump project’s approach; Schaffer retains credit. Shapin also calls Kuhn’s account of Polanyi insufficiently appreciative on 10. These particular reservations coexist with explicit formative debt; no blanket rejection or claim of reading the complete 1968 essay, 1992 paper or 2011 introduction.",
+      "proposal_id": "hr28_shapin_kuhn_boundaries"
+    },
+    {
+      "id": "edge_2488",
+      "source": "kuhn",
+      "target": "carolyn_merchant",
+      "relationship": "Merchant uses Kuhn’s account of stable scientific worldviews and rapid crisis transformations as a starting point for ecological revolutions.",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "source_ids": [
+        "pe131_merchant_structure_1987"
+      ],
+      "evidence_note": "Own 1987 265–266 explicitly names the first-edition framework as a springboard, alongside Marx and Engels; n1 instead gives 2nd ed 1970, which is preserved. No sole-source or unqualified adoption claim.",
+      "proposal_id": "hr28_merchant_kuhn_starting_point"
+    },
+    {
+      "id": "edge_2489",
+      "source": "carolyn_merchant",
+      "target": "kuhn",
+      "relationship": "Merchant finds Kuhn’s scientific-revolution framework insufficiently attentive to social forces outside scientists’ daily work.",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "pe131_merchant_structure_1987"
+      ],
+      "evidence_note": "Own 1987 266 pairs this limitation with praise for stable world views/crisis change and calls for social, economic and ecological circumstances. This is her bounded reading of the first-edition account, not a claim of fresh original Kuhn reading; note 1970 edition discrepancy remains.",
+      "proposal_id": "hr28_merchant_kuhn_external_forces"
+    }
+  ],
+  "live_incident_count": 15,
+  "named_group_routes": [
+    {
+      "id": "edge_137",
+      "source": "epistemology",
+      "target": "science",
+      "relationship": "provides histories of scientific concepts and discontinuities as one intellectual tradition",
+      "type": "connection",
+      "source_ids": [
+        "foucault",
+        "science_history",
+        "chimisso_epistemology",
+        "canguilhem_normal"
+      ],
+      "evidence_note": "Locates the Bachelard–Canguilhem tradition within histories of scientific knowledge; does not identify it with Kuhn or SSK. Bachelard and Canguilhem form a particular French conceptual-history tradition, not the origin of every history of science.",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "classification_basis": "editorial_review",
+      "map_label": "Bachelard and Canguilhem: scientific concepts"
+    },
+    {
+      "id": "edge_299",
+      "source": "frances_yates",
+      "target": "science",
+      "relationship": "investigates connections between memory systems and histories of knowledge",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "yates",
+        "yates_memory_primary"
+      ],
+      "evidence_note": "The Art of Memory’s contents include scientific-method questions; this does not equate Yates’s approach with Kuhn, SSK, or STS. Complete chapter XVII pp. 368–389 now supports an attributed argument about mnemonic ordering, combinatory projects and methods. Stronger causal and secret-transmission hypotheses remain unverified.",
+      "map_label": "Mnemonic ordering and changing methods"
+    },
+    {
+      "id": "edge_907",
+      "source": "carolyn_merchant",
+      "target": "environment",
+      "relationship": "Ecological revolutions: tensions between ecology, production and reproduction reshape consciousness of nature, with gender analysed at every level (1987–1990)",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "pe131_merchant_structure_1987",
+        "pe131_merchant_ecorev_1989",
+        "pe131_merchant_jah_1990",
+        "pe131_merchant_steinberg_1991",
+        "pe131_cronon_uses_1993",
+        "pe131_extras_mcneill_2003"
+      ],
+      "evidence_note": "Merchant's own statement of the framework, 'The Theoretical Structure of Ecological Revolutions', Environmental Review 11:4 (1987), read in full: 'My thesis is that ecological revolutions are major transformations in human relations with non-human nature. They arise from changes, tensions, and contradictions that develop between a society’s mode of production and its ecology, and between its modes of production and reproduction. Those dynamics in turn support the acceptance of new forms of consciousness, ideas, images, and world views' (pp. 265–266). 'The concepts most useful for this approach to environmental history are ecology, production, reproduction, and consciousness' (p. 267); 'An ecological approach to history asserts the idea of nature as a historical actor' (p. 267); production is twofold, 'reproduction is fourfold, having both biological and social articulations' (p. 270); 'Under capitalist patriarchy, reproduction is subordinate to production' (p. 271). Ecological Revolutions (1989), chapter 1 (reprint, Dolbeare 1996, p. 578): in each revolution 'The relations between men and women through which daily life was maintained and reproduced were radically changed.' In the 1990 JAH round table she writes that Worster's essay 'lacks a gender analysis' and that 'environmental history needs a fourth analytical level, that of reproduction, which interacts with the other three levels' (p. 1117); shifts of power are 'not only those between indigenous and invading cultures but also those between men and women' (p. 1121). In-period readings: Steinberg (Technology and Culture, 1991, read in full) calls her theorizing, 'especially its integration of gender into the analysis', 'a signal contribution', but adds 'There are painfully few people making history in this book' (p. 399); Cronon (1993) footnotes to Death of Nature and Ecological Revolutions the lesson that one cannot understand how a culture relates to an environment 'without examining the ways it engenders the natural world' (p. 9, n. 18). A contribution, not a founding: she takes Kuhn's and Marx's theories of revolution as 'starting points' and rejects 'the determinism Marx assigns to the economic base' (1987, p. 266), draws reproduction from Meillassoux, Peterson and Bridenthal (pp. 270–271), and adds to Worster's levels rather than replacing them (1990, p. 1117). McNeill (2003, pp. 38–39) is a later reading: the scheme 'has not attracted wide imitation within environmental history'.",
+      "classification_basis": "editorial_review",
+      "map_label": "Ecological revolutions and reproduction, 1987–90",
+      "target_strand": "environment/merchant_material_ideas",
+      "proposal_id": "pe131_merchant_rel_01"
+    },
+    {
+      "id": "edge_1060",
+      "source": "lorraine_daston",
+      "target": "sts",
+      "relationship": "Science studies and the history of science diverged during the 1990s: the history of science “became ever more historical and science studies ever less”; science studies stayed “undisciplined”, and historicizing objectivity is not debunking it (2009)",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "w1_daston_science_studies_2009"
+      ],
+      "evidence_note": "Her own words, read in full (Critical Inquiry 35, 2009). The fields \"came to diverge … as the history of science became ever more historical and science studies ever less\" (p. 800); science studies read Kuhn \"as a manifesto of relativism\", historians took from him that \"teleology must be repudiated\" (p. 802); the history of science \"has … become a discipline\", while science studies \"has remained interdisciplinary—and, even on the testimony of some insiders, undisciplined\" (p. 811); its assumptions are \"Manichean\" (p. 812). In the terms of the Science Wars she answers the relativism charge: \"to historicize the category of the fact, objectivity, or proof is not thereby to debunk it\" (p. 812); \"'If historical, then relative' is a non sequitur\" (p. 813), citing Latour's \"Why Has Critique Run out of Steam?\" (2004). Qualifications: she credits \"intensive and fruitful exchanges\" in the 1970s and 1980s (p. 800), doubts that disciplinarity is an unmixed good (p. 811 n. 30) and calls for \"a new form of interdisciplinarity\" (p. 813).",
+      "classification_basis": "editorial_review",
+      "map_label": "Daston: history of science versus science studies, 2009",
+      "proposal_id": "w1_daston_rel_02"
+    }
+  ],
+  "existing_claim_assessment": "All15 live incidents enumerated and read, including five postbaseline claims; four context named group routes inspected against current graph. New specific mediated resources/critique do not revise or duplicate these. Pocock pairs reserved.",
+  "new_proposal_ids": [
+    "hr30_kuhn_wittgenstein_normal_research",
+    "hr30_kuhn_foucault_transitions"
+  ],
+  "coverage": {
+    "primary": "Own1970selected1–6and7opening, with original image visualcheck; strongmissingPopperdebt held.",
+    "mediation": "Kindi2017:595–597;Pirozelli2021:295–300; original texts remain unread and gradesBexplicit.",
+    "reception": "Daston2009selected801–802; existingShapin/Merchant reciprocalcriticism retained."
+  },
+  "duplicate_check": {
+    "current_revision": "1.222",
+    "no_current_pair_kind_duplicates": true
+  },
+  "raw_policy": "Only original journal/repository and single-chapter/essay teaching shares; private raw.",
+  "output_hashes": {
+    "proposals.json": "0532f847403411da3945533653357e5c213d4bcd7743157a0609649fcbb2bf32",
+    "sources.json": "e43a02cb1293a84c50f85a571f5a66302e6644a42fa8e36124d710cb68a438da",
+    "held-cases.json": "0c166ca33fa967fc3c999988845758cd354e40cc9144234faec91d0f952e6703",
+    "README.md": "445b40f06196e608776567dce2773deae0420d57d2c6cdb3d2bc31d120590455"
+  }
+}

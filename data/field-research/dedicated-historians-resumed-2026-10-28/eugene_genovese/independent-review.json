@@ -1,0 +1,82 @@
+{
+  "person_id": "eugene_genovese",
+  "reviewer": "Codex continuation passage and coverage review of prior-session researcher dossier; no separate Astra run",
+  "checked_on": "2026-10-29",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "verdict": "pass",
+  "reviewed_sha256": {
+    "context.json": "58b28020a1616f18d4dccd39a4c37e656091bebf8c77bb5502b8f2af0f201247",
+    "proposals.json": "c81bfc62723d5a6b3ae314d42fdadf23fe274d848fad6d1c6198e593468007a7",
+    "sources.json": "28d27bc6a6c3f65cc642b19bdfc0418d064d60299282952a169ed29e71ae5b87",
+    "held-cases.json": "800d0e23bcfbe7236217c0fd6a60fdb2ef2610d26585fdd5e23de2ff622cfd5f",
+    "case-review.json": "b9820488bf618133ef93b4943031d740ee6e5fc98c48d7fa19ab623d8b8019d6",
+    "README.md": "2ec930058c0d0c8cc90953344052f969b4898aa5443da7360fa126404b22dae1"
+  },
+  "raw_receipt_sha256": "df77d9b77f892301ca4c1890a304065118fe9d0ed286378cf689e815e2347c4a",
+  "raw_hashes_verified": true,
+  "proposal_count": 3,
+  "new_source_count": 3,
+  "source_addendum_count": 2,
+  "proposal_decisions": [
+    {
+      "proposal_id": "hr28_genovese_woodward_resource",
+      "decision": "pass",
+      "checked_locator": [
+        "RollJordanRoll,prefaceAsCVannWoodwardobservesparagraph",
+        "Acknowledgments,Thewarmencouragementparagraph"
+      ],
+      "finding": "Specific passage supports the bounded relation with its stated qualifications."
+    },
+    {
+      "proposal_id": "hr28_genovese_dbd_manuscript",
+      "decision": "pass",
+      "checked_locator": [
+        "RollJordanRoll,Acknowledgments,AndImustpaytributetoDavidBrionDavis"
+      ],
+      "finding": "Specific passage supports the bounded relation with its stated qualifications."
+    },
+    {
+      "proposal_id": "hr28_genovese_dubois_exploitation",
+      "decision": "pass",
+      "checked_locator": [
+        "RollJordanRoll,FarmersPlantersOverseers,Contrarytolegendparagraphendingoverseersresponsibility"
+      ],
+      "finding": "Specific passage supports the bounded relation with its stated qualifications."
+    }
+  ],
+  "passage_checks": [
+    {
+      "checked": "Licensed Roll, Jordan, Roll preview: complete preface and acknowledgments",
+      "finding": "Checked Woodward’s quoted framing and indispensable criticism; Davis’s section-by-section ideas/revision contribution; Elizabeth’s exact distinction between extensive intellectual work and coauthorship. Generic manuscript-reader lists do not create automatic edges."
+    },
+    {
+      "checked": "Farmers, Planters, and Overseers: Contrary to legend paragraph",
+      "finding": "Du Bois receives some credence with immediate conditional language and limited overseer responsibility. No exact cited Du Bois work can be inferred from permissions or a terminal note not exposed in the preview."
+    },
+    {
+      "checked": "James access challenge and reception coverage",
+      "finding": "The former fourth proposal was removed. The permitted preview appraisal cannot establish the letter-based influence; note 44/n66 and correspondence remain unread. Existing Johnson/Gramsci mediation, later criticism, joint authors and missing Black scholarly resources retain their dispositions."
+    }
+  ],
+  "coverage_challenges": [
+    {
+      "challenge": "Does a claim depend on unread or ineligible source text?",
+      "resolution": "The retained preview has the licensed Everand canonical URL. Other used texts are original publication or archive pages. A licensed publisher preview was freshly inspected for the candidate James claim; the required note is outside it and unread. The earlier full-reader body and page image are excluded from evidence and were not read in this continuation."
+    },
+    {
+      "challenge": "Are stronger missing or distinct interlocutors hidden by available endpoints?",
+      "resolution": "The former fourth proposal was removed. The permitted preview appraisal cannot establish the letter-based influence; note 44/n66 and correspondence remain unread. Existing Johnson/Gramsci mediation, later criticism, joint authors and missing Black scholarly resources retain their dispositions."
+    }
+  ],
+  "structural_checks": {
+    "existing_endpoints": true,
+    "no_internal_or_current_pair_kind_duplicates": true,
+    "directions_and_kinds_consistent": true,
+    "source_ids_resolve": true
+  },
+  "blocking_findings": [],
+  "limitations": "Selected primary passages and named scholarly reception only, with held leads explicit. No exhaustive network, whole-book reading or additional agent/model run claimed.",
+  "owner_files_modified": true,
+  "freeze_owner_files_on_pass": true
+}

@@ -1,0 +1,5 @@
+# Walter Rodney — dedicated relationship research
+
+Three bounded proposals: Fanon’s early national-bourgeoisie analysis as a resource, Rodney’s later specific disagreements as mediated by Chukwudinma and Kallon, and Wallerstein’s practical support arranging teaching and lecture visits as jointly recalled by Harding, Hill and Strickland. The Fanon authors’ misreading objection, later retained debt and James Turner’s equal credit remain explicit.
+
+Fresh own preface and Davis foreword read in the licensed 2026 reflow preview, with a selected and incomplete 1981 joint introduction. Strong missing debts include manuscript readers, Angela Davis and Turner. Full James lecture and notes read through the publisher; existing 156/157/398/401 remain exact. All eleven live incidents and eight current named/source-linked group routes inspected (seven in pinned baseline). Original archives, recordings, Fanon book, full main books and absent notes remain unread. Independent review pending; no graph or progress edits; OpenAlex paused.

@@ -1,0 +1,7 @@
+# Gérard Noiriel: bounded relationship dossier
+
+Twelve proposals identify resources and particular criticisms from complete original French interviews and a complete scholarly review. Marx, Althusser, Foucault, Elias and Weber complement already represented Bourdieu and Wittgenstein. Veyne, Furet, Latour, Chartier and Elias criticisms remain attributed and qualified. Hamman’s specific book/reader examples credit Roche and Chartier together.
+
+Fresh reading covers Ortiz’s complete first and second interview parts (15 and 26 November 2012), the complete CNRS interview of 6 June 2019 and Hamman’s complete review, numbered paragraphs 1–11. Original books and Chartier’s 1996 review remain unread; exact cited original pages are mediated. No sole founder, master–disciple relationship or complete theoretical adoption is inferred.
+
+All six current incidents and all six original context incidents were inspected with substantive notes; no pinned named group routes exist. Stronger missing Rorty, Bouveresse, Zinn, Rebérioux and collaborative resources remain explicit holds. Hamman’s praise and specific chronological/methodological criticism coexist. Existing graph IDs and claims remain unchanged. Context source records are aligned to current canonical metadata while original context baseline and incidents remain exact. Raw bodies and receipts stay private and ignored; no graph, shared progress, OpenAlex, commit or push is changed.

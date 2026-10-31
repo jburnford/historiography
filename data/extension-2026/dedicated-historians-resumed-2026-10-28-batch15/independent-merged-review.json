@@ -1,0 +1,92 @@
+{
+  "revision": "1.220",
+  "reviewer": "Codex independent merged-packet reviewer /root/historian_review; separate agent from researcher/coordinator",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "review_scope": "Frozen pre-application Cooper/Brown merge against exact live1.219. Prior independent passage/coverage reviews remain exact; this is not an applied audit.",
+  "baseline_revision": "1.219",
+  "baseline_graph_sha256": "5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2657,
+    "sources": 3400,
+    "people": 1438
+  },
+  "packet_sha256": "8d3d024a2bff8dcaa67add18f07eb0528d5187d8e8fe09795dae846b06264816",
+  "freeze_sha256": "7dc40196a3a5972e4e1ed201ca6262d83905e8ac0538fb809ba87425c8b89fc8",
+  "manifest_sha256": "cbcba57bd027796c00369a26b2042c13c8f13677f34fb8f65d36e5b9d798e27c",
+  "text_spacing_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "d7b7476b9e861a916ea2489046bf9370c97b9c6d81f4430a7d54c625d7432c9d",
+    "responses/entry-draft.json": "cbc352aabd498f9441d62c699dfa408598e9ba3f59e9c688a75cf067e47bffa3",
+    "release/editorial-additions.json": "8d3d024a2bff8dcaa67add18f07eb0528d5187d8e8fe09795dae846b06264816",
+    "verification.json": "bb1f774630197a5b9164e6a572bdf9ddf2fbb31f8da9cd63c6cf0454be9af532",
+    "baseline.json": "bd6bd291d0d254c6dcd83766053c1aa983681b2c802f1e77f1307aaf176a9faf",
+    "manifest.json": "cbcba57bd027796c00369a26b2042c13c8f13677f34fb8f65d36e5b9d798e27c",
+    "prepare.py": "dc567dedf14f3b6186ccd7bfafbbfe99096978c4e06f8b94d8d5a6f9998900a1",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 52,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "frederick_cooper": "8489d54c2e8615cb7d8ba2c4382d022188b7851edd65dc1dec049a121d8abbba",
+    "peter_brown": "81790c9a8beb6da36b937880636e3bf77bd7abd9cceb1e6e9eab139b7f6c4913"
+  },
+  "owner_to_packet_mapping": {
+    "frederick_cooper": {
+      "edges": 15,
+      "new_cited_sources": 2,
+      "source_addenda": 2,
+      "all_reviewed_fields_exact": true
+    },
+    "peter_brown": {
+      "edges": 2,
+      "new_cited_sources": 2,
+      "held_only_new_sources_excluded": 1,
+      "source_addenda": 1,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "checks": {
+    "all_six_owner_and_access_hashes_match_each_independent_review": true,
+    "all_17_proposals_map_exactly_to_draft_and_packet": true,
+    "empty_text_spacing_overlay": true,
+    "no_kind_type_or_direction_changes": true,
+    "legacy_normalizations": {},
+    "four_cited_new_sources_exact": true,
+    "all_three_addenda_exact": true,
+    "excluded_uncited_source": "hr30_brown_roundtable2024 remains only in the frozen owner dossier and is absent from packet and simulated production.",
+    "no_current_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_source_ids_resolve": true,
+    "all_2657_historical_edges_exact": true,
+    "edge_2034_live_spacing_preserved": "Simulation retains exact1.219 evidence_note, not earlier spacing in the1.204research-context snapshot. Neither historical context nor live edge is rewritten.",
+    "all_3400_old_sources_exact_except_three_specified_verification_appends": true,
+    "verification_status_date_changes_only_as_reviewed": true,
+    "nodes_people_chronology_and_other_tables_exact": true,
+    "revision_history_exact_prefix": true,
+    "no_extra_mutation_fields": true,
+    "namesake_and_evidence_holds": "Cooper namesakes and Brown wrong-person matches stay excluded; corrected full Brubaker endpoint/evidence-limit distinction remains frozen.",
+    "source_restrictions": "Actual-body route/scope reviews remain hash-pinned; no fresh cited-original, memoir, identity-body or1995essay reading inferred by merge. Packet and draft have zero prohibited-route findings.",
+    "request_partition": "66previously implemented +2selected +33remaining =101, disjoint and equal to original resumed request.",
+    "prepare_check": "python3 data/extension-2026/dedicated-historians-resumed-2026-10-28-batch15/prepare.py --check passed with no mutation.",
+    "source_host_tests": "python3 -m unittest tests.test_source_hosts:3passed.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 17,
+    "sources": 4,
+    "source_addenda": 3
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2674,
+    "sources": 3404,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "blocking_findings": [],
+  "limitations": "Pre-application graph simulation only. No browser,JavaScript,build,push or publication claims. No frozen input, owner, accepted packet, graph or website file edited.",
+  "frozen_inputs_modified": false
+}

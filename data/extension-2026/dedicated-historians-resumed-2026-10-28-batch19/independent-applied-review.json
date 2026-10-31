@@ -1,0 +1,55 @@
+{
+  "revision": "1.224",
+  "checked_on": "2026-10-30",
+  "reviewer": "Codex independent applied-batch reviewer /root/research_c; independent of all three selected researchers and coordinator",
+  "verdict": "pass",
+  "graph_path": "historiography-1920-2000.json",
+  "graph_sha256": "cd99de2697b02aa5bc6664abf23d0f236dcda36f714d48646a39cd821ab8fcb3",
+  "acceptance_sha256": "059a13900f65a26fdd48f2105d3c8f00e365527d5d21fc61283cbdeaf3e2b4e2",
+  "packet_sha256": "03bea65ff7ba679aa5bfacbd6e37748df6675559857895835c642a145b9c5505",
+  "freeze_sha256": "14e550c37d8b3d3e94277aa92ceee02b3676244deea7314a8499497aa3f8bffc",
+  "manifest_sha256": "8f5f04e88bf1ac6f55efd356fbf61bc0093cac649bbec2bd745788f057832d6d",
+  "independent_merged_review_sha256": "ff71dda45a51f54bc0e71770c979afc15b78bb2f844d28bb74bb081df4e8f8c5",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "1dfbb31ff8ff4b625ef1e23ce04e32cbece21742bd3e1b3a0fd69cbfc3d65ef0",
+    "responses/entry-draft.json": "6d06890df2404a4bd50e9c1b4dfcefd1554a9e3473201a8f30ee63e02d66f00d",
+    "release/editorial-additions.json": "03bea65ff7ba679aa5bfacbd6e37748df6675559857895835c642a145b9c5505",
+    "verification.json": "f987f9d8755c5a8ba748f23cf822695f223bf49645bd8e40a6c6c07f0784d2bd",
+    "baseline.json": "c6ec67cec67c98e0687f83ecf2698d0cf276d0c163f418867ff8b46f199cad95",
+    "manifest.json": "8f5f04e88bf1ac6f55efd356fbf61bc0093cac649bbec2bd745788f057832d6d",
+    "prepare.py": "85e5435a60786afffd73210efd8fec89955defcd33a27c926728dd56560f89a2",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 68,
+  "all_frozen_and_manifest_inputs_hash_verified": true,
+  "expected_production_matches_live_and_acceptance": true,
+  "baseline_revision": "1.223",
+  "restored_baseline_sha256": "96457e47349ca094f9bf404d367569b278eb03598a3eea79fecb49b7c3713fcd",
+  "baseline_snapshot_path": "drafts/historiography-1920-2000.v1.223.json",
+  "baseline_snapshot_sha256": "96457e47349ca094f9bf404d367569b278eb03598a3eea79fecb49b7c3713fcd",
+  "checks": {
+    "independent_acceptance_restoration": "Only five receipt tables truncated and three prior source records restored; exact serialized 1.223 SHA and snapshot match.",
+    "production_reconstruction": "Frozen packet independently transforms restored 1.223 into exact live 1.224; Batch.check agrees.",
+    "preservation": "All 2704 historical edges and all nodes, people, chronology, other tables and revision prefix are exact; only three authorized source verification appends differ.",
+    "added_edges": "Edges2705 through2723 match frozen packet order, IDs and all fields.",
+    "new_sources": "Five cited new sources exactly match packet sorted order; two held-only sources remain absent.",
+    "coverage": "Merged review retains newer Pocock incidents for Kuhn and exact current Darnton1859 prose including Vovelle/Chartier qualifications. All independent owner/access/raw hashes remain frozen.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_restored_baseline": true
+  },
+  "applied_delta": {
+    "edges": 19,
+    "sources": 5,
+    "source_addenda": 3
+  },
+  "live_counts": {
+    "nodes": 368,
+    "edges": 2723,
+    "sources": 3418,
+    "people": 1438
+  },
+  "blocking_findings": [],
+  "limitations": "Independent graph/acceptance preservation audit only. Data/JavaScript/build/export/browser checks remain coordinator work; no graph, owner, raw, frozen or product file modified.",
+  "frozen_inputs_modified": false
+}

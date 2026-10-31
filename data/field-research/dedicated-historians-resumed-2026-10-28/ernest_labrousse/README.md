@@ -1,0 +1,7 @@
+# Ernest Labrousse: bounded relationship dossier
+
+Four proposals record Marx as a formative resource mediated by Simiand and Aftalion, Febvre’s interrelated research program, Braudel’s collective-forces exemplar and Braudel’s qualified short-duration criticism. Positive resources and temporal disagreement coexist. Stronger missing methods, early reading and critical interlocutors remain explicit holds.
+
+Fresh original reading covers Charle’s headnote 111 and actual Persée page images 112–116 and 123–125 of the interview, recorded late 1978/early 1979 and published 1980. Critical 113–114 were visually checked; no PDF or complete interview reading is claimed. Original Braudel text 727 and 729–732, Labrousse’s 1956 opening 3 and the 1989 Grenier–Lepetit opening 1337 were read through successful repository renderings. Failed PDF and later-page HTML retrievals remain explicit. No unrelated retained body, complete monograph, cited original or remaining interview page was read.
+
+All thirteen current incidents and four named group routes were inspected, including Vovelle’s newer edge 2261. Existing IDs, proxy routes, critical qualifications and book publication dates remain exact. Nonautomatic causation, individual agency, co-credit and uneven crisis patterns constrain the new claims. Four append-only readings, no new source record; no graph, shared progress, OpenAlex, commit or push is changed.

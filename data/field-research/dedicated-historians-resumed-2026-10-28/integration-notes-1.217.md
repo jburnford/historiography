@@ -1,0 +1,9 @@
+Five whole-person dossiers use research baseline 1.204 and exact production baseline 1.216, including the text and source-link repair. The previous 55, this batch of five and the remaining 41 partition the original 101-person resumed queue. Preserve every earlier edge and all other graph records except append-only source notes. Original owner files with passing reviews remain frozen.
+
+Source access was checked again against the 29 October rules. Each dossier has a separate, hash-pinned source-access review. New source bodies came from permitted publisher, repository, author or original publication routes; unread originals and abstract-only limits remain explicit. One unfrozen Eley context citation was aligned with the repaired canonical publisher URL. No historical graph or accepted packet was rewritten.
+
+Iacovetta, Goody and Fuentes retain their prior independent Astra reviews. Eley and Deloria have a new Codex passage and coverage review of the prior researcher dossiers; no additional Astra run is claimed. Deloria's abbreviated Pagden titles were corrected against the publisher sample chapter before approval.
+
+The separate text-spacing.json overlay inserts spaces in new display prose without changing any non-space character, source ID, URL, locator path or classification. It preserves frozen owner files and their hashes. Every overlay entry is checked against its exact original value; no earlier graph text is edited. Source bodies are excluded from the public build.
+
+No quota, field surrogate or automatic personal edge. Named mediation, coauthors, editions and access limits remain intact. Tocqueville remains excluded as an owned dossier, while a bounded resource in another person's own text is permitted. No biography, chronology, life, Indigenous-history or dissertation changes. OpenAlex remains paused; UK collection stays separate. No commit or push.

@@ -1,0 +1,11 @@
+# Frederick Cooper: bounded relationship review
+
+Research baseline is 1.204; live duplicate/preservation check is against 1.219. Fifteen proposals use fresh permitted primary reading. Five earlier incidents and sixteen named group routes were inspected; the latter include wrong-person matches and shared arguments, not sixteen personal relationships.
+
+Read the complete December 2013 interview in the 2017 Leiden University Press reprint, printed 337–352 with 24 notes, from the public Library of Congress publisher ebook already retained for Goody. The shared PDF remains unmodified and is pinned in the private retrieval receipt. Reprint locators do not masquerade as original Itinerario 2014 pagination. Read the complete original 2022 journal interview, 41–61, including bibliography, in its publisher PDF. It translates English email exchanges from December 2021–February 2022; Vadot and Bourel translated and Cooper reviewed the French text.
+
+Read the complete original Cambridge Cooper article, 60–68 with all 18 notes, and selected Eley–Nield reply, 76–83, including their complete response to Cooper, 81–83. The earlier selected 81–86 reply record is preserved. No complete monograph, cited original, 1995 retrospective, joint identity paper or original 2014 interview manifestation is newly read.
+
+Specific intellectual debts coexist with disagreement. The Du Bois answer corrects the interviewers’ suggestion of an early continuous debt; the Goody comparison does not prove influence. The Genovese date error in the 2022 witness is retained as an error rather than repeated as publication history. Potter and Senegalese teachers, Burbank and other coauthors, da Costa, Senghor and further strong missing interlocutors remain explicit holds. Richard N. Cooper’s Pomeranz review and J. P. Cooper’s Brenner response are excluded as namesakes; no existing group record is changed.
+
+Only original publisher/journal and public repository routes were used. Raw bodies stay private and ignored; public sources use publisher pages or DOI links. Unfrozen context source records are aligned to repaired canonical records without changing the research baseline or old incidents. No new biography, life fact, field, corpus analysis, OpenAlex work, commit or push.

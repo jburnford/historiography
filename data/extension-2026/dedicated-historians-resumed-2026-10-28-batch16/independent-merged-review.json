@@ -1,0 +1,77 @@
+{
+  "revision": "1.221",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_a; separate from researchers /root/research_b and /root/research_c and coordinator /root",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "baseline_revision": "1.220",
+  "baseline_graph_sha256": "aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2674,
+    "sources": 3404,
+    "people": 1438
+  },
+  "packet_sha256": "902dc40fe58e47ad353d4cd1637ea644d2ac0a4c1cf6dd4c5931bd81d0d5402f",
+  "freeze_sha256": "c9da8cf244944200bb956435bc807d11c81ee3b8c0884cd4cb4b136580f731b5",
+  "manifest_sha256": "16cdbd75fd1ef5b3d0439ccc948333a2ad9117623e156cd88d5732d0b004e421",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "5f7308c6cc715a7c2b19fef1ec62c2ac97cc7a0c6fa53629e608a7eba55a63e5",
+    "responses/entry-draft.json": "10769a59de62a5bcc879b554307dcb4d0dfbf2c8e581d2ee6dc92f3f8bfa1436",
+    "release/editorial-additions.json": "902dc40fe58e47ad353d4cd1637ea644d2ac0a4c1cf6dd4c5931bd81d0d5402f",
+    "verification.json": "06a52dce6ff6aad9d147eef5d4dc23ff35734d9717cd9e21b6fb81c8843bb4e8",
+    "baseline.json": "2b776b9509dacfeead07e55ecc8a07cdcc7be617770a475ca026401fd26d0c8d",
+    "manifest.json": "16cdbd75fd1ef5b3d0439ccc948333a2ad9117623e156cd88d5732d0b004e421",
+    "prepare.py": "8d75aad8ad637a552c8f085822f2179639e3c9e373018023be0f2325f4b690f2",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 54,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_to_packet_mapping": {
+    "cv_wedgwood": {
+      "edges": 2,
+      "new_cited_sources": 2,
+      "source_addenda": 1,
+      "owner_review_sha256": "4d4a0273a9dba641cf3ce8b48e39eaf3fd7bf3f3dae0d2d95b7e47f664232bf5",
+      "source_access_sha256": "1ab5c1915caf6cf112257a8dbb3398fc21717384b6665cc7c9069403533ab7e9"
+    },
+    "joel_mokyr": {
+      "edges": 6,
+      "new_cited_sources": 0,
+      "source_addenda": 3,
+      "owner_review_sha256": "c1b31eb42cf535a966dcbcc7d4e2576f1b52ddf9e0c24d63caebacfd77d1384b",
+      "source_access_sha256": "afb68f74d098add1ec77e6085acd6c643cea111c3c8058f50c52750edff1c89c"
+    }
+  },
+  "private_raw_files_hash_verified": 15,
+  "checks": {
+    "exact_owner_fields_mapped": true,
+    "empty_spacing_overlay": true,
+    "no_direction_or_type_changes": true,
+    "all_endpoints_and_citations_resolve": true,
+    "no_endpoint_direction_kind_duplicates": true,
+    "all_2674_old_edges_exact": true,
+    "all_3404_old_sources_exact_except_four_reviewed_verification_appends": true,
+    "all_other_tables_and_revision_prefix_exact": true,
+    "70completed_plus31remaining_request_partition": true,
+    "source_host_findings": 0,
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "warnings_unchanged": true,
+    "prepare_check": "python batch16/prepare.py --check passed without mutation."
+  },
+  "expected_delta": {
+    "edges": 8,
+    "sources": 2,
+    "source_addenda": 4
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2682,
+    "sources": 3406,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "9f15f1922926d0e9a087833faa218a095ca635f2fc460490e62284ea4cf1bd85",
+  "blocking_findings": [],
+  "limitations": "Pre-application merge/simulation audit. Frozen owner passage/coverage reviews retain independent identities and exact scope; no fresh book or body reading claimed by this merge, no applied/browser/build/publication claim. No frozen input or graph edited.",
+  "frozen_inputs_modified": false
+}

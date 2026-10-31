@@ -1,0 +1,9 @@
+# Independent 1.230 merged review: PASS
+
+All fourteen Parr, Creighton and Rodney proposals map exactly to frozen owner records, draft and packet. Every frozen file, all 80 manifest inputs, the six owner hashes per dossier, source-access reviews and private raw receipts/files match. One cited new source and seven addenda are exact. No spacing overlay, endpoint-kind duplicate or extra mutation enters the packet.
+
+Independent in-memory transformation of exact 1.229 yields 368 entries, 2821 relationships, 3440 sources and 1438 people, SHA d94e10d996ac7731b3fcaacd80b8f020115bd0152d70205ec4242e4d59ac7b27. Every historical edge and every other table/field/revision prefix remains exact; only seven authorized source verification appends affect old records. Zero structural errors and the same 46 warnings. Prepare check and three source-host tests pass. The request partitions as 98 prior, three selected and zero remaining.
+
+Parr’s later embodied framework retains useful linguistic tools, older positive Scott resource, eight corrected live group routes and absent endnotes. Creighton’s Ouellet criticism retains self-revision and reciprocal positive borrowing; Davis’s comparison retains Careless’s origins denial and scholarly mediation. Rodney’s Fanon resources and disagreements retain the two readers’ correction of his portrayal and continued debt, while Wallerstein’s teaching support preserves joint authorship and Turner credit. No historical voice or reading qualification is changed.
+
+Codex /root/research_c is independent of all three selected researchers and coordinator. No frozen input, owner, raw or live graph file was modified. This is pre-application approval for this packet. The coordinator was separately alerted to a prior frozen Wolfe hold misidentifying Fanon as a missing full endpoint; that distinct historical coverage correction is not silently applied here.

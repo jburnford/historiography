@@ -1,0 +1,89 @@
+{
+  "revision": "1.222",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_c; separate from both selected researchers and coordinator",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "review_scope": "Frozen White/Cook merge before application against exact1.221; prior independent passage reviews remain exact.",
+  "baseline_revision": "1.221",
+  "baseline_graph_sha256": "9f15f1922926d0e9a087833faa218a095ca635f2fc460490e62284ea4cf1bd85",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2682,
+    "sources": 3406,
+    "people": 1438
+  },
+  "packet_sha256": "97949bec38d67ba228d8e02a66320815d857a6d5cf78ef88ce1ea0833d531d66",
+  "freeze_sha256": "ee3248f674a784f28ab8de5aa6174b8b70f8faf53c5d7aeaf834f9e08810d6fd",
+  "manifest_sha256": "01015bd81f343fb459449a7d3ee35f32d9a0bff763fec9c060c8b7eaf697434b",
+  "text_spacing_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "6e24e32400a950da97dc89aff932f0ae167161be646d13fc1b6c47476e508bf9",
+    "responses/entry-draft.json": "fdaa10322a28b3ebe22a8090fbb8090e34819d9a4f244b7c386544ebe3e74771",
+    "release/editorial-additions.json": "97949bec38d67ba228d8e02a66320815d857a6d5cf78ef88ce1ea0833d531d66",
+    "verification.json": "4e35a8e9a6ba712ba542329c3cff42e213f228164718bd5e901dac84c4930b55",
+    "baseline.json": "9c462e60c3056dbcb535b7699fe6291cd6846cf1f984da5ad308743ae6eba367",
+    "manifest.json": "01015bd81f343fb459449a7d3ee35f32d9a0bff763fec9c060c8b7eaf697434b",
+    "prepare.py": "8bf09c275da946b5a56163ce01c49f34b3c7c4e2b7b921a728cef61ab633f04b",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 56,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_review_hashes": {
+    "richard_white": "ed448094d575f42424a0a01535d901259885102a52b11081bc0ccf7460a1f3b2",
+    "ramsay_cook": "596d606b9001732a20fcfd2e3e86b006cb5013a10762be4e40860a1ffa47563a"
+  },
+  "owner_to_packet_mapping": {
+    "richard_white": {
+      "edges": 7,
+      "new_cited_sources": 1,
+      "source_addenda": 3,
+      "all_reviewed_fields_exact": true
+    },
+    "ramsay_cook": {
+      "edges": 5,
+      "new_cited_sources": 2,
+      "source_addenda": 3,
+      "all_reviewed_fields_exact": true
+    }
+  },
+  "checks": {
+    "all_six_owner_and_access_hashes_match_each_independent_review": true,
+    "all12proposals_map_exactly_to_draft_and_packet": true,
+    "empty_text_spacing_overlay": true,
+    "no_kind_type_or_direction_changes": true,
+    "three_new_sources_exact_and_sorted": true,
+    "all_six_addenda_exact": true,
+    "no_current_or_internal_endpoint_kind_duplicates": true,
+    "all_endpoints_and_source_ids_resolve": true,
+    "all2682historical_edges_exact": true,
+    "all3406old_sources_exact_except_six_specified_verification_appends": true,
+    "nodes_people_chronology_and_other_tables_exact": true,
+    "revision_history_exact_prefix": true,
+    "no_extra_mutation_fields": true,
+    "source_restrictions": "Prior actual-source reviews remain hash-pinned, named readers/translation/retrospective dates and unread originals preserved; packet and draft have no prohibited-route findings.",
+    "request_partition": "70previously implemented +2selected +29remaining =101; after this subset72implemented. Disjoint and originalrequestexact.",
+    "cook_current_incidents": "Current12 includes oldcontext10 plus frozenBerger2395/2396. Both reciprocal critiques preserved exactly; new Berger→Cook1983resource is distinct from Berger→Cookimperialismcritique. No oldcontext/reviewmodified.",
+    "white_limits": "Scott reciprocal claims retain named-reader mediation and2009/2011 chronology; LéviStrauss influence plus criticism retain nuance; Deloria power/portability criticism coexists with positivecultural resource. NamesakeWhite and missingstrongerinterlocutorholds remain.",
+    "cook_limits": "Harris/Berger/McKay bounded resources preserve jointchapter and originalreadinglimits; Wright2016named scholarly route explicitly mediated, Wright2017corroborating sourcecited; stronger missingteachers and availablementoring/authorleadholds remain.",
+    "prepare_check": "prepare.py --check passed without mutation.",
+    "source_host_tests": "3 unittest source-host cases passed.",
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "structural_warnings_equal_baseline": true
+  },
+  "expected_delta": {
+    "edges": 12,
+    "sources": 3,
+    "source_addenda": 6
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2694,
+    "sources": 3409,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "087eee8add8e65c7a1da0a60b285b16c22e1fe29bbefabf4512fa18c53373a87",
+  "blocking_findings": [],
+  "limitations": "Pre-application simulation and exact integration audit only; no new primary reading, applied approval, browser/build/push/publication claims. Frozen and owner files untouched.",
+  "frozen_inputs_modified": false
+}

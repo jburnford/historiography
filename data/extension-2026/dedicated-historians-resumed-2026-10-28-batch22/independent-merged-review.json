@@ -1,0 +1,101 @@
+{
+  "revision": "1.227",
+  "reviewer": "Codex independent merged-packet reviewer /root/research_a; separate from researchers /root/research_b and /root/research_c and coordinator /root",
+  "checked_on": "2026-10-30",
+  "verdict": "pass",
+  "baseline_revision": "1.226",
+  "baseline_graph_sha256": "e2367ae0881c6ca12ee25d48dd60a96b0228f8e8fd01ce52aaf90cb6e3eb48ec",
+  "baseline_counts": {
+    "nodes": 368,
+    "edges": 2767,
+    "sources": 3431,
+    "people": 1438
+  },
+  "packet_sha256": "b096a7f2c707f2b6357ae61262775457f413ada83529a6216df4c32e80ea0910",
+  "freeze_sha256": "2816321aaac874c93415fcbc2a47023695e78766048a87617e781c5c6c0bb791",
+  "manifest_sha256": "220f4f360321472781c407c1c2b0b0e12cae3e9544dc09dbefc273e03ef6b288",
+  "reviewed_frozen_files_sha256": {
+    "batch.json": "a1b3947025f0dcc9a25539b7dc3a21d6640dc254d5ccf7ed64c9d4ee9fac22cb",
+    "responses/entry-draft.json": "92516292bd48ead2270fbe9944e350cd2689a17662e1e2a409429575c0a4c181",
+    "release/editorial-additions.json": "b096a7f2c707f2b6357ae61262775457f413ada83529a6216df4c32e80ea0910",
+    "verification.json": "3fe24c01fa3f47616dda8139a54caf0c03b4b86a1741b5ac7906ddf5c4fea925",
+    "baseline.json": "5a6e5c76940b653c2d80dfa81548426033ea6f16f995e564d73a393996e091a6",
+    "manifest.json": "220f4f360321472781c407c1c2b0b0e12cae3e9544dc09dbefc273e03ef6b288",
+    "prepare.py": "0405819120f916ead25552b4184a85f58d8777e2472133039833581bd94b36d9",
+    "text-spacing.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "manifest_input_count": 82,
+  "all_manifest_inputs_hash_verified": true,
+  "owner_to_packet_mapping": {
+    "jon_lawrence": {
+      "edges": 2,
+      "new_cited_sources": 0,
+      "source_addenda": 4,
+      "owner_review_sha256": "8c99825ca5f3ef534b5b01c8f1cffa583ca253948231f67735d7822694feeeb3",
+      "source_access_sha256": "c795bd7b064fd897ec978b9949fcf98949128075fc60b56f41fe985c4d4275b7"
+    },
+    "clr_james": {
+      "edges": 3,
+      "new_cited_sources": 2,
+      "source_addenda": 0,
+      "owner_review_sha256": "aec9c6161222f69fd81fd08cb4236e69b722dc0c0791361aa606fbcc9bb4929f",
+      "source_access_sha256": "1642e095df56e036c33e347d4d7ff6c22c750c63a5d096659120789f7b12c07b"
+    },
+    "ian_mckay": {
+      "edges": 3,
+      "new_cited_sources": 1,
+      "source_addenda": 1,
+      "owner_review_sha256": "725055076ae0e9459ec92d70ad81a5ffc8183fa6f30138ddec1c2eaeb35d6714",
+      "source_access_sha256": "7b020e0f748fd113c050fbda9ad66b5bd037196445cccc0b364774817ab69bd3"
+    },
+    "cole_harris": {
+      "edges": 3,
+      "new_cited_sources": 1,
+      "source_addenda": 3,
+      "owner_review_sha256": "722616bfeaab0a082623e76ff23686f8182f418b078d277dae6cbc51f24a5b2a",
+      "source_access_sha256": "bf51ed4769ba9c657ec4c6e8e7fe5ef632df6e8ecd652655f3a4c3324b4f37e4"
+    }
+  },
+  "private_raw_files_hash_verified": 31,
+  "checks": {
+    "exact_owner_fields_mapped": true,
+    "empty_spacing_overlay": true,
+    "no_direction_or_type_changes": true,
+    "all_endpoints_and_citations_resolve": true,
+    "no_endpoint_direction_kind_duplicates": true,
+    "all_2767_old_edges_exact": true,
+    "all_3431_old_sources_exact_except_eight_reviewed_verification_appends": true,
+    "all_other_tables_and_revision_prefix_exact": true,
+    "86previous_plus4selected_plus11remaining_request_partition": true,
+    "source_host_findings": 0,
+    "structural_errors": 0,
+    "structural_warnings": 46,
+    "warnings_unchanged": true,
+    "prepare_check": "python batch22/prepare.py --check passed without mutation."
+  },
+  "expected_delta": {
+    "edges": 11,
+    "sources": 4,
+    "source_addenda": 8
+  },
+  "expected_counts": {
+    "nodes": 368,
+    "edges": 2778,
+    "sources": 3435,
+    "people": 1438
+  },
+  "independently_reproduced_production_sha256": "0d40483fd7064ed46896c1899df51104d8d9543356a3a18dab898b31c8732610",
+  "blocking_findings": [],
+  "limitations": "Pre-application merge/simulation audit. Frozen owner passage/coverage reviews retain independent identities and exact scope; no fresh book or body reading claimed by this merge, no applied/browser/build/publication claim. No frozen input or graph edited.",
+  "frozen_inputs_modified": false,
+  "coverage_supplement": {
+    "checked_revision": "1.226",
+    "live_incident_counts": {
+      "jon_lawrence": 11,
+      "clr_james": 14,
+      "ian_mckay": 10,
+      "cole_harris": 9
+    },
+    "finding": "All current incident IDs match the owner/reviewer scopes: Lawrence11, James14, McKay10, Harris9. No intervening 1.226 incident delta for the older 1.225 Lawrence or McKay coverage. The merged claims preserve McKay praise with specific regional/category objections and Harris mediated collective Atlas resources, primary Said use and existing mixed postcolonial critique. Group-route checks and original-versus-mediated limits remain pinned in independent owner reviews; no reverse comparison duplicate."
+  }
+}

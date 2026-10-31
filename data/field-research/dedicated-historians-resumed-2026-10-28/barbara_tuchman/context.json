@@ -1,0 +1,365 @@
+{
+  "person_id": "barbara_tuchman",
+  "baseline_revision": "1.204",
+  "baseline_graph_sha256": "3196536ff51728b753b67cb1ca87731cbc6069bfc0a9046ae79cf4f2027c6aaf",
+  "node": {
+    "id": "barbara_tuchman",
+    "label": "Barbara W. Tuchman",
+    "date_label": "Narrative, diplomacy, and war · 1960s onward",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "Builds historical narratives around decisions, personalities and political circumstances, combining readable prose with documentary reconstruction. Her accounts of research identify specialist help, conflicting evidence and uncertain inference. Critical reception asks how narrative selection relates to wider social and institutional explanation.",
+    "representative_figures_and_works": "The Guns of August (1962). A useful case for asking how narrative pace, characterization, and the selection of events support or constrain an explanation.",
+    "source_ids": [
+      "tuchman",
+      "tuchman_mirror_foreword",
+      "tuchman_search_excerpt",
+      "stone_tuchman_review",
+      "fox_stone_tuchman_exchange"
+    ],
+    "entry_kind": "person",
+    "entry_type": "Individual thinker or historian",
+    "scope_note": "The Guns of August (1962) precedes the 1979 revival diagnosis. In “In Search of History” Tuchman explicitly invokes Ranke’s historical truth and Bowen’s reader principle while rejecting invented detail. A Distant Mirror (1978) uses Coucy as a narrative vehicle and acknowledges an unanswered initial causal question, selection bias and debts to editors, chroniclers and sociological medievalists. Stone’s 1978 criticism and Fox-Genovese’s defense are distinct interpretations, not a simple narrative-versus-analysis divide. Specialist assistance does not mean agreement with every conclusion; Tuchman is not placed in women’s history solely because she is a woman, or in Marxism because a Marxist defended her.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected contributions · 1962–1978",
+      "selection_note": "Selected dated contributions, not career or lifespan boundaries.",
+      "events": [
+        {
+          "id": "event_e35cf7aa9984",
+          "label": "The Guns of August",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1962,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tuchman"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        },
+        {
+          "id": "event_6d4658a6d035",
+          "label": "A Distant Mirror",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tuchman_mirror_foreword"
+          ],
+          "support": "Date retained from the existing entry/bibliographic evidence. See the cited source records for their original reading and metadata limits.",
+          "basis": "existing_entry_and_bibliography"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "No continuous historical duration or ending is established by this selection."
+      },
+      "interpretation": "Explicit selection from the existing entry and bibliography. Original source reading limits remain; no new whole-work verification or field survey is claimed.",
+      "prepared_on": "2026-10-15",
+      "editorial_record": "data/production-batches/chronology-1.141/acceptance.json"
+    }
+  },
+  "incident_edges": [
+    {
+      "id": "edge_287",
+      "source": "barbara_tuchman",
+      "target": "military",
+      "relationship": "uses documented narrative detail to reconstruct decisions and the opening of the First World War",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "tuchman",
+        "tuchman_search_excerpt"
+      ],
+      "evidence_note": "Publisher description establishes the work’s focus; Tuchman’s own methodological excerpt insists on evidence and supplies a weather example. The complete Guns of August source apparatus has not been newly checked, and a craft statement does not independently validate every reconstructed decision.",
+      "map_label": "War decisions and documented narrative detail"
+    },
+    {
+      "id": "edge_288",
+      "source": "barbara_tuchman",
+      "target": "political",
+      "relationship": "connects diplomatic choices and political circumstances through narrative reconstruction",
+      "type": "connection",
+      "directed": true,
+      "relationship_kind": "contribution",
+      "source_ids": [
+        "tuchman",
+        "tuchman_mirror_foreword",
+        "stone_tuchman_review",
+        "fox_stone_tuchman_exchange"
+      ],
+      "evidence_note": "The Guns of August provides the original context. A Distant Mirror’s foreword and 1978 reception add a distinct case about selecting events and relating individuals to institutions; this is not proof that narrative alone supplies a sufficient explanation.",
+      "map_label": "Political choices and explanatory selection"
+    },
+    {
+      "id": "edge_289",
+      "source": "barbara_tuchman",
+      "target": "revival",
+      "relationship": "shows that prominent narrative history and disputes over its explanation preceded the 1979 revival diagnosis",
+      "type": "connection",
+      "directed": false,
+      "relationship_kind": "comparison",
+      "source_ids": [
+        "tuchman",
+        "stone_revival",
+        "tuchman_search_excerpt",
+        "stone_tuchman_review",
+        "fox_stone_tuchman_exchange"
+      ],
+      "evidence_note": "The 1962 book and 1978 review exchange establish chronology. Stone’s 1979 essay now has selected primary checks, including its recognition of continuing narrative practice; no causal origin or Tuchman endorsement of White is inferred.",
+      "map_label": "Narrative practice before the revival diagnosis"
+    },
+    {
+      "id": "edge_552",
+      "source": "ranke",
+      "target": "barbara_tuchman",
+      "relationship": "Tuchman explicitly invokes Ranke’s historical truth while acknowledging limits to reconstruction",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "tuchman_search_excerpt"
+      ],
+      "evidence_note": "The publisher excerpt of “In Search of History” names Ranke and insists on staying within evidence. This is documented reception of a principle, not proof that all Tuchman’s methods descend from Ranke or that every claim is accurate.",
+      "map_label": "Ranke: truth, evidence and incomplete recovery",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_553",
+      "source": "political",
+      "target": "barbara_tuchman",
+      "relationship": "Named teachers, researchers, medieval specialists and an editor support Tuchman’s historical practice",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "tuchman_mirror_foreword",
+        "tuchman_search_excerpt"
+      ],
+      "evidence_note": "Her excerpt recalls McIlwain’s teaching; A Distant Mirror acknowledges Brown and Henneman’s advice, Alma’s substantial research and critical reading, and Gottlieb’s editing, among other assistance. The broad endpoint groups specific contributions, not a school’s unified doctrine or adviser endorsement.",
+      "map_label": "Teaching, specialist advice, research and editing",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_554",
+      "source": "lawrence_stone",
+      "target": "barbara_tuchman",
+      "relationship": "Stone questions whether Tuchman’s narrative selection explains institutions and historical change",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "source_ids": [
+        "stone_tuchman_review"
+      ],
+      "evidence_note": "The 1978 review praises scholarship and public communication while criticizing modern analogy and event selection. Placement connects a specific narrative-method debate to the later revival neighborhood; it does not backdate the 1979 diagnosis or make Stone opposed to all narrative.",
+      "map_label": "Stone: analogy and explanatory selection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_555",
+      "source": "marx",
+      "target": "barbara_tuchman",
+      "relationship": "Fox-Genovese defends narrative interpretation and challenges Stone’s assumptions about crisis and progress",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "fox_stone_tuchman_exchange"
+      ],
+      "evidence_note": "Her December 1978 letter explicitly states that Tuchman does not subscribe to Marxism. This is a supportive critical intervention in reception, not an influence on the completed book or endorsement of every conclusion; Stone’s reply remains visible in the same source.",
+      "map_label": "Fox-Genovese: narrative, crisis and progress",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "id": "edge_556",
+      "source": "barbara_tuchman",
+      "target": "biography",
+      "relationship": "Tuchman uses Coucy’s life as a narrative vehicle through a wider historical period",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "source_ids": [
+        "tuchman_mirror_foreword",
+        "stone_tuchman_review"
+      ],
+      "evidence_note": "The foreword explains the selection and documentary gaps; Stone questions the protagonist’s biographical visibility and the relation to institutional explanation. The method is a resource for discussing biography’s scale and limits, not proof of representative sampling.",
+      "map_label": "Coucy: a life organizing a wider narrative",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "named_group_routes": [],
+  "relevant_rosters": [
+    {
+      "node_id": "ranke",
+      "label": "Critical historical scholarship",
+      "records": [
+        {
+          "person_id": "barbara_tuchman",
+          "role": "contributor",
+          "context": "Explicitly adopts Ranke’s interest in historical truth while acknowledging that complete reconstruction remains beyond reach and insisting on staying within evidence.",
+          "works": "“In Search of History,” publisher excerpt in Practicing History (consulted 1982 edition)",
+          "source_ids": [
+            "tuchman_search_excerpt"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "military",
+      "label": "Military history",
+      "records": [
+        {
+          "person_id": "barbara_tuchman",
+          "role": "historian",
+          "context": "Builds the opening-war narrative around decisions and circumstances. Her methodological excerpt insists on documented detail; the full Guns of August source apparatus remains to be collated.",
+          "works": "The Guns of August (1962); “In Search of History,” publisher excerpt in Practicing History (consulted 1982 edition)",
+          "source_ids": [
+            "tuchman",
+            "tuchman_search_excerpt"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_287"
+        }
+      ]
+    },
+    {
+      "node_id": "political",
+      "label": "Political history",
+      "records": [
+        {
+          "person_id": "barbara_tuchman",
+          "role": "historian",
+          "context": "Combines political decisions and readable narrative; A Distant Mirror also exposes the difficulty of institutional explanation through a selected noble protagonist.",
+          "works": "The Guns of August (1962); A Distant Mirror (1978), foreword; Stone and Fox-Genovese exchange (1978)",
+          "source_ids": [
+            "tuchman",
+            "tuchman_mirror_foreword",
+            "stone_tuchman_review",
+            "fox_stone_tuchman_exchange"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_288"
+        }
+      ]
+    },
+    {
+      "node_id": "biography",
+      "label": "Biography / life writing",
+      "records": [
+        {
+          "person_id": "barbara_tuchman",
+          "role": "historian",
+          "context": "Uses Enguerrand de Coucy as a vehicle through fourteenth-century events. The foreword explains the selection; Stone questions how well the shadowy protagonist serves biographical understanding.",
+          "works": "A Distant Mirror (1978), foreword; Stone review (1978)",
+          "source_ids": [
+            "tuchman_mirror_foreword",
+            "stone_tuchman_review"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    },
+    {
+      "node_id": "revival",
+      "label": "Revival of narrative / debate over quantification",
+      "records": [
+        {
+          "person_id": "barbara_tuchman",
+          "role": "comparison",
+          "context": "Her established practice supplies a comparison with the later revival diagnosis. Stone’s 1978 review and Fox-Genovese’s defense expose disagreement over explanation within narrative.",
+          "works": "The Guns of August (1962); A Distant Mirror and its 1978 reception; “In Search of History,” publisher excerpt",
+          "source_ids": [
+            "tuchman",
+            "stone_revival",
+            "tuchman_mirror_foreword",
+            "tuchman_search_excerpt",
+            "stone_tuchman_review",
+            "fox_stone_tuchman_exchange"
+          ],
+          "basis": "source_review",
+          "edge_id": "edge_289"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "fox_stone_tuchman_exchange",
+      "title": "Elizabeth Fox-Genovese and Lawrence Stone, “Tuchman and History,” New York Review of Books, 7 December 1978.",
+      "citation": "Elizabeth Fox-Genovese and Lawrence Stone, “Tuchman and History,” New York Review of Books, 7 December 1978.",
+      "url": "https://www.nybooks.com/articles/1978/12/07/tuchman-and-history/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete letter and Stone reply read. Fox-Genovese challenges professional prestige as a criterion and Stone’s crisis/progress assumptions, defending narrative’s treatment of groups and material dislocation while explicitly distinguishing Tuchman from Marxism. Stone defends differences between synthesis and innovative research and qualifies his progress claim. Tuchman is the subject, not an author of this exchange; neither reviewer’s historical claims are independently verified here."
+      }
+    },
+    {
+      "id": "stone_revival",
+      "title": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "citation": "Lawrence Stone, “The Revival of Narrative: Reflections on a New Old History,” Past & Present 85 (1979): 3–24.",
+      "url": "https://doi.org/10.1093/past/85.1.3",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Primary PDF read: printed 3–6 and 13–24 complete; 7–12 unread. Page 3 visually inspected, 5 and 13–23 OCR recovered because embedded text clips lines; 4, 6 and 24 read embedded text. Includes all notes on these pages, not all article notes. Starn directs Stone to White; examples and methodological limits are explicit. Broad historiographical diagnoses, dismissive descriptions and implied psychologies remain Stone’s claims. Montaillou citation 1976 is not adopted as first publication; quoted Elias reception/edition shorthand not certified. Prior Oxford metadata retained; book bodies not thereby read."
+      }
+    },
+    {
+      "id": "stone_tuchman_review",
+      "title": "Lawrence Stone, “The Worst of Times?” New York Review of Books, 28 September 1978.",
+      "citation": "Lawrence Stone, “The Worst of Times?” New York Review of Books, 28 September 1978.",
+      "url": "https://www.nybooks.com/articles/1978/09/28/the-worst-of-times/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete review of A Distant Mirror read. Stone praises scholarship and narrative communication while criticizing analogy, biographical focus and selection of events over institutional/economic explanation. His uses of Geertz and Veblen are his interventions, not those authors’ direct reviews. His own progress and historical claims remain attributed. This is distinct from his 1979 Past & Present article, whose full text remains unread."
+      }
+    },
+    {
+      "id": "tuchman",
+      "title": "Barbara W. Tuchman: The Guns of August",
+      "citation": "Barbara W. Tuchman, The Guns of August (Macmillan, 1962); Library of America collected edition, The Guns of August / The Proud Tower (2012).",
+      "url": "https://www.penguinrandomhouse.com/books/466967/barbara-w-tuchman-the-guns-of-august-the-proud-tower-loa-222-by-margaret-macmillan/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "note": "Publisher-distributor description confirms the 1962 original and diplomatic/military subject. The collected edition’s date is not the work’s original date; no claim of influence on Stone or White is established.",
+        "checked_on": "2026-09-10"
+      }
+    },
+    {
+      "id": "tuchman_mirror_foreword",
+      "title": "Barbara W. Tuchman, A Distant Mirror: The Calamitous 14th Century (1978), acknowledgments and foreword, “The Period, the Protagonist, the Hazards.”",
+      "citation": "Barbara W. Tuchman, A Distant Mirror: The Calamitous 14th Century (1978), acknowledgments and foreword, “The Period, the Protagonist, the Hazards.”",
+      "url": null,
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete acknowledgments and foreword including money/references notes read in reflowed Ballantine ebook, eISBN 9780307793690: PDF pp. 10 and 16–24 of 790, not original print pagination. Supports named research/editing assistance, Coucy as narrative vehicle, chronology, documentary selection, uncertainty and debt to sociological medievalists. Initial Black Death causal question remains unanswered by the author; modern analogy, historical generalizations and numerical aphorism are attributed, not independently verified. Main chapters and specific notes/body chains not fully assessed."
+      }
+    },
+    {
+      "id": "tuchman_search_excerpt",
+      "title": "Barbara W. Tuchman, “In Search of History,” publisher excerpt from Practicing History (consulted Ballantine paperback, 1982).",
+      "citation": "Barbara W. Tuchman, “In Search of History,” publisher excerpt from Practicing History (consulted Ballantine paperback, 1982).",
+      "url": "https://penguinrandomhousehighereducation.com/book/?isbn=9780345303639",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-09-12",
+        "note": "Complete publisher-provided excerpt read, from childhood reading through The Guns of August weather example; this is not the entire essay. Supports Radcliffe teaching, Widener and journalism, Bowen’s reader principle and explicit qualified use of Ranke’s truth ideal. Weather example is Tuchman’s claim, not independently collated. 1982 is this edition’s metadata, not a newly established first publication or lecture date."
+      }
+    }
+  ],
+  "available_person_endpoints": "../available-person-endpoints.json",
+  "route_qualification": "Whole-word name matches are discovery leads only; do not infer relationships or identity from a name match"
+}
