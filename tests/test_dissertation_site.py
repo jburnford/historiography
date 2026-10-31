@@ -1,5 +1,7 @@
 """Check publication boundaries and reconcile the frozen exports to their inputs."""
+import csv
 import hashlib
+from collections import Counter
 from copy import deepcopy
 import json
 from pathlib import Path
@@ -49,9 +51,16 @@ class DissertationExportTests(unittest.TestCase):
         self.assertEqual(data['snapshot'], manifest['snapshot'])
         self.assertEqual(sum(data['region_theses'].values()), data['theses'])
         keys = {s['key'] for s in self.index['sources']}
+        with (Path(__file__).resolve().parents[1] / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
+            status = {r['key']: r['status'] for r in csv.DictReader(f)}
         for n in data['nodes']:
             self.assertLessEqual(set(n), {'name', 'label', 'qid', 'cited', 'lean', 'shares', 'top', 'reading',
-                                          'key', 'key_status'})
+                                          'key', 'key_status', 'lc', 'life'})
+            if 'lc' in n:
+                self.assertRegex(n['lc'], r'^n[a-z]?[0-9]+$')
+            # life years only for the dead, so no living person's birth year is published (user 2026-10-30)
+            if 'life' in n:
+                self.assertEqual(status[n['key']], 'deceased', n['name'])
             self.assertGreaterEqual(n['cited'], data['steps'][0])
             self.assertIn(n['lean'], data['leans'])
             if 'reading' in n:
@@ -61,8 +70,13 @@ class DissertationExportTests(unittest.TestCase):
             if 'key' in n:
                 self.assertRegex(n['key'], r'^p-[1-9][0-9]*$')
                 self.assertIn(n['key_status'], {'established', 'unresolved'})
-        person_keys = [n['key'] for n in data['nodes'] if 'key' in n]
-        self.assertEqual(len(person_keys), len(set(person_keys)))
+        # one key per circle, except where the key log merged two keys into one person whose name forms
+        # the citation graph still splits (Woodward, Comer Vann / C. Vann)
+        person_keys = Counter(n['key'] for n in data['nodes'] if 'key' in n)
+        with (Path(__file__).resolve().parents[1] / 'data/identifiers/events.jsonl').open(encoding='utf-8') as f:
+            merged_into = Counter(e['into'] for e in map(json.loads, f) if e['event'] == 'merge')
+        for key, count in person_keys.items():
+            self.assertLessEqual(count, 1 + merged_into[key], key)
         for key, view in data['views'].items():
             self.assertEqual(len(view['ids']), len(view['xy']), key)
             shown = set(view['ids'])

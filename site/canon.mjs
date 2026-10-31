@@ -33,7 +33,7 @@ function shell(data) {
       <p><strong>Co-citation count</strong> is the number of theses whose bibliographies cite both people (any of their works). It grows with fame, so the most cited theorists become hubs and the map shows the canon's core and its reach. <strong>Association strength</strong> divides that count by what the two people's citation counts would give by chance, so people sit with those who share their readers. That brings out fields rather than fame.</p>
       <p>Each person keeps their five strongest links among the people shown, counting only pairs cited together by at least five theses. The positions come from a spring layout computed for each threshold, so the axes mean nothing. People with no link to the map at a threshold are not drawn.</p>
       <p><strong>Colour</strong> marks where a person is read. A person leans to a region when the share of its History PhDs citing them is at least 1.5 times the next region's; otherwise they are shared. The regions hold different numbers of theses (${Object.entries(data.region_theses || {}).map(([k, n]) => `${esc(REGION_LABELS[k] || k)} ${fmt(n)}`).join(', ')}). Coverage depends on which repositories release full texts, so these are samples, not censuses.</p>
-      <p><strong>People</strong> are the first authors of cited works as the citation graph resolves them. Namesakes are split through their cited titles where reviewed. Hollow circles have no reviewed Wikidata identity: most are real historians, but a common name can merge namesakes. Stray tokens, government bodies and initial-only names are left out. A citation records use, not agreement or influence.</p>
+      <p><strong>People</strong> are the first authors of cited works as the citation graph resolves them. Namesakes are split through their cited titles where reviewed. Hollow circles have no reviewed Wikidata identity: most are real historians, but a common name can merge namesakes. Stray tokens, government bodies and initial-only names are left out. A citation records use, not agreement or influence. Life years come from Library of Congress name authorities, Wikidata and the atlas's sourced reviews; birth years are shown only for people who have died.</p>
       <p>This map uses a newer build of the dissertation graph than the dated release behind <a href="#tab=dissertations">Dissertation reading</a>, so counts can differ between the two. <a href="https://github.com/jburnford/historiography/blob/main/scripts/historian_cocitation_network.py" target="_blank" rel="noopener noreferrer">Method and code →</a></p>
     </details>`;
 }
@@ -116,7 +116,7 @@ export async function mountCanon(root) {
   const profile = n => `Cited by ${fmt(n.cited)} theses · ${Object.entries(REGION_LABELS).map(([k, v]) => `${v} ${n.shares[k]}%`).join(' · ')} of each region's theses · ${data.leans[n.lean]}`;
   function showTip(i, e) {
     const n = N[i];
-    tip.innerHTML = `<strong>${esc(nameOf(n))}</strong><span>${esc(profile(n))}</span><ol>${n.top.slice(0, 6).map(([j, v]) => `<li>${esc(nameOf(N[j]))} <b>${fmt(v)}</b></li>`).join('')}</ol>`;
+    tip.innerHTML = `<strong>${esc(nameOf(n))}${n.life ? ` <span class="canon-life">${esc(n.life)}</span>` : ''}</strong><span>${esc(profile(n))}</span><ol>${n.top.slice(0, 6).map(([j, v]) => `<li>${esc(nameOf(N[j]))} <b>${fmt(v)}</b></li>`).join('')}</ol>`;
     tip.hidden = false;
     const box = root.querySelector('.canon-stage').getBoundingClientRect();
     tip.style.left = Math.min(e.clientX - box.left + 14, box.width - tip.offsetWidth - 8) + 'px';
@@ -127,7 +127,7 @@ export async function mountCanon(root) {
     const box = $('.canon-detail');
     if (i == null) { box.innerHTML = '<p class="context-note">Select a person on the map, or find one above, to see their citation profile.</p>'; return; }
     const n = N[i];
-    box.innerHTML = `<p class="eyebrow">CITED PERSON${n.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(n.qid)}" target="_blank" rel="noopener noreferrer">${esc(n.qid)}</a>` : ''}</p><h3>${esc(nameOf(n))}</h3><p>${esc(profile(n))}.</p>
+    box.innerHTML = `<p class="eyebrow">CITED PERSON${n.qid ? ` · <a href="https://www.wikidata.org/wiki/${esc(n.qid)}" target="_blank" rel="noopener noreferrer">${esc(n.qid)}</a>` : ''}${n.lc ? ` · <a href="https://id.loc.gov/authorities/names/${esc(n.lc)}.html" target="_blank" rel="noopener noreferrer">LC ${esc(n.lc)}</a>` : ''}</p><h3>${esc(nameOf(n))}${n.life ? ` <span class="canon-life">${esc(n.life)}</span>` : ''}</h3><p>${esc(profile(n))}.</p>
       ${n.reading ? `<p><a href="#tab=dissertations&amp;source=${encodeURIComponent(n.reading)}">Follow this person in Dissertation reading →</a></p>` : ''}
       <h4>Most often cited with</h4><ol class="canon-partners">${n.top.map(([j, v]) => `<li><button type="button" data-canon-person="${j}">${esc(nameOf(N[j]))}</button> <span>${fmt(v)} theses${pos[j] ? '' : ' · not shown at this threshold'}</span></li>`).join('')}</ol>`;
   }

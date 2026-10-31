@@ -10,11 +10,17 @@ with these additions:
   there has the same display name. This is a link only. The two use different builds.
 - ``nodes[].key``, ``nodes[].key_status``: the person's internal key and its status (established or
   unresolved) from data/identifiers/events.jsonl. People awaiting merge review have none yet.
+- ``nodes[].lc``: the person's LC name authority (an `lcnaf:` anchor in the identifier log), the public
+  identifier the key log uses until Wikidata (PID-PLAN.md).
+- ``nodes[].life``: life years for display ('1924–1993', 'd. 2009', 'c. 544–469 BCE') from
+  data/person-facts/life-dates.csv. Birth years appear only for the dead (a recorded death, a reviewed
+  deceased status, or born more than 120 years ago; user decision 2026-10-30); the repository keeps them all.
 - ``nodes[].label``: the name with initials written out ('Thompson, E. P', 'Du Bois, W.e.b' become
   'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it.
 The output hash, the source hash and the snapshot go into data/dissertation-layer/manifest.json under
 ``canon_map``; scripts/build_site.py publishes the file only when the hash matches.
 """
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -38,6 +44,22 @@ def label(name):
 NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Rest of Europe': 'EU', 'elsewhere': 'OTHER'}
 
 
+def life_years(row):
+    """Display life years from a life-dates row; living people's birth years are withheld."""
+    def part(v):
+        m = re.match(r'^(-?)0*(\d+)', v or '')
+        return (int(m.group(2)) * (-1 if m.group(1) else 1), v.endswith('~')) if m else None
+    born = part(row['birth']) if row['status'] == 'deceased' else None
+    died = part(row['death'])
+    if not died:
+        return f'b. {born[0]}' if born and born[0] > 0 else ''
+    approx = 'c. ' if died[1] or (born and born[1]) else ''
+    if born and born[0] < 0 and died[0] < 0:
+        return f'{approx}{-born[0]}–{-died[0]} BCE'
+    era = lambda y: f'{-y} BCE' if y < 0 else str(y)
+    return f'{approx}{era(born[0])}–{era(died[0])}' if born else f'd. {approx}{era(died[0])}'
+
+
 def attach_keys(nodes):
     """``key`` and ``key_status`` from the identifier log (PID-PLAN.md), via the person's graph key.
 
@@ -46,6 +68,8 @@ def attach_keys(nodes):
     from key_canon_map import canon_keys
     state = State.load(ROOT / 'data/identifiers/events.jsonl')
     graph_key = canon_keys(nodes)
+    with (ROOT / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
+        lives = {r['key']: r for r in csv.DictReader(f)}
     keyed = 0
     for n in nodes:
         found = state.lookup(f"diss-person:{graph_key[n['name'], n['qid']]}")
@@ -53,6 +77,12 @@ def attach_keys(nodes):
             n['key'] = found[0]
             n['key_status'] = state.keys[found[0]]['resolution']
             keyed += 1
+            lc = [a.split(':', 1)[1] for a in state.keys[found[0]]['anchors'] if a.startswith('lcnaf:')]
+            if len(lc) == 1:
+                n['lc'] = lc[0]
+            row = lives.get(found[0])
+            if row and (life := life_years(row)):
+                n['life'] = life
     return keyed
 
 
