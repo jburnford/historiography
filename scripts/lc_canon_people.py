@@ -10,15 +10,18 @@ counts only if:
   (identity_routes.compatible, plus `given_agrees`: when both sides spell out a given name, the names
   must be variants of one name, so 'Angus' does not match 'Arlene').
 The heading is resolved through the local LC name index (scripts/lc_names_index.py), as in
-scripts/lc_resolve_authorities.py. A book resolves only if every title-agreeing record names the same
-authority (otherwise `records_disagree`: namesakes behind one title). Books are tried most-cited first,
-up to --books, until the authority is confirmed; two books naming different authorities give
-`books_disagree`.
+scripts/lc_resolve_authorities.py. A book is attributed only if every title-agreeing record names the
+same authority (otherwise `records_disagree`: namesakes behind one title).
 
-An offline pass runs first: a name-compatible authority whose LC 670 sources cite one of the person's
-books. When that book is not the person's most-cited one, the most-cited book is still checked in the
-catalogue, because a canon key can carry a namesake's book (2026-10-31: 'Billig, Michael' carried a
-book by Michael S. Billig); a different authority there gives `books_disagree`.
+An offline pass runs first: name-compatible authorities whose LC 670 sources cite one of the person's
+books (only the closest names: see `closest_names`). A book cited in exactly one such 670 is that
+authority's. The catalogue then takes the most-cited books the 670s do not settle, the most-cited book
+always, until one confirmed authority holds at least half the citations of the books looked at.
+
+Who the name belongs to (2026-10-31 rerun review, `dominant`): one authority; or one holding at least
+75% of the attributed citations, the most-cited book its own or unattributed (the other authorities'
+books are listed as `namesake_works`); otherwise `books_disagree`, a pooled name. LC duplicate records
+(same name and birth year) count as one.
 
 **Tiers** (reviewed by a Fable agent on 2026-10-30). A canon key is a name cluster from bibliography
 parsing, so one book only shows that *a* person of that name wrote it:
@@ -65,7 +68,7 @@ STOP = {'the', 'a', 'an', 'of', 'and', 'in', 'on', 'to', 'for', 'la', 'le', 'les
 def words(t):
     # Apostrophes are dropped, not split on, so a straight and a curly one give the same words: LC's
     # "Labour's war" and a cited "Labour’s War" both read 'labours war' (found 2026-10-31, Stephen Brooke).
-    t = re.sub(r"['\u2018\u2019\u02bc`]", '', t or '')
+    t = re.sub(r"['\u2018\u2019\u02bc`]", '', t or '').translate(FOLD)
     t = unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower()
     return re.findall(r'[a-z0-9]+', t)
 
@@ -119,25 +122,49 @@ NICKNAMES = {'tom': 'thomas', 'mike': 'michael', 'ted': 'theodore', 'wm': 'willi
              'kate': 'katherine', 'betty': 'elizabeth', 'chuck': 'charles', 'hank': 'henry', 'nick': 'nicholas',
              # the same name in another language, as LC headings give it
              'georg': 'gyorgy', 'pieter': 'petrus', 'john': 'jean'}
-FOLD = str.maketrans({'ł': 'l', 'Ł': 'L', 'ø': 'o', 'Ø': 'O', 'đ': 'd', 'ß': 'ss', 'ı': 'i'})
+# letters NFKD leaves alone; 'œ' had read 'Ricœur' as 'ricur' (2026-10-31)
+FOLD = str.maketrans({'ł': 'l', 'Ł': 'L', 'ø': 'o', 'Ø': 'O', 'đ': 'd', 'ß': 'ss', 'ı': 'i', 'œ': 'oe', 'Œ': 'Oe',
+                      'æ': 'ae', 'Æ': 'Ae'})
 
 
 PARTICLES = {'de', 'du', 'des', 'la', 'le', 'von', 'van', 'der', 'den', 'di', 'da', 'del', 'dos'}
 
 
-def _token_agrees(a, b):
+def _token_agrees(a, b, nick=True):
     """Two given-name tokens: initials agree on the letter; spelled-out names must match, one must be a
     prefix of the other (Ken/Kenneth, Jan/Janet), share four leading letters with lengths at most one
-    apart (Maria/Mariia, not Christine/Christopher), or be a listed nickname or equivalent."""
+    apart (Maria/Mariia, not Christine/Christopher), or be a listed nickname or equivalent (`nick`)."""
     if len(a) == 1 or len(b) == 1:
         return a[0] == b[0]
     short, long_ = sorted((a, b), key=len)
     return a == b or (len(short) >= 3 and long_.startswith(short)) \
         or (a[:4] == b[:4] and len(short) >= 4 and len(long_) - len(short) <= 1) \
-        or NICKNAMES.get(a) == b or NICKNAMES.get(b) == a
+        or (nick and (NICKNAMES.get(a) == b or NICKNAMES.get(b) == a))
 
 
-def given_agrees(person, lc):
+def closest_names(person_given, cands):
+    """The candidates whose given names are closest to the person's (2026-10-31 rerun review). `cands`:
+    (item, LC given name) pairs, all already compatible. Two narrowings, each applied only when some
+    candidate survives it:
+    - names that agree without the nickname/translation table beat those that need it ('Jean' is
+      'Comaroff, Jean', not 'Comaroff, John L.', though 'john' and 'jean' are listed as one name);
+    - when the person spells out a middle name, candidates carrying it beat those without ('Scott, James
+      Brown' is not 'Scott, James, 1916-')."""
+    p = [t for t in words((person_given or '').translate(FOLD)) if t not in PARTICLES]
+    if not p:
+        return cands
+    def plain(forms):
+        return any(given_agrees(person_given, g, nick=False) for g in forms)
+    def carries_middle(forms):
+        l = [y for g in forms for y in words((g or '').translate(FOLD)) if len(y) > 1]
+        return all(any(_token_agrees(x, y, nick=False) for y in l) for x in p[1:] if len(x) > 1)
+    out = [c for c in cands if plain(c[1])] or cands
+    if any(len(x) > 1 for x in p[1:]):
+        out = [c for c in out if carries_middle(c[1])] or out
+    return out
+
+
+def given_agrees(person, lc, nick=True):
     """Given names as variants of one name (2026-10-31; 'Angus' had matched 'Arlene', 'Mary Frances' had
     matched 'Mary Elizabeth').
     - First names: the person's first name must agree with LC's first, or with any later LC given name
@@ -149,14 +176,14 @@ def given_agrees(person, lc):
     p, l = p[:1] + [t for t in p[1:] if t not in PARTICLES], l[:1] + [t for t in l[1:] if t not in PARTICLES]   # 'Van Gosse'
     if not p or not l:
         return False
-    if _token_agrees(p[0], l[0]):
+    if _token_agrees(p[0], l[0], nick):
         rest_p, rest_l = p[1:], l[1:]
     elif len(p[0]) > 1 and len(l[0]) > 1 and (i := next((i for i, b in enumerate(l[1:], 1)
-                                                            if len(b) > 1 and _token_agrees(p[0], b)), 0)):
+                                                            if len(b) > 1 and _token_agrees(p[0], b, nick)), 0)):
         rest_p, rest_l = p[1:], l[:i] + l[i + 1:]
     else:
         return False
-    return not rest_p or not rest_l or any(_token_agrees(x, y) for x in rest_p for y in rest_l)
+    return not rest_p or not rest_l or any(_token_agrees(x, y, nick) for x in rest_p for y in rest_l)
 
 
 def initials_only(label):
@@ -207,21 +234,10 @@ def books_by_person(keys, per_person):
     return out
 
 
-def settle_owners(offline, person_books, by_id):
-    """Authorities whose LC 670s own different books of one canon name (2026-10-31 review of the rerun).
-
-    - Two records with the same name and birth year are one person recorded twice by LC ('Miller, Perry,
-      1905-1963' and the provisional 'Miller, Perry, 1905-'): kept as the record with more sources.
-    - When one authority owns at least 75% of the owned citations, and the most-cited book is its own or in
-      no 670, the canon key is
-      that person with a namesake's minor works mixed in ('Carter, Sarah, 1954-' and Sarah Anne Carter's
-      Tangible things): the key resolves to the dominant authority and the other works are returned as
-      namesake works to split later.
-    Otherwise the owners are left as they are (a pooled name).
-    Returns (owners, namesake_works as 'lcid:work_id ...').
-    """
-    if len(offline) < 2:
-        return offline, ''
+def merge_duplicates(ids, by_id):
+    """Two records with the same name and birth year are one person recorded twice by LC ('Miller, Perry,
+    1905-1963' and the provisional 'Miller, Perry, 1905-'): each maps to the record with more sources.
+    Returns {lcid: kept lcid}."""
     def ident(lcid):
         label = by_id[lcid]['label']
         dates = label_dates(label)
@@ -229,27 +245,33 @@ def settle_owners(offline, person_books, by_id):
         born = re.match(r'(\d{4})', dates or '')
         return (name.split(' (')[0], born.group(1) if born else '')
     groups = defaultdict(list)
-    for lcid in offline:
+    for lcid in ids:
         groups[ident(lcid)].append(lcid)
-    merged = {}
-    for (name, born), ids in groups.items():
-        if born or len(ids) == 1:
-            keep = max(ids, key=lambda i: (len(by_id[i]['sources']), i))
-            merged[keep] = [h for i in ids for h in offline[i]]
-        else:
-            merged.update({i: offline[i] for i in ids})
-    if len(merged) < 2:
-        return merged, ''
-    cites = {lcid: sum(int(h['cited'] or 0) for h in hits) for lcid, hits in merged.items()}
-    top = person_books[0]['work_id'] if person_books else ''
-    top_owner = next((lcid for lcid, hits in merged.items() if any(h['work_id'] == top for h in hits)), '')
+    out = {}
+    for (name, born), group in groups.items():
+        keep = max(group, key=lambda i: (len(by_id[i]['sources']), i)) if born else None
+        out.update({i: keep or i for i in group})
+    return out
+
+
+def dominant(owner_of, person_books):
+    """The authority a canon name belongs to when its books are spread over several (2026-10-31 rerun
+    review). `owner_of`: work -> authority, from LC 670 notes or the catalogue. One authority wins when it
+    holds at least 75% of the attributed citations and the most-cited book is its own or unattributed: the
+    key is that person with a namesake's minor works mixed in ('Carter, Sarah, 1954-' and Sarah Anne
+    Carter's Tangible things; Norman Davies and Norman de Garis Davies's Rock tombs of El Amarna).
+    Otherwise None: a pooled name ('Salmon, John': J. H. M. Salmon and John Salmon, b. 1942)."""
+    cites = Counter()
+    for b in person_books:
+        if b['work_id'] in owner_of:
+            cites[owner_of[b['work_id']]] += int(b['cited'] or 0)
+    if len(cites) == 1:
+        return next(iter(cites))
+    if not cites:
+        return None
     owner = max(cites, key=lambda i: (cites[i], i))
-    # The most-cited book must not belong to another authority (it may belong to none: Carter's Lost
-    # harvests is in no 670).
-    if top_owner in ('', owner) and cites[owner] >= 0.75 * sum(cites.values()):
-        minor = ' '.join(f"{lcid}:{h['work_id']}" for lcid, hits in sorted(merged.items()) if lcid != owner for h in hits)
-        return {owner: merged[owner]}, minor
-    return merged, ''
+    top_owner = owner_of.get(person_books[0]['work_id'], '') if person_books else ''
+    return owner if top_owner in ('', owner) and cites[owner] >= 0.75 * sum(cites.values()) else None
 
 
 def query(title, family):
@@ -290,9 +312,10 @@ def main():
                 qid_basis[r['person_key']] = r['qid_basis']
     if args.people:
         db = duckdb.connect()
-        fams = sorted({n['label'].partition(', ')[0] for n in nodes})
+        fams = sorted({' '.join(words(n['label'].partition(', ')[0])) for n in nodes})
         names = load_names(args.names, {r[0] for f in fams for r in db.execute(
-            f"SELECT lcid FROM read_parquet('{args.names}') WHERE label ILIKE ?", [f + ',%']).fetchall()})
+            f"SELECT lcid FROM read_parquet('{args.names}') WHERE strip_accents(replace(replace(lower(label), 'œ', 'oe'), "
+            "'æ', 'ae')) LIKE ?", [f + ',%']).fetchall()})
     else:
         names = load_names(args.names)
     by_id = names[0]
@@ -310,62 +333,68 @@ def main():
         gk = graph_key[n['name'], n['qid']]
         key = state.lookup(f'diss-person:{gk}')
         family = n['label'].partition(', ')[0]
-        person = as_credit(n['label'])
-        found, tried, outcome = [], 0, 'no_book'
-        # Offline first: an authority with a compatible name whose 670 sources cite one of the person's
-        # cited books. LC's own record of what the person wrote; no catalogue request needed.
-        offline = {}
+        person = as_credit(n['label'].translate(FOLD))
+        tried, outcome = 0, 'no_book'
+        pg = n['label'].partition(', ')[2]
+        person_books = books.get(gk, [])
+        # Offline first: authorities with a compatible name (the closest names only) whose 670 sources cite
+        # one of the person's cited books. LC's own record of what the person wrote; no request needed.
+        compat = []
         for lcid in by_surname.get(' '.join(words(family)), ()):
             a = by_id[lcid]
-            fam, _, given = a['label'].partition(', ')
+            fam, _, given = a['label'].translate(FOLD).partition(', ')
             given = given.split(', ')[0]
             fuller = given.split(' (')[1].rstrip(')') if ' (' in given else ''
-            pg = n['label'].partition(', ')[2]
-            if not ((compatible(person, given.split(' (')[0], fam) and given_agrees(pg, given.split(' (')[0])) or
-                    (fuller and compatible(person, fuller, fam) and given_agrees(pg, fuller))):
-                continue
-            hits = [b for b in books.get(gk, []) if source_names_title(a['sources'], b['title'])]
-            if hits:
-                offline[lcid] = hits
-        offline, namesakes = settle_owners(offline, books.get(gk, []), by_id)
+            if (compatible(person, given.split(' (')[0], fam) and given_agrees(pg, given.split(' (')[0])) or \
+                    (fuller and compatible(person, fuller, fam) and given_agrees(pg, fuller)):
+                compat.append((lcid, [given.split(' (')[0]] + ([fuller] if fuller else [])))
         cited_in_670 = defaultdict(set)         # work -> compatible authorities whose 670 cites it
-        for lcid, hits in offline.items():
-            for h in hits:
-                cited_in_670[h['work_id']].add(lcid)
-        if len(offline) == 1:
-            lcid, hits = next(iter(offline.items()))
-            src = by_id[lcid]['sources']
-            found = [dict(lcid=lcid, via='lc_670', book=h,
-                          record_title=next((s for s in src if source_names_title([s], h['title'])), ''))
-                     for h in hits]
-        elif offline and not set.intersection(*({h['work_id'] for h in hits} for hits in offline.values())) \
-                and all(len(owners) == 1 for owners in cited_in_670.values()):
-            # LC's own notes give different books of this name to different people: the canon key pools
-            # namesakes ('Salmon, John': Renaissance and revolt is J. H. M. Salmon's, Wealthy Corinth John
-            # Salmon's, b. 1942). No authority can be the key's.
-            outcome = 'books_disagree'
-            stats[outcome] += 1
-            rows.append(dict(key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
-                             dissertation_qid=n['qid'] or '', dissertation_qid_basis=qid_basis.get(gk, ''),
-                             outcome=outcome, books_tried=0, via='lc_670_owners', namesake_works=namesakes,
-                             evidence_works=' '.join(f"{lcid}:{h['work_id']}" for lcid, hits in sorted(offline.items())
-                                                     for h in hits)))
-            continue
-        elif offline:
-            outcome = 'offline_670_ambiguous'      # several namesakes cite the same title; try the catalogue
-        # Catalogue: every book when the offline pass found nothing; otherwise the most-cited book, when
-        # the offline hit rests on a lesser one.
-        top = books.get(gk, [])[:1]
-        catalogue = books.get(gk, [])[:args.books] if not found else \
-            [b for b in top if b['work_id'] not in {f['book']['work_id'] for f in found}]
-        for b in catalogue:
+        for lcid, _ in closest_names(pg, compat):
+            for b in person_books:
+                if source_names_title(by_id[lcid]['sources'], b['title']):
+                    cited_in_670[b['work_id']].add(lcid)
+        owner_of, via_of, title_of = {}, {}, {}     # work -> authority, how, LC's wording
+        for b in person_books:
+            owners = cited_in_670.get(b['work_id'], set())
+            if len(owners) == 1:
+                lcid = next(iter(owners))
+                owner_of[b['work_id']], via_of[b['work_id']] = lcid, 'lc_670'
+                title_of[b['work_id']] = next(x for x in by_id[lcid]['sources'] if source_names_title([x], b['title']))
+            elif owners:
+                outcome = 'offline_670_ambiguous'  # several namesakes cite the same title; try the catalogue
+
+        def confirmed_single(looked):
+            """One authority so far, confirmed, and holding at least half the citations of the books
+            looked at: then no more books are needed. The most-cited book is always looked at: a 670 hit
+            on a lesser book is not enough on its own ('Smith, Jeremy' carried a namesake's Britain and
+            Ireland beside the Soviet historian's books)."""
+            ids = set(owner_of.values())
+            if len(ids) != 1:
+                return False
+            lcid = next(iter(ids))
+            mine = [b for b in person_books if owner_of.get(b['work_id']) == lcid]
+            seen = sum(int(b['cited'] or 0) for b in person_books if b['work_id'] in looked or b['work_id'] in owner_of)
+            ok = len(mine) >= 2 or any(source_names_title(by_id[lcid]['sources'], b['title']) for b in mine) or \
+                (n['qid'] and qid_basis.get(gk) in TITLE_TIERS and
+                 n['qid'] in {e.rsplit('/', 1)[-1] for e in by_id[lcid]['external'] if 'wikidata.org/entity/' in e})
+            return ok and 2 * sum(int(b['cited'] or 0) for b in mine) >= seen
+
+        # Catalogue: the most-cited books LC's notes do not settle, until one confirmed authority holds
+        # the books looked at.
+        looked = set()
+        for b in person_books[:args.books]:
+            if b is not person_books[0] and confirmed_single(looked):
+                break
+            if b['work_id'] in owner_of:
+                continue
+            looked.add(b['work_id'])
             q = query(b['title'], family)
             r = fetch.get(SRU5 + urllib.parse.quote(q))
             if r['status'] == 0:
                 streak += 1
                 if streak >= 3:
                     time.sleep(args.pause)
-                outcome = outcome if found else 'unanswered'
+                outcome = outcome if owner_of else 'unanswered'
                 continue
             streak, tried = 0, tried + 1
             try:
@@ -377,13 +406,14 @@ def main():
                 if not titles_agree(b['title'], facts.get('title', '')):
                     continue
                 seen_title = True
-                pg = n['label'].partition(', ')[2]
-                match = [h for h in heads if (compatible(person, h['given'], h['family']) and given_agrees(pg, h['given']))
+                match = [(h, [h['given']] + ([h['fuller']] if h['fuller'] else [])) for h in heads
+                         if (compatible(person, h['given'], h['family'].translate(FOLD)) and given_agrees(pg, h['given']))
                          or (h['fuller'] and compatible(person, h['fuller'], h['family']) and given_agrees(pg, h['fuller']))]
+                match = closest_names(pg, match)       # a joint book: 'Jean' is Jean Comaroff, not John
                 if len(match) > 1:
                     ids.add('ambiguous')
                 elif match:
-                    lcid, via = resolve(match[0], names)
+                    lcid, via = resolve(match[0][0], names)
                     # A heading matched only by its text can be an old form left on the bib record after
                     # LC created a separate authority (2026-10-31: 'Brooke, Stephen.' on Labour's war
                     # resolves to n84045320, the 1983 author; LC's 670 gives the book to no2025022468,
@@ -391,42 +421,47 @@ def main():
                     owners = cited_in_670.get(b['work_id'], set())
                     if via != 'bib_$0' and len(owners) == 1 and lcid not in owners:
                         lcid, via = next(iter(owners)), 'lc_670_over_heading'
+                    # The same for an undated record reached by the heading's text alone, when LC's notes
+                    # give this name's books to one dated record ('Bender, Thomas' resolved to
+                    # no2023034236, an illustrator; 'Bender, Thomas, 1944-' has His Unfinished city).
+                    elif via != 'bib_$0' and lcid and not label_dates(by_id[lcid]['label']) \
+                            and len(all_670 := set().union(*cited_in_670.values())) == 1 and lcid not in all_670:
+                        lcid, via = next(iter(all_670)), 'lc_670_over_heading'
                     if lcid and not by_id[lcid]['undifferentiated']:
                         ids.add(lcid)
-                        hit = dict(lcid=lcid, via=via, book=b, record_title=facts['title'])
+                        hit = (lcid, via, facts['title'])
             if len(ids) == 1 and 'ambiguous' not in ids:
-                found.append(hit)
-            elif ids:
-                outcome = outcome if found else 'records_disagree'      # namesakes behind one title
-                continue
-            else:
-                outcome = outcome if found else ('person_not_resolved' if seen_title else
-                                                 'no_title_match' if recs else 'no_lc_record')
-                continue
-            lcids = {f['lcid'] for f in found}
-            if len(lcids) > 1:
-                break
-            a = by_id[found[0]['lcid']]
-            lc_qids = {e.rsplit('/', 1)[-1] for e in a['external'] if 'wikidata.org/entity/' in e}
-            if (n['qid'] and n['qid'] in lc_qids and qid_basis.get(gk) in TITLE_TIERS) or \
-                    any(source_names_title(a['sources'], f['book']['title']) for f in found) or len(found) >= 2:
-                break           # confirmed: no need for more books
-        lcids = {f['lcid'] for f in found}
-        if len(lcids) > 1:
-            outcome = 'books_disagree'
-        elif lcids:
+                owner_of[b['work_id']], via_of[b['work_id']], title_of[b['work_id']] = hit
+            elif not owner_of:
+                outcome = 'records_disagree' if ids else \
+                    'person_not_resolved' if seen_title else 'no_title_match' if recs else 'no_lc_record'
+
+        # LC duplicates are one person; then one authority, a dominant one, or a pooled name.
+        same = merge_duplicates(set(owner_of.values()), by_id)
+        owner_of = {w: same[x] for w, x in owner_of.items()}
+        winner = dominant(owner_of, person_books)
+        mine = [b for b in person_books if winner and owner_of.get(b['work_id']) == winner]
+        namesakes = ' '.join(f"{owner_of[b['work_id']]}:{b['work_id']}" for b in person_books
+                             if b['work_id'] in owner_of and owner_of[b['work_id']] != winner) if winner else ''
+        if winner:
             outcome = 'resolved'
+        elif owner_of:
+            outcome = 'books_disagree'
         stats[outcome] += 1
         row = dict(namesake_works=namesakes, key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
                    dissertation_qid=n['qid'] or '', dissertation_qid_basis=qid_basis.get(gk, ''),
                    outcome=outcome, books_tried=tried)
+        if outcome == 'books_disagree':
+            row.update(via='lc_670_owners' if all(v == 'lc_670' for v in via_of.values()) else 'books',
+                       evidence_works=' '.join(f"{owner_of[b['work_id']]}:{b['work_id']}" for b in person_books
+                                               if b['work_id'] in owner_of))
         if outcome == 'resolved':
-            f, a = found[0], by_id[found[0]['lcid']]
+            a = by_id[winner]
             lf = life(a, label_dates(a['label']))
             lc_qids = {e.rsplit('/', 1)[-1] for e in a['external'] if 'wikidata.org/entity/' in e}
             wd = ('' if not lc_qids or not n['qid'] else 'agrees' if n['qid'] in lc_qids else 'disagrees')
-            src = any(source_names_title(a['sources'], x['book']['title']) for x in found)
-            confirmations = [c for c, ok in (('second_book', len(found) >= 2), ('lc_670_names_title', src),
+            src = any(source_names_title(a['sources'], x['title']) for x in mine)
+            confirmations = [c for c, ok in (('second_book', len(mine) >= 2), ('lc_670_names_title', src),
                                              ('wikidata_agrees', wd == 'agrees' and
                                               qid_basis.get(gk) in TITLE_TIERS)) if ok]
             if initials_only(n['label']):
@@ -437,10 +472,11 @@ def main():
                 tier = 'exact'
             else:
                 tier = 'candidate_single_book'
-            row.update(lcnaf=f['lcid'], lc_label=a['label'], via=f['via'], tier=tier,
-                       confirmations=' '.join(confirmations), books_agreeing=len(found),
-                       evidence_works=' '.join(x['book']['work_id'] for x in found),
-                       evidence_title=f['record_title'],
+            first = mine[0]['work_id']
+            row.update(lcnaf=winner, lc_label=a['label'], via=via_of[first], tier=tier,
+                       confirmations=' '.join(confirmations), books_agreeing=len(mine),
+                       evidence_works=' '.join(x['work_id'] for x in mine),
+                       evidence_title=title_of[first],
                        birth_year=lf['birth'][0], birth_value=lf['birth'][1], birth_source=lf['birth'][2],
                        birth_precision=lf['birth'][3], death_year=lf['death'][0], death_value=lf['death'][1],
                        death_source=lf['death'][2], death_precision=lf['death'][3],

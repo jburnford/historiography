@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from lc_canon_people import SERIAL, source_names_title, titles_agree, words  # noqa: E402
+from lc_canon_people import SERIAL, closest_names, dominant, source_names_title, titles_agree, words  # noqa: E402
 
 LABOURS_WAR = 'Labour’s War: The Labour Party and the Second World War'
 
@@ -33,6 +33,42 @@ class TitleMatching(unittest.TestCase):
     def test_serial_titles_are_not_books(self):
         self.assertTrue(SERIAL.search('Journal of Social History'))
         self.assertFalse(SERIAL.search('Sexual Politics'))
+
+
+class Owners(unittest.TestCase):
+    """Who a canon name belongs to (2026-10-31 rerun review)."""
+
+    def test_plain_names_beat_the_translation_table(self):
+        cands = [('jean', ['Jean']), ('john', ['John L.'])]
+        self.assertEqual(closest_names('Jean', cands), [('jean', ['Jean'])])
+        self.assertEqual(closest_names('Jean', [('john', ['John L.'])]), [('john', ['John L.'])])
+
+    def test_a_spelled_out_middle_name_must_be_carried(self):
+        cands = [('jbs', ['James Brown']), ('js', ['James'])]
+        self.assertEqual(closest_names('James Brown', cands), [('jbs', ['James Brown'])])
+        self.assertEqual(closest_names('James', cands), cands)
+        self.assertEqual(closest_names('Peter D. G.', [('a', ['Peter D.']), ('b', ['P. D. G.', 'Peter David Garner'])]),
+                         [('a', ['Peter D.']), ('b', ['P. D. G.', 'Peter David Garner'])])
+
+    def test_ligatures_fold(self):
+        self.assertEqual(words('Ricœur'), ['ricoeur'])
+
+    def books(self, *cites):
+        return [dict(work_id=f'W{i}', cited=c) for i, c in enumerate(cites)]
+
+    def test_a_dominant_owner_wins_over_a_namesake(self):
+        # Davies: God's Playground (34) and White Eagle (8) the historian's, Rock tombs (3) de Garis Davies's
+        books = self.books(34, 8, 3)
+        self.assertEqual(dominant({'W0': 'nd', 'W1': 'nd', 'W2': 'ndg'}, books), 'nd')
+        # the most-cited book unattributed still allows it
+        self.assertEqual(dominant({'W1': 'nd', 'W2': 'ndg'}, self.books(34, 30, 3)), 'nd')
+
+    def test_a_pooled_name_has_no_owner(self):
+        books = self.books(10, 8, 7)
+        self.assertIsNone(dominant({'W0': 'a', 'W1': 'b', 'W2': 'a'}, books))
+        # nor when the namesake holds the most-cited book
+        self.assertIsNone(dominant({'W0': 'b', 'W1': 'a', 'W2': 'a'}, self.books(5, 40, 40)))
+        self.assertIsNone(dominant({}, books))
 
 
 if __name__ == '__main__':
