@@ -1,16 +1,16 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 13,
+ "louvain_fields": 14,
  "louvain_clustered": 1322,
  "louvain_vocabulary": 1391,
  "nmf_vocabulary": 1391,
  "shared_works": 1322,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.53,
-  "nmi": 0.688,
+  "adjusted_rand": 0.54,
+  "nmi": 0.69,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.522,
+ "entropy_vs_louvain_link_split_spearman": 0.526,
  "families": [
   {
    "family": 0,
@@ -48,26 +48,26 @@
   },
   {
    "family": 1,
-   "label": "Said · Conklin · Cooper — colonial, decolonization, postcolonial, africa",
-   "dominated": 188,
-   "member_works": 108,
+   "label": "Said · Conklin · Cooper — decolonization, colonial, postcolonial, africa",
+   "dominated": 189,
+   "member_works": 109,
    "best_by_member_works": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.405,
-    "field_size": 194
+    "jaccard": 0.447,
+    "field_size": 176
    },
    "best_by_top25": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.117,
+    "jaccard": 0.129,
     "top25_inside": 0.92
    },
    "best_by_dissertations": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.236,
-    "engaged": 682
+    "jaccard": 0.26,
+    "engaged": 611
    },
    "top25_spread": [
     [
@@ -79,25 +79,25 @@
   {
    "family": 2,
    "label": "Stern · Benton · Armitage — ideological, sovereignty, foundations, british",
-   "dominated": 168,
+   "dominated": 169,
    "member_works": 98,
    "best_by_member_works": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.237,
-    "field_size": 194
+    "jaccard": 0.24,
+    "field_size": 176
    },
    "best_by_top25": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.068,
+    "jaccard": 0.075,
     "top25_inside": 0.56
    },
    "best_by_dissertations": {
     "field": "Anderson · Said · Thompson",
     "field_id": 1,
-    "jaccard": 0.166,
-    "engaged": 682
+    "jaccard": 0.169,
+    "engaged": 611
    },
    "top25_spread": [
     [
@@ -394,34 +394,38 @@
    "dominated": 81,
    "member_works": 37,
    "best_by_member_works": {
-    "field": "Anderson · Said · Thompson",
-    "field_id": 1,
-    "jaccard": 0.127,
-    "field_size": 194
+    "field": "Geertz · Elias · Douglas",
+    "field_id": 12,
+    "jaccard": 0.341,
+    "field_size": 18
    },
    "best_by_top25": {
-    "field": "Anderson · Said · Thompson",
-    "field_id": 1,
-    "jaccard": 0.101,
-    "top25_inside": 0.8
+    "field": "Geertz · Elias · Douglas",
+    "field_id": 12,
+    "jaccard": 0.387,
+    "top25_inside": 0.48
    },
    "best_by_dissertations": {
-    "field": "Anderson · Said · Thompson",
-    "field_id": 1,
-    "jaccard": 0.085,
-    "engaged": 682
+    "field": "Geertz · Elias · Douglas",
+    "field_id": 12,
+    "jaccard": 0.227,
+    "engaged": 38
    },
    "top25_spread": [
     [
+     "Geertz · Elias · Douglas",
+     0.48
+    ],
+    [
      "Anderson · Said · Thompson",
-     0.8
+     0.32
     ]
    ]
   },
   {
    "family": 13,
    "label": "Judt · Peukert · Moeller — germany, german, nazi, weimar",
-   "dominated": 79,
+   "dominated": 78,
    "member_works": 37,
    "best_by_member_works": {
     "field": "Gellner · Arendt · Judt",
@@ -438,7 +442,7 @@
    "best_by_dissertations": {
     "field": "Gellner · Arendt · Judt",
     "field_id": 9,
-    "jaccard": 0.393,
+    "jaccard": 0.388,
     "engaged": 169
    },
    "top25_spread": [
@@ -451,12 +455,12 @@
   {
    "family": 14,
    "label": "Anderson · Gellner · Hobsbawm — nationalism, nations, sphere, nationhood",
-   "dominated": 75,
-   "member_works": 39,
+   "dominated": 74,
+   "member_works": 38,
    "best_by_member_works": {
     "field": "Gellner · Arendt · Judt",
     "field_id": 9,
-    "jaccard": 0.16,
+    "jaccard": 0.161,
     "field_size": 70
    },
    "best_by_top25": {
@@ -543,26 +547,26 @@
   {
    "field": "Anderson · Said · Thompson",
    "field_id": 1,
-   "works": 194,
+   "works": 176,
    "best_family": 1,
-   "family_label": "Said · Conklin · Cooper — colonial, decolonization, postcolonial, africa",
-   "jaccard": 0.405,
+   "family_label": "Said · Conklin · Cooper — decolonization, colonial, postcolonial, africa",
+   "jaccard": 0.447,
    "work_spread": [
     [
      1,
-     87
+     88
     ],
     [
      2,
-     56
+     53
     ],
     [
      12,
-     26
+     12
     ],
     [
      14,
-     11
+     10
     ]
    ]
   },
@@ -713,11 +717,11 @@
      1
     ],
     [
-     8,
+     11,
      1
     ],
     [
-     11,
+     8,
      1
     ]
    ]
@@ -769,7 +773,7 @@
      14
     ],
     [
-     8,
+     1,
      2
     ]
    ]
@@ -805,7 +809,7 @@
      5
     ],
     [
-     14,
+     5,
      4
     ],
     [
@@ -815,8 +819,30 @@
    ]
   },
   {
-   "field": "Lefebvre · Harvey · CERTEAU",
+   "field": "Geertz · Elias · Douglas",
    "field_id": 12,
+   "works": 18,
+   "best_family": 12,
+   "family_label": "Moore · Horden · Nirenberg — mediterranean, medieval, communities, western",
+   "jaccard": 0.341,
+   "work_spread": [
+    [
+     12,
+     14
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     8,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Lefebvre · Harvey · CERTEAU",
+   "field_id": 13,
    "works": 11,
    "best_family": 10,
    "family_label": "Scott · Cronon · White — condition, nature, conservation, wilderness",
@@ -835,7 +861,7 @@
      1
     ],
     [
-     1,
+     5,
      1
     ]
    ]
@@ -846,7 +872,7 @@
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
    "citing": 153,
-   "entropy": 0.647,
+   "entropy": 0.645,
    "nmf_top": 1,
    "nmf_top_share": 0.41,
    "nmf_second": 11,
@@ -912,7 +938,7 @@
    "title": "The Art of Not Being Governed: An Anarchist History of Upland Southeast Asia",
    "first_author": "Scott, James C",
    "citing": 46,
-   "entropy": 0.562,
+   "entropy": 0.563,
    "nmf_top": 10,
    "nmf_top_share": 0.39,
    "nmf_second": 1,
@@ -934,7 +960,7 @@
    "title": "Manliness & Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
    "first_author": "Bederman, Gail",
    "citing": 36,
-   "entropy": 0.691,
+   "entropy": 0.692,
    "nmf_top": 8,
    "nmf_top_share": 0.31,
    "nmf_second": 10,
@@ -947,16 +973,16 @@
    "citing": 36,
    "entropy": 0.245,
    "nmf_top": 10,
-   "nmf_top_share": 0.59,
+   "nmf_top_share": 0.58,
    "nmf_second": 3,
-   "nmf_second_share": 0.41,
+   "nmf_second_share": 0.42,
    "louvain": "unclustered"
   },
   {
    "title": "Green Imperialism: Colonial Expansion, Tropical Island Edens and the Origins of Environmentalism, 1600-1860",
    "first_author": "Grove, Richard",
    "citing": 33,
-   "entropy": 0.328,
+   "entropy": 0.329,
    "nmf_top": 10,
    "nmf_top_share": 0.68,
    "nmf_second": 2,
@@ -1000,7 +1026,7 @@
    "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
    "first_author": "Davidoff, Leonore",
    "citing": 30,
-   "entropy": 0.661,
+   "entropy": 0.66,
    "nmf_top": 1,
    "nmf_top_share": 0.24,
    "nmf_second": 11,
@@ -1013,7 +1039,7 @@
    "citing": 30,
    "entropy": 0.574,
    "nmf_top": 8,
-   "nmf_top_share": 0.37,
+   "nmf_top_share": 0.36,
    "nmf_second": 0,
    "nmf_second_share": 0.22,
    "louvain": "unclustered"
@@ -1033,9 +1059,9 @@
    "title": "The Age of Extremes: A History of the World, 1914-1991",
    "first_author": "Hobsbawm, Eric",
    "citing": 26,
-   "entropy": 0.657,
+   "entropy": 0.663,
    "nmf_top": 14,
-   "nmf_top_share": 0.27,
+   "nmf_top_share": 0.25,
    "nmf_second": 6,
    "nmf_second_share": 0.2,
    "louvain": "unclustered"
@@ -1055,7 +1081,7 @@
    "title": "The Family, Sex and Marriage in England, 1500-1800",
    "first_author": "Stone, Lawrence",
    "citing": 26,
-   "entropy": 0.61,
+   "entropy": 0.609,
    "nmf_top": 12,
    "nmf_top_share": 0.27,
    "nmf_second": 2,
@@ -1066,7 +1092,7 @@
    "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
    "first_author": "Foucault, Michel",
    "citing": 25,
-   "entropy": 0.658,
+   "entropy": 0.657,
    "nmf_top": 11,
    "nmf_top_share": 0.29,
    "nmf_second": 14,
@@ -1187,7 +1213,7 @@
    "title": "Boundaries: The Making of France and Spain in the Pyrenees",
    "first_author": "Sahlins, Peter",
    "citing": 22,
-   "entropy": 0.505,
+   "entropy": 0.504,
    "nmf_top": 14,
    "nmf_top_share": 0.49,
    "nmf_second": 2,
@@ -1209,18 +1235,18 @@
    "title": "Customs in Common",
    "first_author": "Thompson, E. P",
    "citing": 22,
-   "entropy": 0.547,
+   "entropy": 0.554,
    "nmf_top": 2,
    "nmf_top_share": 0.42,
    "nmf_second": 14,
-   "nmf_second_share": 0.26,
+   "nmf_second_share": 0.25,
    "louvain": "unclustered"
   },
   {
    "title": "The Culture of Professionalism: The Middle Class and the Development of Higher Education in America",
    "first_author": "Bledstein, Burton J",
    "citing": 21,
-   "entropy": 0.248,
+   "entropy": 0.247,
    "nmf_top": 8,
    "nmf_top_share": 0.78,
    "nmf_second": 0,
@@ -1264,11 +1290,11 @@
    "title": "The Navigation of Feeling: A Framework for the History of Emotions",
    "first_author": "Reddy, William M",
    "citing": 20,
-   "entropy": 0.658,
+   "entropy": 0.655,
    "nmf_top": 12,
    "nmf_top_share": 0.27,
    "nmf_second": 0,
-   "nmf_second_share": 0.26,
+   "nmf_second_share": 0.27,
    "louvain": "unclustered"
   },
   {
@@ -1299,7 +1325,7 @@
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
    "citing": 332,
-   "entropy": 0.184,
+   "entropy": 0.186,
    "nmf_top": 14,
    "nmf_top_share": 0.9,
    "nmf_second": 1,
@@ -1310,7 +1336,7 @@
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 146,
-   "entropy": 0.284,
+   "entropy": 0.285,
    "nmf_top": 1,
    "nmf_top_share": 0.81,
    "nmf_second": 14,
@@ -1321,7 +1347,7 @@
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
    "citing": 153,
-   "entropy": 0.647,
+   "entropy": 0.645,
    "nmf_top": 1,
    "nmf_top_share": 0.41,
    "nmf_second": 11,
@@ -1343,9 +1369,9 @@
    "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
    "first_author": "Scott, James C",
    "citing": 175,
-   "entropy": 0.366,
+   "entropy": 0.363,
    "nmf_top": 10,
-   "nmf_top_share": 0.7,
+   "nmf_top_share": 0.71,
    "nmf_second": 11,
    "nmf_second_share": 0.11,
    "louvain": "Scott · Wiebe · Cronon"
@@ -1376,7 +1402,7 @@
    "title": "Britons: Forging the Nation, 1707-1837",
    "first_author": "Colley, Linda",
    "citing": 60,
-   "entropy": 0.286,
+   "entropy": 0.285,
    "nmf_top": 2,
    "nmf_top_share": 0.61,
    "nmf_second": 14,
@@ -1411,9 +1437,9 @@
    "title": "Capital: A Critique of Political Economy",
    "first_author": "Marx, Karl",
    "citing": 45,
-   "entropy": 0.764,
+   "entropy": 0.763,
    "nmf_top": 10,
-   "nmf_top_share": 0.28,
+   "nmf_top_share": 0.29,
    "nmf_second": 1,
    "nmf_second_share": 0.23,
    "louvain": "Anderson · Said · Thompson"
@@ -1433,7 +1459,7 @@
    "title": "Empire of Cotton: A Global History",
    "first_author": "Beckert, Sven",
    "citing": 75,
-   "entropy": 0.736,
+   "entropy": 0.737,
    "nmf_top": 10,
    "nmf_top_share": 0.23,
    "nmf_second": 0,
@@ -1444,7 +1470,7 @@
    "title": "The Structure of Scientific Revolutions",
    "first_author": "Kuhn, Thomas S",
    "citing": 40,
-   "entropy": 0.733,
+   "entropy": 0.732,
    "nmf_top": 10,
    "nmf_top_share": 0.2,
    "nmf_second": 8,
@@ -1477,7 +1503,7 @@
    "title": "Manliness & Civilization: A Cultural History of Gender and Race in the United States, 1880-1917",
    "first_author": "Bederman, Gail",
    "citing": 36,
-   "entropy": 0.691,
+   "entropy": 0.692,
    "nmf_top": 8,
    "nmf_top_share": 0.31,
    "nmf_second": 10,
@@ -1537,7 +1563,7 @@
    "nmf_top_share": 0.4,
    "nmf_second": 14,
    "nmf_second_share": 0.17,
-   "louvain": "Anderson · Said · Thompson"
+   "louvain": "Geertz · Elias · Douglas"
   },
   {
    "title": "Gay New York: Gender, Urban Culture, and the Making of the Gay Male World, 1890-1940",
@@ -1554,7 +1580,7 @@
    "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
    "first_author": "Davidoff, Leonore",
    "citing": 30,
-   "entropy": 0.661,
+   "entropy": 0.66,
    "nmf_top": 1,
    "nmf_top_share": 0.24,
    "nmf_second": 11,
@@ -1584,17 +1610,6 @@
    "louvain": "Foucault · Butler · Scott"
   },
   {
-   "title": "Discipline and Punish: The Birth of the Prison",
-   "first_author": "Foucault, Michel",
-   "citing": 153,
-   "entropy": 0.647,
-   "nmf_top": 1,
-   "nmf_top_share": 0.41,
-   "nmf_second": 11,
-   "nmf_second_share": 0.18,
-   "louvain": "unclustered"
-  },
-  {
    "title": "Freaks of Fortune: The Emerging World of Capitalism and Risk in America",
    "first_author": "Levy, Jonathan",
    "citing": 30,
@@ -1604,17 +1619,6 @@
    "nmf_second": 3,
    "nmf_second_share": 0.2,
    "louvain": "Scott · Wiebe · Cronon"
-  },
-  {
-   "title": "Race and Manifest Destiny: The Origins of American Racial Anglo-Saxonism",
-   "first_author": "Horsman, Reginald",
-   "citing": 47,
-   "entropy": 0.646,
-   "nmf_top": 4,
-   "nmf_top_share": 0.32,
-   "nmf_second": 5,
-   "nmf_second_share": 0.19,
-   "louvain": "Dudziak · Kramer · Westad"
   },
   {
    "title": "Security, Territory, Population: Lectures at the Collège de France, 1977-1978",
@@ -1628,6 +1632,28 @@
    "louvain": "Anderson · Said · Thompson"
   },
   {
+   "title": "Race and Manifest Destiny: The Origins of American Racial Anglo-Saxonism",
+   "first_author": "Horsman, Reginald",
+   "citing": 47,
+   "entropy": 0.646,
+   "nmf_top": 4,
+   "nmf_top_share": 0.32,
+   "nmf_second": 5,
+   "nmf_second_share": 0.19,
+   "louvain": "Dudziak · Kramer · Westad"
+  },
+  {
+   "title": "Discipline and Punish: The Birth of the Prison",
+   "first_author": "Foucault, Michel",
+   "citing": 153,
+   "entropy": 0.645,
+   "nmf_top": 1,
+   "nmf_top_share": 0.41,
+   "nmf_second": 11,
+   "nmf_second_share": 0.18,
+   "louvain": "unclustered"
+  },
+  {
    "title": "Cheap Amusements: Working Women and Leisure in Turn-of-the-Century New York",
    "first_author": "Peiss, Kathy",
    "citing": 51,
@@ -1639,21 +1665,10 @@
    "louvain": "Habermas · Chauncey · Peiss"
   },
   {
-   "title": "Imperial Eyes: Travel Writing and Transculturation",
-   "first_author": "Pratt, Mary Louise",
-   "citing": 63,
-   "entropy": 0.64,
-   "nmf_top": 1,
-   "nmf_top_share": 0.32,
-   "nmf_second": 10,
-   "nmf_second_share": 0.22,
-   "louvain": "Anderson · Said · Thompson"
-  },
-  {
    "title": "Gender: A Useful Category of Historical Analysis",
    "first_author": "Scott, Joan W",
    "citing": 49,
-   "entropy": 0.639,
+   "entropy": 0.638,
    "nmf_top": 11,
    "nmf_top_share": 0.43,
    "nmf_second": 0,
@@ -1683,6 +1698,17 @@
    "louvain": "Ngai · Roediger · Jacobson"
   },
   {
+   "title": "Imperial Eyes: Travel Writing and Transculturation",
+   "first_author": "Pratt, Mary Louise",
+   "citing": 63,
+   "entropy": 0.635,
+   "nmf_top": 1,
+   "nmf_top_share": 0.32,
+   "nmf_second": 10,
+   "nmf_second_share": 0.23,
+   "louvain": "Anderson · Said · Thompson"
+  },
+  {
    "title": "American Crucible: Race and Nation in the Twentieth Century",
    "first_author": "Gerstle, Gary",
    "citing": 48,
@@ -1697,7 +1723,7 @@
    "title": "Science in Action: How to Follow Scientists and Engineers through Society",
    "first_author": "Latour, Bruno",
    "citing": 41,
-   "entropy": 0.631,
+   "entropy": 0.632,
    "nmf_top": 10,
    "nmf_top_share": 0.3,
    "nmf_second": 2,

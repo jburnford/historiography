@@ -74,9 +74,11 @@ def file_urls(links):
 
 
 def retry(row):
-    """Rows from the first run that a HAL record or a relative link defeated."""
+    """Rows worth another try: HAL records or relative links the first run missed, network failures
+    and server errors (not 403s, which are access restrictions)."""
     return row['status'] in ('not_pdf', 'error') and '403' not in row.get('error', '') and \
-        any(HAL_RECORD.match(u) for u in row.get('links') or []) or 'unknown url type' in row.get('error', '')
+        any(HAL_RECORD.match(u) for u in row.get('links') or []) or 'unknown url type' in row.get('error', '') or \
+        row.get('error', '').startswith('URLError') or 'HTTP Error 500' in row.get('error', '')
 
 
 def pace(host, seconds):

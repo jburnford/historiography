@@ -4,7 +4,7 @@
  "louvain_knn_res1.0": {
   "clusters": 11,
   "clusters_ge20": 11,
-  "adjusted_rand": 0.385,
+  "adjusted_rand": 0.384,
   "nmi": 0.55,
   "purity_weighted": 0.525,
   "table": [
@@ -123,13 +123,13 @@
  "louvain_knn_res1.5": {
   "clusters": 17,
   "clusters_ge20": 16,
-  "adjusted_rand": 0.48,
-  "nmi": 0.576,
-  "purity_weighted": 0.65,
+  "adjusted_rand": 0.482,
+  "nmi": 0.577,
+  "purity_weighted": 0.651,
   "table": [
    {
     "cluster": 0,
-    "size": 143,
+    "size": 142,
     "main_family": 0,
     "purity": 0.92,
     "second": [
@@ -149,21 +149,21 @@
    },
    {
     "cluster": 2,
+    "size": 106,
+    "main_family": 3,
+    "purity": 0.65,
+    "second": [
+     4,
+     14
+    ]
+   },
+   {
+    "cluster": 3,
     "size": 103,
     "main_family": 5,
     "purity": 0.71,
     "second": [
      1,
-     12
-    ]
-   },
-   {
-    "cluster": 3,
-    "size": 102,
-    "main_family": 3,
-    "purity": 0.66,
-    "second": [
-     4,
      12
     ]
    },
@@ -189,7 +189,17 @@
    },
    {
     "cluster": 6,
-    "size": 81,
+    "size": 83,
+    "main_family": 13,
+    "purity": 0.55,
+    "second": [
+     6,
+     23
+    ]
+   },
+   {
+    "cluster": 7,
+    "size": 82,
     "main_family": 1,
     "purity": 0.84,
     "second": [
@@ -198,30 +208,20 @@
     ]
    },
    {
-    "cluster": 7,
-    "size": 81,
-    "main_family": 13,
-    "purity": 0.56,
-    "second": [
-     6,
-     22
-    ]
-   },
-   {
     "cluster": 8,
-    "size": 79,
+    "size": 80,
     "main_family": 15,
-    "purity": 0.51,
+    "purity": 0.5,
     "second": [
      8,
-     23
+     24
     ]
    },
    {
     "cluster": 9,
-    "size": 70,
+    "size": 72,
     "main_family": 4,
-    "purity": 0.73,
+    "purity": 0.72,
     "second": [
      1,
      15
@@ -230,11 +230,11 @@
    {
     "cluster": 10,
     "size": 66,
-    "main_family": 12,
-    "purity": 0.58,
+    "main_family": 6,
+    "purity": 0.61,
     "second": [
-     2,
-     5
+     14,
+     9
     ]
    },
    {
@@ -249,22 +249,22 @@
    },
    {
     "cluster": 12,
-    "size": 61,
-    "main_family": 6,
-    "purity": 0.64,
-    "second": [
-     14,
-     8
-    ]
-   },
-   {
-    "cluster": 13,
     "size": 59,
     "main_family": 8,
     "purity": 0.41,
     "second": [
      1,
      6
+    ]
+   },
+   {
+    "cluster": 13,
+    "size": 58,
+    "main_family": 12,
+    "purity": 0.66,
+    "second": [
+     2,
+     5
     ]
    },
    {
@@ -279,12 +279,12 @@
    },
    {
     "cluster": 15,
-    "size": 29,
+    "size": 24,
     "main_family": 14,
-    "purity": 0.52,
+    "purity": 0.58,
     "second": [
      3,
-     6
+     3
     ]
    }
   ]
@@ -292,11 +292,11 @@
  "ward_k": {
   "clusters": 16,
   "adjusted_rand": 0.322,
-  "nmi": 0.511,
+  "nmi": 0.509,
   "sizes": [
-   226,
+   224,
    196,
-   147,
+   149,
    146,
    96,
    83,
@@ -313,7 +313,7 @@
   ]
  },
  "nearest_neighbour_same_family": {
-  "share": 0.665,
+  "share": 0.666,
   "chance": 0.07
  },
  "note": "Dissertation clusters from cosine on TF-IDF rows (bibliographic coupling) against NMF dominant families."

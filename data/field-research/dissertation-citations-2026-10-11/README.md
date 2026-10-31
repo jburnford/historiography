@@ -326,8 +326,53 @@ At this first pass, below the 2,000 threshold, the UK was a **provisional** sub-
   - In: political, social, economic, religious, legal and diplomatic history, including Politics and Social Studies doctorates on past events and church history from Theology.
   - Out: literary, art, music and textual studies, theory, and contemporary politics.
   - Not screened: titles with no dates or history terms.
-  - `download_ora.py` downloads the accepted titles. The matching `eligibility-overrides.csv` rows are added when they are downloaded. They are waiting for space on E: (about 4.5 GB at Oxford's average of 29 MB).
+  - `download_ora.py` downloaded all 153 accepted titles, and 153 record-level rows were added to `eligibility-overrides.csv`. They came in with the 2026-10-30 rebuild (see the France section).
 - The strict side of the Edinburgh and OpenAIRE routes is estimated to include about 5% literature theses, not yet sampled.
+
+## France expansion (2026-10-30)
+
+User, 2026-10-30: "we can then target more French dissertations to get them to 2000".
+
+**Source.** Before this round, French theses came only through BASE from HAL and TEL. The national record is the ABES open-data export "Thèses soutenues en France depuis 1985" on data.gouv.fr; its full NDJSON is the January 2024 snapshot and sits on E:. `france-theses-2026-10-30/candidates.json` holds 1,966 theses that are:
+- in a History discipline (art, law, literary, philosophy, music, archaeology, prehistory, geography, anthropology, language and architecture histories excluded);
+- marked `accessible = oui`;
+- defended;
+- not already held, by any title variant.
+
+**Downloads.**
+- `download_thesesfr.py` asks `theses.fr/api/v1/document/<nnt>` for each thesis's files, with theses.fr's 5-second crawl delay.
+- Where theses.fr redirects to the thesis's HAL record, the file is taken from `<record>/document`, which HAL's robots.txt allows.
+- University hosts are checked against their robots.txt and paced at 3 seconds.
+
+| Outcome | Theses |
+| --- | --- |
+| Open PDF downloaded | **417** |
+| Refused (403) | 1,258 |
+| No file listed | 244 |
+| Host unreachable or server error | 38 |
+| Not a PDF | 9 |
+
+Most refusals are restricted to members of French higher education ("Accès réservé aux membres de l'enseignement supérieur français") or to library copies, even though the open data marks them accessible. Sampled restricted theses list no other open version. They were recorded and not pursued.
+
+**Ingest.**
+- The `france_thesesfr` adapter takes the ABES record: institution `fr:<awarding institution>`, discipline as the History screen (`explicit_history_discipline`), and supervisors from `directeurs_these` as advisors.
+- 6 of the 417 PDFs were byte-identical to files already held, so 411 were added.
+- 321 of them yielded a parsed bibliography.
+
+**Result (build of 2026-10-30).**
+
+| | Before | After |
+| --- | --- | --- |
+| Main graph, strict | 10,229 | **10,707** |
+| United States | 2,864 | 2,864 |
+| United Kingdom | 2,498 | **2,656** |
+| Oxford | 929 | **1,087** |
+| Canada | 2,249 | 2,249 |
+| France | 1,130 | **1,450** (320 from theses.fr) |
+
+- France stays below the 2,000 sub-graph threshold. The open theses on theses.fr are now exhausted for the 2024 snapshot.
+- French strict theses by decade: 2000s 110, 2010s 859, 2020s 396.
+- A further route would be HAL's own thesis collection (TEL) for History theses that the national record lists as restricted. HAL's robots.txt disallows its search pages and search API, so that route needs a check first.
 
 ## Corpus and eligibility
 
