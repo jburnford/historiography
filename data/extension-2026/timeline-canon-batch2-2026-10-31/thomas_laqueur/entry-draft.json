@@ -1,0 +1,238 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "thomas_laqueur",
+    "label": "Thomas W. Laqueur",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A cultural historian of the body, sexuality and death. Making Sex (1990) argues that a ‘one-sex’ model, in which men and women were thought to share the same basic body, gave way in the eighteenth century to a ‘two-sex’ model grounded in biological difference: sex difference itself has a history. The thesis has been both influential and contested. Brooke Holmes, drawing on work by Katharine Park, Robert Nye, Joan Cadden and Helen King, argues that the evidence shows more varied and coexisting models, and traces the book’s narrative of epochal rupture to Foucault’s history of sexuality. Caroline Walker Bynum drew on it while noting Park and Nye’s qualification. Solitary Sex (2003) is a cultural history of masturbation, and The Work of the Dead (2015) asks what the care and naming of the dead do for the living.",
+    "representative_figures_and_works": "Making Sex (1990); Solitary Sex (2003); The Work of the Dead (2015).",
+    "scope_note": "Holmes (2019, open access) introduction and later passage, Bynum (1995) pp. 7–8 and the Berkeley interview verified 2026-10-31. Books not read in full.",
+    "source_ids": [
+      "tc233_laqueur_interview",
+      "tc233_laqueur_biblio",
+      "tq233_laqueur_holmes2019",
+      "tq232_bynum_body1995"
+    ],
+    "date_label": "Making Sex (1990) · Solitary Sex (2003) · The Work of the Dead (2015)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "Making Sex",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1990,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_laqueur_biblio"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_thomas_laqueur_1"
+        },
+        {
+          "label": "Solitary Sex",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2003,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_laqueur_biblio"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_thomas_laqueur_2"
+        },
+        {
+          "label": "The Work of the Dead",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2015,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_laqueur_biblio"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_thomas_laqueur_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.233/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "thomas_laqueur",
+    "label": "Thomas W. Laqueur",
+    "node_id": "thomas_laqueur",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "gender",
+      "relationship": "Argues that sex difference has a history, from a ‘one-sex’ to a ‘two-sex’ model of the body.",
+      "source_ids": [
+        "tq233_laqueur_holmes2019",
+        "tc233_laqueur_interview"
+      ],
+      "evidence_note": "Holmes 2019, introduction paragraphs 1–2 summarizing the thesis; Berkeley interview. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "thomas_laqueur",
+      "proposal_id": "tc233_thomas_laqueur_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "memory",
+      "relationship": "Studies how caring for and naming the dead creates social relationships across time.",
+      "source_ids": [
+        "tc233_laqueur_interview"
+      ],
+      "evidence_note": "Interview paragraphs on what the dead do, naming and memorials. No universal model of remembrance or whole-book reading.",
+      "relationship_kind": "contribution",
+      "source": "thomas_laqueur",
+      "proposal_id": "tc233_thomas_laqueur_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_thomas_laqueur_foucault",
+      "source": "foucault",
+      "target": "thomas_laqueur",
+      "relationship": "Holmes traces the narrative of epochal rupture in Making Sex to Foucault’s history of sexuality.",
+      "source_ids": [
+        "tq233_laqueur_holmes2019"
+      ],
+      "evidence_note": "Holmes, paragraph beginning The rupture with the ancients and n65. Named reader’s specific intellectual connection, not personal transmission or complete agreement; originals unread.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_thomas_laqueur_bynum",
+      "source": "thomas_laqueur",
+      "target": "caroline_walker_bynum",
+      "relationship": "Bynum uses Laqueur’s study for the Renaissance emphasis on organ systems while retaining Park and Nye’s qualification about earlier humoral models.",
+      "source_ids": [
+        "tq232_bynum_body1995"
+      ],
+      "evidence_note": "Primary Bynum 1995 pp. 7–8/n24: explicit positive appraisal and reference supporting her discussion, followed by a named report of criticism. Resource/reception, not personal influence; Park/Nye’s objection is not silently made Bynum’s own original critique.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc233_laqueur_interview",
+      "title": "UC Berkeley Social Science Matrix, “Thomas Laqueur: Long Live the Dead,” 15 April 2015.",
+      "citation": "UC Berkeley Social Science Matrix, “Thomas Laqueur: Long Live the Dead,” 15 April 2015.",
+      "url": "https://matrix.berkeley.edu/research-article/long-live-dead/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected passages quoting Laqueur on the apparent naturalness of bodily states, social relationships through time and naming/memorialization read. Primary quotations within an institutional interview feature, not full book reading. Personal/family anecdotes excluded; provisional subtitle not used as final publication metadata."
+      }
+    },
+    {
+      "id": "tc233_laqueur_biblio",
+      "title": "UC Berkeley History, Thomas W. Laqueur: bibliography.",
+      "citation": "UC Berkeley History, Thomas W. Laqueur: bibliography.",
+      "url": "https://history.berkeley.edu/people/faculty/emeriti/thomas-w-laqueur",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Bibliographic lines for Making Sex 1990, Solitary Sex 2003 and Work of the Dead 2015 checked; translation and later edition dates remain separate."
+      }
+    },
+    {
+      "id": "tq233_laqueur_holmes2019",
+      "title": "Brooke Holmes, “Let Go of Laqueur: Towards New Histories of the Sexed Body,” Eugesta 9 (2019).",
+      "citation": "Brooke Holmes, “Let Go of Laqueur: Towards New Histories of the Sexed Body,” Eugesta 9 (2019).",
+      "url": "https://doi.org/10.54563/eugesta.356",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read opening body from For nearly thirty years through the critique of binaries, and later paragraphs The rupture with the ancients through queer-unhistoricist debate; notes 4–7, 60, 65–66. Named scholarly criticism, not the originals cited. Full article not claimed read."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "gender",
+      "proposal_id": "tc233_thomas_laqueur_1",
+      "row": {
+        "person_id": "thomas_laqueur",
+        "role": "historian",
+        "context": "Argues that sex difference has a history, from a ‘one-sex’ to a ‘two-sex’ model of the body.",
+        "works": "Making Sex (1990); Solitary Sex (2003); The Work of the Dead (2015).",
+        "source_ids": [
+          "tq233_laqueur_holmes2019",
+          "tc233_laqueur_interview"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "memory",
+      "proposal_id": "tc233_thomas_laqueur_2",
+      "row": {
+        "person_id": "thomas_laqueur",
+        "role": "historian",
+        "context": "Studies how caring for and naming the dead creates social relationships across time.",
+        "works": "Making Sex (1990); Solitary Sex (2003); The Work of the Dead (2015).",
+        "source_ids": [
+          "tc233_laqueur_interview"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "queer: hold: sexuality as a topic does not alone establish a particular queer-history approach"
+  ],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq233_laqueur_holmes2019",
+        "locator": "Opening body argument; later Foucault/rupture paragraphs; nn. 4–7, 60, 65–66",
+        "access": "Journal’s authorized open text"
+      },
+      {
+        "source_id": "tq232_bynum_body1995",
+        "locator": "Bynum 1995 pp. 7–8/n24, positive appraisal plus named-reader qualification"
+      }
+    ],
+    "remaining_limits": [
+      "Holmes, Park/Nye, Cadden and King have no individual endpoints here; criticism stays in the biography and source note. Original criticisms and Laqueur reply unread."
+    ],
+    "audit_note": "Holmes’s interpretation and criticism are attributed. Bynum’s explicit use and positive appraisal retain the Park/Nye qualification as reported criticism. No personal transmission, one-model consensus or unread reply assumed."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

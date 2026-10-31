@@ -534,7 +534,8 @@ class AtlasBrowserTests(unittest.TestCase):
             ('jack_goody', '1919–2015', 'died 2015',
              'https://therai.org.uk/archives-and-manuscripts/obituaries/jack-goody/',
              'no work, career or influence interval.', True),
-            ('peter_brown', '1935–', 'living in checked sources',
+            # Living: the published copy withholds the birth year (user rule, 2026-10-30).
+            ('peter_brown', None, 'living in checked sources',
              'https://www.plough.com/articles/augustines-friendship-for-freedom',
              'explicitly dated July 2026 primary interview.', False),
         ]
@@ -542,7 +543,10 @@ class AtlasBrowserTests(unittest.TestCase):
             with self.subTest(person=person_id):
                 self.open(f'#person={person_id}')
                 profile = self.page.locator('.person-profile')
-                expect(profile.locator('h2 .lifespan')).to_have_text(lifespan)
+                if lifespan:
+                    expect(profile.locator('h2 .lifespan')).to_have_text(lifespan)
+                else:
+                    expect(profile.locator('h2 .lifespan')).to_have_count(0)
                 expect(profile.locator('.life')).to_contain_text(status)
                 expect(profile.locator('.life')).to_contain_text('checked 2026-10-25')
                 sources = profile.locator('.life-sources')

@@ -1,0 +1,272 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "david_arnold",
+    "label": "David Arnold",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A historian of South Asia, and a founding member of the Subaltern Studies collective, whose work brings medicine, science and environment into the study of colonial power. Colonizing the Body (1993) studies state medicine and epidemic disease in nineteenth-century India. The introduction to Science, Technology and Medicine in Colonial India (2000) rejects a single trajectory from European discovery to passive reception overseas. Drawing on Steven Shapin’s account of knowledge as socially situated, it insists that a history of science in India must also be a history of India. It criticizes George Basalla’s diffusion model for flattening differences among colonial situations, marginalizing local agency and assuming a beneficial sequence of development, while also rejecting accounts that understate colonial disruption. His environmental histories include The Problem of Nature (1996) and The Tropics and the Traveling Gaze (2006).",
+    "representative_figures_and_works": "Imperial Medicine and Indigenous Societies (edited, 1988; Delhi edition 1989); Colonizing the Body (1993); Science, Technology and Medicine in Colonial India (2000).",
+    "scope_note": "Warwick research statement and bibliography, and Cambridge’s sample of the 2000 introduction, verified 2026-10-31. The Colonizing the Body passage on Foucault could not be re-read; those edges are held. Books not read in full.",
+    "source_ids": [
+      "tc234_arnold_profile",
+      "tc234_arnold_body",
+      "tc234_arnold_biblio",
+      "tq234_arnold_science2000"
+    ],
+    "date_label": "Imperial Medicine and Indigenous Societies: edited collection (1988) · Colonizing the Body (1993) · Science, Technology and Medicine in Colonial India (2000)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "Imperial Medicine and Indigenous Societies: edited collection",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1988,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_arnold_biblio"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_david_arnold_1"
+        },
+        {
+          "label": "Colonizing the Body",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1993,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_arnold_body"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_david_arnold_2"
+        },
+        {
+          "label": "Science, Technology and Medicine in Colonial India",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2000,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_arnold_biblio"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_david_arnold_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.234/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "david_arnold",
+    "label": "David Arnold",
+    "node_id": "david_arnold",
+    "new": true,
+    "identity_note": "Queue identity retained and grounded through the matching institutional professional account and publications in this research packet. No namesake union inferred."
+  },
+  "proposed_edges": [
+    {
+      "target": "medicalhistory",
+      "relationship": "Examines medicine as a contested part of colonial state power.",
+      "source_ids": [
+        "tc234_arnold_body"
+      ],
+      "evidence_note": "Read publisher account and indexed primary introduction p. 7; not the complete book.",
+      "relationship_kind": "contribution",
+      "source": "david_arnold",
+      "proposal_id": "tc234_david_arnold_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "subaltern",
+      "relationship": "Participated in the founding Subaltern Studies collective and its inquiry into South Asian history.",
+      "source_ids": [
+        "tc234_arnold_profile"
+      ],
+      "evidence_note": "Read professional research statement identifies founding participation. Does not certify agreement with every later collective argument.",
+      "relationship_kind": "contribution",
+      "source": "david_arnold",
+      "proposal_id": "tc234_david_arnold_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "environment",
+      "relationship": "Includes environmental history among his fields, from The Problem of Nature (1996) to The Tropics and the Traveling Gaze (2006).",
+      "source_ids": [
+        "tc234_arnold_profile"
+      ],
+      "evidence_note": "Warwick research page: field list and selected publications. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "david_arnold",
+      "proposal_id": "tc234_david_arnold_4",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_david_arnold_shapin",
+      "source": "steven_shapin",
+      "target": "david_arnold",
+      "relationship": "Arnold uses Shapin’s account of the cultural situation of knowledge to frame colonial science.",
+      "source_ids": [
+        "tq234_arnold_science2000"
+      ],
+      "evidence_note": "Primary introduction p. 1/n3, explicit quotation and application to the chapter’s social account. A specified conceptual resource, not personal mentorship.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_david_arnold_science",
+      "source": "david_arnold",
+      "target": "science",
+      "relationship": "Challenges a uniform diffusionist account of colonial science through social context, local agency and differences between colonial regimes.",
+      "source_ids": [
+        "tq234_arnold_science2000"
+      ],
+      "evidence_note": "Primary pp. 1–2,9–12, especially the criticism and partial retention of Basalla’s model. Not an assertion that science was simply an instrument of state power.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc234_arnold_profile",
+      "title": "David Arnold, Warwick research statement.",
+      "citation": "David Arnold, Warwick research statement.",
+      "url": "https://warwick.ac.uk/fac/arts/history/people/staff_index/d_arnold/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Research paragraphs on South Asian medicine, science, environment and founding Subaltern Studies read. Page last revised 25 November 2013; not proof of current life status."
+      }
+    },
+    {
+      "id": "tc234_arnold_body",
+      "title": "David Arnold, Colonizing the Body (1993), UC Press description and indexed introduction p. 7.",
+      "citation": "David Arnold, Colonizing the Body (1993), UC Press description and indexed introduction p. 7.",
+      "url": "https://www.ucpress.edu/books/colonizing-the-body/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher description read; indexed publisher excerpt p. 7 acknowledges Foucault while distinguishing the state-centred emphasis. Full PDF not inspected; direct robots check did not authorize retrieval, so no download. No complete-book reading."
+      }
+    },
+    {
+      "id": "tc234_arnold_biblio",
+      "title": "Warwick, David Arnold: The Works, 2011 bibliography.",
+      "citation": "Warwick, David Arnold: The Works, 2011 bibliography.",
+      "url": "https://warwick.ac.uk/fac/arts/history/chmst/events/conferences_workshops/da_theworks/david_arnold_the_works.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Opening book list and Crime and Crime Control in Madras chapter entry checked. Edited Imperial Medicine 1988 distinct from Delhi 1989; Colonizing 1993, Science 2000. Crime chapter 1985 pp. 62–88 metadata only."
+      }
+    },
+    {
+      "id": "tq234_arnold_science2000",
+      "title": "David Arnold, Science, Technology and Medicine in Colonial India (Cambridge, 2000), selected introduction.",
+      "citation": "David Arnold, Science, Technology and Medicine in Colonial India (Cambridge, 2000), selected introduction.",
+      "url": "https://assets.cambridge.org/97805215/63192/sample/9780521563192wsc00.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher sample: selected pp. 1–2,9–12 and nn1–4,21–23 read. Situated science, colonial discontinuity and qualified criticism of Basalla. Not a full chapter/book or cited-original reading; no traditional knowledge content retained."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "medicalhistory",
+      "proposal_id": "tc234_david_arnold_1",
+      "row": {
+        "person_id": "david_arnold",
+        "role": "historian",
+        "context": "Examines medicine as a contested part of colonial state power.",
+        "works": "Imperial Medicine and Indigenous Societies (edited, 1988; Delhi edition 1989); Colonizing the Body (1993); Science, Technology and Medicine in Colonial India (2000).",
+        "source_ids": [
+          "tc234_arnold_body"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "subaltern",
+      "proposal_id": "tc234_david_arnold_2",
+      "row": {
+        "person_id": "david_arnold",
+        "role": "historian",
+        "context": "Participated in the founding Subaltern Studies collective and its inquiry into South Asian history.",
+        "works": "Imperial Medicine and Indigenous Societies (edited, 1988; Delhi edition 1989); Colonizing the Body (1993); Science, Technology and Medicine in Colonial India (2000).",
+        "source_ids": [
+          "tc234_arnold_profile"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "environment",
+      "proposal_id": "tc234_david_arnold_4",
+      "row": {
+        "person_id": "david_arnold",
+        "role": "historian",
+        "context": "Includes environmental history among his fields, from The Problem of Nature (1996) to The Tropics and the Traveling Gaze (2006).",
+        "works": "Imperial Medicine and Indigenous Societies (edited, 1988; Delhi edition 1989); Colonizing the Body (1993); Science, Technology and Medicine in Colonial India (2000).",
+        "source_ids": [
+          "tc234_arnold_profile"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "tc234_david_arnold_3: held at Claude verification 2026-10-31. The cited p. 7 passage of Colonizing the Body is not on the publisher page and could not be re-read.",
+    "tc234_david_arnold_5: held at Claude verification 2026-10-31. The cited p. 7 passage of Colonizing the Body is not on the publisher page and could not be re-read."
+  ],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq234_arnold_science2000",
+        "locator": "Selected introduction pp. 1–2,9–12/nn1–4,21–23"
+      }
+    ],
+    "remaining_limits": [
+      "Basalla has no individual endpoint; criticism remains in biography and field relationship. Complete selected books and recent article unread. No new current-life claim from publication metadata."
+    ],
+    "audit_note": "New primary introduction supplies situated science and a specific, qualified Basalla critique. Shapin is a named conceptual resource. Narrow Foucault witness remains distinct; older professional page does not prove current living status."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

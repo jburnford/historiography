@@ -1,0 +1,251 @@
+{
+  "person_id": "peter_gay",
+  "label": "Peter Gay",
+  "selection": {
+    "name": "Peter Gay",
+    "person_id": "peter_gay",
+    "existing_profile": true,
+    "existing_context_ids": [
+      "psychohistory"
+    ],
+    "proposed_context_ids": [
+      "intellectualhistory"
+    ],
+    "qid": "Q63670",
+    "source_keys": [
+      "P:gay|peter"
+    ],
+    "dated_dissertations": 136,
+    "threshold_line": "other_ge136",
+    "classification": "historian",
+    "bibliography_leads": [
+      "The Enlightenment: An Interpretation",
+      "Weimar Culture: The Outsider as Insider",
+      "The Bourgeois Experience: Victoria to Freud"
+    ],
+    "note": "",
+    "keys_with_counted_works": [
+      "P:gay|peter"
+    ],
+    "entry_type": "Individual historian"
+  },
+  "identity": {
+    "qid": "Q63670",
+    "origin": "User queue; institutional professional identity and matching works checked",
+    "fresh_wikidata_check": false,
+    "limits": "No live authority request or authority merge; existing cached SPARQL date assertions kept separately with their original provenance."
+  },
+  "existing_coverage": [
+    {
+      "node": "psychohistory",
+      "rows": [
+        {
+          "person_id": "peter_gay",
+          "role": "historian",
+          "context": "Argues for psychoanalytic interpretation alongside external historical circumstances and distances his work from reductionist versions of psychohistory.",
+          "works": "Freud for Historians (1985); The Bourgeois Experience; methodological interview (1997)",
+          "source_ids": [
+            "erikson",
+            "psychohistory",
+            "freud",
+            "gay_interview_1997"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "existing_source_ids_reused": [
+    "gay_interview_1997"
+  ],
+  "new_source_scopes": [
+    {
+      "id": "tc234_gay_yale",
+      "title": "Yale, “Two Yale Professors Honored by American Historical Society,” 5 February 2004.",
+      "citation": "Yale, “Two Yale Professors Honored by American Historical Society,” 5 February 2004.",
+      "url": "https://news.yale.edu/2004/02/05/two-yale-professors-honored-american-historical-society",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Professional citation checked for Enlightenment volumes 1966/1969, Weimar Culture 1968, Bourgeois Experience five volumes 1984–1998. Full books unread."
+      }
+    },
+    {
+      "id": "tc234_gay_memorial",
+      "title": "Yale History, “In Memoriam: Peter Gay,” 12 May 2015.",
+      "citation": "Yale History, “In Memoriam: Peter Gay,” 12 May 2015.",
+      "url": "https://history.yale.edu/news/memoriam-peter-gay",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Dated institutional death notice checked. Cached exact-day life assertions retained separately; private family information excluded."
+      }
+    }
+  ],
+  "reading_limit": "Rests on the atlas’s earlier reading of the 1997 interview and Yale’s 2004 AHA citation. The publisher excerpt on romanticism is excluded by robots.txt, so that edge is held. Books not read in full.",
+  "passage_checks": [
+    {
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "locator_and_scope": "Previously checked primary interview excerpt; qualified method, not universal psychological reduction.",
+      "support": "Uses psychoanalytic questions together with historical evidence and external circumstances."
+    },
+    {
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "locator_and_scope": "Primary answers to definition of psychohistory and its origins: external constraints, French Revolution example, Neumann reading group. Conceptual resource, not a claim that Freud himself wrote adequate historical studies.",
+      "support": "Gay uses Freud as a resource for studying the interaction of inner processes and historical circumstances."
+    },
+    {
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "locator_and_scope": "Primary opening professional answer distinguishes his psychoanalytically informed practice from reductionism, with subsequent historical example. Criticism qualifies the retained contribution relationship.",
+      "support": "Gay criticizes psychohistory when it assigns excessive causal weight to inner experience and neglects external historical circumstances."
+    }
+  ],
+  "context_decisions": {
+    "intellectualhistory": "accept: primary intellectual-historical methodological excerpt"
+  },
+  "relations": [
+    {
+      "target": "psychohistory",
+      "relationship": "Uses psychoanalytic questions together with historical evidence and external circumstances.",
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "evidence_note": "Previously checked primary interview excerpt; qualified method, not universal psychological reduction.",
+      "relationship_kind": "contribution",
+      "source": "peter_gay",
+      "proposal_id": "tc234_peter_gay_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_peter_gay_freud",
+      "source": "sigmund_freud",
+      "target": "peter_gay",
+      "relationship": "Gay uses Freud as a resource for studying the interaction of inner processes and historical circumstances.",
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "evidence_note": "Primary answers to definition of psychohistory and its origins: external constraints, French Revolution example, Neumann reading group. Conceptual resource, not a claim that Freud himself wrote adequate historical studies.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_peter_gay_reductionism",
+      "source": "peter_gay",
+      "target": "psychohistory",
+      "relationship": "Gay criticizes psychohistory when it assigns excessive causal weight to inner experience and neglects external historical circumstances.",
+      "source_ids": [
+        "gay_interview_1997"
+      ],
+      "evidence_note": "Primary opening professional answer distinguishes his psychoanalytically informed practice from reductionism, with subsequent historical example. Criticism qualifies the retained contribution relationship.",
+      "relationship_kind": "critique",
+      "type": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "events": [
+    {
+      "label": "The Enlightenment: first volume",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1966,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_gay_yale"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_peter_gay_1"
+    },
+    {
+      "label": "Weimar Culture",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1968,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_gay_yale"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_peter_gay_2"
+    },
+    {
+      "label": "The Enlightenment: second volume",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1969,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_gay_yale"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_peter_gay_3"
+    },
+    {
+      "label": "The Bourgeois Experience: first volume",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1984,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_gay_yale"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_peter_gay_4"
+    },
+    {
+      "label": "The Bourgeois Experience: fifth and final volume",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1998,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_gay_yale"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_peter_gay_5"
+    }
+  ],
+  "life_status_record": "peter_gay/life-status.json",
+  "reading_bridge_keys": [
+    "P:gay|peter"
+  ],
+  "review_boundaries": [],
+  "review_status": "needs_independent_review",
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "gay_interview_1997",
+        "locator": "Fresh extended professional answers from definition through scholarly examples; excludes personal/family material"
+      }
+    ],
+    "remaining_limits": [
+      "Neumann, Erikson and Demos have no individual endpoints. No blanket rejection of psychoanalysis or independent endorsement of Gay’s clinical claims."
+    ],
+    "audit_note": "Freud resource coexists with criticism of reductionist psychohistory. Neumann stimulus is own testimony. Outside circumstances remain causal; no clinical or theoretical consensus asserted. Professional excerpt is not a full recording."
+  },
+  "claude_verification": "Interview edges confirmed; Freud biography added; robots-excluded excerpt removed."
+}

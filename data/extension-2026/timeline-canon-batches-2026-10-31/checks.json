@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "source_policy_grep": {
+    "tool": "rg --pcre2 --quiet --hidden -i",
+    "pattern_source": "scripts/source_hosts.py BLOCKED_HOSTS and BLOCKED_NAMES",
+    "scope": [
+      "data/extension-2026/timeline-canon-batch1-2026-10-31",
+      "data/extension-2026/timeline-canon-batch2-2026-10-31",
+      "data/extension-2026/timeline-canon-batch3-2026-10-31",
+      "data/extension-2026/timeline-canon-batches-2026-10-31"
+    ],
+    "matches": false,
+    "exit_code": 1,
+    "exclusions": [
+      "Local research receipts",
+      "Python bytecode"
+    ],
+    "included_formats": [
+      "json",
+      "md",
+      "py"
+    ]
+  },
+  "targeted_tests": [
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_apply_person_entries_fields.py'",
+      "tests": 19,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_source_hosts.py'",
+      "tests": 3,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_chronology.py'",
+      "tests": 7,
+      "status": "passed"
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_person_registry.py'",
+      "tests": 5,
+      "status": "passed"
+    }
+  ],
+  "test_total": 34,
+  "checked_on": "2026-10-31",
+  "mode": "Final strengthened packets regenerated and in-memory validated; researcher audit complete, independent Claude acceptance pending.",
+  "regeneration": "All three preparation/build sequences rerun successfully; final researcher content hashes remain exact.",
+  "substantive_researcher_audit": {
+    "people": 32,
+    "status": "researcher_review_complete",
+    "record": "quality-review/final-audit.json",
+    "independent_review": "pending Claude"
+  },
+  "ordered_in_memory_validation": "passed; zero errors and zero new warnings; all 46 baseline warnings unchanged"
+}

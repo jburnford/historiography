@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
-  "checked_on": "2026-10-28",
+  "checked_on": "2026-10-31",
   "scope": {
     "layer": "intellectual_connections",
     "entry_kind": "person",
     "baseline_revision": "1.183",
-    "graph_revision": "1.204",
-    "people": 36
+    "graph_revision": "1.234",
+    "people": 37
   },
   "source_report_sha256": {
     "data/extension-2026/indigenous-histories-2026-10-27/audra_simpson/life-status.json": "6885fdd39240f36fe15289409b745a230a75730fbe991906a5ee1f7c8fa3731d",
@@ -44,7 +44,8 @@
     "data/extension-2026/remaining-theory-lane2-round2-2026-10-25/paul_gilroy/life-status.json": "a05ea7fcfecfce40cd5ff2c9991b89cfd9dd98a8d17a6b7c4e486c17ddc32e3d",
     "data/extension-2026/remaining-theory-lane2-round2-2026-10-25/samuel_huntington/life-status.json": "7a861b20683fc800de0b394951519883e24b30bf75194574528af2a1c9a6ba72",
     "data/extension-2026/remaining-theory-lane2-round2-2026-10-25/sigmund_freud/life-status.json": "4495e802974a052d4e87c60d0419f1514da428cd1a9ed07e79aff1bc12805dda",
-    "data/extension-2026/remaining-theory-lane2-round2-2026-10-25/theodor_w_adorno/life-status.json": "b9d70a5ec2bfa92dd51e21bbaaff85b33ec4e2e06358e11f1fc6c0d4a17690f8"
+    "data/extension-2026/remaining-theory-lane2-round2-2026-10-25/theodor_w_adorno/life-status.json": "b9d70a5ec2bfa92dd51e21bbaaff85b33ec4e2e06358e11f1fc6c0d4a17690f8",
+    "data/extension-2026/timeline-canon-batch3-2026-10-31/stephen_greenblatt/life-status.json": "62c83b1acbd1f4b488de94b279c8a23e8361a56d5fbb56f30f2a64ac4241e402"
   },
   "method": "Primary/institutional identity and life evidence in accepted theory biographies. Missing death does not establish life. Dates are reference metadata, not career or influence intervals.",
   "people": [
@@ -912,6 +913,43 @@
         }
       ],
       "confidence": "high"
+    },
+    {
+      "person_id": "stephen_greenblatt",
+      "label": "Stephen Greenblatt",
+      "status": "living",
+      "birth_year": 1943,
+      "birth_precision": "year",
+      "death_year": null,
+      "death_precision": null,
+      "checked_on": "2026-10-31",
+      "sources": [
+        {
+          "url": "https://www.wikidata.org/wiki/Q639065",
+          "title": "Prior local broad-scholar Wikidata assertion cache",
+          "locator": "data/wikidata/scholars-broad.csv: Q639065",
+          "support": "Unreviewed cached assertions; this CSV does not preserve Wikidata precision, so only year is summarized. Not a fresh authority check or proof of present living status.",
+          "local_sha256": "c6b7d80c31b1e61f117227471c09b001c59dec7fe5470b40483ea1959ffebc84",
+          "raw_date_evidence": {
+            "qid": "Q639065",
+            "label": "Stephen Greenblatt",
+            "birth": "1943-11-07T00:00:00Z",
+            "death": "",
+            "occupations": "university teacher|literary scholar|literary historian|literary theorist|journalist|literary critic|Shakespearean scholar|writer"
+          },
+          "identity_review_status": "unreviewed cached match; institutional professional identity checked separately"
+        },
+        {
+          "url": "https://english.fas.harvard.edu/people/stephen-greenblatt",
+          "title": "Checked professional or memorial witness",
+          "locator": "Current professional profile with 2025 publication",
+          "support": "Positive recent institutional professional activity; broad-scholar cached birth assertion separately retained without invented precision.",
+          "checked_on": "2026-10-31"
+        }
+      ],
+      "limits": "Cached assertions retain original precision and harvest review status below; year summary does not certify an exact day. Present life status uses the separately checked witness. No inference of living status from a missing death.",
+      "export_rule": "Withhold birth year when no death is recorded unless born more than 120 years ago. Do not put such birth years in entry prose.",
+      "identity_rationale": "Stephen Greenblatt, individual theorist identified by Renaissance Self-Fashioning (1980); Shakespearean Negotiations (1988); Marvelous Possessions (1991). Queue identity retained and grounded through the matching institutional professional account and publications in this research packet. No namesake union inferred. Life sources matched to the same scholar by institution and works; no namesake merger."
     },
     {
       "status": "deceased",

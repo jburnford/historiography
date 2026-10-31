@@ -1,0 +1,239 @@
+{
+  "person_id": "geoffrey_parker",
+  "label": "Geoffrey Parker",
+  "selection": {
+    "name": "Geoffrey Parker",
+    "person_id": "geoffrey_parker",
+    "existing_profile": true,
+    "existing_context_ids": [
+      "military"
+    ],
+    "proposed_context_ids": [
+      "global",
+      "environment"
+    ],
+    "qid": "Q1355845",
+    "source_keys": [
+      "P:parker|geoffrey y"
+    ],
+    "dated_dissertations": 151,
+    "threshold_line": "other_ge136",
+    "classification": "historian",
+    "bibliography_leads": [
+      "The Military Revolution: Military Innovation and the Rise of the West, 1500-1800",
+      "The Army of Flanders and the Spanish Road, 1567-1659: The Logistics of Spanish Victory and Defeat in the Low Countries’ Wars",
+      "Global Crisis: War, Climate Change and Catastrophe in the Seventeenth Century"
+    ],
+    "note": "",
+    "keys_with_counted_works": [
+      "P:parker|geoffrey y"
+    ],
+    "entry_type": "Individual historian"
+  },
+  "identity": {
+    "qid": "Q1355845",
+    "origin": "User queue; institutional professional identity and matching works checked",
+    "fresh_wikidata_check": false,
+    "limits": "No live authority request or authority merge; existing cached SPARQL date assertions kept separately with their original provenance."
+  },
+  "existing_coverage": [
+    {
+      "node": "military",
+      "rows": [
+        {
+          "person_id": "geoffrey_parker",
+          "role": "historian",
+          "context": "Expands the military-revolution debate around fortifications and chronology. Separately criticizes Wedgwood’s framing, as reported by Woolrych; original cited book passages remain unread.",
+          "works": "“The ‘Military Revolution,’ 1560–1660—a Myth?” (1976; revised 1979); The Military Revolution (1988); The Thirty Years War (1984), pp. xv, 216–217, mediated by Woolrych",
+          "source_ids": [
+            "wedgwood_woolrych",
+            "rogers_military_revolution_intro"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "existing_source_ids_reused": [
+    "rogers_military_revolution_intro",
+    "wedgwood_woolrych",
+    "tq232_elliott_kaganparker2024"
+  ],
+  "new_source_scopes": [
+    {
+      "id": "tc233_parker_osu",
+      "title": "Geoffrey Parker, Ohio State University: professional research statement.",
+      "citation": "Geoffrey Parker, Ohio State University: professional research statement.",
+      "url": "https://history.osu.edu/people/parker.277",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "First-person paragraphs on Army of Flanders, world history and Global Crisis read, including edition dates 1972/2004 and 2013/2017; recent professional activity through 2024. Demographic and climate estimates not independently checked or adopted."
+      }
+    }
+  ],
+  "reading_limit": "Kagan/Parker memoir pp. 231–233, Ohio State research statement and the atlas’s earlier reading of Rogers’s introduction verified or reused 2026-10-31. Jeremy Black’s 2020 piece could not be read (bot check); that criticism is held. Books not read in full.",
+  "passage_checks": [
+    {
+      "source_ids": [
+        "rogers_military_revolution_intro"
+      ],
+      "locator_and_scope": "Existing recorded reading of Rogers’s introduction pp. 1–10 and its notes. Parker’s original essays/books are mediated by the participant-editor, not freshly read.",
+      "support": "Expands the military-revolution debate around fortification, scale and chronology."
+    },
+    {
+      "source_ids": [
+        "tc233_parker_osu"
+      ],
+      "locator_and_scope": "First-person Global Crisis and world-history paragraphs. Records the project and scale, not a verified worldwide mortality figure.",
+      "support": "Investigates seventeenth-century crisis by comparing upheavals across regions."
+    },
+    {
+      "source_ids": [
+        "tc233_parker_osu"
+      ],
+      "locator_and_scope": "First-person Global Crisis paragraph, with 2013 original and 2017 abridgment separate; causal argument is Parker’s, not environmental determinism adopted by the atlas.",
+      "support": "Asks how sudden climatic change interacted with early modern social and political crisis."
+    },
+    {
+      "source_ids": [
+        "tq232_elliott_kaganparker2024"
+      ],
+      "locator_and_scope": "Kagan and Parker, memoir pp. 231–234, concrete recollection and quoted guidance on logistics, communications and wider implications. Parker is coauthor; letters/Febvre original not independently consulted.",
+      "support": "Elliott’s logistical question, reading guidance and supervision helped shape Parker’s Army of Flanders project."
+    }
+  ],
+  "context_decisions": {
+    "global": "accept: explicit primary statement of a comparative worldwide research project",
+    "environment": "accept with limits: the author states the climate/social crisis question; demographic claims excluded"
+  },
+  "relations": [
+    {
+      "target": "military",
+      "relationship": "Expands the military-revolution debate around fortification, scale and chronology.",
+      "source_ids": [
+        "rogers_military_revolution_intro"
+      ],
+      "evidence_note": "Existing recorded reading of Rogers’s introduction pp. 1–10 and its notes. Parker’s original essays/books are mediated by the participant-editor, not freshly read.",
+      "relationship_kind": "contribution",
+      "source": "geoffrey_parker",
+      "proposal_id": "tc233_geoffrey_parker_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "global",
+      "relationship": "Investigates seventeenth-century crisis by comparing upheavals across regions.",
+      "source_ids": [
+        "tc233_parker_osu"
+      ],
+      "evidence_note": "First-person Global Crisis and world-history paragraphs. Records the project and scale, not a verified worldwide mortality figure.",
+      "relationship_kind": "contribution",
+      "source": "geoffrey_parker",
+      "proposal_id": "tc233_geoffrey_parker_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "environment",
+      "relationship": "Asks how sudden climatic change interacted with early modern social and political crisis.",
+      "source_ids": [
+        "tc233_parker_osu"
+      ],
+      "evidence_note": "First-person Global Crisis paragraph, with 2013 original and 2017 abridgment separate; causal argument is Parker’s, not environmental determinism adopted by the atlas.",
+      "relationship_kind": "contribution",
+      "source": "geoffrey_parker",
+      "proposal_id": "tc233_geoffrey_parker_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_geoffrey_parker_elliott",
+      "source": "john_h_elliott",
+      "target": "geoffrey_parker",
+      "relationship": "Elliott’s logistical question, reading guidance and supervision helped shape Parker’s Army of Flanders project.",
+      "source_ids": [
+        "tq232_elliott_kaganparker2024"
+      ],
+      "evidence_note": "Kagan and Parker, memoir pp. 231–234, concrete recollection and quoted guidance on logistics, communications and wider implications. Parker is coauthor; letters/Febvre original not independently consulted.",
+      "relationship_kind": "influence",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "events": [
+    {
+      "label": "The Army of Flanders and the Spanish Road",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1972,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc233_parker_osu"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc233_geoffrey_parker_1"
+    },
+    {
+      "label": "The Military Revolution",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1988,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:rogers_military_revolution_intro"
+      ],
+      "support": "Original 1988 identified by the existing participant-editor introduction; book unread.",
+      "id": "tc233_geoffrey_parker_2"
+    },
+    {
+      "label": "Global Crisis",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 2013,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc233_parker_osu"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc233_geoffrey_parker_3"
+    }
+  ],
+  "life_status_record": "geoffrey_parker/life-status.json",
+  "reading_bridge_keys": [
+    "P:parker|geoffrey y"
+  ],
+  "review_boundaries": [],
+  "review_status": "needs_independent_review",
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq233_parker_black2020",
+        "locator": "Author’s published outline; specified methodological paragraphs"
+      },
+      {
+        "source_id": "tq232_elliott_kaganparker2024",
+        "locator": "Memoir pp. 231–234, with coauthor credit"
+      }
+    ],
+    "remaining_limits": [
+      "Roberts, Rogers and Febvre originals not freshly read. No claim that military revolution is either proven or unanimously discarded."
+    ],
+    "audit_note": "Black’s methodological criticism excludes personal polemic. Elliott’s concrete guidance comes through Parker’s coauthored memoir. Rogers remains a participant-editor witness. No universal global mortality estimate adopted."
+  },
+  "claude_verification": "Elliott supervision confirmed (BA memoir p. 232); Black edge held."
+}

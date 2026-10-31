@@ -1,0 +1,216 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "applies_to": "Baseline 1.231 to candidate 1.232",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "joanna_bourke",
+    "label": "Joanna Bourke",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Dismembering the Male (1996) · An Intimate History of Killing (1999) · Fear: A Cultural History (2005)",
+    "description": "A historian of modern Britain, war, the body and emotion. Dismembering the Male (1996) studies men’s bodies and masculinity in the First World War. An Intimate History of Killing (1999), drawing on letters, diaries and memoirs of British, American and Australian combatants in the two world wars and Vietnam, argues that the structure of war encouraged pleasure in killing and that ordinary men could become enthusiastic killers without being brutalized. Her later work on fear and pain asks what emotions do: expressions of fear follow learned conventions yet can change the feeling they name, a point she develops through William Reddy’s concept of the emotive.",
+    "representative_figures_and_works": "Dismembering the Male (1996); An Intimate History of Killing (1999); Fear: A Cultural History (2005; 2006 paperback distinct).",
+    "source_ids": [
+      "bourke_dismembering",
+      "tc232_bourke_birkbeck",
+      "tc232_bourke_fear",
+      "tc232_bourke_killing",
+      "tq232_bourke_fearmethod2024"
+    ],
+    "scope_note": "Basic Books description of Killing, Birkbeck account, existing Dismembering description and her own methodological post on fear verified 2026-10-31. Books not read in full.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not a lifespan or continuous career. Original publications, edited collections and later editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "tc232_bourke_male",
+          "label": "Dismembering the Male",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1996,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:bourke_dismembering"
+          ],
+          "support": "1996 publication metadata, not a new chapter reading."
+        },
+        {
+          "id": "tc232_bourke_killing",
+          "label": "An Intimate History of Killing",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1999,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_bourke_killing"
+          ],
+          "support": "Cambridge-hosted bibliography gives London: Granta Books, 1999; complete body unread."
+        },
+        {
+          "id": "tc232_bourke_fear",
+          "label": "Fear: A Cultural History",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2005,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_bourke_fear"
+          ],
+          "support": "Author bibliography supplies original Virago 2005; later paperback distinct."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish a continuous interval or endpoint of scholarly activity."
+      },
+      "interpretation": "Argument claims retain primary, indexed-extract, named-reader and inherited reading limits; bibliographic witnesses establish publication facts only.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.232/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "joanna_bourke",
+    "label": "Joanna Bourke",
+    "node_id": "joanna_bourke",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tc232_joanna_bourke_1",
+      "source": "joanna_bourke",
+      "target": "history_of_emotions",
+      "relationship": "Examines fear as an embodied and socially patterned practice whose expression can transform feeling.",
+      "source_ids": [
+        "tq232_bourke_fearmethod2024"
+      ],
+      "evidence_note": "Primary methodological paragraphs on fear narratives and Reddy’s emotives; distinguishes feeling, expression and their interaction.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "military",
+      "relationship": "Makes bodily injury and the experience of violence problems for the cultural history of war.",
+      "source_ids": [
+        "tc232_bourke_birkbeck",
+        "bourke_dismembering",
+        "tc232_bourke_killing"
+      ],
+      "evidence_note": "Birkbeck account; Basic Books description of Killing. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "joanna_bourke",
+      "proposal_id": "tc232_joanna_bourke_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "gender",
+      "relationship": "Examines men’s bodies and masculinity as historical problems of wartime society.",
+      "source_ids": [
+        "bourke_dismembering"
+      ],
+      "evidence_note": "Existing scoped publisher description; no new chapter-level reading. Retained as a description-supported context, rather than an influence claim.",
+      "relationship_kind": "contribution",
+      "source": "joanna_bourke",
+      "proposal_id": "tc232_joanna_bourke_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc232_bourke_birkbeck",
+      "title": "Birkbeck, Professor Joanna Bourke: fellowship oration (elected 2024).",
+      "citation": "Birkbeck, Professor Joanna Bourke: fellowship oration (elected 2024).",
+      "url": "https://www.bbk.ac.uk/about-us/fellows/joanna-bourke",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Professional sections of the institutional oration checked, including its account of An Intimate History of Killing and subsequent fear/pain histories. Family detail, quoted poetry and evaluative superlatives excluded. This is an institutional account, not Bourke’s own testimony."
+      }
+    },
+    {
+      "id": "tc232_bourke_fear",
+      "title": "Joanna Bourke, Fear: A Cultural History (Virago, 2005): bibliographic witness.",
+      "citation": "Joanna Bourke, Fear: A Cultural History (Virago, 2005): bibliographic witness.",
+      "url": "https://www.gresham.ac.uk/watch-now/breast-history",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Author’s Gresham bibliography dates Fear (London: Virago, 2005). Book body unread; later paperback 2006 is separate."
+      }
+    },
+    {
+      "id": "tc232_bourke_killing",
+      "title": "Basic Books, An Intimate History of Killing: book description.",
+      "citation": "Basic Books, An Intimate History of Killing: book description.",
+      "url": "https://www.hachettebookgroup.com/titles/joanna-bourke/an-intimate-history-of-killing/9780465007387",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read 2026-10-31: structure of war encourages pleasure in killing; ordinary men become enthusiastic killers without being brutalized."
+      }
+    },
+    {
+      "id": "tq232_bourke_fearmethod2024",
+      "title": "Joanna Bourke, “Mastectomy, Fear, the Body: A History,” 6 February 2024, updated 5 March 2025: methodological passages.",
+      "citation": "Joanna Bourke, “Mastectomy, Fear, the Body: A History,” 6 February 2024, updated 5 March 2025: methodological passages.",
+      "url": "https://www.joannabourke.com/post/mastectomy-fear-the-body-a-history",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read methodological paragraphs beginning Burney’s attempt, Perhaps part, In contrast, To be understood, While we may argue, and What these two examples through conclusion. Only scholarship/method retained; no case narrative, patient quotation, ceremony or community content. Reddy’s emotives explicitly used; his original unread."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "history_of_emotions",
+      "proposal_id": "tc232_joanna_bourke_1",
+      "row": {
+        "person_id": "joanna_bourke",
+        "role": "historian",
+        "context": "Examines fear as an embodied and socially patterned practice whose expression can transform feeling.",
+        "works": "Dismembering the Male (1996); An Intimate History of Killing (1999); Fear: A Cultural History (2005; 2006 paperback distinct).",
+        "source_ids": [
+          "tq232_bourke_fearmethod2024"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq232_bourke_fearmethod2024",
+        "locator": "Specified methodological paragraphs only"
+      }
+    ],
+    "remaining_limits": [
+      "Reddy and Scarry lack individual endpoints; no invented link from shared terminology to Peter Stearns. Complete books unread."
+    ],
+    "audit_note": "Fear contribution now rests on a primary methodological argument about expression, embodiment and emotives. Earlier war/gender descriptions remain explicitly mediated. No unsupported Stearns link from shared terminology; no patient content retained."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

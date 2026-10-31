@@ -1,6 +1,26 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.231: historian relationship queue complete
+## Current revision 1.234: thirty-two timeline entries from the dissertation canon
+
+Revisions **1.232–1.234** add **32 individual entries**: 31 historians and Stephen Greenblatt as an individual theorist. They are the historians most cited across dated strict History PhDs who had no timeline entry, with four editorial additions: Kathleen Wilson, Charles Rosenberg, Robert Bartlett and Bruce Trigger. Selection counts are not used as evidence of influence. Together the three revisions add **131 relationships, 114 cited sources, 16 people records and 51 roster rows**. The graph now contains **400 entries, 2,953 relationships, 3,554 sources and 1,454 indexed people**.
+
+A researcher model drafted the packets. Claude then verified them independently: every relationship, factual sentence and new source was re-opened through an allowed route. Claims resting on unreadable pages were re-cited to sources read in this check, or held.
+- **Corrected:**
+  - a misattributed Maier article;
+  - Davis's criticism retargeted to Karl Marx;
+  - Wilson's and Fitzpatrick's dates;
+  - an excluded source route removed.
+- **Ten relationships held, with reasons.**
+- **Five relationships added from read passages:**
+  - Trigger–Sioui;
+  - Hobsbawm–Trevor-Roper;
+  - the Highland tradition;
+  - Foucault and Geertz to Greenblatt.
+- **Descriptions state each person's best-known argument**, and reading limits are kept in scope notes. The record is in `data/extension-2026/timeline-canon-batches-2026-10-31/`.
+
+All three revisions reconstruct exactly, and earlier edges and sources are unchanged. Structural validation reports zero errors and the same 46 reviewed warnings. No living person's birth year appears in entry prose. OpenAlex remains paused.
+
+## Historical revision 1.231: historian relationship queue complete
 
 All **33 historians remaining after recovery are complete**, with independent passage, coverage, merged-packet and applied reviews. The continuation adds **148 relationships and 36 cited sources** beyond revision 1.220. All 101 resumed dossiers are applied, bringing the protocol total to 157; **zero remain**.
 

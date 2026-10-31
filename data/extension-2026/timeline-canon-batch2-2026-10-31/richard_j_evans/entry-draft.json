@@ -1,0 +1,258 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "richard_j_evans",
+    "label": "Richard J. Evans",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A historian of modern Germany who has also defended historical knowledge in public. In Defence of History (1997) answers the writers who brought postmodernist epistemology into historical theory; he names Hayden White, Frank Ankersmit, Keith Jenkins, Patrick Joyce, Dominick LaCapra and Beverley Southgate. He wrote it because the standard textbooks were still Carr’s What Is History? and Elton’s The Practice of History, which he found inadequate. Its introduction accepts White’s point that historians can learn from outside scrutiny of how historical knowledge is made, while rejecting Joyce’s claim that historians must accept postmodernity as an inescapable condition. Death in Hamburg (1987) connects cholera with social inequality and civic government. He served as an expert witness on the falsification of history in the 2000 Irving libel trial, and The Coming of the Third Reich (2003) began his history of Nazi Germany.",
+    "representative_figures_and_works": "Death in Hamburg (1987); In Defence of History (1997); The Coming of the Third Reich (2003).",
+    "scope_note": "Evans’s response to his critics (IHR History in Focus) verified 2026-10-31. Introduction passages rest on the atlas’s earlier accepted reading of the 1997 book. Wolfson and Cambridge accounts for Death in Hamburg and the trial. Books not read in full.",
+    "source_ids": [
+      "evans",
+      "tc233_evans_wolfson",
+      "tc233_evans_profile",
+      "tq233_evans_ihr"
+    ],
+    "date_label": "Death in Hamburg (1987) · In Defence of History (1997) · The Coming of the Third Reich (2003)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "Death in Hamburg",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1987,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_evans_wolfson"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_richard_j_evans_1"
+        },
+        {
+          "label": "In Defence of History",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1997,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:evans"
+          ],
+          "support": "Original 1997, distinct from consulted later electronic preview.",
+          "id": "tc233_richard_j_evans_2"
+        },
+        {
+          "label": "The Coming of the Third Reich",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 2003,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_evans_profile"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_richard_j_evans_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.233/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "richard_j_evans",
+    "label": "Richard J. Evans",
+    "node_id": "richard_j_evans",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "truthdebate",
+      "relationship": "Defends evidentiary historical inquiry while acknowledging the value of criticism from outside the discipline.",
+      "source_ids": [
+        "evans",
+        "tq233_evans_ihr"
+      ],
+      "evidence_note": "Existing accepted introduction reading; Evans’s IHR response. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "richard_j_evans",
+      "proposal_id": "tc233_richard_j_evans_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "medicalhistory",
+      "relationship": "Connects epidemic disease with inequalities and the political choices of urban government.",
+      "source_ids": [
+        "tc233_evans_wolfson"
+      ],
+      "evidence_note": "Institutional body paragraphs on Death in Hamburg, 1987. Substantive account is mediated; complete book and medical conclusions not independently checked.",
+      "relationship_kind": "contribution",
+      "source": "richard_j_evans",
+      "proposal_id": "tc233_richard_j_evans_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "holocaust",
+      "relationship": "Brings historical source criticism to public disputes over Holocaust denial and falsification.",
+      "source_ids": [
+        "tc233_evans_profile"
+      ],
+      "evidence_note": "Institutional professional record of the 2000 expert-witness role. Records a methodological/public intervention; original testimony and judicial record remain unread.",
+      "relationship_kind": "contribution",
+      "source": "richard_j_evans",
+      "proposal_id": "tc233_richard_j_evans_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_richard_j_evans_white",
+      "source": "white",
+      "target": "richard_j_evans",
+      "relationship": "Evans accepts White’s argument that historians can learn from external inquiry into how historical knowledge is made.",
+      "source_ids": [
+        "evans"
+      ],
+      "evidence_note": "Primary introduction III, paragraph beginning White is surely correct and n38. Specific agreement with White’s response to Marwick, not acceptance of his entire narrative theory.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_richard_j_evans_joyce",
+      "source": "richard_j_evans",
+      "target": "patrick_joyce",
+      "relationship": "Evans challenges the claim that historians must accept postmodernity as an irresistible condition.",
+      "source_ids": [
+        "evans"
+      ],
+      "evidence_note": "Introduction III, Joyce quotation and nn43–45, followed by criticism of apodictic inevitability. Joyce is named with Jenkins; no whole-corpus verdict.",
+      "relationship_kind": "critique",
+      "type": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_richard_j_evans_cannadine",
+      "source": "david_cannadine",
+      "target": "richard_j_evans",
+      "relationship": "Evans credits Cannadine’s criticism of drafts during the development of In Defence of History.",
+      "source_ids": [
+        "evans"
+      ],
+      "evidence_note": "March 1997 acknowledgments, explicit thanks for criticism during rewritings. Bounded scholarly contribution, no invented detail about which arguments changed.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc233_evans_wolfson",
+      "title": "Wolfson College, “Professor Sir Richard Evans on pandemics and parallels,” 6 April 2020.",
+      "citation": "Wolfson College, “Professor Sir Richard Evans on pandemics and parallels,” 6 April 2020.",
+      "url": "https://www.wolfson.cam.ac.uk/news/professor-sir-richard-evans-pandemics-and-parallels",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Body paragraphs on Hamburg 1987, inequality and local government read. Institutional substantive account; quoted Alex de Waal and reviewer praise remain mediated, not originals newly read. No medical advice or present pandemic analogy adopted."
+      }
+    },
+    {
+      "id": "tc233_evans_profile",
+      "title": "Wolfson College, Sir Richard Evans: professional profile and 2024 book event.",
+      "citation": "Wolfson College, Sir Richard Evans: professional profile and 2024 book event.",
+      "url": "https://www.wolfson.cam.ac.uk/people/sir-richard-evans",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Indexed profile checked for modern-Germany identity, 2024 book and the 2000 expert-witness role. 2003 Coming date checked at https://www.wolfson.cam.ac.uk/about/events/professor-sir-richard-j-evans-hitlers-people . Court evidence and complete books unread."
+      }
+    },
+    {
+      "id": "tq233_evans_ihr",
+      "title": "Richard J. Evans, “Author’s response” to Antony Easthope’s review of In Defence of History, History in Focus 2: What is History? (Institute of Historical Research).",
+      "citation": "Richard J. Evans, “Author’s response” to Antony Easthope’s review of In Defence of History, History in Focus 2: What is History? (Institute of Historical Research).",
+      "url": "https://archives.history.ac.uk/history-in-focus/Whatishistory/evans3.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read 2026-10-31: names White, Ankersmit, Jenkins, Joyce, LaCapra and Southgate; Carr and Elton as the outdated textbooks."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "medicalhistory",
+      "proposal_id": "tc233_richard_j_evans_2",
+      "row": {
+        "person_id": "richard_j_evans",
+        "role": "historian",
+        "context": "Connects epidemic disease with inequalities and the political choices of urban government.",
+        "works": "Death in Hamburg (1987); In Defence of History (1997); The Coming of the Third Reich (2003).",
+        "source_ids": [
+          "tc233_evans_wolfson"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "holocaust",
+      "proposal_id": "tc233_richard_j_evans_3",
+      "row": {
+        "person_id": "richard_j_evans",
+        "role": "historian",
+        "context": "Brings historical source criticism to public disputes over Holocaust denial and falsification.",
+        "works": "Death in Hamburg (1987); In Defence of History (1997); The Coming of the Third Reich (2003).",
+        "source_ids": [
+          "tc233_evans_profile"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "evans",
+        "locator": "Fresh licensed-preview introduction III and nn36–45; March 1997 acknowledgments"
+      }
+    ],
+    "remaining_limits": [
+      "Original White/Joyce texts, court evidence and full books unread. No SSK/Latour relationship inferred from tangential postmodernism discussion."
+    ],
+    "audit_note": "Primary introduction supports specific agreement with White, criticism of Joyce’s inevitability claim, and Cannadine’s draft contribution. Hamburg/trial contexts remain institutional accounts, not independently read evidence or full books."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

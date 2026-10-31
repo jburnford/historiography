@@ -1,0 +1,249 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "t_c_smout",
+    "label": "T. C. Smout",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A historian of Scottish society who helped establish environmental history in Scotland. A History of the Scottish People, 1560–1830 (1969) and A Century of the Scottish People (1986) are his social histories of Scotland. His 1990 British Academy lecture ‘The Highlands and the Roots of Green Consciousness’ questions the story that appreciation of Highland landscapes was simply imported into an indifferent society. In later environmental work he draws on E. A. Wrigley’s account of the shift from organic to fossil-fuel economies, and names William Cronon’s city-and-hinterland history as a model for studies of Scottish cities still to be written.",
+    "representative_figures_and_works": "Scottish Trade on the Eve of Union (1963); A History of the Scottish People (1969); A Century of the Scottish People (1986); “The Highlands and the Roots of Green Consciousness” (lecture 1990; publication 1991; later 1993 issue distinct).",
+    "scope_note": "British Academy lecture pp. 237–238 and the 2012 handbook chapter pp. 19–21, 26–28 (publisher preview) verified 2026-10-31. Morton and Griffiths (2013) could not be read and is no longer cited. Books not read in full.",
+    "source_ids": [
+      "tc233_smout_lecture",
+      "tc233_smout_leith",
+      "tc233_smout_trade",
+      "tq233_smout_environment2012"
+    ],
+    "date_label": "Scottish Trade on the Eve of Union (1963) · A History of the Scottish People (1969) · “The Highlands and the Roots of Green Consciousness”: publication (1991)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "Scottish Trade on the Eve of Union",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1963,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_smout_trade"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_t_c_smout_1"
+        },
+        {
+          "label": "A History of the Scottish People",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1969,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_smout_leith"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_t_c_smout_2"
+        },
+        {
+          "label": "“The Highlands and the Roots of Green Consciousness”: publication",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1991,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_smout_lecture"
+          ],
+          "support": "Lecture delivered 1990, published 1991; not later 1993 issue.",
+          "id": "tc233_t_c_smout_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.233/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "t_c_smout",
+    "label": "T. C. Smout",
+    "node_id": "t_c_smout",
+    "new": true,
+    "identity_note": "Queue identity retained and grounded through the matching institutional professional account and publications in this research packet. No namesake union inferred."
+  },
+  "proposed_edges": [
+    {
+      "proposal_id": "tc233_t_c_smout_1",
+      "source": "t_c_smout",
+      "target": "environment",
+      "relationship": "Connects material energy constraints, social organization and changing understandings of nature.",
+      "source_ids": [
+        "tc233_smout_lecture",
+        "tq233_smout_environment2012"
+      ],
+      "evidence_note": "Primary lecture pp. 237–238 and chapter pp. 19–21,26–28. Distinct works/scales retained; no timeless national landscape.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "social",
+      "relationship": "Makes the history of Scottish people and social change a sustained historical inquiry.",
+      "source_ids": [
+        "tc233_smout_leith"
+      ],
+      "evidence_note": "St Andrews Historian 2024 account of the 1969 synthesis. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "t_c_smout",
+      "proposal_id": "tc233_t_c_smout_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_t_c_smout_wrigley",
+      "source": "e_a_wrigley",
+      "target": "t_c_smout",
+      "relationship": "Smout uses Wrigley’s account of energy capture to frame transitions in Scottish economic and environmental history.",
+      "source_ids": [
+        "tq233_smout_environment2012"
+      ],
+      "evidence_note": "Primary p. 19/n1 and p. 20, explicit named use with body argument. Original Wrigley articles and numerical estimates not independently verified.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_t_c_smout_cronon",
+      "source": "william_cronon",
+      "target": "t_c_smout",
+      "relationship": "Smout identifies Cronon’s city-and-hinterland study as a model for an environmental history of Scottish cities still to be written.",
+      "source_ids": [
+        "tq233_smout_environment2012"
+      ],
+      "evidence_note": "Primary pp. 27–28/n26, names Nature’s Metropolis. Specific research model and gap, not wholesale transfer of Chicago findings.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc233_smout_lecture",
+      "title": "T. C. Smout, “The Highlands and the Roots of Green Consciousness, 1750–1990,” Proceedings of the British Academy 76 (published 1991): 237–263.",
+      "citation": "T. C. Smout, “The Highlands and the Roots of Green Consciousness, 1750–1990,” Proceedings of the British Academy 76 (published 1991): 237–263.",
+      "url": "https://www.thebritishacademy.ac.uk/documents/2397/76p237.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Printed pp. 237–238 OCR-read from official scan; PDF SHA256 6374f48a82f63f9d1a15096fa35dff006e2364a6f75d68b8771d4910628cfbac. Title-page note distinguishes Glasgow/London deliveries in October/November 1990 from 1991 copyright. Publisher index gives range 237–264; scan heading 237–263, retained as discrepancy. No poem or traditional knowledge reproduced."
+      }
+    },
+    {
+      "id": "tc233_smout_leith",
+      "title": "Sarah Leith, “Professor T. C. Smout’s 90th Birthday Reception,” The St Andrews Historian 11 (2024), p. 6.",
+      "citation": "Sarah Leith, “Professor T. C. Smout’s 90th Birthday Reception,” The St Andrews Historian 11 (2024), p. 6.",
+      "url": "https://www.st-andrews.ac.uk/assets/university/schools/school-of-history/documents/The%20St%20Andrews%20Historian%202024.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected professional account read at p. 6 for 1969 book, 2000 Nature Contested, environmental institute and December 2023 birthday activity. Family detail excluded; later current source evidence kept separate from original book reading."
+      }
+    },
+    {
+      "id": "tc233_smout_trade",
+      "title": "Cambridge, contemporary review record for T. C. Smout, Scottish Trade on the Eve of Union (1963).",
+      "citation": "Cambridge, contemporary review record for T. C. Smout, Scottish Trade on the Eve of Union (1963).",
+      "url": "https://www.cambridge.org/core/journals/journal-of-economic-history/article/abs/scottish-trade-on-the-eve-of-union-16601707-by-t-c-smout-edinburgh-and-london-oliver-boyd-1963-pp-xv-320-50s/6E74874CE1C29E7B226442FB336A8823",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Record author/title/Oliver & Boyd 1963 checked; review body and book unread."
+      }
+    },
+    {
+      "id": "tq233_smout_environment2012",
+      "title": "T. C. Smout, “Land and Sea: The Environment,” Oxford Handbook of Modern Scottish History (2012), pp. 19–38: selected passages.",
+      "citation": "T. C. Smout, “Land and Sea: The Environment,” Oxford Handbook of Modern Scottish History (2012), pp. 19–38: selected passages.",
+      "url": "https://api.pageplace.de/preview/DT0400.9780191624322_A24389997/preview-9780191624322_A24389997.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Authorized preview; selected printed pp. 19–21 and 26–28, nn1 and26 read. Explicit Wrigley resource and Cronon research model; no independent quantitative/environmental verification, full chapter or cited-original reading."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "environment",
+      "proposal_id": "tc233_t_c_smout_1",
+      "row": {
+        "person_id": "t_c_smout",
+        "role": "historian",
+        "context": "Connects material energy constraints, social organization and changing understandings of nature.",
+        "works": "Scottish Trade on the Eve of Union (1963); A History of the Scottish People (1969); A Century of the Scottish People (1986); “The Highlands and the Roots of Green Consciousness” (lecture 1990; publication 1991; later 1993 issue distinct).",
+        "source_ids": [
+          "tc233_smout_lecture",
+          "tq233_smout_environment2012"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "social",
+      "proposal_id": "tc233_t_c_smout_3",
+      "row": {
+        "person_id": "t_c_smout",
+        "role": "historian",
+        "context": "Makes the history of Scottish people and social change a sustained historical inquiry.",
+        "works": "Scottish Trade on the Eve of Union (1963); A History of the Scottish People (1969); A Century of the Scottish People (1986); “The Highlands and the Roots of Green Consciousness” (lecture 1990; publication 1991; later 1993 issue distinct).",
+        "source_ids": [
+          "tc233_smout_leith"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "tc233_t_c_smout_2: held at Claude verification 2026-10-31. Rested only on Morton and Griffiths (2013), which is behind a bot check."
+  ],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq233_smout_environment2012",
+        "locator": "Selected pp. 19–21,26–28/nn1,26"
+      },
+      {
+        "source_id": "tc233_scotland_frame",
+        "locator": "Extended opening pp. 49–51"
+      }
+    ],
+    "remaining_limits": [
+      "Neither the energy framework nor the research-model reference establishes exclusive influence. Full monographs and source originals unread."
+    ],
+    "audit_note": "Primary chapter explicitly uses Wrigley and identifies Cronon as a model for research still needed. This is no automatic transfer of findings. Earlier green-consciousness argument and national-frame criticism remain separate."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

@@ -1,0 +1,239 @@
+{
+  "person_id": "paul_thompson",
+  "label": "Paul Thompson",
+  "selection": {
+    "name": "Paul Thompson",
+    "person_id": "paul_thompson",
+    "existing_profile": true,
+    "existing_context_ids": [
+      "oral"
+    ],
+    "proposed_context_ids": [
+      "social"
+    ],
+    "qid": "Q4460339",
+    "source_keys": [
+      "P:thompson|paul"
+    ],
+    "dated_dissertations": 136,
+    "threshold_line": "other_ge136",
+    "classification": "historian",
+    "bibliography_leads": [
+      "The Voice of the Past: Oral History",
+      "A voz do passado: história oral",
+      "The Edwardians: The Remaking of British Society"
+    ],
+    "note": "Defines the bar (136). Works of Paul Thompsons in labour process, Natal and other fields excluded",
+    "keys_with_counted_works": [
+      "P:thompson|paul"
+    ],
+    "entry_type": "Individual historian"
+  },
+  "identity": {
+    "qid": "Q4460339",
+    "origin": "User queue; institutional professional identity and matching works checked",
+    "fresh_wikidata_check": false,
+    "limits": "No live authority request or authority merge; existing cached SPARQL date assertions kept separately with their original provenance."
+  },
+  "existing_coverage": [
+    {
+      "node": "oral",
+      "rows": [
+        {
+          "person_id": "paul_thompson",
+          "role": "historian",
+          "context": "The method’s social reach and practical problems enter a sustained account of oral history; distinct from E. P. and Dorothy Thompson. He warns that self-selected local groups may exclude less confident residents and that interviewing has no automatic progressive politics.",
+          "works": "The Voice of the Past (1978; revised editions); community and social-purpose passage (1988, later extracted)",
+          "source_ids": [
+            "paul_thompson_voice",
+            "thompson_community_primary"
+          ],
+          "basis": "source_review"
+        }
+      ]
+    }
+  ],
+  "existing_source_ids_reused": [
+    "thompson_community_primary",
+    "paul_thompson_voice"
+  ],
+  "new_source_scopes": [
+    {
+      "id": "tc234_thompson_essex",
+      "title": "Paul Thompson, University of Essex professional research account and publications.",
+      "citation": "Paul Thompson, University of Essex professional research account and publications.",
+      "url": "https://www.essex.ac.uk/people/THOMP08503/Paul-Thompson",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Social/oral-history programme and bibliography read. Bibliography records Edwardians 1975, Voice 1978 and second edition 1988; narrative’s 1977 shorthand remains a discrepancy rather than replacing original 1978. Translation not inspected."
+      }
+    },
+    {
+      "id": "tq234_thompson_worcman",
+      "title": "Paul Thompson, interview with Karen Worcman (1996, 2002), UK Data Archive thematic highlights, June 2017, SN6226.",
+      "citation": "Paul Thompson, interview with Karen Worcman (1996, 2002), UK Data Archive thematic highlights, June 2017, SN6226.",
+      "url": "https://discover.ukdataservice.ac.uk/assets/qualibank/6226themext029a.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Repository interview excerpt: selected professional-method paragraphs on printed pp. 5–8,11–13 read. Townsend, Hobsbawm, listening, reliability and later subjectivity. Cover identifies Thompson despite running-head defect; no full-transcript claim, narrator quotation or community/family content retained."
+      }
+    },
+    {
+      "id": "tq234_thompson_taylor2021",
+      "title": "Becky Taylor, “Who was Ever ‘a Fisherman’? Revisiting Paul Thompson’s Living the Fishing,” Twentieth Century British History 32:3 (2021): 416–440, DOI 10.1093/tcbh/hwab008.",
+      "citation": "Becky Taylor, “Who was Ever ‘a Fisherman’? Revisiting Paul Thompson’s Living the Fishing,” Twentieth Century British History 32:3 (2021): 416–440, DOI 10.1093/tcbh/hwab008.",
+      "url": "https://ueaeprints.uea.ac.uk/id/eprint/79544/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher text: selected opening, section I methodological paragraphs, category criticism and conclusion read. Credits collaborative research/archiving while questioning schedules, transcription and fixed worker category. No original interview recordings read and no narrator testimony or community details retained."
+      }
+    }
+  ],
+  "reading_limit": "UK Data Archive thematic highlights of his life-story interview (pp. 6–8, 11–13), Taylor (2021, UEA repository) and the atlas’s earlier reader extract verified or reused 2026-10-31. The Essex profile fails a TLS check here, not a 404. Books not read in full.",
+  "passage_checks": [
+    {
+      "source_ids": [
+        "thompson_community_primary",
+        "tq234_thompson_worcman"
+      ],
+      "locator_and_scope": "Existing community excerpt plus thematic highlights pp. 11–13, sections 13–15. Early and later editions distinguished; narratives not reproduced.",
+      "support": "Develops interview-based historical inquiry while reconsidering the relation between reliable recollection, subjectivity and the purposes of participation."
+    },
+    {
+      "source_ids": [
+        "thompson_community_primary"
+      ],
+      "locator_and_scope": "Same primary community-history extract, reader pp. 33–39; programme and caution both retained.",
+      "support": "Connects historical inquiry with social participation while refusing an automatic progressive politics of local memory."
+    },
+    {
+      "source_ids": [
+        "tq234_thompson_worcman"
+      ],
+      "locator_and_scope": "Thematic highlights printed pp. 6–8, sections 8–9, Thompson’s retrospective account of commission and refusal to remove interviews. Hobsbawm’s own account unread; does not credit him with promoting this method.",
+      "support": "Hobsbawm’s commission helped generate The Edwardians, although Thompson recalls disagreement over its oral-history material."
+    }
+  ],
+  "context_decisions": {
+    "social": "accept: primary extract addresses the social purpose and political limits of community history"
+  },
+  "relations": [
+    {
+      "proposal_id": "tc234_paul_thompson_1",
+      "source": "paul_thompson",
+      "target": "oral",
+      "relationship": "Develops interview-based historical inquiry while reconsidering the relation between reliable recollection, subjectivity and the purposes of participation.",
+      "source_ids": [
+        "thompson_community_primary",
+        "tq234_thompson_worcman"
+      ],
+      "evidence_note": "Existing community excerpt plus thematic highlights pp. 11–13, sections 13–15. Early and later editions distinguished; narratives not reproduced.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "social",
+      "relationship": "Connects historical inquiry with social participation while refusing an automatic progressive politics of local memory.",
+      "source_ids": [
+        "thompson_community_primary"
+      ],
+      "evidence_note": "Same primary community-history extract, reader pp. 33–39; programme and caution both retained.",
+      "relationship_kind": "contribution",
+      "source": "paul_thompson",
+      "proposal_id": "tc234_paul_thompson_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_paul_thompson_hobsbawm",
+      "source": "eric_hobsbawm",
+      "target": "paul_thompson",
+      "relationship": "Hobsbawm’s commission helped generate The Edwardians, although Thompson recalls disagreement over its oral-history material.",
+      "source_ids": [
+        "tq234_thompson_worcman"
+      ],
+      "evidence_note": "Thematic highlights printed pp. 6–8, sections 8–9, Thompson’s retrospective account of commission and refusal to remove interviews. Hobsbawm’s own account unread; does not credit him with promoting this method.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "events": [
+    {
+      "label": "The Edwardians",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1975,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_thompson_essex"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_paul_thompson_1"
+    },
+    {
+      "label": "The Voice of the Past",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1978,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:paul_thompson_voice"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_paul_thompson_2"
+    },
+    {
+      "label": "The Voice of the Past: second edition",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1988,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:thompson_community_primary"
+      ],
+      "support": "Second edition is the source of the selected community-method extract; original 1978 remains distinct.",
+      "id": "tc234_paul_thompson_3"
+    }
+  ],
+  "life_status_record": "paul_thompson/life-status.json",
+  "reading_bridge_keys": [
+    "P:thompson|paul"
+  ],
+  "review_boundaries": [],
+  "review_status": "needs_independent_review",
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq234_thompson_worcman",
+        "locator": "Selected printed pp. 5–8,11–13, professional-method paragraphs"
+      },
+      {
+        "source_id": "tq234_thompson_taylor2021",
+        "locator": "Selected opening; section I methods/category criticism; conclusion, with nn8,17–22,25–27"
+      }
+    ],
+    "remaining_limits": [
+      "2020 interview body unread after access check. Townsend, Hoskins, George Ewart Evans, Passerini and Taylor have no individual endpoints. No oral material is quoted or reproduced."
+    ],
+    "audit_note": "Own thematic excerpt and Taylor’s substantive reassessment distinguish early reliability from later subjectivity, and scholarly archive reuse from fixed worker categories. Hobsbawm commission does not credit him with endorsing oral method. Coauthors retained; no narrator content."
+  },
+  "claude_verification": "Interview and Hobsbawm edges confirmed; social edge rests on the earlier accepted extract."
+}

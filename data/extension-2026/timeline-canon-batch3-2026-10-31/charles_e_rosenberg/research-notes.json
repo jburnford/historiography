@@ -1,0 +1,195 @@
+{
+  "person_id": "charles_e_rosenberg",
+  "label": "Charles E. Rosenberg",
+  "selection": {
+    "name": "Charles E. Rosenberg",
+    "person_id": "charles_e_rosenberg",
+    "existing_profile": false,
+    "existing_context_ids": [],
+    "proposed_context_ids": [
+      "medicalhistory",
+      "science"
+    ],
+    "qid": "Q5077167",
+    "source_keys": [
+      "P:rosenberg|charles e",
+      "P:rosenberg|charles"
+    ],
+    "dated_dissertations": 127,
+    "threshold_line": "editorial_addition",
+    "classification": "historian",
+    "bibliography_leads": [
+      "The Cholera Years: The United States in 1832, 1849, and 1866",
+      "The Care of Strangers: The Rise of America’s Hospital System",
+      "Explaining Epidemics and Other Studies in the History of Medicine"
+    ],
+    "note": "Editorial addition (user, 2026-10-30); history of medicine",
+    "keys_with_counted_works": [
+      "P:rosenberg|charles",
+      "P:rosenberg|charles e"
+    ],
+    "entry_type": "Individual historian"
+  },
+  "identity": {
+    "qid": "Q5077167",
+    "origin": "User queue; institutional professional identity and matching works checked",
+    "fresh_wikidata_check": false,
+    "limits": "No live authority request or authority merge; existing cached SPARQL date assertions kept separately with their original provenance."
+  },
+  "existing_coverage": [],
+  "existing_source_ids_reused": [],
+  "new_source_scopes": [
+    {
+      "id": "tc234_rosenberg_epidemic",
+      "title": "Charles E. Rosenberg, “What Is an Epidemic? AIDS in Historical Perspective,” in Explaining Epidemics (1992), pp. 278–292.",
+      "citation": "Charles E. Rosenberg, “What Is an Epidemic? AIDS in Historical Perspective,” in Explaining Epidemics (1992), pp. 278–292.",
+      "url": "https://doi.org/10.1017/CBO9780511666865.014",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Cambridge primary chapter headnote read: first-person account of epidemic patterns and changing disease concepts. Full chapter unread; historical analysis, not clinical guidance."
+      }
+    },
+    {
+      "id": "tc234_rosenberg_harvard",
+      "title": "Harvard Gazette, “Thinking disease,” 15 February 2001.",
+      "citation": "Harvard Gazette, “Thinking disease,” 15 February 2001.",
+      "url": "https://news.harvard.edu/gazette/story/2001/02/thinking-disease/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected interview paragraphs on historically changing disease categories and professional book list read. Institutional reporting and direct answers distinguished; private material excluded."
+      }
+    },
+    {
+      "id": "tq234_rosenberg_mantovani2016",
+      "title": "Rafael Mantovani, interview with Charles Rosenberg, História, Ciências, Saúde – Manguinhos 23:1 (2016): 211–219, DOI 10.1590/S0104-59702016000100013.",
+      "citation": "Rafael Mantovani, interview with Charles Rosenberg, História, Ciências, Saúde – Manguinhos 23:1 (2016): 211–219, DOI 10.1590/S0104-59702016000100013.",
+      "url": "https://doi.org/10.1590/S0104-59702016000100013",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Original journal/SciELO text: selected p. 212 introduction, professional answers pp. 213–216 and diagnosis-method discussion pp. 218–219 read. Interview conducted November 2013. Introduction and answers distinguished; full books and health-policy assertions not independently checked."
+      }
+    }
+  ],
+  "reading_limit": "Harvard Gazette (2001), the Mantovani interview (SciELO, 2016) and the Cambridge chapter summary verified 2026-10-31; interview page numbers not visible in the HTML. Books not read in full.",
+  "passage_checks": [
+    {
+      "source_ids": [
+        "tq234_rosenberg_mantovani2016"
+      ],
+      "locator_and_scope": "Mantovani interview (2013, published 2016), answers on social medicine and psychiatric diagnosis. Verified 2026-10-31; print page numbers not visible.",
+      "support": "Examines disease and diagnosis through the reciprocal relations of medical categories, institutions and social circumstances."
+    },
+    {
+      "source_ids": [
+        "tq234_rosenberg_mantovani2016"
+      ],
+      "locator_and_scope": "Mantovani interview, historiographical answers. Verified 2026-10-31; print page numbers not visible.",
+      "support": "Questions simple theoretical genealogies and treats the authority and categories of medicine as historical problems."
+    }
+  ],
+  "context_decisions": {
+    "medicalhistory": "accept: primary chapter headnote sets out a historical method",
+    "science": "accept with limits: research into changing explanatory categories, not a generic institutional affiliation"
+  },
+  "relations": [
+    {
+      "proposal_id": "tc234_charles_e_rosenberg_1",
+      "source": "charles_e_rosenberg",
+      "target": "medicalhistory",
+      "relationship": "Examines disease and diagnosis through the reciprocal relations of medical categories, institutions and social circumstances.",
+      "source_ids": [
+        "tq234_rosenberg_mantovani2016"
+      ],
+      "evidence_note": "Mantovani interview (2013, published 2016), answers on social medicine and psychiatric diagnosis. Verified 2026-10-31; print page numbers not visible.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tc234_charles_e_rosenberg_2",
+      "source": "charles_e_rosenberg",
+      "target": "science",
+      "relationship": "Questions simple theoretical genealogies and treats the authority and categories of medicine as historical problems.",
+      "source_ids": [
+        "tq234_rosenberg_mantovani2016"
+      ],
+      "evidence_note": "Mantovani interview, historiographical answers. Verified 2026-10-31; print page numbers not visible.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "events": [
+    {
+      "label": "The Cholera Years",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1962,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_rosenberg_harvard"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_charles_e_rosenberg_1"
+    },
+    {
+      "label": "The Care of Strangers",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1987,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_rosenberg_harvard"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_charles_e_rosenberg_2"
+    },
+    {
+      "label": "Explaining Epidemics",
+      "kind": "publication",
+      "track": "contributions",
+      "date": {
+        "year": 1992,
+        "precision": "year"
+      },
+      "source_ids": [
+        "graph:tc234_rosenberg_harvard"
+      ],
+      "support": "Original publication metadata; complete book unread.",
+      "id": "tc234_charles_e_rosenberg_3"
+    }
+  ],
+  "life_status_record": "charles_e_rosenberg/life-status.json",
+  "reading_bridge_keys": [
+    "P:rosenberg|charles",
+    "P:rosenberg|charles e"
+  ],
+  "review_boundaries": [],
+  "review_status": "needs_independent_review",
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq234_rosenberg_mantovani2016",
+        "locator": "Selected p. 212 introduction; professional answers pp. 213–216; diagnosis-method discussion pp. 218–219"
+      }
+    ],
+    "remaining_limits": [
+      "Ackerknecht, Rosen and Sigerist have no individual endpoints. No personal Foucault/Gramsci arrow based on a prompted question. Full epidemic chapter and books unread."
+    ],
+    "audit_note": "Interviewer’s teacher attribution is distinguished from own answers. Social medicine and diagnosis categories are methodological claims; prompted Foucault/Gramsci names do not establish influence. No present clinical or policy assertion retained."
+  },
+  "claude_verification": "Both edges confirmed; Cholera Years contribution added from the Gazette; Rosen as influence, diagnosis as psychiatric."
+}

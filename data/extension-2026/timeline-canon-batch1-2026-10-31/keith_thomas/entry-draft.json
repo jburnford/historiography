@@ -1,0 +1,285 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "applies_to": "Baseline 1.231 to candidate 1.232",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "keith_thomas",
+    "label": "Keith Thomas",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "“History and Anthropology” (1963) · Religion and the Decline of Magic (1971) · Man and the Natural World (1983)",
+    "description": "A historian of early modern English beliefs, social relations and attitudes. Religion and the Decline of Magic (1971) asks why beliefs in magic, astrology and witchcraft made sense in sixteenth- and seventeenth-century England and why they declined; the inquiry began, he recalls, from a puzzle about astrology and led him to anthropology. His 1963 essay ‘History and Anthropology’ grew from a review of Evans-Pritchard that Lawrence Stone encouraged him to expand. Thomas names Christopher Hill and R. H. Tawney as formative influences, and was drawn to Lucien Febvre’s inquiry into people’s assumptions rather than to quantitative Annales history. He later called his work a descriptive ethnography of early modern England and conceded that his explanation of magic’s decline was incomplete. Jan Machielsen and Michelle Pfeffer’s 2023 reassessment, building on Hildred Geertz’s criticism, questions the book’s categories of religion and magic. Man and the Natural World (1983) traced changing English attitudes to nature.",
+    "representative_figures_and_works": "“History and Anthropology” (1963); Religion and the Decline of Magic (1971); Man and the Natural World (1983); The Ends of Life (2009).",
+    "source_ids": [
+      "stone_revival",
+      "tc232_thomas_reassessment",
+      "tc232_thomas_ba",
+      "tc232_thomas_anthro",
+      "tq232_thomas_interview2009"
+    ],
+    "scope_note": "Macfarlane interview timestamps and Machielsen/Pfeffer reassessment verified 2026-10-31. Stone edge rests on the atlas’s earlier accepted reading. Books not read in full.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not a lifespan or continuous career. Original publications, edited collections and later editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "tc232_thomas_anthro",
+          "label": "“History and Anthropology”",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1963,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_thomas_anthro"
+          ],
+          "support": "Original April 1963 publication; body unread."
+        },
+        {
+          "id": "tc232_thomas_magic",
+          "label": "Religion and the Decline of Magic",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1971,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_thomas_ba",
+            "graph:tc232_thomas_reassessment"
+          ],
+          "support": "Original 1971; later Penguin tiles not used as first publication."
+        },
+        {
+          "id": "tc232_thomas_nature",
+          "label": "Man and the Natural World",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1983,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_thomas_ba"
+          ],
+          "support": "Original 1983, not the 1991 edition displayed elsewhere on the same page."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish a continuous interval or endpoint of scholarly activity."
+      },
+      "interpretation": "Argument claims retain primary, indexed-extract, named-reader and inherited reading limits; bibliographic witnesses establish publication facts only.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.232/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "keith_thomas",
+    "label": "Keith Thomas",
+    "node_id": "keith_thomas",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "anthropology",
+      "relationship": "Uses anthropology to make historical belief intelligible while retaining an empirically particular form of inquiry.",
+      "source_ids": [
+        "tc232_thomas_reassessment"
+      ],
+      "evidence_note": "Machielsen and Pfeffer, section II, paragraphs associated with notes 56–73. The named readers distinguish theoretical borrowing from ethnographic accumulation and retain Geertz’s objection; no direct reading of the original 1963 manifesto is claimed.",
+      "relationship_kind": "contribution",
+      "source": "keith_thomas",
+      "proposal_id": "tc232_keith_thomas_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "culture",
+      "relationship": "Investigates past belief in magic and religion; his categories and account of decline have since been contested.",
+      "source_ids": [
+        "tc232_thomas_reassessment"
+      ],
+      "evidence_note": "Machielsen and Pfeffer (2023), opening and section III. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "keith_thomas",
+      "proposal_id": "tc232_keith_thomas_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "revival",
+      "relationship": "Provides Stone with an example of arranging historical stories around an argument.",
+      "source_ids": [
+        "stone_revival"
+      ],
+      "evidence_note": "Existing source’s bounded primary Stone reading, pp. 3–6 and 13–24 only, and the preserved Keith Thomas roster context. Not Thomas’s assent to all of Stone’s narrative-revival diagnosis.",
+      "relationship_kind": "contribution",
+      "source": "keith_thomas",
+      "proposal_id": "tc232_keith_thomas_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_keith_thomas_hill",
+      "source": "christopher_hill",
+      "target": "keith_thomas",
+      "relationship": "Thomas identifies Hill as his main undergraduate intellectual influence and recalls the high scholarly expectations of his teaching.",
+      "source_ids": [
+        "tq232_thomas_interview2009"
+      ],
+      "evidence_note": "Part 1, 51:15:24, explicit retrospective testimony. Bounded training influence, not automatic adoption of Hill’s Marxism.",
+      "relationship_kind": "influence",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_keith_thomas_tawney",
+      "source": "r_h_tawney",
+      "target": "keith_thomas",
+      "relationship": "Thomas identifies Tawney as a deep intellectual influence while distinguishing admiration from copying historical models.",
+      "source_ids": [
+        "tq232_thomas_interview2009"
+      ],
+      "evidence_note": "Part 2, 43:02:10; part 1 school-reading recollection supplies additional context only. No claim of fresh Tawney reading.",
+      "relationship_kind": "influence",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_keith_thomas_febvre",
+      "source": "lucien_febvre",
+      "target": "keith_thomas",
+      "relationship": "Thomas credits the Febvre strand of Annales with encouraging inquiry into historical values and mental assumptions.",
+      "source_ids": [
+        "tq232_thomas_interview2009"
+      ],
+      "evidence_note": "Part 2, 36:50:21, explicitly distinguishes that attraction from hard quantitative Annales. Not allegiance to all Annales methods.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_keith_thomas_stone",
+      "source": "lawrence_stone",
+      "target": "keith_thomas",
+      "relationship": "Thomas credits Stone with encouraging the expansion of his Evans-Pritchard review into the history-and-anthropology intervention.",
+      "source_ids": [
+        "tq232_thomas_interview2009"
+      ],
+      "evidence_note": "Part 2, 16:43:03. Concrete publication encouragement and conceptual discussion, not the source of every anthropological idea.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc232_thomas_reassessment",
+      "title": "Jan Machielsen and Michelle Pfeffer, “A Work Out of Time: Religion and the Decline of Magic at Fifty,” Past & Present 261 (November 2023): 259–296.",
+      "citation": "Jan Machielsen and Michelle Pfeffer, “A Work Out of Time: Religion and the Decline of Magic at Fifty,” Past & Present 261 (November 2023): 259–296.",
+      "url": "https://doi.org/10.1093/pastj/gtad012",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher open-access text: opening, selected section II paragraphs on anthropology, functionalism and Geertz (notes 56–73), and section III discussion of categories and Geertz (notes 111–121) read. Both authors credited. Their reading, including their qualifications of Geertz’s criticism, is not a new reading of Thomas, Geertz or the 1975 exchange. Online 18 August and November 2023 issue remain distinct."
+      }
+    },
+    {
+      "id": "tc232_thomas_ba",
+      "title": "British Academy, Sir Keith Thomas FBA: professional biography and selected books.",
+      "citation": "British Academy, Sir Keith Thomas FBA: professional biography and selected books.",
+      "url": "https://www.thebritishacademy.ac.uk/fellows/profiles/keith-thomas-FBA/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Summary/current post checked for current honorary fellowship and original book dates 1971, 1983, 2009. Life evidence is recorded separately in the research packet. The page’s 2003/1991 publication tiles refer to later editions, not the originals."
+      }
+    },
+    {
+      "id": "tc232_thomas_anthro",
+      "title": "Keith Thomas, “History and Anthropology,” Past & Present 24 (April 1963): 3–24.",
+      "citation": "Keith Thomas, “History and Anthropology,” Past & Present 24 (April 1963): 3–24.",
+      "url": "https://doi.org/10.1093/past/24.1.3",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher and JSTOR issue metadata checked for author/title/date/pages; article body unread. Substantive methodological characterization comes from Machielsen and Pfeffer, not from metadata."
+      }
+    },
+    {
+      "id": "tq232_thomas_interview2009",
+      "title": "Keith Thomas, interview by Alan Macfarlane, 5 September 2009: professional-method sections.",
+      "citation": "Keith Thomas, interview by Alan Macfarlane, 5 September 2009: professional-method sections.",
+      "url": "https://www.alanmacfarlane.com/DO/filmshow/kthomastx2.htm",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Part 2 specified timestamps read; part 1 https://www.alanmacfarlane.com/DO/filmshow/kthomastx1.htm at 32:57 and 51:15. Thomas’s retrospective account of resources, methods and limits, not independent correspondence or complete book reading."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "anthropology",
+      "proposal_id": "tc232_keith_thomas_1",
+      "row": {
+        "person_id": "keith_thomas",
+        "role": "historian",
+        "context": "Uses anthropology to make historical belief intelligible while retaining an empirically particular form of inquiry.",
+        "works": "“History and Anthropology” (1963); Religion and the Decline of Magic (1971); Man and the Natural World (1983); The Ends of Life (2009).",
+        "source_ids": [
+          "tc232_thomas_reassessment"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "culture",
+      "proposal_id": "tc232_keith_thomas_2",
+      "row": {
+        "person_id": "keith_thomas",
+        "role": "historian",
+        "context": "Investigates past belief in magic and religion; his categories and account of decline have since been contested.",
+        "works": "“History and Anthropology” (1963); Religion and the Decline of Magic (1971); Man and the Natural World (1983); The Ends of Life (2009).",
+        "source_ids": [
+          "tc232_thomas_reassessment"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq232_thomas_interview2009",
+        "locator": "Professional-method timestamps specified above"
+      }
+    ],
+    "remaining_limits": [
+      "Full books, original 1963 essay and original Geertz exchange unread."
+    ],
+    "audit_note": "Own interview supports Hill/Tawney resources, Febvre’s particular Annales strand and Stone’s encouragement. Thomas’s admitted explanatory limits coexist with Machielsen/Pfeffer reception. Hildred and Clifford Geertz remain distinct."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

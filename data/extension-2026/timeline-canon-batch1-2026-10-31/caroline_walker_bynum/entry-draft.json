@@ -1,0 +1,248 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "applies_to": "Baseline 1.231 to candidate 1.232",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "caroline_walker_bynum",
+    "label": "Caroline Walker Bynum",
+    "layer": "historians",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "date_label": "Jesus as Mother: essay collection (1982) · Holy Feast and Holy Fast (1987) · Fragmentation and Redemption (1991)",
+    "description": "A historian of medieval European religion, gender and the body. Holy Feast and Holy Fast (1987) argues that food lay at the heart of much late-medieval women’s piety: women renounced ordinary food through fasting to prepare for the extraordinary food of the eucharist, and offered themselves as food in miracles of feeding. Where earlier scholars had treated fasting, stigmata and inedia in isolation or through modern medical and psychological theories, she showed how these practices enabled women to exert control within the family and religious life. In ‘Why All the Fuss about the Body?’ (1995) she engages sympathetically with Judith Butler’s performative account of gender, but insists that medieval and modern ideas of body and identity be compared in their own settings; the Middle Ages, she writes, was characterized by ‘a cacophony of discourses’. Jesus as Mother (1982) and Fragmentation and Redemption (1991) are her other major collections on gender and the body in medieval religion.",
+    "representative_figures_and_works": "Jesus as Mother: Studies in the Spirituality of the High Middle Ages (1982 essay collection; earlier article distinct); Holy Feast and Holy Fast (1987); Fragmentation and Redemption (1991).",
+    "source_ids": [
+      "bonnell_hunt_primary",
+      "tc232_bynum_cv",
+      "tq232_bynum_body1995",
+      "tc232_bynum_holyfeast"
+    ],
+    "scope_note": "UC Press description of Holy Feast and Holy Fast and the 1995 Critical Inquiry essay (pp. 1, 7–8, 27–30) verified 2026-10-31. ‘Why Paradox?’ (2012) could not be read and is no longer cited. Books not read in full.",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not a lifespan or continuous career. Original publications, edited collections and later editions retain separate dates and credits.",
+      "events": [
+        {
+          "id": "tc232_bynum_mother",
+          "label": "Jesus as Mother: essay collection",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1982,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_bynum_cv"
+          ],
+          "support": "Collection publication, distinct from the earlier article discussed in her retrospective."
+        },
+        {
+          "id": "tc232_bynum_feast",
+          "label": "Holy Feast and Holy Fast",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1987,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_bynum_cv"
+          ],
+          "support": "Original 1987; later paperback/reprints not substituted."
+        },
+        {
+          "id": "tc232_bynum_fragments",
+          "label": "Fragmentation and Redemption",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1991,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc232_bynum_cv"
+          ],
+          "support": "Original essay collection; no claim to new reading of its constituent essays."
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish a continuous interval or endpoint of scholarly activity."
+      },
+      "interpretation": "Argument claims retain primary, indexed-extract, named-reader and inherited reading limits; bibliographic witnesses establish publication facts only.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.232/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "caroline_walker_bynum",
+    "label": "Caroline Walker Bynum",
+    "node_id": "caroline_walker_bynum",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "gender",
+      "relationship": "Compares medieval and modern accounts of body and identity to study historically specific meanings of gender.",
+      "source_ids": [
+        "tq232_bynum_body1995"
+      ],
+      "evidence_note": "Critical Inquiry 1995 pp. 1, 27–30. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "caroline_walker_bynum",
+      "proposal_id": "tc232_caroline_walker_bynum_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "women",
+      "relationship": "Shows that food practices were central to medieval women’s piety, against isolated or medicalized readings of fasting and miracles.",
+      "source_ids": [
+        "tc232_bynum_holyfeast"
+      ],
+      "evidence_note": "UC Press description of Holy Feast and Holy Fast. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "caroline_walker_bynum",
+      "proposal_id": "tc232_caroline_walker_bynum_2",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "target": "culture",
+      "relationship": "Reads medieval culture as many competing discourses rather than one consistent worldview.",
+      "source_ids": [
+        "tq232_bynum_body1995"
+      ],
+      "evidence_note": "Critical Inquiry 1995 p. 7 (‘a cacophony of discourses’). Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "caroline_walker_bynum",
+      "proposal_id": "tc232_caroline_walker_bynum_3",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_caroline_walker_bynum_butler",
+      "source": "judith_butler",
+      "target": "caroline_walker_bynum",
+      "relationship": "Bynum uses performative feminism as a productive interlocutor for comparing historically distinct accounts of embodiment and identity.",
+      "source_ids": [
+        "tq232_bynum_body1995"
+      ],
+      "evidence_note": "Primary 27–30, especially her explicit sympathy, distinction between identity-position/continuity, and context-to-context comparison. Neither direct medieval equivalence nor wholesale theoretical adherence.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc232_bynum_cv",
+      "title": "Caroline Walker Bynum, Institute for Advanced Study: biography and bibliography.",
+      "citation": "Caroline Walker Bynum, Institute for Advanced Study: biography and bibliography.",
+      "url": "https://www.ias.edu/hs/bynum/cv",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Professional biography and bibliography checked for ongoing research, 1982/1987/1991 publication dates and a June 2026 conversation. Life evidence is recorded separately in the research packet. Later editions and translation languages are not independently dated. Book bodies unread."
+      }
+    },
+    {
+      "id": "tq232_bynum_body1995",
+      "title": "Caroline Walker Bynum, “Why All the Fuss about the Body? A Medievalist’s Perspective,” Critical Inquiry 22:1 (1995): 1–33.",
+      "citation": "Caroline Walker Bynum, “Why All the Fuss about the Body? A Medievalist’s Perspective,” Critical Inquiry 22:1 (1995): 1–33.",
+      "url": "https://www.ias.edu/sites/default/files/Why_All_The_Fuss_About_The_Body.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Author/institutional posting. Selected printed pp. 4, 7–8 and 27–30 with specified notes read: discourse, Laqueur reception, performative theory and contextual comparison. Full essay, Butler originals and cited criticism unread."
+      }
+    },
+    {
+      "id": "tc232_bynum_holyfeast",
+      "title": "University of California Press, Holy Feast and Holy Fast: book description.",
+      "citation": "University of California Press, Holy Feast and Holy Fast: book description.",
+      "url": "https://www.ucpress.edu/books/holy-feast-and-holy-fast/paper",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read 2026-10-31: food at the heart of women’s piety; earlier scholars applied modern medical or psychological theories."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "gender",
+      "proposal_id": "tc232_caroline_walker_bynum_1",
+      "row": {
+        "person_id": "caroline_walker_bynum",
+        "role": "historian",
+        "context": "Compares medieval and modern accounts of body and identity to study historically specific meanings of gender.",
+        "works": "Jesus as Mother: Studies in the Spirituality of the High Middle Ages (1982 essay collection; earlier article distinct); Holy Feast and Holy Fast (1987); Fragmentation and Redemption (1991).",
+        "source_ids": [
+          "tq232_bynum_body1995"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "women",
+      "proposal_id": "tc232_caroline_walker_bynum_2",
+      "row": {
+        "person_id": "caroline_walker_bynum",
+        "role": "historian",
+        "context": "Shows that food practices were central to medieval women’s piety, against isolated or medicalized readings of fasting and miracles.",
+        "works": "Jesus as Mother: Studies in the Spirituality of the High Middle Ages (1982 essay collection; earlier article distinct); Holy Feast and Holy Fast (1987); Fragmentation and Redemption (1991).",
+        "source_ids": [
+          "tc232_bynum_holyfeast"
+        ],
+        "basis": "source_review"
+      }
+    },
+    {
+      "node": "culture",
+      "proposal_id": "tc232_caroline_walker_bynum_3",
+      "row": {
+        "person_id": "caroline_walker_bynum",
+        "role": "historian",
+        "context": "Reads medieval culture as many competing discourses rather than one consistent worldview.",
+        "works": "Jesus as Mother: Studies in the Spirituality of the High Middle Ages (1982 essay collection; earlier article distinct); Holy Feast and Holy Fast (1987); Fragmentation and Redemption (1991).",
+        "source_ids": [
+          "tq232_bynum_body1995"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq232_bynum_body1995",
+        "locator": "pp. 4, 7–8, 27–30 and specified notes"
+      },
+      {
+        "source_id": "tc232_bynum_paradox",
+        "locator": "Selected pp. 437–438, 445–450 extend the earlier passage scope; resources and qualifications"
+      }
+    ],
+    "remaining_limits": [
+      "Chenu and Grundmann have no individual endpoints. No wholesale anti-feminist or anti-Butler verdict. Selected monographs unread."
+    ],
+    "audit_note": "Primary retrospective and body essay ground historical particularity and qualified Butler engagement. Chenu/Grundmann resources have no endpoints. Expanded source scope corrected; later packet carries the Laqueur connection after his endpoint exists."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

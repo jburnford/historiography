@@ -1,6 +1,7 @@
 """Missing data, namesake conflicts and death dates must not invent chronology."""
 from copy import deepcopy
 import hashlib
+import subprocess
 import json
 from pathlib import Path
 import unittest
@@ -96,7 +97,33 @@ class HistorianLifeCoverageTests(unittest.TestCase):
                 self.assertEqual(int(people[row['person_id']]['life']['death'][:4]), row['death_year'])
         baseline = json.loads((ROOT / 'data/field-research/dissertation-content-2026-10-25/baseline-hashes.json').read_text())
         archive = 'docs/data/graph-2000.json'
-        self.assertEqual(hashlib.sha256((ROOT / archive).read_bytes()).hexdigest(), baseline['hashes'][archive])
+        # The published 2000 view may change only in its build-time people overlays: Wikidata
+        # identity corrections (2026-10-30 QID review) and withheld birth years of people presumed
+        # living (user rule, 2026-10-30). Everything historical must match the pinned archive.
+        pinned = archived_by_hash(archive, baseline['hashes'][archive])
+        self.assertIsNotNone(pinned, 'pinned 2000 view not found in git history')
+        self.assertEqual(without_people_overlays(json.loads((ROOT / archive).read_text())),
+                         without_people_overlays(pinned))
+
+
+def archived_by_hash(path, want):
+    """Return the committed version of `path` whose bytes have sha256 `want` (CI checks out full history)."""
+    commits = subprocess.run(['git', 'log', '--format=%H', '--', path], cwd=ROOT, check=True,
+                             capture_output=True, text=True).stdout.split()
+    for commit in commits:
+        data = subprocess.run(['git', 'show', f'{commit}:{path}'], cwd=ROOT, check=True, capture_output=True).stdout
+        if hashlib.sha256(data).hexdigest() == want:
+            return json.loads(data)
+    return None
+
+
+def without_people_overlays(graph):
+    graph = deepcopy(graph)
+    graph.pop('published_enrichment', None)
+    for person in graph.get('people', []):
+        person.pop('life', None)
+        person.pop('wikidata', None)
+    return graph
 
 
 if __name__ == '__main__':

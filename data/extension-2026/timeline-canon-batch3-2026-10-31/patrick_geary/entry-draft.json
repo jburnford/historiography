@@ -1,0 +1,188 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "patrick_geary",
+    "label": "Patrick J. Geary",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A medieval historian of relics, memory and ethnic identity. Furta Sacra (1978) studied thefts of relics in the central Middle Ages, and his essay ‘Sacred Commodities’ (1986) asks what made relics exchangeable within a particular medieval setting rather than assuming a timeless market. Phantoms of Remembrance (1994) concerns memory and oblivion at the end of the first millennium. The Myth of Nations (2002) uses research on changing early medieval identities to criticize modern nationalist claims to ancient continuity; Steven Fanning credits its central argument while warning that its survey contains questionable assertions and broad generalizations.",
+    "representative_figures_and_works": "Furta Sacra (1978); “Sacred Commodities” (1986); Living with the Dead (1994); Phantoms of Remembrance (1994).",
+    "scope_note": "Cambridge opening of ‘Sacred Commodities’, Geary’s CV and Fanning’s H-France review verified 2026-10-31. The IAS account refuses scripted access; the memory edge is held. Books not read in full.",
+    "source_ids": [
+      "tc234_geary_commodities",
+      "tc234_geary_cv",
+      "tq234_geary_fanning2002"
+    ],
+    "date_label": "Furta Sacra (1978) · Living with the Dead (1994) · Phantoms of Remembrance (1994)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "Furta Sacra",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1978,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_geary_cv"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_patrick_geary_1"
+        },
+        {
+          "label": "Living with the Dead",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1994,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_geary_cv"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_patrick_geary_2"
+        },
+        {
+          "label": "Phantoms of Remembrance",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1994,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc234_geary_cv"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc234_patrick_geary_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.234/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "patrick_geary",
+    "label": "Patrick J. Geary",
+    "node_id": "patrick_geary",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "consumption",
+      "relationship": "Investigates how cultural conditions shape the exchange and circulation of sacred objects.",
+      "source_ids": [
+        "tc234_geary_commodities"
+      ],
+      "evidence_note": "Primary opening excerpt only; Latin West and specified centuries, not an unqualified account of all medieval commerce.",
+      "relationship_kind": "contribution",
+      "source": "patrick_geary",
+      "proposal_id": "tc234_patrick_geary_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tc234_patrick_geary_3",
+      "source": "patrick_geary",
+      "target": "nationalismstudies",
+      "relationship": "Challenges claims of unbroken ancient national identity by tracing changing medieval identifications and the modern political uses of their history.",
+      "source_ids": [
+        "tq234_geary_fanning2002"
+      ],
+      "evidence_note": "Fanning, H-France Review 2 (2002), opening and conclusion. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc234_geary_commodities",
+      "title": "Patrick Geary, “Sacred Commodities: The Circulation of Medieval Relics,” in The Social Life of Things (1986), pp. 169–192.",
+      "citation": "Patrick Geary, “Sacred Commodities: The Circulation of Medieval Relics,” in The Social Life of Things (1986), pp. 169–192.",
+      "url": "https://doi.org/10.1017/CBO9780511819582.008",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Cambridge primary opening excerpt read: cultural conditions of exchange, Latin West c. 750–1150. Original print 1986 distinct from online 2014. This is a newly checked publisher excerpt, not a fresh reading of the entire chapter."
+      }
+    },
+    {
+      "id": "tc234_geary_cv",
+      "title": "Patrick J. Geary, IAS curriculum vitae, 2022: professional book entries.",
+      "citation": "Patrick J. Geary, IAS curriculum vitae, 2022: professional book entries.",
+      "url": "https://www.ias.edu/sites/default/files/Geary_CV_2022%20%28002%29.pdf",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Book entries on PDF pp. 3–4 checked: Furta Sacra 1978, Living with the Dead and Phantoms 1994. Only professional entries used; no contact data retained."
+      }
+    },
+    {
+      "id": "tq234_geary_fanning2002",
+      "title": "Steven Fanning, review of Patrick Geary, The Myth of Nations, H-France Review 2, no. 124 (November 2002).",
+      "citation": "Steven Fanning, review of Patrick Geary, The Myth of Nations, H-France Review 2, no. 124 (November 2002).",
+      "url": "https://www.h-france.net/vol2reviews/fanning.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected opening account of ethnogenesis scholarship and final evaluation read. Credits central argument while criticizing broad generalization and reliability as a factual reference. Underlying book unread; community/coda material excluded."
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [
+    {
+      "node": "nationalismstudies",
+      "proposal_id": "tc234_patrick_geary_3",
+      "row": {
+        "person_id": "patrick_geary",
+        "role": "historian",
+        "context": "Challenges claims of unbroken ancient national identity by tracing changing medieval identifications and the modern political uses of their history.",
+        "works": "Furta Sacra (1978); “Sacred Commodities” (1986); Living with the Dead (1994); Phantoms of Remembrance (1994).",
+        "source_ids": [
+          "tq234_geary_fanning2002"
+        ],
+        "basis": "source_review"
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    "tc234_patrick_geary_2: held at Claude verification 2026-10-31. Rested only on the IAS page, which refuses scripted access."
+  ],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "tq234_geary_fanning2002",
+        "locator": "Opening historiographical paragraphs; concluding general-reader appraisal and cautions"
+      }
+    ],
+    "remaining_limits": [
+      "Fanning, Wenskus and Wolfram have no existing individual endpoints; no invented influence arrow. Full medieval books unread; blocked later memory retrospective remains unread."
+    ],
+    "audit_note": "Fanning’s substantive opening/conclusion credits thesis but cautions about factual generalization. Full national/medieval books remain unread and no review becomes an influence. Institutional memory account is still marked as mediation."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}

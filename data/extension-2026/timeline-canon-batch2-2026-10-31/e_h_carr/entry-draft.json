@@ -1,0 +1,224 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "review_status": "needs_independent_review",
+  "node": {
+    "id": "e_h_carr",
+    "label": "E. H. Carr",
+    "entry_kind": "person",
+    "entry_type": "Individual historian",
+    "layer": "historians",
+    "period": null,
+    "hunt_core_paradigm": false,
+    "description": "A historian of Soviet Russia and of international relations whose What Is History? (1961) became the standard British introduction to historical method. Carr argued that historians select and give meaning to facts through their questions, so that research and interpretation proceed together; his position was long read as a challenge to objectivist history. G. R. Elton’s The Practice of History (1967) was written in open opposition, and John Tosh called the Carr–Elton controversy the best starting point for debate about the standing of historical knowledge. Richard Evans wrote In Defence of History (1997) because Carr’s and Elton’s books were still the standard textbooks and, in his view, inadequate for later debates. The Twenty Years’ Crisis (1939) belongs to his work on international relations, and his History of Soviet Russia began with The Bolshevik Revolution (1950).",
+    "representative_figures_and_works": "The Twenty Years’ Crisis (1939; later revisions distinct); The Bolshevik Revolution, first volume (1950; subsequent volumes distinct); What Is History? (1961).",
+    "scope_note": "Munslow’s IHR reappraisal, Munro (2015) abstract and Evans’s IHR response verified 2026-10-31. The chapter-one reading rests on an earlier atlas source whose provenance needs review. Books not read in full.",
+    "source_ids": [
+      "carr_facts_primary",
+      "jenkins_rethinking_primary",
+      "tc233_carr_memorial",
+      "tc233_carr_ir",
+      "tc233_carr_bolshevik",
+      "evans",
+      "tq233_carr_munslow",
+      "tq233_carr_munro2015",
+      "tq233_evans_ihr"
+    ],
+    "date_label": "The Twenty Years’ Crisis (1939) · The Bolshevik Revolution: volume 1 (1950) · What Is History? (1961)",
+    "chronology": {
+      "version": 1,
+      "label": "Selected publications and editions",
+      "selection_note": "Selected work milestones, not life dates, a continuous career or an exhaustive bibliography. Edition and translation dates remain distinct.",
+      "events": [
+        {
+          "label": "The Twenty Years’ Crisis",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1939,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_carr_ir"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_e_h_carr_1"
+        },
+        {
+          "label": "The Bolshevik Revolution: volume 1",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1950,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:tc233_carr_bolshevik"
+          ],
+          "support": "Original publication metadata; complete book unread.",
+          "id": "tc233_e_h_carr_2"
+        },
+        {
+          "label": "What Is History?",
+          "kind": "publication",
+          "track": "contributions",
+          "date": {
+            "year": 1961,
+            "precision": "year"
+          },
+          "source_ids": [
+            "graph:carr_facts_primary"
+          ],
+          "support": "Original 1961 separately established in the baseline; transcription wrapper dates not treated as first publication.",
+          "id": "tc233_e_h_carr_3"
+        }
+      ],
+      "intervals": [],
+      "continuation": {
+        "status": "not_asserted",
+        "basis": "Selected publications do not establish continuous activity or an endpoint."
+      },
+      "interpretation": "Primary passages, institutional testimony, named readers and metadata retain their separate reading scopes.",
+      "prepared_on": "2026-10-31",
+      "editorial_record": "data/production-batches/person-entries-1.233/acceptance.json"
+    }
+  },
+  "people_update": {
+    "id": "e_h_carr",
+    "label": "E. H. Carr",
+    "node_id": "e_h_carr",
+    "new": false
+  },
+  "proposed_edges": [
+    {
+      "target": "philhistory",
+      "relationship": "Treats historical research, selection and interpretation as reciprocal while resisting equal validity for every account.",
+      "source_ids": [
+        "carr_facts_primary",
+        "tq233_carr_munslow"
+      ],
+      "evidence_note": "Earlier atlas reading of chapter 1; Munslow’s IHR reappraisal. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "source": "e_h_carr",
+      "proposal_id": "tc233_e_h_carr_1",
+      "directed": true,
+      "type": "connection",
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_e_h_carr_evans",
+      "source": "richard_j_evans",
+      "target": "e_h_carr",
+      "relationship": "Evans values Carr’s challenge to fact-collection while questioning the adequacy of his introductory framework for later theoretical debate.",
+      "source_ids": [
+        "evans",
+        "tq233_evans_ihr"
+      ],
+      "evidence_note": "Evans’s IHR response (Carr and Elton as outdated textbooks); earlier accepted introduction reading.",
+      "relationship_kind": "critique",
+      "type": "critique",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "tq_e_h_carr_laterdebate",
+      "source": "e_h_carr",
+      "target": "truthdebate",
+      "relationship": "Carr’s account of facts and interpretation becomes a reference point in later disputes about historical truth and postmodernism.",
+      "source_ids": [
+        "evans",
+        "tq233_carr_munslow",
+        "tq233_carr_munro2015"
+      ],
+      "evidence_note": "Munslow (Tosh quotation), Munro abstract, Evans. Verified 2026-10-31.",
+      "relationship_kind": "contribution",
+      "type": "connection",
+      "directed": true,
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "tc233_carr_memorial",
+      "title": "British Academy, Edward Hallett Carr, 1892–1982: memoir record.",
+      "citation": "British Academy, Edward Hallett Carr, 1892–1982: memoir record.",
+      "url": "https://www.thebritishacademy.ac.uk/publishing/memoirs/pba-69/carr-edward-hallett-1892-1982/",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Record heading establishes life years and identity; full memoir unread."
+      }
+    },
+    {
+      "id": "tc233_carr_ir",
+      "title": "Springer, International Politics article bibliographic witness for The Twenty Years’ Crisis.",
+      "citation": "Springer, International Politics article bibliographic witness for The Twenty Years’ Crisis.",
+      "url": "https://link.springer.com/article/10.1057/s41311-022-00393-w",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Reference explicitly distinguishes original 1939 from cited 1995 reissue; original book unread."
+      }
+    },
+    {
+      "id": "tc233_carr_bolshevik",
+      "title": "Cambridge, “Soviet Policy Toward National Communism”: reference to Carr’s first volume.",
+      "citation": "Cambridge, “Soviet Policy Toward National Communism”: reference to Carr’s first volume.",
+      "url": "https://www.cambridge.org/core/journals/american-political-science-review/article/abs/soviet-policy-toward-national-communism-the-limits-of-diversity/A4E59088F1762D1429B482FC6FA45893",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Displayed note 5 identifies Bolshevik Revolution volume 1, London 1950. Does not establish all subsequent volumes or their arguments."
+      }
+    },
+    {
+      "id": "tq233_carr_munslow",
+      "title": "Alun Munslow, “What is History?” reappraisal, History in Focus 2: What is History? (Institute of Historical Research).",
+      "citation": "Alun Munslow, “What is History?” reappraisal, History in Focus 2: What is History? (Institute of Historical Research).",
+      "url": "https://archives.history.ac.uk/history-in-focus/Whatishistory/carr1.html",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read 2026-10-31: Tosh on the Carr–Elton controversy; Jenkins on both books setting the agenda."
+      }
+    },
+    {
+      "id": "tq233_carr_munro2015",
+      "title": "Doug Munro, “Macmillan and The Practice of History,” Historical Journal 58:3 (2015).",
+      "citation": "Doug Munro, “Macmillan and The Practice of History,” Historical Journal 58:3 (2015).",
+      "url": "https://doi.org/10.1017/S0018246X14000582",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Abstract read 2026-10-31: the adversarial relationship between The Practice of History and What is History?"
+      }
+    }
+  ],
+  "source_addenda": {},
+  "roster_additions": [],
+  "edges_considered_not_proposed": [
+    "political: hold: book metadata and professional career alone do not supply passage evidence for a specific political-history contribution"
+  ],
+  "quality_review": {
+    "status": "researcher_review_complete",
+    "checked_on": "2026-10-31",
+    "researcher": "Codex primary agent",
+    "independent_review": "Pending Claude; no independent-review pass asserted",
+    "passage_reads": [
+      {
+        "source_id": "carr_facts_primary",
+        "locator": "Existing complete chapter-one reading; original transcription limits unchanged",
+        "fresh": false
+      },
+      {
+        "source_id": "evans",
+        "locator": "Fresh Evans introduction I and nn1–5"
+      }
+    ],
+    "remaining_limits": [
+      "Do not infer a new Ranke, Croce or Collingwood arrow solely from remembered arguments or an uncollated note. Other book arguments unread."
+    ],
+    "audit_note": "Chapter-one selection/interpretation argument retains transcription limits. Evans supplies dated later reception, not a self-described 1961 postmodernism. Soviet/international books do not create unverified argument edges."
+  },
+  "claude_review": "Claude verification 2026-10-31"
+}
