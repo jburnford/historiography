@@ -63,7 +63,10 @@ STOP = {'the', 'a', 'an', 'of', 'and', 'in', 'on', 'to', 'for', 'la', 'le', 'les
 
 
 def words(t):
-    t = unicodedata.normalize('NFKD', t or '').encode('ascii', 'ignore').decode().lower()
+    # Apostrophes are dropped, not split on, so a straight and a curly one give the same words: LC's
+    # "Labour's war" and a cited "Labour’s War" both read 'labours war' (found 2026-10-31, Stephen Brooke).
+    t = re.sub(r"['\u2018\u2019\u02bc`]", '', t or '')
+    t = unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower()
     return re.findall(r'[a-z0-9]+', t)
 
 
@@ -86,12 +89,22 @@ def titles_agree(cited, record):
 
 
 def source_names_title(sources, cited):
-    """An LC 670 source citation that contains the cited main title (three or more words)."""
+    """An LC 670 source citation that contains the cited main title (three or more words). A two-word
+    title ('Labour's war') counts only when the citation opens with it, after 'His'/'Her'/'Their', and a
+    year or the end follows: the form LC uses for the person's own book ('His Labour's war, 1992:')."""
     w = words(main_title(cited))
-    if len([x for x in w if x not in STOP]) < 2 or len(w) < 3:
+    if len([x for x in w if x not in STOP]) < 2:
         return False
     needle = ' '.join(w)
-    return any(needle in ' '.join(words(s)) for s in sources)
+    if len(w) >= 3:
+        return any(needle in ' '.join(words(s)) for s in sources)
+    for s in sources:
+        sw = words(s)
+        sw = sw[1:] if sw[:1] in (['his'], ['her'], ['their']) else sw
+        rest = sw[len(w):]
+        if sw[:len(w)] == w and (not rest or re.fullmatch(r'1[5-9]\d\d|20\d\d', rest[0])):
+            return True
+    return False
 
 
 NICKNAMES = {'tom': 'thomas', 'mike': 'michael', 'ted': 'theodore', 'wm': 'william', 'bill': 'william',
@@ -164,6 +177,12 @@ def as_credit(label):
     return f'{given} {family}' if comma else label
 
 
+# 'book_or_serial' works are books unless the title reads as a serial (2026-10-31: Brooke's Sexual Politics,
+# OUP 2011, was book_or_serial and never tried; 'Journal of Social History' is the same kind).
+SERIAL = re.compile(r'\b(journal|review|quarterly|bulletin|annals|proceedings|transactions|magazine|newsletter|'
+                    r'revue|zeitschrift|rivista|annales|gazette|yearbook)\b', re.I)
+
+
 def books_by_person(keys, per_person):
     db = duckdb.connect()
     db.execute("CREATE TABLE k(person_key VARCHAR)")
@@ -173,11 +192,11 @@ def books_by_person(keys, per_person):
     rows = db.execute(f"""
         SELECT a.person_key, w.work_id, w.title, w.year, CAST(w.cited_by_dissertations AS INTEGER) AS n
         FROM a JOIN read_csv('{D / 'works.csv'}', all_varchar=true, max_line_size=10000000) w USING (work_id)
-        WHERE w.kind = 'book' AND w.title IS NOT NULL
+        WHERE w.kind IN ('book', 'book_or_serial') AND w.title IS NOT NULL
         ORDER BY a.person_key, n DESC, w.work_id""").fetchall()
     out = defaultdict(list)
     for key, wid, title, year, n in rows:
-        if len(out[key]) < per_person and len(content(title)) >= 2:
+        if len(out[key]) < per_person and len(content(title)) >= 2 and not SERIAL.search(main_title(title)):
             out[key].append(dict(work_id=wid, title=title, year=year or '', cited=n))
     return out
 
@@ -197,12 +216,17 @@ def main():
     ap.add_argument('--delay', type=float, default=2.0)
     ap.add_argument('--pause', type=float, default=60)
     ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--people', help="only these canon labels, ';'-separated ('Brooke, Stephen;Coates, Colin'); "
+                    'loads only their surnames from the name index, so it needs little memory')
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     canon = json.loads(CANON.read_text(encoding='utf-8'))
     nodes = sorted(canon['nodes'], key=lambda n: -n['cited'])
     if args.limit:
         nodes = nodes[:args.limit]
+    if args.people:
+        wanted_labels = {x.strip() for x in args.people.split(';')}
+        nodes = [n for n in nodes if n['label'] in wanted_labels or n['name'] in wanted_labels]
     graph_key = canon_keys(canon['nodes'])
     state = State.load(ROOT / 'data/identifiers/events.jsonl')
     books = books_by_person({graph_key[n['name'], n['qid']] for n in nodes}, args.books)
@@ -212,7 +236,13 @@ def main():
         for r in csv.DictReader(f):
             if r['person_key'] in wanted:
                 qid_basis[r['person_key']] = r['qid_basis']
-    names = load_names(args.names)
+    if args.people:
+        db = duckdb.connect()
+        fams = sorted({n['label'].partition(', ')[0] for n in nodes})
+        names = load_names(args.names, {r[0] for f in fams for r in db.execute(
+            f"SELECT lcid FROM read_parquet('{args.names}') WHERE label ILIKE ?", [f + ',%']).fetchall()})
+    else:
+        names = load_names(args.names)
     by_id = names[0]
     print(f'{len(nodes)} canon people; {sum(map(len, books.values()))} books to try; {len(by_id):,} LC names', flush=True)
     fetch = Fetcher(args.cache, args.delay)
@@ -245,6 +275,10 @@ def main():
             hits = [b for b in books.get(gk, []) if source_names_title(a['sources'], b['title'])]
             if hits:
                 offline[lcid] = hits
+        cited_in_670 = defaultdict(set)         # work -> compatible authorities whose 670 cites it
+        for lcid, hits in offline.items():
+            for h in hits:
+                cited_in_670[h['work_id']].add(lcid)
         if len(offline) == 1:
             lcid, hits = next(iter(offline.items()))
             src = by_id[lcid]['sources']
@@ -284,6 +318,13 @@ def main():
                     ids.add('ambiguous')
                 elif match:
                     lcid, via = resolve(match[0], names)
+                    # A heading matched only by its text can be an old form left on the bib record after
+                    # LC created a separate authority (2026-10-31: 'Brooke, Stephen.' on Labour's war
+                    # resolves to n84045320, the 1983 author; LC's 670 gives the book to no2025022468,
+                    # 'Brooke, Stephen J.'). LC's own source note for this book wins.
+                    owners = cited_in_670.get(b['work_id'], set())
+                    if via != 'bib_$0' and len(owners) == 1 and lcid not in owners:
+                        lcid, via = next(iter(owners)), 'lc_670_over_heading'
                     if lcid and not by_id[lcid]['undifferentiated']:
                         ids.add(lcid)
                         hit = dict(lcid=lcid, via=via, book=b, record_title=facts['title'])
