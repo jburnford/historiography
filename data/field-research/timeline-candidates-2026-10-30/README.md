@@ -187,3 +187,17 @@ Every person in the band was checked for namesakes by their cited works. Name va
 Each count is after namesakes are removed, including Ryan's "Ryan, Mary" variant and Rosenberg's "Rosenberg, Charles" variant.
 
 **Final queue (2026-10-30):** 32 historians. That is 2 Canadian (Christie, J. R. Miller), 27 other by the bar, and 3 editorial additions (Kathleen Wilson, Mary P. Ryan, Charles E. Rosenberg).
+
+## Decisions and hand-off (2026-10-31)
+
+The user decided the open calls:
+- **Robert Bartlett**: add as an editorial addition (135).
+- **Bruce Trigger**: add as an editorial addition. He is Canadian history at 141, below the 150 bar. Q991855 was checked: Canadian archaeologist, 1937–2006.
+- **Stephen Greenblatt**: a theory entry (New Historicism).
+- **Mike Davis**: a historian.
+
+**Mary P. Ryan** already has an entry (`mary_ryan`, added at 1.178). The queue's `existing_profile` flag hid that, so she is removed and recorded under `already_entries`.
+
+**Final queue: 32 new entries**, 31 historians and Greenblatt. They are split into three batches in `work-queues/` (expected revisions 1.232–1.234, baseline 1.231). The brief for Sol is `SOL-BRIEF.md`.
+
+The counts come from the 2026-10-30 build before the France and Oxford additions. That later build added 478 strict theses, mostly French. The queue was not recounted, because the bars are fixed counts and the additions change the British and French citation profile only at the margin.
