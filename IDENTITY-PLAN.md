@@ -119,8 +119,10 @@ route. A route that fails is revised before it runs at full scale.
 
 ### 4. Score the remainder
 For credits with no anchor, generate candidates by blocking on surname + initial.
-Score them on name compatibility, affiliation (normalised to ROR), date window,
-venue/topic and coauthors. Set the thresholds from the gold set:
+Score them on name compatibility, affiliation (normalised to ROR), date window
+and coauthors. Topic and venue are not identity evidence (user, 2026-10-31: one
+historian publishes on many topics): they never merge or split people, and may only
+order the review queue. Set the thresholds from the gold set:
 - above threshold: auto-accept, and the audit sample checks these
 - middle band: review queue
 - name-only: stays unresolved
