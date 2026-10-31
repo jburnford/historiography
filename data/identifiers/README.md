@@ -167,3 +167,12 @@ several people, so one shared authority is not enough to merge it.
 **Known limitation.** `diss-person:` anchors are graph name keys. If a later dissertation build
 renames a key (alias merging), the builder must pass the old → new key map, or the person will be
 minted again and the old key reported as unsupported.
+
+## Institutions (2026-10-31)
+
+1,235 `i-` keys from the ROR grounding (`data/field-research/institutions-2026-10-31/`,
+`scripts/key_institutions.py` → `institutions-2026-10-31/proposal.json`). Each is anchored on `ror:<id>`
+and `established`. The dissertation graph's `I:` slugs are aliases (`diss-inst:york` → i-1143 York
+University, Toronto), and every source name that reached the organisation is a member (`inst-name:…`), as
+is ROR's own Wikidata link (`ror-wikidata:Q…`, unchecked). Names still in review (621, about 3,500 position
+rows) have no key yet.
