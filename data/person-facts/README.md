@@ -21,8 +21,13 @@ Built by `scripts/build_life_dates.py`; re-run it after any source changes.
   path means the sourced life reviews.
 
 **Choosing a value:**
-- The year most sources give wins. A tie follows source order: LC 046, then the reviews, then Wikidata,
-  then the LC heading. Within that year, the most precise value wins.
+- The year most sources give wins. A tie follows source order: the reviews, then Wikidata, then LC 046,
+  then the LC heading. Within that year, the most precise value wins. LC 046 came first until
+  2026-10-31; the hand review found LC's day wrong in 15 of the 20 resolved conflicts, so it was moved
+  below the reviews and Wikidata (user decision). The seven unresolved day conflicts now show
+  Wikidata's day and stay flagged `day_conflict`.
+- Values are cut to their precision (Wikidata's year-precision `1969-01-01` reads `1969`). Dates
+  marked `traditional` in the hand review keep LC's approximate form (`-0544~` for Sunzi).
 - A January 1 date counts only as a year when another source gives a different day in that year: LC
   046 holds `1926-01-01` for Foucault, who was born on 15 October 1926.
 

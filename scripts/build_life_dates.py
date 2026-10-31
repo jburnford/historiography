@@ -13,12 +13,13 @@ Merges every source of birth and death dates the project holds, keyed by the per
 For birth and death separately: when the sources agree on the year, the most precise value is kept and
 every agreeing source is listed; when years disagree, the row is flagged `conflict` and all values are
 listed for review. The chosen year is the one most sources give; a tie follows source order
-(LC 046 > reviewed > Wikidata > LC heading); within the chosen year the most precise value wins.
+(reviewed > Wikidata > LC 046 > LC heading; user 2026-10-31, after the hand review found LC's day
+wrong in 15 of 20 resolved conflicts); within the chosen year the most precise value wins.
 
 Conflicts are then checked by hand against the sources each side cites
 (data/person-facts/date-review-2026-10-30.csv): a `resolved` decision sets the value and the check to
-`reviewed`; `unresolved` and `traditional` keep the computed value and the conflict flag, with the
-reasons in `{part}_review`.
+`reviewed`; `unresolved` keeps the computed value and `traditional` an approximate (`~`) value, both
+with the conflict flag and the reasons in `{part}_review`. Values are cut to their precision.
 
 The graph keeps every date, including living people's. Site exports must apply the living rule
 (scripts/historian_life_review.withhold_living_birth): `status` here says `deceased`, `living` (a
@@ -39,7 +40,16 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'data/person-facts'
 LC = ROOT / 'data/field-research/lc-authorities-2026-10-30'
 PRECISION = {'day': 3, 'month': 2, 'year': 1, 'approximate': 0, 'decade': 0, 'century': 0}
-RANK = {'lc_046': 0, 'review': 1, 'wd': 2, 'lc_heading': 3}
+RANK = {'review': 0, 'wd': 1, 'lc_046': 2, 'lc_heading': 3}   # LC 046 demoted 2026-10-31: wrong day in 15 of 20 reviewed conflicts
+
+
+def at_precision(v, precision):
+    """Cut a value to its stated precision, so a year-precision '1969-01-01' (Wikidata's form) reads '1969'."""
+    m = re.match(r'^(-?\d{1,4})(-\d\d)?(-\d\d)?$', str(v or ''))
+    if not m:
+        return v
+    return m.group(1) + ((m.group(2) or '') if precision in ('month', 'day') else '') + \
+        ((m.group(3) or '') if precision == 'day' else '')
 
 
 def year(v):
@@ -127,11 +137,13 @@ def main():
             day_conflict = len({f[1] for f in pool if PRECISION.get(f[2], 0) == 3}) > 1
             check = ('conflict' if len(years) > 1 else 'day_conflict' if day_conflict else
                      'agree' if len({f[3] for f in vals}) > 1 else 'single_source')
-            value, precision, review = best[1], best[2], ''
+            value, precision, review = at_precision(best[1], best[2]), best[2], ''
             if (h := hand.get((k, part))) and check in ('conflict', 'day_conflict'):
                 review = f"{h['decision']}: {h['basis']}"
                 if h['decision'] == 'resolved':
                     value, precision, check = h['value'], h['precision'], 'reviewed'
+                elif h['decision'] == 'traditional' and (approx := [f for f in vals if f[1].endswith('~')]):
+                    value, precision = approx[0][1], approx[0][2]   # traditional dates stay marked approximate
             stats[f'{part}_{check}'] += 1
             row.update({part: value, f'{part}_precision': precision,
                         f'{part}_sources': ' '.join(sorted({f'{f[4]}={f[1]}' for f in vals})), f'{part}_check': check,
