@@ -207,6 +207,51 @@ def books_by_person(keys, per_person):
     return out
 
 
+def settle_owners(offline, person_books, by_id):
+    """Authorities whose LC 670s own different books of one canon name (2026-10-31 review of the rerun).
+
+    - Two records with the same name and birth year are one person recorded twice by LC ('Miller, Perry,
+      1905-1963' and the provisional 'Miller, Perry, 1905-'): kept as the record with more sources.
+    - When one authority owns at least 75% of the owned citations, and the most-cited book is its own or in
+      no 670, the canon key is
+      that person with a namesake's minor works mixed in ('Carter, Sarah, 1954-' and Sarah Anne Carter's
+      Tangible things): the key resolves to the dominant authority and the other works are returned as
+      namesake works to split later.
+    Otherwise the owners are left as they are (a pooled name).
+    Returns (owners, namesake_works as 'lcid:work_id ...').
+    """
+    if len(offline) < 2:
+        return offline, ''
+    def ident(lcid):
+        label = by_id[lcid]['label']
+        dates = label_dates(label)
+        name = label[:len(label) - len(dates)].rstrip(', ') if dates else label
+        born = re.match(r'(\d{4})', dates or '')
+        return (name.split(' (')[0], born.group(1) if born else '')
+    groups = defaultdict(list)
+    for lcid in offline:
+        groups[ident(lcid)].append(lcid)
+    merged = {}
+    for (name, born), ids in groups.items():
+        if born or len(ids) == 1:
+            keep = max(ids, key=lambda i: (len(by_id[i]['sources']), i))
+            merged[keep] = [h for i in ids for h in offline[i]]
+        else:
+            merged.update({i: offline[i] for i in ids})
+    if len(merged) < 2:
+        return merged, ''
+    cites = {lcid: sum(int(h['cited'] or 0) for h in hits) for lcid, hits in merged.items()}
+    top = person_books[0]['work_id'] if person_books else ''
+    top_owner = next((lcid for lcid, hits in merged.items() if any(h['work_id'] == top for h in hits)), '')
+    owner = max(cites, key=lambda i: (cites[i], i))
+    # The most-cited book must not belong to another authority (it may belong to none: Carter's Lost
+    # harvests is in no 670).
+    if top_owner in ('', owner) and cites[owner] >= 0.75 * sum(cites.values()):
+        minor = ' '.join(f"{lcid}:{h['work_id']}" for lcid, hits in sorted(merged.items()) if lcid != owner for h in hits)
+        return {owner: merged[owner]}, minor
+    return merged, ''
+
+
 def query(title, family):
     t = ' '.join(words(main_title(title))[:8])
     f = (words(family) or [''])[0]
@@ -282,6 +327,7 @@ def main():
             hits = [b for b in books.get(gk, []) if source_names_title(a['sources'], b['title'])]
             if hits:
                 offline[lcid] = hits
+        offline, namesakes = settle_owners(offline, books.get(gk, []), by_id)
         cited_in_670 = defaultdict(set)         # work -> compatible authorities whose 670 cites it
         for lcid, hits in offline.items():
             for h in hits:
@@ -301,7 +347,7 @@ def main():
             stats[outcome] += 1
             rows.append(dict(key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
                              dissertation_qid=n['qid'] or '', dissertation_qid_basis=qid_basis.get(gk, ''),
-                             outcome=outcome, books_tried=0, via='lc_670_owners',
+                             outcome=outcome, books_tried=0, via='lc_670_owners', namesake_works=namesakes,
                              evidence_works=' '.join(f"{lcid}:{h['work_id']}" for lcid, hits in sorted(offline.items())
                                                      for h in hits)))
             continue
@@ -371,7 +417,7 @@ def main():
         elif lcids:
             outcome = 'resolved'
         stats[outcome] += 1
-        row = dict(key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
+        row = dict(namesake_works=namesakes, key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
                    dissertation_qid=n['qid'] or '', dissertation_qid_basis=qid_basis.get(gk, ''),
                    outcome=outcome, books_tried=tried)
         if outcome == 'resolved':
@@ -407,7 +453,7 @@ def main():
     fields = ['key', 'graph_key', 'label', 'cited', 'dissertation_qid', 'dissertation_qid_basis', 'outcome',
               'books_tried', 'lcnaf', 'lc_label', 'via', 'tier', 'confirmations', 'books_agreeing', 'evidence_works',
               'evidence_title', 'birth_year', 'birth_value', 'birth_source', 'birth_precision', 'death_year',
-              'death_value', 'death_source', 'death_precision', 'external', 'lc_wikidata', 'wikidata_check']
+              'death_value', 'death_source', 'death_precision', 'external', 'lc_wikidata', 'wikidata_check', 'namesake_works']
     with open(args.out / 'canon-people-lc.csv', 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
