@@ -1,0 +1,78 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (joanna_bourke: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "jb_rel_01",
+   "source": "joanna_bourke",
+   "target": "history_of_emotions",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "‘Fear and Anxiety: Writing about Emotion in Modern History’ (2003) appraises emotionology, social constructivism, narrativization and psycho-historical methods and, using fear as its example, argues that insufficient attention has been paid to physiology and to how emotions mediate between the individual and the social; it characterizes a new history of the emotions as ‘aesthesiology’ (article abstract).",
+   "map_label": "Physiology and aesthesiology, 2003",
+   "evidence_note": "Abstract only, read on the publisher page (History Workshop Journal 55, 2003, 111–133, doi 10.1093/hwj/55.1.111) and in the Birkbeck eprint record (no full text deposited). The abstract says the article ‘examines and appraises some approaches to the analysis of emotional experience in history’ (emotionology, social constructivism, narrativization, psychohistory), finds that ‘insufficient attention has been paid to physiology’ and to emotions' mediating role, argues via fear and anxiety that emotions are ‘fundamentally concerned with power relations’, and defines ‘aesthesiology’ as ‘the emotional reaction of the self to stimuli in lived experience’. The body is unread (paywall), so the claim is bounded to the abstract: which authors she criticizes, and how, is not established. A critique within the field she contributes to; edge_2841 (contribution) remains.",
+   "source_ids": [
+    "thin_bourke_fearanxiety_2003"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Abstract re-read verbatim in the Birkbeck eprint record (full text not deposited; OUP DOI is the citation URL; acceptable). Supports 'examines and appraises' four approaches and 'insufficient attention has been paid to physiology and how emotions mediate between the individual and the social' and the definition of aesthesiology. Claim is properly bounded to the abstract in the evidence note. One overreach in the relationship: 'proposing aesthesiology instead' implies a replacement of the appraised approaches; the abstract says only 'A new history of the emotions can be characterized as aesthesiology'. Edit the relationship to the abstract's wording and flag it as abstract-based. Distinct from edge_2841 (contribution).",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "joanna_bourke → peter_n_stearns",
+   "reason": "The 2003 abstract names ‘emotionology’ (the Stearnses' term) among the approaches appraised but does not attribute it or state a specific objection; the body is unread. Held for unread evidence (a strong lead for a reviewer with access to HWJ 55)."
+  },
+  {
+   "pair": "joanna_bourke → psychohistory",
+   "reason": "Same abstract lists psychohistorical approaches among those appraised; no specific claim readable. Held with the Stearns lead."
+  },
+  {
+   "pair": "joanna_bourke → george_l_mosse",
+   "reason": "Lead: An Intimate History of Killing against Mosse's brutalization thesis. Read Ángel Alcalde, ‘La tesis de la brutalización (George L. Mosse) y sus críticos’, Pasado y Memoria 15 (2016), 17–42 (open access): Bourke is not mentioned. A Publishers Weekly notice (search snippet only) says her last chapter attacks a brutalization thesis ‘advanced frequently after Vietnam’, not Mosse's Weimar thesis. Held: no evidence she engages Mosse."
+  },
+  {
+   "pair": "William Reddy → joanna_bourke",
+   "reason": "Read: her 2024 methodological post uses Reddy's emotives (‘emotives do things to the world’). Reddy is not an atlas endpoint. Held for missing endpoint; already in the description."
+  },
+  {
+   "pair": "Elaine Scarry → joanna_bourke",
+   "reason": "Same 2024 post cites Scarry on pain and language. Scarry is not an atlas endpoint. Held."
+  },
+  {
+   "pair": "joanna_bourke ↔ barbara_h_rosenwein / elias / jay_winter / niall_ferguson",
+   "reason": "Searched; no named exchange found in readable sources (the 2024 post, the Three Monkeys interview and the HWJ abstract name none of them). Searched without a verified omission."
+  },
+  {
+   "pair": "joanna_bourke ↔ languages_of_class (Working-Class Cultures in Britain, 1994)",
+   "reason": "Lead from reviews (Left History; Obelkevich in JBS 1996). Left History PDF did not download as a PDF; JBS paywalled. Unread; nothing proposed."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_bourke_fearanxiety_2003",
+   "title": "Joanna Bourke, “Fear and Anxiety: Writing about Emotion in Modern History,” History Workshop Journal 55, no. 1 (2003): 111–133.",
+   "citation": "Joanna Bourke, “Fear and Anxiety: Writing about Emotion in Modern History,” History Workshop Journal 55, no. 1 (2003): 111–133.",
+   "url": "https://doi.org/10.1093/hwj/55.1.111",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Abstract read on the OUP article page and the Birkbeck eprint record (https://eprints.bbk.ac.uk/id/eprint/610; full text not deposited). Body unread; claims bounded to the abstract."
+   }
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "tq232_bourke_fearmethod2024",
+   "use": "Reread 2026-10-31 for named scholars (Scarry, Reddy only); supports held leads, no edge."
+  }
+ ],
+ "source_addenda": {}
+}

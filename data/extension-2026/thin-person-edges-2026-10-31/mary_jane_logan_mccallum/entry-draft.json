@@ -1,0 +1,293 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (mary_jane_logan_mccallum: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "ocap_note": "OCAP rules applied: scholarship and collaborations only. Shekon Neechie pages (community-controlled) are cited and paraphrased, not quoted beyond public self-description. No family material, narrators or community knowledge used. No identity note added or changed.",
+ "coordinator_draft_check": "All five edges of mccallum-draft.json were re-checked against fresh readings on 2026-10-31. Kept, with rewritten evidence notes: Perry co-authorship (rel_01), labour history (rel_05), Canadian women's and gender history (rel_06), medical history (rel_07, now also resting on the 2018 book and a review in Scientia Canadensis), settler colonialism (rel_08, now resting on a review that quotes the book's own words). Added: co-authorship with Innes (rel_02), Philip J. Deloria's argument as the frame of her 2009 article (rel_03), and her critique of the historical profession as a contribution to Indigenous-authored history (rel_04).",
+ "proposed_edges": [
+  {
+   "proposal_id": "mjlm_rel_01",
+   "source": "mary_jane_logan_mccallum",
+   "target": "adele_perry",
+   "type": "connection",
+   "relationship_kind": "comparison",
+   "directed": false,
+   "relationship": "Co-authors of Structures of Indifference: An Indigenous Life and Death in a Canadian City (2018), on Brian Sinclair's death after 34 hours in a Winnipeg emergency room in 2008, read through the history of the city, the hospital and his life.",
+   "map_label": "Co-authors, Structures of Indifference, 2018",
+   "evidence_note": "Publisher page (University of Manitoba Press) re-read 2026-10-31 by researcher and reviewer: authors Mary Jane Logan McCallum (History, University of Winnipeg) and Adele Perry (History, University of Manitoba); September 2018, 192 pp.; Sinclair arrived in a downtown Winnipeg emergency room and 'Over a thirty-four- hour period, he was left untreated and unattended to'. Josh Manitowbi's review, Scientia Canadensis 43:1 (2021), pp. 117–118, as read by the researcher in the Érudit PDF: 'McCallum and Perry use a historical, place-based approach in their analysis of the systemic racism within Winnipeg's health-care system' (p. 117). He treats the argument as joint throughout and does not divide credit between the authors. The independent reviewer could not reopen Érudit (bot check) and confirmed only the review's Crossref metadata. The CHA's 2019 Indigenous History Book Prize citation also praises the book for 'writing collaboratively'. The book itself is unread. The edge records co-authorship only (precedent: Kealey ↔ Palmer as a comparison edge). It does not claim that either author's other work shares the book's argument.",
+   "source_ids": [
+    "ierA_mccallum_perry_ump_2018",
+    "thin_manitowbi_structures_2021"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Co-authorship confirmed on the University of Manitoba Press page (both authors, September 2018, 192 pp.) and by Crossref metadata for the Manitowbi review. Comparison and undirected, following the Kealey ↔ Palmer precedent; no existing edge between the two. One misquotation: the publisher page does not say 'left untreated for about 34 hours'. It says 'Over a thirty-four- hour period, he was left untreated and unattended to'. The Manitowbi quotation could not be re-checked because Érudit served a bot check; Crossref confirms the reviewer, journal and first page (117) and gives 186 pp. for the book against the publisher's 192.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_02",
+   "source": "mary_jane_logan_mccallum",
+   "target": "robert_alexander_innes",
+   "type": "connection",
+   "relationship_kind": "comparison",
+   "directed": false,
+   "relationship": "Collaborators in Shekon Neechie, the Indigenous-led history site founded in 2018 by seven Indigenous scholars: co-signatories of the board's 2021 open letter to the Canadian Historical Association and, with Susan M. Hill, co-authors of a 2024 account of why the founders built the site.",
+   "map_label": "Shekon Neechie co-founders and co-authors, 2018–24",
+   "evidence_note": "Fresh readings 2026-10-31, re-checked by independent review the same day. (1) McCallum, Innes and Hill, The Conversation (Canada), 1 July 2024, read in full. Byline and Crossref record (DOI 10.64628/aam.pkfjpv6n4): McCallum, University of Winnipeg; Innes, McMaster; Hill, Toronto. Paragraphs are counted in the article body, skipping the five 'Read more' link boxes. The site was 'created by seven established Indigenous scholars on June 21, 2018' (¶1). 'We began creating the historian profiles due to frustration with a lack of public engagement in Indigenous historical scholarship' (¶18). Noticing few Indigenous historians presenting research at professional history conferences, the authors 'chose to create a publishing and public information alternative that is Indigenous-led and focused' (¶¶23–24). 'Shekon Neechie editorial board members also published an open letter responding to the denial of colonial violence' (¶30). (2) Open letter to the Council of the Canadian Historical Association and the Canadian Public, Shekon Neechie, 13 August 2021. This is a community-controlled site, so the letter is paraphrased, not quoted. It is signed by the seven board members as 'Shekon Neechie Board', McCallum second and Innes seventh. It supports the CHA's Canada Day Statement on the term genocide, answers the open letter signed by fifty-three historians, and names no historian. The 2024 essay is a co-authored public explanation, not a research article. The edge records collaboration (co-founding, co-signing, co-authoring), not a claim that their scholarship shares one argument. Also attested but not relied on: the site's 2020 podcast episode, hosted by Innes with McCallum as a guest (audio unheard).",
+   "source_ids": [
+    "thin_mccallum_innes_hill_conversation_2024",
+    "ihc_shekon_letter_2021"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Re-checked: The Conversation byline and the Crossref record (10.64628/aam.pkfjpv6n4, posted 2024-07-01) list McCallum, Innes and Hill. The article says 'created by seven established Indigenous scholars on June 21, 2018' and, in the authors' first person, 'we chose to create a publishing and public information alternative that is Indigenous-led and focused'. The 2021 letter on Shekon Neechie is signed 'Shekon Neechie Board' by seven people, McCallum second and Innes seventh, and names no historian. The text is worded as a collaboration fact (co-founding, co-signing, co-authoring), as required. It is proposed once; the Innes folder defers to it. The paragraph locators are wrong in the edge note and in the new source note: in the live article, frustration is ¶18, the conference passage ¶¶23–24, Te Pouhere Kōrero ¶25 and the open letter ¶30, counting body paragraphs and skipping the five 'Read more' boxes. The article also does not say the letter went 'to the CHA council'; it says the letter was 'responding to the denial of colonial violence'. The letter's own heading supplies the CHA Council address. Replace the note.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_03",
+   "source": "philip_j_deloria",
+   "target": "mary_jane_logan_mccallum",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "McCallum takes Philip Deloria's argument that understanding Indian modernity means investigating the frames non-Indians use to explain and contain Indian people, and names professional history as one of those frames, in 'Indigenous Labor and Indigenous History' (2009).",
+   "map_label": "Professional history as a containing frame, 2009",
+   "evidence_note": "Opening passage of the article (American Indian Quarterly 33:4, 2009, first page p. 523), read 2026-10-31 as the publisher's excerpt carried in the Semantic Scholar record for DOI 10.1353/aiq.2009.a362033; Project MUSE served a bot check. Re-checked by independent review. She writes that the article answered a Western History Association call for papers by Indigenous academics on 'working from home'. She wanted 'to make visible a division that separates Native people as history and Native people as historians', and to do so by historicizing 'the twentiethcentury English Canadian historical profession' [sic, as printed in the excerpt]. She continues: 'Philip Deloria argues that part of a project of understanding Indian modernity is to take as the subject of investigation the ideological and discursive frames non-Indians use to explain and contain Indian people. One of these frames is professional history.' The excerpt names neither the Deloria work nor his middle initial. He is identified as Philip J. Deloria, the historian of Indian modernity (Indians in Unexpected Places, 2004), from the subject of the sentence; that is an inference. The legal scholar Philip S. Deloria is a namesake. The rest of the article (pp. 524–544) is unread. This is a named use in her framing paragraph; no claim is made about how far the rest of the article depends on Deloria.",
+   "source_ids": [
+    "thin_mccallum_aiq_2009"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "The opening passage is verified word for word in the Semantic Scholar record for DOI 10.1353/aiq.2009.a362033 (publisher's first-page excerpt), including 'Philip Deloria argues …' and 'One of these frames is professional history.' This is an attributed opening-passage reading, which provenance rule 4 allows, and the claim is properly bounded to the framing paragraph. Direction (Deloria → McCallum, contribution) follows atlas usage for named uses of another scholar's argument (cf. Cronon → Deloria, edge_2616). Identity: the excerpt says only 'Philip Deloria'. Reading it as Philip J. Deloria rests on the subject: Indian modernity and the frames non-Indians use to 'explain and contain' Indians, which is the argument of Indians in Unexpected Places (2004). That inference must be stated, because a namesake exists: Philip S. Deloria, legal scholar.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_04",
+   "source": "mary_jane_logan_mccallum",
+   "target": "indigenous",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Turns Indigenous history on the historical profession itself: historicizing twentieth-century English-Canadian professional history to show a division between Native people as history and Native people as historians (2009), and closing her 2014 book on the professional status and absence of Indigenous historians.",
+   "map_label": "Native people as history and as historians, 2009–14",
+   "evidence_note": "(1) 2009 article, opening passage read as above (p. 523): the division 'that separates Native people as history and Native people as historians'; 'history' meant 'largely as the modern, paid labor of professional historians and the academic discipline of history'. (2) Carol Williams's review of the 2014 book, BC Studies 191 (2016), pp. 162–164, read in full 2026-10-31 and re-checked by independent review. Paragraphs are counted from 'Historian Patrick Wolfe…'. At ¶7, in her concluding chapter McCallum 'discusses labour disparities in Canadian university history departments, reflects on the professional status and glaring absence of Indigenous historians in academia, and proposes a critical revision of historiographical methods and pedagogy'. The publisher's contents list the conclusion as 'The Wages of Whiteness and the Indigenous Historian'. The conclusion itself is unread. The coordinator's draft left out an edge to this entry because she is already a representative person there. That roster row is not an edge, and this claim (a critique of the profession) differs from her existing archive and community-engaged edges.",
+   "source_ids": [
+    "thin_mccallum_aiq_2009",
+    "ihc_williams_bcs_2016",
+    "p4b_mccallum_2014"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Both readings verified. The 2009 opening passage contains 'separates Native people as history and Native people as historians' and 'largely as the modern, paid labor of professional historians and the academic discipline of history'. Williams (BC Studies 191) contains the conclusion-chapter title and the 'glaring absence of Indigenous historians in academia', 'labour disparities in Canadian university history departments' and 'critical revision of historiographical methods and pedagogy' passages. The claim is distinct from the existing archive and community-engaged edges, and the roster row is not an edge. Locator error: the conclusion passage is Williams ¶7, not ¶8, counting from the paragraph that opens 'Historian Patrick Wolfe…'.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_05",
+   "source": "mary_jane_logan_mccallum",
+   "target": "labourhistory",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Indigenous women's paid work, 1940–80, as labour history: domestic service, hairdressing under the 1957 placement programme, community health representatives and nurses, and the state schemes that directed their labour (2014).",
+   "map_label": "Indigenous women's waged work, 1940–80",
+   "evidence_note": "Two reviews re-read in full 2026-10-31 and re-checked by independent review. Harms, Manitoba History 80 (2016), paragraphs counted from 'Within the Canadian imaginary…'. ¶3: domestic service, and the link between the education offered to Aboriginal women and the labour they were offered. ¶4: hairdressing as a lens on the Indian Placement and Relocation Program from 1957, in which 'Indian Affairs attempted to control Aboriginal labour'. ¶5: community health representatives and the Registered Nurses of Canadian Indian Ancestry (1975). ¶7: the book is of interest to labour studies and to Aboriginal, women's and medical history. Williams, BC Studies 191 (2016), paragraphs counted from 'Historian Patrick Wolfe…'. ¶3: 'aboriginal women's lives inescapably involved in modern labour that was highly regulated by the Canadian nation-state'. ¶6: the 1957 Placement Program was 'the first organized national labour program'. ¶7: of interest to 'students of labour history'. The book is unread (publisher's contents only). Target: the general labour history entry. The reviewers say 'labour history' and 'labour studies', not Canadian working-class history.",
+   "source_ids": [
+    "p4b_mccallum_2014",
+    "ierA_harms_mh_2016",
+    "ihc_williams_bcs_2016"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "The Harms paragraph locators (¶¶3–5, 7) and quotations match the Manitoba History page. The Williams locator for the 1957 programme is wrong: 'the first organized national labour program' is ¶6, not ¶7. Target: keep labourhistory. Williams writes 'students of labour history' and Harms 'labour studies'. Neither reviewer places the book in the Kealey–Palmer working-class tradition, so cdn_working_class would overstate. The book is unread, and the claim is bounded to the reviewers.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_06",
+   "source": "mary_jane_logan_mccallum",
+   "target": "cdn_women_gender",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Places Indigenous women at the centre of a history of modern labour and state policy in Canada, and of their resistance through training and professional organizing (2014).",
+   "map_label": "Indigenous women, work and the state, 2014",
+   "evidence_note": "Harms (2016), ¶2: 'Placing Aboriginal women at the center of the story', and the book's focus on how women 'adapted, resisted, and strategized within the parameters of modern Canada'. Williams (2016), paragraphs counted from 'Historian Patrick Wolfe…'. ¶3: 'aboriginal women's lives inescapably involved in modern labour'. ¶4: 'Yet women, as McCallum counters, were not passive', with training 'in feminine-specific occupations, including hairdressing' and the nurses' professional advocacy organizations. Both reviews were read in full 2026-10-31 and re-checked by independent review; the book is unread. The edge is bounded to the reviewers' accounts of the 2014 book.",
+   "source_ids": [
+    "p4b_mccallum_2014",
+    "ierA_harms_mh_2016",
+    "ihc_williams_bcs_2016"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Quotations verified: Harms 'Placing Aboriginal women at the center of the story' (¶2); Williams 'aboriginal women's lives inescapably involved in modern labour' (¶3) and 'Yet women, as McCallum counters, were not passive' (¶4). Locator error: the training ('feminine-specific occupations, including hairdressing') and nurses' advocacy passage is Williams ¶4, not ¶5.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_07",
+   "source": "mary_jane_logan_mccallum",
+   "target": "medicalhistory",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Indigenous health history as a history of colonialism: a historiographical framing through starvation, experimentation, segregation and trauma (2017), and, with Adele Perry, a history of racism in Winnipeg's health-care system told through one man's death in an emergency room (2018).",
+   "map_label": "Indigenous health history, 2017–18",
+   "evidence_note": "(1) CHR 98:1 (2017), author abstract only (existing source of the medical history entry): a historiographical framing of Indigenous health history through starvation, experimentation, segregation and trauma, not new clinical evidence. (2) University of Manitoba Press page for the 2018 book, re-read 2026-10-31 by researcher and reviewer. It asks what an Indigenous death in a Winnipeg emergency room reveals about 'the ongoing history of colonialism', and the publisher files the book under Medical History. (3) Canadian Historical Association, Indigenous History Book Prize 2019, jury citation (read by the reviewer 2026-10-31): the book 'serves as a corrective to the erasure of Sinclair and the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'. (4) Manitowbi, Scientia Canadensis 43:1 (2021), pp. 117–118, as read by the researcher in the Érudit PDF. The authors 'examine the roots of racialized medicine in the history of Anishinaabe land and cultural dispossession, racial segregation, settler-colonialist racist beliefs, substandard education and health services' (p. 117). The inquest minimized 'stereotyping, false assumptions, and racism within the health care setting' (p. 117, quoting the book, 107). Its limitation is that it offers no recommendations for combating racism in health care (p. 118). The independent reviewer could not reopen Érudit (bot check) and confirmed only the review's Crossref metadata. If those quotations cannot be re-checked before release, the edge stands on (1)–(3). The 2018 book is co-authored with Adele Perry; the 2017 article is hers alone. Both books are unread.",
+   "source_ids": [
+    "healthgeo05_mccallum_health_2017",
+    "ierA_mccallum_perry_ump_2018",
+    "thin_cha_indigenous_prize_2019",
+    "thin_manitowbi_structures_2021"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "The 2017 part rests on the existing CHR abstract source and is sound. For the 2018 part, the Manitowbi quotations could not be re-opened because of Érudit's bot check. Independent, verified support exists: the publisher files the book under 'Medical History', and the CHA 2019 Indigenous History Book Prize citation speaks of racism and settler colonialism 'in Canada's so-called universal health care system'. Add the CHA page as a new source and mark Manitowbi as researcher-read and not re-checked.",
+    "reviewer": "review-A.json"
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_08",
+   "source": "mary_jane_logan_mccallum",
+   "target": "settler_colonialism",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Structures of Indifference (with Adele Perry, 2018) places Brian Sinclair's death in a Winnipeg emergency room within the settler colonial history of Manitoba, and reads it as evidence of the racism and settler colonialism of Canadian health care.",
+   "map_label": "Settler colonialism in Canadian health care, 2018",
+   "evidence_note": "(1) CHA Indigenous History Book Prize 2019, jury citation (read by the reviewer 2026-10-31). The book 'situates the life and death of Brian Sinclair within the complicated settler colonial histories of the geographic area that came to be known as Manitoba', and corrects 'the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'. (2) Publisher page, re-read 2026-10-31: the book asks 'what it reveals about the ongoing history of colonialism'. Sherene Razack's blurb calls it a framing of Sinclair's death as 'a racism that is the basis of Canadian settler colonialism'. G. Bruyere's CHOICE blurb says the authors analyse how the inquest's legal processes 'obscure the violence of contemporary settler colonialism'. (3) Manitowbi (2021), p. 118, as read by the researcher in the Érudit PDF: the book's 'primary strength' is its account of Sinclair's life and death and 'the history and persistence of settler colonialism in the Canadian health-care system'. He also quotes a sentence of the authors' own (book p. 102). The reviewer could not reopen Érudit, so the authors' wording is not used in graph text. All of these are readers' framings; the book is unread. No claim is made that the authors adopt Wolfe's theory. The settler colonialism entry's caution that McCallum (2014) wrote 'beside' the paradigm still stands for the 2014 book; this edge rests on the 2018 book.",
+   "source_ids": [
+    "ierA_mccallum_perry_ump_2018",
+    "thin_cha_indigenous_prize_2019",
+    "thin_manitowbi_structures_2021"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "The settler-colonial reading of the 2018 book is well supported by verified sources: the CHA prize citation ('complicated settler colonial histories' of Manitoba; 'racism and settler colonialism' in health care), Razack's blurb and the CHOICE blurb (G. Bruyere: 'obscure the violence of contemporary settler colonialism'). The relationship text, however, quotes the authors' own words ('myths of our settler society'), known only through Manitowbi's review. The reviewer could not re-check it (Érudit bot check), so the authors' words should not sit in graph text. Rewrite the relationship from verified readers and keep Manitowbi in the note as researcher-read. The scope caution about the 2014 book is good and is kept.",
+    "reviewer": "review-A.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "mary_jane_logan_mccallum ↔ sarah_carter",
+   "reason": "Held, unread. Crossref records McCallum's review of Carter's The Importance of Being Monogamous: Marriage and Nation Building in Western Canada to 1915 (Ethnohistory 56:4, 2009, pp. 762–764, doi:10.1215/00141801-2009-036). Duke's page and PDF returned 403; the review text is unread, so nothing is known of her judgement. A strong candidate for a person↔person edge if a reviewer can read it."
+  },
+  {
+   "pair": "patrick_wolfe → mary_jane_logan_mccallum",
+   "reason": "Not proposed. Williams (BC Studies 2016) frames the 2014 book with Wolfe ('Following Wolfe, she shows…'; 'what Wolfe calls settler-conceived bureaucracies'), but the review does not say McCallum cites Wolfe and its only Wolfe reference is the reviewer's own (The Settler Complex, 2013). Reviewer's framing, book unread."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum ↔ winona_wheeler",
+   "reason": "Not proposed. Both are Shekon Neechie board members and co-signatories of the seven-author 2021 open letter, and both were guests on the 2020 podcast; no co-written argument beyond the collective letter was found. The Innes ↔ Wheeler pair (in the Innes folder) rests additionally on the 2018 USask account of the two of them launching the site."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum ↔ brenda_macdougall",
+   "reason": "Not proposed: co-signatories of the 2021 board letter only."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum → native_newcomer (second edge)",
+   "reason": "Already represented by edge_2183 (her false-dichotomy critique, via Harms)."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum ↔ joan_sangster / franca_iacovetta",
+   "reason": "Searched for reviews or named exchanges with these existing endpoints (labour and women's historians); none found. Topic overlap is not evidence."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum → quebec_historiography",
+   "reason": "Not her: the McCallum named there (Ouellet 1985) is the economic historian John McCallum."
+  },
+  {
+   "pair": "McCallum and Milloy (foreword, 2017); McCallum and Maureen Lux (2022 chapter); McCallum and Aroha Harris (2017 chapter)",
+   "reason": "Held for missing endpoints: Milloy, Lux and Harris are not atlas endpoints."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_manitowbi_structures_2021",
+   "title": "Josh Manitowbi, review of Mary Jane Logan McCallum and Adele Perry, Structures of Indifference: An Indigenous Life and Death in a Canadian City (Winnipeg: University of Manitoba Press, 2018), Scientia Canadensis 43, no. 1 (2021): 117–118.",
+   "citation": "Josh Manitowbi, review of Mary Jane Logan McCallum and Adele Perry, Structures of Indifference: An Indigenous Life and Death in a Canadian City (Winnipeg: University of Manitoba Press, 2018), Scientia Canadensis 43, no. 1 (2021): 117–118.",
+   "url": "https://doi.org/10.7202/1078930ar",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Read in full in the Érudit PDF (pp. 117–118; reviewer printed as 'Josh Manitowbi, Brock University'; a search index gives 'Jeanne Manitowabi', not adopted). Used: historical, place-based analysis of systemic racism in Winnipeg's health care (p. 117); roots of racialized medicine in dispossession, segregation and 'settler-colonialist racist beliefs' (p. 117); the inquest minimized racism (p. 117, quoting the book p. 107); 'the history and persistence of settler colonialism in the Canadian health-care system' (p. 118); the authors' own words on 'the myths of our settler society' (p. 118, quoting the book p. 102); limitation: no recommendations (p. 118). Quotations not re-checked by independent review (Érudit bot check); Crossref metadata confirmed (Josh Manitowbi, Scientia Canadensis 43:1, first page 117)."
+   }
+  },
+  {
+   "id": "thin_mccallum_innes_hill_conversation_2024",
+   "title": "Mary Jane Logan McCallum, Robert Alexander Innes and Susan M. Hill, \"Looking for Indigenous history? 'Shekon Neechie' website recentres Indigenous perspectives,\" The Conversation (Canada), 1 July 2024.",
+   "citation": "Mary Jane Logan McCallum, Robert Alexander Innes and Susan M. Hill, \"Looking for Indigenous history? 'Shekon Neechie' website recentres Indigenous perspectives,\" The Conversation (Canada), 1 July 2024. doi:10.64628/aam.pkfjpv6n4.",
+   "url": "https://theconversation.com/looking-for-indigenous-history-shekon-neechie-website-recentres-indigenous-perspectives-233056",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Read in full (body paragraphs counted from the opening, skipping the five 'Read more' boxes). Byline and affiliations as printed; Crossref DOI record lists the same three authors. Used: founded by seven Indigenous scholars, 21 June 2018 (¶1); motives (¶¶18–24); Te Pouhere Kōrero ties (¶25); the board's open letter to the CHA (¶30). Names no historians other than Allan Downey (¶6) and the 2024 profiled historians (¶16). Paragraph locators corrected by the independent review."
+   }
+  },
+  {
+   "id": "thin_mccallum_aiq_2009",
+   "title": "Mary Jane Logan McCallum, \"Indigenous Labor and Indigenous History,\" American Indian Quarterly 33, no. 4 (2009): 523–544.",
+   "citation": "Mary Jane Logan McCallum, \"Indigenous Labor and Indigenous History,\" American Indian Quarterly 33, no. 4 (2009): 523–544. doi:10.1353/aiq.2009.a362033.",
+   "url": "https://doi.org/10.1353/aiq.2009.a362033",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Opening passage only (first page, p. 523), read as the publisher's excerpt in the Semantic Scholar record for the DOI; Project MUSE served a bot check and the rest of the article is unread. Pages and issue from Crossref. Used: the WHA call for papers by Indigenous academics; the division between 'Native people as history and Native people as historians'; historicizing the twentieth-century English Canadian historical profession; 'Philip Deloria argues …'; 'One of these frames is professional history.'"
+   }
+  },
+  {
+   "id": "thin_cha_indigenous_prize_2019",
+   "title": "Canadian Historical Association, Indigenous History Book Prize 2019: Mary Jane Logan McCallum and Adele Perry, Structures of Indifference: An Indigenous Life and Death in a Canadian City (prize-winner page with jury citation).",
+   "citation": "Canadian Historical Association, Indigenous History Book Prize 2019: Mary Jane Logan McCallum and Adele Perry, Structures of Indifference (prize-winner page with jury citation).",
+   "url": "https://cha-shc.ca/prize-winner/mary-jane-logan-mccallum-adele-perry/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Read by the independent reviewer. Jury citation: the book 'situates the life and death of Brian Sinclair within the complicated settler colonial histories of the geographic area that came to be known as Manitoba'; it 'serves as a corrective to the erasure of Sinclair and the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'; 'It illustrates the importance of writing collaboratively, speaking back to settler colonialism, and making our work accessible.' A prize jury's reading; the book is unread. (Check against any CHA-prize source already proposed in the 1.203 Luby/Fraser/CHA-prize work before minting.)"
+   }
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "ierA_mccallum_perry_ump_2018",
+   "use": "mjlm_rel_01, mjlm_rel_07, mjlm_rel_08 (publisher page re-read 2026-10-31)"
+  },
+  {
+   "id": "ihc_shekon_letter_2021",
+   "use": "mjlm_rel_02 (re-read 2026-10-31; paraphrased)"
+  },
+  {
+   "id": "ihc_williams_bcs_2016",
+   "use": "mjlm_rel_04, mjlm_rel_05, mjlm_rel_06 (re-read in full 2026-10-31)"
+  },
+  {
+   "id": "ierA_harms_mh_2016",
+   "use": "mjlm_rel_05, mjlm_rel_06 (re-read in full 2026-10-31)"
+  },
+  {
+   "id": "p4b_mccallum_2014",
+   "use": "mjlm_rel_04, mjlm_rel_05, mjlm_rel_06"
+  },
+  {
+   "id": "healthgeo05_mccallum_health_2017",
+   "use": "mjlm_rel_07 (abstract only; MUSE copy blocked)"
+  }
+ ],
+ "source_addenda": {
+  "ihc_shekon_letter_2021": "Addendum 2026-10-31 (thin-person-edges, McCallum): re-read. The critics' letter it answers was published in The Dorchester Review and signed by 53 historians; the post's title dates it 9 August 2020 while the body gives 9 August 2021 (the 2021 date fits the CHA statement of 30 June 2021). The letter names no historian.",
+  "ierA_mccallum_perry_ump_2018": "Addendum 2026-10-31 (thin-person-edges, McCallum): publisher page re-read; 192 pp.; author affiliations McCallum (Winnipeg) and Perry (Manitoba); endorsements also from Karen Dubinsky, Earle Waugh (Canadian Journal of Native Studies) and Karen Ella McCallum (American Review of Canadian Studies)."
+ }
+}

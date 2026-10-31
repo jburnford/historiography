@@ -1,0 +1,62 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (paul_thompson: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "pt_rel_01",
+   "source": "alessandro_portelli",
+   "target": "paul_thompson",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Thompson recalls that by the second edition of The Voice of the Past (1988) oral historians had been strongly influenced by Luisa Passerini and ‘even more’ by Portelli's ideas that changes in memory are part of its value, which led him to add a wholly new chapter, ‘Memory and the Self’.",
+   "map_label": "Memory and the Self, 1988 edition",
+   "evidence_note": "His own retrospective testimony, read. Life story interview with Karen Worcman (1996, 2002), UK Data Archive thematic highlights (SN 6226, June 2017), section 15 ‘Towards subjectivity’, printed p. 13: ‘by the time of the second edition, ten years later, all the people in oral history had been very strongly influenced both by Luisa Passerini on her ideas about subjectivity and silence, and memory, and I think even more by [Portelli] and his ideas about the way in which people changed memory, and how that is part of the value of memory. So there's a whole chapter on “Memory and the Self”, which is completely new, in the second edition.’ The transcript reads ‘Sandra Portelli’, a transcription error for Sandro (Alessandro) Portelli; the identification is the researcher's. Section 14, p. 12: in 1977 the first edition was ‘very much a positivistic work’. Only professional-method passages used; the interview story Thompson tells in section 15 is not reproduced. The 1988 chapter itself is unread (the atlas's reader extract covers community history only), so the edge records Thompson's account of the debt, not a reading of how the chapter uses Portelli. Passerini is not an atlas endpoint. Refines the description's existing contrast with Passerini and Portelli into a documented route.",
+   "source_ids": [
+    "tq234_thompson_worcman"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "UK Data Service PDF (SN 6226 thematic highlights; data archive, acceptable) re-fetched: section 15 'Towards subjectivity', printed p. 13, verbatim as quoted, ending 'there's a whole chapter on “Memory and the Self”, which is completely new, in the second edition'; section 14, p. 12, 'very much a positivistic work'. The transcript's 'Sandra Portelli' is followed by 'and his ideas', which supports the researcher's identification as Sandro (Alessandro) Portelli, the endpoint; the substance (changes in memory as part of its value) is Portelli's well-known position. Thompson's own testimony, retrospective, bounded to his account of the debt; the narrator's story in section 15 is not reproduced. Accept.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "Luisa Passerini → paul_thompson",
+   "reason": "Same passage (p. 13); Passerini is not an atlas endpoint. Held for missing endpoint."
+  },
+  {
+   "pair": "paul_thompson ↔ historyworkshop",
+   "reason": "Read (p. 1): Raphael Samuel encouraged him to write an article for History Workshop Journal. A single invited article; Samuel is not an atlas endpoint. Held as too thin."
+  },
+  {
+   "pair": "Peter Townsend / George Ewart Evans → paul_thompson",
+   "reason": "Read (sections 7, 8, 13); not atlas endpoints. Held; already in the description."
+  },
+  {
+   "pair": "paul_thompson → publichistory",
+   "reason": "Community-history argument (reader extract of The Voice of the Past, 1988) already represented by edge_2938 (paul_thompson → social). Adding a public-history edge from the same passage would repackage it. Not proposed."
+  },
+  {
+   "pair": "paul_thompson → memory",
+   "reason": "Thompson's account of the new ‘Memory and the Self’ chapter is read only as testimony; the chapter is unread, so a field contribution to memory studies is not established. Held for unread evidence."
+  },
+  {
+   "pair": "paul_thompson ↔ ep_thompson / dorothy_thompson",
+   "reason": "No relationship found; shared surname only. Not proposed."
+  }
+ ],
+ "new_sources": [],
+ "reused_sources": [
+  {
+   "id": "tq234_thompson_worcman",
+   "use": "pt_rel_01 (printed pp. 12–13, sections 14–15); held leads (pp. 1, 5–6, 11)"
+  }
+ ],
+ "source_addenda": {}
+}

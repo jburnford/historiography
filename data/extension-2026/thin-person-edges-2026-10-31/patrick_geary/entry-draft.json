@@ -1,0 +1,83 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (patrick_geary: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "pg_rel_01",
+   "source": "patrick_geary",
+   "target": "memory",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Phantoms of Remembrance (1994) studies how eleventh-century people (women praying for their dead, monks keeping and reshaping archives, scribes choosing which royal pasts to celebrate or forget) preserved the past or formulated the past they preferred to imagine.",
+   "map_label": "Phantoms of Remembrance, 1994",
+   "evidence_note": "Publisher description read (Princeton University Press, book page; copyright 1994, paperback 1996): the book ‘makes important new inroads into the widely discussed topic of historical memory’, describes practices of remembrance in written and nonwritten forms, gives ‘women praying for their dead, monks creating and re-creating their archives’ and scribes deciding ‘which royal families of the past to applaud and which to forget’, and shows people ‘formulating the past that an individual or group prefers to imagine’. The page quotes Alexander Murray (TLS) on ‘three case-studies’ of ‘local patterns of memory’. The book is unread; this is a publisher's account. Date confirmed by the CV entry already on the atlas (tc234_geary_cv). Replaces the memory edge held in revision 1.234 because the IAS page refused access; no claim is made about which memory theorists Geary uses.",
+   "source_ids": [
+    "thin_geary_phantoms_princeton",
+    "tc234_geary_cv"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "Princeton University Press page re-fetched: description begins 'In Phantoms of Remembrance, Patrick Geary makes important new inroads into the widely discussed topic of historical memory', with 'Women praying for their dead, monks creating and re-creating their archives, scribes choosing which royal families of the past to applaud and which to forget' and 'formulating the past that an individual or group prefers to imagine'; copyright 1994, paperback 5 May 1996. Publisher provenance acceptable. The evidence note states plainly that this is a publisher's account and the book is unread, and makes no claim about memory theorists. A book whose subtitle and description place it in memory studies supports a bounded person → field contribution.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "peter_brown ↔ patrick_geary",
+   "reason": "Strong lead (cult of saints and relics). Searched: Princeton and MUSE pages for Furta Sacra name no debt; a CSSH review article (search snippet) cites Geary's ‘Saints, Scholars, and Society’ (in Living with the Dead, 1994) beside Brown's work, but neither text was readable. Held for unread evidence; topic alone is not a relationship."
+  },
+  {
+   "pair": "arjun_appadurai ↔ patrick_geary",
+   "reason": "‘Sacred Commodities’ (1986) appeared in The Social Life of Things, edited by Appadurai. The Cambridge chapter summary read cites Kopytoff (ch. 2), not Appadurai; the summary of Appadurai's introduction (pp. 3–63) does not mention Geary or relics. Editor–contributor relation only; held. Kopytoff is not an atlas endpoint."
+  },
+  {
+   "pair": "benedict_anderson / ernest_gellner / anthony_d_smith ↔ patrick_geary",
+   "reason": "Read: Fanning's H-France review of The Myth of Nations names only Wenskus and Wolfram (¶1) and uses ‘imagined communities’ unattributed (¶2). No evidence of Geary engaging these theorists; book unread. Not proposed."
+  },
+  {
+   "pair": "Reinhard Wenskus / Herwig Wolfram → patrick_geary",
+   "reason": "Fanning ¶1: The Myth of Nations applies ethnogenesis research ‘especially in the work of Reinhard Wenskus and Herwig Wolfram’. Neither is an atlas endpoint. Held for missing endpoints."
+  },
+  {
+   "pair": "patrick_geary ↔ robert_bartlett",
+   "reason": "Checked Bartlett's 2001 article (St Andrews repository copy, all notes): Geary is not cited. No other exchange found. Searched without a verified omission."
+  },
+  {
+   "pair": "maurice_halbwachs / pierre_nora ↔ patrick_geary",
+   "reason": "Princeton page names neither; book unread. Not proposed."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_geary_phantoms_princeton",
+   "title": "Patrick J. Geary, Phantoms of Remembrance: Memory and Oblivion at the End of the First Millennium (Princeton University Press, 1994; paperback 1996): publisher description.",
+   "citation": "Patrick J. Geary, Phantoms of Remembrance: Memory and Oblivion at the End of the First Millennium (Princeton University Press, 1994; paperback 1996): publisher description.",
+   "url": "https://press.princeton.edu/books/paperback/9780691026039/phantoms-of-remembrance",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Publisher description and review quotations (Murray, TLS; VQR; Thomas Head) read. Page shows copyright 1994, paperback 5 May 1996. Book body unread."
+   }
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "tc234_geary_cv",
+   "use": "pg_rel_01 (1994 date)"
+  },
+  {
+   "id": "tq234_geary_fanning2002",
+   "use": "Reread 2026-10-31 for named scholars; supports held leads only."
+  },
+  {
+   "id": "tc234_geary_commodities",
+   "use": "Cambridge chapter summary reread 2026-10-31 (Kopytoff citation); supports the held Appadurai lead only."
+  }
+ ],
+ "source_addenda": {}
+}

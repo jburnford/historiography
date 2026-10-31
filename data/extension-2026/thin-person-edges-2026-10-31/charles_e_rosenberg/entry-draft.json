@@ -1,0 +1,109 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (charles_e_rosenberg: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "cer_rel_01",
+   "source": "richard_hofstadter",
+   "target": "charles_e_rosenberg",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Keith Wailoo (2020) notes that Rosenberg studied with Richard Hofstadter and reads the style of The Cholera Years (1962) as evoking Hofstadter's work.",
+   "map_label": "Columbia teacher; Cholera Years style, 1962",
+   "evidence_note": "A named reader's claim, read. Keith Wailoo, ‘The Enduring Significance of The Cholera Years’, The Panorama (SHEAR), 22 September 2020, third body paragraph: ‘In style, the book evokes the work of Richard Hofstadter with whom Rosenberg studied.’ The first body paragraph places the book (1962; reissued 1987) as an early example of medicine's social-historical turn. Wailoo writes as an appreciative reader of a ‘classic’; this is a stylistic and pedagogical reading, not a demonstration of argued intellectual debt. Warwick Anderson's essay (University of Chicago Press journal, doi 10.1086/712234), which a search snippet reports as calling Rosenberg Hofstadter's student, returned 403 and is unread; the Mantovani interview (2016, read pp. 213–216) names Ackerknecht and Rosen, not Hofstadter, as formative, so the claim is limited to studentship and style. Rosenberg's dissertation and any acknowledgment in the 1962 book are unread. Reviewer 2026-10-31: Wailoo does not say 'doctoral student' or name Columbia; the AHA dissertations directory (repository harvest, record for 'The Cholera Years', Columbia, 1961) gives no adviser, so supervision by Hofstadter is not claimed.",
+   "source_ids": [
+    "thin_wailoo_cholera_2020"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Re-fetched Wailoo (The Panorama, SHEAR, 22 Sept 2020): body paragraph 3 reads verbatim 'In style, the book evokes the work of Richard Hofstadter with whom Rosenberg studied'; paragraph 1 gives 1962/1987 and the social-historical turn. Provenance fine (scholarly society's own site); Wailoo is a substantive reader (historian of medicine). But the relationship text says 'as a Columbia doctoral student of Richard Hofstadter', which Wailoo does not say: he says only 'studied with'. The repository's AHA dissertations harvest lists Rosenberg's Columbia dissertation 'The Cholera Years' (1961) with no adviser recorded, so supervision is not established. The relationship must be attributed to Wailoo and limited to studentship and style. Omitted keys are unchanged.",
+    "reviewer": "review-BC.json"
+   }
+  },
+  {
+   "proposal_id": "cer_rel_02",
+   "source": "charles_e_rosenberg",
+   "target": "medicalhistory",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "In ‘Disease in History: Frames and Framers’ (1989) Rosenberg calls the social construction of illness ‘in an important sense … no more than a tautology’, avoids the term because it overemphasizes functionalist ends and arbitrariness, and argues that the main trends in the history of disease, social-control readings among them, lose sight of the process of disease definition itself and its consequences.",
+   "map_label": "Frame, not construct, 1989",
+   "evidence_note": "His own text, read in the Milbank Memorial Fund's open archive copy of The Milbank Quarterly 67, Suppl. 1 (1989), pp. 1–15. p. 2: ‘Much has been written during the past two decades about the social construction of illness. But in an important sense this is no more than a tautology’; the position ‘still serves to remind us’ that medical thought is rarely free of social constraint. p. 3: ‘I have, in fact, avoided the term social construction. I felt it has tended to overemphasize functionalist ends and the degree of arbitrariness’ and focused on ‘a handful of socially resonant diagnoses’; he uses ‘the less programmatically charged metaphor “frame”’. pp. 3–4 list five trends in disease history (social history; public health and the demographic transition; an ecological ‘new materialism’; demography; and, ‘perhaps most widely influential’, disease definitions as ‘a tool of social control’, citing Wright and Treacher 1982 and Figlio 1978, in which physicians are construed as agents of ‘a broader hegemonic enterprise’); p. 4: ‘What is often lost sight of in each of these emphases—and in the aggregate in all—is the process of disease definition itself’ and its consequences. The ‘lost sight of’ sentence applies to all five trends, not to social-control readings alone. A critique within a field he also built (his contribution edge edge_2946 remains): it qualifies the constructionist and social-control strands of medical history, it does not reject social history of medicine, which he calls necessarily ‘social’ (p. 3). The essay was reprinted as the introduction to Framing Disease (with Janet Golden, 1992) and in Explaining Epidemics (1992); those reprints were not collated. Named targets (Wright, Treacher, Figlio) are not atlas endpoints.",
+   "source_ids": [
+    "thin_rosenberg_frames_1989"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Re-read the Milbank Memorial Fund's own PDF (publisher archive; acceptable). Quotes verified at the stated pages (PDF pages = printed pp. 1–15): p. 2 'in an important sense this is no more than a tautology'; p. 3 'I have, in fact, avoided the term social construction. I felt it has tended to overemphasize functionalist ends and the degree of arbitrariness' and 'the less programmatically charged metaphor “frame”'; p. 4 'tool of social control', 'broader hegemonic enterprise'. One misreading: p. 4 says what is 'lost sight of in each of these emphases—and in the aggregate in all' is the process of disease definition; that criticism applies to all five trends he lists, not specifically to social-control readings. The relationship also drops his qualifier 'in an important sense'. Edits fix both. Critique of a field he contributes to is structurally fine (type critique, distinct from contribution edge_2946).",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "charles_e_rosenberg ↔ foucault",
+   "reason": "Read: Mantovani interview (2016), Rosenberg says the critical trend in US medical history was ‘all underway before Foucault was translated in the United States’ and that many cited Foucault without reading him. This is a claim about reception and chronology, not a critique of Foucault's arguments; already summarized in the entry description and in edge_2947 (questions simple theoretical genealogies). Not proposed."
+  },
+  {
+   "pair": "charles_e_rosenberg ↔ gramsci",
+   "reason": "Same interview passage on Gramsci's late US reception; reception claim only, not a relationship. Not proposed."
+  },
+  {
+   "pair": "Erwin Ackerknecht / George Rosen / Henry Sigerist → charles_e_rosenberg",
+   "reason": "Read: Mantovani interview, Rosenberg studied with Ackerknecht at Wisconsin and was influenced by Rosen's work on the state and medicine; Sigerist discussed. None is an atlas endpoint. Held for missing endpoints."
+  },
+  {
+   "pair": "alfred_crosby ↔ charles_e_rosenberg",
+   "reason": "Read: Milbank 1989, p. 4 cites Crosby 1972 and 1986 as one of several trends (an ecological ‘new materialism’) feeding interest in disease history. A descriptive citation, with no debt or critique. Not proposed."
+  },
+  {
+   "pair": "Janet Golden ↔ charles_e_rosenberg",
+   "reason": "Co-editor of Framing Disease (1992), confirmed in the Mantovani interview; not an atlas endpoint. Held."
+  },
+  {
+   "pair": "charles_e_rosenberg ↔ roy_porter / david_arnold / steven_shapin / lorraine_daston",
+   "reason": "Searched for a documented exchange or named debt in open sources; none found or read. Shared subject matter is not evidence. Searched without a verified omission."
+  },
+  {
+   "pair": "charles_e_rosenberg ↔ drew_gilpin_faust",
+   "reason": "The Harvard Gazette (2001) records a personal relationship. That is not an intellectual relationship and no scholarly exchange was found. Not proposed."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_rosenberg_frames_1989",
+   "title": "Charles E. Rosenberg, “Disease in History: Frames and Framers,” The Milbank Quarterly 67, Suppl. 1 (1989): 1–15.",
+   "citation": "Charles E. Rosenberg, “Disease in History: Frames and Framers,” The Milbank Quarterly 67, Suppl. 1 (1989): 1–15.",
+   "url": "https://www.milbank.org/wp-content/uploads/mq/volume-67/issue-s1/67-S1-Disease-in-History.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Complete article read in the Milbank Memorial Fund's own archive PDF; pp. 1–4 (definition of disease, social construction as tautology, avoidance of the term, trends in disease history incl. social control) and the reference list p. 15 used for locators. Reprinted 1992 (Framing Disease introduction; Explaining Epidemics); reprints not collated."
+   }
+  },
+  {
+   "id": "thin_wailoo_cholera_2020",
+   "title": "Keith Wailoo, “The Enduring Significance of The Cholera Years,” The Panorama (Society for Historians of the Early American Republic), 22 September 2020.",
+   "citation": "Keith Wailoo, “The Enduring Significance of The Cholera Years,” The Panorama (Society for Historians of the Early American Republic), 22 September 2020.",
+   "url": "https://thepanorama.shear.org/2020/09/22/the-enduring-significance-of-the-cholera-years/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Read body paragraphs 1 and 3: the book (1962, reissued 1987) as an early instance of the social-historical turn in medical history; style ‘evokes the work of Richard Hofstadter with whom Rosenberg studied’; Tomes and Greene (2008) quoted on theory and narrative. Reader's assessment, not Rosenberg's testimony."
+   }
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "tq234_rosenberg_mantovani2016",
+   "use": "Read again 2026-10-31 for the leads held in edges_considered_not_proposed (Foucault, Gramsci, Ackerknecht, Rosen, Sigerist, Golden) and to bound cer_rel_01."
+  }
+ ],
+ "source_addenda": {}
+}

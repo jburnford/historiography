@@ -1,0 +1,65 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (gilles_deleuze: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "del_rel_01",
+   "source": "gilles_deleuze",
+   "target": "latour",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Latour describes actor-network theory as a change of metaphor from surfaces to filaments, ‘or rhyzomes in Deleuze’s parlance’, and likens a network that has no outside to ‘Deleuze’s lightning rod’ (written 1990; English 1996)",
+   "map_label": "Rhizomes and the lightning rod, 1990/1996",
+   "evidence_note": "His own words, read 2026-10-31 in the author's web version (P-67) of ‘On Actor-Network Theory: A Few Clarifications plus More than a Few Complications’ (written 1990; Danish in Philosophia 25:3–4; English in Soziale Welt 47, 1996, pp. 369–381). Web p. 3: ‘Put too simply AT is a change of methaphors to describe essences: instead of surfaces one gets filaments (or rhyzomes in Deleuze’s parlance 197-).’ Web p. 6: a network ‘is not a foreground over a background, nor a crack onto a solid soil, it is like Deleuze’s lightning rod that creates by the same stroke the background and the foreground (Deleuze, 197-)’. Spellings and the unfinished ‘197-’ references are in the draft. Two acknowledged borrowings of image and vocabulary in a programmatic text; not a claim that ANT derives from Deleuze, and printed Soziale Welt pages are not collated. Latour's 1997 Keele talk ‘On Recalling ANT’ (Lancaster web version, read) attributes the label ‘actant-rhyzome ontology’ to Mike Lynch and does not mention Deleuze, so it is not cited for this edge.",
+   "source_ids": [
+    "thin_latour_ant_clarifications_1996"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "Latour's own site PDF (P-67; author's page, acceptable) re-fetched: web p. 3 'Put too simply AT is a change of methaphors to describe essences: instead of surfaces one gets filaments (or rhyzomes in Deleuze’s parlance 197-)'; web p. 6 'it is like Deleuze’s lightning rod that creates by the same stroke the background and the foreground (Deleuze, 197-)'. Page locators match the PDF's running heads. The header gives the Philosophia/Soziale Welt publication data. Two acknowledged borrowings of vocabulary in a programmatic ANT text; the relationship is bounded accordingly. The latour endpoint ('Bruno Latour / laboratory studies') is the right target. Accept.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "gilles_deleuze → paul_gilroy",
+   "reason": "Gilroy's The Black Atlantic (1993, p. 4 as quoted by a reader) calls the formation ‘rhizomorphic, fractal’; readers link this to Deleuze and Guattari, but no reading confirmed that Gilroy explicitly credits them (book text unread; a UERJ article and a Radical Teacher article could not be loaded; the Verso blog uses the term without naming Deleuze). Held as unread."
+  },
+  {
+   "pair": "nietzsche → gilles_deleuze",
+   "reason": "Nietzsche et la philosophie (1962) documents the reading, but no historian's or field's uptake was read, and the brief limits theorist edges to documented uptake by historians or fields. Not proposed."
+  },
+  {
+   "pair": "foucault → gilles_deleuze",
+   "reason": "‘Intellectuals and Power’ (1972) and Foucault's essays on Deleuze are a real exchange, but its historiographical uptake in the atlas already runs through Spivak's critique (edge_1636, edge_985) and edge_1553. Not investigated further."
+  },
+  {
+   "pair": "history_of_emotions / barbara_h_rosenwein ↔ gilles_deleuze (affect theory)",
+   "reason": "Searched for historians of emotions criticising Deleuze-derived affect theory; results concerned Massumi, Leys and philosophers, with no named endpoint engaging Deleuze. Searched without a verified omission."
+  },
+  {
+   "pair": "Félix Guattari / Brian Massumi / Manuel DeLanda ↔ gilles_deleuze",
+   "reason": "No endpoints. Held for missing endpoints."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_latour_ant_clarifications_1996",
+   "title": "Bruno Latour, “On Actor-Network Theory: A Few Clarifications plus More than a Few Complications” (written 1990; Philosophia 25:3–4 in Danish; English in Soziale Welt 47 (1996): 369–381); author's web version P-67.",
+   "citation": "Bruno Latour, “On Actor-Network Theory: A Few Clarifications plus More than a Few Complications” (written 1990; Philosophia 25:3–4 in Danish; English in Soziale Welt 47 (1996): 369–381); author's web version P-67.",
+   "url": "http://www.bruno-latour.fr/sites/default/files/P-67%20ACTOR-NETWORK.pdf",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Author's own site PDF (16 web pages) read in extracted text for the header, abstract and the two Deleuze passages (web pp. 3 and 6) with their surrounding paragraphs; the rest not read. Web pagination, not Soziale Welt pagination."
+   }
+  }
+ ],
+ "reused_sources": [],
+ "source_addenda": {}
+}

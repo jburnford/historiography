@@ -1,0 +1,73 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (samuel_huntington: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "hunt_rel_01",
+   "source": "charles_tilly",
+   "target": "samuel_huntington",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "As Leonid Grinin reads it (2026), Tilly's ‘Does Modernization Breed Revolution?’ (1973) argued against Huntington's idea of a correlation between modernization and revolution, while conceding that population growth, industrialization, urbanization and other large structural changes affect the probabilities of revolution indirectly.",
+   "map_label": "Does modernization breed revolution? 1973",
+   "evidence_note": "Mediated, read 2026-10-31; the 1973 original is unread. Bibliographic: Charles Tilly, ‘Does Modernization Breed Revolution?’, Comparative Politics 5:3 (April 1973): 425–447 (Crossref), reprinted in Goldstone, ed., Revolutions (1986), pp. 47–57, beside Huntington's ‘Revolution and Political Order’ (pp. 39–47). A named reader: Leonid E. Grinin, ‘Modernization as a Factor of Revolutionary Destabilization in Historical Process and in Modern Africa’, Journal of Globalization Studies 17:1 (May 2026), section 1 (‘Revolutions and Modernization Period’): ‘There exist diametrically opposed views on the character of these relations (see, e.g., Huntington-Tilly's debate [Huntington 1986; Tilly 1986])’; ‘Tilly (Ibid.: 57) finally admits that, though indirectly, population growth, industrialization, urbanization, and other large-scale structural changes do, to be sure, affect the probabilities of revolution’; n. 4 refers to Tilly ‘arguing against Huntington's idea about correlation between modernization and revolutions’. The JSTOR page did not load. Before acceptance the reviewer should read Tilly's article (JSTOR 421272) to confirm that Huntington is named and to give a page; until then the edge rests on one reader. Reviewer 2026-10-31: the article was again unreadable through an authorised route (JSTOR challenge; no repository deposit found). Grinin's ‘Huntington-Tilly's debate’ cites the two texts as reprinted in Goldstone (1986), a juxtaposition rather than a published exchange; the edge rests on Grinin's attributed reading.",
+   "source_ids": [
+    "thin_tilly_modernization_1973",
+    "thin_grinin_modernization_2026"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Tilly 1973 could not be read through an authorised route: the JSTOR stable page (10.2307/421272) returns a JavaScript challenge, no author or repository deposit was found (Deep Blue blocked automated access and no CRSO version was located). Grinin (Journal of Globalization Studies 17:1, 2026; journal page re-fetched) does say 'Huntington-Tilly's debate [Huntington 1986; Tilly 1986]', 'Tilly (Ibid.: 57) finally admits that, though indirectly, population growth, industrialization, urbanization, and other large-scale structural changes do, to be sure, affect the probabilities of revolution', and n. 4 'in his arguing against Huntington’s idea about correlation between modernization and revolutions'. Grinin, a specialist in the comparative study of revolutions who cites Tilly's reprint with pages (48, 50, 57), is a substantive reader, and Goldstone's 1986 reader prints the two texts side by side (bibliographic). Under the single-reader rule this suffices only if attributed: the current relationship states the claim as fact and says 'direct link' where Grinin says 'correlation'. Edit to attribute it and use his terms. 'Debate' in Grinin refers to the reprinted pair, not a published exchange. If someone with library access reads JSTOR 421272 and confirms Huntington is named, upgrade the Tilly source to supporting_page_checked, add a page, and drop the attribution.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "samuel_huntington → military / wartradition (The Soldier and the State, 1957)",
+   "reason": "A founding text of civil–military relations, but no military historian's documented use was read; the Harvard Gazette obituary (existing source) gives dates only. Held as unread."
+  },
+  {
+   "pair": "samuel_huntington ↔ gary_gerstle (Who Are We?, 2004)",
+   "reason": "Possible exchange over American national identity; not investigated."
+  },
+  {
+   "pair": "samuel_huntington ↔ Francis Fukuyama / Barrington Moore / Seymour Martin Lipset",
+   "reason": "No endpoints (Lipset appears only inside the modern node text, edge_625). Held for missing endpoints."
+  },
+  {
+   "pair": "edward_said → samuel_huntington; david_cannadine → samuel_huntington",
+   "reason": "Already represented (edge_1566, edge_2513)."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_tilly_modernization_1973",
+   "title": "Charles Tilly, “Does Modernization Breed Revolution?”, Comparative Politics 5:3 (April 1973): 425–447; reprinted in Jack A. Goldstone, ed., Revolutions: Theoretical, Comparative, and Historical Studies (1986), pp. 47–57.",
+   "citation": "Charles Tilly, “Does Modernization Breed Revolution?”, Comparative Politics 5:3 (April 1973): 425–447; reprinted in Jack A. Goldstone, ed., Revolutions: Theoretical, Comparative, and Historical Studies (1986), pp. 47–57.",
+   "url": "https://doi.org/10.2307/421272",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-31",
+    "note": "Crossref metadata for the 1973 article and the 2017 Routledge reader reprint; reprint pages in Goldstone 1986 as given by Grinin (2026). Article body unread: not reachable through an authorised route."
+   }
+  },
+  {
+   "id": "thin_grinin_modernization_2026",
+   "title": "Leonid E. Grinin, “Modernization as a Factor of Revolutionary Destabilization in Historical Process and in Modern Africa”, Journal of Globalization Studies 17:1 (May 2026).",
+   "citation": "Leonid E. Grinin, “Modernization as a Factor of Revolutionary Destabilization in Historical Process and in Modern Africa”, Journal of Globalization Studies 17:1 (May 2026).",
+   "url": "https://doi.org/10.30884/jogs/2026.01.01",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Journal web page (https://www.sociostudies.org/journal/articles/4154026/) read for section 1 and note 4 on the Huntington–Tilly debate. Page numbers not visible on the web text."
+   }
+  }
+ ],
+ "reused_sources": [],
+ "source_addenda": {}
+}

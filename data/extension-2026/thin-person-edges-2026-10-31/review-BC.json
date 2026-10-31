@@ -1,0 +1,243 @@
+{
+ "reviewer": "independent reviewer (Claude agent), not a researcher on this batch",
+ "checked_on": "2026-10-31",
+ "scope": "14 drafts, 22 proposed edges, in data/extension-2026/thin-person-edges-2026-10-31/<person_id>/entry-draft.json, against historiography-1920-2000.json revision 1.234. Structure checked for all 22: endpoints exist, critique kinds carry type critique, the one comparison is undirected, no edge duplicates an existing edge with the same endpoints and kind (cer_rel_02 and jb_rel_01 share endpoints with contribution edges 2946 and 2841 but differ in kind), all source ids resolve (existing or new_sources), no new id collides with an existing source. In required_edits, a key that is left out means that field is unchanged.",
+ "verdicts": [
+  {
+   "proposal_id": "cer_rel_01",
+   "person_id": "charles_e_rosenberg",
+   "verdict": "accept_with_edits",
+   "reason": "Re-fetched Wailoo (The Panorama, SHEAR, 22 Sept 2020): body paragraph 3 reads verbatim 'In style, the book evokes the work of Richard Hofstadter with whom Rosenberg studied'; paragraph 1 gives 1962/1987 and the social-historical turn. Provenance fine (scholarly society's own site); Wailoo is a substantive reader (historian of medicine). But the relationship text says 'as a Columbia doctoral student of Richard Hofstadter', which Wailoo does not say: he says only 'studied with'. The repository's AHA dissertations harvest lists Rosenberg's Columbia dissertation 'The Cholera Years' (1961) with no adviser recorded, so supervision is not established. The relationship must be attributed to Wailoo and limited to studentship and style. Omitted keys are unchanged.",
+   "required_edits": {
+    "relationship": "Keith Wailoo (2020) notes that Rosenberg studied with Richard Hofstadter and reads the style of The Cholera Years (1962) as evoking Hofstadter's work.",
+    "evidence_note": "A named reader's claim, read. Keith Wailoo, ‘The Enduring Significance of The Cholera Years’, The Panorama (SHEAR), 22 September 2020, third body paragraph: ‘In style, the book evokes the work of Richard Hofstadter with whom Rosenberg studied.’ The first body paragraph places the book (1962; reissued 1987) as an early example of medicine's social-historical turn. Wailoo writes as an appreciative reader of a ‘classic’; this is a stylistic and pedagogical reading, not a demonstration of argued intellectual debt. Warwick Anderson's essay (University of Chicago Press journal, doi 10.1086/712234), which a search snippet reports as calling Rosenberg Hofstadter's student, returned 403 and is unread; the Mantovani interview (2016, read pp. 213–216) names Ackerknecht and Rosen, not Hofstadter, as formative, so the claim is limited to studentship and style. Rosenberg's dissertation and any acknowledgment in the 1962 book are unread. Reviewer 2026-10-31: Wailoo does not say 'doctoral student' or name Columbia; the AHA dissertations directory (repository harvest, record for 'The Cholera Years', Columbia, 1961) gives no adviser, so supervision by Hofstadter is not claimed."
+   }
+  },
+  {
+   "proposal_id": "cer_rel_02",
+   "person_id": "charles_e_rosenberg",
+   "verdict": "accept_with_edits",
+   "reason": "Re-read the Milbank Memorial Fund's own PDF (publisher archive; acceptable). Quotes verified at the stated pages (PDF pages = printed pp. 1–15): p. 2 'in an important sense this is no more than a tautology'; p. 3 'I have, in fact, avoided the term social construction. I felt it has tended to overemphasize functionalist ends and the degree of arbitrariness' and 'the less programmatically charged metaphor “frame”'; p. 4 'tool of social control', 'broader hegemonic enterprise'. One misreading: p. 4 says what is 'lost sight of in each of these emphases—and in the aggregate in all' is the process of disease definition; that criticism applies to all five trends he lists, not specifically to social-control readings. The relationship also drops his qualifier 'in an important sense'. Edits fix both. Critique of a field he contributes to is structurally fine (type critique, distinct from contribution edge_2946).",
+   "required_edits": {
+    "relationship": "In ‘Disease in History: Frames and Framers’ (1989) Rosenberg calls the social construction of illness ‘in an important sense … no more than a tautology’, avoids the term because it overemphasizes functionalist ends and arbitrariness, and argues that the main trends in the history of disease, social-control readings among them, lose sight of the process of disease definition itself and its consequences.",
+    "evidence_note": "His own text, read in the Milbank Memorial Fund's open archive copy of The Milbank Quarterly 67, Suppl. 1 (1989), pp. 1–15. p. 2: ‘Much has been written during the past two decades about the social construction of illness. But in an important sense this is no more than a tautology’; the position ‘still serves to remind us’ that medical thought is rarely free of social constraint. p. 3: ‘I have, in fact, avoided the term social construction. I felt it has tended to overemphasize functionalist ends and the degree of arbitrariness’ and focused on ‘a handful of socially resonant diagnoses’; he uses ‘the less programmatically charged metaphor “frame”’. pp. 3–4 list five trends in disease history (social history; public health and the demographic transition; an ecological ‘new materialism’; demography; and, ‘perhaps most widely influential’, disease definitions as ‘a tool of social control’, citing Wright and Treacher 1982 and Figlio 1978, in which physicians are construed as agents of ‘a broader hegemonic enterprise’); p. 4: ‘What is often lost sight of in each of these emphases—and in the aggregate in all—is the process of disease definition itself’ and its consequences. The ‘lost sight of’ sentence applies to all five trends, not to social-control readings alone. A critique within a field he also built (his contribution edge edge_2946 remains): it qualifies the constructionist and social-control strands of medical history, it does not reject social history of medicine, which he calls necessarily ‘social’ (p. 3). The essay was reprinted as the introduction to Framing Disease (with Janet Golden, 1992) and in Explaining Epidemics (1992); those reprints were not collated. Named targets (Wright, Treacher, Figlio) are not atlas endpoints."
+   }
+  },
+  {
+   "proposal_id": "bhr_rel_01",
+   "person_id": "barbara_h_rosenwein",
+   "verdict": "hold",
+   "reason": "Held on provenance only. The quoted phrases exist verbatim in the an unlicensed repost site text (re-fetched: 'psychiatrist/historian wife Carol Stearns', 'But it turned out to be a very shallow past', 'by looking at popular advice manuals', 'Tapping Huizinga (with grateful acknowledgment)', '“less precise” standards', 'This broad dismissal', 'emotionology by definition belongs to the modern period'), and the critique is fairly worded. But neither reading route is acceptable: (1) the printed pp. 824–826 locators rest on the 2026-10-28 reading of a an unauthorised course copy, which the user's provenance rule excludes (course scans); (2) the present an unlicensed repost site is not the AHA/OAH/University of Illinois Press an unlicensed repost site that licensed AHR full text until c. 2011; the domain now hosts a commercial popular-history site (mythology and timeline listicles, '© an unlicensed repost site 2026') that reposts the AHR article under 'Journal' with no AHR/OUP attribution, publication data or licence statement. It is functionally an unlicensed mirror and should be treated as unread. To lift: read pp. 824–826 in an authorised copy (OUP or JSTOR stable 10.1086/532498 through library access) and re-cite with printed pages. No content doubt."
+  },
+  {
+   "proposal_id": "bhr_rel_02",
+   "person_id": "barbara_h_rosenwein",
+   "verdict": "hold",
+   "reason": "Held on provenance only, as bhr_rel_01. Quotes verified verbatim in the an unlicensed repost site text ('Jean Delumeau adds fear to the heady brew', 'But are they right to jump from scary sources to real fear?', 'local contexts of meaning', 'There is plenty to criticize about Delumeau’s approach'), but that route is not acceptable (see bhr_rel_01 and provenance_flags), and the Delumeau/Dinzelbacher pages were never read in printed form, so the edge has no authorised reading and no printed locator. To lift: read the Delumeau/Dinzelbacher section (notes 49–56) in OUP/JSTOR and give printed pages. Note also that Rosenwein's line 'Delumeau and Dinzelbacher teach us pointedly that historians of emotion need to attend to reception theory' is ironic; the wording 'calling instead for attention to reception' is a fair paraphrase."
+  },
+  {
+   "proposal_id": "jb_rel_01",
+   "person_id": "joanna_bourke",
+   "verdict": "accept_with_edits",
+   "reason": "Abstract re-read verbatim in the Birkbeck eprint record (full text not deposited; OUP DOI is the citation URL; acceptable). Supports 'examines and appraises' four approaches and 'insufficient attention has been paid to physiology and how emotions mediate between the individual and the social' and the definition of aesthesiology. Claim is properly bounded to the abstract in the evidence note. One overreach in the relationship: 'proposing aesthesiology instead' implies a replacement of the appraised approaches; the abstract says only 'A new history of the emotions can be characterized as aesthesiology'. Edit the relationship to the abstract's wording and flag it as abstract-based. Distinct from edge_2841 (contribution).",
+   "required_edits": {
+    "relationship": "‘Fear and Anxiety: Writing about Emotion in Modern History’ (2003) appraises emotionology, social constructivism, narrativization and psycho-historical methods and, using fear as its example, argues that insufficient attention has been paid to physiology and to how emotions mediate between the individual and the social; it characterizes a new history of the emotions as ‘aesthesiology’ (article abstract)."
+   }
+  },
+  {
+   "proposal_id": "pg_rel_01",
+   "person_id": "patrick_geary",
+   "verdict": "accept",
+   "reason": "Princeton University Press page re-fetched: description begins 'In Phantoms of Remembrance, Patrick Geary makes important new inroads into the widely discussed topic of historical memory', with 'Women praying for their dead, monks creating and re-creating their archives, scribes choosing which royal families of the past to applaud and which to forget' and 'formulating the past that an individual or group prefers to imagine'; copyright 1994, paperback 5 May 1996. Publisher provenance acceptable. The evidence note states plainly that this is a publisher's account and the book is unread, and makes no claim about memory theorists. A book whose subtitle and description place it in memory studies supports a bounded person → field contribution."
+  },
+  {
+   "proposal_id": "rb_rel_01",
+   "person_id": "robert_bartlett",
+   "verdict": "accept",
+   "reason": "Pihlajamäki p. 33 re-fetched in the Institutet för rättshistorisk forskning/Olin Foundation's own digital edition (publisher route; acceptable). Verbatim: 'Peter Brown departs from the idea that the medieval world at the time of ordeals was consensus-minded'; 'Bartlett calls this “the functionalist approach” and rejects it by showing that in fact the increased use of ordeals is seen to be in close connection with the growth of royal power'; 'adjunct of royal power'; notes 30 (Brown 1982 p. 324), 31 (Bartlett 1988 pp. 34–43), 32 (Bartlett 1988 pp. 70–102). The Peter Brown in the source is the late-antique historian (Brown 1982 = Society and the Holy), matching the endpoint. The relationship is attributed ('as read by Heikki Pihlajamäki, 1997') and the reader is substantive (a legal historian's monograph discussing Bartlett's argument at length). Single second-hand reader, attributed: acceptable under the review rule. Palmer's 1989 Michigan Law Review review would corroborate if it becomes readable."
+  },
+  {
+   "proposal_id": "gay_rel_01",
+   "person_id": "peter_gay",
+   "verdict": "accept",
+   "reason": "Both readers re-checked. Velema 2014, UvA-DARE published version, p. 230 and n. 3 (Darnton, 'In search of the Enlightenment. Recent attempts to create a social history of ideas', JMH 43, 1971, 113–132): 'bijzonder ouderwets', 'diens hele dialectische schema niet deugde', the Renaissance question, 'van Bacon tot Newton', 'via een achterdeur', 'Het scherpe meningsverschil tussen Darnton en Gay'. Edelstein 2012 (Crossref abstract / Cambridge opening): 'Robert Darnton hailed this rising tide of social and cultural history in a 1971 largely critical review of Gay's two volumes'. Institutional repository and publisher routes. Two independent substantive readers, attributed in the relationship. Accept."
+  },
+  {
+   "proposal_id": "gay_rel_02",
+   "person_id": "peter_gay",
+   "verdict": "accept",
+   "reason": "Velema pp. 229–230 re-read: Gay's 'monumentale studie' presented by the author 'als een proeve van de “social history of ideas”', in fact 'een tamelijk traditionele vorm van ideeëngeschiedenis'; presented 'nadrukkelijk' as the beginning of Western modernity against Becker (n. 2); the appeal to antiquity / tension with Christianity / pursuit of modernity scheme; 'groeide uit tot een standaardwerk'. Relationship matches; evidence note keeps Velema's qualification that the book closed an era. Gay's Enlightenment books are unread, which the note says. Accept."
+  },
+  {
+   "proposal_id": "gay_rel_03",
+   "person_id": "peter_gay",
+   "verdict": "accept",
+   "reason": "cliospsyche.org interview (existing source gay_interview_1997) re-fetched: 'The interest goes back to 1950/1951'; 'an older colleague, Franz Neumann, who was a left-wing Marxist'; 'Having been tied to the Frankfurt School he had some interest in Freud'; Marcuse joined the 'serious course of reading on Freud'; 'This aroused my interest.' Velema n. 1 independently confirms Gay's 1967 essay in The Critical Spirit, essays in honour of Herbert Marcuse. The relationship is bounded to his Freud turn via a Frankfurt-associated circle and explicitly does not claim adoption of critical theory. Retrospective testimony, so stated. Accept."
+  },
+  {
+   "proposal_id": "pt_rel_01",
+   "person_id": "paul_thompson",
+   "verdict": "accept",
+   "reason": "UK Data Service PDF (SN 6226 thematic highlights; data archive, acceptable) re-fetched: section 15 'Towards subjectivity', printed p. 13, verbatim as quoted, ending 'there's a whole chapter on “Memory and the Self”, which is completely new, in the second edition'; section 14, p. 12, 'very much a positivistic work'. The transcript's 'Sandra Portelli' is followed by 'and his ideas', which supports the researcher's identification as Sandro (Alessandro) Portelli, the endpoint; the substance (changes in memory as part of its value) is Portelli's well-known position. Thompson's own testimony, retrospective, bounded to his account of the debt; the narrator's story in section 15 is not reproduced. Accept."
+  },
+  {
+   "proposal_id": "carr_rel_01",
+   "person_id": "e_h_carr",
+   "verdict": "accept_with_edits",
+   "reason": "Munslow review (IHR History in Focus archive; acceptable) re-fetched: 'still unsurpassed as a stimulating and provocative statement by a radically inclined scholar' (Tosh 1991: 234) and 'The controversy between Carr and Elton is the best starting-point for the debate about the standing of historical knowledge' (Tosh 1991: 236); bibliography 'Tosh, John (1991) The Pursuit of History London, Longman'; dated November 1997. Quotations with page locators through a named reader are acceptable, but the relationship presents Tosh's words as if read directly; it must attribute them to Munslow's quotation. The relationship sentence also lacks a closing period. Influence here means 'takes as reference point and recommends', as the evidence note already says.",
+   "required_edits": {
+    "relationship": "Tosh's The Pursuit of History (1991 edition) calls What Is History? ‘still unsurpassed as a stimulating and provocative statement by a radically inclined scholar’ and makes the Carr–Elton controversy ‘the best starting-point’ for debate on the standing of historical knowledge (as quoted by Alun Munslow, 1997)."
+   }
+  },
+  {
+   "proposal_id": "fitz_rel_01",
+   "person_id": "sheila_fitzpatrick",
+   "verdict": "accept_with_edits",
+   "reason": "Baltic Worlds interview re-fetched (publisher's own site; acceptable): 'The two people who knew something about what I wanted to do were E. H. Carr in Cambridge and Leonard Schapiro'; 'both of them were very encouraging to me'; 'I admired Carr. I found him to be a fascinating figure'; 'his way of working which was completely different from mine'; 'Carr was remote'; 'he had the sources'; editorial sidebar 'one of Sheila Fitzpatrick's mentors'. Menashe 1996 note 1 re-fetched on the Cambridge page: 'Spiritual godfathers of revisionism were Isaac Deutscher and E. H. Carr' and, in the same note, 'a project undertaken with the greatest skill by Sheila Fitzpatrick'. Edit: 'understood her planned doctoral research' is stronger than her 'knew something about what I wanted to do'; use her words and add the encouragement she reports. Add closing period.",
+   "required_edits": {
+    "relationship": "Fitzpatrick names Carr as one of the two scholars in England who ‘knew something about’ her planned doctoral research and encouraged it, and recalls admiring him and his way of working (interview, 2012); Menashe (1996) counts Carr among the ‘spiritual godfathers’ of revisionism, a movement in which he singles out her work.",
+    "evidence_note": "Her own words, read 2026-10-31. Baltic Worlds interview (BW 1, 2012, print pp. 4–10; conducted 5 January 2012; interviewer not named on the page), answer on her doctoral years: ‘The two people who knew something about what I wanted to do were E. H. Carr in Cambridge and Leonard Schapiro at the London School of Economics’; ‘I admired Carr. I found him to be a fascinating figure’; ‘I was quite fascinated by his way of working which was completely different from mine’; she adds that ‘Carr was remote’ and that, writing on politics and economics in the 1920s, ‘he had the sources’. The editorial sidebar (not her words) calls Carr ‘one of Sheila Fitzpatrick's mentors during her stay in England’. A named reader, read: Louis Menashe, ‘Revising the Revisionists’, ILWCH 50 (1996), note 1 (displayed reference note on the Cambridge page): ‘Spiritual godfathers of revisionism were Isaac Deutscher and E. H. Carr’, Carr for his ‘insistence on value-free explorations of Soviet society’; the same note says the study of popular support was ‘a project undertaken with the greatest skill by Sheila Fitzpatrick’ (citing Education and Social Mobility, 1978, and The Russian Revolution, 1982). Limits: personal admiration and early support, and one reader's genealogy of revisionism; she stresses that her method differed from his. No supervision, co-authorship or adoption of Carr's political judgements is claimed. Her memoir A Spy in the Archives (2013; MUP blurb read, no Carr mention) and the LRB essay of the same title (2010, read, no Carr mention) do not add evidence; Menashe's article body unread (no abstract; first page an image). Reviewer 2026-10-31: same answer adds ‘I spoke to those two people and both of them were very encouraging to me’ and ‘we got quite friendly, I think’."
+   }
+  },
+  {
+   "proposal_id": "fitz_rel_02",
+   "person_id": "sheila_fitzpatrick",
+   "verdict": "accept_with_edits",
+   "reason": "Getty, LRB 22:5 (2 March 2000), re-fetched (publisher; acceptable): 'The new Soviet social history insisted that society mattered, even in dictatorships'; 'strictly empirical analysis is her preferred method'; 'how did ordinary people manage?'; 'in Fitzpatrick's phrase, a “survival skill”'. Baltic Worlds: 'a very atheoretical book. There is all this theory on the everyday, and I pay little attention to it.' Cambridge chapter summary re-fetched: 'some kind of breakdown (but perhaps also a reconfiguration?) of social relationships', framed as a test of Arendt's atomization hypothesis. The relationship's 'a site where social bonds broke and were remade' overstates the tentative 'perhaps also a reconfiguration?'. Edit accordingly; add closing period. The micro node is 'Microhistory / everyday life' and the edge is explicitly a contribution to everyday-life history, not microstoria method, which the evidence note says.",
+   "required_edits": {
+    "relationship": "Everyday Stalinism (1999) asks how Soviet city dwellers managed ordinary lives in the extraordinary conditions of the 1930s, and the joint chapter with Alf Lüdtke (2008) takes the everyday in Nazi Germany and Stalinist Russia as the ground on which to test Arendt's atomization thesis, asking whether social relationships broke down and were perhaps reconfigured.",
+    "evidence_note": "Read 2026-10-31. A reader of the book: J. Arch Getty, ‘Palaces on Monday’, LRB 22:5 (2 March 2000), review of Everyday Stalinism, full text: ¶1 the shift from the ‘totalitarian model’ to a ‘new Soviet social history’ that ‘insisted that society mattered, even in dictatorships’; ¶4 ‘Strictly empirical analysis is her preferred method’; ¶6 the book's question, ‘how did ordinary people manage?’; ¶9 shopping as, ‘in Fitzpatrick's phrase, a “survival skill”’. Joint chapter (Cambridge page summary, read): Fitzpatrick and Lüdtke, ‘Energizing the Everyday: On the Breaking and Making of Social Bonds in Nazism and Stalinism’, in Geyer and Fitzpatrick, eds., Beyond Totalitarianism (2008), pp. 266–301, takes ‘the everyday in Nazi Germany and Stalinist Russia’ as the place where relationships broke and were possibly reconfigured; Lüdtke is the Alltagsgeschichte figure named on the micro node. Her own caveat (Baltic Worlds 2012, read): Everyday Stalinism is ‘a very atheoretical book. There is all this theory on the everyday, and I pay little attention to it.’ So the edge records a contribution to the history of everyday life, not adherence to Alltagsgeschichte or microstoria method. The book itself is unread; the existing social and Arendt edges (edge_2916, edge_2918) already use the joint chapter for different claims. Reviewer 2026-10-31: the Cambridge summary's wording is that the authors took Arendt's atomization hypothesis as the ‘starting point for our comparative inquiry into the everyday in Nazi Germany and Stalinist Russia that in each case some kind of breakdown (but perhaps also a reconfiguration?) of social relationships took place’; ‘remade’ is not claimed."
+   }
+  },
+  {
+   "proposal_id": "isr_rel_01",
+   "person_id": "jonathan_israel",
+   "verdict": "accept",
+   "reason": "Crossref-deposited author abstract re-read verbatim: Pocock argues for 'a “family of enlightenments,” disputing accounts, particularly Venturi’s and Gay’s'; Pocock's reconfiguration 'underestimates their commonality and the degree to which they fall into the recognizable currents of radical and moderate'; ecclesiastical attention 'undermines rather than supports his argument for its pluralism'. Wolin abstract confirms the symposium and Pocock's concluding response; Cromohs (open journal) contains 'Pocock’s Enlightenment is directly opposed to that with which Jonathan Israel has just presented us'. Abstract-only reading is declared in the evidence note and the relationship does not go beyond the abstract. Accept."
+  },
+  {
+   "proposal_id": "isr_rel_02",
+   "person_id": "jonathan_israel",
+   "verdict": "accept",
+   "reason": "H-France Forum 9:1 Israel response (publisher PDF; acceptable) re-read: p. 85 'Darnton, Chartier, Jacob, Goodman, Roche, Lilti, and others err in my estimation ... because they hardly engage with ideas at all'; 'Darnton’s treatment of d’Holbach whose books regularly topped his lists of the most widely selling clandestine texts, an astounding fact which, however, he completely ignores' (n. 25, Corpus of Clandestine Literature 1995); p. 82 'lacking in deference towards universally admired heroes of scholarship like Furet, Darnton, and Baker'. Page locators confirmed against the PDF running heads. Israel himself notes that Popkin, Gordon, Eisenstein and Curran make the same d'Holbach observation; optional to mention. Accept."
+  },
+  {
+   "proposal_id": "isr_rel_03",
+   "person_id": "jonathan_israel",
+   "verdict": "accept",
+   "reason": "de Dijn, Historical Journal 55:3 (2012), author abstract (Crossref) re-read: modernization thesis 'first formulated by Peter Gay'; 'Jonathan Israel's trilogy on the Enlightenment has revived the modernization thesis, albeit in a dramatic new form'; Israel's work 'does not convincingly demonstrate' the link. Israel's H-France response n. 41 cites de Dijn p. 799 (verified). Undirected comparison, attributed to de Dijn, no personal debt asserted; structure correct (directed false, type connection). Accept."
+  },
+  {
+   "proposal_id": "smith_rel_01",
+   "person_id": "anthony_d_smith",
+   "verdict": "accept",
+   "reason": "LSE Gellner resource page (Warwick debate, existing source warwick_nationalism) re-fetched: 'In Hobsbawm's approach, the nation is seen, in large part, as a set of “invented traditions”'; 'Erie [sic] Hobsbawm, indeed, goes so far as to deny any connection between the popular “Proto-national” communities that he analyses and subsequent political nationalisms (Hobsbawm 1990, ch. 2)'; 'This is exactly where I disagree. Modern political nationalisms cannot be understood without reference to these earlier ethnic ties and memories'. Explicit, primary, directed critique; the evidence note keeps Smith's concession that nations are partly planned. Accept."
+  },
+  {
+   "proposal_id": "smith_rel_02",
+   "person_id": "anthony_d_smith",
+   "verdict": "accept_with_edits",
+   "reason": "Same page re-read. Quotes exist ('imagined political community', 'quite proper, provided that ... we do not gainsay its reality or consider it a fabrication', the Parthenon example, 'preexisting traditions and heritages'). But the relationship omits Smith's concession immediately before: 'I do not think that either would regard the nation as a wholly imaginary category'. The proviso is addressed to Anderson and Hobsbawm jointly, and Smith grants that Anderson does not hold the view he warns against, so without the concession the edge implies a stronger disagreement than the text supports. The disagreement that remains is the ethno-symbolist objection to modernist accounts. Edit to include the concession.",
+   "required_edits": {
+    "relationship": "Smith (Warwick opening, 1995) grants that neither Anderson nor Hobsbawm treats the nation as ‘a wholly imaginary category’, accepting Anderson's ‘imagined political community’ provided that calling the nation imagined does not ‘gainsay its reality or consider it a fabrication’, and holds against modernist accounts that nations are also products of ‘preexisting traditions and heritages’.",
+    "evidence_note": "Read 2026-10-31: Smith's Warwick opening (1995; published 1996), same passage as smith_rel_01: ‘In Anderson's model, the nation is seen as an “imagined political community”’, ‘imagined as both finite and sovereign’ (citing Anderson 1983, ch. 3). In the following passage (‘This seems to me quite proper’) Smith agrees on condition: the nation is not ‘a wholly imaginary category’; to call it imagined should not ‘gainsay its reality or consider it a fabrication’ (his example: the Parthenon is both imagined and real); nations are ‘products of preexisting traditions and heritages which have coalesced over the generations’. A qualified critique that grants part of Anderson's view; Anderson's own text and any reply unread here. Reviewer 2026-10-31: the passage opens with Smith's concession ‘I do not think that either would regard the nation as a wholly imaginary category’, and the proviso is addressed to Anderson and Hobsbawm together; the edge is a qualified critique of Anderson's modernism, not a charge that he treats nations as fabrications."
+   }
+  },
+  {
+   "proposal_id": "hunt_rel_01",
+   "person_id": "samuel_huntington",
+   "verdict": "accept_with_edits",
+   "reason": "Tilly 1973 could not be read through an authorised route: the JSTOR stable page (10.2307/421272) returns a JavaScript challenge, no author or repository deposit was found (Deep Blue blocked automated access and no CRSO version was located), and the only open copy is a course-hosted file, which I did not open. Grinin (Journal of Globalization Studies 17:1, 2026; journal page re-fetched) does say 'Huntington-Tilly's debate [Huntington 1986; Tilly 1986]', 'Tilly (Ibid.: 57) finally admits that, though indirectly, population growth, industrialization, urbanization, and other large-scale structural changes do, to be sure, affect the probabilities of revolution', and n. 4 'in his arguing against Huntington’s idea about correlation between modernization and revolutions'. Grinin, a specialist in the comparative study of revolutions who cites Tilly's reprint with pages (48, 50, 57), is a substantive reader, and Goldstone's 1986 reader prints the two texts side by side (bibliographic). Under the single-reader rule this suffices only if attributed: the current relationship states the claim as fact and says 'direct link' where Grinin says 'correlation'. Edit to attribute it and use his terms. 'Debate' in Grinin refers to the reprinted pair, not a published exchange. If someone with library access reads JSTOR 421272 and confirms Huntington is named, upgrade the Tilly source to supporting_page_checked, add a page, and drop the attribution.",
+   "required_edits": {
+    "relationship": "As Leonid Grinin reads it (2026), Tilly's ‘Does Modernization Breed Revolution?’ (1973) argued against Huntington's idea of a correlation between modernization and revolution, while conceding that population growth, industrialization, urbanization and other large structural changes affect the probabilities of revolution indirectly.",
+    "evidence_note": "Mediated, read 2026-10-31; the 1973 original is unread. Bibliographic: Charles Tilly, ‘Does Modernization Breed Revolution?’, Comparative Politics 5:3 (April 1973): 425–447 (Crossref), reprinted in Goldstone, ed., Revolutions (1986), pp. 47–57, beside Huntington's ‘Revolution and Political Order’ (pp. 39–47). A named reader: Leonid E. Grinin, ‘Modernization as a Factor of Revolutionary Destabilization in Historical Process and in Modern Africa’, Journal of Globalization Studies 17:1 (May 2026), section 1 (‘Revolutions and Modernization Period’): ‘There exist diametrically opposed views on the character of these relations (see, e.g., Huntington-Tilly's debate [Huntington 1986; Tilly 1986])’; ‘Tilly (Ibid.: 57) finally admits that, though indirectly, population growth, industrialization, urbanization, and other large-scale structural changes do, to be sure, affect the probabilities of revolution’; n. 4 refers to Tilly ‘arguing against Huntington's idea about correlation between modernization and revolutions’. The JSTOR page did not load; the only full-text copy found is a course-hosted file, not used. Before acceptance the reviewer should read Tilly's article (JSTOR 421272) to confirm that Huntington is named and to give a page; until then the edge rests on one reader. Reviewer 2026-10-31: the article was again unreadable through an authorised route (JSTOR challenge; no repository deposit found); the course-hosted copy was not opened. Grinin's ‘Huntington-Tilly's debate’ cites the two texts as reprinted in Goldstone (1986), a juxtaposition rather than a published exchange; the edge rests on Grinin's attributed reading."
+   }
+  },
+  {
+   "proposal_id": "gid_rel_01",
+   "person_id": "anthony_giddens",
+   "verdict": "accept",
+   "reason": "Crossref re-checked: book title 'A Contemporary Critique of Historical Materialism' (Macmillan 1981, doi 10.1007/978-1-349-16638-1); Skocpol review metadata gives the volume-two subtitle; Relaciones Internacionales 5 (2007) abstract verbatim: Marxist and liberal thought on the state 'coincide when they define it as a coordinating frame in which the economic relations develop, but that both of them lack a satisfactory treatment of the nation-state and nationalism'. The relation is the author's own framing in his title plus an abstract of his lecture, and the relationship is bounded to exactly those two things; the evidence note says the bodies are unread and that the edge is not a rejection of Marx in every respect. Thin but accurate; accept. (Coordinator may add '(lecture abstract)' after the 1985 clause for transparency.)"
+  },
+  {
+   "proposal_id": "del_rel_01",
+   "person_id": "gilles_deleuze",
+   "verdict": "accept",
+   "reason": "Latour's own site PDF (P-67; author's page, acceptable) re-fetched: web p. 3 'Put too simply AT is a change of methaphors to describe essences: instead of surfaces one gets filaments (or rhyzomes in Deleuze’s parlance 197-)'; web p. 6 'it is like Deleuze’s lightning rod that creates by the same stroke the background and the foreground (Deleuze, 197-)'. Page locators match the PDF's running heads. The header gives the Philosophia/Soziale Welt publication data. Two acknowledged borrowings of vocabulary in a programmatic ANT text; the relationship is bounded accordingly. The latour endpoint ('Bruno Latour / laboratory studies') is the right target. Accept."
+  }
+ ],
+ "provenance_flags": [
+  {
+   "source_id": "dc166_rosenwein_worrying_2002",
+   "issue": "Existing atlas source note names and relies on a an unauthorised course copy ([link withheld] for printed pp. 821–828 and 842–845, and on the current an unlicensed repost site repost. The course copy falls under the user's ban on course scans; the an unlicensed repost site domain is now a commercial popular-history site reposting the AHR text without attribution or licence (the licensed AHA/OAH/UIP an unlicensed repost site ended c. 2011). Both routes appear in a public note. Needs re-reading in OUP/JSTOR and removal of both URLs from the note. Affects existing edges edge_2838–2840 as well as bhr_rel_01/02.",
+   "action": "flag only (not fixed)"
+  },
+  {
+   "source_id": "hc200_wood_conspiracy1982",
+   "issue": "The source's own URL is a University of [withheld] course site course resource ([link withheld] and the Paranoid Style.pdf), a course-hosted copy of Gordon Wood's 1982 William and Mary Quarterly article. Not one of this batch's 14 persons, but it bears on richard_hofstadter (endpoint of cer_rel_01). Replace with DOI/JSTOR and re-verify.",
+   "action": "flag only"
+  },
+  {
+   "source_id": "carr_facts_primary",
+   "issue": "Note says chapter 1 of What Is History? was read in an unidentified '97-page PDF transcription' with a '2006 print timestamp' and no book pagination, i.e. a whole-book copy of uncertain origin (probably course-hosted or a sharing copy). The URL given is the Springer chapter DOI, which hides the actual reading route. The researcher already held a Carr → historicism (Collingwood) edge for this reason. Needs provenance review.",
+   "action": "flag only"
+  },
+  {
+   "source_id": "spivak_speak",
+   "issue": "Note relies on a 'university-hosted reprint' (the 1993 Williams and Chrisman anthology chapter) and, in the 2026-10-25 addendum, a 'university-hosted abridged primary excerpt'. Wording suggests course-hosted copies of an in-copyright book chapter. Bears on edge_1636 (Spivak → Deleuze). Verify the host; if course-hosted, re-read through an authorised route.",
+   "action": "flag only (uncertain)"
+  },
+  {
+   "source_id": "(route) an unlicensed repost site",
+   "issue": "Decision requested by the researchers: not an acceptable reading or citation route. The licensed an unlicensed repost site (AHA, OAH, University of Illinois Press, National Academies Press) hosted AHR full text until c. 2011; the domain is now a commercial popular-history site (mythology and timeline listicles, '© an unlicensed repost site 2026') whose 'Journal' section reposts AHR articles with no journal attribution, publication data or licence statement. Treat it like an e-library mirror: content may be accurate but the reading counts as unread for the atlas.",
+   "action": "route decision"
+  },
+  {
+   "source_id": "thin_tilly_modernization_1973",
+   "issue": "Draft note correctly says a course-hosted full text exists and was not used, without naming it. Keep it that way. Reviewer also did not open it.",
+   "action": "none needed"
+  }
+ ],
+ "coverage_leads": [
+  {
+   "person_id": "sheila_fitzpatrick",
+   "lead": "erving_goffman → sheila_fitzpatrick (influence). The researcher held this as 'affinity, not a debt', but in the same Baltic Worlds 2012 answer she says 'Erving Goffman, whom I encountered early, by chance, back in the early ’70s, perhaps was a real influence', followed by The Presentation of Self as 'external confirmation of the way I had of looking at the world'. A self-described possible influence, primary and open; worth a bounded, hedged influence edge ('perhaps a real influence'). Both endpoints exist."
+  },
+  {
+   "person_id": "anthony_giddens",
+   "lead": "anthony_giddens → ep_thompson (critique): 'Out of the Orrery: E. P. Thompson on Consciousness and History', reprinted in Giddens, Social Theory and Modern Sociology (Polity, 1987); researcher could not verify place or contents. Check the Polity/Stanford contents page or the Kaye and McClelland volume (E. P. Thompson: Critical Perspectives, 1990)."
+  },
+  {
+   "person_id": "e_h_carr",
+   "lead": "hugh_trevor_roper → e_h_carr (critique): Trevor-Roper's Encounter review of What Is History? (June 1962). Endpoint exists; needs an authorised reading or a named reader with locators."
+  },
+  {
+   "person_id": "joanna_bourke",
+   "lead": "joanna_bourke → peter_n_stearns (critique): HWJ 55 (2003) abstract names 'emotionology' among approaches she appraises; body (OUP, library access) would settle whether she criticizes the Stearnses by name."
+  },
+  {
+   "person_id": "peter_gay",
+   "lead": "robert_darnton → peter_gay: Darnton, 'The High Enlightenment and the Low-Life of Literature', Past & Present 51 (1971), opens against the Gay-style history of ideas; could corroborate gay_rel_01 from Darnton's own text if read through OUP/JSTOR."
+  },
+  {
+   "person_id": "jonathan_israel",
+   "lead": "j_g_a_pocock → jonathan_israel (critique/reply): Pocock's concluding response in JHI 77:1 (2016) symposium; the abstract was not found, and the text is behind Project MUSE."
+  },
+  {
+   "person_id": "samuel_huntington",
+   "lead": "charles_tilly → samuel_huntington: Tilly's From Mobilization to Revolution (1978; CRSO working paper on Deep Blue, institutional repository) discusses Huntington's modernization–instability argument; a readable Deep Blue copy (from a browser, not blocked) would give a primary page for the Tilly critique and could replace the single-reader basis."
+  },
+  {
+   "person_id": "charles_e_rosenberg",
+   "lead": "Richard Hofstadter → Rosenberg: the preface or acknowledgments of The Cholera Years (1962; Chicago, 1987 reissue) would show whether Rosenberg names Hofstadter; lending-library copy."
+  },
+  {
+   "person_id": "barbara_h_rosenwein",
+   "lead": "Once Worrying about Emotions is read in an authorised copy, the same pages (826–827) carry her criticism of the Elias-derived narrative (edge_2839 exists) and of Huizinga; no new endpoint, but the re-reading should also re-verify edges 2838–2840, whose source note rests on the same disallowed routes."
+  },
+  {
+   "person_id": "patrick_geary",
+   "lead": "peter_brown ↔ patrick_geary: Furta Sacra (1978) and Living with the Dead (1994) engage Brown's cult-of-saints work; the researcher found no readable statement. Introduction of Living with the Dead (Cornell, 1994), via a lending-library copy, is the place to check."
+  }
+ ]
+}

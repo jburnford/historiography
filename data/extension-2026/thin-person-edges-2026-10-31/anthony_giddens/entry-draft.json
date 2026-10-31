@@ -1,0 +1,97 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (anthony_giddens: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "gid_rel_01",
+   "source": "anthony_giddens",
+   "target": "karl",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "Giddens presents his historical sociology as A Contemporary Critique of Historical Materialism (1981; volume two, The Nation-State and Violence, 1985), arguing in a 1985 lecture that Marxist and liberal accounts of the state alike lack a satisfactory treatment of the nation-state and nationalism",
+   "map_label": "A contemporary critique of historical materialism, 1981–85",
+   "evidence_note": "Read 2026-10-31, bounded. The book title states the relation: Giddens, A Contemporary Critique of Historical Materialism (Macmillan, 1981; Crossref book and chapter metadata, including ‘Property and Class Society’ and ‘Time, Labour and the City’); Skocpol's review in Social Forces 66:1 (1987) is catalogued under ‘The Nation-State and Violence: Volume Two of a Contemporary Critique of Historical Materialism’. Argument, abstract only: the journal abstract of the transcribed lecture ‘The Nation-State and Violence’ (Valencia, 25 September 1985; Spanish translation in Relaciones Internacionales 5, 2007) says Giddens holds that Marxist and liberal thought on the state ‘coincide when they define it as a coordinating frame in which the economic relations develop, but that both of them lack a satisfactory treatment of the nation-state and nationalism’, and proposes concepts to fill the gap. The books' bodies and the lecture text are unread (Springer pages returned 404; the journal site blocked automated access). The edge records a critique and reworking of historical materialism, not a rejection of Marx in every respect.",
+   "source_ids": [
+    "thin_giddens_critique_hm_1981",
+    "thin_giddens_nationstate_lecture_1985",
+    "thin_skocpol_review_giddens_1987"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "Crossref re-checked: book title 'A Contemporary Critique of Historical Materialism' (Macmillan 1981, doi 10.1007/978-1-349-16638-1); Skocpol review metadata gives the volume-two subtitle; Relaciones Internacionales 5 (2007) abstract verbatim: Marxist and liberal thought on the state 'coincide when they define it as a coordinating frame in which the economic relations develop, but that both of them lack a satisfactory treatment of the nation-state and nationalism'. The relation is the author's own framing in his title plus an abstract of his lecture, and the relationship is bounded to exactly those two things; the evidence note says the bodies are unread and that the edge is not a rejection of Marx in every respect. Thin but accurate; accept. (Coordinator may add '(lecture abstract)' after the 1985 clause for transparency.)",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "anthony_giddens → ep_thompson (critique)",
+   "reason": "Lead: Giddens's essay ‘Out of the Orrery: E. P. Thompson on Consciousness and History’ (believed in Social Theory and Modern Sociology, 1987). Could not verify the title, place or contents: Crossref has no record, the collection's contents page was not reached (SUP 429, catalogues blocked), and a search hit turned out to compare Giddens with John B. Thompson, not E. P. Thompson. Held as unverified; worth a reviewer's catalogue check."
+  },
+  {
+   "pair": "audra_simpson → anthony_giddens (critique)",
+   "reason": "Simpson (2007, p. 74) names Giddens with Fanon and Bhabha as speaking of colonial ‘doubleness’; already quoted in edge_2130 (Simpson → Fanon). A grouped passing mention; a separate Giddens edge would add little. Not proposed."
+  },
+  {
+   "pair": "anthony_giddens → historicalsociology / nationalismstudies",
+   "reason": "Skocpol reviewed The Nation-State and Violence (Social Forces 1987) and the 1985 lecture concerns nationalism, but the review's text is unread and Smith's discussion of Giddens in Nationalism and Modernism was not reached. Held as unread."
+  },
+  {
+   "pair": "Sewell / Philip Abrams → anthony_giddens",
+   "reason": "Sewell's reformulation (1992) is the main historians' uptake and is already in the entry's sources, but neither Sewell nor Abrams is an endpoint. Held for missing endpoints."
+  },
+  {
+   "pair": "erving_goffman → anthony_giddens; anthony_giddens → foucault",
+   "reason": "Giddens draws on Goffman and criticises Foucault in The Constitution of Society, but those chapters were not read in this pass. Held as unread."
+  },
+  {
+   "pair": "peter_burke ↔ anthony_giddens",
+   "reason": "Burke's History and Social Theory (1992) discusses structuration, but the text was not read. Held as unread."
+  },
+  {
+   "pair": "anthony_giddens ↔ pierre_bourdieu",
+   "reason": "Shared subject (practice theory) only; no exchange read. Not proposed."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_giddens_critique_hm_1981",
+   "title": "Anthony Giddens, A Contemporary Critique of Historical Materialism (London: Macmillan, 1981).",
+   "citation": "Anthony Giddens, A Contemporary Critique of Historical Materialism (London: Macmillan, 1981).",
+   "url": "https://doi.org/10.1007/978-1-349-16638-1",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-31",
+    "note": "Crossref book and chapter metadata (1981 edition; 1995 second edition separate). Body unread; Springer pages returned 404."
+   }
+  },
+  {
+   "id": "thin_giddens_nationstate_lecture_1985",
+   "title": "Anthony Giddens, “Estados nacionales y violencia / The Nation-State and Violence”, lecture at the University of Valencia, 25 September 1985 (first published in Debats, 1985), Relaciones Internacionales 5 (2007): 1–21.",
+   "citation": "Anthony Giddens, “Estados nacionales y violencia / The Nation-State and Violence”, lecture at the University of Valencia, 25 September 1985 (first published in Debats, 1985), Relaciones Internacionales 5 (2007): 1–21.",
+   "url": "https://doi.org/10.15366/relacionesinternacionales2007.5.002",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Journal abstract read (Crossref): dates the lecture, its 1985 publication in Debats, and summarises the argument on Marxist and liberal theories of the state. Text unread (the journal site blocked automated access)."
+   }
+  },
+  {
+   "id": "thin_skocpol_review_giddens_1987",
+   "title": "Theda Skocpol, review of Anthony Giddens, The Nation-State and Violence: Volume Two of a Contemporary Critique of Historical Materialism, Social Forces 66:1 (1987): 294.",
+   "citation": "Theda Skocpol, review of Anthony Giddens, The Nation-State and Violence: Volume Two of a Contemporary Critique of Historical Materialism, Social Forces 66:1 (1987): 294.",
+   "url": "https://doi.org/10.2307/2578926",
+   "verification": {
+    "status": "bibliographic_metadata_checked",
+    "checked_on": "2026-10-31",
+    "note": "Crossref metadata only: confirms the volume-two subtitle. Review text unread."
+   }
+  }
+ ],
+ "reused_sources": [],
+ "source_addenda": {}
+}

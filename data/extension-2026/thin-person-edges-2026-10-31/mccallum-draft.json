@@ -1,0 +1,28 @@
+{
+  "status": "draft for review; not applied",
+  "drafted": "2026-10-31",
+  "reason": "User 2026-10-31: Mary Jane Logan McCallum's edges are very small; she co-authored a book with Adele Perry. The entry has 3 edges, although its sources already include the co-authored book, her 2014 monograph with a review read in full, and her 2017 CHR article (abstract read). Only existing endpoints and existing sources; wording kept to what each source supports.",
+  "edges": [
+    {"source": "mary_jane_logan_mccallum", "target": "adele_perry", "type": "connection", "relationship_kind": "comparison", "directed": false,
+     "relationship": "Co-authors of Structures of Indifference: An Indigenous Life and Death in a Canadian City (2018), on Brian Sinclair's death in a Winnipeg emergency room in 2008 and the history of colonialism it reveals.",
+     "source_ids": ["ierA_mccallum_perry_ump_2018"],
+     "evidence_note": "Publisher page read (2026-10-28): co-authorship, September 2018, the book's subject and its placement in Canadian settler colonialism by the publisher's blurbs. The book is unread; the edge records the co-authorship, not a claim about either author's argument. Precedent: Kealey and Palmer (co-authors) as a comparison edge."},
+    {"source": "mary_jane_logan_mccallum", "target": "labourhistory", "type": "connection", "relationship_kind": "contribution", "directed": true,
+     "relationship": "Indigenous women's paid work, 1940–1980, as labour history: domestic workers, hairdressers, community health representatives and nurses, and the state placement programmes that shaped their employment (2014).",
+     "source_ids": ["p4b_mccallum_2014", "ierA_harms_mh_2016"],
+     "evidence_note": "Publisher page (contents) and Harms's review in Manitoba History 80, read in full: the state dictated Aboriginal women's education, employment and labour; McCallum argues historians drew a false dichotomy between the colonial and modern periods."},
+    {"source": "mary_jane_logan_mccallum", "target": "cdn_women_gender", "type": "connection", "relationship_kind": "contribution", "directed": true,
+     "relationship": "Indigenous women's work as women's history in Canada: Indigenous Women, Work, and History, 1940–1980 (2014).",
+     "source_ids": ["p4b_mccallum_2014", "ierA_harms_mh_2016"],
+     "evidence_note": "As above; the review reads the book as a history of Aboriginal women's education, employment and labour under continuing colonialism."},
+    {"source": "mary_jane_logan_mccallum", "target": "medicalhistory", "type": "connection", "relationship_kind": "contribution", "directed": true,
+     "relationship": "A historiographical framing for Indigenous health history: starvation, experimentation, segregation and trauma as words for reading it (2017).",
+     "source_ids": ["healthgeo05_mccallum_health_2017"],
+     "evidence_note": "Author abstract only (CHR 98.1, 2017), already a source of the medical history entry: a historiographical framing, not new clinical evidence or a universal model of Indigenous experience."},
+    {"source": "mary_jane_logan_mccallum", "target": "settler_colonialism", "type": "connection", "relationship_kind": "contribution", "directed": true,
+     "relationship": "Structures of Indifference (with Adele Perry, 2018) reads one Indigenous man's death in a Winnipeg hospital as a history of ongoing colonialism; the settler colonialism entry already lists McCallum (2014) among its Canadian readings.",
+     "source_ids": ["ierA_mccallum_perry_ump_2018"],
+     "evidence_note": "Publisher page and blurbs (Razack; CHOICE) place the book in Canadian settler colonialism. Book unread: bounded to the publisher's framing."}
+  ],
+  "not_proposed": "An edge to the Indigenous-authored history entry duplicates her existing representative-person record there and her community-engaged edge; left out unless a reviewer wants it."
+}

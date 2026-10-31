@@ -1,0 +1,395 @@
+{
+ "reviewer": "independent reviewer (Claude agent), not a researcher on this batch",
+ "checked_on": "2026-10-31",
+ "scope": "Seven drafts: mary_jane_logan_mccallum, robert_alexander_innes, haunani_kay_trask, darcy_mcnickle, james_rodger_miller, aldo_leopold, rachel_carson. Atlas revision 1.234 read-only. Structural checks: all endpoints exist; no proposed edge duplicates an existing edge or another draft's edge (McCallum ↔ Innes appears once); every critique edge has type critique; every comparison edge is undirected. All source ids resolve, except one new source that duplicates an existing id (thin_innes_ohf_2000 = ihc_innes_1999_gladue) and one addendum keyed by edge id (McNickle edge_2163). Zero-edge outcomes for Trask, McNickle and Leopold are accepted: their leads were checked and none yields a verified omission to an existing endpoint.",
+ "summary": {
+  "edges": {
+   "accept": 1,
+   "accept_with_edits": 11,
+   "hold": 1
+  }
+ },
+ "verdicts": [
+  {
+   "proposal_id": "mjlm_rel_01",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "Co-authorship confirmed on the University of Manitoba Press page (both authors, September 2018, 192 pp.) and by Crossref metadata for the Manitowbi review. Comparison and undirected, following the Kealey ↔ Palmer precedent; no existing edge between the two. One misquotation: the publisher page does not say 'left untreated for about 34 hours'. It says 'Over a thirty-four- hour period, he was left untreated and unattended to'. The Manitowbi quotation could not be re-checked because Érudit served a bot check; Crossref confirms the reviewer, journal and first page (117) and gives 186 pp. for the book against the publisher's 192.",
+   "required_edits": {
+    "evidence_note": "Publisher page (University of Manitoba Press) re-read 2026-10-31 by researcher and reviewer: authors Mary Jane Logan McCallum (History, University of Winnipeg) and Adele Perry (History, University of Manitoba); September 2018, 192 pp.; Sinclair arrived in a downtown Winnipeg emergency room and 'Over a thirty-four- hour period, he was left untreated and unattended to'. Josh Manitowbi's review, Scientia Canadensis 43:1 (2021), pp. 117–118, as read by the researcher in the Érudit PDF: 'McCallum and Perry use a historical, place-based approach in their analysis of the systemic racism within Winnipeg's health-care system' (p. 117). He treats the argument as joint throughout and does not divide credit between the authors. The independent reviewer could not reopen Érudit (bot check) and confirmed only the review's Crossref metadata. The CHA's 2019 Indigenous History Book Prize citation also praises the book for 'writing collaboratively'. The book itself is unread. The edge records co-authorship only (precedent: Kealey ↔ Palmer as a comparison edge). It does not claim that either author's other work shares the book's argument."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_02",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "Re-checked: The Conversation byline and the Crossref record (10.64628/aam.pkfjpv6n4, posted 2024-07-01) list McCallum, Innes and Hill. The article says 'created by seven established Indigenous scholars on June 21, 2018' and, in the authors' first person, 'we chose to create a publishing and public information alternative that is Indigenous-led and focused'. The 2021 letter on Shekon Neechie is signed 'Shekon Neechie Board' by seven people, McCallum second and Innes seventh, and names no historian. The text is worded as a collaboration fact (co-founding, co-signing, co-authoring), as required. It is proposed once; the Innes folder defers to it. The paragraph locators are wrong in the edge note and in the new source note: in the live article, frustration is ¶18, the conference passage ¶¶23–24, Te Pouhere Kōrero ¶25 and the open letter ¶30, counting body paragraphs and skipping the five 'Read more' boxes. The article also does not say the letter went 'to the CHA council'; it says the letter was 'responding to the denial of colonial violence'. The letter's own heading supplies the CHA Council address. Replace the note.",
+   "required_edits": {
+    "evidence_note": "Fresh readings 2026-10-31, re-checked by independent review the same day. (1) McCallum, Innes and Hill, The Conversation (Canada), 1 July 2024, read in full. Byline and Crossref record (DOI 10.64628/aam.pkfjpv6n4): McCallum, University of Winnipeg; Innes, McMaster; Hill, Toronto. Paragraphs are counted in the article body, skipping the five 'Read more' link boxes. The site was 'created by seven established Indigenous scholars on June 21, 2018' (¶1). 'We began creating the historian profiles due to frustration with a lack of public engagement in Indigenous historical scholarship' (¶18). Noticing few Indigenous historians presenting research at professional history conferences, the authors 'chose to create a publishing and public information alternative that is Indigenous-led and focused' (¶¶23–24). 'Shekon Neechie editorial board members also published an open letter responding to the denial of colonial violence' (¶30). (2) Open letter to the Council of the Canadian Historical Association and the Canadian Public, Shekon Neechie, 13 August 2021. This is a community-controlled site, so the letter is paraphrased, not quoted. It is signed by the seven board members as 'Shekon Neechie Board', McCallum second and Innes seventh. It supports the CHA's Canada Day Statement on the term genocide, answers the open letter signed by fifty-three historians, and names no historian. The 2024 essay is a co-authored public explanation, not a research article. The edge records collaboration (co-founding, co-signing, co-authoring), not a claim that their scholarship shares one argument. Also attested but not relied on: the site's 2020 podcast episode, hosted by Innes with McCallum as a guest (audio unheard)."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_03",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "The opening passage is verified word for word in the Semantic Scholar record for DOI 10.1353/aiq.2009.a362033 (publisher's first-page excerpt), including 'Philip Deloria argues …' and 'One of these frames is professional history.' This is an attributed opening-passage reading, which provenance rule 4 allows, and the claim is properly bounded to the framing paragraph. Direction (Deloria → McCallum, contribution) follows atlas usage for named uses of another scholar's argument (cf. Cronon → Deloria, edge_2616). Identity: the excerpt says only 'Philip Deloria'. Reading it as Philip J. Deloria rests on the subject: Indian modernity and the frames non-Indians use to 'explain and contain' Indians, which is the argument of Indians in Unexpected Places (2004). That inference must be stated, because a namesake exists: Philip S. Deloria, legal scholar.",
+   "required_edits": {
+    "evidence_note": "Opening passage of the article (American Indian Quarterly 33:4, 2009, first page p. 523), read 2026-10-31 as the publisher's excerpt carried in the Semantic Scholar record for DOI 10.1353/aiq.2009.a362033; Project MUSE served a bot check. Re-checked by independent review. She writes that the article answered a Western History Association call for papers by Indigenous academics on 'working from home'. She wanted 'to make visible a division that separates Native people as history and Native people as historians', and to do so by historicizing 'the twentiethcentury English Canadian historical profession' [sic, as printed in the excerpt]. She continues: 'Philip Deloria argues that part of a project of understanding Indian modernity is to take as the subject of investigation the ideological and discursive frames non-Indians use to explain and contain Indian people. One of these frames is professional history.' The excerpt names neither the Deloria work nor his middle initial. He is identified as Philip J. Deloria, the historian of Indian modernity (Indians in Unexpected Places, 2004), from the subject of the sentence; that is an inference. The legal scholar Philip S. Deloria is a namesake. The rest of the article (pp. 524–544) is unread. This is a named use in her framing paragraph; no claim is made about how far the rest of the article depends on Deloria."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_04",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "Both readings verified. The 2009 opening passage contains 'separates Native people as history and Native people as historians' and 'largely as the modern, paid labor of professional historians and the academic discipline of history'. Williams (BC Studies 191) contains the conclusion-chapter title and the 'glaring absence of Indigenous historians in academia', 'labour disparities in Canadian university history departments' and 'critical revision of historiographical methods and pedagogy' passages. The claim is distinct from the existing archive and community-engaged edges, and the roster row is not an edge. Locator error: the conclusion passage is Williams ¶7, not ¶8, counting from the paragraph that opens 'Historian Patrick Wolfe…'.",
+   "required_edits": {
+    "evidence_note": "(1) 2009 article, opening passage read as above (p. 523): the division 'that separates Native people as history and Native people as historians'; 'history' meant 'largely as the modern, paid labor of professional historians and the academic discipline of history'. (2) Carol Williams's review of the 2014 book, BC Studies 191 (2016), pp. 162–164, read in full 2026-10-31 and re-checked by independent review. Paragraphs are counted from 'Historian Patrick Wolfe…'. At ¶7, in her concluding chapter McCallum 'discusses labour disparities in Canadian university history departments, reflects on the professional status and glaring absence of Indigenous historians in academia, and proposes a critical revision of historiographical methods and pedagogy'. The publisher's contents list the conclusion as 'The Wages of Whiteness and the Indigenous Historian'. The conclusion itself is unread. The coordinator's draft left out an edge to this entry because she is already a representative person there. That roster row is not an edge, and this claim (a critique of the profession) differs from her existing archive and community-engaged edges."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_05",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "The Harms paragraph locators (¶¶3–5, 7) and quotations match the Manitoba History page. The Williams locator for the 1957 programme is wrong: 'the first organized national labour program' is ¶6, not ¶7. Target: keep labourhistory. Williams writes 'students of labour history' and Harms 'labour studies'. Neither reviewer places the book in the Kealey–Palmer working-class tradition, so cdn_working_class would overstate. The book is unread, and the claim is bounded to the reviewers.",
+   "required_edits": {
+    "evidence_note": "Two reviews re-read in full 2026-10-31 and re-checked by independent review. Harms, Manitoba History 80 (2016), paragraphs counted from 'Within the Canadian imaginary…'. ¶3: domestic service, and the link between the education offered to Aboriginal women and the labour they were offered. ¶4: hairdressing as a lens on the Indian Placement and Relocation Program from 1957, in which 'Indian Affairs attempted to control Aboriginal labour'. ¶5: community health representatives and the Registered Nurses of Canadian Indian Ancestry (1975). ¶7: the book is of interest to labour studies and to Aboriginal, women's and medical history. Williams, BC Studies 191 (2016), paragraphs counted from 'Historian Patrick Wolfe…'. ¶3: 'aboriginal women's lives inescapably involved in modern labour that was highly regulated by the Canadian nation-state'. ¶6: the 1957 Placement Program was 'the first organized national labour program'. ¶7: of interest to 'students of labour history'. The book is unread (publisher's contents only). Target: the general labour history entry. The reviewers say 'labour history' and 'labour studies', not Canadian working-class history."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_06",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "Quotations verified: Harms 'Placing Aboriginal women at the center of the story' (¶2); Williams 'aboriginal women's lives inescapably involved in modern labour' (¶3) and 'Yet women, as McCallum counters, were not passive' (¶4). Locator error: the training ('feminine-specific occupations, including hairdressing') and nurses' advocacy passage is Williams ¶4, not ¶5.",
+   "required_edits": {
+    "evidence_note": "Harms (2016), ¶2: 'Placing Aboriginal women at the center of the story', and the book's focus on how women 'adapted, resisted, and strategized within the parameters of modern Canada'. Williams (2016), paragraphs counted from 'Historian Patrick Wolfe…'. ¶3: 'aboriginal women's lives inescapably involved in modern labour'. ¶4: 'Yet women, as McCallum counters, were not passive', with training 'in feminine-specific occupations, including hairdressing' and the nurses' professional advocacy organizations. Both reviews were read in full 2026-10-31 and re-checked by independent review; the book is unread. The edge is bounded to the reviewers' accounts of the 2014 book."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_07",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "The 2017 part rests on the existing CHR abstract source and is sound. For the 2018 part, the Manitowbi quotations could not be re-opened because of Érudit's bot check. Independent, verified support exists: the publisher files the book under 'Medical History', and the CHA 2019 Indigenous History Book Prize citation speaks of racism and settler colonialism 'in Canada's so-called universal health care system'. Add the CHA page as a new source and mark Manitowbi as researcher-read and not re-checked.",
+   "required_edits": {
+    "source_ids": [
+     "healthgeo05_mccallum_health_2017",
+     "ierA_mccallum_perry_ump_2018",
+     "thin_cha_indigenous_prize_2019",
+     "thin_manitowbi_structures_2021"
+    ],
+    "new_source": {
+     "id": "thin_cha_indigenous_prize_2019",
+     "title": "Canadian Historical Association, Indigenous History Book Prize 2019: Mary Jane Logan McCallum and Adele Perry, Structures of Indifference: An Indigenous Life and Death in a Canadian City (prize-winner page with jury citation).",
+     "citation": "Canadian Historical Association, Indigenous History Book Prize 2019: Mary Jane Logan McCallum and Adele Perry, Structures of Indifference (prize-winner page with jury citation).",
+     "url": "https://cha-shc.ca/prize-winner/mary-jane-logan-mccallum-adele-perry/",
+     "verification": {
+      "status": "supporting_page_checked",
+      "checked_on": "2026-10-31",
+      "note": "Read by the independent reviewer. Jury citation: the book 'situates the life and death of Brian Sinclair within the complicated settler colonial histories of the geographic area that came to be known as Manitoba'; it 'serves as a corrective to the erasure of Sinclair and the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'; 'It illustrates the importance of writing collaboratively, speaking back to settler colonialism, and making our work accessible.' A prize jury's reading; the book is unread. (Check against any CHA-prize source already proposed in the 1.203 Luby/Fraser/CHA-prize work before minting.)"
+     }
+    },
+    "evidence_note": "(1) CHR 98:1 (2017), author abstract only (existing source of the medical history entry): a historiographical framing of Indigenous health history through starvation, experimentation, segregation and trauma, not new clinical evidence. (2) University of Manitoba Press page for the 2018 book, re-read 2026-10-31 by researcher and reviewer. It asks what an Indigenous death in a Winnipeg emergency room reveals about 'the ongoing history of colonialism', and the publisher files the book under Medical History. (3) Canadian Historical Association, Indigenous History Book Prize 2019, jury citation (read by the reviewer 2026-10-31): the book 'serves as a corrective to the erasure of Sinclair and the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'. (4) Manitowbi, Scientia Canadensis 43:1 (2021), pp. 117–118, as read by the researcher in the Érudit PDF. The authors 'examine the roots of racialized medicine in the history of Anishinaabe land and cultural dispossession, racial segregation, settler-colonialist racist beliefs, substandard education and health services' (p. 117). The inquest minimized 'stereotyping, false assumptions, and racism within the health care setting' (p. 117, quoting the book, 107). Its limitation is that it offers no recommendations for combating racism in health care (p. 118). The independent reviewer could not reopen Érudit (bot check) and confirmed only the review's Crossref metadata. If those quotations cannot be re-checked before release, the edge stands on (1)–(3). The 2018 book is co-authored with Adele Perry; the 2017 article is hers alone. Both books are unread."
+   }
+  },
+  {
+   "proposal_id": "mjlm_rel_08",
+   "person_id": "mary_jane_logan_mccallum",
+   "verdict": "accept_with_edits",
+   "reason": "The settler-colonial reading of the 2018 book is well supported by verified sources: the CHA prize citation ('complicated settler colonial histories' of Manitoba; 'racism and settler colonialism' in health care), Razack's blurb and the CHOICE blurb (G. Bruyere: 'obscure the violence of contemporary settler colonialism'). The relationship text, however, quotes the authors' own words ('myths of our settler society'), known only through Manitowbi's review. The reviewer could not re-check it (Érudit bot check), so the authors' words should not sit in graph text. Rewrite the relationship from verified readers and keep Manitowbi in the note as researcher-read. The scope caution about the 2014 book is good and is kept.",
+   "required_edits": {
+    "relationship": "Structures of Indifference (with Adele Perry, 2018) places Brian Sinclair's death in a Winnipeg emergency room within the settler colonial history of Manitoba, and reads it as evidence of the racism and settler colonialism of Canadian health care.",
+    "source_ids": [
+     "ierA_mccallum_perry_ump_2018",
+     "thin_cha_indigenous_prize_2019",
+     "thin_manitowbi_structures_2021"
+    ],
+    "evidence_note": "(1) CHA Indigenous History Book Prize 2019, jury citation (read by the reviewer 2026-10-31). The book 'situates the life and death of Brian Sinclair within the complicated settler colonial histories of the geographic area that came to be known as Manitoba', and corrects 'the denial of the violent roles played by racism and settler colonialism in Canada's so-called universal health care system'. (2) Publisher page, re-read 2026-10-31: the book asks 'what it reveals about the ongoing history of colonialism'. Sherene Razack's blurb calls it a framing of Sinclair's death as 'a racism that is the basis of Canadian settler colonialism'. G. Bruyere's CHOICE blurb says the authors analyse how the inquest's legal processes 'obscure the violence of contemporary settler colonialism'. (3) Manitowbi (2021), p. 118, as read by the researcher in the Érudit PDF: the book's 'primary strength' is its account of Sinclair's life and death and 'the history and persistence of settler colonialism in the Canadian health-care system'. He also quotes a sentence of the authors' own (book p. 102). The reviewer could not reopen Érudit, so the authors' wording is not used in graph text. All of these are readers' framings; the book is unread. No claim is made that the authors adopt Wolfe's theory. The settler colonialism entry's caution that McCallum (2014) wrote 'beside' the paradigm still stands for the 2014 book; this edge rests on the 2018 book."
+   }
+  },
+  {
+   "proposal_id": "rai_rel_01",
+   "person_id": "robert_alexander_innes",
+   "verdict": "accept_with_edits",
+   "reason": "The p. 64 excerpt is verified word for word on the Gladue record (node/6305). It is the author's own programmatic statement of the paper's thesis, so on its own it would support a field-level critique worded as here. Two required fixes. (a) Duplicate source: the atlas already has ihc_innes_1999_gladue, with the same URL and article, so thin_innes_ohf_2000 must not be minted. (b) The full text is readable: the same Gladue record attaches a 26-page PDF of pp. 63–88, hosted by the University of Saskatchewan's Gladue Rights Research Database. The atlas already relies on that host (df02_dickason_pagden1997_review), and it is an institutional copy, not a sharing site. The reviewer read the method passages, which confirm and sharpen the critique. On p. 65 he says Vansina's widely accepted definition 'tends to promote a static view of orally transmitted narratives'. On p. 69 he says that following Turner's standardized questions and Henige's control of the interview 'would prove problematic' in Native Studies research. The critique kind has type critique, and the edge is distinct from Wheeler's edge_2179. OCAP: the article quotes veterans' interviews and an archived interview with a named Elder; none of that may enter the note.",
+   "required_edits": {
+    "source_ids": [
+     "ihc_innes_1999_gladue"
+    ],
+    "drop_new_source": "thin_innes_ohf_2000",
+    "evidence_note": "Gladue Rights Research Database record (University of Saskatchewan, with Legal Aid Saskatchewan and the Law Society of Saskatchewan): the excerpt of p. 64, and the attached PDF of the article (pp. 63–88), read 2026-10-31 for its method passages. On p. 64, Native Studies 'challenges the conventional historical methodologies' and 'also challenges the conventional oral historical methodology'. It 'rejects the hierarchical researcher-researched relationship', and the researcher must be 'flexible to accommodate the interviewee's mode of communication'. Excerpts from three veterans' interviews are used to show that 'conventional oral historical methodologies are problematic in an Aboriginal context'. On p. 65, Vansina's widely accepted definition of oral tradition 'tends to promote a static view of orally transmitted narratives'. On p. 69, following Turner's standardized questions and Henige's insistence that the historian control the interview 'would prove problematic' in Native Studies research. Nothing from the interviews is used. The edge targets the field because the article's critique is of conventional oral-history method as practised by several scholars (Vansina, Henige, Turner), none of whom is an atlas endpoint. It is distinct from Wheeler's existing critique of outside definitions of oral history (edge_2179)."
+   }
+  },
+  {
+   "proposal_id": "rai_rel_02",
+   "person_id": "robert_alexander_innes",
+   "verdict": "accept",
+   "reason": "USask News (Boklaschuk, June 2018) re-read. Its description reads 'Two University of Saskatchewan professors have collaborated with other Canadian academics'. Innes and Wheeler 'serve on Shekon Neechie's managing board'. Innes is the originator: 'the idea for the website was born', and he 'decided to contact' senior Indigenous historians. Wheeler is quoted that 'creating our own space was really important for us'. The 2021 letter is signed by both. The text is worded as an institutional collaboration and a co-signed statement, as required. 'Indigenous-controlled' paraphrases the site's public self-description. Consistent with the researcher's decision not to propose McCallum ↔ Wheeler or ↔ Macdougall on co-signature alone. No existing edge between the two."
+  },
+  {
+   "proposal_id": "rai_rel_03",
+   "person_id": "robert_alexander_innes",
+   "verdict": "accept_with_edits",
+   "reason": "Both readings verified: the AIQ 2009 opening passage in Semantic Scholar, and the UMP page ('act to undermine legal and scholarly definitions of \"Indian\"'). Two edits. (a) 'Brought Indigenous researchers into the insider/outsider debate' overclaims an effect. The excerpt says Indigenous researchers 'have not joined the insider/outsider debate to any significant extent' and argues they 'have much to gain' from other insiders' experience; reword to the argument. (b) OCAP, conservative trim. The 'high inclusion rate of new \"Bill-C31s\"' clause reports membership outcomes of a named First Nation. It is not needed for the claim, and it edges toward community governance data, so drop it from the note and from the ihc_innes_ump_2013 addendum.",
+   "required_edits": {
+    "relationship": "Argued that Indigenous researchers, who had not yet joined the insider/outsider debate over research in home communities, should take it up (2009). Argued that Cowessess First Nation's kinship-based membership practices undermine legal and scholarly definitions of 'Indian' (2013).",
+    "evidence_note": "(1) 'Wait a Second. Who Are You Anyways?', American Indian Quarterly 33:4 (2009): 440–461. The opening passage (first page) was read 2026-10-31 as the publisher's excerpt in the Semantic Scholar record (Project MUSE blocked) and re-checked by independent review. Critics claim insiders' closeness 'clouds their views'. Insiders counter with 'a contextual understanding of the community that outsiders do not possess'. 'Indigenous researchers have not joined the insider/outsider debate to any significant extent', and they 'have much to gain from the experiences of other insider researchers'. The rest of the article is unread. (2) Elder Brother and the Law of the People (University of Manitoba Press, November 2013), publisher page re-read 2026-10-31. In the publisher's account, Innes shows how kinship practices at Cowessess 'act to undermine legal and scholarly definitions of \"Indian\"'. The book is unread, and the claim is bounded to the publisher's account of its argument. Nothing of the stories or community practices the book discusses is given here. Not a duplicate: his existing edges go to Indigenous–newcomer relations (two critiques) and to community-engaged research (the TLE count of the dead). An edge from the 2009 article to community-engaged research would duplicate that endpoint and kind, so both works are joined here."
+   }
+  },
+  {
+   "proposal_id": "jrm_rel_01",
+   "person_id": "james_rodger_miller",
+   "verdict": "accept_with_edits",
+   "reason": "Verified in the University of Manitoba repository PDF. PDF p. 56, n. 15: 'For a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands see Frideres, Aboriginal Peoples in Canada; Miller, Skyscrapers Hide the Heavens; Dickason, Canada's First Nations'. PDF p. 133: colonial forces 'have not been military, as a rule, but rather, have been institutional through economic, religious, educational legislative, and media systems (Frideres, Ponting, Miller, Dickason, Green)'. Direction is right: Miller's work feeds LaRocque's argument, so Miller → LaRocque. Judgement on the researcher's question: a recommended-overview footnote and a five-name parenthetical are a thin but real citation-in-argument, not topic overlap. They are worth an edge because they show LaRocque using Miller as an authority while criticising other settler historians, and Miller has only two edges. The wording must be weaker than 'names Miller among the authorities for her argument', and the namesake risk must be recorded. Her bibliography also lists Christine Miller (co-editor of Women of the First Nations, 1997, which contains a LaRocque essay). The p. 133 parenthetical gives no title, so attributing it to J. R. Miller is an inference from context and from n. 15. The 'printed p. 130 by the page offset' claim cannot be checked (printed numbers are not in the text layer); cite PDF pages only.",
+   "required_edits": {
+    "relationship": "In her 1999 dissertation Emma LaRocque recommends Miller's Skyscrapers Hide the Heavens (1989) as an overview of treaties, the Indian Act, reserves, residential schools and Métis land loss. She also cites 'Miller' with Frideres, Ponting, Dickason and Green for the point that colonial forces acting on Native peoples in Canada were institutional rather than military.",
+    "map_label": "Cited by LaRocque as overview and authority, 1999",
+    "evidence_note": "LaRocque, Native Writers Resisting Colonizing Practices in Canadian Historiography and Literature (PhD, University of Manitoba, 1999), University of Manitoba repository PDF, read 2026-10-31 at the passages concerned and re-checked by independent review (text layer; OCR slips corrected). PDF p. 56, n. 15: 'For a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands see Frideres, Aboriginal Peoples in Canada; Miller, Skyscrapers Hide the Heavens; Dickason, Canada's First Nations.' PDF p. 133: the colonial forces 'have not been military, as a rule, but rather, have been institutional through economic, religious, educational legislative, and media systems (Frideres, Ponting, Miller, Dickason, Green)'. That parenthetical gives no title. Her bibliography lists both 'Miller, J.R. Skyscrapers hide the heavens' (1989) and Christine Miller and Patricia Chuchryk, eds., Women of the First Nations (1997). Reading the p. 133 'Miller' as J. R. Miller is an inference from its context and from n. 15. This is a recommended overview and a citation in argument, not an endorsement of Miller's whole interpretation. LaRocque elsewhere criticises settler 'cross-cultural' historians (her edges to Van Kirk, Brown and Trigger), and Miller is not among those she names there. No Miller text read."
+   }
+  },
+  {
+   "proposal_id": "rc_rel_01",
+   "person_id": "rachel_carson",
+   "verdict": "hold",
+   "reason": "Judgement on teaching use: hold. The syllabus and reading list are verified. The Wayback capture of the UW PDF (the live URL is 404) assigns Silent Spring pp. 1–37, 103–27 and 187–98 for 'TOXIC POLITICS', 30 November 1994, and lists it as a bookstore text. The 2005 handout lists it first under 'Classics and Precursors'. But assigning a book in a seminar, or listing it as a classic, shows that a text belongs to the field's canon. That is exactly the claim of edge_912 (Carson → environmental history), which already cites both of these sources. As a person ↔ person edge it would assert a relationship with Cronon's own scholarship for which no Cronon text arguing from, crediting or engaging Carson has been found (the researcher says so). The cited precedent does not carry over. Leopold → Cronon (edge_1245) rests mainly on Cronon's named debt in the 2003 afterword (his landscape workshops 'were in fact modeled on a famous course taught by Aldo Leopold') and on his essays about Leopold; the reading list is corroboration there, not the basis. Adding this edge would turn the 2005 reading list's ten 'precursors' into potential person edges, and syllabus edges would multiply without showing intellectual debt. Revisit only if a Cronon text that engages Carson is read (e.g. an essay, foreword or lecture naming her as a model). The teaching evidence stays on edge_912."
+  }
+ ],
+ "addenda_verdicts": [
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "ihc_shekon_letter_2021",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Verified on the page. The salutation dates the critics' letter '[9 August 2020]', the body has the '9 August 2021 issue of The Dorchester Review', and there are fifty-three signatories; no historian is named. The journal is named only in the addendum, and no Dorchester Review wording is quoted, so it is consistent with OCAP-REVIEW item 12. Keep any Dorchester wording out of graph text."
+  },
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "ierA_mccallum_perry_ump_2018",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Verified: 192 pages; affiliations; endorsements from Dubinsky, Earle Waugh (Canadian Journal of Native Studies) and Karen Ella McCallum (American Review of Canadian Studies). Optionally add that the publisher files the book under Medical History, and that the CHOICE blurb is by G. Bruyere."
+  },
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "thin_manitowbi_structures_2021",
+   "kind": "new_source",
+   "verdict": "accept_with_edits",
+   "reason": "The reviewer could not reopen Érudit (Anubis bot check on both the article page and the PDF route). Crossref confirms reviewer 'Josh Manitowbi', Scientia Canadensis, first page 117, and gives 186 pp. for the book (the publisher says 192). The DOI URL is acceptable. The verification note should add: 'Quotations not re-checked by independent review (Érudit bot check); Crossref metadata confirmed.'"
+  },
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "thin_mccallum_innes_hill_conversation_2024",
+   "kind": "new_source",
+   "verdict": "accept_with_edits",
+   "reason": "Byline, date and Crossref DOI verified. Correct the paragraph locators in the note, counting body paragraphs and skipping the five 'Read more' boxes: motives ¶¶18–24, Te Pouhere Kōrero ¶25, open letter ¶30, Allan Downey ¶6, 2024 profiled historians ¶16."
+  },
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "thin_mccallum_aiq_2009",
+   "kind": "new_source",
+   "verdict": "accept",
+   "reason": "The Semantic Scholar record's excerpt matches the quoted phrases exactly. It is correctly described as the publisher's opening-passage excerpt."
+  },
+  {
+   "draft": "mary_jane_logan_mccallum",
+   "key": "thin_cha_indigenous_prize_2019",
+   "kind": "new_source (proposed by reviewer)",
+   "verdict": "accept",
+   "reason": "Proposed by the reviewer for mjlm_rel_07 and mjlm_rel_08; the full record is under those verdicts' required_edits.new_source. The CHA's own page is acceptable provenance. Reconcile with any CHA-prize source in the pending 1.203 work before minting."
+  },
+  {
+   "draft": "robert_alexander_innes",
+   "key": "thin_innes_ohf_2000",
+   "kind": "new_source",
+   "verdict": "hold",
+   "reason": "Duplicate of existing source ihc_innes_1999_gladue (same URL, gladue.drc.usask.ca/node/6305, same article). Do not mint. Instead add an addendum to ihc_innes_1999_gladue: 'Addendum 2026-10-31 (thin-person-edges review): the record attaches a 26-page PDF of the article (pp. 63–88), hosted by the University of Saskatchewan's Gladue database. Method passages read: p. 64 (thesis; n. 4 cites Angela Cavender-Wilson 1998 and Winona Stevenson [Wheeler], \"The Othering of Indigenous History\", 1998); p. 65 (Vansina's definition \"tends to promote a static view\"); pp. 65–67 (Cruikshank and Cavender-Wilson's conceptions judged \"operational\"); pp. 68–69 (Paul Thompson, Voices of the Past, p. 165, cited: no one way to interview); p. 69 (Turner and Henige \"would prove problematic\"). Interview content is not used (OCAP). n. 1 cites Michael D. Stevenson, a different person from Winona Stevenson.'"
+  },
+  {
+   "draft": "robert_alexander_innes",
+   "key": "thin_innes_aiq_2009",
+   "kind": "new_source",
+   "verdict": "accept",
+   "reason": "The Semantic Scholar excerpt is verified and correctly attributed as the opening passage."
+  },
+  {
+   "draft": "robert_alexander_innes",
+   "key": "ihc_innes_ump_2013",
+   "kind": "source_addendum",
+   "verdict": "accept_with_edits",
+   "reason": "The phrases, topics and blurbs are verified on the publisher page. OCAP conservative trim: drop the 'high inclusion rate of new \"Bill-C31s\"' clause (membership outcomes of a named First Nation; not needed).",
+   "required_edits": {
+    "addendum": "Addendum 2026-10-31 (thin-person-edges, Innes): publisher page re-read. In the publisher's account the book shows how kinship practices at Cowessess 'act to undermine legal and scholarly definitions of \"Indian\"'. Topics listed include Oral History & Storytelling. Blurbs by June Scudeler (Canadian Literature), Heidi Kiiwetinepinesiik Stark (NAIS) and Michelle Desveaux (Canadian Journal of History). The ch. 3 title also appeared as his 2012 chapter in Finding a Way to the Heart."
+   }
+  },
+  {
+   "draft": "robert_alexander_innes",
+   "key": "ihc_innes_genocide_2018",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Verified: Sarah Carter appears once, in the paragraph beginning 'There is enough evidence to suggest…', in the list 'Lux, Tobias, Hogue, Daschuk, Hugh Demsey, and Sarah Carter all agree…'. The paragraph number depends on how the page is counted (the reviewer counts ¶26), so quote the opening words rather than a number. The 'J.ames R. Miller' spelling in n. 4 is not checked here (the note was truncated in the reviewer's extract)."
+  },
+  {
+   "draft": "haunani_kay_trask",
+   "key": "ihb_trask_1991",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Repository PDF (bitstream v3n1-159-167-dialogue.pdf) re-read. The persons cited are Keesing, Linnekin and Kame'eleihiwa, with Trask's own 1982 and 1986 items. There is no Hobsbawm, Said, Fanon or other atlas person. The no-edge outcome for Trask is accepted."
+  },
+  {
+   "draft": "darcy_mcnickle",
+   "key": "edge_2163",
+   "kind": "source_addendum (mis-keyed)",
+   "verdict": "accept_with_edits",
+   "reason": "The content is verified via the AHA page (direct fetch returned 403; read through a fetch tool). Cobb, 21 May 2025: first director of the Newberry centre in 1972, renamed in 1984; efforts to 'reshape the field of American Indian history' and 'cultivate new generations of Indigenous scholars'; The Indian Tribes of the United States (1962) was 'expanded into' Native American Tribalism (1973). The notice names no other scholar. OCAP: ¶2 (birth, allotment) is excluded, correctly. Structural fault: source_addenda must be keyed by source id, not edge id. Restructure as (a) mint thin_cobb_mcnickle_aha_2025 (accept), and (b) an edge amendment adding it to edge_2163.source_ids, with one sentence appended to that edge's evidence note: 'Corroborated by Cobb, AHA Perspectives on History (2025): first director of the Newberry Library's Center for the History of the American Indian in 1972, renamed in 1984; the AHA's Long Overdue notice treats it as part of his efforts to \"reshape the field of American Indian history\" (a 2025 retrospective).' The note about the 1962 → 1973 expansion goes to the entry's works, not to the edge."
+  },
+  {
+   "draft": "darcy_mcnickle",
+   "key": "thin_cobb_mcnickle_aha_2025",
+   "kind": "new_source",
+   "verdict": "accept",
+   "reason": "Verified as above. It is the AHA's own page and a retrospective notice, correctly bounded."
+  },
+  {
+   "draft": "james_rodger_miller",
+   "key": "ind126_larocque_thesis",
+   "kind": "source_addendum",
+   "verdict": "accept_with_edits",
+   "reason": "Passages verified. Add the namesake caution and drop the unverifiable printed-page mapping.",
+   "required_edits": {
+    "addendum": "Addendum 2026-10-31 (thin-person-edges, J. R. Miller): PDF p. 56, n. 15 recommends Frideres, Miller's Skyscrapers Hide the Heavens and Dickason's Canada's First Nations as 'a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands'. PDF p. 133 cites '(Frideres, Ponting, Miller, Dickason, Green)' for the institutional, not military, character of colonial forces. The p. 133 citation gives no title. The bibliography lists both J. R. Miller (Skyscrapers, 1989) and Christine Miller and Patricia Chuchryk, eds. (1997), so J. R. Miller there is inferred from context. Read in the University of Manitoba repository PDF (text layer; OCR slips corrected)."
+   }
+  },
+  {
+   "draft": "aldo_leopold",
+   "key": "cronon_environment_syllabus_1994",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Verified in the Wayback capture of 25 July 2024; the live URL returns 404. A Wayback archive of an official university page is acceptable. PDF p. 1 description, the bookstore list (Carson, Leopold), 28 September 'Good Oak', 6–19, and 16 November Leopold 137–41 and 237–95 all match; the syllabus itself names 'Thinking Like a Mountain' and Part IV, 'The Upshot'. 30 November 'TOXIC POLITICS' assigns Carson. This is the single addendum for both drafts; record the Wayback URL in the source's url or the note."
+  },
+  {
+   "draft": "aldo_leopold",
+   "key": "p4c_worster_wealth_oup",
+   "kind": "source_addendum",
+   "verdict": "accept_with_edits",
+   "reason": "The Crossref abstract (chapter opening) is verified, but the quotation is altered. Worster wrote 'looking for a place where a man had given his life', not land that a man had given his life 'to'.",
+   "required_edits": {
+    "addendum": "Addendum 2026-10-31 (thin-person-edges, Leopold): the OUP chapter openings in Crossref also show 'Restoring a Natural Order' (doi:10.1093/oso/9780195092646.003.0017) opening on Worster's visit to Wisconsin, 'looking for a place where a man had given his life': the land bought in 1935 by Aldo Leopold, who planted it for thirteen years. Opening paragraph only."
+   }
+  },
+  {
+   "draft": "rachel_carson",
+   "key": "cronon_environment_syllabus_1994",
+   "kind": "source_addendum (duplicate)",
+   "verdict": "accept_with_edits",
+   "reason": "This duplicates the Leopold folder's addendum to the same source. Merge it into the single Leopold addendum, which already records the Carson assignment, and drop this copy."
+  },
+  {
+   "draft": "rachel_carson",
+   "key": "hr28_merchant_oral2023",
+   "kind": "source_addendum",
+   "verdict": "accept",
+   "reason": "Verified in the project's copy of the transcript (data/field-research/dedicated-historians-resumed-2026-10-28/carolyn_merchant/raw/oral2023.pdf). Leaf 89: 'And then I also read Rachel Carson', followed by 'the idea that women could play a major part in conservation became very clear'. Leaf 96, speaker Merchant: 'I began to understand it through works, for example, like Betty Friedan's The Feminine Mystique, and Rachel Carson's Silent Spring'. Both are Merchant's own words, not the interviewer's. The source record already confirms the offset of 8 (leaves 96/97 visually checked), so 'if the offset holds (unverified)' can become 'printed pp. 81 and 88'."
+  }
+ ],
+ "ocap_flags": [
+  {
+   "where": "robert_alexander_innes rai_rel_03 evidence_note; ihc_innes_ump_2013 addendum",
+   "issue": "Reports the 'high inclusion rate of new \"Bill-C31s\"' at a named First Nation after its 1996 TLE agreement. These are community membership and governance outcomes from the publisher page, and they are not needed for the claim.",
+   "action": "Conservative trim; scrubbed wording is given in the verdicts for rai_rel_03 and the ihc_innes_ump_2013 addendum."
+  },
+  {
+   "where": "robert_alexander_innes rai_rel_01 (and any use of the Innes 2000 full text)",
+   "issue": "The full article (now readable on the Gladue record) quotes Aboriginal veterans' interviews and an archived interview with a named Elder, including a story with spiritual content (pp. 66–67) and the interview line that echoes the 2009 article's title (p. 69).",
+   "action": "Preventive. Use method passages only (pp. 64, 65, 68–70). No narrator quotations or interview content in notes, relationships or addenda. The replacement note in the rai_rel_01 verdict complies."
+  },
+  {
+   "where": "Coverage lead: Angela Cavender-Wilson → Innes (Innes 2000, pp. 65–67)",
+   "issue": "Innes's discussion relates her definitions to her own Dakota cultural understanding, and her source article draws on family oral history.",
+   "action": "If the lead is pursued, describe only the methodological claim (oral history contained within oral tradition, which Innes judges 'operational'). No family or community content (cf. OCAP-REVIEW item 8)."
+  },
+  {
+   "where": "mary_jane_logan_mccallum (all edges)",
+   "issue": "None found. The Shekon Neechie letter is paraphrased. 'Indigenous-led' comes from the authors' Conversation article, not the community site. The Dorchester Review is named only in a source addendum, with no wording quoted. No identity notes are touched. Brian Sinclair is named as the subject of the book and the inquest, without status or nation detail.",
+   "action": "None. Keep Sinclair's status or nation out of graph text (the publisher page gives it; the drafts rightly do not)."
+  },
+  {
+   "where": "darcy_mcnickle, haunani_kay_trask",
+   "issue": "None found. Cobb ¶2 (birth and allotment) and Trask's genealogical and land content are excluded, as required.",
+   "action": "None."
+  }
+ ],
+ "provenance_flags": [
+  {
+   "item": "Gladue Rights Research Database PDF (resource454-2ca60416.pdf) of Innes 2000",
+   "assessment": "Acceptable. It is an institutional database of the University of Saskatchewan (History Department and HFA Digital Research Centre, with Legal Aid Saskatchewan and the Law Society of Saskatchewan), not a document-sharing or course site. The atlas already relies on the same host (df02_dickason_pagden1997_review). It is a journal article, not a whole book."
+  },
+  {
+   "item": "Semantic Scholar first-page excerpts (McCallum AIQ 2009; Innes AIQ 2009)",
+   "assessment": "Acceptable as attributed opening-passage readings; both drafts say so and bound their claims to the excerpt."
+  },
+  {
+   "item": "Cronon History 901 syllabus via Wayback (capture 20240725060840)",
+   "assessment": "Acceptable: an archived official university page. The live URL is now 404, so update the source url or note."
+  },
+  {
+   "item": "Érudit (Manitowbi review, DOI 10.7202/1078930ar)",
+   "assessment": "Open-access journal, so the provenance is fine. The reviewer could not re-check the quotations (bot check); see the mjlm_rel_01, 07 and 08 verdicts."
+  },
+  {
+   "item": "Carson draft: Worster's Nature's Economy",
+   "assessment": "Compliant. The draft refused an unauthorised full-text copy and does not name the route."
+  },
+  {
+   "item": "Trask draft: Trent University lending scan of Decolonizing Methodologies",
+   "assessment": "Lending-library route, compliant (search was refused, so the text is unread)."
+  },
+  {
+   "item": "Merchant oral history",
+   "assessment": "University-authorized Bancroft or digicoll PDF held in project files; compliant."
+  }
+ ],
+ "coverage_leads": [
+  {
+   "pair": "winona_wheeler → robert_alexander_innes",
+   "lead": "Innes 2000 (Oral History Forum 19–20), p. 64 n. 4, cites Winona Stevenson [Wheeler], 'Indigenous Voices, Indigenous Histories. Part I: The Othering of Indigenous History' (Saskatchewan History, 1998), with Cavender-Wilson, as authority for Native Studies' insistence that the researcher be flexible to the interviewee's mode of communication. This is a scholarly citation in argument between two existing endpoints, separate from the Shekon Neechie collaboration (rai_rel_02). Readable in the Gladue PDF. Namesake: n. 1's 'Michael D. Stevenson' is a different person."
+  },
+  {
+   "pair": "angela_cavender_wilson → robert_alexander_innes",
+   "lead": "Innes 2000, pp. 65–67: he adopts Cavender-Wilson's view that oral history is contained within oral tradition, and finds her and Cruikshank's conceptions 'operational' for interpreting the veterans' interviews. Method only (OCAP)."
+  },
+  {
+   "pair": "life_lived_like_a_story → robert_alexander_innes",
+   "lead": "Innes 2000, p. 66 (n. 14) quotes Cruikshank's Life Lived Like a Story (1990, p. 14), the scholar's own words, on coming to see oral tradition as 'a window on ways the past is culturally constituted'. He also uses her RCAP paper 'Claiming Legitimacy' (1993) on p. 65. Do not quote narrators."
+  },
+  {
+   "pair": "paul_thompson → robert_alexander_innes",
+   "lead": "Innes 2000, pp. 68–69, cites Thompson's Voices of the Past (1978, p. 165) approvingly: there are many interviewing styles and no one right way. He sets Thompson against Turner's and Henige's controlled interviewing. Paul Thompson is himself a thin entry in this batch. This is a citation in argument, possibly too slight on its own; weigh it with the Paul Thompson draft."
+  },
+  {
+   "pair": "olive_patricia_dickason → james_rodger_miller",
+   "lead": "Dickason's AHR review of Skyscrapers Hide the Heavens (95:5, 1990, 1654–1655) remains unread; try JSTOR or a library route. Already noted by the researcher."
+  },
+  {
+   "pair": "mary_jane_logan_mccallum → sarah_carter",
+   "lead": "McCallum's review of The Importance of Being Monogamous (Ethnohistory 56:4, 2009). The Duke route returned 403; try JSTOR. Already noted by the researcher."
+  },
+  {
+   "pair": "rachel_carson → donald_worster",
+   "lead": "Nature's Economy (1977; 2nd ed. 1994), pp. 23–24 and 'The Age of Ecology' (from p. 339), already informs edge_912 through snippet reading. A lending-library page-image reading could support a person edge. Already noted."
+  },
+  {
+   "pair": "haunani_kay_trask → linda_tuhiwai_smith",
+   "lead": "Decolonizing Methodologies (1999) is generally understood to cite Trask's From a Native Daughter. Check through a lending-library copy or the publisher's preview before proposing anything. Already noted as held."
+  },
+  {
+   "pair": "aldo_leopold → carolyn_merchant",
+   "lead": "Merchant's own texts on Leopold's land ethic (Radical Ecology, 1992; American Environmental History, 2007; her ecological-revolutions work) are not yet read. The oral history mention is the interviewer's, as the researcher found."
+  },
+  {
+   "pair": "vine_deloria_jr ↔ darcy_mcnickle (qualify edge_1699)",
+   "lead": "Parker's 1992 biography, Singing an Indian Song, is said to record Deloria calling them 'probably just nodding acquaintances'. Read it through a library before qualifying edge_1699."
+  },
+  {
+   "pair": "rachel_carson → william_cronon",
+   "lead": "If revisited: look for a Cronon text that engages Carson (essays, forewords, lectures on Silent Spring) rather than teaching materials."
+  }
+ ]
+}

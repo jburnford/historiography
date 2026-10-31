@@ -1,0 +1,70 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (rachel_carson: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "rc_rel_01",
+   "source": "rachel_carson",
+   "target": "william_cronon",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "Cronon taught Silent Spring as a text of environmental history's toxic politics in his 1994 graduate seminar and later listed it first among the field's 'Classics and Precursors' (2005).",
+   "map_label": "Taught as a precursor, 1994–2005",
+   "evidence_note": "(1) History 901, 'Topics in American Environmental History', Fall 1994, instructor Bill Cronon (University of Wisconsin PDF, now read in the Wayback capture of 25 July 2024, 2026-10-31): Silent Spring is a bookstore text (PDF p. 2) and is assigned, pp. 1–37, 103–27 and 187–98, for the 30 November session 'Toxic Politics' with Gottlieb's Forcing the Spring and McEvoy (PDF p. 6); the seminar reads works 'principally for the theories and methodologies it can offer scholars' (PDF p. 1). (2) Cronon, 'Environmental History: Selected Readings' (handout; PDF created 28 September 2005), p. 1, 'Classics and Precursors': 'Carson, Rachel, Silent Spring (Boston: Houghton Mifflin, 1962)', listed first (re-read 2026-10-31). Teaching use and a reading list only: no Cronon text arguing from Carson was found, and his 1993 address is not claimed to rely on her. Parallel to the reading-list part of edge_1245 (Leopold → Cronon). A reviewer may judge teaching use too thin; it is recorded because it documents how Silent Spring became a shared text for the field, the claim of edge_912.",
+   "source_ids": [
+    "cronon_environment_syllabus_1994",
+    "pe131_carson_cronon_readings_2005"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "hold",
+    "reason": "Judgement on teaching use: hold. The syllabus and reading list are verified. The Wayback capture of the UW PDF (the live URL is 404) assigns Silent Spring pp. 1–37, 103–27 and 187–98 for 'TOXIC POLITICS', 30 November 1994, and lists it as a bookstore text. The 2005 handout lists it first under 'Classics and Precursors'. But assigning a book in a seminar, or listing it as a classic, shows that a text belongs to the field's canon. That is exactly the claim of edge_912 (Carson → environmental history), which already cites both of these sources. As a person ↔ person edge it would assert a relationship with Cronon's own scholarship for which no Cronon text arguing from, crediting or engaging Carson has been found (the researcher says so). The cited precedent does not carry over. Leopold → Cronon (edge_1245) rests mainly on Cronon's named debt in the 2003 afterword (his landscape workshops 'were in fact modeled on a famous course taught by Aldo Leopold') and on his essays about Leopold; the reading list is corroboration there, not the basis. Adding this edge would turn the 2005 reading list's ten 'precursors' into potential person edges, and syllabus edges would multiply without showing intellectual debt. Revisit only if a Cronon text that engages Carson is read (e.g. an essay, foreword or lecture naming her as a model). The teaching evidence stays on edge_912.",
+    "reviewer": "review-A.json"
+   },
+   "include": false
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "rachel_carson → donald_worster",
+   "reason": "Held, unread. Nature's Economy (1977; 2nd ed. 1994) places Silent Spring near the opening of 'The Age of Ecology' and credits her with launching the ecology movement, but the entry knows this only from snippet search of a library scan. No lawful readable copy of the relevant pages was found (the Cambridge edition is paywalled; a full-text copy found online is an unauthorised mirror and was not read). Strong candidate if a reviewer can read Part VI or the 1994 preface."
+  },
+  {
+   "pair": "rachel_carson → carolyn_merchant (second edge)",
+   "reason": "Already represented by edge_2493. New corroboration from the project's copy of Merchant's 2022 Bancroft oral history, searched 2026-10-31: she read Carson in Madison alongside Friedan, and the idea that 'women could play a major part in conservation' followed (PDF leaf 89); later she says she 'began to understand it through works' such as Friedan's The Feminine Mystique and Silent Spring (PDF leaf 96). Offered as a source addendum."
+  },
+  {
+   "pair": "rachel_carson → j_r_mcneill / richard_white / alfred_crosby / samuel hays",
+   "reason": "Searched without a verified omission or unread: McNeill 2003 pages read earlier lack a Carson passage; White 1985 and the JAH 1990 round table unread; Hays is not an endpoint."
+  },
+  {
+   "pair": "rachel_carson → joy_parr (second edge)",
+   "reason": "Already represented by edge_2816."
+  },
+  {
+   "pair": "rachel_carson ↔ Linda Lear, Thomas Dunlap, John Opie, Roderick Nash, Frank Graham",
+   "reason": "Held for missing endpoints."
+  }
+ ],
+ "new_sources": [],
+ "reused_sources": [
+  {
+   "id": "cronon_environment_syllabus_1994",
+   "use": "rc_rel_01 (archived copy read 2026-10-31; see the addendum in aldo_leopold/entry-draft.json)"
+  },
+  {
+   "id": "pe131_carson_cronon_readings_2005",
+   "use": "rc_rel_01 (re-read 2026-10-31)"
+  },
+  {
+   "id": "hr28_merchant_oral2023",
+   "use": "source addendum for edge_2493"
+  }
+ ],
+ "source_addenda": {
+  "hr28_merchant_oral2023": "Addendum 2026-10-31 (thin-person-edges, Carson): two further Carson passages located in the project's copy of the transcript (text layer, not visually checked): PDF leaf 89, after Friedan, 'And then I also read Rachel Carson', linked to her husband's prairie conservation and the idea that women could play a major part in conservation; PDF leaf 96, she 'began to understand it through works, for example, like Betty Friedan's The Feminine Mystique, and Rachel Carson's Silent Spring'. Printed pages are leaf minus 8 if the dossier's offset holds throughout (unverified)."
+ }
+}

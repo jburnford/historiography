@@ -1,0 +1,68 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (e_h_carr: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "carr_rel_01",
+   "source": "e_h_carr",
+   "target": "john_tosh",
+   "type": "connection",
+   "relationship_kind": "influence",
+   "directed": true,
+   "relationship": "Tosh's The Pursuit of History (1991 edition) calls What Is History? ‘still unsurpassed as a stimulating and provocative statement by a radically inclined scholar’ and makes the Carr–Elton controversy ‘the best starting-point’ for debate on the standing of historical knowledge (as quoted by Alun Munslow, 1997).",
+   "map_label": "What Is History? as Tosh's starting point, 1991",
+   "evidence_note": "Read 2026-10-31 through a named reader with exact locators: Alun Munslow, review of What Is History? (November 1997), History in Focus 2 (IHR), ¶2 quoting ‘still unsurpassed as a stimulating and provocative statement by a radically inclined scholar’ (Tosh 1991: 234) and ¶3 quoting ‘The controversy between Carr and Elton is the best starting-point for the debate about the standing of historical knowledge’ (Tosh 1991: 236); bibliography: ‘Tosh, John (1991) The Pursuit of History London, Longman.’ Tosh's book itself is unread here; the words are as Munslow quotes them. The claim is that Tosh's textbook takes Carr's book as a reference point and recommends it; it does not make Tosh a follower of Carr's positions (he pairs Carr with Elton). Elton has no endpoint, so the controversy itself cannot be an edge.",
+   "source_ids": [
+    "tq233_carr_munslow"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Munslow review (IHR History in Focus archive; acceptable) re-fetched: 'still unsurpassed as a stimulating and provocative statement by a radically inclined scholar' (Tosh 1991: 234) and 'The controversy between Carr and Elton is the best starting-point for the debate about the standing of historical knowledge' (Tosh 1991: 236); bibliography 'Tosh, John (1991) The Pursuit of History London, Longman'; dated November 1997. Quotations with page locators through a named reader are acceptable, but the relationship presents Tosh's words as if read directly; it must attribute them to Munslow's quotation. The relationship sentence also lacks a closing period. Influence here means 'takes as reference point and recommends', as the evidence note already says.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "e_h_carr → sheila_fitzpatrick",
+   "reason": "Proposed in sheila_fitzpatrick/entry-draft.json as fitz_rel_01 (interview 2012 and Menashe 1996); not duplicated here."
+  },
+  {
+   "pair": "hugh_trevor_roper → e_h_carr (critique)",
+   "reason": "Trevor-Roper's attack on What Is History? (Encounter, 1962, and his later remarks on ‘might-have-beens’) is well known, but no readable text or named reader with locators was found; Evans's ‘Two Faces of E. H. Carr’ (IHR, read) does not mention him. Held as unread."
+  },
+  {
+   "pair": "e_h_carr ↔ G. R. Elton / Keith Jenkins / Isaiah Berlin",
+   "reason": "Documented exchanges (Munro 2015; Munslow 1997; Berlin's ‘Mr Carr's Big Battalions’, New Statesman 1962), but none of the three is an endpoint. Held for missing endpoints."
+  },
+  {
+   "pair": "richard_j_evans → e_h_carr (second edge)",
+   "reason": "Evans's ‘The Two Faces of E. H. Carr’ (IHR History in Focus 2, extracts from his introduction to the 2001 edition; read) credits Carr's lasting influence in recognising ‘a subjective element in historical writing’ (¶11) while criticising his political history (¶6, ¶8). Same endpoints as edge_2891, whose text already records Evans valuing Carr; a source addendum would serve better than a second edge."
+  },
+  {
+   "pair": "keith_thomas / eric_hobsbawm / christopher_hill ↔ e_h_carr",
+   "reason": "Evans (2001, ¶2, ¶6, ¶8) places Carr alongside the Marxist historians' challenge and says Thomas's social history challenged an establishment that ‘seemed to include Carr himself’. These are Evans's contextual judgements, not exchanges between the persons. Not proposed."
+  },
+  {
+   "pair": "lynn_hunt ↔ e_h_carr",
+   "reason": "Munslow (1997) argues that Appleby, Hunt and Jacob's Telling the Truth about History repeats ‘almost exactly’ Carr's position. Munslow's comparison, not Hunt's own use of Carr; held."
+  },
+  {
+   "pair": "e_h_carr → historicism (Collingwood)",
+   "reason": "Carr's chapter 1 engages Collingwood, but the atlas's chapter reading rests on a transcription whose provenance needs review, and the Springer chapter page returned 404. Held until a clean reading exists."
+  }
+ ],
+ "new_sources": [],
+ "reused_sources": [
+  {
+   "id": "tq233_carr_munslow",
+   "use": "carr_rel_01 (¶2–3 Tosh quotations and bibliography entry re-read 2026-10-31)"
+  }
+ ],
+ "source_addenda": {
+  "tq233_carr_munslow": "Re-read 2026-10-31: the review is dated November 1997 (page created autumn 2001). ¶2 quotes Tosh 1991: 234 and ¶3 Tosh 1991: 236; bibliography gives Tosh, The Pursuit of History (Longman, 1991). Also quotes Jenkins 1995 and argues Appleby, Hunt and Jacob (1994) repeat Carr's position; both are Munslow's readings."
+ }
+}

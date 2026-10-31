@@ -1,0 +1,79 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (robert_bartlett: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "rb_rel_01",
+   "source": "robert_bartlett",
+   "target": "peter_brown",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "In Trial by Fire and Water (1986) Bartlett labels Peter Brown's account of the ordeal as a consensus-building device that lapsed as coercive authority grew ‘the functionalist approach’ and rejects it, tying the ordeal's spread instead to the growth of royal power (as read by Heikki Pihlajamäki, 1997).",
+   "map_label": "Against the functionalist ordeal, 1986",
+   "evidence_note": "Mediated through a named scholarly reader; Bartlett's book is unread. Heikki Pihlajamäki, Evidence, Crime, and the Legal Profession (Lund: Institutet för rättshistorisk forskning, Rättshistoriskt bibliotek 54, 1997), p. 33, read in the Olin Foundation's own digital edition: ‘Peter Brown departs from the idea that the medieval world at the time of ordeals was consensus-minded’, ordeals maintaining group cohesion until coercive authority made them unnecessary (n. 30: Brown 1982, p. 324, i.e. ‘Society and the Supernatural’, reprinted in Society and the Holy in Late Antiquity); ‘Bartlett calls this “the functionalist approach” and rejects it’, linking the increased use of ordeals to royal power and calling the ordeal an ‘adjunct of royal power’ (n. 31: Bartlett 1988, pp. 34–43, the paperback of the 1986 Clarendon book; n. 32: Bartlett 1988, pp. 70–102). Pihlajamäki's footnote numbering is partly garbled in the digital text, so the exact Bartlett page ranges are his and uncollated. Brown's essay (cited by Pihlajamäki as Brown 1982) and Bartlett's chapters remain unread; the claim is Pihlajamäki's account of Bartlett's argument, not a fresh reading of either original. Pihlajamäki also notes difficulties in Bartlett's own explanation of abolition; not used here.",
+   "source_ids": [
+    "thin_pihlajamaki_evidence_1997",
+    "tc234_bartlett_trial"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "Pihlajamäki p. 33 re-fetched in the Institutet för rättshistorisk forskning/Olin Foundation's own digital edition (publisher route; acceptable). Verbatim: 'Peter Brown departs from the idea that the medieval world at the time of ordeals was consensus-minded'; 'Bartlett calls this “the functionalist approach” and rejects it by showing that in fact the increased use of ordeals is seen to be in close connection with the growth of royal power'; 'adjunct of royal power'; notes 30 (Brown 1982 p. 324), 31 (Bartlett 1988 pp. 34–43), 32 (Bartlett 1988 pp. 70–102). The Peter Brown in the source is the late-antique historian (Brown 1982 = Society and the Holy), matching the endpoint. The relationship is attributed ('as read by Heikki Pihlajamäki, 1997') and the reader is substantive (a legal historian's monograph discussing Bartlett's argument at length). Single second-hand reader, attributed: acceptable under the review rule. Palmer's 1989 Michigan Law Review review would corroborate if it becomes readable.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "robert_bartlett ↔ ernest_gellner / anthony_d_smith / benedict_anderson",
+   "reason": "Lead: his 2001 separation of collective identity from sovereign statehood (pp. 52–53). Checked the whole 2001 article and its 30 notes in the St Andrews repository copy: none of these theorists is cited; he contrasts medieval usage with ‘modern nationalism at its crudest’ without naming theorists. Not proposed; edge_2949 already carries the nationalism-studies contribution."
+  },
+  {
+   "pair": "robert_bartlett ↔ patrick_geary",
+   "reason": "Geary is not cited in the 2001 article; no other exchange found. Searched without a verified omission."
+  },
+  {
+   "pair": "Geraldine Heng → robert_bartlett",
+   "reason": "Named critique already read and in the description; Heng is not an atlas endpoint. Held for missing endpoint."
+  },
+  {
+   "pair": "Rees Davies / John Boswell ↔ robert_bartlett",
+   "reason": "Cited in the 2001 article (notes 28–30); not atlas endpoints. Held."
+  },
+  {
+   "pair": "robert_bartlett → settler_colonialism / global (The Making of Europe, 1993)",
+   "reason": "Conquest and colonization within Latin Europe is the book's subject, but only bibliographic metadata was checked; topic alone is not a documented contribution to either field. Held for unread evidence."
+  },
+  {
+   "pair": "Robert C. Palmer, review of Trial by Fire and Water, Michigan Law Review 87 (1989): 1547ff.",
+   "reason": "Open repository PDF returned 403 to this agent; unread. Could corroborate rb_rel_01."
+  }
+ ],
+ "new_sources": [
+  {
+   "id": "thin_pihlajamaki_evidence_1997",
+   "title": "Heikki Pihlajamäki, Evidence, Crime, and the Legal Profession: The Emergence of Free Evaluation of Evidence in the Finnish Nineteenth-Century Criminal Procedure (Lund: Institutet för rättshistorisk forskning, Rättshistoriskt bibliotek 54, 1997).",
+   "citation": "Heikki Pihlajamäki, Evidence, Crime, and the Legal Profession: The Emergence of Free Evaluation of Evidence in the Finnish Nineteenth-Century Criminal Procedure (Lund: Institutet för rättshistorisk forskning, Rättshistoriskt bibliotek 54, 1997).",
+   "url": "https://olinfoundation.com/publikationer/rb54/33/",
+   "verification": {
+    "status": "supporting_page_checked",
+    "checked_on": "2026-10-31",
+    "note": "Page 33 (chapter 3) read in the Institute/Olin Foundation's own digital edition, with notes 30–32; title, author, year and series from the volume's index page (https://olinfoundation.com/publikationer/rb54/). OCR footnote numbering partly garbled. Rest of book unread."
+   }
+  }
+ ],
+ "reused_sources": [
+  {
+   "id": "tc234_bartlett_trial",
+   "use": "rb_rel_01 (1986 Clarendon date)"
+  },
+  {
+   "id": "tc234_bartlett_race",
+   "use": "Notes and nationalism passages rechecked 2026-10-31 for cited theorists; supports held leads only."
+  }
+ ],
+ "source_addenda": {}
+}

@@ -1,0 +1,77 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (james_rodger_miller: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "jrm_rel_01",
+   "source": "james_rodger_miller",
+   "target": "emma_larocque",
+   "type": "connection",
+   "relationship_kind": "contribution",
+   "directed": true,
+   "relationship": "In her 1999 dissertation Emma LaRocque recommends Miller's Skyscrapers Hide the Heavens (1989) as an overview of treaties, the Indian Act, reserves, residential schools and Métis land loss. She also cites 'Miller' with Frideres, Ponting, Dickason and Green for the point that colonial forces acting on Native peoples in Canada were institutional rather than military.",
+   "map_label": "Cited by LaRocque as overview and authority, 1999",
+   "evidence_note": "LaRocque, Native Writers Resisting Colonizing Practices in Canadian Historiography and Literature (PhD, University of Manitoba, 1999), University of Manitoba repository PDF, read 2026-10-31 at the passages concerned and re-checked by independent review (text layer; OCR slips corrected). PDF p. 56, n. 15: 'For a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands see Frideres, Aboriginal Peoples in Canada; Miller, Skyscrapers Hide the Heavens; Dickason, Canada's First Nations.' PDF p. 133: the colonial forces 'have not been military, as a rule, but rather, have been institutional through economic, religious, educational legislative, and media systems (Frideres, Ponting, Miller, Dickason, Green)'. That parenthetical gives no title. Her bibliography lists both 'Miller, J.R. Skyscrapers hide the heavens' (1989) and Christine Miller and Patricia Chuchryk, eds., Women of the First Nations (1997). Reading the p. 133 'Miller' as J. R. Miller is an inference from its context and from n. 15. This is a recommended overview and a citation in argument, not an endorsement of Miller's whole interpretation. LaRocque elsewhere criticises settler 'cross-cultural' historians (her edges to Van Kirk, Brown and Trigger), and Miller is not among those she names there. No Miller text read.",
+   "source_ids": [
+    "ind126_larocque_thesis",
+    "ind127_miller_1989"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Verified in the University of Manitoba repository PDF. PDF p. 56, n. 15: 'For a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands see Frideres, Aboriginal Peoples in Canada; Miller, Skyscrapers Hide the Heavens; Dickason, Canada's First Nations'. PDF p. 133: colonial forces 'have not been military, as a rule, but rather, have been institutional through economic, religious, educational legislative, and media systems (Frideres, Ponting, Miller, Dickason, Green)'. Direction is right: Miller's work feeds LaRocque's argument, so Miller → LaRocque. Judgement on the researcher's question: a recommended-overview footnote and a five-name parenthetical are a thin but real citation-in-argument, not topic overlap. They are worth an edge because they show LaRocque using Miller as an authority while criticising other settler historians, and Miller has only two edges. The wording must be weaker than 'names Miller among the authorities for her argument', and the namesake risk must be recorded. Her bibliography also lists Christine Miller (co-editor of Women of the First Nations, 1997, which contains a LaRocque essay). The p. 133 parenthetical gives no title, so attributing it to J. R. Miller is an inference from context and from n. 15. The 'printed p. 130 by the page offset' claim cannot be checked (printed numbers are not in the text layer); cite PDF pages only.",
+    "reviewer": "review-A.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "olive_patricia_dickason → james_rodger_miller",
+   "reason": "Held, unread. Dickason reviewed Skyscrapers Hide the Heavens in the American Historical Review 95:5 (December 1990): 1654–1655 (doi:10.1086/ahr/95.5.1654; OUP page confirms reviewer and pages; text is a paywalled PDF and the first-page image could not be retrieved). Her judgement is unknown. A strong person↔person candidate if a reviewer can read it."
+  },
+  {
+   "pair": "james_rodger_miller ↔ who_killed_debate (and Cook, Valverde, Owram, Palmer, Iacovetta)",
+   "reason": "Held, unread. Miller responded to Létourneau in the CHR forum (81:2, 2000; doi:10.3138/chr.81.2.230) alongside Cook, Valverde, Owram, Palmer and Iacovetta; his text is unread. Appearing in the same forum is not a relationship between respondents."
+  },
+  {
+   "pair": "winona_wheeler → james_rodger_miller",
+   "reason": "Searched without a verified omission: Stevenson [Wheeler], 'The Othering of Indigenous History' (Saskatchewan History 50:2, 1998, pp. 24–27 and notes), OCR'd from the open issue PDF 2026-10-31: Miller is not named."
+  },
+  {
+   "pair": "robert_alexander_innes → james_rodger_miller",
+   "reason": "Not proposed: Innes (2018) lists Miller only in a note on residential-school and genocide literature, without a view."
+  },
+  {
+   "pair": "Haig-Brown, Kelm and Brownlie, Bishop, Neylan, Gélinas, Nichols, St Germain, Binnema, Pettit → Miller",
+   "reason": "Held for missing endpoints: reviewers and critics of Miller's books who are not atlas endpoints (Haig-Brown's critique already informs edge_2829). The 2015 Canadian Journal of History special issue 'Since Skyscrapers' (Carlson and Labelle) honouring Miller is paywalled and unread."
+  },
+  {
+   "pair": "james_rodger_miller → settler_colonialism",
+   "reason": "Not proposed: no use of the settler-colonial frame attested in what has been read (the entry's own caution)."
+  },
+  {
+   "pair": "james_rodger_miller → cdn_religion_reform (second edge, 'Anti-Catholic Thought in Victorian Canada', CHR 1985)",
+   "reason": "Would duplicate edge_2829's endpoints and kind; article unread (no abstract)."
+  },
+  {
+   "pair": "james_rodger_miller → olive_patricia_dickason (syntheses)",
+   "reason": "Not proposed: the native_newcomer entry groups their syntheses while stating they differ; topic is not evidence."
+  }
+ ],
+ "new_sources": [],
+ "reused_sources": [
+  {
+   "id": "ind126_larocque_thesis",
+   "use": "jrm_rel_01 (PDF pp. 56 and 133, bibliography)"
+  },
+  {
+   "id": "ind127_miller_1989",
+   "use": "jrm_rel_01 (bibliographic identification of the cited work)"
+  }
+ ],
+ "source_addenda": {
+  "ind126_larocque_thesis": "Addendum 2026-10-31 (thin-person-edges, J. R. Miller): PDF p. 56, n. 15 recommends Frideres, Miller's Skyscrapers Hide the Heavens and Dickason's Canada's First Nations as 'a good overview of treaties, the Indian Act, reserves, residential schools and Metis loss of lands'. PDF p. 133 cites '(Frideres, Ponting, Miller, Dickason, Green)' for the institutional, not military, character of colonial forces. The p. 133 citation gives no title. The bibliography lists both J. R. Miller (Skyscrapers, 1989) and Christine Miller and Patricia Chuchryk, eds. (1997), so J. R. Miller there is inferred from context. Read in the University of Manitoba repository PDF (text layer; OCR slips corrected)."
+ }
+}

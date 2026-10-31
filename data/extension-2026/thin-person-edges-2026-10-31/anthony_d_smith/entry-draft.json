@@ -1,0 +1,76 @@
+{
+ "status": "proposal_for_review",
+ "prepared": "2026-10-31",
+ "applies_to": "historiography-1920-2000.json revision 1.234 -> candidate 1.235 (anthony_d_smith: existing person entry, relationship backfill; no new node)",
+ "review_status": "independently_reviewed",
+ "proposed_edges": [
+  {
+   "proposal_id": "smith_rel_01",
+   "source": "anthony_d_smith",
+   "target": "eric_hobsbawm",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "In his Warwick opening (1995), Smith disputes Hobsbawm's view of the nation as largely ‘invented traditions’ and above all his denial of any connection between popular ‘proto-national’ communities and later nationalisms: ‘This is exactly where I disagree’",
+   "map_label": "Against invented tradition and no proto-national link, 1995",
+   "evidence_note": "Read 2026-10-31: Smith's opening, Warwick debate, 24 October 1995 (published Nations and Nationalism, 1996), LSE Gellner resource page. In the passage beginning ‘It is, of course, in the deconstructionist models of Benedict Anderson and Eric Hobsbawm’: ‘In Hobsbawm's approach, the nation is seen, in large part, as a set of “invented traditions”’ (citing Hobsbawm and Ranger 1983, ch. 1); both models aim to ‘debunk nationalist views of the nation as somehow “primordial” and “perennial”’. In the passage beginning ‘But the third problem is the most crucial’: Hobsbawm ‘goes so far as to deny any connection between the popular “Proto-national” communities’ and later political nationalisms (citing Hobsbawm 1990, ch. 2); ‘This is exactly where I disagree’; ‘Modern political nationalisms cannot be understood without reference to these earlier ethnic ties and memories.’ (The page's OCR prints ‘Erie Hobsbawm’.) Smith accepts that nations are partly planned; the critique concerns the neglect of ethnic persistence, not a denial that invention occurs. Hobsbawm's reply, if any, unread; Smith's 1991 Millennium article ‘The Nation: Invented, Imagined, Reconstructed?’ is unread (no abstract obtainable).",
+   "source_ids": [
+    "warwick_nationalism"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept",
+    "reason": "LSE Gellner resource page (Warwick debate, existing source warwick_nationalism) re-fetched: 'In Hobsbawm's approach, the nation is seen, in large part, as a set of “invented traditions”'; 'Erie [sic] Hobsbawm, indeed, goes so far as to deny any connection between the popular “Proto-national” communities that he analyses and subsequent political nationalisms (Hobsbawm 1990, ch. 2)'; 'This is exactly where I disagree. Modern political nationalisms cannot be understood without reference to these earlier ethnic ties and memories'. Explicit, primary, directed critique; the evidence note keeps Smith's concession that nations are partly planned. Accept.",
+    "reviewer": "review-BC.json"
+   }
+  },
+  {
+   "proposal_id": "smith_rel_02",
+   "source": "anthony_d_smith",
+   "target": "benedict_anderson",
+   "type": "critique",
+   "relationship_kind": "critique",
+   "directed": true,
+   "relationship": "Smith (Warwick opening, 1995) grants that neither Anderson nor Hobsbawm treats the nation as ‘a wholly imaginary category’, accepting Anderson's ‘imagined political community’ provided that calling the nation imagined does not ‘gainsay its reality or consider it a fabrication’, and holds against modernist accounts that nations are also products of ‘preexisting traditions and heritages’.",
+   "map_label": "Imagined, but also real, 1995",
+   "evidence_note": "Read 2026-10-31: Smith's Warwick opening (1995; published 1996), same passage as smith_rel_01: ‘In Anderson's model, the nation is seen as an “imagined political community”’, ‘imagined as both finite and sovereign’ (citing Anderson 1983, ch. 3). In the following passage (‘This seems to me quite proper’) Smith agrees on condition: the nation is not ‘a wholly imaginary category’; to call it imagined should not ‘gainsay its reality or consider it a fabrication’ (his example: the Parthenon is both imagined and real); nations are ‘products of preexisting traditions and heritages which have coalesced over the generations’. A qualified critique that grants part of Anderson's view; Anderson's own text and any reply unread here. Reviewer 2026-10-31: the passage opens with Smith's concession ‘I do not think that either would regard the nation as a wholly imaginary category’, and the proviso is addressed to Anderson and Hobsbawm together; the edge is a qualified critique of Anderson's modernism, not a charge that he treats nations as fabrications.",
+   "source_ids": [
+    "warwick_nationalism"
+   ],
+   "classification_basis": "editorial_review",
+   "review": {
+    "verdict": "accept_with_edits",
+    "reason": "Same page re-read. Quotes exist ('imagined political community', 'quite proper, provided that ... we do not gainsay its reality or consider it a fabrication', the Parthenon example, 'preexisting traditions and heritages'). But the relationship omits Smith's concession immediately before: 'I do not think that either would regard the nation as a wholly imaginary category'. The proviso is addressed to Anderson and Hobsbawm jointly, and Smith grants that Anderson does not hold the view he warns against, so without the concession the edge implies a stronger disagreement than the text supports. The disagreement that remains is the ethno-symbolist objection to modernist accounts. Edit to include the concession.",
+    "reviewer": "review-BC.json"
+   }
+  }
+ ],
+ "edges_considered_not_proposed": [
+  {
+   "pair": "anthony_d_smith → eric_hobsbawm / benedict_anderson (1991 article)",
+   "reason": "‘The Nation: Invented, Imagined, Reconstructed?’, Millennium 20:3 (1991): 353–368 (Crossref metadata) is the obvious fuller statement, but SAGE returned 403 and no abstract was obtainable. Bibliographic lead only; not cited."
+  },
+  {
+   "pair": "anthony_d_smith → nationalismstudies (second edge, ‘Gastronomy or Geology?’ 1995)",
+   "reason": "Author abstract read (Nations and Nationalism 1:1, 1995): nationalists are ‘not social engineers or mere image makers as modernist and post-modernist accounts would have it, but rather social and political archaeologists’. Same claim as the existing edge_1555; could be a source addendum, not a new edge. Names no person."
+  },
+  {
+   "pair": "anthony_d_smith ↔ anthony_giddens / partha_chatterjee / rogers_brubaker",
+   "reason": "Smith's Nationalism and Modernism (1998) surveys many theorists, but its contents and chapters were unreadable in this pass (no publisher contents page reached). Held as unread."
+  },
+  {
+   "pair": "eric_hobsbawm → anthony_d_smith",
+   "reason": "No reply by Hobsbawm to Smith was read. Not proposed."
+  }
+ ],
+ "new_sources": [],
+ "reused_sources": [
+  {
+   "id": "warwick_nationalism",
+   "use": "smith_rel_01, smith_rel_02 (Smith's opening re-read 2026-10-31 for the Anderson and Hobsbawm passages)"
+  }
+ ],
+ "source_addenda": {
+  "warwick_nationalism": "Re-read 2026-10-31: Smith's opening also criticises Anderson's ‘imagined political community’ and Hobsbawm's ‘invented traditions’ (passages beginning ‘It is, of course, in the deconstructionist models’, ‘This seems to me quite proper’ and ‘But the third problem is the most crucial’), citing Anderson 1983 ch. 3, Hobsbawm and Ranger 1983 ch. 1 and Hobsbawm 1990 ch. 2. The page's OCR reads ‘Erie Hobsbawm’."
+ }
+}
