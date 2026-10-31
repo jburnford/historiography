@@ -25,6 +25,11 @@ class TitleMatching(unittest.TestCase):
         self.assertTrue(source_names_title(['His Sexual politics, 2011:'],
                                            'Sexual Politics: Sexuality, Family Planning, and the British Left'))
 
+    def test_a_note_denying_authorship_never_counts(self):
+        note = "Email from author, rec'd. Mar. 23, 2005: (Nancy Christie; birth date 1954; not author of Households of faith, Engendering the state)"
+        self.assertFalse(source_names_title([note], 'Engendering the State: Family, Work, and Welfare in Canada'))
+        self.assertTrue(source_names_title(['Engendering the state, 2000:'], 'Engendering the State: Family, Work, and Welfare in Canada'))
+
     def test_serial_titles_are_not_books(self):
         self.assertTrue(SERIAL.search('Journal of Social History'))
         self.assertFalse(SERIAL.search('Sexual Politics'))

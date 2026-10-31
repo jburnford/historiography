@@ -88,6 +88,11 @@ def titles_agree(cited, record):
     return a == b or len(sa & sb) / len(sa | sb) >= 0.8
 
 
+# A 670 that denies authorship names the title too: 'Email from author ...: not author of Households of
+# faith, Engendering the state' (Christie, Nancy, 1954-, 2026-10-31). Such notes never count.
+DENIAL = re.compile(r"\bnot (?:the )?(?:author|same|to be confused|identical)\b|\bnot\b[^.;]{0,40}\bauthor of\b", re.I)
+
+
 def source_names_title(sources, cited):
     """An LC 670 source citation that contains the cited main title (three or more words). A two-word
     title ('Labour's war') counts only when the citation opens with it, after 'His'/'Her'/'Their', and a
@@ -95,6 +100,7 @@ def source_names_title(sources, cited):
     w = words(main_title(cited))
     if len([x for x in w if x not in STOP]) < 2:
         return False
+    sources = [s for s in sources if not DENIAL.search(s)]
     needle = ' '.join(w)
     if len(w) >= 3:
         return any(needle in ' '.join(words(s)) for s in sources)
@@ -212,7 +218,8 @@ def main():
     ap.add_argument('--cache', type=Path, required=True)
     ap.add_argument('--names', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
-    ap.add_argument('--books', type=int, default=3, help='books tried per person')
+    ap.add_argument('--books', type=int, default=5, help='books tried in the catalogue per person')
+    ap.add_argument('--offline-books', type=int, default=8, help='books checked against LC 670 sources per person')
     ap.add_argument('--delay', type=float, default=2.0)
     ap.add_argument('--pause', type=float, default=60)
     ap.add_argument('--limit', type=int, default=0)
@@ -229,7 +236,7 @@ def main():
         nodes = [n for n in nodes if n['label'] in wanted_labels or n['name'] in wanted_labels]
     graph_key = canon_keys(canon['nodes'])
     state = State.load(ROOT / 'data/identifiers/events.jsonl')
-    books = books_by_person({graph_key[n['name'], n['qid']] for n in nodes}, args.books)
+    books = books_by_person({graph_key[n['name'], n['qid']] for n in nodes}, max(args.books, args.offline_books))
     qid_basis = {}
     with (D / 'cited-people.csv').open(newline='', encoding='utf-8') as f:
         wanted = set(graph_key.values())
@@ -285,12 +292,25 @@ def main():
             found = [dict(lcid=lcid, via='lc_670', book=h,
                           record_title=next((s for s in src if source_names_title([s], h['title'])), ''))
                      for h in hits]
+        elif offline and not set.intersection(*({h['work_id'] for h in hits} for hits in offline.values())) \
+                and all(len(owners) == 1 for owners in cited_in_670.values()):
+            # LC's own notes give different books of this name to different people: the canon key pools
+            # namesakes ('Salmon, John': Renaissance and revolt is J. H. M. Salmon's, Wealthy Corinth John
+            # Salmon's, b. 1942). No authority can be the key's.
+            outcome = 'books_disagree'
+            stats[outcome] += 1
+            rows.append(dict(key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
+                             dissertation_qid=n['qid'] or '', dissertation_qid_basis=qid_basis.get(gk, ''),
+                             outcome=outcome, books_tried=0, via='lc_670_owners',
+                             evidence_works=' '.join(f"{lcid}:{h['work_id']}" for lcid, hits in sorted(offline.items())
+                                                     for h in hits)))
+            continue
         elif offline:
             outcome = 'offline_670_ambiguous'      # several namesakes cite the same title; try the catalogue
         # Catalogue: every book when the offline pass found nothing; otherwise the most-cited book, when
         # the offline hit rests on a lesser one.
         top = books.get(gk, [])[:1]
-        catalogue = books.get(gk, []) if not found else \
+        catalogue = books.get(gk, [])[:args.books] if not found else \
             [b for b in top if b['work_id'] not in {f['book']['work_id'] for f in found}]
         for b in catalogue:
             q = query(b['title'], family)
