@@ -5,6 +5,8 @@ Reads the data block of the research page that scripts/historian_cocitation_netw
 (summary/comparisons/historian-network.html) and writes data/dissertation-layer/site/canon-map.json
 with these additions:
 - ``snapshot``: the build date the page states;
+- removed: ``co`` and each view's ``edges`` (the research page's fixed top-5 lines); the site derives its
+  lines from ``links``, ``link_top``, ``keep`` and ``min_co``;
 - ``region_theses``: the per-region thesis counts the page states;
 - ``nodes[].reading``: the person's key in the Dissertation reading export, where exactly one person
   there has the same display name. This is a link only. The two use different builds.
@@ -90,6 +92,11 @@ def main():
     page = SOURCE.read_text(encoding='utf-8')
     data = json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>', page, re.S).group(1))
     data['snapshot'] = re.search(r'Built (\d{4}-\d\d-\d\d)', page).group(1)
+    # The site draws its lines from ``links`` with its own link controls (top k per person, minimum
+    # co-citation); the research page's fixed top-5 lines and their pair counts are not sent.
+    data.pop('co')
+    for view in data['views'].values():
+        view.pop('edges')
     counts = re.search(r'next\s+region\'s \(([^)]*) theses\)', page).group(1)
     data['region_theses'] = {NAMES[m.group(1)]: int(m.group(2).replace(',', ''))
                              for m in re.finditer(r'(Canada|United States|Britain|Rest of Europe|elsewhere) ([\d,]+)', counts)}

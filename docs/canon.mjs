@@ -11,6 +11,8 @@ const getData = () => load ||= fetch('data/dissertations/canon-map.json', {signa
   .then(r => { if (!r.ok) throw new Error('The canon map could not be loaded.'); return r.json(); })
   .catch(e => { load = null; throw e; });
 
+const minCoSteps = data => [...new Set([data.min_co, 10, 20, 30, 50, 100, 200])].filter(v => v >= data.min_co).sort((a, b) => a - b);
+
 export const isCanonHash = hash => new URLSearchParams(hash.replace(/^#/, '')).get('tab') === 'canon';
 
 function shell(data) {
@@ -21,6 +23,8 @@ function shell(data) {
     <div class="canon-controls">
       <label>Cited by at least <input type="range" class="canon-threshold" min="0" max="${data.steps.length - 1}" step="1" aria-valuetext=""> <output class="canon-threshold-value"></output></label>
       <label>Links <select class="canon-measure"><option value="raw">Co-citation count: the core and its hubs</option><option value="assoc">Association strength: fields and neighbours</option></select></label>
+      <label>Links per person <select class="canon-top">${[5, 10, 25].map(k => `<option value="${k}"${k === data.keep ? ' selected' : ''}>Top ${k}</option>`).join('')}</select></label>
+      <label>Cited together by at least <input type="range" class="canon-minco" min="0" max="${minCoSteps(data).length - 1}" step="1" value="0" aria-valuetext=""> <output class="canon-minco-value"></output></label>
       <label class="canon-find-label">Find a person <input type="search" class="canon-find" list="canon-names" autocomplete="off" placeholder="Try Thompson, Innis, Foucault"></label><datalist id="canon-names"></datalist>
       <span class="canon-buttons"><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" class="canon-fit">Fit</button><button type="button" class="canon-relayout">Reset positions</button></span>
     </div>
@@ -31,7 +35,8 @@ function shell(data) {
     <details class="reading-coverage canon-pairs"><summary>The strongest co-citations among the people shown</summary><div class="reading-table-scroll" tabindex="0" role="region" aria-label="Strongest co-citations"><table><caption>Pairs of people cited by the same theses</caption><thead><tr><th scope="col">Pair</th><th scope="col">Theses citing both</th><th scope="col">Theses citing the first</th><th scope="col">Theses citing the second</th></tr></thead><tbody></tbody></table></div></details>
     <details class="reading-coverage"><summary>How to read this map</summary>
       <p><strong>Co-citation count</strong> is the number of theses whose bibliographies cite both people (any of their works). It grows with fame, so the most cited theorists become hubs and the map shows the canon's core and its reach. <strong>Association strength</strong> divides that count by what the two people's citation counts would give by chance, so people sit with those who share their readers. That brings out fields rather than fame.</p>
-      <p>Each person keeps their five strongest links among the people shown, counting only pairs cited together by at least five theses. The positions come from a spring layout computed for each threshold, so the axes mean nothing. People with no link to the map at a threshold are not drawn.</p>
+      <p>Almost every pair of well-cited people is cited together somewhere, so the lines are a selection. Each person draws their strongest links among the people shown (<strong>Links per person</strong>: top 5, 10 or 25), counting only pairs that at least the chosen number of theses cite together (<strong>Cited together by at least</strong>). A line appears when either person picks it, so much-cited people collect more than their share. A missing line means the two are not among each other's strongest partners, not that no thesis cites both. Top 25 is offered from ${fmt(Object.entries(data.link_top).filter(([, k]) => k >= 25).map(([t]) => +t).sort((a, b) => a - b)[0] ?? 0)} theses up; at lower thresholds a full set would run to tens of thousands of lines. With association strength and a high minimum, a person's picks come from their ${fmt(Math.max(...Object.values(data.link_top)))} strongest partners, so a few weaker qualifying pairs can be missed.</p>
+      <p>The positions come from a spring layout of each person's ${fmt(data.keep)} strongest links, computed once for each threshold and kept when you change the link controls, so the axes mean nothing. People with no link to the main map at a threshold are not drawn.</p>
       <p><strong>Colour</strong> marks where a person is read. A person leans to a region when the share of its History PhDs citing them is at least 1.5 times the next region's; otherwise they are shared. The regions hold different numbers of theses (${Object.entries(data.region_theses || {}).map(([k, n]) => `${esc(REGION_LABELS[k] || k)} ${fmt(n)}`).join(', ')}). Coverage depends on which repositories release full texts, so these are samples, not censuses.</p>
       <p><strong>People</strong> are the first authors of cited works as the citation graph resolves them. Namesakes are split through their cited titles where reviewed. Hollow circles have no reviewed Wikidata identity: most are real historians, but a common name can merge namesakes. Stray tokens, government bodies and initial-only names are left out. A citation records use, not agreement or influence. Life years come from Library of Congress name authorities, Wikidata and the atlas's sourced reviews; birth years are shown only for people who have died.</p>
       <p>This map uses a newer build of the dissertation graph than the dated release behind <a href="#tab=dissertations">Dissertation reading</a>, so counts can differ between the two. <a href="https://github.com/jburnford/historiography/blob/main/scripts/historian_cocitation_network.py" target="_blank" rel="noopener noreferrer">Method and code →</a></p>
@@ -50,24 +55,47 @@ export async function mountCanon(root) {
   root.innerHTML = shell(data);
   const $ = s => root.querySelector(s);
   const N = data.nodes, svg = $('.canon-svg'), vp = $('.canon-vp'), tip = $('.canon-tip'), thr = $('.canon-threshold'), measure = $('.canon-measure'), find = $('.canon-find');
+  const topSel = $('.canon-top'), minco = $('.canon-minco'), MINCO = minCoSteps(data);
+  // candidate links: (a, b, theses citing both) triples; each person's list of [partner, count]
+  const coMap = new Map(), partners = N.map(() => []);
+  for (let i = 0; i < data.links.length; i += 3) {
+    const a = data.links[i], b = data.links[i + 1], c = data.links[i + 2];
+    coMap.set(a * 100000 + b, c); partners[a].push([b, c]); partners[b].push([a, c]);
+  }
   thr.value = Math.max(0, data.steps.indexOf(data.default));
   const nameOf = n => n.label || n.name;
   const byName = new Map(N.map((n, i) => [nameOf(n), i]));
   $('#canon-names').innerHTML = [...byName.keys()].sort().map(s => `<option value="${esc(s)}">`).join('');
   const radius = n => 2 + Math.sqrt(n.cited) * 0.36;
-  const co = (a, b) => data.co[Math.min(a, b) + ',' + Math.max(a, b)] || 0;
+  const co = (a, b) => coMap.get(Math.min(a, b) * 100000 + Math.max(a, b)) || 0;
   const strength = (a, b) => measure.value === 'raw' ? co(a, b) : co(a, b) / (N[a].cited * N[b].cited);
   const moved = {};
   let cur = null, curKey = '', pos = {}, nbr = {}, nodeEls = {}, labelEls = {}, labelLayer = null, view = {x: 0, y: 0, w: S, h: S}, selected = null;
 
-  function draw() {
+  function linksFor(ids, k, m) {
+    // each shown person's k strongest partners among the shown, pairs cited together by at least m theses
+    const shown = new Set(ids), out = new Map();
+    for (const a of ids) {
+      const best = partners[a].filter(([b, c]) => c >= m && shown.has(b)).map(([b]) => [strength(a, b), b]).sort((x, y) => y[0] - x[0]).slice(0, k);
+      for (const [, b] of best) out.set(Math.min(a, b) * 100000 + Math.max(a, b), [Math.min(a, b), Math.max(a, b)]);
+    }
+    return [...out.values()];
+  }
+  function draw(refit = true) {
     const t = data.steps[+thr.value], key = `${t}-${measure.value}`, mv = moved[key] ||= {};
     cur = data.views[key]; curKey = key;
+    const most = data.link_top[t];
+    for (const o of topSel.options) o.disabled = +o.value > most;
+    if (+topSel.value > most) topSel.value = String([...topSel.options].filter(o => !o.disabled).pop().value);
+    const m = MINCO[+minco.value];
+    cur.edges = linksFor(cur.ids, +topSel.value, m);
     $('.canon-threshold-value').textContent = `${t} theses (${fmt(cur.ids.length)} people)`;
     thr.setAttribute('aria-valuetext', `${t} theses, ${cur.ids.length} people`);
+    $('.canon-minco-value').textContent = `${fmt(m)} theses (${fmt(cur.edges.length)} lines)`;
+    minco.setAttribute('aria-valuetext', `${m} theses, ${cur.edges.length} lines`);
     vp.textContent = ''; pos = {}; nbr = {}; nodeEls = {};
     cur.ids.forEach((i, j) => { pos[i] = mv[i] || cur.xy[j]; nbr[i] = []; });
-    const wmax = Math.max(...cur.edges.map(([a, b]) => strength(a, b)));
+    const wmax = Math.max(1e-12, ...cur.edges.map(([a, b]) => strength(a, b)));
     for (const [a, b] of cur.edges) {
       const l = document.createElementNS(NS, 'line');
       l.setAttribute('class', 'canon-link'); l._a = a;
@@ -84,7 +112,7 @@ export async function mountCanon(root) {
     labelLayer = document.createElementNS(NS, 'g'); labelLayer.setAttribute('class', 'canon-labels'); vp.appendChild(labelLayer);
     const rows = [...cur.edges].sort((e, f) => co(f[0], f[1]) - co(e[0], e[1])).slice(0, 150);
     $('.canon-pairs tbody').innerHTML = rows.map(([a, b]) => `<tr><th scope="row">${esc(nameOf(N[a]))} — ${esc(nameOf(N[b]))}</th><td>${fmt(co(a, b))}</td><td>${fmt(N[a].cited)}</td><td>${fmt(N[b].cited)}</td></tr>`).join('');
-    fit();
+    if (refit) fit(); else setView();
     if (selected != null && pos[selected]) highlight(selected);
   }
   function setView() { svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`); labels(); }
@@ -180,7 +208,9 @@ export async function mountCanon(root) {
   let found = '';   // a blur after a picked name fires change again; act once per name
   find.addEventListener('change', () => { const i = byName.get(find.value); if (i != null && find.value !== found) { found = find.value; goTo(i); } });
   root.addEventListener('click', e => { const b = e.target.closest('[data-canon-person]'); if (b) goTo(+b.dataset.canonPerson); });
-  thr.addEventListener('input', draw); measure.addEventListener('change', draw);
+  thr.addEventListener('input', () => draw()); measure.addEventListener('change', () => draw());
+  // the link controls change only the lines: keep the reader's zoom and pan
+  topSel.addEventListener('change', () => draw(false)); minco.addEventListener('input', () => draw(false));
   $('.canon-fit').addEventListener('click', fit);
   $('.canon-relayout').addEventListener('click', () => { moved[curKey] = {}; draw(); });
   const observer = new ResizeObserver(() => { if (!root.isConnected) { observer.disconnect(); return; } fit(); });

@@ -47,7 +47,8 @@ class DissertationExportTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), manifest['output_sha256'])
         data = json.loads(path.read_text())
         # people, layouts and pair counts only: no thesis records travel with the map
-        self.assertEqual(set(data), {'nodes', 'views', 'co', 'steps', 'default', 'leans', 'theses', 'snapshot', 'region_theses'})
+        self.assertEqual(set(data), {'nodes', 'views', 'links', 'link_top', 'keep', 'min_co', 'steps', 'default', 'leans',
+                                     'theses', 'snapshot', 'region_theses'})
         self.assertEqual(data['snapshot'], manifest['snapshot'])
         self.assertEqual(sum(data['region_theses'].values()), data['theses'])
         keys = {s['key'] for s in self.index['sources']}
@@ -78,12 +79,19 @@ class DissertationExportTests(unittest.TestCase):
         for key, count in person_keys.items():
             self.assertLessEqual(count, 1 + merged_into[key], key)
         for key, view in data['views'].items():
+            self.assertEqual(set(view), {'ids', 'xy'}, key)
             self.assertEqual(len(view['ids']), len(view['xy']), key)
-            shown = set(view['ids'])
-            for a, b in view['edges']:
-                self.assertIn(a, shown)
-                self.assertIn(b, shown)
-                self.assertIn(f'{min(a, b)},{max(a, b)}', data['co'])
+        # candidate links for the link controls: (a, b, theses citing both) triples, each pair once
+        self.assertEqual(set(data['link_top']), {str(t) for t in data['steps']})
+        links = data['links']
+        self.assertEqual(len(links) % 3, 0)
+        pairs = [(links[i], links[i + 1]) for i in range(0, len(links), 3)]
+        self.assertEqual(len(pairs), len(set(pairs)))
+        for i in range(0, len(links), 3):
+            a, b, c = links[i:i + 3]
+            self.assertLess(a, b)
+            self.assertLess(b, len(data['nodes']))
+            self.assertGreaterEqual(c, data['min_co'])
 
     def test_missing_years_are_excluded_and_last_period_names_2026(self):
         coverage = self.index['coverage']

@@ -19,6 +19,9 @@ EPThompson 555 Foucault; Foucault 23 ColeHarris etc", "with a filter for low cou
 - **Filter**: the page's threshold for the minimum number of citing theses snaps to the values in
   ``--thresholds``; each (threshold, measure) has its own precomputed spring layout, so dropping
   low-count historians re-forms the map instead of leaving holes.
+- **Link controls** (site): candidate links per step, each person's ``--link-top`` (25) strongest by
+  either measure (``--link-top-low``, 10, below ``--link-full-from``, 80); the site draws each person's
+  top 5, 10 or 25 among pairs above its co-citation minimum, over the same layouts.
 - **Colour**: the region whose share of History PhDs citing the person is at least ``--lean`` (1.5)
   times the next region's (Canada, United States, Britain, rest of Europe); otherwise shared.
 
@@ -99,6 +102,9 @@ def main():
     ap.add_argument('--min-co', type=int, default=5)
     ap.add_argument('--lean', type=float, default=1.5)
     ap.add_argument('--partners', type=int, default=12, help='top co-cited partners listed per person on hover')
+    ap.add_argument('--link-top', type=int, default=25, help="most links per person the site's link control offers")
+    ap.add_argument('--link-top-low', type=int, default=10, help='the same, at steps below --link-full-from')
+    ap.add_argument('--link-full-from', type=int, default=80, help='lowest step offering --link-top links per person')
     args = ap.parse_args()
     steps = sorted(int(t) for t in args.thresholds.split(','))
     assert steps[0] >= args.floor and args.default in steps
@@ -167,6 +173,22 @@ def main():
                                            edges=[[a, b] for a, b in sorted(edges) if a in placed and b in placed])
             print(f'  threshold {t} {measure}: {len(vis)} people, {len(placed)} placed, {len(edges)} links', file=sys.stderr)
 
+    # Candidate links for the site's link controls (2026-10-31, user: a slider for the number of
+    # co-citations and a choice of each person's top 5, 10 or 25). For every step and both measures,
+    # each visible person's strongest --link-top partners (fewer below --link-full-from, where a full
+    # set would run to tens of thousands of lines). The page picks its top k from these and applies its
+    # own co-citation minimum; the layouts above stay those of the --keep strongest links.
+    link_top = {t: args.link_top if t >= args.link_full_from else args.link_top_low for t in steps}
+    cand = set()
+    for t in steps:
+        vis = {i for i in range(len(keys)) if cnt[i] >= t}
+        for w in (co, strength):
+            for a in vis:
+                best = sorted(((w[(min(a, b), max(a, b))], b) for b in nbr[a] if b in vis), reverse=True)[:link_top[t]]
+                cand.update((min(a, b), max(a, b)) for _, b in best)
+    links = [x for a, b in sorted(cand) for x in (a, b, co[(a, b)])]
+    print(f'  {len(cand):,} candidate links for the link controls', file=sys.stderr)
+
     nodes = []
     for i, p in enumerate(keys):
         r = people[p]
@@ -184,7 +206,8 @@ def main():
     drawn = {tuple(e) for v in views.values() for e in v['edges']}
     co_out = {f'{a},{b}': co[(a, b)] for a, b in drawn}
     payload = json.dumps(dict(nodes=nodes, views=payload_views, co=co_out, steps=steps, default=args.default,
-                              leans=LEANS, theses=n_theses), ensure_ascii=False, separators=(',', ':'))
+                              leans=LEANS, theses=n_theses, links=links, link_top=link_top, keep=args.keep,
+                              min_co=args.min_co), ensure_ascii=False, separators=(',', ':'))
 
     pairs_path = D / 'summary' / 'network' / 'historian-cocitation-pairs.csv'
     with pairs_path.open('w', newline='', encoding='utf-8') as f:
