@@ -148,6 +148,22 @@ unresolved as a status). Their dissertation QIDs are kept as evidence
 - `jane_m_jacobs` is an Australian geographer, while the dissertations cite the urbanist Jane Jacobs
   (Q234335). Check which one the atlas means.
 
+## LC name authorities (2026-10-30 and 31)
+
+Runs and tiers: [data/field-research/lc-authorities-2026-10-30](../field-research/lc-authorities-2026-10-30/README.md).
+Applied with `scripts/key_lc_canon.py`, in this order:
+
+| Step | Folder | Effect |
+| --- | --- | --- |
+| Atlas route | `lc-atlas-2026-10-30/` | 455 `lcnaf:` anchors; 234 candidate members |
+| Kaplan correction | `lc-canon-2026-10-31/kaplan-correction.json` | Detached `lcnaf:n81041288` from p-930 (Wikidata's P244 for Marion A. Kaplan names a namesake); kept as `lcnaf-rejected:` |
+| Canon route | `lc-canon-2026-10-31/proposal.json` | 2,171 new anchors (284 already present from the atlas); 348 candidate members; 2,075 keys `unresolved` → `established` |
+| Merges | `lc-canon-2026-10-31/merges.json` | 7 of the 10 shared-authority pairs merged into the oldest key (Woodward, Levi, Takaki, Louis, Hoskins, Hurt, Yerushalmi) |
+
+**Still in review** (`lc-canon-2026-10-31/merge-review-queue.json`): 'Young, Robert' / Robert J. C. Young,
+'Morris, Robert' / R. J. Morris, and 'Shoemaker, Robert' / Robert B. Shoemaker. A bare name key can pool
+several people, so one shared authority is not enough to merge it.
+
 **Known limitation.** `diss-person:` anchors are graph name keys. If a later dissertation build
 renames a key (alias merging), the builder must pass the old → new key map, or the person will be
 minted again and the old key reported as unsupported.

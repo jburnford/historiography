@@ -46,7 +46,8 @@ Single-initial canon keys ('Taylor, A.') pool several people and never anchor.
 
 | Outcome | People |
 | --- | ---: |
-| exact (444 automatic, 10 confirmed by hand, plus C. L. R. James) | 455 |
+| exact (443 automatic, 10 confirmed by hand, plus C. L. R. James) | 454 |
+| P244 rejected (Marion A. Kaplan, 2026-10-31: Wikidata's P244 names a namesake) | 1 |
 | candidate: plausible QID | 219 |
 | candidate: name or date check failed | 14 |
 | candidate: several P244 | 1 |
@@ -59,6 +60,32 @@ Single-initial canon keys ('Taylor, A.') pool several people and never anchor.
 - **C. L. R. James.** Wikidata lists two LC authorities for him:
   - `n50028957`, his heading, is the anchor;
   - `n95037594`, his pseudonym "J. R. Johnson", is recorded as `lcnaf-pseudonym:`.
+
+## Canon results (2026-10-31, applied to the key log)
+
+| Tier | People |
+| --- | ---: |
+| exact | 2,631 |
+| candidate: single book | 250 |
+| candidate: initials only | 107 |
+| candidate: Wikidata disagrees | 2 |
+| unresolved: books disagree / no LC record / person not resolved / no title match / no book | 104 / 58 / 51 / 43 / 22 |
+
+- **Dates:** 2,472 people have an LC birth year, 828 a death year.
+- **Requests:** about 2,300 catalogue requests over the night of 30–31 October; all are cached.
+
+**Precision.** The first full run was checked against the atlas route on the 314 people both routes
+resolved. That check exposed three faults, fixed before applying:
+- **Given names.** `identity_routes.compatible` compares first initials only, so 'Angus McLaren'
+  matched his co-author Arlene Tigar McLaren. `given_agrees` now requires spelled-out given names
+  (first and middle) to be forms of one name: Ken/Kenneth, Wm./William, Georg/György agree;
+  Angus/Arlene, Mary Frances/Mary Elizabeth, John Henry/John Paul do not.
+- **Lesser books.** An LC 670 citing one of a person's lesser books had counted as confirmation. A canon
+  key can carry a namesake's book ('Billig, Michael' carried Michael S. Billig's), so the most-cited
+  book is now also checked in the catalogue. That moved 32 people from exact to `books_disagree`,
+  nearly all common names (John Henry Newman had resolved to a John Paul Newman born 1978).
+- **Atlas side.** Wikidata's P244 for Marion A. Kaplan names a different Marion Kaplan (above).
+After the fixes, all 284 people rated exact on both routes have the same authority.
 
 ## Dates
 

@@ -7,12 +7,18 @@ counts only if:
 - its title (245 $a) agrees with the cited title (same main title after normalisation, or token overlap
   of at least 0.8; the cited main title needs two or more content words), and
 - exactly one of its personal-name headings is compatible with the person's name
-  (identity_routes.compatible).
+  (identity_routes.compatible, plus `given_agrees`: when both sides spell out a given name, the names
+  must be variants of one name, so 'Angus' does not match 'Arlene').
 The heading is resolved through the local LC name index (scripts/lc_names_index.py), as in
 scripts/lc_resolve_authorities.py. A book resolves only if every title-agreeing record names the same
 authority (otherwise `records_disagree`: namesakes behind one title). Books are tried most-cited first,
 up to --books, until the authority is confirmed; two books naming different authorities give
 `books_disagree`.
+
+An offline pass runs first: a name-compatible authority whose LC 670 sources cite one of the person's
+books. When that book is not the person's most-cited one, the most-cited book is still checked in the
+catalogue, because a canon key can carry a namesake's book (2026-10-31: 'Billig, Michael' carried a
+book by Michael S. Billig); a different authority there gives `books_disagree`.
 
 **Tiers** (reviewed by a Fable agent on 2026-10-30). A canon key is a name cluster from bibliography
 parsing, so one book only shows that *a* person of that name wrote it:
@@ -86,6 +92,52 @@ def source_names_title(sources, cited):
         return False
     needle = ' '.join(w)
     return any(needle in ' '.join(words(s)) for s in sources)
+
+
+NICKNAMES = {'tom': 'thomas', 'mike': 'michael', 'ted': 'theodore', 'wm': 'william', 'bill': 'william',
+             'bob': 'robert', 'dick': 'richard', 'jim': 'james', 'jack': 'john', 'harry': 'henry',
+             'terry': 'terence', 'tony': 'anthony', 'ned': 'edward', 'sandy': 'alexander', 'peggy': 'margaret',
+             'kate': 'katherine', 'betty': 'elizabeth', 'chuck': 'charles', 'hank': 'henry', 'nick': 'nicholas',
+             # the same name in another language, as LC headings give it
+             'georg': 'gyorgy', 'pieter': 'petrus', 'john': 'jean'}
+FOLD = str.maketrans({'ł': 'l', 'Ł': 'L', 'ø': 'o', 'Ø': 'O', 'đ': 'd', 'ß': 'ss', 'ı': 'i'})
+
+
+PARTICLES = {'de', 'du', 'des', 'la', 'le', 'von', 'van', 'der', 'den', 'di', 'da', 'del', 'dos'}
+
+
+def _token_agrees(a, b):
+    """Two given-name tokens: initials agree on the letter; spelled-out names must match, one must be a
+    prefix of the other (Ken/Kenneth, Jan/Janet), share four leading letters with lengths at most one
+    apart (Maria/Mariia, not Christine/Christopher), or be a listed nickname or equivalent."""
+    if len(a) == 1 or len(b) == 1:
+        return a[0] == b[0]
+    short, long_ = sorted((a, b), key=len)
+    return a == b or (len(short) >= 3 and long_.startswith(short)) \
+        or (a[:4] == b[:4] and len(short) >= 4 and len(long_) - len(short) <= 1) \
+        or NICKNAMES.get(a) == b or NICKNAMES.get(b) == a
+
+
+def given_agrees(person, lc):
+    """Given names as variants of one name (2026-10-31; 'Angus' had matched 'Arlene', 'Mary Frances' had
+    matched 'Mary Elizabeth').
+    - First names: the person's first name must agree with LC's first, or with any later LC given name
+      when both are spelled out ('Jane' in 'Errington, Elizabeth Jane').
+    - Middle names: when both sides have more given names (particles such as 'de' set aside), at least
+      one pair must agree ('Charles-Louis de Secondat' and 'Charles de Secondat' do; 'John Henry' and
+      'John Paul' do not)."""
+    p, l = words((person or '').translate(FOLD)), words((lc or '').translate(FOLD))
+    p, l = p[:1] + [t for t in p[1:] if t not in PARTICLES], l[:1] + [t for t in l[1:] if t not in PARTICLES]   # 'Van Gosse'
+    if not p or not l:
+        return False
+    if _token_agrees(p[0], l[0]):
+        rest_p, rest_l = p[1:], l[1:]
+    elif len(p[0]) > 1 and len(l[0]) > 1 and (i := next((i for i, b in enumerate(l[1:], 1)
+                                                            if len(b) > 1 and _token_agrees(p[0], b)), 0)):
+        rest_p, rest_l = p[1:], l[:i] + l[i + 1:]
+    else:
+        return False
+    return not rest_p or not rest_l or any(_token_agrees(x, y) for x in rest_p for y in rest_l)
 
 
 def initials_only(label):
@@ -186,7 +238,9 @@ def main():
             fam, _, given = a['label'].partition(', ')
             given = given.split(', ')[0]
             fuller = given.split(' (')[1].rstrip(')') if ' (' in given else ''
-            if not (compatible(person, given.split(' (')[0], fam) or (fuller and compatible(person, fuller, fam))):
+            pg = n['label'].partition(', ')[2]
+            if not ((compatible(person, given.split(' (')[0], fam) and given_agrees(pg, given.split(' (')[0])) or
+                    (fuller and compatible(person, fuller, fam) and given_agrees(pg, fuller))):
                 continue
             hits = [b for b in books.get(gk, []) if source_names_title(a['sources'], b['title'])]
             if hits:
@@ -199,7 +253,12 @@ def main():
                      for h in hits]
         elif offline:
             outcome = 'offline_670_ambiguous'      # several namesakes cite the same title; try the catalogue
-        for b in ([] if found else books.get(gk, [])):
+        # Catalogue: every book when the offline pass found nothing; otherwise the most-cited book, when
+        # the offline hit rests on a lesser one.
+        top = books.get(gk, [])[:1]
+        catalogue = books.get(gk, []) if not found else \
+            [b for b in top if b['work_id'] not in {f['book']['work_id'] for f in found}]
+        for b in catalogue:
             q = query(b['title'], family)
             r = fetch.get(SRU5 + urllib.parse.quote(q))
             if r['status'] == 0:
@@ -218,8 +277,9 @@ def main():
                 if not titles_agree(b['title'], facts.get('title', '')):
                     continue
                 seen_title = True
-                match = [h for h in heads if compatible(person, h['given'], h['family'])
-                         or (h['fuller'] and compatible(person, h['fuller'], h['family']))]
+                pg = n['label'].partition(', ')[2]
+                match = [h for h in heads if (compatible(person, h['given'], h['family']) and given_agrees(pg, h['given']))
+                         or (h['fuller'] and compatible(person, h['fuller'], h['family']) and given_agrees(pg, h['fuller']))]
                 if len(match) > 1:
                     ids.add('ambiguous')
                 elif match:

@@ -56,10 +56,13 @@ def lc_rows(state):
             for r in csv.DictReader(f):
                 if r.get('tier') != 'exact' or not r.get('key'):
                     continue
+                key = r['key']
+                while state.keys[key]['status'] == 'merged':       # a run's key may since have been merged
+                    key = state.keys[key]['replaced_by'][0]
                 for part in ('birth', 'death'):
                     if r.get(f'{part}_value'):
                         src = 'lc_046' if r[f'{part}_source'] == '046' else 'lc_heading'
-                        yield r['key'], part, r[f'{part}_value'], r[f'{part}_precision'], src, f'lcnaf:{r["lcnaf"]}'
+                        yield key, part, r[f'{part}_value'], r[f'{part}_precision'], src, f'lcnaf:{r["lcnaf"]}'
 
 
 def main():

@@ -38,6 +38,10 @@ REVIEW = ROOT / 'data/field-research/atlas-qid-review-2026-10-30/review.csv'
 # C. L. R. James: Wikidata lists his authorised heading and the authority for his pseudonym 'J. R. Johnson'
 # (LC keeps pseudonyms as separate authorities). The heading is the anchor; the pseudonym is recorded.
 PREFERRED = {'clr_james': ('n50028957', 'n95037594 is the pseudonym J. R. Johnson')}
+# Wikidata P244 values found wrong. Marion A. Kaplan (2026-10-31): Wikidata gives n81041288, the authority
+# for Marion Kaplan, author of Focus Africa (1982); the historian is n84054225 (the canon route, confirmed
+# by two of her books and LC's NYU source).
+REJECTED = {'marion_a_kaplan': ('n81041288', 'Wikidata P244 is the authority for a namesake (Focus Africa, 1982)')}
 HAND_CONFIRMED = {'white', 'latour', 'rodney', 'sun_tzu', 'talal_asad', 'te_rangi_hiroa', 'gyanendra_pandey',
                   'dharma_kumar', 'alexander_savine', 'valerie_korinek'}
 
@@ -85,7 +89,9 @@ def main():
             if pid in PREFERRED:
                 row['note'] = PREFERRED[pid][1]
             a = by_id.get(lc)
-            if not a:
+            if pid in REJECTED and REJECTED[pid][0] == lc:
+                row.update(outcome='p244_rejected', note=REJECTED[pid][1])
+            elif not a:
                 row['outcome'] = 'p244_not_in_lc_index'
             elif a['deprecated']:
                 row['outcome'] = 'p244_deprecated'

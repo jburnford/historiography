@@ -35,9 +35,12 @@ the sources each side cites: LC's 670 notes, and the references and ranks on Wik
 - The reasons are in `*_review`.
 - First pass, 2026-10-30: 29 conflicts, 19 resolved, 8 unresolved, 2 traditional. LC was wrong in 14 of
   the 19 resolved conflicts, typically by one day or by a day-month swap.
+- Canon-map dates, 2026-10-31: the table grew from 741 to 2,471 people, with one new conflict (David
+  Brion Davis's death; LC wrong). Most canon people have LC as their only source (`single_source`).
 
 **Which sources count:**
-- LC dates count only from the `exact` tier of the LC routes.
+- LC dates count only from the `exact` tier of the LC routes. A run's key that has since been merged is
+  followed to the surviving key.
 - Wikidata dates count from accepted QIDs. Their 2026-10-30 review verdict is in `qid_review`.
 
 **Living people.** The graph keeps living people's birth years (user, 2026-10-30). Site exports must
