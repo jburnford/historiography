@@ -13,6 +13,10 @@ Vocabulary
 - **member**: any other constituent, e.g. a source occurrence ID. Members never drive matching.
 - **alias**: an old or readable name (`slug:geertz`, `edge:edge_001`) that resolves to a key, including
   after the key is retired (lookup follows `replaced_by`).
+- **relation**: a claim key minted with `relation: {subject, predicate, object}` states a link between two
+  entities (an advisor supervised a thesis; a person authored a work). Its anchors are the source assertions
+  (`aha-sup:<record>:<advisor>`), and its endpoints are source anchors (or keys), resolved through the log on
+  every read, so a merge or a detached anchor carries through without rewriting the claim.
 
     python3 scripts/identifiers.py check
     python3 scripts/identifiers.py shard          # one-time: move a legacy events.jsonl to events-0001.jsonl
@@ -54,6 +58,9 @@ KEY_RE = re.compile(r'^([a-z])-([1-9][0-9]*)$')
 SHARD_BYTES = 50_000_000
 SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl$')
 EVENTS = {'mint', 'attach', 'detach', 'merge', 'split', 'retype', 'withdraw', 'relabel', 'status'}
+# Relation predicates, read subject -> object (Fable review 2026-11-01: relations belong in the log, not in
+# side files of keys that go stale when a key merges).
+PREDICATES = {'supervised': ('person', 'work'), 'authored': ('person', 'work')}
 
 
 class LogError(ValueError):
@@ -89,6 +96,7 @@ class State:
         self.anchor = {}            # active anchor -> key
         self.alias = {}             # alias -> key (permanent; may point at a retired key)
         self.members = defaultdict(set)
+        self.relation = {}          # claim key -> {subject, predicate, object} (endpoints as recorded)
         self.top = Counter()        # highest number minted per prefix
         self.seq = 0
 
@@ -154,6 +162,10 @@ class State:
                 raise LogError(f'{key} reuses or reorders a number (last {m.group(1)}-{self.top[m.group(1)]})')
             if ev.get('resolution') not in RESOLUTION:
                 raise LogError(f'bad resolution {ev.get("resolution")}')
+            r = ev.get('relation')
+            if r is not None and (ev['type'] != 'claim' or r.get('predicate') not in PREDICATES
+                                  or not (r.get('subject') and r.get('object'))):
+                raise LogError(f'bad relation on {key}: {r}')
             self.top[m.group(1)] = int(m.group(2))
             self.keys[key] = dict(key=key, type=ev['type'], label=ev.get('label', ''), status=ev.get('status', 'active'),
                                   resolution=ev['resolution'], anchors=set(), aliases=set(), replaced_by=[])
@@ -162,6 +174,8 @@ class State:
             self._claim_anchors(key, ev.get('anchors', []))
             self._claim_aliases(key, ev.get('aliases', []))
             self.members[key].update(ev.get('members', []))
+            if r:
+                self.relation[key] = dict(subject=r['subject'], predicate=r['predicate'], object=r['object'])
         elif kind == 'attach':
             self._live(key)
             self._claim_anchors(key, ev.get('anchors', []))
@@ -225,6 +239,14 @@ class State:
             out.extend([] if nxt else [k])
             todo.extend(nxt)
         return sorted(out)
+
+    def relations(self, predicate=None):
+        """Live relation claims with endpoints resolved to current keys: (claim, subject keys, predicate,
+        object keys). An endpoint whose anchor was detached resolves to no key (reported, not dropped)."""
+        for k, r in self.relation.items():
+            if self.keys[k]['status'] in RETIRED or (predicate and r['predicate'] != predicate):
+                continue
+            yield k, self.lookup(r['subject']), r['predicate'], self.lookup(r['object'])
 
 
 # --- proposals ------------------------------------------------------------------------------------------
@@ -449,6 +471,9 @@ def main():
         print(f'{state.seq} events, {len(state.keys)} keys, {len(state.anchor)} active anchors, {len(state.alias)} aliases')
         for (t, s), n in sorted(by.items()):
             print(f'  {t:12} {s:12} {n}')
+        rel = Counter((p, len(sk) == 1 and len(ok) == 1) for _, sk, p, ok in state.relations())
+        for p in sorted({p for p, _ in rel}):
+            print(f'  relation     {p:12} {rel[p, True]} resolved, {rel[p, False]} dangling or ambiguous')
     elif args.cmd == 'shard':
         print(shard_legacy(args.dir) or 'no legacy events.jsonl')
     elif args.cmd == 'lookup':

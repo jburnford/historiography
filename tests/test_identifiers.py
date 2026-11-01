@@ -236,5 +236,40 @@ class CarryForwardTests(unittest.TestCase):
             with self.assertRaises(LogError):
                 apply_proposal(self.dir, dict(ops=[op]), commit="t", date="d")
 
+
+class RelationTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.dir = Path(self.tmp.name)
+        run(self.dir, [person("Advisor", "aha:1"), person("Advisor again", "orcid:0000-0001"),
+                       dict(type="work", label="Thesis", anchors={"aha-diss:9"}, resolution="established")])
+        apply_proposal(self.dir, dict(ops=[dict(event="mint", key="new:c", type="claim", label="", resolution="recorded",
+                                                anchors=["aha-sup:9:1"],
+                                                relation=dict(subject="aha:1", predicate="supervised", object="aha-diss:9"))]),
+                       commit="t", date="d")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_endpoints_resolve_to_keys_and_follow_a_merge(self):
+        self.assertEqual(list(State.load(self.dir).relations()), [("c-1", ["p-1"], "supervised", ["w-1"])])
+        apply_proposal(self.dir, dict(ops=[dict(event="merge", key="p-1", into="p-2")]), commit="t", date="d")
+        self.assertEqual(list(State.load(self.dir).relations("supervised")), [("c-1", ["p-2"], "supervised", ["w-1"])])
+
+    def test_a_detached_endpoint_dangles_and_a_withdrawn_claim_is_gone(self):
+        apply_proposal(self.dir, dict(ops=[dict(event="detach", key="p-1", anchors=["aha:1"])]), commit="t", date="d")
+        self.assertEqual(list(State.load(self.dir).relations()), [("c-1", [], "supervised", ["w-1"])])
+        apply_proposal(self.dir, dict(ops=[dict(event="withdraw", key="c-1")]), commit="t", date="d")
+        self.assertEqual(list(State.load(self.dir).relations()), [])
+
+    def test_bad_relations_are_refused(self):
+        for typ, rel in (("claim", dict(subject="aha:1", predicate="admired", object="aha-diss:9")),
+                         ("claim", dict(subject="", predicate="supervised", object="aha-diss:9")),
+                         ("person", dict(subject="aha:1", predicate="supervised", object="aha-diss:9"))):
+            with self.assertRaises(LogError):
+                apply_proposal(self.dir, dict(ops=[dict(event="mint", key="new:x", type=typ, resolution="recorded",
+                                                        relation=rel)]), commit="t", date="d")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -243,7 +243,8 @@ and registry v13.
   names agreeing, neither key pooled, and no differing LC authorities (Podruchny, Dickason, Carlson, Paton,
   Trivellato among them). Hannah Barker and James Miller are held (pooled names; four keys provisional).
 - **Supervision**: `supervision-keys.csv` holds 30,882 advisor → student links between keys, each with
-  its dissertation work key and year (2 unresolved). Ruggles has 14 students.
+  its dissertation work key and year (2 unresolved). Ruggles has 14 students. Superseded by the relation
+  claims below: its keys go stale as people merge.
 - **Queue** (`review-queue.json`): 674 probable registry ties (Jo Guldi's Berkeley record is p-44944, apart
   from her ORCID key p-16569, because the registry's tie is probable), 90 topic-only advisor links, 8 pooled
   canon keys, 2 held merges.
@@ -366,3 +367,21 @@ tier cannot drift from the anchors.
 - James Clifford, the anthropologist, was three keys: the atlas entry (p-637), the canon key
   `clifford|james l` with his LC and QID (p-1873), and his Harvard 1977 AHA dissertation (p-34894, whose
   book *Person and Myth* is LC's source for him). Merged into p-637 by works.
+
+## Relations as claims (2026-11-01, `relations-2026-11-01/`)
+
+Relations are now in the log as `c-` keys (`scripts/key_relations.py`; Fable review step 3). A claim mint
+carries `relation: {subject, predicate, object}`. Its anchors are the source assertions, and its endpoints are the source's
+own anchors, resolved through the log on every read (`State.relations()`). A merge or a detached anchor
+therefore carries through without rewriting the claim, and a detached endpoint shows as dangling.
+
+- **supervised**: 30,884 claims, one per AHA advisor link (`aha-sup:<record>:<token>`, `aha:<token>` →
+  `aha-diss:<record>`). These replace `supervision-keys.csv`.
+- **authored**: 70,795 claims for dissertation authors. The anchors are `aha-auth:<record>` (`aha-phd:` →
+  `aha-diss:`) and `diss-auth:<id>` (`diss-author:` → `diss-thesis:`). 2,432 works carry both sources
+  naming one key: one claim with both assertions, `established`; the rest are `recorded`. No work had its
+  two sources naming two keys. Two AHA authors were never keyed (records 8407 and 41242) and are left out.
+- Awarding institutions stay as the works' `awarded-by:` members for now.
+- `identifiers.py summary` reports resolved and dangling relations; a rerun proposes nothing.
+- Cost: the 101,679 mints added about 31 MB to the log. `events-0002.jsonl` closed at 50 MB and
+  `events-0003.jsonl` opened.
