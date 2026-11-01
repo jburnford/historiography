@@ -7,6 +7,9 @@
    through Wikidata's Open Library link (P648, about 97.5% right in the v12 benchmark) and nothing else on
    the key confirms it: no LC route (`wd-via:lc-p244`), no title-verified dissertation link, no atlas
    entry. It gets the member `close:wd:<QID>`, so an export writes skos:closeMatch, not owl:sameAs.
+3. **Stale LC claims.** A `lcnaf-wikidata:<id>` member is Wikidata's LC authority for the key's QID. When
+   that QID was rejected (`rejected:wd:<QID>`, a namesake's item) and no live QID on the key has the same
+   LC authority, the member is detached (2026-11-01: 'Mills, Kenneth' kept James H. Mills's LC claim).
 
     python3 scripts/key_tiers.py --registry data/person-registry/generated/v14/registry.duckdb \\
         --out data/identifiers/tiers-2026-11-01
@@ -20,6 +23,14 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, State, evidence_tier, materialise
 from key_canon_map import TITLE_TIERS
+
+
+def lcnaf_by_qid(registry):
+    db = duckdb.connect(str(registry), read_only=True)
+    out = defaultdict(set)
+    for q, v in db.execute("SELECT qid, value FROM authority_ids WHERE scheme = 'lcnaf'").fetchall():
+        out[q].add(v)
+    return out
 
 
 def p648_only(registry):
@@ -38,6 +49,7 @@ def main():
     args = ap.parse_args()
     state = State.load(args.state)
     weak = p648_only(args.registry)
+    wd_lc = lcnaf_by_qid(args.registry)
     ops, report = [], Counter()
     for k in sorted(state.keys, key=lambda x: (x[0], int(x[2:]))):
         v = state.keys[k]
@@ -59,6 +71,15 @@ def main():
                 report['wd_close'] += 1
             elif a in weak:
                 report['wd_p648_but_confirmed'] += 1
+        rejected = [m[len('rejected:wd:'):] for m in members if m.startswith('rejected:wd:')]
+        if rejected:
+            live = {v for a in v['anchors'] if a.startswith('wd:') for v in wd_lc.get(a[3:], ())}
+            stale = sorted(m for m in members if m.startswith('lcnaf-wikidata:')
+                           and m.split(':', 1)[1] in {x for q in rejected for x in wd_lc.get(q, ())} - live)
+            if stale:
+                ops.append(dict(event='detach', key=k, anchors=[], members=stale, decided_by='rule',
+                                basis="Wikidata's LC authority for a rejected QID (a namesake's item)"))
+                report['stale_lcnaf_wikidata_detached'] += len(stale)
     materialise(state, dict(basis='tiers', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

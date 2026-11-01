@@ -385,3 +385,30 @@ therefore carries through without rewriting the claim, and a detached endpoint s
 - `identifiers.py summary` reports resolved and dangling relations; a rerun proposes nothing.
 - Cost: the 101,679 mints added about 31 MB to the log. `events-0002.jsonl` closed at 50 MB and
   `events-0003.jsonl` opened.
+
+## Reviewed-book authors through LC (2026-11-01, `lc-books-2026-11-01/`)
+
+Fable review step 4 (`scripts/key_lc_books.py`). Input: `lc_resolve_authorities.py` over LC's Books All 2016
+set plus the SRU harvest so far (29,343 reviewed books; about 16,000 still harvesting), stored at
+`data/field-research/lc-authorities-2026-10-30/reviews-2026-11-01/`. A credit reaches an LC authority only
+through the same book's LC record and a name-compatible heading, so the authority is the book's author
+by LC's cataloguing.
+
+- **25,041 LC authorities keyed**: 21,206 new person keys (`lcnaf:` anchor, `established`, labelled with
+  the heading without dates). The rest attach to existing keys through:
+  - the registry individuals behind the credits (their ORCID, QID, Open Library or atlas anchors);
+  - Wikidata's LC authority for a key's QID (`lcnaf-wikidata:`, 1,173 with agreeing names);
+  - **AHA dissertations by works** (509): one of the authority's reviewed books, or the first source its LC record cites, is
+    that dissertation as published (key_aha's `own_book` rule). 209 recorded AHA keys rise to `established`.
+- **14 merges**: one historian held as an ORCID/QID key and an AHA/Open Library key, joined by one LC
+  authority (Mark Edele, Kira Thurman, Heather Sharkey, Max Paul Friedman among them).
+- **9 queued**: keys already holding a different LC authority (Kaplan, Thomas, Taylor), two authorities
+  reaching one key (Benjamin Steiner, Susan A. Miller), name differences (Uekötter/Uekoetter, Surman/Surmann,
+  and one name change for review).
+- About 1,400 new keys still share an exact name with an AHA author key that has no book link. They are not
+  joined by name: the AHA directory historians step, or later books, will join them by works.
+- Rerun on the full harvest when it finishes; anchors carry the keys forward.
+
+**Stale LC claims** (`tiers-2026-11-01b/`): 16 `lcnaf-wikidata:` members came from QIDs rejected as namesakes'
+items on 2026-11-01 ('Mills, Kenneth' held James H. Mills's). `key_tiers.py` now detaches them, and
+`key_lc_books.py` skips Wikidata LC claims on any key with a rejected QID.
