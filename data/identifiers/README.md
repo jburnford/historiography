@@ -499,3 +499,21 @@ it found the genealogy's record every time the genealogy was right.
 - 3,222 directory historians remain unkeyed: no PhD school, a school outside the AHA records, or no single
   match. 1,791 advisors are still known only by their token.
 - The rule merge on 'Johnson, Robert' is held (pooled name), beside the four known holds.
+
+## Theses crosswalked to AHA records by the record itself (2026-11-01, `theses-2026-11-01b/`, `relations-2026-11-01b/`)
+
+The user asked about Michael Childs. He was two keys: the AHA record (McGill 1986) and our harvested thesis,
+which carry the same title, institution and year, under two work keys. Harvested theses carry an AHA id
+only where the US harvest matched one. `key_theses.py` now also joins a thesis to the one AHA record with:
+- the same institution key;
+- a year within one;
+- at least 80% of title words shared.
+
+The author joins when the names agree on family name and first initial.
+
+- **2,122 theses joined their AHA record (mostly Canadian):** 4,180 merges (works and authors). 1,899 keys rose
+  to `established`: an AHA record and our harvest are independent sources.
+- **37 author pairs queued:** the initials differ (Jack / Stewart Cunningham), so only the work joins.
+- **2,080 duplicate authorship claims merged** (`key_relations.duplicate_ops`), each now `established` from
+  two sources.
+- `aha_links.fold` maps the dotless ı (Aydın / Aydin).

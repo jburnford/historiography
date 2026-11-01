@@ -39,7 +39,7 @@ def unmangle(s):
 
 
 def fold(s):
-    s = unicodedata.normalize('NFKD', unmangle(s)).encode('ascii', 'ignore').decode().lower()
+    s = unicodedata.normalize('NFKD', unmangle(s).replace('ı', 'i')).encode('ascii', 'ignore').decode().lower()
     return s.replace("'", '').replace('’', '')
 
 

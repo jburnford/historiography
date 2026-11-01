@@ -10,6 +10,14 @@ records.jsonl files, by surname, year and title; see harvest_us_history_disserta
   `awarded-by:i-N` when the institution slug reaches an institution key (`diss-inst:` aliases). 3,016
   theses came through repository sources (`base:theses.hal.science` and the like) whose awarding
   university the table does not hold; they get no institution yet.
+- **Crosswalk by the record itself** (2026-11-01): a thesis with no harvested AHA id joins the one AHA record
+  awarded by the same institution key, within a year, sharing at least 80% of the shorter title's words of
+  four or more letters (two or more). 2,133 theses, mostly Canadian, were the same dissertation as an AHA
+  record under two keys (Michael Childs, McGill 1986). The author joins too when the names agree on family
+  name and first initial (short forms: Doug / Douglas Hunter); otherwise only the work joins and the pair is
+  queued. An AHA record reached by two theses joins neither.
+- A work merge is allowed when the two keys are one harvested thesis and one AHA record (the crosswalk has
+  decided they are one dissertation); person merges follow key_aha.
 - **People.** Each thesis's author is a person anchored on `diss-author:<id>`, joining
   - the AHA record's author (`aha-phd:<record>`), and so whatever that key already holds (registry, advisor
     token), and
@@ -26,8 +34,10 @@ import json
 from collections import Counter
 from pathlib import Path
 
+from aha_links import same_listed_name, title_words
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
-from key_aha import author_merge_ok, canon_works, drop_shared, own_book
+from key_aha import AHA, author_merge_ok, canon_works, drop_shared, own_book
+from key_registry import names_compatible
 from key_canon_map import D
 from merge_guard import guarded
 
@@ -50,6 +60,30 @@ def aha_matches(ids):
     return out
 
 
+def aha_by_record(state, theses, inst_of, matched):
+    """thesis id -> AHA record for theses without a harvested AHA id: same institution key, year within one,
+    the titles largely shared, exactly one candidate, and the record reached by no other thesis."""
+    inst = {m[len('inst-name:'):]: k for k, ms in state.members.items() if state.keys[k]['type'] == 'institution'
+            for m in ms if m.startswith('inst-name:')}
+    with (AHA / 'records.csv').open(newline='', encoding='utf-8') as f:
+        by_inst = {}
+        for r in csv.DictReader(f):
+            if r['department'] in inst and (r['year'] or '').isdigit() and r['title'] and r['title'] != '[No title]':
+                by_inst.setdefault(inst[r['department']], []).append((r, title_words(r['title'])))
+    taken = {rid for rid, _ in matched.values()}
+    hits = {}
+    for t in theses:
+        if t['id'] in matched or not t['year'].isdigit() or t['id'] not in inst_of:
+            continue
+        w = title_words(t['title'])
+        c = [r for r, w2 in by_inst.get(inst_of[t['id']], ()) if abs(int(r['year']) - int(t['year'])) <= 1
+             and len(w & w2) >= 2 and len(w & w2) >= 0.8 * min(len(w), len(w2))]
+        if len(c) == 1 and c[0]['id'] not in taken:
+            hits[t['id']] = c[0]
+    reached = Counter(r['id'] for r in hits.values())
+    return {tid: r for tid, r in hits.items() if reached[r['id']] == 1}
+
+
 def institution_key(state, slug, country):
     for alias in (f'diss-inst:{slug}', f'diss-inst:{country.lower()}:{slug}', f'diss-inst:uk:{slug}'):
         if alias in state.alias:
@@ -66,6 +100,9 @@ def main():
     with (D / 'dissertations.csv').open(newline='', encoding='utf-8') as f:
         theses = list(csv.DictReader(f))
     aha = aha_matches({t['id'] for t in theses})
+    inst_of = {t['id']: k for t in theses if (k := institution_key(state, t['institution'], t['country'] or ''))}
+    by_record = aha_by_record(state, [t for t in theses if t['eligibility'] in KEYED or t['in_analysis'] == 'True'],
+                              inst_of, aha)
     canon = canon_works(state)
     report, queue, clusters = Counter(), [], []
     for t in theses:
@@ -86,9 +123,21 @@ def main():
             work.add(f'aha-diss:{rid}')
             author.add(f'aha-phd:{rid}')
             report[f'aha_match:{basis}'] += 1
+        elif tid in by_record:
+            rid, basis = by_record[tid]['id'], 'institution, year and title'
+            work.add(f'aha-diss:{rid}')
+            if same_listed_name(t['author'] or '', by_record[tid]['dissertator']) or \
+                    names_compatible(t['author'] or '', by_record[tid]['dissertator']):
+                author.add(f'aha-phd:{rid}')
+            else:
+                queue.append(dict(kind='same_thesis_author_names_differ', thesis=tid, record=rid, author=t['author'],
+                                  dissertator=by_record[tid]['dissertator']))
+                report['aha_record_author_names_differ'] += 1
+            report['aha_match:institution, year and title'] += 1
         clusters.append(dict(type='work', label=title or f'Dissertation {tid}', anchors=work, members=members,
                              aliases=set(), resolution='established',
-                             basis=f'dissertation graph thesis ({t["institution"]}, {t["year"]})'))
+                             basis=f'dissertation graph thesis ({t["institution"]}, {t["year"]})'
+                                   + (f'; AHA record {rid} by {basis}' if len(work) > 1 else '')))
         books = own_book(dict(dissertator=t['author'], title=title, year=t['year']), canon)
         if len(books) == 1:
             k = next(iter(books))
@@ -100,7 +149,14 @@ def main():
                              members=set(), aliases=set(), resolution='established',
                              basis=f'author of dissertation graph thesis {tid}'))
     clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_theses', 'anchor_on_several_theses')
-    ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state)))
+    authors_ok = author_merge_ok(state)
+
+    def merge_ok(cluster, keys):
+        if cluster['type'] == 'work':
+            kinds = sorted(tuple(sorted({a.split(':', 1)[0] for a in state.keys[k]['anchors']})) for k in keys)
+            return kinds == [('aha-diss',), ('diss-thesis',)]
+        return authors_ok(cluster, keys)
+    ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
     materialise(state, dict(basis='thesis keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

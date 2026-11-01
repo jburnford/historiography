@@ -13,6 +13,10 @@ own anchors so they follow every later merge or detach (see `identifiers.State.r
 
 Awarding institutions stay as the works' `awarded-by:` members for now (already in the log).
 
+**Duplicates.** When later keying joins the endpoints of two claims (an AHA record and a harvested thesis found
+to be one dissertation), the two claims say the same thing: the younger merges into the older, which becomes
+`established` (two sources).
+
     python3 scripts/key_relations.py --supervision data/identifiers/aha-v14-2026-11-01/supervision.csv \\
         --out data/identifiers/relations-2026-11-01
     python3 scripts/identifiers.py apply data/identifiers/relations-2026-11-01/proposal.json.gz
@@ -24,7 +28,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from identifiers import DEFAULT_DIR, PREDICATES, State, materialise
+from identifiers import DEFAULT_DIR, PREDICATES, State, _num, materialise
 
 
 def typed(state, anchor, want):
@@ -91,6 +95,24 @@ def ops_for(state, claims, report):
     return ops
 
 
+def duplicate_ops(state, report):
+    seen, ops, raised = {}, [], set()
+    for c, subj, pred, obj in sorted(state.relations(), key=lambda x: _num(x[0])):
+        if len(subj) != 1 or len(obj) != 1:
+            continue
+        sig = (subj[0], pred, obj[0])
+        if sig not in seen:
+            seen[sig] = c
+            continue
+        keep = seen[sig]
+        ops.append(dict(event='merge', key=c, into=keep, basis='the same relation from a second source'))
+        report[f'{pred}_duplicate_merged'] += 1
+        if state.keys[keep]['resolution'] != 'established' and keep not in raised:
+            ops.append(dict(event='status', key=keep, resolution='established', basis='two sources agree'))
+            raised.add(keep)
+    return ops
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--supervision', type=Path, required=True, help="AHA keying build's supervision.csv")
@@ -102,6 +124,7 @@ def main():
         supervision = list(csv.DictReader(f))
     claims, queue, report = wanted(state, supervision)
     ops = ops_for(state, claims, report)
+    ops += duplicate_ops(state, report)
     materialise(state, dict(basis='relations', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json.gz').write_bytes(gzip.compress(json.dumps(dict(

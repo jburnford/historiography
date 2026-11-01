@@ -1,11 +1,12 @@
 import sys
 import tempfile
+from collections import Counter
 import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from identifiers import State, apply_proposal, plan  # noqa: E402
-from key_relations import ops_for, wanted  # noqa: E402
+from key_relations import duplicate_ops, ops_for, wanted  # noqa: E402
 
 
 def mint(directory, clusters):
@@ -48,6 +49,17 @@ class RelationKeyingTests(unittest.TestCase):
         second = [o["anchors"] for o in ops if o["relation"]["object"] in ("aha-diss:2", "diss-thesis:y")]
         self.assertEqual(sorted(second), [["aha-auth:2"], ["diss-auth:y"]])
         self.assertEqual([q["kind"] for q in queue], ["thesis_authors_on_several_keys"])
+
+    def test_claims_whose_endpoints_are_joined_later_merge_and_are_established(self):
+        state, ops, _ = self.build()
+        apply_proposal(self.dir, dict(basis="test", ops=ops), commit="t", date="d")
+        # the two authors of Thesis 2 turn out to be one person
+        apply_proposal(self.dir, dict(ops=[dict(event="merge", key="p-4", into="p-2")]), commit="t", date="d")
+        state = State.load(self.dir)
+        dup = duplicate_ops(state, Counter())
+        self.assertEqual([o["event"] for o in dup], ["merge", "status"])
+        apply_proposal(self.dir, dict(basis="test", ops=dup), commit="t", date="d")
+        self.assertEqual(duplicate_ops(State.load(self.dir), Counter()), [])
 
 
 if __name__ == "__main__":
