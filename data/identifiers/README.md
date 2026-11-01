@@ -438,3 +438,17 @@ not used.
 - All 101,679 relation claims still resolve after the merges.
 - Memory: loading the full name index next to the headings peaked at 16 GB, so only the matched families'
   name records are loaded now (6.9 GB peak).
+
+## Duplicate AHA listings (2026-11-01, `aha-duplicates-2026-11-01/`)
+
+`scripts/key_aha_duplicates.py`. The Fable review's 94 same-name, same-school groups are mostly namesakes: 90
+of the 96 groups hold different dissertations, often decades apart, and are left alone. A duplicate is one
+dissertation under two record ids: same school, year within one, at least 80% of title words shared, and the
+same family name. That gives 16 pairs.
+
+- All 16 works merge (one dissertation), with 19 relation claims that became duplicates (8 authored, 11 supervised).
+- 8 author pairs merge: the listed names contain one another (Cullen, Bailey, Kellogg, Leitão de Almeida,
+  Mendez-Flores, Smith, Fletcher, Downey).
+- 8 author pairs are queued for review (`review-queue.json`): the given names differ (Kerry / Kieran
+  Taylor and others). A rule never decides a name change or which name labels the key. Until review, the
+  one work has two author claims.
