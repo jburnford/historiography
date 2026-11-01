@@ -418,3 +418,23 @@ one LC authority. 11,823 gain a QID through P244, with the human, name and birth
 no Wikidata item citing their authority. Queued: 196 failed checks (126 names, mostly transliterations
 and pen names; 62 birth years), 8 keys holding a different QID, 1 held merge, and 2 items citing two LC
 authorities held by two keys. That last case crashed the first run; such items are now queued, not attached.
+
+## AHA dissertations published as books (2026-11-01, `aha-lc-books-2026-11-01/`)
+
+`scripts/key_aha_lc_books.py`: AHA author keys without LC, matched against LC's Books All 2016 catalogue
+(offline index on E:). A personal-name heading compatible with the dissertator must sit on a record that is
+the dissertation as published (key_aha's `own_book` title rule). The heading resolves through its $0, a
+unique authorised heading, or a heading since closed; variant forms and undifferentiated authorities are
+not used.
+
+- 44,124 AHA authors have a main title long enough to test. **5,001 (11%) match a catalogued book.** Not every
+  dissertation becomes a book, and the catalogue stops in 2016, so the rest need other routes (ORCID,
+  articles, staff lists).
+- 4,060 joins: 3,747 AHA keys gain an LC authority (3,937 recorded keys rise to `established`). 306 merge into
+  existing LC keys, many of them today's reviewed-book keys (Julia Adeney Thomas, Silvia Arrom). W. E. B. Du
+  Bois's Harvard 1895 record joins his atlas key.
+- `matches.csv` lists each join with the book title. A sample of 33 was all correct.
+- Queued: 4 records reaching two authorities, 2 authorities reached from two AHA keys, 7 held merges.
+- All 101,679 relation claims still resolve after the merges.
+- Memory: loading the full name index next to the headings peaked at 16 GB, so only the matched families'
+  name records are loaded now (6.9 GB peak).
