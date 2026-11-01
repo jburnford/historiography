@@ -10,7 +10,9 @@ LC authority of a catalogued book that is their dissertation as published.
    earlier than the year before the PhD. The dissertation's main title is compared with the book's whole
    title, subtitle included: a published thesis is often retitled and keeps the thesis title as its
    subtitle (Michael Childs, *Labour's Apprentices: Working-Class Lads in Late Victorian and Edwardian
-   England*). Topic alone never joins.
+   England*). A dissertation whose main title has only two content words matches a book with the same main
+   title, word for word, published within fifteen years (Erika Dyck, *Psychedelic Psychiatry*). Topic alone
+   never joins.
 2. **Heading -> authority** with the reviewed-book resolver (`lc_resolve_authorities.resolve`: the record's
    $0, else exactly one live authorised heading, or a heading since closed). Variant forms are not used here
    (the match already rests on one book), and undifferentiated authorities are skipped. Only the name
@@ -39,7 +41,8 @@ from identifiers import DEFAULT_DIR, State, materialise, plan
 from key_aha import AHA, own_book
 from key_lc_books import family_key, label_of, merge_rule
 from key_registry import names_compatible
-from lc_canon_people import STOP, content, words
+from lc_canon_people import STOP, as_credit, content, given_agrees, main_title, words
+from identity_routes import compatible
 from lc_resolve_authorities import load_names, norm, resolve
 from merge_guard import guarded
 
@@ -59,7 +62,7 @@ def aha_authors(state):
             continue
         for a in v['anchors']:
             r = records.get(a[len('aha-phd:'):]) if a.startswith('aha-phd:') else None
-            if r and r['dissertator'] and len(content(r['title'] or '')) >= 3 and (r['year'] or '').isdigit():
+            if r and r['dissertator'] and len(content(r['title'] or '')) >= 2 and (r['year'] or '').isdigit():
                 out[r['id']] = (k, r)
     return out
 
@@ -105,6 +108,26 @@ def matched_lcids(path, heads, uris):
     return ids | {u.rstrip('/').split('/')[-1] for u in uris.values() if u}
 
 
+def same_main_title(record, cands, people):
+    """Headings with a book whose main title is the dissertation's two-word main title, word for word
+    (Erika Dyck: 'Psychedelic Psychiatry: LSD and Post-World War II Medical Experimentation', McMaster 2005;
+    'Psychedelic psychiatry : LSD from clinic to campus', 2008), compatible names, published from the year
+    before the PhD to fifteen years after. own_book needs three shared words, which a two-word title cannot give."""
+    d = content(record['title'] or '')
+    family, _, given = (record['dissertator'] or '').partition(', ')
+    year = int(record['year'])
+    hits = set()
+    for key, label, _ in cands.get(family_key(family), ()):
+        fam, _, giv = label.partition(', ')
+        if not (compatible(as_credit(record['dissertator']), giv, fam) and given_agrees(given, giv)):
+            continue
+        for t, y in people[key]['titles']:
+            if content(t or '') == d and (y or '').isdigit() and year - 1 <= int(y) <= year + 15:
+                hits.add(key)
+                break
+    return hits
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--index', type=Path, required=True, help='lc_bib_index.py output directory')
@@ -119,9 +142,11 @@ def main():
     report, queue = Counter(aha_authors=len(authors), heading_rows=n_rows), []
     matched = {}                                     # record id -> set of normalised headings
     for rid, (k, r) in authors.items():
-        hits = own_book(r, cands)
+        two_word = len(content(r['title'] or '')) == 2
+        hits = same_main_title(r, cands, people) if two_word else own_book(r, cands)
         if hits:
             matched[rid] = hits
+            report['matched_by_identical_two_word_main_title'] += two_word
     report['records_matching_a_book'] = len(matched)
     evidence = {}
     for rid, hs in matched.items():

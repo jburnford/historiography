@@ -557,3 +557,16 @@ records give the University of Saskatchewan, and so does her AHA directory entry
   - No rule was added: of 61 advisors with only Canadian students linked to a US record, most are right
     (Granatstein, Saywell, Cowan, Strange).
   - Still unchecked: Lisa Smith, Guy Thompson and D. N. Sprague.
+
+**Two-word thesis titles** (`aha-lc-books-2026-11-01c/`): a dissertation whose main title has two content
+words ("Psychedelic Psychiatry") cannot share three words with a book, and was left out entirely. It now
+matches a book with the same main title word for word, published within fifteen years of the PhD. That
+gave 1,092 more joins (860 new LC links, 220 merges); a sample of 25 was all correct (Hale's *Making
+Whiteness*, Saxton's *The Indispensable Enemy*). Erika Dyck gained LC n2007185419.
+
+**Wikidata duplicate items** (`lc-wikidata-2026-11-01d/`): a key whose QID is an ORCID-only stub (the key's
+ORCID, no LC authority), when another item carries the key's LC authority and passes the checks, takes
+both QIDs (member `wd-duplicate:<stub>`). The pairs go to `wikidata-duplicates.json` as Wikidata merges
+to propose later. Three pairs: Erika Dyck (Q102131227 / Q101430550), Steven Ruggles (Q58320474 /
+Q7615220) and David S. Jones. The run also attached 1,730 QIDs to new LC keys and made 9 merges (Nathan
+Sivin, C. H. McIlwain, Jill Conway and Jerrold Seigel joined their own AHA dissertations).

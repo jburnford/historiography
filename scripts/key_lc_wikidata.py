@@ -13,7 +13,11 @@ Outcomes:
 - the key has no QID: `wd:<QID>` is attached (member `wd-via:lc-p244`);
 - the QID already anchors another key: the two keys are one person seen twice. plan() merges them when the
   labels agree in full (key_registry.same_name) and their LC authorities do not differ; otherwise held;
-- the key already holds a different QID: queued (one of the two is wrong).
+- the key already holds a different QID: queued (one of the two is wrong), unless the two items are one
+  person's duplicates in Wikidata (2026-11-01, Erika Dyck): the key's item carries the key's ORCID and no
+  LC authority, the other carries the key's LC authority and no other ORCID, and the usual checks pass.
+  Then `wd:<QID>` is attached beside it with the member `wd-duplicate:<stub QID>`, and the pair is listed
+  in wikidata-duplicates.json (a merge to propose on Wikidata later).
 
     python3 scripts/key_lc_wikidata.py --names /mnt/e/lc-authorities/personal-names.parquet \\
         --out data/identifiers/lc-wikidata-2026-11-01
@@ -59,6 +63,23 @@ def items_for(lcids, cache):
     return out
 
 
+def item_ids(qids, cache):
+    """QID -> dict(orcid=set, lc=set) for the given items."""
+    out = {q: dict(orcid=set(), lc=set()) for q in qids}
+    qids = sorted(qids)
+    for i in range(0, len(qids), 200):
+        part = qids[i:i + 200]
+        query = """SELECT ?item ?orcid ?lc WHERE { VALUES ?item { %s }
+                OPTIONAL { ?item wdt:P496 ?orcid } OPTIONAL { ?item wdt:P244 ?lc } }""" % ' '.join(f'wd:{q}' for q in part)
+        for r in sparql(query, cache, 'item-ids-' + hashlib.sha1(query.encode()).hexdigest()[:12]):
+            q = r['item']['value'].rsplit('/', 1)[-1]
+            if 'orcid' in r:
+                out[q]['orcid'].add(r['orcid']['value'])
+            if 'lc' in r:
+                out[q]['lc'].add(r['lc']['value'])
+    return out
+
+
 def name_agrees(key_label, item_labels):
     family, comma, given = key_label.partition(', ')
     if not comma:
@@ -85,7 +106,7 @@ def main():
                 keyed[k] = lcs[0]
     names = load_names(args.names, set(keyed.values()))[0]
     found = items_for(set(keyed.values()), args.cache)
-    report, queue, clusters = Counter(), [], []
+    report, queue, clusters, pending, duplicates = Counter(), [], [], [], []
     for k, lc in sorted(keyed.items(), key=lambda kv: int(kv[0][2:])):
         rec = state.keys[k]
         have = {a[3:] for a in rec['anchors'] if a.startswith('wd:')}
@@ -100,10 +121,11 @@ def main():
             report['several_items'] += 1
             continue
         q, it = next(iter(items.items()))
+        if have and q in have:
+            report['same_qid_already'] += 1
+            continue
         if have:
-            report['same_qid_already' if q in have else 'different_qid_on_key'] += 1
-            if q not in have:
-                queue.append(dict(kind='key_holds_different_qid', key=k, label=rec['label'], lc=lc, qid=q, key_qids=sorted(have)))
+            pending.append((k, lc, q, it, have))
             continue
         lc_birth = life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
         problems = []
@@ -126,6 +148,27 @@ def main():
         clusters.append(dict(type='person', label=rec['label'], anchors={f'lcnaf:{lc}', f'wd:{q}'},
                              members={'wd-via:lc-p244'}, aliases=set(), resolution='established',
                              basis=f'Wikidata {q} cites LC {lc} (P244); name and birth year agree'))
+    ids = item_ids({q for _, _, q, _, have in pending} | {x for _, _, _, _, have in pending for x in have}, args.cache)
+    for k, lc, q, it, have in pending:
+        rec = state.keys[k]
+        orcids = {a[6:] for a in rec['anchors'] if a.startswith('orcid:')}
+        stubs = [h for h in have if ids[h]['orcid'] & orcids and not ids[h]['lc']]
+        auth = names.get(lc, {})
+        lc_birth = life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
+        ok = (len(stubs) == len(have) and ids[q]['lc'] == {lc} and not (ids[q]['orcid'] - orcids) and it['human']
+              and name_agrees(rec['label'], it['labels'])
+              and not (lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 1 for b in it['births'])))
+        if not ok:
+            report['different_qid_on_key'] += 1
+            queue.append(dict(kind='key_holds_different_qid', key=k, label=rec['label'], lc=lc, qid=q, key_qids=sorted(have)))
+            continue
+        report['wikidata_duplicate_items'] += 1
+        duplicates.append(dict(key=k, label=rec['label'], orcid_stub=sorted(have), lc_item=q, lc=lc, orcid=sorted(orcids)))
+        clusters.append(dict(type='person', label=rec['label'], anchors={f'lcnaf:{lc}', f'wd:{q}'},
+                             members={'wd-via:lc-p244'} | {f'wd-duplicate:{h}' for h in have}, aliases=set(),
+                             resolution='established',
+                             basis=f'Wikidata {q} cites LC {lc} (P244); the key\'s item {", ".join(sorted(have))} carries its ORCID and '
+                                   f'no LC authority: duplicate items of one person'))
     # One item citing two LC authorities held by two keys (LC holds duplicate records, or one is a namesake's):
     # neither key takes the QID; queued.
     by_qid = defaultdict(list)
@@ -159,6 +202,7 @@ def main():
     (args.out / 'review-queue.json').write_text(json.dumps(queue + held, ensure_ascii=False, indent=1, default=sorted) + '\n')
     summary = dict(keys_with_one_lc=len(keyed), **dict(sorted(report.items())), ops=dict(Counter(o['event'] for o in ops)),
                    held=len(held), review_queue=dict(Counter(q['kind'] for q in queue + held)))
+    (args.out / 'wikidata-duplicates.json').write_text(json.dumps(duplicates, ensure_ascii=False, indent=1) + '\n')
     (args.out / 'report.json').write_text(json.dumps(summary, indent=1) + '\n')
     print(json.dumps(summary))
 
