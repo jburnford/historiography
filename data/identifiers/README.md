@@ -274,3 +274,21 @@ rows) have no key yet.
 - **Canon joins by works:** 67 authors join a canon key whose cited works include their thesis as
   published (`key_aha.own_book`). 4 canon keys claimed by several theses (pooled names) join none.
 - Applied: 18,423 mints, 4,917 attaches, no holds. The log moved to `events-0002.jsonl` with this slice.
+
+## Wikidata through LC (2026-11-01, `lc-wikidata-2026-11-01/`)
+
+`scripts/key_lc_wikidata.py` (decided by rule): for every person key with one `lcnaf:` anchor (2,985),
+the Wikidata items whose P244 is that authority. An item is taken when exactly one cites the authority,
+it is a human, its English or `mul` label is name-compatible with the key, the LC and Wikidata birth
+years agree within a year, and LC's own Wikidata link (if any) names the same item. Wikidata's P244 can
+name a namesake's authority (Marion Kaplan), hence the checks.
+
+- 2,079 keys gained `wd:<QID>` (member `wd-via:lc-p244`); 585 already held the same QID.
+- 31 merges where the QID already anchored another key (LC chosen through works on one key, the QID
+  through its own route on the other): Engels, Maitland, Postan, Cheney, Evans-Pritchard, Gombrich,
+  Findlen, Starkey and others. Labels must be compatible and LC authorities must not differ.
+- Queued (`review-queue.json`): 24 keys holding a different QID (one of the two is wrong) and 18 failed
+  checks (birth years apart, mononyms, pen names).
+- 217 authorities have no Wikidata item citing them.
+- Effect on the canon map: of 1,168 people shown without a QID, 660 now have one on their key. (The
+  site export reads QIDs from the dissertation graph's name grounding, not from the key log.)
