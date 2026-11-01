@@ -356,3 +356,13 @@ tier cannot drift from the anchors.
   (spelling).
 - **Samuel Rutherford** (p-18952): the ORCID record lists scholarship published earlier under a different
   name; merged by the user's decision, with the current name as the label (`review-decisions.json`).
+
+## Clifford review (2026-11-01, `clifford-review-2026-11-01/`)
+
+- Jim Clifford (p-24137) gains his LC authority, no2018001321: LC cites *West Ham and the River Lea*
+  (2017), the published version of the York 2011 dissertation on the key. Researchers keyed through the
+  registry (ORCID, Open Library) get LC only through the atlas and canon routes so far; the LC books
+  route is meant to cover them.
+- James Clifford, the anthropologist, was three keys: the atlas entry (p-637), the canon key
+  `clifford|james l` with his LC and QID (p-1873), and his Harvard 1977 AHA dissertation (p-34894, whose
+  book *Person and Myth* is LC's source for him). Merged into p-637 by works.
