@@ -7,7 +7,8 @@ const NS = 'http://www.w3.org/2000/svg', S = 1000;
 const X = v => v * S * 0.46 + S / 2, Y = X;
 const REGION_LABELS = {CA: 'Canada', US: 'United States', GB: 'Britain', EU: 'Rest of Europe'};
 let load = null;
-const getData = () => load ||= fetch('data/dissertations/canon-map.json', {signal: AbortSignal.timeout(20000)})
+// no-cache: revalidate with the server, so a cached older data file never meets newer code
+const getData = () => load ||= fetch('data/dissertations/canon-map.json', {cache: 'no-cache', signal: AbortSignal.timeout(20000)})
   .then(r => { if (!r.ok) throw new Error('The canon map could not be loaded.'); return r.json(); })
   .catch(e => { load = null; throw e; });
 
@@ -52,6 +53,23 @@ export async function mountCanon(root) {
     return;
   }
   if (!root.isConnected) return;
+  try { build(root, upgrade(data)); } catch (e) {
+    // a failure while drawing must not leave the page on "Loading"
+    console.error(e);
+    root.innerHTML = '<p role="status">The canon map could not be drawn. <button type="button" data-canon-retry>Try again</button></p>';
+    root.querySelector('button').onclick = () => { load = null; mountCanon(root); };
+  }
+}
+
+// Data files before the link controls (2026-10-31) carry fixed top-5 lines (`views[].edges`) and their pair
+// counts (`co`) instead of candidate links; read them as candidate links with top 5 as the only choice.
+function upgrade(data) {
+  if (data.links) return data;
+  const links = Object.entries(data.co || {}).flatMap(([k, v]) => [...k.split(',').map(Number), v]);
+  return {...data, links, keep: 5, min_co: 5, link_top: Object.fromEntries(data.steps.map(t => [t, 5]))};
+}
+
+function build(root, data) {
   root.innerHTML = shell(data);
   const $ = s => root.querySelector(s);
   const N = data.nodes, svg = $('.canon-svg'), vp = $('.canon-vp'), tip = $('.canon-tip'), thr = $('.canon-threshold'), measure = $('.canon-measure'), find = $('.canon-find');
@@ -70,7 +88,7 @@ export async function mountCanon(root) {
   const co = (a, b) => coMap.get(Math.min(a, b) * 100000 + Math.max(a, b)) || 0;
   const strength = (a, b) => measure.value === 'raw' ? co(a, b) : co(a, b) / (N[a].cited * N[b].cited);
   const moved = {};
-  let cur = null, curKey = '', pos = {}, nbr = {}, nodeEls = {}, labelEls = {}, labelLayer = null, view = {x: 0, y: 0, w: S, h: S}, selected = null;
+  let cur = null, curKey = '', pos = {}, nbr = {}, nodeEls = {}, labelEls = {}, labelLayer = null, linkLayer = null, view = {x: 0, y: 0, w: S, h: S}, selected = null;
 
   function linksFor(ids, k, m) {
     // each shown person's k strongest partners among the shown, pairs cited together by at least m theses
@@ -87,34 +105,47 @@ export async function mountCanon(root) {
     const most = data.link_top[t];
     for (const o of topSel.options) o.disabled = +o.value > most;
     if (+topSel.value > most) topSel.value = String([...topSel.options].filter(o => !o.disabled).pop().value);
-    const m = MINCO[+minco.value];
-    cur.edges = linksFor(cur.ids, +topSel.value, m);
     $('.canon-threshold-value').textContent = `${t} theses (${fmt(cur.ids.length)} people)`;
     thr.setAttribute('aria-valuetext', `${t} theses, ${cur.ids.length} people`);
+    vp.textContent = ''; pos = {}; nodeEls = {};
+    cur.ids.forEach((i, j) => { pos[i] = mv[i] || cur.xy[j]; });
+    linkLayer = document.createElementNS(NS, 'g'); linkLayer.setAttribute('class', 'canon-links'); vp.appendChild(linkLayer);
+    const nodes = document.createDocumentFragment();
+    for (const i of [...cur.ids].sort((a, b) => N[a].cited - N[b].cited)) {
+      const n = N[i], g = document.createElementNS(NS, 'g'), c = document.createElementNS(NS, 'circle');
+      g.setAttribute('class', `canon-node ${n.lean}${n.qid ? '' : ' noq'}`); g.dataset.i = i;
+      c.setAttribute('cx', X(pos[i][0])); c.setAttribute('cy', Y(pos[i][1])); c.setAttribute('r', radius(n).toFixed(1));
+      g.appendChild(c); nodes.appendChild(g); nodeEls[i] = g;
+    }
+    vp.appendChild(nodes);
+    labelLayer = document.createElementNS(NS, 'g'); labelLayer.setAttribute('class', 'canon-labels'); vp.appendChild(labelLayer);
+    drawLinks();
+    if (refit) fit(); else setView();
+  }
+  // The link controls change only the lines: rebuild the link layer, not the circles and labels.
+  function drawLinks() {
+    const m = MINCO[+minco.value];
+    cur.edges = linksFor(cur.ids, +topSel.value, m);
     $('.canon-minco-value').textContent = `${fmt(m)} theses (${fmt(cur.edges.length)} lines)`;
     minco.setAttribute('aria-valuetext', `${m} theses, ${cur.edges.length} lines`);
-    vp.textContent = ''; pos = {}; nbr = {}; nodeEls = {};
-    cur.ids.forEach((i, j) => { pos[i] = mv[i] || cur.xy[j]; nbr[i] = []; });
+    nbr = {};
+    cur.ids.forEach(i => { nbr[i] = []; });
     const wmax = Math.max(1e-12, ...cur.edges.map(([a, b]) => strength(a, b)));
+    const lines = document.createDocumentFragment();
     for (const [a, b] of cur.edges) {
       const l = document.createElementNS(NS, 'line');
       l.setAttribute('class', 'canon-link'); l._a = a;
       l.setAttribute('x1', X(pos[a][0])); l.setAttribute('y1', Y(pos[a][1])); l.setAttribute('x2', X(pos[b][0])); l.setAttribute('y2', Y(pos[b][1]));
       l.setAttribute('stroke-width', (0.3 + 2.2 * Math.sqrt(strength(a, b) / wmax)).toFixed(2));
-      nbr[a].push([b, l]); nbr[b].push([a, l]); vp.appendChild(l);
+      nbr[a].push([b, l]); nbr[b].push([a, l]); lines.appendChild(l);
     }
-    for (const i of [...cur.ids].sort((a, b) => N[a].cited - N[b].cited)) {
-      const n = N[i], g = document.createElementNS(NS, 'g'), c = document.createElementNS(NS, 'circle');
-      g.setAttribute('class', `canon-node ${n.lean}${n.qid ? '' : ' noq'}`); g.dataset.i = i;
-      c.setAttribute('cx', X(pos[i][0])); c.setAttribute('cy', Y(pos[i][1])); c.setAttribute('r', radius(n).toFixed(1));
-      g.appendChild(c); vp.appendChild(g); nodeEls[i] = g;
-    }
-    labelLayer = document.createElementNS(NS, 'g'); labelLayer.setAttribute('class', 'canon-labels'); vp.appendChild(labelLayer);
+    linkLayer.replaceChildren(lines);
     const rows = [...cur.edges].sort((e, f) => co(f[0], f[1]) - co(e[0], e[1])).slice(0, 150);
     $('.canon-pairs tbody').innerHTML = rows.map(([a, b]) => `<tr><th scope="row">${esc(nameOf(N[a]))} — ${esc(nameOf(N[b]))}</th><td>${fmt(co(a, b))}</td><td>${fmt(N[a].cited)}</td><td>${fmt(N[b].cited)}</td></tr>`).join('');
-    if (refit) fit(); else setView();
     if (selected != null && pos[selected]) highlight(selected);
   }
+  let relinkFrame = 0;   // a dragged slider fires many input events: redraw the lines at most once a frame
+  const relink = () => { if (!relinkFrame) relinkFrame = requestAnimationFrame(() => { relinkFrame = 0; drawLinks(); }); };
   function setView() { svg.setAttribute('viewBox', `${view.x} ${view.y} ${view.w} ${view.h}`); labels(); }
   function labels() {
     if (!labelLayer) return;
@@ -210,7 +241,7 @@ export async function mountCanon(root) {
   root.addEventListener('click', e => { const b = e.target.closest('[data-canon-person]'); if (b) goTo(+b.dataset.canonPerson); });
   thr.addEventListener('input', () => draw()); measure.addEventListener('change', () => draw());
   // the link controls change only the lines: keep the reader's zoom and pan
-  topSel.addEventListener('change', () => draw(false)); minco.addEventListener('input', () => draw(false));
+  topSel.addEventListener('change', relink); minco.addEventListener('input', relink);
   $('.canon-fit').addEventListener('click', fit);
   $('.canon-relayout').addEventListener('click', () => { moved[curKey] = {}; draw(); });
   const observer = new ResizeObserver(() => { if (!root.isConnected) { observer.disconnect(); return; } fit(); });
