@@ -517,3 +517,11 @@ The author joins when the names agree on family name and first initial.
 - **2,080 duplicate authorship claims merged** (`key_relations.duplicate_ops`), each now `established` from
   two sources.
 - `aha_links.fold` maps the dotless ı (Aydın / Aydin).
+
+**Full book titles** (`aha-lc-books-2026-11-01b/`): a published thesis is often retitled, and the thesis title
+survives only as the subtitle (Michael Childs, *Labour's Apprentices: Working-Class Lads in Late Victorian and
+Edwardian England*). The dissertation's main title is now compared with the book's whole title. The rerun
+found 1,313 more joins (1,067 new LC links, 236 merges, 1,187 keys raised to `established`), among them
+Rabinowitch's *Prelude to Revolution*, Abzug's *Passionate Liberator* and Hahn's *Roots of Southern Populism*.
+A sample of 25 was all correct. Douglas Lorimer's *Colour, Class and the Victorians* shares too few words
+even so; his LC authority was attached by review (`long-tail-review-2026-11-01/`).

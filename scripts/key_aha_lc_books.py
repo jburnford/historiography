@@ -6,8 +6,11 @@ LC authority of a catalogued book that is their dissertation as published.
 
 1. **Match** (LC MDSConnect Books All 2016, offline index from scripts/lc_bib_index.py): a personal-name
    heading (100/700) whose name agrees with the dissertator, on a record whose title is the dissertation by
-   key_aha's `own_book` rule (three or more shared content words of the main titles, at least 60% of the
-   shorter, published no earlier than the year before the PhD). Topic alone never joins.
+   key_aha's `own_book` rule: three or more shared content words, at least 60% of the shorter, published no
+   earlier than the year before the PhD. The dissertation's main title is compared with the book's whole
+   title, subtitle included: a published thesis is often retitled and keeps the thesis title as its
+   subtitle (Michael Childs, *Labour's Apprentices: Working-Class Lads in Late Victorian and Edwardian
+   England*). Topic alone never joins.
 2. **Heading -> authority** with the reviewed-book resolver (`lc_resolve_authorities.resolve`: the record's
    $0, else exactly one live authorised heading, or a heading since closed). Variant forms are not used here
    (the match already rests on one book), and undifferentiated authorities are skipped. Only the name
@@ -36,7 +39,7 @@ from identifiers import DEFAULT_DIR, State, materialise, plan
 from key_aha import AHA, own_book
 from key_lc_books import family_key, label_of, merge_rule
 from key_registry import names_compatible
-from lc_canon_people import content
+from lc_canon_people import STOP, content, words
 from lc_resolve_authorities import load_names, norm, resolve
 from merge_guard import guarded
 
@@ -68,13 +71,13 @@ def catalogue_works(index, families):
     db.execute('CREATE TABLE fam(f VARCHAR)')
     db.executemany('INSERT INTO fam VALUES (?)', [(f,) for f in families])
     rows = db.execute(f"""
-        SELECT h.heading, h.family, h.uri, r.title_a, r.date1
+        SELECT h.heading, h.family, h.uri, r.title, r.date1
         FROM read_parquet('{index}/headings-*.parquet') h
         JOIN read_parquet('{index}/records-*.parquet') r USING (control)
         WHERE h.tag IN ('100', '700') AND lower(strip_accents(h.family)) IN (SELECT f FROM fam)""").fetchall()
     people = {}
     for heading, family, uri, title, date1 in rows:
-        c = set(content(title or ''))
+        c = {w for w in words(title or '') if w not in STOP}      # the book's whole title, subtitle included
         if len(c) < 3:
             continue
         key = norm(heading)
@@ -124,7 +127,7 @@ def main():
     for rid, hs in matched.items():
         d = set(content(authors[rid][1]['title']))
         for h in hs:
-            best = max(people[h]['titles'], key=lambda t: len(d & set(content(t[0] or ''))))
+            best = max(people[h]['titles'], key=lambda t: len(d & {w for w in words(t[0] or '') if w not in STOP}))
             evidence[rid, h] = best
     heads = {h for hs in matched.values() for h in hs}
     uris = {h: people[h]['uri'] for h in heads}
