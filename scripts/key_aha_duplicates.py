@@ -16,46 +16,13 @@ change or which name labels the key (user, 2026-11-01).
 import argparse
 import csv
 import json
-import re
-import unicodedata
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from aha_links import duplicate_pairs, same_listed_name
 from identifiers import DEFAULT_DIR, State, _num, materialise
 from key_aha import AHA
 from merge_guard import blocked_keys
-
-
-def fold(s):
-    return ' '.join(re.findall(r'[a-z0-9]+', unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower()))
-
-
-def words(title):
-    return set(re.findall(r'[a-z]{4,}', fold(title)))
-
-
-def same_listed_name(a, b):
-    """One listing's name words contain the other's ('Smith, Caleb' / 'Smith, D. Caleb'; accents and hyphens
-    folded). Family name and initial alone are not enough here: 'Taylor, Kerry' / 'Taylor, Kieran'."""
-    wa, wb = set(fold(a).split()), set(fold(b).split())
-    return wa <= wb or wb <= wa
-
-
-def duplicate_pairs(records):
-    by_name = defaultdict(list)
-    for r in records:
-        if r['title'] and r['title'] != '[No title]' and (r['year'] or '').isdigit():
-            by_name[fold(r['dissertator'].partition(', ')[0]).replace(' ', '')].append(r)
-    pairs = []
-    for rs in by_name.values():
-        for i, a in enumerate(rs):
-            for b in rs[i + 1:]:
-                wa, wb = words(a['title']), words(b['title'])
-                shared = len(wa & wb)
-                if (abs(int(a['year']) - int(b['year'])) <= 1 and a['department'].split(',')[0] == b['department'].split(',')[0]
-                        and shared >= 2 and shared >= 0.8 * min(len(wa), len(wb))):
-                    pairs.append((a, b))
-    return pairs
 
 
 def main():

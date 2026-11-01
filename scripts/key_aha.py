@@ -13,7 +13,12 @@ records.csv, genealogy/advisor-links.csv), the AHA historian directory
     numbering). Directory-only historians are not keyed yet: only name and school tie them to their own
     dissertation record.
   - An advisor token joins the author of their own dissertation when the genealogy links them by name and
-    date (`linked`, or a reviewed decision). `linked_by_topic` is not used: topic is not identity evidence
+    date (`linked`, or a reviewed decision), unless `aha_links.doubts` finds the link doubtful (the directory's
+    PhD school differs, a different spelled-out given name, or a hyphenated surname listed in full on another
+    record; 2026-11-01). Doubtful links are queued, unless `review-decisions.json` keeps them; a hyphenated
+    surname listed in full on another record makes that record the advisor's own.
+- **Duplicate listings** (one dissertation under two record ids, `aha_links.duplicate_pairs`) are one work;
+  their authors are one person when the listed names contain one another. `linked_by_topic` is not used: topic is not identity evidence
     (user, 2026-10-31). Those pairs are queued.
   - A dissertation the registry ties to an individual at the anchored or accepted tier (`phd_records`)
     brings that individual's anchors (atlas, ORCID, Wikidata, Open Library), so the author joins their
@@ -35,6 +40,7 @@ from pathlib import Path
 
 import duckdb
 
+from aha_links import doubts, duplicate_pairs, family_index, same_listed_name
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from identity_routes import compatible
 from key_canon_map import D
@@ -45,6 +51,7 @@ from merge_guard import guarded, pooled_keys
 
 AHA = ROOT / 'data/field-research/aha-dissertations-2026-10-13'
 DIRECTORY = ROOT / 'data/field-research/aha-historians-2026-10-29/historians.csv'
+DECISIONS = ROOT / 'data/identifiers/review-decisions.json'
 LINKED = {'linked', 'linked_by_decision'}
 REGISTRY_TIERS = {'anchored', 'accepted'}
 
@@ -185,9 +192,24 @@ def main():
 
     own = {}                                          # dissertation record -> advisor token
     token_name = {}
+    by_id, by_family, dir_rows = {r['id']: r for r in records}, family_index(records), defaultdict(list)
+    for r in directory:
+        dir_rows[r['token']].append(r)
+    kept = {d['token'] for d in (json.loads(DECISIONS.read_text()) if DECISIONS.exists() else [])
+            if d['kind'] == 'advisor_own_record_doubtful' and d.get('keep')}
     for r in links:
         token_name[r['advisor_id']] = r['advisor']
-        if r['status'] in LINKED and r['own_record']:
+        why = [] if r['advisor_id'] in kept else doubts(r['advisor'], by_id[r['own_record']], dir_rows[r['advisor_id']], by_family) \
+            if r['status'] in LINKED and r['own_record'] in by_id else []
+        if r['status'] in LINKED and r['own_record'] and why:
+            queue.append(dict(kind='advisor_own_record_doubtful', token=r['advisor_id'], advisor=r['advisor'],
+                              own_record=r['own_record'], dissertator=by_id[r['own_record']]['dissertator'], doubts=why))
+            report['advisor_own_record_doubtful'] += 1
+            for d in why:
+                if d.startswith('hyphen:'):
+                    own[d[len('hyphen:'):]] = r['advisor_id']
+                    report['advisor_own_record_by_hyphenated_name'] += 1
+        elif r['status'] in LINKED and r['own_record']:
             own[r['own_record']] = r['advisor_id']
         elif r['status'] == 'linked_by_topic':
             queue.append(dict(kind='advisor_own_record_by_topic_only', token=r['advisor_id'], advisor=r['advisor'],
@@ -239,6 +261,21 @@ def main():
                              basis='AHA dissertation advisor'))
         report['token_only_people'] += 1
 
+    # duplicate listings: one work; one author when the listed names contain one another
+    at = {a: i for i, c in enumerate(clusters) for a in c['anchors'] if a.startswith(('aha-diss:', 'aha-phd:'))}
+    gone = set()
+    for x, y in duplicate_pairs(records):
+        pairs = [('aha-diss', True), ('aha-phd', same_listed_name(x['dissertator'], y['dissertator']))]
+        for scheme, ok in pairs:
+            i, j = at[f'{scheme}:{x["id"]}'], at[f'{scheme}:{y["id"]}']
+            if ok and i != j and j not in gone:
+                clusters[i]['anchors'] |= clusters[j]['anchors']
+                clusters[i]['members'] |= clusters[j]['members']
+                gone.add(j)
+                for a in clusters[j]['anchors']:
+                    at[a] = i
+                report[f'duplicate_listing_{scheme}_combined'] += 1
+    clusters = [c for i, c in enumerate(clusters) if i not in gone]
     clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_records', 'anchor_on_several_records')
     ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state)))
     materialise(state, dict(basis='AHA keying', ops=ops), 'dry-run', 'dry-run')

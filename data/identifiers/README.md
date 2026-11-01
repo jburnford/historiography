@@ -452,3 +452,31 @@ same family name. That gives 16 pairs.
 - 8 author pairs are queued for review (`review-queue.json`): the given names differ (Kerry / Kieran
   Taylor and others). A rule never decides a name change or which name labels the key. Until review, the
   one work has two author claims.
+
+## AHA genealogy links to a namesake's dissertation (2026-11-01, `aha-mislinks-2026-11-01/`, `aha-v14-2026-11-01b/`)
+
+The genealogy links advisor tokens to their own dissertation by "unique name and date", and key_aha took those
+links as given. The AHA directory's PhD school gives a benchmark. A name + school rule picked the
+genealogy's own record for 2,418 of 2,425 linked advisors, and the 7 disagreements were all genealogy errors.
+`scripts/aha_links.py` doubts a link when:
+- the directory's PhD school differs (abbreviations and mangled text normalised);
+- the dissertation spells out a different given name;
+- the advisor's hyphenated surname is listed in full on another record.
+
+Examples: D. Graham Burnett → 'Burnett, Dorothy' (Cornell 1930); Judith Bennett → 'Bennett, J. Harry' (1948);
+Beth Lew-Williams → 'Williams, Beth Ann'; Alan Taylor (Brandeis) → 'Taylor, Alan' (Georgetown 1958).
+
+- `key_aha_mislinks.py` repaired 47 keys. The record's author anchors were detached and minted as their own
+  person, and the advisor key was relabelled where needed. 7 hyphenated-surname records merged into their
+  advisor's key.
+- 3 were queued. Hasia Diner and Thomas Kuehn keep their records: LC, ORCID and Wikidata agree, and only the
+  directory's school differs. Amy Stanley's token (Northwestern, Harvard PhD) was detached from Amy Dru
+  Stanley's key. All three are recorded in `review-decisions.json`.
+- `key_aha.py` now:
+  - skips doubtful links, unless a decision keeps them;
+  - takes the hyphenated record as the advisor's own;
+  - combines duplicate listings.
+  The rebuild (`aha-v14-2026-11-01b`) then joined 7 freed records to their right advisor tokens (E. James
+  Ferguson, Carla Hay, Mary Frances Berry, Donald Reid of Stanford 1981, Adriane Lentz-Smith, and Amy Dru
+  Stanley's own token). The genealogy had linked two tokens to one record and the last one won. The
+  rebuild holds only the 4 known open cases.
