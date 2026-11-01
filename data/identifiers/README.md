@@ -292,3 +292,25 @@ name a namesake's authority (Marion Kaplan), hence the checks.
 - 217 authorities have no Wikidata item citing them.
 - Effect on the canon map: of 1,168 people shown without a QID, 660 now have one on their key. (The
   site export reads QIDs from the dissertation graph's name grounding, not from the key log.)
+
+## Merge guard (2026-11-01, after the Fable review)
+
+Rule merges (`plan` with a merge_ok) go through `scripts/merge_guard.guarded`. A merge is refused when it
+would touch a pooled canon name (rerun5 `books_disagree`, or 'Miller, James' by review) or a key named in
+an open identity conflict in any committed review queue (shared LC authority, QID on several keys, held
+merge, key holding a different QID, failed check, canon key claimed by several records). Probable links do
+not block. `review-decisions.json` records conflicts decided by hand, which releases their keys.
+`tests/test_merge_guard.py` fails if a script passes a merge_ok to `plan` without the guard.
+
+Checked retrospectively against the 2026-11-01 rule merges, two touched keys the guard now blocks:
+- **Young** (p-4045): the LC-to-Wikidata rule settled the held `shared_lcnaf` question (p-4045 / p-4046).
+  The outcome is right on the works and is recorded in `review-decisions.json`.
+- **Starkey** (p-3712, `starkey|david j`): a pooled name. It holds David J. Starkey's LC authority, ORCID
+  and QID (consistent with each other), but the citation graph also files the Tudor historian David
+  Starkey's works (Henry VIII) under it. The fix is a works-level split in the dissertation graph build,
+  as for the other pooled keys that carry an LC anchor.
+
+Also found: p-166 Callum G. Brown is anchored on `diss-person:brown|katherine e`, the citation graph's
+alias key for his works (cited-people.csv). A real Katherine E. Brown (her own ORCID and QID) exists, so
+`diss-person:` anchors are build artefacts. Once a key holds LC or a QID they should become evidence
+(members); this is on the list for the anchor-strength change.

@@ -40,8 +40,8 @@ from identity_routes import compatible
 from key_canon_map import D
 from key_registry import same_name
 from lc_canon_people import as_credit, content, given_agrees
+from merge_guard import guarded, pooled_keys
 
-POOLED_RUN = ROOT / 'data/field-research/lc-authorities-2026-10-30/canon-rerun5-2026-10-31/canon-people-lc.csv'
 
 AHA = ROOT / 'data/field-research/aha-dissertations-2026-10-13'
 DIRECTORY = ROOT / 'data/field-research/aha-historians-2026-10-29/historians.csv'
@@ -115,16 +115,6 @@ def own_book(record, cands):
                 hits.add(k)
                 break
     return hits
-
-
-def pooled_keys(state):
-    """Canon keys that hold several people: LC's books disagree (rerun5 `books_disagree`), or a review says so."""
-    with POOLED_RUN.open(newline='', encoding='utf-8') as f:
-        pooled = {k for r in csv.DictReader(f) if r['outcome'] == 'books_disagree'
-                  for k in state.lookup(f"diss-person:{r['graph_key']}")}
-    # Pooled by review though LC resolves them: the timeline-canon reading bridge notes that 'Miller, James'
-    # also holds James Miller (Democracy is in the Streets) and others.
-    return pooled | set(state.lookup('diss-person:miller|james'))
 
 
 def author_merge_ok(state):
@@ -249,7 +239,7 @@ def main():
         report['token_only_people'] += 1
 
     clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_records', 'anchor_on_several_records')
-    ops, assign, held = plan(state, clusters, author_merge_ok(state))
+    ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state)))
     materialise(state, dict(basis='AHA keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

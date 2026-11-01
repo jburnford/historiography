@@ -29,6 +29,7 @@ from identity_routes import compatible
 from key_registry import same_name
 from lc_canon_people import as_credit
 from lc_resolve_authorities import label_dates, life, load_names
+from merge_guard import guarded
 from review_atlas_qids import sparql
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -138,7 +139,7 @@ def main():
             return False
         lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
         return len(lcs) <= 1
-    ops, assign, held = plan(state, clusters, merge_ok)
+    ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
     materialise(state, dict(basis='LC to Wikidata', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

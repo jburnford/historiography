@@ -29,6 +29,7 @@ from pathlib import Path
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from key_aha import author_merge_ok, canon_works, drop_shared, own_book
 from key_canon_map import D
+from merge_guard import guarded
 
 HARVESTS = ROOT / 'data/field-research'
 KEYED = {'history_phd'}
@@ -99,7 +100,7 @@ def main():
                              members=set(), aliases=set(), resolution='established',
                              basis=f'author of dissertation graph thesis {tid}'))
     clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_theses', 'anchor_on_several_theses')
-    ops, assign, held = plan(state, clusters, author_merge_ok(state))
+    ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state)))
     materialise(state, dict(basis='thesis keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

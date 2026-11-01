@@ -35,6 +35,7 @@ import duckdb
 from identifiers import DEFAULT_DIR, State, materialise, plan
 from key_canon_map import TITLE_TIERS
 from lc_canon_people import words
+from merge_guard import guarded
 
 ESTABLISHED = {'anchored', 'accepted'}
 
@@ -189,7 +190,7 @@ def main():
     state = State.load(args.state)
     rows, lc = load(args.registry)
     clusters, queue, report = clusters_for(rows, lc, state, version)
-    ops, assign, held = plan(state, clusters, lambda c, ks: atlas_canon_merge(state, c, ks))
+    ops, assign, held = plan(state, clusters, guarded(state, lambda c, ks: atlas_canon_merge(state, c, ks)))
     materialise(state, dict(basis='registry keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(basis=f'person registry {version} established individuals',
