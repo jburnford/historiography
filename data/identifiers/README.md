@@ -314,3 +314,20 @@ Also found: p-166 Callum G. Brown is anchored on `diss-person:brown|katherine e`
 alias key for his works (cited-people.csv). A real Katherine E. Brown (her own ORCID and QID) exists, so
 `diss-person:` anchors are build artefacts. Once a key holds LC or a QID they should become evidence
 (members); this is on the list for the anchor-strength change.
+
+## Identity tier and match strength (2026-11-01, `tiers-2026-11-01/`)
+
+`resolution` gains **`recorded`**: a person known from one source record (an AHA listing, one harvested
+thesis, an AHA advisor token), real but with no second source vouching for the identity. A person is
+**`established`** only on a public identifier (`lcnaf:`, `wd:`, `orcid:`, `atlas:`, `ol:`) or on two
+independent sources agreeing (AHA and the dissertation graph, e.g. an AHA record matched to our harvested
+thesis). `identifiers.evidence_tier` holds the rule. `plan()` applies it to clusters claiming
+`established` and raises a recorded key with a `status` event when later evidence reaches the bar, so the
+tier cannot drift from the anchors.
+
+- `scripts/key_tiers.py` moved 67,693 people from established to recorded. People now: 31,975
+  established, 67,693 recorded, 313 unresolved. Works are not tiered yet.
+- **Match strength:** a `wd:` anchor reached only through Wikidata's Open Library link (P648, ~97.5%
+  right), with nothing else on the key confirming it (LC route, title-verified dissertation, atlas), carries
+  the member `close:wd:<QID>`, for skos:closeMatch rather than owl:sameAs on export: 35 keys. 331 such QIDs
+  are confirmed by another route.

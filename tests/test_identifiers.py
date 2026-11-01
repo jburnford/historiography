@@ -76,6 +76,37 @@ class MintingTests(unittest.TestCase):
         self.assertEqual(sorted(state.keys), sorted(f"p-{i}" for i in range(1, 9)))
 
 
+class TierTests(unittest.TestCase):
+    """A person on one source record is `recorded`; a public identifier or a second source makes it `established`."""
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.dir = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def resolution(self, key):
+        return State.load(self.dir).keys[key]["resolution"]
+
+    def test_one_source_record_is_recorded_and_a_public_identifier_raises_it(self):
+        (k,), _ = run(self.dir, [person("Guldi, Joanna", "aha-phd:25915")])
+        self.assertEqual(self.resolution(k), "recorded")
+        (k2,), _ = run(self.dir, [person("Guldi, Joanna", "aha-phd:25915", "orcid:0000-0002-5085-0738")])
+        self.assertEqual((k2, self.resolution(k)), (k, "established"))
+
+    def test_two_independent_sources_establish(self):
+        (k,), _ = run(self.dir, [person("Smith, Mark Andrew", "diss-author:c1f5", "aha-phd:4410")])
+        self.assertEqual(self.resolution(k), "established")
+        (k2,), _ = run(self.dir, [person("Advisor", "aha:91830", "aha-phd:50721")])   # one source, two ids
+        self.assertEqual(self.resolution(k2), "recorded")
+
+    def test_unresolved_and_editorial_claims_are_kept(self):
+        apply_proposal(self.dir, dict(ops=[dict(event="mint", key="new:a", type="person", label="X",
+                                                resolution="unresolved", anchors=["diss-person:x|y"])]),
+                       commit="t", date="d")
+        self.assertEqual(self.resolution("p-1"), "unresolved")
+
+
 class ShardTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

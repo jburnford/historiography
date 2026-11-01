@@ -40,7 +40,16 @@ PREFIX = {'person': 'p', 'work': 'w', 'journal': 'j', 'institution': 'i', 'entry
 TYPE_OF = {v: k for k, v in PREFIX.items()}
 LIFECYCLE = {'active', 'provisional', 'unsupported', 'merged', 'split', 'withdrawn', 'retyped'}
 RETIRED = {'merged', 'split', 'withdrawn', 'retyped'}
-RESOLUTION = {'established', 'unresolved', 'editorial'}
+RESOLUTION = {'established', 'recorded', 'unresolved', 'editorial'}
+# A person is `established` only on a public identifier (LC, Wikidata, ORCID, the atlas, Open Library) or on
+# two independent sources agreeing (an AHA record and our harvested thesis; a canon name key and an AHA record
+# joined by the published thesis). A person known from one source record (an AHA listing, one harvested
+# thesis, an AHA advisor token) is `recorded`: real, but no second source vouches for the identity
+# (Fable review, 2026-11-01: 67,693 such people read as established). plan() applies this to clusters that
+# claim `established`, and raises a recorded key when later evidence reaches the bar.
+PUBLIC_SCHEMES = {'lcnaf', 'wd', 'orcid', 'atlas', 'ol'}
+SOURCE_FAMILY = {'aha-phd': 'aha', 'aha': 'aha', 'aha-diss': 'aha', 'diss-author': 'diss', 'diss-thesis': 'diss',
+                 'diss-person': 'diss'}
 KEY_RE = re.compile(r'^([a-z])-([1-9][0-9]*)$')
 SHARD_BYTES = 50_000_000
 SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl$')
@@ -363,8 +372,11 @@ def plan(state, clusters, merge_ok=lambda cluster, keys: False):
             continue
         if not ks:
             ph = f'new:{i}'
+            resolution = c.get('resolution', 'unresolved')
+            if resolution == 'established':
+                resolution = evidence_tier(c['type'], c['anchors'])
             ops.append(dict(event='mint', key=ph, type=c['type'], label=c.get('label', ''),
-                            resolution=c.get('resolution', 'unresolved'), anchors=sorted(c['anchors']),
+                            resolution=resolution, anchors=sorted(c['anchors']),
                             aliases=sorted(c.get('aliases', ())), members=sorted(c.get('members', ())),
                             **({'status': c['status']} if c.get('status') else {}),
                             **({'basis': c['basis']} if c.get('basis') else {})))
@@ -387,11 +399,25 @@ def plan(state, clusters, merge_ok=lambda cluster, keys: False):
         if new_anchors or new_aliases or new_members:
             ops.append(dict(event='attach', key=k, anchors=new_anchors, aliases=new_aliases, members=new_members,
                             **({'basis': c['basis']} if c.get('basis') else {})))
+        if (state.keys[k]['resolution'] == 'recorded' and c.get('resolution') == 'established'
+                and evidence_tier(c['type'], owned | set(c['anchors'])) == 'established'):
+            ops.append(dict(event='status', key=k, resolution='established', decided_by='rule',
+                            basis='evidence reached the established bar (a public identifier or a second source)'))
         assign[i] = k
     for k in sorted(held, key=_num):
         if state.keys[k]['status'] == 'active':
             ops.append(dict(event='status', key=k, status='provisional', basis='held for review'))
     return ops, assign, queue
+
+
+def evidence_tier(type_, anchors):
+    """`established` or `recorded` for a person's anchors (see RESOLUTION); other types are not tiered."""
+    if type_ != 'person':
+        return 'established'
+    schemes = {a.split(':', 1)[0] for a in anchors}
+    if schemes & PUBLIC_SCHEMES or len({SOURCE_FAMILY.get(x, x) for x in schemes}) >= 2:
+        return 'established'
+    return 'recorded'
 
 
 def _num(key):
