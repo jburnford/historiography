@@ -274,6 +274,20 @@ def dominant(owner_of, person_books):
     return owner if top_owner in ('', owner) and cites[owner] >= 0.75 * sum(cites.values()) else None
 
 
+def bare_name(label):
+    """An LC heading without its dates and qualifiers: 'Bender, Thomas, 1944-' -> 'bender thomas'."""
+    dates = label_dates(label)
+    name = label[:len(label) - len(dates)] if dates else label
+    return ' '.join(words(name.split(' (')[0].rstrip(', .')))
+
+
+def born_before(authority, year, gap=20):
+    """True unless LC's birth year shows the person was under `gap` years old when the book appeared."""
+    born = re.match(r'-?(\d{4})', str(authority.get('birth') or '')) or re.search(r'(\d{4})-', label_dates(authority['label']) or '')
+    y = re.match(r'(\d{4})', str(year or ''))
+    return not (born and y) or int(y.group(1)) >= int(born.group(1)) + gap
+
+
 def query(title, family):
     t = ' '.join(words(main_title(title))[:8])
     f = (words(family) or [''])[0]
@@ -381,7 +395,7 @@ def main():
 
         # Catalogue: the most-cited books LC's notes do not settle, until one confirmed authority holds
         # the books looked at.
-        looked = set()
+        looked, contested = set(), set()
         for b in person_books[:args.books]:
             if b is not person_books[0] and confirmed_single(looked):
                 break
@@ -408,7 +422,7 @@ def main():
                 seen_title = True
                 match = [(h, [h['given']] + ([h['fuller']] if h['fuller'] else [])) for h in heads
                          if (compatible(person, h['given'], h['family'].translate(FOLD)) and given_agrees(pg, h['given']))
-                         or (h['fuller'] and compatible(person, h['fuller'], h['family']) and given_agrees(pg, h['fuller']))]
+                         or (h['fuller'] and compatible(person, h['fuller'], h['family'].translate(FOLD)) and given_agrees(pg, h['fuller']))]
                 match = closest_names(pg, match)       # a joint book: 'Jean' is Jean Comaroff, not John
                 if len(match) > 1:
                     ids.add('ambiguous')
@@ -422,17 +436,25 @@ def main():
                     if via != 'bib_$0' and len(owners) == 1 and lcid not in owners:
                         lcid, via = next(iter(owners)), 'lc_670_over_heading'
                     # The same for an undated record reached by the heading's text alone, when LC's notes
-                    # give this name's books to one dated record ('Bender, Thomas' resolved to
-                    # no2023034236, an illustrator; 'Bender, Thomas, 1944-' has His Unfinished city).
+                    # give this name's books to one dated record of the same name ('Bender, Thomas'
+                    # resolved to no2023034236, an illustrator; 'Bender, Thomas, 1944-' has His Unfinished
+                    # city), born at least 20 years before the book. Not a fuller or different name: that
+                    # moved Punishment and modern society to 'Garland, David S.' and Western aristocracies
+                    # to a Royal Navy lieutenant (rerun4 review, 2026-10-31).
+                    # (An undated record can be the right person: 'Garland, David' is the criminologist.)
                     elif via != 'bib_$0' and lcid and not label_dates(by_id[lcid]['label']) \
-                            and len(all_670 := set().union(*cited_in_670.values())) == 1 and lcid not in all_670:
+                            and len(all_670 := set().union(*cited_in_670.values())) == 1 and lcid not in all_670 \
+                            and bare_name(by_id[next(iter(all_670))]['label']) == bare_name(by_id[lcid]['label']) \
+                            and born_before(by_id[next(iter(all_670))], b['year']):
                         lcid, via = next(iter(all_670)), 'lc_670_over_heading'
                     if lcid and not by_id[lcid]['undifferentiated']:
                         ids.add(lcid)
                         hit = (lcid, via, facts['title'])
             if len(ids) == 1 and 'ambiguous' not in ids:
                 owner_of[b['work_id']], via_of[b['work_id']], title_of[b['work_id']] = hit
-            elif not owner_of:
+            elif ids:
+                contested.add(b['work_id'])     # LC names someone of this name, but not one person
+            if not (len(ids) == 1 and 'ambiguous' not in ids) and not owner_of:
                 outcome = 'records_disagree' if ids else \
                     'person_not_resolved' if seen_title else 'no_title_match' if recs else 'no_lc_record'
 
@@ -441,11 +463,18 @@ def main():
         owner_of = {w: same[x] for w, x in owner_of.items()}
         winner = dominant(owner_of, person_books)
         mine = [b for b in person_books if winner and owner_of.get(b['work_id']) == winner]
+        # The winner must hold at least half the citations of the books LC gives to someone of this
+        # name: a namesake's minor book is not the name's owner when LC gives the most-cited books to
+        # other people or to no single person. Books LC does not find at all do not count against it
+        # (Le Goff's French titles are mostly not in the catalogue).
+        seen = sum(int(b['cited'] or 0) for b in person_books if b['work_id'] in owner_of or b['work_id'] in contested)
+        if winner and 2 * sum(int(b['cited'] or 0) for b in mine) < seen:
+            winner, mine, outcome = None, [], 'minor_books_only'
         namesakes = ' '.join(f"{owner_of[b['work_id']]}:{b['work_id']}" for b in person_books
                              if b['work_id'] in owner_of and owner_of[b['work_id']] != winner) if winner else ''
         if winner:
             outcome = 'resolved'
-        elif owner_of:
+        elif owner_of and outcome != 'minor_books_only':
             outcome = 'books_disagree'
         stats[outcome] += 1
         row = dict(namesake_works=namesakes, key=key[0] if len(key) == 1 else '', graph_key=gk, label=n['label'], cited=n['cited'],
