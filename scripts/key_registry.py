@@ -34,7 +34,8 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, State, materialise, plan
 from key_canon_map import TITLE_TIERS
-from lc_canon_people import words
+from identity_routes import compatible
+from lc_canon_people import as_credit, words
 from merge_guard import guarded
 
 ESTABLISHED = {'anchored', 'accepted'}
@@ -49,6 +50,22 @@ def same_name(a, b):
         return (w[0], w[-1]) if len(w) >= 2 else None
     pa, pb = parts(a), parts(b)
     return bool(pa and pb and pa == pb and len(pa[0]) > 1)
+
+
+def names_compatible(a, b):
+    """Family name and first initial agree in either direction ('Jo Guldi' / 'Guldi, Joanna'), or one name's
+    words contain the other's (mononyms, scripts compatible() cannot read)."""
+    def fam_given(label):
+        family, comma, given = label.partition(', ')
+        if comma:
+            return given, family
+        t = label.split()
+        return (' '.join(t[:-1]), t[-1]) if len(t) > 1 else ('', label)
+    wa, wb = set(words(as_credit(a))), set(words(as_credit(b)))
+    if not wa or not wb or wa <= wb or wb <= wa:
+        return True
+    (ga, fa), (gb, fb) = fam_given(a), fam_given(b)
+    return bool((gb and compatible(as_credit(a), gb, fb)) or (ga and compatible(as_credit(b), ga, fa)))
 
 
 def atlas_canon_merge(state, cluster, keys):
@@ -115,6 +132,11 @@ def clusters_for(rows, lc, state, version):
                 # The key is an atlas person's and this individual is not: the dissertation QID on it was
                 # chosen for the canon name and can name a namesake (Norbert Elias's carries Ann Elias's).
                 queue.append(dict(kind='qid_agrees_with_atlas_keyed_canon', individual=iid, label=label, qid=q, key=k,
+                                  key_label=state.keys[k]['label']))
+            elif len(joined) == 1 and not names_compatible(label, state.keys[k]['label']):
+                # Any canon key, atlas or not: the grounding's QID can be a namesake's (2026-11-01: Lynn Hunt's
+                # key carried Megan Hunt's QID, so Megan Hunt's ORCID joined it; 25 such joins corrected).
+                queue.append(dict(kind='qid_agrees_name_differs', individual=iid, label=label, qid=q, key=k,
                                   key_label=state.keys[k]['label']))
             elif len(joined) == 1:
                 anchors |= {a for a in state.keys[k]['anchors'] if a.startswith('diss-person:')}

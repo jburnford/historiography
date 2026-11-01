@@ -331,3 +331,28 @@ tier cannot drift from the anchors.
   right), with nothing else on the key confirming it (LC route, title-verified dissertation, atlas), carries
   the member `close:wd:<QID>`, for skos:closeMatch rather than owl:sameAs on export: 35 keys. 331 such QIDs
   are confirmed by another route.
+
+## Registry v14, namesake corrections and AHA rekey (2026-11-01)
+
+- **Namesake joins corrected** (`registry-namesake-corrections-2026-11-01/`). An audit compared every
+  registry attach onto an existing key with the registry individual's name. 25 canon keys had taken a
+  namesake's ORCID and QID through the registry's QID-agreement join, which checked names only for atlas
+  people. The name grounding had put the namesake's QID on the canon key (a title-tier match), and in
+  nine cases the canon key's own slug is a namesake's (`thomas|werner` holds Hugh Thomas's works).
+  Examples: Lynn Hunt / Megan Hunt, Dena Goodman / Sam Goodman, Patrick Manning / Joe Manning, Hugh
+  Thomas / Werner Thomas, Marcel / Heather Martel. Each key's LC authority confirms the key's own person.
+  The 50 anchors were detached and kept as `rejected:` members (`audit.json`); 4 AHA anchors that had
+  followed them (Karin Friedrich, Timothy Howe, Scott Nelson) were detached too.
+- `key_registry.py` now requires compatible names (family name and first initial) for every canon join
+  (`names_compatible`); mismatches queue as `qid_agrees_name_differs`.
+- **Registry v14** (`registry-v14-2026-11-01/`, adds the `degree` channel): 43 mints (including the 25
+  namesakes as their own people) and 4 attaches.
+- **LC to Wikidata rerun** (`lc-wikidata-2026-11-01b/`): 16 corrected keys gain their right QIDs (Sara
+  Ahmed Q15437208, Marcel Martel Q6756163, …); keys holding a different QID drop from 24 to 8.
+- **AHA rekey from v14** (`aha-v14-2026-11-01/`): 289 merges of AHA author keys into the people they
+  belong to, including Jo Guldi (p-16569 now holds her Berkeley dissertation record). `author_merge_ok`
+  now accepts compatible names (Jo / Joanna, Josh / Joshua, L. H. / Lou) but keeps the pooled, LC and
+  guard checks. Held: Miller (pooled), Barker (shared credits), Plummer (Beth / Marjorie), Sillitti
+  (spelling).
+- **Samuel Rutherford** (p-18952): the ORCID record lists scholarship published earlier under a different
+  name; merged by the user's decision, with the current name as the label (`review-decisions.json`).

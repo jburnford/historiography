@@ -42,6 +42,12 @@ class RegistryKeying(unittest.TestCase):
         self.assertEqual(sorted(assign.values()), ['new:1', 'p-2'])
         self.assertEqual([q['kind'] for q in queue], ['probable_dissertation_qid_agrees'])
 
+    def test_a_namesake_qid_on_a_canon_key_only_queues(self):
+        # Lynn Hunt's canon key carried Megan Hunt's QID (title-tier grounding); Megan Hunt's ORCID joined it.
+        clusters, queue, _ = self.build([('orcid:9', ['orcid:9'], ['Q1'], 'Megan Hall', ['anchored'])])
+        self.assertTrue(all('diss-person:hall|stuart' not in c['anchors'] for c in clusters))
+        self.assertIn('qid_agrees_name_differs', [q['kind'] for q in queue])
+
     def test_open_library_anchors_only_when_nothing_else_does(self):
         clusters, _, report = self.build([('ol:OL1A', ['ol:OL1A'], [], 'William J. Turkel', ['anchored']),
                                           ('orcid:3', ['orcid:3', 'ol:OL2A'], [], 'A Person', ['anchored'])])

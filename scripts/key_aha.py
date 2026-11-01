@@ -38,7 +38,7 @@ import duckdb
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from identity_routes import compatible
 from key_canon_map import D
-from key_registry import same_name
+from key_registry import names_compatible
 from lc_canon_people import as_credit, content, given_agrees
 from merge_guard import guarded, pooled_keys
 
@@ -122,9 +122,10 @@ def author_merge_ok(state):
 
     def merge_ok(cluster, keys):
         """One dissertation author reaching two keys through works on both sides (the registry's dissertation
-        route and the canon own-book route, or an advisor's own record): merge when every key's name agrees in
-        full with the record's, none is a pooled name, and their LC authorities do not differ."""
-        if any(k in pooled for k in keys) or not all(same_name(cluster['label'], state.keys[k]['label']) for k in keys):
+        route and the canon own-book route, or an advisor's own record): merge when every key's name is compatible
+        with the record's (family name and first initial: 'Guldi, Joanna' / 'Jo Guldi'), none is a pooled name, and
+        their LC authorities do not differ. merge_guard refuses keys in open review conflicts."""
+        if any(k in pooled for k in keys) or not all(names_compatible(cluster['label'], state.keys[k]['label']) for k in keys):
             return False
         lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
         return len(lcs) <= 1
