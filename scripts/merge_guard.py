@@ -11,7 +11,9 @@ key it would touch is
   authority, QID on several keys, held merge, key holding a different QID, failed check, canon key claimed
   by several records), unless `review-decisions.json` records the conflict as decided.
 Probable links ('probable_dissertation_qid_agrees', 'registry_phd_tie_probable') are open questions, not
-conflicts, and do not block.
+conflicts, and do not block. Queues listed in `superseded-queues.json` (a later run of the same build
+re-evaluated them) are ignored, and a conflict whose keys now resolve to one key is settled (2026-11-01:
+stale items from four AHA runs and three LC-to-Wikidata runs blocked 278 keys).
 
     from merge_guard import guarded
     ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
@@ -25,6 +27,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 QUEUES = ROOT / 'data/identifiers'
 DECISIONS = QUEUES / 'review-decisions.json'
+SUPERSEDED = QUEUES / 'superseded-queues.json'
 POOLED_RUN = ROOT / 'data/field-research/lc-authorities-2026-10-30/canon-rerun5-2026-10-31/canon-people-lc.csv'
 CONFLICTS = {'shared_lcnaf', 'qid_on_several_canon_keys', 'merge_candidate', 'key_holds_different_qid',
              'check_failed', 'qid_agrees_with_atlas_keyed_canon', 'canon_key_claimed_by_several_records',
@@ -56,7 +59,10 @@ def decided(path=DECISIONS):
 def conflict_keys(state, queues=QUEUES, decisions=DECISIONS):
     """Current keys named in open identity conflicts in the committed review queues."""
     done, out = decided(decisions), set()
+    old = set(json.loads(SUPERSEDED.read_text())['superseded']) if queues == QUEUES and SUPERSEDED.exists() else set()
     for path in sorted(glob.glob(str(queues / '**' / '*queue*.json'), recursive=True)):
+        if Path(path).relative_to(queues).as_posix() in old:
+            continue
         try:
             items = json.loads(Path(path).read_text())
         except (OSError, json.JSONDecodeError):
@@ -67,8 +73,9 @@ def conflict_keys(state, queues=QUEUES, decisions=DECISIONS):
             text = json.dumps(item, ensure_ascii=False)
             keys = {c for k in KEY.findall(text) for c in state.lookup(k)}
             keys |= {state.anchor[a] for a in ANCHOR.findall(text) if a in state.anchor}
-            if (item['kind'], tuple(sorted(keys))) not in done:
-                out |= keys
+            if len(keys) > 1 or item['kind'] not in ('merge_candidate', 'shared_lcnaf', 'qid_on_several_canon_keys'):
+                if (item['kind'], tuple(sorted(keys))) not in done:
+                    out |= keys
     return out
 
 

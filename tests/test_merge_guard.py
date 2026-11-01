@@ -54,6 +54,10 @@ class Guard(unittest.TestCase):
         ops, _, _ = plan(self.state, [self.cluster], guarded(self.state, lambda c, ks: True, blocked))
         self.assertIn('merge', [o['event'] for o in ops])
 
+    def test_a_conflict_whose_keys_have_merged_is_settled(self):
+        apply_proposal(self.dir, dict(ops=[dict(event='merge', key='p-2', into='p-1')]), commit='t', date='d')
+        self.assertEqual(conflict_keys(State.load(self.dir), self.queues, self.dir / 'none.json'), set())
+
     def test_probable_links_do_not_block(self):
         (self.queues / 'lc-canon' / 'merge-review-queue.json').write_text(json.dumps(
             [dict(kind='probable_dissertation_qid_agrees', key='p-1', qid='Q1')]))
