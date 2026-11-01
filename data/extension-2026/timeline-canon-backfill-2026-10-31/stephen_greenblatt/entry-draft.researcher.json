@@ -1,0 +1,170 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (stephen_greenblatt: existing person entry, relationship backfill; no new node)",
+  "review_status": "needs_review",
+  "proposed_edges": [
+    {
+      "proposal_id": "greenblatt_bf_01",
+      "source": "walter_benjamin",
+      "target": "stephen_greenblatt",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In the interview “Acts of Literature II” (2018), Greenblatt credits Walter Benjamin, alongside other thinkers, with helping New Historicism escape the base/superstructure dichotomy.",
+      "map_label": "Benjamin as a resource for New Historicism",
+      "evidence_note": "Fresh reading of the journal PDF, p. 124, Greenblatt’s first answer, beginning “For better or worse”: after identifying Foucault as helpful in escaping the base/superstructure dichotomy, he adds “but so too” and names Benjamin, de Certeau, Marin and Geertz. This is Greenblatt’s retrospective acknowledgment in an e-mail interview conducted in March 2018 and published in 2018, not a dated claim about a specific Benjamin work or evidence of personal contact. No Benjamin book was read for this proposal. Distinct from the existing Foucault and Geertz edges; both endpoints exist and there is no existing Benjamin–Greenblatt edge.",
+      "source_ids": [
+        "tq234_greenblatt_aletria"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "greenblatt_bf_02",
+      "source": "michel_de_certeau",
+      "target": "stephen_greenblatt",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In the interview “Acts of Literature II” (2018), Greenblatt credits Michel de Certeau, alongside other thinkers, with helping New Historicism escape the base/superstructure dichotomy.",
+      "map_label": "De Certeau as a resource for New Historicism",
+      "evidence_note": "Fresh reading of the journal PDF, p. 124, first answer: the same sentence that credits Foucault extends the acknowledgment with “but so too” to a list explicitly including Michel de Certeau. Claim limited to this retrospective acknowledgment of an intellectual resource, with no particular de Certeau work, exclusive allegiance or personal relationship inferred. Interview conducted March 2018; original publication 2018. De Certeau’s books and Greenblatt’s foreword to The Possession at Loudun were not read here. No existing de Certeau–Greenblatt edge was found in the supplied entry or the full graph.",
+      "source_ids": [
+        "tq234_greenblatt_aletria"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "greenblatt_bf_03",
+      "source": "stephen_greenblatt",
+      "target": "althusser",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "In “Acts of Literature II” (2018), Greenblatt identifies frustration with the Marxist literary criticism of Althusser and Lukács, to which he had initially turned against American formalism, as one impetus for New Historicism.",
+      "map_label": "Frustration with Althusserian criticism",
+      "evidence_note": "Fresh reading of the journal PDF, p. 124, first answer: Greenblatt describes his “frustration” with Marxist literary criticism, explicitly naming Lukács and Althusser, before explaining his wish to bring the whole cultural field into play and escape the base/superstructure dichotomy. This supports a bounded retrospective dissatisfaction with Althusser’s literary-critical approach; it does not support a detailed refutation of an Althusser text, rejection of all Marxism, or a claim that Williams ceased to matter. No Althusser original was read. Original interview publication 2018; the date does not purport to date the earlier change of mind. Althusser is an existing endpoint; Lukács is not.",
+      "source_ids": [
+        "tq234_greenblatt_aletria"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "greenblatt_bf_04",
+      "source": "stephen_greenblatt",
+      "target": "giovanni_levi",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "In “Loitering in the Piazza” (1988), Greenblatt praises Giovanni Levi’s archival persistence in Inheriting Power but argues that insufficient engagement with the exorcist’s inner life weakens its speculation about his belief in his healing powers.",
+      "map_label": "Qualified critique of Inheriting Power, 1988",
+      "evidence_note": "Primary review read on the journal’s own site. Exact HTML locators: paragraph beginning “I confess that for me” praises Levi’s “dogged patience”; penultimate paragraph, beginning “Did he think to recoup”, questions how well the account supports Levi’s conjecture about the exorcist’s belief; final paragraph calls the project “modest and quietly courageous”. The criticism concerns this explanatory limit, not wholesale rejection of microhistory. Issue date is 27 October 1988, vol. 10, no. 19; review pp. 18–19, but HTML paragraph locators, not a page image, were checked. Levi’s book itself remains unread; its 1988 English publication is not substituted for the date of the Italian original.",
+      "source_ids": [
+        "bf_greenblatt_loitering_1988"
+      ],
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "stephen_greenblatt → culture",
+      "reason": "Already represented by edge_2950. Fresh Aletria p. 124 and Harvard Gazette answers on his historical rebellion support the existing cultural-field claim. Chicago’s publisher description and Harvard bibliography were also checked; Renaissance Self-Fashioning (1980) was not read in full. No duplicate field edge proposed."
+    },
+    {
+      "pair": "raymond_williams → stephen_greenblatt",
+      "reason": "Already represented by edge_2951. Fresh reading of the 2014 Harvard Gazette answers beginning with the Cambridge influences question and continuing through his rebellion against New Criticism confirms the named debt. His following answer also preserves his appreciation of formalist training. No duplicate influence edge."
+    },
+    {
+      "pair": "foucault → stephen_greenblatt",
+      "reason": "Already represented by edge_2952. Aletria p. 124, first answer, was freshly read; its base/superstructure acknowledgment supports the existing contribution edge. A second influence-kind edge would duplicate the same claim."
+    },
+    {
+      "pair": "geertz → stephen_greenblatt",
+      "reason": "Already represented by edge_2953. Aletria p. 124, first answer, freshly read, explicitly names Geertz in the list of resources. No new Geertz-specific work or separate relationship established."
+    },
+    {
+      "pair": "stephen_greenblatt ↔ language",
+      "reason": "Re-examined the held-at-verification claim. Aletria pp. 125–126 discusses language and provisional meanings, but does not establish adherence to this particular linguistic-turn/poststructuralism umbrella. On pp. 129–130 the interviewers ask whether he is an Enlightenment realist or poststructuralist; his answer affirms modern science and literary power rather than declaring that allegiance. On p. 128 he also maintains the distinction between fiction and truth. New reading does not answer the original verification objection; keep held."
+    },
+    {
+      "pair": "Catherine Gallagher ↔ stephen_greenblatt",
+      "reason": "Missing endpoint. Harvard English’s selected works identifies Practicing New Historicism as coauthored with Gallagher (2000). The coauthorship is verified at bibliographic level, but Gallagher is absent from endpoints.json. An attempted additional publisher page could not be fetched; the book was not read."
+    },
+    {
+      "pair": "Louis Marin → stephen_greenblatt",
+      "reason": "Missing endpoint. Aletria p. 124 explicitly includes Marin among the resources credited in the same sentence used for greenblatt_bf_01 and greenblatt_bf_02."
+    },
+    {
+      "pair": "stephen_greenblatt → Georg Lukács",
+      "reason": "Missing endpoint. Aletria p. 124 names Lukács jointly with Althusser as the Marxist criticism with which Greenblatt became frustrated. Preserve the joint attribution in the Althusser proposal but do not create a Lukács node."
+    },
+    {
+      "pair": "John Monfasani ↔ stephen_greenblatt",
+      "reason": "Missing endpoint. Fresh reading of the complete Reviews in History review and appended author response verifies the 2012 published exchange over The Swerve (2011), Renaissance rupture and evidence for Lucretius’s influence. Monfasani is absent from endpoints.json. No criticism is reassigned to a group endpoint."
+    },
+    {
+      "pair": "Sarah Maza → stephen_greenblatt",
+      "reason": "Missing endpoint. The supplied source note was inspected and the introductory extract was visible in Cambridge’s indexed author-search result; direct DOI and author-search fetches failed. The full 2004 article remains unread. The extract questions convergence between historians and New Historicists; Maza is absent from endpoints.json, so no incoming critique is proposed."
+    },
+    {
+      "pair": "carlo_ginzburg ↔ stephen_greenblatt; natalie_zemon_davis ↔ stephen_greenblatt",
+      "reason": "The opening and methodological contrast in Greenblatt’s 1988 Levi review praise Ginzburg and Davis as exemplary microhistorians, but this is not treated as evidence that either influenced Greenblatt. Searches for Davis’s borrowing of self-fashioning located scholarly summaries and the lead “El historiador y los usos literarios”; the latter’s original journal page presented a bot check and was not read. No original Davis passage acknowledging the supposed borrowing was verified here. These possible debts or exchanges remain held for unread primary evidence; praise alone is not converted into influence."
+    },
+    {
+      "pair": "levistrauss → stephen_greenblatt",
+      "reason": "Aletria p. 130 attributes the formula “good to think with” to Lévi-Strauss while explaining coexistence of scientific acceptance and attachment to Genesis. Read, but kept as a bounded conceptual citation rather than expanded into a general intellectual-debt claim. No separate sustained engagement with a Lévi-Strauss work was investigated."
+    },
+    {
+      "pair": "pierre_bourdieu ↔ stephen_greenblatt",
+      "reason": "Search investigated a possible debt. Indexed results instead exposed a third scholar’s contrast between Bourdieu’s capital and Greenblatt’s currency metaphors; no primary acknowledgment by Greenblatt or exchange with Bourdieu was read. Searched without a verified relationship; no influence inferred from conceptual similarity."
+    },
+    {
+      "pair": "Alvin Kernan / Robert Penn Warren / Cleanth Brooks / Maynard Mack / F. R. Leavis ↔ stephen_greenblatt",
+      "reason": "Missing endpoints. Harvard Gazette’s 2014 answers identify these teachers or formative encounters; none has an endpoint. The same source’s continuing appreciation of formal analysis also prevents construing dissatisfaction with New Criticism as total abandonment of that training."
+    },
+    {
+      "pair": "stephen_greenblatt → culturalstudies; stephen_greenblatt → New Historicism",
+      "reason": "The existing culture edge already carries his broad cultural-method contribution. Williams’s influence does not alone establish a distinct contribution to the British cultural studies endpoint. New Historicism has no separate endpoint in endpoints.json; no new group is created."
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "bf_greenblatt_loitering_1988",
+      "title": "Stephen Greenblatt, “Loitering in the Piazza,” review of Giovanni Levi, Inheriting Power: The Story of an Exorcist, translated by Lydia Cochrane, London Review of Books 10, no. 19 (27 October 1988): 18–19.",
+      "citation": "Stephen Greenblatt, “Loitering in the Piazza,” review of Giovanni Levi, Inheriting Power: The Story of an Exorcist, translated by Lydia Cochrane, London Review of Books 10, no. 19 (27 October 1988): 18–19.",
+      "url": "https://www.lrb.co.uk/the-paper/v10/n19/stephen-greenblatt/loitering-in-the-piazza",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Review body read in HTML, including the opening comparisons, archival discussion, and final two paragraphs on the exorcist’s motives and the project’s merits. Issue date checked in journal header. HTML paragraph locators used; printed page images and Levi’s book unread."
+      }
+    }
+  ],
+  "reused_sources": [
+    {
+      "id": "tq234_greenblatt_aletria",
+      "use": "greenblatt_bf_01, greenblatt_bf_02, greenblatt_bf_03. Publisher-hosted PDF freshly read in memory, pp. 123–131, especially p. 124; pp. 128–130 also used to re-examine the language hold and limit the Lévi-Strauss lead. Browser fetches failed; ordinary direct publisher PDF request returned HTTP 200, without a bot check or access restriction."
+    },
+    {
+      "id": "tc234_greenblatt_interview",
+      "use": "Current edges_2950 and _2951 audit; missing-endpoint teaching leads and qualification concerning formal analysis."
+    },
+    {
+      "id": "tc234_greenblatt_harvard",
+      "use": "Bibliographic audit of original major-work dates and Gallagher coauthorship; no new edge."
+    },
+    {
+      "id": "tq234_greenblatt_ucp",
+      "use": "Current description and scope audit; publisher description only, not a fresh reading of the 1980 book."
+    },
+    {
+      "id": "tq234_greenblatt_monfasani2012",
+      "use": "Fresh review and response reading for the held missing-endpoint exchange."
+    },
+    {
+      "id": "tc234_greenblatt_maza",
+      "use": "Existing source limits inspected; indexed introductory extract only in this investigation, with failed direct fetches. No proposal relies on full-article reading."
+    }
+  ]
+}

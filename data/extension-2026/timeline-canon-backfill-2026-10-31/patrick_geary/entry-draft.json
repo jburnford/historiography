@@ -1,0 +1,144 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (patrick_geary: existing person entry, relationship backfill; no new node)",
+  "review_status": "reviewed",
+  "proposed_edges": [
+    {
+      "proposal_id": "pg_bf_01",
+      "source": "patrick_geary",
+      "target": "barbara_h_rosenwein",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Geary participated in the source-based electronic debate published as ‘Qui a peur de l'an mil ?’ (1999), coordinated and edited into published form by Barbara H. Rosenwein.",
+      "map_label": "Published millennium debate, 1999",
+      "evidence_note": "Primary editorial preamble read, printed p. 15, first two paragraphs: four discussants are named, including Geary; Rosenwein ‘a assuré la mise en scène et la mise en forme’. The exchange occurred in January–February 1998 and appeared in 1999. Later pages remain unread. This records a published collaborative exchange, without imputing shared conclusions or treating Rosenwein as one of the four discussants.",
+      "source_ids": [
+        "bf_geary_millennium_debate_1999"
+      ],
+      "classification_basis": "editorial_review",
+      "include": false,
+      "review": {
+        "verdict": "hold",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://www.persee.fr/doc/medi_0751-2708_1999_num_18_37_1462",
+        "phrase_seen": "Les participants étaient Patrick J. Geary... Barbara H. Rosenwein a assuré la mise en scène et la mise en forme",
+        "reason": "Evidence is correct and verified (same passage as rosenwein_bf_03), but this is a duplicate of rosenwein_bf_03: same endpoints, same 1999 publication, undirected. Held only to avoid a double edge; apply one of the two (rosenwein_bf_03 wording is fine), and merge the duplicate new source ids for DOI 10.3406/medi.1999.1462. 'comparison' is also a poor kind for an editorial collaboration.",
+        "duplicate_of": "barbara_h_rosenwein/rosenwein_bf_03"
+      }
+    },
+    {
+      "proposal_id": "pg_bf_02",
+      "source": "patrick_geary",
+      "target": "r_bin_wong",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Geary and R. Bin Wong coauthored Societies and Cultures in World History (1994 in Geary's CV), alongside Mark Kishlansky and Patricia O'Brien.",
+      "map_label": "World-history textbook coauthors",
+      "evidence_note": "Geary's institutional CV, printed p. 4, Books and monographs: the textbook is listed ‘with Mark Kishlansky, Patricia O'Brien, and Bin Wong’, followed by HarperCollins and 1994. Bibliographic authorship only; textbook body unread and individual arguments unattributed. An indexed publisher advertisement markets a 1995 edition, but its PDF could not be read. The first-publication date discrepancy remains unresolved; 1994 is explicitly the CV's date.",
+      "source_ids": [
+        "tc234_geary_cv"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "verified",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://www.ias.edu/sites/default/files/Geary_CV_2022%20%28002%29.pdf",
+        "phrase_seen": "Societies and Cultures in World History, with Mark Kishlansky, Patricia O'Brien, and Bin Wong. New York, HarperCollins, 1994.",
+        "reason": "Geary's IAS CV text matches. 'Bin Wong' = R. Bin Wong is the known co-author of this textbook, so endpoint is right. Year correctly flagged as the CV's date (catalogue records commonly give 1995); keep the hedge. Bibliographic co-authorship only."
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "patrick_geary → consumption",
+      "reason": "Already represented by edge_2919 (contribution). Its evidence is the opening of ‘Sacred Commodities’ (1986), bounded to the Latin West and specified centuries. The current DOI fetch failed; no fresh full-chapter reading or broader claim is asserted."
+    },
+    {
+      "pair": "patrick_geary → nationalismstudies",
+      "reason": "Already represented by edge_2920 (contribution). Fanning's 2002 review was reread, including its methodological summary and caution about generalizations. No duplicate proposed."
+    },
+    {
+      "pair": "patrick_geary → memory",
+      "reason": "The old held claim tc234_patrick_geary_2 was reconsidered. Its IAS-only access failure has already been answered in revision 1.235 by accepted edge_2969 and a Princeton publisher account, freshly reread here. No resubmission or duplicate; Phantoms of Remembrance (1994) remains unread in full."
+    },
+    {
+      "pair": "georges_duby → patrick_geary",
+      "reason": "Strong influence lead held for incomplete dated evidence. Geary's quoted self-statement in the Contemporary Authors profile explicitly names Duby, but the statement's original publication date is not established. A publisher-indexed excerpt from the later retrospective mentions Duby's seminars, but the chapter PDF returned 403. The licensed preview ends before Geary's chapter. Neither snippets nor an undated quotation are presented as a fresh reading of the dated chapter."
+    },
+    {
+      "pair": "patrick_geary → georges_duby",
+      "reason": "Potential critique held for unread evidence. An indexed scholarly footnote points to ‘Moral Obligations and Peer Pressure: Conflict Resolution in the Medieval Aristocracy’ (1996), pp. 217–222, for a challenge to Duby's Carolingian baseline. The citing PDF returned 403 and the original chapter was not read. No critique proposed from the snippet."
+    },
+    {
+      "pair": "maurice_halbwachs / pierre_nora ↔ patrick_geary",
+      "reason": "Searched without a verified named debt or critique. Princeton's book description names neither; the later primary retrospective was inaccessible beyond indexed excerpts, and the licensed preview does not include it. General participation in memory studies is insufficient."
+    },
+    {
+      "pair": "peter_brown ↔ patrick_geary",
+      "reason": "Searched for a cult-of-saints/relics relationship. No readable primary acknowledgment or substantive named exchange established; search results pairing the authors establish shared subject matter only. Furta Sacra and Brown's relevant book passages remain unread."
+    },
+    {
+      "pair": "arjun_appadurai / marcel_mauss / jack_goody ↔ patrick_geary",
+      "reason": "Investigated the sacred-objects and memory leads without verifying a fresh named intellectual relationship. Appadurai's editorial role in The Social Life of Things alone does not establish influence. The chapter DOI fetch failed, and no original passage establishing any of these debts was read."
+    },
+    {
+      "pair": "benedict_anderson / ernest_gellner ↔ patrick_geary",
+      "reason": "Fanning uses the phrase imagined communities without attributing it to Anderson and does not name either theorist. The Myth of Nations remains unread; no influence is inferred from terminology or subject."
+    },
+    {
+      "pair": "Reinhard Wenskus / Herwig Wolfram → patrick_geary",
+      "reason": "Missing endpoints. Fanning's opening historiographical discussion connects Geary's work to ethnogenesis research associated with these scholars, but neither appears in endpoints.json. No nodes created."
+    },
+    {
+      "pair": "Steven Fanning → patrick_geary",
+      "reason": "Missing endpoint. Fanning's readable 2002 review contains both praise and reservations; no person endpoint exists for its author. The existing nationalism edge already preserves its qualified reading."
+    },
+    {
+      "pair": "patrick_geary ↔ Richard Landes / Amy G. Remensnyder / Timothy Reuter",
+      "reason": "Missing endpoints for the other three discussants named in the primary editorial preamble to the 1999 debate. Their participation is verified, but no nodes are created."
+    },
+    {
+      "pair": "patrick_geary ↔ Mark Kishlansky / Patricia O'Brien",
+      "reason": "Missing endpoints for the two other textbook coauthors named in Geary's CV. Patricia O'Brien must not be conflated with the existing Jean M. O’Brien endpoint."
+    },
+    {
+      "pair": "patrick_geary ↔ Gerd Althoff / Johannes Fried / Gábor Klaniczay / János Bak",
+      "reason": "Geary's CV, printed p. 5, lists editorial collaborations; none of these collaborators is an existing endpoint. Missing endpoints; no new nodes or substitute group arrows."
+    },
+    {
+      "pair": "patrick_geary → Sebastian Scholz / Gerald Schwedler",
+      "reason": "Missing endpoints. The readable licensed preview's preface and opening introduction explicitly position their volume in relation to Phantoms of Remembrance. No personal endpoints exist, and a further contribution-to-memory edge would duplicate edge_2969."
+    },
+    {
+      "pair": "Robert Sabatino Lopez / Léopold Genicot / Maurice Merleau-Ponty → patrick_geary",
+      "reason": "Missing endpoints, additionally incomplete original evidence. The indexed 1998 interview and undated self-statement suggest training or philosophical debts, but the interview landing page required robot verification and the interview body was not read."
+    }
+  ],
+  "new_sources": [],
+  "reused_sources": [
+    {
+      "id": "tc234_geary_cv",
+      "use": "pg_bf_02: freshly read institutional CV, printed p. 4, textbook coauthors and author-reported 1994 date; p. 5 editorial collaborations checked for missing endpoints."
+    },
+    {
+      "id": "tq234_geary_fanning2002",
+      "use": "Freshly reread full review for existing edge_2920 and missing-endpoint/unsupported-theorist holds; no new edge."
+    },
+    {
+      "id": "thin_geary_phantoms_princeton",
+      "use": "Freshly reread publisher description to confirm that the earlier memory hold is already resolved by edge_2969; no new edge."
+    }
+  ],
+  "sources_not_applied": [
+    {
+      "id": "bf_geary_millennium_debate_1999",
+      "reason": "not cited by any applied edge after verification"
+    }
+  ]
+}

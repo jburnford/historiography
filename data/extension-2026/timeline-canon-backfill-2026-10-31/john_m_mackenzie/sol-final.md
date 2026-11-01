@@ -1,0 +1,3 @@
+Wrote [entry-draft.json](/home/jic823/historiography/data/extension-2026/timeline-canon-backfill-2026-10-31/john_m_mackenzie/entry-draft.json) and [reading-log.json](/home/jic823/historiography/data/extension-2026/timeline-canon-backfill-2026-10-31/john_m_mackenzie/reading-log.json).
+
+Proposed five relationships: Cannadine, Devine, Hall, Colley, and Anthony D. Smith. Retained both affiliation holds; recorded Porter’s missing endpoint and unread Burton/Bayly evidence. JSON, endpoint, duplicate, and source-route checks pass.

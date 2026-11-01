@@ -1,6 +1,23 @@
 # Teaching graph format, schema 1.6
 
-## Current revision 1.234: thirty-two timeline entries from the dissertation canon
+## Current revision 1.236: relationships for the new timeline entries
+
+Revision 1.236 adds 66 relationships, 59 of them between two people, to the 18 person entries from 1.232–1.234
+that still had fewer than five at 1.235 (which had backfilled the entries with three or fewer). Sol 6.1 (Codex)
+researched one historian per agent under `data/extension-2026/timeline-canon-backfill-2026-10-31/BRIEF.md`, logging
+every document opened. Three independent Claude verification agents then opened every cited passage
+(`review-A/B/C.json`): 57 proposals verified and 11 adjusted (wording narrowed, one direction reversed:
+Trigger → Dickason; Bourke's influences labelled as the interviewer's report; Maier–Beckert re-sourced to pages
+that could be read). Three were held: Roy Porter → Bartlett (preview refused access; teaching only), Jeremy Black
+→ Parker (page behind a bot check) and the Devine CV details. Two proposals duplicated a neighbouring draft
+(the 1999 *Médiévales* exchange; the Smout–Devine journal) and were applied once. Co-authorship and co-editing
+between two people are undirected comparisons. Among the additions: Bartlett's review of Ginzburg's *Ecstasies*
+and Ginzburg's reply (1991), Trigger's critique of Innis's fur-trade "Economic Man" (1989), Creighton as Miller's
+supervisor, Rosenwein's critiques of the Stearnses and Delumeau (2002), and MacKenzie and Devine's *Scotland and
+the British Empire* (2011). Every entry now has at least five relationships (Geary 5; most 7–10). Sol's drafts are
+kept beside the applied ones as `entry-draft.researcher.json`.
+
+## Historical revision 1.234: thirty-two timeline entries from the dissertation canon
 
 Revisions **1.232–1.234** add **32 individual entries**: 31 historians and Stephen Greenblatt as an individual theorist. They are the historians most cited across dated strict History PhDs who had no timeline entry, with four editorial additions: Kathleen Wilson, Charles Rosenberg, Robert Bartlett and Bruce Trigger. Selection counts are not used as evidence of influence. Together the three revisions add **131 relationships, 114 cited sources, 16 people records and 51 roster rows**. The graph now contains **400 entries, 2,953 relationships, 3,554 sources and 1,454 indexed people**.
 

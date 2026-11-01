@@ -1,0 +1,176 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (paul_kennedy: existing person entry, relationship backfill; no new node)",
+  "review_status": "needs_review",
+  "proposed_edges": [
+    {
+      "proposal_id": "kennedy_bf_01",
+      "source": "paul_kennedy",
+      "target": "john_lewis_gaddis",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": false,
+      "relationship": "Kennedy and John Lewis Gaddis jointly designed and taught Yale’s Studies in Grand Strategy course (2000), alongside Charles Hill and Paul Bracken.",
+      "map_label": "Joint Grand Strategy teaching, 2000",
+      "evidence_note": "Yale’s original announcement, 18 January 2000, body paragraphs 2–5, especially paragraph beginning “Kennedy and John Gaddis”: they joined Hill and Bracken “in designing the course” and “all four will teach”. Kennedy’s preceding statement stresses seeing the broader strategic picture; the following paragraph describes historical primary readings. Yale’s On Grand Strategy notice (6 April 2018), first body paragraph, confirms the sustained co-teaching and identifies Gaddis’s book as reflecting on it. This is a documented teaching collaboration, classified as an undirected contribution; neither co-authorship of Gaddis’s 2018 book nor agreement on every strategic interpretation is claimed. Course materials and the book remain unread.",
+      "source_ids": [
+        "bf_yale_grand_strategy_2000",
+        "bf_yale_gaddis_strategy_2018"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "kennedy_bf_02",
+      "source": "niall_ferguson",
+      "target": "paul_kennedy",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "The author-hosted synopsis of Ferguson’s The Cash Nexus (2001) challenges Kennedy’s economic explanation of international power by emphasizing political forces shaping economic development.",
+      "map_label": "Cash Nexus challenges economic primacy, 2001",
+      "evidence_note": "Author’s own book page, synopsis paragraphs 2–3: “Paul Kennedy has claimed that economics provided the key to international power”; it counters with “political events and institutions have often dominated economic development”. This is a synopsis-level relationship, not a fresh reading of the book’s argument. The publisher’s Description independently states that war drives financial innovation and economic development. Original year 2001 is explicitly confirmed in Ferguson’s About page, paragraph beginning “The latter won”; the 21 February 2002 date on the book page is the trade paperback date, as identified on the publisher page. Both books remain unread; the claim does not attribute detailed arguments or pages to either. Kennedy’s existing military contribution already preserves his later concession about economic determinism; this adds a named incoming critic.",
+      "source_ids": [
+        "bf_ferguson_cash_synopsis_2001",
+        "bf_ferguson_about_cash_2001",
+        "bf_ferguson_cash_publisher_2002"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "kennedy_bf_03",
+      "source": "paul_kennedy",
+      "target": "niall_ferguson",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In the essay reprinted as Daring to Undeceive (original 2021; reprint 2022), Ferguson explicitly borrows Kennedy’s phrase “imperial overstretch” to interpret interwar Britain in a comparison with American power.",
+      "map_label": "Named borrowing of imperial overstretch, 2021",
+      "evidence_note": "Ferguson, Daring to Undeceive, Hoover Digest, Winter 2022, printed p. 118 (PDF page 120), second body paragraph: “imperial overstretch,” “to borrow a phrase from Paul Kennedy”. The continuation on printed p. 119 puts Britain’s thinly spread imperial resources into the analogy with America. Printed p. 128 carries the permission line identifying the Economist original as copyright 2021; exact original day/title not independently established. Selected publisher PDF text read, including those passages and the closing attribution; screenshot requests failed with cache miss, so no page-image reading is claimed. The original publisher’s site was unavailable to search because of robots.txt. The edge concerns this explicitly credited concept alone and does not imply endorsement of Kennedy’s whole thesis or withdrawal of Ferguson’s earlier criticism.",
+      "source_ids": [
+        "bf_ferguson_undeceive_2021"
+      ],
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "paul_kennedy → political; paul_kennedy → global",
+      "reason": "Already represented by edge_2899 and edge_2900. Re-read Kennedy’s own 2009 Yale panel answers on leadership, economic crisis and institutional capacity; no extra field edge proposed from those same claims."
+    },
+    {
+      "pair": "paul_kennedy → military; wartradition → paul_kennedy",
+      "reason": "Already represented by edge_2901 and edge_2902. Fresh reading of Kennedy’s 2026 response confirms the economic/military programme, concessions and Mahan/Campbell stimulus; no duplicate field or tradition claim."
+    },
+    {
+      "pair": "Immanuel Wallerstein → paul_kennedy; anthony_giddens → paul_kennedy",
+      "reason": "Unread original evidence. Cox’s 2026 review, paragraph beginning “But how does one account for this success?” and n. 20, supplies brief favorable assessments and a reference to the British Journal of Sociology symposium 40:2 (June 1989), 328–340. JSTOR stable 590276 returned no readable article text; DOI access also failed. These fragments do not establish either reviewer’s substantive critique. No symposium page is claimed read."
+    },
+    {
+      "pair": "hugh_trevor_roper ↔ paul_kennedy",
+      "reason": "Searched without a verified relationship. Exploratory supervision lead did not yield a primary passage linking them. The IHR Trevor-Roper profile returned 403. Do not infer supervision from both historians’ Oxford affiliation."
+    },
+    {
+      "pair": "A. J. P. Taylor → paul_kennedy",
+      "reason": "Missing endpoint. Kennedy’s 2026 response, passage on Taylor’s 1954 Struggle for Mastery in Europe and n. 103, expressly credits its opening statistical treatment as affecting his historical writing. Taylor is absent from endpoints.json; no personal node created. Taylor’s original remains unread."
+    },
+    {
+      "pair": "Alfred Thayer Mahan → paul_kennedy; John Campbell → paul_kennedy",
+      "reason": "Missing personal endpoints, with the evidenced stimulus already represented through wartradition in edge_2902. The quoted source originals remain unread."
+    },
+    {
+      "pair": "Varsha Venkatasubramanian → paul_kennedy; Michael Cox ↔ paul_kennedy; John D. Maurer ↔ paul_kennedy; Rosella Cappella Zielinski ↔ paul_kennedy",
+      "reason": "Missing endpoints. The 2026 roundtable contains named reviews and Kennedy’s responses; selected Cox and Kennedy passages were read, including Kennedy’s replies to the other reviewers. Venkatasubramanian’s criticism and Kennedy’s concessions already qualify edge_2901. No new personal nodes or replacement group proxies proposed."
+    },
+    {
+      "pair": "Charles Hill ↔ paul_kennedy; Paul Bracken ↔ paul_kennedy",
+      "reason": "Missing endpoints. The 2000 course announcement names both as co-designers and co-teachers; both retain credit in kennedy_bf_01."
+    },
+    {
+      "pair": "William Hitchcock; Dirk Messner; Franz Nuscheler; Emily Hill; Robert Chase; Ingomar Hauchler; A. J. Nicholls; Jack Spence; John A. Moses ↔ paul_kennedy",
+      "reason": "Missing endpoints. Yale’s professional profile, Edited books list, names these collaborators. Bibliographic list read; edited books remain unread. No co-editing edge can join existing personal endpoints."
+    },
+    {
+      "pair": "paul_kennedy → economic / historicalsociology",
+      "reason": "No separate field addition proposed: the strongest freshly read argument overlaps the economic–military programme already represented by edge_2901; the author-hosted account of Ferguson’s disagreement supports a named critique instead. No wider economic-history or comparative-sociology affiliation inferred."
+    },
+    {
+      "pair": "paul_kennedy ↔ donald_creighton; paul_kennedy ↔ queer",
+      "reason": "False-positive mention leads. Inspection of the named graph entries shows W. P. M. Kennedy in Creighton’s account and Elizabeth Lapovsky Kennedy in the sexuality entry, not Paul Kennedy. No relationship proposed."
+    },
+    {
+      "pair": "paul_kennedy: held_at_verification",
+      "reason": "Input record contains an empty held_at_verification array; there is no previously held edge to re-propose."
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "bf_yale_grand_strategy_2000",
+      "title": "Yale News, “New Course on Grand Strategy Offered at Yale,” 18 January 2000.",
+      "citation": "Yale News, “New Course on Grand Strategy Offered at Yale,” 18 January 2000.",
+      "url": "https://news.yale.edu/2000/01/18/new-course-grand-strategy-offered-yale",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Original announcement read, body paragraphs on Kennedy’s objectives, joint course design and four teachers, historical syllabus and programme structure. Supports kennedy_bf_01; no course archive consulted."
+      }
+    },
+    {
+      "id": "bf_yale_gaddis_strategy_2018",
+      "title": "Yale News, “On Grand Strategy,” 6 April 2018.",
+      "citation": "Yale News, “On Grand Strategy,” 6 April 2018.",
+      "url": "https://news.yale.edu/2018/04/06/grand-strategy",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Both body paragraphs read. Confirms nearly two decades of teaching by Gaddis, Hill and Kennedy and identifies the book as a reflection on that experience. Book unread."
+      }
+    },
+    {
+      "id": "bf_ferguson_cash_synopsis_2001",
+      "title": "Niall Ferguson, author-hosted synopsis of The Cash Nexus: Money and Power in the Modern World, 1700–2000 (original 2001; page lists Basic Books paperback, 2002).",
+      "citation": "Niall Ferguson, author-hosted synopsis of The Cash Nexus: Money and Power in the Modern World, 1700–2000 (original 2001; page lists Basic Books paperback, 2002).",
+      "url": "https://www.niallferguson.com/the-cash-nexus",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Four synopsis paragraphs and edition line read. Kennedy is explicitly named in the claim that the synopsis challenges. No book pages read. Original 2001 distinguished from displayed 2002 paperback using author biography and publisher format metadata."
+      }
+    },
+    {
+      "id": "bf_ferguson_about_cash_2001",
+      "title": "Niall Ferguson, “About Niall,” author biography, paragraph on The Cash Nexus (2001).",
+      "citation": "Niall Ferguson, “About Niall,” author biography, paragraph on The Cash Nexus (2001).",
+      "url": "https://www.niallferguson.com/about",
+      "verification": {
+        "status": "bibliographic_metadata_checked",
+        "checked_on": "2026-10-31",
+        "note": "Paragraph beginning The latter won expressly dates publication of The Cash Nexus to 2001. Used only for original-year verification."
+      }
+    },
+    {
+      "id": "bf_ferguson_cash_publisher_2002",
+      "title": "Basic Books / Hachette Book Group US Distribution, The Cash Nexus: Money and Power in the Modern World, 1700–2000, trade paperback, 21 February 2002, ISBN 9780465023264.",
+      "citation": "Basic Books / Hachette Book Group US Distribution, The Cash Nexus: Money and Power in the Modern World, 1700–2000, trade paperback, 21 February 2002, ISBN 9780465023264.",
+      "url": "https://hachettebookgroupusdistribution.com/titles/niall-ferguson/the-cash-nexus/9780465023264/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Format, date, title and Description read. Publisher distinguishes the 2002 trade paperback and summarizes war as a driver of economic development. It does not name Kennedy; that identification comes from Ferguson’s own book page. Review blurbs are not substituted for book passages."
+      }
+    },
+    {
+      "id": "bf_ferguson_undeceive_2021",
+      "title": "Niall Ferguson, “Daring to Undeceive,” Hoover Digest, Winter 2022, 118–128; authorized reprint of a 2021 Economist essay.",
+      "citation": "Niall Ferguson, “Daring to Undeceive,” Hoover Digest, Winter 2022, 118–128; authorized reprint of a 2021 Economist essay.",
+      "url": "https://www.hoover.org/sites/default/files/issues/resources/hoover-22-01-issue.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected publisher PDF text read: printed pp. 118–119, the later comparison/conclusion, and p. 128 permission statement confirming the 2021 original. Named borrowing on p. 118 supports kennedy_bf_03. Page images unavailable (cache miss). Original publisher search blocked by robots.txt; exact original day/title not independently verified."
+      }
+    }
+  ],
+  "reused_sources": []
+}

@@ -1,0 +1,183 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (charles_e_rosenberg: existing person entry, relationship backfill; no new node)",
+  "review_status": "needs_review",
+  "proposed_edges": [
+    {
+      "proposal_id": "rosenberg_bf_01",
+      "source": "charles_e_rosenberg",
+      "target": "steven_shapin",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In “Interview: Steven Shapin” (2025; recorded July 2024), Shapin recalls that reading Rosenberg’s papers on American agricultural research led him to apply to Pennsylvania’s history-of-science programme in the hope of working with Rosenberg.",
+      "map_label": "Agricultural-history papers prompted Shapin’s application",
+      "evidence_note": "Fresh primary retrospective testimony: publisher PDF, printed p. 3, paragraph beginning “Only one of my applications”, within the first autobiographical answer (pp. 2–5). Shapin says his reason for applying was reading Rosenberg’s agricultural-history papers; his hope of thesis supervision “didn’t work out that way”. He identifies subsequent friendship and departmental colleagueship. This supports a specific reading-mediated career influence, not doctoral supervision or adoption of Rosenberg’s entire method. The individual papers are not identified here and were not read; their publication years are not inferred. Interview date is on p. 1; original publication was June 2025.",
+      "source_ids": [
+        "hr28_shapin_interview2025"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "rosenberg_bf_02",
+      "source": "charles_e_rosenberg",
+      "target": "gender",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "With Carroll Smith-Rosenberg, Rosenberg’s “The Female Animal” (1973) examines how nineteenth-century medical and biological arguments defended traditional sex roles against women’s demands for education and reproductive choice.",
+      "map_label": "Medical arguments and traditional sex roles, 1973",
+      "evidence_note": "Read the licensed preview of the 1987 anthology From ‘Fair Sex’ to Feminism, chapter opening pp. 13–15 (PDF pages 28–30): https://api.pageplace.de/preview/DT0400.9781135175702_A23800116/preview-9781135175702_A23800116.pdf. p. 13 identifies an analysis of “normative descriptions of the female role”; p. 14 specifies education, birth control and abortion, and medicine’s legitimation of inherited roles. Both coauthors are credited. Publisher metadata and anthology acknowledgements establish original publication in September 1973, not 1987 or the preview’s 2004 reprint. The original journal scan and remaining essay were not read. This is a bounded contribution concerning gender roles, not a claim to found gender history or anticipate its later theoretical positions.",
+      "source_ids": [
+        "bf_smith_rosenberg_female_animal_1973"
+      ],
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "richard_hofstadter → charles_e_rosenberg",
+      "reason": "Already represented by edge_2966. Wailoo (2020), body paragraph beginning Writing in 2008, freshly confirms studentship and a stylistic affinity; no fresh dissertation-supervision evidence. Existing qualification retained."
+    },
+    {
+      "pair": "charles_e_rosenberg → medicalhistory (contribution)",
+      "reason": "Already represented by edge_2946. Harvard Gazette (2001), professional profile and quotations, and Wailoo (2020) support the same social-historical contribution. No duplicate proposed."
+    },
+    {
+      "pair": "charles_e_rosenberg → science (contribution)",
+      "reason": "Already represented by edge_2947. Reopening the Mantovani interview failed; the Harvard repository copy of Science in American Society also returned an access error. No fresh argument read to justify another contribution edge."
+    },
+    {
+      "pair": "charles_e_rosenberg → medicalhistory (critique)",
+      "reason": "Already represented by edge_2967. Fresh reading of Disease in History (1989), pp. 1–4 and references p. 15, confirms criticism of several historiographical emphases, rather than of social-control explanations alone. No duplicate or sharpening beyond the existing qualification."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ Carroll Smith-Rosenberg",
+      "reason": "Missing endpoint in endpoints.json. Coauthorship of The Female Animal (1973) is established by the original publisher record and licensed anthology chapter. Credit is explicit in rosenberg_bf_02; no person node or coauthorship edge created."
+    },
+    {
+      "pair": "Erwin H. Ackerknecht → charles_e_rosenberg",
+      "reason": "Missing endpoint. The existing Mantovani source note and a search-visible Rogers (2008) abstract identify a teaching/influence lead, but the interview returned 403 and the Rogers page returned 429. No fresh substantive passage read and no person edge proposed."
+    },
+    {
+      "pair": "George Rosen → charles_e_rosenberg",
+      "reason": "Missing endpoint. Lead from the existing interview record and search-indexed metadata; the fresh interview fetch failed. No new evidence claimed."
+    },
+    {
+      "pair": "Henry E. Sigerist → charles_e_rosenberg",
+      "reason": "Missing endpoint. Investigated as part of the social-medicine genealogy; no fresh passage establishing a personal intellectual debt read. Do not infer a direct debt from membership in a shared tradition."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ Janet Golden",
+      "reason": "Missing endpoint. Framing Disease (1992) coediting is named in the supplied sources, but its volume was not freshly read. No person edge proposed."
+    },
+    {
+      "pair": "charles_e_rosenberg → Nancy Tomes; charles_e_rosenberg → Jeremy Greene",
+      "reason": "Missing endpoints. Wailoo (2020) quotes their joint Is there a Rosenberg School? (2008), but that original article was not opened or read. No separate personal debts inferred from the mediated discussion of narrative and theory."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ Keith Wailoo",
+      "reason": "Missing endpoint. Wailoo’s 2020 essay was read as reception and to check the existing Hofstadter edge; no person edge possible."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ Naomi Rogers",
+      "reason": "Missing endpoint and unread substantive evidence. Explaining Everything? (2008) was investigated as an incoming assessment by a former student; only the search abstract was visible, and the attempted publisher page returned 429. No detailed critique reconstructed."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ roy_porter",
+      "reason": "Searched without a verified relationship. Read Porter’s review of Evans’s Death in Hamburg, Medical History 32:2 (April 1988), pp. 215–217: it does not mention Rosenberg. Appearance alongside a Rosenberg review in the issue contents is not an intellectual relationship. No other relevant Porter passage verified."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ richard_j_evans",
+      "reason": "Searched without a verified relationship. Porter’s 1988 review establishes Evans’s argument but does not connect it to Rosenberg. Death in Hamburg and its acknowledgements were not read; parallel cholera subjects do not establish influence or comparison."
+    },
+    {
+      "pair": "charles_e_rosenberg → foucault (critique)",
+      "reason": "No fresh named critique verified. Disease in History (1989), pp. 3–4, targets historiographical trends and names Figlio, Wright and Treacher, not Foucault. The Mantovani interview could not be reopened. Do not project the existing field-level critique onto Foucault."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ gramsci; charles_e_rosenberg ↔ derrida",
+      "reason": "Searched without fresh verified relationship. The supplied interview’s general genealogy discussion does not itself establish personal adoption or a substantive critique of either thinker; fresh interview text inaccessible."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ thomas_laqueur",
+      "reason": "A search found metadata for a Social History review section mentioning Healing and History (1981), but no readable Laqueur passage on Rosenberg was obtained. Bibliographic proximity is insufficient; review body unread."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ nancy_f_cott",
+      "reason": "Searched without verified relationship. Results chiefly concerned Carroll Smith-Rosenberg’s work and cannot be transferred to Charles Rosenberg."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ michael_b_katz; charles_e_rosenberg ↔ joanna_bourke; charles_e_rosenberg ↔ david_arnold",
+      "reason": "Searched without a verified named debt, collaboration, exchange or critique. Shared institutional or subject settings and third-party joint citations were not used as evidence."
+    },
+    {
+      "pair": "alfred_crosby → charles_e_rosenberg",
+      "reason": "Disease in History (1989), p. 4, names Crosby’s ecological histories as examples in a survey of trends. This is not an explicit personal debt or sustained comparison; no edge inferred. Crosby’s cited books unread."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ erving_goffman",
+      "reason": "Searched without a verified relationship. The potentially relevant hospital/institutional literature was not freshly read; similarity between dramaturgical language or institution topics cannot establish influence."
+    },
+    {
+      "pair": "charles_e_rosenberg → social; charles_e_rosenberg → women",
+      "reason": "No additional field edge proposed. The social history of disease is already carried by edge_2946; the one newly read sex-role argument is assigned to gender in rosenberg_bf_02 rather than duplicated across adjacent fields."
+    },
+    {
+      "pair": "charles_e_rosenberg → archival_turn",
+      "reason": "Identity mismatch in the supplied mentioned_in lead. The node discusses Blouin and Rosenberg’s Processing the Past (2011); the AHA’s 2011 conversation names that coauthor William Rosenberg at Michigan. It is not evidence about Charles E. Rosenberg. No input or graph correction made."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ Gerald Grob; charles_e_rosenberg ↔ Allan Brandt; charles_e_rosenberg ↔ Gert Brieger",
+      "reason": "Missing endpoints. Professional assessments and teaching comments in the Harvard Gazette (2001) were read but do not permit person edges within this endpoint set."
+    },
+    {
+      "pair": "charles_e_rosenberg ↔ drew_gilpin_faust",
+      "reason": "Harvard Gazette (2001) reports simultaneous appointments and a personal relationship, not a named intellectual debt, collaboration or exchange. Personal information is excluded; no intellectual edge inferred."
+    },
+    {
+      "pair": "charles_e_rosenberg → epidemic-history debate (additional contribution)",
+      "reason": "Full What Is an Epidemic? chapter unread: the DOI fetch failed. Existing medical-history contribution already covers the bounded publisher-headnote claim supplied in the entry. No new edge based on an unread chapter."
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "bf_smith_rosenberg_female_animal_1973",
+      "title": "Carroll Smith-Rosenberg and Charles Rosenberg, “The Female Animal: Medical and Biological Views of Woman and Her Role in Nineteenth-Century America,” Journal of American History 60, no. 2 (September 1973): 332–356.",
+      "citation": "Carroll Smith-Rosenberg and Charles Rosenberg, “The Female Animal: Medical and Biological Views of Woman and Her Role in Nineteenth-Century America,” Journal of American History 60, no. 2 (September 1973): 332–356.",
+      "url": "https://doi.org/10.2307/2936779",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Original publisher bibliographic record checked. Primary opening read in licensed Routledge preview of J. A. Mangan and Roberta J. Park, eds., From ‘Fair Sex’ to Feminism (1987; 2004 reprint), pp. 13–15, PDF pages 28–30. Preview URL is recorded in rosenberg_bf_02 and reading-log.json. Original journal scan and remaining essay unread; pagination is the anthology’s."
+      }
+    }
+  ],
+  "reused_sources": [
+    {
+      "id": "hr28_shapin_interview2025",
+      "use": "rosenberg_bf_01; fresh reading of publisher PDF pp. 1–5, with claim at p. 3 and July 2024 interview date at p. 1. Reuse existing source ID; no duplicate source created."
+    }
+  ],
+  "existing_edge_review": [
+    {
+      "edge_id": "edge_2946",
+      "assessment": "Read the complete supplied claim and source note; social embeddedness of disease and diagnosis remains a bounded existing contribution. Harvard Gazette and Wailoo freshly read; Mantovani fresh fetch failed."
+    },
+    {
+      "edge_id": "edge_2947",
+      "assessment": "Read the complete supplied claim and source note; retain the existing qualification on theoretical genealogies. No additional science contribution claimed without a fresh passage."
+    },
+    {
+      "edge_id": "edge_2966",
+      "assessment": "Read the complete supplied incoming claim and source note; Wailoo freshly checked. Studentship/style retained; no claim to doctoral supervision."
+    },
+    {
+      "edge_id": "edge_2967",
+      "assessment": "Read the complete supplied critique and source note; checked primary pp. 1–4 and reference list p. 15. Preserve the qualification that the disease-definition criticism covers all five surveyed trends."
+    }
+  ],
+  "research_scope_note": "The supplied held_at_verification array is empty. All four incident graph edges were checked against the live graph, including their opposite endpoints; neither proposed endpoint/kind pair exists. All proposed endpoints are in ../endpoints.json. This dossier is a bounded proposal, not an exhaustive network. No graph, input, source record or person entry was edited; no new node proposed. OpenAlex remains paused."
+}

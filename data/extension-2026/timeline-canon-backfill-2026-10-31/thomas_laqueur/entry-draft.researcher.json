@@ -1,0 +1,172 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (thomas_laqueur: existing person entry, relationship backfill; no new node)",
+  "review_status": "needs_review",
+  "proposed_edges": [
+    {
+      "proposal_id": "laqueur_bf_01",
+      "source": "lawrence_stone",
+      "target": "thomas_laqueur",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "Lawrence Stone supervised Laqueur’s Princeton doctorate, awarded in 1973, as recorded in the contributor note to The First Modern Society (1989).",
+      "map_label": "Doctoral supervisor at Princeton",
+      "evidence_note": "Fresh OCR reading of the Cambridge publisher’s front matter, printed p. xviii (PDF p. 16), Laqueur contributor paragraph: “supervised by Lawrence Stone at Princeton”. The copyright leaf (PDF p. 5) distinguishes first publication in 1989 from this 2005 paperback. The freshly checked Berkeley Education section supplies the 1973 Ph.D. award date. A documented training relationship, classified as influence; no specific theoretical transmission is inferred. The festschrift chapters and dissertation remain unread.",
+      "source_ids": [
+        "bf_laqueur_stone_first_modern_1989",
+        "tc233_laqueur_biblio"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "laqueur_bf_02",
+      "source": "thomas_laqueur",
+      "target": "lynn_hunt",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": false,
+      "relationship": "Desan and Ragan’s 2002 AHA biography credits Laqueur and Lynn Hunt, alongside Stephen Greenblatt and other Berkeley colleagues, with collaborating to found Representations.",
+      "map_label": "Collaborated in founding Representations",
+      "evidence_note": "Fresh reading of Suzanne Desan and Bryant T. Ragan’s AHA presidential biography, Biography section, paragraph beginning “Yet it was in many ways a traditional monograph” and continuing through the paragraph beginning “As she explored”. The latter explicitly includes Laqueur among the colleagues with whom Hunt collaborated “to found the journal Representations”. Institutional biographical attribution of a shared editorial undertaking, not co-authorship of Hunt’s books or proof of reciprocal theoretical influence. Other founders retain credit. The founding documents themselves remain unread; the journal’s current Editors’ Statement supplies context only.",
+      "source_ids": [
+        "w1_hunt_aha_bio"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "laqueur_bf_03",
+      "source": "thomas_laqueur",
+      "target": "stephen_greenblatt",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "In “Me, Myself, and I” (2004), Greenblatt uses Laqueur’s Solitary Sex (2003) to interpret literary representations of masturbation from Shakespeare’s sonnets to Proust.",
+      "map_label": "Solitary Sex used in literary interpretation",
+      "evidence_note": "Primary Greenblatt review freshly read in publisher HTML: section 2, paragraphs beginning “In one of his early sonnets” through “Still, a poem like Shakespeare’s”; section 3, final paragraphs beginning “I confess” through “Still, Laqueur’s courageous cultural history”. Greenblatt connects Shakespeare’s procreative thrift to Laqueur’s distinction and explicitly paraphrases Laqueur when interpreting Proust. The phrase “chronicles so richly” marks positive reception. This is a specific critical use, not a claim that Laqueur originated Greenblatt’s method. Solitary Sex itself remains unread in full; its original 2003 date is independently confirmed by Berkeley’s bibliography.",
+      "source_ids": [
+        "bf_greenblatt_laqueur_me_myself_2004",
+        "tc233_laqueur_biblio"
+      ],
+      "classification_basis": "editorial_review"
+    },
+    {
+      "proposal_id": "laqueur_bf_04",
+      "source": "thomas_laqueur",
+      "target": "ep_thompson",
+      "type": "critique",
+      "relationship_kind": "critique",
+      "directed": true,
+      "relationship": "Chamboredon’s 1979 review presents Laqueur’s Religion and Respectability (1976) as a challenge to the Sunday-school indoctrination and working-class control thesis associated with Thompson’s The Making of the English Working Class (1963).",
+      "map_label": "Challenges Sunday-school control thesis",
+      "evidence_note": "Mediated evidence: Jean-Claude Chamboredon’s own review, printed p. 1268, opening paragraph and following discussion, freshly read in Persée’s page text. He explicitly names Thompson’s 1963 book and describes the thesis of Sunday schools as an instrument of indoctrination and control. Crucially, he also calls the thesis “forcée et schématisée” for Laqueur’s rebuttal: his reservation about Laqueur’s framing is retained, not treated as endorsement. The reviewed book’s original 1976 date is independently verified in Berkeley’s bibliography. Neither book nor the review’s pp. 1269–1275 was read; no quotation is attributed directly to either book.",
+      "source_ids": [
+        "bf_chamboredon_laqueur_religion_1979",
+        "tc233_laqueur_biblio"
+      ],
+      "classification_basis": "editorial_review"
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "thomas_laqueur → gender; thomas_laqueur → memory; foucault → thomas_laqueur; thomas_laqueur → caroline_walker_bynum",
+      "reason": "Already represented by edge_2882 through edge_2885. All four claims, directions and source limits inspected, including the mediated Foucault attribution and Bynum’s qualified use. Fresh selected Holmes, Berkeley interview and Bynum pp. 7–8/n24 readings do not justify duplicate edges or converting Bynum’s report of Park and Nye into her own original critique."
+    },
+    {
+      "pair": "thomas_laqueur → queer",
+      "reason": "Previously held at verification: sexuality as topic does not establish a particular queer-history approach. Re-examined Holmes’s historical-rupture/queer-unhistoricism discussion and the institutional interview. These do not newly demonstrate Laqueur’s own adoption of that approach. No new primary evidence answers the stated reason; retain hold."
+    },
+    {
+      "pair": "thomas_laqueur ↔ catherine_gallagher",
+      "reason": "Missing endpoint. Berkeley’s freshly read Books list verifies joint editing and introduction of The Making of the Modern Body (1987). No endpoint created; book body unread."
+    },
+    {
+      "pair": "brooke_holmes / katharine_park / robert_nye / joan_cadden / helen_king → thomas_laqueur",
+      "reason": "Missing endpoints for all five. Fresh selected Holmes 2019 opening discusses the coexistence of bodily models and names these critics; Bynum’s n24 reports Park and Nye. Holmes’s own critique was read, but the other original criticisms were not. The entry description already retains their qualifications; no person nodes created."
+    },
+    {
+      "pair": "thomas_laqueur ↔ roy_porter",
+      "reason": "Berkeley’s bibliography and publisher search metadata identify Laqueur’s “Roy Porter, 1946–2002: A Critical Appreciation”, Social History 29:1 (2004), 84–91; the online-posting date 2010 is distinct. The publisher fetch returned 403 and JSTOR yielded no readable text. No substantive review or critique claim proposed from the title alone. The separate review of Porter and Lesley Hall’s work remains an unread bibliographic lead."
+    },
+    {
+      "pair": "thomas_laqueur ↔ keith_thomas; thomas_laqueur ↔ steven_shapin",
+      "reason": "Targeted searches for reviews/exchanges did not verify either named relationship. Search results about related subjects or shared review venues are insufficient; no relevant primary review read."
+    },
+    {
+      "pair": "thomas_laqueur ↔ lynn_hunt (human-rights arguments)",
+      "reason": "Searches for a named debt or critical exchange around humanitarian narratives and Inventing Human Rights did not produce a freshly verified primary passage. Similar arguments or citations by later scholars do not establish this additional relationship. Only the separately evidenced journal collaboration is proposed."
+    },
+    {
+      "pair": "peter_brown → thomas_laqueur",
+      "reason": "A preface-debt lead for Making Sex (1990) could not be checked in an allowed readable primary passage. The Google Books preface URL was unavailable through the web tool; the Harvard publisher page presented a verification screen, which was respected. The preface remains unread, so no debt is proposed."
+    },
+    {
+      "pair": "thomas_laqueur → philippe_aries; thomas_laqueur → michel_vovelle",
+      "reason": "Searched comparison/critique leads concerning The Work of the Dead (2015). A potentially useful Los Angeles Review of Books review returned 403. No fresh primary Laqueur passage was obtained; the book remains unread. Search snippets and third-party summaries are insufficient here for a proposed critique."
+    },
+    {
+      "pair": "robert_hertz → thomas_laqueur; thomas_laqueur ↔ thomas_haskell",
+      "reason": "Missing endpoints. Hertz appeared as an intellectual-resource lead in review search results; Haskell as a humanitarianism-debate lead. No original passages were read for either, independently of the endpoint restriction."
+    },
+    {
+      "pair": "thomas_laqueur → culture; thomas_laqueur → medicalhistory; emile_durkheim → thomas_laqueur",
+      "reason": "The New Cultural History publisher description and contents verify the 1989 chapter’s placement; its publisher-hosted abstract appeared in search results, but the article URL failed and no chapter body was read. Medical history is a named institutional research interest, and Durkheim appeared in related scholarship, but neither fact establishes a distinct methodological relationship. Broad field/debt claims are held for substantive evidence rather than inferred from topics."
+    },
+    {
+      "pair": "thomas_laqueur ↔ stephen_greenblatt (journal founding)",
+      "reason": "The AHA biography also supports shared participation in the founding group. The more specific primary Greenblatt review reception is proposed as laqueur_bf_03; no second same-pair contribution edge is added."
+    },
+    {
+      "pair": "thomas_laqueur ↔ svetlana_alpers / carla_hesse; jean_claude_chamboredon → thomas_laqueur",
+      "reason": "Missing endpoints. Alpers shares founding-group credit in the AHA biography; Hesse is a named collaborator in the Berkeley bibliography. Chamboredon’s first-page reservation was read and is preserved in laqueur_bf_04, but cannot form a separate incoming person edge. No endpoints created."
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "bf_laqueur_stone_first_modern_1989",
+      "title": "A. L. Beier, David Cannadine and James M. Rosenheim, eds., The First Modern Society: Essays in English History in Honour of Lawrence Stone (Cambridge University Press, 1989), “Notes on contributors”, xviii; publisher front matter to the 2005 paperback.",
+      "citation": "A. L. Beier, David Cannadine and James M. Rosenheim, eds., The First Modern Society: Essays in English History in Honour of Lawrence Stone (Cambridge University Press, 1989), “Notes on contributors”, xviii; publisher front matter to the 2005 paperback.",
+      "url": "https://assets.cambridge.org/97805210/21616/frontmatter/9780521021616_frontmatter.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected primary publisher front matter read by OCR: copyright leaf PDF p. 5, contents printed p. x/PDF p. 8, and Laqueur contributor note printed p. xviii/PDF p. 16. The note verifies Stone’s supervision; 1989 first publication and 2005 paperback explicitly distinguished. Chapter bodies unread. Web PDF text lacked the scanned body and screenshot requests failed; an ordinary successful publisher HTTP request was read by local in-memory OCR."
+      }
+    },
+    {
+      "id": "bf_greenblatt_laqueur_me_myself_2004",
+      "title": "Stephen Greenblatt, “Me, Myself, and I,” The New York Review of Books, 8 April 2004, review of Thomas W. Laqueur, Solitary Sex: A Cultural History of Masturbation (2003).",
+      "citation": "Stephen Greenblatt, “Me, Myself, and I,” The New York Review of Books, 8 April 2004, review of Thomas W. Laqueur, Solitary Sex: A Cultural History of Masturbation (2003).",
+      "url": "https://www.nybooks.com/articles/2004/04/08/me-myself-and-i/",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Publisher HTML review read, sections 1–3, with focused rereading of section 2’s sonnets and section 3’s final Proust interpretation. Specific reception only; no full reading of Laqueur’s book claimed."
+      }
+    },
+    {
+      "id": "bf_chamboredon_laqueur_religion_1979",
+      "title": "Jean-Claude Chamboredon, review of T. W. Laqueur, Religion and Respectability: Sunday-Schools and Working-Class Culture, 1780–1850 (1976), Annales. Économies, Sociétés, Civilisations 34, no. 6 (1979), 1268–1275.",
+      "citation": "Jean-Claude Chamboredon, review of T. W. Laqueur, Religion and Respectability: Sunday-Schools and Working-Class Culture, 1780–1850 (1976), Annales. Économies, Sociétés, Civilisations 34, no. 6 (1979), 1268–1275.",
+      "url": "https://www.persee.fr/doc/ahess_0395-2649_1979_num_34_6_294120_t1_1268_0000_001",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Only printed p. 1268 read in Persée’s page text: opening identifies Thompson’s book and Laqueur’s rebuttal, with the reviewer’s qualification about its framing; following paragraphs discuss local/social ambiguity. Rest of review and both books unread."
+      }
+    }
+  ],
+  "reused_sources": [
+    {
+      "id": "tc233_laqueur_biblio",
+      "use": "laqueur_bf_01, laqueur_bf_03 and laqueur_bf_04: fresh Education and Books reading confirms the 1973 doctorate and original 2003/1976 book dates. Articles and Longer Reviews lists checked for held leads."
+    },
+    {
+      "id": "w1_hunt_aha_bio",
+      "use": "laqueur_bf_02: fresh relevant Biography paragraphs; byline Suzanne Desan and Bryant T. Ragan and attribution to the 2002 Presidential Biography booklet checked. Existing source note’s earlier date-only usage is not silently broadened."
+    }
+  ],
+  "coverage_note": "Read ../BRIEF.md, ../entries.json (thomas_laqueur), ../endpoints.json, project continuity/instructions, the located review protocol at ../../../field-research/stedman-jones-relationships-2026-10-25/review-protocol.md and a completed sibling format precedent. Read-only full-graph inspection confirms that all current incoming/outgoing Laqueur edges are the four supplied in the entry, with no duplicate proposed endpoint/kind pairs. All proposal endpoints already exist. The graph and input files are untouched; this is an unreviewed, bounded dossier, not an exhaustive network or applied batch."
+}

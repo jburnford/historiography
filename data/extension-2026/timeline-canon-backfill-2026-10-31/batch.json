@@ -1,0 +1,30 @@
+{
+ "revision": "1.236",
+ "baseline_revision": "1.235",
+ "date": "2026-10-31",
+ "batch_dir": "person-links-1.236",
+ "persons": [],
+ "extras": [
+  "barbara_h_rosenwein",
+  "james_rodger_miller",
+  "patrick_geary",
+  "robert_bartlett",
+  "bruce_trigger",
+  "callum_g_brown",
+  "charles_e_rosenberg",
+  "charles_s_maier",
+  "geoffrey_parker",
+  "j_r_mcneill",
+  "joanna_bourke",
+  "john_m_mackenzie",
+  "paul_kennedy",
+  "paul_thompson",
+  "stephen_greenblatt",
+  "t_c_smout",
+  "t_m_devine",
+  "thomas_laqueur"
+ ],
+ "summary": "Relationship backfill for the 18 person entries from revisions 1.232–1.234 that still had fewer than five relationships at 1.235: 66 new edges, 59 of them between two people. Researched by Sol 6.1 (Codex), one historian per agent, under BRIEF.md; every proposal was checked against its cited passage by an independent Claude verification agent (review-A/B/C.json): 57 verified, 11 adjusted (wording, direction or sources corrected), 3 held, and 2 duplicate proposals from neighbouring drafts merged. Per person: Barbara H. Rosenwein 5; Bruce G. Trigger 5; Charles S. Maier 5; Joanna Bourke 5; John M. MacKenzie 5; Robert Bartlett 4; Callum G. Brown 4; Geoffrey Parker 4; J. R. McNeill 4; Stephen Greenblatt 4; T. C. Smout 4; Thomas W. Laqueur 4; J. R. Miller 3; Paul Kennedy 3; Paul Thompson 3; Charles E. Rosenberg 2; Patrick J. Geary 1; T. M. Devine 1. Held: Roy Porter → Bartlett (publisher preview refused access; teaching only), Jeremy Black → Parker (page behind a bot check), and the Devine CV details (bot check). Co-authorship and co-editing between two people are recorded as undirected comparisons, the graph's convention.",
+ "authorization": "User, 2026-10-31: “We need to work on those 18” (the 1.232–1.234 person entries with fewer than five relationships), “or I guess you could just get Sol to do the work from here?”, “1 historian per agent”, “do 5 at a time”. Sol 6.1 researched each historian under BRIEF.md and the review protocol (data/field-research/stedman-jones-relationships-2026-10-25/review-protocol.md); Claude verified every proposal through three independent agents and applied only verified or corrected proposals (apply-verification.py). Held proposals stay in the drafts with include: false and their reasons; Sol's drafts are kept as entry-draft.researcher.json.",
+ "rationale": "The 32 timeline entries added from the dissertation canon in 1.232–1.234 entered with few relationships, because verification held weak claims. This revision adds the named relationships the research could support from read passages: supervision, co-authorship and co-editing, published exchanges and critiques, and named methodological debts, so the new entries sit in the network rather than at its edge."
+}

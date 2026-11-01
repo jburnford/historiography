@@ -1,0 +1,270 @@
+{
+  "status": "proposal_for_review",
+  "prepared": "2026-10-31",
+  "researcher": "Sol 6.1 (Codex)",
+  "applies_to": "historiography-1920-2000.json revision 1.235 -> candidate 1.236 (charles_s_maier: existing person entry, relationship backfill; no new node)",
+  "review_status": "reviewed",
+  "proposed_edges": [
+    {
+      "proposal_id": "maier_bf_01",
+      "source": "charles_s_maier",
+      "target": "niall_ferguson",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Maier and Niall Ferguson co-edited The Shock of the Global: The 1970s in Perspective (2010), with Erez Manela and Daniel J. Sargent.",
+      "map_label": "Co-editors of The Shock of the Global, 2010",
+      "evidence_note": "Freshly read publisher title page in ETH Library’s four-page front-matter scan, PDF p. 1: “EDITED BY” precedes all four names and the 2010 Belknap Press imprint. Contents on PDF pp. 2–4 allocate separate chapters. Bibliographic collaboration only; the introduction and chapter bodies remain unread. Existing source hc177_ferguson_shock is reused. The Ferguson node already names the collaboration, but neither endpoint has this edge; the four existing Maier edges were checked against the complete graph.",
+      "source_ids": [
+        "hc177_ferguson_shock"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "verified",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://toc.library.ethz.ch/objects/pdf/z01_978-0-674-04904-8_01.pdf",
+        "phrase_seen": "EDITED BY Niall Ferguson Charles S. Maier Erez Manela Daniel J. Sargent",
+        "reason": "Title page (scanned image, read by OCR) names all four editors and the 2010 Belknap imprint. Co-editing only, as stated. Kind convention note: this packet uses contribution/undirected for co-editing while jrm_bf_01/02 use comparison/undirected; the graph has both conventions."
+      }
+    },
+    {
+      "proposal_id": "maier_bf_02",
+      "source": "charles_s_maier",
+      "target": "j_r_mcneill",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In “Embracing Fearlessness” (2019), J. R. McNeill names Maier among his important graduate mentors at Duke and credits his engagement with twentieth-century European history.",
+      "map_label": "McNeill’s acknowledged graduate mentor",
+      "evidence_note": "Fresh primary interview, Allison Miller, Perspectives on History 57:1 (January 2019), printed p. 27, PDF p. 29, answer on early mentors: “the most important figures for me were probably Charles Maier” and John Cell; Maier mattered for “the depth of his engagement with 20th-century European history”. McNeill’s own retrospective testimony supports a bounded mentorship/influence edge. It does not identify a formal dissertation supervisor or make Maier the source of McNeill’s environmental method. The subsequent team-teaching and intellectual liberation concern John Cell, not Maier. Printed pp. 26–28 were read through the official issue PDF; the HTML version returned 403.",
+      "source_ids": [
+        "bf_miller_mcneill_mentors_2019"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "verified",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://www.historians.org/wp-content/uploads/2024/07/Perspectives_57N1.pdf",
+        "phrase_seen": "the most important figures for me were probably Charles Maier",
+        "reason": "Perspectives on History, January 2019, answer to 'Who were your first mentors?': at Duke graduate school the most important figures were Maier and John Cell; team-teaching/liberation passage concerns Cell only, as the evidence note says. Direction Maier -> McNeill influence correct."
+      }
+    },
+    {
+      "proposal_id": "maier_bf_03",
+      "source": "charles_s_maier",
+      "target": "sven_beckert",
+      "type": "connection",
+      "relationship_kind": "comparison",
+      "directed": false,
+      "relationship": "Maier and Sven Beckert co-chaired Harvard's Weatherhead Initiative on Global History, founded in 2012; Harvard Magazine (2014) names them as its co-directors.",
+      "map_label": "Co-chairs of Harvard's global-history initiative",
+      "evidence_note": "Fresh institutional About page, “About WIGH”, first and final paragraphs: the initiative “was founded in 2012” by the two historians, who are also named as co-chairs. The dated Graduate Student Presentations programme, 4 May 2015, paragraph beginning “This graduate-faculty research seminar”, identifies History 2950hf, Approaches to Global History, and says discussions “will be moderated by Professors Sven Beckert and Charles S. Maier”. This is a documented joint research/teaching undertaking, recorded undirected; the programme documents announced roles, not a verified transcript of that meeting. No co-authored theoretical position, chapter allocation, or reciprocal personal influence is inferred. The course papers remain unread. [Claude verification 2026-10-31, adjusted: Could not access: both cited WIGH pages (about page and 4 May 2015 seminar programme) return 403 to my fetches, so 'jointly founded' and the 2015 seminar co-moderation are unverified. Allowed alternatives confirm only co-leadership: Queen's University Global History Initiative partners page says WIGH 'was founded in 2012' and 'is chaired by Sven Beckert and Charles S. Maier' (does not say who founded it); Harvard Magazine (Jonathan Shaw, 15 Oct 2014) calls Maier Beckert's 'WIGH co-director'. Narrow to co-chairing and swap the sources.]",
+      "source_ids": [
+        "bf_queens_ghi_partners",
+        "bf_shaw_harvard_magazine_2014"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "adjust",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://wigh.wcfia.harvard.edu/about",
+        "phrase_seen": "was founded in 2012 ... WIGH is chaired by Sven Beckert and Charles S. Maier",
+        "reason": "Could not access: both cited WIGH pages (about page and 4 May 2015 seminar programme) return 403 to my fetches, so 'jointly founded' and the 2015 seminar co-moderation are unverified. Allowed alternatives confirm only co-leadership: Queen's University Global History Initiative partners page says WIGH 'was founded in 2012' and 'is chaired by Sven Beckert and Charles S. Maier' (does not say who founded it); Harvard Magazine (Jonathan Shaw, 15 Oct 2014) calls Maier Beckert's 'WIGH co-director'. Narrow to co-chairing and swap the sources."
+      }
+    },
+    {
+      "proposal_id": "maier_bf_04",
+      "source": "charles_s_maier",
+      "target": "memory",
+      "type": "connection",
+      "relationship_kind": "contribution",
+      "directed": true,
+      "relationship": "In “Hot Memory … Cold Memory” (2002; delivered 2001), Maier offers a speculative explanation of the differing persistence of Nazi and Communist memories.",
+      "map_label": "Differential persistence of atrocity memories",
+      "evidence_note": "New primary evidence for the held memory relationship: online sections I, IV and V, especially the definition, terror comparison and final qualification “very speculative hypothesis”. Western scope; explanatory hypothesis, no ranking of atrocities. Newsletter pp. 1, 5 verifies March 2001 delivery; online footer dates publication 2002. The earlier research statement remains unread.",
+      "source_ids": [
+        "bf_maier_hot_cold_2002",
+        "bf_bove_kopecek_memory_conference_2001"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "verified",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://www.iwm.at/transit-online/hot-memory-cold-memory-on-the-political-half-life-of-fascist-and",
+        "phrase_seen": "I have offered less comparative history than a very speculative hypothesis",
+        "reason": "Full essay read. Intro defines hot and cold memory via plutonium/tritium half-life; sections IV-V give the explanations (targeted vs stochastic terror, complicity/shame); final paragraph has the 'very speculative hypothesis' qualification; scope is 'the memory of totalitarianism in the West'. Footer: Copyright 2002, Transit. IWM Newsletter 72 (files.iwm.at excerpt) confirms the March 2001 conference and reports Maier's paper as 'very speculative hypothesis'. Supported."
+      }
+    },
+    {
+      "proposal_id": "maier_bf_05",
+      "source": "paul_ricoeur",
+      "target": "charles_s_maier",
+      "type": "connection",
+      "relationship_kind": "influence",
+      "directed": true,
+      "relationship": "In “Hot Memory … Cold Memory” (2002; delivered 2001), Maier tentatively aligns his inquiry with Paul Ricœur’s conference call to move from melancholy to mourning.",
+      "map_label": "Acknowledges Ricœur’s conference framing",
+      "evidence_note": "Primary section V, final paragraph: Maier names Ricœur’s opening address and suggests his paper contributes to that exercise. Bounded acknowledgment; Ricœur’s original address unread. Newsletter p. 1 independently dates his opening to 9 March 2001.",
+      "source_ids": [
+        "bf_maier_hot_cold_2002",
+        "bf_bove_kopecek_memory_conference_2001"
+      ],
+      "classification_basis": "editorial_review",
+      "review": {
+        "verdict": "verified",
+        "reviewer": "Claude (independent verification agent; coordinator decisions by Claude)",
+        "checked_on": "2026-10-31",
+        "checked_url": "https://www.iwm.at/transit-online/hot-memory-cold-memory-on-the-political-half-life-of-fascist-and",
+        "phrase_seen": "Paul Ricoeur's opening address ... suggested that historians must lead their readers from melancholy to mourning",
+        "reason": "Final paragraph, followed by 'Perhaps my paper can be construed as a contribution to just such an exercise.' The sentence ('tentatively aligns') is accurate. Caveat for the reviewer: a closing nod to the conference keynote, not evidence that Ricoeur shaped the argument; the edge is thin and 'influence' is at its upper bound. Newsletter p. 1 confirms Ricoeur opened the conference on 9 March 2001."
+      }
+    }
+  ],
+  "edges_considered_not_proposed": [
+    {
+      "pair": "charles_s_maier → political / global / spatialhistory; charles_s_maier ↔ partha_chatterjee",
+      "reason": "Already represented by edge_2886–edge_2889. Both directions in the complete revision 1.235 graph were checked; no other Maier edge exists there. The first three use the 2017 interview and retain its qualifications about state persistence; the fourth is an undirected comparison mediated by the 2013 conference report, not personal influence. Fresh interview and report reading does not justify a duplicate."
+    },
+    {
+      "pair": "charles_s_maier → memory (earlier tc233_charles_s_maier_3 hold)",
+      "reason": "Re-examined: the rejected support was an unread Harvard research statement. Its unspecified programme is not restored. maier_bf_04 instead proposes a narrower contribution from the newly read 2002 primary essay and the contemporary 2001 conference report. A Surfeit of Memory? (1993) remains unread in the original: JSTOR’s article page exposed no body and its PDF fetch failed. Berg and Schaefer’s publisher excerpt, p. 10, names and discusses the article, but the excerpt ends mid-argument; no separate critique edge is proposed from that partial witness."
+    },
+    {
+      "pair": "charles_s_maier ↔ jurgen_habermas",
+      "reason": "Unread primary evidence. The Google Books landing page exposes bibliographic information, contents and terms, including a Habermas chapter, rather than a readable substantive passage establishing Maier’s precise debt or disagreement. The Unmasterable Past was originally published in 1988; the electronic edition displayed in search metadata is later. No argument is inferred from the chapter title or book description."
+    },
+    {
+      "pair": "charles_s_maier → ernst_nolte / andreas_hillgruber",
+      "reason": "Missing endpoints in endpoints.json; additionally, the relevant original passages of The Unmasterable Past remain unread. Search leads on the historians’ controversy were not converted into claims."
+    },
+    {
+      "pair": "barrington_moore / stanley_hoffmann → charles_s_maier",
+      "reason": "Missing endpoints. Mentor searches did not produce a freshly read primary passage verifying the proposed debt; no supervision relationship inferred."
+    },
+    {
+      "pair": "john_breuilly → charles_s_maier",
+      "reason": "Missing endpoint. Fresh GHIL Bulletin report, printed p. 183 (full issue PDF p. 185), records Breuilly questioning Maier’s age-of-territoriality narrative and distinguishing coercive territorial power from other resources. This could support a mediated critique if an endpoint existed; no endpoint is created. Original talk unread."
+    },
+    {
+      "pair": "michael_h_hunt → charles_s_maier; andrew_j_bacevich / anna_k_nelson ↔ charles_s_maier",
+      "reason": "Missing endpoints. Hunt’s own H-Diplo commentary, selected PDF pp. 1–3, criticizes the clarity of empire’s definition and the narrow geographical/chronological treatment of the United States in Among Empires (2006). The first-page reviewer roster also names Bacevich and Nelson, but their separate commentaries and Maier’s response were not read. No incoming critique can be attached to an existing person endpoint from this reading."
+    },
+    {
+      "pair": "charles_s_maier ↔ erez_manela / daniel_j_sargent",
+      "reason": "Missing endpoints. The freshly read 2010 title page verifies both as fellow editors. All four editors are retained in maier_bf_01; no new nodes proposed."
+    },
+    {
+      "pair": "charles_s_maier ↔ odd_arne_westad",
+      "reason": "Searched without a verified personal relationship. Westad is a chapter contributor to the jointly edited 2010 collection and a participant in the 2013 territorial-state conference. Contents and GHIL p. 184 do not establish a named Maier debt, critique or co-authored argument. No edge inferred from appearing in the same collection or discussion."
+    },
+    {
+      "pair": "ep_thompson → charles_s_maier",
+      "reason": "The 2014 Jonathan Shaw article, “Fractal History” section, reports Maier’s analogy between inclusive global history and Thompson’s working-class histories. An analogy of spirit, without a specified work or demonstrated transmission, does not establish a personal influence edge. No additional comparison proposed from this loose collective characterization."
+    },
+    {
+      "pair": "hannah_arendt → charles_s_maier",
+      "reason": "The freshly read memory essay, section I, names Origins of Totalitarianism as placing the two systems on a par. This is a contextual characterization, not an explicit adoption of Arendt’s theory; her book remains unread. No influence or critique inferred."
+    },
+    {
+      "pair": "charles_s_maier → norman_finkelstein; robert_conquest → charles_s_maier",
+      "reason": "Missing endpoints. Sections IV and I respectively name Finkelstein’s incentive explanation, which Maier rejects, and Conquest’s feelings as a starting question. No standalone personal edge; the cited originals remain unread."
+    },
+    {
+      "pair": "albert_hirschman → charles_s_maier",
+      "reason": "Missing endpoint. In the 2017 Gazette interview’s answer on populism, Maier discusses Shifting Involvements while outlining an unfinished explanation of changing public commitments. No endpoint or completed influence argument created."
+    },
+    {
+      "pair": "charles_s_maier ↔ john_lewis_gaddis / akira_iriye; immanuel_wallerstein / charles_tilly → charles_s_maier",
+      "reason": "Unread evidence. Searches for the reception of Marking Time: The Historiography of International Relations (1980) identified possible named exchanges and methodological resources, but neither the original chapter nor a sufficient primary passage on those specific relationships was read. Search extracts and reference lists are not treated as verified debts or critiques."
+    },
+    {
+      "pair": "charles_s_maier ↔ tony_judt / geoff_eley",
+      "reason": "Searched without a verified relationship. No freshly read primary passage establishing a named debt, review exchange or critique was found. Joint conference presence is insufficient."
+    },
+    {
+      "pair": "charles_s_maier ↔ pierre_nora / reinhart_koselleck",
+      "reason": "The 2001 newsletter documents participation in the same memory conference; that circumstance and a group photograph do not establish a personal exchange or debt. No relationship inferred from shared participation."
+    },
+    {
+      "pair": "charles_s_maier ↔ science / kuhn",
+      "reason": "Namesake excluded. Inspection of the nodes reported as mentioning Maier shows that their medieval-science and Kuhn-preface references concern Anneliese Maier, not Charles S. Maier. The military and explanation/objectivity node mentions instead occur in Ferguson’s four-editor bibliography, already addressed by maier_bf_01."
+    }
+  ],
+  "new_sources": [
+    {
+      "id": "bf_miller_mcneill_mentors_2019",
+      "title": "Allison Miller, “Embracing Fearlessness: An Interview with New AHA President John R. McNeill,” Perspectives on History 57:1 (January 2019): 26–28.",
+      "citation": "Allison Miller, “Embracing Fearlessness: An Interview with New AHA President John R. McNeill,” Perspectives on History 57:1 (January 2019): 26–28.",
+      "url": "https://www.historians.org/wp-content/uploads/2024/07/Perspectives_57N1.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Official issue PDF, printed pp. 26–28 (PDF pp. 28–30), especially p. 27, mentorship answer. Parsed text read; screenshot request failed with cache miss. HTML article returned 403. January 2019 is the publication date; 2024 in the PDF path is a hosting date."
+      }
+    },
+    {
+      "id": "bf_maier_hot_cold_2002",
+      "title": "Charles S. Maier, “Hot Memory … Cold Memory. On the Political Half-Life of Fascist and Communist Memory,” Tr@nsit online 22/2002.",
+      "citation": "Charles S. Maier, “Hot Memory … Cold Memory. On the Political Half-Life of Fascist and Communist Memory,” Tr@nsit online 22/2002.",
+      "url": "https://www.iwm.at/transit-online/hot-memory-cold-memory-on-the-political-half-life-of-fascist-and",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Complete displayed sections I–V and notes read. Publication year from copyright/footer; earlier delivery independently verified. Other works cited in the essay unread."
+      }
+    },
+    {
+      "id": "bf_bove_kopecek_memory_conference_2001",
+      "title": "Andrew Bove and Michal Kopecek, “The Memory of the Century,” IWM Newsletter 72 (Spring 2001), conference report, pp. 1–5.",
+      "citation": "Andrew Bove and Michal Kopecek, “The Memory of the Century,” IWM Newsletter 72 (Spring 2001), conference report, pp. 1–5.",
+      "url": "https://files.iwm.at/timeline/IWM-NL-72-excerpt.pdf",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Selected printed pp. 1 and 5 read, with additional displayed passages on pp. 2–4 consulted for conference context. Page 1 dates conference 9–11 March 2001 and Ricœur’s opening; p. 5 reports Maier’s paper and speculative qualification. Name credit appears at the end on p. 5. The newsletter anticipates Transit 22 in winter 2001; the actual English essay footer specifies 22/2002, kept distinct from delivery."
+      }
+    },
+    {
+      "id": "bf_queens_ghi_partners",
+      "title": "Queen's University Global History Initiative, 'Partners' (web page, undated).",
+      "citation": "Queen's University Global History Initiative, 'Partners' (web page, undated).",
+      "url": "https://www.queensu.ca/ghi/partners",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read at Claude verification: the Harvard University Weatherhead Initiative on Global History entry says the initiative 'was founded in 2012' and names Sven Beckert and Charles S. Maier as its chairs."
+      }
+    },
+    {
+      "id": "bf_shaw_harvard_magazine_2014",
+      "title": "Jonathan Shaw, 'History turns toward the global, the scientific, and the quantitative', Harvard Magazine, 15 October 2014.",
+      "citation": "Jonathan Shaw, 'History turns toward the global, the scientific, and the quantitative', Harvard Magazine, 15 October 2014.",
+      "url": "https://www.harvardmagazine.com/humanities/harvard-sven-beckert",
+      "verification": {
+        "status": "supporting_page_checked",
+        "checked_on": "2026-10-31",
+        "note": "Read at Claude verification: Beckert 'co-directs WIGH'; Maier is introduced as 'His WIGH co-director'."
+      }
+    }
+  ],
+  "reused_sources": [
+    {
+      "id": "hc177_ferguson_shock",
+      "use": "maier_bf_01; publisher title page freshly reread; no source-record changes requested."
+    }
+  ],
+  "sources_not_applied": [
+    {
+      "id": "bf_wigh_maier_beckert_about",
+      "reason": "not cited by any applied edge after verification"
+    },
+    {
+      "id": "bf_wigh_maier_beckert_seminar_2015",
+      "reason": "not cited by any applied edge after verification"
+    }
+  ]
+}
