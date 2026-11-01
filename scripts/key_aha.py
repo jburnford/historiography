@@ -18,6 +18,9 @@ records.csv, genealogy/advisor-links.csv), the AHA historian directory
   - A dissertation the registry ties to an individual at the anchored or accepted tier (`phd_records`)
     brings that individual's anchors (atlas, ORCID, Wikidata, Open Library), so the author joins their
     existing key (Steven Ruggles: record 50721 -> ORCID -> p-6002). Probable ties are queued.
+- A dissertation that a canon person's cited works include as published (compatible name, the main title's
+  content words largely shared, published from the year before the PhD) joins that canon key: identity by
+  works.
 - **Supervision** is a relation between keys, not an identity. It is written beside the proposal as
   `supervision.csv` (advisor anchor, student anchor, work anchor, year) and can be resolved to keys once the
   proposal is applied.
@@ -33,6 +36,12 @@ from pathlib import Path
 import duckdb
 
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
+from identity_routes import compatible
+from key_canon_map import D
+from key_registry import same_name
+from lc_canon_people import as_credit, content, given_agrees
+
+POOLED_RUN = ROOT / 'data/field-research/lc-authorities-2026-10-30/canon-rerun5-2026-10-31/canon-people-lc.csv'
 
 AHA = ROOT / 'data/field-research/aha-dissertations-2026-10-13'
 DIRECTORY = ROOT / 'data/field-research/aha-historians-2026-10-29/historians.csv'
@@ -56,6 +65,58 @@ def individual_anchors(registry):
     return out
 
 
+def canon_works(state):
+    """surname -> [(key, label, [(content words of a cited title, year)])] for canon keys (diss-person anchors)."""
+    keys = {}
+    for k, v in state.keys.items():
+        if v['type'] == 'person' and v['status'] in ('active', 'provisional'):
+            for a in v['anchors']:
+                if a.startswith('diss-person:'):
+                    keys.setdefault(a[len('diss-person:'):], k)
+    db = duckdb.connect()
+    db.execute('CREATE TABLE k(person_key VARCHAR)')
+    db.executemany('INSERT INTO k VALUES (?)', [(g,) for g in keys])
+    rows = db.execute(f"""
+        WITH a AS (SELECT person_key, work_id FROM read_csv('{D / 'authored.csv.gz'}', all_varchar=true)
+                   WHERE person_key IN (SELECT person_key FROM k))
+        SELECT a.person_key, w.title, w.year FROM a
+        JOIN read_csv('{D / 'works.csv'}', all_varchar=true, max_line_size=10000000) w USING (work_id)
+        WHERE w.title IS NOT NULL""").fetchall()
+    works = defaultdict(list)
+    for g, title, year in rows:
+        c = set(content(title))
+        if len(c) >= 3:
+            works[g].append((c, int(year) if (year or '').isdigit() else None))
+    out = defaultdict(list)
+    for g, k in keys.items():
+        if works.get(g):
+            out[g.split('|')[0]].append((k, state.keys[k]['label'], works[g]))
+    return out
+
+
+def own_book(record, cands):
+    """Canon keys whose cited works include this dissertation (as published): compatible names, at least three
+    shared content words making up at least 60% of the shorter main title, published no earlier than the
+    year before the PhD. Identity by works (user, 2026-10-31); topic alone never joins."""
+    family = (record['dissertator'] or '').partition(', ')[0]
+    person, given = as_credit(record['dissertator'] or ''), (record['dissertator'] or '').partition(', ')[2]
+    d = set(content(record['title'] or ''))
+    year = int(record['year']) if (record['year'] or '').isdigit() else None
+    hits = set()
+    if len(d) < 3:
+        return hits
+    for k, label, works in cands.get(' '.join(content(family)) or family.lower(), ()):
+        fam, _, giv = label.partition(', ') if ', ' in label else (label.split()[-1], '', ' '.join(label.split()[:-1]))
+        if not (compatible(person, giv, fam) and given_agrees(given, giv)):
+            continue
+        for c, y in works:
+            shared = len(c & d)
+            if shared >= 3 and shared >= 0.6 * min(len(c), len(d)) and (y is None or year is None or y >= year - 1):
+                hits.add(k)
+                break
+    return hits
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--registry', type=Path, required=True)
@@ -76,6 +137,7 @@ def main():
     with DIRECTORY.open(newline='', encoding='utf-8') as f:
         directory = list(csv.DictReader(f))
     reg = individual_anchors(args.registry)
+    canon = canon_works(state)
     report, queue = Counter(), []
 
     own = {}                                          # dissertation record -> advisor token
@@ -112,6 +174,13 @@ def main():
             report['author_joined_registry_individual'] += 1
         elif status:
             queue.append(dict(kind='registry_phd_tie_probable', record=rid, author=r['dissertator'], individual=iid))
+        books = own_book(r, canon)
+        if len(books) == 1:
+            k = next(iter(books))
+            anchors |= {a for a in state.keys[k]['anchors'] if a.startswith('diss-person:')}
+            report['author_joined_canon_by_own_book'] += 1
+        elif books:
+            queue.append(dict(kind='own_book_on_several_canon_keys', record=rid, author=r['dissertator'], keys=sorted(books)))
         clusters.append(dict(type='person', label=r['dissertator'], anchors=anchors, members=set(), aliases=set(),
                              resolution='established', basis=f'author of AHA dissertation record {rid}'))
         for t in filter(None, (r['advisor_ids'] or '').split('; ')):
@@ -127,6 +196,19 @@ def main():
                              basis='AHA dissertation advisor'))
         report['token_only_people'] += 1
 
+    # A canon key claimed through the own-book route by several records is a pooled name ('Jones, David'):
+    # join none of them.
+    claims = defaultdict(list)
+    for i, c in enumerate(clusters):
+        for a in c['anchors']:
+            if a.startswith('diss-person:') and c['type'] == 'person':
+                claims[a].append(i)
+    for a, idx in claims.items():
+        if len(idx) > 1:
+            queue.append(dict(kind='canon_key_claimed_by_several_records', anchor=a, labels=[clusters[i]['label'] for i in idx]))
+            for i in idx:
+                clusters[i]['anchors'].discard(a)
+            report['pooled_canon_key_not_joined'] += 1
     # an anchor new to the log may belong to one cluster only (two records' authors tied to one individual)
     owners = defaultdict(list)
     for i, c in enumerate(clusters):
@@ -140,7 +222,22 @@ def main():
                 clusters[i]['anchors'].discard(a)
             report['shared_anchor_dropped'] += 1
     clusters = [c for c in clusters if c['anchors']]
-    ops, assign, held = plan(state, clusters)
+    with POOLED_RUN.open(newline='', encoding='utf-8') as f:
+        pooled = {k for r in csv.DictReader(f) if r['outcome'] == 'books_disagree'
+                  for k in state.lookup(f"diss-person:{r['graph_key']}")}
+    # Pooled by review though LC resolves them: the timeline-canon reading bridge notes that 'Miller, James'
+    # also holds James Miller (Democracy is in the Streets) and others.
+    pooled |= set(state.lookup('diss-person:miller|james'))
+
+    def merge_ok(cluster, keys):
+        """One dissertation author reaching two keys through works on both sides (the registry's dissertation
+        route and the canon own-book route, or an advisor's own record): merge when every key's name agrees in
+        full with the record's, none is a pooled name, and their LC authorities do not differ."""
+        if any(k in pooled for k in keys) or not all(same_name(cluster['label'], state.keys[k]['label']) for k in keys):
+            return False
+        lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
+        return len(lcs) <= 1
+    ops, assign, held = plan(state, clusters, merge_ok)
     materialise(state, dict(basis='AHA keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

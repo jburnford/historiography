@@ -202,6 +202,44 @@ people established through their works are not left out (William J. Turkel). Pro
   have a second key. The names agree, but a name alone never merges. Resolve by works, or by registry v13
   built against the current atlas.
 
+### Registry v13 and atlas additions (2026-11-01)
+
+- **Atlas rekeyed at c1f5290** (`atlas-c1f5290/`, `scripts/key_atlas.py`): revisions 1.232–1.235 added
+  16 person entries, 479 claims, 247 works, 101 timeline events and 32 entries (875 keys).
+- **Reading-bridge merges** (`timeline-bridge-merges-2026-11-01.json`, decided by review): the
+  timeline-canon batches researched each new entry from its canon name keys (`reading-bridge.json`),
+  combining variants by cited works. 21 such pairs were merged: Charles E. Rosenberg into p-3489, and J. R.
+  Miller with 'Miller, Jim R.' and 'Miller, Jim'. 'Miller, James' was left out: the bridge notes it also
+  holds other James Millers.
+- **Registry v13** (built against the current atlas; `registry-v13-2026-11-01/`): 37 keys gained
+  identifiers. `key_registry.py` no longer writes the registry's own unstable individual id as a member.
+
+## AHA dissertations, authors and advisors (2026-11-01, rollout step 6, first slice)
+
+`scripts/key_aha.py` → `aha-2026-11-01/`, from the AHA Directory of History Dissertations (61,559 records)
+and registry v13.
+
+- **61,559 dissertations** are works (`aha-diss:<record>`). 61,013 reach their awarding institution key
+  (`awarded-by:i-N`).
+- **Authors** are people (`aha-phd:<record>`).
+  - 4,389 are also advisors, joined by name and date to their own record through the genealogy. Links made
+    only by topic are queued, not used.
+  - 2,464 join their registry key through the registry's dissertation route (anchored or accepted).
+    Steven Ruggles p-6002 now carries `aha:91830` and `aha-phd:50721`.
+  - 372 join a canon key whose cited works include the dissertation as published (compatible name, shared
+    title words, published no earlier than the year before the PhD). A canon key claimed this way by
+    several records is a pooled name and is joined to none (8 cases).
+- **2,023 advisors** without a linked record of their own are people (`aha:<token>`). The 10,110
+  directory-only historians are not keyed yet: only name and school tie them to their own dissertation.
+- **20 merges by rule**: one author reaching two existing keys through works on both sides, with the full
+  names agreeing, neither key pooled, and no differing LC authorities (Podruchny, Dickason, Carlson, Paton,
+  Trivellato among them). Hannah Barker and James Miller are held (pooled names; four keys provisional).
+- **Supervision**: `supervision-keys.csv` holds 30,882 advisor → student links between keys, each with
+  its dissertation work key and year (2 unresolved). Ruggles has 14 students.
+- **Queue** (`review-queue.json`): 674 probable registry ties (Jo Guldi's Berkeley record is p-44944, apart
+  from her ORCID key p-16569, because the registry's tie is probable), 90 topic-only advisor links, 8 pooled
+  canon keys, 2 held merges.
+
 ## Institutions (2026-10-31)
 
 1,235 `i-` keys from the ROR grounding (`data/field-research/institutions-2026-10-31/`,

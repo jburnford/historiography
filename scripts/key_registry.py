@@ -6,8 +6,7 @@ occurrences resolve at the `anchored` or `accepted` tier, plus every individual 
   `orcid:<iD>`, and `wd:<QID>` (the registry holds at most one QID per individual); an individual with
   none of these is anchored on its Open Library author record(s) (`ol:<id>`), the only public identifier
   we hold for them (2026-10-31: William J. Turkel had no key);
-- members: Open Library authors (`ol:<id>`) when another anchor exists, the registry id (`registry-v12:<individual_id>`, not an
-  alias: the registry renames individuals when a member sorting first joins), and Wikidata's LC
+- members: Open Library authors (`ol:<id>`) when another anchor exists, and Wikidata's LC
   authority for the QID as `lcnaf-wikidata:<id>` (Wikidata's claim, not checked; the Marion Kaplan case
   showed P244 can name a namesake).
 
@@ -51,6 +50,22 @@ def same_name(a, b):
     return bool(pa and pb and pa == pb and len(pa[0]) > 1)
 
 
+def atlas_canon_merge(state, cluster, keys):
+    """A rule merge (PID-PLAN section 5.3): one registry individual reaches an atlas person's key and a canon
+    key, through its atlas record and a title-verified dissertation QID equal to its own QID, and the names
+    agree in full ('Charles E. Rosenberg', keyed from the atlas after the canon map keyed 'Rosenberg,
+    Charles E.'). The two keys must not carry different LC authorities."""
+    if len(keys) != 2:
+        return False
+    kinds = {k: {a.split(':', 1)[0] for a in state.keys[k]['anchors']} for k in keys}
+    atlas = [k for k in keys if 'atlas' in kinds[k]]
+    canon = [k for k in keys if kinds[k] <= {'diss-person', 'lcnaf'}]
+    if len(atlas) != 1 or len(canon) != 1 or not same_name(state.keys[atlas[0]]['label'], state.keys[canon[0]]['label']):
+        return False
+    lcs = [{a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys]
+    return not (lcs[0] and lcs[1] and lcs[0] != lcs[1])
+
+
 def load(registry):
     db = duckdb.connect(str(registry), read_only=True)
     rows = db.execute("""
@@ -81,7 +96,7 @@ def clusters_for(rows, lc, state, version):
         if not (set(statuses or ()) & ESTABLISHED) and not atlas:
             report['probable_only_not_keyed'] += 1
             continue
-        anchors, members = set(), {f'registry-{version}:{iid}'}
+        anchors, members = set(), set()
         for a in atlas:
             if f'atlas:person:{a}' in state.anchor:
                 anchors.add(f'atlas:person:{a}')
@@ -174,7 +189,7 @@ def main():
     state = State.load(args.state / 'events.jsonl')
     rows, lc = load(args.registry)
     clusters, queue, report = clusters_for(rows, lc, state, version)
-    ops, assign, held = plan(state, clusters)
+    ops, assign, held = plan(state, clusters, lambda c, ks: atlas_canon_merge(state, c, ks))
     materialise(state, dict(basis='registry keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(basis=f'person registry {version} established individuals',
