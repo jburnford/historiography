@@ -197,7 +197,8 @@ def life(a, heading_d):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--harvest', type=Path, required=True)
+    ap.add_argument('--harvest', type=Path, nargs='+', required=True,
+                    help='harvest files; a book in several takes its row from the last (give books-2016.ndjson first)')
     ap.add_argument('--names', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
     args = ap.parse_args()
@@ -206,10 +207,11 @@ def main():
     by_id = names[0]
     print(f'{len(by_id):,} personal-name authorities indexed', flush=True)
     harvest = {}
-    with args.harvest.open(encoding='utf-8') as f:
-        for line in f:
-            r = json.loads(line)
-            harvest[r['book_id']] = r
+    for path in args.harvest:
+        with path.open(encoding='utf-8') as f:
+            for line in f:
+                r = json.loads(line)
+                harvest[r['book_id']] = r
     credits = credits_by_book()
     print(f'{len(harvest):,} books harvested; {len(credits):,} credit-book pairs', flush=True)
 

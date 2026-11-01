@@ -11,7 +11,8 @@ line per book goes to OUT/books.ndjson:
 
 Network only; the resolution of headings to LC name authorities and of credits to headings is a later
 step (scripts/lc_resolve_authorities.py). Responses are cached on disk, so the run resumes where it
-stopped; books already in books.ndjson are skipped.
+stopped; books already in books.ndjson are skipped, and so are books matched offline in LC's Books All
+2016 set (`--local`, from scripts/lc_books_local.py).
 
     python3 scripts/lc_catalogue_harvest.py --cache /mnt/e/lc-authorities/sru --out /mnt/e/lc-authorities
 """
@@ -90,18 +91,21 @@ def main():
     ap.add_argument('--pause', type=float, default=300, help='seconds to stand back after repeated refusals')
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--lccns', type=Path, help='only books with these LCCNs (whitespace-separated file)')
+    ap.add_argument('--local', type=Path, action='append', default=[],
+                    help='skip books already matched offline (books-2016.ndjson from lc_books_local.py)')
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     fetch = Fetcher(args.cache, args.delay)
     path = args.out / 'books.ndjson'
     done = set()
-    if path.exists():
-        with path.open(encoding='utf-8') as f:
-            for line in f:
-                try:
-                    done.add(json.loads(line)['book_id'])
-                except json.JSONDecodeError:    # a line cut off when a run was stopped
-                    continue
+    for p in [path, *args.local]:
+        if p.exists():
+            with p.open(encoding='utf-8') as f:
+                for line in f:
+                    try:
+                        done.add(json.loads(line)['book_id'])
+                    except json.JSONDecodeError:    # a line cut off when a run was stopped
+                        continue
     todo = [b for b in books() if b[0] not in done]
     if args.lccns:
         wanted = set(args.lccns.read_text().split())
