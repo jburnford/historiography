@@ -256,3 +256,21 @@ and `established`. The dissertation graph's `I:` slugs are aliases (`diss-inst:y
 University, Toronto), and every source name that reached the organisation is a member (`inst-name:…`), as
 is ROR's own Wikidata link (`ror-wikidata:Q…`, unchecked). Names still in review (621, about 3,500 position
 rows) have no key yet.
+
+## Dissertation-graph theses (2026-11-01, `theses-2026-11-01/`)
+
+`scripts/key_theses.py` keys the theses whose bibliographies build the dissertation graph
+(`dissertations.csv`, 13,225 rows) as works, and their authors as people.
+
+- **Works:** 11,670 theses judged History PhDs (or in the analysis set), anchored on `diss-thesis:<id>`;
+  1,555 `needs_review`/`adjacent` theses are not keyed. 8,654 carry `awarded-by:i-N`. The other 3,016
+  came through repository sources (`base:theses.hal.science` and the like) whose awarding university the
+  table does not record.
+- **AHA crosswalk:** 2,432 US theses carry the AHA record the harvest matched (`aha_id`). The work also gets
+  `aha-diss:<record>` and the author `aha-phd:<record>`, so both join the AHA keys (and through them the
+  registry anchors and supervision links). `aha-match-check.json` lists 65 matches with an unexpected
+  surname or title; on reading, they are hyphenated or married names with the same title, or provisional
+  AHA titles with the same author and year.
+- **Canon joins by works:** 67 authors join a canon key whose cited works include their thesis as
+  published (`key_aha.own_book`). 4 canon keys claimed by several theses (pooled names) join none.
+- Applied: 18,423 mints, 4,917 attaches, no holds. The log moved to `events-0002.jsonl` with this slice.

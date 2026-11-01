@@ -117,6 +117,58 @@ def own_book(record, cands):
     return hits
 
 
+def pooled_keys(state):
+    """Canon keys that hold several people: LC's books disagree (rerun5 `books_disagree`), or a review says so."""
+    with POOLED_RUN.open(newline='', encoding='utf-8') as f:
+        pooled = {k for r in csv.DictReader(f) if r['outcome'] == 'books_disagree'
+                  for k in state.lookup(f"diss-person:{r['graph_key']}")}
+    # Pooled by review though LC resolves them: the timeline-canon reading bridge notes that 'Miller, James'
+    # also holds James Miller (Democracy is in the Streets) and others.
+    return pooled | set(state.lookup('diss-person:miller|james'))
+
+
+def author_merge_ok(state):
+    pooled = pooled_keys(state)
+
+    def merge_ok(cluster, keys):
+        """One dissertation author reaching two keys through works on both sides (the registry's dissertation
+        route and the canon own-book route, or an advisor's own record): merge when every key's name agrees in
+        full with the record's, none is a pooled name, and their LC authorities do not differ."""
+        if any(k in pooled for k in keys) or not all(same_name(cluster['label'], state.keys[k]['label']) for k in keys):
+            return False
+        lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
+        return len(lcs) <= 1
+    return merge_ok
+
+
+def drop_shared(clusters, state, queue, report, kind_pooled, kind_shared):
+    """A canon key claimed through the own-book route by several records is a pooled name ('Jones, David'): join
+    none of them. An anchor new to the log may belong to one cluster only. Returns the clusters left anchored."""
+    claims = defaultdict(list)
+    for i, c in enumerate(clusters):
+        for a in c['anchors']:
+            if a.startswith('diss-person:') and c['type'] == 'person':
+                claims[a].append(i)
+    for a, idx in claims.items():
+        if len(idx) > 1:
+            queue.append(dict(kind=kind_pooled, anchor=a, labels=[clusters[i]['label'] for i in idx]))
+            for i in idx:
+                clusters[i]['anchors'].discard(a)
+            report['pooled_canon_key_not_joined'] += 1
+    owners = defaultdict(list)
+    for i, c in enumerate(clusters):
+        for a in c['anchors']:
+            if a not in state.anchor:
+                owners[a].append(i)
+    for a, idx in owners.items():
+        if len(idx) > 1:
+            queue.append(dict(kind=kind_shared, anchor=a, labels=[clusters[i]['label'] for i in idx]))
+            for i in idx:
+                clusters[i]['anchors'].discard(a)
+            report['shared_anchor_dropped'] += 1
+    return [c for c in clusters if c['anchors']]
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--registry', type=Path, required=True)
@@ -196,48 +248,8 @@ def main():
                              basis='AHA dissertation advisor'))
         report['token_only_people'] += 1
 
-    # A canon key claimed through the own-book route by several records is a pooled name ('Jones, David'):
-    # join none of them.
-    claims = defaultdict(list)
-    for i, c in enumerate(clusters):
-        for a in c['anchors']:
-            if a.startswith('diss-person:') and c['type'] == 'person':
-                claims[a].append(i)
-    for a, idx in claims.items():
-        if len(idx) > 1:
-            queue.append(dict(kind='canon_key_claimed_by_several_records', anchor=a, labels=[clusters[i]['label'] for i in idx]))
-            for i in idx:
-                clusters[i]['anchors'].discard(a)
-            report['pooled_canon_key_not_joined'] += 1
-    # an anchor new to the log may belong to one cluster only (two records' authors tied to one individual)
-    owners = defaultdict(list)
-    for i, c in enumerate(clusters):
-        for a in c['anchors']:
-            if a not in state.anchor:
-                owners[a].append(i)
-    for a, idx in owners.items():
-        if len(idx) > 1:
-            queue.append(dict(kind='anchor_on_several_records', anchor=a, labels=[clusters[i]['label'] for i in idx]))
-            for i in idx:
-                clusters[i]['anchors'].discard(a)
-            report['shared_anchor_dropped'] += 1
-    clusters = [c for c in clusters if c['anchors']]
-    with POOLED_RUN.open(newline='', encoding='utf-8') as f:
-        pooled = {k for r in csv.DictReader(f) if r['outcome'] == 'books_disagree'
-                  for k in state.lookup(f"diss-person:{r['graph_key']}")}
-    # Pooled by review though LC resolves them: the timeline-canon reading bridge notes that 'Miller, James'
-    # also holds James Miller (Democracy is in the Streets) and others.
-    pooled |= set(state.lookup('diss-person:miller|james'))
-
-    def merge_ok(cluster, keys):
-        """One dissertation author reaching two keys through works on both sides (the registry's dissertation
-        route and the canon own-book route, or an advisor's own record): merge when every key's name agrees in
-        full with the record's, none is a pooled name, and their LC authorities do not differ."""
-        if any(k in pooled for k in keys) or not all(same_name(cluster['label'], state.keys[k]['label']) for k in keys):
-            return False
-        lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
-        return len(lcs) <= 1
-    ops, assign, held = plan(state, clusters, merge_ok)
+    clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_records', 'anchor_on_several_records')
+    ops, assign, held = plan(state, clusters, author_merge_ok(state))
     materialise(state, dict(basis='AHA keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(
