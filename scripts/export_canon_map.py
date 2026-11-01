@@ -11,7 +11,7 @@ with these additions:
 - ``nodes[].reading``: the person's key in the Dissertation reading export, where exactly one person
   there has the same display name. This is a link only. The two use different builds.
 - ``nodes[].key``, ``nodes[].key_status``: the person's internal key and its status (established or
-  unresolved) from data/identifiers/events.jsonl. People awaiting merge review have none yet.
+  unresolved) from data/identifiers/events-NNNN.jsonl. People awaiting merge review have none yet.
 - ``nodes[].lc``: the person's LC name authority (an `lcnaf:` anchor in the identifier log), the public
   identifier the key log uses until Wikidata (PID-PLAN.md).
 - ``nodes[].life``: life years for display ('1924–1993', 'd. 2009', 'c. 544–469 BCE') from
@@ -68,7 +68,7 @@ def attach_keys(nodes):
     People deferred for merge review have no key yet and carry neither field."""
     from identifiers import State
     from key_canon_map import canon_keys
-    state = State.load(ROOT / 'data/identifiers/events.jsonl')
+    state = State.load(ROOT / 'data/identifiers')
     graph_key = canon_keys(nodes)
     with (ROOT / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
         lives = {r['key']: r for r in csv.DictReader(f)}

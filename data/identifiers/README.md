@@ -27,23 +27,31 @@ later.
 
 | File | Role |
 | --- | --- |
-| `events.jsonl` | **The authority.** An append-only log, one JSON event per line, tracked in Git. |
+| `events-NNNN.jsonl` | **The authority.** An append-only log, one JSON event per line, tracked in Git, split into numbered shards (`events-0001.jsonl`, `events-0002.jsonl`, …) that are read in order as one sequence. |
 | `.mint.lock` | The minter's lock file. Not tracked. |
 
 Current state (keys, statuses, anchors, aliases) is always derived from the log. Nothing else is
 authoritative.
+
+**Shards (2026-11-01).** GitHub refuses files over 100 MB, and the log reached 65 MB with the AHA slice.
+The minter appends to the highest-numbered shard until it reaches 50 MB (`SHARD_BYTES`), then opens the
+next; a large proposal may run across a shard boundary. A closed shard is never edited. Shard numbers
+run from 0001 with no gaps, and the minter refuses a legacy `events.jsonl` beside shards. The log up to
+2026-11-01 was moved whole with `git mv` to `events-0001.jsonl` (65 MB, closed), so `git log --follow`
+still shows its history. Scripts load the log with `State.load(<directory>)`; a path ending in
+`events.jsonl` is still accepted as naming its directory.
 
 ## Commands
 
 ```bash
 python3 scripts/identifiers.py check                  # replay and validate the log; counts by type and status
 python3 scripts/identifiers.py lookup person:eric_hobsbawm   # key, anchor or alias -> current key(s)
-python3 scripts/identifiers.py apply PROPOSAL.json    # the only writer; all-or-nothing under the lock
+python3 scripts/identifiers.py apply PROPOSAL.json    # the only writer; all-or-nothing under the lock (.json.gz also read)
 python3 scripts/key_atlas.py --out DIR                # build the atlas proposal from git HEAD (dry run)
 python3 -m unittest tests.test_identifiers
 ```
 
-Builds and agents never write `events.jsonl`. They write a proposal: a list of operations in which
+Builds and agents never write the log. They write a proposal: a list of operations in which
 new keys are placeholders such as `"new:3"`. The minter replays the log, checks the whole proposal
 against a copy of the state, assigns numbers in order, and appends every event or none.
 

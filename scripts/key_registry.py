@@ -186,7 +186,7 @@ def main():
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     args = ap.parse_args()
     version = args.registry.parent.name
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     rows, lc = load(args.registry)
     clusters, queue, report = clusters_for(rows, lc, state, version)
     ops, assign, held = plan(state, clusters, lambda c, ks: atlas_canon_merge(state, c, ks))

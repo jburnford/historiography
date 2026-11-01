@@ -123,7 +123,7 @@ def main():
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     args = ap.parse_args()
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     inst = {}
     for k, ms in state.members.items():
         if state.keys[k]['type'] == 'institution' and state.keys[k]['status'] == 'active':

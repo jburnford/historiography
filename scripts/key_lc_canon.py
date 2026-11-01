@@ -37,7 +37,7 @@ def main():
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     ap.add_argument('--file', default='canon-people-lc.csv', help='atlas-people-lc.csv for the atlas route')
     args = ap.parse_args()
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     with (args.run / args.file).open(newline='', encoding='utf-8') as f:
         rows = [r for r in csv.DictReader(f) if r['outcome'] == 'resolved']
     report, queue = Counter(), []

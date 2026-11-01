@@ -1,7 +1,7 @@
 """Life dates for the knowledge graph, one row per internal person key (PID-PLAN.md; user 2026-10-30).
 
 Merges every source of birth and death dates the project holds, keyed by the person's internal key
-(data/identifiers/events.jsonl):
+(data/identifiers/events-NNNN.jsonl):
 - `wd`: the Wikidata sheet (data/people-wikidata.json, accepted QIDs; the 2026-10-30 QID review verdict
   is kept as `qid_review`);
 - `review`: the sourced living/deceased reviews (data/historian-life-review.json,
@@ -76,7 +76,7 @@ def lc_rows(state):
 
 
 def main():
-    state = State.load(ROOT / 'data/identifiers/events.jsonl')
+    state = State.load(ROOT / 'data/identifiers')
     review = {}
     with (ROOT / 'data/field-research/atlas-qid-review-2026-10-30/review.csv').open(newline='', encoding='utf-8') as f:
         review = {r['person_id']: r['verdict'] for r in csv.DictReader(f)}

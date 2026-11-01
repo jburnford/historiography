@@ -107,8 +107,8 @@ with `replaced_by` pointing to a new key of the right type.
   existing site links keep working.
 - **One minter.** A single script, holding a lock file, assigns numbers. Agents and builds never
   mint directly. They write proposal files, which the minter applies in order.
-- **The record is an append-only event log** (`data/identifiers/events.jsonl`), tracked in Git. One
-  line per event:
+- **The record is an append-only event log** (`data/identifiers/events-NNNN.jsonl`, numbered shards of
+  at most about 50 MB read in order; `events.jsonl` until 2026-11-01), tracked in Git. One line per event:
 
   ```json
   {"event": "mint", "key": "p-1042", "type": "person", "label": "…", "members": [...], "basis": "…", "commit": "…", "date": "…"}

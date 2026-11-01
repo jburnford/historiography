@@ -1,7 +1,9 @@
 """Internal keys: append-only event log, single locked minter, anchor-based carry-forward (PID-PLAN.md v2).
 
-The authority is `data/identifiers/events.jsonl`, one JSON event per line, tracked in Git. Current state
-is derived from it on every read; nothing else is authoritative. Keys are `<prefix>-<n>`, never reused.
+The authority is the log `data/identifiers/events-NNNN.jsonl`, one JSON event per line, tracked in Git, read
+in shard order as one sequence. A shard is closed once it reaches SHARD_BYTES (GitHub refuses files over
+100 MB); the minter then opens the next. Closed shards are never edited. Current state is derived from the
+log on every read; nothing else is authoritative. Keys are `<prefix>-<n>`, never reused.
 Builds and agents never mint directly: they write a proposal (a list of operations) and the minter
 applies it under a lock, assigning numbers in order.
 
@@ -13,13 +15,15 @@ Vocabulary
   after the key is retired (lookup follows `replaced_by`).
 
     python3 scripts/identifiers.py check
+    python3 scripts/identifiers.py shard          # one-time: move a legacy events.jsonl to events-0001.jsonl
     python3 scripts/identifiers.py summary
     python3 scripts/identifiers.py lookup slug:geertz
-    python3 scripts/identifiers.py apply proposal.json [--basis TEXT]
+    python3 scripts/identifiers.py apply proposal.json[.gz] [--basis TEXT]
 """
 import argparse
 import copy
 import fcntl
+import gzip
 import json
 import os
 import re
@@ -38,11 +42,34 @@ LIFECYCLE = {'active', 'provisional', 'unsupported', 'merged', 'split', 'withdra
 RETIRED = {'merged', 'split', 'withdrawn', 'retyped'}
 RESOLUTION = {'established', 'unresolved', 'editorial'}
 KEY_RE = re.compile(r'^([a-z])-([1-9][0-9]*)$')
+SHARD_BYTES = 50_000_000
+SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl$')
 EVENTS = {'mint', 'attach', 'detach', 'merge', 'split', 'retype', 'withdraw', 'relabel', 'status'}
 
 
 class LogError(ValueError):
     pass
+
+
+def log_dir(path):
+    """The log directory for a directory or a legacy `<dir>/events.jsonl` path (older callers pass that)."""
+    path = Path(path)
+    return path.parent if path.name == 'events.jsonl' else path
+
+
+def shards(directory):
+    """The log's shards in order. Numbers run from 0001 without gaps; a legacy events.jsonl beside shards is
+    refused (the log would be read twice or half)."""
+    directory = log_dir(directory)
+    found = sorted(p for p in directory.glob('events-*.jsonl') if SHARD_RE.match(p.name))
+    for n, p in enumerate(found, 1):
+        if int(SHARD_RE.match(p.name).group(1)) != n:
+            raise LogError(f'{directory}: shard {p.name} out of sequence (expected events-{n:04d}.jsonl)')
+    if (directory / 'events.jsonl').exists():
+        if found:
+            raise LogError(f'{directory}: legacy events.jsonl beside shards')
+        return [directory / 'events.jsonl']
+    return found
 
 
 class State:
@@ -58,14 +85,19 @@ class State:
 
     @classmethod
     def load(cls, path):
+        """Load the log in a directory (or a legacy `<dir>/events.jsonl` path); a single file named otherwise
+        is read as a whole log."""
         s = cls()
-        if path.exists():
-            for n, line in enumerate(path.read_text().splitlines(), 1):
-                if line.strip():
-                    try:
-                        s.apply(json.loads(line))
-                    except (LogError, json.JSONDecodeError, KeyError) as e:
-                        raise LogError(f'{path}:{n}: {e}') from e
+        path = Path(path)
+        files = [path] if path.is_file() and path.name != 'events.jsonl' else shards(path)
+        for f in files:
+            with open(f, encoding='utf-8') as fh:
+                for n, line in enumerate(fh, 1):
+                    if line.strip():
+                        try:
+                            s.apply(json.loads(line))
+                        except (LogError, json.JSONDecodeError, KeyError) as e:
+                            raise LogError(f'{f}:{n}: {e}') from e
         return s
 
     def _live(self, key):
@@ -242,18 +274,55 @@ def git_commit():
         return ''
 
 
-def apply_proposal(directory, proposal, commit=None, date=None):
+def _append(directory, lines, limit):
+    """Append lines to the open shard, opening the next whenever the open one has reached `limit` bytes."""
+    files = shards(directory)
+    if files and files[-1].name == 'events.jsonl':
+        raise LogError(f'{directory}: legacy events.jsonl; run `identifiers.py shard` first')
+    n = len(files) or 1
+    path = directory / f'events-{n:04d}.jsonl'
+    size = path.stat().st_size if path.exists() else 0
+    fh = open(path, 'a', encoding='utf-8')
+    try:
+        for line in lines:
+            if size >= limit:
+                fh.flush()
+                os.fsync(fh.fileno())
+                fh.close()
+                n += 1
+                path, size = directory / f'events-{n:04d}.jsonl', 0
+                fh = open(path, 'a', encoding='utf-8')
+            fh.write(line)
+            size += len(line.encode('utf-8'))
+        fh.flush()
+        os.fsync(fh.fileno())
+    finally:
+        fh.close()
+
+
+def apply_proposal(directory, proposal, commit=None, date=None, limit=SHARD_BYTES):
     """The only writer. Validates the whole proposal, then appends all its events or none."""
-    log = directory / 'events.jsonl'
+    directory = log_dir(directory)
     with locked(directory):
-        state = State.load(log)
+        state = State.load(directory)
         events, names = materialise(state, proposal, git_commit() if commit is None else commit,
                                     date or datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
-        with open(log, 'a') as fh:
-            fh.write(''.join(json.dumps(e, ensure_ascii=False) + '\n' for e in events))
-            fh.flush()
-            os.fsync(fh.fileno())
+        _append(directory, [json.dumps(e, ensure_ascii=False) + '\n' for e in events], limit)
     return names
+
+
+def shard_legacy(directory):
+    """One-time move of `events.jsonl` to `events-0001.jsonl` (use `git mv` to keep its history readable)."""
+    directory = log_dir(directory)
+    with locked(directory):
+        legacy = directory / 'events.jsonl'
+        if not legacy.exists():
+            return None
+        if shards(directory) != [legacy]:
+            raise LogError(f'{directory}: shards already exist')
+        target = directory / 'events-0001.jsonl'
+        legacy.rename(target)
+        return target
 
 
 # --- carry-forward ----------------------------------------------------------------------------------------
@@ -331,7 +400,7 @@ def _num(key):
 
 
 def check(directory):
-    state = State.load(directory / 'events.jsonl')
+    state = State.load(directory)
     by = Counter((k['type'], k['status']) for k in state.keys.values())
     return state, by
 
@@ -342,6 +411,7 @@ def main():
     sub = ap.add_subparsers(dest='cmd', required=True)
     sub.add_parser('check')
     sub.add_parser('summary')
+    sub.add_parser('shard')
     lk = sub.add_parser('lookup')
     lk.add_argument('name')
     ap_ = sub.add_parser('apply')
@@ -349,16 +419,21 @@ def main():
     args = ap.parse_args()
     if args.cmd in ('check', 'summary'):
         state, by = check(args.dir)
+        print(' '.join(f'{p.name}={p.stat().st_size / 1e6:.1f}MB' for p in shards(args.dir)))
         print(f'{state.seq} events, {len(state.keys)} keys, {len(state.anchor)} active anchors, {len(state.alias)} aliases')
         for (t, s), n in sorted(by.items()):
             print(f'  {t:12} {s:12} {n}')
+    elif args.cmd == 'shard':
+        print(shard_legacy(args.dir) or 'no legacy events.jsonl')
     elif args.cmd == 'lookup':
-        state = State.load(args.dir / 'events.jsonl')
+        state = State.load(args.dir)
         for k in state.lookup(args.name):
             r = state.keys[k]
             print(k, r['type'], r['status'], r['resolution'], r['label'], sorted(r['anchors'])[:8])
     elif args.cmd == 'apply':
-        names = apply_proposal(args.dir, json.loads(args.proposal.read_text()))
+        opener = gzip.open if args.proposal.suffix == '.gz' else open     # large proposals are kept as .json.gz
+        with opener(args.proposal, 'rt', encoding='utf-8') as fh:
+            names = apply_proposal(args.dir, json.load(fh))
         print(f'minted {len(names)}')
 
 

@@ -74,8 +74,10 @@ class DissertationExportTests(unittest.TestCase):
         # one key per circle, except where the key log merged two keys into one person whose name forms
         # the citation graph still splits (Woodward, Comer Vann / C. Vann)
         person_keys = Counter(n['key'] for n in data['nodes'] if 'key' in n)
-        with (Path(__file__).resolve().parents[1] / 'data/identifiers/events.jsonl').open(encoding='utf-8') as f:
-            merged_into = Counter(e['into'] for e in map(json.loads, f) if e['event'] == 'merge')
+        merged_into = Counter()
+        for shard in sorted((Path(__file__).resolve().parents[1] / 'data/identifiers').glob('events-*.jsonl')):
+            with shard.open(encoding='utf-8') as f:
+                merged_into.update(e['into'] for e in map(json.loads, f) if e['event'] == 'merge')
         for key, count in person_keys.items():
             self.assertLessEqual(count, 1 + merged_into[key], key)
         for key, view in data['views'].items():

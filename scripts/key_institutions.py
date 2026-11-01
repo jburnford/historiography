@@ -48,7 +48,7 @@ def main():
     with GROUNDING.open(newline='', encoding='utf-8') as f:
         rows = list(csv.DictReader(f))
     clusters = clusters_from(rows)
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     ops, assign, held = plan(state, clusters)
     materialise(state, dict(basis='institution keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)

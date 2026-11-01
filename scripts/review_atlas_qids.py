@@ -122,8 +122,8 @@ def name_compatible(atlas_label, labels):
 def independent(sheet_people):
     """atlas person id -> {source: qid} from the dissertation graph and the registry."""
     out = defaultdict(dict)
-    log = ROOT / 'data/identifiers/events.jsonl'
-    if log.exists():
+    log = ROOT / 'data/identifiers'
+    if any(log.glob('events-*.jsonl')):
         state = State.load(log)
         diss_key = defaultdict(list)
         for key, rec in state.keys.items():

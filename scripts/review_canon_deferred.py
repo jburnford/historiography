@@ -164,7 +164,7 @@ def main():
     ap.add_argument('--cache', type=Path, required=True, help='SRU response cache (shared with the canon route)')
     ap.add_argument('--delay', type=float, default=3.0)
     args = ap.parse_args()
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     queue = json.loads(QUEUE.read_text(encoding='utf-8'))
     sheet_qid = {r['person_id']: r['wikidata']['qid'] for r in json.loads(SHEET.read_text(encoding='utf-8'))['people']
                  if r.get('status') == 'accepted' and r.get('wikidata')}

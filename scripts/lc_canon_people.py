@@ -316,7 +316,7 @@ def main():
         wanted_labels = {x.strip() for x in args.people.split(';')}
         nodes = [n for n in nodes if n['label'] in wanted_labels or n['name'] in wanted_labels]
     graph_key = canon_keys(canon['nodes'])
-    state = State.load(ROOT / 'data/identifiers/events.jsonl')
+    state = State.load(ROOT / 'data/identifiers')
     books = books_by_person({graph_key[n['name'], n['qid']] for n in nodes}, max(args.books, args.offline_books))
     qid_basis = {}
     with (D / 'cited-people.csv').open(newline='', encoding='utf-8') as f:

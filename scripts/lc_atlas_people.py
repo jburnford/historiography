@@ -69,7 +69,7 @@ def main():
     people = [r for r in sheet['people'] if r.get('status') == 'accepted' and r.get('wikidata')]
     with REVIEW.open(newline='', encoding='utf-8') as f:
         review = {r['person_id']: r for r in csv.DictReader(f)}
-    state = State.load(ROOT / 'data/identifiers/events.jsonl')
+    state = State.load(ROOT / 'data/identifiers')
     lc_of = p244({r['wikidata']['qid'] for r in people}, args.out / 'raw')
     names = load_names(args.names, lcids={x for v in lc_of.values() for x in v})
     by_id = names[0]

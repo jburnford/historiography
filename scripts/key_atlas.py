@@ -116,7 +116,7 @@ def main():
     sheet = json.loads(subprocess.run(['git', '-C', str(ROOT), 'show', f'{args.rev}:data/people-wikidata.json'],
                                       capture_output=True, text=True, check=True).stdout)
     clusters, report = atlas_clusters(json.loads(raw), sheet)
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     ops, assign, queue = plan(state, clusters)
     events, names = materialise(state, dict(basis=f'atlas keying from {args.rev}', ops=ops), 'dry-run', 'dry-run')
     rev = subprocess.run(['git', '-C', str(ROOT), 'rev-parse', '--short', args.rev], capture_output=True, text=True).stdout.strip()

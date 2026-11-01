@@ -21,7 +21,7 @@ class RegistryKeying(unittest.TestCase):
             dict(event='mint', key='new:c', type='person', label='Smith, J.', resolution='unresolved',
                  anchors=['diss-person:smith|j'], members=['dissertation-qid:Q2:probable_historian'])]),
             commit='t', date='d')
-        self.state = State.load(self.dir / 'events.jsonl')
+        self.state = State.load(self.dir)
 
     def tearDown(self):
         self.tmp.cleanup()

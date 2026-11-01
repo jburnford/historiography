@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from identifiers import LogError, State, apply_proposal, plan  # noqa: E402
+from identifiers import LogError, State, apply_proposal, plan, shard_legacy, shards  # noqa: E402
 
 
 def person(label, *anchors, members=()):
@@ -15,10 +15,14 @@ def person(label, *anchors, members=()):
 
 def run(directory, clusters, merge_ok=lambda c, k: False):
     """One build: plan against the log, apply, return the key assigned to each cluster."""
-    state = State.load(directory / "events.jsonl")
+    state = State.load(directory)
     ops, assign, queue = plan(state, clusters, merge_ok)
     names = apply_proposal(directory, dict(basis="test build", ops=ops), commit="test", date="2026-10-30") if ops else {}
     return [names.get(assign[i], assign[i]) for i in range(len(clusters))], queue
+
+
+def log_text(directory):
+    return "".join(p.read_text() for p in shards(directory))
 
 
 def _mint_one(directory, label):
@@ -39,7 +43,7 @@ class MintingTests(unittest.TestCase):
         keys, _ = run(self.dir, [person("A", "orcid:1"), person("B", "orcid:2"),
                                  dict(type="claim", label="e1", anchors={"atlas:edge:edge_001"}, resolution="editorial")])
         self.assertEqual(sorted(keys), ["c-1", "p-1", "p-2"])
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         apply_proposal(self.dir, dict(ops=[dict(event="withdraw", key="p-2", basis="error")]), commit="t", date="d")
         keys, _ = run(self.dir, [person("C", "orcid:3")])
         self.assertEqual(keys, ["p-3"])  # p-2 is withdrawn, not reused
@@ -50,16 +54,16 @@ class MintingTests(unittest.TestCase):
         ev = dict(seq=1, event="mint", key="p-2", type="person", resolution="unresolved")
         log.write_text(json.dumps(ev) + "\n" + json.dumps(dict(ev, seq=2, key="p-1")) + "\n")
         with self.assertRaises(LogError):
-            State.load(log)
+            State.load(self.dir)
 
     def test_bad_proposal_writes_nothing(self):
         run(self.dir, [person("A", "orcid:1")])
-        before = (self.dir / "events.jsonl").read_text()
+        before = log_text(self.dir)
         bad = dict(ops=[dict(event="mint", key="new:x", type="person", resolution="unresolved", anchors=["orcid:9"]),
                         dict(event="mint", key="new:y", type="person", resolution="unresolved", anchors=["orcid:1"])])
         with self.assertRaises(LogError):
             apply_proposal(self.dir, bad, commit="t", date="d")
-        self.assertEqual((self.dir / "events.jsonl").read_text(), before)
+        self.assertEqual(log_text(self.dir), before)
 
     def test_concurrent_minters_never_collide(self):
         ctx = multiprocessing.get_context("fork")
@@ -68,8 +72,53 @@ class MintingTests(unittest.TestCase):
             p.start()
         for p in procs:
             p.join()
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertEqual(sorted(state.keys), sorted(f"p-{i}" for i in range(1, 9)))
+
+
+class ShardTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.dir = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def mint(self, n, limit, start=0):
+        apply_proposal(self.dir, dict(ops=[dict(event="mint", key=f"new:{i}", type="person", label=f"P{i}",
+                                                resolution="unresolved", anchors=[f"x:{i}"])
+                                           for i in range(start, start + n)]), commit="t", date="d", limit=limit)
+
+    def test_a_full_shard_closes_and_the_log_reads_as_one_sequence(self):
+        self.mint(3, limit=10 ** 9)
+        self.assertEqual([p.name for p in shards(self.dir)], ["events-0001.jsonl"])
+        closed = (self.dir / "events-0001.jsonl").read_text()
+        self.mint(5, limit=len(closed) + 1, start=3)   # one more line fits, then the shard is full
+        self.assertEqual([p.name for p in shards(self.dir)], ["events-0001.jsonl", "events-0002.jsonl"])
+        self.assertTrue((self.dir / "events-0001.jsonl").read_text().startswith(closed))
+        self.assertEqual(len((self.dir / "events-0001.jsonl").read_text().splitlines()), 4)
+        state = State.load(self.dir)
+        self.assertEqual(sorted(state.keys, key=lambda k: int(k[2:])), [f"p-{i}" for i in range(1, 9)])
+        self.assertEqual(state.seq, 8)
+
+    def test_a_legacy_log_is_moved_once_and_never_read_beside_shards(self):
+        self.mint(2, limit=10 ** 9)
+        (self.dir / "events-0001.jsonl").rename(self.dir / "events.jsonl")
+        with self.assertRaises(LogError):          # the minter will not start shards beside a legacy log
+            self.mint(1, limit=10 ** 9, start=2)
+        self.assertEqual(len(State.load(self.dir / "events.jsonl").keys), 2)
+        shard_legacy(self.dir)
+        self.mint(1, limit=10 ** 9, start=2)
+        self.assertEqual(len(State.load(self.dir).keys), 3)
+        (self.dir / "events.jsonl").write_text("")
+        with self.assertRaises(LogError):
+            State.load(self.dir)
+
+    def test_a_gap_in_shard_numbers_is_refused(self):
+        self.mint(1, limit=10 ** 9)
+        (self.dir / "events-0001.jsonl").rename(self.dir / "events-0002.jsonl")
+        with self.assertRaises(LogError):
+            State.load(self.dir)
 
 
 class CarryForwardTests(unittest.TestCase):
@@ -84,17 +133,17 @@ class CarryForwardTests(unittest.TestCase):
         clusters = [person("Hobsbawm", "atlas:person:hobsbawm", "wd:Q1", members={"hnet:m1"}),
                     person("Scott", "atlas:person:scott", "orcid:1")]
         first, _ = run(self.dir, clusters)
-        size = (self.dir / "events.jsonl").stat().st_size
+        size = len(log_text(self.dir))
         second, _ = run(self.dir, list(reversed(clusters)))
         self.assertEqual(first, list(reversed(second)))
-        self.assertEqual((self.dir / "events.jsonl").stat().st_size, size)
+        self.assertEqual(len(log_text(self.dir)), size)
 
     def test_new_member_sorting_first_changes_no_key(self):
         # The registry's union-find root fails this: a new ol: node renames an orcid: cluster.
         (k,), _ = run(self.dir, [person("X", "orcid:0000-1", members={"crossref:a"})])
         (k2,), _ = run(self.dir, [person("X", "ol:OL1A", "orcid:0000-1", members={"aaa:first", "crossref:a"})])
         self.assertEqual(k, k2)
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertIn("ol:OL1A", state.keys[k]["anchors"])
 
     def test_members_alone_never_match(self):
@@ -107,14 +156,14 @@ class CarryForwardTests(unittest.TestCase):
         keys, queue = run(self.dir, [person("A", "orcid:1", "wd:Q5")])
         self.assertEqual(keys, ["p-1"])
         self.assertEqual(queue[0]["kind"], "merge_candidate")
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertEqual({state.keys["p-1"]["status"], state.keys["p-2"]["status"]}, {"provisional"})
 
     def test_rule_merge_retires_younger_key_and_aliases_follow(self):
         run(self.dir, [dict(person("A", "orcid:1"), aliases={"slug:a"}), person("A2", "wd:Q5")])
         keys, queue = run(self.dir, [person("A", "orcid:1", "wd:Q5")], merge_ok=lambda c, k: True)
         self.assertEqual((keys, queue), (["p-1"], []))
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertEqual(state.keys["p-2"]["status"], "merged")
         self.assertEqual(state.lookup("p-2"), ["p-1"])
         self.assertEqual(state.lookup("wd:Q5"), ["p-1"])
@@ -131,7 +180,7 @@ class CarryForwardTests(unittest.TestCase):
             dict(event="mint", key="new:a", type="person", resolution="established", anchors=["orcid:1"]),
             dict(event="mint", key="new:b", type="person", resolution="established", anchors=["orcid:2"]),
             dict(event="split", key="p-1", successors=["new:a", "new:b"])]), commit="t", date="d")
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertEqual(state.keys["p-1"]["status"], "split")
         self.assertEqual(state.lookup("p-1"), ["p-2", "p-3"])
         keys, queue = run(self.dir, [person("Hannah Barker (a)", "orcid:1"), person("Hannah Barker (b)", "orcid:2")])
@@ -143,7 +192,7 @@ class CarryForwardTests(unittest.TestCase):
             dict(event="detach", key="w-1", anchors=["atlas:claim-entity:x"]),
             dict(event="mint", key="new:p", type="person", resolution="established", anchors=["atlas:claim-entity:x"]),
             dict(event="retype", key="w-1", successors=["new:p"])]), commit="t", date="d")
-        state = State.load(self.dir / "events.jsonl")
+        state = State.load(self.dir)
         self.assertEqual(state.lookup("w-1"), ["p-1"])
         self.assertEqual(state.lookup("atlas:claim-entity:x"), ["p-1"])
 

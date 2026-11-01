@@ -154,7 +154,7 @@ def main():
     clusters, report, queue = clusters_for(nodes, keymap, cited, git_json(args.rev, 'data/people-wikidata.json'),
                                            git_json(args.rev, 'data/dissertation-layer/links.json'),
                                            {p['id']: p['label'] for p in atlas['people']})
-    state = State.load(args.state / 'events.jsonl')
+    state = State.load(args.state)
     ops, assign, held = plan(state, clusters)
     events, _ = materialise(state, dict(basis='canon map keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
