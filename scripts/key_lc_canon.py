@@ -44,6 +44,10 @@ def main():
 
     live = []
     for r in rows:
+        # The run records the key it saw; a person keyed since (e.g. a deferred canon person joined to an
+        # atlas key) is found through their dissertation-graph anchor.
+        if not r['key'] and r.get('graph_key') and len(found := state.lookup(f"diss-person:{r['graph_key']}")) == 1:
+            r['key'] = found[0]
         k = r['key']
         if not k:
             report['no_key_deferred'] += 1

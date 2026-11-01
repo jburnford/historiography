@@ -16,7 +16,9 @@ Joins to keys made from other routes (section 5: anchors only, plus one agreemen
 - **QID agreement with the canon route**: a canon key whose dissertation QID is title-verified
   (`dissertation-qid:<QID>:<title tier>`) and equals the individual's QID. Two independent routes chose the
   same Wikidata item (the registry through ORCID or Wikidata's own identifiers, the dissertation graph
-  through a cited title). The canon key's `diss-person:` anchor joins the cluster. A probable-tier
+  through a cited title). The canon key's `diss-person:` anchor joins the cluster, unless the key belongs
+  to an atlas person the individual does not carry and the full first and family names differ (queued:
+  the dissertation QID can name a namesake, as Ann Elias on Norbert Elias's key). A probable-tier
   dissertation QID only queues the pair for review.
 Anchors shared by two individuals (the registry left them apart) are dropped from both and queued, so the
 proposal never mints one anchor twice.
@@ -33,8 +35,20 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, State, materialise, plan
 from key_canon_map import TITLE_TIERS
+from lc_canon_people import words
 
 ESTABLISHED = {'anchored', 'accepted'}
+
+
+def same_name(a, b):
+    """Full first given name and family name agree ('Peter N. Stearns' / 'Peter N Stearns';
+    'Armitage, David' / 'David Armitage'), so 'Ann Elias' is not 'Norbert Elias'."""
+    def parts(label):
+        family, comma, given = label.partition(', ')
+        w = words(f'{given} {family}' if comma else label)
+        return (w[0], w[-1]) if len(w) >= 2 else None
+    pa, pb = parts(a), parts(b)
+    return bool(pa and pb and pa == pb and len(pa[0]) > 1)
 
 
 def load(registry):
@@ -79,8 +93,14 @@ def clusters_for(rows, lc, state, version):
             anchors.add(f'wd:{q}')
             members |= {f'lcnaf-wikidata:{v}' for v in sorted(lc.get(q, ()))}
             joined = canon_by_qid.get(q, set())
-            if len(joined) == 1:
-                k = next(iter(joined))
+            atlas_of = {k: {a for a in state.keys[k]['anchors'] if a.startswith('atlas:person:')} for k in joined}
+            if len(joined) == 1 and atlas_of[k := next(iter(joined))] - anchors \
+                    and not same_name(label, state.keys[k]['label']):
+                # The key is an atlas person's and this individual is not: the dissertation QID on it was
+                # chosen for the canon name and can name a namesake (Norbert Elias's carries Ann Elias's).
+                queue.append(dict(kind='qid_agrees_with_atlas_keyed_canon', individual=iid, label=label, qid=q, key=k,
+                                  key_label=state.keys[k]['label']))
+            elif len(joined) == 1:
                 anchors |= {a for a in state.keys[k]['anchors'] if a.startswith('diss-person:')}
                 report['joined_canon_by_qid_agreement'] += 1
             elif len(joined) > 1:
@@ -97,6 +117,35 @@ def clusters_for(rows, lc, state, version):
             continue
         out.append(dict(type='person', label=label, anchors=anchors, members=members, aliases=set(),
                         resolution='established', basis=f'person registry {version} individual {iid}'))
+    # Individuals reaching one existing key are one person seen twice by the registry (an atlas record and an
+    # ORCID record joined through the same canon key): combine them, or plan() would hold the key as a split.
+    by_key = defaultdict(list)
+    for i, c in enumerate(out):
+        for k in {state.anchor[a] for a in c['anchors'] if a in state.anchor}:
+            by_key[k].append(i)
+    parent = list(range(len(out)))
+    def root(i):
+        while parent[i] != i:
+            i = parent[i]
+        return i
+    for idx in by_key.values():
+        for i in idx[1:]:
+            parent[root(i)] = root(idx[0])
+    groups = defaultdict(list)
+    for i in range(len(out)):
+        groups[root(i)].append(i)
+    combined = []
+    for idx in groups.values():
+        c = out[idx[0]]
+        for i in idx[1:]:
+            c['anchors'] |= out[i]['anchors']
+            c['members'] |= out[i]['members']
+            c['basis'] += '; ' + out[i]['basis'].rsplit(' individual ', 1)[-1]
+        if len({state.anchor[a] for a in c['anchors'] if a in state.anchor}) > 1:
+            report['combined_reaching_several_keys'] += 1
+        report['individuals_combined'] += len(idx) - 1
+        combined.append(c)
+    out = combined
     # an anchor new to the log must belong to one cluster only
     owners = defaultdict(list)
     for i, c in enumerate(out):

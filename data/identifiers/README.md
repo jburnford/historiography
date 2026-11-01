@@ -164,9 +164,43 @@ Applied with `scripts/key_lc_canon.py`, in this order:
 'Morris, Robert' / R. J. Morris, and 'Shoemaker, Robert' / Robert B. Shoemaker. A bare name key can pool
 several people, so one shared authority is not enough to merge it.
 
+**Rerun 2026-10-31 (`canon-rerun5-2026-10-31`).** The canon route was revised (closest names, catalogue
+attributions counted with 670s, dominant owner, a guarded override for undated headings; see the script's
+docstring). Applied in this order:
+
+| Step | Folder | Effect |
+| --- | --- | --- |
+| Corrections | `lc-canon-2026-10-31/rerun-corrections.json` | Detached two wrong anchors, kept as `lcnaf-rejected:`: Bender p-1615 (no2023034236, an illustrator) and Louise Young p-4043 (n50014584, Louise Merwin Young) |
+| Canon route | `lc-canon-rerun5-2026-10-31/proposal.json` | 247 new anchors (Bender n50006880, Young nr97003524 among them); 236 keys `unresolved` → `established` |
+| Deferred canon people | `canon-deferred-2026-10-31/` (`scripts/review_canon_deferred.py`) | Of the 208 people the canon keying deferred, 142 joined their atlas person by works (same LC authority, LC's Wikidata link equal to the atlas QID, or a shared work LC confirms); 1 separated (the urbanist Jane Jacobs from the geographer Jane M. Jacobs); 63 stay open (`decisions.json`) |
+| Canon route, second pass | `lc-canon-rerun5-2026-10-31/after-deferred/` | 113 anchors for the newly joined people (Stuart Hall n50018670) |
+
+57 keys anchored earlier now come out `books_disagree` (pooled names such as 'Lewis, David', 'Jones,
+David'). Their anchors stay; they are the first candidates for a split by works.
+
 **Known limitation.** `diss-person:` anchors are graph name keys. If a later dissertation build
 renames a key (alias merging), the builder must pass the old → new key map, or the person will be
 minted again and the old key reported as unsupported.
+
+## Person registry (2026-10-31, rollout step 4)
+
+`scripts/key_registry.py` → `registry-v12-2026-10-31/`. Every registry v12 individual resolved at the
+`anchored` or `accepted` tier, and every individual holding an atlas person, became a cluster anchored on
+`atlas:person:`, `orcid:` and `wd:`. An individual with none of these is anchored on its Open Library author
+record (`ol:`), the only public identifier we hold for it: an addition to PID-PLAN section 5, so that
+people established through their works are not left out (William J. Turkel). Probable-only individuals
+(27,159) get no key.
+
+- 25,982 keys minted, 1,397 existing keys gained identifiers (Ian Milligan and Ian N. Gregory gained their ORCIDs).
+  Steven Ruggles is p-6002 and Jo Guldi p-16569.
+- 372 canon keys joined by QID agreement: a title-verified dissertation QID equal to the registry's QID.
+  The join is refused when the key is an atlas person the individual does not carry and the names differ.
+  Six such cases are queued (`review-queue.json`): the canon QID on the key names a namesake (Ann Elias on
+  Norbert Elias's key, Joseph Abraham Levi on Giovanni Levi's).
+- **Duplicates to review** (`atlas-name-candidates.json`, 89 pairs): registry v12 was built against the
+  atlas of 2026-10-14, so atlas people added since (Turkel: p-1424 from the atlas, p-4713 from Open Library)
+  have a second key. The names agree, but a name alone never merges. Resolve by works, or by registry v13
+  built against the current atlas.
 
 ## Institutions (2026-10-31)
 
