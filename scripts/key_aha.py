@@ -22,6 +22,11 @@ records.csv, genealogy/advisor-links.csv), the AHA historian directory
   a PhD year no earlier than their rank allows). Name and school, not works: the identity stays `recorded`.
   Benchmark on 2,425 genealogy-linked advisors: the same record every time the genealogy was right. Two
   tokens matching one record, or a record already claimed, join neither (queued).
+- **Employer** (2026-11-01, after Erika Dyck): a directory token joins the registry individual whose own
+  records (Crossref authorships, H-Net and Reviews in History reviews) carry an affiliation at the
+  directory's employer, with the same surname and spelled-out first name, unique both ways
+  (`aha_links.employer_matches`). Dyck's ORCID record is empty, so no works route reaches her ORCID key;
+  her 2014 review and 2020 article give the University of Saskatchewan, her directory employer.
 - **Duplicate listings** (one dissertation under two record ids, `aha_links.duplicate_pairs`) are one work;
   their authors are one person when the listed names contain one another. `linked_by_topic` is not used: topic is not identity evidence
     (user, 2026-10-31). Those pairs are queued.
@@ -45,9 +50,10 @@ from pathlib import Path
 
 import duckdb
 
-from aha_links import directory_records, doubts, duplicate_pairs, family_index, same_listed_name
+from aha_links import (directory_records, doubts, duplicate_pairs, employer_matches, family_index, first_and_family,
+                       same_listed_name, unmangle)
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
-from identity_routes import compatible
+from identity_routes import compatible, org_match
 from key_canon_map import D
 from key_registry import names_compatible
 from lc_canon_people import as_credit, content, given_agrees
@@ -75,6 +81,26 @@ def individual_anchors(registry):
             anchors = {p for p in members if p.startswith('ol:')}
         out[aha_id] = (status, anchors, iid)
     return out
+
+
+def affiliated_people(registry):
+    """(first, family) -> {individual: [affiliations]} from the registry's affiliated occurrences, and each
+    individual's public anchors (atlas, ORCID, QID; Open Library when it has none)."""
+    db = duckdb.connect(str(registry), read_only=True)
+    anchors = {}
+    for iid, members, qids in db.execute('SELECT individual_id, people, qids FROM individual_summary').fetchall():
+        a = {f'atlas:person:{p.split(":", 1)[1]}' for p in members if p.startswith('atlas:')} | \
+            {f'orcid:{p.split(":", 1)[1]}' for p in members if p.startswith('orcid:')} | {f'wd:{q}' for q in qids or []}
+        anchors[iid] = a or {p for p in members if p.startswith('ol:')}
+    by_name = defaultdict(lambda: defaultdict(list))
+    for iid, name, given, family, aff in db.execute("""
+            SELECT r.individual_id, o.name, o.given_name, o.family_name, o.affiliation FROM occurrences o
+            JOIN occurrence_resolution r USING (occurrence_id)
+            WHERE o.affiliation IS NOT NULL AND o.corpus IN ('crossref', 'hnet', 'rih')""").fetchall():
+        nm = first_and_family(f'{family}, {given}' if family and given else name or '')
+        if nm and anchors.get(iid):
+            by_name[nm][iid].append(aff)
+    return by_name, anchors
 
 
 def canon_works(state):
@@ -200,11 +226,13 @@ def main():
     by_id, by_family, dir_rows = {r['id']: r for r in records}, family_index(records), defaultdict(list)
     for r in directory:
         dir_rows[r['token']].append(r)
-    kept = {d['token'] for d in (json.loads(DECISIONS.read_text()) if DECISIONS.exists() else [])
-            if d['kind'] == 'advisor_own_record_doubtful' and d.get('keep')}
+    reviewed = [d for d in (json.loads(DECISIONS.read_text()) if DECISIONS.exists() else [])
+                if d['kind'] == 'advisor_own_record_doubtful']
+    kept = {d['token'] for d in reviewed if d.get('keep')}
+    rejected = {d['token'] for d in reviewed if not d.get('keep')}
     for r in links:
         token_name[r['advisor_id']] = r['advisor']
-        why = [] if r['advisor_id'] in kept else doubts(r['advisor'], by_id[r['own_record']], dir_rows[r['advisor_id']], by_family) \
+        why = ['rejected_by_review'] if r['advisor_id'] in rejected else [] if r['advisor_id'] in kept else doubts(r['advisor'], by_id[r['own_record']], dir_rows[r['advisor_id']], by_family) \
             if r['status'] in LINKED and r['own_record'] in by_id else []
         if r['status'] in LINKED and r['own_record'] and why:
             queue.append(dict(kind='advisor_own_record_doubtful', token=r['advisor_id'], advisor=r['advisor'],
@@ -220,7 +248,10 @@ def main():
             queue.append(dict(kind='advisor_own_record_by_topic_only', token=r['advisor_id'], advisor=r['advisor'],
                               own_record=r['own_record']))
     for r in directory:
-        token_name.setdefault(r['token'], r['name'])
+        token_name.setdefault(r['token'], unmangle(r['name']))
+    people_by_name, ind_anchors = affiliated_people(args.registry)
+    employer = {t: ind_anchors[i] for t, i in employer_matches(dir_rows, people_by_name, org_match).items()}
+    report['directory_employer_matches'] = len(employer)
     linked_tokens = set(own.values()) | {r['advisor_id'] for r in links if r['status'] in LINKED}
     found = defaultdict(set)
     for t, rows in dir_rows.items():
@@ -253,6 +284,7 @@ def main():
         anchors = {f'aha-phd:{rid}'}
         if rid in own:
             anchors.add(f'aha:{own[rid]}')
+            anchors |= employer.get(own[rid], set())
             tokens_used.add(own[rid])
             report['author_is_advisor_token'] += 1
         status, reg_anchors, iid = reg.get(rid, ('', set(), ''))
@@ -277,11 +309,25 @@ def main():
     # Directory-only historians are not keyed yet: most also wrote a dissertation in records.csv, and only their
     # name and school tie the two, so keying both now would mint thousands of duplicates.
     report['directory_only_not_keyed'] = len({r['token'] for r in directory} - advisor_tokens - tokens_used)
+    # A token's employer anchors may already sit on a record's author cluster (the registry tied that ORCID to
+    # the dissertation): the token joins that cluster rather than starting a second one for the same person.
+    holder = {a: c for c in clusters if c['type'] == 'person' for a in c['anchors']}
+
+    def token_cluster(t, basis, kind):
+        extra = employer.get(t, set())
+        c = next((holder[a] for a in sorted(extra) if a in holder), None)
+        if c is not None:
+            c['anchors'] |= {f'aha:{t}'} | extra
+            report[f'{kind}_joined_record_cluster_by_employer'] += 1
+            return
+        clusters.append(dict(type='person', label=token_name.get(t, f'AHA historian {t}'), anchors={f'aha:{t}'} | extra,
+                             members=set(), aliases=set(), resolution='established', basis=basis))
+        report[kind] += 1
     for t in sorted(advisor_tokens - tokens_used):
-        clusters.append(dict(type='person', label=token_name.get(t, f'AHA historian {t}'), anchors={f'aha:{t}'},
-                             members=set(), aliases=set(), resolution='established',
-                             basis='AHA dissertation advisor'))
-        report['token_only_people'] += 1
+        token_cluster(t, 'AHA dissertation advisor', 'token_only_people')
+    # directory-only historians with no record of their own, joined through their employer
+    for t in sorted(set(employer) - advisor_tokens - tokens_used):
+        token_cluster(t, 'AHA directory historian, joined through their employer', 'directory_only_joined_by_employer')
 
     # duplicate listings: one work; one author when the listed names contain one another
     at = {a: i for i, c in enumerate(clusters) for a in c['anchors'] if a.startswith(('aha-diss:', 'aha-phd:'))}

@@ -525,3 +525,35 @@ found 1,313 more joins (1,067 new LC links, 236 merges, 1,187 keys raised to `es
 Rabinowitch's *Prelude to Revolution*, Abzug's *Passionate Liberator* and Hahn's *Roots of Southern Populism*.
 A sample of 25 was all correct. Douglas Lorimer's *Colour, Class and the Victorians* shares too few words
 even so; his LC authority was attached by review (`long-tail-review-2026-11-01/`).
+
+## Erika Dyck: employer route, advisor namesakes (2026-11-01, `aha-employer-2026-11-01/`, `long-tail-review-2026-11-01/`)
+
+The user asked about Erika Dyck, who should have been easy. She was two keys:
+- p-14064: ORCID and a Wikidata stub (Q102131227, "researcher", ORCID only);
+- p-39096: her McMaster 2005 AHA dissertation, her directory token and our harvested thesis.
+
+Nothing could join them by works. Her ORCID record is public but empty (no works, no education), so the
+registry built her from a 2014 review and a 2020 article only. What ties them is her employer: both
+records give the University of Saskatchewan, and so does her AHA directory entry.
+
+- **Employer route** (`aha_links.employer_matches`, in key_aha): a directory token joins the registry
+  individual whose own records (Crossref authorships, H-Net and Reviews in History reviews) carry an
+  affiliation at the directory's employer, with the same surname and spelled-out first name, unique both
+  ways.
+  - 852 matches. In the benchmark against the AHA route's ties, 73 picked the same individual and 18 found
+    the other half of a registry split (ORCID vs Open Library: Margot Canaday, Brad Gregory, Erik Linstrum).
+  - The rebuild made 424 merges, Dyck's among them. A token joins the record cluster that already holds
+    its anchors.
+  - Directory names are repaired for mangled text.
+- **Thomas Kuehn** (revised decision): advisor token 126347 is the Simon Fraser historian (NYU PhD, Ottoman
+  Empire, Simon Fraser ORCID), not the Clemson historian of the Chicago 1977 record. The earlier "keep"
+  rested on that key's LC, ORCID and Wikidata, which describe the record's author, not the token. The token
+  was moved to p-21189.
+- **Advisor namesakes**: David Wright, Dyck's advisor at McMaster and now at McGill, has a British
+  doctorate. The genealogy linked him to "Wright, David" (Wisconsin 1991, Limoges), the one US namesake
+  in the AHA records. The same holds for W. L. Morton → "Morton, William" (Columbia 1969, whose LC
+  authority is William Fitch Morton's) and Bruce Elliott (Carleton) → Berkeley 2001.
+  - All three were repaired, and `review-decisions.json` rejects the links; key_aha now honours rejections.
+  - No rule was added: of 61 advisors with only Canadian students linked to a US record, most are right
+    (Granatstein, Saywell, Cowan, Strange).
+  - Still unchecked: Lisa Smith, Guy Thompson and D. N. Sprague.

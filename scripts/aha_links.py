@@ -150,3 +150,36 @@ def directory_records(rows, by_family, compatible):
                 and compatible(name, giv, fam) and any(school_agrees(r['degree_school'], x['department']) for r in phd)):
             out.append(x)
     return out
+
+
+def first_and_family(name):
+    """'Erika Dyck' or 'Dyck, Erika' -> ('erika', 'dyck'); a hyphenated surname stays whole ('lew williams')."""
+    family, comma, given = name.partition(', ')
+    if not comma:
+        parts = name.split()
+        if len(parts) < 2:
+            return None
+        family, given = parts[-1], ' '.join(parts[:-1])
+    g = [w for w in re.findall(r'[a-z]+', fold(given)) if len(w) > 1]
+    f = ' '.join(re.findall(r'[a-z]+', fold(family)))
+    return (g[0], f) if g and f else None
+
+
+def employer_matches(directory_rows, people_by_name, org_match):
+    """token -> registry individual, where the AHA directory's employer agrees with an affiliation on that
+    individual's own records (Crossref authorships, H-Net and Reviews in History reviews) and the full first
+    name and surname agree. Unique both ways: one individual for the token, and one directory token of that
+    name at that employer. `people_by_name`: (first, family) -> {individual: [affiliations]}."""
+    hits = {}
+    for token, rows in directory_rows.items():
+        nm = first_and_family(rows[0]['name']) if rows else None
+        if not nm:
+            continue
+        found = {iid for iid, affs in people_by_name.get(nm, {}).items()
+                 for r in rows if r['institution'] for a in affs if org_match(a, r['institution'])}
+        if len(found) == 1:
+            hits[token] = (next(iter(found)), nm, frozenset(r['institution'] for r in rows))
+    same = {}
+    for token, (iid, nm, insts) in hits.items():
+        same.setdefault((iid,), []).append(token)
+    return {t: h[0] for t, h in hits.items() if len(same[(h[0],)]) == 1}
