@@ -126,6 +126,17 @@ def main():
         clusters.append(dict(type='person', label=rec['label'], anchors={f'lcnaf:{lc}', f'wd:{q}'},
                              members={'wd-via:lc-p244'}, aliases=set(), resolution='established',
                              basis=f'Wikidata {q} cites LC {lc} (P244); name and birth year agree'))
+    # One item citing two LC authorities held by two keys (LC holds duplicate records, or one is a namesake's):
+    # neither key takes the QID; queued.
+    by_qid = defaultdict(list)
+    for c in clusters:
+        by_qid[next(a for a in c['anchors'] if a.startswith('wd:'))].append(c)
+    for q, cs in by_qid.items():
+        if len(cs) > 1:
+            queue.append(dict(kind='item_cites_several_lc_keys', qid=q[3:], labels=[c['label'] for c in cs],
+                              lc=sorted(a for c in cs for a in c['anchors'] if a.startswith('lcnaf:'))))
+            report['item_cites_several_lc_keys'] += 1
+    clusters = [c for cs in by_qid.values() if len(cs) == 1 for c in cs]
 
     def merge_ok(cluster, keys):
         """The LC authority's key and the QID's key: two independent identifications (LC through the works,

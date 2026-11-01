@@ -412,3 +412,9 @@ by LC's cataloguing.
 **Stale LC claims** (`tiers-2026-11-01b/`): 16 `lcnaf-wikidata:` members came from QIDs rejected as namesakes'
 items on 2026-11-01 ('Mills, Kenneth' held James H. Mills's). `key_tiers.py` now detaches them, and
 `key_lc_books.py` skips Wikidata LC claims on any key with a rejected QID.
+
+**Wikidata for the new LC keys** (`lc-wikidata-2026-11-01c/`): `key_lc_wikidata.py` over all 26,688 keys with
+one LC authority. 11,823 gain a QID through P244, with the human, name and birth-year checks. 11,028 have
+no Wikidata item citing their authority. Queued: 196 failed checks (126 names, mostly transliterations
+and pen names; 62 birth years), 8 keys holding a different QID, 1 held merge, and 2 items citing two LC
+authorities held by two keys. That last case crashed the first run; such items are now queued, not attached.
