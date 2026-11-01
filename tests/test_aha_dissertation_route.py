@@ -125,7 +125,21 @@ class EvidenceTests(unittest.TestCase):
         self.assertNotIn("school", ar.evaluate(r, post)["channels"])
         self.assertNotIn("school", ar.evaluate(r, ba)["channels"])
         self.assertIn("school", ar.evaluate(r, phd)["channels"])
-        self.assertFalse(ar.evaluate(r, phd)["strong"])  # one channel: probable
+
+    def test_own_doctorate_record_anchors_but_a_dated_entry_alone_does_not(self):
+        # Jo Guldi: ORCID education 'University of California Berkeley' PhD 2004-2008 = the AHA record.
+        r = rec("Doe, Jane", 2010, "A Study", department="Princeton Univ., Dept. of History")
+        phd = person(education=[("education", "Princeton University", "PhD", 2004, 2010)])
+        self.assertIn("degree", ar.evaluate(r, phd)["channels"])
+        self.assertTrue(ar.evaluate(r, phd)["strong"])
+        undated_end = person(education=[("education", "Princeton University", "PhD", 2004, None)])
+        self.assertNotIn("degree", ar.evaluate(r, undated_end)["channels"])
+        self.assertFalse(ar.evaluate(r, undated_end)["strong"])     # school only: probable
+        unnamed = person(education=[("education", "Princeton University", "", 2006, 2010)])
+        self.assertIn("school", ar.evaluate(r, unnamed)["channels"])
+        self.assertFalse(ar.evaluate(r, unnamed)["strong"])         # the degree is not named: probable
+        late = person(education=[("education", "Princeton University", "PhD", 2004, 2012)])
+        self.assertNotIn("degree", ar.evaluate(r, late)["channels"])
 
     def test_advisor_channel(self):
         r = rec("Monod, Paul", 1985, "Jacobite Political Culture", advisors=["Linda Colley"])

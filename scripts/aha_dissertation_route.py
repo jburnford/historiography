@@ -13,6 +13,10 @@ The name gate therefore only proposes candidates; a link needs an evidence chann
   book      a known book sharing >= 2 content words appeared within [PhD - 1, PhD + 10]
   school    an ORCID education/qualification entry (or a doctoral-student employment entry)
             names the AHA school, dated at the PhD year or explicitly doctoral
+  degree    the school entry names the doctorate itself (PhD, DPhil, doctorate) and ends within a year
+            of the AHA year: the person's own record of this degree. The user (2026-10-14): "name year
+            school should be unique". Anchors on its own, like an ORCID-claimed thesis (2026-11-01;
+            294 v13 ties were probable on this alone: Jo Guldi, Berkeley 2008)
   advisor   the person's Wikidata doctoral advisor (P184), or a reviewed manual link, names an
             advisor listed on the AHA record (manual links must also agree on the school)
 
@@ -20,7 +24,7 @@ Gates that reject a candidate outright: name (exact folded surname, compatible g
 lifespan (PhD before age 20, after age 65 or after death), and a dated work more than ten years before
 the PhD (the namesake signature: Richard J. Evans published in 1976, the Temple PhD is 2018).
 
-Tiers: anchored = (title and timing, or title and book, or two of title/school/advisor) with
+Tiers: anchored = (title and timing, or title and book, or degree, or two of title/school/advisor) with
 no competing candidate; probable = any one channel, or a competing candidate on either side
 (another supported individual for the record, or another supported record for the person).
 Accepted only through the human ledger data/person-registry/aha-identity-decisions.csv.
@@ -54,6 +58,7 @@ DOCTORAL = re.compile(r"ph\.?\s?d|doct|dphil|d\.\s?phil|graduate student|candida
 NON_DOCTORAL = re.compile(r"\b(b\.?\s?a|m\.?\s?a|b\.?\s?sc|m\.?\s?sc|m\.?\s?phil|bachelor|master|ll\.?\s?b|j\.?\s?d|"
                           r"licen[cs]|undergrad|postdoc|post-doc|lecturer|professor)\b", re.I)
 YEAR = re.compile(r"\b(1[89]\d\d|20[0-2]\d)\b")
+PHD = re.compile(r"ph\.?\s?d|doctor|doctoral|doctorate|dphil|d\.\s?phil", re.I)
 
 
 def stem(w):
@@ -184,6 +189,8 @@ def evaluate(record, person, common=frozenset()):
     inst = institution(record["department"])
     school = next((e for e in person.get("education", []) if ir.org_match(inst, e[1]) and school_entry_ok(e, y)
                    and (e[4] is not None or first is None or first <= y + 25)), None)
+    degree = bool(school and PHD.search(school[2] or "") and not POSTDOC.search(school[2] or "")
+                  and school[4] is not None and abs(school[4] - y) <= 1)
     adv = None
     for a in record.get("advisors") or []:
         for label in person.get("wd_advisors", []):
@@ -202,9 +209,9 @@ def evaluate(record, person, common=frozenset()):
     if weak_title and not timing:
         title, weak_title = False, False
     channels = [c for c, ok in (("title", title), ("timing", title and timing), ("book", book), ("thesis", thesis),
-                                ("school", school), ("advisor", adv)) if ok]
+                                ("school", school), ("degree", degree), ("advisor", adv)) if ok]
     independent = sum(bool(x) for x in (title, school, adv))
-    strong = bool((title and (timing or book)) or thesis or independent >= 2) and not weak_title
+    strong = bool((title and (timing or book)) or thesis or degree or independent >= 2) and not weak_title
     evidence = []
     if best_shared:
         evidence.append(f"title shares {sorted(best_shared)} with \"{best[0][:120]}\" ({best[1] or '?'}, {best[3]})")

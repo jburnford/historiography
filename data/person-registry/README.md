@@ -168,11 +168,12 @@ surname, compatible given names) only proposes candidates. A link needs evidence
 | book | a book sharing 2+ content words within [PhD - 1, PhD + 10] |
 | thesis | the person's ORCID record lists this dissertation (near-identical title, year within 1) |
 | school | ORCID education/qualification (or doctoral-student employment) at the AHA school, dated at the PhD year or explicitly doctoral |
+| degree | from v14: the school entry names the doctorate (PhD, DPhil, doctorate) and ends within a year of the AHA year — the person's own record of this degree ("name year school should be unique", user 2026-10-14). Anchors alone, like an ORCID-claimed thesis |
 | advisor | Wikidata P184 doctoral advisor (or a reviewed manual link at the same school) names an AHA advisor |
 
 Gates: lifespan (PhD before 20, after 65 or after death) and any dated work more than ten
 years before the PhD (the namesake signature). **Anchored** = title with timing or book,
-or an ORCID-claimed thesis, or two of title/school/advisor, and no competing candidate on
+or an ORCID-claimed thesis, or a degree record (from v14), or two of title/school/advisor, and no competing candidate on
 either side. **Probable** = one channel, or a competitor. **Accepted** only through the human
 ledger [aha-identity-decisions.csv](aha-identity-decisions.csv), seeded with the Richard
 White decision from the genealogy (Washington 1975; UCLA 1976 and Toronto 1995 rejected).
