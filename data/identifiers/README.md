@@ -480,3 +480,22 @@ Beth Lew-Williams → 'Williams, Beth Ann'; Alan Taylor (Brandeis) → 'Taylor, 
   Ferguson, Carla Hay, Mary Frances Berry, Donald Reid of Stanford 1981, Adriane Lentz-Smith, and Amy Dru
   Stanley's own token). The genealogy had linked two tokens to one record and the last one won. The
   rebuild holds only the 4 known open cases.
+
+## AHA directory historians (2026-11-01, `aha-directory-2026-11-01/`; user decision "go ahead")
+
+key_aha joins a directory token that the genealogy does not link to the one AHA record found by
+`aha_links.directory_records`:
+- the surname (a hyphenated one in full), the same first given name and a compatible name;
+- the PhD school the directory gives;
+- a PhD year no earlier than the rank allows: assistant from 2003, associate from 1985, full professor from
+  1960, emeriti from 1945.
+
+This is name + school, not works, so the identity stays `recorded`. On the 2,425 genealogy-linked advisors
+it found the genealogy's record every time the genealogy was right.
+
+- 7,154 tokens joined their dissertation: 6,887 directory historians attach to the record's author key, and
+  264 token-only advisors merge into it (Kristin Mann, Richard Steigmann-Gall, Adam Green among them).
+- Left out: 23 records claimed by two tokens or already linked, and 32 tokens matching several records (queued).
+- 3,222 directory historians remain unkeyed: no PhD school, a school outside the AHA records, or no single
+  match. 1,791 advisors are still known only by their token.
+- The rule merge on 'Johnson, Robert' is held (pooled name), beside the four known holds.

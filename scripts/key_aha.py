@@ -17,6 +17,11 @@ records.csv, genealogy/advisor-links.csv), the AHA historian directory
     PhD school differs, a different spelled-out given name, or a hyphenated surname listed in full on another
     record; 2026-11-01). Doubtful links are queued, unless `review-decisions.json` keeps them; a hyphenated
     surname listed in full on another record makes that record the advisor's own.
+- **Directory historians** (2026-11-01, user decision): a directory token not linked by the genealogy
+  joins the one AHA record that `aha_links.directory_records` finds (surname, first given name, PhD school,
+  a PhD year no earlier than their rank allows). Name and school, not works: the identity stays `recorded`.
+  Benchmark on 2,425 genealogy-linked advisors: the same record every time the genealogy was right. Two
+  tokens matching one record, or a record already claimed, join neither (queued).
 - **Duplicate listings** (one dissertation under two record ids, `aha_links.duplicate_pairs`) are one work;
   their authors are one person when the listed names contain one another. `linked_by_topic` is not used: topic is not identity evidence
     (user, 2026-10-31). Those pairs are queued.
@@ -40,7 +45,7 @@ from pathlib import Path
 
 import duckdb
 
-from aha_links import doubts, duplicate_pairs, family_index, same_listed_name
+from aha_links import directory_records, doubts, duplicate_pairs, family_index, same_listed_name
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from identity_routes import compatible
 from key_canon_map import D
@@ -216,6 +221,23 @@ def main():
                               own_record=r['own_record']))
     for r in directory:
         token_name.setdefault(r['token'], r['name'])
+    linked_tokens = set(own.values()) | {r['advisor_id'] for r in links if r['status'] in LINKED}
+    found = defaultdict(set)
+    for t, rows in dir_rows.items():
+        if t in linked_tokens:
+            continue
+        hits = directory_records(rows, by_family, compatible)
+        if len(hits) == 1:
+            found[hits[0]['id']].add(t)
+        elif hits:
+            report['directory_several_records'] += 1
+    for rid, ts in found.items():
+        if rid in own or len(ts) > 1:
+            queue.append(dict(kind='directory_record_contested', record=rid, tokens=sorted(ts), own_token=own.get(rid)))
+            report['directory_record_contested'] += 1
+        else:
+            own[rid] = next(iter(ts))
+            report['directory_joined_own_record'] += 1
 
     clusters, supervision = [], []
     tokens_used = set()

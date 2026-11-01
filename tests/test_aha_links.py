@@ -3,7 +3,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from aha_links import doubts, family_index, school_agrees  # noqa: E402
+from aha_links import directory_records, doubts, family_index, school_agrees  # noqa: E402
+from identity_routes import compatible  # noqa: E402
 
 
 def rec(i, name, year, dept):
@@ -38,6 +39,21 @@ class AhaLinkTests(unittest.TestCase):
     def test_a_married_name_listed_without_its_first_part_is_kept(self):
         r = rec("50238", "Rosenberg, Carroll", "1968", "Columbia Univ., Dept. of History")
         self.assertEqual(doubts("Carroll Smith-Rosenberg", r, directory("Columbia"), family_index([r])), [])
+
+
+    def test_a_directory_historian_finds_their_record_within_the_rank_window(self):
+        rs = [rec("1", "Taylor, Alan", "1958", "Georgetown Univ., Dept. of History"),
+              rec("2", "Taylor, Alan", "1986", "Brandeis Univ., Dept. of History"),
+              rec("3", "Lew-Williams, Beth", "2011", "Stanford Univ., Dept. of History")]
+        idx = family_index(rs)
+
+        def row(name, rank, school):
+            return [dict(name=name, rank=rank, degree="PHD", degree_school=school)]
+        self.assertEqual([r["id"] for r in directory_records(row("Alan Taylor", "prof.", "Brandeis"), idx, compatible)], ["2"])
+        self.assertEqual(directory_records(row("Alan Taylor", "asst. prof.", "Brandeis"), idx, compatible), [])
+        self.assertEqual([r["id"] for r in directory_records(row("Beth Lew-Williams", "assoc. prof.", "Stanford"), idx, compatible)],
+                         ["3"])
+        self.assertEqual(directory_records(row("Alan Taylor", "prof.", "Georgetown"), idx, compatible), [])
 
 
 if __name__ == "__main__":

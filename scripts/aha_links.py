@@ -115,3 +115,38 @@ def duplicate_pairs(records):
                         and shared >= 2 and shared >= 0.8 * min(len(wx), len(wy))):
                     pairs.append((x, y))
     return pairs
+
+
+def rank_floor(rank):
+    """Earliest plausible PhD year for a directory entry's rank (the directory is current, 2026)."""
+    r = fold(rank)
+    if 'emerit' in r or 'retired' in r:
+        return 1945
+    if 'asst' in r or 'assistant' in r:
+        return 2003
+    if 'assoc' in r:
+        return 1985
+    return 1960
+
+
+def directory_records(rows, by_family, compatible):
+    """AHA records that can be a directory historian's own dissertation: listed under their surname (a
+    hyphenated one in full), the same first given name and a compatible name, at the PhD school the directory
+    gives, no earlier than their rank allows. `rows` are the token's directory rows; `compatible` is
+    identity_routes.compatible."""
+    phd = [r for r in rows if r['degree'].upper() in ('PHD', 'DPHIL') and r['degree_school']]
+    if not phd:
+        return []
+    name = phd[0]['name']
+    parts = name.split()
+    if len(parts) < 2:
+        return []
+    family, first = fold(parts[-1]).replace('-', ' '), fold(name).split()[:1]
+    floor = min(rank_floor(r['rank']) for r in phd)
+    out = []
+    for x in by_family.get(family, ()):
+        fam, _, giv = x['dissertator'].partition(', ')
+        if (x['year'].isdigit() and int(x['year']) >= floor and fold(giv).split()[:1] == first
+                and compatible(name, giv, fam) and any(school_agrees(r['degree_school'], x['department']) for r in phd)):
+            out.append(x)
+    return out
