@@ -5,7 +5,8 @@ items cite LC authorities in P244, so an item whose P244 is that authority descr
 is Wikidata's claim, and P244 can name a namesake's authority (Marion Kaplan), so it is checked:
 - exactly one live item gives the authority in P244, and it is a human (P31 Q5);
 - the item's English or default (`mul`) label is name-compatible with the key's label (family name and first initial);
-- the LC and Wikidata birth years do not disagree by more than one year (both present).
+- the LC and Wikidata birth years do not disagree by more than two years (both present; early dates are
+  often approximate: Langland 1330 / 1332).
 LC's own Wikidata link (the authority's `external` closeMatch) is recorded beside it; when LC links a
 different item, the key is queued, not attached.
 
@@ -25,6 +26,7 @@ Outcomes:
 import argparse
 import hashlib
 import json
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -80,13 +82,52 @@ def item_ids(qids, cache):
     return out
 
 
+HONORIFIC = {'sir', 'dame', 'lord', 'lady', 'mr', 'mrs', 'jr', 'sr', 'st', 'baronet', 'bart', 'rev', 'dr'}
+
+
+def _words(s):
+    from aha_links import fold
+    return [w for w in re.findall(r'[a-z]+', fold(s)) if w not in HONORIFIC]
+
+
 def name_agrees(key_label, item_labels):
+    """The key's name and one of the item's labels or aliases agree: identity_routes.compatible (family name
+    last, first initial), or, for forms it cannot read, every word of the key's surname among the label's
+    words and a spelled-out given name of the key (its fuller form in parentheses included) among them too;
+    a key with initials only needs its first initial to open the label's first given name (2026-11-01: 'Ortiz,
+    Fernando' / 'Fernando Ortiz Fernández'; 'Highfield, J. R. L. (John Roger Loxdale)' / 'Roger Highfield';
+    'Pope, S. W.' is not 'James W Pope')."""
     family, comma, given = key_label.partition(', ')
     if not comma:
         parts = key_label.split()
         family, given = (parts[-1], ' '.join(parts[:-1])) if len(parts) > 1 else (key_label, '')
-    return any(compatible(l, given, family) or compatible(l, given.split()[0] if given else '', family.split()[-1])
-               for l in item_labels if given)
+    if not given:
+        return False
+    if any(compatible(l, given, family) or compatible(l, given.split()[0], family.split()[-1]) for l in item_labels):
+        return True
+    fam, giv = set(_words(family)), _words(given)
+    full = {g for g in giv if len(g) > 1}
+    first = giv[0] if giv else ''
+    for l in item_labels:
+        lw = _words(l)
+        rest = [w for w in lw if w not in fam]
+        if fam and fam <= set(lw) and rest:
+            if full & set(rest) or (not full and len(first) == 1 and rest[0][0] == first):
+                return True
+    return False
+
+
+def item_aliases(qids, cache):
+    """QID -> English and default aliases, for items whose labels did not agree."""
+    out = defaultdict(set)
+    qids = sorted(qids)
+    for i in range(0, len(qids), 200):
+        part = qids[i:i + 200]
+        query = """SELECT ?item ?alias WHERE { VALUES ?item { %s } ?item skos:altLabel ?alias
+                FILTER(lang(?alias) IN ('en', 'mul')) }""" % ' '.join(f'wd:{q}' for q in part)
+        for r in sparql(query, cache, 'aliases-' + hashlib.sha1(query.encode()).hexdigest()[:12]):
+            out[r['item']['value'].rsplit('/', 1)[-1]].add(r['alias']['value'])
+    return out
 
 
 def main():
@@ -106,6 +147,13 @@ def main():
                 keyed[k] = lcs[0]
     names = load_names(args.names, set(keyed.values()))[0]
     found = items_for(set(keyed.values()), args.cache)
+    # aliases only for the items whose labels do not agree with their key's name
+    weak = {q for k, lc in keyed.items() for q, it in found.get(lc, {}).items()
+            if len(found[lc]) == 1 and not name_agrees(state.keys[k]['label'], it['labels'])}
+    for q, aliases in item_aliases(weak, args.cache).items():
+        for items in found.values():
+            if q in items:
+                items[q]['labels'] |= aliases
     report, queue, clusters, pending, duplicates = Counter(), [], [], [], []
     for k, lc in sorted(keyed.items(), key=lambda kv: int(kv[0][2:])):
         rec = state.keys[k]
@@ -133,7 +181,7 @@ def main():
             problems.append('not_human')
         if not name_agrees(rec['label'], it['labels']):
             problems.append('name_disagrees')
-        if lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 1 for b in it['births']):
+        if lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 2 for b in it['births']):
             problems.append('birth_disagrees')
         if lc_link and q not in lc_link:
             problems.append('lc_links_other_item')
@@ -157,7 +205,7 @@ def main():
         lc_birth = life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
         ok = (len(stubs) == len(have) and ids[q]['lc'] == {lc} and not (ids[q]['orcid'] - orcids) and it['human']
               and name_agrees(rec['label'], it['labels'])
-              and not (lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 1 for b in it['births'])))
+              and not (lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 2 for b in it['births'])))
         if not ok:
             report['different_qid_on_key'] += 1
             queue.append(dict(kind='key_holds_different_qid', key=k, label=rec['label'], lc=lc, qid=q, key_qids=sorted(have)))

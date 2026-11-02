@@ -595,3 +595,15 @@ The tests and tiers are the canon route's. Its 670 test now drops trailing years
 - Joyce Lorimer is p-146822. Douglas Lorimer's, Michael Childs's and Erika Dyck's cited name keys joined
   their keys.
 - Wikidata duplicate pairs so far: 0 (`wikidata-duplicates.json`).
+
+**LC → Wikidata checks widened** (`lc-wikidata-2026-11-01f/`): 655 failed checks were mostly name forms the
+family-name-last rule cannot read, plus early birth dates two years apart. The check now:
+- reads Wikidata aliases for the items whose labels fail;
+- accepts the key's surname anywhere in a label with a matching spelled-out given name ('Ortiz, Fernando'
+  / 'Fernando Ortiz Fernández'; 'Highfield, J. R. L. (John Roger Loxdale)' / 'Roger Highfield');
+- for a key with initials only, needs the first initial to open the label's first given name;
+- allows two years between birth years.
+
+Failures fell to 281, and 364 keys gained a QID (Maimonides, Barrie Dobson, Neville Figgis, Harriet Jacobs).
+A sampled 'Pope, S. W.' / 'James W Pope' match is right: the item's alias is 'Pope, Steven Wayne, 1962-'.
+20 QIDs that sit on another key are held on name forms (Uekötter, Condorcet, Thorold Rogers).
