@@ -907,7 +907,8 @@ account, then read back from Wikidata.
   P184 Crosby and Gutmann, and P108 Southwest Minnesota State (from 2002) and USask.
 - **childs.qs** (run, read back): created **Q141974979** for Michael J. Childs, with P244, P69 McGill (PhD,
   1986), P108 Bishop's University and P106 historian. The QID is attached to p-34374.
-- **dyck.qs** (not run yet): merges Q102131227 (ORCID only) into Q101430550, and adds P184 David Wright,
+- **hoy.qs**: on Q58145423, P184 Richard White (Q7329939), cited to Stanford's thesis record (purl.stanford.edu/bk961hr7970, MODS: primary advisor White, Richard, 1947-; readers Albert Camarillo and C. Matthew Snipp).
+- **dyck.qs** (run 2026-11-02; merge done): merges Q102131227 (ORCID only) into Q101430550, and adds P184 David Wright,
   the PhD qualifiers on McMaster, and P108 Alberta and USask.
 
 ## Jeanette Neeson (2026-11-02, `neeson-2026-11-02/`)
