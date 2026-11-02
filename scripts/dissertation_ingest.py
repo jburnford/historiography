@@ -591,7 +591,115 @@ def adapter_france_thesesfr(src, d):
         yield candidate(entry, [file_spec(Path(row['path']), row.get('bytes'), row.get('sha256'), None,
                                           Path(row['path']).name, row.get('checked_at'))])
 
+BR_SUFFIXES = {'neto', 'filho', 'junior', 'sobrinho', 'segundo'}
+BR_INSTITUTION_ALIASES = {'PUCRS': 'PUC/RS', 'FGV-RJ': 'FGV/RJ'}  # CAPES spells some acronyms two ways
+BR_PARTICLES = {'de', 'da', 'do', 'dos', 'das', 'e'}
+
+
+def br_name(name):
+    """One Brazilian surname rule (the last surname, with a suffix such as Neto or Júnior) for CAPES
+    and repository names alike: 'ALESSON RAMON ROTA' -> 'Rota, Alesson Ramon';
+    'JOSE ALVES DE FREITAS NETO' -> 'Freitas Neto, Jose Alves de';
+    'Olivenor Souza Chaves, José' (a repository's inversion) -> 'Chaves, José Olivenor Souza'."""
+    name = re.sub(r'\s+', ' ', (name or '').strip())
+    if not name:
+        return ''
+    # CAPES names are all capitals; some repositories capitalize only the surname ('COELHO, Anna Carolina')
+    name = ' '.join((w.lower() if w.lower() in BR_PARTICLES else w.capitalize()) if w.isupper() and len(w) > 1 else w
+                    for w in name.split())
+    if ',' in name:  # repositories invert at different places ('Olivenor Souza Chaves, José'): one rule for all
+        surname, _, given = name.partition(',')
+        name = f'{given.strip()} {surname.strip()}'.strip()
+    words = name.split()
+    if len(words) < 2:
+        return name
+    cut = len(words) - 1
+    if fold(words[-1]) in BR_SUFFIXES and len(words) > 2:
+        cut -= 1
+    return f"{' '.join(words[cut:])}, {' '.join(words[:cut])}"
+
+
+def br_date(value):
+    """CAPES dates: '03JUL2020:00:00:00', '01FEB2012', '12/12/2013 00:00:00', '01/09/1987' -> ISO date."""
+    v = (value or '').strip()
+    months = dict(JAN=1, FEB=2, MAR=3, APR=4, MAY=5, JUN=6, JUL=7, AUG=8, SEP=9, OCT=10, NOV=11, DEC=12)
+    m = re.match(r'(\d{2})([A-Z]{3})(\d{4})', v)
+    if m and m.group(2) in months:
+        return f'{m.group(3)}-{months[m.group(2)]:02d}-{m.group(1)}'
+    m = re.match(r'(\d{2})/(\d{2})/(\d{4})', v)
+    if m:
+        return f'{m.group(3)}-{m.group(2)}-{m.group(1)}'
+    return None
+
+
+def adapter_brazil_capes(src, d):
+    """Brazilian History doctorates (data/field-research/brazil-theses-2026-10-31). The CAPES national
+    catalogue (open data) is the History screen: level DOUTORADO in the knowledge area HISTÓRIA. The
+    PDFs come from university repositories (OAI, the UFF programme site, USP item pages; matched to
+    CAPES in candidates.json), from author-authorized files on legacy Sucupira
+    (sucupira-records.jsonl) and from the user's browser downloads (browser-candidates.json), all
+    logged in downloads.jsonl. Multi-part theses (USP volumes, chapter files) keep their parts in
+    order. Advisors and their CAPES ids come from CAPES; the examination committee and funders from
+    Sucupira, or the committee from the UFF programme site."""
+    sys.path.insert(0, str(HERE))
+    from brazil_match_capes import capes_doctorates, doc_key
+    out = resolve(src['root'], d)
+    docs = {doc_key(c): c for c in capes_doctorates(out)}
+    repo = {}
+    if (out / 'candidates.json').exists():
+        repo = {c['key']: c['repository'] for c in json.loads((out / 'candidates.json').read_text())}
+    if (out / 'browser-candidates.json').exists():
+        for k in json.loads((out / 'browser-candidates.json').read_text()):
+            repo.setdefault(k, {})
+    sucupira = {r['key']: r for r in read_jsonl(out / 'sucupira-records.jsonl')}
+    latest = {}
+    for row in read_jsonl(out / 'downloads.jsonl'):
+        if row.get('status') == 'downloaded':
+            latest[row['key']] = row
+    harvest = rel_root(out)
+    for key, row in latest.items():
+        c = docs.get(key)
+        if not c:
+            continue
+        rec = repo.get(key) or {}
+        suc = sucupira.get(key) or {}
+        titles = [t for t in rec.get('titles') or [] if t]
+        title = titles[0] if titles else c['title']
+        if title.isupper():
+            title = c['title'][:1] + c['title'][1:].lower()
+        authors = [br_name(rec['authors'][0] if rec.get('authors') else c['author'])]
+        committee = suc.get('committee') or [dict(name=n, category=None) for n in rec.get('committee') or []]
+        defence = br_date(c.get('defence_date'))
+        if row.get('source') == 'sucupira_legado':
+            item_url = row['url']
+        else:
+            item_url = rec.get('url') or row.get('url')
+        inst = BR_INSTITUTION_ALIASES.get(c['inst'], c['inst'])
+        entry = dict(institution='br:' + re.sub(r'[^a-z0-9]+', '-', fold(inst)).strip('-'), id=key,
+                     title=title, authors=authors, advisors=[br_name(a) for a in c['advisors']],
+                     issued_dates=[str(c['year'])], graduation_dates=[defence] if defence else [], copyright_dates=[],
+                     history_scope='explicit_history_discipline',
+                     language=['pt'] if fold(c.get('language') or 'portugues').startswith('portug') else [c['language']],
+                     item_url=item_url, source_harvest=harvest, country='BR',
+                     eligibility_basis=(f"CAPES Catálogo de Teses e Dissertações: DOUTORADO, knowledge area HISTÓRIA "
+                                        f"(programme {c['programme']}, {c['programme_code']})"),
+                     access_category='open_pdf', year=c['year'], degree=['doutorado'], awarding_institution=c['inst_name'],
+                     capes_production_id=c['capes_id'], capes_author_id=c['author_capes_id'],
+                     capes_advisor_id=c['advisor_capes_id'], programme=c['programme'],
+                     committee=committee, funders=suc.get('funders') or [], doi=rec.get('doi'),
+                     pdf_source=row.get('source') or 'repository')
+        parts = row.get('files')
+        if parts:
+            files = [file_spec(Path(f['path']), f.get('bytes'), f.get('sha256'), n, Path(f['path']).name,
+                               row.get('checked_at')) for n, f in enumerate(parts, 1)]
+        else:
+            files = [file_spec(Path(row['path']), row.get('bytes'), row.get('sha256'), None, Path(row['path']).name,
+                               row.get('checked_at'))]
+        yield candidate(entry, files)
+
+
 ADAPTERS = {
+    'brazil_capes': adapter_brazil_capes,
     'france_thesesfr': adapter_france_thesesfr,
     'uk_openaire': adapter_uk_openaire,
     'oxford_ora': adapter_oxford_ora,

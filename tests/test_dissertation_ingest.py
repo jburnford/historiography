@@ -319,3 +319,75 @@ def test_france_thesesfr_adapter_takes_downloaded_rows_and_latest_retry(world):
     assert e['title'] == 'Les ouvriers de Lorraine, 1871-1914' and e['year'] == 2023
     assert e['authors'] == ['Martin, Claire'] and e['advisors'] == ['Dupont, Jean']
     assert e['history_scope'] == 'explicit_history_discipline'
+
+
+def test_br_name_and_date_parsing():
+    assert ing.br_name('ALESSON RAMON ROTA') == 'Rota, Alesson Ramon'
+    assert ing.br_name('JOSE ALVES DE FREITAS NETO') == 'Freitas Neto, Jose Alves de'
+    assert ing.br_name('Campos, Ludimila Caliman') == 'Campos, Ludimila Caliman'
+    assert ing.br_name('Olivenor Souza Chaves, José') == 'Chaves, José Olivenor Souza'
+    assert ing.br_name('Muza Clara Chaves Velasques') == 'Velasques, Muza Clara Chaves'
+    assert ing.br_name('COELHO, Anna Carolina de Abreu') == 'Coelho, Anna Carolina de Abreu'
+    assert ing.br_name('Albuquerque Júnior, Durval Muniz de') == 'Albuquerque Júnior, Durval Muniz de'
+    assert ing.br_date('03JUL2020:00:00:00') == '2020-07-03'
+    assert ing.br_date('01FEB2012') == '2012-02-01'
+    assert ing.br_date('12/12/2013 00:00:00') == '2013-12-12'
+    assert ing.br_date('') is None
+
+
+def test_brazil_capes_adapter_multipart_sucupira_and_capes_screen(world):
+    br = world['tmp'] / 'br'
+    (br / 'capes').mkdir(parents=True)
+    new = dict(AN_BASE='2020', SG_ENTIDADE_ENSINO='UNICAMP', NM_ENTIDADE_ENSINO='UNIVERSIDADE ESTADUAL DE CAMPINAS',
+               NM_PROGRAMA='HISTÓRIA', CD_PROGRAMA='33003017019P9', ID_PRODUCAO_INTELECTUAL='15485531',
+               NM_PRODUCAO='APOLOGIA DA HISTÓRIA EM TEMPOS DIGITAIS', NM_DISCENTE='ALESSON RAMON ROTA',
+               ID_PESSOA_DISCENTE='77', NM_ORIENTADOR='THIAGO LIMA NICODEMO', ID_PESSOA_ORIENTADOR='99',
+               NM_GRAU_ACADEMICO='DOUTORADO', NM_AREA_CONHECIMENTO='HISTÓRIA', DT_TITULACAO='27NOV2020:00:00:00',
+               NM_IDIOMA='PORTUGUES', DS_URL_TEXTO_COMPLETO='https://sucupira.capes.gov.br/x?id_trabalho=15485531')
+    master = dict(new, ID_PRODUCAO_INTELECTUAL='1', NM_GRAU_ACADEMICO='MESTRADO')
+    other_area = dict(new, ID_PRODUCAO_INTELECTUAL='2', NM_AREA_CONHECIMENTO='EDUCAÇÃO')
+    (br / 'capes' / '2020.jsonl').write_text(''.join(json.dumps(r, ensure_ascii=False) + '\n'
+                                                     for r in (new, master, other_area)))
+    old = dict(AnoBase='2001', SiglaIes='USP', NomeIes='UNIVERSIDADE DE SÃO PAULO', NomePrograma='HISTÓRIA SOCIAL',
+               CodigoPrograma='33002010032P9', TituloTese='CAPÍTULOS DE UMA HISTÓRIA', Autor='RITA DE CASSIA ARAUJO',
+               Nivel='Doutorado', AreaConhecimento='HISTÓRIA', DataDefesa='01/09/2001', Idioma='Português',
+               Orientador_1='MARIA LUIZA MARCILIO', Orientador_2='')
+    (br / 'capes' / '2001.jsonl').write_text(json.dumps(old, ensure_ascii=False) + '\n')
+    usp_key, unicamp_key = 'br-usp-2001-rita-de-cassia-araujo', 'br-unicamp-15485531'
+    p1, p2 = world['tmp'] / 'E' / 'br' / 'u.part01.pdf', world['tmp'] / 'E' / 'br' / 'u.part02.pdf'
+    s1, s2 = pdf(p1, 'v1'), pdf(p2, 'v2')
+    p3 = world['tmp'] / 'E' / 'br' / 'c.pdf'
+    s3 = pdf(p3, 'c')
+    rec = dict(source='usp-tde', titles=['Capítulos de uma história'], authors=['Araújo, Rita de Cássia Barbosa de'],
+               url='https://teses.usp.br/teses/disponiveis/8/8138/tde-1/pt-br.html', doi='10.11606/T.8.2001.tde-1')
+    (br / 'candidates.json').write_text(json.dumps([dict(key=usp_key, repository=rec)]))
+    (br / 'sucupira-records.jsonl').write_text(json.dumps(dict(
+        key=unicamp_key, committee=[dict(name='STEFAN RINKE', category='Participante Externo')],
+        funders=['FAPESP - Bolsa de Doutorado'])) + '\n')
+    rows = [dict(key=usp_key, inst='USP', status='downloaded', path=str(p1), sha256=s1, bytes=p1.stat().st_size),
+            dict(key=usp_key, inst='USP', status='downloaded', path=str(p1),
+                 files=[dict(path=str(p1), bytes=p1.stat().st_size, sha256=s1),
+                        dict(path=str(p2), bytes=p2.stat().st_size, sha256=s2)]),
+            dict(key=unicamp_key, inst='UNICAMP', status='downloaded', source='sucupira_legado',
+                 url='https://sucupira-legado.capes.gov.br/x?id_trabalho=15485531', path=str(p3), sha256=s3,
+                 bytes=p3.stat().st_size),
+            dict(key='br-unicamp-1', inst='UNICAMP', status='downloaded', path=str(p3), sha256=s3)]  # master's: screened out
+    (br / 'downloads.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+    src = dict(name='brazil_capes', adapter='brazil_capes', root=str(br))
+    appended, ingest_rows, report = run(world, [src])
+    assert report['sources']['brazil_capes']['candidates'] == 2
+    by = {e['institution']: e for e in appended}
+    usp, uni = by['br:usp'], by['br:unicamp']
+    assert usp['country'] == 'BR' and usp['history_scope'] == 'explicit_history_discipline'
+    assert usp['title'] == 'Capítulos de uma história' and usp['authors'] == ['Araújo, Rita de Cássia Barbosa de']
+    assert usp['advisors'] == ['Marcilio, Maria Luiza'] and usp['graduation_dates'] == ['2001-09-01']
+    assert usp['year'] == 2001 and usp['doi'] == '10.11606/T.8.2001.tde-1'
+    assert uni['authors'] == ['Rota, Alesson Ramon'] and uni['advisors'] == ['Nicodemo, Thiago Lima']
+    assert uni['capes_advisor_id'] == '99' and uni['capes_production_id'] == '15485531'
+    assert uni['committee'] == [dict(name='STEFAN RINKE', category='Participante Externo')]
+    assert uni['item_url'].startswith('https://sucupira-legado') and uni['pdf_source'] == 'sucupira_legado'
+    assert uni['title'] == 'Apologia da história em tempos digitais'
+    # The multi-part row (later, with files) wins over the earlier first-volume-only row; parts keep their order.
+    (usp_row,) = [r for r in ingest_rows if r['institution'] == 'br:usp']
+    assert [(f['path'], f['part'], f['primary']) for f in usp_row['files']] == [
+        ('pdf/br/u.part01.pdf', 1, True), ('pdf/br/u.part02.pdf', 2, False)]
