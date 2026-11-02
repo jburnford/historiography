@@ -744,7 +744,7 @@ test('family content exposes rosters and approaches without manufacturing edges'
   /* Indigenous histories holds indigenous and ethnohistory, plus bridged native_newcomer and settler_colonialism (1.128).
      1.140 adds Val Napoleon (critic of Cole Harris, on indigenous). */
   assert.equal(content.approaches.length, 79 /* 1.201: the family split in three fields, with community-engaged research */);
-  assert.equal(content.people.length, 133 /* 1.201: Indigenous person entries and the community-engaged roster */);
+  assert.equal(content.people.length, 135 /* 1.201: Indigenous person entries and the community-engaged roster; 1.237 adds Barman, C. Morgan, Raibmon and L. B. Simpson rows */);
   assert.equal(content.people.filter(x => x.person.id === 'cole_harris').length, 1);
   assert.ok(content.approaches.some(x => x.strand.id === 'stolo_community_university'));
   assert.ok(content.connections.some(x => x.edge.id === 'edge_777' && !hasArrow(x.edge)));
@@ -808,11 +808,12 @@ test('person map: roster entries, the own entry, and its edge targets — nothin
   assert.equal(s.linked.get('eric_hobsbawm')[0].dir, 'out');
 });
 test('person map: a roster-only person gets their roster entries and no edges', () => {
-  const s = personMapSubset(graph, 'anna_clark');
+  // 1.237 gave Anna Clark a person entry; Raphael Samuel remains roster-only.
+  const s = personMapSubset(graph, 'raphael_samuel');
   assert.equal(s.own, null);
   assert.equal(s.edges.length, 0);
   assert.equal(s.basis, 'roster');
-  assert.deepEqual([...s.ids].sort(), personContexts(graph, 'anna_clark').map(c => c.node.id).sort());
+  assert.deepEqual([...s.ids].sort(), personContexts(graph, 'raphael_samuel').map(c => c.node.id).sort());
   assert.ok(s.ids.size >= 3);
 });
 test('person map: a person named only within approaches falls back to those entries', () => {
