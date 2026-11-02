@@ -60,7 +60,8 @@ SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl$')
 EVENTS = {'mint', 'attach', 'detach', 'merge', 'split', 'retype', 'withdraw', 'relabel', 'status'}
 # Relation predicates, read subject -> object (Fable review 2026-11-01: relations belong in the log, not in
 # side files of keys that go stale when a key merges).
-PREDICATES = {'supervised': ('person', 'work'), 'authored': ('person', 'work')}
+PREDICATES = {'supervised': ('person', 'work'), 'authored': ('person', 'work'), 'edited': ('person', 'work'),
+              'published_as': ('work', 'work')}
 
 
 class LogError(ValueError):

@@ -797,3 +797,53 @@ Cutter). About 3 minutes per group, so the full run takes about 4.5 hours.
 checks on its own facts, all of them join, within the merge rule. Michael Gauvreau, Maryanne Kowaleski and
 Lynn Hollen Lees were each held as an ORCID key, an LC/Wikidata key and an AHA key; each is now one key
 (6 merges).
+
+## Books by keyed people, from LC's catalogue (2026-11-02)
+
+The reviewed-book route reached books through reviews. This step works the other way: from every person
+key holding an LC authority to the books LC catalogued under it.
+
+**Works and roles** (`scripts/key_lc_works.py`, `lc-works-2026-11-02/`). MDSConnect Books All 2016 is
+read offline: 10.5M records, so books to 2016.
+- A heading reaches a key's authority by its $0, or by its text equal to the authorised heading.
+- The main entry, or an added entry with an author relator, makes `authored`. An added entry with an editor
+  or compiler relator makes `edited`, a new predicate. Other relators, and added entries without one, are
+  left out.
+- Editions with the same lead person and normalised main title are one work. Each edition's LCCN is an
+  anchor (`lccn:`), and the earliest year is kept as `lc-first-year:`.
+
+Result: **342,937 works** for 57,247 people, with 333,928 `authored` and 14,010 `edited` claims. Claims are
+anchored per edition (`lc-authored:<lccn>:<lcid>`) and `recorded` (one catalogue). Examples: E. P.
+Thompson's *Making of the English Working Class* (1964, 1968 editions), *Whigs and Hunters*, *Customs in
+Common*; Michael Childs's *Labour's Apprentices* (1992). The log grew by about 250 MB to 9 shards, and
+loading it takes about 20 s.
+
+**Dissertations published as books** (`scripts/key_published_as.py`, `published-as-2026-11-02/`).
+- A new predicate, `published_as` (work → work), links a person's thesis and LC book by key_aha's own_book
+  rule.
+- **6,815 claims.** Example: Childs's McGill thesis *Working Class Youth in Late Victorian and Edwardian
+  England* (1986) → *Labour's Apprentices*.
+- 231 queued where a thesis matches several books, mostly one book split by a title variant.
+
+**Atlas sources that are these books** (`scripts/key_atlas_lc_works.py`, `atlas-lc-works-2026-11-02/`,
+`-02b/`). **454 atlas source works merged** with their LC book, and 21 pairs of atlas sources citing one
+book merged with each other. The match needs:
+- the book's title and its author's name in the source, or an ISBN of an LC record in the source URL;
+- no review, interview, commentary, symposium or obituary;
+- no part of the book: quoted essays, pages, chapters and sections are listed in `part-of.json` for a later
+  part-of relation;
+- for one- and two-word titles, the source's own title must read author, then title.
+
+The first pass was too loose: an LC memoir titled *Stanford* gathered the Stanford Encyclopedia pages, and
+reviews merged into the books they review.
+
+**Citations** (`scripts/key_cited_works.py`, `cited-works-2026-11-02/crosswalk.csv.gz`). Books cited in the
+dissertation corpus are matched to these works by author family name and main title, unique only:
+- **96,382 cited works → 93,632 keyed books**, covering 391,419 citations;
+- *Imagined Communities* 904 theses, *Discipline and Punish* 476, *Orientalism* 450, *Making* 257 (atlas
+  key w-849), *Labour's Apprentices* 3.
+
+The corpus's work ids are build artefacts, so this is a crosswalk beside the log, rebuilt after each corpus
+build, not log events. Joined with the corpus's `strict-citations.csv.gz`, it lists the citing theses of
+every keyed book. A translation can stand for its original when LC holds only one under the person
+(Bourdieu's *La distinction*).
