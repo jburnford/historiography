@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight evidence-backed matches in group order. JSON validation and source-host checks passed.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisor verdicts, evidence and notes. JSON structure, group order, candidate IDs and source-host checks passed.
