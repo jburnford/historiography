@@ -1,0 +1,3 @@
+Q52990224|Den|"historian of eighteenth-century England"
+Q52990224|P69|Q865528|P512|Q752297|P582|+1977-00-00T00:00:00Z/9|S854|"https://wrap.warwick.ac.uk/139269/"|S813|+2026-11-02T00:00:00Z/11
+Q52990224|P184|Q59527776|S854|"https://wrap.warwick.ac.uk/139269/"|S813|+2026-11-02T00:00:00Z/11
