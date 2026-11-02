@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): Wikidata item is a different person; LC fits the graph person. No replacement QID verified.

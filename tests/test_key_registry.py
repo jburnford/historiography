@@ -6,7 +6,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from identifiers import State, apply_proposal, plan  # noqa: E402
-from key_registry import clusters_for  # noqa: E402
+from key_registry import clusters_for, names_compatible  # noqa: E402
 
 
 class RegistryKeying(unittest.TestCase):
@@ -72,6 +72,15 @@ class RegistryKeying(unittest.TestCase):
         def ops(r):     # placeholders name the cluster's input position; the mint order is what keys follow
             return [{k: v for k, v in o.items() if k != 'key'} for o in plan(self.state, self.build(r)[0])[0]]
         self.assertEqual(ops(rows), ops(list(reversed(rows))))
+
+
+
+
+class NamesCompatible(unittest.TestCase):
+    def test_umlaut_reads_as_spelled_out(self):
+        self.assertTrue(names_compatible('Uekötter, Frank', 'Frank Uekoetter'))
+        self.assertTrue(names_compatible('Frank Uekötter', 'Uekotter, Frank'))
+        self.assertFalse(names_compatible('Uekötter, Frank', 'Frank Ueckert'))
 
 
 if __name__ == '__main__':

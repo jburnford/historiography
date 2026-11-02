@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/lc-wikidata-check-2026-11-02/p-102670-Q117351194/verdict.json). Both checks are “yes”: the names refer to the same person, and LC fits the graph entry.

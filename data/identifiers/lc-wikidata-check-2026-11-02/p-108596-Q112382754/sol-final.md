@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both matches are **yes**. LC explicitly records Diane L. Barthel as a variant name of Barthel-Bouchier; both records support birth year 1949.

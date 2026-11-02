@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): both matches are **yes**; LC supports **1973**. Wikidata’s “2000” has century precision, explaining the apparent discrepancy.

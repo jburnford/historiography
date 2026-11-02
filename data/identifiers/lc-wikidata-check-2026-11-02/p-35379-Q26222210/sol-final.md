@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity checks are **yes**; supported birth year is **1936**. The apparent discrepancy comes from Wikidata’s century-level date precision.

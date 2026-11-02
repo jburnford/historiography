@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): same person, LC fits the graph entry, and 1968 is supported by LC’s author-supplied evidence. The verdict notes that Wikidata access failed.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both identity checks are **yes**. Birth year **1940** is provisionally supported by Libris, with conflicting years documented.

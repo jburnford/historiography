@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/lc-wikidata-check-2026-11-02/p-73693-Q6525769/verdict.json): same person, LC fits the graph entry, and 1947 is the supported birth year.

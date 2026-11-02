@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both matches are **yes**. The name difference is a transliteration variant; LC supports birth year **1906**.

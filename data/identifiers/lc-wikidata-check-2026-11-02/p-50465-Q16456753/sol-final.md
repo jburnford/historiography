@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): the Wikidata item matches the LC person, and the LC authority fits the graph entry. Included evidence and date qualifications.

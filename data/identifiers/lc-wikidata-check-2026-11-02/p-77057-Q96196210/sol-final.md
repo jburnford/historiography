@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both matches are **yes**. LC documents the name variants and the matching 2003 dissertation; both records give birth year 1966.

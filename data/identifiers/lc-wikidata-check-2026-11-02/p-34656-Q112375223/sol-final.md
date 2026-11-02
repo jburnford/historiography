@@ -1,0 +1,1 @@
+Wrote `verdict.json`: both matches are **yes**. LC’s alternate QID redirects to Q112375223. Birth year 1937 is supported. No other files were written.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The Wikidata item conflates the writer with the LC psychiatrist; LC fits the graph’s person.

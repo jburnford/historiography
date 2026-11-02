@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both checks are **yes**; the university record supports birth year **1930**. No other files were written.

@@ -1,0 +1,1 @@
+Wrote and validated `verdict.json`. Both identity checks are “yes”; supported birth year is 1933.

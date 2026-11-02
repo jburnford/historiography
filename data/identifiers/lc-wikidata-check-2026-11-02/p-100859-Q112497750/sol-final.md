@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): same person; LC fits the graph entry; supported birth year is 1970. LC’s structured birth field conflicts with its own heading and source note.

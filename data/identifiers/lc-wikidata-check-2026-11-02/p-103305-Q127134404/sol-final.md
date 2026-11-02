@@ -1,0 +1,1 @@
+Wrote `verdict.json`: both matches are **yes**, with birth year **1971** supported. The notes explain LC’s misleading link to a different Ari Kelman item.

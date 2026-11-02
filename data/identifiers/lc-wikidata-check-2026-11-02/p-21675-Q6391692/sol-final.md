@@ -1,0 +1,1 @@
+Wrote `verdict.json`: both matches are **yes**. LC supports **1953**; Wikidata’s “2000” encodes century precision, not an exact birth year.

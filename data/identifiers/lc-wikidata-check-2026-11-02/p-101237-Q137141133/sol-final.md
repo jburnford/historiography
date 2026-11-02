@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json). The Wikidata item matches the LC person; the supported birth year is 1957.

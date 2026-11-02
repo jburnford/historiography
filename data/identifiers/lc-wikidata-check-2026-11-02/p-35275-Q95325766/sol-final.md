@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both matches are **yes**. LC’s alternate QID redirects to Q95325766; birth year 1965 agrees.

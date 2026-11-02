@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both matches are confirmed. LC’s alternate QID resolves to Q55937949, explaining the automatic flag.

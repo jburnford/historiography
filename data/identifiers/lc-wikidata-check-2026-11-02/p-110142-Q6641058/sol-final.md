@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata and LC identify the same person, LC fits the graph entry, and 1946 is supported. No other files were written.

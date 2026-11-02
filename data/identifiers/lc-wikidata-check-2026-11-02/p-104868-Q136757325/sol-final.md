@@ -1,0 +1,1 @@
+Wrote `verdict.json`: Wikidata matches the LC person. The LC-to-graph match remains unclear because `key_evidence` is empty.

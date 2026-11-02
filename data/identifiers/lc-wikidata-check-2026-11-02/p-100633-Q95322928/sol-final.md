@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both matches are **yes**: LC documents the surname change. The verdict also notes that the Open Library record is undifferentiated.

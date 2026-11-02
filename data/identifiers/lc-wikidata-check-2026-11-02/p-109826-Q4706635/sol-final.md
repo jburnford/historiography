@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The Wikidata item describes a different person—the architect. The LC authority fits the graph’s historian, with 1956 supported as the birth year.

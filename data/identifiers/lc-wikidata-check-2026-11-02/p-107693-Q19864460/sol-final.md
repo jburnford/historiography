@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): same person, correct graph match; 1946 preferred, with the conflicting 1938 records documented.

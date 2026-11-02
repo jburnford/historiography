@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Wikidata and LC identify the same person, and LC fits the graph entry. Birth year remains unresolved because sources conflict.

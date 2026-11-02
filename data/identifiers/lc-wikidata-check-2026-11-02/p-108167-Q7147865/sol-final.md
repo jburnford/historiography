@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). LC identifies the cartoonist; Wikidata and the graph’s Open Library biography identify the historian. Both match verdicts are `no`.

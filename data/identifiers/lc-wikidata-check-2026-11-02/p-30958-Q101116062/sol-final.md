@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata item is a different person; LC fits the historian. No replacement QID found.

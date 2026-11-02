@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The Wikidata item matches the LC person; the name difference is transliteration and name order. Birth year 1931 is supported.

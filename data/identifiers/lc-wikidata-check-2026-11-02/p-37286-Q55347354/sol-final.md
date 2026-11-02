@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json): Wikidata represents a different person; the LC authority fits the graph’s historian.

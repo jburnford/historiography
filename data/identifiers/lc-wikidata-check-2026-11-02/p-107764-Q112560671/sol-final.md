@@ -1,0 +1,1 @@
+Wrote `verdict.json`: same person; LC fits the graph name. The University of Amsterdam supports **1939**, indicating LC’s **1920** is erroneous.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both matches are **yes**; the name difference is a spelling variation. Birth year **1967** is supported.

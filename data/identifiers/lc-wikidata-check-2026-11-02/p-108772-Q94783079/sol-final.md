@@ -1,0 +1,1 @@
+Wrote `verdict.json`: both identity checks are **yes**; sources support birth year **1940**. Only that file was written.

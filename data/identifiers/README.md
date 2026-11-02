@@ -676,3 +676,39 @@ provenance and identity rules apply). Each wrote `verdict.json` with its evidenc
 - 1 is a namesake's. Lisa Smith (Saskatchewan, then Essex) holds an Essex PhD (2002), so the Akron 2011
   dissertation left her key and is now its own person (`apply-verdicts.py`).
 - The pattern is rare: with Wright, Morton and Elliott, found earlier by hand, 4 of 74 links were wrong.
+
+## Full LC books harvest; LC → Wikidata pairs checked by Sol (2026-11-02)
+
+**Reviewed-book authors on the full harvest** (`lc-books-2026-11-02/`). The SRU harvest finished: 45,180
+reviewed books, 30,127 with an LC record for the same book. `lc_resolve_authorities.py` over it
+(`data/field-research/lc-authorities-2026-10-30/reviews-2026-11-02/`) reaches 27,494 authorities. The rerun
+of `key_lc_books.py` adds 1,557 new LC person keys and attaches 580 authorities to existing keys (533 AHA keys
+through their dissertations as published). 13 queued, among them:
+- Kudaibergen / Kudaibergenova, a name change (for the user);
+- two LC authorities for Wolfgang Schmale;
+- the known Steiner, Thomas and Vanessa Smith cases.
+
+`names_compatible` now reads German umlauts as their spelled-out forms (Uekötter / Uekoetter).
+
+**LC → Wikidata** (`lc-wikidata-2026-11-02/`, `-02b/`): 518 QIDs for the new keys. A birth year that
+disagrees is now re-read at its stated precision (`precise_births`). Wikidata stores a century as a year
+(Otte '1900', Mehta '1901', Niewyk '2000'), so those values no longer refuse a match. That cleared 30 more.
+`key_lc_wikidata.py` also skips items rejected on the key (`rejected:wd:`).
+
+**Sol check of refused pairs** (`lc-wikidata-check-2026-11-02/`). 284 pairs had failed the automatic checks:
+a Wikidata item cites the key's LC authority, but names, birth years or LC's own Wikidata link disagree.
+One Sol agent per pair (`BRIEF.md`) compared the LC authority, the item and the key's evidence. 76 verdicts
+came back before the Codex usage limit stopped the batch (reset 2026-11-04); `run-sol.sh` skips the done
+ones on rerun.
+- 60 attached: one person despite the check. Examples:
+  - transliterations and name changes: Son Po-gi / Sohn Pow-key, Moshe Burstein / Avidor;
+  - LC birth-year errors: Collinson 1919 for 1929, Kaelble, Searle.
+- 13 rejected (`rejected:wd:<QID>` on the key): the item is someone else. Examples: the baseball player
+  Jimmy Stewart's item cites James S. Pritchard's LC authority; Sabine Schrader's item cites Michael Homan's.
+  Listed in `wikidata-p244-errors.json` for correction on Wikidata.
+- `birth-year-errors.json`: 30 birth years where LC or Wikidata is wrong, with the year sources support.
+- 6 queued, among them:
+  - Patrick Wright: LC n82269682 is the cartoonist (1945–1993) by its own sources, but LC catalogues the
+    historian's books under it;
+  - two Thomas Wilkes;
+  - better items Sol found for Aguilar and Homan.

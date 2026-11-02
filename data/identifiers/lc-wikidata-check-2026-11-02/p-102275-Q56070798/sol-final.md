@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both identity checks are **yes**; birth year **1967** is supported. No other files were written.

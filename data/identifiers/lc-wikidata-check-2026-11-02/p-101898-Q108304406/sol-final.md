@@ -1,0 +1,1 @@
+Wrote and validated `verdict.json`. The Wikidata item conflates two namesakes; the LC authority fits the graph’s person.

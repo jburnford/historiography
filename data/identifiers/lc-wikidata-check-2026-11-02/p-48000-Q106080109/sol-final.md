@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata item is incorrect; LC fits the graph person. Correct QID: `Q74557285`.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): same person, LC fits the graph entry, and 1974 is better supported. The conflicting 1971 date is documented.

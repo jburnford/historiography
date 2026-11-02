@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): same person; LC fits the graph name. The name mismatch is a transliteration difference. Birth year supported: 1946.

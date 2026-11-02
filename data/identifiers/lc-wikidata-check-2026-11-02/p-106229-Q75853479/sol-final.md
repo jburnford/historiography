@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity checks are **yes**. LC’s alternative QID resolves to Q75853479; the sources agree on birth year 1944.

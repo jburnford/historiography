@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): same person; LC fits the graph entry. Birth year 1935 is better supported, with the 1938 conflict documented.

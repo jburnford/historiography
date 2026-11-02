@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity checks are “yes”; LC supports 1978. Wikidata’s “1901” timestamp represents the twentieth century, explaining the false mismatch.

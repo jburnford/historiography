@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity checks are **yes**; sources support **1938**, indicating Wikidata’s 1948 birth year is erroneous.

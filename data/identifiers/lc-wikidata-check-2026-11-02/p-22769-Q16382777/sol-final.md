@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata is a different person; LC fits the graph’s historian, born 1981. No replacement QID verified.

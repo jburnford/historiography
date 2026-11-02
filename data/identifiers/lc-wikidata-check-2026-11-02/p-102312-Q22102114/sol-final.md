@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity matches are **yes**. The evidence supports **1969**, with LC’s conflicting 1961 recorded for review.

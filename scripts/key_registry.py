@@ -52,9 +52,17 @@ def same_name(a, b):
     return bool(pa and pb and pa == pb and len(pa[0]) > 1)
 
 
+GERMAN_UMLAUT = str.maketrans({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue'})
+
+
 def names_compatible(a, b):
     """Family name and first initial agree in either direction ('Jo Guldi' / 'Guldi, Joanna'), or one name's
-    words contain the other's (mononyms, scripts compatible() cannot read)."""
+    words contain the other's (mononyms, scripts compatible() cannot read). German umlauts also read as their
+    spelled-out forms ('Uekötter' / 'Uekoetter')."""
+    return _names_compatible(a, b) or _names_compatible(a.translate(GERMAN_UMLAUT), b.translate(GERMAN_UMLAUT))
+
+
+def _names_compatible(a, b):
     def fam_given(label):
         family, comma, given = label.partition(', ')
         if comma:

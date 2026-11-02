@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata item is a different person; LC authority fits Randy Sanders. No replacement QID verified.

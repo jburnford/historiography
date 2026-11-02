@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata and LC identify the same person. The LC authority fits the key label; 1961 is supported.

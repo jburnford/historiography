@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both matches confirmed. LC explicitly links the name variants, and its notes support birth year 1922.

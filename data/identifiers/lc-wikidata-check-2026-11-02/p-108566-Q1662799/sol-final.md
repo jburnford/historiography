@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): both identity checks are **yes**. The name difference reflects documented spelling variants; sources support birth year **1947**.

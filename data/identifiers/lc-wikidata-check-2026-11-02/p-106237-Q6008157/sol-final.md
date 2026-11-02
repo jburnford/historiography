@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Same person; 1940 is supported. The mismatch comes from interpreting Wikidata’s century-precision date as the year 2000.

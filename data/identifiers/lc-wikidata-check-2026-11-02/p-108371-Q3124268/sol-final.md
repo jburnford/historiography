@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both identity checks are **yes**. Sources support **1949**; LC’s own notes contain conflicting birth years.

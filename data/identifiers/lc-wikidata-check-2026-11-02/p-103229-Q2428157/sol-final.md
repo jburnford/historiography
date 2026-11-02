@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): different people; LC person’s QID is `Q95330369`. Graph-person match remains unclear because `key_evidence` is empty.

@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json). The records identify the same person; the supported birth year is 1942.

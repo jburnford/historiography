@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json). Both identity checks are “yes”; sources support 1943. LC’s structured birth date appears erroneous.

@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](./verdict.json): Wikidata conflates the radio presenter with the historian; LC fits the graph person. No separate verified QID was found.

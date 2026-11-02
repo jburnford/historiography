@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both identity matches are **yes**; sources support **1940**, with conflicting birth-year data inside LC’s record.

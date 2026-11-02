@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both matches are **yes**: Rod Kedward is the LC person, and the LC authority fits the graph key. Supported birth year: **1937**.

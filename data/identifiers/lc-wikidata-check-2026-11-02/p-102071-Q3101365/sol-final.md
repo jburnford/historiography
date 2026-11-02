@@ -1,0 +1,1 @@
+Wrote `verdict.json`: the Wikidata item is a different person; LC fits the graph entry. Correct author QID: `Q30141533`.

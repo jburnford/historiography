@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): both identity checks are **yes**. Supported birth year: **1929**; LC’s structured 1919 date appears erroneous.

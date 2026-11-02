@@ -79,6 +79,22 @@ def items_for(lcids, cache):
     return out
 
 
+def precise_births(qids, cache):
+    """QID -> birth years stated to year precision or finer. Wikidata stores a century or decade as a year
+    ('20th century' reads 1901 or 2000 through wdt:P569), which is no evidence against LC's year
+    (2026-11-02: Otte 1900, Mehta 1901, Niewyk 2000)."""
+    out = {q: set() for q in qids}
+    qids = sorted(qids)
+    for i in range(0, len(qids), 200):
+        part = qids[i:i + 200]
+        query = """SELECT ?item ?t WHERE { VALUES ?item { %s } ?item p:P569/psv:P569 ?v .
+                ?v wikibase:timeValue ?t ; wikibase:timePrecision ?p FILTER(?p >= 9) }""" % ' '.join(f'wd:{q}' for q in part)
+        for r in sparql(query, cache, 'births-' + hashlib.sha1(query.encode()).hexdigest()[:12]):
+            if r['t']['value'].lstrip('-')[:4].isdigit():
+                out[r['item']['value'].rsplit('/', 1)[-1]].add(int(r['t']['value'].lstrip('-')[:4]))
+    return out
+
+
 def item_ids(qids, cache):
     """QID -> dict(orcid=set, lc=set) for the given items."""
     out = {q: dict(orcid=set(), lc=set()) for q in qids}
@@ -168,11 +184,26 @@ def main():
         for items in found.values():
             if q in items:
                 items[q]['labels'] |= aliases
+    def lc_birth_of(lc):
+        auth = names.get(lc, {})
+        return life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
+
+    def disagrees(lc_birth, births):
+        return bool(lc_birth and births and all(abs(int(lc_birth) - b) > 2 for b in births))
+
+    # a disagreeing birth year is re-read at its stated precision; centuries and decades drop out
+    suspect = {q for lc in set(keyed.values()) for q, it in found.get(lc, {}).items() if disagrees(lc_birth_of(lc), it['births'])}
+    for q, years in precise_births(suspect, args.cache).items():
+        for items in found.values():
+            if q in items:
+                items[q]['births'] = years
     report, queue, clusters, pending, duplicates = Counter(), [], [], [], []
     for k, lc in sorted(keyed.items(), key=lambda kv: int(kv[0][2:])):
         rec = state.keys[k]
         have = {a[3:] for a in rec['anchors'] if a.startswith('wd:')}
-        items = {q: it for q, it in found.get(lc, {}).items()}
+        rejected = {m[len('rejected:wd:'):] for m in state.members.get(k, ()) if m.startswith('rejected:wd:')}
+        items = {q: it for q, it in found.get(lc, {}).items() if q not in rejected}
+        report['rejected_item_skipped'] += len(found.get(lc, {})) - len(items)
         auth = names.get(lc, {})
         lc_link = {e.rsplit('/', 1)[-1] for e in auth.get('external') or [] if 'wikidata.org' in e}
         if not items:
@@ -189,13 +220,13 @@ def main():
         if have:
             pending.append((k, lc, q, it, have))
             continue
-        lc_birth = life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
+        lc_birth = lc_birth_of(lc)
         problems = []
         if not it['human']:
             problems.append('not_human')
         if not name_agrees(rec['label'], it['labels']):
             problems.append('name_disagrees')
-        if lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 2 for b in it['births']):
+        if disagrees(lc_birth, it['births']):
             problems.append('birth_disagrees')
         if lc_link and q not in lc_link:
             problems.append('lc_links_other_item')
@@ -216,10 +247,10 @@ def main():
         orcids = {a[6:] for a in rec['anchors'] if a.startswith('orcid:')}
         stubs = [h for h in have if ids[h]['orcid'] & orcids and not ids[h]['lc']]
         auth = names.get(lc, {})
-        lc_birth = life(auth, label_dates(auth.get('label', ''))).get('birth', (None,))[0] if auth else None
+        lc_birth = lc_birth_of(lc)
         ok = (len(stubs) == len(have) and ids[q]['lc'] == {lc} and not (ids[q]['orcid'] - orcids) and it['human']
               and name_agrees(rec['label'], it['labels'])
-              and not (lc_birth and it['births'] and all(abs(int(lc_birth) - b) > 2 for b in it['births'])))
+              and not disagrees(lc_birth, it['births']))
         if not ok:
             report['different_qid_on_key'] += 1
             queue.append(dict(kind='key_holds_different_qid', key=k, label=rec['label'], lc=lc, qid=q, key_qids=sorted(have)))

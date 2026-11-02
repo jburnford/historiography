@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json). Both matches are **yes**; LC’s alternate QID redirects to Q55917625.

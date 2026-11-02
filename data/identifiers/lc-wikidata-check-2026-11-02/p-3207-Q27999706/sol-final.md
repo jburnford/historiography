@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both records identify the same historian and fit the graph entry. LC documents Nolan’s correction of her birth year to **1944**.

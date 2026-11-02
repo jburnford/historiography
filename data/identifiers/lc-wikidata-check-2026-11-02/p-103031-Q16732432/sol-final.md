@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Same person; the apparent 1901 birth year is a parsing error for Wikidata’s century-level date. LC supports 1968.

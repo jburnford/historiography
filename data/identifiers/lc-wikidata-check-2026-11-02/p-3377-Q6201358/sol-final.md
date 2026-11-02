@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata is a different person; LC fits the graph entry. No replacement QID found.

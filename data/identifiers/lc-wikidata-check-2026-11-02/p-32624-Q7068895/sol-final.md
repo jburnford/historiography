@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Both matches are **yes**: Moshe Avidor is also catalogued as Moshe Burstein, and LC’s work matches the supplied Columbia dissertation. Birth year: **1906**.

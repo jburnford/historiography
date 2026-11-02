@@ -1,0 +1,1 @@
+Wrote `verdict.json`. Both matches are **yes**; sources support birth year **1950**. LC’s structured 1960 conflicts with its own cited sources.

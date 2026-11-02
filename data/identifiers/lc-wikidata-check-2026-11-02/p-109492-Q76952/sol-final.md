@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Wikidata and LC identify the same person, and LC fits the graph entry. The automatic flag appears related to a malformed LC link.
