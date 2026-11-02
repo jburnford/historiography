@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries in order: five matches, one mismatch, and two unclear due to inaccessible Wikidata records. No other files written.

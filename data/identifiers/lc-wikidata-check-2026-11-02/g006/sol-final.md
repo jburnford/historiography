@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in group order and validated the JSON. All eight pairs identify the same person; evidence and discrepancy explanations are included.

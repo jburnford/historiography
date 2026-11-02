@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts in order, supporting sources, and birth-year qualifications. No other files were written.

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json): all 8 entries in order, with 6 matches and 2 mismatches. No other files were written.

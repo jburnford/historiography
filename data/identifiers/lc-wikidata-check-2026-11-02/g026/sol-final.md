@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries: seven matches, one mismatch. MacMillan’s birth year remains unresolved, with conflicting sources documented.

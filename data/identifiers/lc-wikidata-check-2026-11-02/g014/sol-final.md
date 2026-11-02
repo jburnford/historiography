@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries in order. Seven pairs match; François Jost is a mismatch, with corrected QID `Q94925250`.

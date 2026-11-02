@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries in order. All pairs match; date uncertainties are documented. No other files were written.

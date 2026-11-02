@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight entries in order. Validated the JSON structure and required fields. Von Arx’s birth year remains unresolved.

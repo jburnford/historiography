@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight entries in order. Validated the format: seven matches and one wrong-person pair (Staudenraus).

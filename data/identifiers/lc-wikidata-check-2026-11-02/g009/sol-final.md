@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight checks in order. All pairs match; date discrepancies and Marriott’s malformed link are documented. JSON validation passed.

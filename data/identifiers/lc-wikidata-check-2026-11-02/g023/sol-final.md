@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts in assignment order. All pairs match; birth-year conflicts and extraction errors are documented. JSON validation passed.

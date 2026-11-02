@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries in order. All eight identity pairs match; the graph’s James D. Watkins match remains unclear. Unresolved birth-year conflicts are documented.

@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json) with all eight entries in order. All pairs match; two exact birth years remain unresolved.

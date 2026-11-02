@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order: six matches and two different-person pairs. Included evidence and access limitations.

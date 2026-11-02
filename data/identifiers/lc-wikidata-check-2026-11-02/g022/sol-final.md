@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in group order. Validated the JSON; no other files were written.

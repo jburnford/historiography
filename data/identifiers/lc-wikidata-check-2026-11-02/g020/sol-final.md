@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight entries in order: seven matches and one mismatch. Remaining ambiguities are documented in the verdicts.
