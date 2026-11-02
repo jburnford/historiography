@@ -241,7 +241,7 @@ def main():
             return False
         lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
         return len(lcs) <= 1
-    ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
+    ops, assign, held = plan(state, clusters, guarded(state, merge_ok, exclude=args.out))
     materialise(state, dict(basis='LC to Wikidata', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

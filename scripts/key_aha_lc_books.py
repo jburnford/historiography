@@ -211,7 +211,7 @@ def main():
         clusters.append(dict(type='person', label=label, anchors={f'aha-phd:{rid}', f'lcnaf:{lc}'}, members=set(),
                              aliases=set(), resolution='established',
                              basis=f'AHA {rid} published as a book LC catalogues under {lc} (Books All 2016)'))
-    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state)))
+    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state), exclude=args.out))
     materialise(state, dict(basis='aha lc books', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json.gz').write_bytes(gzip.compress(json.dumps(dict(

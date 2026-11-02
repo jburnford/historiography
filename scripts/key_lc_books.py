@@ -233,7 +233,7 @@ def main():
                                   records)
     clusters, queue, report = clusters_for(state, credits, labels, people, aha)
     queue = aha_queue + queue
-    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state)))
+    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state), exclude=args.out))
     materialise(state, dict(basis='lc books', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json.gz').write_bytes(gzip.compress(json.dumps(dict(

@@ -345,7 +345,7 @@ def main():
                 report[f'duplicate_listing_{scheme}_combined'] += 1
     clusters = [c for i, c in enumerate(clusters) if i not in gone]
     clusters = drop_shared(clusters, state, queue, report, 'canon_key_claimed_by_several_records', 'anchor_on_several_records')
-    ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state)))
+    ops, assign, held = plan(state, clusters, guarded(state, author_merge_ok(state), exclude=args.out))
     materialise(state, dict(basis='AHA keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

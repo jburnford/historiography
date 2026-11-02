@@ -156,7 +156,7 @@ def main():
             kinds = sorted(tuple(sorted({a.split(':', 1)[0] for a in state.keys[k]['anchors']})) for k in keys)
             return kinds == [('aha-diss',), ('diss-thesis',)]
         return authors_ok(cluster, keys)
-    ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
+    ops, assign, held = plan(state, clusters, guarded(state, merge_ok, exclude=args.out))
     materialise(state, dict(basis='thesis keying', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(

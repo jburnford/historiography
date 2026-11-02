@@ -607,3 +607,12 @@ family-name-last rule cannot read, plus early birth dates two years apart. The c
 Failures fell to 281, and 364 keys gained a QID (Maimonides, Barrie Dobson, Neville Figgis, Harriet Jacobs).
 A sampled 'Pope, S. W.' / 'James W Pope' match is right: the item's alias is 'Pope, Steven Wayne, 1962-'.
 20 QIDs that sit on another key are held on name forms (Uekötter, Condorcet, Thorold Rogers).
+
+**Self-blocking fixed** (`merge_guard.guarded(..., exclude=args.out)`): a merge a build held was written to
+that build's queue, and the guard then blocked those keys on every rerun of the same build. Each build now
+ignores its own output directory's earlier queue; queues from other routes still block. The LC → Wikidata
+rerun then made 11 held merges (Quiroga, Huebner, Condorcet, Thorold Rogers, Arrizabalaga). Still held:
+- QIDs on ORCID keys that name someone else (Klaudia Śnieżek's key holds Geoffrey Dunn's item; Giuseppe
+  Marcocci's holds Jorge Flores's);
+- a name change for the user (Geraldine Harris / Pinch);
+- name forms (Uekötter, Boterbloem, Kovesi / Killerby).

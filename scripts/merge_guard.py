@@ -56,12 +56,16 @@ def decided(path=DECISIONS):
     return {(d['kind'], tuple(sorted(d['keys']))) for d in json.loads(path.read_text())}
 
 
-def conflict_keys(state, queues=QUEUES, decisions=DECISIONS):
-    """Current keys named in open identity conflicts in the committed review queues."""
+def conflict_keys(state, queues=QUEUES, decisions=DECISIONS, exclude=None):
+    """Current keys named in open identity conflicts in the committed review queues. `exclude`: the running
+    build's own output directory, whose earlier queue is the question it is re-evaluating (a merge held once
+    must not block itself on every rerun)."""
     done, out = decided(decisions), set()
     old = set(json.loads(SUPERSEDED.read_text())['superseded']) if queues == QUEUES and SUPERSEDED.exists() else set()
     for path in sorted(glob.glob(str(queues / '**' / '*queue*.json'), recursive=True)):
         if Path(path).relative_to(queues).as_posix() in old:
+            continue
+        if exclude is not None and Path(path).resolve().is_relative_to(Path(exclude).resolve()):
             continue
         try:
             items = json.loads(Path(path).read_text())
@@ -79,13 +83,13 @@ def conflict_keys(state, queues=QUEUES, decisions=DECISIONS):
     return out
 
 
-def blocked_keys(state):
-    return pooled_keys(state) | conflict_keys(state)
+def blocked_keys(state, exclude=None):
+    return pooled_keys(state) | conflict_keys(state, exclude=exclude)
 
 
-def guarded(state, merge_ok, blocked=None):
+def guarded(state, merge_ok, blocked=None, exclude=None):
     """merge_ok, refusing any merge that touches a pooled key or a key in an open conflict."""
-    blocked = blocked_keys(state) if blocked is None else blocked
+    blocked = blocked_keys(state, exclude) if blocked is None else blocked
 
     def ok(cluster, keys):
         return not (set(keys) & blocked) and merge_ok(cluster, keys)
