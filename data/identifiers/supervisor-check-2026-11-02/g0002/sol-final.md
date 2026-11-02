@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts and supporting sources. Validated the format and record order; noted the Williams/Tetrault discrepancy.

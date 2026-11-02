@@ -782,3 +782,13 @@ Applied:
 - 1,311 where the candidate states no career;
 - 37 where the ages disagree.
 These are queued for a Sol check after the Codex reset. Supervisors without any candidate are the next gap.
+
+**Sol check of the remaining supervisors** (`supervisor-check-2026-11-02/`). 3,228 supervisors from
+`aha-career-2026-11-02e/candidates.json`, eight per Sol agent (404 groups, `groups.json`; `BRIEF.md`). The
+order is one-fact cases first, supervisors with most students first. `run-sol.sh` stops all agents when Codex
+reports its usage limit and skips groups already done. `apply-verdicts.py` merges each `yes` into the named
+candidate key, through the merge guard, or attaches an LC-only authority.
+
+Pilot (g0001, g0002): 16 of 16 `yes`, each with 2 to 4 sources (Vansina, Isaacman, Wm. Roger Louis, Paul
+Kennedy, William Appleman Williams, Jarausch, Falola, Hartog). Applied: 15 merges and 1 LC authority (Donald
+Cutter). About 3 minutes per group, so the full run takes about 4.5 hours.
