@@ -37,6 +37,11 @@ roster_removals ([{node, person_id, expect}]) drops a row equal to `expect` (for
 in the receiving field); strand_redirects_add ([{from, to, reason}]) keeps a moved strand's old address resolving;
 claim_entity_sets ([{entity_id, field: legacy_strand_address, expect, value}]) follows it in the claim catalogue.
 strand_list_removals ([{node, strand, person_ids?, source_ids?}]) drops members that must be present. They apply before text revisions, and both nodes of a move are kept in the acceptance record.
+From 1.238: edge_removals ([{edge_id, expect, reason}]) drops an existing edge equal to `expect` (a duplicate or a proxy
+superseded by a person entry), stored with its position in the acceptance record for exact recovery; roster_edge_sets
+([{node, person_id, expect, value}]) re-points a roster row's edge_id; people_label_sets ([{id, expect, value}]) corrects
+a people record's label; scope_set ({field, expect, value}) replaces one top-level scope field. field_sets may also
+replace a node's description or representative_figures_and_works.
 """
 import argparse
 from copy import deepcopy
@@ -55,7 +60,8 @@ EDGE_KEYS = ['source', 'target', 'relationship', 'type', 'relationship_kind', 'd
 TABLES = ('nodes', 'people', 'edges', 'sources', 'revision_history')
 # Whole-field replacements a batch may make on existing nodes (`field_sets`); prose edits stay
 # exact-string `text_revisions`.
-FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology', 'layer', 'scope_note', 'period'}
+FIELD_SET_ALLOWED = {'date_span', 'date_label', 'coverage', 'chronology', 'layer', 'scope_note', 'period',
+                     'description', 'representative_figures_and_works'}   # the last two from 1.238
 # List fields on an existing node that a batch may extend (`node_list_additions`), without duplicates.
 NODE_LIST_FIELDS = {'source_ids', 'work_ids', 'claim_ids'}
 # Existing source-record fields a batch may correct (`source_field_sets`), guarded by `expect`.
@@ -69,12 +75,12 @@ NODE_KEYS = {'roster_edges': ('node',), 'roster_additions': ('node',), 'roster_l
              'field_sets': ('node',), 'node_list_additions': ('node',), 'text_revisions': ('node',),
              'strand_list_additions': ('node',), 'new_strands': ('node',),
              'strand_moves': ('from_node', 'to_node'), 'roster_moves': ('from_node', 'to_node'),
-             'roster_removals': ('node',), 'strand_list_removals': ('node',)}
+             'roster_removals': ('node',), 'strand_list_removals': ('node',), 'roster_edge_sets': ('node',)}
 
 
 def touched_ids(packet):
     """Ids of existing records a packet changes, by table, for exact baseline recovery."""
-    return dict(people={u['id'] for u in packet['people_updates']},
+    return dict(people={u['id'] for u in packet['people_updates']} | {x['id'] for x in packet.get('people_label_sets', [])},
                 edges=set(packet['edge_revisions']) | {c['edge_id'] for c in packet.get('claim_reviews', []) if c.get('edge_id')}
                 | {x['edge_id'] for x in packet.get('edge_endpoint_sets', [])},
                 sources=set(packet['source_addenda']) | {x['id'] for x in packet.get('source_field_sets', [])},
@@ -170,7 +176,8 @@ class Batch:
             packet.update(new_people=new_people, roster_additions=roster_additions)
         for key in ('text_revisions', 'field_sets', 'layers_set', 'periods_set', 'source_field_sets', 'node_list_additions', 'claim_reviews', 'strand_list_additions', 'new_strands', 'roster_list_additions',
                     'edge_endpoint_sets', 'strand_moves', 'roster_moves', 'roster_removals',
-                    'strand_redirects_add', 'claim_entity_sets', 'strand_list_removals'):   # optional; written only when present
+                    'strand_redirects_add', 'claim_entity_sets', 'strand_list_removals',
+                    'edge_removals', 'roster_edge_sets', 'people_label_sets', 'scope_set'):   # optional; written only when present
             if self.cfg.get(key):
                 packet[key] = self.cfg[key]
         self.packet.parent.mkdir(exist_ok=True)
@@ -398,10 +405,36 @@ class Batch:
         for re_ in packet['roster_edges']:
             node = next(n for n in g['nodes'] if n['id'] == re_['node'])
             next(r for r in node['representative_people'] if r['person_id'] == re_['person_id'])['edge_id'] = new_ids[re_['proposal_id']]
+        # From 1.238: roster edge pointers, people labels, the scope text, then guarded edge removals.
+        for rs in packet.get('roster_edge_sets', []):
+            node = next(n for n in g['nodes'] if n['id'] == rs['node'])
+            row = next(r for r in node['representative_people'] if r['person_id'] == rs['person_id'])
+            if row.get('edge_id') != rs['expect']:
+                raise ValueError(f"Roster edge does not match its expected value: {rs['node']}/{rs['person_id']}")
+            row['edge_id'] = rs['value']
+        for pl in packet.get('people_label_sets', []):
+            person = next(p for p in g['people'] if p['id'] == pl['id'])
+            if person.get('label') != pl['expect']:
+                raise ValueError(f"People label does not match its expected value: {pl['id']}")
+            person['label'] = pl['value']
+        if packet.get('scope_set'):
+            ss = packet['scope_set']
+            if g['scope'].get(ss['field']) != ss['expect']:
+                raise ValueError(f"Scope field does not match its expected value: {ss['field']}")
+            g['scope'][ss['field']] = ss['value']
+        removed = []
+        for er in packet.get('edge_removals', []):
+            edge = next((e for e in g['edges'] if e['id'] == er['edge_id']), None)
+            if edge is None or edge != er['expect']:
+                raise ValueError(f"Edge removal does not match its expected record: {er['edge_id']}")
+            if any(r.get('edge_id') == er['edge_id'] for n in g['nodes'] for r in n.get('representative_people', []) or []):
+                raise ValueError(f"Edge removal would orphan a roster row: {er['edge_id']}")
+            g['edges'].remove(edge)
+            removed.append(er['edge_id'])
         g['revision_history'].append(dict(version=self.rev, date=self.day,
             acceptance_record=str((self.out / 'acceptance.json').relative_to(ROOT)), summary=self.cfg['summary'],
             added_node_ids=[n['id'] for n in packet['nodes']], added_edge_ids=list(new_ids.values()),
-            revised_edge_ids=sorted(packet['edge_revisions'])))
+            revised_edge_ids=sorted(packet['edge_revisions']), **({'removed_edge_ids': removed} if removed else {})))
         return g
 
     def accepted_graph(self):
@@ -435,8 +468,14 @@ class Batch:
     @staticmethod
     def restore_baseline(graph, record):
         before = deepcopy(graph)
+        removed = record.get('removed_records', {})   # from 1.238: [[index in the baseline table, record], ...]
         for table, length in record['previous_table_lengths'].items():
-            before[table] = before[table][:length]
+            items = sorted(removed.get(table, []), key=lambda x: x[0])
+            before[table] = before[table][:length - len(items)]
+            for index, row in items:
+                before[table].insert(index, deepcopy(row))
+        if 'prior_scope' in record:
+            before['scope'] = deepcopy(record['prior_scope'])
         for table, rows in record['prior_records'].items():
             for i, row in enumerate(before[table]):
                 if row['id'] in rows:
@@ -493,6 +532,11 @@ class Batch:
             prior_records={t: {r['id']: r for r in before[t] if r['id'] in ids} for t, ids in touched.items()},
             counts=dict(new_person_entries=len(packet['nodes']), new_edges=len(packet['edges']),
                         new_sources=len(packet['sources']), source_addenda=len(packet['source_addenda'])))
+        if packet.get('edge_removals'):   # from 1.238: removed edges with their baseline positions
+            ids = {er['edge_id'] for er in packet['edge_removals']}
+            record['removed_records'] = {'edges': [[i, e] for i, e in enumerate(before['edges']) if e['id'] in ids]}
+        if packet.get('scope_set'):   # the scope block lives outside TABLES
+            record['prior_scope'] = before['scope']
         if packet.get('layers_set'):   # the band list lives outside TABLES
             record['prior_layers'] = before['layers']
         if packet.get('periods_set'):   # so does the period list

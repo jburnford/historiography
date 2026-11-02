@@ -51,7 +51,8 @@ class FieldSetTests(unittest.TestCase):
 
     def test_only_allowed_fields(self):
         with self.assertRaises(ValueError):
-            batch().transform(graph(), packet([dict(node="military", field="description", expect=None, value="x")]))
+            # description became settable in 1.238 (stub descriptions); labels still are not
+            batch().transform(graph(), packet([dict(node="military", field="label", expect=None, value="x")]))
 
     def test_none_value_removes(self):
         g = graph()
@@ -249,3 +250,47 @@ class MoveTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RemovalAndScopeTests(unittest.TestCase):
+    """From 1.238: guarded edge removals, roster edge pointers, people labels and the scope text recover exactly."""
+
+    def _graph(self):
+        return dict(revision_history=[dict(version="9.0")], scope=dict(geographic_emphasis="old"),
+                    claim_catalogue=dict(claims=[], entities=[], source_records=[]),
+                    people=[dict(id="p", label="Daniel T Rodgers")], sources=[],
+                    edges=[dict(id="edge_001", source="a", target="b"), dict(id="edge_002", source="a", target="b"),
+                           dict(id="edge_003", source="b", target="c")],
+                    nodes=[dict(id="n", strands=[], representative_people=[dict(person_id="p", edge_id="edge_002")])])
+
+    def _packet(self):
+        return dict(baseline_revision="9.0", nodes=[], people_updates=[], sources=[], source_addenda={}, edges=[],
+                    edge_revisions={}, roster_edges=[],
+                    roster_edge_sets=[dict(node="n", person_id="p", expect="edge_002", value="edge_001")],
+                    people_label_sets=[dict(id="p", expect="Daniel T Rodgers", value="Daniel T. Rodgers")],
+                    scope_set=dict(field="geographic_emphasis", expect="old", value="new"),
+                    edge_removals=[dict(edge_id="edge_002", expect=dict(id="edge_002", source="a", target="b"), reason="duplicate")])
+
+    def test_transform_and_exact_recovery(self):
+        b, before, packet = batch(), self._graph(), self._packet()
+        after = b.transform(before, packet)
+        self.assertEqual([e['id'] for e in after['edges']], ["edge_001", "edge_003"])
+        self.assertEqual(after['nodes'][0]['representative_people'][0]['edge_id'], "edge_001")
+        self.assertEqual(after['people'][0]['label'], "Daniel T. Rodgers")
+        self.assertEqual(after['scope']['geographic_emphasis'], "new")
+        self.assertEqual(after['revision_history'][-1]['removed_edge_ids'], ["edge_002"])
+        touched = ape.touched_ids(packet)
+        record = dict(previous_table_lengths={k: len(before[k]) for k in ape.TABLES},
+                      prior_records={t: {r['id']: r for r in before[t] if r['id'] in ids} for t, ids in touched.items()},
+                      removed_records={'edges': [[1, before['edges'][1]]]}, prior_scope=before['scope'])
+        self.assertEqual(ape.Batch.restore_baseline(after, record), before)
+
+    def test_removal_refuses_a_changed_record_or_an_orphaned_roster_row(self):
+        b, packet = batch(), self._packet()
+        packet['edge_removals'][0]['expect'] = dict(id="edge_002", source="a", target="c")
+        with self.assertRaisesRegex(ValueError, 'expected record'):
+            b.transform(self._graph(), packet)
+        packet = self._packet()
+        packet.pop('roster_edge_sets')
+        with self.assertRaisesRegex(ValueError, 'orphan'):
+            b.transform(self._graph(), packet)
