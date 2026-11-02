@@ -751,3 +751,34 @@ Supervisors with a public ID: 2,368 of 6,412 (≥10 students: 451 of 821; before
 These suit a Sol check. Of the supervisors without a candidate holding a QID, 898 have an LC-only candidate and
 1,373 have no candidate key at all. LC's own career notes come next (`scripts/lc_notes_index.py`: 670 data
 found and 373 affiliations).
+
+**LC's own career notes and the AHA directory's PhD school** (`aha-career-2026-11-02c/`, `-02d/`; `-02e/` is
+the converged rerun, with no new ops). `scripts/lc_notes_index.py` reads the MADS/RDF dump again. It keeps
+the 670 data found and the 373 affiliations of 8.15M personal-name authorities, plus the labels of 1.78M
+organisations, in `/mnt/e/lc-authorities/personal-notes.parquet` and `organisations.parquet`. The main
+names index is unchanged. Two new sources feed the career route:
+- **LC's notes** for keys holding an LC authority. Clauses about a doctorate count as education ('PhD,
+  University of Nebraska-Lincoln, 1996'). 373 affiliations and clauses about teaching count as employment
+  ('assoc. prof. of history, Northern Arizona Univ.').
+- **New LC authorities.** A supervisor with no candidate key may take an LC authority of that name that no
+  key holds yet, on LC's notes alone. Examples: Lansiné Kaba (Ph.D. Northwestern 1970; Illinois Chicago),
+  Francis Newton Thorpe (Syracuse 1883; Pennsylvania).
+- **The AHA directory's PhD school** (`degree_school`, PhD or DPhil) counts as the supervisor's own school
+  when no AHA dissertation is linked. Examples: Drew Gilpin Faust, Keith Michael Baker, Ira Lapidus, Abbas
+  Amanat.
+
+Applied:
+- 500 merges;
+- 115 new LC authorities attached;
+- 275 surviving AHA keys took the fuller name.
+
+14 held by the merge guard; three supervisors pass against two keys that are themselves duplicates
+(Gauvreau, Kowaleski, Lynn Hollen Lees).
+
+**Supervisors with a public ID: 2,992 of 6,411** (≥3 students: 1,838 of 3,466; ≥10: 548 of 821). Left in
+`aha-career-2026-11-02e/candidates.json`:
+- 1,357 where one fact agrees;
+- 520 where no fact agrees;
+- 1,311 where the candidate states no career;
+- 37 where the ages disagree.
+These are queued for a Sol check after the Codex reset. Supervisors without any candidate are the next gap.
