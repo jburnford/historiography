@@ -907,6 +907,7 @@ account, then read back from Wikidata.
   P184 Crosby and Gutmann, and P108 Southwest Minnesota State (from 2002) and USask.
 - **childs.qs** (run, read back): created **Q141974979** for Michael J. Childs, with P244, P69 McGill (PhD,
   1986), P108 Bishop's University and P106 historian. The QID is attached to p-34374.
+- **handy.qs**: Jim Handy's stub Q133766530 (found through GND 170741443, which is sameAs LC n84218258; wd/gnd/viaf/isni now on p-45696, `usask-2026-11-02/`). Adds a description, P244, P69 Toronto (PhD, 1986: AHA record 26746; LC catalogues *Revolution and reaction*, 1986, from Toronto's copy) and P108 USask (LC note, 1994). No advisor: no source names one.
 - **hoy.qs**: on Q58145423, P184 Richard White (Q7329939), cited to Stanford's thesis record (purl.stanford.edu/bk961hr7970, MODS: primary advisor White, Richard, 1947-; readers Albert Camarillo and C. Matthew Snipp).
 - **dyck.qs** (run 2026-11-02; merge done): merges Q102131227 (ORCID only) into Q101430550, and adds P184 David Wright,
   the PhD qualifiers on McMaster, and P108 Alberta and USask.
