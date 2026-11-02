@@ -712,3 +712,42 @@ ones on rerun.
     historian's books under it;
   - two Thomas Wilkes;
   - better items Sol found for Aguilar and Homan.
+
+## AHA supervisors joined by career facts (2026-11-02, `aha-career-2026-11-02/`, `-02b/`)
+
+The user's goal: ground every historian who supervised a PhD. 6,412 supervisors are keyed from the AHA
+genealogy, and only 1,843 held LC, a QID or ORCID. Famous ones sat on AHA-only keys (Spence, Mosse, Curti,
+Woodward, Bolton, Grafton) that duplicated canon, atlas or LC-books keys. Their dissertations were published
+under other titles, so the works route (`key_aha_lc_books.py`) missed them.
+
+`scripts/key_aha_career.py` joins a supervisor key without a public ID to a key holding a QID (or, without a
+QID, an ORCID). It needs:
+- names that agree, with the given names agreeing as names, not initials alone. Jane and Jack Censer both
+  taught at George Mason, so career facts alone cannot separate them.
+- two career facts on the PID side:
+  - an educated-at (P69, or ORCID education) matching the school of the supervisor's own AHA dissertation;
+  - an employer (P108, or ORCID employment) matching a school where the supervisor's students took their
+    doctorates.
+  A supervisor without a linked dissertation needs employers at two of their students' schools.
+- a plausible age: Wikidata's birth year must put the doctorate between ages 18 and 70. This test keeps
+  Richard L. McCormick (born 1947) off the Pennsylvania dissertation of 1948.
+- only one candidate key passing. An initial makes 'Spence, Jonathan' compatible with Joseph Spence; the
+  facts tell them apart.
+
+Applied:
+- **535 merges** (525 through Wikidata, 10 through ORCID: Brewer, Terpstra, Herzog, Tanaka). Examples:
+  Spence, Mosse, Curti, Grafton, Bolton, Hamerow, Lasch, Gordon S. Wood, Edmund Morgan, Geoffrey Parker,
+  Heather Cox Richardson.
+- 203 surviving AHA keys took the fuller LC or Wikidata name.
+- 7 held by the merge guard (Censer, Cooper, Hahn, Nolan, Bell, Levine, Carlebach).
+
+Supervisors with a public ID: 2,368 of 6,412 (≥10 students: 451 of 821; before: 289).
+
+`candidates.json` lists the rest with the facts found:
+- 748: one fact agrees;
+- 279: no fact agrees;
+- 562: the item states no education or employer;
+- 39: age disagrees.
+These suit a Sol check. Of the supervisors without a candidate holding a QID, 898 have an LC-only candidate and
+1,373 have no candidate key at all. LC's own career notes come next (`scripts/lc_notes_index.py`: 670 data
+found and 373 affiliations).
