@@ -934,3 +934,14 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
 - **Split keys:** J. R. Miller's AHA key merged into p-647 on two LC career facts (Toronto PhD, USask chair),
   recorded in `review-decisions.json`. Waiser (p-76707 / p-143), Neufeld (p-24865 / p-118807) and Graham
   (p-44163 / p-146759) await the user.
+- **On user review:** Englebert is Q124737327, a bare item made from his RHAF article (2019). Janice
+  MacKinnon is Q15502728, the Saskatchewan minister, whose LC heading is Potter-MacKinnon; her key keeps her
+  current name as label.
+- **New items drafted** (`wikidata-publish-2026-11-02/usask-new.qs`, 5 CREATE blocks): Hayden (LC
+  n83211033), Kent (LC no00031298), Smith-Norris (LC no2015106357; PhD Toronto per LC), Keyworth (PhD UCLA,
+  Asian Languages and Cultures, Buddhism, 2000-01 list at alc.ucla.edu) and Mirela David (PhD NYU 2014,
+  advisor Rebecca Karl, AHA 17361). Englebert's item gains P244, PhD Ottawa 2010 and USask. USask profile
+  pages are cited for employment where LC is silent. LC's George A. Keyworth II (1939-2017) is the
+  physicist, not him.
+- **Hayden split** (p-46457 AHA / p-134654 LC: 'Prof. hist. U. of Sask.') awaits the user, like Waiser,
+  Neufeld and Graham.

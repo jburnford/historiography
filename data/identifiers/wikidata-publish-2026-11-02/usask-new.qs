@@ -1,0 +1,44 @@
+Q124737327|Den|"historian of French North America"
+Q124737327|P244|"n2012047093"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q124737327|P69|Q627969|P512|Q752297|P582|+2010-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q124737327|P108|Q1514848|S248|Q18912790|S244|"n2012047093"|S813|+2026-11-02T00:00:00Z/11
+CREATE
+LAST|Len|"J. Michael Hayden"
+LAST|Aen|"Michael Hayden"
+LAST|Den|"historian of early modern France"
+LAST|P31|Q5
+LAST|P106|Q201788|S248|Q18912790|S244|"n83211033"|S813|+2026-11-02T00:00:00Z/11
+LAST|P244|"n83211033"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q1514848|S248|Q18912790|S244|"n83211033"|S813|+2026-11-02T00:00:00Z/11
+CREATE
+LAST|Len|"Christopher Kent"
+LAST|Aen|"Chris Kent"
+LAST|Den|"historian of Victorian England"
+LAST|P31|Q5
+LAST|P106|Q201788|S248|Q18912790|S244|"no00031298"|S813|+2026-11-02T00:00:00Z/11
+LAST|P244|"no00031298"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q1514848|S854|"https://artsandscience.usask.ca/profile/CKent"|S813|+2026-11-02T00:00:00Z/11
+CREATE
+LAST|Len|"Martha Smith-Norris"
+LAST|Den|"historian of United States foreign relations"
+LAST|P31|Q5
+LAST|P106|Q201788|S248|Q18912790|S244|"no2015106357"|S813|+2026-11-02T00:00:00Z/11
+LAST|P244|"no2015106357"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+LAST|P69|Q180865|P512|Q752297|S248|Q18912790|S244|"no2015106357"|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q1514848|S248|Q18912790|S244|"no2015106357"|S813|+2026-11-02T00:00:00Z/11
+CREATE
+LAST|Len|"George Keyworth"
+LAST|Aen|"George A. Keyworth"
+LAST|Den|"scholar of Chinese Buddhism"
+LAST|P31|Q5
+LAST|P106|Q201788|S854|"https://artsandscience.usask.ca/profile/GKeyworth"|S813|+2026-11-02T00:00:00Z/11
+LAST|P69|Q174710|P512|Q752297|P582|+2001-00-00T00:00:00Z/9|S854|"https://alc.ucla.edu/graduate/phd-graduates/"|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q1514848|S854|"https://artsandscience.usask.ca/profile/GKeyworth"|S813|+2026-11-02T00:00:00Z/11
+CREATE
+LAST|Len|"Mirela David"
+LAST|Den|"historian of modern China"
+LAST|P31|Q5
+LAST|P106|Q201788|S854|"https://artsandscience.usask.ca/profile/MDavid"|S813|+2026-11-02T00:00:00Z/11
+LAST|P69|Q49210|P512|Q752297|P582|+2014-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+LAST|P184|Q112550042|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q1514848|S854|"https://artsandscience.usask.ca/profile/MDavid"|S813|+2026-11-02T00:00:00Z/11
