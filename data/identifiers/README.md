@@ -922,3 +922,15 @@ supervisor. The thesis acknowledgements thank Harrison "for his encouragement an
   Q52990224 (York University employer, York profile; LC n92072434, GND, VIAF, ISNI), on user review.
 - **The thesis:** minted as a work (`wrap:139269`, awarded by Warwick i-278), with `authored` from her key
   and `supervised` from Royden Harrison (p-135544, LC n84189745, Q59527776).
+
+## USask historians (2026-11-02, `usask-2026-11-02/`)
+
+The 28 people who supervised USask History PhDs, keyed and checked against Wikidata for the publishing test
+(`scripts/wikidata_publish.py`, batch `wikidata-publish-2026-11-02/usask.qs`).
+- **Items found through GND** (stubs with no P244): Handy, Regehr, Stewart, McCannon, Kitzan; Corrigan through
+  P244.
+- **Carlson's item** Q93354580 was found by exact label. It gives his UBC doctorate and USask and UFV posts. Its
+  ORCID iD (0000-0002-3273-5293) is not taken: that record's one work is a namesake's.
+- **Split keys:** J. R. Miller's AHA key merged into p-647 on two LC career facts (Toronto PhD, USask chair),
+  recorded in `review-decisions.json`. Waiser (p-76707 / p-143), Neufeld (p-24865 / p-118807) and Graham
+  (p-44163 / p-146759) await the user.

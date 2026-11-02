@@ -1,0 +1,15 @@
+Q93354580|P244|"nr98017453"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q113722296|P244|"n80149524"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q113722296|P69|Q640694|P512|Q752297|P582|+1967-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q108555000|P69|Q309331|P512|Q752297|P582|+2011-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q108555000|P184|Q97014383|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q108555000|P108|Q1514848|S248|Q18912790|S244|"no2013063272"|S813|+2026-11-02T00:00:00Z/11
+Q112426250|P244|"n2004008380"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q112426250|P108|Q1514848|S248|Q18912790|S244|"n2004008380"|S813|+2026-11-02T00:00:00Z/11
+Q112487014|P244|"n97031310"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q112487014|P69|Q131252|P512|Q752297|P582|+1994-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q112487014|P184|Q453863|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q113726346|P244|"n00032675"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q113726346|P69|Q180865|P512|Q752297|P582|+1965-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+Q112545811|P244|"no2018001321"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+Q112545811|P69|Q849751|P512|Q752297|P582|+2011-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
