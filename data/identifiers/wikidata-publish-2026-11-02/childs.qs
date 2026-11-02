@@ -1,0 +1,9 @@
+CREATE
+LAST|Len|"Michael J. Childs"
+LAST|Aen|"Michael James Childs"
+LAST|Den|"historian of Victorian and Edwardian England"
+LAST|P31|Q5
+LAST|P106|Q201788|S248|Q18912790|S244|"no93001261"|S813|+2026-11-02T00:00:00Z/11
+LAST|P244|"no93001261"|S248|Q18912790|S813|+2026-11-02T00:00:00Z/11
+LAST|P69|Q201492|P512|Q752297|P582|+1986-00-00T00:00:00Z/9|S854|"https://secure.historians.org/members/services/cgi-bin/memberdll.dll/info?wrp=dissertations.htm"|S813|+2026-11-02T00:00:00Z/11
+LAST|P108|Q3551383|S248|Q18912790|S244|"no93001261"|S813|+2026-11-02T00:00:00Z/11

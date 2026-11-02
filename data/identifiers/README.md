@@ -873,3 +873,18 @@ User probes.
   - The token moves to p-4029 (LC n95116370, Wikidata Q106517284). His McGill post (Wikidata P108) and his
     earlier McMaster post (user review) are both his students' schools.
   - The emptied key p-79723 merges into p-4029.
+
+## Wikidata published from the key log (2026-11-02, `wikidata-publish-2026-11-02/`)
+
+A test of publishing: QuickStatements batches written from the key log, run by the user under their own
+account, then read back from Wikidata.
+- **Statements:** each carries a reference (LC Name Authority File with the LC id, or the AHA directory by
+  URL, with a retrieval date).
+- **Left out:** closed ORCID iDs, full birth dates of living people, and anything resting on name or topic
+  alone.
+- **cunfer.qs** (run, read back: 7 of 7 edits): on Q133633232, a description, P244, P69 Texas (PhD, 1999),
+  P184 Crosby and Gutmann, and P108 Southwest Minnesota State (from 2002) and USask.
+- **childs.qs** (run, read back): created **Q141974979** for Michael J. Childs, with P244, P69 McGill (PhD,
+  1986), P108 Bishop's University and P106 historian. The QID is attached to p-34374.
+- **dyck.qs** (not run yet): merges Q102131227 (ORCID only) into Q101430550, and adds P184 David Wright,
+  the PhD qualifiers on McMaster, and P108 Alberta and USask.
