@@ -35,6 +35,15 @@ Life dates are read with their source (046 or heading) and precision.
 
 Read-only against the repository; LC responses are cached.
 
+**Cited people beyond the canon map** (2026-11-01): `--cited-min/--cited-max` take people from the
+dissertation graph's cited-people.csv in that band of citing dissertations (canon-map people excluded),
+and `--local-index` searches LC's Books All 2016 catalogue offline (scripts/lc_bib_index.py) instead of
+SRU: records with a heading of the person's surname whose title holds the query's words, all of them
+rather than SRU's first five. `--shard i/n` takes one in n surnames, so each run loads only those
+surnames' catalogue records and name authorities (run shards one at a time: memory). Joyce Lorimer
+(cited by 8 dissertations, LC nr91016978 citing her Amazon book) had no key: the cited long tail is keyed
+through its works, never through name and count alone.
+
     python3 scripts/lc_canon_people.py --cache /mnt/e/lc-authorities/sru-canon \\
         --names /mnt/e/lc-authorities/personal-names.parquet --out data/field-research/lc-authorities-2026-10-30/canon
 """
@@ -45,6 +54,7 @@ import re
 import sys
 import time
 import unicodedata
+import zlib
 import urllib.parse
 import xml.etree.ElementTree as ET
 from collections import Counter, defaultdict
@@ -99,8 +109,12 @@ DENIAL = re.compile(r"\bnot (?:the )?(?:author|same|to be confused|identical)\b|
 def source_names_title(sources, cited):
     """An LC 670 source citation that contains the cited main title (three or more words). A two-word
     title ('Labour's war') counts only when the citation opens with it, after 'His'/'Her'/'Their', and a
-    year or the end follows: the form LC uses for the person's own book ('His Labour's war, 1992:')."""
+    year or the end follows: the form LC uses for the person's own book ('His Labour's war, 1992:').
+    Trailing years of the cited title are dropped: LC's note gives the publication year after the title
+    ('English and Irish settlement on the River Amazon, 1989:' for '..., 1550-1646'; Joyce Lorimer)."""
     w = words(main_title(cited))
+    while len(w) > 3 and re.fullmatch(r'1[0-9]{3}|20[0-9]{2}', w[-1]):
+        w = w[:-1]
     if len([x for x in w if x not in STOP]) < 2:
         return False
     sources = [s for s in sources if not DENIAL.search(s)]
@@ -288,6 +302,38 @@ def born_before(authority, year, gap=20):
     return not (born and y) or int(y.group(1)) >= int(born.group(1)) + gap
 
 
+class LocalCatalogue:
+    """LC Books All 2016, offline: per surname, each record's title and all its personal-name headings."""
+
+    def __init__(self, index, families):
+        db = duckdb.connect()
+        db.execute('SET memory_limit = "6GB"')
+        db.execute('CREATE TABLE fam(f VARCHAR)')
+        db.executemany('INSERT INTO fam VALUES (?)', [(f,) for f in families])
+        rows = db.execute(f"""
+            WITH c AS (SELECT DISTINCT control FROM read_parquet('{index}/headings-*.parquet')
+                       WHERE tag IN ('100', '700') AND lower(strip_accents(family)) IN (SELECT f FROM fam))
+            SELECT h.control, h.tag, h.heading, h.family, h.given, h.fuller, h.uri, r.title
+            FROM c JOIN read_parquet('{index}/headings-*.parquet') h USING (control)
+            JOIN read_parquet('{index}/records-*.parquet') r USING (control)
+            WHERE h.tag IN ('100', '700') ORDER BY h.control, h.pos""").fetchall()
+        recs = {}
+        for control, tag, heading, family, given, fuller, uri, title in rows:
+            r = recs.setdefault(control, ([], dict(title=title or '')))
+            r[0].append(dict(tag=tag, heading=heading, family=family or '', given=given or '', fuller=fuller or '', uri=uri or ''))
+        self.by_family = defaultdict(list)
+        for heads, facts in recs.values():
+            for f in {' '.join(words(h['family'])) for h in heads}:
+                self.by_family[f].append((heads, facts, set(words(facts['title']))))
+        self.requests = 0
+
+    def search(self, title, family):
+        """Records with a heading of this surname whose title holds the first eight words of the main title."""
+        self.requests += 1
+        want = set(words(main_title(title))[:8])
+        return [(h, f) for h, f, w in self.by_family.get(' '.join(words(family)), ()) if want and want <= w]
+
+
 def query(title, family):
     t = ' '.join(words(main_title(title))[:8])
     f = (words(family) or [''])[0]
@@ -304,18 +350,34 @@ def main():
     ap.add_argument('--delay', type=float, default=2.0)
     ap.add_argument('--pause', type=float, default=60)
     ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--cited-min', type=int, default=0, help='cited people with at least this many citing dissertations')
+    ap.add_argument('--cited-max', type=int, default=10 ** 9)
+    ap.add_argument('--local-index', type=Path, help='LC Books All 2016 index directory (offline catalogue)')
+    ap.add_argument('--shard', default='', help="'i/n': only surnames whose crc32 mod n is i")
     ap.add_argument('--people', help="only these canon labels, ';'-separated ('Brooke, Stephen;Coates, Colin'); "
                     'loads only their surnames from the name index, so it needs little memory')
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     canon = json.loads(CANON.read_text(encoding='utf-8'))
-    nodes = sorted(canon['nodes'], key=lambda n: -n['cited'])
+    graph_key = canon_keys(canon['nodes'])
+    if args.cited_min:
+        on_map = set(graph_key.values())
+        with (D / 'cited-people.csv').open(newline='', encoding='utf-8') as f:
+            nodes = [dict(name=r['person_key'], label=r['name'], qid=r['qid'] or None, cited=int(r['cited_by_dissertations']))
+                     for r in csv.DictReader(f) if r['person_key'] not in on_map and ', ' in r['name']
+                     and args.cited_min <= int(r['cited_by_dissertations']) <= args.cited_max]
+        graph_key = {(n['name'], n['qid']): n['name'] for n in nodes}
+        nodes.sort(key=lambda n: -n['cited'])
+    else:
+        nodes = sorted(canon['nodes'], key=lambda n: -n['cited'])
+    if args.shard:
+        i, n_ = map(int, args.shard.split('/'))
+        nodes = [n for n in nodes if zlib.crc32(' '.join(words(n['label'].partition(', ')[0])).encode()) % n_ == i]
     if args.limit:
         nodes = nodes[:args.limit]
     if args.people:
         wanted_labels = {x.strip() for x in args.people.split(';')}
         nodes = [n for n in nodes if n['label'] in wanted_labels or n['name'] in wanted_labels]
-    graph_key = canon_keys(canon['nodes'])
     state = State.load(ROOT / 'data/identifiers')
     books = books_by_person({graph_key[n['name'], n['qid']] for n in nodes}, max(args.books, args.offline_books))
     qid_basis = {}
@@ -324,17 +386,23 @@ def main():
         for r in csv.DictReader(f):
             if r['person_key'] in wanted:
                 qid_basis[r['person_key']] = r['qid_basis']
-    if args.people:
+    if args.people or args.cited_min or args.shard:
         db = duckdb.connect()
         fams = sorted({' '.join(words(n['label'].partition(', ')[0])) for n in nodes})
-        names = load_names(args.names, {r[0] for f in fams for r in db.execute(
-            f"SELECT lcid FROM read_parquet('{args.names}') WHERE strip_accents(replace(replace(lower(label), 'œ', 'oe'), "
-            "'æ', 'ae')) LIKE ?", [f + ',%']).fetchall()})
+        db.execute('CREATE TABLE fam(f VARCHAR)')
+        db.executemany('INSERT INTO fam VALUES (?)', [(f,) for f in fams])
+        names = load_names(args.names, {r[0] for r in db.execute(
+            f"""SELECT lcid FROM read_parquet('{args.names}') WHERE strip_accents(replace(replace(lower(
+                  split_part(label, ',', 1)), 'œ', 'oe'), 'æ', 'ae')) IN (SELECT f FROM fam)""").fetchall()})
     else:
         names = load_names(args.names)
     by_id = names[0]
     print(f'{len(nodes)} canon people; {sum(map(len, books.values()))} books to try; {len(by_id):,} LC names', flush=True)
     fetch = Fetcher(args.cache, args.delay)
+    local = LocalCatalogue(args.local_index, {unicodedata.normalize('NFKD', n['label'].partition(', ')[0]).encode(
+        'ascii', 'ignore').decode().lower().strip() for n in nodes}) if args.local_index else None
+    if local:
+        fetch = local                       # requests are counted on the local catalogue
     surnames = {' '.join(words(n['label'].partition(', ')[0])) for n in nodes}
     by_surname = defaultdict(list)          # live, differentiated personal names with a canon surname
     for lcid, a in by_id.items():
@@ -402,19 +470,23 @@ def main():
             if b['work_id'] in owner_of:
                 continue
             looked.add(b['work_id'])
+            if local:
+                recs = local.search(b['title'], family)
+                tried += 1
             q = query(b['title'], family)
-            r = fetch.get(SRU5 + urllib.parse.quote(q))
+            r = dict(status=1) if local else fetch.get(SRU5 + urllib.parse.quote(q))
             if r['status'] == 0:
                 streak += 1
                 if streak >= 3:
                     time.sleep(args.pause)
                 outcome = outcome if owner_of else 'unanswered'
                 continue
-            streak, tried = 0, tried + 1
-            try:
-                recs = records(r['body'])
-            except ET.ParseError:
-                continue
+            if not local:
+                streak, tried = 0, tried + 1
+                try:
+                    recs = records(r['body'])
+                except ET.ParseError:
+                    continue
             ids, seen_title = set(), False
             for heads, facts in recs:
                 if not titles_agree(b['title'], facts.get('title', '')):

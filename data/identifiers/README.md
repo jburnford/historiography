@@ -570,3 +570,28 @@ both QIDs (member `wd-duplicate:<stub>`). The pairs go to `wikidata-duplicates.j
 to propose later. Three pairs: Erika Dyck (Q102131227 / Q101430550), Steven Ruggles (Q58320474 /
 Q7615220) and David S. Jones. The run also attached 1,730 QIDs to new LC keys and made 9 merges (Nathan
 Sivin, C. H. McIlwain, Jill Conway and Jerrold Seigel joined their own AHA dissertations).
+
+## Cited people through their cited works (2026-11-01, `lc-cited-2026-11-01/`, `lc-wikidata-2026-11-01e/`)
+
+The user asked about Joyce Lorimer (Wilfrid Laurier). She had no key, though 8 dissertations cite her books
+and LC's record for her (nr91016978) cites her Amazon book: no AHA, ORCID, harvested-thesis or
+reviewed-book route reaches faculty like her.
+
+`lc_canon_people.py` now runs beyond the canon map:
+- `--cited-min 5`: cited people with five or more citing dissertations who are not on the canon map;
+- `--local-index`: LC's Books All 2016 catalogue, offline;
+- `--shard i/n`: eight shards of about 8 minutes and 5 GB each.
+
+The tests and tiers are the canon route's. Its 670 test now drops trailing years of the cited title
+('..., 1550-1646' against LC's '..., 1989').
+
+- **Coverage:** 65,782 people; 48,300 resolved to an LC authority (34,425 exact, 9,253 single book, 4,616
+  initials only).
+- **Keying** (`key_lc_cited.py`): 26,049 new keys and 9,526 joins to existing keys. Exact-tier people key
+  on their own; single-book people only where the authority already anchors a key (1,382); initials never.
+  Name keys are members (`diss-person:`), not anchors.
+- **LC → Wikidata** then gave 18,237 QIDs and 551 merges, joining newly keyed cited scholars to their ORCID
+  or atlas keys (Joy Porter, Kaushik Roy, Lilian Knowles). 9 merges are held on name forms.
+- Joyce Lorimer is p-146822. Douglas Lorimer's, Michael Childs's and Erika Dyck's cited name keys joined
+  their keys.
+- Wikidata duplicate pairs so far: 0 (`wikidata-duplicates.json`).
