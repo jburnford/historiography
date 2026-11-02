@@ -792,3 +792,8 @@ candidate key, through the merge guard, or attaches an LC-only authority.
 Pilot (g0001, g0002): 16 of 16 `yes`, each with 2 to 4 sources (Vansina, Isaacman, Wm. Roger Louis, Paul
 Kennedy, William Appleman Williams, Jarausch, Falola, Hartog). Applied: 15 merges and 1 LC authority (Donald
 Cutter). About 3 minutes per group, so the full run takes about 4.5 hours.
+
+**Several passing keys** (`aha-career-2026-11-02f/`): when more than one candidate key passes the career
+checks on its own facts, all of them join, within the merge rule. Michael Gauvreau, Maryanne Kowaleski and
+Lynn Hollen Lees were each held as an ORCID key, an LC/Wikidata key and an AHA key; each is now one key
+(6 merges).
