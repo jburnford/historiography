@@ -51,7 +51,7 @@ RESOLUTION = {'established', 'recorded', 'unresolved', 'editorial'}
 # thesis, an AHA advisor token) is `recorded`: real, but no second source vouches for the identity
 # (Fable review, 2026-11-01: 67,693 such people read as established). plan() applies this to clusters that
 # claim `established`, and raises a recorded key when later evidence reaches the bar.
-PUBLIC_SCHEMES = {'lcnaf', 'wd', 'orcid', 'atlas', 'ol'}
+PUBLIC_SCHEMES = {'lcnaf', 'wd', 'orcid', 'atlas', 'ol', 'gnd', 'viaf', 'isni'}
 SOURCE_FAMILY = {'aha-phd': 'aha', 'aha': 'aha', 'aha-diss': 'aha', 'diss-author': 'diss', 'diss-thesis': 'diss',
                  'diss-person': 'diss'}
 KEY_RE = re.compile(r'^([a-z])-([1-9][0-9]*)$')

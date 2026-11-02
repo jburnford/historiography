@@ -847,3 +847,29 @@ The corpus's work ids are build artefacts, so this is a crosswalk beside the log
 build, not log events. Joined with the corpus's `strict-citations.csv.gz`, it lists the citing theses of
 every keyed book. A translation can stand for its original when LC holds only one under the person
 (Bourdieu's *La distinction*).
+
+**One book split in two** (`scripts/key_lc_work_dups.py`, `lc-work-dups-2026-11-02/`). Older LC records keep
+the subtitle in 245 $a after a semicolon or comma (*Retreat from China; British policy in the Far East*), so
+the edition grouping made two works of one book. LC works by the same keyed person with the same whole title
+(punctuation, case and accents ignored) are one: **2,284 merges into 2,272 books**. Rerun of the thesis
+route (`published-as-2026-11-02b/`): **55 more `published_as`**; 176 theses still match several books, now
+real choices (a reprint of the thesis beside the revised book, a later related book). Crosswalk rebuilt as
+`cited-works-2026-11-02b/`: 96,805 cited works → 93,987 keyed books (393,081 citations); only 224 match
+several works (was 643).
+
+## Geoff Cunfer, David Wright (2026-11-02, `cunfer-2026-11-02/`, `aha-wright-2026-11-02/`)
+
+User probes.
+- **Cunfer.** Key p-36505 (AHA thesis, Texas 1999; LC n2004001814 by the career route; 8 USask students).
+  - His ORCID key p-23885 merges in by its works: Crossref lists three 2021 *Social Science History* articles
+    under 0000-0003-1783-8099, one cited in the corpus as his.
+  - That ORCID record is **deactivated** (pub.orcid.org answers 409; 21 such iDs in the log, from the
+    2026-09-21 profile harvest's `http409` status). The iD stays as an anchor, since Crossref carries it.
+  - Wikidata Q133633232 has no P244. Its GND record 1155506758 (lobid) is sameAs LC n2004001814 and the
+    item, so `wd:`, `gnd:`, `viaf:` and `isni:` attach.
+  - `gnd`, `viaf` and `isni` are now public schemes (PUBLIC_SCHEMES): existing PIDs for a LINCS export.
+- **Wright.** AHA advisor 126090 (David Wright: Dyck at McMaster 2005, Jacklin 2009, Chan at McGill 2025) sat
+  on an ID-less key after his namesake's Wisconsin thesis was split off (2026-11-01).
+  - The token moves to p-4029 (LC n95116370, Wikidata Q106517284). His McGill post (Wikidata P108) and his
+    earlier McMaster post (user review) are both his students' schools.
+  - The emptied key p-79723 merges into p-4029.
