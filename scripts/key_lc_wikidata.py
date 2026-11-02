@@ -41,22 +41,36 @@ from review_atlas_qids import sparql
 ROOT = Path(__file__).resolve().parents[1]
 
 
+QUERY_VERSION = 'p244-v1'      # bump when the item query below changes; the per-id cache is then rebuilt
+
+
 def items_for(lcids, cache):
-    """LC id -> {QID: dict(labels, births, human)} for live items whose P244 is that id."""
-    out = defaultdict(dict)
-    lcids = sorted(lcids)
-    for i in range(0, len(lcids), 200):
-        part = lcids[i:i + 200]
+    """LC id -> {QID: dict(labels, births, human)} for live items whose P244 is that id. Results are cached per
+    LC id (`p244-by-lc.json`), so a run asks only for ids it has not seen: caching whole batches by query text
+    re-asked every batch whenever the set of ids changed (2026-11-01: 1,375 new ids re-ran all ~290 batches)."""
+    store = cache / f'{QUERY_VERSION}-by-lc.json'
+    known = json.loads(store.read_text()) if store.exists() else {}
+    todo = sorted(set(lcids) - set(known))
+    for i in range(0, len(todo), 200):
+        part = todo[i:i + 200]
         query = """SELECT ?lc ?item ?label ?birth ?human WHERE {
                 VALUES ?lc { %s } ?item wdt:P244 ?lc .
                 OPTIONAL { ?item rdfs:label ?label FILTER(lang(?label) IN ('en', 'mul')) }
                 OPTIONAL { ?item wdt:P569 ?birth }
                 BIND(EXISTS { ?item wdt:P31 wd:Q5 } AS ?human) }""" % ' '.join(f'"{x}"' for x in part)
-        # cached by the query text, so a changed query is asked again
         rows = sparql(query, cache, 'lc-p244-' + hashlib.sha1(query.encode()).hexdigest()[:12])
+        for x in part:
+            known[x] = []
         for r in rows:
+            known[r['lc']['value']].append(r)
+        if i % 4000 == 0:
+            store.write_text(json.dumps(known))
+    store.write_text(json.dumps(known))
+    out = defaultdict(dict)
+    for lc in lcids:
+        for r in known.get(lc, ()):
             q = r['item']['value'].rsplit('/', 1)[-1]
-            it = out[r['lc']['value']].setdefault(q, dict(labels=set(), births=set(), human=False))
+            it = out[lc].setdefault(q, dict(labels=set(), births=set(), human=False))
             if 'label' in r:
                 it['labels'].add(r['label']['value'])
             if 'birth' in r and r['birth']['value'][:5].lstrip('-')[:4].isdigit():

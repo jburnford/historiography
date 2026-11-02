@@ -645,3 +645,9 @@ of those ISBNs. A key takes the authority when:
   ORCID key into his atlas key; Julie Kalman, Peter Leese and Helen McCartney with their cited-people keys).
 - Queued: 12 people whose books name two LC authorities, and 2 held merges.
 - Common names (Peter Hayes, Marc Jacobs) are safe here: the match runs through a book the person claims.
+
+**LC → Wikidata after the ORCID-books route** (`lc-wikidata-2026-11-01g/`): 97 QIDs and 6 more Wikidata
+duplicate pairs (stub item with the ORCID, real item with the LC authority). 501 keys now hold an LC authority
+and a QID whose item lacks that LC ID: additions to propose to Wikidata (PID-PLAN section 7,
+`qid_lacks_lcnaf`). `items_for` now caches per LC id (`p244-v1-by-lc.json`): caching batches by query text
+re-ran every batch whenever the set of ids changed.
