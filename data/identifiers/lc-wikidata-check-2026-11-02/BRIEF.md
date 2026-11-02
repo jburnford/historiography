@@ -1,7 +1,8 @@
 # Brief: is this Wikidata item the person of this LC authority?
 
-You are checking one pair for a scholarly knowledge graph of historians. Your record is the entry in
-`../entries.json` whose `id` your instructions name.
+You are checking pairs for a scholarly knowledge graph of historians. You get either one entry of
+`../entries.json` (by `id`) or a group of up to eight entries in `../groups.json` (by group `id`); check each
+entry. Keep each check brief: a few lookups, not a biography.
 
 ## The situation
 
@@ -45,7 +46,8 @@ check refused it (`automatic_check_problems`):
 
 ## Output
 
-Write `verdict.json` in your working directory, and nothing anywhere else:
+Write `verdict.json` in your working directory, and nothing anywhere else (for a group: `verdicts.json`, a
+list with one such object per entry, in order):
 
 ```json
 {

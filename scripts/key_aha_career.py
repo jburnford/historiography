@@ -19,7 +19,9 @@ LC's notes alone. The join needs:
   supervisor's students took their doctorates (aha_links.school_agrees);
 - a birth year, if any, that puts the doctorate between ages 18 and 70 (Richard L. McCormick, born 1947, is not
   the author of the Pennsylvania dissertation of 1948);
-- no two different AHA dissertations or PIDs of one kind on the joined keys.
+- no two different AHA dissertations or PIDs of one kind on the joined keys. When several candidate keys
+  pass, each on its own facts, they are one person and all join (Michael Gauvreau's ORCID key and his
+  LC/Wikidata key).
 A supervisor without a linked dissertation of their own needs an employer for two of their students' schools.
 Everything else is listed in `candidates.json` with the facts found (for review or a Sol check): one fact
 only, or none (the item states no education or employer), or several candidate keys passing.
@@ -248,7 +250,7 @@ def main():
         joining = [r for r in rows if r['joins']]
         entry = dict(key=k, label=state.keys[k]['label'], students=len(students),
                      own_dissertations=[dict(record=r['id'], school=r['department'], year=r['year']) for r in own], candidates=rows)
-        if len(joining) > 1:
+        if len(joining) > 1 and not all(r['key'] for r in joining):
             report['several_candidate_keys_join'] += 1
             listed.append(dict(entry, outcome='several_candidate_keys_join'))
             continue
@@ -261,12 +263,15 @@ def main():
             continue
         r = joining[0]
         report['joins'] += 1
+        if len(joining) > 1:        # each key passes on its own: they are one person, as the merge rule allows
+            report['joins_several_keys'] += 1
         why = [f'educated at {", ".join(r["phd_school"])}'] if r['phd_school'] else []
         why.append(f'employed where students took doctorates ({"; ".join(r["employer_schools"][:3])})')
-        pid = f'wd:{r["qid"]}' if r['qid'] else f'orcid:{r["orcid"]}' if r['orcid'] else f'lcnaf:{r["lcnaf"]}'
-        report['joins_' + pid.split(':')[0] + ('_new' if not r['key'] else '')] += 1
+        pids = {f'wd:{x["qid"]}' if x['qid'] else f'orcid:{x["orcid"]}' if x['orcid'] else f'lcnaf:{x["lcnaf"]}' for x in joining}
+        pid = ', '.join(sorted(pids))
+        report['joins_' + sorted(pids)[0].split(':')[0] + ('_new' if not r['key'] else '')] += 1
         clusters.append(dict(type='person', label=state.keys[r['key']]['label'] if r['key'] else state.keys[k]['label'],
-                             anchors={pid} | state.keys[k]['anchors'], members=set(), aliases=set(), resolution='established',
+                             anchors=pids | state.keys[k]['anchors'], members=set(), aliases=set(), resolution='established',
                              basis=f'AHA supervisor {state.keys[k]["label"]} is {pid}: {"; ".join(why)} (career statements of '
                                    f'Wikidata P69/P108, the ORCID record and LC\'s 670/373 notes, against AHA records)'))
     ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state), exclude=args.out))

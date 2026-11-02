@@ -33,14 +33,20 @@ for path in sorted(HERE.glob('g*/verdicts.json')):
         rows.append(dict(id=e['id'], supervisor=e['supervisor'], verdict=v.get('verdict'), same_as=v.get('same_as'), who=v.get('who')))
         if v.get('verdict') != 'yes':
             continue
-        k = e['id']
+        live = state.lookup(e['id'])
+        k = live[0] if len(live) == 1 else e['id']
         cand = next((c for c in e['candidates'] if v.get('same_as') in (c['graph_key'], c['lc'])), None)
+        done = cand and (state.lookup(cand['graph_key']) == [k] if cand['graph_key'] else state.anchor.get(f'lcnaf:{cand["lc"]}') == k)
+        if done:                                                   # applied in an earlier run
+            summary['already_applied'] += 1
+            continue
         if not cand or state.keys[k]['status'] not in ('active', 'provisional'):
             queue.append(dict(kind='sol_yes_not_applicable', id=k, same_as=v.get('same_as')))
             summary['yes_not_applicable'] += 1
             continue
         if cand['graph_key']:
-            c = cand['graph_key']
+            live_c = state.lookup(cand['graph_key'])
+            c = live_c[0] if len(live_c) == 1 else cand['graph_key']
             if state.keys[c]['status'] not in ('active', 'provisional'):
                 queue.append(dict(kind='sol_candidate_key_retired', id=k, same_as=c))
                 continue
