@@ -713,6 +713,12 @@ ones on rerun.
   - two Thomas Wilkes;
   - better items Sol found for Aguilar and Homan.
 
+The remaining 208 pairs ran after the reset as 26 groups of eight (`run-sol-groups.sh`, 2026-11-02). All 284:
+- 243 the same person, with an LC authority that fits the key: `wd:` attached (151 in this run);
+- 28 items that are someone else: rejected, 24 listed in `wikidata-p244-errors.json`;
+- 23 queued (`review-queue.json`): the LC authority does not fit the key, or a side is unclear;
+- 118 birth years in `birth-year-errors.json`.
+
 ## AHA supervisors joined by career facts (2026-11-02, `aha-career-2026-11-02/`, `-02b/`)
 
 The user's goal: ground every historian who supervised a PhD. 6,412 supervisors are keyed from the AHA
