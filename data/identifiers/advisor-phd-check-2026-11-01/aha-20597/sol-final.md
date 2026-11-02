@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): the linked dissertation is hers—University of Wisconsin–Madison, PhD, 1970, *Jean Perrin and Molecular Reality*.

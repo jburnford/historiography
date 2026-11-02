@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his: University of Minnesota, PhD, 1958.

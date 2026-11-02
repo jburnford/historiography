@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is Kolko’s: Harvard University, PhD, 1962. Institution, year, and title are independently corroborated.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/advisor-phd-check-2026-11-01/aha-126038/verdict.json). The linked dissertation is Timothy Anna’s: Duke University, PhD, 1969.

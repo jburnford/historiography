@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—Marrus’s Berkeley PhD (1968) and thesis title match the linked record.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**—University of Washington, PhD, 1971. Evidence and the identification caveat are included.

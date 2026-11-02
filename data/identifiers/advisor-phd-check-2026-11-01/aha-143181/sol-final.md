@@ -1,0 +1,1 @@
+Wrote `verdict.json`. Confirmed Harvard PhD, 1958; the linked dissertation is his.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—the linked dissertation is Stolarik’s University of Minnesota PhD, awarded in 1974.

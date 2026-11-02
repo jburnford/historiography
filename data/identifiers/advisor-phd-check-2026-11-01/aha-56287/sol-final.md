@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/advisor-phd-check-2026-11-01/aha-56287/verdict.json). The linked dissertation is his; the evidence supports Yale, 1997, with an older CV’s 1998 discrepancy noted.

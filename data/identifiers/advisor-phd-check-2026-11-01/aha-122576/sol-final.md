@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json). The linked dissertation is hers: Stanford University, PhD, 1980; the title matches.

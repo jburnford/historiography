@@ -662,3 +662,17 @@ Killerby, Vanessa (Jane) Smith. Two keys now hold two LC authorities:
   LC record looks mixed, not the merge.
 
 Geraldine Harris / Pinch, a name change, is left for the user.
+
+## Advisor doctorates checked by Sol agents (2026-11-01, `advisor-phd-check-2026-11-01/`)
+
+71 advisors had only Canadian students but were linked by the AHA genealogy to a US dissertation, the
+pattern of the David Wright namesake. One Sol 6.1 agent per advisor, five at a time, looked up each
+advisor's doctorate in open sources (`BRIEF.md`: faculty pages, CVs, theses catalogues, obituaries; the
+provenance and identity rules apply). Each wrote `verdict.json` with its evidence.
+
+- 70 links are right: the advisor's doctorate is the linked dissertation (Martin Fichman, Harvard 1969; Bert
+  Hall, UCLA 1971; Guy Thompson, Minnesota 2000; D. N. Sprague, Washington 1971; Brian Lewis, Harvard 1994).
+  They are recorded as kept in `review-decisions.json`.
+- 1 is a namesake's. Lisa Smith (Saskatchewan, then Essex) holds an Essex PhD (2002), so the Akron 2011
+  dissertation left her key and is now its own person (`apply-verdicts.py`).
+- The pattern is rare: with Wright, Morton and Elliott, found earlier by hand, 4 of 74 links were wrong.

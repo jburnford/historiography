@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is Frank Chalk’s: PhD, University of Wisconsin–Madison, 1970.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his: University of Minnesota, History PhD, 2000, confirmed by Minnesota’s doctoral register and Thompson’s own published self-citation.

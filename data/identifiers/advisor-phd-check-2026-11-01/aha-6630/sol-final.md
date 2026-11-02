@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/advisor-phd-check-2026-11-01/aha-6630/verdict.json). Confirmed Princeton PhD, 2000; the linked dissertation is his.

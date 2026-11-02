@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): the dissertation is his. Evidence supports Harvard, 1976; the AHA’s 1977 date is flagged for review.

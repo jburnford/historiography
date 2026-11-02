@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—the linked dissertation matches his Howard University PhD, 1976.

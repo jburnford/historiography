@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is Fichman’s Harvard PhD from 1969. No other files were written.

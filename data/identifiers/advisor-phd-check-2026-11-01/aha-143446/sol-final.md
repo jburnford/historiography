@@ -1,0 +1,1 @@
+Created [verdict.json](./verdict.json): **yes**, the linked dissertation is his—Columbia University, PhD, 1967.

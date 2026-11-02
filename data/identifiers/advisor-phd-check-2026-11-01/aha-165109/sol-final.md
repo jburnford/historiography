@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is hers—Johns Hopkins University, PhD, 1972.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his: Tufts University, History PhD, 2009, with a matching title. Confirmed through Tufts, SSRC, and the student’s thesis.

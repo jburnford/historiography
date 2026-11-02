@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): Harvard PhD, 1969; linked record judged his. Exact thesis title remains unverified.

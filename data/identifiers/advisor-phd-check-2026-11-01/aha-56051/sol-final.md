@@ -1,0 +1,1 @@
+Wrote `verdict.json`: Cornell University, PhD, 1995. The linked dissertation is hers (`yes`).

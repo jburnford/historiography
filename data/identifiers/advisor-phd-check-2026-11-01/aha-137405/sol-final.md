@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The dissertation is hers; the doctorate year remains unresolved because sources conflict.

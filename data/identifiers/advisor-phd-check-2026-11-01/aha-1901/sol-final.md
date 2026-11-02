@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—the linked dissertation is his Yale PhD from 1970.

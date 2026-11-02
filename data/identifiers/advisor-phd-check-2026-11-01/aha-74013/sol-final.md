@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Gil Troy earned his PhD at Harvard in 1988; the linked dissertation is his.

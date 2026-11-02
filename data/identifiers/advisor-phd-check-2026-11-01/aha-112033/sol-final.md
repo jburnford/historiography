@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Susan Whitney earned her PhD at Rutgers in 1994; the linked dissertation is hers.

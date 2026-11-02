@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is Hundert’s: Columbia University, PhD, 1978.

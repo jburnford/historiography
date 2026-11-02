@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is Lambi’s—PhD, University of Minnesota, 1958.

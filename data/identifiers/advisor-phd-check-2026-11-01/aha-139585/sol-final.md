@@ -1,0 +1,1 @@
+Wrote `verdict.json`: the linked dissertation is his—Loyola University Chicago, 1942.

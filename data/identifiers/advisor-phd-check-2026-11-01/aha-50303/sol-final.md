@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/advisor-phd-check-2026-11-01/aha-50303/verdict.json). Verdict: **yes**—her MIT PhD (2008) matches the linked dissertation.

@@ -1,0 +1,1 @@
+Wrote `verdict.json`: Lisa Smith earned her PhD at Essex in 2002; the linked Akron dissertation is not hers. The record includes sources and a note about conflicting year citations.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his: PhD, Carnegie Mellon University, 2000, confirmed by Memorial’s faculty page and Wellcome’s library catalogue.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Jeremy Caradonna earned his history PhD at Johns Hopkins in 2007; the linked dissertation is his.

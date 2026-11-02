@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): the linked dissertation is his. Princeton PhD, 1972; the conflicting 1971 date is documented.

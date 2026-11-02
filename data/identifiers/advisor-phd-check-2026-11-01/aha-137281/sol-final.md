@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](./verdict.json). Verdict: **yes**—the linked dissertation is Boulle’s Berkeley PhD from **1968**.

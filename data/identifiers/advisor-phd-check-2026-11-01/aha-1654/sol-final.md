@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is hers: PhD, University of Maine, Orono, 1983.

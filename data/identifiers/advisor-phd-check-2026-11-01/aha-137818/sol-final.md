@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is George Weisz’s: History PhD, Stony Brook University, 1976.

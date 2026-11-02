@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is Granatstein’s—Duke University, PhD, 1966.

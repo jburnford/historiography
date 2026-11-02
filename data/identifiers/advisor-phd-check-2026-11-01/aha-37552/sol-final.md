@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—Cynthia Milton earned her History PhD at Wisconsin–Madison in 2002. The subtitle variation is documented.

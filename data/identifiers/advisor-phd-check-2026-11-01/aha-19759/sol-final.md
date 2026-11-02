@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json). Elizabeth Mancke earned her PhD at Johns Hopkins in 1990; the linked dissertation is hers.

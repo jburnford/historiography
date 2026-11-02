@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked record is hers—Berkeley PhD, 1975. Exact dissertation title remains unconfirmed.

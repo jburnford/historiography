@@ -1,0 +1,1 @@
+Wrote [verdict.json](/home/jic823/historiography/data/identifiers/advisor-phd-check-2026-11-01/aha-51972/verdict.json). The linked dissertation is his: Harvard PhD, 1994.

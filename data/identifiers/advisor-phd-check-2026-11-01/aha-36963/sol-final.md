@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Jennifer Evans earned her PhD at SUNY Binghamton in 2001; the linked dissertation is hers.

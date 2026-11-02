@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): the linked dissertation is Sara Beam’s. Her Berkeley PhD dates to 1999; the linked record’s 2000 date discrepancy is noted.

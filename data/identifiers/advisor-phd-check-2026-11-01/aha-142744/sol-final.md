@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked record is Saywell’s. Sources confirm Harvard, 1956; the notes qualify the title evidence.

@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is his. Confirmed PhD: University of Chicago, 1994. Exact title remains unverified.

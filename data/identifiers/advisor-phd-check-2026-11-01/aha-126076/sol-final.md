@@ -1,0 +1,1 @@
+Wrote and validated [verdict.json](verdict.json). The linked dissertation is John Hellman’s: Harvard PhD, 1969.

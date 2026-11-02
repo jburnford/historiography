@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): the linked dissertation is Andrew Gow’s—University of Arizona, PhD, 1993. Recorded the title discrepancy: “Europe” versus “Germany.”

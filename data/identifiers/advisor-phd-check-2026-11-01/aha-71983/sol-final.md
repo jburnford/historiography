@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is Gavin Foster’s: PhD in History, University of Notre Dame, 2009.

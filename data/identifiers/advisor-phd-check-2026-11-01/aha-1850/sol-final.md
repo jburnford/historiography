@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Bert Hall earned his UCLA History PhD in 1971; the linked dissertation is his.

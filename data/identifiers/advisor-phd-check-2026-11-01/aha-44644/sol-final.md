@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is Krapfl’s Berkeley history PhD, awarded in 2007.

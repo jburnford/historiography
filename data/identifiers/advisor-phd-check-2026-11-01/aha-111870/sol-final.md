@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): **yes**, Howard University PhD, 2002. The evidence records a dissertation-title discrepancy.

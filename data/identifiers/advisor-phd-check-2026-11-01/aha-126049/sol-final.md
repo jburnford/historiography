@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json): **yes**, the linked dissertation is Heller’s—Cornell University, PhD, 1969.

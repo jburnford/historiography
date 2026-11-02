@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—Yost’s 1998 Case Western Reserve PhD matches the linked dissertation.

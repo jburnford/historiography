@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): **yes**, the linked dissertation is hers—Rutgers, PhD, 1994. Recorded the title discrepancy in the notes.

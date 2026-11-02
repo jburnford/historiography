@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Bernard Luk earned his PhD at Indiana University in 1977; the linked dissertation is his.

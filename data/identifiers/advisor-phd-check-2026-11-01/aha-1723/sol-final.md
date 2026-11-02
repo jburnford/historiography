@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is Sydney Eisen’s: Johns Hopkins University, PhD, 1957. Three institutional sources support the verdict.

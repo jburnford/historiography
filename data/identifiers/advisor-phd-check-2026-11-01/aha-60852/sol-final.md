@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his: University of Maine, PhD, 1983. The evidence notes that its title omits “Literary.”

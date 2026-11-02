@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json). Debra Ham earned her PhD at Howard University in 1984; the linked dissertation is hers.

@@ -1,0 +1,1 @@
+Wrote `verdict.json`: **yes**, UMass Amherst PhD, 1999. The dissertation title discrepancy is documented.

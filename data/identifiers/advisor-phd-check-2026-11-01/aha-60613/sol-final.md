@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json): the dissertation is hers. Sources support Rutgers, 1991; the linked record’s 1992 discrepancy is noted.

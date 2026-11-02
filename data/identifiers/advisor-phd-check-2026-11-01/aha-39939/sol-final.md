@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Verdict: **yes**—Northwestern University, PhD, 1991; the dissertation title matches.

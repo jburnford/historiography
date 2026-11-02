@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Confirmed Yale PhD, 2003; the linked dissertation is his.

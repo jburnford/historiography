@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). The linked dissertation is his; the conflicting 1962/1964 dates are documented, with the degree year left null.

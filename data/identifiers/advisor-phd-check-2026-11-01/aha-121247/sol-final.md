@@ -1,0 +1,1 @@
+Wrote [verdict.json](./verdict.json). Stephen Harris earned his PhD at Duke University in 1979; the linked dissertation is his.

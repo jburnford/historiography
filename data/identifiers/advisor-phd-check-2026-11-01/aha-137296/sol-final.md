@@ -1,0 +1,1 @@
+Wrote [verdict.json](verdict.json). Bumsted earned his PhD at Brown University in 1965; the linked dissertation is his.

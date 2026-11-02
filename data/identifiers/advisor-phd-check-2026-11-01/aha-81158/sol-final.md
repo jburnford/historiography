@@ -1,0 +1,1 @@
+Wrote `verdict.json`. Verdict: **yes**—the linked record is Bruce’s 2010 Western Michigan PhD, with a title variation noted.
