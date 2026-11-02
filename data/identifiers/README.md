@@ -616,3 +616,18 @@ rerun then made 11 held merges (Quiroga, Huebner, Condorcet, Thorold Rogers, Arr
   Marcocci's holds Jorge Flores's);
 - a name change for the user (Geraldine Harris / Pinch);
 - name forms (Uekötter, Boterbloem, Kovesi / Killerby).
+
+## QIDs that name someone else (2026-11-01, `qid-name-audit-2026-11-01/`, `tiers-2026-11-01c/`)
+
+Every person key's QIDs (about 42,000) were checked against the item's English and default labels and
+aliases. 89 disagree with the key's name, most of them transliterations or short forms (Kharkhordin /
+Harhordin, Slava / Vyacheslav Gerovitch). 14 name someone else entirely: neither the surname nor the first
+given name is similar, and the key's name is in Latin script. In 13 cases a Wikidata item carries the
+wrong person's ORCID (P496), so the registry gave an ORCID key a stranger's QID (Katherine Blouin →
+Jennifer Guiliano, Karel Šima → Miroslav Michela, Giuseppe Marcocci → Jorge Flores).
+
+- 13 QIDs were detached (kept as `rejected:wd:`).
+- Clara Florensa's key also held Joseph Martin's Minnesota 2013 dissertation, tied through Joseph D.
+  Martin's item. Item and dissertation now form their own key (p-147413).
+- The tier sweep then detached 7 Wikidata-derived LC claims of the rejected items.
+- The pairs are worth reporting to Wikidata (wrong P496), with the duplicates list.
