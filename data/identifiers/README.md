@@ -631,3 +631,17 @@ Jennifer Guiliano, Karel Šima → Miroslav Michela, Giuseppe Marcocci → Jorge
   Martin's item. Item and dissertation now form their own key (p-147413).
 - The tier sweep then detached 7 Wikidata-derived LC claims of the rejected items.
 - The pairs are worth reporting to Wikidata (wrong P496), with the duplicates list.
+
+## LC through the books a person's own ORCID record claims (2026-11-01, `orcid-lc-2026-11-01/`)
+
+`scripts/key_orcid_lc.py`: 22,865 ORCID keys had no LC authority. Their cached ORCID records list works, and
+5,974 of them claim books with ISBNs (29,323 ISBNs). LC's 2016 catalogue (offline) holds records for 5,042
+of those ISBNs. A key takes the authority when:
+- exactly one heading on the book's record has a compatible name (a joint book takes the closest name);
+- that heading resolves to a live, differentiated authority;
+- all the person's books agree on that authority.
+
+- 1,500 keys resolved: 1,375 gain an LC authority, and 123 merge with the key already holding it (John Tosh's
+  ORCID key into his atlas key; Julie Kalman, Peter Leese and Helen McCartney with their cited-people keys).
+- Queued: 12 people whose books name two LC authorities, and 2 held merges.
+- Common names (Peter Hayes, Marc Jacobs) are safe here: the match runs through a book the person claims.
