@@ -651,3 +651,14 @@ duplicate pairs (stub item with the ORCID, real item with the LC authority). 501
 and a QID whose item lacks that LC ID: additions to propose to Wikidata (PID-PLAN section 7,
 `qid_lacks_lcnaf`). `items_for` now caches per LC id (`p244-v1-by-lc.json`): caching batches by query text
 re-ran every batch whenever the set of ids changed.
+
+**Name-form merges by review** (`long-tail-review-2026-11-01/name-form-merges.json`): six LC → Wikidata merges
+were held on name forms. In each, the item citing one key's LC authority is the QID on the other key:
+Viqueira / Viqueira Albán, James Elkins, Boterbloem (Kees / Case), Uekötter / Uekoetter, Kovesi / Kovesi
+Killerby, Vanessa (Jane) Smith. Two keys now hold two LC authorities:
+- **Catherine Kovesi:** she published earlier as Catherine Kovesi Killerby. LC holds a record under each name.
+- **Vanessa Smith:** LC catalogued her co-edited *Exploration and Exchange: A South Seas Anthology* under
+  n97013423, whose own source note cites a dog book. Wikidata's item for her carries both LC IDs. The
+  LC record looks mixed, not the merge.
+
+Geraldine Harris / Pinch, a name change, is left for the user.
