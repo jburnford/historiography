@@ -907,8 +907,6 @@ account, then read back from Wikidata.
   P184 Crosby and Gutmann, and P108 Southwest Minnesota State (from 2002) and USask.
 - **childs.qs** (run, read back): created **Q141974979** for Michael J. Childs, with P244, P69 McGill (PhD,
   1986), P108 Bishop's University and P106 historian. The QID is attached to p-34374.
-- **neeson.qs** (not run yet): on Q52990224, a description (the item's is bare "historian"), P69 Warwick
-  (PhD, 1977) and P184 Royden Harrison (Q59527776), cited to her thesis record at Warwick (WRAP 139269).
 - **dyck.qs** (not run yet): merges Q102131227 (ORCID only) into Q101430550, and adds P184 David Wright,
   the PhD qualifiers on McMaster, and P108 Alberta and USask.
 
