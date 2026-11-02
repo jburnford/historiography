@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors checked: eight `yes` verdicts. JSON validation and source-host checks passed.

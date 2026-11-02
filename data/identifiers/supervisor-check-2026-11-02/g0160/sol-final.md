@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts. All eight match a candidate; source discrepancies are noted. Validated the schema, group order, candidate IDs and source routes.

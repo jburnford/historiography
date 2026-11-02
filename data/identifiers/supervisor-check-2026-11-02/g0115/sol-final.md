@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts and supporting sources. All eight matched candidates. Preserved Dellheim’s doctoral-year discrepancy in the notes. JSON and source checks passed.

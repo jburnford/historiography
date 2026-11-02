@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight supervisor checks. Validated the JSON, entry order, candidate IDs, and source routes.

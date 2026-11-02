@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight matches are “yes,” with evidence and doctorate-year discrepancies noted. No other files were written.

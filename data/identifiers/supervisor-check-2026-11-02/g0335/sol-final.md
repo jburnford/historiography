@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors matched to LC candidates. Validated the format, order, identifiers, and source restrictions; noted the degree-year discrepancies.

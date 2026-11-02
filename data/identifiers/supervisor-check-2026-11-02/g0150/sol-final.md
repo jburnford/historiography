@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight sourced verdicts in group order. All eight matches are “yes”; structure and candidate identifiers validated.

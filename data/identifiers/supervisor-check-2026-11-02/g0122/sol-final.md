@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order. All eight matches are confirmed; the separate Philliou ORCID candidate remains unconfirmed. Validation and source checks passed.

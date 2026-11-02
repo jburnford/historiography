@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): all 8 supervisors checked—5 yes, 3 no. Format and source-host checks passed. No other files were written.

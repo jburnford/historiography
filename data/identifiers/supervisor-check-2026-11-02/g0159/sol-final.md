@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight verified matches, supporting evidence, and a qualification about Sarah Potter’s LC record. Validated the format, order, and candidate IDs.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): eight supervisors checked, with five matches and three non-matches. Format, ordering, and source-host checks passed.

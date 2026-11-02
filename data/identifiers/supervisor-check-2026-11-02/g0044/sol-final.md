@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json) with all eight supervisors in order. All verdicts are `yes`; the Rembis duplicate candidates are noted.

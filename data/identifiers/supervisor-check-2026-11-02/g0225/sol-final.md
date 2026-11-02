@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all 8 supervisors, in order—5 yes, 3 no.

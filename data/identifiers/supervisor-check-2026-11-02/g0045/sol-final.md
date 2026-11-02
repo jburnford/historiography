@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0045/verdicts.json) with all eight verdicts. Judith Smith’s conflicting PhD record is flagged in the notes.

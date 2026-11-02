@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): six confirmed matches, one rejection, and one unclear. Format and source-rule checks passed.

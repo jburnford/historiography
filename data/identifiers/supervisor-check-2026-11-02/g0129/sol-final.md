@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts, supporting evidence, and qualifications. Validated entry order, candidate IDs, schema, and source routes.

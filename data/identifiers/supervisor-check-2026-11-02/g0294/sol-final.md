@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0294/verdicts.json): eight verdicts—five yes, three no. Validated format, ordering, candidate IDs, and source routes.

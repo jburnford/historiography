@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors checked, in order. All eight matches are supported; qualifications and the dissertation date discrepancy are noted.

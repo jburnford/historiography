@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order, supporting evidence, and validated candidate IDs. All eight verdicts are `yes`.

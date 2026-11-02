@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors checked and matched. Recorded the role and degree-year qualifications. No other files written.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors: five matches and three rejections. Validated the format and candidate IDs; flagged Harry Marks’s conflicting doctorate record.

@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0102/verdicts.json) with eight verdicts in group order. All eight are “yes”; the duplicate Ryan Szpiech candidates are noted. No other files were written.

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight supervisors checked, with six matches and two rejections.

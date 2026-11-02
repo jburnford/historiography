@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](./verdicts.json) with all eight verdicts in order. All eight match; Liam Kelley’s second candidate is noted as an apparent duplicate.

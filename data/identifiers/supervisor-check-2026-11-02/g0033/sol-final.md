@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in the required order. All eight matches are `yes`, with supporting sources. Format and source checks passed.

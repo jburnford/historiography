@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight confirmed matches and supporting sources. Validated structure, candidate IDs, order, and source restrictions. No other files were written.

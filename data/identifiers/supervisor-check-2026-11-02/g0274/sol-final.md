@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order: five matches and three rejections. JSON and candidate IDs validated.

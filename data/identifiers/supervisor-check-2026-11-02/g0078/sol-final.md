@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight supported matches in group order. Noted Cherry’s PhD-year discrepancy and duplicate LC records. No other files written.

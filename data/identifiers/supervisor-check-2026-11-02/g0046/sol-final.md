@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](./verdicts.json) with all eight supervisors in order, including evidence and candidate selections. No other files were written.

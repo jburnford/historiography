@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order. All match their candidates; Mahood’s 1994 supervision discrepancy is noted. JSON validation passed.

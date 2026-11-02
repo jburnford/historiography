@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0311/verdicts.json) with eight validated verdicts: seven confirmed matches and one unclear (Michele Wagner). No other files were written.

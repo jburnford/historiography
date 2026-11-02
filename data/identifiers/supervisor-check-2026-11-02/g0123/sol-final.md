@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight verdicts in group order, including evidence and qualifications. No other files were written.

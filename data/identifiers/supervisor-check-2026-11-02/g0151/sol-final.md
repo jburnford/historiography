@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight supervisors have confirmed candidate matches, with sources and brief notes.

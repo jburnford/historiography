@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight supported “yes” verdicts, in group order. Validated the JSON format and candidate IDs.

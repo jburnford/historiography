@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order: 5 yes, 3 no. JSON structure, candidate IDs, and source-host checks passed.

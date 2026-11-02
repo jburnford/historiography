@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight verdicts. All matched a candidate; Butler’s conflicting doctorate is flagged.

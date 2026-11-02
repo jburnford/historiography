@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0144/verdicts.json) with eight verdicts in the required order. All eight are `yes`, with sources and verification limits noted. No other files were written.

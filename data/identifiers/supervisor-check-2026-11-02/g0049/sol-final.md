@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight checked verdicts in the required order. All eight have a supported candidate match. JSON structure and candidate IDs validated.

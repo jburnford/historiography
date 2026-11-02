@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight supervisors matched to LC candidates, with evidence and qualifications. No other files were written.

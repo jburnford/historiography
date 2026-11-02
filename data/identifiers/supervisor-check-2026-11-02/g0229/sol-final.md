@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all eight entries: 5 yes, 2 no, 1 unclear. Validated the format and order. The unclear entry flags a Bianca/Dana Murillo conflation.

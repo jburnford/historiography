@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in the required order. All eight matched a candidate; relevant discrepancies are noted. JSON validation passed.

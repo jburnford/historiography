@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight verdicts, supporting sources, and qualification notes. Validated the format, order, and candidate IDs. No other files written.

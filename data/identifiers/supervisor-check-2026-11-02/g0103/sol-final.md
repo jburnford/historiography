@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in group order. All eight matched a candidate; evidence and verification limits are recorded. JSON structure and candidate IDs validated.

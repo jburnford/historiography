@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): all 8 supervisors checked—6 matches and 2 unclear. Validated the format and ordering.

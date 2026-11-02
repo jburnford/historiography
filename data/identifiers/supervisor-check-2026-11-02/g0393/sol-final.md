@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): seven confirmed matches and one unclear case, Robert Hebert. No other files were written.

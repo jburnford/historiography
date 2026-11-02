@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight checks in order. All match a listed candidate. JSON structure, candidate IDs, and source links validated.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight sourced verdicts, all confirmed matches. Validated the format and group order. No other files were written.

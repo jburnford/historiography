@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 8 supervisors, 6 matches and 2 rejections. Included the Jellison qualification. No other files written.

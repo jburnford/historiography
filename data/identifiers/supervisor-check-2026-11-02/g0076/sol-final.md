@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts, evidence, and notes. Validated the schema, order, and candidate IDs. No other files were written.

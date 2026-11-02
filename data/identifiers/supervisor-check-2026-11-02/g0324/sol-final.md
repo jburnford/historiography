@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts: seven matches and one rejection (Donald Meyer). Format and source-host checks passed.

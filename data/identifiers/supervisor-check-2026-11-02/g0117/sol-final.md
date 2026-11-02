@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight validated verdicts in group order. All eight match; Foray’s duplicate candidate records are noted.

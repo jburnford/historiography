@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 8 supervisors in order: 6 confirmed matches and 2 rejected. Validated the JSON and candidate IDs.

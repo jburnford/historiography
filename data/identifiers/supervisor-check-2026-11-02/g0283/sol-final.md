@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with eight sourced verdicts, all `yes`. Validated order, candidate IDs, schema, and source restrictions.

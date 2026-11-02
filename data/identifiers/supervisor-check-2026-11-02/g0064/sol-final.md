@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0064/verdicts.json) with eight sourced verdicts in group order. All are `yes`; the Cullather doctorate-year discrepancy is noted. Validation passed.

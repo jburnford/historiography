@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight identity matches, supporting sources, and notes qualifying two advisor attributions. Validated the format and group order.

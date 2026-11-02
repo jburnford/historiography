@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all eight supervisors checked: eight “yes” matches. Validated the JSON structure, group order, and candidate IDs.

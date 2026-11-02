@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): seven matches and one mismatch, Richard Jensen. Validated all eight entries and source URLs.

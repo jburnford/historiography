@@ -1,0 +1,1 @@
+Created and validated `verdicts.json`: 8 supervisors, in order—7 yes, 1 no. No other files were written.

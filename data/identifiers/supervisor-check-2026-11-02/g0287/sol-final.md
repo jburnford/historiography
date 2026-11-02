@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight supervisors, including the Hannaway supervision caveat and Schatzberg duplicate-record note.

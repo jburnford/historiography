@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight supervisor verdicts in order, supporting evidence, and access limitations. JSON and candidate IDs validated.

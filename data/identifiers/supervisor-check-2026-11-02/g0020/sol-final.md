@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json) with all eight supervisors in group order. Each has a supported match, with evidence and notes distinguishing alternative candidates.

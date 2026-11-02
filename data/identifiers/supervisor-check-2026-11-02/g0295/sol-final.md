@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0295/verdicts.json) with eight verdicts in group order. All eight match a listed candidate. Format and source checks passed.

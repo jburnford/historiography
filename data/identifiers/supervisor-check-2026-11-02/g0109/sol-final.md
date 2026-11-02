@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight sourced verdicts, all confirmed matches. Validated order, candidate IDs, JSON structure, and source restrictions.

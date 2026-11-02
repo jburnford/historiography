@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): seven confirmed matches; Richard Farrell remains unclear.

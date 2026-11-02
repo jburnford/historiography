@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0177/verdicts.json) with all eight verdicts: five matches and three non-matches. Validated format, order, and candidate IDs.

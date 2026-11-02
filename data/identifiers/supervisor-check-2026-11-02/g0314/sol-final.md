@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): eight supervisors in order, with seven `yes` matches and one `unclear` (Sara Henry). No other files were written.

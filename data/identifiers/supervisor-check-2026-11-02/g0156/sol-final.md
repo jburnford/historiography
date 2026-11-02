@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all eight verdicts and supporting sources. Validated order, schema, and candidate IDs. No other files written.

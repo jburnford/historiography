@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts in order. All eight have supported candidate matches. JSON structure, candidate IDs, and source-host checks passed.

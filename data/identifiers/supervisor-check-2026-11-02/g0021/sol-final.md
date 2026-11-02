@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0021/verdicts.json) with eight supported matches. Format and source checks passed. No other files written.

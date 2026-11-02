@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0251/verdicts.json): eight supported matches, with sources and qualifications. Validated format, order, and candidate IDs.

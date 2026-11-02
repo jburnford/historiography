@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight supervisors in order. The John Weiss verdict flags the unresolved CUNY attribution.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0280/verdicts.json) with eight sourced verdicts, all `yes`. Validated the format, group order, and candidate identifiers. No other files were written.

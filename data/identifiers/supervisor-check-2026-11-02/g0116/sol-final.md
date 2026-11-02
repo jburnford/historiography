@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with eight verdicts in group order. All are “yes,” with discrepancies noted. Validation passed.

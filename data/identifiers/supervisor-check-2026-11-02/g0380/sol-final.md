@@ -1,0 +1,1 @@
+Created and validated `verdicts.json` with all eight supervisors in the required order, including evidence and qualifications.

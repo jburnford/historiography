@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight validated verdicts: seven `yes`, one `no`. No other files were written.

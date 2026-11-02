@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json) with all eight verdicts and supporting evidence. Flagged Mary Lynn Stewart’s conflicting Wikidata identifier.

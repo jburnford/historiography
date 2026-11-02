@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts, supporting sources, and the Dubois advisory conflict noted. JSON structure and source-host checks passed.

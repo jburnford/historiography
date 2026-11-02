@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts and supporting evidence. Validation passed.

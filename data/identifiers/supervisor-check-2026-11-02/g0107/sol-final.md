@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order. All eight have confirmed LC matches. JSON structure, candidate IDs, and source links passed validation.

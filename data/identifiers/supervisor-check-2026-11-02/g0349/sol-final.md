@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): eight verdicts in group order—seven “yes” and one “no,” with sources and qualifications. No other files written.

@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](./verdicts.json): eight supervisors checked, all matched to candidates with supporting sources. No other files written.

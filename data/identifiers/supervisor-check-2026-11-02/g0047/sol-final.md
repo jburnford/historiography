@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](./verdicts.json) with all eight supervisors in order. Each has a supported “yes” match, with evidence and retrieval limitations noted. No other files were written.

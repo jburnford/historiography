@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors: seven matches and one mismatch (Curran). Validated the JSON structure and group order.

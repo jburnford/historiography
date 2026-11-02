@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight sourced verdicts, all “yes,” in the required order. Validated the format and candidate IDs. No other files were written.

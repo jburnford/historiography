@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json): eight verdicts—seven matches and one non-match—with evidence and notes. No other files were written.

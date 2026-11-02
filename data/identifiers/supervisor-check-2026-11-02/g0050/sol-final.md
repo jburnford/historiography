@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all eight supervisors: seven matches and one non-match. Schema, order, candidate IDs and source links validated.

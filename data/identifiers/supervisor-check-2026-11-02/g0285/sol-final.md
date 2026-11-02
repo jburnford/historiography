@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order. All eight matches are `yes`. Format, candidate IDs, and source routes validated.

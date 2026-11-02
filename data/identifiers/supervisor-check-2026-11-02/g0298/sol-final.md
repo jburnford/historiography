@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight supervisors checked: eight “yes” verdicts. Recorded Levitt’s PhD-year discrepancy. JSON structure, group order, and source-host checks passed.

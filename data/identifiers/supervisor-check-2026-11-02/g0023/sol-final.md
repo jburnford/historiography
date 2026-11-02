@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with eight supported matches in group order. No other files were written.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in the required order. All eight supervisors have confirmed candidate matches. JSON structure, candidate IDs, and source restrictions validated.

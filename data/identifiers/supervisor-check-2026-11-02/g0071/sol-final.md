@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight validated verdicts, including notes on Jessica Wang’s duplicate candidates and David Wilson’s conflicting ORCID.

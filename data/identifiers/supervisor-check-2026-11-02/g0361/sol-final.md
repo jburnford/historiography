@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all 8 supervisors checked, with 6 yes and 2 no verdicts. No other files written.

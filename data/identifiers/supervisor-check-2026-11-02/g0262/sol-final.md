@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all eight supervisors in order: six `yes`, two `no`. Validation passed. No other files were written.

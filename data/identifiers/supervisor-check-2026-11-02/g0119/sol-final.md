@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in group order—all `yes`. Evidence and unresolved details are recorded. No other files were written.

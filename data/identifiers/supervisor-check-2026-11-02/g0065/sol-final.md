@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight verdicts in order. All are `yes`, with evidence and qualifications recorded. No other files were written.

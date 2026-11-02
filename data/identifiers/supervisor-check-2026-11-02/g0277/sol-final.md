@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 8 supervisors, with 7 `yes` verdicts and 1 `unclear` (John Nicolson).

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): eight supervisors in order, with seven matches and one rejection (Lynch). No other files were written.

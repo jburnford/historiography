@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight supported matches. Validated the JSON structure and group order. No other files were written.

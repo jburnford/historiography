@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0090/verdicts.json): seven matches and one `no` for John Porter. No other files were written.

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): seven matches and one “no” for William Harris. No other files were written.

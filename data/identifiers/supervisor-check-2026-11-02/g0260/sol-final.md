@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): 8 verdicts—5 yes, 1 no, 2 unclear. Validated structure, group order, candidate IDs, and source routes.

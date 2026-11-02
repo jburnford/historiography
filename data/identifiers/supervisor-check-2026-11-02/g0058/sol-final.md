@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisor matches confirmed. JSON structure, candidate IDs, ordering, and source-host checks passed. No other files were written.

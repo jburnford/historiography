@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order. All eight matches are supported; relevant date discrepancies are noted. JSON validation passed.

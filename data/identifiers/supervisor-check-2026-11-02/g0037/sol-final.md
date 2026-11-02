@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order. All eight matches are supported; William Thomas’s conflicting LC identifier is flagged. JSON and source checks passed.

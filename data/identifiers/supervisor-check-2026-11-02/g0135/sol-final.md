@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order, each matched to a candidate. JSON, candidate IDs and source-route checks passed.

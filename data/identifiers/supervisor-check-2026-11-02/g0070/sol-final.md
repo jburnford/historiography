@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight evidence-backed verdicts, all `yes`. Recorded Shovlin’s PhD-year discrepancy. Validation passed; no other files written.

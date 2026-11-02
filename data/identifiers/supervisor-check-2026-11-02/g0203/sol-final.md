@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json): six matches and two mismatches. All eight entries are in group order; JSON and source checks passed.

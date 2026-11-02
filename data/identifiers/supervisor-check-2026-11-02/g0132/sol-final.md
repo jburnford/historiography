@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order. All eight match a candidate; evidence and qualifications are included. JSON validation and source-host checks passed.

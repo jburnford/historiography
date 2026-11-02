@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts: six matches and two mismatches. JSON validation and source-host checks passed.

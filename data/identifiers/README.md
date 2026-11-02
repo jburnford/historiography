@@ -793,6 +793,21 @@ Pilot (g0001, g0002): 16 of 16 `yes`, each with 2 to 4 sources (Vansina, Isaacma
 Kennedy, William Appleman Williams, Jarausch, Falola, Hartog). Applied: 15 merges and 1 LC authority (Donald
 Cutter). About 3 minutes per group, so the full run takes about 4.5 hours.
 
+**Full run** (all 404 groups, 2026-11-02, about 4 hours): 2,827 `yes`, 336 `no` and 65 `unclear`. Applied
+through the merge guard: 1,659 merges and 1,023 LC authorities attached (21 held by the guard,
+`review-queue.json`). `no` and `unclear` change nothing.
+
+Before applying, each `yes` was checked against the dissertation the genealogy had linked as the supervisor's
+own on name and date (the David Wright error). Where Sol's description of the supervisor gives a doctorate
+elsewhere (`own-phd-disagrees.json`: 25, of which 16 agree on reading), the namesake's record was detached
+and minted as its own person, so the merge would not hand it to the historian (`repair-own-phd.py`,
+`repair-proposal.json`). The nine: John Whitney Hall (Harvard, not Columbia 1953), Judith E. Smith, David O.
+Morgan, Matthew Butler, James R. Hansen, Harry M. Marks, Jonathan Scott, Pekka Hämäläinen (Helsinki, not
+Indiana 1966) and Mary Frank Fox.
+
+**Coverage:** 5,799 of the genealogy's 6,412 supervisors now sit on a key with an LC authority, a QID or an
+ORCID (was 2,992 before the career route and Sol), and 774 of the 822 with ten or more students.
+
 **Several passing keys** (`aha-career-2026-11-02f/`): when more than one candidate key passes the career
 checks on its own facts, all of them join, within the merge rule. Michael Gauvreau, Maryanne Kowaleski and
 Lynn Hollen Lees were each held as an ORCID key, an LC/Wikidata key and an AHA key; each is now one key

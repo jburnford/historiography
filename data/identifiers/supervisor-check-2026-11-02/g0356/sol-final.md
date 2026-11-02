@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): seven matches and one rejection (Robert Asher). No other files written.

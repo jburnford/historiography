@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 7 confirmed matches and 1 unclear, with the Rawski attribution conflict documented.

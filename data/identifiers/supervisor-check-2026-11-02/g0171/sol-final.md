@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order: five matches and three rejections. JSON and source-host checks passed. No other files were written.

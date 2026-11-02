@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): 7 confirmed matches and 1 unclear (Howard Miller). Validation passed. No other files written.

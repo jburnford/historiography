@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 8 supervisors, with 6 matches and 2 unclear verdicts. No other files were written.

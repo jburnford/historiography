@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight sourced verdicts in the required order. All eight matches are confirmed; relevant metadata differences are noted.

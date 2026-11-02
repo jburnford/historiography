@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight sourced verdicts in group order. All eight supervisors matched a candidate. JSON structure and source URLs validated.

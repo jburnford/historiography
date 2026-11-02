@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all eight supervisors in order: seven `no`, one `yes` (Jeffrey Burds). JSON structure and entry order validated.

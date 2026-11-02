@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight supervisors in order. All have supported matches; notes explain the Seeman duplicates and Bartlett alternative. No other files were written.

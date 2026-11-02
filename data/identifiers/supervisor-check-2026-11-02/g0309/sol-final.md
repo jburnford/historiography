@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight checks, evidence, and qualifications. Validated the format, order, and candidate IDs.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight verdicts in group order. All eight have supported matches; discrepancies and verification limits are noted.

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): seven matches and one mismatch, Katja Guenther.

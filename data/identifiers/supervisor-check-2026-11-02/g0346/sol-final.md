@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors checked, in order. All eight matches are supported; Egerton’s conflicting PhD information is noted.

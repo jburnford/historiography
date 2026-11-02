@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors matched to candidates. Included evidence and noted date/title discrepancies. JSON structure, ordering, candidate IDs, and source-host checks passed.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight sourced verdicts in the required order. All eight match a candidate; discrepancies and Dean’s rejected alternative are noted. Validation passed.

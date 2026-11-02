@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors checked in order. All have matching candidates; evidence and qualifications are included. JSON and source-route checks passed.

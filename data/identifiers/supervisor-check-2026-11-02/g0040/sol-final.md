@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight candidates match. Evidence and remaining verification limits are recorded.

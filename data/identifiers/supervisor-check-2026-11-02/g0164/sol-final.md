@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight verdicts, supporting sources, and noted discrepancies. All eight have matching LC candidates.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight supported `yes` verdicts. Both Durba Ghosh candidates are addressed. Format and source checks passed; no other files were written.

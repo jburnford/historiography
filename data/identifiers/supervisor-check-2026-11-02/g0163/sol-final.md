@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts, supporting sources, and qualifications. Validated JSON structure, group order, and candidate IDs.

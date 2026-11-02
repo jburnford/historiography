@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](/home/jic823/historiography/data/identifiers/supervisor-check-2026-11-02/g0029/verdicts.json): all eight supervisors matched, with sources and notes on discrepancies. No other files were written.

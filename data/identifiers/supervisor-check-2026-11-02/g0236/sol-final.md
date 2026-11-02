@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json): 8 verdicts, in order—7 yes and 1 no. Structure, candidate IDs, and source-host checks passed. No other files were written.

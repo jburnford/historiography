@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight verified matches, in group order. Parthasarathi’s duplicate candidate records are noted. JSON validation and source-host checks passed.

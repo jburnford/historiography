@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors: seven confirmed matches and one unclear (Guy Thompson). Validated the format, order, and candidate IDs. No other files were written.

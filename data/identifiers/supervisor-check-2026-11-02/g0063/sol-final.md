@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order. All matches are confirmed; Humphries’s PhD-year discrepancy is noted. No other files were written.

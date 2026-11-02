@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json): eight entries in order, with seven matches and one non-match.

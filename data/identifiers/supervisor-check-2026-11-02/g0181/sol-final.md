@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors: 6 yes, 1 no, 1 unclear. Validated the format and entry order.

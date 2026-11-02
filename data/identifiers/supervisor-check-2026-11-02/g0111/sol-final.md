@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisor matches confirmed, supporting sources and qualifications. Validated structure, order, candidate IDs and source routes.

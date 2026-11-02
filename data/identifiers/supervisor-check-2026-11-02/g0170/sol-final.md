@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 8 supervisors: 7 matches and 1 rejection. Validated order, identifiers, fields, and source hosts.

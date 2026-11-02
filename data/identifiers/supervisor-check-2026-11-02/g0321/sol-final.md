@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts in order. All matched a candidate; the Schultheiss PhD-year discrepancy is noted.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verified matches in group order, including the qualification that Jonathan Golden served as a dissertation reader. JSON structure validated.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts and supporting sources. Validated the format and group order. All eight candidates match; Hébrard’s committee-role qualification is recorded.

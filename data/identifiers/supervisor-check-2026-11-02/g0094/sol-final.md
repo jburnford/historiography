@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all eight verdicts. All match a candidate; Rachel Weil’s duplicate candidates are noted.

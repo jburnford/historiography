@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight checks in order: seven matches and one “no” for Paul Cohen. JSON structure and candidate IDs validated.

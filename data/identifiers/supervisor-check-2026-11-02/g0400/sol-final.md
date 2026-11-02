@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 8 supervisors checked: 1 yes, 7 no. Schema, order, and source-host checks passed.

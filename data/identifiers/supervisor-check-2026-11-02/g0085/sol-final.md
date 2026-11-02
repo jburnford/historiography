@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json): eight supervisors in order, with seven confirmed matches and one “no” for Jack Ellis. No other files were written.

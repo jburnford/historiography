@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order, evidence links, and qualifications. All eight verdicts are `yes`; JSON validation passed.

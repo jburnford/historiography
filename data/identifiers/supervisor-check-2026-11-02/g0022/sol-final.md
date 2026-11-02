@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order. All have confirmed candidate matches; John Ferris’s alternative candidate is distinguished in the notes. Validation passed.

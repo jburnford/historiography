@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): all eight supervisors in order, with seven matches and one rejection (Lester Field). No other files were written.

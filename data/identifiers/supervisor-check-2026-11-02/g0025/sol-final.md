@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): eight matches, in group order, with source evidence and noted discrepancies.

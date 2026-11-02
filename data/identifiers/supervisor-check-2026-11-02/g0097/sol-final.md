@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): all eight supervisors match their candidates. Validated the JSON, entry order, candidate IDs, and source restrictions. No other files were written.

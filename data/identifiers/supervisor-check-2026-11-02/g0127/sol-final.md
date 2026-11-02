@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight verdicts. All are `yes`; Wunderli includes a campus discrepancy note. Validated the schema, order, IDs, and source routes.

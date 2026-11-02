@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order: seven confirmed matches and one unclear (Jeffrey Brown). JSON structure and candidate IDs validated.

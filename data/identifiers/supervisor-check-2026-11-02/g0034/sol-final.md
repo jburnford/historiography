@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts in group order. All have confirmed matches; Stapleton’s PhD-year discrepancy is noted.

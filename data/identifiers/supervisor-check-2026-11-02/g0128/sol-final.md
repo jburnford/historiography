@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight verdicts, supporting sources, and noted discrepancies. Validated structure and group order.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight verdicts in the required order, all `yes`, with evidence and access limitations noted. JSON validation passed. No other files were written.

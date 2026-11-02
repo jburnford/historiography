@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight validated verdicts. All eight have supported matches; discrepancies and disambiguation notes are recorded.

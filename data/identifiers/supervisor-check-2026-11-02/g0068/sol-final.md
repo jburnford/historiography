@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json) with all eight verdicts. All matches are “yes”; Morgan’s conflicting doctorate is explicitly flagged.

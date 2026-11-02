@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all eight supervisors in order. All eight have confirmed matches. JSON validation and source-host checks passed.

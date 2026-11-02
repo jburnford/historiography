@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): eight supervisors, seven matches and one rejection (Gaines Post). No other files written.

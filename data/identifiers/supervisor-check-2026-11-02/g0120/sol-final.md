@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json) with all eight supervisors in order: seven `yes`, one `no`. The David Lewis entry documents the apparent conflation.

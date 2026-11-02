@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all four supervisors in order: three `yes` verdicts and one `no` for Kriegel.

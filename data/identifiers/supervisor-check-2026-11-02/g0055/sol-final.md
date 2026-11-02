@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json): all eight supervisors matched a candidate, with supporting evidence. No other files written.

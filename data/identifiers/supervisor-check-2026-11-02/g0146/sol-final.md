@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with eight sourced verdicts, all `yes`. Validated the schema, entry order, and candidate identifiers.

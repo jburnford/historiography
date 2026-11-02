@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors matched (`yes`), supporting sources, and brief notes. JSON validation and source-host checks passed. No other files were written.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with eight sourced verdicts, all confirmed matches. Validated the format, group order, and candidate identifiers.
