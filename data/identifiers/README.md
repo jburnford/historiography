@@ -1141,3 +1141,20 @@ family name together (generic titles such as 'Introduction' paired everything) a
 - Limits: where the corpus pools namesakes under one id, a namesake's article can reach the keyed person
   (Timothy Mitchell); 127,498 cited articles and chapters have no JSTOR record (BC Studies, most chapters): the
   Crossref harvest is the next route for them.
+
+## Works people claim in ORCID (2026-11-03, `orcid-works-2026-11-03/`)
+
+User, on his own key (the graph held his book, thesis and two reviews; his ORCID record twenty more works): "we
+should pull in the orcid data to the graph", all of it, in this one repo. `scripts/key_orcid_works.py` reads the
+cached ORCID records (data/orcid-2026-09-21/records, harvested 2026-09-21) of every person key holding an ORCID
+(24,469) and keys each claimed work of a scholarly type (journal article, chapter, book, edited book, review,
+thesis, conference paper, report, working paper, encyclopedia entry):
+- 232,813 DOI works (one work per DOI however many claim it), 317,871 works without a DOI
+  (`orcid-work:<orcid>:<put-code>`), 6,062 joined to the claimant's keyed work of the same title (their LC book,
+  thesis or cited article; 1,494 of them by DOI);
+- 569,163 `authored`/`edited` claims (`orcid-claim:<orcid>:<put-code>`, recorded: the person's own record);
+- reviews are labelled 'Review of <the book's title>' (ORCID gives the book's title alone); a preprint is left
+  out beside a work of the same title. 0 held. Jim Clifford's key gains 19 works (the Journal of Historical
+  Geography and CHR articles, the Oxford Handbook chapter, Trading Consequences, 'What Is Active History?').
+**Closed shards are gzipped** (`identifiers.py compress`; readers take `.jsonl.gz`): the log is 2.83 million events
+in 23 shards, about 140 MB in the working tree instead of about 1.1 GB. Loading it peaks near 8 GB of memory.
