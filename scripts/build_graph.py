@@ -1,6 +1,6 @@
 """The key log as a queryable graph: Parquet tables and an embedded LadybugDB (Cypher) database (2026-11-02).
 
-The key log (data/identifiers/events-*.jsonl) is the source of truth in git; this builds a local, disposable
+The key log (data/identifiers/events-*.jsonl, closed shards gzipped) is the source of truth in git; this builds a local, disposable
 view of it that anyone can rebuild from a clean clone. It reads only files tracked in git (it stops if an input
 is untracked) and writes to build/graph/ (git-ignored):
 - nodes: `Person`, `Work`, `Institution` (active keys; identifiers by scheme as columns, all anchors as a list);
@@ -92,7 +92,7 @@ def main():
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     ap.add_argument('--db', action='store_true', help='also load the tables into LadybugDB')
     args = ap.parse_args()
-    shards = sorted(args.state.glob('events-*.jsonl'))
+    shards = sorted(args.state.glob('events-*.jsonl*'))
     require_tracked(shards + [CITES])
     state = State.load(args.state)
     OUT.mkdir(parents=True, exist_ok=True)

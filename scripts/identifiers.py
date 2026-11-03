@@ -31,6 +31,7 @@ import gzip
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -56,7 +57,7 @@ SOURCE_FAMILY = {'aha-phd': 'aha', 'aha': 'aha', 'aha-diss': 'aha', 'diss-author
                  'diss-person': 'diss', 'repo-advisor': 'diss', 'capes-person': 'diss'}
 KEY_RE = re.compile(r'^([a-z])-([1-9][0-9]*)$')
 SHARD_BYTES = 50_000_000
-SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl$')
+SHARD_RE = re.compile(r'^events-([0-9]{4})\.jsonl(\.gz)?$')
 EVENTS = {'mint', 'attach', 'detach', 'merge', 'split', 'retype', 'withdraw', 'relabel', 'status'}
 # Relation predicates, read subject -> object (Fable review 2026-11-01: relations belong in the log, not in
 # side files of keys that go stale when a key merges).
@@ -69,6 +70,12 @@ class LogError(ValueError):
     pass
 
 
+def open_shard(path):
+    """A shard for reading as text, plain or gzipped."""
+    path = Path(path)
+    return gzip.open(path, 'rt', encoding='utf-8') if path.name.endswith('.gz') else open(path, encoding='utf-8')
+
+
 def log_dir(path):
     """The log directory for a directory or a legacy `<dir>/events.jsonl` path (older callers pass that)."""
     path = Path(path)
@@ -76,13 +83,16 @@ def log_dir(path):
 
 
 def shards(directory):
-    """The log's shards in order. Numbers run from 0001 without gaps; a legacy events.jsonl beside shards is
-    refused (the log would be read twice or half)."""
+    """The log's shards in order. Numbers run from 0001 without gaps; a closed shard may be gzipped
+    (`events-NNNN.jsonl.gz`, `identifiers.py compress`; 2026-11-03, about 9x smaller in the working tree), never
+    both forms of one; a legacy events.jsonl beside shards is refused (the log would be read twice or half)."""
     directory = log_dir(directory)
-    found = sorted(p for p in directory.glob('events-*.jsonl') if SHARD_RE.match(p.name))
+    found = sorted((p for p in directory.glob('events-*.jsonl*') if SHARD_RE.match(p.name)),
+                   key=lambda p: (int(SHARD_RE.match(p.name).group(1)), p.name))
     for n, p in enumerate(found, 1):
         if int(SHARD_RE.match(p.name).group(1)) != n:
-            raise LogError(f'{directory}: shard {p.name} out of sequence (expected events-{n:04d}.jsonl)')
+            raise LogError(f'{directory}: shard {p.name} out of sequence (expected events-{n:04d}.jsonl, '
+                           'or a plain and a compressed copy of one shard)')
     if (directory / 'events.jsonl').exists():
         if found:
             raise LogError(f'{directory}: legacy events.jsonl beside shards')
@@ -110,7 +120,7 @@ class State:
         path = Path(path)
         files = [path] if path.is_file() and path.name != 'events.jsonl' else shards(path)
         for f in files:
-            with open(f, encoding='utf-8') as fh:
+            with open_shard(f) as fh:
                 for n, line in enumerate(fh, 1):
                     if line.strip():
                         try:
@@ -313,6 +323,8 @@ def _append(directory, lines, limit):
     if files and files[-1].name == 'events.jsonl':
         raise LogError(f'{directory}: legacy events.jsonl; run `identifiers.py shard` first')
     n = len(files) or 1
+    if files and files[-1].name.endswith('.gz'):    # the last shard is closed (compressed): open the next
+        n += 1
     path = directory / f'events-{n:04d}.jsonl'
     size = path.stat().st_size if path.exists() else 0
     fh = open(path, 'a', encoding='utf-8')
@@ -356,6 +368,28 @@ def shard_legacy(directory):
         target = directory / 'events-0001.jsonl'
         legacy.rename(target)
         return target
+
+
+def compress_closed(directory):
+    """Gzip every shard but the last (closed shards are never written again; 2026-11-03: 48 MB -> 5.5 MB each).
+    The gzipped copy is read back and compared line for line before the plain shard is removed."""
+    directory = log_dir(directory)
+    done = []
+    with locked(directory):
+        files = shards(directory)
+        for f in files[:-1]:
+            if f.name.endswith('.gz'):
+                continue
+            target = f.with_name(f.name + '.gz')
+            with open(f, 'rb') as src, gzip.open(target, 'wb', compresslevel=9) as dst:
+                shutil.copyfileobj(src, dst)
+            with open(f, 'rb') as a, gzip.open(target, 'rb') as b:
+                if a.read() != b.read():
+                    target.unlink()
+                    raise LogError(f'{target.name}: compressed copy differs; plain shard kept')
+            f.unlink()
+            done.append(target)
+    return done
 
 
 # --- carry-forward ----------------------------------------------------------------------------------------
@@ -462,6 +496,7 @@ def main():
     sub.add_parser('check')
     sub.add_parser('summary')
     sub.add_parser('shard')
+    sub.add_parser('compress')
     lk = sub.add_parser('lookup')
     lk.add_argument('name')
     ap_ = sub.add_parser('apply')
@@ -478,6 +513,8 @@ def main():
             print(f'  relation     {p:12} {rel[p, True]} resolved, {rel[p, False]} dangling or ambiguous')
     elif args.cmd == 'shard':
         print(shard_legacy(args.dir) or 'no legacy events.jsonl')
+    elif args.cmd == 'compress':
+        print(' '.join(p.name for p in compress_closed(args.dir)) or 'nothing to compress')
     elif args.cmd == 'lookup':
         state = State.load(args.dir)
         for k in state.lookup(args.name):

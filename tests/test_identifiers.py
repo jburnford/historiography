@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from identifiers import LogError, State, apply_proposal, plan, shard_legacy, shards  # noqa: E402
+from identifiers import LogError, State, apply_proposal, compress_closed, open_shard, plan, shard_legacy, shards  # noqa: E402
 
 
 def person(label, *anchors, members=()):
@@ -22,7 +22,11 @@ def run(directory, clusters, merge_ok=lambda c, k: False):
 
 
 def log_text(directory):
-    return "".join(p.read_text() for p in shards(directory))
+    out = []
+    for p in shards(directory):
+        with open_shard(p) as fh:
+            out.append(fh.read())
+    return "".join(out)
 
 
 def _mint_one(directory, label):
@@ -131,6 +135,28 @@ class ShardTests(unittest.TestCase):
         state = State.load(self.dir)
         self.assertEqual(sorted(state.keys, key=lambda k: int(k[2:])), [f"p-{i}" for i in range(1, 9)])
         self.assertEqual(state.seq, 8)
+
+    def test_closed_shards_compress_and_the_next_append_opens_a_plain_shard(self):
+        self.mint(3, limit=10 ** 9)
+        closed = (self.dir / "events-0001.jsonl").read_text()
+        self.mint(2, limit=len(closed) + 1, start=3)
+        before = log_text(self.dir)
+        self.assertEqual([p.name for p in compress_closed(self.dir)], ["events-0001.jsonl.gz"])
+        self.assertEqual([p.name for p in shards(self.dir)], ["events-0001.jsonl.gz", "events-0002.jsonl"])
+        self.assertEqual(log_text(self.dir), before)
+        self.assertEqual(State.load(self.dir).seq, 5)
+        self.assertEqual(compress_closed(self.dir), [])             # the open shard is never compressed
+        self.mint(1, limit=10 ** 9, start=5)
+        self.assertEqual([p.name for p in shards(self.dir)], ["events-0001.jsonl.gz", "events-0002.jsonl"])
+        self.assertEqual(State.load(self.dir).seq, 6)
+
+    def test_both_forms_of_one_shard_are_refused(self):
+        self.mint(1, limit=10 ** 9)
+        import gzip, shutil
+        with open(self.dir / "events-0001.jsonl", "rb") as a, gzip.open(self.dir / "events-0001.jsonl.gz", "wb") as b:
+            shutil.copyfileobj(a, b)
+        with self.assertRaises(LogError):
+            shards(self.dir)
 
     def test_a_legacy_log_is_moved_once_and_never_read_beside_shards(self):
         self.mint(2, limit=10 ** 9)

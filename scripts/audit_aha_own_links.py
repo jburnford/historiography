@@ -24,7 +24,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from aha_links import school, school_agrees
-from identifiers import DEFAULT_DIR
+from identifiers import DEFAULT_DIR, open_shard, shards
 from key_aha import AHA
 from key_aha_career import DOCTORATE, lc_facts, orcid_facts, wikidata_facts
 
@@ -47,8 +47,8 @@ KEEP = ('aha:', 'aha-phd:', 'wd:', 'lcnaf:', 'orcid:')
 def person_anchors(directory):
     """key -> anchors (KEEP schemes only), following mint/attach/detach/merge, without loading the full log."""
     anchors, into = defaultdict(set), {}
-    for f in sorted(glob.glob(f'{directory}/events-*.jsonl')):
-        for line in open(f, encoding='utf-8'):
+    for f in shards(directory):
+        for line in open_shard(f):
             if '"key": "p-' not in line:
                 continue
             e = json.loads(line)
