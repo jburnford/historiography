@@ -98,6 +98,25 @@ def identities():
     return ident
 
 
+def nice(x):
+    """Round a threshold down to a readable step: 5s below 100, 10s below 200, 25s below 500, then 50s."""
+    for unit in (5, 10, 25, 50):
+        if x < unit * 20:
+            return max(unit, int(x // unit * unit))
+    return int(x // 100 * 100)
+
+
+def top_steps(steps, counts, people, ratio=1.4):
+    """The slider's steps, ending where about `people` remain (user, 2026-11-03: down to 30-40 scholars).
+
+    Steps at or above that last threshold are dropped; readable steps about `ratio` apart fill the gap."""
+    last = nice(sorted(counts, reverse=True)[min(people, len(counts)) - 1])
+    out = [s for s in steps if s < last]
+    while out and out[-1] * ratio < last * 0.95:
+        out.append(nice(out[-1] * ratio))
+    return out + [last]
+
+
 def layout(n, edges, weight):
     """Spring layout of nodes 0..n-1; only the main connected part, others returned as None."""
     G = nx.Graph()
@@ -120,6 +139,8 @@ def main():
     ap.add_argument('--floor', type=int, default=40, help='lowest threshold: people cited by at least this many theses')
     ap.add_argument('--thresholds', default='40,60,80,100,150,200,300', help='filter steps on the page')
     ap.add_argument('--default', type=int, default=150, help='threshold shown when the page opens')
+    ap.add_argument('--last-step-people', type=int, default=35,
+                    help="the slider's last step keeps about this many people; --thresholds above it are replaced")
     ap.add_argument('--keep', type=int, default=5)
     ap.add_argument('--min-co', type=int, default=5)
     ap.add_argument('--lean', type=float, default=1.5)
@@ -180,6 +201,8 @@ def main():
     idx = {p: i for i, p in enumerate(keys)}
     n_theses = len(scope)
     cnt = np.array([citing[p] for p in keys], dtype=np.int64)
+    steps = top_steps(steps, cnt.tolist(), args.last_step_people)
+    assert args.default in steps, (args.default, steps)
     reg_cnt = {reg: Counter() for reg in REGIONS}
     # co-citation counts as a sparse thesis x person product
     from scipy.sparse import csr_matrix
