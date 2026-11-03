@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all five supervisors in order. All five verdicts are `own`. No other files were written.

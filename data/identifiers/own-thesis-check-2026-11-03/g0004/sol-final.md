@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/own-thesis-check-2026-11-03/g0004/verdicts.json) with all eight supervisors marked `own`, supported by university sources. JSON validation and source-host checks passed.

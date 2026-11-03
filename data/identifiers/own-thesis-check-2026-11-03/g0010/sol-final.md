@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all eight supervisors in order. All verdicts are `own`, with supporting sources and notes. JSON validation passed.

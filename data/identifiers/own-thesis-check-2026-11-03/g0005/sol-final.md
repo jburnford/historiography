@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with eight validated verdicts, all `own`. McIntosh’s year discrepancy is noted. No other files were written.

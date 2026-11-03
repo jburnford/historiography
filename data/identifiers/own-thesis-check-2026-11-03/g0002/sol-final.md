@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json): all eight supervisors are marked `own`, with supporting evidence URLs. No other files were written.

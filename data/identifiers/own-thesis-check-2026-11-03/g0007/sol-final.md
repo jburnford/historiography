@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all eight supervisors in order. All eight verdicts are `own`, with supporting sources. JSON structure and source checks passed.

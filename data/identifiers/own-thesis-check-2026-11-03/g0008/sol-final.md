@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json): eight verdicts, all `own`, with source evidence and qualifications. No other files written.

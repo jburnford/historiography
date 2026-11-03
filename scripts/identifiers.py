@@ -61,7 +61,8 @@ EVENTS = {'mint', 'attach', 'detach', 'merge', 'split', 'retype', 'withdraw', 'r
 # Relation predicates, read subject -> object (Fable review 2026-11-01: relations belong in the log, not in
 # side files of keys that go stale when a key merges).
 PREDICATES = {'supervised': ('person', 'work'), 'authored': ('person', 'work'), 'edited': ('person', 'work'),
-              'published_as': ('work', 'work'), 'reviews': ('work', 'work')}
+              'published_as': ('work', 'work'), 'reviews': ('work', 'work'),
+              'advised': ('person', 'person')}
 
 
 class LogError(ValueError):

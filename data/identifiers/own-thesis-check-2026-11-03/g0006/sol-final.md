@@ -1,0 +1,1 @@
+Wrote and validated `verdicts.json`: eight `own` verdicts, with supporting sources and a note on David Frank’s inconsistent authority identifiers.

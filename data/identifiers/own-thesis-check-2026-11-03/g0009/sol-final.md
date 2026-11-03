@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/own-thesis-check-2026-11-03/g0009/verdicts.json) with eight validated verdicts in order. All are `own`; Roelker’s entry notes the Harvard/Radcliffe context and date discrepancy.

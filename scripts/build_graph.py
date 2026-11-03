@@ -9,6 +9,9 @@ is untracked) and writes to build/graph/ (git-ignored):
   whose endpoints do not resolve to one key each are left out and counted;
 - `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
   the review and book keys (user, 2026-11-02: edges between reviewers and the authors of the books);
+- `ADVISED` (Person -> Person), derived: a thesis's supervisor -> its author (with the claim and thesis keys),
+  and the log's person-to-person `advised` claims (Wikidata's doctoral advisors where the student's thesis is
+  not in the log; thesis empty);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py).
@@ -33,7 +36,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from identifiers import DEFAULT_DIR, RETIRED, ROOT, State
+from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 
 OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
@@ -121,7 +124,7 @@ def main():
             report[f'{pred}_unresolved'] += 1
             continue
         a, b = subj[0], obj[0]
-        want = ('work', 'work') if pred in ('published_as', 'reviews') else ('person', 'work')
+        want = PREDICATES.get(pred, ('person', 'work'))
         if (types.get(a), types.get(b)) != want:
             report[f'{pred}_wrong_types'] += 1
             continue
@@ -136,6 +139,12 @@ def main():
                        for b in authors[r['to']] if a != b})
     report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk} for a, b, rv, bk in reviewed],
                                pa.schema([('from', s), ('to', s), ('review', s), ('book', s)]))
+    # advisor -> student: a supervised thesis's authors, and Wikidata's person-to-person advised claims
+    advised = {(r['from'], b): (r['claim'], r['to']) for r in rels['SUPERVISED'] for b in authors[r['to']] if b != r['from']}
+    for r in rels['ADVISED']:
+        advised.setdefault((r['from'], r['to']), (r['claim'], ''))
+    report['ADVISED'] = write('advised', [{'from': a, 'to': b, 'claim': c, 'thesis': t} for (a, b), (c, t) in sorted(advised.items())],
+                              pa.schema([('from', s), ('to', s), ('claim', s), ('thesis', s)]))
 
     awarded = []
     for w in works:
@@ -182,11 +191,12 @@ def load_db(report):
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
+    conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
-                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('REVIEWED', 'reviewed'),
+                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))

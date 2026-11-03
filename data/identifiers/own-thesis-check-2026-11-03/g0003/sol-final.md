@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 7 `own`, 1 `namesake` (Arthur Schlesinger), 0 `unclear`. No other files written.

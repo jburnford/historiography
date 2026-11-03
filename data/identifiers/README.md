@@ -1032,3 +1032,26 @@ records for the books (books-2016.ndjson, books.ndjson) and the credit → LC re
   more. Pass 1 also copied 12 printed credits onto AHA keys as labels ('Professor Amy Froide'): restored
   (`reviews-2026-11-02b/proposal-labels.json`), and a merge now takes a name only from a key with a public PID.
   5 groups refused by the merge guard are listed. A rerun proposes nothing.
+
+## Wikidata's doctoral advisors (2026-11-03, `wikidata-advisors-2026-11-03/`)
+
+`scripts/key_wikidata_advisors.py`: Wikidata's truthy P184 statements for humans (QLever harvest of 2026-10-14,
+400,968 statements) where the student and the advisor each anchor one person key. 1,980 claims, anchored
+`wd-p184:<student>:<advisor>`, `recorded`:
+- 131 `supervised` (advisor → the student's one thesis in the log); 63 were already in the log from the AHA;
+- 1,849 `advised`, a new person → person predicate (Wikidata's own form) for students whose thesis is not in
+  the log: mostly the French doctoral genealogy (Goubert → Daniel Dessert, Labrousse → Alain Plessis, Mousnier →
+  Jean de Viguerie), British and German supervisions.
+The graph build derives `ADVISED` (advisor → student) from `SUPERVISED` × `AUTHORED` and these claims. A rerun
+proposes nothing.
+
+## Advisor own-dissertation links re-audited (2026-11-03, `aha-own-link-audit-2026-11-03/`, `own-thesis-check-2026-11-03/`)
+
+`scripts/audit_aha_own_links.py` rerun after the 11-02 merges (more advisor keys now hold PIDs): 1,896
+confirmed, 107 `contradicted_lc`, 90 `doubtful`. The audit's school matcher misreads LC's abbreviations ('Ph.D.,
+Univ. of Colo.'), so the contradicted links were re-read with `key_aha_lc_notes.assess`: 44 agree, 38 vague,
+25 name another school, 11 of them no longer on the key (repaired 11-02). The 85 links still on the key (14
+contradicted, 71 doubtful) went to Sol (`BRIEF.md`, 11 groups of 8): 83 `own` (first degrees, posts and
+postdoctoral fellowships), 2 `namesake`, repaired by `apply-verdicts.py`: Peter Brown (Princeton; no earned
+doctorate) loses Peter Bowman Brown's Chicago 1978 dissertation (minted as its own person), and Arthur
+Schlesinger Jr. (CUNY) loses his father's Columbia 1918 dissertation to Sr.'s key, p-89397.
