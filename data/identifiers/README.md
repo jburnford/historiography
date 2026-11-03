@@ -997,3 +997,23 @@ supervisors alike.
 - **Held** (11, `review-queue.json`): merges touching keys in open conflicts (Boyer, Carlebach, Hahn, W. Johnson,
   Michels, B. C. Miller, Mueller, Nolan, Weinberg, D. Williams, D. A. Bell).
 - 4,719 recorded keys reach `established` (a public identifier); 426 AHA-only survivors take the LC key's name.
+
+## Reviews (2026-11-02, `reviews-2026-11-02/`)
+
+User, 2026-11-02: connect the reviews data into the graph, with edges between reviewers and the authors of the
+books they review. `scripts/key_reviews.py` reads the H-Net / Reviews in History catalogue
+(`/home/jic823/hnet-reviews/data/export/reviews.parquet`, 49,520 `is_real` reviews), its review → book bridge, LC's
+records for the books (books-2016.ndjson, books.ndjson) and the credit → LC resolution (`reviews-2026-11-02/credits.csv`).
+- **Works**: 49,520 reviews (`hnet-review:<id>`, `rih-review:<id>`; URL as alias) and 44,974 reviewed books
+  (`hnet-book:<book_id>`): 31,368 join or mint LC book works by LCCN (books sharing an LCCN, or LCCNs the LC
+  duplicate-works merge joined, are one cluster), 13,606 rest on H-Net alone (`recorded`).
+- **Claims**: 49,518 `reviews` (review → book; new predicate), `authored` for each review's reviewer, and 16,015
+  `authored` for book authors by LC's record of the same book (18,076 were already in the log; 354 LC authors
+  are not keyed).
+- **Reviewers** (one per name + affiliation as printed; a review without an affiliation gets its own): 5,875
+  credits join a keyed person on a career fact agreeing with the printed affiliation (AHA directory post, their
+  students' school, their own AHA dissertation school within eight years before to three after, an LC notes post,
+  an ORCID affiliation), names agreeing as names. 251 credits reach two keys that each pass on their own fact:
+  207 merges of one person's split keys (Constance Bouchard, AHA key at Akron through her students, LC key
+  at Akron through LC's notes). 36,698 credits are new `recorded` people; 14 ambiguous ones are listed.
+- The graph build derives `REVIEWED` (reviewer → book author) from `AUTHORED` and `REVIEWS`.

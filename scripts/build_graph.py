@@ -4,9 +4,11 @@ The key log (data/identifiers/events-*.jsonl) is the source of truth in git; thi
 view of it that anyone can rebuild from a clean clone. It reads only files tracked in git (it stops if an input
 is untracked) and writes to build/graph/ (git-ignored):
 - nodes: `Person`, `Work`, `Institution` (active keys; identifiers by scheme as columns, all anchors as a list);
-- relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS`
-  (Work -> Work), with the claim key and its resolution; claims whose endpoints do not resolve to one key each
-  are left out and counted;
+- relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS` and
+  `REVIEWS` (Work -> Work: a review and the book it reviews), with the claim key and its resolution; claims
+  whose endpoints do not resolve to one key each are left out and counted;
+- `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
+  the review and book keys (user, 2026-11-02: edges between reviewers and the authors of the books);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py).
@@ -65,6 +67,8 @@ def work_kind(anchors):
     schemes = {a.split(':', 1)[0] for a in anchors}
     if schemes & {'aha-diss', 'diss-thesis', 'wrap'}:
         return 'thesis'
+    if schemes & {'hnet-review', 'rih-review'}:
+        return 'review'
     if 'lccn' in schemes:
         return 'book'
     if 'atlas' in schemes:
@@ -117,14 +121,21 @@ def main():
             report[f'{pred}_unresolved'] += 1
             continue
         a, b = subj[0], obj[0]
-        want = ('work', 'work') if pred == 'published_as' else ('person', 'work')
+        want = ('work', 'work') if pred in ('published_as', 'reviews') else ('person', 'work')
         if (types.get(a), types.get(b)) != want:
             report[f'{pred}_wrong_types'] += 1
             continue
         rels[pred.upper()].append({'from': a, 'to': b, 'claim': claim, 'resolution': state.keys[claim]['resolution']})
     rel_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s)])
-    for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS'):
+    for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS', 'REVIEWS'):
         report[name] = write(name.lower(), rels[name], rel_schema)
+    authors = defaultdict(set)
+    for r in rels['AUTHORED']:
+        authors[r['to']].add(r['from'])
+    reviewed = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in authors[r['from']]
+                       for b in authors[r['to']] if a != b})
+    report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk} for a, b, rv, bk in reviewed],
+                               pa.schema([('from', s), ('to', s), ('review', s), ('book', s)]))
 
     awarded = []
     for w in works:
@@ -169,11 +180,14 @@ def load_db(report):
     for name in ('AUTHORED', 'EDITED', 'SUPERVISED'):
         conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
-                        ('PUBLISHED_AS', 'published_as'), ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
+                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('REVIEWED', 'reviewed'),
+                        ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
 
