@@ -972,3 +972,28 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
 - **usask-faculty.qs and lambi.qs** were run (read back 2026-11-02). New items: Klaassen Q141981683, Watson
   Q141981684, Androsoff Q141981685, Meyers Q141981686, Maurice Jr. Labelle Q141981687 and Troupe Q141981689, all
   keyed. Harvey's item gained P108 USask; Lambi's item (Q134691305, keyed on user review) gained P244 and P108.
+
+## Split-key sweep through LC's notes (2026-11-02, `aha-lc-notes-2026-11-02/`)
+
+`scripts/key_aha_lc_notes.py`. The USask probes (Waiser, Miller, Neufeld, Hayden, Graham) showed the main
+identity gap: AHA-only keys (an AHA dissertation or advisor token, no public PID) for people keyed elsewhere with
+an LC authority, or with an LC authority no key held. The route reads the authority record's own notes (670 data
+found, 373 affiliations; `/mnt/e/lc-authorities/personal-notes.parquet`), for all 49,457 AHA-only keys, authors and
+supervisors alike.
+- **Joins** (5,059; 714 into keys already holding the authority, 4,345 new LC authorities):
+  - 3,552 by **title**: a 670 cites the dissertation itself or the book it became ("His Fallen hero, 1992":
+    Christopher Finan, Columbia 1992; Bergerson's Chicago thesis cited word for word). Identity by works.
+  - 1,297 by **degree**: a doctorate clause names the AHA school and a year within one ("Ph. D., Univ. of
+    Pittsburgh, 1983"; user rule: name, year and school are unique).
+  - 210 by **school and employer**: the doctorate school, plus a post at the institution the AHA directory lists
+    or at a school where their students took doctorates.
+- LC's abbreviations are read ('PhD, Tor.', 'U. of Sask.', 'Ga. State', 'UConn'); Michigan is not Michigan State;
+  the person's own name is not read as a school (Bruce Brasington, Ph. D.), unless it is the school's (Brown).
+- Names: same surname, given names agreeing as names or nicknames both ways (4 joins rest on a nickname: Bob
+  Kumamoto, Tony Michels, Bill Svelmoe, Bob Weinberg); no single-initial labels.
+- **Refused and listed** (`candidates.json.gz`): 260 contradicted (a fact agrees but a doctorate clause names
+  another school: Casey, Princeton in the AHA, Delaware in LC), 2 too young or old, 7 with several authorities
+  passing, 2 authorities reached from two AHA keys, 11,160 with one fact only (mostly the school without a year).
+- **Held** (11, `review-queue.json`): merges touching keys in open conflicts (Boyer, Carlebach, Hahn, W. Johnson,
+  Michels, B. C. Miller, Mueller, Nolan, Weinberg, D. Williams, D. A. Bell).
+- 4,719 recorded keys reach `established` (a public identifier); 426 AHA-only survivors take the LC key's name.
