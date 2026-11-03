@@ -38,6 +38,7 @@ def main():
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--min', type=int, default=5, help='list people cited by at least this many theses')
     args = ap.parse_args()
+    args.out.mkdir(parents=True, exist_ok=True)
     db = duckdb.connect()
     db.execute("SET preserve_insertion_order = false")
     db.execute("SET memory_limit = '6GB'")
