@@ -945,3 +945,13 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
   physicist, not him.
 - **Hayden split** (p-46457 AHA / p-134654 LC: 'Prof. hist. U. of Sask.') awaits the user, like Waiser,
   Neufeld and Graham.
+- **Current faculty list** (from the user, 2026-11-02): 10 faculty had supervised no USask PhD in AHA.
+  - LC authorities attached on career facts: Klaassen (his Toronto thesis title, USask), Harvey (*Julia
+    Augusta*, the Museum of Antiquities) and Horwitz (Oxford DPhil, USask History). Harvey's and Horwitz's items
+    were found by P244.
+  - New items drafted (`usask-faculty.qs`, 7 CREATE blocks): Klaassen, Andrew Watson (York 2014, advisor
+    Coates), Androsoff (Toronto 2011, McGowan), Meyers (Brown 2000, Carolyn Dean), Maurice Jr. Labelle (Akron
+    2012), Troupe (USask 2019, Cunfer) and McLeister (McMaster). Harvey's item gains P108 USask.
+  - The bare Q55725434 'Maurice Labelle' is a Quebec writer (1913-1997), not him.
+  - Open: Troupe's LC no2008089741 (born 1972; Métis artistic designs, 2002) against her AHA key; Maurice
+    Labelle Jr.'s LC no2022099498; Lewis Stiles (lecturer, no degree listed).
