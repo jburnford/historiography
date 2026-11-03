@@ -26,7 +26,7 @@ CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--crosswalk', type=Path, required=True, nargs='+',
-                    help='book crosswalk (key_cited_works), then the article crosswalk (key_cited_articles)')
+                    help='book crosswalk (key_cited_works), the article crosswalk (key_cited_articles), the own-works crosswalk (key_cited_own_works)')
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--corpus', type=Path, default=CORPUS)
     args = ap.parse_args()
