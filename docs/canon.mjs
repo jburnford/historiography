@@ -5,23 +5,28 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const fmt = n => Number(n).toLocaleString('en');
 const NS = 'http://www.w3.org/2000/svg', S = 1000;
 const X = v => v * S * 0.46 + S / 2, Y = X;
-const REGION_LABELS = {CA: 'Canada', US: 'United States', GB: 'Britain', EU: 'Rest of Europe'};
-let load = null;
+const REGION_LABELS = {CA: 'Canada', US: 'United States', GB: 'Britain', BR: 'Brazil', EU: 'Rest of Europe'};
+// Sub-graph maps (2026-11-03): one data file per scope; `scope` in the hash picks one (#tab=canon&scope=BR).
+const SCOPE_LABELS = {main: 'All countries', BR: 'Brazil', CA: 'Canada', GB: 'Britain', US: 'United States'};
+const scopeOf = hash => { const s = new URLSearchParams(hash.replace(/^#/, '')).get('scope'); return s in SCOPE_LABELS ? s : 'main'; };
+const loads = {};
 // no-cache: revalidate with the server, so a cached older data file never meets newer code
-const getData = () => load ||= fetch('data/dissertations/canon-map.json', {cache: 'no-cache', signal: AbortSignal.timeout(20000)})
+const getData = scope => loads[scope] ||= fetch(scope === 'main' ? 'data/dissertations/canon-map.json' : `data/dissertations/canon-map-${scope}.json`, {cache: 'no-cache', signal: AbortSignal.timeout(20000)})
   .then(r => { if (!r.ok) throw new Error('The canon map could not be loaded.'); return r.json(); })
-  .catch(e => { load = null; throw e; });
+  .catch(e => { delete loads[scope]; throw e; });
 
 const minCoSteps = data => [...new Set([data.min_co, 10, 20, 30, 50, 100, 200])].filter(v => v >= data.min_co).sort((a, b) => a - b);
 
 export const isCanonHash = hash => new URLSearchParams(hash.replace(/^#/, '')).get('tab') === 'canon';
 
 function shell(data) {
+  const local = data.scope && data.scope !== 'main';
   const leans = Object.entries(data.leans).map(([k, v]) => `<span class="canon-key ${k}">${esc(v)}</span>`).join('');
   return `<div class="section-heading"><div><p class="eyebrow">THE READING RECORD · RESEARCH PREVIEW</p><h2>Canon map</h2></div></div>
     <p class="reading-intro">Who do doctoral historians cite together? Each circle is a person cited in History PhD bibliographies; two people are linked when the same theses cite them both. Raise the threshold to keep only the most cited, or switch the links to find the fields hidden behind the famous names.</p>
-    <p class="reading-scope">${fmt(data.theses)} History PhDs from Canada, the United States, Britain and elsewhere · ${fmt(data.nodes.length)} people cited by at least ${fmt(data.steps[0])} of them · build of ${esc(data.snapshot)}</p>
+    <p class="reading-scope">${fmt(data.theses)} History PhDs ${local ? `from ${esc(SCOPE_LABELS[data.scope])} only` : 'from Canada, the United States, Britain, Brazil and elsewhere'} · ${fmt(data.nodes.length)} people cited by at least ${fmt(data.steps[0])} of them · build of ${esc(data.snapshot)}</p>
     <div class="canon-controls">
+      ${(data.scopes || []).length > 1 ? `<label>Theses from <select class="canon-scope">${data.scopes.map(s => `<option value="${esc(s)}"${s === (data.scope || 'main') ? ' selected' : ''}>${esc(SCOPE_LABELS[s] || s)}</option>`).join('')}</select></label>` : ''}
       <label>Cited by at least <input type="range" class="canon-threshold" min="0" max="${data.steps.length - 1}" step="1" aria-valuetext=""> <output class="canon-threshold-value"></output></label>
       <label>Links <select class="canon-measure"><option value="raw">Co-citation count: the core and its hubs</option><option value="assoc">Association strength: fields and neighbours</option></select></label>
       <label>Links per person <select class="canon-top">${[5, 10, 25].map(k => `<option value="${k}"${k === data.keep ? ' selected' : ''}>Top ${k}</option>`).join('')}</select></label>
@@ -38,18 +43,19 @@ function shell(data) {
       <p><strong>Co-citation count</strong> is the number of theses whose bibliographies cite both people (any of their works). It grows with fame, so the most cited theorists become hubs and the map shows the canon's core and its reach. <strong>Association strength</strong> divides that count by what the two people's citation counts would give by chance, so people sit with those who share their readers. That brings out fields rather than fame.</p>
       <p>Almost every pair of well-cited people is cited together somewhere, so the lines are a selection. Each person draws their strongest links among the people shown (<strong>Links per person</strong>: top 5, 10 or 25), counting only pairs that at least the chosen number of theses cite together (<strong>Cited together by at least</strong>). A line appears when either person picks it, so much-cited people collect more than their share. A missing line means the two are not among each other's strongest partners, not that no thesis cites both. Top 25 is offered from ${fmt(Object.entries(data.link_top).filter(([, k]) => k >= 25).map(([t]) => +t).sort((a, b) => a - b)[0] ?? 0)} theses up; at lower thresholds a full set would run to tens of thousands of lines. With association strength and a high minimum, a person's picks come from their ${fmt(Math.max(...Object.values(data.link_top)))} strongest partners, so a few weaker qualifying pairs can be missed.</p>
       <p>The positions come from a spring layout of each person's ${fmt(data.keep)} strongest links, computed once for each threshold and kept when you change the link controls, so the axes mean nothing. People with no link to the main map at a threshold are not drawn.</p>
+      ${local ? `<p><strong>This map</strong> counts and links people within the ${fmt(data.theses)} History PhDs from ${esc(SCOPE_LABELS[data.scope])} only, so its thresholds start lower than the all-countries map's. Colours and the regional shares still compare every country's theses.</p>` : ''}
       <p><strong>Colour</strong> marks where a person is read. A person leans to a region when the share of its History PhDs citing them is at least 1.5 times the next region's; otherwise they are shared. The regions hold different numbers of theses (${Object.entries(data.region_theses || {}).map(([k, n]) => `${esc(REGION_LABELS[k] || k)} ${fmt(n)}`).join(', ')}). Coverage depends on which repositories release full texts, so these are samples, not censuses.</p>
       <p><strong>People</strong> are the first authors of cited works as the citation graph resolves them. Namesakes are split through their cited titles where reviewed. Hollow circles have no reviewed Wikidata identity: most are real historians, but a common name can merge namesakes. Stray tokens, government bodies and initial-only names are left out. A citation records use, not agreement or influence. Life years come from Library of Congress name authorities, Wikidata and the atlas's sourced reviews; birth years are shown only for people who have died.</p>
       <p>This map uses a newer build of the dissertation graph than the dated release behind <a href="#tab=dissertations">Dissertation reading</a>, so counts can differ between the two. <a href="https://github.com/jburnford/historiography/blob/main/scripts/historian_cocitation_network.py" target="_blank" rel="noopener noreferrer">Method and code →</a></p>
     </details>`;
 }
 
-export async function mountCanon(root) {
+export async function mountCanon(root, scope = scopeOf(location.hash)) {
   if (!root) return;
   root.innerHTML = '<p class="loading" role="status">Loading the canon map…</p>';
   let data;
-  try { data = await getData(); } catch {
-    if (root.isConnected) { root.innerHTML = '<p role="status">The canon map could not be loaded. <button type="button" data-canon-retry>Try again</button></p>'; root.querySelector('button').onclick = () => mountCanon(root); }
+  try { data = await getData(scope); } catch {
+    if (root.isConnected) { root.innerHTML = '<p role="status">The canon map could not be loaded. <button type="button" data-canon-retry>Try again</button></p>'; root.querySelector('button').onclick = () => mountCanon(root, scope); }
     return;
   }
   if (!root.isConnected) return;
@@ -57,7 +63,7 @@ export async function mountCanon(root) {
     // a failure while drawing must not leave the page on "Loading"
     console.error(e);
     root.innerHTML = '<p role="status">The canon map could not be drawn. <button type="button" data-canon-retry>Try again</button></p>';
-    root.querySelector('button').onclick = () => { load = null; mountCanon(root); };
+    root.querySelector('button').onclick = () => { delete loads[scope]; mountCanon(root, scope); };
   }
 }
 
@@ -72,6 +78,13 @@ function upgrade(data) {
 function build(root, data) {
   root.innerHTML = shell(data);
   const $ = s => root.querySelector(s);
+  const scopeSel = $('.canon-scope');
+  if (scopeSel) scopeSel.onchange = () => {
+    const p = new URLSearchParams(location.hash.replace(/^#/, ''));
+    if (scopeSel.value === 'main') p.delete('scope'); else p.set('scope', scopeSel.value);
+    history.replaceState(history.state, '', `#${p}`);
+    mountCanon(root, scopeSel.value);
+  };
   const N = data.nodes, svg = $('.canon-svg'), vp = $('.canon-vp'), tip = $('.canon-tip'), thr = $('.canon-threshold'), measure = $('.canon-measure'), find = $('.canon-find');
   const topSel = $('.canon-top'), minco = $('.canon-minco'), MINCO = minCoSteps(data);
   // candidate links: (a, b, theses citing both) triples; each person's list of [partner, count]

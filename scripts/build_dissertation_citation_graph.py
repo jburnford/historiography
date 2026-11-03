@@ -88,6 +88,32 @@ HONORIFIC = re.compile(r'\b(?:Jr|Sr|II|III|IV|Dr|Prof|Professor|Rev|Reverend|Rt|
 GLUED = re.compile(r'\b(?:[A-Z]{2}|[B-DF-HJ-NP-TV-Z]{3,4})\b(?![a-z])')  # glued initials such as 'JL', 'JJL'
 
 
+def trim_given(given):
+    """Cut what follows the given names in an inverted name: a conjunction joining a co-author
+    ('NORA, Pierre e BENNINGTON', 'Bourdieu, Pierre y Passeron') or the start of the title after
+    a full given name ('WEBER, Max. A ética', 'GRAMSCI, Antonio. Q', 'THOMPSON, Edward A formação').
+    Brazilian (ABNT) bibliographies made such letters read as middle initials (2026-11-03), which
+    split people ('nora|pierre e') and blocked the merges in resolve_initials. Printed initials stay:
+    'Thompson, E. P.', 'Hobsbawm, Eric J.', 'Gramsci, A.'."""
+    toks = given.split()
+    if len(toks) < 2:
+        return given
+    first_full = len(re.sub(r'[^A-Za-zÀ-ÿ]', '', toks[0])) > 1
+    if first_full and toks[0].endswith('.'):
+        return toks[0].rstrip('.')
+    out = [toks[0]]
+    for i, t in enumerate(toks[1:], 1):
+        letters = re.sub(r'[^A-Za-zÀ-ÿ]', '', t)
+        if len(letters) == 1:
+            if letters.islower():
+                break
+            nxt = toks[i + 1] if i + 1 < len(toks) else ''
+            if first_full and not t.endswith('.') and re.match(r'[a-zà-ÿ]{2}', nxt):
+                break
+        out.append(t)
+    return ' '.join(out)
+
+
 def person_key(name, inverted):
     """'Surname, Given' (inverted) or 'Given Surname' -> 'surname|given' (full first given
     name) or 'surname|g' (initial only); corporate or single names fold whole."""
@@ -99,7 +125,7 @@ def person_key(name, inverted):
         # keeps its surname. Hyphenated forenames stay whole ('Jean-François' != 'Jean-Marie').
         sur, given = name.split(',', 1)
         sur = re.sub(r',?\s*\b(?:Jr|Sr|II|III|IV)\b\.?$', '', sur).strip(' ,.')
-        given = re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.')
+        given = trim_given(re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.'))
         given = re.sub(r'(?<=[A-Za-zÀ-ÿ])-(?=[A-Za-zÀ-ÿ]{2})', '', given)
         given = GLUED.sub(lambda m: ' '.join(m.group(0)), given)  # 'JL' -> 'J L'
         if not sur:
@@ -170,6 +196,56 @@ def dominant_initials(names, printed_only=False):
         if len(sig) > 1 and (c > 0 or not printed_only):
             sigs[sig] += max(c, 1)
     return sigs.most_common(1)[0][0] if sigs else None
+
+
+def resolve_surname_variants(persons, works, alias):
+    """Misspelt surnames join the person they misspell, on title evidence (2026-11-03).
+
+    'hobsbawm|eric j' and 'hobsbawn|eric j', 'bordieu|pierre' and 'bourdieu|pierre', 'guinzburg|carlo':
+    same first given name (and middle initial, where both have one), surnames one edit apart or equal
+    without spaces ('le goff'/'legoff'). The less cited key joins the more cited one when its works'
+    titles match the other's (equal title keys, or one a prefix of the other, 12+ characters): at
+    least 2 shared titles carrying 30% of its citations, or 10 shared titles. Without shared titles
+    near-spellings stay apart (Harvey/Harley, Davis/Davies, Rodrigues/Rodriguez)."""
+    head = lambda k: alias.get(k, k)
+    titles = defaultdict(Counter)
+    for wid, w in works.items():
+        k = head(w['authors'][0]) if w['authors'] and w['authors'][0] else None
+        if k and '|' in k and w['citing']:
+            titles[k][wid.split('|', 1)[1].removesuffix('|a') if '|' in wid else ''] += len(w['citing'])
+    weight = {k: sum(c.values()) for k, c in titles.items()}
+    bucket = defaultdict(set)
+    for k, n in weight.items():
+        sur, given = k.split('|', 1)
+        g, s = given.split(), sur.replace(' ', '')
+        if n < 3 or len(g[0]) < 2 or len(s) < 5:
+            continue
+        for v in {s} | {s[:i] + s[i + 1:] for i in range(len(s))}:
+            bucket[(g[0], v)].add(k)
+
+    def same_title(a, b):
+        short, long_ = sorted((a, b), key=len)
+        return a == b or (len(short) >= 12 and long_.startswith(short))
+    found = {}
+    pairs = {(a, b) for ks in bucket.values() for a in ks for b in ks if a < b and a.split('|')[0] != b.split('|')[0]}
+    for a, b in sorted(pairs):
+        ga, gb = a.split('|', 1)[1].split(), b.split('|', 1)[1].split()
+        if len(ga) > 1 and len(gb) > 1 and ga[1] != gb[1]:
+            continue
+        small, big = sorted((a, b), key=lambda k: (weight[k], k))
+        others = [t for t in titles[big] if len(t) >= 4]
+        shared = [t for t in titles[small] if len(t) >= 8 and any(same_title(t, u) for u in others)]
+        share = sum(titles[small][t] for t in shared) / weight[small]
+        if (len(shared) >= 2 and share >= 0.3) or len(shared) >= 10:
+            if small not in found or weight[big] > weight[found[small]]:
+                found[small] = big
+    for k in list(found):  # follow chains to the most cited spelling
+        seen = {k}
+        while found[k] in found and found[found[k]] not in seen:
+            seen.add(found[k])
+            found[k] = found[found[k]]
+    print(f'misspelt surnames joined to their person: {len(found)}', flush=True)
+    return found
 
 
 def resolve_initials(persons):
@@ -342,6 +418,17 @@ def dissertation_year(d):
     return None, None
 
 
+def similar(a, b, cut=0.92):
+    """difflib ratio > cut, with its two cheap upper bounds tried first (same answer, much faster).
+
+    py-spy (2026-11-02) put most of the build's time in this comparison: merge_titles compares every
+    pair of titles under a surname, and Brazil added surnames with tens of thousands of titles."""
+    if a and b and 2.0 * min(len(a), len(b)) / (len(a) + len(b)) <= cut:
+        return False  # real_quick_ratio: the length bound
+    sm = difflib.SequenceMatcher(None, a, b)
+    return sm.quick_ratio() > cut and sm.ratio() > cut
+
+
 def merge_titles(works_by_surname, counts=None):
     """Merge near-identical title keys under the same first-author surname. Clusters form around
     the shortest key; with ``counts`` (citations per raw key) each cluster is then named after its
@@ -357,8 +444,7 @@ def merge_titles(works_by_surname, counts=None):
                 if k.endswith('|a') != r.endswith('|a'):
                     continue
                 short, long_ = sorted((k, r), key=len)
-                if (len(short.split()) >= 3 and long_.startswith(short)) or \
-                        difflib.SequenceMatcher(None, k, r).ratio() > 0.92:
+                if (len(short.split()) >= 3 and long_.startswith(short)) or similar(k, r):
                     target = r
                     break
             if target:
@@ -551,6 +637,7 @@ def main():
     person_ids = defaultdict(lambda: dict(qids=Counter(), ids=set()))
     for wid, w in works.items():
         best = max(w['author_variants'].items(), key=lambda kv: (name_detail(kv[0][0]) if kv[0] else 0, kv[1]))[0]
+        w['best'] = best
         w['authors'] = [add_person(a, True if i == 0 else 'auto', 'cited_author') for i, a in enumerate(best)]
         auth = authorities.get(wid)
         if auth and w['authors'] and w['authors'][0] and '|' in w['authors'][0]:
@@ -571,6 +658,30 @@ def main():
             for variant in w['author_variants']:
                 if variant and variant[0] not in first and fold(variant[0].split(',')[0]) == w['authors'][0].split('|')[0]:
                     first[variant[0]] += 0  # record the spelling as evidence without inflating counts
+    # Full middle names (2026-11-03). person_key ignores a full middle word, because in bibliographies
+    # it is as often a title word, so "THOMPSON, Edward Palmer" (ABNT style) keyed as 'thompson|edward'
+    # while "Thompson, E. P." keyed as 'thompson|edward p'. A work whose fullest spelling has a full
+    # middle name moves to the key with that middle initial, when such a cited person exists.
+    moved = 0
+    for wid, w in works.items():
+        k = w['authors'][0] if w['authors'] else None
+        if not k or '|' not in k or ' ' in k.split('|', 1)[1] or len(k.split('|', 1)[1]) < 2 or not w.get('best'):
+            continue
+        given = w['best'][0].split(',', 1)[1] if ',' in w['best'][0] else ''
+        toks = trim_given(re.sub(r'\s+', ' ', HONORIFIC.sub('', given)).strip(' ,.')).split()
+        if len(toks) < 2 or len(re.sub(r'[^A-Za-zÀ-ÿ]', '', toks[1])) < 2 or not toks[1][:1].isupper():
+            continue
+        target = f'{k} {fold(toks[1])[:1]}'
+        if target == k or not persons.get(target, {}).get('roles', {}).get('cited_author'):
+            continue
+        w['authors'][0] = target
+        persons[target]['roles']['cited_author'] += 1
+        persons[target]['names'][w['best'][0]] += 0
+        persons[k]['roles']['cited_author'] -= 1
+        moved += 1
+    for k in [k for k, p in persons.items() if p['roles'] and not +p['roles']]:
+        del persons[k]  # every work moved away
+    print(f'works moved to the key with their full middle name\'s initial: {moved}', flush=True)
     strict = {k[2:] for k, n in nodes.items() if n['type'] == 'Dissertation' and n['in_analysis']}
     country_of = {k[2:]: n['country'] for k, n in nodes.items() if n['type'] == 'Dissertation'}
     strict_by_country = Counter(country_of[d] for d in strict)
@@ -600,6 +711,8 @@ def main():
             edges.append(dict(source=f'P:{k}', target=wid, type='AUTHORED'))
     # Initial-only names join the single full-name person sharing surname and initial.
     alias = resolve_initials(persons)
+    for k, target in resolve_surname_variants(persons, works, alias).items():
+        alias.setdefault(k, target)
     # Wikidata grounding of cited people (ground_cited_people_wikidata.py), by tier.
     tiers = {}
     if (out / 'person-wikidata.jsonl').exists():
@@ -705,7 +818,9 @@ def main():
             cited_by_person[e['source']] |= works[e['target']]['citing']
     atlas = atlas_index()
     for k, p in persons.items():
-        name = p['names'].most_common(1)[0][0]
+        # Most printed spelling, preferring one whose surname is not in capitals: ABNT bibliographies
+        # print 'BOURDIEU, Pierre', which outnumbered 'Bourdieu, Pierre' once Brazil came in (2026-11-03).
+        name = max(p['names'], key=lambda n: (p['names'][n] > 0, not n.split(',')[0].isupper(), p['names'][n]))
         match = atlas.get(k)
         nodes[f'P:{k}'] = dict(id=f'P:{k}', type='Person', key=k, name=name,
                                roles=dict(p['roles']), cited_by_dissertations=len(cited_by_person[f'P:{k}'] & strict),

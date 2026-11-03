@@ -58,7 +58,7 @@
 
 /* Canon map (site/canon.mjs): people cited together, coloured by the region that reads them most. */
 .reading-canon-link{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:14px 0 4px;font-size:13px;color:var(--muted)}
-.canon-map{--canon-ca:#356c91;--canon-us:#b45331;--canon-gb:#796486;--canon-eu:#52764b;--canon-shared:#8d8a80;--canon-edge:#c9c6b8}
+.canon-map{--canon-ca:#356c91;--canon-us:#b45331;--canon-gb:#796486;--canon-eu:#52764b;--canon-br:#a07a1f;--canon-shared:#8d8a80;--canon-edge:#c9c6b8}
 .canon-controls{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin:22px 0 10px;font-size:13px}
 .canon-controls label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .canon-controls select,.canon-controls input[type=search],.canon-buttons button{font:13px var(--sans);min-height:38px;padding:6px 10px;border:1px solid var(--line);border-radius:4px;background:#fffdf7;color:var(--ink)}
@@ -67,14 +67,14 @@
 .canon-buttons button:hover{background:#e9eee1;border-color:var(--green)}
 .canon-legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12px;color:var(--muted);margin:4px 0 10px}
 .canon-key::before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--canon-shared)}
-.canon-key.CA::before{background:var(--canon-ca)}.canon-key.US::before{background:var(--canon-us)}.canon-key.GB::before{background:var(--canon-gb)}.canon-key.EU::before{background:var(--canon-eu)}
+.canon-key.CA::before{background:var(--canon-ca)}.canon-key.US::before{background:var(--canon-us)}.canon-key.GB::before{background:var(--canon-gb)}.canon-key.EU::before{background:var(--canon-eu)}.canon-key.BR::before{background:var(--canon-br)}
 .canon-key.NOQ::before{background:none;border:2px solid var(--canon-shared);width:8px;height:8px}
 .canon-stage{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fffdf7}
 .canon-svg{display:block;width:100%;height:min(76vh,780px);min-height:440px;cursor:grab;touch-action:none;user-select:none}
 .canon-svg.dragging{cursor:grabbing}
 .canon-link{stroke:var(--canon-edge);stroke-linecap:round}
 .canon-node{cursor:pointer}.canon-node circle{stroke:#fffdf7;stroke-width:1.5}
-.canon-node.CA circle{fill:var(--canon-ca)}.canon-node.US circle{fill:var(--canon-us)}.canon-node.GB circle{fill:var(--canon-gb)}.canon-node.EU circle{fill:var(--canon-eu)}.canon-node.SHARED circle{fill:var(--canon-shared)}
+.canon-node.CA circle{fill:var(--canon-ca)}.canon-node.US circle{fill:var(--canon-us)}.canon-node.GB circle{fill:var(--canon-gb)}.canon-node.EU circle{fill:var(--canon-eu)}.canon-node.BR circle{fill:var(--canon-br)}.canon-node.SHARED circle{fill:var(--canon-shared)}
 .canon-node.noq circle{fill-opacity:.28}
 .canon-labels text{font-family:var(--sans);fill:var(--ink);paint-order:stroke;stroke:#fffdf7;stroke-linejoin:round;pointer-events:none}
 .canon-svg.focus .canon-link{opacity:.12}.canon-svg.focus .canon-node{opacity:.25}.canon-svg.focus .canon-labels text{opacity:.3}.canon-svg.focus .canon-labels text.on{opacity:1}

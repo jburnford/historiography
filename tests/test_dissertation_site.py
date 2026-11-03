@@ -41,16 +41,30 @@ class DissertationExportTests(unittest.TestCase):
                     self.assertIn(str(ref), data['labels'])
 
     def test_canon_map_is_pinned_aggregate_and_links_resolve(self):
-        manifest = json.loads((EXPORT / 'manifest.json').read_text())['canon_map']
+        layer = json.loads((EXPORT / 'manifest.json').read_text())
+        # the main map and each sub-graph's (user, 2026-11-03: "select a sub-graph and see its map")
+        maps = {'main': layer['canon_map'], **layer['canon_map_scopes']}
+        self.assertEqual(set(maps), {'main', 'BR', 'CA', 'GB', 'US'})
+        for scope, manifest in maps.items():
+            with self.subTest(scope=scope):
+                self.check_canon_map(scope, manifest, sorted(maps))
+
+    def check_canon_map(self, scope, manifest, scopes):
         path = EXPORT / manifest['output']
         self.assertFalse(path.is_symlink())
         self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), manifest['output_sha256'])
         data = json.loads(path.read_text())
         # people, layouts and pair counts only: no thesis records travel with the map
         self.assertEqual(set(data), {'nodes', 'views', 'links', 'link_top', 'keep', 'min_co', 'steps', 'default', 'leans',
-                                     'theses', 'snapshot', 'region_theses'})
+                                     'theses', 'snapshot', 'region_theses', 'scope', 'scopes'})
+        self.assertEqual(data['scope'], scope)
+        self.assertEqual(sorted(data['scopes']), scopes)
         self.assertEqual(data['snapshot'], manifest['snapshot'])
-        self.assertEqual(sum(data['region_theses'].values()), data['theses'])
+        # region totals stay those of every thesis (colours and shares); a sub-graph map counts its own theses
+        if scope == 'main':
+            self.assertEqual(sum(data['region_theses'].values()), data['theses'])
+        else:
+            self.assertEqual(data['region_theses'][scope], data['theses'])
         keys = {s['key'] for s in self.index['sources']}
         with (Path(__file__).resolve().parents[1] / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
             status = {r['key']: r['status'] for r in csv.DictReader(f)}
@@ -71,15 +85,10 @@ class DissertationExportTests(unittest.TestCase):
             if 'key' in n:
                 self.assertRegex(n['key'], r'^p-[1-9][0-9]*$')
                 self.assertIn(n['key_status'], {'established', 'unresolved'})
-        # one key per circle, except where the key log merged two keys into one person whose name forms
-        # the citation graph still splits (Woodward, Comer Vann / C. Vann)
+        # one circle per key: the map joins graph keys the key log anchors to one person
+        # (Woodward, Comer Vann / C. Vann; historian_cocitation_network.identities)
         person_keys = Counter(n['key'] for n in data['nodes'] if 'key' in n)
-        merged_into = Counter()
-        for shard in sorted((Path(__file__).resolve().parents[1] / 'data/identifiers').glob('events-*.jsonl')):
-            with shard.open(encoding='utf-8') as f:
-                merged_into.update(e['into'] for e in map(json.loads, f) if e['event'] == 'merge')
-        for key, count in person_keys.items():
-            self.assertLessEqual(count, 1 + merged_into[key], key)
+        self.assertEqual([k for k, c in person_keys.items() if c > 1], [])
         for key, view in data['views'].items():
             self.assertEqual(set(view), {'ids', 'xy'}, key)
             self.assertEqual(len(view['ids']), len(view['xy']), key)

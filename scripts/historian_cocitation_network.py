@@ -5,12 +5,15 @@ User (2026-10-29): "a canon visualization based on the full dissertation graph; 
 the dissertations and edges weighted based on co-citation counts at the historian level:
 EPThompson 555 Foucault; Foucault 23 ColeHarris etc", "with a filter for low count historians".
 
-- **Theses**: every strict History PhD (``in_analysis``) in ``dissertations.csv``, all countries.
+- **Theses**: every strict History PhD (``in_analysis``) in ``dissertations.csv``, all countries, or one
+  sub-graph country with ``--country`` (colours and region shares still from all countries).
 - **People**: cited authors from ``authored.csv.gz`` (work -> person keys, namesake splits already
   applied by the graph build), counted once per thesis however many of their works it cites. Kept
   when cited by ``--floor`` (40) or more theses and the key looks like a person: 'surname|given',
   not a stray token ('in', 'vol', 'Anonymous'), not a government body, and not an initial-only key
-  ('smith|r', several people merged) unless it carries a reviewed Wikidata QID.
+  ('smith|r', several people merged) unless it carries a reviewed Wikidata QID. Graph keys the key log
+  (data/identifiers) anchors to one person are one node, under the most-cited key; initial-only keys
+  never join (they gather namesakes).
 - **Edges**: co-citation count, the number of theses citing both people. The page draws either the
   raw counts (as asked; the most cited theorists become hubs) or association strength
   (c_ab * N / (c_a * c_b), as on the works map; neighbours by shared readership, not by size).
@@ -23,7 +26,7 @@ EPThompson 555 Foucault; Foucault 23 ColeHarris etc", "with a filter for low cou
   either measure (``--link-top-low``, 10, below ``--link-full-from``, 80); the site draws each person's
   top 5, 10 or 25 among pairs above its co-citation minimum, over the same layouts.
 - **Colour**: the region whose share of History PhDs citing the person is at least ``--lean`` (1.5)
-  times the next region's (Canada, United States, Britain, rest of Europe); otherwise shared.
+  times the next region's (Canada, United States, Britain, Brazil, rest of Europe); otherwise shared.
 
 Writes ``summary/comparisons/historian-network.html`` and the pair table
 ``summary/network/historian-cocitation-pairs.csv`` (all pairs with co-citation >= ``--min-co``).
@@ -49,7 +52,7 @@ from render_region_comparison import proper  # noqa: E402
 ROOT = Path(__file__).resolve().parents[1]
 D = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 esc = lambda s: html.escape(str(s if s is not None else ''), quote=True)  # noqa: E731
-REGIONS = {'CA': 'Canada', 'US': 'United States', 'GB': 'Britain', 'EU': 'Rest of Europe'}
+REGIONS = {'CA': 'Canada', 'US': 'United States', 'GB': 'Britain', 'BR': 'Brazil', 'EU': 'Rest of Europe'}
 LEANS = {**REGIONS, 'SHARED': 'Shared'}
 # surnames or given-name parts that mark a corporate or place 'author', not a person
 NOT_PEOPLE = {'canada', 'great britain', 'britain', 'england', 'ontario', 'quebec', 'france', 'united states', 'new',
@@ -61,7 +64,7 @@ NOT_PEOPLE = {'canada', 'great britain', 'britain', 'england', 'ontario', 'quebe
 
 
 def region(country):
-    if country in ('CA', 'US', 'GB'):
+    if country in ('CA', 'US', 'GB', 'BR'):  # BR a sub-graph since 2026-11-02
         return country
     return 'EU' if country in EUROPE or country == 'FR' else 'OTHER'
 
@@ -74,6 +77,25 @@ def is_person(key, qid):
     if words & NOT_PEOPLE or len(surname) < 2 or any(ch.isdigit() for ch in surname):
         return False
     return bool(qid) or len(given.replace(' ', '')) > 1
+
+
+def identities():
+    """Graph person key -> key-log person (data/identifiers): one node per person where the graph still splits
+    one ('Woodward, C. Vann' / 'Woodward, Comer Vann'). Keys renamed on 2026-11-03 reach the log through
+    their old keys (person-key-crosswalk-2026-11-03.csv) until it anchors the new ones."""
+    from identifiers import State
+    state = State.load(ROOT / 'data/identifiers')
+    ident = {a.split(':', 1)[1]: k for a, k in state.anchor.items() if a.startswith('diss-person:')}
+    renamed = defaultdict(set)
+    crosswalk = D / 'person-key-crosswalk-2026-11-03.csv'
+    if crosswalk.exists():
+        for r in csv.DictReader(crosswalk.open(newline='', encoding='utf-8')):
+            if r['old_key'] in ident:
+                renamed[r['new_key']].add(ident[r['old_key']])
+    for new, found in renamed.items():
+        if new not in ident and len(found) == 1:
+            ident[new] = found.pop()
+    return ident
 
 
 def layout(n, edges, weight):
@@ -105,6 +127,9 @@ def main():
     ap.add_argument('--link-top', type=int, default=25, help="most links per person the site's link control offers")
     ap.add_argument('--link-top-low', type=int, default=10, help='the same, at steps below --link-full-from')
     ap.add_argument('--link-full-from', type=int, default=80, help='lowest step offering --link-top links per person')
+    ap.add_argument('--country', help='a sub-graph country (BR, CA, GB, US): people, counts and links from its '
+                    'theses only; colours and shares stay those of all theses. Lower steps suit ~2,500 theses: '
+                    '--floor 15 --thresholds 15,20,30,40,60,100,150 --default 40 --link-full-from 30')
     args = ap.parse_args()
     steps = sorted(int(t) for t in args.thresholds.split(','))
     assert steps[0] >= args.floor and args.default in steps
@@ -114,10 +139,27 @@ def main():
         if r['in_analysis'] == 'True':
             country[r['id']] = r['country']
     totals = Counter(region(c) for c in country.values())
-    people = {}
+    # One node per key-log person: graph keys the log anchors to the same person count as one, under the
+    # most-cited key (theses counted once). A shared QID is kept where the merged keys agree on it.
+    ident = identities()
+    rows, group = {}, defaultdict(list)
     for r in csv.DictReader((D / 'cited-people.csv').open(newline='', encoding='utf-8')):
-        if int(r['cited_by_dissertations']) >= args.floor * 0.8 and is_person(r['person_key'], r['qid']):
-            people[r['person_key']] = r
+        k = r['person_key']
+        if k in ident or (int(r['cited_by_dissertations']) >= args.floor * 0.8 and is_person(k, r['qid'])):
+            rows[k] = r
+            # an initial-only key ('thompson|e': E. P., E. A. and E. M. Thompson) gathers namesakes; it never joins
+            initial_only = all(len(g) == 1 for g in k.partition('|')[2].split())
+            group[k if initial_only else ident.get(k, k)].append(k)
+    people, alias = {}, {}
+    for members in group.values():
+        persons = [k for k in members if is_person(k, rows[k]['qid'])]
+        if not persons or sum(int(rows[k]['cited_by_dissertations']) for k in members) < args.floor * 0.8:
+            continue
+        rep = max(persons, key=lambda k: (int(rows[k]['cited_by_dissertations']), k))
+        qids = {rows[k]['qid'] for k in members} - {''}
+        people[rep] = {**rows[rep], 'qid': qids.pop() if len(qids) == 1 else rows[rep]['qid']}
+        alias.update((k, rep) for k in members)
+    print(f'{sum(1 for k, v in alias.items() if k != v)} graph keys joined to their key-log person', file=sys.stderr)
     work_theses = defaultdict(set)
     with gzip.open(D / 'strict-citations.csv.gz', 'rt', encoding='utf-8', newline='') as f:
         for r in csv.DictReader(f):
@@ -126,27 +168,34 @@ def main():
     by_thesis = defaultdict(set)
     with gzip.open(D / 'authored.csv.gz', 'rt', encoding='utf-8', newline='') as f:
         for r in csv.DictReader(f):
-            if r['person_key'] in people and r['work_id'] in work_theses:
+            pk = alias.get(r['person_key'])
+            if pk and r['work_id'] in work_theses:
                 for d in work_theses[r['work_id']]:
-                    by_thesis[d].add(r['person_key'])
-    citing = Counter(p for ps in by_thesis.values() for p in ps)
+                    by_thesis[d].add(pk)
+    # A sub-graph map (user, 2026-11-03: "select a sub-graph and see its map") counts and links people
+    # within that country's theses; region shares and colours still use every thesis.
+    scope = {d for d, c in country.items() if not args.country or c == args.country}
+    citing = Counter(p for d, ps in by_thesis.items() if d in scope for p in ps)
     keys = sorted((p for p, c in citing.items() if c >= args.floor), key=lambda p: (-citing[p], p))
     idx = {p: i for i, p in enumerate(keys)}
-    n_theses = len(country)
+    n_theses = len(scope)
     cnt = np.array([citing[p] for p in keys], dtype=np.int64)
     reg_cnt = {reg: Counter() for reg in REGIONS}
     # co-citation counts as a sparse thesis x person product
     from scipy.sparse import csr_matrix
     rows, cols = [], []
-    for t, (d, ps) in enumerate(by_thesis.items()):
+    for d, ps in by_thesis.items():
         reg = region(country[d])
+        for p in ps:
+            if p in idx and reg in reg_cnt:
+                reg_cnt[reg][idx[p]] += 1
+    scoped = [ps for d, ps in by_thesis.items() if d in scope]
+    for t, ps in enumerate(scoped):
         for p in ps:
             if p in idx:
                 rows.append(t)
                 cols.append(idx[p])
-                if reg in reg_cnt:
-                    reg_cnt[reg][idx[p]] += 1
-    M = csr_matrix((np.ones(len(rows), dtype=np.int32), (rows, cols)), shape=(len(by_thesis), len(keys)))
+    M = csr_matrix((np.ones(len(rows), dtype=np.int32), (rows, cols)), shape=(len(scoped), len(keys)))
     C = (M.T @ M).tocoo()
     co = {(int(a), int(b)): int(v) for a, b, v in zip(C.row, C.col, C.data) if a < b and v >= args.min_co}
     print(f'{n_theses} theses, {len(keys)} people >= {args.floor}, {len(co):,} pairs >= {args.min_co}', file=sys.stderr)
@@ -207,9 +256,11 @@ def main():
     co_out = {f'{a},{b}': co[(a, b)] for a, b in drawn}
     payload = json.dumps(dict(nodes=nodes, views=payload_views, co=co_out, steps=steps, default=args.default,
                               leans=LEANS, theses=n_theses, links=links, link_top=link_top, keep=args.keep,
-                              min_co=args.min_co), ensure_ascii=False, separators=(',', ':'))
+                              min_co=args.min_co, scope=args.country or 'main'), ensure_ascii=False, separators=(',', ':'))
 
-    pairs_path = D / 'summary' / 'network' / 'historian-cocitation-pairs.csv'
+    base = D / 'summary' / ('countries/' + args.country if args.country else '')
+    pairs_path = base / 'network' / 'historian-cocitation-pairs.csv'
+    pairs_path.parent.mkdir(parents=True, exist_ok=True)
     with pairs_path.open('w', newline='', encoding='utf-8') as f:
         wr = csv.writer(f)
         wr.writerow(['person_a', 'person_b', 'cocited_by_theses', 'cited_a', 'cited_b', 'association_strength', 'key_a', 'key_b', 'qid_a', 'qid_b'])
@@ -221,8 +272,10 @@ def main():
             .replace('__N__', f'{len(nodes):,}').replace('__THESES__', f'{n_theses:,}').replace('__FLOOR__', str(args.floor))
             .replace('__KEEP__', str(args.keep)).replace('__MINCO__', str(args.min_co)).replace('__LEAN__', f'{args.lean:g}')
             .replace('__BUILT__', date.today().isoformat())
+            .replace('__SCOPE__', f'{REGIONS.get(args.country, args.country)} only; colours from all countries' if args.country else 'all countries')
             .replace('__TOTALS__', ', '.join(f"{REGIONS[r]} {totals[r]:,}" for r in REGIONS) + f", elsewhere {totals['OTHER']:,}"))
-    dest = D / 'summary' / 'comparisons' / 'historian-network.html'
+    dest = base / 'comparisons' / 'historian-network.html'
+    dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page, encoding='utf-8')
     print(f'wrote {dest.relative_to(ROOT)} ({len(page) / 1e6:.1f} MB): {len(nodes)} people; leans {dict(lean_counts)}', file=sys.stderr)
     print(f'wrote {pairs_path.relative_to(ROOT)}: {len(co):,} pairs', file=sys.stderr)
@@ -232,13 +285,13 @@ TEMPLATE = r"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta 
 <title>The canon by co-citation: historians History PhDs cite together</title>
 <style>
 .viz-root{color-scheme:light;--surface-1:#fcfcfb;--surface-2:#f2f1ed;--text-primary:#0b0b0b;--text-secondary:#52514e;
- --text-muted:#76756f;--grid:#e3e2dd;--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;--series-4:#8a5cc9;--shared:#8f8e88;--edge:#b8b7b0}
+ --text-muted:#76756f;--grid:#e3e2dd;--series-1:#2a78d6;--series-2:#eb6834;--series-3:#1baf7a;--series-4:#8a5cc9;--series-5:#b8862b;--shared:#8f8e88;--edge:#b8b7b0}
 @media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])) .viz-root{color-scheme:dark;--surface-1:#1a1a19;
  --surface-2:#242422;--text-primary:#f0efec;--text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;
- --series-2:#d95926;--series-3:#199e70;--series-4:#9a70d6;--shared:#8a897f;--edge:#4a4944}}
+ --series-2:#d95926;--series-3:#199e70;--series-4:#9a70d6;--series-5:#c99a3e;--shared:#8a897f;--edge:#4a4944}}
 :root[data-theme="dark"] .viz-root{color-scheme:dark;--surface-1:#1a1a19;--surface-2:#242422;--text-primary:#f0efec;
  --text-secondary:#c3c2b7;--text-muted:#9c9b92;--grid:#34342f;--series-1:#3987e5;--series-2:#d95926;--series-3:#199e70;
- --series-4:#9a70d6;--shared:#8a897f;--edge:#4a4944}
+ --series-4:#9a70d6;--series-5:#c99a3e;--shared:#8a897f;--edge:#4a4944}
 body{margin:0}
 .viz-root{background:var(--surface-1);color:var(--text-primary);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;
  padding:24px max(16px,calc(50vw - 640px))}
@@ -249,7 +302,7 @@ p.lede,.note{color:var(--text-secondary);max-width:860px}a{color:var(--series-1)
 .legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:13px;color:var(--text-secondary);margin:4px 0 8px}
 .legend span::before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 .legend .CA::before{background:var(--series-1)}.legend .US::before{background:var(--series-2)}.legend .GB::before{background:var(--series-4)}
-.legend .EU::before{background:var(--series-3)}.legend .SHARED::before{background:var(--shared)}
+.legend .EU::before{background:var(--series-3)}.legend .BR::before{background:var(--series-5)}.legend .SHARED::before{background:var(--shared)}
 .legend .NOQ::before{background:none;border:2px solid var(--shared);width:8px;height:8px}
 button,select,input[type=search]{font:inherit;font-size:13px;padding:3px 10px;border:1px solid var(--grid);border-radius:6px;background:var(--surface-2);color:var(--text-primary)}
 button{cursor:pointer}
@@ -257,10 +310,10 @@ button{cursor:pointer}
 svg.map{width:100%;height:78vh;min-height:520px;display:block;cursor:grab}
 svg .link{stroke:var(--edge);stroke-linecap:round}
 svg .node{cursor:move}svg .node circle{stroke:var(--surface-1);stroke-width:1.5}
-svg .CA{fill:var(--series-1)}svg .US{fill:var(--series-2)}svg .GB{fill:var(--series-4)}svg .EU{fill:var(--series-3)}svg .SHARED{fill:var(--shared)}
+svg .CA{fill:var(--series-1)}svg .US{fill:var(--series-2)}svg .GB{fill:var(--series-4)}svg .EU{fill:var(--series-3)}svg .BR{fill:var(--series-5)}svg .SHARED{fill:var(--shared)}
 svg .node.noq circle{fill-opacity:.25;stroke-width:1.5}
 svg .node.noq .CA{stroke:var(--series-1)}svg .node.noq .US{stroke:var(--series-2)}svg .node.noq .GB{stroke:var(--series-4)}
-svg .node.noq .EU{stroke:var(--series-3)}svg .node.noq .SHARED{stroke:var(--shared)}
+svg .node.noq .EU{stroke:var(--series-3)}svg .node.noq .BR{stroke:var(--series-5)}svg .node.noq .SHARED{stroke:var(--shared)}
 svg text{fill:var(--text-primary);font-size:11px;paint-order:stroke;stroke:var(--surface-1);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
 svg.focus .node{opacity:.15}svg.focus .link{opacity:.05}svg.focus .node.on{opacity:1}svg.focus .link.on{opacity:1;stroke:var(--text-muted)}
 #tip{position:fixed;pointer-events:none;background:var(--surface-1);color:var(--text-primary);border:1px solid var(--grid);
@@ -274,13 +327,13 @@ th:first-child,td:first-child{text-align:left;max-width:460px}
 <h1>The canon by co-citation</h1>
 <p class="lede">The people History PhDs cite, with the theses taken out: two people are linked when theses cite them both, and
 the link's weight is that number of theses. __N__ people cited by at least __FLOOR__ of __THESES__ strict History PhDs
-(all countries); the filter hides people cited by fewer theses and redraws the map for those left.</p>
+(__SCOPE__); the filter hides people cited by fewer theses and redraws the map for those left.</p>
 <div class="controls">
 <label>Cited by at least <input type="range" id="thr" min="0" step="1"> <span><b id="thrv"></b> theses (<span id="shown"></span> people)</span></label>
 <label>Links <select id="measure"><option value="raw">co-citation count</option><option value="assoc">association strength</option></select></label>
 <label><input type="search" id="find" placeholder="Find a person" list="names"></label><datalist id="names"></datalist>
 <button id="reset">Reset view</button><button id="relayout">Reset positions</button></div>
-<div class="legend"><span class="CA">Canada</span><span class="US">United States</span><span class="GB">Britain</span>
+<div class="legend"><span class="CA">Canada</span><span class="US">United States</span><span class="GB">Britain</span><span class="BR">Brazil</span>
 <span class="EU">Rest of Europe</span><span class="SHARED">Shared</span><span class="NOQ">no reviewed Wikidata QID</span>
 <span>Size: number of citing theses. Wheel to zoom, drag the background to pan, drag a person to move them, hover a person for their most co-cited partners.</span></div>
 <div class="stage"><svg class="map" id="map" role="img" aria-label="Co-citation network of cited historians"><g id="vp"></g></svg></div>
@@ -344,7 +397,7 @@ function focus(i,e){svg.classList.toggle('focus',i!=null);Object.values(nodeEls)
  if(i==null){tip.style.display='none';return;}
  nodeEls[i].classList.add('on');for(const [j,l] of nbr[i]){nodeEls[j].classList.add('on');l.classList.add('on');}
  const n=N[i];tip.innerHTML='<b></b><span class="m"></span><table></table>';tip.querySelector('b').textContent=n.name+(n.qid?' ('+n.qid+')':'');
- tip.querySelector('.m').textContent=`Cited by ${n.cited} theses · Canada ${n.shares.CA}% · US ${n.shares.US}% · Britain ${n.shares.GB}% · rest of Europe ${n.shares.EU}% · ${DATA.leans[n.lean]}. Most often cited with:`;
+ tip.querySelector('.m').textContent=`Cited by ${n.cited} theses · Canada ${n.shares.CA}% · US ${n.shares.US}% · Britain ${n.shares.GB}% · Brazil ${n.shares.BR}% · rest of Europe ${n.shares.EU}% · ${DATA.leans[n.lean]}. Most often cited with:`;
  const tb=tip.querySelector('table');for(const [j,v] of n.top){const tr=tb.insertRow();tr.insertCell().textContent=v;tr.insertCell().textContent=N[j].name+(pos[j]?'':' (hidden)');}
  if(e){tip.style.display='block';tip.style.left=Math.min(e.clientX+14,innerWidth-tip.offsetWidth-8)+'px';tip.style.top=Math.min(e.clientY+14,innerHeight-tip.offsetHeight-8)+'px';}}
 vp.addEventListener('pointermove',e=>{const g=e.target.closest('.node');if(g&&!drag&&ndrag==null)focus(+g.dataset.i,e);});

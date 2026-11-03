@@ -19,9 +19,12 @@ with these additions:
   deceased status, or born more than 120 years ago; user decision 2026-10-30); the repository keeps them all.
 - ``nodes[].label``: the name with initials written out ('Thompson, E. P', 'Du Bois, W.e.b' become
   'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it.
+Each sub-graph (``SCOPES``) gets its own file, ``site/canon-map-<CC>.json``, from the page that
+``historian_cocitation_network.py --country CC`` writes; ``scope`` and ``scopes`` let the site switch.
 The output hash, the source hash and the snapshot go into data/dissertation-layer/manifest.json under
-``canon_map``; scripts/build_site.py publishes the file only when the hash matches.
+``canon_map`` (and ``canon_map_scopes`` for the sub-graphs); scripts/build_site.py publishes the file only when the hash matches.
 """
+from collections import defaultdict
 import csv
 import hashlib
 import json
@@ -32,6 +35,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'data/field-research/dissertation-citations-2026-10-11/summary/comparisons/historian-network.html'
 LAYER = ROOT / 'data/dissertation-layer'
 OUT = LAYER / 'site' / 'canon-map.json'
+CROSSWALK = ROOT / 'data/field-research/dissertation-citations-2026-10-11/person-key-crosswalk-2026-11-03.csv'
 INITIALS = re.compile(r'^(?:[A-Za-z]\.)*[A-Za-z]\.?$')
 
 
@@ -43,7 +47,7 @@ def label(name):
     return f"{surname}, {' '.join(parts)}"
 
 
-NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Rest of Europe': 'EU', 'elsewhere': 'OTHER'}
+NAMES = {'Canada': 'CA', 'United States': 'US', 'Britain': 'GB', 'Brazil': 'BR', 'Rest of Europe': 'EU', 'elsewhere': 'OTHER'}
 
 
 def life_years(row):
@@ -62,19 +66,29 @@ def life_years(row):
     return f'{approx}{era(born[0])}–{era(died[0])}' if born else f'd. {approx}{era(died[0])}'
 
 
-def attach_keys(nodes):
+def attach_keys(nodes, pairs=None):
     """``key`` and ``key_status`` from the identifier log (PID-PLAN.md), via the person's graph key.
 
     People deferred for merge review have no key yet and carry neither field."""
     from identifiers import State
     from key_canon_map import canon_keys
     state = State.load(ROOT / 'data/identifiers')
-    graph_key = canon_keys(nodes)
+    graph_key = canon_keys(nodes, *([pairs] if pairs else []))
     with (ROOT / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
         lives = {r['key']: r for r in csv.DictReader(f)}
+    # Graph keys renamed by the split-key fixes of 2026-11-03 ('hobsbawn|eric j' -> 'hobsbawm|eric') reach
+    # the key log through their old keys until the log anchors the new ones.
+    renamed = defaultdict(list)
+    if CROSSWALK.exists():
+        with CROSSWALK.open(newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                renamed[r['new_key']].append(r['old_key'])
     keyed = 0
     for n in nodes:
-        found = state.lookup(f"diss-person:{graph_key[n['name'], n['qid']]}")
+        gk = graph_key[n['name'], n['qid']]
+        found = state.lookup(f"diss-person:{gk}")
+        if not found:
+            found = sorted({k for old in renamed.get(gk, []) for k in state.lookup(f'diss-person:{old}')})
         if len(found) == 1:
             n['key'] = found[0]
             n['key_status'] = state.keys[found[0]]['resolution']
@@ -88,8 +102,14 @@ def attach_keys(nodes):
     return keyed
 
 
-def main():
-    page = SOURCE.read_text(encoding='utf-8')
+SCOPES = ['BR', 'CA', 'GB', 'US']  # sub-graph maps (user, 2026-11-03: "select a sub-graph and see its map")
+
+
+def export(scope=None):
+    """Write the site file for the main map or one sub-graph's; return its manifest entry."""
+    source = SOURCE if not scope else SOURCE.parents[1] / 'countries' / scope / 'comparisons' / SOURCE.name
+    out = OUT if not scope else OUT.with_name(f'canon-map-{scope}.json')
+    page = source.read_text(encoding='utf-8')
     data = json.loads(re.search(r'<script id="data" type="application/json">(.*?)</script>', page, re.S).group(1))
     data['snapshot'] = re.search(r'Built (\d{4}-\d\d-\d\d)', page).group(1)
     # The site draws its lines from ``links`` with its own link controls (top k per person, minimum
@@ -99,8 +119,10 @@ def main():
         view.pop('edges')
     counts = re.search(r'next\s+region\'s \(([^)]*) theses\)', page).group(1)
     data['region_theses'] = {NAMES[m.group(1)]: int(m.group(2).replace(',', ''))
-                             for m in re.finditer(r'(Canada|United States|Britain|Rest of Europe|elsewhere) ([\d,]+)', counts)}
+                             for m in re.finditer(r'(Canada|United States|Britain|Brazil|Rest of Europe|elsewhere) ([\d,]+)', counts)}
     assert set(data['region_theses']) == set(NAMES.values()), data['region_theses']
+    data['scope'] = scope or 'main'
+    data['scopes'] = ['main', *SCOPES]
     index = json.loads((LAYER / 'site' / 'index.json').read_text())
     by_name = {}
     for s in index['sources']:
@@ -113,20 +135,22 @@ def main():
         if len(keys) == 1:
             n['reading'] = keys[0]
             linked += 1
-    keyed = attach_keys(data['nodes'])
+    keyed = attach_keys(data['nodes'], source.parents[1] / 'network' / 'historian-cocitation-pairs.csv' if scope else None)
     text = json.dumps(data, ensure_ascii=False, separators=(',', ':'))
-    OUT.write_text(text, encoding='utf-8')
+    out.write_text(text, encoding='utf-8')
+    print(f"wrote {out.relative_to(ROOT)} ({len(text) / 1e6:.2f} MB): {len(data['nodes'])} people, "
+          f"{linked} linked to Dissertation reading, {keyed} keyed, snapshot {data['snapshot']}")
+    return dict(snapshot=data['snapshot'], source=str(source.relative_to(ROOT)),
+                source_sha256=hashlib.sha256(page.encode('utf-8')).hexdigest(),
+                output=str(out.relative_to(LAYER)), output_sha256=hashlib.sha256(text.encode('utf-8')).hexdigest())
+
+
+def main():
     manifest_path = LAYER / 'manifest.json'
     manifest = json.loads(manifest_path.read_text())
-    manifest['canon_map'] = dict(
-        snapshot=data['snapshot'],
-        source=str(SOURCE.relative_to(ROOT)),
-        source_sha256=hashlib.sha256(page.encode('utf-8')).hexdigest(),
-        output='site/canon-map.json',
-        output_sha256=hashlib.sha256(text.encode('utf-8')).hexdigest())
+    manifest['canon_map'] = export()
+    manifest['canon_map_scopes'] = {scope: export(scope) for scope in SCOPES}
     manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n')
-    print(f"wrote {OUT.relative_to(ROOT)} ({len(text) / 1e6:.2f} MB): {len(data['nodes'])} people, "
-          f"{linked} linked to Dissertation reading, {keyed} keyed, snapshot {data['snapshot']}")
 
 
 if __name__ == '__main__':

@@ -354,6 +354,23 @@ class DissertationBrowserTests(unittest.TestCase):
         self.assertGreater(self.page.locator('.canon-pairs tbody tr').count(), 100)
         self.page.screenshot(path=str(self.artifacts/'canon-map-desktop.png'))
 
+    def test_canon_map_switches_to_a_sub_graph(self):
+        # 2026-11-03, user: "select a sub-graph and see its map"; each scope loads its own file.
+        self.open('#tab=canon')
+        self.page.wait_for_selector('.canon-node')
+        self.assertFalse(any(r.endswith('/data/dissertations/canon-map-BR.json') for r in self.requests))
+        self.page.select_option('.canon-scope', 'BR')
+        expect(self.page.locator('.reading-scope')).to_contain_text('from Brazil only')
+        self.page.wait_for_selector('.canon-node')
+        self.assertTrue(any(r.endswith('/data/dissertations/canon-map-BR.json') for r in self.requests))
+        self.assertIn('scope=BR', self.page.evaluate('location.hash'))
+        expect(self.page.locator('.canon-scope')).to_have_value('BR')
+        self.page.select_option('.canon-scope', 'main')
+        expect(self.page.locator('.reading-scope')).to_contain_text('Brazil and elsewhere')
+        self.assertNotIn('scope=', self.page.evaluate('location.hash'))
+        self.open('#tab=canon&scope=CA')
+        expect(self.page.locator('.reading-scope')).to_contain_text('from Canada only')
+
 
 if __name__ == '__main__':
     unittest.main()

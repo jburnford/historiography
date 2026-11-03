@@ -420,6 +420,35 @@ The user asked for Brazil on 2026-10-31.
   - Elias's QID needs checking.
 - The region comparison pages (`summary/comparisons/`) were not regenerated in this round.
 
+### Split person keys (2026-11-03)
+
+Brazilian (ABNT) bibliographies split cited people three ways. The 2026-11-02 graph had Hobsbawm under
+`hobsbawm|eric`, `hobsbawm|eric j`, `hobsbawn|eric j` and others, and a share summed across them read
+39% of Brazilian theses; counted once per thesis it is 32%. The build now joins them (rebuilt on Plato,
+job 6004237; tests in `tests/test_dissertation_person_keys.py`):
+
+- **Conjunctions and title letters read as middle initials** ('NORA, Pierre e', 'Bourdieu, Pierre y
+  Wacquant', 'WEBER, Max. A'). `trim_given` cuts the given name at a lowercase single letter, after a full
+  first name ending in a period, and at a capital letter followed by a lowercase word.
+- **Full middle names keyed without the initial** ('THOMPSON, Edward Palmer' as `thompson|edward`).
+  A work whose plain key has a full middle name moves to the key with that initial, where one exists:
+  33,323 works.
+- **Misspelt surnames** (Hobsbawn, Bordieu, Guinzburg, Ricouer, LeGoff). `resolve_surname_variants`
+  joins surnames one edit apart, or equal without spaces, with the same first given name and no
+  conflicting middle initial, when they share cited titles (2 or more and 30% of the smaller key's, or 10
+  or more): 743 keys.
+- `merge_titles` checks exact upper bounds before the `difflib` ratio (`similar`); the result is
+  unchanged and the slowest surname groups run about 17 times faster.
+
+Renamed keys break the key log's `diss-person:` anchors until it anchors the new ones.
+`person-key-crosswalk-2026-11-03.csv` maps 431 of the 452 anchored keys that no longer exist to their
+new key; 21, mostly initial-only keys, have none. The canon map reads the log through it.
+
+The canon maps (`historian_cocitation_network.py`) also join graph keys the key log anchors to one
+person ('Woodward, C. Vann' and 'Woodward, Comer Vann'), counting each thesis once. Initial-only keys
+never join: the log anchors `thompson|e` to E. P. Thompson, but its works include E. A. Thompson's *The
+Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:

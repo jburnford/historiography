@@ -42,13 +42,32 @@ def git_json(rev, path):
                                      capture_output=True, text=True, check=True).stdout)
 
 
-def canon_keys(nodes):
-    """(name, qid) -> graph person key, from the co-citation pairs table of the same build."""
+def canon_keys_by_pairs(pairs):
     by = defaultdict(set)
-    with PAIRS.open(newline='', encoding='utf-8') as f:
+    with pairs.open(newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             by[(r['person_a'], r['qid_a'])].add(r['key_a'])
             by[(r['person_b'], r['qid_b'])].add(r['key_b'])
+    return by
+
+
+def canon_keys(nodes, pairs=PAIRS):
+    """(name, qid) -> graph person key, from the co-citation pairs table of the same build
+    (a sub-graph map's own table under summary/countries/<CC>/network/)."""
+    by = canon_keys_by_pairs(pairs)
+    if pairs != PAIRS:
+        # a sub-graph node with no pair at the floor (Trevor-Roper in Canada): the same build's main
+        # table, then cited-people.csv by the map's display name and QID
+        missing = [n for n in nodes if (n['name'], n['qid']) not in by]
+        if missing:
+            from historian_cocitation_network import proper
+            main, cited = canon_keys_by_pairs(PAIRS), defaultdict(set)
+            with (D / 'cited-people.csv').open(newline='', encoding='utf-8') as f:
+                for r in csv.DictReader(f):
+                    cited[proper(r['name']), r['qid']].add(r['person_key'])
+            for n in missing:
+                k = n['name'], n['qid']
+                by[k] = main.get(k) or cited.get(k, set())
     out = {}
     for n in nodes:
         ks = by.get((n['name'], n['qid']), set())
