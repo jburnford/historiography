@@ -1119,3 +1119,25 @@ Three causes found, two fixed here:
 Crosswalk rebuilt on the Brazil corpus build (`cited-works-2026-11-03/`): 105,101 cited works → 100,850 keyed
 works, 441,621 citations (was 393,081); `data/graph/cites.csv.gz` regenerated (411,335 rows, 31,419 from
 Brazilian theses, none before).
+
+## Cited articles and chapters (2026-11-03, `cited-articles-2026-11-03/`, `-03b/`)
+
+Articles and chapters had no route into the graph (audit above: about 830,000 person-thesis citation pairs).
+`scripts/jstor_index.py` indexes the local JSTOR metadata export (E:, jstor_metadata_2026-10-23.jsonl.gz; user:
+"we have jstor data locally"): 11.26 million articles, chapters and books with their 10.2307 DOIs, creators, years
+and containers. `scripts/key_cited_articles.py` matches every cited article or chapter with a keyed author
+(157,534) to JSTOR's records, and to Crossref's where asked (`scripts/crossref_cited_articles.py`, cache on E:;
+a 200-work pilot so far): titles agree (main or whole title), the record's creators include every keyed author's
+family name, years within two, not a review, the passing records one article (same container and year; JSTOR's
+DOI beside a publisher's is a second anchor; records sharing a DOI one work). The join is on title key and
+family name together (generic titles such as 'Introduction' paired everything) and runs in about 5 GB.
+- 29,785 cited works matched (26,189 articles, 3,596 chapters; 29,656 through JSTOR alone): 29,394 DOI works
+  (`doi:` anchors, new work kind `article` in the graph) and 30,086 `authored` claims
+  (`cited-authored:<doi>:<corpus person id>`). Tina Loo gains *Of Moose and Men*, *Disturbing the Peace*, *An
+  Environmental History of Progress*, *Holding the Rock*, *Africville and the Dynamics of State Power*.
+- Repair (`repair-claims.py`): the first pass named the record's source as author ('diss-person:JSTOR'); its
+  29,467 claims were withdrawn and minted anew in `-03b`.
+- `export_citations.py` takes both crosswalks: 464,369 rows (was 411,335).
+- Limits: where the corpus pools namesakes under one id, a namesake's article can reach the keyed person
+  (Timothy Mitchell); 127,498 cited articles and chapters have no JSTOR record (BC Studies, most chapters): the
+  Crossref harvest is the next route for them.

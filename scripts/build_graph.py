@@ -74,6 +74,8 @@ def work_kind(anchors):
         return 'review'
     if 'lccn' in schemes:
         return 'book'
+    if 'doi' in schemes:
+        return 'article'          # articles and chapters cited in the corpus (key_cited_articles), and ORCID works
     if 'atlas' in schemes:
         return 'atlas_source'
     return 'other'

@@ -3,7 +3,8 @@
 The dissertation corpus's citation table (strict-citations.csv.gz, 2.5M rows) and its works table are build
 artefacts of the corpus pipeline and are not in git. The graph build (scripts/build_graph.py) must run from a
 clean clone, so the citations it needs are kept here: one row per citing dissertation and cited work that the
-key log holds, through the citation crosswalk (scripts/key_cited_works.py). Rows carry the corpus dissertation
+key log holds, through the citation crosswalks (scripts/key_cited_works.py for books; scripts/key_cited_articles.py
+for articles and chapters, whose keys are `doi:` anchors, resolved at build time like work keys). Rows carry the corpus dissertation
 id (anchored in the log as `diss-thesis:<id>`) and the cited work's key, resolved through merges at build time.
 Regenerate after each corpus build and crosswalk run.
 
@@ -24,12 +25,16 @@ CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--crosswalk', type=Path, required=True)
+    ap.add_argument('--crosswalk', type=Path, required=True, nargs='+',
+                    help='book crosswalk (key_cited_works), then the article crosswalk (key_cited_articles)')
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--corpus', type=Path, default=CORPUS)
     args = ap.parse_args()
-    with gzip.open(args.crosswalk, 'rt', newline='', encoding='utf-8') as f:
-        key_of = {r['work_id']: r['key'] for r in csv.DictReader(f)}
+    key_of = {}
+    for path in args.crosswalk:                       # a work id the first crosswalk names keeps that key
+        with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                key_of.setdefault(r['work_id'], r['key'])
     rows, report = set(), Counter()
     with gzip.open(args.corpus / 'strict-citations.csv.gz', 'rt', newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
