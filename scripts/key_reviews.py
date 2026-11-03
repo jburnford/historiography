@@ -64,6 +64,24 @@ def is_ref(aff):
     return aff.split(':', 1)[0] in SOURCE.values()
 
 
+HONORIFIC = re.compile(r'^((professor|prof|dr|mr|mrs|ms|miss|sir|dame|revd|rev|reverend|emeritus|the)\.?\s+)+', re.I)
+GENERIC = {'', 'university', 'college', 'institute', 'school', 'centre', 'center', 'museum', 'library'}
+
+
+def readings(name, aff):
+    """Ways to read a printed credit as (name, affiliation). Reviews in History prints honorifics ('Professor
+    Jeremy Black') and its parser sometimes leaves the affiliation's first words in the name ("Professor Catherine
+    O'Donnell Arizona State" + 'University'): with no affiliation, or a generic word, the name's trailing words
+    are also read as the affiliation's start."""
+    n = HONORIFIC.sub('', name).strip()
+    a = '' if is_ref(aff) else aff
+    out = [(n, a)]
+    if norm(a) in GENERIC:
+        toks = n.split()
+        out += [(' '.join(toks[:i]), ' '.join(toks[i:] + ([a] if a else []))) for i in range(2, len(toks))]
+    return out
+
+
 def year_of(date):
     m = re.search(r'\b(19|20)\d\d\b', date or '')
     return int(m.group()) if m else None
@@ -225,23 +243,23 @@ def main():
         printed[first[own]].append(r)
     cands = {}
     for (name, aff), rs in printed.items():
-        if is_ref(aff):
-            continue
-        cs = {k for c in letters(name, first_only=True) for _, k in index.get((surname(name), c), ()) if name_agrees(name, live[k]['label'])}
-        if cs:
-            cands[name, aff] = cs
-    lc = lc_records({a[6:] for cs in cands.values() for k in cs for a in live[k]['anchors'] if a.startswith('lcnaf:')}, args.lc)
+        for n, a in readings(name, aff):
+            cs = {k for c in letters(n, first_only=True) for _, k in index.get((surname(n), c), ()) if name_agrees(n, live[k]['label'])}
+            if cs and a:
+                cands.setdefault((name, aff), []).append((a, cs))
+    lc = lc_records({a[6:] for v in cands.values() for _, cs in v for k in cs for a in live[k]['anchors'] if a.startswith('lcnaf:')}, args.lc)
     ctx = dict(records=records, students=students, institution=institution, lc=lc, orcid={})
-    credits, listed, joins_csv = [], [], []
+    credits, listed, joins_csv, relabels = [], [], [], []
     merge_ok = guarded(state, merge_rule(state), exclude=args.out)
     for (name, aff), rs in sorted(printed.items()):
         own = f'review-credit:{aff}' if is_ref(aff) else f'review-credit:{norm(name)}|{norm(aff)}'
         year = min((y for y in (year_of(r[4]) for r in rs) if y), default=None)
         hits = {}
-        for k in cands.get((name, aff), ()):
-            why = reviewer_facts(k, live[k], ctx, aff, year)
-            if why:
-                hits[k] = why
+        for a, cs in cands.get((name, aff), ()):
+            for k in cs:
+                why = reviewer_facts(k, live[k], ctx, a, year)
+                if why:
+                    hits[k] = sorted(set(hits.get(k, [])) | set(why))
         if len(hits) == 1 or (len(hits) > 1 and merge_ok(dict(anchors=set()), sorted(hits))):
             credits.append((own, name, aff, hits))
             report['reviewer_credits_joined' if len(hits) == 1 else 'reviewer_credits_join_several_keys'] += 1
@@ -252,8 +270,12 @@ def main():
                                    candidates={k: dict(label=live[k]['label'], facts=w) for k, w in hits.items()}))
             else:
                 report['reviewer_credits_new'] += 1
-            clusters.append(dict(type='person', label=name, anchors={own}, members=set(), aliases=set(),
+            label = readings(name, aff)[0][0] or name
+            clusters.append(dict(type='person', label=label, anchors={own}, members=set(), aliases=set(),
                                  resolution='recorded', basis=f'reviewer credit: {name}' + ('' if is_ref(aff) else f', {aff}')))
+            for k in state.lookup(own):                 # keys minted before honorifics were read
+                if live.get(k) and live[k]['label'] != label and all(x.startswith('review-credit:') for x in live[k]['anchors']):
+                    relabels.append(dict(event='relabel', key=k, label=label, basis='the printed name without its honorific'))
         for r in rs:
             claims.append(dict(anchor=f'review-authored:{SOURCE[r[0]]}:{r[1]}', subject=own, predicate='authored',
                                object=f'{SOURCE[r[0]]}:{r[1]}'))
@@ -265,15 +287,33 @@ def main():
         while parent.get(k, k) != k:
             k = parent[k]
         return k
-    for _, _, _, hits in credits:
-        ks = sorted(hits, key=lambda k: int(k[2:]))
+    num = lambda k: int(k[2:])                                    # noqa: E731
+    pure = lambda k: all(x.startswith('review-credit:') for x in live[k]['anchors'])   # noqa: E731
+    owners = {c[0]: [k for k in state.lookup(c[0]) if k in live] for c in credits}
+    for own, _, _, hits in credits:            # the key already holding a credit belongs to its group too
+        ks = sorted(set(hits) | set(owners[own]), key=num)
         for k in ks[1:]:
             parent[root(k)] = root(ks[0])
     groups = defaultdict(list)
     for c in credits:
         groups[root(next(iter(c[3])))].append(c)
     for g, cs in sorted(groups.items()):
-        keys = sorted({k for c in cs for k in c[3]}, key=lambda k: int(k[2:]))
+        held_by = sorted({k for c in cs for k in owners[c[0]]}, key=num)
+        keys = sorted({k for c in cs for k in c[3]} | {k for k in held_by if not pure(k)}, key=num)
+        target = live[keys[0]]['label']
+        stale = [k for k in held_by if pure(k) and not merge_ok(dict(anchors=set()), sorted({k, keys[0]}))]
+        if stale and all(live[k]['label'] == target for k in stale):   # refused for another reason (merge guard)
+            report['reviewer_groups_refused'] += 1
+            listed += [dict(name=n, affiliation=a, outcome='group_refused', held_by=stale,
+                            candidates={k: dict(label=live[k]['label'], facts=w) for k, w in h.items()}) for _, n, a, h in cs]
+            continue
+        stale = [k for k in stale if live[k]['label'] != target]
+        if stale:      # a reviewer key whose printed label the merge rule cannot read: relabel now, join next run
+            report['reviewer_groups_deferred_for_relabel'] += 1
+            relabels += [dict(event='relabel', key=k, label=target, basis='the name of the person the credit joins '
+                                                                         '(honorific or affiliation words in the printed name)')
+                         for k in stale]
+            continue
         if len(keys) > 1 and not merge_ok(dict(anchors=set()), keys):    # joined pairwise, refused as a whole
             report['reviewer_groups_refused'] += 1
             for own, name, aff, hits in cs:
@@ -286,7 +326,7 @@ def main():
             for k, why in hits.items():
                 joins_csv.append([k, live[k]['label'], name, aff, '; '.join(why)])
         clusters.append(dict(type='person', label=live[keys[0]]['label'],
-                             anchors={sorted(live[k]['anchors'])[0] for k in keys} | {c[0] for c in cs},
+                             anchors={sorted(live[k]['anchors'])[0] for k in keys} | {c[0] for c in cs},  # pure keys join by their credit
                              members=set(), aliases=set(), resolution=live[keys[0]]['resolution'],
                              basis='; '.join(f'reviewer {n} ({a}): ' + ' / '.join(f'{k} {", ".join(w)}' for k, w in h.items())
                                              for _, n, a, h in cs)[:500]))
@@ -305,10 +345,12 @@ def main():
             claims.append(dict(anchor=f'reviews:{anchor}', subject=anchor, predicate='reviews', object=f'hnet-book:{r[7]}'))
         report['reviews'] += 1
 
-    ops, assign, held = plan(state, clusters, merge_ok)
+    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state), exclude=args.out))
+    ops += relabels
     for o in [o for o in ops if o['event'] == 'merge']:     # an AHA-only survivor takes the PID key's fuller name
         into, gone = state.keys[o['into']], state.keys[o['key']]
-        if not any(a.split(':', 1)[0] in PUBLIC_SCHEMES for a in into['anchors']) and len(gone['label']) > len(into['label']):
+        if not any(a.split(':', 1)[0] in PUBLIC_SCHEMES for a in into['anchors']) and len(gone['label']) > len(into['label']) \
+                and any(a.split(':', 1)[0] in PUBLIC_SCHEMES for a in gone['anchors']):   # never a printed credit
             ops.append(dict(event='relabel', key=o['into'], label=gone['label'], basis='the name on the PID key it joined'))
     have = set(state.anchor)
     for i, c in enumerate(claims):

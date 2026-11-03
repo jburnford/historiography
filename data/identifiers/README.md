@@ -1024,3 +1024,11 @@ records for the books (books-2016.ndjson, books.ndjson) and the credit → LC re
   Reviews in History records with no book (parsed title 'Reviews in History', no ISBN): links and 9 book works
   withdrawn. 145 book works minted under that parsed title take LC's title (or the ISBN). A rerun proposes
   nothing. To do: read the other books' citations from the collective reviews' bodies.
+- **Reviews in History credits** (`reviews-2026-11-02b`, `-c`): the printed name carries an honorific ('Professor
+  Jeremy Black', 2,249 credits) and sometimes the affiliation's first words ("Professor Catherine O'Donnell
+  Arizona State" + 'University'). `readings()` drops the honorific and also reads the trailing words as the
+  affiliation's start; anchors stay the printed credit. Two passes: pass 1 relabelled 1,327 reviewer keys and
+  merged 509 credits into the people they name (Rob Boddice ×3, Gabriel Winant, Elena Woodacre…), pass 2 merged 29
+  more. Pass 1 also copied 12 printed credits onto AHA keys as labels ('Professor Amy Froide'): restored
+  (`reviews-2026-11-02b/proposal-labels.json`), and a merge now takes a name only from a key with a public PID.
+  5 groups refused by the merge guard are listed. A rerun proposes nothing.
