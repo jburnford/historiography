@@ -953,5 +953,6 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
     Coates), Androsoff (Toronto 2011, McGowan), Meyers (Brown 2000, Carolyn Dean), Maurice Jr. Labelle (Akron
     2012), Troupe (USask 2019, Cunfer) and McLeister (McMaster). Harvey's item gains P108 USask.
   - The bare Q55725434 'Maurice Labelle' is a Quebec writer (1913-1997), not him.
-  - Open: Troupe's LC no2008089741 (born 1972; Métis artistic designs, 2002) against her AHA key; Maurice
-    Labelle Jr.'s LC no2022099498; Lewis Stiles (lecturer, no degree listed).
+  - On user review: Troupe's LC no2008089741 (her early book, 2002) merges with her AHA key, and Maurice Labelle
+    Jr. is LC no2022099498 (*The Boomerang Effect of Decolonization*). Martha Smith is labelled with her current
+    name, not Smith-Norris. McLeister and Stiles are left out: the user says they are lecturers, not researchers.
