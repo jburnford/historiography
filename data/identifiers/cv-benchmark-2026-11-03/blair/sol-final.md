@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all six key verdicts, 98 CV works, and doctorate and student comparisons. JSON and graph IDs validated. No other files written.

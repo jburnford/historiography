@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all five comparisons and 73 CV publications. JSON validation passed.

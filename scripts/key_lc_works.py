@@ -6,7 +6,9 @@ scripts/lc_bib_index.py: records to 2016) become works with the person's role:
 - a heading resolves to the key's authority by its $0, or by its text equal to the authority's authorised
   heading (lc_resolve_authorities.resolve), or an earlier authorised form LC keeps as a variant, with the same
   family name and dates (`former_heading`, 2026-11-03: Tina Loo's books are catalogued under 'Loo, Tina Merrill,
-  1962-', her heading until 2019); other variant forms and undifferentiated authorities are not used;
+  1962-', her heading until 2019); or, for a heading without dates, the one live, differentiated authority in
+  the whole file with that name once dates and fuller form are dropped (`unique_bases`: 'Gilroy, Paul.' for
+  'Gilroy, Paul, 1956-'); other variant forms and undifferentiated authorities are not used;
 - **authored**: the main entry (100), or an added entry (700) with an author relator ('joint author',
   'author'); **edited**: an added entry with an editor or compiler relator. Other relators (translator,
   illustrator, former owner) and added entries without a relator are left out: older records do not say
@@ -49,6 +51,7 @@ ARTICLES = {'the', 'a', 'an', 'le', 'la', 'les', 'l', 'der', 'die', 'das', 'el',
 
 def title_key(t):
     t = re.sub(r"['’‘ʼ]", '', t or '')                  # Labour's / Labour’s -> labours
+    t = re.sub(r'\s*&\s*', ' and ', t)                    # 'Capitalism & slavery' is 'Capitalism and Slavery' (2026-11-03)
     t = unicodedata.normalize('NFKD', t).encode('ascii', 'ignore').decode().lower()
     w = re.sub(r'[^a-z0-9 ]+', ' ', t).split()
     while w and w[0] in ARTICLES:
@@ -73,9 +76,37 @@ def former_heading(heading, label):
     return bool(d) and d == label_dates(label) and heading.split(',')[0].strip().lower() == label.split(',')[0].strip().lower()
 
 
-def catalogue_roles(index, names):
+BASE_SQL = r"""lower(trim(regexp_replace(regexp_replace(label, '\s*\([^)]*\)', '', 'g'),
+                 ',\s*(b\.|d\.|born|died|approximately|active|fl\.)?\s*-?\d{3,4}[^,]*$', ''), ' ,.'))"""
+
+
+def base_name(heading):
+    """A heading without dates or fuller form: 'Kuhn, Thomas S. (Thomas Samuel), 1922-1996' -> 'kuhn, thomas s'."""
+    h = re.sub(r'\s*\([^)]*\)', '', heading or '')
+    h = re.sub(r',\s*(b\.|d\.|born|died|approximately|active|fl\.)?\s*-?\d{3,4}[^,]*$', '', h)
+    return h.strip(' ,.').lower()
+
+
+def unique_bases(names_path, keyed):
+    """Base name -> LC id, for keyed authorities whose base name no other live, differentiated personal-name
+    authority in the whole file shares (2026-11-03: Gilroy's 1993 record reads 'Gilroy, Paul.', the authority
+    'Gilroy, Paul, 1956-'; Kuhn's 'Kuhn, Thomas S.' for 'Kuhn, Thomas S. (Thomas Samuel), 1922-1996')."""
+    db = duckdb.connect()
+    db.execute("SET memory_limit = '4GB'")
+    db.execute('CREATE TABLE k(lcid VARCHAR)')
+    db.executemany('INSERT INTO k VALUES (?)', [(x,) for x in keyed])
+    rows = db.execute(f"""WITH b AS (SELECT lcid, {BASE_SQL} AS base FROM read_parquet('{names_path}')
+                                     WHERE NOT undifferentiated AND NOT deprecated),
+                          u AS (SELECT base FROM b GROUP BY base HAVING count(*) = 1)
+                          SELECT b.base, b.lcid FROM b JOIN u USING (base) JOIN k USING (lcid)""").fetchall()
+    return dict(rows)
+
+
+def catalogue_roles(index, names, bases=None):
     """LCCN -> [(pos, lcid, role)] for headings that resolve to one of the loaded authorities (by $0, the
-    authorised heading, or an earlier form of it: former_heading)."""
+    authorised heading, or an earlier form of it: former_heading), or, for a heading without dates that resolves
+    to none, the one authority in the whole file with that base name (unique_bases)."""
+    bases = bases or {}
     roles = defaultdict(list)
     for part in sorted(glob.glob(f'{index}/headings-*.parquet')):
         rows = duckdb.sql(f"SELECT control, pos, tag, heading, uri, relators FROM read_parquet('{part}') "
@@ -85,8 +116,10 @@ def catalogue_roles(index, names):
             if not role:
                 continue
             lcid, via = resolve(dict(heading=heading, uri=uri or ''), names)
-            if lcid and (via != 'variant' or former_heading(heading, names[0][lcid]['label'])) \
-                    and not names[0][lcid].get('undifferentiated'):
+            if not lcid or (via == 'variant' and not former_heading(heading, names[0][lcid]['label'])):
+                lcid = bases.get(base_name(heading)) if not label_dates(heading) else None
+                via = 'unique_base' if lcid else via
+            if lcid and not names[0][lcid].get('undifferentiated'):
                 roles[control.strip()].append((0 if tag == '100' else pos, lcid, role))
     return roles
 
@@ -123,7 +156,7 @@ def main():
     state = State.load(args.state)
     lc_key = {a[6:]: k for a, k in state.anchor.items() if a.startswith('lcnaf:') and state.keys[k]['type'] == 'person'}
     names = load_names(args.names, set(lc_key))
-    works = works_from(args.index, catalogue_roles(args.index, names))
+    works = works_from(args.index, catalogue_roles(args.index, names, unique_bases(args.names, set(lc_key))))
     report, ops = Counter(works=len(works)), []
     for (lead, tk), w in sorted(works.items()):
         recs = sorted(w['records'], key=lambda r: (r[2] or '9999', r[0]))

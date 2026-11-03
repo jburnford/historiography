@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json), covering 181 CV entries and all graph works. No other files were written.

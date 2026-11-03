@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json). No other files were written.

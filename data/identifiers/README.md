@@ -1158,3 +1158,21 @@ thesis, conference paper, report, working paper, encyclopedia entry):
   Geography and CHR articles, the Oxford Handbook chapter, Trading Consequences, 'What Is Active History?').
 **Closed shards are gzipped** (`identifiers.py compress`; readers take `.jsonl.gz`): the log is 2.83 million events
 in 23 shards, about 140 MB in the working tree instead of about 1.1 GB. Loading it peaks near 8 GB of memory.
+
+## CV benchmark; ORCID duplicates; LC headings (2026-11-03, `cv-benchmark-2026-11-03/`, `orcid-work-dups-2026-11-03/`, `lc-works-2026-11-03b/`)
+
+- **CV benchmark** (`scripts/cv_benchmark.py`, `cv-benchmark-2026-11-03/`; the user's CVs on E:, "not a gold standard
+  as they could be out of date", Ian Milligan's "close to gold"): Sol read each CV beside the graph's same-name keys
+  (`BRIEF.md`, `*/verdicts.json`). Milligan 33 of 73 CV works in the graph, Jovanović 8/9, Cronon 20/225 (36 of
+  59 students), McNeill 18/319, Blair 9/98, Waite 7/181, Johnston 4/134, Stenner 2/32; chapters, reviews and
+  encyclopedia entries are mostly missing. Splits the CVs show merged (`proposal.json`, `proposal-mcneill.json`):
+  David Stenner (AHA key + LC key), Robert D. Johnston (Yale review credit), J. R. McNeill (LC/atlas key + AHA key
+  with his eleven students); review credits without an affiliation stay apart.
+- **ORCID works listed twice** (`scripts/key_orcid_work_dups.py`): 30,214 merges of works without a DOI into the
+  claimant's work of the same title (whole title, a truncated label, or the main title when one side has no
+  subtitle; never one-word or generic titles such as 'Introduction'), years within two.
+- **LC headings** (`key_lc_works`): '&' reads as 'and' in title keys (*Capitalism & slavery*, *Manliness &
+  civilization* now match their citations); a heading without dates resolves to the one live, differentiated
+  authority in the whole file with that base name (`unique_bases`: 'Gilroy, Paul.', 'Kuhn, Thomas S.'): 1,383
+  works, 1,478 claims; `lc-work-dups-2026-11-03b` 4, `published-as-2026-11-03b` 48; book crosswalk
+  `cited-works-2026-11-03b` 445,886 citations.
