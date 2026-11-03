@@ -956,3 +956,12 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
   - On user review: Troupe's LC no2008089741 (her early book, 2002) merges with her AHA key, and Maurice Labelle
     Jr. is LC no2022099498 (*The Boomerang Effect of Decolonization*). Martha Smith is labelled with her current
     name, not Smith-Norris. McLeister and Stiles are left out: the user says they are lecturers, not researchers.
+- **Split keys merged on user review**, each with two career facts:
+  - Waiser (p-76707 into p-143): LC USask post, and his own USask thesis.
+  - Neufeld (p-118807 into p-24865).
+  - Hayden (p-134654 into p-46457): the USask Archives authority record (memorysask.ca) gives Loyola Chicago
+    PhD 1963 and USask 1966-2001.
+  - Graham (p-146759 into p-44163): English Wikipedia gives a Toronto PhD and USask 1946-47 and 1958-68.
+  - Batches: `usask-merged.qs` (Waiser, Neufeld, Graham). Hayden's CREATE block in `usask-new.qs` now carries
+    the archives record's facts.
+  - His death date (October 2026, from the user's obituary text) waits for a citable obituary URL.
