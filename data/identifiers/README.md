@@ -1081,3 +1081,20 @@ and roles ('Dr', 'supervisor'). Anchors: `idref:` (new public scheme, the French
   326 joined, 321 merges (Nicholas Stargardt, Sarah Foot, Pekka Hämäläinen at Oxford; Angus McLaren at Victoria;
   Ronald Rudin at Concordia); 4 held by the merge guard (Mathieu, Michels, Mark Smith, John Ma's third key); 280
   with a named candidate but no employer agreeing, 11 with several passing (`candidates.json`).
+
+## GND, Wikidata, VIAF and ISNI through the GND (2026-11-03, `gnd-2026-11-03/`)
+
+The DNB's CC0 person dump (authorities-gnd-person_lds.jsonld.gz, 2026-03-02, 1.4 GB, kept on /mnt/e/gnd) indexed
+by `scripts/gnd_person_index.py` (3.16 million persons with an LC or Wikidata sameAs; 7.5 min). `scripts/key_gnd.py`
+reads it for every key with one LC authority (67,011) and every Wikidata-keyed key without a GND id:
+- **LC route**: exactly one differentiated GND record names the authority and no other; its name agrees with the
+  key's label and its birth year with LC's: `gnd:` attached, with `viaf:` and `isni:` where it states one (50,855
+  keys, member `gnd-via:lc`);
+- **Wikidata through the GND**: the record's one Wikidata item, read on WDQS (a human, a label or alias agreeing,
+  birth year, no other P244 or P227): `wd:` attached to 6,354 keys that had no item (items without P244, as with
+  Cunfer, Handy, Regehr), member `wd-via:gnd`; 105 items failing a check and 178 keys holding another QID queued;
+- **Wikidata route**: GND, VIAF and ISNI for 3,806 Wikidata-keyed people;
+- clusters sharing a GND id or QID are one person seen through two keys (an LC key and an ORCID/Wikidata key that
+  the GND ties together: Brian Cowan, Christabelle Sethna, Konstantina Zanou): 184 merges by key_lc_wikidata's rule
+  behind the merge guard, 11 held. 675 name disagreements (mostly Latin and German name forms of early
+  authors) and 114 birth-year disagreements are listed, not attached. A rerun proposes nothing.

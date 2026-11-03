@@ -160,6 +160,22 @@ def item_aliases(qids, cache):
     return out
 
 
+def merge_rule(state):
+    def merge_ok(cluster, keys):
+        """The LC authority's key and the QID's key: two independent identifications (LC through the works,
+        the QID through its own route) that Wikidata ties together. One person when the labels are compatible
+        (family name and first initial: 'Maitland, Frederic William' / 'Maitland, F. W.') and their LC
+        authorities do not differ (the QID's key has none, or the same one)."""
+        if len(keys) != 2:
+            return False
+        a, b = (state.keys[k]['label'] for k in keys)
+        if not (same_name(a, b) or (name_agrees(a, [as_credit(b)]) and name_agrees(b, [as_credit(a)]))):
+            return False
+        lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
+        return len(lcs) <= 1
+    return merge_ok
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--names', type=Path, required=True)
@@ -274,19 +290,7 @@ def main():
             report['item_cites_several_lc_keys'] += 1
     clusters = [c for cs in by_qid.values() if len(cs) == 1 for c in cs]
 
-    def merge_ok(cluster, keys):
-        """The LC authority's key and the QID's key: two independent identifications (LC through the works,
-        the QID through its own route) that Wikidata ties together. One person when the labels are compatible
-        (family name and first initial: 'Maitland, Frederic William' / 'Maitland, F. W.') and their LC
-        authorities do not differ (the QID's key has none, or the same one)."""
-        if len(keys) != 2:
-            return False
-        a, b = (state.keys[k]['label'] for k in keys)
-        if not (same_name(a, b) or (name_agrees(a, [as_credit(b)]) and name_agrees(b, [as_credit(a)]))):
-            return False
-        lcs = set().union(*({a for a in state.keys[k]['anchors'] if a.startswith('lcnaf:')} for k in keys))
-        return len(lcs) <= 1
-    ops, assign, held = plan(state, clusters, guarded(state, merge_ok, exclude=args.out))
+    ops, assign, held = plan(state, clusters, guarded(state, merge_rule(state), exclude=args.out))
     materialise(state, dict(basis='LC to Wikidata', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(
