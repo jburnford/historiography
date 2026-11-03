@@ -1075,6 +1075,9 @@ and roles ('Dr', 'supervisor'). Anchors: `idref:` (new public scheme, the French
   Deslandres, Jan Grabowski, John Tolan); several spellings of one advisor go to one key together;
 - 2,022 new supervisors (`recorded`, or `established` with an IdRef id), most of them Brazilian and French;
 - 5,680 `supervised` claims (2,654 were already in the log from the AHA); 2 anchors reaching two keys listed.
-To do: new supervisors who already hold a PID key under another route (Nicholas Purcell and John Ma at Oxford,
-Till van Rahden at Montréal) need a career-fact pass (employer = the thesis's institution), as key_aha_career did
-for AHA keys.
+- Career pass (`scripts/key_repository_advisor_career.py`, `repository-advisor-career-2026-11-03/`): a new
+  supervisor key joins a PID-holding key whose name agrees and whose employment (Wikidata P108, LC notes and 373
+  affiliations, ORCID) names the institution of a thesis they supervised, the only one passing, age plausible:
+  326 joined, 321 merges (Nicholas Stargardt, Sarah Foot, Pekka Hämäläinen at Oxford; Angus McLaren at Victoria;
+  Ronald Rudin at Concordia); 4 held by the merge guard (Mathieu, Michels, Mark Smith, John Ma's third key); 280
+  with a named candidate but no employer agreeing, 11 with several passing (`candidates.json`).
