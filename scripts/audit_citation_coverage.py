@@ -34,7 +34,7 @@ BOOKISH = ('book', 'book_or_serial', 'edited_book', 'thesis_or_book', 'unstyled'
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--crosswalk', type=Path, required=True)
+    ap.add_argument('--crosswalk', type=Path, required=True, nargs='+', help='book crosswalk, then the article crosswalk')
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--min', type=int, default=5, help='list people cited by at least this many theses')
     args = ap.parse_args()
@@ -49,7 +49,10 @@ def main():
                    FROM read_csv('{c}/works.csv', all_varchar=true)""")
     db.execute(f"CREATE TABLE diss AS SELECT id AS d, country FROM read_csv('{c}/dissertations.csv', all_varchar=true)")
     db.execute(f"CREATE TABLE cp AS SELECT person_key AS p, name FROM read_csv('{c}/cited-people.csv', all_varchar=true)")
-    db.execute(f"CREATE TABLE xw AS SELECT work_id AS w, key AS wk FROM read_csv('{args.crosswalk}', all_varchar=true)")
+    files = ', '.join(f"'{x}'" for x in args.crosswalk)
+    db.execute(f"""CREATE TABLE xw0 AS SELECT work_id AS w, key FROM read_csv([{files}], all_varchar=true, union_by_name=true)""")
+    db.execute(f"""CREATE TABLE wa AS SELECT a, key FROM (SELECT key, unnest(anchors) AS a FROM '{g}/work.parquet') WHERE a LIKE 'doi:%'""")
+    db.execute("""CREATE TABLE xw AS SELECT DISTINCT ON (w) w, coalesce(wa.key, xw0.key) AS wk FROM xw0 LEFT JOIN wa ON wa.a = xw0.key""")
     db.execute(f"""CREATE TABLE pk_anchor AS SELECT substr(a, 13) AS p, key FROM
                    (SELECT key, unnest(anchors) AS a FROM '{g}/person.parquet') WHERE a LIKE 'diss-person:%'""")
     db.execute(f"""CREATE TABLE theirs AS SELECT "from" AS key, "to" AS wk FROM '{g}/authored.parquet'
