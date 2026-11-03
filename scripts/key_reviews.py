@@ -12,7 +12,8 @@ the credit -> LC authority resolution (scripts/lc_resolve_authorities.py, credit
 - **Book authors**: an `authored` claim from each LC authority LC's record of the same book credits
   (credits.csv, outcome with an LC id), unless that person already authors that work in the log.
 - **Reviews**: one work per review, `hnet-review:<id>` or `rih-review:<id>` (recorded on its source page), and a
-  `reviews` claim (review -> book).
+  `reviews` claim (review -> book), except where the catalogue's book citation is repeated from another record
+  (collective reviews) or missing (`unlinked_reviews`).
 - **Reviewers**: one person per reviewer name and affiliation as printed (`review-credit:<name>|<affiliation>`;
   a review without an affiliation gets its own, `review-credit:<source>:<id>`), with an `authored` claim for
   the review. A reviewer joins a keyed person when the names agree (key_aha_lc_notes.name_agrees: given names
@@ -68,9 +69,34 @@ def year_of(date):
     return int(m.group()) if m else None
 
 
-def lc_book_lccn(paths):
-    """book_id -> LCCN of LC's record for the book (the last file wins, as in lc_resolve_authorities)."""
+def unlinked_reviews(reviews, identified):
+    """Reviews whose book link is not kept (2026-11-02):
+    - collective reviews: H-Soz-u-Kult (and a few others) post one review of several books once per book, but
+      the catalogue repeats the first book's citation on every record (Burghard Ciesla's 20 records of June 2004
+      all cite *Was geschah am 17. Juni?*; the bodies name the other books). The same reviewer and book title on
+      several records of one source keep the link on the first record only; the others are the same review
+      posted twice, or a review of a book the catalogue does not name;
+    - Reviews in History records whose parsed title is 'Reviews in History' and whose book has no ISBN or LCCN
+      (`identified`: book ids that have one); most such records name their book by ISBN.
+    Repeats are found by reviewer and book id (or title, without a book id)."""
+    groups = defaultdict(list)
     out = {}
+    for r in reviews:
+        if norm(r[8]) == 'reviews in history' and r[7] not in identified:
+            out[r[0], r[1]] = 'no book (landing page)'
+        else:
+            groups[r[0], norm(r[2]), r[7] or norm(r[8])].append(r)
+    for rs in groups.values():
+        if len(rs) > 1:
+            first = min(rs, key=lambda r: (int(r[1]) if r[1].isdigit() else 0, r[1]))
+            out.update({(r[0], r[1]): f'repeats the citation of {SOURCE[first[0]]}:{first[1]}' for r in rs if r is not first})
+    return out
+
+
+def lc_book_lccn(paths):
+    """book_id -> LCCN of LC's record for the book, and book_id -> its title there (the last file wins, as in
+    lc_resolve_authorities)."""
+    out, titles = {}, {}
     for p in paths:
         with open(p, encoding='utf-8') as f:
             for line in f:
@@ -78,7 +104,8 @@ def lc_book_lccn(paths):
                 lccn = (r.get('record') or {}).get('lccn')
                 if lccn:
                     out[r['book_id']] = lccn.strip()
-    return out
+                    titles[r['book_id']] = (r.get('record') or {}).get('title') or ''
+    return out, titles
 
 
 def reviewer_facts(k, v, ctx, aff, year):
@@ -121,20 +148,26 @@ def main():
                              FROM read_parquet('{UP}/export/reviews.parquet') r
                              LEFT JOIN read_parquet('{UP}/books/review_book.parquet') b USING (source, review_id)
                              WHERE r.is_real ORDER BY r.source, r.review_id""").fetchall()
-    books = {r[0]: r for r in db.execute(f"SELECT book_id, book_title, book_author, pub_year4 "
+    books = {r[0]: r for r in db.execute(f"SELECT book_id, book_title, book_author, pub_year4, isbn13, lccn "
                                          f"FROM read_parquet('{UP}/books/books.parquet')").fetchall()}
-    lccn = lc_book_lccn([args.lc / 'books-2016.ndjson', args.lc / 'books.ndjson'])
+    lccn, lc_title = lc_book_lccn([args.lc / 'books-2016.ndjson', args.lc / 'books.ndjson'])
     report = Counter()
     clusters, claims = [], []
+    unlinked = unlinked_reviews(reviews, {b for b, r in books.items() if r[4] or r[5]})
+    report['reviews_book_link_not_kept'] = len(unlinked)
+    linked = [r for r in reviews if (r[0], r[1]) not in unlinked]
 
     # books: H-Net book ids sharing an LCCN are one work
     groups = defaultdict(set)              # by the work key the LCCN reaches (LC duplicate works were merged)
-    for bk in {r[7] for r in reviews if r[7]}:
+    for bk in {r[7] for r in linked if r[7]}:
         ks = state.lookup(f'lccn:{lccn[bk]}') if bk in lccn else []
         groups[ks[0] if len(ks) == 1 else f'lccn:{lccn[bk]}' if bk in lccn else f'hnet-book:{bk}'].add(bk)
     for g, bks in sorted(groups.items()):
         bk = min(bks)
         title, author, year = books[bk][1], books[bk][2], books[bk][3]
+        if norm(title) == 'reviews in history':          # a parsing failure; LC's title, or the ISBN
+            title = lc_title.get(bk) or f'ISBN {books[bk][4]}'
+            author = author if author and norm(author) != 'reviews in history' else ''
         lccns = {f'lccn:{lccn[b]}' for b in bks if b in lccn}
         clusters.append(dict(type='work', label=f'{title} / {author}' if author else title,
                              anchors={f'hnet-book:{b}' for b in bks} | lccns,
@@ -268,7 +301,7 @@ def main():
                              anchors={anchor}, members={f'year:{year_of(r[4])}'} if year_of(r[4]) else set(),
                              aliases={f'url:{r[6]}'} if r[6] else set(), resolution='established',
                              basis=f'review published by {network}'))
-        if r[7]:
+        if r[7] and (r[0], r[1]) not in unlinked:
             claims.append(dict(anchor=f'reviews:{anchor}', subject=anchor, predicate='reviews', object=f'hnet-book:{r[7]}'))
         report['reviews'] += 1
 

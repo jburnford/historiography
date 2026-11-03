@@ -1017,3 +1017,10 @@ records for the books (books-2016.ndjson, books.ndjson) and the credit → LC re
   207 merges of one person's split keys (Constance Bouchard, AHA key at Akron through her students, LC key
   at Akron through LC's notes). 36,698 credits are new `recorded` people; 14 ambiguous ones are listed.
 - The graph build derives `REVIEWED` (reviewer → book author) from `AUTHORED` and `REVIEWS`.
+- **Repair** (`repair-unlinked.py`, `proposal-2.json`; rule now in `key_reviews.unlinked_reviews`): collective
+  reviews (mostly H-Soz-u-Kult: one review of several books, one record per book, the catalogue repeating the
+  first book's citation; Burghard Ciesla's 20 records of June 2004 all cite *Was geschah am 17. Juni?*) kept a
+  book link on the first record only: 1,224 `reviews` claims withdrawn, the reviewer's authorship kept. 21
+  Reviews in History records with no book (parsed title 'Reviews in History', no ISBN): links and 9 book works
+  withdrawn. 145 book works minted under that parsed title take LC's title (or the ISBN). A rerun proposes
+  nothing. To do: read the other books' citations from the collective reviews' bodies.
