@@ -4,7 +4,9 @@ The reviewed-book route reached books through reviews; this works the other way.
 an LC authority, the books LC catalogued under that authority (MDSConnect Books All 2016, offline index from
 scripts/lc_bib_index.py: records to 2016) become works with the person's role:
 - a heading resolves to the key's authority by its $0, or by its text equal to the authority's authorised
-  heading (lc_resolve_authorities.resolve; variant forms and undifferentiated authorities are not used);
+  heading (lc_resolve_authorities.resolve), or an earlier authorised form LC keeps as a variant, with the same
+  family name and dates (`former_heading`, 2026-11-03: Tina Loo's books are catalogued under 'Loo, Tina Merrill,
+  1962-', her heading until 2019); other variant forms and undifferentiated authorities are not used;
 - **authored**: the main entry (100), or an added entry (700) with an author relator ('joint author',
   'author'); **edited**: an added entry with an editor or compiler relator. Other relators (translator,
   illustrator, former owner) and added entries without a relator are left out: older records do not say
@@ -37,7 +39,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import DEFAULT_DIR, State, materialise
-from lc_resolve_authorities import load_names, resolve
+from lc_resolve_authorities import label_dates, load_names, resolve
 
 AUTHOR = {'author', 'joint author', 'aut', 'joint aut', 'co-author', 'coauthor'}
 EDITOR = {'ed', 'editor', 'joint ed', 'joint editor', 'editor of compilation', 'comp', 'compiler', 'joint comp',
@@ -63,8 +65,17 @@ def role_of(tag, relators):
     return None
 
 
+def former_heading(heading, label):
+    """A variant that is an earlier form of the authorised heading: same family name and the same dates, which
+    are present ('Loo, Tina Merrill, 1962-' for 'Loo, Tina, 1962-', revised in 2019; the 2016 records keep the
+    old form). A variant without dates, or with other dates, is another person's 'see from' form as often as not."""
+    d = label_dates(heading)
+    return bool(d) and d == label_dates(label) and heading.split(',')[0].strip().lower() == label.split(',')[0].strip().lower()
+
+
 def catalogue_roles(index, names):
-    """LCCN -> [(pos, lcid, role)] for headings that resolve to one of the loaded authorities."""
+    """LCCN -> [(pos, lcid, role)] for headings that resolve to one of the loaded authorities (by $0, the
+    authorised heading, or an earlier form of it: former_heading)."""
     roles = defaultdict(list)
     for part in sorted(glob.glob(f'{index}/headings-*.parquet')):
         rows = duckdb.sql(f"SELECT control, pos, tag, heading, uri, relators FROM read_parquet('{part}') "
@@ -74,7 +85,8 @@ def catalogue_roles(index, names):
             if not role:
                 continue
             lcid, via = resolve(dict(heading=heading, uri=uri or ''), names)
-            if lcid and via != 'variant' and not names[0][lcid].get('undifferentiated'):
+            if lcid and (via != 'variant' or former_heading(heading, names[0][lcid]['label'])) \
+                    and not names[0][lcid].get('undifferentiated'):
                 roles[control.strip()].append((0 if tag == '100' else pos, lcid, role))
     return roles
 

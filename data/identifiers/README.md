@@ -1098,3 +1098,24 @@ reads it for every key with one LC authority (67,011) and every Wikidata-keyed k
   the GND ties together: Brian Cowan, Christabelle Sethna, Konstantina Zanou): 184 merges by key_lc_wikidata's rule
   behind the merge guard, 11 held. 675 name disagreements (mostly Latin and German name forms of early
   authors) and 114 birth-year disagreements are listed, not attached. A rerun proposes nothing.
+
+## Citations across the graph (2026-11-03; user, on Tina Loo: "we need to figure this out across the graph")
+
+Tina Loo (p-1364) is cited by 142 corpus theses (132 Canadian) and was reached by none in the graph.
+`scripts/audit_citation_coverage.py` measures, for every cited person, the theses citing them in the corpus
+against those reaching a work their key authors or edits in the graph, with the first failing step for the rest.
+Three causes found, two fixed here:
+- **LC headings revised since 2016** (`lc-works-2026-11-03/`): the 2016 catalogue file keeps the old authorised
+  form, which the authority now lists only as a variant ('Loo, Tina Merrill, 1962-', her heading until 2019).
+  `key_lc_works.former_heading` accepts a variant with the same family name and dates. Works rerun: 5,178 new
+  works (with the books of LC authorities added since 11-02), 5,155 `authored` and 382 `edited` claims; then
+  `lc-work-dups-2026-11-03` (93 merges), `published-as-2026-11-03` (170), `atlas-lc-works-2026-11-03` (7).
+- **Corpus person ids drift between builds** (`cited-people-2026-11-03/`, `scripts/key_cited_people.py`): keys
+  held an earlier build's id ('diss-person:hobsbawn|eric j'), so the Brazil rebuild's ids (hobsbawm|eric,
+  bourdieu|pierre, certeau|michel, holanda|sergio b) reached no key. A cited person is now identified by works:
+  the key authoring over half of their matched cited works (at least two for common family names), given names
+  agreeing as names, not a pooled name: 30,326 keys gain their current corpus id.
+- **Articles and chapters have no route** (the crosswalk matches books only): to do.
+Crosswalk rebuilt on the Brazil corpus build (`cited-works-2026-11-03/`): 105,101 cited works → 100,850 keyed
+works, 441,621 citations (was 393,081); `data/graph/cites.csv.gz` regenerated (411,335 rows, 31,419 from
+Brazilian theses, none before).
