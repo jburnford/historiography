@@ -969,3 +969,6 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
   run again). New items: Hayden Q141979260, Kent Q141979261, Smith Q141979262, Keyworth Q141979264 and David
   Q141979265, all keyed; Englebert's item is updated. `usask-followup.qs` relabels Q141979262 'Martha Smith'
   (current name) and adds the archives record's facts to Hayden's item.
+- **usask-faculty.qs and lambi.qs** were run (read back 2026-11-02). New items: Klaassen Q141981683, Watson
+  Q141981684, Androsoff Q141981685, Meyers Q141981686, Maurice Jr. Labelle Q141981687 and Troupe Q141981689, all
+  keyed. Harvey's item gained P108 USask; Lambi's item (Q134691305, keyed on user review) gained P244 and P108.
