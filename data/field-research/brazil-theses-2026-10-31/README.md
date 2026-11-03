@@ -34,7 +34,9 @@ sub-graph of the dissertation citation graph (2,000+ theses).
 
 ## Ingest
 `adapter_brazil_capes` in `scripts/dissertation_ingest.py` handles this source. It is registered as
-`brazil_capes`, with `"ingest": false` until the user approves the run.
+`brazil_capes`, with `"ingest": true` since 2026-11-02. On that date it was ingested and the graph
+rebuilt on Plato: Brazil has 2,618 strict History PhDs and is a full sub-graph. See the dissertation
+citations README, "Brazil expansion".
 - Dry run, 2026-11-02: 2,710 new entries. 7 are dropped as the same file (theses listed in both the
   2012 and 2013 CAPES files) and 1 as the same title.
 - Entries carry the CAPES ids, advisors, committee, funders, and the PDF parts in order (40 multi-part

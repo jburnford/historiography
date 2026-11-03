@@ -374,6 +374,52 @@ Most refusals are restricted to members of French higher education ("Accès rés
 - French strict theses by decade: 2000s 110, 2010s 859, 2020s 396.
 - A further route would be HAL's own thesis collection (TEL) for History theses that the national record lists as restricted. HAL's robots.txt disallows its search pages and search API, so that route needs a check first.
 
+## Brazil expansion (2026-10-31 to 11-02)
+
+The user asked for Brazil on 2026-10-31.
+- **History screen.** The CAPES national thesis catalogue, at level DOUTORADO and knowledge area HISTÓRIA, gives 8,898 doctorates.
+- **PDFs** come from:
+  - university repositories (OAI-PMH, UFF's programme list, USP item pages);
+  - author-authorized files on legacy Sucupira;
+  - browser downloads.
+- **Harvest:** 2,718 doctorates with PDFs. The scripts, sources and rules are in `brazil-theses-2026-10-31/README.md`.
+- **Ingest.** Source `brazil_capes`, adapter `adapter_brazil_capes`.
+  - 2,710 entries were added (manifest 13,970 → 16,680). 7 were dropped because the same file appears in both the 2012 and 2013 CAPES years, and 1 as a duplicate title.
+  - Entries carry the CAPES ids, advisors, committee and funders.
+  - Extraction (with OCR) gave a bibliography for 2,587 of the 2,710, about 758k references.
+- **Rebuild on Plato.** The build peaked at about 19 GB here plus swap on the 21 GB machine and was stopped. Build, link, rebuild, summaries and TF-IDF then ran on Plato as job 6002974 (peak 24.5 GB, 5 h 43 m), with the summary scopes it missed run as jobs 6004070 and 6004071.
+  - Both builds took about 2.5 h each.
+  - py-spy put the time in the all-pairs `difflib` ratio in `merge_titles`, which grows with the square of the number of cited titles under one surname (Silva, Santos, Souza…).
+  - A build stopped mid-write now leaves the old `graph.json` in place; the build writes `graph.json.tmp` and renames it.
+
+| Build of 2026-11-02 | Before (2026-10-30) | After |
+|---|---|---|
+| Dissertations | 13,225 | 15,935 |
+| Main graph, strict | 10,707 | **13,204** |
+| Brazil | 121 | **2,618** (2,848 in all) |
+| Works / persons / CITES edges | 2.09M / 1.34M / 2.81M | 2.36M / 1.48M / 3.25M |
+
+- Brazil passes the 2,000 threshold and is a full sub-graph, `summary/countries/BR/`. The sub-graphs are now BR, CA, GB and US.
+- Brazil's most cited people, by citing History PhDs:
+
+  | Rank | Person | Theses |
+  |---|---|---|
+  | 1 | Bourdieu | 732 |
+  | 2 | Le Goff | 690 |
+  | 3 | Chartier | 688 |
+  | 4 | José Murilo de Carvalho | 649 |
+  | 5 | Foucault | 633 |
+  | 6 | de Certeau | 589 |
+  | 7 | Burke | 579 |
+  | 8 | Hobsbawm | 543 |
+  | 9 | Ginzburg | 526 |
+  | 10 | Ângela de Castro Gomes | 472 |
+
+  Sérgio Buarque de Holanda, Elias, Lilia Schwarcz, Bloch and E. P. Thompson follow.
+  - Several Brazilian authors and Bloch have no Wikidata grounding.
+  - Elias's QID needs checking.
+- The region comparison pages (`summary/comparisons/`) were not regenerated in this round.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:

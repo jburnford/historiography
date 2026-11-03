@@ -740,9 +740,13 @@ def main():
                                     'Theses without a usable bibliography (extraction_status parsed_notes) cite the works rebuilt from their '
                                     'notes: cited works only, not works consulted; their CITES edges carry via=notes.']),
                  nodes=list(nodes.values()), edges=edges)
-    with (out / 'graph.json').open('w') as f:  # streamed: one 1+ GB string would double the peak memory
+    # Streamed (one 1+ GB string would double the peak memory) to a temporary file, then renamed:
+    # a build stopped mid-write (2026-11-02) must not leave a truncated graph.json for readers.
+    tmp = out / 'graph.json.tmp'
+    with tmp.open('w') as f:
         json.dump(graph, f, ensure_ascii=False)
         f.write('\n')
+    tmp.replace(out / 'graph.json')
     write_graphml(out / 'graph.graphml', graph)
 
     # Per-country strict counts: one column per sub-graph country, the rest pooled in cited_by_other.

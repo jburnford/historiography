@@ -1,0 +1,6758 @@
+{
+ "scope": "BR",
+ "generated": "2026-11-02",
+ "script": "scripts/dissertation_tfidf_families.py",
+ "strict_dissertations_in_scope": 2618,
+ "rows": 2264,
+ "rows_excluded_lt_min_works": 354,
+ "works": 1617,
+ "excluded_profile": {
+  "by_institution": [
+   [
+    "br:usp",
+    130
+   ],
+   [
+    "br:ufsc",
+    50
+   ],
+   [
+    "br:uff",
+    32
+   ],
+   [
+    "base:hdl:11449",
+    26
+   ],
+   [
+    "br:fgv-rj",
+    17
+   ],
+   [
+    "br:ufmg",
+    14
+   ],
+   [
+    "br:puc-sp",
+    12
+   ],
+   [
+    "br:puc-rs",
+    11
+   ],
+   [
+    "br:unicamp",
+    10
+   ],
+   [
+    "br:unisinos",
+    10
+   ],
+   [
+    "br:uerj",
+    8
+   ],
+   [
+    "br:ufpe",
+    8
+   ]
+  ],
+  "by_country": [
+   [
+    "BR",
+    354
+   ]
+  ],
+  "by_decade": [
+   [
+    1980,
+    1
+   ],
+   [
+    1990,
+    12
+   ],
+   [
+    2000,
+    51
+   ],
+   [
+    2010,
+    193
+   ],
+   [
+    2020,
+    97
+   ]
+  ],
+  "share_by_institution": {
+   "br:usp": 0.15,
+   "br:uff": 0.11,
+   "br:ufmg": 0.07,
+   "br:puc-sp": 0.08,
+   "br:uerj": 0.05,
+   "br:ufu": 0.06,
+   "br:puc-rs": 0.09,
+   "br:ufsc": 0.42,
+   "br:ufes": 0.04,
+   "base:hdl:11449": 0.25,
+   "br:fgv-rj": 0.19,
+   "br:unisinos": 0.14
+  },
+  "median_bibliography_entries": 208,
+  "median_bibliography_entries_rows": 236
+ },
+ "parameters": {
+  "min_cited": 15,
+  "min_works": 3,
+  "seed": 0,
+  "bootstrap": 20,
+  "tfidf": "binary tf, smoothed idf ln((1+N)/(1+df))+1, row L2 norm",
+  "nmf": "frobenius, cd solver, nndsvd init, max_iter 800, tol 1e-4"
+ },
+ "k": 18,
+ "k_rule": "most families reproduced at matched cosine >= 0.8, among ks with mean matched cosine >= 0.75; ties to the smaller k",
+ "elbow": 18,
+ "sweep": [
+  {
+   "k": 8,
+   "reconstruction_error": 45.9901,
+   "relative_error": 0.9666,
+   "iterations": 122,
+   "stability_mean": 0.872,
+   "stability_median_family": 0.872,
+   "stability_p10_family": 0.766,
+   "stability_min_family": 0.727,
+   "families_reproduced": 6
+  },
+  {
+   "k": 10,
+   "reconstruction_error": 45.794,
+   "relative_error": 0.9624,
+   "iterations": 70,
+   "stability_mean": 0.867,
+   "stability_median_family": 0.894,
+   "stability_p10_family": 0.781,
+   "stability_min_family": 0.573,
+   "families_reproduced": 9
+  },
+  {
+   "k": 12,
+   "reconstruction_error": 45.6138,
+   "relative_error": 0.9586,
+   "iterations": 102,
+   "stability_mean": 0.849,
+   "stability_median_family": 0.907,
+   "stability_p10_family": 0.675,
+   "stability_min_family": 0.511,
+   "families_reproduced": 9
+  },
+  {
+   "k": 14,
+   "reconstruction_error": 45.4662,
+   "relative_error": 0.9555,
+   "iterations": 83,
+   "stability_mean": 0.77,
+   "stability_median_family": 0.842,
+   "stability_p10_family": 0.644,
+   "stability_min_family": 0.091,
+   "families_reproduced": 8
+  },
+  {
+   "k": 16,
+   "reconstruction_error": 45.3004,
+   "relative_error": 0.9521,
+   "iterations": 84,
+   "stability_mean": 0.793,
+   "stability_median_family": 0.847,
+   "stability_p10_family": 0.578,
+   "stability_min_family": 0.354,
+   "families_reproduced": 10
+  },
+  {
+   "k": 18,
+   "reconstruction_error": 45.1458,
+   "relative_error": 0.9488,
+   "iterations": 206,
+   "stability_mean": 0.805,
+   "stability_median_family": 0.846,
+   "stability_p10_family": 0.559,
+   "stability_min_family": 0.395,
+   "families_reproduced": 13
+  },
+  {
+   "k": 20,
+   "reconstruction_error": 45.0222,
+   "relative_error": 0.9462,
+   "iterations": 131,
+   "stability_mean": 0.75,
+   "stability_median_family": 0.815,
+   "stability_p10_family": 0.541,
+   "stability_min_family": 0.179,
+   "families_reproduced": 11
+  },
+  {
+   "k": 22,
+   "reconstruction_error": 44.8815,
+   "relative_error": 0.9433,
+   "iterations": 113,
+   "stability_mean": 0.76,
+   "stability_median_family": 0.824,
+   "stability_p10_family": 0.425,
+   "stability_min_family": 0.142,
+   "families_reproduced": 13
+  },
+  {
+   "k": 24,
+   "reconstruction_error": 44.7519,
+   "relative_error": 0.9405,
+   "iterations": 226,
+   "stability_mean": 0.736,
+   "stability_median_family": 0.819,
+   "stability_p10_family": 0.376,
+   "stability_min_family": 0.266,
+   "families_reproduced": 13
+  },
+  {
+   "k": 26,
+   "reconstruction_error": 44.6396,
+   "relative_error": 0.9382,
+   "iterations": 67,
+   "stability_mean": 0.711,
+   "stability_median_family": 0.805,
+   "stability_p10_family": 0.394,
+   "stability_min_family": 0.239,
+   "families_reproduced": 14
+  },
+  {
+   "k": 28,
+   "reconstruction_error": 44.5089,
+   "relative_error": 0.9354,
+   "iterations": 218,
+   "stability_mean": 0.714,
+   "stability_median_family": 0.797,
+   "stability_p10_family": 0.416,
+   "stability_min_family": 0.329,
+   "families_reproduced": 14
+  },
+  {
+   "k": 30,
+   "reconstruction_error": 44.3942,
+   "relative_error": 0.933,
+   "iterations": 85,
+   "stability_mean": 0.691,
+   "stability_median_family": 0.788,
+   "stability_p10_family": 0.417,
+   "stability_min_family": 0.258,
+   "families_reproduced": 13
+  }
+ ],
+ "stability": {
+  "bootstrap_mean": 0.805,
+  "init_random_mean": 0.917,
+  "note": "bootstrap: mean matched cosine of work loadings over resampled refits; init: 4 random-init + 1 nndsvda refit"
+ },
+ "membership_note": "soft memberships are each family's share of the reconstructed column (works) or row (dissertations)",
+ "families": [
+  {
+   "id": 0,
+   "provisional_label": "SEVCENKO · CARVALHO — literatura, tropical, imprensa, raízes",
+   "label_is_provisional": true,
+   "louvain_hint": "HOLANDA · SEVCENKO · SCHWARCZ",
+   "title_terms": [
+    "literatura",
+    "tropical",
+    "imprensa",
+    "raízes",
+    "revista",
+    "intelectuais"
+   ],
+   "bootstrap_stability": 0.851,
+   "unstable": false,
+   "init_stability": 0.967,
+   "dominated_dissertations": 268,
+   "member_works": 181,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "1990-1994": 1,
+     "1995-1999": 4,
+     "2000-2004": 11,
+     "2005-2009": 33,
+     "2010-2014": 57,
+     "2015-2019": 101,
+     "2020-2024": 61
+    },
+    "share_of_bin": {
+     "2000-2004": 0.208,
+     "2005-2009": 0.158,
+     "2010-2014": 0.109,
+     "2015-2019": 0.117,
+     "2020-2024": 0.101
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:sevcenko|literatura como missao",
+     "title": "Literatura como missão",
+     "first_author": "SEVCENKO, Nicolau",
+     "year": 2003,
+     "loading": 1.0,
+     "citing": 149,
+     "membership": 0.961
+    },
+    {
+     "id": "W:carvalho|os bestializados",
+     "title": "Os bestializados",
+     "first_author": "CARVALHO, José Murilo de",
+     "year": 1987,
+     "loading": 0.78,
+     "citing": 143,
+     "membership": 0.819
+    },
+    {
+     "id": "W:carvalho|formacao das almas",
+     "title": "A formação das almas",
+     "first_author": "CARVALHO, José Murilo de",
+     "year": 1990,
+     "loading": 0.659,
+     "citing": 143,
+     "membership": 0.734
+    },
+    {
+     "id": "W:sodre|historia da imprensa no brasil",
+     "title": "História da Imprensa no Brasil",
+     "first_author": "SODRÉ, Nelson Werneck",
+     "year": 1999,
+     "loading": 0.51,
+     "citing": 144,
+     "membership": 0.538
+    },
+    {
+     "id": "W:schwarcz|o espetaculo das racas",
+     "title": "O espetáculo das raças",
+     "first_author": "SCHWARCZ, Lilia Moritz",
+     "year": 1993,
+     "loading": 0.483,
+     "citing": 147,
+     "membership": 0.516
+    },
+    {
+     "id": "W:alonso|ideias em movimento",
+     "title": "Ideias em movimento",
+     "first_author": "ALONSO, Angela",
+     "year": 2002,
+     "loading": 0.475,
+     "citing": 69,
+     "membership": 0.747
+    },
+    {
+     "id": "W:sevcenko|orfeu extatico na metropole",
+     "title": "Orfeu extático na metrópole",
+     "first_author": "SEVCENKO, Nicolau",
+     "year": 1992,
+     "loading": 0.45,
+     "citing": 79,
+     "membership": 0.668
+    },
+    {
+     "id": "W:chalhoub|cidade febril",
+     "title": "Cidade febril",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 1996,
+     "loading": 0.431,
+     "citing": 114,
+     "membership": 0.48
+    },
+    {
+     "id": "W:ventura|estilo tropical",
+     "title": "Estilo tropical",
+     "first_author": "VENTURA, Roberto",
+     "year": 1991,
+     "loading": 0.406,
+     "citing": 45,
+     "membership": 0.959
+    },
+    {
+     "id": "W:oliveira|questao nacional na primeira republica",
+     "title": "A questão nacional na Primeira República",
+     "first_author": "OLIVEIRA, Lúcia Lippi",
+     "year": 1990,
+     "loading": 0.391,
+     "citing": 45,
+     "membership": 0.894
+    },
+    {
+     "id": "W:miceli|intelectuais a brasileira",
+     "title": "Intelectuais à brasileira",
+     "first_author": "MICELI, Sérgio",
+     "year": 2001,
+     "loading": 0.363,
+     "citing": 64,
+     "membership": 0.652
+    },
+    {
+     "id": "W:candido|literatura e sociedade",
+     "title": "Literatura e sociedade",
+     "first_author": "CANDIDO, Antonio",
+     "year": 2000,
+     "loading": 0.356,
+     "citing": 79,
+     "membership": 0.55
+    },
+    {
+     "id": "W:sussekind|cinematografo de letras",
+     "title": "Cinematógrafo de letras",
+     "first_author": "SUSSEKIND, Flora",
+     "year": 1987,
+     "loading": 0.347,
+     "citing": 37,
+     "membership": 0.842
+    },
+    {
+     "id": "W:needell|belle epoque tropical",
+     "title": "Belle époque tropical",
+     "first_author": "Needell, Jeffrey D",
+     "year": 1993,
+     "loading": 0.339,
+     "citing": 39,
+     "membership": 0.933
+    },
+    {
+     "id": "W:sevcenko|historia da vida privada no brasil",
+     "title": "História da vida privada no Brasil",
+     "first_author": "SEVCENKO, Nicolau",
+     "year": 1998,
+     "loading": 0.333,
+     "citing": 43,
+     "membership": 0.748
+    },
+    {
+     "id": "W:martins|revistas em revista",
+     "title": "Revistas em revista",
+     "first_author": "MARTINS, Ana Luiza",
+     "year": 2001,
+     "loading": 0.307,
+     "citing": 40,
+     "membership": 0.683
+    },
+    {
+     "id": "W:gomes|invencao do trabalhismo",
+     "title": "A invenção do trabalhismo",
+     "first_author": "GOMES, Ângela de Castro",
+     "year": 2005,
+     "loading": 0.294,
+     "citing": 112,
+     "membership": 0.334
+    },
+    {
+     "id": "W:hallewell|o livro no brasil",
+     "title": "O livro no Brasil",
+     "first_author": "HALLEWELL, Laurence",
+     "year": 2005,
+     "loading": 0.287,
+     "citing": 54,
+     "membership": 0.579
+    },
+    {
+     "id": "W:gomes|essa gente do rio",
+     "title": "Essa gente do Rio",
+     "first_author": "GOMES, Ângela de Castro",
+     "year": 1999,
+     "loading": 0.285,
+     "citing": 31,
+     "membership": 0.823
+    },
+    {
+     "id": "W:bosi|historia concisa da literatura brasileira",
+     "title": "História concisa da literatura brasileira",
+     "first_author": "BOSI, Alfredo",
+     "year": 1994,
+     "loading": 0.277,
+     "citing": 45,
+     "membership": 0.74
+    },
+    {
+     "id": "W:holanda|raizes do brasil",
+     "title": "Raízes do Brasil",
+     "first_author": "HOLANDA, Sérgio Buarque de",
+     "year": 1995,
+     "loading": 0.275,
+     "citing": 209,
+     "membership": 0.254
+    },
+    {
+     "id": "W:luca|revista do brasil",
+     "title": "A Revista do Brasil: um diagnóstico para a (N)ação",
+     "first_author": "LUCA, Tania Regina de",
+     "year": 1999,
+     "loading": 0.272,
+     "citing": 31,
+     "membership": 0.817
+    },
+    {
+     "id": "W:velloso|modernismo no rio de janeiro",
+     "title": "Modernismo no Rio de Janeiro",
+     "first_author": "VELLOSO, Mônica Pimenta",
+     "year": 1996,
+     "loading": 0.258,
+     "citing": 27,
+     "membership": 0.813
+    },
+    {
+     "id": "W:saliba|raizes do riso",
+     "title": "Raízes do Riso",
+     "first_author": "SALIBA, Elias Thomé",
+     "year": 2002,
+     "loading": 0.257,
+     "citing": 43,
+     "membership": 0.568
+    },
+    {
+     "id": "W:lima|um sertao chamado brasil",
+     "title": "Um sertão chamado Brasil",
+     "first_author": "LIMA, Nísia Trindade",
+     "year": 1999,
+     "loading": 0.256,
+     "citing": 38,
+     "membership": 0.801
+    }
+   ],
+   "top_people": [
+    {
+     "name": "CARVALHO, José Murilo de",
+     "loading_share": 0.0463
+    },
+    {
+     "name": "SEVCENKO, Nicolau",
+     "loading_share": 0.043
+    },
+    {
+     "name": "GOMES, Ângela de Castro",
+     "loading_share": 0.0288
+    },
+    {
+     "name": "CHALHOUB, Sidney",
+     "loading_share": 0.0227
+    },
+    {
+     "name": "SCHWARCZ, Lilia Moritz",
+     "loading_share": 0.017
+    },
+    {
+     "name": "MICELI, Sérgio",
+     "loading_share": 0.0145
+    },
+    {
+     "name": "CANDIDO, Antonio",
+     "loading_share": 0.014
+    },
+    {
+     "name": "CAPELATO, Maria Helena",
+     "loading_share": 0.0137
+    },
+    {
+     "name": "LUCA, Tania Regina de",
+     "loading_share": 0.0124
+    },
+    {
+     "name": "FAUSTO, Boris",
+     "loading_share": 0.0121
+    },
+    {
+     "name": "FREYRE, Gilberto",
+     "loading_share": 0.0119
+    },
+    {
+     "name": "DARNTON, Robert",
+     "loading_share": 0.0117
+    },
+    {
+     "name": "SODRÉ, Nelson Werneck",
+     "loading_share": 0.0111
+    },
+    {
+     "name": "OLIVEIRA, Lúcia Lippi",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "SUSSEKIND, Flora",
+     "loading_share": 0.0104
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     87
+    ],
+    [
+     "br:uff",
+     24
+    ],
+    [
+     "br:ufmg",
+     24
+    ],
+    [
+     "br:uerj",
+     22
+    ],
+    [
+     "br:puc-rs",
+     17
+    ],
+    [
+     "br:fgv-rj",
+     16
+    ]
+   ],
+   "sample_dissertations": [
+    "Coleções científicas: instituições, cientistas e colecionadores - São Paulo, 1886-1916",
+    "Uma poética da técnica: a produção da arquitetura vernancular no brasil",
+    "Homens de Letras no Rio de Janeiro dos Anos 30 e 40.",
+    "A semear horizontes: leituras literárias na formação da infância, Argentina e Brasil (1915-1954).",
+    "O tocador pelo pincel: o sonoro, o visual e a sensorialidade, do Modernismo à Era Vargas",
+    "Escrita e experiência na obra de Júlia Lopes de Almeida (1862-1934)",
+    "O anticlericalismo sob o manto da república: tensões sociais e cultura libertária no brasil (1901-1935)",
+    "\"escrever uma história do paraná para torná-la conhecida pelos paranaenses e pelos brasileiros\": a construção de espaços de produção históri"
+   ]
+  },
+  {
+   "id": 1,
+   "provisional_label": "CHARTIER · CERTEAU · KOSSOY — fotografia, cultural, arte, história",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "fotografia",
+    "cultural",
+    "arte",
+    "história",
+    "escrita",
+    "culturas"
+   ],
+   "bootstrap_stability": 0.552,
+   "unstable": true,
+   "init_stability": 0.701,
+   "dominated_dissertations": 190,
+   "member_works": 139,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "1995-1999": 1,
+     "2000-2004": 5,
+     "2005-2009": 15,
+     "2010-2014": 34,
+     "2015-2019": 83,
+     "2020-2024": 52
+    },
+    "share_of_bin": {
+     "2000-2004": 0.094,
+     "2005-2009": 0.072,
+     "2010-2014": 0.065,
+     "2015-2019": 0.096,
+     "2020-2024": 0.086
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:chartier|historia cultural",
+     "title": "A história cultural",
+     "first_author": "CHARTIER, Roger",
+     "year": 1990,
+     "loading": 1.0,
+     "citing": 335,
+     "membership": 0.757
+    },
+    {
+     "id": "W:certeau|invencao do cotidiano",
+     "title": "A invenção do cotidiano",
+     "first_author": "CERTEAU, Michel de",
+     "year": 1994,
+     "loading": 0.584,
+     "citing": 262,
+     "membership": 0.508
+    },
+    {
+     "id": "W:kossoy|fotografia e historia",
+     "title": "Fotografia e História",
+     "first_author": "KOSSOY, Boris",
+     "year": 2001,
+     "loading": 0.493,
+     "citing": 60,
+     "membership": 0.954
+    },
+    {
+     "id": "W:burke|testemunha ocular",
+     "title": "Testemunha ocular",
+     "first_author": "Burke, Peter",
+     "year": 2004,
+     "loading": 0.458,
+     "citing": 67,
+     "membership": 0.917
+    },
+    {
+     "id": "W:benjamin|magia e tecnica arte e politica",
+     "title": "Magia e técnica, arte e política",
+     "first_author": "BENJAMIN, Walter",
+     "year": 1994,
+     "loading": 0.367,
+     "citing": 116,
+     "membership": 0.537
+    },
+    {
+     "id": "W:dubois|o ato fotografico",
+     "title": "O ato fotográfico e outros ensaios",
+     "first_author": "DUBOIS, Philippe",
+     "year": 1994,
+     "loading": 0.345,
+     "citing": 33,
+     "membership": 1.0
+    },
+    {
+     "id": "W:pesavento|historia historia cultural",
+     "title": "História & História Cultural",
+     "first_author": "PESAVENTO, Sandra Jatahy",
+     "year": 2003,
+     "loading": 0.313,
+     "citing": 86,
+     "membership": 0.612
+    },
+    {
+     "id": "W:kossoy|realidades e ficcoes na trama fotografica",
+     "title": "Realidades e ficções na trama fotográfica",
+     "first_author": "KOSSOY, Boris",
+     "year": 2002,
+     "loading": 0.312,
+     "citing": 26,
+     "membership": 1.0
+    },
+    {
+     "id": "W:barthes|camara clara",
+     "title": "A câmara clara",
+     "first_author": "BARTHES, Roland",
+     "year": 1984,
+     "loading": 0.286,
+     "citing": 36,
+     "membership": 0.967
+    },
+    {
+     "id": "W:burke|escrita da historia",
+     "title": "A escrita da história: novas perspectivas",
+     "first_author": "Burke, Peter",
+     "year": 1992,
+     "loading": 0.279,
+     "citing": 122,
+     "membership": 0.478
+    },
+    {
+     "id": "W:chartier|beira da falesia",
+     "title": "À beira da falésia",
+     "first_author": "CHARTIER, Roger",
+     "year": 2002,
+     "loading": 0.277,
+     "citing": 119,
+     "membership": 0.425
+    },
+    {
+     "id": "W:elias|o processo civilizador",
+     "title": "O processo civilizador",
+     "first_author": "ELIAS, Norbert",
+     "year": 1994,
+     "loading": 0.266,
+     "citing": 210,
+     "membership": 0.31
+    },
+    {
+     "id": "W:berman|tudo que e solido desmancha no ar",
+     "title": "Tudo que é sólido desmancha no ar",
+     "first_author": "Berman, Marshall",
+     "year": 1986,
+     "loading": 0.257,
+     "citing": 98,
+     "membership": 0.48
+    },
+    {
+     "id": "W:burke|o que e historia cultural",
+     "title": "O que é história cultural?",
+     "first_author": "Burke, Peter",
+     "year": 2005,
+     "loading": 0.25,
+     "citing": 71,
+     "membership": 0.538
+    },
+    {
+     "id": "W:sontag|sobre fotografia",
+     "title": "Sobre fotografia",
+     "first_author": "Sontag, Susan",
+     "year": 2004,
+     "loading": 0.24,
+     "citing": 27,
+     "membership": 0.975
+    },
+    {
+     "id": "W:le goff|historia e memoria",
+     "title": "História e memória",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2003,
+     "loading": 0.221,
+     "citing": 369,
+     "membership": 0.156
+    },
+    {
+     "id": "W:calvino|as cidades invisiveis",
+     "title": "As cidades invisíveis",
+     "first_author": "CALVINO, Italo",
+     "year": 1990,
+     "loading": 0.206,
+     "citing": 34,
+     "membership": 0.843
+    },
+    {
+     "id": "W:panofsky|significado nas artes visuais",
+     "title": "Significado nas artes visuais",
+     "first_author": "Panofsky, Erwin",
+     "year": 1979,
+     "loading": 0.195,
+     "citing": 31,
+     "membership": 0.894
+    },
+    {
+     "id": "W:geertz|interpretacao das culturas",
+     "title": "A interpretação das culturas",
+     "first_author": "Geertz, Clifford",
+     "year": 1989,
+     "loading": 0.191,
+     "citing": 119,
+     "membership": 0.31
+    },
+    {
+     "id": "W:gombrich|historia da arte",
+     "title": "A história da arte",
+     "first_author": "Gombrich, E. H",
+     "year": 1999,
+     "loading": 0.191,
+     "citing": 27,
+     "membership": 0.98
+    },
+    {
+     "id": "W:borges|historia fotografia",
+     "title": "História & Fotografia",
+     "first_author": "BORGES, Maria Eliza Linhares",
+     "year": 2003,
+     "loading": 0.19,
+     "citing": 21,
+     "membership": 0.918
+    },
+    {
+     "id": "W:canclini|culturas hibridas",
+     "title": "Culturas Híbridas",
+     "first_author": "CANCLINI, Néstor García",
+     "year": 2000,
+     "loading": 0.178,
+     "citing": 88,
+     "membership": 0.329
+    },
+    {
+     "id": "W:lefebvre|o direito a cidade",
+     "title": "O direito à cidade",
+     "first_author": "Lefebvre, Henri",
+     "year": 2001,
+     "loading": 0.177,
+     "citing": 41,
+     "membership": 0.577
+    },
+    {
+     "id": "W:kossoy|os tempos da fotografia",
+     "title": "Os tempos da fotografia: o efêmero e o perpétuo",
+     "first_author": "KOSSOY, Boris",
+     "year": 2007,
+     "loading": 0.177,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hunt|nova historia cultural",
+     "title": "A nova história cultural",
+     "first_author": "Hunt, Lynn",
+     "year": 1992,
+     "loading": 0.172,
+     "citing": 78,
+     "membership": 0.41
+    }
+   ],
+   "top_people": [
+    {
+     "name": "CHARTIER, Roger",
+     "loading_share": 0.0827
+    },
+    {
+     "name": "Burke, Peter",
+     "loading_share": 0.0517
+    },
+    {
+     "name": "KOSSOY, Boris",
+     "loading_share": 0.0373
+    },
+    {
+     "name": "CERTEAU, Michel de",
+     "loading_share": 0.0367
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.0244
+    },
+    {
+     "name": "PESAVENTO, Sandra Jatahy",
+     "loading_share": 0.0234
+    },
+    {
+     "name": "BENJAMIN, Walter",
+     "loading_share": 0.023
+    },
+    {
+     "name": "ELIAS, Norbert",
+     "loading_share": 0.0227
+    },
+    {
+     "name": "LE GOFF, Jacques",
+     "loading_share": 0.0201
+    },
+    {
+     "name": "BARTHES, Roland",
+     "loading_share": 0.014
+    },
+    {
+     "name": "DUBOIS, Philippe",
+     "loading_share": 0.0131
+    },
+    {
+     "name": "Gombrich, E. H",
+     "loading_share": 0.013
+    },
+    {
+     "name": "Lefebvre, Henri",
+     "loading_share": 0.0118
+    },
+    {
+     "name": "ARGAN, Giulio Carlo",
+     "loading_share": 0.0111
+    },
+    {
+     "name": "CARDOSO, Ciro Flamarion",
+     "loading_share": 0.0105
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     37
+    ],
+    [
+     "br:puc-sp",
+     18
+    ],
+    [
+     "br:ufmg",
+     15
+    ],
+    [
+     "br:ufu",
+     15
+    ],
+    [
+     "br:uff",
+     13
+    ],
+    [
+     "br:puc-rs",
+     12
+    ]
+   ],
+   "sample_dissertations": [
+    "Imagens negociadas: retratos de família pelas lentes do estúdio foto klos nas décadas de 1930 e 1940 em panambi – rs",
+    "De Verona à Uberabinha: Trajetória e imagens de um fotógrafo",
+    "Percepção visual da cidade: iconografias da natureza urbana de Belém (1808 – 1908)",
+    "O livro didático de história: um caleidoscópio de escolhas e usos no cotidiano escolar (Ceará, 2007 2009)",
+    "Paisagens construídas: a floresta com araucárias na fronteira entre argentina e brasil (1895-2000)",
+    "A fotografia na arte contemporânea e o terreno da ficção: Regina Silveira e Carlos Fadon Vicente",
+    "Representações da revolução mexicana no museu nacional de história da cidade do México (1940-1982)",
+    "Belo Horizonte e a miragem do moderno: espaço urbano e educação pública"
+   ]
+  },
+  {
+   "id": 2,
+   "provisional_label": "NOVAIS · HESPANHA · ALENCASTRO — contemporâneo, portugal, antigo, ouro",
+   "label_is_provisional": true,
+   "louvain_hint": "NOVAIS · ALENCASTRO · PRADO Júnior",
+   "title_terms": [
+    "contemporâneo",
+    "portugal",
+    "antigo",
+    "ouro",
+    "homens",
+    "colônia"
+   ],
+   "bootstrap_stability": 0.951,
+   "unstable": false,
+   "init_stability": 0.965,
+   "dominated_dissertations": 188,
+   "member_works": 193,
+   "years": {
+    "median": 2014,
+    "by_5yr": {
+     "1990-1994": 1,
+     "1995-1999": 1,
+     "2000-2004": 7,
+     "2005-2009": 24,
+     "2010-2014": 64,
+     "2015-2019": 63,
+     "2020-2024": 28
+    },
+    "share_of_bin": {
+     "2000-2004": 0.132,
+     "2005-2009": 0.115,
+     "2010-2014": 0.122,
+     "2015-2019": 0.073,
+     "2020-2024": 0.047
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:novais|portugal e brasil na crise do antigo sistema colonial 1777 1808",
+     "title": "Portugal e Brasil na crise do antigo sistema colonial (1777-1808)",
+     "first_author": "NOVAIS, Fernando A",
+     "year": 1979,
+     "loading": 1.0,
+     "citing": 146,
+     "membership": 0.632
+    },
+    {
+     "id": "W:hespanha|as vesperas do leviathan",
+     "title": "As vésperas do Leviathan",
+     "first_author": "HESPANHA, António Manuel",
+     "year": 1994,
+     "loading": 0.882,
+     "citing": 78,
+     "membership": 0.82
+    },
+    {
+     "id": "W:alencastro|o trato dos viventes",
+     "title": "O trato dos viventes",
+     "first_author": "ALENCASTRO, Luiz Felipe de",
+     "year": 2000,
+     "loading": 0.87,
+     "citing": 130,
+     "membership": 0.552
+    },
+    {
+     "id": "W:souza|o sol e a sombra",
+     "title": "O sol e a sombra",
+     "first_author": "SOUZA, Laura de Mello e",
+     "year": 2006,
+     "loading": 0.833,
+     "citing": 66,
+     "membership": 0.956
+    },
+    {
+     "id": "W:boxer|idade de ouro do brasil",
+     "title": "A idade de ouro do Brasil",
+     "first_author": "BOXER, Charles",
+     "year": 2000,
+     "loading": 0.826,
+     "citing": 62,
+     "membership": 1.0
+    },
+    {
+     "id": "W:schwartz|burocracia e sociedade no brasil colonial",
+     "title": "Burocracia e sociedade no Brasil colonial",
+     "first_author": "Schwartz, Stuart B",
+     "year": 1979,
+     "loading": 0.825,
+     "citing": 71,
+     "membership": 0.874
+    },
+    {
+     "id": "W:bicalho|cidade e o imperio",
+     "title": "A cidade e o império",
+     "first_author": "BICALHO, Maria Fernanda",
+     "year": 2003,
+     "loading": 0.743,
+     "citing": 63,
+     "membership": 0.881
+    },
+    {
+     "id": "W:maxwell|marques de pombal",
+     "title": "Marquês de Pombal",
+     "first_author": "MAXWELL, Kenneth",
+     "year": 1996,
+     "loading": 0.706,
+     "citing": 75,
+     "membership": 0.783
+    },
+    {
+     "id": "W:falcon|epoca pombalina",
+     "title": "A época pombalina",
+     "first_author": "FALCON, Francisco José Calazans",
+     "year": 1982,
+     "loading": 0.698,
+     "citing": 69,
+     "membership": 0.795
+    },
+    {
+     "id": "W:fragoso|homens de grossa aventura",
+     "title": "Homens de grossa aventura",
+     "first_author": "FRAGOSO, João",
+     "year": 1998,
+     "loading": 0.694,
+     "citing": 102,
+     "membership": 0.541
+    },
+    {
+     "id": "W:antonil|cultura e opulencia do brasil",
+     "title": "Cultura e opulência do Brasil",
+     "first_author": "ANTONIL, André João",
+     "year": 1982,
+     "loading": 0.686,
+     "citing": 87,
+     "membership": 0.62
+    },
+    {
+     "id": "W:souza|desclassificados do ouro",
+     "title": "Desclassificados do ouro",
+     "first_author": "SOUZA, Laura de Mello e",
+     "year": 1982,
+     "loading": 0.671,
+     "citing": 65,
+     "membership": 0.832
+    },
+    {
+     "id": "W:bluteau|vocabulario portuguez e latino",
+     "title": "Vocabulario Portuguez e Latino",
+     "first_author": "BLUTEAU, Raphael",
+     "year": 1712,
+     "loading": 0.661,
+     "citing": 80,
+     "membership": 0.651
+    },
+    {
+     "id": "W:salgado|fiscais e meirinhos",
+     "title": "Fiscais e meirinhos",
+     "first_author": "SALGADO, Graça",
+     "year": 1985,
+     "loading": 0.655,
+     "citing": 46,
+     "membership": 0.954
+    },
+    {
+     "id": "W:prado junior|formacao do brasil contemporaneo",
+     "title": "Formação do Brasil Contemporâneo",
+     "first_author": "PRADO Júnior, Caio",
+     "year": 1942,
+     "loading": 0.645,
+     "citing": 129,
+     "membership": 0.469
+    },
+    {
+     "id": "W:silva|ser nobre na colonia",
+     "title": "Ser nobre na colônia",
+     "first_author": "SILVA, Maria Beatriz Nizza da",
+     "year": 2005,
+     "loading": 0.623,
+     "citing": 45,
+     "membership": 0.94
+    },
+    {
+     "id": "W:furtado|homens de negocio",
+     "title": "Homens de negócio",
+     "first_author": "FURTADO, Júnia Ferreira",
+     "year": 1999,
+     "loading": 0.619,
+     "citing": 50,
+     "membership": 0.902
+    },
+    {
+     "id": "W:maxwell|devassa da devassa",
+     "title": "A devassa da devassa",
+     "first_author": "MAXWELL, Kenneth",
+     "year": 1978,
+     "loading": 0.617,
+     "citing": 55,
+     "membership": 0.825
+    },
+    {
+     "id": "W:fragoso|o antigo regime nos tropicos",
+     "title": "O Antigo Regime nos trópicos",
+     "first_author": "FRAGOSO, João",
+     "year": 2001,
+     "loading": 0.592,
+     "citing": 53,
+     "membership": 0.839
+    },
+    {
+     "id": "W:hespanha|historia de portugal",
+     "title": "História de Portugal",
+     "first_author": "HESPANHA, António Manuel",
+     "year": 1993,
+     "loading": 0.589,
+     "citing": 46,
+     "membership": 0.888
+    },
+    {
+     "id": "W:schwartz|segredos internos",
+     "title": "Segredos internos",
+     "first_author": "Schwartz, Stuart B",
+     "year": 1988,
+     "loading": 0.58,
+     "citing": 117,
+     "membership": 0.404
+    },
+    {
+     "id": "W:olival|as ordens militares e o estado moderno",
+     "title": "As Ordens Militares e o Estado Moderno",
+     "first_author": "OLIVAL, Fernanda",
+     "year": 2001,
+     "loading": 0.571,
+     "citing": 37,
+     "membership": 0.95
+    },
+    {
+     "id": "W:braudel|civilizacao material economia e capitalismo",
+     "title": "Civilização material, economia e capitalismo",
+     "first_author": "BRAUDEL, Fernand",
+     "year": 1996,
+     "loading": 0.564,
+     "citing": 91,
+     "membership": 0.498
+    },
+    {
+     "id": "W:mello|fronda dos mazombos",
+     "title": "A fronda dos mazombos",
+     "first_author": "MELLO, Evaldo Cabral de",
+     "year": 2003,
+     "loading": 0.56,
+     "citing": 39,
+     "membership": 0.864
+    },
+    {
+     "id": "W:sampaio|na encruzilhada do imperio",
+     "title": "Na encruzilhada do império",
+     "first_author": "SAMPAIO, Antonio Carlos Jucá de",
+     "year": 2003,
+     "loading": 0.552,
+     "citing": 35,
+     "membership": 0.909
+    }
+   ],
+   "top_people": [
+    {
+     "name": "SOUZA, Laura de Mello e",
+     "loading_share": 0.0335
+    },
+    {
+     "name": "BOXER, Charles",
+     "loading_share": 0.0319
+    },
+    {
+     "name": "FRAGOSO, João",
+     "loading_share": 0.0247
+    },
+    {
+     "name": "HESPANHA, António Manuel",
+     "loading_share": 0.0238
+    },
+    {
+     "name": "MELLO, Evaldo Cabral de",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "Schwartz, Stuart B",
+     "loading_share": 0.0203
+    },
+    {
+     "name": "NOVAIS, Fernando A",
+     "loading_share": 0.0181
+    },
+    {
+     "name": "MAXWELL, Kenneth",
+     "loading_share": 0.018
+    },
+    {
+     "name": "FURTADO, Júnia Ferreira",
+     "loading_share": 0.0178
+    },
+    {
+     "name": "HOLANDA, Sérgio Buarque de",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "BICALHO, Maria Fernanda",
+     "loading_share": 0.0143
+    },
+    {
+     "name": "SILVA, Maria Beatriz Nizza da",
+     "loading_share": 0.0136
+    },
+    {
+     "name": "FIGUEIREDO, Luciano Raposo de Almeida",
+     "loading_share": 0.0107
+    },
+    {
+     "name": "ALENCASTRO, Luiz Felipe de",
+     "loading_share": 0.0103
+    },
+    {
+     "name": "BLUTEAU, Raphael",
+     "loading_share": 0.0101
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     77
+    ],
+    [
+     "br:uff",
+     39
+    ],
+    [
+     "br:ufmg",
+     34
+    ],
+    [
+     "br:uerj",
+     11
+    ],
+    [
+     "br:ufpe",
+     7
+    ],
+    [
+     "br:ufes",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "Da Justiça em nome Del Rey: Ouvidores e Inconfidência na Capitania de Minas Gerais (Sabará, 1720-1777)",
+    "Cartas, pedras, tintas e coração: as casas de câmara e a prática política em Minas Gerais (1711-1798)",
+    "Das minas à corte, de caixeiro a contratador: Jorge Pinto de Azeredo. Atividade mercantil e negócios na primeira metade do século XVIII",
+    "Donatários e administração colonial: A capitania de itamaracá e a casa de cascais (1692-1763)",
+    "Colonialismo em ação - fiscalismo, economia e sociedade na Capitania da Paraíba (1647-1755)",
+    "Práticas políticas e imaginário: a atuação do morgado de mateus nos \"interminaveis\" e \"odiozos\" conflitos verificados entre são paulo e mina",
+    "Vereadores da Câmara de Mariana: perfil socioeconômico, redes relacionais e poder local",
+    "A real fábrica das sedas de lisboa: administração, política econômica e comércio no atlântico sul (1734-1777)"
+   ]
+  },
+  {
+   "id": 3,
+   "provisional_label": "Skidmore · ALVES · GASPARI — ditadura, guarda, populismo, goulart",
+   "label_is_provisional": true,
+   "louvain_hint": "FURTADO · COSTA · Marx",
+   "title_terms": [
+    "ditadura",
+    "guarda",
+    "populismo",
+    "goulart",
+    "militares",
+    "joão"
+   ],
+   "bootstrap_stability": 0.91,
+   "unstable": false,
+   "init_stability": 0.937,
+   "dominated_dissertations": 178,
+   "member_works": 107,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "1990-1994": 1,
+     "2000-2004": 5,
+     "2005-2009": 10,
+     "2010-2014": 45,
+     "2015-2019": 70,
+     "2020-2024": 47
+    },
+    "share_of_bin": {
+     "2000-2004": 0.094,
+     "2005-2009": 0.048,
+     "2010-2014": 0.086,
+     "2015-2019": 0.081,
+     "2020-2024": 0.078
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:skidmore|brasil",
+     "title": "Brasil",
+     "first_author": "Skidmore, Thomas E",
+     "year": 1988,
+     "loading": 1.0,
+     "citing": 123,
+     "membership": 0.749
+    },
+    {
+     "id": "W:alves|estado e oposicao no brasil 1964 1984",
+     "title": "Estado e oposição no Brasil (1964-1984)",
+     "first_author": "ALVES, Maria Helena Moreira",
+     "year": 2005,
+     "loading": 0.81,
+     "citing": 73,
+     "membership": 0.855
+    },
+    {
+     "id": "W:gaspari|ditadura envergonhada",
+     "title": "A ditadura envergonhada",
+     "first_author": "GASPARI, Elio",
+     "year": 2002,
+     "loading": 0.789,
+     "citing": 59,
+     "membership": 0.962
+    },
+    {
+     "id": "W:gorender|combate nas trevas",
+     "title": "Combate nas trevas",
+     "first_author": "GORENDER, Jacob",
+     "year": 1987,
+     "loading": 0.784,
+     "citing": 69,
+     "membership": 0.958
+    },
+    {
+     "id": "W:dreifuss|1964",
+     "title": "1964",
+     "first_author": "DREIFUSS, René Armand",
+     "year": 1981,
+     "loading": 0.75,
+     "citing": 66,
+     "membership": 0.791
+    },
+    {
+     "id": "W:fico|alem do golpe",
+     "title": "Além do golpe",
+     "first_author": "FICO, Carlos",
+     "year": 2004,
+     "loading": 0.665,
+     "citing": 54,
+     "membership": 0.819
+    },
+    {
+     "id": "W:gaspari|ditadura escancarada",
+     "title": "A ditadura escancarada",
+     "first_author": "GASPARI, Elio",
+     "year": 2002,
+     "loading": 0.632,
+     "citing": 42,
+     "membership": 0.946
+    },
+    {
+     "id": "W:motta|em guarda contra o perigo vermelho",
+     "title": "Em guarda contra o perigo vermelho",
+     "first_author": "MOTTA, Rodrigo Patto Sá",
+     "year": 2002,
+     "loading": 0.572,
+     "citing": 46,
+     "membership": 0.904
+    },
+    {
+     "id": "W:motta|as universidades e o regime militar",
+     "title": "As universidades e o regime militar",
+     "first_author": "MOTTA, Rodrigo Patto Sá",
+     "year": 2014,
+     "loading": 0.56,
+     "citing": 48,
+     "membership": 0.841
+    },
+    {
+     "id": "W:gomes|invencao do trabalhismo",
+     "title": "A invenção do trabalhismo",
+     "first_author": "GOMES, Ângela de Castro",
+     "year": 2005,
+     "loading": 0.557,
+     "citing": 112,
+     "membership": 0.47
+    },
+    {
+     "id": "W:fico|como eles agiam",
+     "title": "Como eles agiam",
+     "first_author": "FICO, Carlos",
+     "year": 2001,
+     "loading": 0.503,
+     "citing": 37,
+     "membership": 0.79
+    },
+    {
+     "id": "W:dreifuss|conquista do estado",
+     "title": "a conquista do Estado",
+     "first_author": "DREIFUSS, René Armand",
+     "year": 1981,
+     "loading": 0.49,
+     "citing": 46,
+     "membership": 0.702
+    },
+    {
+     "id": "W:ridenti|o fantasma da revolucao brasileira",
+     "title": "O fantasma da revolução brasileira",
+     "first_author": "RIDENTI, Marcelo",
+     "year": 1993,
+     "loading": 0.484,
+     "citing": 48,
+     "membership": 0.703
+    },
+    {
+     "id": "W:remond|por uma historia politica",
+     "title": "Por uma história política",
+     "first_author": "RÉMOND, René",
+     "year": 2003,
+     "loading": 0.479,
+     "citing": 165,
+     "membership": 0.349
+    },
+    {
+     "id": "W:serbin|dialogos na sombra",
+     "title": "Diálogos na sombra: bispos e militares, tortura e justiça social na ditadura",
+     "first_author": "SERBIN, Kenneth P",
+     "year": 2001,
+     "loading": 0.446,
+     "citing": 22,
+     "membership": 1.0
+    },
+    {
+     "id": "W:weffort|o populismo na politica brasileira",
+     "title": "O populismo na política brasileira",
+     "first_author": "WEFFORT, Francisco",
+     "year": 1978,
+     "loading": 0.421,
+     "citing": 47,
+     "membership": 0.691
+    },
+    {
+     "id": "W:kushnir|caes de guarda",
+     "title": "Cães de guarda",
+     "first_author": "KUSHNIR, Beatriz",
+     "year": 2004,
+     "loading": 0.41,
+     "citing": 31,
+     "membership": 0.861
+    },
+    {
+     "id": "W:fico|o grande irmao",
+     "title": "O grande irmão",
+     "first_author": "FICO, Carlos",
+     "year": 2008,
+     "loading": 0.395,
+     "citing": 21,
+     "membership": 0.978
+    },
+    {
+     "id": "W:gaspari|ditadura derrotada",
+     "title": "A ditadura derrotada",
+     "first_author": "GASPARI, Elio",
+     "year": 2003,
+     "loading": 0.394,
+     "citing": 28,
+     "membership": 0.871
+    },
+    {
+     "id": "W:ferreira|joao goulart",
+     "title": "João Goulart: uma biografia",
+     "first_author": "FERREIRA, Jorge",
+     "year": 2011,
+     "loading": 0.39,
+     "citing": 30,
+     "membership": 0.839
+    },
+    {
+     "id": "W:benevides|udn e o udenismo",
+     "title": "A UDN e o udenismo",
+     "first_author": "BENEVIDES, Maria Victoria",
+     "year": 1981,
+     "loading": 0.36,
+     "citing": 28,
+     "membership": 0.828
+    },
+    {
+     "id": "W:stepan|os militares na politica",
+     "title": "Os militares na política",
+     "first_author": "Stepan, Alfred",
+     "year": 1975,
+     "loading": 0.351,
+     "citing": 22,
+     "membership": 0.941
+    },
+    {
+     "id": "W:ianni|o colapso do populismo no brasil",
+     "title": "O colapso do populismo no Brasil",
+     "first_author": "IANNI, Octavio",
+     "year": 1968,
+     "loading": 0.35,
+     "citing": 31,
+     "membership": 0.76
+    },
+    {
+     "id": "W:figueiredo|democracia ou reformas",
+     "title": "Democracia ou reformas?",
+     "first_author": "FIGUEIREDO, Argelina Cheibub",
+     "year": 1993,
+     "loading": 0.347,
+     "citing": 17,
+     "membership": 0.998
+    },
+    {
+     "id": "W:bandeira|o governo joao goulart",
+     "title": "O Governo João Goulart",
+     "first_author": "BANDEIRA, Luiz Alberto Moniz",
+     "year": 2001,
+     "loading": 0.344,
+     "citing": 26,
+     "membership": 0.776
+    }
+   ],
+   "top_people": [
+    {
+     "name": "GASPARI, Elio",
+     "loading_share": 0.0524
+    },
+    {
+     "name": "FICO, Carlos",
+     "loading_share": 0.046
+    },
+    {
+     "name": "FERREIRA, Jorge",
+     "loading_share": 0.037
+    },
+    {
+     "name": "MOTTA, Rodrigo Patto Sá",
+     "loading_share": 0.0317
+    },
+    {
+     "name": "DREIFUSS, René Armand",
+     "loading_share": 0.0301
+    },
+    {
+     "name": "Skidmore, Thomas E",
+     "loading_share": 0.0252
+    },
+    {
+     "name": "ALVES, Maria Helena Moreira",
+     "loading_share": 0.0197
+    },
+    {
+     "name": "GORENDER, Jacob",
+     "loading_share": 0.0191
+    },
+    {
+     "name": "REIS FILHO, Daniel Aarão",
+     "loading_share": 0.0178
+    },
+    {
+     "name": "RIDENTI, Marcelo",
+     "loading_share": 0.0171
+    },
+    {
+     "name": "BOBBIO, Norberto",
+     "loading_share": 0.017
+    },
+    {
+     "name": "GOMES, Ângela de Castro",
+     "loading_share": 0.0168
+    },
+    {
+     "name": "NAPOLITANO, Marcos",
+     "loading_share": 0.0165
+    },
+    {
+     "name": "CAPELATO, Maria Helena",
+     "loading_share": 0.0156
+    },
+    {
+     "name": "RÉMOND, René",
+     "loading_share": 0.0155
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     49
+    ],
+    [
+     "br:uff",
+     27
+    ],
+    [
+     "br:puc-sp",
+     17
+    ],
+    [
+     "br:fgv-rj",
+     16
+    ],
+    [
+     "br:uerj",
+     13
+    ],
+    [
+     "br:ufmg",
+     12
+    ]
+   ],
+   "sample_dissertations": [
+    "Diálogo, modernização e conflito: uma biografia do cardeal Dom Avelar Brandão Vilela",
+    "O Partido Comunista Brasileiro e o governo João Goulart (1961 - 1964)",
+    "Militares de esquerda: formação, participação política e engajamento na luta armada (1961-1974)",
+    "A ditadura brasileira além das fronteiras: anticomunismo e espionagem durante o governo de Salvador Allende (1970 – 1973)",
+    "\"disseram que voltei americanizado\": relações sindicais brasil-estados unidos na ditadura civil-militar (1964-1978)",
+    "A direita estudantil universitária no rio grande do sul: entre a democracia e a ditadura (1961-1968)",
+    "O triângulo do átomo: o acordo nuclear Brasil-Alemanha Ocidental e o papel dos Estados Unidos",
+    "Um grande oceano: Brasil e União Soviética atravessando a Guerra Fria (1947-1985)"
+   ]
+  },
+  {
+   "id": 4,
+   "provisional_label": "Koselleck · BLOCH · CERTEAU — futuro, tempo, passado, escrita",
+   "label_is_provisional": true,
+   "louvain_hint": "LE GOFF · CHARTIER · BOURDIEU",
+   "title_terms": [
+    "futuro",
+    "tempo",
+    "passado",
+    "escrita",
+    "história",
+    "archaeology"
+   ],
+   "bootstrap_stability": 0.89,
+   "unstable": false,
+   "init_stability": 0.997,
+   "dominated_dissertations": 159,
+   "member_works": 125,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "2005-2009": 7,
+     "2010-2014": 33,
+     "2015-2019": 62,
+     "2020-2024": 57
+    },
+    "share_of_bin": {
+     "2005-2009": 0.033,
+     "2010-2014": 0.063,
+     "2015-2019": 0.072,
+     "2020-2024": 0.095
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:koselleck|futuro passado",
+     "title": "Futuro Passado",
+     "first_author": "Koselleck, Reinhart",
+     "year": 2006,
+     "loading": 1.0,
+     "citing": 291,
+     "membership": 0.878
+    },
+    {
+     "id": "W:bloch|apologia da historia ou o oficio do historiador",
+     "title": "Apologia da História",
+     "first_author": "BLOCH, Marc",
+     "year": 2001,
+     "loading": 0.649,
+     "citing": 283,
+     "membership": 0.6
+    },
+    {
+     "id": "W:certeau|escrita da historia",
+     "title": "A escrita da história",
+     "first_author": "CERTEAU, Michel de",
+     "year": 1982,
+     "loading": 0.64,
+     "citing": 271,
+     "membership": 0.576
+    },
+    {
+     "id": "W:hartog|regimes de historicidade",
+     "title": "Regimes de historicidade: presentismo e experiências do tempo",
+     "first_author": "HARTOG, François",
+     "year": 2013,
+     "loading": 0.421,
+     "citing": 78,
+     "membership": 0.915
+    },
+    {
+     "id": "W:ricoeur|temps et recit",
+     "title": "Tempo e narrativa",
+     "first_author": "RICOEUR, Paul",
+     "year": 1983,
+     "loading": 0.349,
+     "citing": 89,
+     "membership": 0.728
+    },
+    {
+     "id": "W:white|metahistory",
+     "title": "Metahistory: The Historical Imagination in Nineteenth-Century Europe",
+     "first_author": "White, Hayden",
+     "year": 1973,
+     "loading": 0.33,
+     "citing": 52,
+     "membership": 0.937
+    },
+    {
+     "id": "W:ricoeur|memoria a historia o esquecimento",
+     "title": "A memória, a história, o esquecimento",
+     "first_author": "RICOEUR, Paul",
+     "year": 2007,
+     "loading": 0.287,
+     "citing": 116,
+     "membership": 0.487
+    },
+    {
+     "id": "W:koselleck|estratos do tempo",
+     "title": "Estratos do tempo",
+     "first_author": "Koselleck, Reinhart",
+     "year": 2014,
+     "loading": 0.286,
+     "citing": 46,
+     "membership": 0.895
+    },
+    {
+     "id": "W:pocock|linguagens do ideario politico",
+     "title": "Linguagens do ideário político",
+     "first_author": "Pocock, J. G. A",
+     "year": 2003,
+     "loading": 0.261,
+     "citing": 96,
+     "membership": 0.511
+    },
+    {
+     "id": "W:veyne|como se escreve a historia",
+     "title": "Como se escreve a história",
+     "first_author": "VEYNE, Paul",
+     "year": 1998,
+     "loading": 0.258,
+     "citing": 66,
+     "membership": 0.648
+    },
+    {
+     "id": "W:white|tropicos do discurso",
+     "title": "Trópicos do discurso",
+     "first_author": "White, Hayden",
+     "year": 1994,
+     "loading": 0.251,
+     "citing": 60,
+     "membership": 0.745
+    },
+    {
+     "id": "W:rusen|razao historica",
+     "title": "Razão histórica",
+     "first_author": "Rüsen, Jörn",
+     "year": 2001,
+     "loading": 0.249,
+     "citing": 32,
+     "membership": 0.967
+    },
+    {
+     "id": "W:hartog|evidencia da historia",
+     "title": "Evidência da história",
+     "first_author": "HARTOG, François",
+     "year": 2011,
+     "loading": 0.244,
+     "citing": 32,
+     "membership": 0.965
+    },
+    {
+     "id": "W:chartier|beira da falesia",
+     "title": "À beira da falésia",
+     "first_author": "CHARTIER, Roger",
+     "year": 2002,
+     "loading": 0.242,
+     "citing": 119,
+     "membership": 0.402
+    },
+    {
+     "id": "W:gadamer|verdade e metodo",
+     "title": "Verdade e método",
+     "first_author": "GADAMER, Hans-Georg",
+     "year": 1997,
+     "loading": 0.217,
+     "citing": 45,
+     "membership": 0.645
+    },
+    {
+     "id": "W:sarlo|tempo passado",
+     "title": "Tempo passado",
+     "first_author": "SARLO, Beatriz",
+     "year": 2007,
+     "loading": 0.2,
+     "citing": 98,
+     "membership": 0.38
+    },
+    {
+     "id": "W:reis|historia teoria",
+     "title": "História & Teoria",
+     "first_author": "REIS, José Carlos",
+     "year": 2003,
+     "loading": 0.177,
+     "citing": 35,
+     "membership": 0.752
+    },
+    {
+     "id": "W:ginzburg|mitos emblemas sinais",
+     "title": "Mitos, emblemas, sinais: morfologia e história",
+     "first_author": "GINZBURG, Carlo",
+     "year": 1989,
+     "loading": 0.163,
+     "citing": 193,
+     "membership": 0.224
+    },
+    {
+     "id": "W:ginzburg|o fio e os rastros",
+     "title": "O fio e os rastros: verdadeiro, falso, fictício",
+     "first_author": "GINZBURG, Carlo",
+     "year": 2007,
+     "loading": 0.16,
+     "citing": 78,
+     "membership": 0.41
+    },
+    {
+     "id": "W:momigliano|as raizes classicas da historiografia moderna",
+     "title": "As raízes clássicas da historiografia moderna",
+     "first_author": "Momigliano, Arnaldo",
+     "year": 2004,
+     "loading": 0.159,
+     "citing": 30,
+     "membership": 0.577
+    },
+    {
+     "id": "W:foucault|order of things",
+     "title": "The Order of Things: An Archaeology of the Human Sciences",
+     "first_author": "Foucault, Michel",
+     "year": 2002,
+     "loading": 0.157,
+     "citing": 92,
+     "membership": 0.327
+    },
+    {
+     "id": "W:aristoteles|poetica",
+     "title": "Poética",
+     "first_author": "ARISTÓTELES., Aristóteles",
+     "year": 1966,
+     "loading": 0.156,
+     "citing": 25,
+     "membership": 0.812
+    },
+    {
+     "id": "W:burke|escrita da historia",
+     "title": "A escrita da história: novas perspectivas",
+     "first_author": "Burke, Peter",
+     "year": 1992,
+     "loading": 0.155,
+     "citing": 122,
+     "membership": 0.287
+    },
+    {
+     "id": "W:chartier|historia ou a leitura do tempo",
+     "title": "A história ou a leitura do tempo",
+     "first_author": "CHARTIER, Roger",
+     "year": 2009,
+     "loading": 0.155,
+     "citing": 51,
+     "membership": 0.451
+    },
+    {
+     "id": "W:dosse|historia a prova do tempo",
+     "title": "A história à prova do tempo",
+     "first_author": "DOSSE, François",
+     "year": 2001,
+     "loading": 0.154,
+     "citing": 19,
+     "membership": 0.938
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Koselleck, Reinhart",
+     "loading_share": 0.0615
+    },
+    {
+     "name": "HARTOG, François",
+     "loading_share": 0.0383
+    },
+    {
+     "name": "CHARTIER, Roger",
+     "loading_share": 0.0368
+    },
+    {
+     "name": "CERTEAU, Michel de",
+     "loading_share": 0.0354
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.0286
+    },
+    {
+     "name": "RICOEUR, Paul",
+     "loading_share": 0.0281
+    },
+    {
+     "name": "BLOCH, Marc",
+     "loading_share": 0.0275
+    },
+    {
+     "name": "White, Hayden",
+     "loading_share": 0.0246
+    },
+    {
+     "name": "DOSSE, François",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0192
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0191
+    },
+    {
+     "name": "Burke, Peter",
+     "loading_share": 0.0172
+    },
+    {
+     "name": "REIS, José Carlos",
+     "loading_share": 0.0156
+    },
+    {
+     "name": "VEYNE, Paul",
+     "loading_share": 0.0133
+    },
+    {
+     "name": "BOURDIEU, Pierre",
+     "loading_share": 0.0129
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     50
+    ],
+    [
+     "br:ufmg",
+     20
+    ],
+    [
+     "br:ufu",
+     18
+    ],
+    [
+     "br:uerj",
+     13
+    ],
+    [
+     "br:ufes",
+     13
+    ],
+    [
+     "br:puc-rs",
+     10
+    ]
+   ],
+   "sample_dissertations": [
+    "O futuro e o passado estão Além da Imaginação: a viagem no tempo e os EUA no contexto do segundo pós-guerra",
+    "A História segundo Xenofonte: Historiografia e usos do passado",
+    "Justiça criminal indiana: análise de processos criminais da Real Audiência de Lima – século XVIII",
+    "A astronomia das constelações humanas. Reflexões sobre o pensamento de Claude Lévi-Strauss e a História",
+    "Tempo e Narrativa na História Escolar: práticas docentes e construção de saberes no segundo segmento do ensino fundamental",
+    "A Teoria da História de R. G. Collingwood: formação, recepção e principais argumentos",
+    "História do passado da conceitualização tradicional à reconfiguração em Walter Benjamin, Martin Heidegger e Sigmund Freud",
+    "Arte, estética, ideal: um sistema de pedro figari para sociedade do século xx"
+   ]
+  },
+  {
+   "id": 5,
+   "provisional_label": "HALBWACHS · LE GOFF · BOSI — memória, oral, manual, esquecimento",
+   "label_is_provisional": true,
+   "louvain_hint": "LE GOFF · CHARTIER · BOURDIEU",
+   "title_terms": [
+    "memória",
+    "oral",
+    "manual",
+    "esquecimento",
+    "passado",
+    "patrimônio"
+   ],
+   "bootstrap_stability": 0.904,
+   "unstable": false,
+   "init_stability": 0.987,
+   "dominated_dissertations": 139,
+   "member_works": 71,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "2000-2004": 3,
+     "2005-2009": 6,
+     "2010-2014": 19,
+     "2015-2019": 59,
+     "2020-2024": 52
+    },
+    "share_of_bin": {
+     "2000-2004": 0.057,
+     "2005-2009": 0.029,
+     "2010-2014": 0.036,
+     "2015-2019": 0.068,
+     "2020-2024": 0.086
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:halbwachs|memoria coletiva",
+     "title": "A memória coletiva",
+     "first_author": "HALBWACHS, Maurice",
+     "year": 1990,
+     "loading": 1.0,
+     "citing": 230,
+     "membership": 0.934
+    },
+    {
+     "id": "W:le goff|historia e memoria",
+     "title": "História e memória",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2003,
+     "loading": 0.736,
+     "citing": 369,
+     "membership": 0.545
+    },
+    {
+     "id": "W:bosi|memoria e sociedade",
+     "title": "Memória e sociedade: lembranças de velhos",
+     "first_author": "BOSI, Ecléa",
+     "year": 1994,
+     "loading": 0.657,
+     "citing": 133,
+     "membership": 0.926
+    },
+    {
+     "id": "W:nora|entre memoria e historia",
+     "title": "Entre memória e história: a problemática dos lugares",
+     "first_author": "NORA, Pierre",
+     "year": 1993,
+     "loading": 0.547,
+     "citing": 91,
+     "membership": 0.906
+    },
+    {
+     "id": "W:pollak|memoria esquecimento silencio",
+     "title": "Memória, esquecimento, silêncio",
+     "first_author": "POLLAK, Michael",
+     "year": 1989,
+     "loading": 0.526,
+     "citing": 84,
+     "membership": 0.94
+    },
+    {
+     "id": "W:thompson|voz do passado",
+     "title": "A voz do passado",
+     "first_author": "Thompson, Paul",
+     "year": 1992,
+     "loading": 0.522,
+     "citing": 87,
+     "membership": 0.925
+    },
+    {
+     "id": "W:pollak|memoria e identidade social",
+     "title": "Memória e identidade social",
+     "first_author": "POLLAK, Michael",
+     "year": 1992,
+     "loading": 0.35,
+     "citing": 52,
+     "membership": 0.877
+    },
+    {
+     "id": "W:bosi|o tempo vivo da memoria",
+     "title": "O tempo vivo da memória: ensaios de psicologia social",
+     "first_author": "BOSI, Ecléa",
+     "year": 2003,
+     "loading": 0.298,
+     "citing": 41,
+     "membership": 0.908
+    },
+    {
+     "id": "W:candau|memoria e identidade",
+     "title": "Memória e identidade",
+     "first_author": "CANDAU, Joël",
+     "year": 2011,
+     "loading": 0.276,
+     "citing": 45,
+     "membership": 0.805
+    },
+    {
+     "id": "W:meihy|manual de historia oral",
+     "title": "Manual de História Oral",
+     "first_author": "MEIHY, José Carlos Sebe Bom",
+     "year": 2005,
+     "loading": 0.258,
+     "citing": 39,
+     "membership": 0.828
+    },
+    {
+     "id": "W:sarlo|tempo passado",
+     "title": "Tempo passado",
+     "first_author": "SARLO, Beatriz",
+     "year": 2007,
+     "loading": 0.25,
+     "citing": 98,
+     "membership": 0.462
+    },
+    {
+     "id": "W:alberti|manual de historia oral",
+     "title": "Manual de História Oral",
+     "first_author": "ALBERTI, Verena",
+     "year": 2005,
+     "loading": 0.228,
+     "citing": 51,
+     "membership": 0.622
+    },
+    {
+     "id": "W:huyssen|seduzidos pela memoria",
+     "title": "Seduzidos pela memória",
+     "first_author": "Huyssen, Andreas",
+     "year": 2000,
+     "loading": 0.219,
+     "citing": 42,
+     "membership": 0.661
+    },
+    {
+     "id": "W:ricoeur|memoria a historia o esquecimento",
+     "title": "A memória, a história, o esquecimento",
+     "first_author": "RICOEUR, Paul",
+     "year": 2007,
+     "loading": 0.198,
+     "citing": 116,
+     "membership": 0.326
+    },
+    {
+     "id": "W:alberti|ouvir contar",
+     "title": "Ouvir contar: textos em história oral",
+     "first_author": "ALBERTI, Verena",
+     "year": 2004,
+     "loading": 0.196,
+     "citing": 27,
+     "membership": 0.847
+    },
+    {
+     "id": "W:portelli|ensaios de historia oral",
+     "title": "Ensaios de história oral",
+     "first_author": "PORTELLI, Alessandro",
+     "year": 2010,
+     "loading": 0.172,
+     "citing": 33,
+     "membership": 0.63
+    },
+    {
+     "id": "W:choay|alegoria do patrimonio",
+     "title": "A alegoria do patrimônio",
+     "first_author": "CHOAY, Françoise",
+     "year": 2001,
+     "loading": 0.166,
+     "citing": 37,
+     "membership": 0.572
+    },
+    {
+     "id": "W:pollak|estudos historicos",
+     "title": "Estudos Históricos",
+     "first_author": "POLLAK, Michael",
+     "year": 1989,
+     "loading": 0.162,
+     "citing": 66,
+     "membership": 0.44
+    },
+    {
+     "id": "W:fonseca|o patrimonio em processo",
+     "title": "O patrimônio em processo",
+     "first_author": "FONSECA, Maria Cecília Londres",
+     "year": 2005,
+     "loading": 0.16,
+     "citing": 35,
+     "membership": 0.611
+    },
+    {
+     "id": "W:delgado|historia oral",
+     "title": "História oral: memória, tempo, identidades",
+     "first_author": "DELGADO, Lucília de Almeida Neves",
+     "year": 2006,
+     "loading": 0.159,
+     "citing": 22,
+     "membership": 0.751
+    },
+    {
+     "id": "W:meihy|historia oral",
+     "title": "História Oral: como fazer, como pensar",
+     "first_author": "MEIHY, José Carlos Sebe Bom",
+     "year": 2007,
+     "loading": 0.158,
+     "citing": 22,
+     "membership": 0.779
+    },
+    {
+     "id": "W:assmann|espacos da recordacao",
+     "title": "Espaços da recordação: formas e transformações da memória cultural",
+     "first_author": "Assmann, Aleida",
+     "year": 2011,
+     "loading": 0.151,
+     "citing": 23,
+     "membership": 0.722
+    },
+    {
+     "id": "W:brasil|constituicao da republica federativa do brasil",
+     "title": "Constituição da República Federativa do Brasil",
+     "first_author": "BRASIL., Constituição",
+     "year": 1988,
+     "loading": 0.148,
+     "citing": 43,
+     "membership": 0.559
+    },
+    {
+     "id": "W:montenegro|historia oral e memoria",
+     "title": "História oral e memória: a cultura popular revisitada",
+     "first_author": "MONTENEGRO, Antonio Torres",
+     "year": 1992,
+     "loading": 0.141,
+     "citing": 21,
+     "membership": 0.742
+    },
+    {
+     "id": "W:gagnebin|lembrar escrever esquecer",
+     "title": "Lembrar escrever esquecer",
+     "first_author": "GAGNEBIN, Jeanne Marie",
+     "year": 2006,
+     "loading": 0.139,
+     "citing": 42,
+     "membership": 0.484
+    }
+   ],
+   "top_people": [
+    {
+     "name": "POLLAK, Michael",
+     "loading_share": 0.0606
+    },
+    {
+     "name": "HALBWACHS, Maurice",
+     "loading_share": 0.0542
+    },
+    {
+     "name": "BOSI, Ecléa",
+     "loading_share": 0.0518
+    },
+    {
+     "name": "LE GOFF, Jacques",
+     "loading_share": 0.0462
+    },
+    {
+     "name": "NORA, Pierre",
+     "loading_share": 0.0349
+    },
+    {
+     "name": "PORTELLI, Alessandro",
+     "loading_share": 0.0336
+    },
+    {
+     "name": "Thompson, Paul",
+     "loading_share": 0.0283
+    },
+    {
+     "name": "ALBERTI, Verena",
+     "loading_share": 0.0263
+    },
+    {
+     "name": "RICOEUR, Paul",
+     "loading_share": 0.0237
+    },
+    {
+     "name": "MEIHY, José Carlos Sebe Bom",
+     "loading_share": 0.0226
+    },
+    {
+     "name": "FREIRE, Paulo",
+     "loading_share": 0.0162
+    },
+    {
+     "name": "CANDAU, Joël",
+     "loading_share": 0.015
+    },
+    {
+     "name": "SARLO, Beatriz",
+     "loading_share": 0.0144
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0138
+    },
+    {
+     "name": "FERREIRA, Marieta de Moraes",
+     "loading_share": 0.013
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     26
+    ],
+    [
+     "br:puc-sp",
+     19
+    ],
+    [
+     "base:hdl:11449",
+     11
+    ],
+    [
+     "br:fgv-rj",
+     10
+    ],
+    [
+     "br:puc-rs",
+     10
+    ],
+    [
+     "br:uff",
+     10
+    ]
+   ],
+   "sample_dissertations": [
+    "Quando o cárcere se transforma em museu: processos de transformação de centros de detenção em sítios de memória no cone sul (1990-2018)",
+    "Retraços da educação matemática na região de Bauru (SP): uma história em construção",
+    "Uma história dos primeiros cursos de formação de professores de Matemática em Santa Catarina: movimentos e particularidades",
+    "Vozes do Cariri: monólogos e diálogos sobre a história da formação de professores de matemática no interior do Ceará",
+    "As imagens de Marco Antônio: memórias, esquecimento e reabilitação da figura do triúnviro",
+    "Trajetórias de formação de professores indígenas no Brasil",
+    "Formar professores que ensinam matemática: uma história do movimento das licenciaturas parceladas no Mato Grosso do Sul",
+    "A cidade de itajaí, o porto e a empresa g. miranda agência marítima ltda: suas inter-relações e o desenvolvimento da região (1970 à atualida"
+   ]
+  },
+  {
+   "id": 6,
+   "provisional_label": "CARVALHO · MATTOS · NEVES — construção, império, nação, independência",
+   "label_is_provisional": true,
+   "louvain_hint": "CARVALHO · FAORO · MATTOS",
+   "title_terms": [
+    "construção",
+    "império",
+    "nação",
+    "independência",
+    "imperial",
+    "poder"
+   ],
+   "bootstrap_stability": 0.911,
+   "unstable": false,
+   "init_stability": 0.974,
+   "dominated_dissertations": 133,
+   "member_works": 125,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 2,
+     "2005-2009": 16,
+     "2010-2014": 29,
+     "2015-2019": 58,
+     "2020-2024": 28
+    },
+    "share_of_bin": {
+     "2000-2004": 0.038,
+     "2005-2009": 0.077,
+     "2010-2014": 0.055,
+     "2015-2019": 0.067,
+     "2020-2024": 0.047
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:carvalho|construcao da ordem",
+     "title": "A construção da ordem",
+     "first_author": "CARVALHO, José Murilo de",
+     "year": 2003,
+     "loading": 1.0,
+     "citing": 218,
+     "membership": 0.536
+    },
+    {
+     "id": "W:mattos|o tempo saquarema",
+     "title": "O Tempo Saquarema",
+     "first_author": "MATTOS, Ilmar Rohloff de",
+     "year": 2004,
+     "loading": 0.892,
+     "citing": 164,
+     "membership": 0.59
+    },
+    {
+     "id": "W:neves|corcundas e constitucionais",
+     "title": "Corcundas e constitucionais",
+     "first_author": "NEVES, Guilherme Pereira das",
+     "year": 2003,
+     "loading": 0.757,
+     "citing": 61,
+     "membership": 0.996
+    },
+    {
+     "id": "W:dolhnikoff|o pacto imperial",
+     "title": "O pacto imperial",
+     "first_author": "DOLHNIKOFF, Miriam",
+     "year": 2005,
+     "loading": 0.601,
+     "citing": 57,
+     "membership": 0.877
+    },
+    {
+     "id": "W:ribeiro|liberdade em construcao",
+     "title": "A liberdade em construção",
+     "first_author": "RIBEIRO, Gladys Sabina",
+     "year": 2002,
+     "loading": 0.585,
+     "citing": 55,
+     "membership": 0.853
+    },
+    {
+     "id": "W:souza|patria coroada",
+     "title": "Pátria Coroada",
+     "first_author": "SOUZA, Iara Lis Carvalho",
+     "year": 1999,
+     "loading": 0.57,
+     "citing": 46,
+     "membership": 0.892
+    },
+    {
+     "id": "W:slemian|sob o imperio das leis",
+     "title": "Sob o império das leis",
+     "first_author": "SLEMIAN, Andréa",
+     "year": 2006,
+     "loading": 0.566,
+     "citing": 33,
+     "membership": 1.0
+    },
+    {
+     "id": "W:morel|as transformacoes dos espacos publicos",
+     "title": "As transformações dos espaços públicos",
+     "first_author": "MOREL, Marco",
+     "year": 2005,
+     "loading": 0.565,
+     "citing": 51,
+     "membership": 0.936
+    },
+    {
+     "id": "W:berbel|nacao como artefato",
+     "title": "A nação como artefato",
+     "first_author": "BERBEL, Márcia Regina",
+     "year": 1999,
+     "loading": 0.535,
+     "citing": 38,
+     "membership": 0.975
+    },
+    {
+     "id": "W:nabuco|um estadista do imperio",
+     "title": "Um Estadista do Império",
+     "first_author": "NABUCO, Joaquim",
+     "year": 1997,
+     "loading": 0.532,
+     "citing": 47,
+     "membership": 0.86
+    },
+    {
+     "id": "W:faoro|os donos do poder",
+     "title": "Os donos do poder",
+     "first_author": "FAORO, Raymundo",
+     "year": 2001,
+     "loading": 0.53,
+     "citing": 193,
+     "membership": 0.318
+    },
+    {
+     "id": "W:graham|clientelismo e politica no brasil do seculo xix",
+     "title": "Clientelismo e política no Brasil do século XIX",
+     "first_author": "GRAHAM, Richard",
+     "year": 1997,
+     "loading": 0.514,
+     "citing": 70,
+     "membership": 0.62
+    },
+    {
+     "id": "W:holanda|historia geral da civilizacao brasileira",
+     "title": "História Geral da Civilização Brasileira",
+     "first_author": "HOLANDA, Sérgio Buarque de",
+     "year": 1985,
+     "loading": 0.467,
+     "citing": 111,
+     "membership": 0.444
+    },
+    {
+     "id": "W:pimenta|estado e nacao no fim dos imperios ibericos no prata 1808 1828",
+     "title": "Estado e nação no fim dos impérios ibéricos no Prata (1808-1828)",
+     "first_author": "PIMENTA, João Paulo G",
+     "year": 2002,
+     "loading": 0.467,
+     "citing": 35,
+     "membership": 0.915
+    },
+    {
+     "id": "W:mello|outra independencia",
+     "title": "A outra independência",
+     "first_author": "MELLO, Evaldo Cabral de",
+     "year": 2004,
+     "loading": 0.466,
+     "citing": 32,
+     "membership": 0.934
+    },
+    {
+     "id": "W:lustosa|insultos impressos",
+     "title": "Insultos impressos",
+     "first_author": "LUSTOSA, Isabel",
+     "year": 2000,
+     "loading": 0.453,
+     "citing": 37,
+     "membership": 0.865
+    },
+    {
+     "id": "W:blake|diccionario bibliographico brazileiro",
+     "title": "Diccionario Bibliographico Brazileiro",
+     "first_author": "BLAKE, Augusto Victorino Alves Sacramento",
+     "year": 1883,
+     "loading": 0.451,
+     "citing": 39,
+     "membership": 0.846
+    },
+    {
+     "id": "W:pocock|linguagens do ideario politico",
+     "title": "Linguagens do ideário político",
+     "first_author": "Pocock, J. G. A",
+     "year": 2003,
+     "loading": 0.447,
+     "citing": 96,
+     "membership": 0.358
+    },
+    {
+     "id": "W:lyra|utopia do poderoso imperio",
+     "title": "A utopia do poderoso império",
+     "first_author": "LYRA, Maria de Lourdes Viana",
+     "year": 1994,
+     "loading": 0.429,
+     "citing": 36,
+     "membership": 0.799
+    },
+    {
+     "id": "W:oliveira|astucia liberal",
+     "title": "A astúcia liberal",
+     "first_author": "OLIVEIRA, Cecília Helena de Salles",
+     "year": 1999,
+     "loading": 0.419,
+     "citing": 29,
+     "membership": 0.977
+    },
+    {
+     "id": "W:alexandre|os sentidos do imperio",
+     "title": "Os sentidos do império",
+     "first_author": "ALEXANDRE, Valentim",
+     "year": 1993,
+     "loading": 0.418,
+     "citing": 53,
+     "membership": 0.627
+    },
+    {
+     "id": "W:jancso|brasil",
+     "title": "Brasil",
+     "first_author": "JANCSÓ, István",
+     "year": 2003,
+     "loading": 0.417,
+     "citing": 33,
+     "membership": 0.907
+    },
+    {
+     "id": "W:needell|party of order",
+     "title": "The Party of Order",
+     "first_author": "Needell, Jeffrey D",
+     "year": 2006,
+     "loading": 0.387,
+     "citing": 23,
+     "membership": 0.98
+    },
+    {
+     "id": "W:barman|brazil",
+     "title": "Brazil: The Forging of a Nation, 1798-1852",
+     "first_author": "BARMAN, Roderick J",
+     "year": 1988,
+     "loading": 0.376,
+     "citing": 24,
+     "membership": 1.0
+    },
+    {
+     "id": "W:costa|da monarquia a republica",
+     "title": "Da Monarquia à República",
+     "first_author": "COSTA, Emília Viotti da",
+     "year": 1999,
+     "loading": 0.362,
+     "citing": 157,
+     "membership": 0.232
+    }
+   ],
+   "top_people": [
+    {
+     "name": "CARVALHO, José Murilo de",
+     "loading_share": 0.0386
+    },
+    {
+     "name": "MOREL, Marco",
+     "loading_share": 0.0223
+    },
+    {
+     "name": "JANCSÓ, István",
+     "loading_share": 0.022
+    },
+    {
+     "name": "NEVES, Guilherme Pereira das",
+     "loading_share": 0.0207
+    },
+    {
+     "name": "MATTOS, Ilmar Rohloff de",
+     "loading_share": 0.0162
+    },
+    {
+     "name": "SLEMIAN, Andréa",
+     "loading_share": 0.0156
+    },
+    {
+     "name": "HOLANDA, Sérgio Buarque de",
+     "loading_share": 0.0149
+    },
+    {
+     "name": "BERBEL, Márcia Regina",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "NABUCO, Joaquim",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "MOTA, Carlos Guilherme",
+     "loading_share": 0.0113
+    },
+    {
+     "name": "DOLHNIKOFF, Miriam",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "LUSTOSA, Isabel",
+     "loading_share": 0.0108
+    },
+    {
+     "name": "BLAKE, Augusto Victorino Alves Sacramento",
+     "loading_share": 0.0107
+    },
+    {
+     "name": "RIBEIRO, Gladys Sabina",
+     "loading_share": 0.0107
+    },
+    {
+     "name": "SOUZA, Iara Lis Carvalho",
+     "loading_share": 0.0104
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     46
+    ],
+    [
+     "br:uerj",
+     30
+    ],
+    [
+     "br:uff",
+     17
+    ],
+    [
+     "br:ufes",
+     8
+    ],
+    [
+     "br:ufmg",
+     7
+    ],
+    [
+     "br:puc-rs",
+     6
+    ]
+   ],
+   "sample_dissertations": [
+    "Entre a opinião e o público: linguagens políticas na independência e no primeiro reinado do Brasil",
+    "Constituição e responsabilidade: a articulação de mecanismos para controlar os atos ministeriais pela Assembleia Geral Legislativa do Impéri",
+    "Partidos políticos, poderes constitucionais e representação regional na 1ª legislatura da assembléia geral do império do Brasil: Minas Gerai",
+    "CONSELHO GERAL DE PROVÍNCIA: espaço de experiência política na Bahia 1828-1834",
+    "Dividindo as províncias do império: a emancipação do Amazonas e do Paraná e o sistema representativo na construção do Estado nacional brasil",
+    "Suspensão de garantias na monarquia constitucional representativa brasileira: debates parlamentares, práticas políticas e contestação à orde",
+    "\"AO PÚBLICO SINCERO E IMPARCIAL\" Imprensa e Independência do Maranhão (1821-1826)",
+    "Portos e Sertões: a província do Espírito Santo e a emancipação da América Portuguesa (1815-1825)"
+   ]
+  },
+  {
+   "id": 7,
+   "provisional_label": "CHALHOUB · SLENES · MATTOS — senzala, cores, escrava, silêncio",
+   "label_is_provisional": true,
+   "louvain_hint": "FREYRE · CHALHOUB · DIAS",
+   "title_terms": [
+    "senzala",
+    "cores",
+    "escrava",
+    "silêncio",
+    "casa",
+    "liberdade"
+   ],
+   "bootstrap_stability": 0.958,
+   "unstable": false,
+   "init_stability": 0.991,
+   "dominated_dissertations": 130,
+   "member_works": 145,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 15,
+     "2010-2014": 33,
+     "2015-2019": 50,
+     "2020-2024": 31
+    },
+    "share_of_bin": {
+     "2000-2004": 0.019,
+     "2005-2009": 0.072,
+     "2010-2014": 0.063,
+     "2015-2019": 0.058,
+     "2020-2024": 0.051
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:chalhoub|visoes da liberdade",
+     "title": "Visões da liberdade",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 1990,
+     "loading": 1.0,
+     "citing": 128,
+     "membership": 0.722
+    },
+    {
+     "id": "W:slenes|na senzala uma flor",
+     "title": "Na senzala, uma flor",
+     "first_author": "SLENES, Robert W",
+     "year": 1999,
+     "loading": 0.875,
+     "citing": 93,
+     "membership": 0.893
+    },
+    {
+     "id": "W:mattos|das cores do silencio",
+     "title": "Das cores do silêncio",
+     "first_author": "MATTOS, Hebe",
+     "year": 1998,
+     "loading": 0.813,
+     "citing": 74,
+     "membership": 0.988
+    },
+    {
+     "id": "W:lara|campos da violencia",
+     "title": "Campos da violência",
+     "first_author": "LARA, Silvia Hunold",
+     "year": 1988,
+     "loading": 0.7,
+     "citing": 78,
+     "membership": 0.794
+    },
+    {
+     "id": "W:machado|o plano e o panico",
+     "title": "O plano e o pânico",
+     "first_author": "MACHADO, Maria Helena P. T",
+     "year": 1994,
+     "loading": 0.673,
+     "citing": 52,
+     "membership": 0.987
+    },
+    {
+     "id": "W:azevedo|onda negra medo branco",
+     "title": "Onda negra, medo branco",
+     "first_author": "AZEVEDO, Célia Maria Marinho de",
+     "year": 1987,
+     "loading": 0.666,
+     "citing": 77,
+     "membership": 0.695
+    },
+    {
+     "id": "W:florentino|paz das senzalas",
+     "title": "A paz das senzalas",
+     "first_author": "FLORENTINO, Manolo",
+     "year": 1997,
+     "loading": 0.645,
+     "citing": 48,
+     "membership": 1.0
+    },
+    {
+     "id": "W:conrad|os ultimos anos da escravatura no brasil",
+     "title": "Os últimos anos da escravatura no Brasil",
+     "first_author": "Conrad, Robert Edgar",
+     "year": 1978,
+     "loading": 0.629,
+     "citing": 58,
+     "membership": 0.83
+    },
+    {
+     "id": "W:costa|da senzala a colonia",
+     "title": "Da senzala à colônia",
+     "first_author": "COSTA, Emília Viotti da",
+     "year": 1998,
+     "loading": 0.618,
+     "citing": 87,
+     "membership": 0.642
+    },
+    {
+     "id": "W:reis|negociacao e conflito",
+     "title": "Negociação e conflito",
+     "first_author": "REIS, João José",
+     "year": 1989,
+     "loading": 0.598,
+     "citing": 58,
+     "membership": 0.887
+    },
+    {
+     "id": "W:machado|crime e escravidao",
+     "title": "Crime e escravidão",
+     "first_author": "MACHADO, Maria Helena P. T",
+     "year": 1987,
+     "loading": 0.591,
+     "citing": 49,
+     "membership": 0.944
+    },
+    {
+     "id": "W:reis|rebeliao escrava no brasil",
+     "title": "Rebelião escrava no Brasil",
+     "first_author": "REIS, João José",
+     "year": 2003,
+     "loading": 0.571,
+     "citing": 62,
+     "membership": 0.772
+    },
+    {
+     "id": "W:mattoso|ser escravo no brasil",
+     "title": "Ser escravo no Brasil",
+     "first_author": "MATTOSO, Kátia M. de Queirós",
+     "year": 1982,
+     "loading": 0.551,
+     "citing": 53,
+     "membership": 0.911
+    },
+    {
+     "id": "W:karasch|vida dos escravos no rio de janeiro 1808 1850",
+     "title": "A vida dos escravos no Rio de Janeiro (1808-1850)",
+     "first_author": "Karasch, Mary C",
+     "year": 2000,
+     "loading": 0.515,
+     "citing": 50,
+     "membership": 0.85
+    },
+    {
+     "id": "W:freyre|casa grande senzala",
+     "title": "Casa-grande & senzala",
+     "first_author": "FREYRE, Gilberto",
+     "year": 2006,
+     "loading": 0.515,
+     "citing": 217,
+     "membership": 0.276
+    },
+    {
+     "id": "W:gorender|o escravismo colonial",
+     "title": "O escravismo colonial",
+     "first_author": "GORENDER, Jacob",
+     "year": 1978,
+     "loading": 0.5,
+     "citing": 88,
+     "membership": 0.492
+    },
+    {
+     "id": "W:dias|quotidiano e poder em sao paulo no seculo xix",
+     "title": "Quotidiano e poder em São Paulo no século XIX",
+     "first_author": "DIAS, Maria Odila Leite da Silva",
+     "year": 1995,
+     "loading": 0.496,
+     "citing": 97,
+     "membership": 0.473
+    },
+    {
+     "id": "W:wissenbach|sonhos africanos vivencias ladinas",
+     "title": "Sonhos africanos, vivências ladinas",
+     "first_author": "WISSENBACH, Maria Cristina Cortez",
+     "year": 1998,
+     "loading": 0.486,
+     "citing": 38,
+     "membership": 0.998
+    },
+    {
+     "id": "W:mendonca|entre a mao e os aneis",
+     "title": "Entre a mão e os anéis",
+     "first_author": "MENDONÇA, Joseli Maria Nunes",
+     "year": 1999,
+     "loading": 0.486,
+     "citing": 36,
+     "membership": 0.981
+    },
+    {
+     "id": "W:chalhoub|forca da escravidao",
+     "title": "A força da escravidão: ilegalidade e costume no Brasil oitocentista",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 2012,
+     "loading": 0.458,
+     "citing": 45,
+     "membership": 0.813
+    },
+    {
+     "id": "W:gomes|historias de quilombolas",
+     "title": "Histórias de quilombolas",
+     "first_author": "GOMES, Flávio dos Santos",
+     "year": 2006,
+     "loading": 0.443,
+     "citing": 42,
+     "membership": 0.757
+    },
+    {
+     "id": "W:florentino|em costas negras",
+     "title": "Em costas negras",
+     "first_author": "FLORENTINO, Manolo",
+     "year": 1997,
+     "loading": 0.441,
+     "citing": 95,
+     "membership": 0.445
+    },
+    {
+     "id": "W:cardoso|capitalismo e escravidao no brasil meridional",
+     "title": "Capitalismo e Escravidão no Brasil Meridional",
+     "first_author": "CARDOSO, Fernando Henrique",
+     "year": 1962,
+     "loading": 0.402,
+     "citing": 45,
+     "membership": 0.765
+    },
+    {
+     "id": "W:faria|colonia em movimento",
+     "title": "A colônia em movimento",
+     "first_author": "FARIA, Sheila de Castro",
+     "year": 1998,
+     "loading": 0.397,
+     "citing": 86,
+     "membership": 0.441
+    },
+    {
+     "id": "W:gorender|escravidao reabilitada",
+     "title": "A escravidão reabilitada",
+     "first_author": "GORENDER, Jacob",
+     "year": 1990,
+     "loading": 0.39,
+     "citing": 32,
+     "membership": 0.899
+    }
+   ],
+   "top_people": [
+    {
+     "name": "CHALHOUB, Sidney",
+     "loading_share": 0.0359
+    },
+    {
+     "name": "REIS, João José",
+     "loading_share": 0.0288
+    },
+    {
+     "name": "COSTA, Emília Viotti da",
+     "loading_share": 0.0222
+    },
+    {
+     "name": "MACHADO, Maria Helena P. T",
+     "loading_share": 0.0216
+    },
+    {
+     "name": "MATTOS, Hebe",
+     "loading_share": 0.0212
+    },
+    {
+     "name": "FLORENTINO, Manolo",
+     "loading_share": 0.0186
+    },
+    {
+     "name": "LARA, Silvia Hunold",
+     "loading_share": 0.0174
+    },
+    {
+     "name": "Conrad, Robert Edgar",
+     "loading_share": 0.0157
+    },
+    {
+     "name": "GORENDER, Jacob",
+     "loading_share": 0.0152
+    },
+    {
+     "name": "SLENES, Robert W",
+     "loading_share": 0.015
+    },
+    {
+     "name": "MATTOSO, Kátia M. de Queirós",
+     "loading_share": 0.0143
+    },
+    {
+     "name": "Schwartz, Stuart B",
+     "loading_share": 0.0129
+    },
+    {
+     "name": "CARVALHO, José Murilo de",
+     "loading_share": 0.0128
+    },
+    {
+     "name": "SCHWARCZ, Lilia Moritz",
+     "loading_share": 0.0126
+    },
+    {
+     "name": "FREYRE, Gilberto",
+     "loading_share": 0.0122
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     57
+    ],
+    [
+     "br:uff",
+     18
+    ],
+    [
+     "br:ufmg",
+     12
+    ],
+    [
+     "br:unisinos",
+     8
+    ],
+    [
+     "br:puc-sp",
+     7
+    ],
+    [
+     "br:puc-rs",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "Vida familiar na população escravizada e liberta da província de Popayán, Colômbia (1780-1852)",
+    "Os Sentidos da Liberdade: trajetórias, abolicionismo e relações de trabalho no Vale do Cotinguiba no pós-abolição (Sergipe, 1880  1930)",
+    "Os enigmas do passado confederado: relações de raça, escravidão e pós-abolição dos imigrantes norte-americanos no Brasil escravista",
+    "A escravidão em São Mateus/ES: economia e demografia (1848-1888)",
+    "A caminho da liberdade: estratégias de alforrias no Vale do Paraíba Fluminense no século XIX",
+    "Os meia-cara: africanos livres em São Paulo no século XIX",
+    "Negras e negros na justiça de Buenos Aires. Conflitos e Sociabilidades em tempos de escravidão. c.1750-c.1820",
+    "Meus filhos e minhas \"crias\" : escravos \"de leite e de pé\" no seio da família, na rota do tráfico e na luta pela liberdade (Caetité, Alto Se"
+   ]
+  },
+  {
+   "id": 8,
+   "provisional_label": "FURTADO · MELLO · SUZIGAN — econômica, industrialização, concentração, industrial",
+   "label_is_provisional": true,
+   "louvain_hint": "FURTADO · COSTA · Marx",
+   "title_terms": [
+    "econômica",
+    "industrialização",
+    "concentração",
+    "industrial",
+    "indústria",
+    "capitalismo"
+   ],
+   "bootstrap_stability": 0.788,
+   "unstable": false,
+   "init_stability": 0.995,
+   "dominated_dissertations": 106,
+   "member_works": 75,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "1995-1999": 2,
+     "2000-2004": 6,
+     "2005-2009": 18,
+     "2010-2014": 25,
+     "2015-2019": 28,
+     "2020-2024": 27
+    },
+    "share_of_bin": {
+     "2000-2004": 0.113,
+     "2005-2009": 0.086,
+     "2010-2014": 0.048,
+     "2015-2019": 0.032,
+     "2020-2024": 0.045
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:furtado|formacao economica do brasil",
+     "title": "Formação econômica do Brasil",
+     "first_author": "FURTADO, Celso",
+     "year": 2007,
+     "loading": 1.0,
+     "citing": 208,
+     "membership": 0.816
+    },
+    {
+     "id": "W:mello|o capitalismo tardio",
+     "title": "O Capitalismo Tardio",
+     "first_author": "MELLO, João Manuel Cardoso de",
+     "year": 1982,
+     "loading": 0.526,
+     "citing": 49,
+     "membership": 1.0
+    },
+    {
+     "id": "W:suzigan|industria brasileira",
+     "title": "Indústria brasileira: origem e desenvolvimento",
+     "first_author": "SUZIGAN, Wilson",
+     "year": 1986,
+     "loading": 0.515,
+     "citing": 29,
+     "membership": 1.0
+    },
+    {
+     "id": "W:cano|raizes da concentracao industrial em sao paulo",
+     "title": "Raízes da concentração industrial em São Paulo",
+     "first_author": "CANO, Wilson",
+     "year": 1977,
+     "loading": 0.494,
+     "citing": 45,
+     "membership": 0.997
+    },
+    {
+     "id": "W:dean|industrializacao de sao paulo",
+     "title": "A industrialização de São Paulo",
+     "first_author": "DEAN, Warren",
+     "year": 1971,
+     "loading": 0.456,
+     "citing": 41,
+     "membership": 0.935
+    },
+    {
+     "id": "W:luz|luta pela industrializacao do brasil",
+     "title": "A luta pela industrialização do Brasil",
+     "first_author": "LUZ, Nícia Vilela",
+     "year": 1975,
+     "loading": 0.4,
+     "citing": 31,
+     "membership": 0.941
+    },
+    {
+     "id": "W:martins|o cativeiro da terra",
+     "title": "O cativeiro da terra",
+     "first_author": "MARTINS, José de Souza",
+     "year": 2010,
+     "loading": 0.357,
+     "citing": 64,
+     "membership": 0.659
+    },
+    {
+     "id": "W:prado jr|historia economica do brasil",
+     "title": "História econômica do Brasil",
+     "first_author": "PRADO JR., Caio",
+     "year": 1987,
+     "loading": 0.349,
+     "citing": 49,
+     "membership": 0.835
+    },
+    {
+     "id": "W:draibe|rumos e metamorfoses",
+     "title": "Rumos e metamorfoses",
+     "first_author": "DRAIBE, Sônia",
+     "year": 1985,
+     "loading": 0.324,
+     "citing": 27,
+     "membership": 0.793
+    },
+    {
+     "id": "W:silva|expansao cafeeira e origens da industria no brasil",
+     "title": "Expansão cafeeira e origens da indústria no Brasil",
+     "first_author": "SILVA, Sérgio",
+     "year": 1976,
+     "loading": 0.323,
+     "citing": 31,
+     "membership": 0.915
+    },
+    {
+     "id": "W:bielschowsky|pensamento economico brasileiro",
+     "title": "Pensamento econômico brasileiro: o ciclo ideológico do desenvolvimentismo",
+     "first_author": "BIELSCHOWSKY, Ricardo",
+     "year": 2000,
+     "loading": 0.301,
+     "citing": 44,
+     "membership": 0.557
+    },
+    {
+     "id": "W:tavares|da substituicao de importacoes ao capitalismo financeiro",
+     "title": "Da substituição de importações ao capitalismo financeiro",
+     "first_author": "TAVARES, Maria da Conceição",
+     "year": 1972,
+     "loading": 0.298,
+     "citing": 27,
+     "membership": 0.651
+    },
+    {
+     "id": "W:prado junior|historia economica do brasil",
+     "title": "História econômica do Brasil",
+     "first_author": "PRADO Júnior, Caio",
+     "year": 1994,
+     "loading": 0.276,
+     "citing": 90,
+     "membership": 0.449
+    },
+    {
+     "id": "W:costa|da monarquia a republica",
+     "title": "Da Monarquia à República",
+     "first_author": "COSTA, Emília Viotti da",
+     "year": 1999,
+     "loading": 0.261,
+     "citing": 157,
+     "membership": 0.268
+    },
+    {
+     "id": "W:cano|desequilibrios regionais e concentracao industrial no brasil",
+     "title": "Desequilíbrios regionais e concentração industrial no Brasil",
+     "first_author": "CANO, Wilson",
+     "year": 1985,
+     "loading": 0.245,
+     "citing": 16,
+     "membership": 0.985
+    },
+    {
+     "id": "W:graham|gra bretanha e o inicio da modernizacao no brasil",
+     "title": "Grã-Bretanha e o início da modernização no Brasil",
+     "first_author": "GRAHAM, Richard",
+     "year": 1973,
+     "loading": 0.236,
+     "citing": 28,
+     "membership": 0.765
+    },
+    {
+     "id": "W:simonsen|evolucao industrial do brasil e outros estudos",
+     "title": "Evolução Industrial do Brasil e outros estudos",
+     "first_author": "SIMONSEN, Roberto",
+     "year": 1973,
+     "loading": 0.232,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:fonseca|vargas",
+     "title": "Vargas: o capitalismo em construção",
+     "first_author": "FONSECA, Pedro Cezar Dutra",
+     "year": 1989,
+     "loading": 0.214,
+     "citing": 20,
+     "membership": 0.773
+    },
+    {
+     "id": "W:ianni|estado e planejamento economico no brasil",
+     "title": "Estado e planejamento econômico no Brasil",
+     "first_author": "IANNI, Octavio",
+     "year": 1971,
+     "loading": 0.207,
+     "citing": 35,
+     "membership": 0.507
+    },
+    {
+     "id": "W:fausto|historia geral da civilizacao brasileira",
+     "title": "História geral da civilização brasileira",
+     "first_author": "FAUSTO, Boris",
+     "year": 2006,
+     "loading": 0.198,
+     "citing": 31,
+     "membership": 0.631
+    },
+    {
+     "id": "W:skidmore|brasil",
+     "title": "Brasil",
+     "first_author": "Skidmore, Thomas E",
+     "year": 1988,
+     "loading": 0.193,
+     "citing": 123,
+     "membership": 0.187
+    },
+    {
+     "id": "W:basbaum|historia sincera da republica",
+     "title": "História sincera da República",
+     "first_author": "BASBAUM, Leôncio",
+     "year": 1960,
+     "loading": 0.192,
+     "citing": 24,
+     "membership": 0.615
+    },
+    {
+     "id": "W:love|locomotiva",
+     "title": "A locomotiva",
+     "first_author": "LOVE, Joseph",
+     "year": 1982,
+     "loading": 0.192,
+     "citing": 32,
+     "membership": 0.613
+    },
+    {
+     "id": "W:arruda|o brasil no comercio colonial",
+     "title": "O Brasil no comércio colonial",
+     "first_author": "ARRUDA, José Jobson de Andrade",
+     "year": 1980,
+     "loading": 0.189,
+     "citing": 42,
+     "membership": 0.483
+    },
+    {
+     "id": "W:silva|terras devolutas e latifundio",
+     "title": "Terras devolutas e latifúndio: efeitos da lei de 1850",
+     "first_author": "SILVA, Lígia Osório",
+     "year": 2008,
+     "loading": 0.185,
+     "citing": 39,
+     "membership": 0.511
+    }
+   ],
+   "top_people": [
+    {
+     "name": "FURTADO, Celso",
+     "loading_share": 0.0464
+    },
+    {
+     "name": "CANO, Wilson",
+     "loading_share": 0.0281
+    },
+    {
+     "name": "DEAN, Warren",
+     "loading_share": 0.0267
+    },
+    {
+     "name": "FAUSTO, Boris",
+     "loading_share": 0.0259
+    },
+    {
+     "name": "PRADO JR., Caio",
+     "loading_share": 0.0201
+    },
+    {
+     "name": "MELLO, João Manuel Cardoso de",
+     "loading_share": 0.0201
+    },
+    {
+     "name": "SUZIGAN, Wilson",
+     "loading_share": 0.0196
+    },
+    {
+     "name": "MARTINS, José de Souza",
+     "loading_share": 0.0167
+    },
+    {
+     "name": "COSTA, Emília Viotti da",
+     "loading_share": 0.0161
+    },
+    {
+     "name": "PRADO Júnior, Caio",
+     "loading_share": 0.0158
+    },
+    {
+     "name": "SIMONSEN, Roberto",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "LUZ, Nícia Vilela",
+     "loading_share": 0.0152
+    },
+    {
+     "name": "HOBSBAWM, Eric J",
+     "loading_share": 0.0124
+    },
+    {
+     "name": "DRAIBE, Sônia",
+     "loading_share": 0.0123
+    },
+    {
+     "name": "SILVA, Sérgio",
+     "loading_share": 0.0123
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     77
+    ],
+    [
+     "br:uff",
+     6
+    ],
+    [
+     "br:ufes",
+     5
+    ],
+    [
+     "base:hdl:11449",
+     4
+    ],
+    [
+     "br:ufmg",
+     3
+    ],
+    [
+     "br:ufpa",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "Setor externo e política econômica do Brasil, 1913-1918",
+    "Industrialização e políticas de desenvolvimento regional: o Vale do Paraíba Paulista na segunda metade do século XX",
+    "Usina do Ituparanga e a Brazilian Traction Tramway, Light and Power Co.: monopólio e expansão do capitalismo financeiro no final do século 1",
+    "Estado, infraestrutura de transportes e desempenho econômico de Caxias do Sul (1900-1960)",
+    "Poder político e distribuição orçamentária em São Paulo na Primeira República 1890-1920",
+    "\"Planejamento e Industrialização em regiões periféricas: As idéias da CEPAL no Projeto Paranaense de Desenvolvimento\"",
+    "Um caminho voltado para dentro: o circuito goiano e o comércio entre Goiás e São Paulo na Primeira República",
+    "Os primórdios do desenvolvimento: <i>american system</i> vs papelismo brasileiro, raízes norte-americanas na origem do Desenvolvimentismo. P"
+   ]
+  },
+  {
+   "id": 9,
+   "provisional_label": "Marx · GRAMSCI · Hobsbawm — capital, imperialismo, comunista, manifesto",
+   "label_is_provisional": true,
+   "louvain_hint": "FURTADO · COSTA · Marx",
+   "title_terms": [
+    "capital",
+    "imperialismo",
+    "comunista",
+    "manifesto",
+    "crítica",
+    "dependência"
+   ],
+   "bootstrap_stability": 0.812,
+   "unstable": false,
+   "init_stability": 0.954,
+   "dominated_dissertations": 105,
+   "member_works": 60,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 5,
+     "2005-2009": 10,
+     "2010-2014": 23,
+     "2015-2019": 46,
+     "2020-2024": 21
+    },
+    "share_of_bin": {
+     "2000-2004": 0.094,
+     "2005-2009": 0.048,
+     "2010-2014": 0.044,
+     "2015-2019": 0.053,
+     "2020-2024": 0.035
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:marx|o capital",
+     "title": "O Capital",
+     "first_author": "Marx, Karl",
+     "year": 1985,
+     "loading": 1.0,
+     "citing": 135,
+     "membership": 0.884
+    },
+    {
+     "id": "W:gramsci|cadernos do carcere",
+     "title": "Cadernos do Cárcere",
+     "first_author": "GRAMSCI, Antonio",
+     "year": 2000,
+     "loading": 0.839,
+     "citing": 101,
+     "membership": 0.868
+    },
+    {
+     "id": "W:hobsbawm|era dos extremos",
+     "title": "Era dos extremos",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1995,
+     "loading": 0.541,
+     "citing": 207,
+     "membership": 0.383
+    },
+    {
+     "id": "W:fontes|o brasil e o capital imperialismo",
+     "title": "O Brasil e o capital-imperialismo",
+     "first_author": "Fontes, Virginia Maria Gomes de Mattos",
+     "year": 2010,
+     "loading": 0.538,
+     "citing": 28,
+     "membership": 1.0
+    },
+    {
+     "id": "W:poulantzas|o estado o poder o socialismo",
+     "title": "O Estado, o poder, o socialismo",
+     "first_author": "Poulantzas, Nicos",
+     "year": 2000,
+     "loading": 0.526,
+     "citing": 38,
+     "membership": 0.955
+    },
+    {
+     "id": "W:marx|ideologia alema",
+     "title": "A ideologia alemã",
+     "first_author": "Marx, Karl",
+     "year": 2007,
+     "loading": 0.517,
+     "citing": 60,
+     "membership": 0.878
+    },
+    {
+     "id": "W:oliveira|critica a razao dualista",
+     "title": "Crítica à razão dualista",
+     "first_author": "OLIVEIRA, Francisco de",
+     "year": 2003,
+     "loading": 0.419,
+     "citing": 54,
+     "membership": 0.654
+    },
+    {
+     "id": "W:hobsbawm|sobre historia",
+     "title": "Sobre História",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1998,
+     "loading": 0.36,
+     "citing": 114,
+     "membership": 0.406
+    },
+    {
+     "id": "W:chesnais|mundializacao do capital",
+     "title": "A mundialização do capital",
+     "first_author": "CHESNAIS, François",
+     "year": 1996,
+     "loading": 0.35,
+     "citing": 20,
+     "membership": 0.995
+    },
+    {
+     "id": "W:wood|democracia contra capitalismo",
+     "title": "Democracia contra capitalismo",
+     "first_author": "Wood, Ellen Meiksins",
+     "year": 2003,
+     "loading": 0.318,
+     "citing": 19,
+     "membership": 0.777
+    },
+    {
+     "id": "W:marx|manifesto comunista",
+     "title": "Manifesto Comunista",
+     "first_author": "Marx, Karl",
+     "year": 1998,
+     "loading": 0.297,
+     "citing": 28,
+     "membership": 0.879
+    },
+    {
+     "id": "W:marx|grundrisse",
+     "title": "Grundrisse",
+     "first_author": "Marx, Karl",
+     "year": 2011,
+     "loading": 0.293,
+     "citing": 20,
+     "membership": 0.897
+    },
+    {
+     "id": "W:mendonca|estado e economia no brasil",
+     "title": "Estado e economia no Brasil: opções de desenvolvimento",
+     "first_author": "MENDONÇA, Sonia Regina de",
+     "year": 1986,
+     "loading": 0.276,
+     "citing": 31,
+     "membership": 0.668
+    },
+    {
+     "id": "W:marx|contribuicao a critica da economia politica",
+     "title": "Contribuição à crítica da economia política",
+     "first_author": "Marx, Karl",
+     "year": 2008,
+     "loading": 0.274,
+     "citing": 30,
+     "membership": 0.806
+    },
+    {
+     "id": "W:harvey|condicao pos moderna",
+     "title": "Condição pós-moderna",
+     "first_author": "Harvey, David",
+     "year": 1992,
+     "loading": 0.271,
+     "citing": 52,
+     "membership": 0.479
+    },
+    {
+     "id": "W:bottomore|dicionario do pensamento marxista",
+     "title": "Dicionário do pensamento marxista",
+     "first_author": "BOTTOMORE, Tom",
+     "year": 2001,
+     "loading": 0.267,
+     "citing": 31,
+     "membership": 0.777
+    },
+    {
+     "id": "W:marx|critica da filosofia do direito de hegel",
+     "title": "Crítica da filosofia do direito de Hegel",
+     "first_author": "Marx, Karl",
+     "year": 2005,
+     "loading": 0.266,
+     "citing": 24,
+     "membership": 0.86
+    },
+    {
+     "id": "W:coutinho|gramsci",
+     "title": "Gramsci",
+     "first_author": "COUTINHO, Carlos Nelson",
+     "year": 1999,
+     "loading": 0.265,
+     "citing": 33,
+     "membership": 0.643
+    },
+    {
+     "id": "W:marx|manuscritos economico filosoficos",
+     "title": "Manuscritos econômico-filosóficos",
+     "first_author": "Marx, Karl",
+     "year": 2004,
+     "loading": 0.256,
+     "citing": 27,
+     "membership": 0.859
+    },
+    {
+     "id": "W:antunes|os sentidos do trabalho",
+     "title": "Os sentidos do trabalho",
+     "first_author": "ANTUNES, Ricardo",
+     "year": 2009,
+     "loading": 0.255,
+     "citing": 20,
+     "membership": 0.689
+    },
+    {
+     "id": "W:fernandes|revolucao burguesa no brasil",
+     "title": "A Revolução Burguesa no Brasil",
+     "first_author": "FERNANDES, Florestan",
+     "year": 1975,
+     "loading": 0.248,
+     "citing": 50,
+     "membership": 0.449
+    },
+    {
+     "id": "W:marini|dialetica da dependencia",
+     "title": "Dialética da dependência",
+     "first_author": "MARINI, Ruy Mauro",
+     "year": 2000,
+     "loading": 0.246,
+     "citing": 15,
+     "membership": 0.948
+    },
+    {
+     "id": "W:lenin|o imperialismo",
+     "title": "O imperialismo: fase superior do capitalismo",
+     "first_author": "Lenin, Vladimir",
+     "year": 2005,
+     "loading": 0.244,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:arrighi|o longo seculo xx",
+     "title": "O longo século XX",
+     "first_author": "Arrighi, Giovanni",
+     "year": 1996,
+     "loading": 0.24,
+     "citing": 37,
+     "membership": 0.582
+    },
+    {
+     "id": "W:lukacs|historia e consciencia de classe",
+     "title": "História e consciência de classe",
+     "first_author": "Lukács, Georg",
+     "year": 2003,
+     "loading": 0.237,
+     "citing": 23,
+     "membership": 0.779
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Marx, Karl",
+     "loading_share": 0.1563
+    },
+    {
+     "name": "GRAMSCI, Antonio",
+     "loading_share": 0.0537
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.049
+    },
+    {
+     "name": "OLIVEIRA, Francisco de",
+     "loading_share": 0.0321
+    },
+    {
+     "name": "Harvey, David",
+     "loading_share": 0.0243
+    },
+    {
+     "name": "Fontes, Virginia Maria Gomes de Mattos",
+     "loading_share": 0.0235
+    },
+    {
+     "name": "Poulantzas, Nicos",
+     "loading_share": 0.0229
+    },
+    {
+     "name": "MENDONÇA, Sonia Regina de",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "HOBSBAWM, Eric J",
+     "loading_share": 0.0156
+    },
+    {
+     "name": "CHESNAIS, François",
+     "loading_share": 0.0153
+    },
+    {
+     "name": "Wood, Ellen Meiksins",
+     "loading_share": 0.0139
+    },
+    {
+     "name": "LÖWY, Michael",
+     "loading_share": 0.0138
+    },
+    {
+     "name": "SANTOS, Milton",
+     "loading_share": 0.0123
+    },
+    {
+     "name": "ENGELS, Friedrich",
+     "loading_share": 0.0121
+    },
+    {
+     "name": "BOTTOMORE, Tom",
+     "loading_share": 0.0117
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     40
+    ],
+    [
+     "br:uff",
+     25
+    ],
+    [
+     "br:puc-sp",
+     9
+    ],
+    [
+     "br:uerj",
+     8
+    ],
+    [
+     "br:ufu",
+     8
+    ],
+    [
+     "br:puc-rs",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "Os caminhos de uma nova siembra petrolera: distribuição e circulação da renda petroleira na Venezuela Bolivariana (2003-2012)",
+    "Cuba: o poder popular e as reformas políticas no período especial",
+    "Em nome da democracia: a intervenção branca dos eua na venezuela chavista",
+    "O colapso da URSS: um estudo das causas",
+    "Os caminhos para a construção do trabalhador ideal do frigorífico da Sadia em Uberlândia (2000-2010)",
+    "Crítica marxiana de um silogismo social: o todo econômico e seus momentos",
+    "A arquitetura de uma crise: história e política econômica na Argentina, 1989-2002",
+    "Crescimento, flutuações e endividamento externo na economia dos Estados Unidos: 1980-2000"
+   ]
+  },
+  {
+   "id": 10,
+   "provisional_label": "Anderson · Bhabha · Said — áfrica, nacionalismo, desde, nações",
+   "label_is_provisional": true,
+   "louvain_hint": "Bhabha · Said · Pratt",
+   "title_terms": [
+    "áfrica",
+    "nacionalismo",
+    "desde",
+    "nações",
+    "casa",
+    "representações"
+   ],
+   "bootstrap_stability": 0.887,
+   "unstable": false,
+   "init_stability": 0.998,
+   "dominated_dissertations": 102,
+   "member_works": 55,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "2005-2009": 6,
+     "2010-2014": 23,
+     "2015-2019": 40,
+     "2020-2024": 33
+    },
+    "share_of_bin": {
+     "2005-2009": 0.029,
+     "2010-2014": 0.044,
+     "2015-2019": 0.046,
+     "2020-2024": 0.055
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:anderson|imagined communities",
+     "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+     "first_author": "Anderson, Benedict",
+     "year": 1991,
+     "loading": 1.0,
+     "citing": 181,
+     "membership": 0.625
+    },
+    {
+     "id": "W:bhabha|o local da cultura",
+     "title": "O local da cultura",
+     "first_author": "Bhabha, Homi K",
+     "year": 1998,
+     "loading": 0.944,
+     "citing": 106,
+     "membership": 0.83
+    },
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 0.905,
+     "citing": 84,
+     "membership": 0.881
+    },
+    {
+     "id": "W:said|culture and imperialism",
+     "title": "Culture and Imperialism",
+     "first_author": "Said, Edward",
+     "year": 1993,
+     "loading": 0.854,
+     "citing": 68,
+     "membership": 1.0
+    },
+    {
+     "id": "W:pratt|os olhos do imperio",
+     "title": "Os olhos do império: relatos de viagem e transculturação",
+     "first_author": "Pratt, Mary Louise",
+     "year": 1999,
+     "loading": 0.661,
+     "citing": 73,
+     "membership": 0.807
+    },
+    {
+     "id": "W:hall|identidade cultural na pos modernidade",
+     "title": "A identidade cultural na pós-modernidade",
+     "first_author": "Hall, Stuart",
+     "year": 2006,
+     "loading": 0.546,
+     "citing": 146,
+     "membership": 0.391
+    },
+    {
+     "id": "W:hernandez|africa na sala de aula",
+     "title": "A África na sala de aula: visita à história contemporânea",
+     "first_author": "HERNANDEZ, Leila Leite",
+     "year": 2005,
+     "loading": 0.539,
+     "citing": 22,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hall|da diaspora",
+     "title": "Da diáspora",
+     "first_author": "Hall, Stuart",
+     "year": 2003,
+     "loading": 0.482,
+     "citing": 96,
+     "membership": 0.463
+    },
+    {
+     "id": "W:mudimbe|invencao da africa",
+     "title": "A invenção da África",
+     "first_author": "MUDIMBE, Valentin Yves",
+     "year": 2013,
+     "loading": 0.466,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:fanon|os condenados da terra",
+     "title": "Os condenados da terra",
+     "first_author": "Fanon, Frantz",
+     "year": 2005,
+     "loading": 0.458,
+     "citing": 42,
+     "membership": 0.861
+    },
+    {
+     "id": "W:appiah|na casa de meu pai",
+     "title": "Na casa de meu pai: a África na filosofia da cultura",
+     "first_author": "Appiah, Kwame Anthony",
+     "year": 1997,
+     "loading": 0.451,
+     "citing": 24,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hobsbawm|nacoes e nacionalismo desde 1780",
+     "title": "Nações e nacionalismo desde 1780",
+     "first_author": "HOBSBAWM, Eric J",
+     "year": 1990,
+     "loading": 0.44,
+     "citing": 93,
+     "membership": 0.479
+    },
+    {
+     "id": "W:thomaz|ecos do atlantico sul",
+     "title": "Ecos do Atlântico Sul: representações sobre o terceiro império português",
+     "first_author": "THOMAZ, Omar Ribeiro",
+     "year": 2002,
+     "loading": 0.345,
+     "citing": 16,
+     "membership": 0.949
+    },
+    {
+     "id": "W:fanon|black skin white masks",
+     "title": "Black Skin, White Masks",
+     "first_author": "Fanon, Frantz",
+     "year": 2008,
+     "loading": 0.339,
+     "citing": 31,
+     "membership": 0.766
+    },
+    {
+     "id": "W:spivak|pode o subalterno falar",
+     "title": "Pode o subalterno falar?",
+     "first_author": "Spivak, Gayatri Chakravorty",
+     "year": 2010,
+     "loading": 0.327,
+     "citing": 32,
+     "membership": 0.707
+    },
+    {
+     "id": "W:gilroy|o atlantico negro",
+     "title": "O Atlântico negro: modernidade e dupla consciência",
+     "first_author": "Gilroy, Paul",
+     "year": 2001,
+     "loading": 0.322,
+     "citing": 44,
+     "membership": 0.587
+    },
+    {
+     "id": "W:arendt|origens do totalitarismo",
+     "title": "Origens do totalitarismo",
+     "first_author": "Arendt, Hannah",
+     "year": 1989,
+     "loading": 0.317,
+     "citing": 66,
+     "membership": 0.451
+    },
+    {
+     "id": "W:mbokolo|africa negra",
+     "title": "África Negra",
+     "first_author": "M’BOKOLO, Elikia",
+     "year": 2011,
+     "loading": 0.314,
+     "citing": 18,
+     "membership": 0.838
+    },
+    {
+     "id": "W:newitt|historia de mocambique",
+     "title": "História de Moçambique",
+     "first_author": "Newitt, Malyn",
+     "year": 1997,
+     "loading": 0.273,
+     "citing": 15,
+     "membership": 0.878
+    },
+    {
+     "id": "W:mcclintock|couro imperial",
+     "title": "Couro imperial: raça, gênero e sexualidade no embate colonial",
+     "first_author": "McClintock, Anne",
+     "year": 2010,
+     "loading": 0.272,
+     "citing": 18,
+     "membership": 0.789
+    },
+    {
+     "id": "W:memmi|retrato do colonizado precedido pelo retrato do colonizador",
+     "title": "Retrato do colonizado precedido pelo retrato do colonizador",
+     "first_author": "Memmi, Albert",
+     "year": 2007,
+     "loading": 0.263,
+     "citing": 16,
+     "membership": 0.945
+    },
+    {
+     "id": "W:schwarcz|o espetaculo das racas",
+     "title": "O espetáculo das raças",
+     "first_author": "SCHWARCZ, Lilia Moritz",
+     "year": 1993,
+     "loading": 0.217,
+     "citing": 147,
+     "membership": 0.186
+    },
+    {
+     "id": "W:geertz|interpretacao das culturas",
+     "title": "A interpretação das culturas",
+     "first_author": "Geertz, Clifford",
+     "year": 1989,
+     "loading": 0.216,
+     "citing": 119,
+     "membership": 0.205
+    },
+    {
+     "id": "W:alencastro|o trato dos viventes",
+     "title": "O trato dos viventes",
+     "first_author": "ALENCASTRO, Luiz Felipe de",
+     "year": 2000,
+     "loading": 0.215,
+     "citing": 130,
+     "membership": 0.214
+    },
+    {
+     "id": "W:hobsbawm|era dos extremos",
+     "title": "Era dos extremos",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1995,
+     "loading": 0.214,
+     "citing": 207,
+     "membership": 0.129
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Said, Edward",
+     "loading_share": 0.0705
+    },
+    {
+     "name": "Anderson, Benedict",
+     "loading_share": 0.0393
+    },
+    {
+     "name": "Hall, Stuart",
+     "loading_share": 0.0365
+    },
+    {
+     "name": "Bhabha, Homi K",
+     "loading_share": 0.0325
+    },
+    {
+     "name": "Fanon, Frantz",
+     "loading_share": 0.0274
+    },
+    {
+     "name": "Pratt, Mary Louise",
+     "loading_share": 0.0228
+    },
+    {
+     "name": "HOBSBAWM, Eric J",
+     "loading_share": 0.0204
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0192
+    },
+    {
+     "name": "HERNANDEZ, Leila Leite",
+     "loading_share": 0.0186
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0161
+    },
+    {
+     "name": "MUDIMBE, Valentin Yves",
+     "loading_share": 0.016
+    },
+    {
+     "name": "Appiah, Kwame Anthony",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "THOMAZ, Omar Ribeiro",
+     "loading_share": 0.0119
+    },
+    {
+     "name": "Spivak, Gayatri Chakravorty",
+     "loading_share": 0.0113
+    },
+    {
+     "name": "Gilroy, Paul",
+     "loading_share": 0.0111
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     39
+    ],
+    [
+     "br:puc-sp",
+     16
+    ],
+    [
+     "br:ufmg",
+     8
+    ],
+    [
+     "br:uff",
+     7
+    ],
+    [
+     "br:puc-rs",
+     5
+    ],
+    [
+     "br:ufu",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "Sob as sombras da guerra: cinema noir, história e masculinidades",
+    "A viagem da U. S. Astronomical Expedition (1849-1852): observar estrelas e relatar a América do Sul",
+    "Imagens em missão: colonialismo, visualidade e prática missionária em Uganda (1870–1920)",
+    "De caçadores a caça: sobas, Diamang e o Museu do Dundo",
+    "As dimensões da resistência em Angoche: da expansão política do sultanato à política colonialista portuguesa no norte de Moçambique (1842-19",
+    "Literatura e revolução: o pensamento político da Frente de Libertação de Moçambique a partir dos poemas de combate (1962-1980)",
+    "Espectros vencidos: a teorização negativa do sistema internacional em Marx e Engels",
+    "Cinematografias afrodiaspóricas: imagens e narrativas sob regimes de oralidade"
+   ]
+  },
+  {
+   "id": 11,
+   "provisional_label": "ORTIZ · NAPOLITANO · RIDENTI — música, canção, popular, cinema",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "música",
+    "canção",
+    "popular",
+    "cinema",
+    "brasileira",
+    "subdesenvolvimento"
+   ],
+   "bootstrap_stability": 0.848,
+   "unstable": false,
+   "init_stability": 0.994,
+   "dominated_dissertations": 96,
+   "member_works": 52,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 11,
+     "2010-2014": 25,
+     "2015-2019": 37,
+     "2020-2024": 22
+    },
+    "share_of_bin": {
+     "2000-2004": 0.019,
+     "2005-2009": 0.053,
+     "2010-2014": 0.048,
+     "2015-2019": 0.043,
+     "2020-2024": 0.037
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:ortiz|moderna tradicao brasileira",
+     "title": "A moderna tradição brasileira",
+     "first_author": "ORTIZ, Renato",
+     "year": 1988,
+     "loading": 1.0,
+     "citing": 82,
+     "membership": 0.845
+    },
+    {
+     "id": "W:napolitano|seguindo a cancao",
+     "title": "Seguindo a canção",
+     "first_author": "NAPOLITANO, Marcos",
+     "year": 2001,
+     "loading": 0.781,
+     "citing": 32,
+     "membership": 1.0
+    },
+    {
+     "id": "W:ridenti|em busca do povo brasileiro",
+     "title": "Em busca do povo brasileiro",
+     "first_author": "RIDENTI, Marcelo",
+     "year": 2000,
+     "loading": 0.763,
+     "citing": 59,
+     "membership": 0.756
+    },
+    {
+     "id": "W:araujo|eu nao sou cachorro nao",
+     "title": "Eu não sou cachorro, não",
+     "first_author": "ARAÚJO, Paulo César de",
+     "year": 2002,
+     "loading": 0.646,
+     "citing": 28,
+     "membership": 0.981
+    },
+    {
+     "id": "W:napolitano|historia musica",
+     "title": "História & música",
+     "first_author": "NAPOLITANO, Marcos",
+     "year": 2002,
+     "loading": 0.616,
+     "citing": 34,
+     "membership": 0.92
+    },
+    {
+     "id": "W:veloso|verdade tropical",
+     "title": "Verdade tropical",
+     "first_author": "VELOSO, Caetano",
+     "year": 1997,
+     "loading": 0.579,
+     "citing": 29,
+     "membership": 0.949
+    },
+    {
+     "id": "W:tatit|o seculo da cancao",
+     "title": "O século da canção",
+     "first_author": "TATIT, Luiz",
+     "year": 2004,
+     "loading": 0.574,
+     "citing": 22,
+     "membership": 1.0
+    },
+    {
+     "id": "W:campos|balanco da bossa e outras bossas",
+     "title": "Balanço da bossa e outras bossas",
+     "first_author": "CAMPOS, Augusto de",
+     "year": 1993,
+     "loading": 0.551,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:napolitano|sincope das ideias",
+     "title": "A síncope das ideias",
+     "first_author": "NAPOLITANO, Marcos",
+     "year": 2007,
+     "loading": 0.541,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:napolitano|cultura brasileira",
+     "title": "Cultura brasileira",
+     "first_author": "NAPOLITANO, Marcos",
+     "year": 2004,
+     "loading": 0.505,
+     "citing": 26,
+     "membership": 0.91
+    },
+    {
+     "id": "W:sandroni|feitico decente",
+     "title": "Feitiço decente",
+     "first_author": "SANDRONI, Carlos",
+     "year": 2001,
+     "loading": 0.494,
+     "citing": 22,
+     "membership": 0.977
+    },
+    {
+     "id": "W:canclini|culturas hibridas",
+     "title": "Culturas Híbridas",
+     "first_author": "CANCLINI, Néstor García",
+     "year": 2000,
+     "loading": 0.491,
+     "citing": 88,
+     "membership": 0.366
+    },
+    {
+     "id": "W:dias|os donos da voz",
+     "title": "Os donos da voz: indústria fonográfica brasileira e mundialização da cultura",
+     "first_author": "DIAS, Marcia Tosta",
+     "year": 2000,
+     "loading": 0.476,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:schwarz|o pai de familia e outros estudos",
+     "title": "O pai de família e outros estudos",
+     "first_author": "SCHWARZ, Roberto",
+     "year": 1978,
+     "loading": 0.476,
+     "citing": 24,
+     "membership": 0.974
+    },
+    {
+     "id": "W:castro|chega de saudade",
+     "title": "Chega de saudade",
+     "first_author": "CASTRO, Ruy",
+     "year": 1990,
+     "loading": 0.458,
+     "citing": 15,
+     "membership": 0.992
+    },
+    {
+     "id": "W:williams|marxismo e literatura",
+     "title": "Marxismo e literatura",
+     "first_author": "WILLIAMS, Raymond",
+     "year": 1979,
+     "loading": 0.455,
+     "citing": 90,
+     "membership": 0.311
+    },
+    {
+     "id": "W:bakhtin|cultura popular na idade media e no renascimento",
+     "title": "A cultura popular na Idade Média e no Renascimento",
+     "first_author": "BAKHTIN, Mikhail",
+     "year": 1987,
+     "loading": 0.445,
+     "citing": 89,
+     "membership": 0.38
+    },
+    {
+     "id": "W:tinhorao|historia social da musica popular brasileira",
+     "title": "História social da música popular brasileira",
+     "first_author": "TINHORÃO, José Ramos",
+     "year": 1998,
+     "loading": 0.431,
+     "citing": 22,
+     "membership": 0.981
+    },
+    {
+     "id": "W:tinhorao|musica popular",
+     "title": "Música popular",
+     "first_author": "TINHORÃO, José Ramos",
+     "year": 1997,
+     "loading": 0.427,
+     "citing": 22,
+     "membership": 0.881
+    },
+    {
+     "id": "W:tinhorao|pequena historia da musica popular",
+     "title": "Pequena história da música popular",
+     "first_author": "TINHORÃO, José Ramos",
+     "year": 1991,
+     "loading": 0.402,
+     "citing": 19,
+     "membership": 0.975
+    },
+    {
+     "id": "W:vianna|o misterio do samba",
+     "title": "O mistério do samba",
+     "first_author": "VIANNA, Hermano",
+     "year": 1995,
+     "loading": 0.398,
+     "citing": 41,
+     "membership": 0.593
+    },
+    {
+     "id": "W:hollanda|impressoes de viagem",
+     "title": "Impressões de viagem",
+     "first_author": "HOLLANDA, Heloísa Buarque de",
+     "year": 2004,
+     "loading": 0.385,
+     "citing": 22,
+     "membership": 0.803
+    },
+    {
+     "id": "W:xavier|o cinema brasileiro moderno",
+     "title": "O cinema brasileiro moderno",
+     "first_author": "XAVIER, Ismail",
+     "year": 2001,
+     "loading": 0.384,
+     "citing": 22,
+     "membership": 0.896
+    },
+    {
+     "id": "W:xavier|alegorias do subdesenvolvimento",
+     "title": "Alegorias do subdesenvolvimento",
+     "first_author": "XAVIER, Ismail",
+     "year": 1993,
+     "loading": 0.378,
+     "citing": 20,
+     "membership": 0.913
+    },
+    {
+     "id": "W:ortiz|cultura brasileira e identidade nacional",
+     "title": "Cultura brasileira e identidade nacional",
+     "first_author": "ORTIZ, Renato",
+     "year": 1985,
+     "loading": 0.377,
+     "citing": 88,
+     "membership": 0.331
+    }
+   ],
+   "top_people": [
+    {
+     "name": "NAPOLITANO, Marcos",
+     "loading_share": 0.0785
+    },
+    {
+     "name": "ORTIZ, Renato",
+     "loading_share": 0.037
+    },
+    {
+     "name": "TINHORÃO, José Ramos",
+     "loading_share": 0.0338
+    },
+    {
+     "name": "RIDENTI, Marcelo",
+     "loading_share": 0.0276
+    },
+    {
+     "name": "SCHWARZ, Roberto",
+     "loading_share": 0.0271
+    },
+    {
+     "name": "WILLIAMS, Raymond",
+     "loading_share": 0.0255
+    },
+    {
+     "name": "XAVIER, Ismail",
+     "loading_share": 0.0243
+    },
+    {
+     "name": "ARAÚJO, Paulo César de",
+     "loading_share": 0.0174
+    },
+    {
+     "name": "ROCHA, Glauber",
+     "loading_share": 0.0169
+    },
+    {
+     "name": "CANDIDO, Antonio",
+     "loading_share": 0.0166
+    },
+    {
+     "name": "VELOSO, Caetano",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "TATIT, Luiz",
+     "loading_share": 0.0154
+    },
+    {
+     "name": "BENJAMIN, Walter",
+     "loading_share": 0.0152
+    },
+    {
+     "name": "CAMPOS, Augusto de",
+     "loading_share": 0.0148
+    },
+    {
+     "name": "CANCLINI, Néstor García",
+     "loading_share": 0.0146
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     28
+    ],
+    [
+     "br:ufu",
+     20
+    ],
+    [
+     "br:uff",
+     13
+    ],
+    [
+     "br:puc-sp",
+     12
+    ],
+    [
+     "br:ufmg",
+     9
+    ],
+    [
+     "base:hdl:11449",
+     3
+    ]
+   ],
+   "sample_dissertations": [
+    "A utopia no horizonte da música nova",
+    "A historiografia da música popular no Brasil (1971-1999)",
+    "'Cada verso é uma semente no deserto do meu peito': exílio, resistência e conexões transnacionais na canção engajada latino-americana (anos ",
+    "Saudade do Brasil: Tom Jobim na cena musical brasileira (1963-1976)",
+    "Cinco cantos de vanguarda: populares e eruditos em luta pela brasilidade moderna",
+    "O tempo não para: A década de 1980 através de Gonzaguinha e Cazuza",
+    "O cinema tricontinental de Glauber Rocha: política, estética e revolução (1969-1974)",
+    "De Oswald a Joaquim: cinema, modernismo e história"
+   ]
+  },
+  {
+   "id": 12,
+   "provisional_label": "Foucault — archaeology, discurso, ordem, medicina",
+   "label_is_provisional": true,
+   "louvain_hint": "Foucault · CHALHOUB",
+   "title_terms": [
+    "archaeology",
+    "discurso",
+    "ordem",
+    "medicina",
+    "norma",
+    "história"
+   ],
+   "bootstrap_stability": 0.845,
+   "unstable": false,
+   "init_stability": 0.942,
+   "dominated_dissertations": 91,
+   "member_works": 50,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 13,
+     "2010-2014": 21,
+     "2015-2019": 27,
+     "2020-2024": 29
+    },
+    "share_of_bin": {
+     "2000-2004": 0.019,
+     "2005-2009": 0.062,
+     "2010-2014": 0.04,
+     "2015-2019": 0.031,
+     "2020-2024": 0.048
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:foucault|microfisica do poder",
+     "title": "Microfísica do poder",
+     "first_author": "Foucault, Michel",
+     "year": 1979,
+     "loading": 1.0,
+     "citing": 252,
+     "membership": 0.892
+    },
+    {
+     "id": "W:foucault|discipline and punish",
+     "title": "Discipline and Punish: The Birth of the Prison",
+     "first_author": "Foucault, Michel",
+     "year": 1977,
+     "loading": 0.798,
+     "citing": 196,
+     "membership": 0.838
+    },
+    {
+     "id": "W:foucault|lordre du discours",
+     "title": "A ordem do discurso",
+     "first_author": "Foucault, Michel",
+     "year": 1996,
+     "loading": 0.707,
+     "citing": 136,
+     "membership": 0.826
+    },
+    {
+     "id": "W:foucault|archaeology of knowledge",
+     "title": "The Archaeology of Knowledge",
+     "first_author": "Foucault, Michel",
+     "year": 1972,
+     "loading": 0.512,
+     "citing": 119,
+     "membership": 0.671
+    },
+    {
+     "id": "W:foucault|sexualitetens historia",
+     "title": "História da sexualidade",
+     "first_author": "Foucault, Michel",
+     "year": 1988,
+     "loading": 0.485,
+     "citing": 106,
+     "membership": 0.637
+    },
+    {
+     "id": "W:foucault|em defesa da sociedade",
+     "title": "Em defesa da sociedade",
+     "first_author": "Foucault, Michel",
+     "year": 1999,
+     "loading": 0.299,
+     "citing": 37,
+     "membership": 0.946
+    },
+    {
+     "id": "W:foucault|seguranca territorio populacao",
+     "title": "Segurança, território, população",
+     "first_author": "Foucault, Michel",
+     "year": 2008,
+     "loading": 0.288,
+     "citing": 39,
+     "membership": 0.899
+    },
+    {
+     "id": "W:foucault|historia da loucura na idade classica",
+     "title": "História da loucura na idade clássica",
+     "first_author": "Foucault, Michel",
+     "year": 1978,
+     "loading": 0.269,
+     "citing": 31,
+     "membership": 0.958
+    },
+    {
+     "id": "W:foucault|verdade e as formas juridicas",
+     "title": "A verdade e as formas jurídicas",
+     "first_author": "Foucault, Michel",
+     "year": 2003,
+     "loading": 0.265,
+     "citing": 41,
+     "membership": 0.772
+    },
+    {
+     "id": "W:foucault|order of things",
+     "title": "The Order of Things: An Archaeology of the Human Sciences",
+     "first_author": "Foucault, Michel",
+     "year": 2002,
+     "loading": 0.262,
+     "citing": 92,
+     "membership": 0.471
+    },
+    {
+     "id": "W:foucault|os anormais",
+     "title": "Os anormais",
+     "first_author": "Foucault, Michel",
+     "year": 2001,
+     "loading": 0.26,
+     "citing": 23,
+     "membership": 1.0
+    },
+    {
+     "id": "W:foucault|o nascimento da clinica",
+     "title": "O nascimento da clínica",
+     "first_author": "Foucault, Michel",
+     "year": 1977,
+     "loading": 0.232,
+     "citing": 30,
+     "membership": 0.93
+    },
+    {
+     "id": "W:machado|danacao da norma",
+     "title": "Danação da norma: a medicina social e constituição da psiquiatria no Brasil",
+     "first_author": "MACHADO, Roberto",
+     "year": 1978,
+     "loading": 0.22,
+     "citing": 28,
+     "membership": 0.886
+    },
+    {
+     "id": "W:chalhoub|cidade febril",
+     "title": "Cidade febril",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 1996,
+     "loading": 0.197,
+     "citing": 114,
+     "membership": 0.28
+    },
+    {
+     "id": "W:orlandi|analise de discurso",
+     "title": "Análise de discurso",
+     "first_author": "ORLANDI, E. P",
+     "year": 1999,
+     "loading": 0.193,
+     "citing": 34,
+     "membership": 0.637
+    },
+    {
+     "id": "W:costa|ordem medica e norma familiar",
+     "title": "Ordem médica e norma familiar",
+     "first_author": "COSTA, Jurandir Freire",
+     "year": 1979,
+     "loading": 0.181,
+     "citing": 51,
+     "membership": 0.475
+    },
+    {
+     "id": "W:goffman|manicomios prisoes e conventos",
+     "title": "Manicômios, prisões e conventos",
+     "first_author": "Goffman, Erving",
+     "year": 1974,
+     "loading": 0.18,
+     "citing": 30,
+     "membership": 0.67
+    },
+    {
+     "id": "W:hochman|era do saneamento",
+     "title": "A era do saneamento",
+     "first_author": "HOCHMAN, Gilberto",
+     "year": 1998,
+     "loading": 0.171,
+     "citing": 31,
+     "membership": 0.573
+    },
+    {
+     "id": "W:certeau|escrita da historia",
+     "title": "A escrita da história",
+     "first_author": "CERTEAU, Michel de",
+     "year": 1982,
+     "loading": 0.171,
+     "citing": 271,
+     "membership": 0.133
+    },
+    {
+     "id": "W:cunha|o espelho do mundo",
+     "title": "O espelho do mundo",
+     "first_author": "CUNHA, Maria Clementina Pereira",
+     "year": 1986,
+     "loading": 0.167,
+     "citing": 20,
+     "membership": 0.808
+    },
+    {
+     "id": "W:deleuze|mil platos",
+     "title": "Mil platôs",
+     "first_author": "DELEUZE, Gilles",
+     "year": 1996,
+     "loading": 0.154,
+     "citing": 32,
+     "membership": 0.579
+    },
+    {
+     "id": "W:certeau|invencao do cotidiano",
+     "title": "A invenção do cotidiano",
+     "first_author": "CERTEAU, Michel de",
+     "year": 1994,
+     "loading": 0.151,
+     "citing": 262,
+     "membership": 0.123
+    },
+    {
+     "id": "W:aries|historia social da crianca e da familia",
+     "title": "História social da criança e da família",
+     "first_author": "ARIÈS, Philippe",
+     "year": 1981,
+     "loading": 0.143,
+     "citing": 62,
+     "membership": 0.385
+    },
+    {
+     "id": "W:goffman|estigma",
+     "title": "Stigma: Notes on the Management of Spoiled Identity",
+     "first_author": "Goffman, Erving",
+     "year": 1963,
+     "loading": 0.14,
+     "citing": 36,
+     "membership": 0.469
+    },
+    {
+     "id": "W:rosen|uma historia da saude publica",
+     "title": "Uma história da saúde pública",
+     "first_author": "Rosen, George",
+     "year": 1994,
+     "loading": 0.136,
+     "citing": 24,
+     "membership": 0.622
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.3168
+    },
+    {
+     "name": "CERTEAU, Michel de",
+     "loading_share": 0.0221
+    },
+    {
+     "name": "Goffman, Erving",
+     "loading_share": 0.0204
+    },
+    {
+     "name": "DELEUZE, Gilles",
+     "loading_share": 0.015
+    },
+    {
+     "name": "CHALHOUB, Sidney",
+     "loading_share": 0.0148
+    },
+    {
+     "name": "Latour, Bruno",
+     "loading_share": 0.0146
+    },
+    {
+     "name": "ARIÈS, Philippe",
+     "loading_share": 0.0142
+    },
+    {
+     "name": "ORLANDI, E. P",
+     "loading_share": 0.0138
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0132
+    },
+    {
+     "name": "MACHADO, Roberto",
+     "loading_share": 0.0125
+    },
+    {
+     "name": "COSTA, Jurandir Freire",
+     "loading_share": 0.0103
+    },
+    {
+     "name": "LE GOFF, Jacques",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "HOCHMAN, Gilberto",
+     "loading_share": 0.0097
+    },
+    {
+     "name": "BENCHIMOL, Jaime Larry",
+     "loading_share": 0.0095
+    },
+    {
+     "name": "CUNHA, Maria Clementina Pereira",
+     "loading_share": 0.0094
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     21
+    ],
+    [
+     "br:ufmg",
+     10
+    ],
+    [
+     "br:ufu",
+     9
+    ],
+    [
+     "br:ufes",
+     7
+    ],
+    [
+     "br:puc-rs",
+     6
+    ],
+    [
+     "br:ufpe",
+     6
+    ]
+   ],
+   "sample_dissertations": [
+    "A arte bruta e o pensamento libertário: a contribuição de Jean Dubuffet ao processo criativo dos alienados e sua repercussão no Brasil",
+    "Pastores de desejos: discursos e disputas na luta contra a aids em Angola (1987  2017)",
+    "Invenções do Acre: de território a estado - um olhar social",
+    "Entre dédalo e ícaro: cosmismo, eugenia e genética na invenção do transhumanismo norte-americano (1939-2009)",
+    "As ações higienistas e a tuberculose em são paulo (1890-1924)",
+    "Vidas errantes entre a loucura e a criminalidade: uma história da emergência do manicômio judiciário no estado da Paraíba",
+    "Michel Foucault: filósofo político",
+    "O saneamento e a politização da higiene no rio grande do sul (1828-1930)"
+   ]
+  },
+  {
+   "id": 13,
+   "provisional_label": "LE GOFF · BASCHET — medieval, média, ocidente, feudal",
+   "label_is_provisional": true,
+   "louvain_hint": "BLOCH · Kantorowicz · WILLIAMS",
+   "title_terms": [
+    "medieval",
+    "média",
+    "ocidente",
+    "feudal",
+    "idade",
+    "civilização"
+   ],
+   "bootstrap_stability": 0.775,
+   "unstable": false,
+   "init_stability": 0.998,
+   "dominated_dissertations": 86,
+   "member_works": 49,
+   "years": {
+    "median": 2015,
+    "by_5yr": {
+     "2000-2004": 2,
+     "2005-2009": 5,
+     "2010-2014": 32,
+     "2015-2019": 26,
+     "2020-2024": 21
+    },
+    "share_of_bin": {
+     "2000-2004": 0.038,
+     "2005-2009": 0.024,
+     "2010-2014": 0.061,
+     "2015-2019": 0.03,
+     "2020-2024": 0.035
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:le goff|civilizacao do ocidente medieval",
+     "title": "A civilização do Ocidente medieval",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2005,
+     "loading": 1.0,
+     "citing": 29,
+     "membership": 1.0
+    },
+    {
+     "id": "W:le goff|dicionario tematico do ocidente medieval",
+     "title": "Dicionário Temático do Ocidente Medieval",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2002,
+     "loading": 0.899,
+     "citing": 30,
+     "membership": 1.0
+    },
+    {
+     "id": "W:baschet|civilizacao feudal",
+     "title": "A civilização feudal",
+     "first_author": "BASCHET, Jérôme",
+     "year": 2006,
+     "loading": 0.856,
+     "citing": 22,
+     "membership": 1.0
+    },
+    {
+     "id": "W:bloch|os reis taumaturgos",
+     "title": "Os reis taumaturgos",
+     "first_author": "BLOCH, Marc",
+     "year": 1993,
+     "loading": 0.839,
+     "citing": 55,
+     "membership": 0.865
+    },
+    {
+     "id": "W:kantorowicz|kings two bodies",
+     "title": "The King’s Two Bodies: A Study in Medieval Political Theology",
+     "first_author": "Kantorowicz, Ernst H",
+     "year": 1957,
+     "loading": 0.739,
+     "citing": 43,
+     "membership": 0.87
+    },
+    {
+     "id": "W:le goff|os intelectuais na idade media",
+     "title": "Os intelectuais na Idade Média",
+     "first_author": "LE GOFF, Jacques",
+     "year": 1995,
+     "loading": 0.624,
+     "citing": 28,
+     "membership": 0.956
+    },
+    {
+     "id": "W:bloch|sociedade feudal",
+     "title": "A sociedade feudal",
+     "first_author": "BLOCH, Marc",
+     "year": 1979,
+     "loading": 0.552,
+     "citing": 20,
+     "membership": 0.952
+    },
+    {
+     "id": "W:loyn|dicionario da idade media",
+     "title": "Dicionário da Idade Média",
+     "first_author": "Loyn, H.R",
+     "year": 1997,
+     "loading": 0.529,
+     "citing": 16,
+     "membership": 0.996
+    },
+    {
+     "id": "W:duby|as tres ordens ou o imaginario do feudalismo",
+     "title": "As três ordens ou o imaginário do feudalismo",
+     "first_author": "DUBY, Georges",
+     "year": 1982,
+     "loading": 0.519,
+     "citing": 21,
+     "membership": 0.981
+    },
+    {
+     "id": "W:vauchez|espiritualidade na idade media ocidental",
+     "title": "A espiritualidade na Idade Média ocidental",
+     "first_author": "VAUCHEZ, André",
+     "year": 1995,
+     "loading": 0.486,
+     "citing": 20,
+     "membership": 0.937
+    },
+    {
+     "id": "W:le goff|o imaginario medieval",
+     "title": "O imaginário medieval",
+     "first_author": "LE GOFF, Jacques",
+     "year": 1994,
+     "loading": 0.454,
+     "citing": 22,
+     "membership": 0.856
+    },
+    {
+     "id": "W:schmitt|o corpo das imagens",
+     "title": "O corpo das imagens",
+     "first_author": "SCHMITT, Jean-Claude",
+     "year": 2007,
+     "loading": 0.446,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:le goff|o maravilhoso e o quotidiano no ocidente medieval",
+     "title": "O maravilhoso e o quotidiano no Ocidente medieval",
+     "first_author": "LE GOFF, Jacques",
+     "year": 1985,
+     "loading": 0.446,
+     "citing": 18,
+     "membership": 0.941
+    },
+    {
+     "id": "W:senellart|as artes de governar",
+     "title": "As artes de governar",
+     "first_author": "SENELLART, Michel",
+     "year": 2006,
+     "loading": 0.439,
+     "citing": 26,
+     "membership": 0.762
+    },
+    {
+     "id": "W:huizinga|o outono da idade media",
+     "title": "O outono da Idade Média",
+     "first_author": "Huizinga, Johan",
+     "year": 2010,
+     "loading": 0.433,
+     "citing": 19,
+     "membership": 0.969
+    },
+    {
+     "id": "W:skinner|as fundacoes do pensamento politico moderno",
+     "title": "As fundações do pensamento político moderno",
+     "first_author": "Skinner, Quentin",
+     "year": 1996,
+     "loading": 0.42,
+     "citing": 81,
+     "membership": 0.357
+    },
+    {
+     "id": "W:duby|idade media idade dos homens",
+     "title": "Idade Média, idade dos homens",
+     "first_author": "DUBY, Georges",
+     "year": 1989,
+     "loading": 0.387,
+     "citing": 19,
+     "membership": 0.92
+    },
+    {
+     "id": "W:curtius|literatura europeia e idade media latina",
+     "title": "Literatura Européia e Idade Média Latina",
+     "first_author": "Curtius, E",
+     "year": 1996,
+     "loading": 0.381,
+     "citing": 16,
+     "membership": 0.859
+    },
+    {
+     "id": "W:delumeau|civilizacao do renascimento",
+     "title": "A civilização do Renascimento",
+     "first_author": "DELUMEAU, Jean",
+     "year": 1984,
+     "loading": 0.354,
+     "citing": 21,
+     "membership": 0.825
+    },
+    {
+     "id": "W:le goff|sao francisco de assis",
+     "title": "São Francisco de Assis",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2001,
+     "loading": 0.347,
+     "citing": 17,
+     "membership": 0.844
+    },
+    {
+     "id": "W:le goff|para um novo conceito de idade media",
+     "title": "Para um novo conceito de Idade Média",
+     "first_author": "LE GOFF, Jacques",
+     "year": 1993,
+     "loading": 0.346,
+     "citing": 19,
+     "membership": 0.819
+    },
+    {
+     "id": "W:anderson|passagens da antiguidade ao feudalismo",
+     "title": "Passagens da Antiguidade ao Feudalismo",
+     "first_author": "ANDERSON, Perry",
+     "year": 2000,
+     "loading": 0.345,
+     "citing": 16,
+     "membership": 0.765
+    },
+    {
+     "id": "W:duby|historia continua",
+     "title": "A história continua",
+     "first_author": "DUBY, Georges",
+     "year": 1993,
+     "loading": 0.34,
+     "citing": 20,
+     "membership": 0.74
+    },
+    {
+     "id": "W:zumthor|letra e a voz",
+     "title": "A letra e a voz",
+     "first_author": "ZUMTHOR, Paul",
+     "year": 1993,
+     "loading": 0.335,
+     "citing": 19,
+     "membership": 0.841
+    },
+    {
+     "id": "W:franco junior|idade media",
+     "title": "A Idade Média",
+     "first_author": "FRANCO JÚNIOR, Hilário",
+     "year": 2001,
+     "loading": 0.323,
+     "citing": 15,
+     "membership": 0.837
+    }
+   ],
+   "top_people": [
+    {
+     "name": "LE GOFF, Jacques",
+     "loading_share": 0.1511
+    },
+    {
+     "name": "BLOCH, Marc",
+     "loading_share": 0.0451
+    },
+    {
+     "name": "DUBY, Georges",
+     "loading_share": 0.0373
+    },
+    {
+     "name": "DELUMEAU, Jean",
+     "loading_share": 0.0294
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.0278
+    },
+    {
+     "name": "BASCHET, Jérôme",
+     "loading_share": 0.0236
+    },
+    {
+     "name": "Burke, Peter",
+     "loading_share": 0.0235
+    },
+    {
+     "name": "Kantorowicz, Ernst H",
+     "loading_share": 0.0204
+    },
+    {
+     "name": "Huizinga, Johan",
+     "loading_share": 0.0194
+    },
+    {
+     "name": "ANDERSON, Perry",
+     "loading_share": 0.0165
+    },
+    {
+     "name": "CHARTIER, Roger",
+     "loading_share": 0.0159
+    },
+    {
+     "name": "ELIAS, Norbert",
+     "loading_share": 0.0155
+    },
+    {
+     "name": "CARDOSO, Ciro Flamarion",
+     "loading_share": 0.0151
+    },
+    {
+     "name": "ARIÈS, Philippe",
+     "loading_share": 0.015
+    },
+    {
+     "name": "Loyn, H.R",
+     "loading_share": 0.0146
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     36
+    ],
+    [
+     "br:uff",
+     23
+    ],
+    [
+     "br:ufmg",
+     9
+    ],
+    [
+     "base:hdl:11449",
+     6
+    ],
+    [
+     "br:ufes",
+     5
+    ],
+    [
+     "br:puc-rs",
+     2
+    ]
+   ],
+   "sample_dissertations": [
+    "São Luís: o poder e o serviço nos escritos franciscanos dos séculos XIII-XIV",
+    "A cavalaria no discurso político castelhano-leonês no final doséculo XIII início do século XIV: entre vínculo social e forma de vida virtuos",
+    "Virtus Sancta: o santíssimo crucifixo de San Salvador de Valência (séc. XIII-XVII)",
+    "A salvação como um itinerário no Além Medieval - A viagem imaginária da Visão de Túndalo (séculos XIV-XV)",
+    "A crença na magia a partir da literatura medieval: estudo comparativo nas narrativas inglesas e francesas (1135-1200)",
+    "Alquimia e Magia: uma linha do tempo passando por De Occulta Philosophia de Cornelius Agrippa ao O Alquimista de Paulo Coelho",
+    "Política e retórica no Humanismo Florentino entre os séculos XIV e XV: em torno do Humanismo Cívico",
+    "Aprender para ensinar, doutrinar para salvar: a formação da sabedoria cristã do Abade Guiberto de Nogent (c.1055-c.1125) Monodiade(c.1115)"
+   ]
+  },
+  {
+   "id": 14,
+   "provisional_label": "Thompson · THOMPSON — classe, trabalho, invenção, cultura",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "classe",
+    "trabalho",
+    "invenção",
+    "cultura",
+    "cidade",
+    "social"
+   ],
+   "bootstrap_stability": 0.837,
+   "unstable": false,
+   "init_stability": 0.82,
+   "dominated_dissertations": 78,
+   "member_works": 49,
+   "years": {
+    "median": 2016,
+    "by_5yr": {
+     "2000-2004": 2,
+     "2005-2009": 6,
+     "2010-2014": 20,
+     "2015-2019": 36,
+     "2020-2024": 14
+    },
+    "share_of_bin": {
+     "2000-2004": 0.038,
+     "2005-2009": 0.029,
+     "2010-2014": 0.038,
+     "2015-2019": 0.042,
+     "2020-2024": 0.023
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:thompson|formacao da classe operaria inglesa",
+     "title": "A formação da classe operária inglesa",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 1987,
+     "loading": 1.0,
+     "citing": 174,
+     "membership": 0.944
+    },
+    {
+     "id": "W:thompson|costumes em comum",
+     "title": "Costumes em comum",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 1998,
+     "loading": 0.901,
+     "citing": 243,
+     "membership": 0.716
+    },
+    {
+     "id": "W:thompson|miseria da teoria ou um planetario de erros",
+     "title": "A miséria da teoria ou um planetário de erros",
+     "first_author": "THOMPSON, Edward P",
+     "year": 1981,
+     "loading": 0.865,
+     "citing": 129,
+     "membership": 0.956
+    },
+    {
+     "id": "W:thompson|as peculiaridades dos ingleses e outros artigos",
+     "title": "As peculiaridades dos ingleses e outros artigos",
+     "first_author": "THOMPSON, Edward P",
+     "year": 2001,
+     "loading": 0.58,
+     "citing": 78,
+     "membership": 0.893
+    },
+    {
+     "id": "W:sader|quando novos personagens entraram em cena",
+     "title": "Quando novos personagens entraram em cena",
+     "first_author": "SADER, Eder",
+     "year": 1988,
+     "loading": 0.551,
+     "citing": 70,
+     "membership": 0.788
+    },
+    {
+     "id": "W:williams|marxismo e literatura",
+     "title": "Marxismo e literatura",
+     "first_author": "WILLIAMS, Raymond",
+     "year": 1979,
+     "loading": 0.46,
+     "citing": 90,
+     "membership": 0.616
+    },
+    {
+     "id": "W:thompson|senhores e cacadores",
+     "title": "Senhores e caçadores",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 1987,
+     "loading": 0.38,
+     "citing": 93,
+     "membership": 0.595
+    },
+    {
+     "id": "W:hobsbawm|mundos do trabalho",
+     "title": "Mundos do Trabalho",
+     "first_author": "HOBSBAWM, Eric J",
+     "year": 1987,
+     "loading": 0.367,
+     "citing": 34,
+     "membership": 0.957
+    },
+    {
+     "id": "W:portelli|filosofia e os fatos",
+     "title": "A filosofia e os fatos",
+     "first_author": "PORTELLI, Alessandro",
+     "year": 1996,
+     "loading": 0.275,
+     "citing": 28,
+     "membership": 0.662
+    },
+    {
+     "id": "W:chalhoub|trabalho lar e botequim",
+     "title": "Trabalho, lar e botequim",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 2001,
+     "loading": 0.234,
+     "citing": 97,
+     "membership": 0.338
+    },
+    {
+     "id": "W:thompson|tradicion revuelta y consciencia de clase",
+     "title": "Tradición, revuelta y consciencia de clase",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 1979,
+     "loading": 0.207,
+     "citing": 21,
+     "membership": 0.874
+    },
+    {
+     "id": "W:williams|o campo e a cidade",
+     "title": "O campo e a cidade",
+     "first_author": "WILLIAMS, Raymond",
+     "year": 2011,
+     "loading": 0.196,
+     "citing": 77,
+     "membership": 0.358
+    },
+    {
+     "id": "W:thompson|os romanticos",
+     "title": "Os românticos",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 2002,
+     "loading": 0.17,
+     "citing": 19,
+     "membership": 0.792
+    },
+    {
+     "id": "W:hall|da diaspora",
+     "title": "Da diáspora",
+     "first_author": "Hall, Stuart",
+     "year": 2003,
+     "loading": 0.161,
+     "citing": 96,
+     "membership": 0.209
+    },
+    {
+     "id": "W:portelli|o que faz a historia oral diferente",
+     "title": "O que faz a história oral diferente",
+     "first_author": "PORTELLI, Alessandro",
+     "year": 1997,
+     "loading": 0.159,
+     "citing": 29,
+     "membership": 0.466
+    },
+    {
+     "id": "W:hobsbawm|sobre historia",
+     "title": "Sobre História",
+     "first_author": "Hobsbawm, Eric",
+     "year": 1998,
+     "loading": 0.156,
+     "citing": 114,
+     "membership": 0.201
+    },
+    {
+     "id": "W:chaui|conformismo e resistencia",
+     "title": "Conformismo e resistência: aspectos da cultura popular no Brasil",
+     "first_author": "CHAUÍ, Marilena",
+     "year": 1986,
+     "loading": 0.153,
+     "citing": 35,
+     "membership": 0.468
+    },
+    {
+     "id": "W:fontana|historia",
+     "title": "História: análise do passado e projeto social",
+     "first_author": "FONTANA, Josep",
+     "year": 1998,
+     "loading": 0.15,
+     "citing": 26,
+     "membership": 0.513
+    },
+    {
+     "id": "W:ginzburg|o queijo e os vermes",
+     "title": "O queijo e os vermes",
+     "first_author": "GINZBURG, Carlo",
+     "year": 1987,
+     "loading": 0.148,
+     "citing": 186,
+     "membership": 0.152
+    },
+    {
+     "id": "W:chalhoub|visoes da liberdade",
+     "title": "Visões da liberdade",
+     "first_author": "CHALHOUB, Sidney",
+     "year": 1990,
+     "loading": 0.147,
+     "citing": 128,
+     "membership": 0.192
+    },
+    {
+     "id": "W:sarlo|paisagens imaginarias",
+     "title": "Paisagens imaginárias",
+     "first_author": "SARLO, Beatriz",
+     "year": 2005,
+     "loading": 0.143,
+     "citing": 36,
+     "membership": 0.436
+    },
+    {
+     "id": "W:martins|os camponeses e a politica no brasil",
+     "title": "Os camponeses e a política no Brasil",
+     "first_author": "MARTINS, José de Souza",
+     "year": 1981,
+     "loading": 0.142,
+     "citing": 26,
+     "membership": 0.482
+    },
+    {
+     "id": "W:lefebvre|o direito a cidade",
+     "title": "O direito à cidade",
+     "first_author": "Lefebvre, Henri",
+     "year": 2001,
+     "loading": 0.14,
+     "citing": 41,
+     "membership": 0.357
+    },
+    {
+     "id": "W:williams|cultura",
+     "title": "Cultura",
+     "first_author": "WILLIAMS, Raymond",
+     "year": 1992,
+     "loading": 0.139,
+     "citing": 42,
+     "membership": 0.4
+    },
+    {
+     "id": "W:martins|fronteira",
+     "title": "Fronteira: a degradação do outro nos confins do humano",
+     "first_author": "MARTINS, José de Souza",
+     "year": 1997,
+     "loading": 0.129,
+     "citing": 32,
+     "membership": 0.413
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Thompson, Edward Palmer",
+     "loading_share": 0.1354
+    },
+    {
+     "name": "THOMPSON, Edward P",
+     "loading_share": 0.0737
+    },
+    {
+     "name": "WILLIAMS, Raymond",
+     "loading_share": 0.049
+    },
+    {
+     "name": "CHALHOUB, Sidney",
+     "loading_share": 0.0292
+    },
+    {
+     "name": "SADER, Eder",
+     "loading_share": 0.0281
+    },
+    {
+     "name": "PORTELLI, Alessandro",
+     "loading_share": 0.028
+    },
+    {
+     "name": "Hobsbawm, Eric",
+     "loading_share": 0.0221
+    },
+    {
+     "name": "MARTINS, José de Souza",
+     "loading_share": 0.0198
+    },
+    {
+     "name": "HOBSBAWM, Eric J",
+     "loading_share": 0.0194
+    },
+    {
+     "name": "GRAMSCI, Antonio",
+     "loading_share": 0.0143
+    },
+    {
+     "name": "CHAUÍ, Marilena",
+     "loading_share": 0.0142
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.014
+    },
+    {
+     "name": "FONTANA, Josep",
+     "loading_share": 0.0109
+    },
+    {
+     "name": "Lefebvre, Henri",
+     "loading_share": 0.0104
+    },
+    {
+     "name": "FERREIRA, Jorge",
+     "loading_share": 0.0104
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:ufu",
+     24
+    ],
+    [
+     "br:usp",
+     16
+    ],
+    [
+     "br:puc-sp",
+     11
+    ],
+    [
+     "br:uff",
+     8
+    ],
+    [
+     "br:unisinos",
+     5
+    ],
+    [
+     "br:ufpa",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "Direito à memória: modos de viver e morar em Uberlândia entre as décadas de 1960 e 1980",
+    "Histórias de trabalhadores no processo de transformação das relações capitalistas em Rolim de Moura/RO (1970-2018)",
+    "As trabalhadoras e trabalhadores têxteis e sua fábrica em Santarém: experiência operária, Justiça do Trabalho e indústria de sacaria no Baix",
+    "Memórias e experiências de trabalhadores no processo de luta pela terra em Cachoeirinha : violência, mobilização e conquistas. Vale do Jaíba",
+    "Do gatilho ao lote: as disputas pelo espaço urbano do Jardim Catarina - São Gonçalo, RJ",
+    "\"O lápis é mais pesado que a enxada\": reforma agrária no Chile e pedagogias camponesas para transformação econômica (1955-1973)",
+    "A miséria da teologia: um estudo sobre práticas e praticantes da religiosidade pentecostal",
+    "Revisitando o campo: Lutas, organização, contradições - Pernambuco -1962-1987"
+   ]
+  },
+  {
+   "id": 15,
+   "provisional_label": "ALMEIDA · MONTEIRO — índios, indígenas, religião, nas",
+   "label_is_provisional": true,
+   "louvain_hint": "MONTEIRO · HOLANDA",
+   "title_terms": [
+    "índios",
+    "indígenas",
+    "religião",
+    "nas",
+    "missões",
+    "conquista"
+   ],
+   "bootstrap_stability": 0.822,
+   "unstable": false,
+   "init_stability": 0.999,
+   "dominated_dissertations": 75,
+   "member_works": 56,
+   "years": {
+    "median": 2017,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 6,
+     "2010-2014": 16,
+     "2015-2019": 28,
+     "2020-2024": 24
+    },
+    "share_of_bin": {
+     "2000-2004": 0.019,
+     "2005-2009": 0.029,
+     "2010-2014": 0.031,
+     "2015-2019": 0.032,
+     "2020-2024": 0.04
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:almeida|metamorfoses indigenas",
+     "title": "Metamorfoses indígenas: identidade e cultura nas aldeias coloniais do Rio de Janeiro",
+     "first_author": "ALMEIDA, Maria Regina Celestino de",
+     "year": 2003,
+     "loading": 1.0,
+     "citing": 48,
+     "membership": 1.0
+    },
+    {
+     "id": "W:monteiro|negros da terra",
+     "title": "Negros da terra: índios e bandeirantes nas origens de São Paulo",
+     "first_author": "MONTEIRO, John Manuel",
+     "year": 1994,
+     "loading": 0.911,
+     "citing": 100,
+     "membership": 0.733
+    },
+    {
+     "id": "W:monteiro|tupis tapuias e historiadores",
+     "title": "Tupis, Tapuias e Historiadores",
+     "first_author": "MONTEIRO, John Manuel",
+     "year": 2001,
+     "loading": 0.851,
+     "citing": 49,
+     "membership": 0.989
+    },
+    {
+     "id": "W:pompa|religiao como traducao",
+     "title": "Religião como tradução",
+     "first_author": "POMPA, Cristina",
+     "year": 2003,
+     "loading": 0.804,
+     "citing": 40,
+     "membership": 1.0
+    },
+    {
+     "id": "W:leite|historia da companhia de jesus no brasil",
+     "title": "História da Companhia de Jesus no Brasil",
+     "first_author": "LEITE, Serafim",
+     "year": 1938,
+     "loading": 0.623,
+     "citing": 49,
+     "membership": 0.851
+    },
+    {
+     "id": "W:vainfas|heresia dos indios",
+     "title": "A heresia dos índios",
+     "first_author": "VAINFAS, Ronaldo",
+     "year": 1995,
+     "loading": 0.548,
+     "citing": 40,
+     "membership": 0.859
+    },
+    {
+     "id": "W:agnolin|jesuitas e selvagens",
+     "title": "Jesuítas e selvagens",
+     "first_author": "AGNOLIN, Adone",
+     "year": 2007,
+     "loading": 0.523,
+     "citing": 25,
+     "membership": 0.864
+    },
+    {
+     "id": "W:domingues|quando os indios eram vassalos",
+     "title": "Quando os índios eram vassalos",
+     "first_author": "DOMINGUES, Ângela",
+     "year": 2000,
+     "loading": 0.483,
+     "citing": 24,
+     "membership": 0.929
+    },
+    {
+     "id": "W:cunha|historia dos indios no brasil",
+     "title": "História dos índios no Brasil",
+     "first_author": "CUNHA, Manuela Carneiro da",
+     "year": 1992,
+     "loading": 0.479,
+     "citing": 28,
+     "membership": 0.88
+    },
+    {
+     "id": "W:farage|as muralhas dos sertoes",
+     "title": "As muralhas dos sertões",
+     "first_author": "FARAGE, Nádia",
+     "year": 1991,
+     "loading": 0.441,
+     "citing": 23,
+     "membership": 0.879
+    },
+    {
+     "id": "W:garcia|as diversas formas de ser indio",
+     "title": "As diversas formas de ser índio: políticas indígenas e políticas indigenistas no extremo sul da América portuguesa",
+     "first_author": "GARCIA, Elisa Frühauf",
+     "year": 2009,
+     "loading": 0.437,
+     "citing": 20,
+     "membership": 0.967
+    },
+    {
+     "id": "W:carvalho junior|indios cristaos",
+     "title": "Índios cristãos",
+     "first_author": "CARVALHO JÚNIOR, Almir Diniz de",
+     "year": 2005,
+     "loading": 0.435,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:todorov|conquista da america",
+     "title": "A conquista da América: a questão do outro",
+     "first_author": "TODOROV, Tzvetan",
+     "year": 2010,
+     "loading": 0.401,
+     "citing": 55,
+     "membership": 0.474
+    },
+    {
+     "id": "W:coelho|do sertao para o mar",
+     "title": "Do sertão para o mar",
+     "first_author": "COELHO, Mauro Cezar",
+     "year": 2005,
+     "loading": 0.376,
+     "citing": 18,
+     "membership": 0.918
+    },
+    {
+     "id": "W:puntoni|guerra dos barbaros",
+     "title": "A guerra dos bárbaros",
+     "first_author": "PUNTONI, Pedro",
+     "year": 2002,
+     "loading": 0.376,
+     "citing": 35,
+     "membership": 0.633
+    },
+    {
+     "id": "W:eisenberg|as missoes jesuiticas e o pensamento politico moderno",
+     "title": "As missões jesuíticas e o pensamento político moderno: encontros culturais, aventuras teóricas",
+     "first_author": "EISENBERG, José",
+     "year": 2000,
+     "loading": 0.375,
+     "citing": 18,
+     "membership": 0.857
+    },
+    {
+     "id": "W:sahlins|ilhas de historia",
+     "title": "Ilhas de História",
+     "first_author": "Sahlins, Marshall",
+     "year": 1990,
+     "loading": 0.367,
+     "citing": 39,
+     "membership": 0.574
+    },
+    {
+     "id": "W:holanda|caminhos e fronteiras",
+     "title": "Caminhos e fronteiras",
+     "first_author": "HOLANDA, Sérgio Buarque de",
+     "year": 1994,
+     "loading": 0.365,
+     "citing": 76,
+     "membership": 0.407
+    },
+    {
+     "id": "W:fernandes|funcao social da guerra na sociedade tupinamba",
+     "title": "A função social da guerra na sociedade Tupinambá",
+     "first_author": "FERNANDES, Florestan",
+     "year": 2006,
+     "loading": 0.361,
+     "citing": 18,
+     "membership": 0.935
+    },
+    {
+     "id": "W:hemming|ouro vermelho",
+     "title": "Ouro Vermelho: a conquista dos índios brasileiros",
+     "first_author": "HEMMING, John",
+     "year": 2007,
+     "loading": 0.36,
+     "citing": 17,
+     "membership": 0.992
+    },
+    {
+     "id": "W:clastres|sociedade contra o estado",
+     "title": "A sociedade contra o Estado",
+     "first_author": "Clastres, Pierre",
+     "year": 1979,
+     "loading": 0.357,
+     "citing": 22,
+     "membership": 0.665
+    },
+    {
+     "id": "W:sampaio|espelhos partidos",
+     "title": "Espelhos partidos: etnia, legislação e desigualdade na colônia",
+     "first_author": "SAMPAIO, Patrícia Melo",
+     "year": 2011,
+     "loading": 0.339,
+     "citing": 19,
+     "membership": 0.867
+    },
+    {
+     "id": "W:holanda|visao do paraiso",
+     "title": "Visão do Paraíso",
+     "first_author": "HOLANDA, Sérgio Buarque de",
+     "year": 2000,
+     "loading": 0.331,
+     "citing": 77,
+     "membership": 0.314
+    },
+    {
+     "id": "W:lery|viagem a terra do brasil",
+     "title": "Viagem à terra do Brasil",
+     "first_author": "LÉRY, Jean de",
+     "year": 1980,
+     "loading": 0.316,
+     "citing": 16,
+     "membership": 0.948
+    },
+    {
+     "id": "W:ribeiro|os indios e a civilizacao",
+     "title": "Os índios e a civilização",
+     "first_author": "RIBEIRO, Darcy",
+     "year": 1982,
+     "loading": 0.305,
+     "citing": 18,
+     "membership": 0.688
+    }
+   ],
+   "top_people": [
+    {
+     "name": "MONTEIRO, John Manuel",
+     "loading_share": 0.0514
+    },
+    {
+     "name": "HOLANDA, Sérgio Buarque de",
+     "loading_share": 0.0349
+    },
+    {
+     "name": "VAINFAS, Ronaldo",
+     "loading_share": 0.0307
+    },
+    {
+     "name": "ALMEIDA, Maria Regina Celestino de",
+     "loading_share": 0.0292
+    },
+    {
+     "name": "POMPA, Cristina",
+     "loading_share": 0.0235
+    },
+    {
+     "name": "GRUZINSKI, Serge",
+     "loading_share": 0.0195
+    },
+    {
+     "name": "CUNHA, Manuela Carneiro da",
+     "loading_share": 0.0188
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.0188
+    },
+    {
+     "name": "LEITE, Serafim",
+     "loading_share": 0.0182
+    },
+    {
+     "name": "PUNTONI, Pedro",
+     "loading_share": 0.0161
+    },
+    {
+     "name": "BOXER, Charles",
+     "loading_share": 0.0158
+    },
+    {
+     "name": "SOUZA, Laura de Mello e",
+     "loading_share": 0.0157
+    },
+    {
+     "name": "CERTEAU, Michel de",
+     "loading_share": 0.0153
+    },
+    {
+     "name": "AGNOLIN, Adone",
+     "loading_share": 0.0153
+    },
+    {
+     "name": "RAMINELLI, Ronald",
+     "loading_share": 0.0149
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     22
+    ],
+    [
+     "br:ufpa",
+     10
+    ],
+    [
+     "br:uff",
+     9
+    ],
+    [
+     "br:unisinos",
+     9
+    ],
+    [
+     "br:uerj",
+     6
+    ],
+    [
+     "br:puc-rs",
+     4
+    ]
+   ],
+   "sample_dissertations": [
+    "A confissão tupi: a problemática dos confessionários jesuítico-tupi nos séculos XVI-XVIII nas missões do Grão-Pará e Maranhão e do Brasil",
+    "Fé e prática entre os Kirishitan: jesuítas, franciscanos e as reações japonesas ao cristianismo",
+    "“Melhores mestres...”: saberes indígenas e ciência colonial no vale Amazônico (século XVIII)",
+    "Mundos em transformação: guerras e alianças entre os Jê e os luso-brasileiros nos sertões da América portuguesa – século XVIII",
+    "A guerra indígena como guerra colonial: as representações e o lugar da belicosidade indígena e da antropofagia no Brasil Colonial (séculos X",
+    "Caminhos fluviais e mobilidade: os rios Guaporé, Mamoré e Madeira e a rota entre o Mato Grosso e o Grão-Pará (séculos XVII e XVIII)",
+    "Infiéis e infidelidades: discursos e práticas à margem do projeto de conversão",
+    "Assumindo novas identidades: resistência indígena no litoral sul do Espírito Santo (século XVIII)"
+   ]
+  },
+  {
+   "id": 16,
+   "provisional_label": "BOURDIEU · BARDIN — trocas, economia, poder, sagrado",
+   "label_is_provisional": true,
+   "louvain_hint": null,
+   "title_terms": [
+    "trocas",
+    "economia",
+    "poder",
+    "sagrado",
+    "das",
+    "usos"
+   ],
+   "bootstrap_stability": 0.563,
+   "unstable": true,
+   "init_stability": 0.66,
+   "dominated_dissertations": 70,
+   "member_works": 45,
+   "years": {
+    "median": 2019,
+    "by_5yr": {
+     "1995-1999": 1,
+     "2005-2009": 5,
+     "2010-2014": 8,
+     "2015-2019": 34,
+     "2020-2024": 22
+    },
+    "share_of_bin": {
+     "2005-2009": 0.024,
+     "2010-2014": 0.015,
+     "2015-2019": 0.039,
+     "2020-2024": 0.037
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:bourdieu|o poder simbolico",
+     "title": "O poder simbólico",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1989,
+     "loading": 1.0,
+     "citing": 301,
+     "membership": 0.94
+    },
+    {
+     "id": "W:bourdieu|economia das trocas simbolicas",
+     "title": "A economia das trocas simbólicas",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2007,
+     "loading": 0.6,
+     "citing": 152,
+     "membership": 0.861
+    },
+    {
+     "id": "W:bardin|analise de conteudo",
+     "title": "Análise de conteúdo",
+     "first_author": "BARDIN, Laurence",
+     "year": 1977,
+     "loading": 0.34,
+     "citing": 63,
+     "membership": 0.788
+    },
+    {
+     "id": "W:bourdieu|razoes praticas",
+     "title": "Razões práticas",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1996,
+     "loading": 0.333,
+     "citing": 56,
+     "membership": 0.927
+    },
+    {
+     "id": "W:bourdieu|distincao",
+     "title": "A distinção: crítica social do julgamento",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2007,
+     "loading": 0.292,
+     "citing": 61,
+     "membership": 0.777
+    },
+    {
+     "id": "W:bourdieu|as regras da arte",
+     "title": "As regras da arte",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1996,
+     "loading": 0.255,
+     "citing": 55,
+     "membership": 0.701
+    },
+    {
+     "id": "W:bourdieu|os usos sociais da ciencia",
+     "title": "Os usos sociais da ciência",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2004,
+     "loading": 0.227,
+     "citing": 37,
+     "membership": 0.853
+    },
+    {
+     "id": "W:bourdieu|questoes de sociologia",
+     "title": "Questões de Sociologia",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1983,
+     "loading": 0.221,
+     "citing": 29,
+     "membership": 0.91
+    },
+    {
+     "id": "W:weber|economia e sociedade",
+     "title": "Economia e sociedade",
+     "first_author": "Weber, Max",
+     "year": 1999,
+     "loading": 0.19,
+     "citing": 89,
+     "membership": 0.46
+    },
+    {
+     "id": "W:bourdieu|coisas ditas",
+     "title": "Coisas ditas",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1990,
+     "loading": 0.143,
+     "citing": 34,
+     "membership": 0.696
+    },
+    {
+     "id": "W:weber|etica protestante e o espirito do capitalismo",
+     "title": "A ética protestante e o espírito do capitalismo",
+     "first_author": "Weber, Max",
+     "year": 2004,
+     "loading": 0.121,
+     "citing": 59,
+     "membership": 0.403
+    },
+    {
+     "id": "W:bourdieu|economia das trocas linguisticas",
+     "title": "A economia das trocas linguísticas",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1996,
+     "loading": 0.114,
+     "citing": 27,
+     "membership": 0.679
+    },
+    {
+     "id": "W:durkheim|as formas elementares da vida religiosa",
+     "title": "As formas elementares da vida religiosa",
+     "first_author": "DURKHEIM, Émile",
+     "year": 1996,
+     "loading": 0.111,
+     "citing": 34,
+     "membership": 0.513
+    },
+    {
+     "id": "W:eliade|o sagrado e o profano",
+     "title": "O sagrado e o profano",
+     "first_author": "ELIADE, Mircea",
+     "year": 1992,
+     "loading": 0.102,
+     "citing": 54,
+     "membership": 0.371
+    },
+    {
+     "id": "W:girardet|mitos e mitologias politicas",
+     "title": "Mitos e mitologias políticas",
+     "first_author": "GIRARDET, Raoul",
+     "year": 1987,
+     "loading": 0.1,
+     "citing": 78,
+     "membership": 0.264
+    },
+    {
+     "id": "W:galeano|as veias abertas da america latina",
+     "title": "As veias abertas da América Latina",
+     "first_author": "GALEANO, Eduardo",
+     "year": 2010,
+     "loading": 0.098,
+     "citing": 19,
+     "membership": 0.62
+    },
+    {
+     "id": "W:bourdieu|sobre o estado",
+     "title": "Sobre o Estado",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2014,
+     "loading": 0.095,
+     "citing": 20,
+     "membership": 0.621
+    },
+    {
+     "id": "W:velho|projeto e metamorfose",
+     "title": "Projeto e metamorfose: antropologia das sociedades complexas",
+     "first_author": "VELHO, Gilberto",
+     "year": 2003,
+     "loading": 0.087,
+     "citing": 23,
+     "membership": 0.563
+    },
+    {
+     "id": "W:berger|o dossel sagrado",
+     "title": "O dossel sagrado",
+     "first_author": "Berger, Peter",
+     "year": 1985,
+     "loading": 0.085,
+     "citing": 21,
+     "membership": 0.59
+    },
+    {
+     "id": "W:elias|sociedade dos individuos",
+     "title": "A sociedade dos indivíduos",
+     "first_author": "ELIAS, Norbert",
+     "year": 1994,
+     "loading": 0.085,
+     "citing": 75,
+     "membership": 0.26
+    },
+    {
+     "id": "W:sirinelli|os intelectuais",
+     "title": "Os intelectuais",
+     "first_author": "SIRINELLI, Jean-François",
+     "year": 2003,
+     "loading": 0.08,
+     "citing": 30,
+     "membership": 0.371
+    },
+    {
+     "id": "W:bourdieu|masculine domination",
+     "title": "A dominação masculina",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2001,
+     "loading": 0.08,
+     "citing": 44,
+     "membership": 0.251
+    },
+    {
+     "id": "W:remond|por uma historia politica",
+     "title": "Por uma história política",
+     "first_author": "RÉMOND, René",
+     "year": 2003,
+     "loading": 0.079,
+     "citing": 165,
+     "membership": 0.124
+    },
+    {
+     "id": "W:le goff|historia e memoria",
+     "title": "História e memória",
+     "first_author": "LE GOFF, Jacques",
+     "year": 2003,
+     "loading": 0.076,
+     "citing": 369,
+     "membership": 0.063
+    },
+    {
+     "id": "W:gomes|escrita de si escrita da historia",
+     "title": "Escrita de si, escrita da história",
+     "first_author": "GOMES, Ângela de Castro",
+     "year": 2004,
+     "loading": 0.074,
+     "citing": 72,
+     "membership": 0.21
+    }
+   ],
+   "top_people": [
+    {
+     "name": "BOURDIEU, Pierre",
+     "loading_share": 0.2747
+    },
+    {
+     "name": "Weber, Max",
+     "loading_share": 0.0332
+    },
+    {
+     "name": "ELIAS, Norbert",
+     "loading_share": 0.0277
+    },
+    {
+     "name": "BARDIN, Laurence",
+     "loading_share": 0.0259
+    },
+    {
+     "name": "CHARTIER, Roger",
+     "loading_share": 0.0226
+    },
+    {
+     "name": "BOBBIO, Norberto",
+     "loading_share": 0.0159
+    },
+    {
+     "name": "GOMES, Ângela de Castro",
+     "loading_share": 0.0126
+    },
+    {
+     "name": "RÉMOND, René",
+     "loading_share": 0.0122
+    },
+    {
+     "name": "LE GOFF, Jacques",
+     "loading_share": 0.0112
+    },
+    {
+     "name": "GRAMSCI, Antonio",
+     "loading_share": 0.0105
+    },
+    {
+     "name": "DURKHEIM, Émile",
+     "loading_share": 0.0104
+    },
+    {
+     "name": "CARVALHO, José Murilo de",
+     "loading_share": 0.0099
+    },
+    {
+     "name": "MICELI, Sérgio",
+     "loading_share": 0.0098
+    },
+    {
+     "name": "ELIADE, Mircea",
+     "loading_share": 0.0086
+    },
+    {
+     "name": "Burke, Peter",
+     "loading_share": 0.0085
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:usp",
+     13
+    ],
+    [
+     "br:ufes",
+     11
+    ],
+    [
+     "br:puc-rs",
+     10
+    ],
+    [
+     "br:fgv-rj",
+     8
+    ],
+    [
+     "br:uff",
+     7
+    ],
+    [
+     "br:uerj",
+     6
+    ]
+   ],
+   "sample_dissertations": [
+    "Concepções dos professores de Ciências da Natureza a respeito do currículo paulista em relação à História e Filosofia da Ciência no ensino m",
+    "Interdisciplinaridades: latinistas, helenistas e sociólogos em revista (França, 1898 - 1920)",
+    "Em andaimes não se sobe de saia: muralistas mexicanas reconfigurando representações na arte",
+    "A atuação política dos think tanks neoliberais brasileiros e argentinos: os casos do instituto liberal, do instituto de estudos empresariais",
+    "Imigração portuguesa e hospitalidade: casa de portugal de são paulo e seus eventos (1980-2010)",
+    "O pensamento de Eurípides e a política durante a Guerra do Peloponeso",
+    "A história recente do turismo religioso brasileiro e seu papel no conflito Israel-Palestina",
+    "Werner Jaeger e o 'Terceiro Humanismo': o ideal político antigo na Alemanha, 1919-1936"
+   ]
+  },
+  {
+   "id": 17,
+   "provisional_label": "Butler · PERROT · Beauvoir — mulheres, feminismo, gênero, sexo",
+   "label_is_provisional": true,
+   "louvain_hint": "Foucault · CHALHOUB",
+   "title_terms": [
+    "mulheres",
+    "feminismo",
+    "gênero",
+    "sexo",
+    "lar",
+    "feminina"
+   ],
+   "bootstrap_stability": 0.395,
+   "unstable": true,
+   "init_stability": 0.63,
+   "dominated_dissertations": 70,
+   "member_works": 40,
+   "years": {
+    "median": 2019,
+    "by_5yr": {
+     "2000-2004": 1,
+     "2005-2009": 3,
+     "2010-2014": 17,
+     "2015-2019": 16,
+     "2020-2024": 33
+    },
+    "share_of_bin": {
+     "2000-2004": 0.019,
+     "2005-2009": 0.014,
+     "2010-2014": 0.032,
+     "2015-2019": 0.019,
+     "2020-2024": 0.055
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:butler|problemas de genero",
+     "title": "Problemas de gênero: feminismo e subversão da identidade",
+     "first_author": "Butler, Judith",
+     "year": 2003,
+     "loading": 1.0,
+     "citing": 45,
+     "membership": 1.0
+    },
+    {
+     "id": "W:perrot|minha historia das mulheres",
+     "title": "Minha história das mulheres",
+     "first_author": "PERROT, Michelle",
+     "year": 2007,
+     "loading": 0.834,
+     "citing": 45,
+     "membership": 0.951
+    },
+    {
+     "id": "W:beauvoir|o segundo sexo",
+     "title": "O segundo sexo",
+     "first_author": "Beauvoir, Simone de",
+     "year": 1980,
+     "loading": 0.765,
+     "citing": 37,
+     "membership": 0.96
+    },
+    {
+     "id": "W:scott|genero",
+     "title": "Gênero: uma categoria útil de análise histórica",
+     "first_author": "Scott, Joan W",
+     "year": 1995,
+     "loading": 0.749,
+     "citing": 37,
+     "membership": 0.909
+    },
+    {
+     "id": "W:pinto|uma historia do feminismo no brasil",
+     "title": "Uma história do feminismo no Brasil",
+     "first_author": "PINTO, Céli Regina Jardim",
+     "year": 2003,
+     "loading": 0.74,
+     "citing": 30,
+     "membership": 0.945
+    },
+    {
+     "id": "W:bourdieu|masculine domination",
+     "title": "A dominação masculina",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 2001,
+     "loading": 0.661,
+     "citing": 44,
+     "membership": 0.749
+    },
+    {
+     "id": "W:foucault|sexualitetens historia",
+     "title": "História da sexualidade",
+     "first_author": "Foucault, Michel",
+     "year": 1988,
+     "loading": 0.544,
+     "citing": 106,
+     "membership": 0.324
+    },
+    {
+     "id": "W:perrot|os excluidos da historia",
+     "title": "Os excluídos da história: operários, mulheres e prisioneiros",
+     "first_author": "PERROT, Michelle",
+     "year": 1988,
+     "loading": 0.514,
+     "citing": 84,
+     "membership": 0.497
+    },
+    {
+     "id": "W:soihet|condicao feminina e formas de violencia",
+     "title": "Condição feminina e formas de violência: mulheres pobres e ordem urbana, 1890-1920",
+     "first_author": "SOIHET, Rachel",
+     "year": 1989,
+     "loading": 0.495,
+     "citing": 26,
+     "membership": 0.93
+    },
+    {
+     "id": "W:rago|do cabare ao lar",
+     "title": "Do cabaré ao lar",
+     "first_author": "RAGO, Margareth",
+     "year": 1985,
+     "loading": 0.495,
+     "citing": 65,
+     "membership": 0.512
+    },
+    {
+     "id": "W:soihet|historia das mulheres",
+     "title": "História das mulheres",
+     "first_author": "SOIHET, Rachel",
+     "year": 1997,
+     "loading": 0.476,
+     "citing": 20,
+     "membership": 0.999
+    },
+    {
+     "id": "W:perrot|as mulheres ou os silencios da historia",
+     "title": "As mulheres ou os silêncios da história",
+     "first_author": "PERROT, Michelle",
+     "year": 2005,
+     "loading": 0.466,
+     "citing": 37,
+     "membership": 0.784
+    },
+    {
+     "id": "W:besse|modernizando a desigualdade",
+     "title": "Modernizando a desigualdade",
+     "first_author": "Besse, Susan K",
+     "year": 1999,
+     "loading": 0.465,
+     "citing": 23,
+     "membership": 0.886
+    },
+    {
+     "id": "W:saffioti|mulher na sociedade de classes",
+     "title": "A mulher na sociedade de classes: mito e realidade",
+     "first_author": "SAFFIOTI, Heleieth",
+     "year": 2013,
+     "loading": 0.431,
+     "citing": 22,
+     "membership": 0.896
+    },
+    {
+     "id": "W:badinter|um amor conquistado",
+     "title": "Um amor conquistado: o mito do amor materno",
+     "first_author": "BADINTER, Elisabeth",
+     "year": 1985,
+     "loading": 0.363,
+     "citing": 29,
+     "membership": 0.587
+    },
+    {
+     "id": "W:esteves|meninas perdidas",
+     "title": "Meninas perdidas",
+     "first_author": "ESTEVES, Martha de Abreu",
+     "year": 1989,
+     "loading": 0.351,
+     "citing": 25,
+     "membership": 0.71
+    },
+    {
+     "id": "W:davis|mulheres raca e classe",
+     "title": "Mulheres, raça e classe",
+     "first_author": "Davis, Angela",
+     "year": 2016,
+     "loading": 0.35,
+     "citing": 26,
+     "membership": 0.62
+    },
+    {
+     "id": "W:engel|meretrizes e doutores",
+     "title": "Meretrizes e doutores",
+     "first_author": "ENGEL, Magali Gouveia",
+     "year": 2004,
+     "loading": 0.337,
+     "citing": 23,
+     "membership": 0.778
+    },
+    {
+     "id": "W:dias|quotidiano e poder em sao paulo no seculo xix",
+     "title": "Quotidiano e poder em São Paulo no século XIX",
+     "first_author": "DIAS, Maria Odila Leite da Silva",
+     "year": 1995,
+     "loading": 0.325,
+     "citing": 97,
+     "membership": 0.301
+    },
+    {
+     "id": "W:rago|os prazeres da noite",
+     "title": "Os prazeres da noite",
+     "first_author": "RAGO, Margareth",
+     "year": 1991,
+     "loading": 0.318,
+     "citing": 26,
+     "membership": 0.665
+    },
+    {
+     "id": "W:correa|morte em familia",
+     "title": "Morte em família",
+     "first_author": "CORRÊA, Mariza",
+     "year": 1983,
+     "loading": 0.293,
+     "citing": 18,
+     "membership": 0.718
+    },
+    {
+     "id": "W:laqueur|inventando o sexo",
+     "title": "Inventando o sexo",
+     "first_author": "Laqueur, Thomas",
+     "year": 2001,
+     "loading": 0.283,
+     "citing": 16,
+     "membership": 0.638
+    },
+    {
+     "id": "W:fausto|crime e cotidiano",
+     "title": "Crime e cotidiano",
+     "first_author": "FAUSTO, Boris",
+     "year": 1984,
+     "loading": 0.278,
+     "citing": 49,
+     "membership": 0.386
+    },
+    {
+     "id": "W:hahner|emancipacao do sexo feminino",
+     "title": "Emancipação do sexo feminino",
+     "first_author": "HAHNER, June E",
+     "year": 2003,
+     "loading": 0.276,
+     "citing": 21,
+     "membership": 0.704
+    },
+    {
+     "id": "W:perrot|mulheres publicas",
+     "title": "Mulheres públicas",
+     "first_author": "PERROT, Michelle",
+     "year": 1998,
+     "loading": 0.266,
+     "citing": 17,
+     "membership": 0.747
+    }
+   ],
+   "top_people": [
+    {
+     "name": "PERROT, Michelle",
+     "loading_share": 0.0739
+    },
+    {
+     "name": "SOIHET, Rachel",
+     "loading_share": 0.0356
+    },
+    {
+     "name": "Butler, Judith",
+     "loading_share": 0.0343
+    },
+    {
+     "name": "Scott, Joan W",
+     "loading_share": 0.0324
+    },
+    {
+     "name": "Foucault, Michel",
+     "loading_share": 0.0295
+    },
+    {
+     "name": "BOURDIEU, Pierre",
+     "loading_share": 0.0294
+    },
+    {
+     "name": "RAGO, Margareth",
+     "loading_share": 0.0279
+    },
+    {
+     "name": "Beauvoir, Simone de",
+     "loading_share": 0.0262
+    },
+    {
+     "name": "PINTO, Céli Regina Jardim",
+     "loading_share": 0.0254
+    },
+    {
+     "name": "GINZBURG, Carlo",
+     "loading_share": 0.0181
+    },
+    {
+     "name": "Besse, Susan K",
+     "loading_share": 0.0159
+    },
+    {
+     "name": "SAFFIOTI, Heleieth",
+     "loading_share": 0.0148
+    },
+    {
+     "name": "DEL PRIORE, Mary",
+     "loading_share": 0.014
+    },
+    {
+     "name": "SAMARA, Eni de Mesquita",
+     "loading_share": 0.0127
+    },
+    {
+     "name": "BADINTER, Elisabeth",
+     "loading_share": 0.0124
+    }
+   ],
+   "top_institutions": [
+    [
+     "br:ufes",
+     9
+    ],
+    [
+     "br:uff",
+     9
+    ],
+    [
+     "br:usp",
+     9
+    ],
+    [
+     "br:puc-sp",
+     6
+    ],
+    [
+     "br:ufsc",
+     6
+    ],
+    [
+     "br:uerj",
+     5
+    ]
+   ],
+   "sample_dissertations": [
+    "Políticas públicas implementadas pelo Ministério Público capixaba em relação à violência de gênero contra as mulheres (2006 - 2016)",
+    "O patriarcado vai a júri, veredito: inocente! Violência e feminicídio em Vitória-ES (2002-2015)",
+    "Dilemas da (sobre)vida: o aborto",
+    "“antes que a morte os separe”: casamento, divórcio e violência de gênero no brasil (1946-1985)",
+    "Um monumento historiográfico: a construção de cânones e memórias disciplinares para a história das mulheres e das relações de gênero no Bras",
+    "Militância ou profissionalização de gênero? Um estudo comparativo na imprensa feminista do Brasil, da Argentina e do Chile (1981-1996)",
+    "Patriarcado, feminicídio e políticas públicas na região do Caparaó Capixaba (2003-2016)",
+    "\"le madri sono l'albero della nave\": cuidados, sentimentos e poder materno nas famílias de mercadores e banqueiros da florença do quattrocen"
+   ]
+  }
+ ]
+}

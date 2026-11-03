@@ -1,16 +1,16 @@
 {
  "scope": "GB",
- "generated": "2026-10-30",
+ "generated": "2026-11-02",
  "script": "scripts/dissertation_tfidf_families.py",
  "strict_dissertations_in_scope": 2656,
- "rows": 914,
- "rows_excluded_lt_min_works": 1742,
+ "rows": 913,
+ "rows_excluded_lt_min_works": 1743,
  "works": 304,
  "excluded_profile": {
   "by_institution": [
    [
     "uk:oxford",
-    695
+    694
    ],
    [
     "uk:edinburgh",
@@ -18,7 +18,7 @@
    ],
    [
     "uk:glasgow",
-    246
+    247
    ],
    [
     "uk:birmingham",
@@ -26,11 +26,11 @@
    ],
    [
     "uk:st-andrews",
-    70
+    72
    ],
    [
     "uk:cambridge",
-    57
+    56
    ],
    [
     "uk:sussex",
@@ -60,7 +60,7 @@
   "by_country": [
    [
     "GB",
-    1742
+    1743
    ]
   ],
   "by_decade": [
@@ -102,24 +102,24 @@
    ],
    [
     2000,
-    257
+    258
    ],
    [
     2010,
-    445
+    447
    ],
    [
     2020,
-    383
+    381
    ]
   ],
   "share_by_institution": {
    "uk:oxford": 0.64,
    "uk:edinburgh": 0.81,
-   "uk:glasgow": 0.65,
+   "uk:glasgow": 0.66,
    "uk:birmingham": 0.58,
-   "uk:cambridge": 0.42,
-   "uk:st-andrews": 0.64,
+   "uk:cambridge": 0.41,
+   "uk:st-andrews": 0.65,
    "uk:sussex": 0.34,
    "base:discovery.ucl.ac.uk": 0.59,
    "uk:university-college-london": 0.63,
@@ -127,7 +127,7 @@
    "base:www.repository.cam.ac.uk": 0.2,
    "base:hdl:10023": 0.5
   },
-  "median_bibliography_entries": 240,
+  "median_bibliography_entries": 239,
   "median_bibliography_entries_rows": 396
  },
  "parameters": {
@@ -138,185 +138,185 @@
   "tfidf": "binary tf, smoothed idf ln((1+N)/(1+df))+1, row L2 norm",
   "nmf": "frobenius, cd solver, nndsvd init, max_iter 800, tol 1e-4"
  },
- "k": 10,
- "k_rule": "no k had mean matched cosine >= 0.75: most stable k",
- "elbow": 16,
+ "k": 8,
+ "k_rule": "most families reproduced at matched cosine >= 0.8, among ks with mean matched cosine >= 0.75; ties to the smaller k",
+ "elbow": 18,
  "sweep": [
   {
    "k": 8,
-   "reconstruction_error": 28.4642,
-   "relative_error": 0.9415,
-   "iterations": 75,
-   "stability_mean": 0.679,
-   "stability_median_family": 0.741,
-   "stability_p10_family": 0.3,
-   "stability_min_family": 0.295,
-   "families_reproduced": 4
+   "reconstruction_error": 28.401,
+   "relative_error": 0.9399,
+   "iterations": 62,
+   "stability_mean": 0.799,
+   "stability_median_family": 0.883,
+   "stability_p10_family": 0.6,
+   "stability_min_family": 0.368,
+   "families_reproduced": 6
   },
   {
    "k": 10,
-   "reconstruction_error": 28.1277,
-   "relative_error": 0.9304,
-   "iterations": 151,
-   "stability_mean": 0.737,
-   "stability_median_family": 0.742,
-   "stability_p10_family": 0.48,
-   "stability_min_family": 0.392,
+   "reconstruction_error": 28.1179,
+   "relative_error": 0.9306,
+   "iterations": 161,
+   "stability_mean": 0.73,
+   "stability_median_family": 0.751,
+   "stability_p10_family": 0.499,
+   "stability_min_family": 0.453,
    "families_reproduced": 4
   },
   {
    "k": 12,
-   "reconstruction_error": 27.8543,
-   "relative_error": 0.9213,
-   "iterations": 149,
-   "stability_mean": 0.708,
-   "stability_median_family": 0.692,
-   "stability_p10_family": 0.55,
-   "stability_min_family": 0.497,
+   "reconstruction_error": 27.8431,
+   "relative_error": 0.9215,
+   "iterations": 226,
+   "stability_mean": 0.696,
+   "stability_median_family": 0.732,
+   "stability_p10_family": 0.397,
+   "stability_min_family": 0.337,
    "families_reproduced": 4
   },
   {
    "k": 14,
-   "reconstruction_error": 27.5893,
-   "relative_error": 0.9126,
-   "iterations": 116,
-   "stability_mean": 0.723,
-   "stability_median_family": 0.746,
-   "stability_p10_family": 0.54,
-   "stability_min_family": 0.496,
-   "families_reproduced": 4
+   "reconstruction_error": 27.57,
+   "relative_error": 0.9124,
+   "iterations": 112,
+   "stability_mean": 0.719,
+   "stability_median_family": 0.754,
+   "stability_p10_family": 0.51,
+   "stability_min_family": 0.442,
+   "families_reproduced": 3
   },
   {
    "k": 16,
-   "reconstruction_error": 27.3168,
+   "reconstruction_error": 27.3043,
    "relative_error": 0.9036,
-   "iterations": 129,
-   "stability_mean": 0.731,
-   "stability_median_family": 0.736,
-   "stability_p10_family": 0.583,
-   "stability_min_family": 0.532,
-   "families_reproduced": 6
+   "iterations": 193,
+   "stability_mean": 0.708,
+   "stability_median_family": 0.735,
+   "stability_p10_family": 0.548,
+   "stability_min_family": 0.507,
+   "families_reproduced": 3
   },
   {
    "k": 18,
-   "reconstruction_error": 27.0754,
+   "reconstruction_error": 27.0622,
    "relative_error": 0.8956,
-   "iterations": 106,
-   "stability_mean": 0.715,
-   "stability_median_family": 0.744,
-   "stability_p10_family": 0.505,
-   "stability_min_family": 0.469,
-   "families_reproduced": 4
+   "iterations": 151,
+   "stability_mean": 0.725,
+   "stability_median_family": 0.739,
+   "stability_p10_family": 0.557,
+   "stability_min_family": 0.407,
+   "families_reproduced": 5
   },
   {
    "k": 20,
-   "reconstruction_error": 26.8515,
-   "relative_error": 0.8882,
-   "iterations": 120,
-   "stability_mean": 0.713,
-   "stability_median_family": 0.73,
-   "stability_p10_family": 0.55,
-   "stability_min_family": 0.216,
-   "families_reproduced": 6
+   "reconstruction_error": 26.8354,
+   "relative_error": 0.8881,
+   "iterations": 203,
+   "stability_mean": 0.716,
+   "stability_median_family": 0.741,
+   "stability_p10_family": 0.555,
+   "stability_min_family": 0.34,
+   "families_reproduced": 8
   },
   {
    "k": 22,
-   "reconstruction_error": 26.6038,
-   "relative_error": 0.88,
-   "iterations": 93,
-   "stability_mean": 0.727,
-   "stability_median_family": 0.747,
-   "stability_p10_family": 0.578,
-   "stability_min_family": 0.391,
-   "families_reproduced": 7
+   "reconstruction_error": 26.6145,
+   "relative_error": 0.8808,
+   "iterations": 317,
+   "stability_mean": 0.72,
+   "stability_median_family": 0.738,
+   "stability_p10_family": 0.587,
+   "stability_min_family": 0.365,
+   "families_reproduced": 8
   },
   {
    "k": 24,
-   "reconstruction_error": 26.3967,
-   "relative_error": 0.8731,
-   "iterations": 90,
-   "stability_mean": 0.719,
-   "stability_median_family": 0.739,
-   "stability_p10_family": 0.466,
-   "stability_min_family": 0.413,
-   "families_reproduced": 9
+   "reconstruction_error": 26.4078,
+   "relative_error": 0.874,
+   "iterations": 187,
+   "stability_mean": 0.692,
+   "stability_median_family": 0.727,
+   "stability_p10_family": 0.446,
+   "stability_min_family": 0.364,
+   "families_reproduced": 7
   },
   {
    "k": 26,
-   "reconstruction_error": 26.1972,
-   "relative_error": 0.8665,
-   "iterations": 82,
-   "stability_mean": 0.706,
-   "stability_median_family": 0.726,
-   "stability_p10_family": 0.492,
-   "stability_min_family": 0.223,
-   "families_reproduced": 9
+   "reconstruction_error": 26.1899,
+   "relative_error": 0.8668,
+   "iterations": 70,
+   "stability_mean": 0.699,
+   "stability_median_family": 0.721,
+   "stability_p10_family": 0.478,
+   "stability_min_family": 0.392,
+   "families_reproduced": 8
   },
   {
    "k": 28,
-   "reconstruction_error": 25.9981,
-   "relative_error": 0.8599,
-   "iterations": 158,
-   "stability_mean": 0.687,
-   "stability_median_family": 0.707,
-   "stability_p10_family": 0.419,
-   "stability_min_family": 0.362,
-   "families_reproduced": 9
+   "reconstruction_error": 25.9878,
+   "relative_error": 0.8601,
+   "iterations": 62,
+   "stability_mean": 0.689,
+   "stability_median_family": 0.695,
+   "stability_p10_family": 0.484,
+   "stability_min_family": 0.419,
+   "families_reproduced": 10
   },
   {
    "k": 30,
-   "reconstruction_error": 25.7779,
-   "relative_error": 0.8527,
-   "iterations": 151,
-   "stability_mean": 0.714,
-   "stability_median_family": 0.718,
-   "stability_p10_family": 0.497,
-   "stability_min_family": 0.39,
+   "reconstruction_error": 25.8269,
+   "relative_error": 0.8547,
+   "iterations": 297,
+   "stability_mean": 0.674,
+   "stability_median_family": 0.686,
+   "stability_p10_family": 0.442,
+   "stability_min_family": 0.326,
    "families_reproduced": 10
   }
  ],
  "stability": {
-  "bootstrap_mean": 0.737,
-  "init_random_mean": 0.839,
+  "bootstrap_mean": 0.799,
+  "init_random_mean": 0.911,
   "note": "bootstrap: mean matched cosine of work loadings over resampled refits; init: 4 random-init + 1 nndsvda refit"
  },
  "membership_note": "soft memberships are each family's share of the reconstructed column (works) or row (dissertations)",
  "families": [
   {
    "id": 0,
-   "provisional_label": "Colley · Pocock · Brewer — scottish, enlightenment, inquiry, nation",
+   "provisional_label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
    "label_is_provisional": true,
-   "louvain_hint": "Smith · Lynch · Smout",
+   "louvain_hint": "Colley · Brewer · Gilroy",
    "title_terms": [
-    "scottish",
-    "enlightenment",
     "inquiry",
+    "enlightenment",
+    "english",
     "nation",
-    "scotland",
-    "atlantic"
+    "people",
+    "eighteenth"
    ],
-   "bootstrap_stability": 0.755,
+   "bootstrap_stability": 0.89,
    "unstable": false,
-   "init_stability": 0.994,
-   "dominated_dissertations": 148,
-   "member_works": 51,
+   "init_stability": 0.971,
+   "dominated_dissertations": 204,
+   "member_works": 71,
    "years": {
     "median": 2018,
     "by_5yr": {
-     "1995-1999": 2,
-     "2000-2004": 5,
-     "2005-2009": 11,
-     "2010-2014": 29,
-     "2015-2019": 40,
-     "2020-2024": 52,
-     "2025-2029": 9
+     "1995-1999": 3,
+     "2000-2004": 6,
+     "2005-2009": 13,
+     "2010-2014": 43,
+     "2015-2019": 49,
+     "2020-2024": 76,
+     "2025-2029": 14
     },
     "share_of_bin": {
-     "2005-2009": 0.256,
-     "2010-2014": 0.212,
-     "2015-2019": 0.145,
-     "2020-2024": 0.146,
-     "2025-2029": 0.158
+     "2005-2009": 0.31,
+     "2010-2014": 0.316,
+     "2015-2019": 0.179,
+     "2020-2024": 0.213,
+     "2025-2029": 0.246
     }
    },
    "top_works": [
@@ -327,69 +327,195 @@
      "year": 1992,
      "loading": 1.0,
      "citing": 81,
-     "membership": 0.807
-    },
-    {
-     "id": "W:pocock|machiavellian moment",
-     "title": "The Machiavellian Moment: Florentine Political Thought and the Atlantic Republican Tradition",
-     "first_author": "Pocock, J. G. A",
-     "year": 1975,
-     "loading": 0.619,
-     "citing": 35,
-     "membership": 0.963
+     "membership": 0.903
     },
     {
      "id": "W:brewer|sinews of power",
      "title": "The Sinews of Power: War, Money and the English State, 1688-1783",
      "first_author": "Brewer, John",
      "year": 1989,
-     "loading": 0.615,
+     "loading": 0.592,
      "citing": 33,
-     "membership": 0.888
+     "membership": 0.992
     },
     {
      "id": "W:habermas|structural transformation of the public sphere",
      "title": "The Structural Transformation of the Public Sphere: An Inquiry into a Category of Bourgeois Society",
      "first_author": "Habermas, Jürgen",
      "year": 1989,
-     "loading": 0.59,
+     "loading": 0.557,
      "citing": 55,
-     "membership": 0.737
+     "membership": 0.791
     },
     {
      "id": "W:smith|inquiry into the nature and causes of the wealth of nations",
      "title": "An Inquiry into the Nature and Causes of the Wealth of Nations",
      "first_author": "Smith, Adam",
      "year": 1776,
-     "loading": 0.489,
+     "loading": 0.516,
      "citing": 38,
-     "membership": 0.728
+     "membership": 0.935
+    },
+    {
+     "id": "W:langford|polite and commercial people",
+     "title": "A Polite and Commercial People: England 1727-1783",
+     "first_author": "Langford, Paul",
+     "year": 1989,
+     "loading": 0.478,
+     "citing": 24,
+     "membership": 1.0
+    },
+    {
+     "id": "W:thompson|making of the english working class",
+     "title": "The Making of the English Working Class",
+     "first_author": "Thompson, Edward Palmer",
+     "year": 1963,
+     "loading": 0.467,
+     "citing": 78,
+     "membership": 0.556
+    },
+    {
+     "id": "W:hilton|mad bad and dangerous people",
+     "title": "A Mad, Bad, and Dangerous People? England, 1783-1846",
+     "first_author": "Hilton, Boyd",
+     "year": 2006,
+     "loading": 0.438,
+     "citing": 25,
+     "membership": 1.0
+    },
+    {
+     "id": "W:pocock|machiavellian moment",
+     "title": "The Machiavellian Moment: Florentine Political Thought and the Atlantic Republican Tradition",
+     "first_author": "Pocock, J. G. A",
+     "year": 1975,
+     "loading": 0.416,
+     "citing": 35,
+     "membership": 0.845
+    },
+    {
+     "id": "W:wilson|sense of the people",
+     "title": "The Sense of the People: Politics, Culture and Imperialism in England, 1715-1785",
+     "first_author": "Wilson, Kathleen",
+     "year": 1995,
+     "loading": 0.361,
+     "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:davidoff|family fortunes",
+     "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
+     "first_author": "Davidoff, Leonore",
+     "year": 1987,
+     "loading": 0.349,
+     "citing": 39,
+     "membership": 0.68
+    },
+    {
+     "id": "W:hilton|age of atonement",
+     "title": "The Age of Atonement: The Influence of Evangelicalism on Social and Economic Thought, 1795-1865",
+     "first_author": "Hilton, Boyd",
+     "year": 1988,
+     "loading": 0.321,
+     "citing": 22,
+     "membership": 0.957
     },
     {
      "id": "W:bailyn|ideological origins of the american revolution",
      "title": "The Ideological Origins of the American Revolution",
      "first_author": "Bailyn, Bernard",
      "year": 1967,
-     "loading": 0.424,
+     "loading": 0.318,
      "citing": 18,
-     "membership": 0.991
+     "membership": 0.955
     },
     {
-     "id": "W:kidd|subverting scotlands past",
-     "title": "Subverting Scotland’s Past: Scottish Whig Historians and the Creation of an Anglo-British Identity, 1689-c.1830",
-     "first_author": "Kidd, Colin",
-     "year": 1993,
-     "loading": 0.422,
-     "citing": 21,
-     "membership": 0.934
+     "id": "W:brewer|pleasures of the imagination",
+     "title": "The Pleasures of the Imagination: English Culture in the Eighteenth Century",
+     "first_author": "Brewer, John",
+     "year": 1997,
+     "loading": 0.315,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:locke|essay concerning human understanding",
+     "title": "An Essay Concerning Human Understanding",
+     "first_author": "Locke, John",
+     "year": 1690,
+     "loading": 0.312,
+     "citing": 27,
+     "membership": 0.819
     },
     {
      "id": "W:broadie|scottish enlightenment",
      "title": "The Scottish Enlightenment: The Historical Age of the Historical Nation",
      "first_author": "Broadie, Alexander",
      "year": 2001,
-     "loading": 0.406,
+     "loading": 0.311,
      "citing": 17,
+     "membership": 1.0
+    },
+    {
+     "id": "W:kidd|subverting scotlands past",
+     "title": "Subverting Scotland’s Past: Scottish Whig Historians and the Creation of an Anglo-British Identity, 1689-c.1830",
+     "first_author": "Kidd, Colin",
+     "year": 1993,
+     "loading": 0.305,
+     "citing": 21,
+     "membership": 0.875
+    },
+    {
+     "id": "W:sher|enlightenment and the book",
+     "title": "The Enlightenment and the Book: Scottish Authors and Their Publishers in Eighteenth-Century Britain, Ireland and America",
+     "first_author": "Sher, Richard B",
+     "year": 2006,
+     "loading": 0.304,
+     "citing": 18,
+     "membership": 0.963
+    },
+    {
+     "id": "W:clark|british clubs and societies 1580 1800",
+     "title": "British Clubs and Societies, 1580-1800: The Origins of an Associational World",
+     "first_author": "Clark, Peter",
+     "year": 2000,
+     "loading": 0.301,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:bebbington|evangelicalism in modern britain",
+     "title": "Evangelicalism in Modern Britain: A History from the 1730s to the 1980s",
+     "first_author": "Bebbington, David W",
+     "year": 1989,
+     "loading": 0.291,
+     "citing": 25,
+     "membership": 0.846
+    },
+    {
+     "id": "W:smout|history of the scottish people 1560 1830",
+     "title": "A History of the Scottish People, 1560-1830",
+     "first_author": "Smout, T.C",
+     "year": 1969,
+     "loading": 0.289,
+     "citing": 29,
+     "membership": 0.872
+    },
+    {
+     "id": "W:berg|luxury and pleasure in eighteenth century britain",
+     "title": "Luxury and Pleasure in Eighteenth-Century Britain",
+     "first_author": "Berg, Maxine",
+     "year": 2005,
+     "loading": 0.282,
+     "citing": 22,
+     "membership": 0.893
+    },
+    {
+     "id": "W:sher|church and university in the scottish enlightenment",
+     "title": "Church and University in the Scottish Enlightenment: The Moderate Literati of Edinburgh",
+     "first_author": "Sher, Richard B",
+     "year": 1985,
+     "loading": 0.274,
+     "citing": 16,
      "membership": 1.0
     },
     {
@@ -397,289 +523,164 @@
      "title": "Barbarism and Religion",
      "first_author": "Pocock, J. G. A",
      "year": 1999,
-     "loading": 0.386,
+     "loading": 0.263,
      "citing": 21,
-     "membership": 0.98
-    },
-    {
-     "id": "W:sher|enlightenment and the book",
-     "title": "The Enlightenment and the Book: Scottish Authors and Their Publishers in Eighteenth-Century Britain, Ireland and America",
-     "first_author": "Sher, Richard B",
-     "year": 2006,
-     "loading": 0.384,
-     "citing": 18,
-     "membership": 0.979
-    },
-    {
-     "id": "W:smout|history of the scottish people 1560 1830",
-     "title": "A History of the Scottish People, 1560-1830",
-     "first_author": "Smout, T.C",
-     "year": 1969,
-     "loading": 0.358,
-     "citing": 29,
-     "membership": 0.904
-    },
-    {
-     "id": "W:locke|essay concerning human understanding",
-     "title": "An Essay Concerning Human Understanding",
-     "first_author": "Locke, John",
-     "year": 1690,
-     "loading": 0.346,
-     "citing": 27,
-     "membership": 0.755
-    },
-    {
-     "id": "W:pocock|virtue commerce and history",
-     "title": "Virtue, Commerce, and History: Essays on Political Thought and History, Chiefly in the Eighteenth Century",
-     "first_author": "Pocock, J. G. A",
-     "year": 1985,
-     "loading": 0.34,
-     "citing": 17,
-     "membership": 0.988
-    },
-    {
-     "id": "W:sher|church and university in the scottish enlightenment",
-     "title": "Church and University in the Scottish Enlightenment: The Moderate Literati of Edinburgh",
-     "first_author": "Sher, Richard B",
-     "year": 1985,
-     "loading": 0.326,
-     "citing": 16,
-     "membership": 1.0
+     "membership": 0.909
     },
     {
      "id": "W:robertson|case for the enlightenment",
      "title": "The Case for the Enlightenment: Scotland and Naples, 1680-1760",
      "first_author": "Robertson, John",
      "year": 2005,
-     "loading": 0.323,
+     "loading": 0.255,
      "citing": 16,
-     "membership": 1.0
+     "membership": 0.965
     },
     {
-     "id": "W:brown|religion and society in scotland since 1707",
-     "title": "Religion and Society in Scotland since 1707",
-     "first_author": "Brown, Callum G",
-     "year": 1997,
-     "loading": 0.316,
-     "citing": 25,
-     "membership": 0.722
-    },
-    {
-     "id": "W:macinnes|clanship commerce and the house of stuart 1603 1788",
-     "title": "Clanship, Commerce and the House of Stuart, 1603-1788",
-     "first_author": "Macinnes, Allan I",
-     "year": 1996,
-     "loading": 0.315,
-     "citing": 19,
-     "membership": 0.916
-    },
-    {
-     "id": "W:wilson|sense of the people",
-     "title": "The Sense of the People: Politics, Culture and Imperialism in England, 1715-1785",
-     "first_author": "Wilson, Kathleen",
-     "year": 1995,
-     "loading": 0.307,
+     "id": "W:pocock|virtue commerce and history",
+     "title": "Virtue, Commerce, and History: Essays on Political Thought and History, Chiefly in the Eighteenth Century",
+     "first_author": "Pocock, J. G. A",
+     "year": 1985,
+     "loading": 0.253,
      "citing": 17,
-     "membership": 0.765
-    },
-    {
-     "id": "W:langford|polite and commercial people",
-     "title": "A Polite and Commercial People: England 1727-1783",
-     "first_author": "Langford, Paul",
-     "year": 1989,
-     "loading": 0.298,
-     "citing": 24,
-     "membership": 0.536
-    },
-    {
-     "id": "W:lynch|scotland",
-     "title": "Scotland: A New History",
-     "first_author": "Lynch, Michael",
-     "year": 1992,
-     "loading": 0.289,
-     "citing": 32,
-     "membership": 0.845
-    },
-    {
-     "id": "W:pincus|1688",
-     "title": "1688: The First Modern Revolution",
-     "first_author": "Pincus, Steven",
-     "year": 2009,
-     "loading": 0.274,
-     "citing": 17,
-     "membership": 0.786
-    },
-    {
-     "id": "W:gay|enlightenment",
-     "title": "The Enlightenment: An Interpretation",
-     "first_author": "Gay, Peter",
-     "year": 1966,
-     "loading": 0.268,
-     "citing": 17,
-     "membership": 0.908
-    },
-    {
-     "id": "W:armitage|ideological origins of the british empire",
-     "title": "The Ideological Origins of the British Empire",
-     "first_author": "Armitage, David",
-     "year": 2000,
-     "loading": 0.261,
-     "citing": 26,
-     "membership": 0.561
-    },
-    {
-     "id": "W:israel|radical enlightenment",
-     "title": "Radical Enlightenment: Philosophy and the Making of Modernity 1650-1750",
-     "first_author": "Israel, Jonathan",
-     "year": 2001,
-     "loading": 0.244,
-     "citing": 21,
-     "membership": 0.732
-    },
-    {
-     "id": "W:morton|unionist nationalism",
-     "title": "Unionist-Nationalism: Governing Urban Scotland, 1830-1860",
-     "first_author": "Morton, Graeme",
-     "year": 1999,
-     "loading": 0.24,
-     "citing": 19,
-     "membership": 0.624
+     "membership": 0.978
     }
    ],
    "top_people": [
     {
      "name": "Pocock, J. G. A",
-     "loading_share": 0.0972
+     "loading_share": 0.0566
     },
     {
      "name": "Colley, Linda",
-     "loading_share": 0.0569
+     "loading_share": 0.0484
     },
     {
      "name": "Brewer, John",
-     "loading_share": 0.0454
+     "loading_share": 0.0439
     },
     {
-     "name": "Sher, Richard B",
-     "loading_share": 0.0405
-    },
-    {
-     "name": "Kidd, Colin",
-     "loading_share": 0.0357
-    },
-    {
-     "name": "Habermas, Jürgen",
-     "loading_share": 0.0338
-    },
-    {
-     "name": "Skinner, Quentin",
-     "loading_share": 0.0309
+     "name": "Hilton, Boyd",
+     "loading_share": 0.0367
     },
     {
      "name": "Smith, Adam",
-     "loading_share": 0.0303
+     "loading_share": 0.0298
     },
     {
-     "name": "Smout, T.C",
-     "loading_share": 0.029
+     "name": "Sher, Richard B",
+     "loading_share": 0.028
     },
     {
-     "name": "Devine, T.M",
-     "loading_share": 0.0253
+     "name": "Habermas, Jürgen",
+     "loading_share": 0.027
     },
     {
-     "name": "Bailyn, Bernard",
-     "loading_share": 0.0241
-    },
-    {
-     "name": "Broadie, Alexander",
+     "name": "Langford, Paul",
      "loading_share": 0.0231
     },
     {
-     "name": "Brown, Callum G",
-     "loading_share": 0.0202
+     "name": "Kidd, Colin",
+     "loading_share": 0.0228
     },
     {
-     "name": "Locke, John",
-     "loading_share": 0.0197
+     "name": "Thompson, Edward Palmer",
+     "loading_share": 0.0226
     },
     {
-     "name": "Robertson, John",
-     "loading_share": 0.0184
+     "name": "Vickery, Amanda",
+     "loading_share": 0.0217
+    },
+    {
+     "name": "Smout, T.C",
+     "loading_share": 0.0203
+    },
+    {
+     "name": "Wilson, Kathleen",
+     "loading_share": 0.0175
+    },
+    {
+     "name": "Davidoff, Leonore",
+     "loading_share": 0.0169
+    },
+    {
+     "name": "Skinner, Quentin",
+     "loading_share": 0.0168
     }
    ],
    "top_institutions": [
     [
-     "uk:glasgow",
-     38
+     "uk:oxford",
+     62
     ],
     [
      "uk:edinburgh",
-     37
+     46
     ],
     [
-     "uk:oxford",
-     37
+     "uk:glasgow",
+     42
     ],
     [
      "uk:cambridge",
-     17
+     22
+    ],
+    [
+     "uk:birmingham",
+     15
     ],
     [
      "uk:st-andrews",
-     7
-    ],
-    [
-     "uk:sussex",
-     6
+     8
     ]
    ],
    "sample_dissertations": [
+    "Party conflict and foreign crisis at Cambridge University, 1745 to 1806",
+    "“Practical and experimental”: Henry Venn and the moderate Calvinist tradition in the Church of England (1747-1834)",
+    "A collector of the fine arts in eighteenth-century Britain: Dr William Hunter (1718-1783).",
+    "George III and Kingship at Court in Late Eighteenth-Century Britain",
+    "Defending the slave trade and slavery in Britain in the Era of Abolition, 1783-1833",
     "James Mill’s common place books and their intellectual context, 1773–1836",
-    "History, Moral Philosophy, and Social Theory in David Hume’s Intellectual Development, 1739-1752",
-    "The Chevalier Andrew Michael Ramsay’s Essay de politique: Fénelon and Jacobitism",
-    "Scottish freemasonry 1725-1810: progress, power, and politics",
-    "Hardest conflict: morale in the Continental Army during the American Revolutionary War, 1775-1783",
-    "‘Scottish Cato’?: A re-examination of Adam Ferguson’s engagement with classical antiquity",
-    "'Most Roman of the Romanists': Thomas Jefferson's classical taste, 1768-1826",
-    "Jeffersonian moment: feudalism and reform in Virginia, 1774‐1786"
+    "Science, religion and the environment in the old statistical account of Scotland.",
+    "Edward Irving, Thomas Carlyle, and the making of the ‘Victorian Prophet’"
    ]
   },
   {
    "id": 1,
-   "provisional_label": "Said · Stoler · Scott — colonial, imperial, knowledge, condition",
+   "provisional_label": "Said · Foucault · Stoler — colonial, knowledge, critique, birth",
    "label_is_provisional": true,
    "louvain_hint": "Foucault · Lefebvre · Butler",
    "title_terms": [
     "colonial",
-    "imperial",
     "knowledge",
-    "condition",
-    "human",
-    "resistance"
+    "critique",
+    "birth",
+    "archaeology",
+    "condition"
    ],
-   "bootstrap_stability": 0.729,
+   "bootstrap_stability": 0.7,
    "unstable": false,
-   "init_stability": 0.742,
-   "dominated_dissertations": 136,
-   "member_works": 50,
+   "init_stability": 0.753,
+   "dominated_dissertations": 197,
+   "member_works": 63,
    "years": {
     "median": 2020,
     "by_5yr": {
-     "1995-1999": 2,
-     "2000-2004": 3,
-     "2005-2009": 2,
-     "2010-2014": 13,
-     "2015-2019": 46,
-     "2020-2024": 59,
+     "1990-1994": 1,
+     "1995-1999": 3,
+     "2000-2004": 6,
+     "2005-2009": 4,
+     "2010-2014": 20,
+     "2015-2019": 61,
+     "2020-2024": 89,
      "2025-2029": 8,
-     "unknown": 3
+     "unknown": 5
     },
     "share_of_bin": {
-     "2005-2009": 0.047,
-     "2010-2014": 0.095,
-     "2015-2019": 0.167,
-     "2020-2024": 0.166,
+     "2005-2009": 0.095,
+     "2010-2014": 0.147,
+     "2015-2019": 0.223,
+     "2020-2024": 0.249,
      "2025-2029": 0.14
     }
    },
@@ -691,359 +692,359 @@
      "year": 1978,
      "loading": 1.0,
      "citing": 89,
-     "membership": 0.935
-    },
-    {
-     "id": "W:stoler|along the archival grain",
-     "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
-     "first_author": "Stoler, Ann Laura",
-     "year": 2009,
-     "loading": 0.453,
-     "citing": 36,
-     "membership": 0.931
-    },
-    {
-     "id": "W:scott|seeing like a state",
-     "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
-     "first_author": "Scott, James C",
-     "year": 1998,
-     "loading": 0.449,
-     "citing": 41,
-     "membership": 0.924
-    },
-    {
-     "id": "W:bhabha|location of culture",
-     "title": "The Location of Culture",
-     "first_author": "Bhabha, Homi K",
-     "year": 1994,
-     "loading": 0.434,
-     "citing": 29,
-     "membership": 0.964
-    },
-    {
-     "id": "W:pratt|imperial eyes",
-     "title": "Imperial Eyes: Travel Writing and Transculturation",
-     "first_author": "Pratt, Mary Louise",
-     "year": 1992,
-     "loading": 0.393,
-     "citing": 29,
-     "membership": 0.951
-    },
-    {
-     "id": "W:said|culture and imperialism",
-     "title": "Culture and Imperialism",
-     "first_author": "Said, Edward",
-     "year": 1993,
-     "loading": 0.374,
-     "citing": 24,
-     "membership": 0.851
+     "membership": 0.867
     },
     {
      "id": "W:foucault|discipline and punish",
      "title": "Discipline and Punish: The Birth of the Prison",
      "first_author": "Foucault, Michel",
      "year": 1977,
-     "loading": 0.341,
+     "loading": 0.714,
      "citing": 76,
-     "membership": 0.42
+     "membership": 0.824
     },
     {
-     "id": "W:chakrabarty|provincializing europe",
-     "title": "Provincializing Europe: Postcolonial Thought and Historical Difference",
-     "first_author": "Chakrabarty, Dipesh",
-     "year": 2000,
-     "loading": 0.29,
+     "id": "W:stoler|along the archival grain",
+     "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
+     "first_author": "Stoler, Ann Laura",
+     "year": 2009,
+     "loading": 0.525,
+     "citing": 36,
+     "membership": 0.965
+    },
+    {
+     "id": "W:scott|seeing like a state",
+     "title": "Seeing Like a State: How Certain Schemes to Improve the Human Condition Have Failed",
+     "first_author": "Scott, James C",
+     "year": 1998,
+     "loading": 0.509,
+     "citing": 41,
+     "membership": 0.919
+    },
+    {
+     "id": "W:bhabha|location of culture",
+     "title": "The Location of Culture",
+     "first_author": "Bhabha, Homi K",
+     "year": 1994,
+     "loading": 0.453,
+     "citing": 29,
+     "membership": 0.917
+    },
+    {
+     "id": "W:said|culture and imperialism",
+     "title": "Culture and Imperialism",
+     "first_author": "Said, Edward",
+     "year": 1993,
+     "loading": 0.441,
      "citing": 24,
-     "membership": 0.737
-    },
-    {
-     "id": "W:fanon|wretched of the earth",
-     "title": "The Wretched of the Earth",
-     "first_author": "Fanon, Frantz",
-     "year": 1963,
-     "loading": 0.264,
-     "citing": 25,
-     "membership": 0.828
-    },
-    {
-     "id": "W:spivak|can the subaltern speak|a",
-     "title": "Can the Subaltern Speak?",
-     "first_author": "Spivak, Gayatri Chakravorty",
-     "year": 1988,
-     "loading": 0.245,
-     "citing": 19,
-     "membership": 0.923
+     "membership": 0.97
     },
     {
      "id": "W:bourdieu|distinction",
      "title": "Distinction: A Social Critique of the Judgement of Taste",
-     "first_author": "Bourdieu, Pierre",
+     "first_author": "BOURDIEU, Pierre",
      "year": 1984,
-     "loading": 0.23,
+     "loading": 0.431,
      "citing": 48,
-     "membership": 0.416
+     "membership": 0.766
     },
     {
-     "id": "W:appadurai|social life of things",
-     "title": "The Social Life of Things: Commodities in Cultural Perspective",
-     "first_author": "Appadurai, Arjun",
-     "year": 1986,
-     "loading": 0.221,
-     "citing": 35,
-     "membership": 0.662
-    },
-    {
-     "id": "W:livingstone|putting science in its place",
-     "title": "Putting Science in Its Place: Geographies of Scientific Knowledge",
-     "first_author": "Livingstone, David N",
-     "year": 2003,
-     "loading": 0.21,
-     "citing": 18,
-     "membership": 0.906
-    },
-    {
-     "id": "W:scott|weapons of the weak",
-     "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
-     "first_author": "Scott, James C",
-     "year": 1985,
-     "loading": 0.206,
-     "citing": 21,
-     "membership": 0.891
+     "id": "W:pratt|imperial eyes",
+     "title": "Imperial Eyes: Travel Writing and Transculturation",
+     "first_author": "Pratt, Mary Louise",
+     "year": 1992,
+     "loading": 0.418,
+     "citing": 29,
+     "membership": 0.991
     },
     {
      "id": "W:foucault|archaeology of knowledge",
      "title": "The Archaeology of Knowledge",
      "first_author": "Foucault, Michel",
      "year": 1972,
-     "loading": 0.201,
+     "loading": 0.339,
      "citing": 34,
-     "membership": 0.542
-    },
-    {
-     "id": "W:mcclintock|imperial leather",
-     "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
-     "first_author": "McClintock, Anne",
-     "year": 1995,
-     "loading": 0.198,
-     "citing": 15,
-     "membership": 0.828
-    },
-    {
-     "id": "W:metcalf|ideologies of the raj",
-     "title": "Ideologies of the Raj",
-     "first_author": "Metcalf, Thomas R",
-     "year": 1995,
-     "loading": 0.196,
-     "citing": 15,
-     "membership": 0.81
-    },
-    {
-     "id": "W:cannadine|ornamentalism",
-     "title": "Ornamentalism: How the British Saw Their Empire",
-     "first_author": "Cannadine, David",
-     "year": 2001,
-     "loading": 0.191,
-     "citing": 19,
-     "membership": 0.732
-    },
-    {
-     "id": "W:foucault|power knowledge",
-     "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
-     "first_author": "Foucault, Michel",
-     "year": 1980,
-     "loading": 0.19,
-     "citing": 16,
-     "membership": 0.84
+     "membership": 0.824
     },
     {
      "id": "W:foucault|society must be defended",
      "title": "Society Must Be Defended",
      "first_author": "Foucault, Michel",
      "year": 2003,
-     "loading": 0.183,
+     "loading": 0.312,
      "citing": 20,
-     "membership": 0.633
+     "membership": 0.999
+    },
+    {
+     "id": "W:chakrabarty|provincializing europe",
+     "title": "Provincializing Europe: Postcolonial Thought and Historical Difference",
+     "first_author": "Chakrabarty, Dipesh",
+     "year": 2000,
+     "loading": 0.312,
+     "citing": 24,
+     "membership": 0.752
+    },
+    {
+     "id": "W:appadurai|social life of things",
+     "title": "The Social Life of Things: Commodities in Cultural Perspective",
+     "first_author": "Appadurai, Arjun",
+     "year": 1986,
+     "loading": 0.305,
+     "citing": 35,
+     "membership": 0.791
+    },
+    {
+     "id": "W:fanon|wretched of the earth",
+     "title": "The Wretched of the Earth",
+     "first_author": "Fanon, Frantz",
+     "year": 1963,
+     "loading": 0.278,
+     "citing": 25,
+     "membership": 0.816
+    },
+    {
+     "id": "W:foucault|power knowledge",
+     "title": "Power/Knowledge: Selected Interviews and Other Writings, 1972-1977",
+     "first_author": "Foucault, Michel",
+     "year": 1980,
+     "loading": 0.266,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:spivak|can the subaltern speak|a",
+     "title": "Can the Subaltern Speak?",
+     "first_author": "Spivak, Gayatri Chakravorty",
+     "year": 1988,
+     "loading": 0.257,
+     "citing": 19,
+     "membership": 0.889
+    },
+    {
+     "id": "W:braudel|mediterranean and the mediterranean world in the age of philip ii",
+     "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+     "first_author": "BRAUDEL, Fernand",
+     "year": 1972,
+     "loading": 0.255,
+     "citing": 46,
+     "membership": 0.484
+    },
+    {
+     "id": "W:marx|capital",
+     "title": "Capital: A Critique of Political Economy",
+     "first_author": "Marx, Karl",
+     "year": 1990,
+     "loading": 0.245,
+     "citing": 32,
+     "membership": 0.695
     },
     {
      "id": "W:douglas|purity and danger",
      "title": "Purity and Danger: An Analysis of Concepts of Pollution and Taboo",
      "first_author": "Douglas, Mary",
      "year": 1966,
-     "loading": 0.171,
+     "loading": 0.241,
      "citing": 33,
-     "membership": 0.503
+     "membership": 0.638
     },
     {
-     "id": "W:trouillot|silencing the past",
-     "title": "Silencing the Past: Power and the Production of History",
-     "first_author": "Trouillot, Michel-Rolph",
-     "year": 1995,
-     "loading": 0.169,
-     "citing": 16,
-     "membership": 0.919
+     "id": "W:livingstone|putting science in its place",
+     "title": "Putting Science in Its Place: Geographies of Scientific Knowledge",
+     "first_author": "Livingstone, David N",
+     "year": 2003,
+     "loading": 0.241,
+     "citing": 18,
+     "membership": 0.988
     },
     {
-     "id": "W:bayly|empire and information",
-     "title": "Empire and Information: Intelligence Gathering and Social Communication in India, 1780-1870",
-     "first_author": "Bayly, C. A",
-     "year": 1996,
-     "loading": 0.168,
-     "citing": 20,
-     "membership": 0.675
-    },
-    {
-     "id": "W:scott|domination and the arts of resistance",
-     "title": "Domination and the Arts of Resistance: Hidden Transcripts",
-     "first_author": "Scott, James C",
-     "year": 1990,
-     "loading": 0.165,
-     "citing": 26,
-     "membership": 0.563
-    },
-    {
-     "id": "W:latour|science in action",
-     "title": "Science in Action: How to Follow Scientists and Engineers through Society",
+     "id": "W:latour|reassembling the social",
+     "title": "Reassembling the Social: An Introduction to Actor-Network-Theory",
      "first_author": "Latour, Bruno",
-     "year": 1987,
-     "loading": 0.16,
+     "year": 2005,
+     "loading": 0.234,
+     "citing": 19,
+     "membership": 0.88
+    },
+    {
+     "id": "W:lefebvre|production of space",
+     "title": "The Production of Space",
+     "first_author": "Lefebvre, Henri",
+     "year": 1991,
+     "loading": 0.23,
+     "citing": 38,
+     "membership": 0.567
+    },
+    {
+     "id": "W:mcclintock|imperial leather",
+     "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
+     "first_author": "McClintock, Anne",
+     "year": 1995,
+     "loading": 0.221,
+     "citing": 15,
+     "membership": 0.851
+    },
+    {
+     "id": "W:scott|weapons of the weak",
+     "title": "Weapons of the Weak: Everyday Forms of Peasant Resistance",
+     "first_author": "Scott, James C",
+     "year": 1985,
+     "loading": 0.221,
      "citing": 21,
-     "membership": 0.82
+     "membership": 0.89
+    },
+    {
+     "id": "W:foucault|history of sexuality",
+     "title": "The History of Sexuality",
+     "first_author": "Foucault, Michel",
+     "year": 1978,
+     "loading": 0.218,
+     "citing": 26,
+     "membership": 0.636
+    },
+    {
+     "id": "W:foucault|order of things",
+     "title": "The Order of Things: An Archaeology of the Human Sciences",
+     "first_author": "Foucault, Michel",
+     "year": 2002,
+     "loading": 0.206,
+     "citing": 21,
+     "membership": 0.748
     }
    ],
    "top_people": [
     {
-     "name": "Said, Edward",
-     "loading_share": 0.1157
+     "name": "Foucault, Michel",
+     "loading_share": 0.1284
     },
     {
-     "name": "Foucault, Michel",
-     "loading_share": 0.1028
+     "name": "Said, Edward",
+     "loading_share": 0.0854
     },
     {
      "name": "Scott, James C",
-     "loading_share": 0.069
+     "loading_share": 0.0546
     },
     {
-     "name": "Stoler, Ann Laura",
-     "loading_share": 0.0382
-    },
-    {
-     "name": "Bhabha, Homi K",
-     "loading_share": 0.0366
+     "name": "BOURDIEU, Pierre",
+     "loading_share": 0.0367
     },
     {
      "name": "Latour, Bruno",
-     "loading_share": 0.0363
+     "loading_share": 0.034
+    },
+    {
+     "name": "Stoler, Ann Laura",
+     "loading_share": 0.0311
+    },
+    {
+     "name": "Bhabha, Homi K",
+     "loading_share": 0.0269
     },
     {
      "name": "Pratt, Mary Louise",
-     "loading_share": 0.0331
+     "loading_share": 0.0247
     },
     {
      "name": "Chakrabarty, Dipesh",
-     "loading_share": 0.0244
-    },
-    {
-     "name": "Bourdieu, Pierre",
-     "loading_share": 0.0223
-    },
-    {
-     "name": "Fanon, Frantz",
-     "loading_share": 0.0222
-    },
-    {
-     "name": "Bayly, C. A",
-     "loading_share": 0.0222
+     "loading_share": 0.0185
     },
     {
      "name": "Shapin, Steven",
-     "loading_share": 0.0208
-    },
-    {
-     "name": "Spivak, Gayatri Chakravorty",
-     "loading_share": 0.0207
-    },
-    {
-     "name": "Butler, Judith",
-     "loading_share": 0.0202
+     "loading_share": 0.0182
     },
     {
      "name": "Appadurai, Arjun",
-     "loading_share": 0.0186
+     "loading_share": 0.0181
+    },
+    {
+     "name": "Butler, Judith",
+     "loading_share": 0.018
+    },
+    {
+     "name": "Fanon, Frantz",
+     "loading_share": 0.0165
+    },
+    {
+     "name": "Marx, Karl",
+     "loading_share": 0.0162
+    },
+    {
+     "name": "Spivak, Gayatri Chakravorty",
+     "loading_share": 0.0152
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     57
-    ],
-    [
-     "uk:edinburgh",
-     19
-    ],
-    [
-     "uk:cambridge",
-     17
+     78
     ],
     [
      "uk:glasgow",
-     14
+     28
+    ],
+    [
+     "uk:cambridge",
+     22
+    ],
+    [
+     "uk:edinburgh",
+     21
     ],
     [
      "uk:birmingham",
-     12
+     19
     ],
     [
      "uk:sussex",
-     5
+     9
     ]
    ],
    "sample_dissertations": [
+    "‘Accepting the competitive challenge’: The ideological and legislative origins of the student loan industry in the U.S., 1958-1973",
     "An Algerian paradox? The emulation of colonial visions through self-Orientalism in postcolonial literature.",
+    "Arctic science in circulation at the Royal Geographical Society c.1880–1914",
+    "Revolutionary discourse and policy process: the complexities of operation production in Mozambique, 1962–1992",
     "Energy and Sovereignty: Oil and Decolonisation in Algeria and France, 1956-1975.",
     "Between self and soldier: indian sipahis and their testimony during the two world wars",
-    "Colour concerns: the palette of race and ecology in French-Martinican art, 1847-1887",
     "The politics of resistance in modern Iran: a century of defiance",
-    "The British in India and their domiciled brethren",
-    "Arctic science in circulation at the Royal Geographical Society c.1880–1914",
-    "Shaping a radical politics: women's organising in Britain, 1970-1983"
+    "When Pākehā Feminism Met the Movement for Māori Sovereignty, 1975–1990"
    ]
   },
   {
    "id": 2,
-   "provisional_label": "Abrams · Summerfield · Todd — oral, women, working, wartime",
+   "provisional_label": "Abrams · Todd · Summerfield — oral, working, women, class",
    "label_is_provisional": true,
    "louvain_hint": "Brown · Scott · Abrams",
    "title_terms": [
     "oral",
-    "women",
     "working",
+    "women",
+    "class",
     "wartime",
-    "britain",
-    "intimate"
+    "love"
    ],
-   "bootstrap_stability": 0.877,
+   "bootstrap_stability": 0.903,
    "unstable": false,
-   "init_stability": 0.969,
-   "dominated_dissertations": 115,
-   "member_works": 38,
+   "init_stability": 0.966,
+   "dominated_dissertations": 133,
+   "member_works": 48,
    "years": {
     "median": 2020,
     "by_5yr": {
-     "2000-2004": 1,
-     "2005-2009": 4,
-     "2010-2014": 16,
-     "2015-2019": 29,
-     "2020-2024": 57,
-     "2025-2029": 7,
-     "unknown": 1
+     "2000-2004": 3,
+     "2005-2009": 6,
+     "2010-2014": 17,
+     "2015-2019": 31,
+     "2020-2024": 66,
+     "2025-2029": 8,
+     "unknown": 2
     },
     "share_of_bin": {
-     "2005-2009": 0.093,
-     "2010-2014": 0.117,
-     "2015-2019": 0.105,
-     "2020-2024": 0.161,
-     "2025-2029": 0.123
+     "2005-2009": 0.143,
+     "2010-2014": 0.125,
+     "2015-2019": 0.113,
+     "2020-2024": 0.185,
+     "2025-2029": 0.14
     }
    },
    "top_works": [
@@ -1057,92 +1058,110 @@
      "membership": 1.0
     },
     {
-     "id": "W:summerfield|culture and composure|a",
-     "title": "Culture and Composure: Creating Narratives of the Gendered Self in Oral History Interviews",
-     "first_author": "Summerfield, Penny",
-     "year": 2004,
-     "loading": 0.752,
-     "citing": 25,
-     "membership": 1.0
-    },
-    {
      "id": "W:todd|people",
      "title": "The People: The Rise and Fall of the Working Class, 1910-2010",
      "first_author": "Todd, Selina",
      "year": 2014,
-     "loading": 0.71,
+     "loading": 0.772,
      "citing": 26,
-     "membership": 0.96
+     "membership": 1.0
+    },
+    {
+     "id": "W:summerfield|culture and composure|a",
+     "title": "Culture and Composure: Creating Narratives of the Gendered Self in Oral History Interviews",
+     "first_author": "Summerfield, Penny",
+     "year": 2004,
+     "loading": 0.763,
+     "citing": 25,
+     "membership": 1.0
     },
     {
      "id": "W:summerfield|reconstructing womens wartime lives",
      "title": "Reconstructing Women’s Wartime Lives: Discourse and Subjectivity in Oral Histories of the Second World War",
      "first_author": "Summerfield, Penny",
      "year": 1998,
-     "loading": 0.681,
+     "loading": 0.714,
      "citing": 23,
-     "membership": 0.984
-    },
-    {
-     "id": "W:portelli|what makes oral history different|a",
-     "title": "What Makes Oral History Different",
-     "first_author": "Portelli, Alessandro",
-     "year": 1998,
-     "loading": 0.656,
-     "citing": 22,
-     "membership": 0.971
-    },
-    {
-     "id": "W:langhamer|english in love",
-     "title": "The English in Love: The Intimate Story of an Emotional Revolution",
-     "first_author": "Langhamer, Claire",
-     "year": 2013,
-     "loading": 0.632,
-     "citing": 21,
-     "membership": 0.998
-    },
-    {
-     "id": "W:langhamer|womens leisure in england 1920 60",
-     "title": "Women’s Leisure in England, 1920-60",
-     "first_author": "Langhamer, Claire",
-     "year": 2000,
-     "loading": 0.619,
-     "citing": 21,
-     "membership": 0.979
+     "membership": 0.99
     },
     {
      "id": "W:mckibbin|classes and cultures",
      "title": "Classes and Cultures: England 1918-1951",
      "first_author": "McKibbin, Ross",
      "year": 1998,
-     "loading": 0.603,
+     "loading": 0.709,
      "citing": 33,
-     "membership": 0.762
+     "membership": 0.926
     },
     {
-     "id": "W:dawson|soldier heroes",
-     "title": "Soldier Heroes: British Adventure, Empire and the Imagining of Masculinities",
-     "first_author": "Dawson, Graham",
-     "year": 1994,
-     "loading": 0.592,
-     "citing": 24,
-     "membership": 0.897
+     "id": "W:portelli|what makes oral history different|a",
+     "title": "What Makes Oral History Different",
+     "first_author": "PORTELLI, Alessandro",
+     "year": 1998,
+     "loading": 0.678,
+     "citing": 22,
+     "membership": 0.98
+    },
+    {
+     "id": "W:langhamer|english in love",
+     "title": "The English in Love: The Intimate Story of an Emotional Revolution",
+     "first_author": "Langhamer, Claire",
+     "year": 2013,
+     "loading": 0.656,
+     "citing": 21,
+     "membership": 1.0
+    },
+    {
+     "id": "W:langhamer|womens leisure in england 1920 60",
+     "title": "Women’s Leisure in England, 1920-60",
+     "first_author": "Langhamer, Claire",
+     "year": 2000,
+     "loading": 0.654,
+     "citing": 21,
+     "membership": 1.0
     },
     {
      "id": "W:brown|death of christian britain",
      "title": "The Death of Christian Britain: Understanding Secularisation, 1800-2000",
      "first_author": "Brown, Callum G",
      "year": 2001,
-     "loading": 0.556,
+     "loading": 0.628,
      "citing": 35,
-     "membership": 0.664
+     "membership": 0.758
+    },
+    {
+     "id": "W:dawson|soldier heroes",
+     "title": "Soldier Heroes: British Adventure, Empire and the Imagining of Masculinities",
+     "first_author": "Dawson, Graham",
+     "year": 1994,
+     "loading": 0.617,
+     "citing": 24,
+     "membership": 0.939
+    },
+    {
+     "id": "W:todd|young women work and family in england 1918 1950",
+     "title": "Young Women, Work and Family in England 1918-1950",
+     "first_author": "Todd, Selina",
+     "year": 2005,
+     "loading": 0.575,
+     "citing": 18,
+     "membership": 1.0
     },
     {
      "id": "W:langhamer|meanings of home in postwar britain|a",
      "title": "The Meanings of Home in Postwar Britain",
      "first_author": "Langhamer, Claire",
      "year": 2005,
-     "loading": 0.547,
+     "loading": 0.561,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:roberts|women and families",
+     "title": "Women and Families: An Oral History, 1940-1970",
+     "first_author": "Roberts, Elizabeth",
+     "year": 1995,
+     "loading": 0.556,
      "citing": 15,
      "membership": 1.0
     },
@@ -1151,26 +1170,17 @@
      "title": "The Voice of the Past: Oral History",
      "first_author": "Thompson, Paul",
      "year": 2000,
-     "loading": 0.545,
+     "loading": 0.537,
      "citing": 30,
-     "membership": 0.701
+     "membership": 0.723
     },
     {
-     "id": "W:todd|young women work and family in england 1918 1950",
-     "title": "Young Women, Work and Family in England 1918-1950",
-     "first_author": "Todd, Selina",
-     "year": 2005,
-     "loading": 0.532,
-     "citing": 18,
-     "membership": 0.971
-    },
-    {
-     "id": "W:roberts|women and families",
-     "title": "Women and Families: An Oral History, 1940-1970",
+     "id": "W:roberts|womans place",
+     "title": "A Woman’s Place: An Oral History of Working-Class Women 1890-1940",
      "first_author": "Roberts, Elizabeth",
-     "year": 1995,
-     "loading": 0.529,
-     "citing": 15,
+     "year": 1984,
+     "loading": 0.524,
+     "citing": 18,
      "membership": 1.0
     },
     {
@@ -1178,79 +1188,70 @@
      "title": "The Working Class in Mid Twentieth-Century England: Community, Identity and Social Memory",
      "first_author": "Jones, Ben",
      "year": 2012,
-     "loading": 0.478,
+     "loading": 0.508,
      "citing": 15,
-     "membership": 0.997
+     "membership": 1.0
     },
     {
      "id": "W:hinton|nine wartime lives",
      "title": "Nine Wartime Lives: Mass-Observation and the Making of the Modern Self",
      "first_author": "Hinton, James",
      "year": 2010,
-     "loading": 0.462,
+     "loading": 0.486,
      "citing": 16,
-     "membership": 0.976
-    },
-    {
-     "id": "W:perks|oral history reader",
-     "title": "The Oral History Reader",
-     "first_author": "Perks, Robert",
-     "year": 1998,
-     "loading": 0.46,
-     "citing": 18,
-     "membership": 0.857
-    },
-    {
-     "id": "W:roberts|womans place",
-     "title": "A Woman’s Place: An Oral History of Working-Class Women 1890-1940",
-     "first_author": "Roberts, Elizabeth",
-     "year": 1984,
-     "loading": 0.441,
-     "citing": 18,
-     "membership": 0.782
-    },
-    {
-     "id": "W:collins|modern love",
-     "title": "Modern Love: An Intimate History of Men and Women in Twentieth-Century Britain",
-     "first_author": "Collins, Marcus",
-     "year": 2003,
-     "loading": 0.44,
-     "citing": 16,
-     "membership": 1.0
-    },
-    {
-     "id": "W:portelli|death of luigi trastulli and other stories",
-     "title": "The Death of Luigi Trastulli and Other Stories: Form and Meaning in Oral History",
-     "first_author": "Portelli, Alessandro",
-     "year": 1991,
-     "loading": 0.44,
-     "citing": 18,
-     "membership": 0.819
-    },
-    {
-     "id": "W:bourke|working class cultures in britain 1890 1960",
-     "title": "Working-Class Cultures in Britain 1890-1960",
-     "first_author": "Bourke, Joanna",
-     "year": 1994,
-     "loading": 0.429,
-     "citing": 17,
-     "membership": 0.973
+     "membership": 0.99
     },
     {
      "id": "W:scott|gender|a",
      "title": "Gender: A Useful Category of Historical Analysis",
      "first_author": "Scott, Joan W",
      "year": 1986,
-     "loading": 0.428,
+     "loading": 0.481,
      "citing": 35,
-     "membership": 0.545
+     "membership": 0.61
+    },
+    {
+     "id": "W:perks|oral history reader",
+     "title": "The Oral History Reader",
+     "first_author": "Perks, Robert",
+     "year": 1998,
+     "loading": 0.473,
+     "citing": 18,
+     "membership": 0.863
+    },
+    {
+     "id": "W:portelli|death of luigi trastulli and other stories",
+     "title": "The Death of Luigi Trastulli and Other Stories: Form and Meaning in Oral History",
+     "first_author": "PORTELLI, Alessandro",
+     "year": 1991,
+     "loading": 0.469,
+     "citing": 19,
+     "membership": 0.841
+    },
+    {
+     "id": "W:collins|modern love",
+     "title": "Modern Love: An Intimate History of Men and Women in Twentieth-Century Britain",
+     "first_author": "Collins, Marcus",
+     "year": 2003,
+     "loading": 0.454,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:bourke|working class cultures in britain 1890 1960",
+     "title": "Working-Class Cultures in Britain 1890-1960",
+     "first_author": "Bourke, Joanna",
+     "year": 1994,
+     "loading": 0.453,
+     "citing": 17,
+     "membership": 1.0
     },
     {
      "id": "W:savage|identities and social change in britain since 1940",
      "title": "Identities and Social Change in Britain since 1940: The Politics of Method",
      "first_author": "Savage, Mike",
      "year": 2010,
-     "loading": 0.412,
+     "loading": 0.443,
      "citing": 16,
      "membership": 1.0
     },
@@ -1259,16 +1260,16 @@
      "title": "Family Newspapers?: Sex, Private Life, and the British Popular Press 1918-1978",
      "first_author": "Bingham, Adrian",
      "year": 2009,
-     "loading": 0.411,
+     "loading": 0.424,
      "citing": 15,
-     "membership": 0.902
+     "membership": 0.949
     },
     {
      "id": "W:hoggart|uses of literacy",
      "title": "The Uses of Literacy",
-     "first_author": "Hoggart, Richard",
+     "first_author": "HOGGART, Richard",
      "year": 1957,
-     "loading": 0.387,
+     "loading": 0.41,
      "citing": 15,
      "membership": 1.0
     }
@@ -1276,73 +1277,73 @@
    "top_people": [
     {
      "name": "Langhamer, Claire",
-     "loading_share": 0.0834
+     "loading_share": 0.0723
     },
     {
      "name": "Summerfield, Penny",
-     "loading_share": 0.0665
+     "loading_share": 0.0571
     },
     {
      "name": "Todd, Selina",
-     "loading_share": 0.0576
+     "loading_share": 0.0521
     },
     {
-     "name": "Portelli, Alessandro",
-     "loading_share": 0.0509
-    },
-    {
-     "name": "Abrams, Lynn",
-     "loading_share": 0.0464
+     "name": "PORTELLI, Alessandro",
+     "loading_share": 0.0443
     },
     {
      "name": "Roberts, Elizabeth",
-     "loading_share": 0.045
+     "loading_share": 0.0418
+    },
+    {
+     "name": "Abrams, Lynn",
+     "loading_share": 0.0386
     },
     {
      "name": "Bourke, Joanna",
-     "loading_share": 0.0345
+     "loading_share": 0.0303
     },
     {
      "name": "Brown, Callum G",
-     "loading_share": 0.0338
+     "loading_share": 0.0301
     },
     {
      "name": "McKibbin, Ross",
-     "loading_share": 0.028
-    },
-    {
-     "name": "Dawson, Graham",
      "loading_share": 0.0274
     },
     {
+     "name": "Dawson, Graham",
+     "loading_share": 0.0239
+    },
+    {
+     "name": "Tosh, John",
+     "loading_share": 0.0211
+    },
+    {
      "name": "Thompson, Paul",
-     "loading_share": 0.0253
+     "loading_share": 0.0208
     },
     {
      "name": "Jones, Ben",
-     "loading_share": 0.0222
+     "loading_share": 0.0196
     },
     {
      "name": "Hinton, James",
-     "loading_share": 0.0214
+     "loading_share": 0.0188
     },
     {
-     "name": "Perks, Robert",
-     "loading_share": 0.0213
-    },
-    {
-     "name": "Collins, Marcus",
-     "loading_share": 0.0204
+     "name": "Scott, Joan W",
+     "loading_share": 0.0186
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     40
+     48
     ],
     [
      "uk:glasgow",
-     27
+     29
     ],
     [
      "uk:sussex",
@@ -1350,11 +1351,11 @@
     ],
     [
      "uk:birmingham",
-     9
+     14
     ],
     [
      "uk:edinburgh",
-     7
+     8
     ],
     [
      "uk:cambridge",
@@ -1363,415 +1364,50 @@
    ],
    "sample_dissertations": [
     "Working-class women's experiences of higher education in post-war Britain",
+    "Gender, class and the household economy in Scotland in the ‘Age of affluence’.",
     "Women's experiences in male spaces, communities and cultures: the introduction of mixed-sex colleges at the University of Oxford",
+    "Sisters and sisterhood: the Kenney sisters, suffrage and social reform c.1890-1970",
     "‘I feel I am in control of my own little area’: agency and emotion in women’s household financial management c.1970-1995",
     "Troubled by life: the experience of stress in twentieth-century Britain",
     "The Women's Liberation Movement in Britain, 1968-1984: locality and organisation in feminist politics.",
-    "Youth movements, citizenship and the English countryside, 1930-1960",
-    "'A Hand Up, Not a Hand-Out', New Labour and Street Homelessness 1997-2010.",
-    "‘Working in Between’: Women’s Aid and networks of anti-domestic abuse activism in the UK, 1971-1996."
+    "Youth movements, citizenship and the English countryside, 1930-1960"
    ]
   },
   {
    "id": 3,
-   "provisional_label": "Thompson · Davidoff · Foucault — class, english, industrial, working",
-   "label_is_provisional": true,
-   "louvain_hint": "Colley · Brewer · Gilroy",
-   "title_terms": [
-    "class",
-    "english",
-    "industrial",
-    "working",
-    "labour",
-    "discipline"
-   ],
-   "bootstrap_stability": 0.651,
-   "unstable": false,
-   "init_stability": 0.97,
-   "dominated_dissertations": 110,
-   "member_works": 37,
-   "years": {
-    "median": 2019,
-    "by_5yr": {
-     "1990-1994": 1,
-     "1995-1999": 1,
-     "2000-2004": 5,
-     "2005-2009": 5,
-     "2010-2014": 19,
-     "2015-2019": 25,
-     "2020-2024": 46,
-     "2025-2029": 6,
-     "unknown": 2
-    },
-    "share_of_bin": {
-     "2005-2009": 0.116,
-     "2010-2014": 0.139,
-     "2015-2019": 0.091,
-     "2020-2024": 0.13,
-     "2025-2029": 0.105
-    }
-   },
-   "top_works": [
-    {
-     "id": "W:thompson|making of the english working class",
-     "title": "The Making of the English Working Class",
-     "first_author": "Thompson, E. P",
-     "year": 1963,
-     "loading": 1.0,
-     "citing": 78,
-     "membership": 0.991
-    },
-    {
-     "id": "W:davidoff|family fortunes",
-     "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
-     "first_author": "Davidoff, Leonore",
-     "year": 1987,
-     "loading": 0.529,
-     "citing": 39,
-     "membership": 0.932
-    },
-    {
-     "id": "W:foucault|discipline and punish",
-     "title": "Discipline and Punish: The Birth of the Prison",
-     "first_author": "Foucault, Michel",
-     "year": 1977,
-     "loading": 0.515,
-     "citing": 76,
-     "membership": 0.522
-    },
-    {
-     "id": "W:hilton|mad bad and dangerous people",
-     "title": "A Mad, Bad, and Dangerous People? England, 1783-1846",
-     "first_author": "Hilton, Boyd",
-     "year": 2006,
-     "loading": 0.38,
-     "citing": 25,
-     "membership": 0.745
-    },
-    {
-     "id": "W:humphries|childhood and child labour in the british industrial revolution",
-     "title": "Childhood and Child Labour in the British Industrial Revolution",
-     "first_author": "Humphries, Jane",
-     "year": 2010,
-     "loading": 0.375,
-     "citing": 18,
-     "membership": 0.98
-    },
-    {
-     "id": "W:bebbington|evangelicalism in modern britain",
-     "title": "Evangelicalism in Modern Britain: A History from the 1730s to the 1980s",
-     "first_author": "Bebbington, David W",
-     "year": 1989,
-     "loading": 0.34,
-     "citing": 25,
-     "membership": 0.874
-    },
-    {
-     "id": "W:jones|industrial enlightenment",
-     "title": "Industrial Enlightenment: Science, Technology and Culture in Birmingham and the West Midlands, 1760-1820",
-     "first_author": "Jones, Peter M",
-     "year": 2008,
-     "loading": 0.335,
-     "citing": 15,
-     "membership": 1.0
-    },
-    {
-     "id": "W:hilton|age of atonement",
-     "title": "The Age of Atonement: The Influence of Evangelicalism on Social and Economic Thought, 1795-1865",
-     "first_author": "Hilton, Boyd",
-     "year": 1988,
-     "loading": 0.306,
-     "citing": 22,
-     "membership": 0.782
-    },
-    {
-     "id": "W:mayhew|london labour and the london poor",
-     "title": "London Labour and the London Poor",
-     "first_author": "Mayhew, H",
-     "year": 1861,
-     "loading": 0.28,
-     "citing": 15,
-     "membership": 1.0
-    },
-    {
-     "id": "W:harrison|drink and the victorians",
-     "title": "Drink and the Victorians: The Temperance Question in England, 1815-1872",
-     "first_author": "Harrison, Brian",
-     "year": 1971,
-     "loading": 0.258,
-     "citing": 19,
-     "membership": 0.882
-    },
-    {
-     "id": "W:laslett|world we have lost",
-     "title": "The World We Have Lost",
-     "first_author": "Laslett, Peter",
-     "year": 1965,
-     "loading": 0.244,
-     "citing": 19,
-     "membership": 0.779
-    },
-    {
-     "id": "W:cannadine|class in britain",
-     "title": "Class in Britain",
-     "first_author": "Cannadine, David",
-     "year": 2000,
-     "loading": 0.237,
-     "citing": 17,
-     "membership": 0.906
-    },
-    {
-     "id": "W:marx|capital",
-     "title": "Capital: A Critique of Political Economy",
-     "first_author": "Marx, Karl",
-     "year": 1990,
-     "loading": 0.234,
-     "citing": 32,
-     "membership": 0.536
-    },
-    {
-     "id": "W:langford|polite and commercial people",
-     "title": "A Polite and Commercial People: England 1727-1783",
-     "first_author": "Langford, Paul",
-     "year": 1989,
-     "loading": 0.225,
-     "citing": 24,
-     "membership": 0.46
-    },
-    {
-     "id": "W:thompson|customs in common",
-     "title": "Customs in Common",
-     "first_author": "Thompson, E. P",
-     "year": 1991,
-     "loading": 0.224,
-     "citing": 21,
-     "membership": 0.903
-    },
-    {
-     "id": "W:wrigley|population history of england 1541 1871",
-     "title": "The Population History of England, 1541-1871: A Reconstruction",
-     "first_author": "Wrigley, E. A",
-     "year": 1981,
-     "loading": 0.221,
-     "citing": 15,
-     "membership": 0.917
-    },
-    {
-     "id": "W:tosh|mans place",
-     "title": "A Man’s Place: Masculinity and the Middle-Class Home in Victorian England",
-     "first_author": "Tosh, John",
-     "year": 1999,
-     "loading": 0.206,
-     "citing": 21,
-     "membership": 0.647
-    },
-    {
-     "id": "W:hall|civilising subjects",
-     "title": "Civilising Subjects: Metropole and Colony in the English Imagination, 1830-1867",
-     "first_author": "Hall, Catherine",
-     "year": 2002,
-     "loading": 0.197,
-     "citing": 19,
-     "membership": 0.64
-    },
-    {
-     "id": "W:lefebvre|production of space",
-     "title": "The Production of Space",
-     "first_author": "Lefebvre, Henri",
-     "year": 1991,
-     "loading": 0.194,
-     "citing": 38,
-     "membership": 0.372
-    },
-    {
-     "id": "W:watts|dissenters",
-     "title": "The Dissenters",
-     "first_author": "Watts, Michael R",
-     "year": 1978,
-     "loading": 0.194,
-     "citing": 15,
-     "membership": 0.797
-    },
-    {
-     "id": "W:hunt|middling sort",
-     "title": "The Middling Sort: Commerce, Gender, and the Family in England, 1680-1780",
-     "first_author": "Hunt, Margaret",
-     "year": 1996,
-     "loading": 0.186,
-     "citing": 16,
-     "membership": 0.795
-    },
-    {
-     "id": "W:harris|private lives public spirit",
-     "title": "Private Lives, Public Spirit: Britain 1870-1914",
-     "first_author": "Harris, Jose",
-     "year": 1993,
-     "loading": 0.185,
-     "citing": 20,
-     "membership": 0.775
-    },
-    {
-     "id": "W:borsay|english urban renaissance",
-     "title": "The English Urban Renaissance: Culture and Society in the Provincial Town, 1660-1770",
-     "first_author": "Borsay, Peter",
-     "year": 1989,
-     "loading": 0.183,
-     "citing": 15,
-     "membership": 0.729
-    },
-    {
-     "id": "W:tosh|pursuit of history",
-     "title": "The Pursuit of History",
-     "first_author": "Tosh, John",
-     "year": 2006,
-     "loading": 0.181,
-     "citing": 21,
-     "membership": 0.637
-    },
-    {
-     "id": "W:rowntree|poverty",
-     "title": "Poverty: A Study of Town Life",
-     "first_author": "Rowntree, Benjamin Seebohm",
-     "year": 1902,
-     "loading": 0.179,
-     "citing": 18,
-     "membership": 0.707
-    }
-   ],
-   "top_people": [
-    {
-     "name": "Thompson, E. P",
-     "loading_share": 0.1028
-    },
-    {
-     "name": "Foucault, Michel",
-     "loading_share": 0.0823
-    },
-    {
-     "name": "Hilton, Boyd",
-     "loading_share": 0.0519
-    },
-    {
-     "name": "Davidoff, Leonore",
-     "loading_share": 0.04
-    },
-    {
-     "name": "Tosh, John",
-     "loading_share": 0.0293
-    },
-    {
-     "name": "Humphries, Jane",
-     "loading_share": 0.0284
-    },
-    {
-     "name": "Bebbington, David W",
-     "loading_share": 0.0257
-    },
-    {
-     "name": "Jones, Peter M",
-     "loading_share": 0.0253
-    },
-    {
-     "name": "Marx, Karl",
-     "loading_share": 0.0221
-    },
-    {
-     "name": "Mayhew, H",
-     "loading_share": 0.0212
-    },
-    {
-     "name": "Harrison, Brian",
-     "loading_share": 0.0195
-    },
-    {
-     "name": "Laslett, Peter",
-     "loading_share": 0.0185
-    },
-    {
-     "name": "Cannadine, David",
-     "loading_share": 0.0179
-    },
-    {
-     "name": "Langford, Paul",
-     "loading_share": 0.017
-    },
-    {
-     "name": "Wrigley, E. A",
-     "loading_share": 0.0167
-    }
-   ],
-   "top_institutions": [
-    [
-     "uk:oxford",
-     43
-    ],
-    [
-     "uk:birmingham",
-     19
-    ],
-    [
-     "uk:glasgow",
-     18
-    ],
-    [
-     "uk:edinburgh",
-     12
-    ],
-    [
-     "uk:cambridge",
-     9
-    ],
-    [
-     "uk:sussex",
-     3
-    ]
-   ],
-   "sample_dissertations": [
-    "In the shadow of the castle: political and religious conflict in Dudley, Worcestershire. c. 1815-1867.",
-    "Aspects of social and economic change in a small market town: Moreton in Marsh 1850-1914",
-    "Entrepreneurship and technological change: the Birmingham and district cut-nail trade, c. 1811-1913.",
-    "Child labour in an industrial town: a study of child workers in Birmingham, 1750 to 1880.",
-    "George Edmonds and the development of Birmingham radicalism.",
-    "Shipped out? Pauper apprentices of port towns during the industrial revolution, 1750-1870",
-    "‘Unsettled Minds’ in England and Wales, 1800-1834.",
-    "'Marry - stitch - die - or do worse'?: female self-employment and small business proprietorship in London c.1740 - 1880."
-   ]
-  },
-  {
-   "id": 4,
-   "provisional_label": "Knowles · Blair · Clanchy — saxon, medieval, record, ages",
+   "provisional_label": "Knowles · Blair · Brown — saxon, ages, anglo, medieval",
    "label_is_provisional": true,
    "louvain_hint": "Clanchy · Gransden · Mauss",
    "title_terms": [
     "saxon",
-    "medieval",
-    "record",
     "ages",
     "anglo",
+    "medieval",
+    "function",
     "saints"
    ],
-   "bootstrap_stability": 0.92,
+   "bootstrap_stability": 0.936,
    "unstable": false,
-   "init_stability": 0.949,
-   "dominated_dissertations": 103,
+   "init_stability": 1.0,
+   "dominated_dissertations": 108,
    "member_works": 29,
    "years": {
     "median": 2017,
     "by_5yr": {
      "1995-1999": 1,
      "2000-2004": 4,
-     "2005-2009": 10,
-     "2010-2014": 19,
-     "2015-2019": 35,
-     "2020-2024": 29,
-     "2025-2029": 5
+     "2005-2009": 9,
+     "2010-2014": 18,
+     "2015-2019": 38,
+     "2020-2024": 32,
+     "2025-2029": 6
     },
     "share_of_bin": {
-     "2005-2009": 0.233,
-     "2010-2014": 0.139,
-     "2015-2019": 0.127,
-     "2020-2024": 0.082,
-     "2025-2029": 0.088
+     "2005-2009": 0.214,
+     "2010-2014": 0.132,
+     "2015-2019": 0.139,
+     "2020-2024": 0.09,
+     "2025-2029": 0.105
     }
    },
    "top_works": [
@@ -1789,62 +1425,44 @@
      "title": "The Church in Anglo-Saxon Society",
      "first_author": "Blair, John",
      "year": 2005,
-     "loading": 0.991,
+     "loading": 0.988,
      "citing": 26,
-     "membership": 0.964
-    },
-    {
-     "id": "W:clanchy|from memory to written record",
-     "title": "From Memory to Written Record: England 1066-1307",
-     "first_author": "Clanchy, Michael",
-     "year": 2013,
-     "loading": 0.875,
-     "citing": 39,
-     "membership": 0.819
+     "membership": 1.0
     },
     {
      "id": "W:brown|cult of the saints",
      "title": "The Cult of the Saints: Its Rise and Function in Latin Christianity",
      "first_author": "Brown, Peter",
      "year": 1981,
-     "loading": 0.844,
+     "loading": 0.867,
      "citing": 32,
-     "membership": 0.985
+     "membership": 1.0
     },
     {
      "id": "W:stenton|anglo saxon england",
      "title": "Anglo-Saxon England",
      "first_author": "Stenton, F. M",
      "year": 1971,
-     "loading": 0.799,
+     "loading": 0.854,
      "citing": 25,
      "membership": 1.0
     },
     {
-     "id": "W:vauchez|sainthood in the later middle ages",
-     "title": "Sainthood in the Later Middle Ages",
-     "first_author": "Vauchez, André",
-     "year": 1997,
-     "loading": 0.729,
-     "citing": 18,
-     "membership": 1.0
+     "id": "W:clanchy|from memory to written record",
+     "title": "From Memory to Written Record: England 1066-1307",
+     "first_author": "Clanchy, Michael",
+     "year": 2013,
+     "loading": 0.794,
+     "citing": 39,
+     "membership": 0.789
     },
     {
      "id": "W:bartlett|england under the norman and angevin kings 1075 1225",
      "title": "England under the Norman and Angevin Kings, 1075-1225",
      "first_author": "Bartlett, Robert",
      "year": 2000,
-     "loading": 0.71,
+     "loading": 0.702,
      "citing": 21,
-     "membership": 1.0
-    },
-    {
-     "id": "W:ward|miracles and the medieval mind",
-     "title": "Miracles and the Medieval Mind: Theory, Record and Event, 1000-1215",
-     "first_author": "Ward, Benedicta",
-     "year": 1982,
-     "loading": 0.697,
-     "citing": 17,
      "membership": 1.0
     },
     {
@@ -1852,272 +1470,290 @@
      "title": "Historical Writing in England",
      "first_author": "Gransden, Antonia",
      "year": 1974,
-     "loading": 0.689,
+     "loading": 0.691,
      "citing": 30,
-     "membership": 0.927
-    },
-    {
-     "id": "W:geary|furta sacra",
-     "title": "Furta Sacra: Thefts of Relics in the Central Middle Ages",
-     "first_author": "Geary, Patrick J",
-     "year": 1978,
-     "loading": 0.62,
-     "citing": 21,
-     "membership": 0.878
-    },
-    {
-     "id": "W:lawrence|medieval monasticism",
-     "title": "Medieval Monasticism: Forms of Religious Life in Western Europe in the Middle Ages",
-     "first_author": "Lawrence, C",
-     "year": 2001,
-     "loading": 0.607,
-     "citing": 18,
-     "membership": 0.99
-    },
-    {
-     "id": "W:dugdale|monasticon anglicanum",
-     "title": "Monasticon Anglicanum",
-     "first_author": "Dugdale, William",
-     "year": 1817,
-     "loading": 0.494,
-     "citing": 16,
-     "membership": 0.987
-    },
-    {
-     "id": "W:carruthers|book of memory",
-     "title": "The Book of Memory: A Study of Memory in Medieval Culture",
-     "first_author": "Carruthers, Mary",
-     "year": 2008,
-     "loading": 0.491,
-     "citing": 27,
-     "membership": 0.783
-    },
-    {
-     "id": "W:farmer|oxford dictionary of saints",
-     "title": "The Oxford Dictionary of Saints",
-     "first_author": "Farmer, David Hugh",
-     "year": 2004,
-     "loading": 0.491,
-     "citing": 15,
-     "membership": 1.0
+     "membership": 0.932
     },
     {
      "id": "W:wickham|framing the early middle ages",
      "title": "Framing the Early Middle Ages: Europe and the Mediterranean 400-800",
      "first_author": "Wickham, Chris",
      "year": 2005,
-     "loading": 0.471,
+     "loading": 0.63,
      "citing": 28,
-     "membership": 0.46
+     "membership": 0.721
     },
     {
-     "id": "W:bartlett|trial by fire and water",
-     "title": "Trial by Fire and Water: The Medieval Judicial Ordeal",
-     "first_author": "Bartlett, Robert",
-     "year": 1986,
-     "loading": 0.446,
-     "citing": 15,
+     "id": "W:vauchez|sainthood in the later middle ages",
+     "title": "Sainthood in the Later Middle Ages",
+     "first_author": "VAUCHEZ, André",
+     "year": 1997,
+     "loading": 0.606,
+     "citing": 18,
      "membership": 1.0
+    },
+    {
+     "id": "W:geary|furta sacra",
+     "title": "Furta Sacra: Thefts of Relics in the Central Middle Ages",
+     "first_author": "Geary, Patrick J",
+     "year": 1978,
+     "loading": 0.579,
+     "citing": 21,
+     "membership": 0.979
+    },
+    {
+     "id": "W:lawrence|medieval monasticism",
+     "title": "Medieval Monasticism: Forms of Religious Life in Western Europe in the Middle Ages",
+     "first_author": "Lawrence, C",
+     "year": 2001,
+     "loading": 0.567,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:dugdale|monasticon anglicanum",
+     "title": "Monasticon Anglicanum",
+     "first_author": "Dugdale, William",
+     "year": 1817,
+     "loading": 0.497,
+     "citing": 16,
+     "membership": 0.993
     },
     {
      "id": "W:brown|rise and function of the holy man in late antiquity|a",
      "title": "The Rise and Function of the Holy Man in Late Antiquity",
      "first_author": "Brown, Peter",
      "year": 1971,
-     "loading": 0.434,
+     "loading": 0.491,
      "citing": 23,
-     "membership": 0.649
+     "membership": 0.772
+    },
+    {
+     "id": "W:farmer|oxford dictionary of saints",
+     "title": "The Oxford Dictionary of Saints",
+     "first_author": "Farmer, David Hugh",
+     "year": 2004,
+     "loading": 0.481,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:carruthers|book of memory",
+     "title": "The Book of Memory: A Study of Memory in Medieval Culture",
+     "first_author": "Carruthers, Mary",
+     "year": 2008,
+     "loading": 0.48,
+     "citing": 27,
+     "membership": 0.795
+    },
+    {
+     "id": "W:bartlett|trial by fire and water",
+     "title": "Trial by Fire and Water: The Medieval Judicial Ordeal",
+     "first_author": "Bartlett, Robert",
+     "year": 1986,
+     "loading": 0.451,
+     "citing": 15,
+     "membership": 1.0
     },
     {
      "id": "W:wood|proprietary church in the medieval west",
      "title": "The Proprietary Church in the Medieval West",
      "first_author": "Wood, Susan",
      "year": 2006,
-     "loading": 0.408,
+     "loading": 0.45,
      "citing": 16,
-     "membership": 0.801
-    },
-    {
-     "id": "W:bynum|holy feast and holy fast",
-     "title": "Holy Feast and Holy Fast: The Religious Significance of Food to Medieval Women",
-     "first_author": "Bynum, Caroline Walker",
-     "year": 1987,
-     "loading": 0.369,
-     "citing": 19,
-     "membership": 0.77
-    },
-    {
-     "id": "W:stock|implications of literacy",
-     "title": "The Implications of Literacy: Written Language and Models of Interpretation in the Eleventh and Twelfth Centuries",
-     "first_author": "Stock, Brian",
-     "year": 1983,
-     "loading": 0.346,
-     "citing": 17,
-     "membership": 0.735
+     "membership": 0.984
     },
     {
      "id": "W:brown|rise of western christendom",
      "title": "The Rise of Western Christendom: Triumph and Diversity, A.D. 200-1000",
      "first_author": "Brown, Peter",
      "year": 2003,
-     "loading": 0.313,
+     "loading": 0.38,
      "citing": 16,
-     "membership": 0.597
+     "membership": 0.802
+    },
+    {
+     "id": "W:bynum|holy feast and holy fast",
+     "title": "Holy Feast and Holy Fast: The Religious Significance of Food to Medieval Women",
+     "first_author": "Bynum, Caroline Walker",
+     "year": 1987,
+     "loading": 0.364,
+     "citing": 19,
+     "membership": 0.781
+    },
+    {
+     "id": "W:stock|implications of literacy",
+     "title": "The Implications of Literacy: Written Language and Models of Interpretation in the Eleventh and Twelfth Centuries",
+     "first_author": "Stock, Brian",
+     "year": 1983,
+     "loading": 0.348,
+     "citing": 17,
+     "membership": 0.766
     },
     {
      "id": "W:bartlett|making of europe",
      "title": "The Making of Europe: Conquest, Colonization, and Cultural Change, 950-1350",
      "first_author": "Bartlett, Robert",
      "year": 1993,
-     "loading": 0.31,
+     "loading": 0.343,
      "citing": 19,
-     "membership": 0.684
+     "membership": 0.854
     },
     {
      "id": "W:reynolds|kingdoms and communities in western europe 900 1300",
      "title": "Kingdoms and Communities in Western Europe, 900-1300",
      "first_author": "Reynolds, Susan",
      "year": 1997,
-     "loading": 0.295,
+     "loading": 0.306,
      "citing": 18,
-     "membership": 0.693
+     "membership": 0.715
     },
     {
      "id": "W:mauss|gift",
      "title": "The Gift: The Form and Reason for Exchange in Archaic Societies",
      "first_author": "Mauss, Marcel",
      "year": 1990,
-     "loading": 0.29,
+     "loading": 0.294,
      "citing": 33,
-     "membership": 0.406
+     "membership": 0.409
+    },
+    {
+     "id": "W:brown|body and society",
+     "title": "The Body and Society: Men, Women, and Sexual Renunciation in Early Christianity",
+     "first_author": "Brown, Peter",
+     "year": 1988,
+     "loading": 0.292,
+     "citing": 16,
+     "membership": 0.764
     },
     {
      "id": "W:kantorowicz|kings two bodies",
      "title": "The King’s Two Bodies: A Study in Medieval Political Theology",
      "first_author": "Kantorowicz, Ernst H",
      "year": 1957,
-     "loading": 0.28,
+     "loading": 0.275,
      "citing": 32,
-     "membership": 0.346
+     "membership": 0.356
     }
    ],
    "top_people": [
     {
      "name": "Brown, Peter",
-     "loading_share": 0.0998
+     "loading_share": 0.1102
     },
     {
      "name": "Bartlett, Robert",
-     "loading_share": 0.0795
+     "loading_share": 0.0812
     },
     {
      "name": "Knowles, David",
-     "loading_share": 0.0689
+     "loading_share": 0.0687
     },
     {
      "name": "Blair, John",
-     "loading_share": 0.0538
-    },
-    {
-     "name": "Clanchy, Michael",
-     "loading_share": 0.0474
+     "loading_share": 0.0536
     },
     {
      "name": "Stenton, F. M",
-     "loading_share": 0.0433
+     "loading_share": 0.0464
     },
     {
-     "name": "Vauchez, André",
-     "loading_share": 0.0395
-    },
-    {
-     "name": "Ward, Benedicta",
-     "loading_share": 0.0378
+     "name": "Clanchy, Michael",
+     "loading_share": 0.0431
     },
     {
      "name": "Gransden, Antonia",
-     "loading_share": 0.0374
-    },
-    {
-     "name": "Geary, Patrick J",
-     "loading_share": 0.0336
-    },
-    {
-     "name": "Lawrence, C",
-     "loading_share": 0.0329
-    },
-    {
-     "name": "Dugdale, William",
-     "loading_share": 0.0268
-    },
-    {
-     "name": "Carruthers, Mary",
-     "loading_share": 0.0266
-    },
-    {
-     "name": "Farmer, David Hugh",
-     "loading_share": 0.0266
+     "loading_share": 0.0375
     },
     {
      "name": "Wickham, Chris",
-     "loading_share": 0.0255
+     "loading_share": 0.0342
+    },
+    {
+     "name": "VAUCHEZ, André",
+     "loading_share": 0.0329
+    },
+    {
+     "name": "Geary, Patrick J",
+     "loading_share": 0.0314
+    },
+    {
+     "name": "Lawrence, C",
+     "loading_share": 0.0308
+    },
+    {
+     "name": "Dugdale, William",
+     "loading_share": 0.027
+    },
+    {
+     "name": "Farmer, David Hugh",
+     "loading_share": 0.0261
+    },
+    {
+     "name": "Carruthers, Mary",
+     "loading_share": 0.0261
+    },
+    {
+     "name": "Wood, Susan",
+     "loading_share": 0.0245
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     50
+     55
     ],
     [
      "uk:st-andrews",
-     16
+     15
     ],
     [
      "uk:glasgow",
-     15
+     14
     ],
     [
      "uk:birmingham",
      8
     ],
     [
-     "uk:cambridge",
-     6
+     "uk:edinburgh",
+     8
     ],
     [
-     "uk:edinburgh",
+     "uk:cambridge",
      6
     ]
    ],
    "sample_dissertations": [
+    "Rome in ninth-century Anglo-Saxon England",
     "Depictions of sainthood in the Latin saints' lives of twelfth-century England",
     "Venerating saints and constructing cults in an age of reform: male and female monastic communities and their saints in late tenth- and early",
     "Eschatology, crusade and reform in English historical writing, c.1180-c.1220",
-    "The cult of St. Edward the Confessor, 1066-1399",
     "Grasping schemer or hostage to fortune:   the life and career of Stigand, last Anglo-Saxon Archbishop of Canterbury",
     "The Late Anglo-Saxon Royal Agent",
-    "Rewriting history in the cult of St Cuthbert from the ninth to the twelfth centuries",
-    "Looking East and West :  the reception and dissemination of the Topographia Hibernica and the Itinerarium ad partes Orientales in England [1"
+    "The cult of St. Edward the Confessor, 1066-1399",
+    "Rewriting history in the cult of St Cuthbert from the ninth to the twelfth centuries"
    ]
   },
   {
-   "id": 5,
-   "provisional_label": "Duffy · Fincham · Tyacke — altars, religion, england, english",
+   "id": 4,
+   "provisional_label": "Duffy · Fincham · Tyacke — altars, religion, english, england",
    "label_is_provisional": true,
    "louvain_hint": "Duffy · Thomas · Greenblatt",
    "title_terms": [
     "altars",
     "religion",
-    "england",
     "english",
-    "changing",
-    "early"
+    "england",
+    "early",
+    "changing"
    ],
-   "bootstrap_stability": 0.912,
+   "bootstrap_stability": 0.876,
    "unstable": false,
-   "init_stability": 0.992,
-   "dominated_dissertations": 95,
-   "member_works": 32,
+   "init_stability": 0.999,
+   "dominated_dissertations": 101,
+   "member_works": 35,
    "years": {
     "median": 2020,
     "by_5yr": {
@@ -2126,17 +1762,17 @@
      "1990-1994": 1,
      "2000-2004": 4,
      "2005-2009": 5,
-     "2010-2014": 12,
-     "2015-2019": 22,
-     "2020-2024": 43,
-     "2025-2029": 6
+     "2010-2014": 11,
+     "2015-2019": 27,
+     "2020-2024": 42,
+     "2025-2029": 9
     },
     "share_of_bin": {
-     "2005-2009": 0.116,
-     "2010-2014": 0.088,
-     "2015-2019": 0.08,
-     "2020-2024": 0.121,
-     "2025-2029": 0.105
+     "2005-2009": 0.119,
+     "2010-2014": 0.081,
+     "2015-2019": 0.099,
+     "2020-2024": 0.118,
+     "2025-2029": 0.158
     }
    },
    "top_works": [
@@ -2147,14 +1783,14 @@
      "year": 1992,
      "loading": 1.0,
      "citing": 39,
-     "membership": 0.802
+     "membership": 0.81
     },
     {
      "id": "W:fincham|altars restored",
      "title": "Altars Restored: The Changing Face of English Religious Worship, 1547-c.1700",
      "first_author": "Fincham, Kenneth",
      "year": 2007,
-     "loading": 0.732,
+     "loading": 0.736,
      "citing": 17,
      "membership": 1.0
     },
@@ -2163,7 +1799,7 @@
      "title": "Anti-Calvinists: The Rise of English Arminianism, c. 1590-1640",
      "first_author": "Tyacke, Nicholas",
      "year": 1987,
-     "loading": 0.645,
+     "loading": 0.657,
      "citing": 17,
      "membership": 1.0
     },
@@ -2172,16 +1808,16 @@
      "title": "Providence in Early Modern England",
      "first_author": "Walsham, Alexandra",
      "year": 1999,
-     "loading": 0.642,
+     "loading": 0.645,
      "citing": 21,
-     "membership": 0.99
+     "membership": 0.989
     },
     {
      "id": "W:collinson|elizabethan puritan movement",
      "title": "The Elizabethan Puritan Movement",
      "first_author": "Collinson, Patrick",
      "year": 1967,
-     "loading": 0.633,
+     "loading": 0.639,
      "citing": 18,
      "membership": 1.0
     },
@@ -2190,26 +1826,17 @@
      "title": "Religion and the Decline of Magic",
      "first_author": "Thomas, Keith",
      "year": 1971,
-     "loading": 0.621,
+     "loading": 0.624,
      "citing": 37,
-     "membership": 0.737
+     "membership": 0.77
     },
     {
      "id": "W:hill|world turned upside down",
      "title": "The World Turned Upside Down: Radical Ideas During the English Revolution",
      "first_author": "Hill, Christopher",
      "year": 1972,
-     "loading": 0.599,
+     "loading": 0.614,
      "citing": 20,
-     "membership": 0.989
-    },
-    {
-     "id": "W:haigh|english reformations",
-     "title": "English Reformations: Religion, Politics, and Society under the Tudors",
-     "first_author": "Haigh, Christopher",
-     "year": 1993,
-     "loading": 0.579,
-     "citing": 15,
      "membership": 1.0
     },
     {
@@ -2217,8 +1844,17 @@
      "title": "Persecution and Toleration in Protestant England, 1558-1689",
      "first_author": "Coffey, John",
      "year": 2000,
-     "loading": 0.571,
+     "loading": 0.578,
      "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:haigh|english reformations",
+     "title": "English Reformations: Religion, Politics, and Society under the Tudors",
+     "first_author": "Haigh, Christopher",
+     "year": 1993,
+     "loading": 0.576,
+     "citing": 15,
      "membership": 1.0
     },
     {
@@ -2226,642 +1862,277 @@
      "title": "The English Reformation",
      "first_author": "Dickens, A.G",
      "year": 1964,
-     "loading": 0.545,
+     "loading": 0.544,
      "citing": 15,
-     "membership": 0.984
+     "membership": 0.989
     },
     {
      "id": "W:collinson|birthpangs of protestant england",
      "title": "The Birthpangs of Protestant England: Religious and Cultural Change in the Sixteenth and Seventeenth Centuries",
      "first_author": "Collinson, Patrick",
      "year": 1988,
-     "loading": 0.523,
+     "loading": 0.518,
      "citing": 15,
-     "membership": 0.98
-    },
-    {
-     "id": "W:watt|cheap print and popular piety 1550 1640",
-     "title": "Cheap Print and Popular Piety, 1550-1640",
-     "first_author": "Watt, Tessa",
-     "year": 1991,
-     "loading": 0.514,
-     "citing": 19,
-     "membership": 0.994
+     "membership": 0.988
     },
     {
      "id": "W:skinner|foundations of modern political thought",
      "title": "The Foundations of Modern Political Thought",
      "first_author": "Skinner, Quentin",
      "year": 1978,
-     "loading": 0.479,
+     "loading": 0.513,
      "citing": 32,
-     "membership": 0.77
+     "membership": 0.874
+    },
+    {
+     "id": "W:watt|cheap print and popular piety 1550 1640",
+     "title": "Cheap Print and Popular Piety, 1550-1640",
+     "first_author": "Watt, Tessa",
+     "year": 1991,
+     "loading": 0.511,
+     "citing": 19,
+     "membership": 0.995
     },
     {
      "id": "W:macculloch|reformation",
      "title": "Reformation: Europe’s House Divided, 1490-1700",
      "first_author": "MacCulloch, Diarmaid",
      "year": 2004,
-     "loading": 0.454,
+     "loading": 0.464,
      "citing": 18,
-     "membership": 0.959
-    },
-    {
-     "id": "W:greenblatt|renaissance self fashioning",
-     "title": "Renaissance Self-Fashioning: From More to Shakespeare",
-     "first_author": "Greenblatt, Stephen",
-     "year": 1980,
-     "loading": 0.416,
-     "citing": 30,
-     "membership": 0.668
+     "membership": 1.0
     },
     {
      "id": "W:fox|oral and literate culture in england 1500 1700",
      "title": "Oral and Literate Culture in England, 1500-1700",
      "first_author": "Fox, A",
      "year": 2000,
-     "loading": 0.4,
+     "loading": 0.421,
      "citing": 21,
-     "membership": 0.773
+     "membership": 0.798
     },
     {
      "id": "W:quantin|church of england and christian antiquity",
      "title": "The Church of England and Christian Antiquity: The Construction of a Confessional Identity in the 17th Century",
      "first_author": "Quantin, Jean-Louis",
      "year": 2009,
-     "loading": 0.39,
+     "loading": 0.418,
      "citing": 15,
-     "membership": 0.8
+     "membership": 0.915
     },
     {
-     "id": "W:stone|crisis of the aristocracy 1558 1641",
-     "title": "The Crisis of the Aristocracy, 1558-1641",
-     "first_author": "Stone, Lawrence",
-     "year": 1965,
-     "loading": 0.305,
-     "citing": 21,
-     "membership": 0.725
-    },
-    {
-     "id": "W:aquinas|summa theologiae",
-     "title": "Summa Theologica",
-     "first_author": "Aquinas, Thomas",
-     "year": 1964,
-     "loading": 0.302,
-     "citing": 18,
-     "membership": 0.716
+     "id": "W:greenblatt|renaissance self fashioning",
+     "title": "Renaissance Self-Fashioning: From More to Shakespeare",
+     "first_author": "Greenblatt, Stephen",
+     "year": 1980,
+     "loading": 0.4,
+     "citing": 30,
+     "membership": 0.637
     },
     {
      "id": "W:levitin|ancient wisdom in the age of the new science",
      "title": "Ancient Wisdom in the Age of the New Science: Histories of Philosophy in England, c. 1640-1700",
      "first_author": "Levitin, Dmitri",
      "year": 2015,
-     "loading": 0.302,
+     "loading": 0.349,
      "citing": 16,
-     "membership": 0.576
+     "membership": 0.731
+    },
+    {
+     "id": "W:stone|crisis of the aristocracy 1558 1641",
+     "title": "The Crisis of the Aristocracy, 1558-1641",
+     "first_author": "Stone, Lawrence",
+     "year": 1965,
+     "loading": 0.311,
+     "citing": 21,
+     "membership": 0.774
     },
     {
      "id": "W:burke|popular culture in early modern europe",
      "title": "Popular Culture in Early Modern Europe",
      "first_author": "Burke, Peter",
      "year": 1978,
-     "loading": 0.301,
+     "loading": 0.31,
      "citing": 26,
-     "membership": 0.497
+     "membership": 0.522
     },
     {
      "id": "W:kantorowicz|kings two bodies",
      "title": "The King’s Two Bodies: A Study in Medieval Political Theology",
      "first_author": "Kantorowicz, Ernst H",
      "year": 1957,
-     "loading": 0.293,
+     "loading": 0.306,
      "citing": 32,
-     "membership": 0.405
+     "membership": 0.436
+    },
+    {
+     "id": "W:aquinas|summa theologiae",
+     "title": "Summa Theologica",
+     "first_author": "Aquinas, Thomas",
+     "year": 1964,
+     "loading": 0.306,
+     "citing": 18,
+     "membership": 0.779
     },
     {
      "id": "W:braddick|state formation in early modern england c",
      "title": "State Formation in Early Modern England, c. 1550-1700",
      "first_author": "Braddick, Michael J",
      "year": 2000,
-     "loading": 0.289,
+     "loading": 0.3,
      "citing": 17,
-     "membership": 0.732
+     "membership": 0.76
+    },
+    {
+     "id": "W:todd|culture of protestantism in early modern scotland",
+     "title": "The Culture of Protestantism in Early Modern Scotland",
+     "first_author": "Todd, Margo",
+     "year": 2002,
+     "loading": 0.285,
+     "citing": 15,
+     "membership": 0.779
     },
     {
      "id": "W:roper|oedipus and the devil",
      "title": "Oedipus and the Devil: Witchcraft, Sexuality, and Religion in Early Modern Europe",
      "first_author": "Roper, Lyndal",
      "year": 1994,
-     "loading": 0.284,
-     "citing": 20,
-     "membership": 0.521
-    },
-    {
-     "id": "W:wrightson|english society 1580 1680",
-     "title": "English Society, 1580-1680",
-     "first_author": "Wrightson, Keith",
-     "year": 1982,
      "loading": 0.275,
-     "citing": 19,
-     "membership": 0.635
+     "citing": 20,
+     "membership": 0.497
     }
    ],
    "top_people": [
     {
      "name": "Collinson, Patrick",
-     "loading_share": 0.0648
+     "loading_share": 0.0608
     },
     {
      "name": "Duffy, Eamon",
-     "loading_share": 0.0561
-    },
-    {
-     "name": "Thomas, Keith",
-     "loading_share": 0.0473
+     "loading_share": 0.0526
     },
     {
      "name": "Skinner, Quentin",
-     "loading_share": 0.0421
+     "loading_share": 0.0465
+    },
+    {
+     "name": "Thomas, Keith",
+     "loading_share": 0.0443
     },
     {
      "name": "Fincham, Kenneth",
-     "loading_share": 0.0411
+     "loading_share": 0.0387
     },
     {
      "name": "Tyacke, Nicholas",
-     "loading_share": 0.0362
+     "loading_share": 0.0345
     },
     {
      "name": "Walsham, Alexandra",
-     "loading_share": 0.036
+     "loading_share": 0.0339
     },
     {
      "name": "Hill, Christopher",
-     "loading_share": 0.0336
-    },
-    {
-     "name": "Haigh, Christopher",
-     "loading_share": 0.0325
+     "loading_share": 0.0323
     },
     {
      "name": "Coffey, John",
-     "loading_share": 0.032
+     "loading_share": 0.0304
+    },
+    {
+     "name": "Haigh, Christopher",
+     "loading_share": 0.0303
     },
     {
      "name": "Dickens, A.G",
-     "loading_share": 0.0306
+     "loading_share": 0.0286
     },
     {
      "name": "Watt, Tessa",
-     "loading_share": 0.0288
+     "loading_share": 0.0269
     },
     {
      "name": "MacCulloch, Diarmaid",
-     "loading_share": 0.0255
+     "loading_share": 0.0244
     },
     {
      "name": "Stone, Lawrence",
-     "loading_share": 0.0253
+     "loading_share": 0.0238
     },
     {
-     "name": "Greenblatt, Stephen",
-     "loading_share": 0.0233
+     "name": "Fox, A",
+     "loading_share": 0.0222
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     48
+     53
     ],
     [
      "uk:birmingham",
-     15
+     14
     ],
     [
      "uk:cambridge",
-     8
+     10
     ],
     [
      "uk:edinburgh",
-     7
-    ],
-    [
-     "uk:st-andrews",
-     6
+     8
     ],
     [
      "uk:glasgow",
+     6
+    ],
+    [
+     "uk:st-andrews",
      5
     ]
    ],
    "sample_dissertations": [
     "Religious polemic, print culture and pastoral ministry: Thomas Hall B.D. (1610-1665) and the promotion of Presbyterian orthodoxy in the Engl",
-    "Music and the experience of worship: continuity and change in Reformation Bristol and Gloucestershire, 1530-1642.",
     "England and the general councils, 1409 - 1563",
+    "Music and the experience of worship: continuity and change in Reformation Bristol and Gloucestershire, 1530-1642.",
     "Building God’s ‘true church’: exile and the Church of England c. 1553–1566.",
     "Puritan conformity, Church polity, and Anglican identity, 1628-88",
+    "The theology of violence j",
     "The presence of God in post-reformation English drama, 1559 - 1642.",
-    "The parish churches, cathedral, and corporation of Salisbury: continuity and change c.1480-c.1650.",
-    "Preaching, print, and politics: the sermons of the Royalist and Episcopalian clergy, 1642-1660"
+    "The parish churches, cathedral, and corporation of Salisbury: continuity and change c.1480-c.1650."
    ]
   },
   {
-   "id": 6,
-   "provisional_label": "BRAUDEL · Horden · Finley — mediterranean, outline, roman, economy",
-   "label_is_provisional": true,
-   "louvain_hint": "BRAUDEL · Horden · Weber",
-   "title_terms": [
-    "mediterranean",
-    "outline",
-    "roman",
-    "economy",
-    "world",
-    "economic"
-   ],
-   "bootstrap_stability": 0.392,
-   "unstable": true,
-   "init_stability": 0.274,
-   "dominated_dissertations": 75,
-   "member_works": 19,
-   "years": {
-    "median": 2019,
-    "by_5yr": {
-     "1995-1999": 2,
-     "2000-2004": 2,
-     "2005-2009": 1,
-     "2010-2014": 10,
-     "2015-2019": 25,
-     "2020-2024": 26,
-     "2025-2029": 8,
-     "unknown": 1
-    },
-    "share_of_bin": {
-     "2005-2009": 0.023,
-     "2010-2014": 0.073,
-     "2015-2019": 0.091,
-     "2020-2024": 0.073,
-     "2025-2029": 0.14
-    }
-   },
-   "top_works": [
-    {
-     "id": "W:braudel|mediterranean and the mediterranean world in the age of philip ii",
-     "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
-     "first_author": "BRAUDEL, Fernand",
-     "year": 1972,
-     "loading": 1.0,
-     "citing": 46,
-     "membership": 0.98
-    },
-    {
-     "id": "W:horden|corrupting sea",
-     "title": "The Corrupting Sea: A Study of Mediterranean History",
-     "first_author": "Horden, Peregrine",
-     "year": 2000,
-     "loading": 0.768,
-     "citing": 34,
-     "membership": 0.874
-    },
-    {
-     "id": "W:finley|ancient economy",
-     "title": "The Ancient Economy",
-     "first_author": "Finley, M.I",
-     "year": 1973,
-     "loading": 0.523,
-     "citing": 22,
-     "membership": 0.918
-    },
-    {
-     "id": "W:bourdieu|outline of a theory of practice",
-     "title": "Outline of a Theory of Practice",
-     "first_author": "Bourdieu, Pierre",
-     "year": 1977,
-     "loading": 0.406,
-     "citing": 28,
-     "membership": 0.83
-    },
-    {
-     "id": "W:wickham|framing the early middle ages",
-     "title": "Framing the Early Middle Ages: Europe and the Mediterranean 400-800",
-     "first_author": "Wickham, Chris",
-     "year": 2005,
-     "loading": 0.377,
-     "citing": 28,
-     "membership": 0.54
-    },
-    {
-     "id": "W:wallerstein|modern world system",
-     "title": "The Modern World-System",
-     "first_author": "Wallerstein, Immanuel",
-     "year": 1974,
-     "loading": 0.337,
-     "citing": 17,
-     "membership": 0.821
-    },
-    {
-     "id": "W:jones|later roman empire 284 602",
-     "title": "The Later Roman Empire, 284-602: A Social, Economic and Administrative Survey",
-     "first_author": "Jones, A",
-     "year": 1964,
-     "loading": 0.333,
-     "citing": 19,
-     "membership": 0.92
-    },
-    {
-     "id": "W:bourdieu|distinction",
-     "title": "Distinction: A Social Critique of the Judgement of Taste",
-     "first_author": "Bourdieu, Pierre",
-     "year": 1984,
-     "loading": 0.326,
-     "citing": 48,
-     "membership": 0.392
-    },
-    {
-     "id": "W:weber|economy and society",
-     "title": "Economy and Society: An Outline of Interpretive Sociology",
-     "first_author": "Weber, Max",
-     "year": 1978,
-     "loading": 0.281,
-     "citing": 33,
-     "membership": 0.5
-    },
-    {
-     "id": "W:hopkins|conquerors and slaves",
-     "title": "Conquerors and Slaves",
-     "first_author": "Hopkins, Keith",
-     "year": 1978,
-     "loading": 0.266,
-     "citing": 15,
-     "membership": 0.898
-    },
-    {
-     "id": "W:mann|sources of social power",
-     "title": "The Sources of Social Power",
-     "first_author": "Mann, Michael",
-     "year": 1986,
-     "loading": 0.265,
-     "citing": 16,
-     "membership": 0.851
-    },
-    {
-     "id": "W:syme|roman revolution",
-     "title": "The Roman Revolution",
-     "first_author": "Syme, Ronald",
-     "year": 1939,
-     "loading": 0.257,
-     "citing": 19,
-     "membership": 0.914
-    },
-    {
-     "id": "W:millar|emperor in the roman world",
-     "title": "The Emperor in the Roman World",
-     "first_author": "Millar, Fergus",
-     "year": 1977,
-     "loading": 0.238,
-     "citing": 16,
-     "membership": 0.823
-    },
-    {
-     "id": "W:lefebvre|production of space",
-     "title": "The Production of Space",
-     "first_author": "Lefebvre, Henri",
-     "year": 1991,
-     "loading": 0.191,
-     "citing": 38,
-     "membership": 0.296
-    },
-    {
-     "id": "W:geertz|interpretation of cultures",
-     "title": "The Interpretation of Cultures",
-     "first_author": "Geertz, Clifford",
-     "year": 1973,
-     "loading": 0.185,
-     "citing": 35,
-     "membership": 0.398
-    },
-    {
-     "id": "W:veblen|theory of the leisure class",
-     "title": "The Theory of the Leisure Class",
-     "first_author": "Veblen, Thorstein",
-     "year": 1899,
-     "loading": 0.144,
-     "citing": 16,
-     "membership": 0.562
-    },
-    {
-     "id": "W:brown|rise and function of the holy man in late antiquity|a",
-     "title": "The Rise and Function of the Holy Man in Late Antiquity",
-     "first_author": "Brown, Peter",
-     "year": 1971,
-     "loading": 0.125,
-     "citing": 23,
-     "membership": 0.274
-    },
-    {
-     "id": "W:hall|ethnic identity in greek antiquity",
-     "title": "Ethnic Identity in Greek Antiquity",
-     "first_author": "Hall, Jonathan M",
-     "year": 1997,
-     "loading": 0.125,
-     "citing": 16,
-     "membership": 0.278
-    },
-    {
-     "id": "W:north|institutions institutional change and economic performance",
-     "title": "Institutions, Institutional Change and Economic Performance",
-     "first_author": "North, Douglass C",
-     "year": 1990,
-     "loading": 0.124,
-     "citing": 16,
-     "membership": 0.584
-    },
-    {
-     "id": "W:polanyi|great transformation",
-     "title": "The Great Transformation: The Political and Economic Origins of Our Time",
-     "first_author": "Polanyi, Karl",
-     "year": 1944,
-     "loading": 0.124,
-     "citing": 19,
-     "membership": 0.35
-    },
-    {
-     "id": "W:walbank|historical commentary on polybius",
-     "title": "A Historical Commentary on Polybius",
-     "first_author": "Walbank, F. W",
-     "year": 1957,
-     "loading": 0.114,
-     "citing": 18,
-     "membership": 0.306
-    },
-    {
-     "id": "W:brown|rise of western christendom",
-     "title": "The Rise of Western Christendom: Triumph and Diversity, A.D. 200-1000",
-     "first_author": "Brown, Peter",
-     "year": 2003,
-     "loading": 0.111,
-     "citing": 16,
-     "membership": 0.309
-    },
-    {
-     "id": "W:giddens|constitution of society",
-     "title": "The Constitution of Society: Outline of the Theory of Structuration",
-     "first_author": "Giddens, Anthony",
-     "year": 1984,
-     "loading": 0.105,
-     "citing": 19,
-     "membership": 0.37
-    },
-    {
-     "id": "W:halbwachs|on collective memory",
-     "title": "On Collective Memory",
-     "first_author": "Halbwachs, Maurice",
-     "year": 1992,
-     "loading": 0.102,
-     "citing": 22,
-     "membership": 0.267
-    },
-    {
-     "id": "W:said|culture and imperialism",
-     "title": "Culture and Imperialism",
-     "first_author": "Said, Edward",
-     "year": 1993,
-     "loading": 0.099,
-     "citing": 24,
-     "membership": 0.149
-    }
-   ],
-   "top_people": [
-    {
-     "name": "BRAUDEL, Fernand",
-     "loading_share": 0.1006
-    },
-    {
-     "name": "Bourdieu, Pierre",
-     "loading_share": 0.081
-    },
-    {
-     "name": "Horden, Peregrine",
-     "loading_share": 0.0773
-    },
-    {
-     "name": "Finley, M.I",
-     "loading_share": 0.0526
-    },
-    {
-     "name": "Wickham, Chris",
-     "loading_share": 0.0379
-    },
-    {
-     "name": "Wallerstein, Immanuel",
-     "loading_share": 0.0339
-    },
-    {
-     "name": "Jones, A",
-     "loading_share": 0.0335
-    },
-    {
-     "name": "Brown, Peter",
-     "loading_share": 0.0331
-    },
-    {
-     "name": "Weber, Max",
-     "loading_share": 0.0283
-    },
-    {
-     "name": "Hopkins, Keith",
-     "loading_share": 0.0268
-    },
-    {
-     "name": "Mann, Michael",
-     "loading_share": 0.0266
-    },
-    {
-     "name": "Syme, Ronald",
-     "loading_share": 0.0259
-    },
-    {
-     "name": "Millar, Fergus",
-     "loading_share": 0.024
-    },
-    {
-     "name": "Lefebvre, Henri",
-     "loading_share": 0.0192
-    },
-    {
-     "name": "Geertz, Clifford",
-     "loading_share": 0.0186
-    }
-   ],
-   "top_institutions": [
-    [
-     "uk:oxford",
-     42
-    ],
-    [
-     "uk:edinburgh",
-     10
-    ],
-    [
-     "uk:birmingham",
-     8
-    ],
-    [
-     "uk:st-andrews",
-     4
-    ],
-    [
-     "uk:glasgow",
-     4
-    ],
-    [
-     "uk:cambridge",
-     2
-    ]
-   ],
-   "sample_dissertations": [
-    "Long-distance trade and the exploitation of arid landscapes in the Roman imperial period (1st – 3rd centuries AD)",
-    "Economic geography of the ancient Greek countryside",
-    "Socio-economic conditions in 14th and 15th century Thessalonike: a new approach.",
-    "Apprenticeship education in Roman Egypt: a prosopographical study",
-    "Presenting power to the people: a quantitative analysis of the late Roman base-metal coinage and its political messages (284-450).",
-    "Debt in late antique Egypt, 400-700 ce – approaches to a time in transition",
-    "Mountains, steppes and empires: approaches to the North Caucasus in the early middle ages",
-    "Society, Community and Power in Northern Spain: 700-1000"
-   ]
-  },
-  {
-   "id": 7,
-   "provisional_label": "Anderson · Gellner · Hobsbawm — nationalism, communities, nations, ethnic",
+   "id": 5,
+   "provisional_label": "Anderson · Gellner · Hobsbawm — nationalism, nations, ethnic, origins",
    "label_is_provisional": true,
    "louvain_hint": "Anderson · Said · Bourdieu",
    "title_terms": [
     "nationalism",
-    "communities",
     "nations",
     "ethnic",
     "origins",
-    "nation"
+    "nation",
+    "past"
    ],
-   "bootstrap_stability": 0.943,
+   "bootstrap_stability": 0.917,
    "unstable": false,
-   "init_stability": 0.999,
+   "init_stability": 0.998,
    "dominated_dissertations": 62,
-   "member_works": 19,
+   "member_works": 20,
    "years": {
     "median": 2017,
     "by_5yr": {
-     "1995-1999": 1,
      "2000-2004": 2,
      "2005-2009": 5,
      "2010-2014": 9,
-     "2015-2019": 23,
+     "2015-2019": 24,
      "2020-2024": 17,
      "2025-2029": 5
     },
     "share_of_bin": {
-     "2005-2009": 0.116,
+     "2005-2009": 0.119,
      "2010-2014": 0.066,
-     "2015-2019": 0.084,
+     "2015-2019": 0.088,
      "2020-2024": 0.048,
      "2025-2029": 0.088
     }
@@ -2874,14 +2145,14 @@
      "year": 1991,
      "loading": 1.0,
      "citing": 170,
-     "membership": 0.823
+     "membership": 0.837
     },
     {
      "id": "W:gellner|nations and nationalism",
      "title": "Nations and Nationalism",
      "first_author": "Gellner, Ernest",
      "year": 1983,
-     "loading": 0.635,
+     "loading": 0.63,
      "citing": 42,
      "membership": 1.0
     },
@@ -2890,237 +2161,237 @@
      "title": "The Invention of Tradition",
      "first_author": "Hobsbawm, Eric",
      "year": 1983,
-     "loading": 0.476,
+     "loading": 0.474,
      "citing": 50,
-     "membership": 0.988
+     "membership": 1.0
     },
     {
      "id": "W:hobsbawm|nations and nationalism since 1780",
      "title": "Nations and Nationalism since 1780: Programme, Myth, Reality",
      "first_author": "Hobsbawm, Eric",
      "year": 1990,
-     "loading": 0.468,
+     "loading": 0.464,
      "citing": 31,
-     "membership": 0.966
+     "membership": 0.986
     },
     {
      "id": "W:smith|ethnic origins of nations",
      "title": "The Ethnic Origins of Nations",
      "first_author": "Smith, Anthony D",
      "year": 1986,
-     "loading": 0.326,
+     "loading": 0.324,
      "citing": 21,
-     "membership": 0.959
+     "membership": 0.985
     },
     {
      "id": "W:renan|what is a nation|a",
      "title": "What is a Nation?",
      "first_author": "Renan, Ernest",
      "year": 1882,
-     "loading": 0.216,
+     "loading": 0.215,
      "citing": 15,
-     "membership": 0.973
+     "membership": 0.967
     },
     {
      "id": "W:barth|ethnic groups and boundaries",
      "title": "Ethnic Groups and Boundaries: The Social Organization of Culture Difference",
-     "first_author": "Barth, Fredrik",
+     "first_author": "BARTH, Fredrik",
      "year": 1969,
      "loading": 0.19,
      "citing": 20,
-     "membership": 0.749
+     "membership": 0.759
     },
     {
      "id": "W:nairn|break up of britain",
      "title": "The Break-Up of Britain: Crisis and Neo-Nationalism",
      "first_author": "Nairn, T",
      "year": 1977,
-     "loading": 0.142,
+     "loading": 0.148,
      "citing": 20,
-     "membership": 0.535
+     "membership": 0.595
     },
     {
      "id": "W:carr|what is history",
      "title": "What is History?",
      "first_author": "Carr, Edward Hallett",
      "year": 1961,
-     "loading": 0.11,
+     "loading": 0.108,
      "citing": 26,
-     "membership": 0.506
-    },
-    {
-     "id": "W:nora|realms of memory",
-     "title": "Realms of Memory: Rethinking the French Past",
-     "first_author": "Nora, Pierre",
-     "year": 1996,
-     "loading": 0.099,
-     "citing": 15,
-     "membership": 0.608
-    },
-    {
-     "id": "W:weber|peasants into frenchmen",
-     "title": "Peasants into Frenchmen: The Modernization of Rural France, 1870-1914",
-     "first_author": "Weber, Eugen",
-     "year": 1976,
-     "loading": 0.09,
-     "citing": 17,
-     "membership": 0.479
+     "membership": 0.516
     },
     {
      "id": "W:morton|unionist nationalism",
      "title": "Unionist-Nationalism: Governing Urban Scotland, 1830-1860",
      "first_author": "Morton, Graeme",
      "year": 1999,
-     "loading": 0.088,
+     "loading": 0.099,
      "citing": 19,
-     "membership": 0.341
+     "membership": 0.433
+    },
+    {
+     "id": "W:nora|realms of memory",
+     "title": "Realms of Memory: Rethinking the French Past",
+     "first_author": "NORA, Pierre",
+     "year": 1996,
+     "loading": 0.097,
+     "citing": 15,
+     "membership": 0.592
     },
     {
      "id": "W:thompson|voice of the past",
      "title": "The Voice of the Past: Oral History",
      "first_author": "Thompson, Paul",
      "year": 2000,
-     "loading": 0.084,
+     "loading": 0.092,
      "citing": 30,
-     "membership": 0.243
+     "membership": 0.277
     },
     {
-     "id": "W:arendt|origins of totalitarianism",
-     "title": "The Origins of Totalitarianism",
-     "first_author": "Arendt, Hannah",
-     "year": 1973,
-     "loading": 0.078,
-     "citing": 23,
-     "membership": 0.301
+     "id": "W:weber|peasants into frenchmen",
+     "title": "Peasants into Frenchmen: The Modernization of Rural France, 1870-1914",
+     "first_author": "Weber, Eugen",
+     "year": 1976,
+     "loading": 0.088,
+     "citing": 17,
+     "membership": 0.475
     },
     {
      "id": "W:connerton|how societies remember",
      "title": "How Societies Remember",
      "first_author": "Connerton, Paul",
      "year": 1989,
-     "loading": 0.075,
+     "loading": 0.08,
      "citing": 16,
-     "membership": 0.367
+     "membership": 0.399
     },
     {
-     "id": "W:westad|global cold war",
-     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
-     "first_author": "Westad, Odd Arne",
-     "year": 2005,
-     "loading": 0.074,
-     "citing": 19,
-     "membership": 0.407
-    },
-    {
-     "id": "W:lowenthal|past is a foreign country",
-     "title": "The Past is a Foreign Country",
-     "first_author": "Lowenthal, David",
-     "year": 1985,
-     "loading": 0.073,
-     "citing": 17,
-     "membership": 0.46
-    },
-    {
-     "id": "W:durkheim|elementary forms of religious life",
-     "title": "The Elementary Forms of Religious Life",
-     "first_author": "Durkheim, Emile",
-     "year": 1995,
-     "loading": 0.073,
-     "citing": 21,
-     "membership": 0.319
+     "id": "W:arendt|origins of totalitarianism",
+     "title": "The Origins of Totalitarianism",
+     "first_author": "Arendt, Hannah",
+     "year": 1973,
+     "loading": 0.079,
+     "citing": 23,
+     "membership": 0.307
     },
     {
      "id": "W:winter|sites of memory sites of mourning",
      "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
      "first_author": "Winter, Jay",
      "year": 1995,
-     "loading": 0.072,
+     "loading": 0.077,
      "citing": 18,
-     "membership": 0.401
+     "membership": 0.452
+    },
+    {
+     "id": "W:westad|global cold war",
+     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+     "first_author": "Westad, Odd Arne",
+     "year": 2005,
+     "loading": 0.077,
+     "citing": 19,
+     "membership": 0.444
     },
     {
      "id": "W:nora|between memory and history|a",
      "title": "Between Memory and History: Les Lieux de Mémoire",
-     "first_author": "Nora, Pierre",
+     "first_author": "NORA, Pierre",
      "year": 1989,
-     "loading": 0.07,
+     "loading": 0.077,
      "citing": 18,
-     "membership": 0.385
+     "membership": 0.44
     },
     {
-     "id": "W:geertz|interpretation of cultures",
-     "title": "The Interpretation of Cultures",
-     "first_author": "Geertz, Clifford",
-     "year": 1973,
-     "loading": 0.068,
-     "citing": 35,
-     "membership": 0.238
-    },
-    {
-     "id": "W:halbwachs|on collective memory",
-     "title": "On Collective Memory",
-     "first_author": "Halbwachs, Maurice",
-     "year": 1992,
-     "loading": 0.067,
-     "citing": 22,
-     "membership": 0.289
-    },
-    {
-     "id": "W:white|metahistory",
-     "title": "Metahistory: The Historical Imagination in Nineteenth-Century Europe",
-     "first_author": "White, Hayden",
-     "year": 1973,
-     "loading": 0.067,
-     "citing": 20,
-     "membership": 0.345
+     "id": "W:lowenthal|past is a foreign country",
+     "title": "The Past is a Foreign Country",
+     "first_author": "Lowenthal, David",
+     "year": 1985,
+     "loading": 0.074,
+     "citing": 17,
+     "membership": 0.485
     },
     {
      "id": "W:harvie|no gods and precious few heroes",
      "title": "No Gods and Precious Few Heroes",
      "first_author": "Harvie, Christopher",
      "year": 1981,
-     "loading": 0.064,
+     "loading": 0.071,
      "citing": 16,
-     "membership": 0.321
+     "membership": 0.398
+    },
+    {
+     "id": "W:halbwachs|on collective memory",
+     "title": "On Collective Memory",
+     "first_author": "HALBWACHS, Maurice",
+     "year": 1992,
+     "loading": 0.071,
+     "citing": 22,
+     "membership": 0.329
     },
     {
      "id": "W:smout|century of the scottish people 1830 1950",
      "title": "A Century of the Scottish People, 1830-1950",
      "first_author": "Smout, T.C",
      "year": 1986,
-     "loading": 0.062,
+     "loading": 0.069,
      "citing": 23,
-     "membership": 0.272
+     "membership": 0.32
+    },
+    {
+     "id": "W:durkheim|elementary forms of religious life",
+     "title": "The Elementary Forms of Religious Life",
+     "first_author": "DURKHEIM, Émile",
+     "year": 1995,
+     "loading": 0.069,
+     "citing": 21,
+     "membership": 0.332
+    },
+    {
+     "id": "W:geertz|interpretation of cultures",
+     "title": "The Interpretation of Cultures",
+     "first_author": "Geertz, Clifford",
+     "year": 1973,
+     "loading": 0.067,
+     "citing": 35,
+     "membership": 0.244
+    },
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 0.067,
+     "citing": 89,
+     "membership": 0.068
     }
    ],
    "top_people": [
     {
      "name": "Anderson, Benedict",
-     "loading_share": 0.1583
+     "loading_share": 0.1516
     },
     {
      "name": "Hobsbawm, Eric",
-     "loading_share": 0.1497
+     "loading_share": 0.1426
     },
     {
      "name": "Gellner, Ernest",
-     "loading_share": 0.1005
+     "loading_share": 0.0955
     },
     {
      "name": "Smith, Anthony D",
-     "loading_share": 0.0517
+     "loading_share": 0.0492
     },
     {
      "name": "Renan, Ernest",
-     "loading_share": 0.0342
+     "loading_share": 0.0326
     },
     {
-     "name": "Barth, Fredrik",
-     "loading_share": 0.0301
+     "name": "BARTH, Fredrik",
+     "loading_share": 0.0288
     },
     {
-     "name": "Nora, Pierre",
-     "loading_share": 0.0268
+     "name": "NORA, Pierre",
+     "loading_share": 0.0263
     },
     {
      "name": "Nairn, T",
@@ -3128,57 +2399,57 @@
     },
     {
      "name": "Carr, Edward Hallett",
-     "loading_share": 0.0174
-    },
-    {
-     "name": "Weber, Eugen",
-     "loading_share": 0.0143
+     "loading_share": 0.0163
     },
     {
      "name": "Morton, Graeme",
-     "loading_share": 0.0139
+     "loading_share": 0.015
     },
     {
      "name": "Thompson, Paul",
+     "loading_share": 0.014
+    },
+    {
+     "name": "Weber, Eugen",
      "loading_share": 0.0133
     },
     {
-     "name": "Weber, Max",
+     "name": "Smout, T.C",
      "loading_share": 0.0129
     },
     {
-     "name": "Arendt, Hannah",
-     "loading_share": 0.0124
+     "name": "Weber, Max",
+     "loading_share": 0.0128
     },
     {
      "name": "Connerton, Paul",
-     "loading_share": 0.0119
+     "loading_share": 0.0121
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     31
+     27
     ],
     [
      "uk:edinburgh",
-     10
+     12
     ],
     [
      "uk:glasgow",
-     6
+     7
     ],
     [
      "uk:cambridge",
      6
     ],
     [
-     "uk:birmingham",
-     5
+     "base:discovery.ucl.ac.uk",
+     4
     ],
     [
-     "base:discovery.ucl.ac.uk",
-     3
+     "uk:birmingham",
+     4
     ]
    ],
    "sample_dissertations": [
@@ -3193,35 +2464,396 @@
    ]
   },
   {
-   "id": 8,
-   "provisional_label": "Pedersen · Manela · Sluga — empire, international, nationalism, idea",
+   "id": 6,
+   "provisional_label": "Horden · Hornblower · Parker — commentary, thucydides, athens, mediterranean",
+   "label_is_provisional": true,
+   "louvain_hint": "BRAUDEL · Horden · Weber",
+   "title_terms": [
+    "commentary",
+    "thucydides",
+    "athens",
+    "mediterranean",
+    "roman",
+    "economy"
+   ],
+   "bootstrap_stability": 0.804,
+   "unstable": false,
+   "init_stability": 0.999,
+   "dominated_dissertations": 59,
+   "member_works": 16,
+   "years": {
+    "median": 2018,
+    "by_5yr": {
+     "1995-1999": 3,
+     "2000-2004": 1,
+     "2010-2014": 12,
+     "2015-2019": 25,
+     "2020-2024": 14,
+     "2025-2029": 4
+    },
+    "share_of_bin": {
+     "2010-2014": 0.088,
+     "2015-2019": 0.091,
+     "2020-2024": 0.039,
+     "2025-2029": 0.07
+    }
+   },
+   "top_works": [
+    {
+     "id": "W:horden|corrupting sea",
+     "title": "The Corrupting Sea: A Study of Mediterranean History",
+     "first_author": "Horden, Peregrine",
+     "year": 2000,
+     "loading": 1.0,
+     "citing": 34,
+     "membership": 0.887
+    },
+    {
+     "id": "W:hornblower|commentary on thucydides",
+     "title": "A Commentary on Thucydides",
+     "first_author": "Hornblower, S",
+     "year": 1991,
+     "loading": 0.993,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:parker|polytheism and society at athens",
+     "title": "Polytheism and Society at Athens",
+     "first_author": "Parker, Robert",
+     "year": 2005,
+     "loading": 0.943,
+     "citing": 15,
+     "membership": 1.0
+    },
+    {
+     "id": "W:ober|mass and elite in democratic athens",
+     "title": "Mass and Elite in Democratic Athens: Rhetoric, Ideology, and the Power of the People",
+     "first_author": "Ober, J",
+     "year": 1989,
+     "loading": 0.897,
+     "citing": 20,
+     "membership": 1.0
+    },
+    {
+     "id": "W:gomme|historical commentary on thucydides",
+     "title": "A Historical Commentary on Thucydides",
+     "first_author": "Gomme, A.W",
+     "year": 1945,
+     "loading": 0.857,
+     "citing": 16,
+     "membership": 1.0
+    },
+    {
+     "id": "W:hall|ethnic identity in greek antiquity",
+     "title": "Ethnic Identity in Greek Antiquity",
+     "first_author": "Hall, Jonathan M",
+     "year": 1997,
+     "loading": 0.77,
+     "citing": 16,
+     "membership": 0.948
+    },
+    {
+     "id": "W:walbank|historical commentary on polybius",
+     "title": "A Historical Commentary on Polybius",
+     "first_author": "Walbank, F. W",
+     "year": 1957,
+     "loading": 0.7,
+     "citing": 18,
+     "membership": 1.0
+    },
+    {
+     "id": "W:finley|ancient economy",
+     "title": "The Ancient Economy",
+     "first_author": "Finley, M.I",
+     "year": 1973,
+     "loading": 0.641,
+     "citing": 22,
+     "membership": 0.993
+    },
+    {
+     "id": "W:braudel|mediterranean and the mediterranean world in the age of philip ii",
+     "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+     "first_author": "BRAUDEL, Fernand",
+     "year": 1972,
+     "loading": 0.52,
+     "citing": 46,
+     "membership": 0.407
+    },
+    {
+     "id": "W:millar|emperor in the roman world",
+     "title": "The Emperor in the Roman World",
+     "first_author": "Millar, Fergus",
+     "year": 1977,
+     "loading": 0.368,
+     "citing": 16,
+     "membership": 0.846
+    },
+    {
+     "id": "W:hopkins|conquerors and slaves",
+     "title": "Conquerors and Slaves",
+     "first_author": "Hopkins, Keith",
+     "year": 1978,
+     "loading": 0.351,
+     "citing": 15,
+     "membership": 0.95
+    },
+    {
+     "id": "W:syme|roman revolution",
+     "title": "The Roman Revolution",
+     "first_author": "Syme, Ronald",
+     "year": 1939,
+     "loading": 0.314,
+     "citing": 19,
+     "membership": 0.844
+    },
+    {
+     "id": "W:wickham|framing the early middle ages",
+     "title": "Framing the Early Middle Ages: Europe and the Mediterranean 400-800",
+     "first_author": "Wickham, Chris",
+     "year": 2005,
+     "loading": 0.288,
+     "citing": 28,
+     "membership": 0.274
+    },
+    {
+     "id": "W:austin|how to do things with words",
+     "title": "How to Do Things with Words",
+     "first_author": "Austin, J. L",
+     "year": 1962,
+     "loading": 0.286,
+     "citing": 18,
+     "membership": 0.508
+    },
+    {
+     "id": "W:jones|later roman empire 284 602",
+     "title": "The Later Roman Empire, 284-602: A Social, Economic and Administrative Survey",
+     "first_author": "Jones, A",
+     "year": 1964,
+     "loading": 0.264,
+     "citing": 19,
+     "membership": 0.562
+    },
+    {
+     "id": "W:geertz|interpretation of cultures",
+     "title": "The Interpretation of Cultures",
+     "first_author": "Geertz, Clifford",
+     "year": 1973,
+     "loading": 0.257,
+     "citing": 35,
+     "membership": 0.329
+    },
+    {
+     "id": "W:weber|economy and society",
+     "title": "Economy and Society: An Outline of Interpretive Sociology",
+     "first_author": "Weber, Max",
+     "year": 1978,
+     "loading": 0.254,
+     "citing": 33,
+     "membership": 0.269
+    },
+    {
+     "id": "W:north|institutions institutional change and economic performance",
+     "title": "Institutions, Institutional Change and Economic Performance",
+     "first_author": "North, Douglass C",
+     "year": 1990,
+     "loading": 0.226,
+     "citing": 16,
+     "membership": 0.711
+    },
+    {
+     "id": "W:bourdieu|outline of a theory of practice",
+     "title": "Outline of a Theory of Practice",
+     "first_author": "BOURDIEU, Pierre",
+     "year": 1977,
+     "loading": 0.175,
+     "citing": 28,
+     "membership": 0.241
+    },
+    {
+     "id": "W:wallerstein|modern world system",
+     "title": "The Modern World-System",
+     "first_author": "Wallerstein, Immanuel",
+     "year": 1974,
+     "loading": 0.164,
+     "citing": 17,
+     "membership": 0.28
+    },
+    {
+     "id": "W:habermas|theory of communicative action",
+     "title": "The Theory of Communicative Action",
+     "first_author": "Habermas, Jürgen",
+     "year": 1984,
+     "loading": 0.148,
+     "citing": 16,
+     "membership": 0.304
+    },
+    {
+     "id": "W:mann|sources of social power",
+     "title": "The Sources of Social Power",
+     "first_author": "Mann, Michael",
+     "year": 1986,
+     "loading": 0.148,
+     "citing": 16,
+     "membership": 0.36
+    },
+    {
+     "id": "W:gell|art and agency",
+     "title": "Art and Agency: An Anthropological Theory",
+     "first_author": "Gell, Alfred",
+     "year": 1998,
+     "loading": 0.137,
+     "citing": 17,
+     "membership": 0.236
+    },
+    {
+     "id": "W:foucault|history of sexuality",
+     "title": "The History of Sexuality",
+     "first_author": "Foucault, Michel",
+     "year": 1978,
+     "loading": 0.119,
+     "citing": 26,
+     "membership": 0.144
+    },
+    {
+     "id": "W:giddens|constitution of society",
+     "title": "The Constitution of Society: Outline of the Theory of Structuration",
+     "first_author": "Giddens, Anthony",
+     "year": 1984,
+     "loading": 0.111,
+     "citing": 19,
+     "membership": 0.249
+    }
+   ],
+   "top_people": [
+    {
+     "name": "Horden, Peregrine",
+     "loading_share": 0.0745
+    },
+    {
+     "name": "Hornblower, S",
+     "loading_share": 0.0739
+    },
+    {
+     "name": "Parker, Robert",
+     "loading_share": 0.0703
+    },
+    {
+     "name": "Ober, J",
+     "loading_share": 0.0668
+    },
+    {
+     "name": "Gomme, A.W",
+     "loading_share": 0.0639
+    },
+    {
+     "name": "Hall, Jonathan M",
+     "loading_share": 0.0573
+    },
+    {
+     "name": "Walbank, F. W",
+     "loading_share": 0.0521
+    },
+    {
+     "name": "Finley, M.I",
+     "loading_share": 0.0477
+    },
+    {
+     "name": "BRAUDEL, Fernand",
+     "loading_share": 0.0387
+    },
+    {
+     "name": "BOURDIEU, Pierre",
+     "loading_share": 0.0291
+    },
+    {
+     "name": "Millar, Fergus",
+     "loading_share": 0.0274
+    },
+    {
+     "name": "Hopkins, Keith",
+     "loading_share": 0.0261
+    },
+    {
+     "name": "Weber, Max",
+     "loading_share": 0.0238
+    },
+    {
+     "name": "Syme, Ronald",
+     "loading_share": 0.0234
+    },
+    {
+     "name": "Wickham, Chris",
+     "loading_share": 0.0214
+    }
+   ],
+   "top_institutions": [
+    [
+     "uk:oxford",
+     35
+    ],
+    [
+     "uk:edinburgh",
+     13
+    ],
+    [
+     "uk:birmingham",
+     6
+    ],
+    [
+     "uk:glasgow",
+     2
+    ],
+    [
+     "base:www.repository.cam.ac.uk",
+     1
+    ],
+    [
+     "uk:st-andrews",
+     1
+    ]
+   ],
+   "sample_dissertations": [
+    "After the Persians: memories of the Persian Wars in the Hellenistic period",
+    "Hero-cult in Archaic and Classical Sparta: a study of local religion",
+    "The common voice of the people: the importance of proclamation in Archaic and Classical Greece with special respect to Athens",
+    "Democracy in the Peloponnese, c.550–146 BCE",
+    "Divided power and deliberation: decision-making procedures in the Greek City-States (434-150 B.C.)",
+    "All in the family: the Apollonian triad in Attic art of the sixth and fifth centuries BC",
+    "Languages and language use in classical Greek historiography and the Alexander tradition",
+    "Religious life in classical and Hellenistic Rhodes: cultic activity, identity, and organisation"
+   ]
+  },
+  {
+   "id": 7,
+   "provisional_label": "Pedersen · Manela · Sluga — empire, international, nationalism, world",
    "label_is_provisional": true,
    "louvain_hint": "Bayly · Armitage · Darwin",
    "title_terms": [
     "empire",
     "international",
     "nationalism",
-    "idea",
     "world",
+    "idea",
     "origins"
    ],
-   "bootstrap_stability": 0.49,
+   "bootstrap_stability": 0.368,
    "unstable": true,
-   "init_stability": 0.614,
-   "dominated_dissertations": 48,
+   "init_stability": 0.601,
+   "dominated_dissertations": 49,
    "member_works": 22,
    "years": {
     "median": 2019,
     "by_5yr": {
-     "2010-2014": 5,
-     "2015-2019": 20,
-     "2020-2024": 20,
+     "2010-2014": 6,
+     "2015-2019": 19,
+     "2020-2024": 21,
      "2025-2029": 3
     },
     "share_of_bin": {
-     "2010-2014": 0.036,
-     "2015-2019": 0.073,
-     "2020-2024": 0.056,
+     "2010-2014": 0.044,
+     "2015-2019": 0.069,
+     "2020-2024": 0.059,
      "2025-2029": 0.053
     }
    },
@@ -3240,16 +2872,16 @@
      "title": "The Wilsonian Moment: Self-Determination and the International Origins of Anticolonial Nationalism",
      "first_author": "Manela, Erez",
      "year": 2007,
-     "loading": 0.981,
+     "loading": 0.978,
      "citing": 24,
-     "membership": 0.9
+     "membership": 0.901
     },
     {
      "id": "W:sluga|internationalism in the age of nationalism",
      "title": "Internationalism in the Age of Nationalism",
      "first_author": "Sluga, Glenda",
      "year": 2013,
-     "loading": 0.778,
+     "loading": 0.78,
      "citing": 16,
      "membership": 1.0
     },
@@ -3258,266 +2890,266 @@
      "title": "The Empire Project: The Rise and Fall of the British World-System, 1830-1970",
      "first_author": "Darwin, John",
      "year": 2009,
-     "loading": 0.724,
+     "loading": 0.75,
      "citing": 25,
-     "membership": 0.904
+     "membership": 0.951
     },
     {
      "id": "W:mazower|governing the world",
      "title": "Governing the World: The History of an Idea",
      "first_author": "Mazower, Mark",
      "year": 2012,
-     "loading": 0.592,
+     "loading": 0.598,
      "citing": 16,
-     "membership": 0.977
+     "membership": 0.999
     },
     {
      "id": "W:bell|idea of greater britain",
      "title": "The Idea of Greater Britain: Empire and the Future of World Order, 1860-1900",
      "first_author": "Bell, Duncan",
      "year": 2007,
-     "loading": 0.501,
+     "loading": 0.499,
      "citing": 17,
-     "membership": 0.814
-    },
-    {
-     "id": "W:mazower|dark continent",
-     "title": "Dark Continent: Europe’s Twentieth Century",
-     "first_author": "Mazower, Mark",
-     "year": 1998,
-     "loading": 0.453,
-     "citing": 17,
-     "membership": 0.83
+     "membership": 0.799
     },
     {
      "id": "W:bayly|birth of the modern world 1780 1914",
      "title": "The Birth of the Modern World, 1780-1914: Global Connections and Comparisons",
      "first_author": "Bayly, C. A",
      "year": 2004,
-     "loading": 0.425,
+     "loading": 0.465,
      "citing": 30,
-     "membership": 0.484
+     "membership": 0.551
+    },
+    {
+     "id": "W:mazower|dark continent",
+     "title": "Dark Continent: Europe’s Twentieth Century",
+     "first_author": "Mazower, Mark",
+     "year": 1998,
+     "loading": 0.449,
+     "citing": 17,
+     "membership": 0.83
     },
     {
      "id": "W:gallagher|imperialism of free trade|a",
      "title": "The Imperialism of Free Trade",
      "first_author": "Gallagher, John",
      "year": 1953,
-     "loading": 0.377,
+     "loading": 0.393,
      "citing": 16,
-     "membership": 0.845
+     "membership": 0.905
     },
     {
      "id": "W:cain|british imperialism",
      "title": "British Imperialism: Innovation and Expansion, 1688-1914",
      "first_author": "Cain, P.J",
      "year": 1993,
-     "loading": 0.353,
+     "loading": 0.379,
      "citing": 18,
-     "membership": 0.606
+     "membership": 0.66
     },
     {
      "id": "W:conrad|what is global history",
      "title": "What Is Global History?",
      "first_author": "Conrad, Sebastian",
      "year": 2016,
-     "loading": 0.259,
+     "loading": 0.267,
      "citing": 17,
-     "membership": 0.531
+     "membership": 0.546
     },
     {
      "id": "W:seeley|expansion of england",
      "title": "The Expansion of England: Two Courses of Lectures",
      "first_author": "Seeley, John R",
      "year": 1883,
-     "loading": 0.254,
+     "loading": 0.262,
      "citing": 16,
-     "membership": 0.515
-    },
-    {
-     "id": "W:clavin|defining transnationalism|a",
-     "title": "Defining Transnationalism",
-     "first_author": "Clavin, Patricia",
-     "year": 2005,
-     "loading": 0.242,
-     "citing": 15,
-     "membership": 0.445
+     "membership": 0.533
     },
     {
      "id": "W:arendt|origins of totalitarianism",
      "title": "The Origins of Totalitarianism",
      "first_author": "Arendt, Hannah",
      "year": 1973,
-     "loading": 0.241,
+     "loading": 0.251,
      "citing": 23,
-     "membership": 0.362
+     "membership": 0.381
     },
     {
-     "id": "W:gregory|last great war",
-     "title": "The Last Great War: British Society and the First World War",
-     "first_author": "Gregory, Adrian",
-     "year": 2008,
-     "loading": 0.222,
-     "citing": 20,
-     "membership": 0.441
-    },
-    {
-     "id": "W:pomeranz|great divergence",
-     "title": "The Great Divergence: China, Europe, and the Making of the Modern World Economy",
-     "first_author": "Pomeranz, Kenneth",
-     "year": 2000,
-     "loading": 0.216,
-     "citing": 20,
-     "membership": 0.419
+     "id": "W:clavin|defining transnationalism|a",
+     "title": "Defining Transnationalism",
+     "first_author": "Clavin, Patricia",
+     "year": 2005,
+     "loading": 0.239,
+     "citing": 15,
+     "membership": 0.515
     },
     {
      "id": "W:armitage|ideological origins of the british empire",
      "title": "The Ideological Origins of the British Empire",
      "first_author": "Armitage, David",
      "year": 2000,
-     "loading": 0.214,
+     "loading": 0.237,
      "citing": 26,
-     "membership": 0.268
+     "membership": 0.317
     },
     {
-     "id": "W:skinner|visions of politics",
-     "title": "Visions of Politics",
-     "first_author": "Skinner, Quentin",
-     "year": 2002,
-     "loading": 0.198,
-     "citing": 25,
-     "membership": 0.309
+     "id": "W:pomeranz|great divergence",
+     "title": "The Great Divergence: China, Europe, and the Making of the Modern World Economy",
+     "first_author": "Pomeranz, Kenneth",
+     "year": 2000,
+     "loading": 0.231,
+     "citing": 20,
+     "membership": 0.437
     },
     {
      "id": "W:chakrabarty|provincializing europe",
      "title": "Provincializing Europe: Postcolonial Thought and Historical Difference",
      "first_author": "Chakrabarty, Dipesh",
      "year": 2000,
-     "loading": 0.185,
+     "loading": 0.226,
      "citing": 24,
-     "membership": 0.199
+     "membership": 0.248
+    },
+    {
+     "id": "W:gregory|last great war",
+     "title": "The Last Great War: British Society and the First World War",
+     "first_author": "Gregory, Adrian",
+     "year": 2008,
+     "loading": 0.223,
+     "citing": 20,
+     "membership": 0.433
+    },
+    {
+     "id": "W:skinner|visions of politics",
+     "title": "Visions of Politics",
+     "first_author": "Skinner, Quentin",
+     "year": 2002,
+     "loading": 0.215,
+     "citing": 25,
+     "membership": 0.364
     },
     {
      "id": "W:wendt|social theory of international politics",
      "title": "Social Theory of International Politics",
      "first_author": "Wendt, Alexander",
      "year": 1999,
-     "loading": 0.178,
+     "loading": 0.182,
      "citing": 16,
-     "membership": 0.492
+     "membership": 0.528
     },
     {
      "id": "W:waltz|theory of international politics",
      "title": "Theory of International Politics",
      "first_author": "Waltz, Kenneth N",
      "year": 1979,
-     "loading": 0.171,
+     "loading": 0.179,
      "citing": 16,
-     "membership": 0.456
+     "membership": 0.504
+    },
+    {
+     "id": "W:cannadine|ornamentalism",
+     "title": "Ornamentalism: How the British Saw Their Empire",
+     "first_author": "Cannadine, David",
+     "year": 2001,
+     "loading": 0.175,
+     "citing": 19,
+     "membership": 0.297
+    },
+    {
+     "id": "W:porter|religion versus empire",
+     "title": "Religion versus Empire? British Protestant Missionaries and Overseas Expansion, 1700-1914",
+     "first_author": "Porter, A",
+     "year": 2004,
+     "loading": 0.172,
+     "citing": 15,
+     "membership": 0.411
+    },
+    {
+     "id": "W:said|orientalism",
+     "title": "Orientalism",
+     "first_author": "Said, Edward",
+     "year": 1978,
+     "loading": 0.165,
+     "citing": 89,
+     "membership": 0.065
     },
     {
      "id": "W:hall|civilising subjects",
      "title": "Civilising Subjects: Metropole and Colony in the English Imagination, 1830-1867",
      "first_author": "Hall, Catherine",
      "year": 2002,
-     "loading": 0.158,
+     "loading": 0.165,
      "citing": 19,
-     "membership": 0.265
-    },
-    {
-     "id": "W:judt|postwar",
-     "title": "Postwar: A History of Europe since 1945",
-     "first_author": "Judt, Tony",
-     "year": 2005,
-     "loading": 0.158,
-     "citing": 19,
-     "membership": 0.478
-    },
-    {
-     "id": "W:pocock|british history|a",
-     "title": "British History: A Plea for a New Subject",
-     "first_author": "Pocock, J. G. A",
-     "year": 1975,
-     "loading": 0.152,
-     "citing": 15,
-     "membership": 0.321
-    },
-    {
-     "id": "W:westad|global cold war",
-     "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
-     "first_author": "Westad, Odd Arne",
-     "year": 2005,
-     "loading": 0.147,
-     "citing": 19,
-     "membership": 0.315
+     "membership": 0.294
     }
    ],
    "top_people": [
     {
      "name": "Mazower, Mark",
-     "loading_share": 0.0854
+     "loading_share": 0.0812
     },
     {
      "name": "Pedersen, Susan",
-     "loading_share": 0.0817
+     "loading_share": 0.0776
     },
     {
      "name": "Manela, Erez",
-     "loading_share": 0.0802
+     "loading_share": 0.0758
     },
     {
      "name": "Sluga, Glenda",
-     "loading_share": 0.0636
+     "loading_share": 0.0605
     },
     {
      "name": "Darwin, John",
-     "loading_share": 0.0592
+     "loading_share": 0.0582
     },
     {
      "name": "Bayly, C. A",
-     "loading_share": 0.0435
+     "loading_share": 0.0486
     },
     {
      "name": "Bell, Duncan",
-     "loading_share": 0.041
+     "loading_share": 0.0387
     },
     {
      "name": "Gallagher, John",
-     "loading_share": 0.0308
+     "loading_share": 0.0305
     },
     {
      "name": "Cain, P.J",
-     "loading_share": 0.0288
-    },
-    {
-     "name": "Arendt, Hannah",
-     "loading_share": 0.0253
+     "loading_share": 0.0294
     },
     {
      "name": "Skinner, Quentin",
-     "loading_share": 0.0242
+     "loading_share": 0.0263
+    },
+    {
+     "name": "Arendt, Hannah",
+     "loading_share": 0.0247
     },
     {
      "name": "Conrad, Sebastian",
-     "loading_share": 0.0211
+     "loading_share": 0.0208
     },
     {
      "name": "Seeley, John R",
-     "loading_share": 0.0207
+     "loading_share": 0.0203
     },
     {
      "name": "Clavin, Patricia",
-     "loading_share": 0.0197
+     "loading_share": 0.0186
     },
     {
-     "name": "Gregory, Adrian",
-     "loading_share": 0.0182
+     "name": "Armitage, David",
+     "loading_share": 0.0184
     }
    ],
    "top_institutions": [
     [
      "uk:oxford",
-     34
+     35
     ],
     [
      "uk:cambridge",
@@ -3541,368 +3173,14 @@
     ]
    ],
    "sample_dissertations": [
+    "A ‘seedbed’ for post-colonial leaders E",
     "The devil's paradise: the Vilnius conflict in European diplomacy, 1919-1923",
     "The formation of International Relations: ideas, practices, institutions, 1914-1940",
     "The peacemakers: envisioning a Pax Americana in the age of empires",
     "An international history of unemployment through the League of Nations and the International Labour Organization, 1931-1937",
-    "Britain’s stance on Saudi–Kuwaiti relations (1897-1932)",
     "Britain's withdrawal from the Persian Gulf, 1964-1971 a",
-    "The shape of things to come: global order and democracy in 1940s international thought",
-    "Internationalism as an organisational practice: the League of Nations Secretary-General, 1918-1946"
-   ]
-  },
-  {
-   "id": 9,
-   "provisional_label": "Hornblower · Ober · Parker — commentary, athens, thucydides, ethnic",
-   "label_is_provisional": true,
-   "louvain_hint": "BRAUDEL · Horden · Weber",
-   "title_terms": [
-    "commentary",
-    "athens",
-    "thucydides",
-    "ethnic",
-    "identity",
-    "society"
-   ],
-   "bootstrap_stability": 0.697,
-   "unstable": false,
-   "init_stability": 0.886,
-   "dominated_dissertations": 22,
-   "member_works": 7,
-   "years": {
-    "median": 2018,
-    "by_5yr": {
-     "1995-1999": 1,
-     "2010-2014": 5,
-     "2015-2019": 10,
-     "2020-2024": 6
-    },
-    "share_of_bin": {
-     "2010-2014": 0.036,
-     "2015-2019": 0.036,
-     "2020-2024": 0.017
-    }
-   },
-   "top_works": [
-    {
-     "id": "W:hornblower|commentary on thucydides",
-     "title": "A Commentary on Thucydides",
-     "first_author": "Hornblower, S",
-     "year": 1991,
-     "loading": 1.0,
-     "citing": 20,
-     "membership": 1.0
-    },
-    {
-     "id": "W:ober|mass and elite in democratic athens",
-     "title": "Mass and Elite in Democratic Athens: Rhetoric, Ideology, and the Power of the People",
-     "first_author": "Ober, J",
-     "year": 1989,
-     "loading": 0.876,
-     "citing": 20,
-     "membership": 1.0
-    },
-    {
-     "id": "W:parker|polytheism and society at athens",
-     "title": "Polytheism and Society at Athens",
-     "first_author": "Parker, Robert",
-     "year": 2005,
-     "loading": 0.874,
-     "citing": 15,
-     "membership": 1.0
-    },
-    {
-     "id": "W:gomme|historical commentary on thucydides",
-     "title": "A Historical Commentary on Thucydides",
-     "first_author": "Gomme, A.W",
-     "year": 1945,
-     "loading": 0.745,
-     "citing": 16,
-     "membership": 0.975
-    },
-    {
-     "id": "W:hall|ethnic identity in greek antiquity",
-     "title": "Ethnic Identity in Greek Antiquity",
-     "first_author": "Hall, Jonathan M",
-     "year": 1997,
-     "loading": 0.571,
-     "citing": 16,
-     "membership": 0.661
-    },
-    {
-     "id": "W:walbank|historical commentary on polybius",
-     "title": "A Historical Commentary on Polybius",
-     "first_author": "Walbank, F. W",
-     "year": 1957,
-     "loading": 0.498,
-     "citing": 18,
-     "membership": 0.694
-    },
-    {
-     "id": "W:austin|how to do things with words",
-     "title": "How to Do Things with Words",
-     "first_author": "Austin, J. L",
-     "year": 1962,
-     "loading": 0.233,
-     "citing": 18,
-     "membership": 0.365
-    },
-    {
-     "id": "W:horden|corrupting sea",
-     "title": "The Corrupting Sea: A Study of Mediterranean History",
-     "first_author": "Horden, Peregrine",
-     "year": 2000,
-     "loading": 0.212,
-     "citing": 34,
-     "membership": 0.126
-    },
-    {
-     "id": "W:foucault|history of sexuality",
-     "title": "The History of Sexuality",
-     "first_author": "Foucault, Michel",
-     "year": 1978,
-     "loading": 0.134,
-     "citing": 26,
-     "membership": 0.142
-    },
-    {
-     "id": "W:rosenwein|worrying about emotions in history|a",
-     "title": "Worrying about Emotions in History",
-     "first_author": "Rosenwein, Barbara H",
-     "year": 2002,
-     "loading": 0.114,
-     "citing": 22,
-     "membership": 0.13
-    },
-    {
-     "id": "W:skinner|visions of politics",
-     "title": "Visions of Politics",
-     "first_author": "Skinner, Quentin",
-     "year": 2002,
-     "loading": 0.108,
-     "citing": 25,
-     "membership": 0.137
-    },
-    {
-     "id": "W:north|institutions institutional change and economic performance",
-     "title": "Institutions, Institutional Change and Economic Performance",
-     "first_author": "North, Douglass C",
-     "year": 1990,
-     "loading": 0.105,
-     "citing": 16,
-     "membership": 0.258
-    },
-    {
-     "id": "W:scott|gender|a",
-     "title": "Gender: A Useful Category of Historical Analysis",
-     "first_author": "Scott, Joan W",
-     "year": 1986,
-     "loading": 0.105,
-     "citing": 35,
-     "membership": 0.096
-    },
-    {
-     "id": "W:habermas|theory of communicative action",
-     "title": "The Theory of Communicative Action",
-     "first_author": "Habermas, Jürgen",
-     "year": 1984,
-     "loading": 0.104,
-     "citing": 16,
-     "membership": 0.195
-    },
-    {
-     "id": "W:geertz|interpretation of cultures",
-     "title": "The Interpretation of Cultures",
-     "first_author": "Geertz, Clifford",
-     "year": 1973,
-     "loading": 0.1,
-     "citing": 35,
-     "membership": 0.112
-    },
-    {
-     "id": "W:millar|emperor in the roman world",
-     "title": "The Emperor in the Roman World",
-     "first_author": "Millar, Fergus",
-     "year": 1977,
-     "loading": 0.093,
-     "citing": 16,
-     "membership": 0.167
-    },
-    {
-     "id": "W:finley|ancient economy",
-     "title": "The Ancient Economy",
-     "first_author": "Finley, M.I",
-     "year": 1973,
-     "loading": 0.09,
-     "citing": 22,
-     "membership": 0.082
-    },
-    {
-     "id": "W:butler|gender trouble",
-     "title": "Gender Trouble: Feminism and the Subversion of Identity",
-     "first_author": "Butler, Judith",
-     "year": 1990,
-     "loading": 0.085,
-     "citing": 37,
-     "membership": 0.079
-    },
-    {
-     "id": "W:rosenwein|emotional communities in the early middle ages",
-     "title": "Emotional Communities in the Early Middle Ages",
-     "first_author": "Rosenwein, Barbara H",
-     "year": 2006,
-     "loading": 0.077,
-     "citing": 18,
-     "membership": 0.115
-    },
-    {
-     "id": "W:weber|protestant ethic and the spirit of capitalism",
-     "title": "The Protestant Ethic and the Spirit of Capitalism",
-     "first_author": "Weber, Max",
-     "year": 1930,
-     "loading": 0.074,
-     "citing": 16,
-     "membership": 0.138
-    },
-    {
-     "id": "W:bakhtin|dialogic imagination",
-     "title": "The Dialogic Imagination: Four Essays",
-     "first_author": "Bakhtin, Mikhail",
-     "year": 1981,
-     "loading": 0.066,
-     "citing": 16,
-     "membership": 0.122
-    },
-    {
-     "id": "W:hopkins|conquerors and slaves",
-     "title": "Conquerors and Slaves",
-     "first_author": "Hopkins, Keith",
-     "year": 1978,
-     "loading": 0.058,
-     "citing": 15,
-     "membership": 0.102
-    },
-    {
-     "id": "W:bourdieu|forms of capital|a",
-     "title": "The Forms of Capital",
-     "first_author": "Bourdieu, Pierre",
-     "year": 1986,
-     "loading": 0.055,
-     "citing": 15,
-     "membership": 0.134
-    },
-    {
-     "id": "W:gell|art and agency",
-     "title": "Art and Agency: An Anthropological Theory",
-     "first_author": "Gell, Alfred",
-     "year": 1998,
-     "loading": 0.055,
-     "citing": 17,
-     "membership": 0.084
-    },
-    {
-     "id": "W:mauss|gift",
-     "title": "The Gift: The Form and Reason for Exchange in Archaic Societies",
-     "first_author": "Mauss, Marcel",
-     "year": 1990,
-     "loading": 0.05,
-     "citing": 33,
-     "membership": 0.054
-    }
-   ],
-   "top_people": [
-    {
-     "name": "Hornblower, S",
-     "loading_share": 0.1409
-    },
-    {
-     "name": "Ober, J",
-     "loading_share": 0.1234
-    },
-    {
-     "name": "Parker, Robert",
-     "loading_share": 0.1231
-    },
-    {
-     "name": "Gomme, A.W",
-     "loading_share": 0.105
-    },
-    {
-     "name": "Hall, Jonathan M",
-     "loading_share": 0.0804
-    },
-    {
-     "name": "Walbank, F. W",
-     "loading_share": 0.0702
-    },
-    {
-     "name": "Austin, J. L",
-     "loading_share": 0.0328
-    },
-    {
-     "name": "Horden, Peregrine",
-     "loading_share": 0.0299
-    },
-    {
-     "name": "Rosenwein, Barbara H",
-     "loading_share": 0.0268
-    },
-    {
-     "name": "Skinner, Quentin",
-     "loading_share": 0.0207
-    },
-    {
-     "name": "Foucault, Michel",
-     "loading_share": 0.0197
-    },
-    {
-     "name": "Weber, Max",
-     "loading_share": 0.0161
-    },
-    {
-     "name": "North, Douglass C",
-     "loading_share": 0.0148
-    },
-    {
-     "name": "Scott, Joan W",
-     "loading_share": 0.0148
-    },
-    {
-     "name": "Habermas, Jürgen",
-     "loading_share": 0.0147
-    }
-   ],
-   "top_institutions": [
-    [
-     "uk:oxford",
-     10
-    ],
-    [
-     "uk:edinburgh",
-     8
-    ],
-    [
-     "uk:glasgow",
-     2
-    ],
-    [
-     "uk:birmingham",
-     1
-    ],
-    [
-     "uk:cambridge",
-     1
-    ]
-   ],
-   "sample_dissertations": [
-    "After the Persians: memories of the Persian Wars in the Hellenistic period",
-    "All in the family: the Apollonian triad in Attic art of the sixth and fifth centuries BC",
-    "The common voice of the people: the importance of proclamation in Archaic and Classical Greece with special respect to Athens",
-    "Divided power and deliberation: decision-making procedures in the Greek City-States (434-150 B.C.)",
-    "Commentary on the Pseudonymous Letters of Aeschines (excluding Letter 10)",
-    "Languages and language use in classical Greek historiography and the Alexander tradition",
-    "Language and politics in the world of the Hellenistic Poleis: the evidence of inscriptions",
-    "How the citizen-warrior was created in Classical Athens and Sparta."
+    "Britain’s stance on Saudi–Kuwaiti relations (1897-1932)",
+    "The shape of things to come: global order and democracy in 1940s international thought"
    ]
   }
  ]
