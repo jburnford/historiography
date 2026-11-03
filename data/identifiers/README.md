@@ -965,3 +965,7 @@ The 28 people who supervised USask History PhDs, keyed and checked against Wikid
   - Batches: `usask-merged.qs` (Waiser, Neufeld, Graham). Hayden's CREATE block in `usask-new.qs` now carries
     the archives record's facts.
   - His death date (October 2026, from the user's obituary text) waits for a citable obituary URL.
+- **usask-new.qs** was run (read back 2026-11-02; the file is restored to the version run, so it must not be
+  run again). New items: Hayden Q141979260, Kent Q141979261, Smith Q141979262, Keyworth Q141979264 and David
+  Q141979265, all keyed; Englebert's item is updated. `usask-followup.qs` relabels Q141979262 'Martha Smith'
+  (current name) and adds the archives record's facts to Hayden's item.
