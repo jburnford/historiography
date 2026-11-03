@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 items in order: 10 matches and 10 null verdicts. Validated the JSON and candidate IDs. No other files were written.

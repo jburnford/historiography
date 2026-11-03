@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json): 20 entries in order, with 14 matches and 6 null verdicts.

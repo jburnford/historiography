@@ -12,7 +12,8 @@ records across the two by LCCN.
 
 - records: control (001), lccn (010 $a, normalised as the harvest does), isbns (020 $a as ISBN-13),
   title (245 $a $b, as the harvest), title_a (245 $a), date1 (008/07-10), lang (008/35-37),
-  publisher (260/264 $b);
+  publisher (260/264 $b), responsibility (245 $c, added 2026-11-03: 'edited by Eric Hobsbawm and Terence Ranger'
+  tells an editor from a contributor where the added entry has no relator);
 - headings: control, pos, and the personal-name headings from 100/700 without $t, with the same fields
   and rules as `bib_headings` + `record_facts` (heading, family, given, fuller, uri, dates, relators).
 
@@ -73,7 +74,7 @@ def parse(raw):
 def facts(fields):
     """One records row and its headings, following lc_catalogue_harvest.record_facts and
     lc_authority_pilot.bib_headings."""
-    rec = dict(control='', lccn='', isbns=[], title='', title_a='', date1='', lang='', publisher='')
+    rec = dict(control='', lccn='', isbns=[], title='', title_a='', date1='', lang='', publisher='', responsibility='')
     heads = []
     for f in fields:
         tag = f[0]
@@ -87,6 +88,7 @@ def facts(fields):
         if tag == '245':
             rec['title'] = ' '.join(v for c, v in subs if c in 'ab').strip(' /:;,.')
             rec['title_a'] = ' '.join(v for c, v in subs if c == 'a').strip(' /:;,.')
+            rec['responsibility'] = ' '.join(v for c, v in subs if c == 'c').strip(' /:;,.')[:500]
         elif tag == '020':
             rec['isbns'] += [i for c, v in subs if c == 'a' and (i := isbn13(v.split(' ')[0]))]
         elif tag == '010':

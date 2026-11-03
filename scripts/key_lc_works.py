@@ -102,6 +102,22 @@ def unique_bases(names_path, keyed):
     return dict(rows)
 
 
+EDITING = re.compile(r'\b(edited|editors?|eds?\.|compiled|compilers?|hrsg|herausgegeben|herausgeber|sous la direction|'
+                     r'dirig[ée]e?s?|[ée]dit[ée]e?s? par|organizad[oa]s?|organiza[çc][ãa]o|org\.|a cura di|coordinad[oa]s?|'
+                     r'coordenad[oa]s?|coordinated|redactie|redigert|toim\.)', re.I)
+
+
+def editor_by_statement(tag, relators, family, responsibility):
+    """An added entry without a relator is an editor when the record's statement of responsibility (245 $c) speaks
+    of editing and names the person ('edited by Eric Hobsbawm and Terence Ranger'; 2026-11-03: older records give
+    collections no relators, so their editors were left out)."""
+    if tag != '700' or relators or not responsibility or not family:
+        return None
+    fam = unicodedata.normalize('NFKD', family).encode('ascii', 'ignore').decode().lower().strip(' ,.')
+    text = unicodedata.normalize('NFKD', responsibility).encode('ascii', 'ignore').decode().lower()
+    return 'edited' if EDITING.search(responsibility) and len(fam) > 1 and re.search(r'\b' + re.escape(fam) + r'\b', text) else None
+
+
 def catalogue_roles(index, names, bases=None):
     """LCCN -> [(pos, lcid, role)] for headings that resolve to one of the loaded authorities (by $0, the
     authorised heading, or an earlier form of it: former_heading), or, for a heading without dates that resolves
@@ -109,10 +125,13 @@ def catalogue_roles(index, names, bases=None):
     bases = bases or {}
     roles = defaultdict(list)
     for part in sorted(glob.glob(f'{index}/headings-*.parquet')):
-        rows = duckdb.sql(f"SELECT control, pos, tag, heading, uri, relators FROM read_parquet('{part}') "
-                          "WHERE tag IN ('100', '700')").fetchall()
-        for control, pos, tag, heading, uri, rel in rows:
-            role = role_of(tag, rel)
+        rec_part = part.replace('/headings-', '/records-')
+        has_resp = 'responsibility' in {c[0] for c in duckdb.sql(f"DESCRIBE SELECT * FROM read_parquet('{rec_part}')").fetchall()}
+        resp = f"r.responsibility" if has_resp else "''"
+        rows = duckdb.sql(f"SELECT h.control, h.pos, h.tag, h.heading, h.uri, h.relators, h.family, {resp} FROM read_parquet('{part}') h "
+                          f"LEFT JOIN read_parquet('{rec_part}') r ON r.control = h.control WHERE h.tag IN ('100', '700')").fetchall()
+        for control, pos, tag, heading, uri, rel, family, responsibility in rows:
+            role = role_of(tag, rel) or editor_by_statement(tag, rel, family, responsibility)
             if not role:
                 continue
             lcid, via = resolve(dict(heading=heading, uri=uri or ''), names)

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 items in order: 13 matches and seven nulls. Validated the schema and candidate IDs. No other files were written.

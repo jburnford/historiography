@@ -7,7 +7,8 @@ with their authors and editors as `authored` / `edited` relations. A cited book 
 - one of its listed authors' family name is the family name of one of the LC work's authors or editors;
 - its main title (before the first colon), normalised by key_lc_works.title_key, equals the LC work's main
   title;
-- exactly one LC work matches.
+- exactly one LC work matches, or, when several do (an original and its translation share a main title),
+  exactly one has the citation's whole title, or was first published within two years of the cited year.
 
 The corpus keys are build artefacts that change when the corpus is rebuilt, so the result is a crosswalk file
 beside the log, not log events: `crosswalk.csv.gz` (work_id, key, lccn, title), regenerated after each corpus
@@ -36,6 +37,31 @@ def family_of(name):
 
 def main_title(t):
     return title_key((t or '').split(':')[0])
+
+
+def whole_key(t):
+    return title_key((t or '').split(' / ')[0].replace(' : ', ': '))
+
+
+def tie_break(found, row, titles, state):
+    """Several LC works under one main title (Agamben's *Homo sacer* in Italian and in English): the one whose
+    whole title agrees with the citation's, else the one first published within two years of the cited year,
+    when exactly one does (2026-11-03)."""
+    whole = whole_key(row['title'])
+    same = {w for w in found if any(whole_key(t) == whole for t in titles[w])}
+    if len(same) == 1:
+        return same
+    y = int(row['year']) if (row.get('year') or '').isdigit() else None
+    if y:
+        near = set()
+        for w in same or found:
+            years = [int(m.rsplit(':', 1)[1]) for m in state.members.get(w, ()) if m.startswith(('lc-first-year:', 'year:'))
+                     and m.rsplit(':', 1)[1].isdigit()]
+            if years and abs(min(years) - y) <= 2:
+                near.add(w)
+        if len(near) == 1:
+            return near
+    return None
 
 
 def main():
@@ -76,6 +102,8 @@ def main():
             found = set()
             for name in r['authors'].split(';'):
                 found |= index.get((family_of(name), mt), set())
+            if len(found) > 1:                        # an original and its translation share a main title (Homo sacer)
+                found = tie_break(found, r, titles, state) or found
             if len(found) == 1:
                 w = found.pop()
                 rows.append((r['work_id'], w, min(a[5:] for a in state.keys[w]['anchors'] if a.startswith('lccn:')),

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts in order: 12 matches and 8 nulls. No other files were written.
