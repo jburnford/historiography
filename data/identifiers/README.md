@@ -1055,3 +1055,26 @@ contradicted, 71 doubtful) went to Sol (`BRIEF.md`, 11 groups of 8): 83 `own` (f
 postdoctoral fellowships), 2 `namesake`, repaired by `apply-verdicts.py`: Peter Brown (Princeton; no earned
 doctorate) loses Peter Bowman Brown's Chicago 1978 dissertation (minted as its own person), and Arthur
 Schlesinger Jr. (CUNY) loses his father's Columbia 1918 dissertation to Sr.'s key, p-89397.
+
+## Brazilian theses keyed (2026-11-03, `theses-2026-11-03/`)
+
+`scripts/key_theses.py` rerun after the Brazil ingest (2b3cd6b): 2,710 CAPES-screened doctorates minted as thesis
+works with their authors (5,420 mints). One merge: Daniel Woolf's Oxford DPhil author key (UK OpenAIRE record)
+joins the historiographer's key p-4020 through his own book. The 5 held merge candidates are those of the last run.
+
+## Supervisors named by thesis repositories (2026-11-03, `repository-supervisors-2026-11-03/`)
+
+`scripts/key_repository_supervisors.py`: the corpus records name supervisors for 8,236 doctorates
+(doctorates.json `advisors`: Canadian and US DSpace, Oxford via DataCite, theses.fr with IdRef ids, CAPES
+orientadores with CAPES ids). Fields listing more than two people are committee lists and are left out (189).
+`advisor_names` splits fields naming several people ('Angus Burgin, Francois Furstenberg') and drops honorifics
+and roles ('Dr', 'supervisor'). Anchors: `idref:` (new public scheme, the French national authority),
+`capes-person:`, else `repo-advisor:<institution>|<given family>`. 7,362 keyed theses:
+- 1,345 advisor anchors joined to keyed people: the same thesis's AHA advisor with an agreeing name (Melvyn
+  Leffler at Virginia, Suzanne Desan at Wisconsin), or IdRef → Wikidata P269 → a keyed item (105: Dominique
+  Deslandres, Jan Grabowski, John Tolan); several spellings of one advisor go to one key together;
+- 2,022 new supervisors (`recorded`, or `established` with an IdRef id), most of them Brazilian and French;
+- 5,680 `supervised` claims (2,654 were already in the log from the AHA); 2 anchors reaching two keys listed.
+To do: new supervisors who already hold a PID key under another route (Nicholas Purcell and John Ma at Oxford,
+Till van Rahden at Montréal) need a career-fact pass (employer = the thesis's institution), as key_aha_career did
+for AHA keys.
