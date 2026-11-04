@@ -1,7 +1,7 @@
 """Authors of much-cited books who hold no key -> keys, through LC's record of the book (2026-11-03). Writes a proposal.
 
 The ranked list of ungrounded cited works (ungrounded_works.py) is led by books whose author no key holds
-(`author_not_keyed`: Ilmar Rohloff de Mattos, *O Tempo Saquarema*; Robert Slenes, *Na senzala, uma flor*). The book
+(`author_not_keyed`, and from the second run `author_keyed_no_lc` and `primary_source`: Ilmar Rohloff de Mattos, *O Tempo Saquarema*; Robert Slenes, *Na senzala, uma flor*). The book
 identifies its author (identity by works): for each such book cited by at least --min theses, LC's 2016 catalogue
 (local index, scripts/lc_bib_index.py) is searched for records of the same book:
 - the record's main title (key_lc_works.title_key, before the first colon) equals the cited main title, three
@@ -13,7 +13,9 @@ identifies its author (identity by works): for each such book cited by at least 
   .resolve: $0, authorised heading, or an earlier form with the same dates).
 When all the cited author's matching records give one authority, the author is that person: the key holding the
 authority gains `diss-person:<corpus id>`, or a new key is minted with `lcnaf:<id>` and `diss-person:<corpus id>`
-(established: a public PID). Corpus ids given as variants of one author ('bullock|alan', 'bullock|allan') go onto
+(established: a public PID); a key that holds the corpus id but no LC authority gains the authority (Rotundo,
+Lyotard), and when another key holds that authority the two are held for review, not merged. Books the ranked list
+files as primary sources are taken too (Brazilian bibliographies mark translated classics as sources). Corpus ids given as variants of one author ('bullock|alan', 'bullock|allan') go onto
 the one key; a corpus id naming no one in particular ('curtis', 'davis|j') is skipped. The next key_lc_works run then keys their LC books, and the crosswalk their citations.
 
     python3 scripts/key_cited_book_authors.py --ranked data/identifiers/ungrounded-works-2026-11-03c/ranked.csv.gz \\
@@ -28,7 +30,7 @@ from pathlib import Path
 import duckdb
 
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
-from key_lc_works import title_key
+from key_lc_works import former_heading, title_key
 from key_registry import names_compatible
 from lc_resolve_authorities import load_names, resolve
 
@@ -65,7 +67,7 @@ def main():
     db.execute("SET memory_limit = '3GB'")
     db.execute("SET temp_directory = '/mnt/e/duckdb-tmp'")
     books = db.execute(f"""SELECT work_id, title, try_cast(year AS INT), try_cast(theses AS INT) FROM read_csv('{args.ranked}', all_varchar=true)
-                           WHERE reason = 'author_not_keyed' AND kind IN ('book', 'book_or_serial', 'unstyled')
+                           WHERE reason IN ('author_not_keyed', 'author_keyed_no_lc', 'primary_source') AND kind IN ('book', 'book_or_serial', 'unstyled')
                              AND try_cast(theses AS INT) >= {args.min}""").fetchall()
     db.execute('CREATE TABLE b(w VARCHAR)')
     db.executemany('INSERT INTO b VALUES (?)', [(r[0],) for r in books])
@@ -114,6 +116,8 @@ def main():
         lcid, via = resolve(dict(heading=heading, uri=uri or ''), names)
         if not lcid or names[0][lcid].get('undifferentiated') or names[0][lcid].get('deprecated'):
             continue
+        if via == 'variant' and not former_heading(heading, names[0][lcid]['label']):
+            continue                                   # another person's 'see from' form as often as not
         for w in hits[control]:
             for p, display in people.get(w, ()):
                 if fold(family) == fold(display.split(',')[0]) and names_compatible(names[0][lcid]['label'], display):
@@ -144,16 +148,19 @@ def main():
         if weak_corpus_id(c['person']):
             report['weak_corpus_id'] += 1
             continue
-        if f'diss-person:{c["person"]}' in state.anchor:
-            report['corpus_id_already_keyed'] += 1
+        holder = state.anchor.get(f'diss-person:{c["person"]}')
+        if holder and any(a.startswith('lcnaf:') for a in state.keys[holder]['anchors']):
+            report['corpus_id_keyed_with_lc'] += 1
             continue
         by_lc[c['lc'][0]].append(c)
     clusters = []
     for lc, cs in sorted(by_lc.items()):
-        report['attach' if f'lcnaf:{lc}' in state.anchor else 'mint'] += 1
+        anchors = {f'lcnaf:{lc}'} | {f'diss-person:{c["person"]}' for c in cs}
+        owners = {state.anchor[a] for a in anchors if a in state.anchor}
+        report['mint' if not owners else 'attach' if len(owners) == 1 else 'several_keys'] += 1
         report['corpus_ids'] += len(cs)
         clusters.append(dict(type='person', label=cs[0]['label'], members=set(), aliases=set(), resolution='established',
-                             anchors={f'lcnaf:{lc}'} | {f'diss-person:{c["person"]}' for c in cs},
+                             anchors=anchors,
                              basis='; '.join(f'author of the cited book {c["works"][0]} (corpus id {c["person"]})' for c in cs)
                                    + f': LC catalogues it under {cs[0]["label"]} ({lc})'))
     ops, assign, held = plan(state, clusters)

@@ -71,9 +71,12 @@ def role_of(tag, relators):
 def former_heading(heading, label):
     """A variant that is an earlier form of the authorised heading: same family name and the same dates, which
     are present ('Loo, Tina Merrill, 1962-' for 'Loo, Tina, 1962-', revised in 2019; the 2016 records keep the
-    old form). A variant without dates, or with other dates, is another person's 'see from' form as often as not."""
-    d = label_dates(heading)
-    return bool(d) and d == label_dates(label) and heading.split(',')[0].strip().lower() == label.split(',')[0].strip().lower()
+    old form). A variant without dates, or with other dates, is another person's 'see from' form as often as not.
+    2026-11-03: the record's closing full stop is not part of the dates ('Innis, Harold Adams, 1894-1952.'), and
+    dates left open while the person lived match the closed ones ('Gutman, Herbert George, 1928-' for '1928-1985')."""
+    d, full = label_dates(heading).rstrip(' .'), label_dates(label).rstrip(' .')
+    same = d == full or (d.endswith('-') and d[:-1].isdigit() and full.startswith(d) and full[len(d):].isdigit() and len(full) - len(d) >= 3)
+    return bool(d) and same and heading.split(',')[0].strip().lower() == label.split(',')[0].strip().lower()
 
 
 BASE_SQL = r"""lower(trim(regexp_replace(regexp_replace(label, '\s*\([^)]*\)', '', 'g'),
