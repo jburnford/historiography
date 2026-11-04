@@ -1,39 +1,39 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 11,
- "louvain_clustered": 273,
- "louvain_vocabulary": 304,
- "nmf_vocabulary": 304,
- "shared_works": 273,
+ "louvain_fields": 10,
+ "louvain_clustered": 264,
+ "louvain_vocabulary": 303,
+ "nmf_vocabulary": 303,
+ "shared_works": 264,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.516,
-  "nmi": 0.649,
+  "adjusted_rand": 0.547,
+  "nmi": 0.674,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.321,
+ "entropy_vs_louvain_link_split_spearman": 0.353,
  "families": [
   {
    "family": 0,
    "label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
-   "dominated": 204,
+   "dominated": 205,
    "member_works": 71,
    "best_by_member_works": {
     "field": "Colley · Brewer · Gilroy",
     "field_id": 0,
-    "jaccard": 0.405,
-    "field_size": 40
+    "jaccard": 0.392,
+    "field_size": 39
    },
    "best_by_top25": {
     "field": "Colley · Brewer · Gilroy",
     "field_id": 0,
-    "jaccard": 0.25,
+    "jaccard": 0.255,
     "top25_inside": 0.52
    },
    "best_by_dissertations": {
     "field": "Colley · Brewer · Gilroy",
     "field_id": 0,
-    "jaccard": 0.396,
-    "engaged": 113
+    "jaccard": 0.403,
+    "engaged": 112
    },
    "top25_spread": [
     [
@@ -41,38 +41,38 @@
      0.52
     ],
     [
-     "Smith · Locke · Israel",
-     0.28
+     "Smith · Lynch · Smout",
+     0.4
     ]
    ]
   },
   {
    "family": 1,
    "label": "Said · Foucault · Stoler — colonial, knowledge, critique, birth",
-   "dominated": 197,
-   "member_works": 63,
+   "dominated": 195,
+   "member_works": 62,
    "best_by_member_works": {
     "field": "Foucault · Lefebvre · Butler",
-    "field_id": 2,
-    "jaccard": 0.426,
-    "field_size": 34
+    "field_id": 5,
+    "jaccard": 0.364,
+    "field_size": 28
    },
    "best_by_top25": {
     "field": "Foucault · Lefebvre · Butler",
-    "field_id": 2,
-    "jaccard": 0.283,
-    "top25_inside": 0.52
+    "field_id": 5,
+    "jaccard": 0.205,
+    "top25_inside": 0.36
    },
    "best_by_dissertations": {
     "field": "Foucault · Lefebvre · Butler",
-    "field_id": 2,
-    "jaccard": 0.21,
-    "engaged": 85
+    "field_id": 5,
+    "jaccard": 0.177,
+    "engaged": 71
    },
    "top25_spread": [
     [
      "Foucault · Lefebvre · Butler",
-     0.52
+     0.36
     ],
     [
      "Said · Bhabha · Fanon",
@@ -116,25 +116,25 @@
   },
   {
    "family": 3,
-   "label": "Knowles · Blair · Brown — saxon, ages, anglo, medieval",
-   "dominated": 108,
-   "member_works": 29,
+   "label": "Knowles · Blair · Brown — saxon, medieval, ages, anglo",
+   "dominated": 109,
+   "member_works": 30,
    "best_by_member_works": {
     "field": "Clanchy · Gransden · Mauss",
-    "field_id": 3,
+    "field_id": 2,
     "jaccard": 0.765,
-    "field_size": 31
+    "field_size": 30
    },
    "best_by_top25": {
     "field": "Clanchy · Gransden · Mauss",
-    "field_id": 3,
-    "jaccard": 0.647,
+    "field_id": 2,
+    "jaccard": 0.667,
     "top25_inside": 0.88
    },
    "best_by_dissertations": {
     "field": "Clanchy · Gransden · Mauss",
-    "field_id": 3,
-    "jaccard": 0.684,
+    "field_id": 2,
+    "jaccard": 0.678,
     "engaged": 84
    },
    "top25_spread": [
@@ -146,31 +146,35 @@
   },
   {
    "family": 4,
-   "label": "Duffy · Fincham · Tyacke — altars, religion, english, england",
-   "dominated": 101,
-   "member_works": 35,
+   "label": "Duffy · Fincham · Tyacke — altars, religion, england, english",
+   "dominated": 95,
+   "member_works": 34,
    "best_by_member_works": {
-    "field": "Duffy · Thomas · Greenblatt",
-    "field_id": 5,
-    "jaccard": 0.583,
+    "field": "Duffy · Thomas · Hobbes",
+    "field_id": 6,
+    "jaccard": 0.6,
     "field_size": 22
    },
    "best_by_top25": {
-    "field": "Duffy · Thomas · Greenblatt",
-    "field_id": 5,
-    "jaccard": 0.679,
-    "top25_inside": 0.76
+    "field": "Duffy · Thomas · Hobbes",
+    "field_id": 6,
+    "jaccard": 0.621,
+    "top25_inside": 0.72
    },
    "best_by_dissertations": {
-    "field": "Duffy · Thomas · Greenblatt",
-    "field_id": 5,
-    "jaccard": 0.393,
+    "field": "Duffy · Thomas · Hobbes",
+    "field_id": 6,
+    "jaccard": 0.416,
     "engaged": 48
    },
    "top25_spread": [
     [
-     "Duffy · Thomas · Greenblatt",
-     0.76
+     "Duffy · Thomas · Hobbes",
+     0.72
+    ],
+    [
+     "Smith · Lynch · Smout",
+     0.12
     ]
    ]
   },
@@ -203,7 +207,7 @@
      0.6
     ],
     [
-     "Lynch · Smout · Devine",
+     "Smith · Lynch · Smout",
      0.16
     ]
    ]
@@ -211,7 +215,7 @@
   {
    "family": 6,
    "label": "Horden · Hornblower · Parker — commentary, thucydides, athens, mediterranean",
-   "dominated": 59,
+   "dominated": 60,
    "member_works": 16,
    "best_by_member_works": {
     "field": "Braudel · Horden · Weber",
@@ -222,23 +226,23 @@
    "best_by_top25": {
     "field": "Braudel · Horden · Weber",
     "field_id": 7,
-    "jaccard": 0.607,
-    "top25_inside": 0.68
+    "jaccard": 0.552,
+    "top25_inside": 0.64
    },
    "best_by_dissertations": {
     "field": "Braudel · Horden · Weber",
     "field_id": 7,
-    "jaccard": 0.58,
+    "jaccard": 0.571,
     "engaged": 50
    },
    "top25_spread": [
     [
      "Braudel · Horden · Weber",
-     0.68
+     0.64
     ],
     [
      "Anderson · Said · Bourdieu",
-     0.12
+     0.16
     ]
    ]
   },
@@ -248,27 +252,27 @@
    "dominated": 49,
    "member_works": 22,
    "best_by_member_works": {
-    "field": "Bayly · Armitage · Darwin",
-    "field_id": 6,
-    "jaccard": 0.593,
-    "field_size": 21
+    "field": "Bayly · Darwin · Skinner",
+    "field_id": 8,
+    "jaccard": 0.64,
+    "field_size": 19
    },
    "best_by_top25": {
-    "field": "Bayly · Armitage · Darwin",
-    "field_id": 6,
-    "jaccard": 0.643,
-    "top25_inside": 0.72
+    "field": "Bayly · Darwin · Skinner",
+    "field_id": 8,
+    "jaccard": 0.63,
+    "top25_inside": 0.68
    },
    "best_by_dissertations": {
-    "field": "Bayly · Armitage · Darwin",
-    "field_id": 6,
-    "jaccard": 0.537,
-    "engaged": 34
+    "field": "Bayly · Darwin · Skinner",
+    "field_id": 8,
+    "jaccard": 0.558,
+    "engaged": 32
    },
    "top25_spread": [
     [
-     "Bayly · Armitage · Darwin",
-     0.72
+     "Bayly · Darwin · Skinner",
+     0.68
     ],
     [
      "Said · Bhabha · Fanon",
@@ -281,14 +285,14 @@
   {
    "field": "Colley · Brewer · Gilroy",
    "field_id": 0,
-   "works": 40,
+   "works": 39,
    "best_family": 0,
    "family_label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
-   "jaccard": 0.405,
+   "jaccard": 0.392,
    "work_spread": [
     [
      0,
-     32
+     31
     ],
     [
      2,
@@ -319,20 +323,16 @@
    ]
   },
   {
-   "field": "Foucault · Lefebvre · Butler",
+   "field": "Clanchy · Gransden · Mauss",
    "field_id": 2,
-   "works": 34,
-   "best_family": 1,
-   "family_label": "Said · Foucault · Stoler — colonial, knowledge, critique, birth",
-   "jaccard": 0.426,
+   "works": 30,
+   "best_family": 3,
+   "family_label": "Knowles · Blair · Brown — saxon, medieval, ages, anglo",
+   "jaccard": 0.765,
    "work_spread": [
     [
-     1,
-     29
-    ],
-    [
-     2,
-     3
+     3,
+     26
     ],
     [
      0,
@@ -341,32 +341,32 @@
     [
      5,
      1
-    ]
-   ]
-  },
-  {
-   "field": "Clanchy · Gransden · Mauss",
-   "field_id": 3,
-   "works": 31,
-   "best_family": 3,
-   "family_label": "Knowles · Blair · Brown — saxon, ages, anglo, medieval",
-   "jaccard": 0.765,
-   "work_spread": [
-    [
-     3,
-     26
-    ],
-    [
-     4,
-     2
-    ],
-    [
-     5,
-     1
     ],
     [
      6,
      1
+    ]
+   ]
+  },
+  {
+   "field": "Smith · Lynch · Smout",
+   "field_id": 3,
+   "works": 29,
+   "best_family": 0,
+   "family_label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
+   "jaccard": 0.299,
+   "work_spread": [
+    [
+     0,
+     23
+    ],
+    [
+     4,
+     4
+    ],
+    [
+     5,
+     2
     ]
    ]
   },
@@ -387,22 +387,44 @@
      10
     ],
     [
-     3,
+     6,
      1
     ],
     [
-     6,
+     3,
      1
     ]
    ]
   },
   {
-   "field": "Duffy · Thomas · Greenblatt",
+   "field": "Foucault · Lefebvre · Butler",
    "field_id": 5,
+   "works": 28,
+   "best_family": 1,
+   "family_label": "Said · Foucault · Stoler — colonial, knowledge, critique, birth",
+   "jaccard": 0.364,
+   "work_spread": [
+    [
+     1,
+     24
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     0,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "Duffy · Thomas · Hobbes",
+   "field_id": 6,
    "works": 22,
    "best_family": 4,
-   "family_label": "Duffy · Fincham · Tyacke — altars, religion, english, england",
-   "jaccard": 0.583,
+   "family_label": "Duffy · Fincham · Tyacke — altars, religion, england, english",
+   "jaccard": 0.6,
    "work_spread": [
     [
      4,
@@ -410,32 +432,6 @@
     ],
     [
      0,
-     1
-    ]
-   ]
-  },
-  {
-   "field": "Bayly · Armitage · Darwin",
-   "field_id": 6,
-   "works": 21,
-   "best_family": 7,
-   "family_label": "Pedersen · Manela · Sluga — empire, international, nationalism, world",
-   "jaccard": 0.593,
-   "work_spread": [
-    [
-     7,
-     16
-    ],
-    [
-     1,
-     2
-    ],
-    [
-     0,
-     2
-    ],
-    [
-     6,
      1
     ]
    ]
@@ -461,58 +457,40 @@
      2
     ],
     [
-     2,
+     4,
      1
     ]
    ]
   },
   {
-   "field": "Lynch · Smout · Devine",
+   "field": "Bayly · Darwin · Skinner",
    "field_id": 8,
-   "works": 15,
-   "best_family": 0,
-   "family_label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
-   "jaccard": 0.147,
+   "works": 19,
+   "best_family": 7,
+   "family_label": "Pedersen · Manela · Sluga — empire, international, nationalism, world",
+   "jaccard": 0.64,
    "work_spread": [
     [
-     0,
-     11
+     7,
+     16
     ],
     [
-     4,
+     1,
      2
     ],
     [
-     5,
-     2
-    ]
-   ]
-  },
-  {
-   "field": "Smith · Locke · Israel",
-   "field_id": 9,
-   "works": 13,
-   "best_family": 0,
-   "family_label": "Colley · Brewer · Habermas — inquiry, enlightenment, english, nation",
-   "jaccard": 0.167,
-   "work_spread": [
-    [
-     0,
-     12
-    ],
-    [
-     4,
+     6,
      1
     ]
    ]
   },
   {
    "field": "Said · Bhabha · Fanon",
-   "field_id": 10,
+   "field_id": 9,
    "works": 11,
    "best_family": 1,
    "family_label": "Said · Foucault · Stoler — colonial, knowledge, critique, birth",
-   "jaccard": 0.156,
+   "jaccard": 0.159,
    "work_spread": [
     [
      1,
@@ -527,21 +505,32 @@
  ],
  "louvain_unclustered_works": [
   {
+   "title": "Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense",
+   "first_author": "Stoler, Ann Laura",
+   "citing": 36,
+   "entropy": 0.062,
+   "nmf_top": 1,
+   "nmf_top_share": 0.97,
+   "nmf_second": 2,
+   "nmf_second_share": 0.03,
+   "louvain": "unclustered"
+  },
+  {
    "title": "The Machiavellian Moment: Florentine Political Thought and the Atlantic Republican Tradition",
    "first_author": "Pocock, J. G. A",
    "citing": 35,
-   "entropy": 0.273,
+   "entropy": 0.281,
    "nmf_top": 0,
-   "nmf_top_share": 0.85,
+   "nmf_top_share": 0.84,
    "nmf_second": 4,
-   "nmf_second_share": 0.11,
+   "nmf_second_share": 0.12,
    "louvain": "unclustered"
   },
   {
    "title": "The King’s Two Bodies: A Study in Medieval Political Theology",
    "first_author": "Kantorowicz, Ernst H",
    "citing": 32,
-   "entropy": 0.632,
+   "entropy": 0.618,
    "nmf_top": 4,
    "nmf_top_share": 0.44,
    "nmf_second": 3,
@@ -552,7 +541,7 @@
    "title": "Capital: A Critique of Political Economy",
    "first_author": "Marx, Karl",
    "citing": 32,
-   "entropy": 0.45,
+   "entropy": 0.461,
    "nmf_top": 1,
    "nmf_top_share": 0.69,
    "nmf_second": 0,
@@ -563,20 +552,42 @@
    "title": "The Foundations of Modern Political Thought",
    "first_author": "Skinner, Quentin",
    "citing": 32,
-   "entropy": 0.214,
+   "entropy": 0.196,
    "nmf_top": 4,
-   "nmf_top_share": 0.87,
+   "nmf_top_share": 0.89,
    "nmf_second": 0,
-   "nmf_second_share": 0.1,
+   "nmf_second_share": 0.08,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Imperial Eyes: Travel Writing and Transculturation",
+   "first_author": "Pratt, Mary Louise",
+   "citing": 29,
+   "entropy": 0.02,
+   "nmf_top": 1,
+   "nmf_top_share": 0.99,
+   "nmf_second": 0,
+   "nmf_second_share": 0.01,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Ideological Origins of the British Empire",
+   "first_author": "Armitage, David",
+   "citing": 26,
+   "entropy": 0.554,
+   "nmf_top": 0,
+   "nmf_top_share": 0.53,
+   "nmf_second": 7,
+   "nmf_second_share": 0.32,
    "louvain": "unclustered"
   },
   {
    "title": "Meaning and Understanding in the History of Ideas",
    "first_author": "Skinner, Quentin",
    "citing": 25,
-   "entropy": 0.681,
+   "entropy": 0.696,
    "nmf_top": 4,
-   "nmf_top_share": 0.42,
+   "nmf_top_share": 0.41,
    "nmf_second": 0,
    "nmf_second_share": 0.33,
    "louvain": "unclustered"
@@ -585,9 +596,9 @@
    "title": "Keywords: A Vocabulary of Culture and Society",
    "first_author": "Williams, Raymond",
    "citing": 24,
-   "entropy": 0.721,
+   "entropy": 0.733,
    "nmf_top": 1,
-   "nmf_top_share": 0.36,
+   "nmf_top_share": 0.35,
    "nmf_second": 0,
    "nmf_second_share": 0.28,
    "louvain": "unclustered"
@@ -596,11 +607,11 @@
    "title": "Modern Ireland 1600-1972",
    "first_author": "Foster, Roy",
    "citing": 23,
-   "entropy": 0.683,
+   "entropy": 0.68,
    "nmf_top": 7,
    "nmf_top_share": 0.35,
    "nmf_second": 0,
-   "nmf_second_share": 0.32,
+   "nmf_second_share": 0.33,
    "louvain": "unclustered"
   },
   {
@@ -618,7 +629,7 @@
    "title": "Sources of the Self: The Making of the Modern Identity",
    "first_author": "Taylor, Charles",
    "citing": 20,
-   "entropy": 0.846,
+   "entropy": 0.84,
    "nmf_top": 1,
    "nmf_top_share": 0.37,
    "nmf_second": 3,
@@ -633,7 +644,7 @@
    "nmf_top": 0,
    "nmf_top_share": 0.53,
    "nmf_second": 1,
-   "nmf_second_share": 0.46,
+   "nmf_second_share": 0.47,
    "louvain": "unclustered"
   },
   {
@@ -642,16 +653,16 @@
    "citing": 19,
    "entropy": 0.333,
    "nmf_top": 4,
-   "nmf_top_share": 0.5,
+   "nmf_top_share": 0.51,
    "nmf_second": 0,
-   "nmf_second_share": 0.5,
+   "nmf_second_share": 0.49,
    "louvain": "unclustered"
   },
   {
    "title": "The Great Transformation: The Political and Economic Origins of Our Time",
    "first_author": "Polanyi, Karl",
    "citing": 19,
-   "entropy": 0.704,
+   "entropy": 0.706,
    "nmf_top": 0,
    "nmf_top_share": 0.39,
    "nmf_second": 1,
@@ -662,7 +673,7 @@
    "title": "Time, Work-Discipline, and Industrial Capitalism",
    "first_author": "Thompson, Edward P",
    "citing": 19,
-   "entropy": 0.707,
+   "entropy": 0.7,
    "nmf_top": 1,
    "nmf_top_share": 0.34,
    "nmf_second": 0,
@@ -670,10 +681,21 @@
    "louvain": "unclustered"
   },
   {
+   "title": "The Global Cold War: Third World Interventions and the Making of Our Times",
+   "first_author": "Westad, Odd Arne",
+   "citing": 19,
+   "entropy": 0.535,
+   "nmf_top": 5,
+   "nmf_top_share": 0.44,
+   "nmf_second": 7,
+   "nmf_second_share": 0.32,
+   "louvain": "unclustered"
+  },
+  {
    "title": "The Ideological Origins of the American Revolution",
    "first_author": "Bailyn, Bernard",
    "citing": 18,
-   "entropy": 0.1,
+   "entropy": 0.104,
    "nmf_top": 0,
    "nmf_top_share": 0.95,
    "nmf_second": 5,
@@ -684,7 +706,7 @@
    "title": "The Great War and Modern Memory",
    "first_author": "Fussell, Paul",
    "citing": 18,
-   "entropy": 0.246,
+   "entropy": 0.242,
    "nmf_top": 2,
    "nmf_top_share": 0.8,
    "nmf_second": 7,
@@ -695,18 +717,29 @@
    "title": "The Cheese and the Worms: The Cosmos of a Sixteenth-Century Miller",
    "first_author": "Ginzburg, Carlo",
    "citing": 18,
-   "entropy": 0.81,
-   "nmf_top": 1,
+   "entropy": 0.818,
+   "nmf_top": 3,
    "nmf_top_share": 0.26,
-   "nmf_second": 3,
-   "nmf_second_share": 0.22,
+   "nmf_second": 1,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Childhood and Child Labour in the British Industrial Revolution",
+   "first_author": "Humphries, Jane",
+   "citing": 18,
+   "entropy": 0.424,
+   "nmf_top": 0,
+   "nmf_top_share": 0.59,
+   "nmf_second": 2,
+   "nmf_second_share": 0.36,
    "louvain": "unclustered"
   },
   {
    "title": "Kingdoms and Communities in Western Europe, 900-1300",
    "first_author": "Reynolds, Susan",
    "citing": 18,
-   "entropy": 0.404,
+   "entropy": 0.401,
    "nmf_top": 3,
    "nmf_top_share": 0.71,
    "nmf_second": 5,
@@ -717,7 +750,7 @@
    "title": "Poverty: A Study of Town Life",
    "first_author": "Rowntree, Benjamin Seebohm",
    "citing": 18,
-   "entropy": 0.387,
+   "entropy": 0.379,
    "nmf_top": 2,
    "nmf_top_share": 0.69,
    "nmf_second": 0,
@@ -728,7 +761,7 @@
    "title": "The Wealth of Nations",
    "first_author": "Smith, Adam",
    "citing": 18,
-   "entropy": 0.605,
+   "entropy": 0.607,
    "nmf_top": 0,
    "nmf_top_share": 0.51,
    "nmf_second": 1,
@@ -739,7 +772,7 @@
    "title": "Sites of Memory, Sites of Mourning: The Great War in European Cultural History",
    "first_author": "Winter, Jay",
    "citing": 18,
-   "entropy": 0.555,
+   "entropy": 0.557,
    "nmf_top": 5,
    "nmf_top_share": 0.45,
    "nmf_second": 2,
@@ -750,7 +783,7 @@
    "title": "The Communist Manifesto",
    "first_author": "Marx, Karl",
    "citing": 17,
-   "entropy": 0.742,
+   "entropy": 0.752,
    "nmf_top": 0,
    "nmf_top_share": 0.43,
    "nmf_second": 1,
@@ -759,53 +792,64 @@
   },
   {
    "title": "1688: The First Modern Revolution",
-   "first_author": "Pincus, Steven",
+   "first_author": "Pincus, Steve",
    "citing": 17,
-   "entropy": 0.291,
+   "entropy": 0.304,
    "nmf_top": 0,
-   "nmf_top_share": 0.71,
+   "nmf_top_share": 0.68,
    "nmf_second": 4,
-   "nmf_second_share": 0.29,
+   "nmf_second_share": 0.32,
    "louvain": "unclustered"
   },
   {
    "title": "Virtue, Commerce, and History: Essays on Political Thought and History, Chiefly in the Eighteenth Century",
    "first_author": "Pocock, J. G. A",
    "citing": 17,
-   "entropy": 0.051,
+   "entropy": 0.057,
    "nmf_top": 0,
-   "nmf_top_share": 0.98,
+   "nmf_top_share": 0.97,
    "nmf_second": 5,
-   "nmf_second_share": 0.02,
+   "nmf_second_share": 0.03,
    "louvain": "unclustered"
   },
   {
    "title": "Medieval Canon Law",
    "first_author": "Brundage, James A",
    "citing": 16,
-   "entropy": 0.503,
+   "entropy": 0.482,
    "nmf_top": 3,
-   "nmf_top_share": 0.58,
+   "nmf_top_share": 0.63,
    "nmf_second": 4,
-   "nmf_second_share": 0.25,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
    "title": "The Theory of Communicative Action",
    "first_author": "Habermas, Jürgen",
    "citing": 16,
-   "entropy": 0.62,
+   "entropy": 0.621,
    "nmf_top": 1,
-   "nmf_top_share": 0.44,
+   "nmf_top_share": 0.43,
    "nmf_second": 6,
-   "nmf_second_share": 0.3,
+   "nmf_second_share": 0.31,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Venus in Two Acts",
+   "first_author": "Hartman, Saidiya",
+   "citing": 16,
+   "entropy": 0.182,
+   "nmf_top": 1,
+   "nmf_top_share": 0.91,
+   "nmf_second": 2,
+   "nmf_second_share": 0.06,
    "louvain": "unclustered"
   },
   {
    "title": "The Condition of Postmodernity: An Enquiry into the Origins of Cultural Change",
    "first_author": "Harvey, David",
    "citing": 16,
-   "entropy": 0.406,
+   "entropy": 0.41,
    "nmf_top": 1,
    "nmf_top_share": 0.71,
    "nmf_second": 7,
@@ -816,7 +860,7 @@
    "title": "Democracy in America",
    "first_author": "Tocqueville, Alexis de",
    "citing": 16,
-   "entropy": 0.586,
+   "entropy": 0.588,
    "nmf_top": 0,
    "nmf_top_share": 0.45,
    "nmf_second": 7,
@@ -824,12 +868,23 @@
    "louvain": "unclustered"
   },
   {
+   "title": "Silencing the Past: Power and the Production of History",
+   "first_author": "Trouillot, Michel-Rolph",
+   "citing": 16,
+   "entropy": 0.101,
+   "nmf_top": 1,
+   "nmf_top_share": 0.95,
+   "nmf_second": 5,
+   "nmf_second_share": 0.05,
+   "louvain": "unclustered"
+  },
+  {
    "title": "The Human Condition",
    "first_author": "Arendt, Hannah",
    "citing": 15,
-   "entropy": 0.658,
+   "entropy": 0.678,
    "nmf_top": 1,
-   "nmf_top_share": 0.42,
+   "nmf_top_share": 0.4,
    "nmf_second": 0,
    "nmf_second_share": 0.24,
    "louvain": "unclustered"
@@ -838,33 +893,44 @@
    "title": "History of Scottish Medicine",
    "first_author": "Comrie, John D",
    "citing": 15,
-   "entropy": 0.544,
+   "entropy": 0.534,
    "nmf_top": 0,
-   "nmf_top_share": 0.56,
+   "nmf_top_share": 0.58,
    "nmf_second": 4,
-   "nmf_second_share": 0.24,
+   "nmf_second_share": 0.22,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Imperial Leather: Race, Gender, and Sexuality in the Colonial Contest",
+   "first_author": "McClintock, Anne",
+   "citing": 15,
+   "entropy": 0.255,
+   "nmf_top": 1,
+   "nmf_top_share": 0.84,
+   "nmf_second": 5,
+   "nmf_second_share": 0.11,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "British History: A Plea for a New Subject",
+   "first_author": "Pocock, J. G. A",
+   "citing": 15,
+   "entropy": 0.569,
+   "nmf_top": 0,
+   "nmf_top_share": 0.44,
+   "nmf_second": 7,
+   "nmf_second_share": 0.35,
    "louvain": "unclustered"
   },
   {
    "title": "Liberty before Liberalism",
    "first_author": "Skinner, Quentin",
    "citing": 15,
-   "entropy": 0.385,
+   "entropy": 0.395,
    "nmf_top": 0,
-   "nmf_top_share": 0.75,
+   "nmf_top_share": 0.74,
    "nmf_second": 4,
-   "nmf_second_share": 0.12,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "The Culture of Protestantism in Early Modern Scotland",
-   "first_author": "Todd, Margo",
-   "citing": 15,
-   "entropy": 0.261,
-   "nmf_top": 4,
-   "nmf_top_share": 0.78,
-   "nmf_second": 0,
-   "nmf_second_share": 0.22,
+   "nmf_second_share": 0.13,
    "louvain": "unclustered"
   }
  ],
@@ -873,7 +939,7 @@
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
    "citing": 170,
-   "entropy": 0.311,
+   "entropy": 0.31,
    "nmf_top": 5,
    "nmf_top_share": 0.84,
    "nmf_second": 1,
@@ -884,9 +950,9 @@
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 89,
-   "entropy": 0.232,
+   "entropy": 0.236,
    "nmf_top": 1,
-   "nmf_top_share": 0.87,
+   "nmf_top_share": 0.86,
    "nmf_second": 5,
    "nmf_second_share": 0.07,
    "louvain": "Said · Bhabha · Fanon"
@@ -895,7 +961,7 @@
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
    "citing": 76,
-   "entropy": 0.311,
+   "entropy": 0.314,
    "nmf_top": 1,
    "nmf_top_share": 0.82,
    "nmf_second": 2,
@@ -906,7 +972,7 @@
    "title": "The Making of the English Working Class",
    "first_author": "Thompson, Edward P",
    "citing": 78,
-   "entropy": 0.48,
+   "entropy": 0.477,
    "nmf_top": 0,
    "nmf_top_share": 0.56,
    "nmf_second": 2,
@@ -928,7 +994,7 @@
    "title": "Britons: Forging the Nation, 1707-1837",
    "first_author": "Colley, Linda",
    "citing": 81,
-   "entropy": 0.184,
+   "entropy": 0.182,
    "nmf_top": 0,
    "nmf_top_share": 0.9,
    "nmf_second": 5,
@@ -941,18 +1007,18 @@
    "title": "The Interpretation of Cultures",
    "first_author": "Geertz, Clifford",
    "citing": 35,
-   "entropy": 0.825,
+   "entropy": 0.822,
    "nmf_top": 6,
    "nmf_top_share": 0.33,
    "nmf_second": 5,
-   "nmf_second_share": 0.24,
+   "nmf_second_share": 0.25,
    "louvain": "Anderson · Said · Bourdieu"
   },
   {
    "title": "Gender Trouble: Feminism and the Subversion of Identity",
    "first_author": "Butler, Judith",
    "citing": 37,
-   "entropy": 0.705,
+   "entropy": 0.699,
    "nmf_top": 1,
    "nmf_top_share": 0.48,
    "nmf_second": 2,
@@ -963,7 +1029,7 @@
    "title": "Economy and Society: An Outline of Interpretive Sociology",
    "first_author": "Weber, Max",
    "citing": 33,
-   "entropy": 0.688,
+   "entropy": 0.679,
    "nmf_top": 1,
    "nmf_top_share": 0.36,
    "nmf_second": 6,
@@ -974,9 +1040,9 @@
    "title": "The Gift: The Form and Reason for Exchange in Archaic Societies",
    "first_author": "Mauss, Marcel",
    "citing": 33,
-   "entropy": 0.664,
+   "entropy": 0.654,
    "nmf_top": 3,
-   "nmf_top_share": 0.41,
+   "nmf_top_share": 0.42,
    "nmf_second": 1,
    "nmf_second_share": 0.36,
    "louvain": "Anderson · Said · Bourdieu"
@@ -985,7 +1051,7 @@
    "title": "The King’s Two Bodies: A Study in Medieval Political Theology",
    "first_author": "Kantorowicz, Ernst H",
    "citing": 32,
-   "entropy": 0.632,
+   "entropy": 0.618,
    "nmf_top": 4,
    "nmf_top_share": 0.44,
    "nmf_second": 3,
@@ -993,26 +1059,48 @@
    "louvain": "unclustered"
   },
   {
+   "title": "Leviathan",
+   "first_author": "Hobbes, Thomas",
+   "citing": 35,
+   "entropy": 0.594,
+   "nmf_top": 4,
+   "nmf_top_share": 0.48,
+   "nmf_second": 0,
+   "nmf_second_share": 0.33,
+   "louvain": "Duffy · Thomas · Hobbes"
+  },
+  {
    "title": "The Production of Space",
    "first_author": "Lefebvre, Henri",
    "citing": 38,
-   "entropy": 0.582,
+   "entropy": 0.586,
    "nmf_top": 1,
-   "nmf_top_share": 0.57,
+   "nmf_top_share": 0.55,
    "nmf_second": 2,
-   "nmf_second_share": 0.27,
+   "nmf_second_share": 0.29,
    "louvain": "Foucault · Lefebvre · Butler"
   },
   {
    "title": "The Birth of the Modern World, 1780-1914: Global Connections and Comparisons",
    "first_author": "Bayly, C. A",
    "citing": 30,
-   "entropy": 0.55,
+   "entropy": 0.554,
    "nmf_top": 7,
    "nmf_top_share": 0.55,
    "nmf_second": 1,
    "nmf_second_share": 0.23,
-   "louvain": "Bayly · Armitage · Darwin"
+   "louvain": "Bayly · Darwin · Skinner"
+  },
+  {
+   "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
+   "first_author": "Braudel, Fernand",
+   "citing": 46,
+   "entropy": 0.541,
+   "nmf_top": 1,
+   "nmf_top_share": 0.47,
+   "nmf_second": 6,
+   "nmf_second_share": 0.42,
+   "louvain": "Braudel · Horden · Weber"
   },
   {
    "title": "Gender: A Useful Category of Historical Analysis",
@@ -1026,32 +1114,21 @@
    "louvain": "Brown · Scott · Abrams"
   },
   {
-   "title": "The Mediterranean and the Mediterranean World in the Age of Philip II",
-   "first_author": "Braudel, Fernand",
-   "citing": 46,
-   "entropy": 0.532,
-   "nmf_top": 1,
-   "nmf_top_share": 0.48,
-   "nmf_second": 6,
-   "nmf_second_share": 0.41,
-   "louvain": "Braudel · Horden · Weber"
-  },
-  {
    "title": "The Structure of Scientific Revolutions",
    "first_author": "Kuhn, Thomas S",
    "citing": 34,
-   "entropy": 0.509,
+   "entropy": 0.522,
    "nmf_top": 1,
-   "nmf_top_share": 0.57,
+   "nmf_top_share": 0.55,
    "nmf_second": 0,
-   "nmf_second_share": 0.24,
+   "nmf_second_share": 0.27,
    "louvain": "Foucault · Lefebvre · Butler"
   },
   {
    "title": "The Making of the English Working Class",
    "first_author": "Thompson, Edward P",
    "citing": 78,
-   "entropy": 0.48,
+   "entropy": 0.477,
    "nmf_top": 0,
    "nmf_top_share": 0.56,
    "nmf_second": 2,
@@ -1062,7 +1139,7 @@
    "title": "Capital: A Critique of Political Economy",
    "first_author": "Marx, Karl",
    "citing": 32,
-   "entropy": 0.45,
+   "entropy": 0.461,
    "nmf_top": 1,
    "nmf_top_share": 0.69,
    "nmf_second": 0,
@@ -1073,73 +1150,73 @@
    "title": "Scotland: A New History",
    "first_author": "Lynch, Michael",
    "citing": 32,
-   "entropy": 0.441,
+   "entropy": 0.435,
    "nmf_top": 0,
-   "nmf_top_share": 0.7,
+   "nmf_top_share": 0.71,
    "nmf_second": 5,
    "nmf_second_share": 0.13,
-   "louvain": "Lynch · Smout · Devine"
+   "louvain": "Smith · Lynch · Smout"
   },
   {
    "title": "The Structural Transformation of the Public Sphere: An Inquiry into a Category of Bourgeois Society",
    "first_author": "Habermas, Jürgen",
    "citing": 55,
-   "entropy": 0.397,
+   "entropy": 0.412,
    "nmf_top": 0,
-   "nmf_top_share": 0.79,
+   "nmf_top_share": 0.78,
    "nmf_second": 4,
-   "nmf_second_share": 0.07,
+   "nmf_second_share": 0.08,
    "louvain": "Colley · Brewer · Gilroy"
   },
   {
    "title": "The Death of Christian Britain: Understanding Secularisation, 1800-2000",
    "first_author": "Brown, Callum G",
    "citing": 35,
-   "entropy": 0.389,
+   "entropy": 0.393,
    "nmf_top": 2,
-   "nmf_top_share": 0.76,
+   "nmf_top_share": 0.75,
    "nmf_second": 0,
-   "nmf_second_share": 0.11,
+   "nmf_second_share": 0.12,
    "louvain": "Brown · Scott · Abrams"
   },
   {
    "title": "Purity and Danger: An Analysis of Concepts of Pollution and Taboo",
    "first_author": "Douglas, Mary",
    "citing": 33,
-   "entropy": 0.383,
+   "entropy": 0.385,
    "nmf_top": 1,
    "nmf_top_share": 0.64,
    "nmf_second": 3,
-   "nmf_second_share": 0.31,
+   "nmf_second_share": 0.32,
    "louvain": "Foucault · Lefebvre · Butler"
   },
   {
    "title": "Distinction: A Social Critique of the Judgement of Taste",
    "first_author": "Bourdieu, Pierre",
    "citing": 48,
-   "entropy": 0.372,
+   "entropy": 0.378,
    "nmf_top": 1,
-   "nmf_top_share": 0.77,
+   "nmf_top_share": 0.76,
    "nmf_second": 2,
-   "nmf_second_share": 0.13,
+   "nmf_second_share": 0.14,
    "louvain": "Anderson · Said · Bourdieu"
   },
   {
    "title": "Renaissance Self-Fashioning: From More to Shakespeare",
    "first_author": "Greenblatt, Stephen",
    "citing": 30,
-   "entropy": 0.35,
+   "entropy": 0.365,
    "nmf_top": 4,
-   "nmf_top_share": 0.64,
+   "nmf_top_share": 0.62,
    "nmf_second": 1,
-   "nmf_second_share": 0.34,
-   "louvain": "Duffy · Thomas · Greenblatt"
+   "nmf_second_share": 0.36,
+   "louvain": "Duffy · Thomas · Hobbes"
   },
   {
    "title": "The Social Life of Things: Commodities in Cultural Perspective",
    "first_author": "Appadurai, Arjun",
    "citing": 35,
-   "entropy": 0.333,
+   "entropy": 0.338,
    "nmf_top": 1,
    "nmf_top_share": 0.79,
    "nmf_second": 3,
@@ -1147,21 +1224,21 @@
    "louvain": "Anderson · Said · Bourdieu"
   },
   {
-   "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
-   "first_author": "Anderson, Benedict",
-   "citing": 170,
-   "entropy": 0.311,
-   "nmf_top": 5,
-   "nmf_top_share": 0.84,
-   "nmf_second": 1,
-   "nmf_second_share": 0.08,
-   "louvain": "Anderson · Said · Bourdieu"
+   "title": "Religion and the Decline of Magic",
+   "first_author": "Thomas, Keith",
+   "citing": 37,
+   "entropy": 0.317,
+   "nmf_top": 4,
+   "nmf_top_share": 0.76,
+   "nmf_second": 0,
+   "nmf_second_share": 0.21,
+   "louvain": "Duffy · Thomas · Hobbes"
   },
   {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
    "citing": 76,
-   "entropy": 0.311,
+   "entropy": 0.314,
    "nmf_top": 1,
    "nmf_top_share": 0.82,
    "nmf_second": 2,
@@ -1169,21 +1246,21 @@
    "louvain": "Foucault · Lefebvre · Butler"
   },
   {
-   "title": "Religion and the Decline of Magic",
-   "first_author": "Thomas, Keith",
-   "citing": 37,
-   "entropy": 0.306,
-   "nmf_top": 4,
-   "nmf_top_share": 0.77,
-   "nmf_second": 0,
-   "nmf_second_share": 0.2,
-   "louvain": "Duffy · Thomas · Greenblatt"
+   "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
+   "first_author": "Anderson, Benedict",
+   "citing": 170,
+   "entropy": 0.31,
+   "nmf_top": 5,
+   "nmf_top_share": 0.84,
+   "nmf_second": 1,
+   "nmf_second_share": 0.08,
+   "louvain": "Anderson · Said · Bourdieu"
   },
   {
    "title": "Family Fortunes: Men and Women of the English Middle Class, 1780-1850",
    "first_author": "Davidoff, Leonore",
    "citing": 39,
-   "entropy": 0.301,
+   "entropy": 0.3,
    "nmf_top": 0,
    "nmf_top_share": 0.68,
    "nmf_second": 2,
@@ -1191,21 +1268,10 @@
    "louvain": "Colley · Brewer · Gilroy"
   },
   {
-   "title": "The Voice of the Past: Oral History",
-   "first_author": "Thompson, Paul",
-   "citing": 30,
-   "entropy": 0.284,
-   "nmf_top": 2,
-   "nmf_top_share": 0.72,
-   "nmf_second": 5,
-   "nmf_second_share": 0.28,
-   "louvain": "Brown · Scott · Abrams"
-  },
-  {
    "title": "The Archaeology of Knowledge",
    "first_author": "Foucault, Michel",
    "citing": 34,
-   "entropy": 0.283,
+   "entropy": 0.285,
    "nmf_top": 1,
    "nmf_top_share": 0.82,
    "nmf_second": 3,
@@ -1213,59 +1279,59 @@
    "louvain": "Foucault · Lefebvre · Butler"
   },
   {
+   "title": "The Voice of the Past: Oral History",
+   "first_author": "Thompson, Paul",
+   "citing": 30,
+   "entropy": 0.283,
+   "nmf_top": 2,
+   "nmf_top_share": 0.72,
+   "nmf_second": 5,
+   "nmf_second_share": 0.28,
+   "louvain": "Brown · Scott · Abrams"
+  },
+  {
    "title": "The Machiavellian Moment: Florentine Political Thought and the Atlantic Republican Tradition",
    "first_author": "Pocock, J. G. A",
    "citing": 35,
-   "entropy": 0.273,
+   "entropy": 0.281,
    "nmf_top": 0,
-   "nmf_top_share": 0.85,
+   "nmf_top_share": 0.84,
    "nmf_second": 4,
-   "nmf_second_share": 0.11,
+   "nmf_second_share": 0.12,
    "louvain": "unclustered"
-  },
-  {
-   "title": "From Memory to Written Record: England 1066-1307",
-   "first_author": "Clanchy, Michael",
-   "citing": 39,
-   "entropy": 0.248,
-   "nmf_top": 3,
-   "nmf_top_share": 0.79,
-   "nmf_second": 4,
-   "nmf_second_share": 0.21,
-   "louvain": "Clanchy · Gransden · Mauss"
   },
   {
    "title": "The Stripping of the Altars: Traditional Religion in England, 1400-1580",
    "first_author": "Duffy, Eamon",
    "citing": 39,
-   "entropy": 0.234,
+   "entropy": 0.24,
    "nmf_top": 4,
-   "nmf_top_share": 0.81,
+   "nmf_top_share": 0.8,
    "nmf_second": 3,
-   "nmf_second_share": 0.19,
-   "louvain": "Duffy · Thomas · Greenblatt"
+   "nmf_second_share": 0.2,
+   "louvain": "Duffy · Thomas · Hobbes"
   },
   {
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 89,
-   "entropy": 0.232,
+   "entropy": 0.236,
    "nmf_top": 1,
-   "nmf_top_share": 0.87,
+   "nmf_top_share": 0.86,
    "nmf_second": 5,
    "nmf_second_share": 0.07,
    "louvain": "Said · Bhabha · Fanon"
   },
   {
-   "title": "The Foundations of Modern Political Thought",
-   "first_author": "Skinner, Quentin",
-   "citing": 32,
-   "entropy": 0.214,
-   "nmf_top": 4,
-   "nmf_top_share": 0.87,
-   "nmf_second": 0,
-   "nmf_second_share": 0.1,
-   "louvain": "unclustered"
+   "title": "From Memory to Written Record: England 1066-1307",
+   "first_author": "Clanchy, Michael",
+   "citing": 39,
+   "entropy": 0.229,
+   "nmf_top": 3,
+   "nmf_top_share": 0.82,
+   "nmf_second": 4,
+   "nmf_second_share": 0.18,
+   "louvain": "Clanchy · Gransden · Mauss"
   }
  ]
 }

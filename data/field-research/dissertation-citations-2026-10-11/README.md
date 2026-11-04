@@ -449,6 +449,24 @@ person ('Woodward, C. Vann' and 'Woodward, Comer Vann'), counting each thesis on
 never join: the log anchors `thompson|e` to E. P. Thompson, but its works include E. A. Thompson's *The
 Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
 
+### University of Chicago (2026-11-03)
+
+- **Source.** 179 PDFs from Knowledge@UChicago, downloaded by hand (13 zips). The repository's
+  robots.txt disallows `/api`, so there is no harvest script.
+- **Screen.** `scripts/register_uchicago_downloads.py` reads each title page offline.
+  - 143 are History PhDs. The title page names the University of Chicago, Doctor of Philosophy and the
+    Department of History, or matches a completed AHA Chicago History PhD.
+  - 137 are matched to an AHA record (title words, dissertator surname). For the other 6, title, author
+    and year come from the title page.
+  - 36 are held in `held.jsonl`: 34 art history, 1 Cinema and Art History, 1 MA of 1921.
+  - Records are in `us-dissertations-expansion-2026-10-20/manual-uchicago/` (gitignored, like the other
+    manual rounds).
+- **Ingest.** Source `us_expansion`: manifest 16,680 → 16,823. Extraction gave a bibliography for 142
+  of the 143, about 49.6k citable entries. The remaining thesis has no bibliography heading.
+- **Rebuild.** Build, link, rebuild, summaries and TF-IDF ran on Plato as job 6004711 (1 h 25 m).
+  - The main graph went from 13,204 to 13,346 strict.
+  - The United States sub-graph has 3,006 strict, and Chicago adds 142, from 1990 to 2026.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:
