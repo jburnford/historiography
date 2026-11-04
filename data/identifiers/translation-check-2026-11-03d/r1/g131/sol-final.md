@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 20 verdicts: 4 matches and 16 unmatched works. Validation passed.

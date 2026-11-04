@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts in the required order. Validated candidate IDs and source routes. No other files were written.

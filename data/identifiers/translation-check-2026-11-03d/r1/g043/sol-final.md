@@ -1,0 +1,1 @@
+Wrote and validated `verdicts.json` with all 20 items in order. Uncertainties and unverified identifiers are noted explicitly.

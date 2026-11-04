@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 20 verdicts in order. Validated the schema, candidate IDs, ISBN checksums, and source-host restrictions.

@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts. Validation passed. Pope’s memoir is identified, but its identifier remains unconfirmed and is explicitly noted.

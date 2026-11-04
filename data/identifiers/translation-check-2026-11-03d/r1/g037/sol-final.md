@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 validated verdicts in order: 6 matches and 14 absent from the candidates.

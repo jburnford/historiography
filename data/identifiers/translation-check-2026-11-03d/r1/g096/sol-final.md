@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 validated verdicts: 4 graph matches and 16 unmatched works.

@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts in order. JSON structure, candidate IDs, and ISBN checksums validated.

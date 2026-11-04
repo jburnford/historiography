@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts: seven matches, two unclear citations, and one book lacking a catalogue-verified identifier.

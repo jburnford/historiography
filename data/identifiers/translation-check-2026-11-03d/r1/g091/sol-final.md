@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 verdicts in order: 4 matches, 15 absent, and 1 unclear. JSON and source-host checks passed.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 verdicts in order. Format and source checks passed. No other files were written.

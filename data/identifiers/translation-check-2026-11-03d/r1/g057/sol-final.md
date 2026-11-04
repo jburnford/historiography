@@ -1,0 +1,1 @@
+Created and validated `verdicts.json` with all 20 verdicts in the required order. No other files were written.

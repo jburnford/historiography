@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json) with 20 ordered verdicts. One thesis has a confirmed repository ID but no confirmed standard identifier.

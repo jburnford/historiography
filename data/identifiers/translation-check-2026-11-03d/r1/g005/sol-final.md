@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 items in order: 5 matches and 15 unmatched works. Schema, identifiers, and source restrictions validated.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 pairs in order: 13 same, 2 different. JSON validation passed.

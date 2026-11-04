@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json) with all 20 verdicts in order: 3 matches and 17 separate works.

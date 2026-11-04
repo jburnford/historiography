@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 validated verdicts. Three records explicitly flag unconfirmed standard identifiers.

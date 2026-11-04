@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 15 pairs in order: 10 same, 4 different, 1 unclear. No other files written.

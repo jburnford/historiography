@@ -1,0 +1,1 @@
+Wrote `verdicts.json`: 15 verdicts in the required order—11 same, 4 different. JSON structure and pair IDs validated.

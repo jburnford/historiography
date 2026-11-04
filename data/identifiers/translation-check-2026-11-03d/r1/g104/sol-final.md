@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered verdicts. Validation passed; two unconfirmed identifier gaps are explicitly noted.

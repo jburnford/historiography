@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 15 validated verdicts: 6 same, 8 different, 1 unclear.

@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/translation-check-2026-11-03d/r1/g016/verdicts.json) with 20 ordered verdicts. Validated the schema and candidate IDs. No other files written.

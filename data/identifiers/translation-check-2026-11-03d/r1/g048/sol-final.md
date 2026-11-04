@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 entries in order. Validated the JSON; one translation match remains unresolved.

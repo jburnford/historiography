@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 15 pairs in order: 4 same, 9 different, 2 unclear. Validated the JSON structure and pair IDs.

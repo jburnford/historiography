@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 pairs in order: 12 same, 2 different, 1 unclear. Validated the JSON; wrote no other files.

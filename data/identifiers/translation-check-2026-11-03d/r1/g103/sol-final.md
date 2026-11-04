@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered verdicts and six graph matches. Three identifier verification gaps are documented in the notes.

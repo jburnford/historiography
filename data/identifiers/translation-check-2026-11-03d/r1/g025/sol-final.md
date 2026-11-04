@@ -1,0 +1,1 @@
+Created `verdicts.json` with 20 entries in order. Garcia’s identifier remains unverified and is explicitly noted. No other files were written.

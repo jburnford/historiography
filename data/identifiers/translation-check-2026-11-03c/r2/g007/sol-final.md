@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all 15 items in order. Validation passed; remaining identifier limitations are documented in the notes.

@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json): 15 verdicts in order—14 same, 1 different. No other files written.

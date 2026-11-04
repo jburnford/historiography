@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 pairs in order: 11 same, 4 different. Format and source-host checks passed.

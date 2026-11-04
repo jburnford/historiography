@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 ordered verdicts and validated the structure: 5 matches and 15 separate works.

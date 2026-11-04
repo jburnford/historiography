@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 entries in order. Validated the schema, candidate IDs, and ISBN checksums. Uncertainties and identifier gaps are documented in the notes.

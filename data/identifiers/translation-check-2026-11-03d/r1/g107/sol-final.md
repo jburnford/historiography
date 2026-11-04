@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 verdicts in order. Uncertainties and unverified identifiers are noted. No other files were written.

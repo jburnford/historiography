@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 pairs in order: 10 same, 5 different. Validation passed. No other files written.

@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts: 7 matches and 13 unmatched works. Validated order, required fields, candidate IDs, and ISBN checksums.

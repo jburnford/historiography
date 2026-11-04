@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 validated verdicts: six matches and fourteen works absent from the candidates.

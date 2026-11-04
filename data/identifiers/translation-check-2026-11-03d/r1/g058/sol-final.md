@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/translation-check-2026-11-03d/r1/g058/verdicts.json) with all 20 verdicts in order. Validation passed; two malformed citations are marked `unclear`.

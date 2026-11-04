@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 ordered verdicts: 6 graph matches and 14 unmatched works. Validated JSON, candidate IDs, and ISBN checksums.

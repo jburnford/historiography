@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered verdicts. Two entries explicitly note that identifiers could not be verified.

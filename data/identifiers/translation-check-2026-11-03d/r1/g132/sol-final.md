@@ -1,0 +1,1 @@
+Created `verdicts.json` with 20 ordered verdicts: 1 match, 18 non-matches, and 1 unclear citation. Unconfirmed identifiers remain blank. No other files were written.

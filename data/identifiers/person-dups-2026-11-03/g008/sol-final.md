@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 15 pairs in order and validated its schema. No other files were written.

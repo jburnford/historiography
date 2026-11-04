@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered, validated verdicts. Launey’s original-edition identifier remains unconfirmed and is noted in the file.

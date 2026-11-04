@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 15 verdicts in order: 12 `same`, 3 `unclear`. Validated the JSON structure. No other files written.

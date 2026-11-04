@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 pairs in order: 10 same, 5 different. JSON structure and ordering validated.

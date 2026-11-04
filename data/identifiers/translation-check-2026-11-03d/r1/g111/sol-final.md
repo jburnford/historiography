@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 20 entries in order: 5 candidate matches and 15 unmatched works. Validated the JSON and source-host restrictions. No other files were written.

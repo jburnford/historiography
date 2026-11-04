@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 20 verdicts in order. No other files written.

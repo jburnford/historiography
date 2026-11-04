@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 validated entries in order. Uncertainties and the unconfirmed identifier are noted in the file.

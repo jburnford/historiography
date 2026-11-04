@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 validated verdicts: 4 matches and 16 unmatched works. Birch has a confirmed ESTC identifier in its note; its requested identifier fields remain empty.

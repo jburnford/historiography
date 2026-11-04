@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 ordered verdicts. Validation passed; three unconfirmed identifiers are documented in the notes.

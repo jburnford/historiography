@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered verdicts. Validation passed. Glénisson’s identifier remains unverified and is explicitly flagged.

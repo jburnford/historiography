@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 verdicts and validated its structure and order. Duguid’s unconfirmed standard identifier is explicitly flagged.

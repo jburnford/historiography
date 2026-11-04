@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts in order. Validated the format and candidate IDs. Two records note unconfirmed identifiers. No other files were written.

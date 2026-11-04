@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json): 15 verdicts in order—12 same, 3 different. JSON validation passed.

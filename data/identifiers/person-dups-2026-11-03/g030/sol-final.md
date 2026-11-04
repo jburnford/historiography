@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with 15 verdicts in order: 13 same, 2 different. JSON validated; no other files written.

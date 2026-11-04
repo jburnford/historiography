@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 verdicts in order: 4 matches and 16 absent works. Validation passed.

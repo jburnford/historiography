@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 verdicts in the required order. Validated the JSON structure and candidate IDs. No other files were written.

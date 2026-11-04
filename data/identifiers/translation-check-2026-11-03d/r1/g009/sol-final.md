@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 ordered verdicts. Validation passed; uncertainty and identifier gaps are noted.

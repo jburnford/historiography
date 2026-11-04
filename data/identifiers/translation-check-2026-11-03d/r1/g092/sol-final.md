@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 verdicts and validated the output. No other files were written.

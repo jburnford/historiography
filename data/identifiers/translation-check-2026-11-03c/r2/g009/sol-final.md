@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 verdicts in order and validated its structure.

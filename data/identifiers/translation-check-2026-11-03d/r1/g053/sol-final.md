@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts in order. JSON schema and source-host checks pass.

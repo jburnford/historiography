@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all 20 verdicts in order. Schema, candidate IDs, ISBN checksums, and source-host checks passed.

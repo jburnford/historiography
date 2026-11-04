@@ -1,0 +1,84 @@
+"""Sol's verdicts on possible duplicate people -> merges in a proposal (2026-11-03).
+
+person_dup_pairs.py wrote pairs of keys (a key minted for the author of a much-cited book through LC, and an older
+key without an LC authority with the same family and first given name) and Sol judged each by the two keys' works
+(BRIEF.md in the round directory). Here every `same` verdict joins its two keys; joins chain (Abreu's LC key, his
+UFMG thesis key and his CAPES key are one person) and each group merges into its oldest key, as identifiers.plan
+does. The survivor takes the LC authorised heading as its label unless it is an atlas person (the atlas keeps its
+own form of the name). `different` and `unclear` change nothing. Keys a verdict names that are no longer live
+(merged since) are followed to their current key.
+
+    python3 scripts/apply_person_dup_verdicts.py --dir data/identifiers/person-dups-2026-11-03
+    python3 scripts/identifiers.py apply data/identifiers/person-dups-2026-11-03/proposal.json
+"""
+import argparse
+import json
+from collections import Counter, defaultdict
+from pathlib import Path
+
+from identifiers import DEFAULT_DIR, State, materialise
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument('--dir', type=Path, required=True)
+    ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    args = ap.parse_args()
+    pairs = {p['id']: p for g in json.loads((args.dir / 'groups.json').read_text()) for p in g['pairs']}
+    verdicts = [v for f in sorted(args.dir.glob('g*/verdicts.json')) for v in json.loads(f.read_text())]
+    state = State.load(args.state)
+
+    def live(k):
+        seen = set()
+        while state.keys[k]['status'] == 'merged' and k not in seen:
+            seen.add(k)
+            k = state.keys[k]['replaced_by'][0]
+        return k if state.keys[k]['status'] not in ('withdrawn', 'split', 'retyped') else None
+
+    parent = {}
+
+    def root(k):
+        while parent.get(k, k) != k:
+            k = parent[k]
+        return k
+    report, evidence, lc_label = Counter(), defaultdict(list), {}
+    for v in verdicts:
+        p = pairs.get(v.get('id'))
+        if not p:
+            report['unknown_pair'] += 1
+            continue
+        report[v.get('verdict')] += 1
+        if v.get('verdict') != 'same':
+            continue
+        a, b = live(p['a']['key']), live(p['b']['key'])
+        if not a or not b or a == b:
+            report['already_one_or_gone'] += 1
+            continue
+        lc_label[a] = p['a']['label']
+        ra, rb = root(a), root(b)
+        if ra != rb:
+            parent[max(ra, rb, key=lambda k: int(k[2:]))] = min(ra, rb, key=lambda k: int(k[2:]))
+        evidence[(a, b)].append(v.get('evidence', ''))
+    groups = defaultdict(set)
+    for k in list(parent):
+        groups[root(k)].add(k)
+    ops = []
+    for survivor, members in sorted(groups.items(), key=lambda x: int(x[0][2:])):
+        for k in sorted(members - {survivor}, key=lambda k: int(k[2:])):
+            why = next((e[0] for (x, y), e in evidence.items() if k in (x, y)), '')
+            ops.append(dict(event='merge', key=k, into=survivor,
+                            basis=f'reviewed 2026-11-03 (Sol, by works): {why}'[:600]))
+            report['merged'] += 1
+        label = next((lc_label[k] for k in sorted(members | {survivor}) if k in lc_label), None)
+        if label and not any(a.startswith('atlas:') for a in state.keys[survivor]['anchors']) and state.keys[survivor]['label'] != label:
+            ops.append(dict(event='relabel', key=survivor, label=label, basis='LC authorised heading'))
+    materialise(state, dict(basis='dry run', ops=ops), 'dry-run', 'dry-run')
+    (args.dir / 'proposal.json').write_text(json.dumps(dict(
+        basis='keys judged the same person by their works (Sol, person_dup_pairs round)', decided_by='review', ops=ops),
+        ensure_ascii=False, indent=1) + '\n')
+    (args.dir / 'report.json').write_text(json.dumps(dict(report), indent=1) + '\n')
+    print(json.dumps(dict(report)))
+
+
+if __name__ == '__main__':
+    main()

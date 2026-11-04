@@ -15,6 +15,8 @@ and one g*/verdicts.json per group (BRIEF.md there), or round folders laid out t
     thesis, article or chapter whose only home is a file without metadata is kept at the lower tier;
   - a valid ISBN no catalogue here holds, for a book, with the page Sol confirmed it on (`source_url`): kept at the
     lower tier (`recorded`, the basis names the page);
+  - `catalogued_as` (a second-pass answer: the family name LC files the author under) counts as a cited author;
+  - `unresolvable` and `part` (no one work, or a chapter without an identifier of its own) are listed, not applied;
   - an `oclc` number alone, or a failed check, goes to review.json, not the proposal; a verdict marked
     `decided_by: review` (checked by hand: Hebe Mattos catalogued as Castro, a chapter DOI with no authors) skips the
     author check.
@@ -64,6 +66,11 @@ def titles_agree(record_title, *wanted):
                 continue
             for x in r:
                 if x and (x == k or (len(min(x, k, key=len).split()) >= 2 and (x.startswith(k) or k.startswith(x)))):
+                    return True
+                if x and x.replace(' ', '') == k.replace(' ', ''):    # 'W.E.B. DuBois' and 'W. E. B. Du Bois'
+                    return True
+                a, b = set(x.split()), set(k.split())                # one word off in four: a catalogue's typo
+                if x and min(len(a), len(b)) >= 4 and len(a & b) / len(a | b) >= 0.75:
                     return True
     return False
 
@@ -214,8 +221,8 @@ def main():
             else:
                 review.append(dict(v, why='work is not one of the candidates'))
             continue
-        if rel == 'unclear':
-            review.append(dict(v, why='unclear'))
+        if rel in ('unclear', 'unresolvable', 'part'):        # 'part': a chapter whose book is named, no identifier of its own
+            review.append(dict(v, why=rel))
             continue
         rec, tried = None, []
         if v.get('lccn'):
@@ -260,7 +267,7 @@ def main():
         if not rec:
             review.append(dict(v, why=f'no identifier found ({", ".join(tried) or "none given"})'))
             continue
-        fams = families(it)
+        fams = families(it) | ({fold(v['catalogued_as'].split(',')[0])} if v.get('catalogued_as') else set())
         if not rec['title'] and rec['source'] == 'Crossref record' and (
                 any(same_family(f, g) for f in fams for g in rec['families'])
                 or (v.get('container') and titles_agree(rec.get('container', ''), v['container']))):

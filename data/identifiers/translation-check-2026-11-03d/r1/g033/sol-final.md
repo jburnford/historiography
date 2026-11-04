@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 verdicts in order. Four entries use verified catalogue IDs in their notes because standard identifiers could not be confirmed.

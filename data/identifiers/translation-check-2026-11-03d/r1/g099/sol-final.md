@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 ordered verdicts and validated the schema, candidate IDs, and source routes.
