@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all 15 verdicts in order. Validated the schema and IDs. No other files were written.

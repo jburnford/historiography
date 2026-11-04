@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 g002 verdicts in order. JSON structure, candidate IDs, and ISBN checks passed.

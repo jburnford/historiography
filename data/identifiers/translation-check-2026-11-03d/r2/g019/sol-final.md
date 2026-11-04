@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 verdicts in order. Validated JSON structure, item IDs, and ISBN checksums.

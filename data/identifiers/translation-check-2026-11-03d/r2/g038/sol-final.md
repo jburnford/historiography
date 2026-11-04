@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 15 verdicts in order. Validated JSON, schema, ISBN checksums, and source routes. No other files were written.

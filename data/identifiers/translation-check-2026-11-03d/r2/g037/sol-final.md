@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 verdicts in order. JSON and source-route checks passed.

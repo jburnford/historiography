@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 verdicts in order. Schema, ISBN checksums and source links passed validation. No other files were written.

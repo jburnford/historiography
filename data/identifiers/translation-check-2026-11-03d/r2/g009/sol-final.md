@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 verdicts in order. JSON structure, ISBN checksums, and source-host checks pass.

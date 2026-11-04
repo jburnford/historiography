@@ -167,13 +167,21 @@ def main():
         return dict(anchor=f'lccn:{facts.get("lccn") or facts["control"]}', title=facts.get('title', ''), year='',
                     families={fold(h['family']) for h in heads}, source='LC catalogue record')
 
-    ol_up = get_json('https://openlibrary.org/isbn/9780812248227.json') is not None   # one probe, not three retries an ISBN
+    # Open Library asks for no bulk single-book requests (openlibrary.org/developers/api; identified clients 3/s):
+    # every verdict's ISBN is fetched up front, fifty to a request, one request a second. One request per ISBN
+    # with a single startup probe got the 2026-11-04 10:45 run shut out for the whole run.
+    ol, ol_failed = {}, 0
+    want = sorted({i for v in verdicts if (i := isbn13(v.get('isbn')))})
+    for n in range(0, len(want), 50):
+        part = want[n:n + 50]
+        d = get_json('https://openlibrary.org/api/books?format=json&jscmd=data&bibkeys=' + ','.join(f'ISBN:{i}' for i in part))
+        if d is None:
+            ol_failed += 1
+        ol.update({k.removeprefix('ISBN:'): r for k, r in (d or {}).items()})
+        time.sleep(1)
 
     def openlibrary(isbn):
-        if not ol_up:
-            return None
-        d = get_json(f'https://openlibrary.org/api/books?bibkeys=ISBN:{isbn}&format=json&jscmd=data')
-        rec = (d or {}).get(f'ISBN:{isbn}')
+        rec = ol.get(isbn)
         if not rec:
             return None
         fams = {fold(a['name'].split()[-1]) for a in rec.get('authors', []) if a.get('name')}
@@ -206,6 +214,7 @@ def main():
 
     state = State.load(args.state)
     report, rows, review, clusters, claims = Counter(), [], [], [], []
+    report.update(openlibrary_records=len(ol), openlibrary_batches_failed=ol_failed)
     for v in verdicts:
         it = items.get(v.get('id'))
         if not it:

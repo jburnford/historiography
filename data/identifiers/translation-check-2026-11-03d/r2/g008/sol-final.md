@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 15 verdicts in order, including 3 marked `unresolvable`. No other files were written.

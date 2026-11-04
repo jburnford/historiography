@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 15 items in order. Structure and identifiers checked; Rosenwein’s unavailable journal metadata is explicitly noted. No other files written.

@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 verdicts in order. JSON structure and source-host checks passed. No other files were written.

@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 entries in order. Validation passed; Cadornega’s unresolved identifier is explicitly noted.

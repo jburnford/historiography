@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 verdicts in order. Validated the JSON fields and ISBN checksums.

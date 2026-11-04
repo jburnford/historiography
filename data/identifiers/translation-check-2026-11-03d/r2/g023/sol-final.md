@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 entries in order. Validated the schema, ISBN checksums, and source-host restrictions.

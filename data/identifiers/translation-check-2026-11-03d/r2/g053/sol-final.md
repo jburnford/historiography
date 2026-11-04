@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with 14 entries in order. Penteado’s unverified identifier is documented in its note.

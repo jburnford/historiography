@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 entries in order. Remaining identifier and source-confirmation gaps are documented in the notes. JSON and source-host checks passed.

@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 15 items in order. Validation passed. Four citations are unresolvable; Burns’s identifier remains ungrounded and is noted explicitly.

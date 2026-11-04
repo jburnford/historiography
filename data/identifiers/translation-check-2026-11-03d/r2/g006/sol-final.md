@@ -1,0 +1,1 @@
+Created `verdicts.json` with all 15 items in order. Validated the format; five citations remain unresolvable, and two identified works lack verified eligible identifiers.
