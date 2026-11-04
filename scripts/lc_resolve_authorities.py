@@ -108,6 +108,9 @@ def load_names(path, lcids=None):
             by_open[open_form].add(lcid)
         for v in variants:
             by_variant[norm(v)].add(lcid)
+            open_v = re.sub(r'(\d{4})-\d{4}$', r'\1-', norm(v))
+            if open_v != norm(v):                     # 'Gutman, Herbert George, 1928-' (1976) for the variant
+                by_variant[open_v].add(lcid)          # '..., 1928-1985'; callers vet variants (former_heading)
     return by_id, by_label, by_variant, by_open
 
 

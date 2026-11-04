@@ -28,6 +28,7 @@ def main():
     ap.add_argument('--ranked', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--min', type=int, default=50)
+    ap.add_argument('--max', type=int, default=None, help='only items cited by fewer theses than this (a band below an earlier round)')
     ap.add_argument('--reasons', nargs='+', default=['book_not_matched', 'primary_source'])
     ap.add_argument('--any-author', action='store_true', help='also items no key holds an author of (no candidates)')
     ap.add_argument('--skip', type=Path, nargs='*', default=[])
@@ -38,7 +39,7 @@ def main():
     reasons = ', '.join(f"'{r}'" for r in args.reasons)
     keyed = '' if args.any_author else "AND keyed = 'true'"
     rows = db.execute(f"""SELECT work_id, title, year, authors, try_cast(theses AS INT) FROM read_csv('{args.ranked}', all_varchar=true)
-                          WHERE try_cast(theses AS INT) >= {args.min} AND reason IN ({reasons}) {keyed}
+                          WHERE try_cast(theses AS INT) >= {args.min} {f'AND try_cast(theses AS INT) < {args.max}' if args.max else ''} AND reason IN ({reasons}) {keyed}
                           ORDER BY try_cast(theses AS INT) DESC""").fetchall()
     rows = [r for r in rows if r[0] not in asked]
     db.execute('CREATE TABLE want(w VARCHAR)')
