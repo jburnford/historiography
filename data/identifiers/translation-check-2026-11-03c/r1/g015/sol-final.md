@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 ordered verdicts: 6 matches, 12 unmatched works, and 2 unclear citations.

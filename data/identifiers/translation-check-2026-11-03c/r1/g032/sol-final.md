@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all 20 verdicts in order. Validation passed: 3 graph matches and 2 uncertain identifications.

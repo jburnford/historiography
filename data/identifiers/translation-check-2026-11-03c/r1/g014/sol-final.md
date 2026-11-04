@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 verdicts: 7 matches and 13 absent works. Validation and source-host checks passed.

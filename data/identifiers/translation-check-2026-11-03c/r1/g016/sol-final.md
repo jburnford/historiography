@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g016/verdicts.json) with 20 validated verdicts in order: 6 matches, 13 unmatched, 1 unclear.

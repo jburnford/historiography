@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 20 verdicts in order. Validation passed; one ambiguous citation is marked `unclear`.

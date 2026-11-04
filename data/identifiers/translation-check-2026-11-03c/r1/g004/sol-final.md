@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 20 verdicts in order: 8 translation matches and 12 unmatched works. Validation passed.

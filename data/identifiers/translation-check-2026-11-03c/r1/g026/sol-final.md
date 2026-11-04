@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts in order: 6 matches and 2 unclear citations. Validated the structure, candidate IDs, and ISBN checksums.

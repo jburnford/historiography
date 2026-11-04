@@ -1,0 +1,3446 @@
+Reading additional input from stdin...
+OpenAI Codex v0.166.0
+--------
+workdir: /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR] (network access enabled)
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1a470-b089-7080-907f-9a0b9fb07b1b
+--------
+user
+Read ../BRIEF.md and follow it exactly; your group is the entry with id "g015" in ../groups.json. Write verdicts.json in this folder (your working directory) and nothing anywhere else.
+warning: Codex could not find bubblewrap on PATH. Install bubblewrap with your OS package manager. See the sandbox prerequisites: https://developers.openai.com/codex/concepts/sandboxing#prerequisites. Codex will use the bundled bubblewrap in the meantime.
+codex
+I’ll read the brief, project memory, and g015 entry, then write only `verdicts.json` in this folder.
+exec
+/bin/bash -lc "pwd && rg --files -g 'MEMORY.md' -g 'AGENTS.md' -g 'GRAPH-FORMAT.md' -g 'verdicts.json' -g 'BRIEF.md' -g 'groups.json' . .." in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 0ms:
+/home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+../g009/verdicts.json
+../g006/verdicts.json
+../g001/verdicts.json
+../g002/verdicts.json
+../groups.json
+../BRIEF.md
+../g004/verdicts.json
+../g010/verdicts.json
+../g005/verdicts.json
+../g003/verdicts.json
+../g008/verdicts.json
+../g007/verdicts.json
+
+exec
+/bin/bash -lc 'cat MEMORY.md ../BRIEF.md' in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ exited 1 in 0ms:
+cat: MEMORY.md: No such file or directory
+# Brief: what work is this much-cited book, and is it already in the graph?
+
+You are matching works cited in history dissertations to works in a scholarly knowledge graph. Your group is the
+entry in `../groups.json` whose `id` your instructions name: up to twenty `items`. Each item is a work as
+dissertations cite it (`cited_title`, `cited_year`, `cited_authors`; every one is cited by twenty to forty-nine theses,
+often a Portuguese, Spanish, French or English translation, a later edition, a reprint or an essay) and, for each
+graph person whose corpus id is a cited author (`candidates`), that person's works in the graph (`work` id, kind,
+year, title; mostly Library of Congress records). Many of these are Brazilian citations of translated classics
+(*História e memória*, *O poder simbólico*, *Costumes em comum*).
+
+## The question
+
+1. Is the cited work the same work as one of the candidates' works, i.e. the same book in another language,
+   edition, printing or with a variant title? Answer with that `work` id.
+   - Same work: a translation (*Futuro Passado* is Koselleck's *Vergangene Zukunft*), another edition, a reprint,
+     the same book under a shortened or variant title.
+   - Not the same work: a different book by the same author, a part or chapter of a larger work, a collection
+     that contains it, a book about the work. A translation that is a selection made for that language
+     (*O poder simbólico* collects Bourdieu essays; *História e memória* gathers Le Goff's encyclopaedia entries)
+     matches only a graph work with the same contents (*Histoire et mémoire*, 1988, is the French edition of the
+     Le Goff selection); otherwise answer null and describe it below.
+   - If two graph works are the same book (an original and a translation), give the original.
+2. If no candidate work is the same work, identify the work itself so it can be added: the original's title,
+   year and language, and its kind (`book`, `article`, `chapter`, `book_selection` for a translation-only
+   collection). Give one identifier you have confirmed in a library catalogue or publisher record, best first:
+   the Library of Congress LCCN of the original (catalog.loc.gov), an ISBN of the original or of the cited
+   edition, an OCLC number, or for an article or chapter its DOI (or the journal, volume, year and pages when
+   there is no DOI). Put the page you confirmed it on in `source_url`. Do not guess identifiers.
+3. If the citation is garbled (two works run together, an author misread, a journal title taken as the book), say
+   what the cited work most likely is and set `relation` to `unclear` unless you are sure.
+
+Use your knowledge of the authors' bibliographies, and search the web to confirm (library catalogues, publisher
+pages, Wikipedia). Never read from or cite dokumen, Scribd, libcom, Internet Archive user uploads or course
+reading-list scans.
+
+## Output
+
+Write `verdicts.json` in your working directory and nothing anywhere else: a list, one object per item, in order:
+
+```json
+[{"id": "<item id>", "work": "w-... or null", "relation": "translation|edition|same|none|unclear",
+  "original_title": "", "original_year": null, "original_language": "", "kind": "book|article|chapter|book_selection",
+  "lccn": "", "isbn": "", "oclc": "", "doi": "", "container": "", "source_url": "", "note": "<short>"}]
+```
+
+exec
+/bin/bash -lc "python - <<'PY'
+import json
+p=json.load(open('../groups.json'))
+print(type(p).__name__)
+if isinstance(p,list):
+ for x in p:
+  if x.get('id')=='g015':print(json.dumps(x,ensure_ascii=False,indent=2))
+else:
+ print(json.dumps(p.get('g015',p),ensure_ascii=False,indent=2))
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 53ms:
+list
+{
+  "id": "g015",
+  "items": [
+    {
+      "id": "W:mauss|ensaio sobre a dadiva",
+      "cited_title": "Ensaio sobre a dádiva",
+      "cited_year": "2003",
+      "cited_authors": "Mauss, Marcel",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-910",
+          "name": "Marcel Mauss",
+          "works": [
+            {
+              "work": "w-515648",
+              "kind": "article",
+              "year": 1902,
+              "title": "ESQUISSE D'UNE THÉORIE GÉNÉRALE DE LA MAGIE"
+            },
+            {
+              "work": "w-523234",
+              "kind": "article",
+              "year": 1908,
+              "title": "L'ART ET LE MYTHE D'APRÈS M. WUNDT"
+            },
+            {
+              "work": "w-235240",
+              "kind": "book",
+              "year": 1909,
+              "title": "Mélanges d'histoire des religions"
+            },
+            {
+              "work": "w-515650",
+              "kind": "article",
+              "year": 1923,
+              "title": "ESSAI SUR LE DON FORME ET RAISON DE L'ÉCHANGE DANS LES SOCIÉTÉS ARCHAÏQUÈS"
+            },
+            {
+              "work": "w-1104772",
+              "kind": "book",
+              "year": 1934,
+              "title": "The greatness and decline of the Celts"
+            },
+            {
+              "work": "w-235234",
+              "kind": "book",
+              "year": 1950,
+              "title": "Les Celtes et l'expansion celtique, jusqu'à l'époque de La Tène"
+            },
+            {
+              "work": "w-161062",
+              "kind": "book",
+              "year": 1963,
+              "title": "Primitive classification"
+            },
+            {
+              "work": "w-235243",
+              "kind": "book",
+              "year": 1964,
+              "title": "Sacrifice: its nature and function"
+            },
+            {
+              "work": "w-235237",
+              "kind": "book",
+              "year": 1968,
+              "title": "Die Gabe. Form und Funktion des Austauschs in archaischen Gesellschaften"
+            },
+            {
+              "work": "w-235249",
+              "kind": "book",
+              "year": 1968,
+              "title": "Œuvres"
+            },
+            {
+              "work": "w-235236",
+              "kind": "book",
+              "year": 1971,
+              "title": "Essais de sociologie"
+            },
+            {
+              "work": "w-235238",
+              "kind": "book",
+              "year": 1972,
+              "title": "A general theory of magic"
+            },
+            {
+              "work": "w-235246",
+              "kind": "book",
+              "year": 1973,
+              "title": "Sociologie et anthropologie"
+            },
+            {
+              "work": "w-235245",
+              "kind": "book",
+              "year": 1979,
+              "title": "Seasonal variations of the Eskimo : a study in social morphology"
+            },
+            {
+              "work": "w-235247",
+              "kind": "book",
+              "year": 1979,
+              "title": "Sociology and psychology : essays"
+            },
+            {
+              "work": "w-1104773",
+              "kind": "book",
+              "year": 1987,
+              "title": "The rise of the Celts"
+            },
+            {
+              "work": "w-235233",
+              "kind": "book",
+              "year": 1995,
+              "title": "Assaig sobre la naturalesa i la funció del sacrifici"
+            },
+            {
+              "work": "w-235235",
+              "kind": "book",
+              "year": 1997,
+              "title": "Ecrits politiques"
+            },
+            {
+              "work": "w-235242",
+              "kind": "book",
+              "year": 2003,
+              "title": "On prayer"
+            },
+            {
+              "work": "w-235241",
+              "kind": "book",
+              "year": 2005,
+              "title": "The nature of sociology : two essays"
+            },
+            {
+              "work": "w-235248",
+              "kind": "book",
+              "year": 2006,
+              "title": "Techniques, technology and civilisation"
+            },
+            {
+              "work": "w-235239",
+              "kind": "book",
+              "year": 2007,
+              "title": "Manual of ethnography"
+            },
+            {
+              "work": "w-235244",
+              "kind": "book",
+              "year": 2009,
+              "title": "Saints, heroes, myths, and rites : classical Durkheimian studies of religion and society"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:catroga|memoria historia e historiografia",
+      "cited_title": "Memória, história e historiografia",
+      "cited_year": "2001",
+      "cited_authors": "Catroga, Fernando",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-139244",
+          "name": "Catroga, Fernando",
+          "works": [
+            {
+              "work": "w-523111",
+              "kind": "article",
+              "year": 1988,
+              "title": "O laicismo e a questão religiosa em Portugal (1865-1911)"
+            },
+            {
+              "work": "w-362125",
+              "kind": "book",
+              "year": 1991,
+              "title": "O republicanismo em Portugal : da formação ao 5 de Outubro de 1910"
+            },
+            {
+              "work": "w-362124",
+              "kind": "book",
+              "year": 1999,
+              "title": "O céu da memória : cemitério romântico e culto cívico dos mortos em Portugal, 1756-1911"
+            },
+            {
+              "work": "w-362123",
+              "kind": "book",
+              "year": 2003,
+              "title": "Caminhos do fim da história"
+            },
+            {
+              "work": "w-362126",
+              "kind": "book",
+              "year": 2009,
+              "title": "Os passos do homem como restolho do tempo : memória e fim do fim da história"
+            },
+            {
+              "work": "w-1140441",
+              "kind": "book",
+              "year": 2011,
+              "title": "Res publica 1820-1926 : citizenship and political representation in Portugal"
+            },
+            {
+              "work": "w-1140439",
+              "kind": "book",
+              "year": 2012,
+              "title": "Memória, escrita da história e cultura política no mundo luso-brasileiro"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:pollak|memoria esquecimento silencio|a",
+      "cited_title": "Memória, esquecimento, silêncio",
+      "cited_year": "1989",
+      "cited_authors": "Pollak, Michael",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-192794",
+          "name": "Pollak, Michael, 1948-1992",
+          "works": [
+            {
+              "work": "w-141532",
+              "kind": "book",
+              "year": 1977,
+              "title": "Im Schatten der Arbeiterbewegung : zur Geschichte des Anarchismus in Österreich und Deutschland"
+            },
+            {
+              "work": "w-1170294",
+              "kind": "book",
+              "year": 1978,
+              "title": "Gesellschaft und Soziologie in Frankreich : Tradition u. Wandel in d. neueren franz. Soziologie"
+            },
+            {
+              "work": "w-1170297",
+              "kind": "book",
+              "year": 1986,
+              "title": "Max Weber en France : l'itinéraire d'une oeuvre"
+            },
+            {
+              "work": "w-1091889",
+              "kind": "book",
+              "year": 1987,
+              "title": "Jews, antisemitism, and culture in Vienna"
+            },
+            {
+              "work": "w-1170295",
+              "kind": "book",
+              "year": 1988,
+              "title": "Les homosexuels et le sida : sociologie d'une épidémie"
+            },
+            {
+              "work": "w-1112788",
+              "kind": "book",
+              "year": 1989,
+              "title": "Mai 68 et les sciences sociales"
+            },
+            {
+              "work": "w-1091886",
+              "kind": "book",
+              "year": 1990,
+              "title": "Eine Zerstörte Kultur : jüdisches Leben und Antisemitismus in Wien seit dem 19. Jahrhundert"
+            },
+            {
+              "work": "w-1170296",
+              "kind": "book",
+              "year": 1990,
+              "title": "L'expérience concentrationnaire : essai sur le maintien de l'identité sociale"
+            },
+            {
+              "work": "w-1108565",
+              "kind": "book",
+              "year": 1991,
+              "title": "Histoire politique et sciences sociales"
+            },
+            {
+              "work": "w-1170293",
+              "kind": "book",
+              "year": 1992,
+              "title": "AIDS: a problem for sociological research"
+            },
+            {
+              "work": "w-1170298",
+              "kind": "book",
+              "year": 1994,
+              "title": "The second plague of Europe : AIDS prevention and sexual transmission among men in Western Europe"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:villalta|reformismo ilustrado censura e praticas de leitura",
+      "cited_title": "Reformismo ilustrado, censura e práticas de leitura",
+      "cited_year": "1999",
+      "cited_authors": "Villalta, Luiz Carlos",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-146336",
+          "name": "Villalta, Luiz Carlos",
+          "works": [
+            {
+              "work": "w-410129",
+              "kind": "book",
+              "year": 2000,
+              "title": "1789-1808 : o império luso-brasileiro e os brasis"
+            },
+            {
+              "work": "w-1153164",
+              "kind": "book",
+              "year": 2008,
+              "title": "Quatro novelas em tempos de D. João"
+            },
+            {
+              "work": "w-410130",
+              "kind": "book",
+              "year": 2013,
+              "title": "História de Minas Gerais : a província de Minas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:brasil|decreto n",
+      "cited_title": "Decreto n",
+      "cited_year": "1890",
+      "cited_authors": "BRASIL, COLEÇÃO DE LEIS DO",
+      "cited_by_theses": 29,
+      "candidates": []
+    },
+    {
+      "id": "W:singer|desenvolvimento economico e evolucao urbana",
+      "cited_title": "Desenvolvimento econômico e evolução urbana",
+      "cited_year": "1977",
+      "cited_authors": "Singer, Paul",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-193205",
+          "name": "Singer, Paul, 1932-2018",
+          "works": [
+            {
+              "work": "w-1177560",
+              "kind": "book",
+              "year": 1968,
+              "title": "Desenvolvimento e crise"
+            },
+            {
+              "work": "w-1177567",
+              "kind": "book",
+              "year": 1971,
+              "title": "Fôrça de trabalho e emprêgo no Brasil: 1920-1969"
+            },
+            {
+              "work": "w-195415",
+              "kind": "book",
+              "year": 1972,
+              "title": "A cidade e o campo"
+            },
+            {
+              "work": "w-1177572",
+              "kind": "book",
+              "year": 1972,
+              "title": "O \"milagre brasileiro\": causas e consequências"
+            },
+            {
+              "work": "w-1177563",
+              "kind": "book",
+              "year": 1973,
+              "title": "Economia política da urbanização; [ensaios"
+            },
+            {
+              "work": "w-1177566",
+              "kind": "book",
+              "year": 1973,
+              "title": "Estrutura do emprego e trabalho feminino no Brasil : 1920-1970"
+            },
+            {
+              "work": "w-1177558",
+              "kind": "book",
+              "year": 1975,
+              "title": "Curso de introdução à economia política"
+            },
+            {
+              "work": "w-1177557",
+              "kind": "book",
+              "year": 1976,
+              "title": "A crise do \"milagre\" : [interpretação crítica da economia brasileira]"
+            },
+            {
+              "work": "w-1177559",
+              "kind": "book",
+              "year": 1976,
+              "title": "Demanda por alimentos na área metropolitana de Salvador"
+            },
+            {
+              "work": "w-1177565",
+              "kind": "book",
+              "year": 1976,
+              "title": "Elementos para una teoría del empleo aplicable a los países no desarrollados"
+            },
+            {
+              "work": "w-1177574",
+              "kind": "book",
+              "year": 1978,
+              "title": "Prevenir e curar : o controle social através dos serviços de saúde"
+            },
+            {
+              "work": "w-1177573",
+              "kind": "book",
+              "year": 1980,
+              "title": "O que é socialismo, hoje"
+            },
+            {
+              "work": "w-1177576",
+              "kind": "book",
+              "year": 1980,
+              "title": "São Paulo, o povo em movimento"
+            },
+            {
+              "work": "w-1177561",
+              "kind": "book",
+              "year": 1981,
+              "title": "Dominação e desigualdade : estrutura de classes e repartição da renda no Brasil"
+            },
+            {
+              "work": "w-1177556",
+              "kind": "book",
+              "year": 1983,
+              "title": "Aprender economia"
+            },
+            {
+              "work": "w-1177562",
+              "kind": "book",
+              "year": 1985,
+              "title": "A economia mundial e o Brasil em crise"
+            },
+            {
+              "work": "w-1177568",
+              "kind": "book",
+              "year": 1986,
+              "title": "A formação da classe operária"
+            },
+            {
+              "work": "w-1177575",
+              "kind": "book",
+              "year": 1986,
+              "title": "Repartição da renda : pobres e ricos sob o regime militar"
+            },
+            {
+              "work": "w-1177571",
+              "kind": "book",
+              "year": 1987,
+              "title": "O dia da lagarta : democratização e conflito distributivo no Brasil do cruzado"
+            },
+            {
+              "work": "w-1177577",
+              "kind": "book",
+              "year": 1996,
+              "title": "Um governo de esquerda para todos : Luiza Erundina na prefeitura de São Paulo, 1989-92"
+            },
+            {
+              "work": "w-1177569",
+              "kind": "book",
+              "year": 1998,
+              "title": "Globalização e desemprego : diagnóstico e alternativas"
+            },
+            {
+              "work": "w-1177570",
+              "kind": "book",
+              "year": 1999,
+              "title": "O Brasil na crise : perigos e oportunidades"
+            },
+            {
+              "work": "w-1177564",
+              "kind": "book",
+              "year": 2000,
+              "title": "A economia solidária no Brasil : a autogestão como resposta ao desemprego"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:poutignat|teorias da etnicidade",
+      "cited_title": "Teorias da etnicidade",
+      "cited_year": "1998",
+      "cited_authors": "Poutignat, Philippe; Jocelyne Streiff-Fenart",
+      "cited_by_theses": 29,
+      "candidates": []
+    },
+    {
+      "id": "W:portelli|o que faz a historia oral diferente",
+      "cited_title": "O que faz a história oral diferente",
+      "cited_year": "1997",
+      "cited_authors": "Portelli, Alessandro",
+      "cited_by_theses": 29,
+      "candidates": [
+        {
+          "person": "p-35",
+          "name": "Alessandro Portelli",
+          "works": [
+            {
+              "work": "w-237370",
+              "kind": "book",
+              "year": 1969,
+              "title": "Veleno di piombo sul muro. Le canzoni del Black power"
+            },
+            {
+              "work": "w-237359",
+              "kind": "book",
+              "year": 1975,
+              "title": "La canzone popolare in America : la rivoluzione musicale di Woody Guthrie"
+            },
+            {
+              "work": "w-1105135",
+              "kind": "book",
+              "year": 1978,
+              "title": "Interpretazioni di Twain"
+            },
+            {
+              "work": "w-237365",
+              "kind": "book",
+              "year": 1979,
+              "title": "Il re nascosto : saggio su Washington Irving"
+            },
+            {
+              "work": "w-1105137",
+              "kind": "book",
+              "year": 1979,
+              "title": "Saggi sulla cultura afro-americana"
+            },
+            {
+              "work": "w-524714",
+              "kind": "article",
+              "year": 1980,
+              "title": "The Three Laws of Robotics: Laws of the Text, Laws of Production, Laws of Society (Les Trois Lois de la Robotique: lois du texte, lois de la production, lois de la société)"
+            },
+            {
+              "work": "w-2659",
+              "kind": "article",
+              "year": 1981,
+              "title": "Alessandro Portelli, “The Peculiarities of Oral History,” History Workshop 12 (1"
+            },
+            {
+              "work": "w-237357",
+              "kind": "book",
+              "year": 1985,
+              "title": "Biografia di una città : storia e racconto : Terni 1830-1985"
+            },
+            {
+              "work": "w-1128272",
+              "kind": "book",
+              "year": 1986,
+              "title": "Social change and new modes of expression : the United States, 1910-1930"
+            },
+            {
+              "work": "w-237360",
+              "kind": "book",
+              "year": 1990,
+              "title": "The death of Luigi Trastulli, and other stories : form and meaning in oral history"
+            },
+            {
+              "work": "w-237366",
+              "kind": "book",
+              "year": 1991,
+              "title": "Taccuini americani"
+            },
+            {
+              "work": "w-237367",
+              "kind": "book",
+              "year": 1992,
+              "title": "Il testo e la voce : oralità, letteratura e democrazia in America"
+            },
+            {
+              "work": "w-237368",
+              "kind": "book",
+              "year": 1994,
+              "title": "The text and the voice : writing, speaking, and democracy in American literature"
+            },
+            {
+              "work": "w-237356",
+              "kind": "book",
+              "year": 1997,
+              "title": "The battle of Valle Giulia : oral history and the art of dialogue"
+            },
+            {
+              "work": "w-237364",
+              "kind": "book",
+              "year": 1999,
+              "title": "L'ordine è già stato eseguito : Roma, le Fosse Ardeatine, la memoria"
+            },
+            {
+              "work": "w-1105134",
+              "kind": "book",
+              "year": 1999,
+              "title": "La formazione di una cultura nazionale : la letteratura degli Stati Uniti dall'indipendenza all'età di Jackson, 1776-1850"
+            },
+            {
+              "work": "w-237354",
+              "kind": "book",
+              "year": 2002,
+              "title": "America, dopo : immaginario e immaginazione"
+            },
+            {
+              "work": "w-237363",
+              "kind": "book",
+              "year": 2003,
+              "title": "The order has been carried out : history, memory, and meaning of a Nazi massacre in Rome"
+            },
+            {
+              "work": "w-237358",
+              "kind": "book",
+              "year": 2004,
+              "title": "Canoni americani : oralità, letteratura, cinema, musica"
+            },
+            {
+              "work": "w-237353",
+              "kind": "book",
+              "year": 2008,
+              "title": "Acciai speciali : Terni, la ThyssenKrupp, la globalizzazione"
+            },
+            {
+              "work": "w-237355",
+              "kind": "book",
+              "year": 2011,
+              "title": "America profonda : due secoli raccontati da Harlan County, Kentucky"
+            },
+            {
+              "work": "w-237362",
+              "kind": "book",
+              "year": 2011,
+              "title": "Note americane : musica e culture negli Stati Uniti"
+            },
+            {
+              "work": "w-237369",
+              "kind": "book",
+              "year": 2011,
+              "title": "They say in Harlan County : an oral history"
+            },
+            {
+              "work": "w-237361",
+              "kind": "book",
+              "year": 2012,
+              "title": "Desiderio di altri mondi : memoria in forma di articoli"
+            },
+            {
+              "work": "w-527441",
+              "kind": "article",
+              "year": 2021,
+              "title": "Alessandro Portelli : une vie passée à écouter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:rousseau|emile ou de leducation",
+      "cited_title": "Emile",
+      "cited_year": "1762",
+      "cited_authors": "Rousseau, Jean-Jacques",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-3510",
+          "name": "Rousseau, Jean-Jacques",
+          "works": [
+            {
+              "work": "w-172848",
+              "kind": "book",
+              "year": 1743,
+              "title": "Dissertation sur la musique moderne"
+            },
+            {
+              "work": "w-172834",
+              "kind": "book",
+              "year": 1755,
+              "title": "Discours sur l'origine & les fondements de l'inégalité parmi les hommes"
+            },
+            {
+              "work": "w-172832",
+              "kind": "book",
+              "year": 1755,
+              "title": "Discours sur l'origine et les fondemens de l'inegalité parmi les hommes"
+            },
+            {
+              "work": "w-172876",
+              "kind": "book",
+              "year": 1758,
+              "title": "J.J. Rousseau citoyen de Genève, a Mr. d'Alembert ... : sur son article Genève dans le VIIme volume de l'Encyclope et particulierement sur le projet d'établir un théatre de comédie en cette ville"
+            },
+            {
+              "work": "w-172844",
+              "kind": "book",
+              "year": 1761,
+              "title": "A discourse upon the origin and foundation of the inequality among mankind"
+            },
+            {
+              "work": "w-172917",
+              "kind": "book",
+              "year": 1762,
+              "title": "Principes du droit politique"
+            },
+            {
+              "work": "w-172849",
+              "kind": "book",
+              "year": 1763,
+              "title": "Du contrat social; ou, Principes du droit politique"
+            },
+            {
+              "work": "w-172880",
+              "kind": "book",
+              "year": 1763,
+              "title": "Jean Jaques Rousseau, citoyen de Genève, a Christophe de Beaumont, Archevêque de Paris, Duc de St. Cloud, Pair de France, Commandeur de l'Ordre du St. Esprit, Proviseur de Sorbonne, &c"
+            },
+            {
+              "work": "w-172818",
+              "kind": "book",
+              "year": 1766,
+              "title": "Contrat social, ou, Principes du droit politique"
+            },
+            {
+              "work": "w-172860",
+              "kind": "book",
+              "year": 1767,
+              "title": "Emilius and Sophia: or, A new system of education"
+            },
+            {
+              "work": "w-172898",
+              "kind": "book",
+              "year": 1767,
+              "title": "The miscellaneous works of Mr. J. J. Rousseau"
+            },
+            {
+              "work": "w-172825",
+              "kind": "book",
+              "year": 1768,
+              "title": "Dictionnaire de musique"
+            },
+            {
+              "work": "w-172904",
+              "kind": "book",
+              "year": 1781,
+              "title": "La nouvelle Héloïse, ou Lettres de deux amans, habitans d'une petite ville au pied des Alpes"
+            },
+            {
+              "work": "w-172946",
+              "kind": "book",
+              "year": 1781,
+              "title": "Traités sur la musique"
+            },
+            {
+              "work": "w-172853",
+              "kind": "book",
+              "year": 1789,
+              "title": "Emil; oder, Über die erziehung"
+            },
+            {
+              "work": "w-172887",
+              "kind": "book",
+              "year": 1789,
+              "title": "Lettres élémentaires sur la botanique"
+            },
+            {
+              "work": "w-172850",
+              "kind": "book",
+              "year": 1791,
+              "title": "Du contrat social, ou, Principes du droit politique : suivi des Considérations sur le gouvernement de Pologne, et sur sa réformation projettée"
+            },
+            {
+              "work": "w-172847",
+              "kind": "book",
+              "year": 1797,
+              "title": "A dissertation on political economy : to which is added, A treatise on the social compact, or, The principles of politic law"
+            },
+            {
+              "work": "w-172805",
+              "kind": "book",
+              "year": 1805,
+              "title": "La botanique de J. J. Rousseau"
+            },
+            {
+              "work": "w-172824",
+              "kind": "book",
+              "year": 1810,
+              "title": "Le devin du village : intermede"
+            },
+            {
+              "work": "w-172918",
+              "kind": "book",
+              "year": 1814,
+              "title": "Principios del derecho político"
+            },
+            {
+              "work": "w-172854",
+              "kind": "book",
+              "year": 1817,
+              "title": "Émile; ou, De l'éducation"
+            },
+            {
+              "work": "w-172951",
+              "kind": "book",
+              "year": 1819,
+              "title": "Œuvres de J. J. Rousseau, avec des notes historiques"
+            },
+            {
+              "work": "w-172851",
+              "kind": "book",
+              "year": 1825,
+              "title": "Écrits sur la musique"
+            },
+            {
+              "work": "w-172911",
+              "kind": "book",
+              "year": 1826,
+              "title": "Pensées d'un esprit droit, et sentimens d'un coeur vertueux. Par J. J. Rousseau. Ouvrage inédit, imprime sur le manuscrit autographe de l'auteur; suivi d'un autre opuscule de Rousseau intitulé : Moeurs, caractère"
+            },
+            {
+              "work": "w-172950",
+              "kind": "book",
+              "year": 1835,
+              "title": "Œuvres complètes de J. J. Rousseau, avec des notes historiques"
+            },
+            {
+              "work": "w-172815",
+              "kind": "book",
+              "year": 1856,
+              "title": "The Confessions of J.J. Rousseau"
+            },
+            {
+              "work": "w-172930",
+              "kind": "book",
+              "year": 1857,
+              "title": "Rousseau juge de Jean-Jacques ; Écrits sur la musique"
+            },
+            {
+              "work": "w-172877",
+              "kind": "book",
+              "year": 1878,
+              "title": "J.-J. Rousseau et Isabelle d'Ivernois"
+            },
+            {
+              "work": "w-172881",
+              "kind": "book",
+              "year": 1880,
+              "title": "Julie; ou, La nouvelle Heĺois̈e"
+            },
+            {
+              "work": "w-172812",
+              "kind": "book",
+              "year": 1891,
+              "title": "Les confessions de J.-J. Rousseau"
+            },
+            {
+              "work": "w-172888",
+              "kind": "book",
+              "year": 1892,
+              "title": "Lettres inédites de Jean-Jacques Rousseau"
+            },
+            {
+              "work": "w-172941",
+              "kind": "book",
+              "year": 1893,
+              "title": "The social contract: or, Principles of political law. Also, A project for a perpetual peace"
+            },
+            {
+              "work": "w-172816",
+              "kind": "book",
+              "year": 1901,
+              "title": "The confessions of Jean Jacques Rousseau"
+            },
+            {
+              "work": "w-172811",
+              "kind": "book",
+              "year": 1911,
+              "title": "Les confessions; extraits suivis illustrés, notices et annotations"
+            },
+            {
+              "work": "w-172933",
+              "kind": "book",
+              "year": 1911,
+              "title": "Rousseau's Émile, or, Treatise on education"
+            },
+            {
+              "work": "w-172925",
+              "kind": "book",
+              "year": 1912,
+              "title": "Les rêveries du promeneur solitaire"
+            },
+            {
+              "work": "w-172879",
+              "kind": "book",
+              "year": 1913,
+              "title": "Jean-Jacques Rousseau"
+            },
+            {
+              "work": "w-172935",
+              "kind": "book",
+              "year": 1914,
+              "title": "Rousseaus bekenntnisse aus seiner jugend"
+            },
+            {
+              "work": "w-172804",
+              "kind": "book",
+              "year": 1916,
+              "title": "Bekenntnisse. Nach der Übersetzung von Levin Schücking"
+            },
+            {
+              "work": "w-172865",
+              "kind": "book",
+              "year": 1920,
+              "title": "L'état de guerre and Projet de paix perpétuelle"
+            },
+            {
+              "work": "w-172952",
+              "kind": "book",
+              "year": 1921,
+              "title": "Vie et œuvres de J.J. Rousseau"
+            },
+            {
+              "work": "w-172896",
+              "kind": "book",
+              "year": 1923,
+              "title": "Matériaux pour la correspondance de J.J. Rousseau"
+            },
+            {
+              "work": "w-172821",
+              "kind": "book",
+              "year": 1924,
+              "title": "Correspondance générale de J.-J. Rousseau"
+            },
+            {
+              "work": "w-172903",
+              "kind": "book",
+              "year": 1925,
+              "title": "La nouvelle Héloïse"
+            },
+            {
+              "work": "w-172926",
+              "kind": "book",
+              "year": 1927,
+              "title": "The reveries of a solitary"
+            },
+            {
+              "work": "w-172899",
+              "kind": "book",
+              "year": 1933,
+              "title": "Morceaux choisis"
+            },
+            {
+              "work": "w-172919",
+              "kind": "book",
+              "year": 1937,
+              "title": "La profession de foi du vicaire savoyard"
+            },
+            {
+              "work": "w-172900",
+              "kind": "book",
+              "year": 1937,
+              "title": "Muʻāhidah-yi ʻimrānī, yā, Uṣūl-i qānūn-i siyāsī yaʻnī, Frānsīsī Ḥakīm Zhān Zhāk Rūsau kī taṣnīf \"Kūntrā sūsiyāl\" ka Urdū tarjamah"
+            },
+            {
+              "work": "w-172938",
+              "kind": "book",
+              "year": 1937,
+              "title": "Selections from The confessions and Rêveries d'un promeneur solitaire"
+            },
+            {
+              "work": "w-172910",
+              "kind": "book",
+              "year": 1938,
+              "title": "Les pages immortelles de J.-J. Rousseau"
+            },
+            {
+              "work": "w-172892",
+              "kind": "book",
+              "year": 1939,
+              "title": "The living thoughts of Rousseau"
+            },
+            {
+              "work": "w-172833",
+              "kind": "book",
+              "year": 1941,
+              "title": "Discours sur l'origine et les fondements de l'inégalitè parmi les hommes"
+            },
+            {
+              "work": "w-172859",
+              "kind": "book",
+              "year": 1942,
+              "title": "Emilio; o, Dell'educazione; pagine scelte"
+            },
+            {
+              "work": "w-172822",
+              "kind": "book",
+              "year": 1945,
+              "title": "Del contrato social"
+            },
+            {
+              "work": "w-172836",
+              "kind": "book",
+              "year": 1945,
+              "title": "Discours sur les sciences et les arts, suivi de Du contrat social"
+            },
+            {
+              "work": "w-172846",
+              "kind": "book",
+              "year": 1946,
+              "title": "Discurso sobre el origen de la desigualdad entre los hombres"
+            },
+            {
+              "work": "w-172817",
+              "kind": "book",
+              "year": 1947,
+              "title": "Considerations on the government of Poland"
+            },
+            {
+              "work": "w-172886",
+              "kind": "book",
+              "year": 1948,
+              "title": "Lettre à Mr. d'Alembert sur les spectacles"
+            },
+            {
+              "work": "w-172902",
+              "kind": "book",
+              "year": 1950,
+              "title": "Le nouveau dédale"
+            },
+            {
+              "work": "w-172855",
+              "kind": "book",
+              "year": 1956,
+              "title": "Émile for today; the Émile of Jean Jacques Rousseau"
+            },
+            {
+              "work": "w-172949",
+              "kind": "book",
+              "year": 1959,
+              "title": "Œuvres complètes"
+            },
+            {
+              "work": "w-172916",
+              "kind": "book",
+              "year": 1960,
+              "title": "Politics and the arts, letter to M. d'Alembert on the theatre"
+            },
+            {
+              "work": "w-172835",
+              "kind": "book",
+              "year": 1961,
+              "title": "Discours sur les sciences et les arts.  Deux lettres à Malesherbes.  Les rêveries du promeneur solitaire"
+            },
+            {
+              "work": "w-172924",
+              "kind": "book",
+              "year": 1962,
+              "title": "A la rencontre de Jean-Jacques Rousseau"
+            },
+            {
+              "work": "w-172890",
+              "kind": "book",
+              "year": 1962,
+              "title": "Lettres sur la botanique"
+            },
+            {
+              "work": "w-172897",
+              "kind": "book",
+              "year": 1962,
+              "title": "Minor educational writings"
+            },
+            {
+              "work": "w-172914",
+              "kind": "book",
+              "year": 1962,
+              "title": "Political writings"
+            },
+            {
+              "work": "w-172874",
+              "kind": "book",
+              "year": 1963,
+              "title": "Introduction à l'étude de J. J. Rousseau: Les confessions, L. I-IV (texte du manuscrit de Neuchâtel)"
+            },
+            {
+              "work": "w-172867",
+              "kind": "book",
+              "year": 1964,
+              "title": "The first and second discourses"
+            },
+            {
+              "work": "w-172820",
+              "kind": "book",
+              "year": 1965,
+              "title": "Correspondance complète de Jean Jacques Rousseau : édition critique"
+            },
+            {
+              "work": "w-172948",
+              "kind": "book",
+              "year": 1966,
+              "title": "Umowa społeczna ; oraz, Uwagi o rządzie polskim ; Przedmowa do \"Narcyza\" ; List o widowiskach ; List o opatrzności ; Listy moralne ; List do arcybiskupa de Beaumont ; Listy do Malesherbesa"
+            },
+            {
+              "work": "w-172831",
+              "kind": "book",
+              "year": 1967,
+              "title": "Discours sur l'origine de l'inégalité. Essai sur l'origine des langues"
+            },
+            {
+              "work": "w-172885",
+              "kind": "book",
+              "year": 1967,
+              "title": "Lettre à M. D'Alembert sur son article Genève"
+            },
+            {
+              "work": "w-172828",
+              "kind": "book",
+              "year": 1968,
+              "title": "Discours. Les Sciences et les arts. L'Origine de l'inégalité"
+            },
+            {
+              "work": "w-172878",
+              "kind": "book",
+              "year": 1968,
+              "title": "J.-J. Roussseau ou l'Impossible unité"
+            },
+            {
+              "work": "w-172928",
+              "kind": "book",
+              "year": 1968,
+              "title": "Rousseau"
+            },
+            {
+              "work": "w-172912",
+              "kind": "book",
+              "year": 1969,
+              "title": "Il pensiero di Jean-Jacques Rousseau. Una antologia dagli scritti"
+            },
+            {
+              "work": "w-172937",
+              "kind": "book",
+              "year": 1969,
+              "title": "Sedan et le pays sedanais; vingt siècles d'histoire"
+            },
+            {
+              "work": "w-172947",
+              "kind": "book",
+              "year": 1969,
+              "title": "Traktaty. [Perevody]"
+            },
+            {
+              "work": "w-172813",
+              "kind": "book",
+              "year": 1970,
+              "title": "Les Confessions de Jean-Jacques Rousseau"
+            },
+            {
+              "work": "w-172923",
+              "kind": "book",
+              "year": 1970,
+              "title": "Religious writings [of] Rousseau"
+            },
+            {
+              "work": "w-172814",
+              "kind": "book",
+              "year": 1971,
+              "title": "Confessions, extraits"
+            },
+            {
+              "work": "w-172871",
+              "kind": "book",
+              "year": 1971,
+              "title": "L'homme"
+            },
+            {
+              "work": "w-172915",
+              "kind": "book",
+              "year": 1971,
+              "title": "The political writings of Jean Jacques Rousseau"
+            },
+            {
+              "work": "w-172870",
+              "kind": "book",
+              "year": 1972,
+              "title": "The government of Poland"
+            },
+            {
+              "work": "w-172861",
+              "kind": "book",
+              "year": 1973,
+              "title": "Essai sur l'origine des langues"
+            },
+            {
+              "work": "w-172939",
+              "kind": "book",
+              "year": 1973,
+              "title": "Selections from the works of Jean-Jacques Rousseau"
+            },
+            {
+              "work": "w-172942",
+              "kind": "book",
+              "year": 1973,
+              "title": "The social contract; and, Discourses"
+            },
+            {
+              "work": "w-172808",
+              "kind": "book",
+              "year": 1974,
+              "title": "Le citoyen"
+            },
+            {
+              "work": "w-172889",
+              "kind": "book",
+              "year": 1974,
+              "title": "Lettres philosophiques"
+            },
+            {
+              "work": "w-172863",
+              "kind": "book",
+              "year": 1974,
+              "title": "The essential Rousseau: The social contract, Discourse on the origin of inequality, Discourse on the arts and sciences, The creed of a Savoyard priest"
+            },
+            {
+              "work": "w-172810",
+              "kind": "book",
+              "year": 1975,
+              "title": "A complete dictionary of music : consisting of a copious explanation of all words necessary to a true knowledge and understanding of music"
+            },
+            {
+              "work": "w-172936",
+              "kind": "book",
+              "year": 1975,
+              "title": "Sahoe kyeyangnon"
+            },
+            {
+              "work": "w-172801",
+              "kind": "book",
+              "year": 1977,
+              "title": "Antologia di scritti politici"
+            },
+            {
+              "work": "w-172823",
+              "kind": "book",
+              "year": 1977,
+              "title": "Deux lettres à M. le Mareschal Duc de Luxembourg (20 et 28 janvier 1763), contenant une description de la Suisse, de la Principauté de Neuchâtel et du Val-de-Travers : reprod. de la copie autographe conservée à la Bibliothèque de Neuchâtel"
+            },
+            {
+              "work": "w-172827",
+              "kind": "book",
+              "year": 1977,
+              "title": "Dictionnaire de musique ; [Écrits sur la musique]"
+            },
+            {
+              "work": "w-172909",
+              "kind": "book",
+              "year": 1978,
+              "title": "On the social contract, with Geneva manuscript and Political economy"
+            },
+            {
+              "work": "w-172872",
+              "kind": "book",
+              "year": 1979,
+              "title": "The indispensable Rousseau"
+            },
+            {
+              "work": "w-172927",
+              "kind": "book",
+              "year": 1979,
+              "title": "The reveries of the solitary walker"
+            },
+            {
+              "work": "w-172940",
+              "kind": "book",
+              "year": 1980,
+              "title": "She hui qi yue lun : yi ming : Zheng zhi quan li de yuan li"
+            },
+            {
+              "work": "w-172841",
+              "kind": "book",
+              "year": 1982,
+              "title": "A discourse on the origin of inequality ; A discourse on political economy ; The social contract"
+            },
+            {
+              "work": "w-172893",
+              "kind": "book",
+              "year": 1982,
+              "title": "Lun ren lei bu ping deng de qi yuan he ji chu"
+            },
+            {
+              "work": "w-172920",
+              "kind": "book",
+              "year": 1982,
+              "title": "Project concerning new symbols for music : 1742"
+            },
+            {
+              "work": "w-172800",
+              "kind": "book",
+              "year": 1982,
+              "title": "al-Iʻtirāfāt"
+            },
+            {
+              "work": "w-172806",
+              "kind": "book",
+              "year": 1983,
+              "title": "Le botaniste sans maître, ou, Manière d'apprendre seul la botanique : fragments pour un dictionnaire des termes d'usage en botanique"
+            },
+            {
+              "work": "w-172908",
+              "kind": "book",
+              "year": 1983,
+              "title": "On the social contract ; Discourse on the origin of inequality ; Discourse on political economy"
+            },
+            {
+              "work": "w-172837",
+              "kind": "book",
+              "year": 1984,
+              "title": "A discourse on inequality"
+            },
+            {
+              "work": "w-172875",
+              "kind": "book",
+              "year": 1984,
+              "title": "J.J. Rousseau : la profesión de fe del filósofo"
+            },
+            {
+              "work": "w-172905",
+              "kind": "book",
+              "year": 1984,
+              "title": "Of the social contract, or, Principles of political right & Discourse on political economy"
+            },
+            {
+              "work": "w-172807",
+              "kind": "book",
+              "year": 1986,
+              "title": "Chan hui lu"
+            },
+            {
+              "work": "w-172868",
+              "kind": "book",
+              "year": 1986,
+              "title": "The first and second discourses together with the replies to critics and Essay on the origin of languages"
+            },
+            {
+              "work": "w-172803",
+              "kind": "book",
+              "year": 1987,
+              "title": "Basic political writings"
+            },
+            {
+              "work": "w-172907",
+              "kind": "book",
+              "year": 1988,
+              "title": "On the social contract"
+            },
+            {
+              "work": "w-172934",
+              "kind": "book",
+              "year": 1988,
+              "title": "Rousseau's political writings : new translations, interpretive notes, backgrounds, commentaries"
+            },
+            {
+              "work": "w-172852",
+              "kind": "book",
+              "year": 1989,
+              "title": "Eloisa, or, A series of original letters"
+            },
+            {
+              "work": "w-172929",
+              "kind": "book",
+              "year": 1990,
+              "title": "Rousseau, judge of Jean-Jacques, dialogues"
+            },
+            {
+              "work": "w-172809",
+              "kind": "book",
+              "year": 1990,
+              "title": "The collected writings of Rousseau"
+            },
+            {
+              "work": "w-172819",
+              "kind": "book",
+              "year": 1991,
+              "title": "Correspondance : Jean-Jacques Rousseau, Chrétien-Guillaume de Lamoignon de Malesherbes"
+            },
+            {
+              "work": "w-172931",
+              "kind": "book",
+              "year": 1991,
+              "title": "Rousseau on international relations"
+            },
+            {
+              "work": "w-172840",
+              "kind": "book",
+              "year": 1992,
+              "title": "Discourse on the origin of inequality"
+            },
+            {
+              "work": "w-172842",
+              "kind": "book",
+              "year": 1992,
+              "title": "Discourse on the origins of inequality (second discourse) ; Polemics ; and, Political economy"
+            },
+            {
+              "work": "w-172843",
+              "kind": "book",
+              "year": 1992,
+              "title": "Discourse on the sciences and arts (first discourse) ; and, Polemics"
+            },
+            {
+              "work": "w-172944",
+              "kind": "book",
+              "year": 1993,
+              "title": "The social contract ; and, The discourses"
+            },
+            {
+              "work": "w-172838",
+              "kind": "book",
+              "year": 1994,
+              "title": "Discourse on political economy ; and, The social contract"
+            },
+            {
+              "work": "w-172945",
+              "kind": "book",
+              "year": 1994,
+              "title": "Social contract ; Discourse on the virtue most necessary for a hero ; Political fragments ; and, Geneva manuscript"
+            },
+            {
+              "work": "w-172882",
+              "kind": "book",
+              "year": 1997,
+              "title": "Julie, or, The new Heloise : letters of two lovers who live in a small town at the foot of the Alps"
+            },
+            {
+              "work": "w-172894",
+              "kind": "book",
+              "year": 1997,
+              "title": "Lusuo zhe li mei wen ji"
+            },
+            {
+              "work": "w-172845",
+              "kind": "book",
+              "year": 1997,
+              "title": "The discourses and other political writings"
+            },
+            {
+              "work": "w-172943",
+              "kind": "book",
+              "year": 1997,
+              "title": "The social contract and other later political writings"
+            },
+            {
+              "work": "w-172862",
+              "kind": "book",
+              "year": 1998,
+              "title": "Essay on the origin of languages and writings related to music"
+            },
+            {
+              "work": "w-172873",
+              "kind": "book",
+              "year": 1999,
+              "title": "Institutions chimiques"
+            },
+            {
+              "work": "w-172921",
+              "kind": "book",
+              "year": 2000,
+              "title": "Projet de constitution pour la Corse"
+            },
+            {
+              "work": "w-172883",
+              "kind": "book",
+              "year": 2001,
+              "title": "Letter to Beaumont, letters written from the mountain, and related writings"
+            },
+            {
+              "work": "w-172829",
+              "kind": "book",
+              "year": 2002,
+              "title": "Discours sur l'économie politique"
+            },
+            {
+              "work": "w-172857",
+              "kind": "book",
+              "year": 2003,
+              "title": "Emile, or, Treatise on education"
+            },
+            {
+              "work": "w-172830",
+              "kind": "book",
+              "year": 2004,
+              "title": "Le discours sur l'inégalité de Rousseau"
+            },
+            {
+              "work": "w-172884",
+              "kind": "book",
+              "year": 2004,
+              "title": "Letter to D'Alembert and writings for the theater"
+            },
+            {
+              "work": "w-172913",
+              "kind": "book",
+              "year": 2005,
+              "title": "The plan for perpetual peace, On the government of Poland, and other writings on history and politics"
+            },
+            {
+              "work": "w-172802",
+              "kind": "book",
+              "year": 2006,
+              "title": "Autobiographical, scientific, religious, moral, and literary writings"
+            },
+            {
+              "work": "w-172906",
+              "kind": "book",
+              "year": 2007,
+              "title": "On philosophy, morality, and religion"
+            },
+            {
+              "work": "w-172826",
+              "kind": "book",
+              "year": 2008,
+              "title": "Le dictionnaire de musique de Jean-Jacques Rousseau : une édition critique"
+            },
+            {
+              "work": "w-172901",
+              "kind": "book",
+              "year": 2008,
+              "title": "Narcisse, ou, L'amant de lui-même : comédie. Et préface de Narcisse"
+            },
+            {
+              "work": "w-172869",
+              "kind": "book",
+              "year": 2009,
+              "title": "Friedensschriften : Französisch-Deutsch"
+            },
+            {
+              "work": "w-172932",
+              "kind": "book",
+              "year": 2009,
+              "title": "Rousseau on women, love, and family"
+            },
+            {
+              "work": "w-172856",
+              "kind": "book",
+              "year": 2010,
+              "title": "Emile, or, On education : includes Emile and Sophie, or, The solitaries"
+            },
+            {
+              "work": "w-172891",
+              "kind": "book",
+              "year": 2010,
+              "title": "Le Lévite d'Ephraïm"
+            },
+            {
+              "work": "w-172839",
+              "kind": "book",
+              "year": 2011,
+              "title": "Discourse on the origin and foundations of inequality among men"
+            },
+            {
+              "work": "w-172866",
+              "kind": "book",
+              "year": 2012,
+              "title": "Faut-il aller vivre dans les bois? : lettre de J.-J. Rousseau à monsieur Philopolis"
+            },
+            {
+              "work": "w-172922",
+              "kind": "book",
+              "year": 2012,
+              "title": "Pygmalion"
+            },
+            {
+              "work": "w-172895",
+              "kind": "book",
+              "year": 2012,
+              "title": "The major political writings of Jean-Jacques Rousseau : the two Discourses and the Social contract"
+            },
+            {
+              "work": "w-172864",
+              "kind": "book",
+              "year": 2013,
+              "title": "The essential writings of Rousseau"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:benjamin|theses on the philosophy of history|a",
+      "cited_title": "Theses on the Philosophy of History",
+      "cited_year": "1968",
+      "cited_authors": "Benjamin, Walter",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-1398",
+          "name": "Walter Benjamin",
+          "works": [
+            {
+              "work": "w-249351",
+              "kind": "book",
+              "year": 1965,
+              "title": "Zur Kritik der Gewalt und andere Aufsätze"
+            },
+            {
+              "work": "w-249327",
+              "kind": "book",
+              "year": 1968,
+              "title": "Illuminations"
+            },
+            {
+              "work": "w-503064",
+              "kind": "article",
+              "year": 1969,
+              "title": "Paris: Capital of the Nineteenth Century"
+            },
+            {
+              "work": "w-249345",
+              "kind": "book",
+              "year": 1969,
+              "title": "Über Literatur"
+            },
+            {
+              "work": "w-249324",
+              "kind": "book",
+              "year": 1972,
+              "title": "Gesammelte Schriften"
+            },
+            {
+              "work": "w-249316",
+              "kind": "book",
+              "year": 1973,
+              "title": "Charles Baudelaire: a lyric poet in the era of high capitalism"
+            },
+            {
+              "work": "w-249310",
+              "kind": "book",
+              "year": 1973,
+              "title": "Der Begriff der Kunstkritik in der deutschen Romantik"
+            },
+            {
+              "work": "w-249346",
+              "kind": "book",
+              "year": 1973,
+              "title": "Understanding Brecht"
+            },
+            {
+              "work": "w-249319",
+              "kind": "book",
+              "year": 1974,
+              "title": "Denkbilder"
+            },
+            {
+              "work": "w-249325",
+              "kind": "book",
+              "year": 1974,
+              "title": "L'homme, le langage et la culture : essais"
+            },
+            {
+              "work": "w-528000",
+              "kind": "article",
+              "year": 1975,
+              "title": "Eduard Fuchs: Collector and Historian"
+            },
+            {
+              "work": "w-249320",
+              "kind": "book",
+              "year": 1975,
+              "title": "Il dramma barocco tedesco"
+            },
+            {
+              "work": "w-249309",
+              "kind": "book",
+              "year": 1977,
+              "title": "Aussichten : illustrierte Aufsätze"
+            },
+            {
+              "work": "w-249326",
+              "kind": "book",
+              "year": 1977,
+              "title": "Illuminationen : ausgew. Schriften"
+            },
+            {
+              "work": "w-249336",
+              "kind": "book",
+              "year": 1977,
+              "title": "The origin of German tragic drama"
+            },
+            {
+              "work": "w-249339",
+              "kind": "book",
+              "year": 1978,
+              "title": "Reflections : essays, aphorisms, autobiographical writings"
+            },
+            {
+              "work": "w-249335",
+              "kind": "book",
+              "year": 1979,
+              "title": "One-way street, and other writings"
+            },
+            {
+              "work": "w-249315",
+              "kind": "book",
+              "year": 1980,
+              "title": "Briefwechsel 1933-1940"
+            },
+            {
+              "work": "w-249332",
+              "kind": "book",
+              "year": 1980,
+              "title": "Moskauer Tagebuch"
+            },
+            {
+              "work": "w-249311",
+              "kind": "book",
+              "year": 1981,
+              "title": "Benjamin über Kafka : Texte, Briefzeugnisse, Aufzeichnungen"
+            },
+            {
+              "work": "w-249337",
+              "kind": "book",
+              "year": 1983,
+              "title": "Das Passagen-Werk"
+            },
+            {
+              "work": "w-249307",
+              "kind": "book",
+              "year": 1984,
+              "title": "Allegorien kultureller Erfahrung : Ausgewählte Schriften, 1920-1940"
+            },
+            {
+              "work": "w-529273",
+              "kind": "article",
+              "year": 1985,
+              "title": "Moscow Diary"
+            },
+            {
+              "work": "w-249331",
+              "kind": "book",
+              "year": 1986,
+              "title": "Moscow diary"
+            },
+            {
+              "work": "w-249342",
+              "kind": "book",
+              "year": 1986,
+              "title": "Sonette"
+            },
+            {
+              "work": "w-249314",
+              "kind": "book",
+              "year": 1987,
+              "title": "Briefe an Siegfried Kracauer : mit vier Briefen von Siegfried Kracauer an Walter Benjamin"
+            },
+            {
+              "work": "w-249318",
+              "kind": "book",
+              "year": 1989,
+              "title": "The correspondence of Walter Benjamin and Gershom Scholem, 1932-1940"
+            },
+            {
+              "work": "w-249317",
+              "kind": "book",
+              "year": 1994,
+              "title": "The correspondence of Walter Benjamin, 1910-1940"
+            },
+            {
+              "work": "w-249323",
+              "kind": "book",
+              "year": 1995,
+              "title": "Gesammelte Briefe"
+            },
+            {
+              "work": "w-249308",
+              "kind": "book",
+              "year": 1999,
+              "title": "The arcades project"
+            },
+            {
+              "work": "w-249313",
+              "kind": "book",
+              "year": 2000,
+              "title": "Berliner Kindheit um neunzehnhundert : Giessener Fassung"
+            },
+            {
+              "work": "w-529352",
+              "kind": "article",
+              "year": 2001,
+              "title": "The Work of Walter Benjamin in the Age of Information"
+            },
+            {
+              "work": "w-249347",
+              "kind": "book",
+              "year": 2001,
+              "title": "Uparānta : Viśvavikhyāta Jarmana cintaka aura Mārksavādī vicāraka Vālṭara Baiñjāmina ke mr̥tyuparānta prakāśita nibandha"
+            },
+            {
+              "work": "w-249330",
+              "kind": "book",
+              "year": 2002,
+              "title": "Medienästhetische Schriften"
+            },
+            {
+              "work": "w-249341",
+              "kind": "book",
+              "year": 2002,
+              "title": "Selected writings"
+            },
+            {
+              "work": "w-249340",
+              "kind": "book",
+              "year": 2004,
+              "title": "Schrift, Bilder, Denken : Walter Benjamin und die Künste"
+            },
+            {
+              "work": "w-249312",
+              "kind": "book",
+              "year": 2006,
+              "title": "Berlin childhood around 1900"
+            },
+            {
+              "work": "w-249333",
+              "kind": "book",
+              "year": 2006,
+              "title": "On hashish"
+            },
+            {
+              "work": "w-249343",
+              "kind": "book",
+              "year": 2006,
+              "title": "Strada a senso unico"
+            },
+            {
+              "work": "w-249350",
+              "kind": "book",
+              "year": 2006,
+              "title": "The writer of modern life : essays on Charles Baudelaire"
+            },
+            {
+              "work": "w-249348",
+              "kind": "book",
+              "year": 2007,
+              "title": "Walter Benjamin's Archive : images, texts, signs"
+            },
+            {
+              "work": "w-249349",
+              "kind": "book",
+              "year": 2008,
+              "title": "The work of art in the age of its technological reproducibility, and other writings on media"
+            },
+            {
+              "work": "w-249322",
+              "kind": "book",
+              "year": 2009,
+              "title": "Einbahnstrasse"
+            },
+            {
+              "work": "w-249344",
+              "kind": "book",
+              "year": 2010,
+              "title": "Über den Begriff der Geschichte"
+            },
+            {
+              "work": "w-249321",
+              "kind": "book",
+              "year": 2011,
+              "title": "Early writings, 1910-1917"
+            },
+            {
+              "work": "w-249328",
+              "kind": "book",
+              "year": 2011,
+              "title": "Kritiken und Rezensionen"
+            },
+            {
+              "work": "w-249329",
+              "kind": "book",
+              "year": 2013,
+              "title": "Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit"
+            },
+            {
+              "work": "w-249338",
+              "kind": "book",
+              "year": 2014,
+              "title": "Radio Benjamin"
+            },
+            {
+              "work": "w-249334",
+              "kind": "book",
+              "year": 2016,
+              "title": "One-way street"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:luthi|sino soviet split",
+      "cited_title": "The Sino-Soviet Split: Cold War in the Communist World",
+      "cited_year": "2008",
+      "cited_authors": "Lüthi, Lorenz M",
+      "cited_by_theses": 28,
+      "candidates": []
+    },
+    {
+      "id": "W:bienvenue|quand la jeunesse entre en scene",
+      "cited_title": "Quand la jeunesse entre en scène. L’Action catholique avant la Révolution tranquille",
+      "cited_year": "2003",
+      "cited_authors": "Bienvenue, Louise",
+      "cited_by_theses": 28,
+      "candidates": []
+    },
+    {
+      "id": "W:bede|historia ecclesiastica gentis anglorum",
+      "cited_title": "Historia ecclesiastica gentis Anglorum",
+      "cited_year": "1969",
+      "cited_authors": "Bede",
+      "cited_by_theses": 28,
+      "candidates": []
+    },
+    {
+      "id": "W:price|maroon societies",
+      "cited_title": "Maroon Societies: Rebel Slave Communities in the Americas",
+      "cited_year": "1996",
+      "cited_authors": "Price, Richard",
+      "cited_by_theses": 28,
+      "candidates": []
+    },
+    {
+      "id": "W:edmundo|o rio de janeiro do meu tempo",
+      "cited_title": "O Rio de Janeiro do meu tempo",
+      "cited_year": "2003",
+      "cited_authors": "EDMUNDO, Luiz",
+      "cited_by_theses": 28,
+      "candidates": []
+    },
+    {
+      "id": "W:zander|fornstora dagar moderna tider",
+      "cited_title": "Fornstora dagar, moderna tider. Bruk av och debatter om svensk historia från sekelskifte till sekelskifte",
+      "cited_year": "2001",
+      "cited_authors": "Zander, Ulf",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-4053",
+          "name": "Zander, Ulf",
+          "works": [
+            {
+              "work": "w-433009",
+              "kind": "book",
+              "year": 2003,
+              "title": "Echoes of the Holocaust:  Historical Cultures in Contemporary Europe / Klas-Göran Karlsson, Ulf Zander"
+            },
+            {
+              "work": "w-398914",
+              "kind": "book",
+              "year": 2012,
+              "title": "Förintelsens röda nejlika : Raoul Wallenberg som historiekulturell symbol"
+            },
+            {
+              "work": "w-398393",
+              "kind": "book",
+              "year": 2015,
+              "title": "Perspectives on the entangled history of communism and Nazism : a comnaz analysis"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:castells|o poder da identidade",
+      "cited_title": "O poder da identidade",
+      "cited_year": "1999",
+      "cited_authors": "Castells, Manuel",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-1821",
+          "name": "Castells, Manuel",
+          "works": [
+            {
+              "work": "w-225654",
+              "kind": "book",
+              "year": 1972,
+              "title": "La estructura de clases sociales en Chile, 1970"
+            },
+            {
+              "work": "w-225675",
+              "kind": "book",
+              "year": 1972,
+              "title": "La question urbaine"
+            },
+            {
+              "work": "w-225661",
+              "kind": "book",
+              "year": 1973,
+              "title": "Luttes urbaines et pouvoir politique"
+            },
+            {
+              "work": "w-225674",
+              "kind": "book",
+              "year": 1973,
+              "title": "Problemas de investigacion en sociologia urbana"
+            },
+            {
+              "work": "w-225663",
+              "kind": "book",
+              "year": 1974,
+              "title": "Monopolville : analyse des rapports entre l'entreprise, l'État et l'urbain à partir d'une enquête sur la croissance industrielle et urbaine de la région de Dunkerque"
+            },
+            {
+              "work": "w-225660",
+              "kind": "book",
+              "year": 1975,
+              "title": "La lucha de clases en Chile"
+            },
+            {
+              "work": "w-225662",
+              "kind": "book",
+              "year": 1975,
+              "title": "Metodología y epistemología de las ciencias sociales"
+            },
+            {
+              "work": "w-225671",
+              "kind": "book",
+              "year": 1975,
+              "title": "Participación y cambio social en la problemática contemporánea"
+            },
+            {
+              "work": "w-225673",
+              "kind": "book",
+              "year": 1975,
+              "title": "Prática epistemológica e ciências sociais"
+            },
+            {
+              "work": "w-225678",
+              "kind": "book",
+              "year": 1975,
+              "title": "Sociologie de l'espace industriel"
+            },
+            {
+              "work": "w-225649",
+              "kind": "book",
+              "year": 1976,
+              "title": "La crise économique et la société américaine"
+            },
+            {
+              "work": "w-225651",
+              "kind": "book",
+              "year": 1976,
+              "title": "La cuestión urbana"
+            },
+            {
+              "work": "w-225664",
+              "kind": "book",
+              "year": 1976,
+              "title": "Movimientos sociales urbanos en América Latina : tendencias históricas y problemas teóricos"
+            },
+            {
+              "work": "w-225645",
+              "kind": "book",
+              "year": 1977,
+              "title": "Ciudad, democracia y socialismo : la experiencia de las asociaciones de vecinos en Madrid"
+            },
+            {
+              "work": "w-225683",
+              "kind": "book",
+              "year": 1977,
+              "title": "The urban question : a Marxist approach"
+            },
+            {
+              "work": "w-225644",
+              "kind": "book",
+              "year": 1978,
+              "title": "City, class, and power"
+            },
+            {
+              "work": "w-225665",
+              "kind": "book",
+              "year": 1980,
+              "title": "Multinational capital, national states, and local communities"
+            },
+            {
+              "work": "w-225652",
+              "kind": "book",
+              "year": 1980,
+              "title": "The economic crisis and American society"
+            },
+            {
+              "work": "w-225641",
+              "kind": "book",
+              "year": 1981,
+              "title": "Capital multinacional, estados nacionales y comunidades locales"
+            },
+            {
+              "work": "w-225650",
+              "kind": "book",
+              "year": 1981,
+              "title": "Crisis urbana y cambio social"
+            },
+            {
+              "work": "w-225656",
+              "kind": "book",
+              "year": 1981,
+              "title": "Housing policy and urban trade unionism : the grands ensembles of Paris"
+            },
+            {
+              "work": "w-225643",
+              "kind": "book",
+              "year": 1983,
+              "title": "The city and the grassroots : a cross-cultural theory of urban social movements"
+            },
+            {
+              "work": "w-225681",
+              "kind": "book",
+              "year": 1984,
+              "title": "Towards the informational city? : high technology, economic change, and spatial structure : some exploratory hypotheses"
+            },
+            {
+              "work": "w-1103248",
+              "kind": "book",
+              "year": 1985,
+              "title": "High technology, space, and society"
+            },
+            {
+              "work": "w-1103247",
+              "kind": "book",
+              "year": 1987,
+              "title": "Global restructuring and territorial development"
+            },
+            {
+              "work": "w-225669",
+              "kind": "book",
+              "year": 1988,
+              "title": "Nuevas tecnologias, economia y sociedad"
+            },
+            {
+              "work": "w-1112585",
+              "kind": "book",
+              "year": 1989,
+              "title": "The Informal economy : studies in advanced and less developed countries"
+            },
+            {
+              "work": "w-225658",
+              "kind": "book",
+              "year": 1989,
+              "title": "The informational city : information technology, economic restructuring, and the urban-regional process"
+            },
+            {
+              "work": "w-1123027",
+              "kind": "book",
+              "year": 1991,
+              "title": "Dual city : restructuring New York"
+            },
+            {
+              "work": "w-225667",
+              "kind": "book",
+              "year": 1991,
+              "title": "La nueva dependencia : cambio tecnológico y reestructuración socioeconómica en América Latina"
+            },
+            {
+              "work": "w-225668",
+              "kind": "book",
+              "year": 1992,
+              "title": "La nueva revolución rusa"
+            },
+            {
+              "work": "w-225680",
+              "kind": "book",
+              "year": 1994,
+              "title": "Technopoles of the world : the making of twenty-first-century industrial complexes"
+            },
+            {
+              "work": "w-225646",
+              "kind": "book",
+              "year": 1995,
+              "title": "The collapse of Soviet communism : a view from the information society"
+            },
+            {
+              "work": "w-225677",
+              "kind": "book",
+              "year": 1996,
+              "title": "The rise of the network society"
+            },
+            {
+              "work": "w-225672",
+              "kind": "book",
+              "year": 1997,
+              "title": "The power of identity"
+            },
+            {
+              "work": "w-225653",
+              "kind": "book",
+              "year": 1998,
+              "title": "End of millennium"
+            },
+            {
+              "work": "w-225682",
+              "kind": "book",
+              "year": 1999,
+              "title": "La transformación del trabajo"
+            },
+            {
+              "work": "w-513065",
+              "kind": "article",
+              "year": 2000,
+              "title": "Toward a Sociology of the Network Society"
+            },
+            {
+              "work": "w-225679",
+              "kind": "book",
+              "year": 2001,
+              "title": "Suomen tietoyhteiskuntamalli"
+            },
+            {
+              "work": "w-225659",
+              "kind": "book",
+              "year": 2001,
+              "title": "The Internet galaxy : reflections on the Internet, business, and society"
+            },
+            {
+              "work": "w-1115154",
+              "kind": "book",
+              "year": 2002,
+              "title": "Muslim Europe or Euro-Islam : politics, culture, and citizenship in the age of globalization"
+            },
+            {
+              "work": "w-225642",
+              "kind": "book",
+              "year": 2002,
+              "title": "The Castells reader on cities and social theory"
+            },
+            {
+              "work": "w-225657",
+              "kind": "book",
+              "year": 2002,
+              "title": "The information society and the welfare state : the Finnish model"
+            },
+            {
+              "work": "w-225648",
+              "kind": "book",
+              "year": 2003,
+              "title": "Conversations with Manuel Castells"
+            },
+            {
+              "work": "w-1103246",
+              "kind": "book",
+              "year": 2004,
+              "title": "Europa en construcción : integración, identidades y seguridad"
+            },
+            {
+              "work": "w-1103249",
+              "kind": "book",
+              "year": 2004,
+              "title": "The network society : a cross-cultural perspective"
+            },
+            {
+              "work": "w-225655",
+              "kind": "book",
+              "year": 2005,
+              "title": "Globalización, desarrollo y democracia : Chile en el contexto mundial"
+            },
+            {
+              "work": "w-225670",
+              "kind": "book",
+              "year": 2006,
+              "title": "Observatorio global : crónicas de principio de siglo"
+            },
+            {
+              "work": "w-225647",
+              "kind": "book",
+              "year": 2009,
+              "title": "Communication power"
+            },
+            {
+              "work": "w-1103244",
+              "kind": "book",
+              "year": 2012,
+              "title": "Aftermath : the cultures of the economic crisis"
+            },
+            {
+              "work": "w-225666",
+              "kind": "book",
+              "year": 2012,
+              "title": "Networks of outrage and hope : social movements in the Internet Age"
+            },
+            {
+              "work": "w-225676",
+              "kind": "book",
+              "year": 2014,
+              "title": "Reconceptualizing development in the global information age"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:graham|gra bretanha e o inicio da modernizacao no brasil",
+      "cited_title": "Grã-Bretanha e o início da modernização no Brasil",
+      "cited_year": "1973",
+      "cited_authors": "Graham, Richard",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-2353",
+          "name": "Graham, Richard",
+          "works": [
+            {
+              "work": "w-510822",
+              "kind": "article",
+              "year": 1966,
+              "title": "Causes for the Abolition of Negro Slavery in Brazil: An Interpretive Essay"
+            },
+            {
+              "work": "w-128982",
+              "kind": "book",
+              "year": 1968,
+              "title": "Britain and the onset of modernization in Brazil 1850-1914"
+            },
+            {
+              "work": "w-128983",
+              "kind": "book",
+              "year": 1969,
+              "title": "A century of Brazilian history since 1865: issues and problems"
+            },
+            {
+              "work": "w-128981",
+              "kind": "book",
+              "year": 1969,
+              "title": "Brazil in the London Times, 1850-1905; a guide"
+            },
+            {
+              "work": "w-128985",
+              "kind": "book",
+              "year": 1969,
+              "title": "Cornell-Brazil Project; an experiment in learning"
+            },
+            {
+              "work": "w-128989",
+              "kind": "book",
+              "year": 1972,
+              "title": "Independence in Latin America"
+            },
+            {
+              "work": "w-128991",
+              "kind": "book",
+              "year": 1974,
+              "title": "New approaches to Latin American history"
+            },
+            {
+              "work": "w-128990",
+              "kind": "book",
+              "year": 1978,
+              "title": "The Jesuit Antonio Vieira and his plans for the economic rehabilitation of seventeenth-century Portugal"
+            },
+            {
+              "work": "w-128987",
+              "kind": "book",
+              "year": 1979,
+              "title": "Escravidão, reforma e imperialismo"
+            },
+            {
+              "work": "w-503736",
+              "kind": "article",
+              "year": 1981,
+              "title": "Slavery and Economic Development: Brazil and the United States South in the Nineteenth Century"
+            },
+            {
+              "work": "w-128992",
+              "kind": "book",
+              "year": 1990,
+              "title": "Patronage and politics in nineteenth-century Brazil"
+            },
+            {
+              "work": "w-1090705",
+              "kind": "book",
+              "year": 1990,
+              "title": "The Idea of race in Latin America, 1870-1940"
+            },
+            {
+              "work": "w-1090704",
+              "kind": "book",
+              "year": 1991,
+              "title": "Brazil and the world system"
+            },
+            {
+              "work": "w-128984",
+              "kind": "book",
+              "year": 1997,
+              "title": "Clientelismo e política no Brasil do século XIX"
+            },
+            {
+              "work": "w-1090706",
+              "kind": "book",
+              "year": 1999,
+              "title": "Machado de Assis : reflections on a Brazilian master writer"
+            },
+            {
+              "work": "w-128988",
+              "kind": "book",
+              "year": 2010,
+              "title": "Feeding the city : from street market to liberal reform in Salvador, Brazil, 1780-1860"
+            },
+            {
+              "work": "w-128986",
+              "kind": "book",
+              "year": null,
+              "title": "Ensaios sobre a política e a economia da Provincia Fluminense no século XIX [coordenação e introdução de Richard Graham]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:hobsbawm|sao paulo",
+      "cited_title": "São Paulo: Companhia das Letras, 1995",
+      "cited_year": "1995",
+      "cited_authors": "Hobsbawm, Eric",
+      "cited_by_theses": 28,
+      "candidates": [
+        {
+          "person": "p-384",
+          "name": "Eric Hobsbawm",
+          "works": [
+            {
+              "work": "w-242125",
+              "kind": "book",
+              "year": 1948,
+              "title": "Labour's turning point, 1880-1900 ; extracts from contemporary sources"
+            },
+            {
+              "work": "w-511814",
+              "kind": "article",
+              "year": 1952,
+              "title": "Economic Fluctuations and Some Social Movements Since 1800"
+            },
+            {
+              "work": "w-3183",
+              "kind": "article",
+              "year": 1957,
+              "title": "E. J. Hobsbawm, “The British Standard of Living 1790–1850,” Economic History Rev"
+            },
+            {
+              "work": "w-242135",
+              "kind": "book",
+              "year": 1959,
+              "title": "Primitive rebels : studies in archaic forms of social movements in the 19th and 20th centuries"
+            },
+            {
+              "work": "w-242139",
+              "kind": "book",
+              "year": 1960,
+              "title": "Social bandits and primitive rebels; studies in archaic forms of social movement in the 19th and 20th centuries"
+            },
+            {
+              "work": "w-511849",
+              "kind": "article",
+              "year": 1963,
+              "title": "The Standard of Living during the Industrial Revolution: A Discussion"
+            },
+            {
+              "work": "w-242126",
+              "kind": "book",
+              "year": 1964,
+              "title": "Labouring men; studies in the history of labour"
+            },
+            {
+              "work": "w-170965",
+              "kind": "book",
+              "year": 1964,
+              "title": "Pre-capitalist economic formations"
+            },
+            {
+              "work": "w-242112",
+              "kind": "book",
+              "year": 1968,
+              "title": "Captain Swing"
+            },
+            {
+              "work": "w-242121",
+              "kind": "book",
+              "year": 1968,
+              "title": "Industry and empire; the making of modern English society, 1750 to the present day"
+            },
+            {
+              "work": "w-242110",
+              "kind": "book",
+              "year": 1969,
+              "title": "Bandits"
+            },
+            {
+              "work": "w-242120",
+              "kind": "book",
+              "year": 1969,
+              "title": "Industrie und Empire. Britische Wirtschaftsgeschichte seit 1750"
+            },
+            {
+              "work": "w-242108",
+              "kind": "book",
+              "year": 1969,
+              "title": "The age of revolution: Europe 1789-1848"
+            },
+            {
+              "work": "w-242113",
+              "kind": "book",
+              "year": 1970,
+              "title": "La Convención, un caso de neofeudalismo"
+            },
+            {
+              "work": "w-505030",
+              "kind": "article",
+              "year": 1971,
+              "title": "From Social History to the History of Society"
+            },
+            {
+              "work": "w-193993",
+              "kind": "book",
+              "year": 1972,
+              "title": "Historical studies today"
+            },
+            {
+              "work": "w-503707",
+              "kind": "article",
+              "year": 1972,
+              "title": "Social Bandits: Reply"
+            },
+            {
+              "work": "w-525757",
+              "kind": "article",
+              "year": 1973,
+              "title": "DALLA STORIA SOCIALE ALLA STORIA DELLA SOCIETA’"
+            },
+            {
+              "work": "w-242137",
+              "kind": "book",
+              "year": 1973,
+              "title": "Revolutionaries : contemporary essays"
+            },
+            {
+              "work": "w-242105",
+              "kind": "book",
+              "year": 1975,
+              "title": "The age of capital, 1848-1875"
+            },
+            {
+              "work": "w-242114",
+              "kind": "book",
+              "year": 1975,
+              "title": "The crisis & the outlook"
+            },
+            {
+              "work": "w-242117",
+              "kind": "book",
+              "year": 1976,
+              "title": "Giorgio Napolitano : intervista sul PCI"
+            },
+            {
+              "work": "w-242134",
+              "kind": "book",
+              "year": 1976,
+              "title": "La Politique du Parti communiste italien : entretien avec Eric J. Hobsbawm"
+            },
+            {
+              "work": "w-242123",
+              "kind": "book",
+              "year": 1977,
+              "title": "The Italian road to socialism : an interview"
+            },
+            {
+              "work": "w-514816",
+              "kind": "article",
+              "year": 1978,
+              "title": "Capitalisme et agriculture: les réformateurs écossais au XVIIIe siècle"
+            },
+            {
+              "work": "w-242136",
+              "kind": "book",
+              "year": 1978,
+              "title": "Revolución industrial y revuelta agraria : el capitán Swing"
+            },
+            {
+              "work": "w-1105864",
+              "kind": "book",
+              "year": 1980,
+              "title": "Peasants in history : essays in honour of Daniel Thorner"
+            },
+            {
+              "work": "w-1105863",
+              "kind": "book",
+              "year": 1982,
+              "title": "Marxism in Marx's day"
+            },
+            {
+              "work": "w-1105861",
+              "kind": "book",
+              "year": 1982,
+              "title": "The History of Marxism"
+            },
+            {
+              "work": "w-1105862",
+              "kind": "book",
+              "year": 1983,
+              "title": "The Invention of tradition"
+            },
+            {
+              "work": "w-511981",
+              "kind": "article",
+              "year": 1984,
+              "title": "Artisan or Labour Aristocrat?"
+            },
+            {
+              "work": "w-242141",
+              "kind": "book",
+              "year": 1984,
+              "title": "Workers : worlds of labor"
+            },
+            {
+              "work": "w-242142",
+              "kind": "book",
+              "year": 1984,
+              "title": "Worlds of labour : further studies in the history of labour"
+            },
+            {
+              "work": "w-242106",
+              "kind": "book",
+              "year": 1987,
+              "title": "The age of empire, 1875-1914"
+            },
+            {
+              "work": "w-242133",
+              "kind": "book",
+              "year": 1989,
+              "title": "Politics for a rational left : political writing, 1977-1988"
+            },
+            {
+              "work": "w-522957",
+              "kind": "article",
+              "year": 1989,
+              "title": "The Making of a \"Bourgeois Revolution\""
+            },
+            {
+              "work": "w-242115",
+              "kind": "book",
+              "year": 1990,
+              "title": "Echoes of the Marseillaise : two centuries look back on the French Revolution"
+            },
+            {
+              "work": "w-1462",
+              "kind": "book",
+              "year": 1990,
+              "title": "Eric Hobsbawm, Nations and Nationalism since 1780: Programme, Myth, Reality (199"
+            },
+            {
+              "work": "w-517705",
+              "kind": "article",
+              "year": 1992,
+              "title": "Ethnicity and Nationalism in Europe Today"
+            },
+            {
+              "work": "w-512188",
+              "kind": "article",
+              "year": 1992,
+              "title": "LIBÉRALISME ET SOCIALISME : LE CAS ANGLAIS"
+            },
+            {
+              "work": "w-242124",
+              "kind": "book",
+              "year": 1993,
+              "title": "The jazz scene"
+            },
+            {
+              "work": "w-242107",
+              "kind": "book",
+              "year": 1994,
+              "title": "The age of extremes : a history of the world, 1914-1991"
+            },
+            {
+              "work": "w-522981",
+              "kind": "article",
+              "year": 1996,
+              "title": "Language, Culture, and National Identity"
+            },
+            {
+              "work": "w-242109",
+              "kind": "book",
+              "year": 1996,
+              "title": "The age of revolution 1789-1848"
+            },
+            {
+              "work": "w-242130",
+              "kind": "book",
+              "year": 1997,
+              "title": "On history"
+            },
+            {
+              "work": "w-242140",
+              "kind": "book",
+              "year": 1998,
+              "title": "Uncommon people : resistance, rebellion and jazz"
+            },
+            {
+              "work": "w-242111",
+              "kind": "book",
+              "year": 1999,
+              "title": "Behind the times : the decline and fall of the twentieth-century avant-gardes"
+            },
+            {
+              "work": "w-242118",
+              "kind": "book",
+              "year": 2000,
+              "title": "L'historien engagé"
+            },
+            {
+              "work": "w-242131",
+              "kind": "book",
+              "year": 2000,
+              "title": "On the edge of the new century"
+            },
+            {
+              "work": "w-242138",
+              "kind": "book",
+              "year": 2002,
+              "title": "Shi xue jia : li shi shen hua de zhong jie zhe"
+            },
+            {
+              "work": "w-242122",
+              "kind": "book",
+              "year": 2003,
+              "title": "Interesting times : a twentieth-century life"
+            },
+            {
+              "work": "w-242132",
+              "kind": "book",
+              "year": 2003,
+              "title": "L'optimisme de la volonté : d'un siècle à l'autre"
+            },
+            {
+              "work": "w-242127",
+              "kind": "book",
+              "year": 2005,
+              "title": "Nationen und Nationalismus : Mythos und Realität seit 1780"
+            },
+            {
+              "work": "w-506440",
+              "kind": "article",
+              "year": 2006,
+              "title": "Faire une \"révolution bourgeoise\""
+            },
+            {
+              "work": "w-242129",
+              "kind": "book",
+              "year": 2008,
+              "title": "On empire : America, war, and global supremacy"
+            },
+            {
+              "work": "w-242119",
+              "kind": "book",
+              "year": 2011,
+              "title": "How to change the world : Marx and Marxism, 1840-2011"
+            },
+            {
+              "work": "w-242116",
+              "kind": "book",
+              "year": 2013,
+              "title": "Fractured times : culture and society in the twentieth century"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "W:machado|danacao da norma",
+      "cited_title": "Danação da norma: a medicina social e constituição da psiquiatria no Brasil",
+      "cited_year": "1978",
+      "cited_authors": "MACHADO, Roberto",
+      "cited_by_theses": 28,
+      "candidates": []
+    }
+  ]
+}
+
+exec
+/bin/bash -lc "python - <<'PY'
+from pathlib import Path
+p=Path.cwd()
+for a in [p,*p.parents]:
+ for n in ['MEMORY.md','AGENTS.md']:
+  q=a/n
+  if q.is_file():
+   print(str(q))
+   if n=='MEMORY.md': print(q.read_text()[:26000])
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 0ms:
+/home/jic823/historiography/MEMORY.md
+## Historian relationship queue complete — revision 1.231, 2026-10-30
+
+All **33 historians remaining after recovery are complete**, with independent passage, coverage, merged-packet and applied reviews. The continuation adds **148 relationships and 36 cited sources** beyond revision 1.220. All 101 resumed dossiers are applied, bringing the protocol total to 157; **zero remain**.
+
+The current graph contains **368 entries, 2,822 relationships, 3,440 sources and 1,438 indexed people**. The final three-person batch covers Joy Parr, Donald Creighton and Walter Rodney. A separately reviewed correction adds Wolfe’s qualified criticism of Fanon and clarifies Todorov’s citation-only hold. Explicit unread-evidence and missing-endpoint holds remain; completion describes the bounded dossiers, not an exhaustive intellectual network.
+
+Validation passes: 23 data cases including source-host checks, 61 JavaScript checks, three browser cases including all 368 focused relationship views, and the 54-file preview. All recovered relationships and other graph tables are preserved, with only approved source-note appends to earlier sources. All ten continuation packets and the separate coverage correction reconstruct exactly. Public graph and overview are refreshed; the accepted people enrichment and 110 protected product files remain exact. Structural validation has zero errors and the same 46 reviewed warnings. Changes are committed locally; no push or deployment. OpenAlex remains paused.
+
+Production SHA256: `a31ae20e8df36b1663469598f9a7a9cc1fe59ef6b51fda5ef5606148d6fe7b1e`. Current state and proof: `data/field-research/dedicated-historians-resumed-2026-10-28/completion-2026-10-30.json`, `progress.json`, `validation-1.231.json`, final frozen batch25, and the separate historian-coverage-correction-2026-10-30 packet. The three existing research lanes have finished; there is no remaining assigned historian work. Do not rerun frozen dossier writers. Source restrictions, stable IDs, old editorial qualifications, snapshots, unrelated corpus/site work and the paused OpenAlex investigation remain in force. The user authorized a local commit on 31 October 2026. No push or deployment was requested.
+
+The checkpoints below are historical and superseded by this completion record.
+
+## Final historian coverage correction in progress — 2026-10-30
+
+All33 remaining dossiers are applied and independently audited at1.230, SHA d94e10d996ac7731b3fcaacd80b8f020115bd0152d70205ec4242e4d59ac7b27; 101resumed/157total complete,0queue remain. Do not declare final completion yet: finalchecks found frozenWolfe hold falsely saysFanonmissing. Root readactual1999intro1–3, proposes qualifiedWolfe→Fanoncrit in separate coverage-correction-2026-10-30 supplement; A independently reviewing. Also clarifies existingTodorov endpoint butno distinctValverdeadoption, noedge. Allfrozenfiles exact. Need separate1.231packet+Bmerged/applied audit, then final20+correction data/61JS/3browser currentdocs at127.0.0.1:4188, cumulativepreservation andclosure. Temporary audit/docclosurehelpers in/tmp needadaptfor separatecorrection. OpenAlexpaused,no commitpush.
+
+## Historian revision 1.229 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Patrick Wolfe, R. Bin Wong, Evelyn Brooks Higginbotham, Gregory S. Kealey; 21 relationships, 2 cited sources and 6 append-only source notes. Exact graph SHA33197b6f840ba17c8fb7378c6843283f1c3c6d6c3ce1fbe26b5ec7ed84d9d184, counts368/2807/3439/1438. 98 resumed implemented, 154 total complete, 3 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.229.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.228 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Alice Clark, Ernest Labrousse, Frances A. Yates, Eric Williams; 8 relationships, 2 cited sources and 8 append-only source notes. Exact graph SHA2be7bbd9afb0c6a6f38a1fcf90085405bd1a90d564ed657270ebaaed0e10112e, counts368/2786/3437/1438. 94 resumed implemented, 150 total complete, 7 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.228.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.227 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Jon Lawrence, C. L. R. James, Ian McKay, Cole Harris; 11 relationships, 4 cited sources and 8 append-only source notes. Exact graph SHA0d40483fd7064ed46896c1899df51104d8d9543356a3a18dab898b31c8732610, counts368/2778/3435/1438. 90 resumed implemented, 146 total complete, 11 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.227.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Active continuation checkpoint after 1.226 — 2026-10-30
+
+User says continue until ALL remaining historians done; original recovered1.220 had33 remaining. Now1.226 fully applied/independently audited/data20+JS61+54-file preview/export verified; 15 remain. Graph368/2767/3431/1438 SHAe2367ae0881c6ca12ee25d48dd60a96b0228f8e8fd01ce52aaf90cb6e3eb48ec. 86resumed implemented/142total complete.110 protected product files at recovery checkpoint still exact (browser screenshot artifacts excluded). No commit/push/OpenAlex.
+
+NEXT batch22/1.227 frozen, NOT YET APPLIED: Lawrence2/CLRJames3/McKay3/Harris3,11edges4sources8addenda expectedSHA0d40483fd7064ed46896c1899df51104d8d9543356a3a18dab898b31c8732610/counts368/2778/3435/1438,11remain after actual application. research_a independently auditing merged packet now, authorized applied audit after root applies; never rerun frozen writers. Root independent reviews McKay/Harris/VanKirk/Johnson/Darnton/Kuhn saved and pinned. VanKirk final spacing fixed BEFORE PASS; all older freezes untouched. Newtest1.225 schema accepts passage_checks OR source_checks nonempty; actual proofs unchanged, validation note records initial harness failure and passing rerun. Helper /tmp/historian-finish-applied.py amended for futuretests too.
+
+Active3researchers: A lastownYates; A reviewing Wong2 and doingB+C batch22 integration audits, Wolfe3 already PASS. B researching lastParr/Rodney/Creighton (Kealey8ready; B reviewing Labrousse4); AliceClark1 PASS. C researching lastownEvelynBrooksHigginbotham (Wong2ready/Wolfe3PASS/James3PASS/Lawrence2PASS); C RESERVED independentKealey8 review AFTER ownHigginbotham, rootcurrently takesEricWilliams2review then remainingB reviews asavailable. EricWilliams2ready, root has not read its body yet. Future23 can A+B Clark/Labrousse/Yates/Williams ifready withCindependentmerge; futureB+C subsets useAexternalintegration. No newagents needed. Allsource route checks strict, originals maystayheld; no quotas or exhaustive-networkclaims. Trackactual implementation separately. /tmp helpers listed below still orchestrate. Use currentfiles/progress, not this checkpoint alone for latest readiness.
+
+## Historian revision 1.226 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Gérard Noiriel, Ivy Pinchbeck, Sylvia Van Kirk, Jan de Vries; 20 relationships, 5 cited sources and 8 append-only source notes. Exact graph SHAe2367ae0881c6ca12ee25d48dd60a96b0228f8e8fd01ce52aaf90cb6e3eb48ec, counts368/2767/3431/1438. 86 resumed implemented, 142 total complete, 15 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.226.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.225 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Ann Laura Stoler, Benedict Anderson, Walter Johnson, Mariana Valverde; 24 relationships, 8 cited sources and 4 append-only source notes. Exact graph SHA0871e02fd04d5aa6c42f44d46156bd4bed39eb63cc17a6ad0443348bddbf7f6b, counts368/2747/3426/1438. 82 resumed implemented, 138 total complete, 19 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.225.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.224 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Thomas Kuhn, Pierre Nora, Robert Darnton; 19 relationships, 5 cited sources and 3 append-only source notes. Exact graph SHAcd99de2697b02aa5bc6664abf23d0f236dcda36f714d48646a39cd821ab8fcb3, counts368/2723/3418/1438. 78 resumed implemented, 134 total complete, 23 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.224.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.223 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Lisa McGirr, Saidiya Hartman, J. G. A. Pocock; 10 relationships, 4 cited sources and 4 append-only source notes. Exact graph SHA96457e47349ca094f9bf404d367569b278eb03598a3eea79fecb49b7c3713fcd, counts368/2704/3413/1438. 75 resumed implemented, 131 total complete, 26 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.223.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.222 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: Richard White, Ramsay Cook; 12 relationships, 3 cited sources and 6 append-only source notes. Exact graph SHA087eee8add8e65c7a1da0a60b285b16c22e1fe29bbefabf4512fa18c53373a87, counts368/2694/3409/1438. 72 resumed implemented, 128 total complete, 29 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.222.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Historian revision 1.221 applied and locally verified — 2026-10-30
+
+User explicitly directs continue until ALL33 from recovered1.220done. This batch: C. V. Wedgwood, Joel Mokyr; 8 relationships, 2 cited sources and 4 append-only source notes. Exact graph SHA9f15f1922926d0e9a087833faa218a095ca635f2fc460490e62284ea4cf1bd85, counts368/2682/3406/1438. 70 resumed implemented, 126 total complete, 31 remain. Frozen owner/access/independent reviews, merged and applied PASS; 20data61JS54-filepreviewPASS. Public graph/overview refreshed; accepted public people/enrichment retained to avoid unrelated build overlay changes. No commit/push. Research baseline1.204, all prior snapshots/packets exact, source restrictions strict, OpenAlex paused.
+
+Active researcher A/B/C queues and independent rotation persist: A reviews C; C reviews B; B reviews A. Root integrates exact frozen deltas. For new research, check progress.json and own folder status, do not rerun frozen writers. Temporary orchestration helpers: /tmp/prepare-historian-next.py takes reviewedpersonIDs and prepares next batch skeleton/selection (run its prepare.py afterward); /tmp/historian-finish-applied.py validates/exports/records after separate merged+appliedPASS; /tmp/document-historian-current.py updates status docs; /tmp/update-historian-progress.py reconciles research/review separately. These helpers do not replace independent audits. Current finalchecks evidence in validation-1.221.json. Continue remainingqueue, preserving concurrent corpus/site files.
+
+## Crash recovery: revision 1.220 verified — 2026-10-30
+
+User says WSL crashed, last job may be half done; explicitly continue until ALL remaining historians done. Recovered live 1.220 Cooper15 + PeterBrown2 already applied with separate independent dossier/merged/applied PASS. Exact graph SHA aa945406706f52b78fc9e682972710b3a4e90b5f97fd95389cc4f8f07f31c5f3; counts 368/2674/3404/1438. 68 resumed implemented, 124 total complete, 33 remain. Frozen batch15 and 52 manifest input hashes pass. Completed missing implementation/validation/docs records. 20 data, 61 JS, 3 browser tests pass; 54-file preview. Public graph/overview already1.220: all relationships/sources exact to preview, overview exact. Public people/enrichment differs only because current builder adds living-birth withholding; retained existing people enrichment rather than replacing unrelated life fields. 110 product files in recovery checkpoint unchanged; browser screenshot artifacts excluded. No commit/push.
+
+Active researchers explicitly required by project dedicated review protocol: research_a owns former A queue; research_b former B; research_c former root queue. Independent review rotation A reviews C, C reviews B, B reviews A, root integration. All33 still pending at this checkpoint. Start White/Wedgwood/Mokyr respectively. Researchers must use permitted actual primary routes and explicit holds, no quota, plain readable prose. No frozen dossier rewrites; no OpenAlex; preserve concurrent corpus/site work. User completion directive persists across compaction.
+
+## Historian revision 1.219 applied — 2026-10-30
+
+Carter10 + Greer11 independently PASS/frozen; merged and applied reviewer PASS. Graph368/2657/3400/1438 SHA5238361986fcbe9826da2f44aa9c0c3e56bcc80005c6f2d1f71df2698d91cea0. 66 resumed implemented,122 total complete,35remain; progress reconciled including formerly stale total.30 data cases, JS core runner,54-file build pass. Publicgraph/overview refreshed,86protected exact.3 browser cases pass after public refresh; validation1.219 records exact logs and independent audit hashes. No commit/push.
+Root Cooper active: actual original OpenEdition2022PDF22leaves/printed41–61 fully read in French, translated interview English emailsDec2021–Feb2022, Vadot/Bourel translation reviewed byCooper. Own2013interview reprinted2017WorldHistoryGenealogy337–352 fully read including24notes in allowed LoCpublicpublisherPDF; selectedtext inCooperraw referencesexactGoodyimmutablePDF. ExplicitGenovese/Marx/Woodward/DavidBrionDavis formation, Stoler collaboration; Foucault learning2022:47; Goodyboundedcomparison57. Strong missing teachersDavidPotter,Diouf,Mbodj,Fall, JaneBurbank,EmiliaViottidaCosta,Senghor held. Do not misattribute ForeignAffairs Pomeranzreview(RichardN.Cooper) or Brennerreply(J.P.Cooper), WedgwoodCooperalso separateidentity. Need primary category2000 article/reply for critique; fetchingpublisherlanding. Ineligible earlier jointidentity body route NOTread/reused, canonicalDOI retained. Existingcontext stale route prose requires neutralalignment before ownerfreeze. NextCooperdossierwrite/review.
+
+## Carter and Greer independent PASS; revision 1.219 assembling — 2026-10-30
+
+User cleared agent capacity after reviewer authorization request; one independent reviewer historian_review now completed Carter (10) and Greer (11), exact six-owner/access/raw hashes frozen. Independent audit of applied batches12/13 also PASS, separately recorded. Carter namesake The Road to Botany Bay belongs to Paul Carter: explicit hold, old graph unchanged. Carter 2 dossier sources but Jacobs held-only excluded; expected production 1 new source/21 edges/8 addenda. Batch14 prepare skeleton and selection ready; baseline1.218 exact SHA/counts. Build/check/independent merged review before apply, then normal checks and graph/overview-only refresh. Next Frederick Cooper, primary publisher interview routes found, no new body read yet. 120 total complete/37 remain until actual1.219apply. All earlier frozen packets, source restrictions and no commit/push remain.
+
+## Historian revision 1.218 applied and locally verified — 2026-10-29/30
+
+Wrigley, Genovese, Chatterjee, Tuchman: 14 edges, 6 cited sources, 14 append-only source notes. Current graph 368 / 2636 / 3399 / 1438; SHA a47760c530e646464751792a2ea277f63ff937db456ba78eb2b2ddc1c46dfc60. 64 resumed implemented, 120 total complete, 37 remain. Progress.json now has 64 researched/reviewed/implemented. Continue the remaining list; no commit or push.
+Batch13 is frozen and applied. All earlier records exact except approved append-only notes. A separate baseline-counts-amendment-1.218.json fixes inherited counts, leaving original frozen selection/manifest/packet/receipt exact; baseline SHA and graph delta were correct. 29 data cases, JavaScript core runner, 3 browser cases, 54-file preview pass. No new structural warnings (46 unchanged), zero errors. Refreshed public graph/overview only. Six concurrent docs app/style assets changed externally and were preserved; current 86-file checkpoint exact.
+Four dossier reviews are explicitly Codex continuation passage/coverage reviews of prior researcher work; no separate Astra run. Existing owner files/access reviews now frozen. Genovese has only THREE accepted proposals; candidate James influence stays held/unread under current access rules. Retained ineligible reader body/page image must not be read. NAU Sarkar material confirmed as a single-chapter teaching share through the course electronic-reserve list.
+Root is continuing Sarah Carter research from already retained permitted publisher books (AU Press 2008 and Manitoba corrected 2018), Medicine 2003 publisher review, and original interview/reception witnesses. No Carter proposal files yet. Promising explicit resources: Cott 2008:3–4, Perry 2008:4 and 2016:8, Van Kirk 2008:6, Stoler 2008:16/64, Burton 2008:277, Wolfe 2016:6, Philippa Levine 2016:8. Verify exact note/edition/editor credit, critical reception and missing formation before writing. Do not infer debt from conference invitation or generic acknowledgment. Both whole books downloaded but only selected passages read; maintain limits.
+An asynchronous user question is pending asking authorization for one independent reviewer agent for NEW researched dossiers. Do not treat elapsed time as approval. No agents are currently live; do not spawn without explicit authorization. Original 1.204 research baseline remains, 1.216 repair preserved. OpenAlex paused, UK collection separate, no new corpus/citation work; preserve concurrent files.
+
+## Historian revision 1.217 applied and locally verified — 2026-10-29
+
+Iacovetta, Eley, Goody, Fuentes and Deloria:
+/home/jic823/historiography/AGENTS.md
+
+exec
+/bin/bash -lc "python - <<'PY'
+import json
+x=next(x for x in json.load(open('../groups.json')) if x['id']=='g015')
+for i,t in enumerate(x['items']):
+ print(i,t['id'],t['cited_title'],t['cited_year'],t['cited_authors'])
+ print(' / '.join(f\"{w['work']} [{w['year']}] {w['title']}\" for p in t['candidates'] for w in p['works']))
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 71ms:
+0 W:mauss|ensaio sobre a dadiva Ensaio sobre a dádiva 2003 Mauss, Marcel
+w-515648 [1902] ESQUISSE D'UNE THÉORIE GÉNÉRALE DE LA MAGIE / w-523234 [1908] L'ART ET LE MYTHE D'APRÈS M. WUNDT / w-235240 [1909] Mélanges d'histoire des religions / w-515650 [1923] ESSAI SUR LE DON FORME ET RAISON DE L'ÉCHANGE DANS LES SOCIÉTÉS ARCHAÏQUÈS / w-1104772 [1934] The greatness and decline of the Celts / w-235234 [1950] Les Celtes et l'expansion celtique, jusqu'à l'époque de La Tène / w-161062 [1963] Primitive classification / w-235243 [1964] Sacrifice: its nature and function / w-235237 [1968] Die Gabe. Form und Funktion des Austauschs in archaischen Gesellschaften / w-235249 [1968] Œuvres / w-235236 [1971] Essais de sociologie / w-235238 [1972] A general theory of magic / w-235246 [1973] Sociologie et anthropologie / w-235245 [1979] Seasonal variations of the Eskimo : a study in social morphology / w-235247 [1979] Sociology and psychology : essays / w-1104773 [1987] The rise of the Celts / w-235233 [1995] Assaig sobre la naturalesa i la funció del sacrifici / w-235235 [1997] Ecrits politiques / w-235242 [2003] On prayer / w-235241 [2005] The nature of sociology : two essays / w-235248 [2006] Techniques, technology and civilisation / w-235239 [2007] Manual of ethnography / w-235244 [2009] Saints, heroes, myths, and rites : classical Durkheimian studies of religion and society
+1 W:catroga|memoria historia e historiografia Memória, história e historiografia 2001 Catroga, Fernando
+w-523111 [1988] O laicismo e a questão religiosa em Portugal (1865-1911) / w-362125 [1991] O republicanismo em Portugal : da formação ao 5 de Outubro de 1910 / w-362124 [1999] O céu da memória : cemitério romântico e culto cívico dos mortos em Portugal, 1756-1911 / w-362123 [2003] Caminhos do fim da história / w-362126 [2009] Os passos do homem como restolho do tempo : memória e fim do fim da história / w-1140441 [2011] Res publica 1820-1926 : citizenship and political representation in Portugal / w-1140439 [2012] Memória, escrita da história e cultura política no mundo luso-brasileiro
+2 W:pollak|memoria esquecimento silencio|a Memória, esquecimento, silêncio 1989 Pollak, Michael
+w-141532 [1977] Im Schatten der Arbeiterbewegung : zur Geschichte des Anarchismus in Österreich und Deutschland / w-1170294 [1978] Gesellschaft und Soziologie in Frankreich : Tradition u. Wandel in d. neueren franz. Soziologie / w-1170297 [1986] Max Weber en France : l'itinéraire d'une oeuvre / w-1091889 [1987] Jews, antisemitism, and culture in Vienna / w-1170295 [1988] Les homosexuels et le sida : sociologie d'une épidémie / w-1112788 [1989] Mai 68 et les sciences sociales / w-1091886 [1990] Eine Zerstörte Kultur : jüdisches Leben und Antisemitismus in Wien seit dem 19. Jahrhundert / w-1170296 [1990] L'expérience concentrationnaire : essai sur le maintien de l'identité sociale / w-1108565 [1991] Histoire politique et sciences sociales / w-1170293 [1992] AIDS: a problem for sociological research / w-1170298 [1994] The second plague of Europe : AIDS prevention and sexual transmission among men in Western Europe
+3 W:villalta|reformismo ilustrado censura e praticas de leitura Reformismo ilustrado, censura e práticas de leitura 1999 Villalta, Luiz Carlos
+w-410129 [2000] 1789-1808 : o império luso-brasileiro e os brasis / w-1153164 [2008] Quatro novelas em tempos de D. João / w-410130 [2013] História de Minas Gerais : a província de Minas
+4 W:brasil|decreto n Decreto n 1890 BRASIL, COLEÇÃO DE LEIS DO
+
+5 W:singer|desenvolvimento economico e evolucao urbana Desenvolvimento econômico e evolução urbana 1977 Singer, Paul
+w-1177560 [1968] Desenvolvimento e crise / w-1177567 [1971] Fôrça de trabalho e emprêgo no Brasil: 1920-1969 / w-195415 [1972] A cidade e o campo / w-1177572 [1972] O "milagre brasileiro": causas e consequências / w-1177563 [1973] Economia política da urbanização; [ensaios / w-1177566 [1973] Estrutura do emprego e trabalho feminino no Brasil : 1920-1970 / w-1177558 [1975] Curso de introdução à economia política / w-1177557 [1976] A crise do "milagre" : [interpretação crítica da economia brasileira] / w-1177559 [1976] Demanda por alimentos na área metropolitana de Salvador / w-1177565 [1976] Elementos para una teoría del empleo aplicable a los países no desarrollados / w-1177574 [1978] Prevenir e curar : o controle social através dos serviços de saúde / w-1177573 [1980] O que é socialismo, hoje / w-1177576 [1980] São Paulo, o povo em movimento / w-1177561 [1981] Dominação e desigualdade : estrutura de classes e repartição da renda no Brasil / w-1177556 [1983] Aprender economia / w-1177562 [1985] A economia mundial e o Brasil em crise / w-1177568 [1986] A formação da classe operária / w-1177575 [1986] Repartição da renda : pobres e ricos sob o regime militar / w-1177571 [1987] O dia da lagarta : democratização e conflito distributivo no Brasil do cruzado / w-1177577 [1996] Um governo de esquerda para todos : Luiza Erundina na prefeitura de São Paulo, 1989-92 / w-1177569 [1998] Globalização e desemprego : diagnóstico e alternativas / w-1177570 [1999] O Brasil na crise : perigos e oportunidades / w-1177564 [2000] A economia solidária no Brasil : a autogestão como resposta ao desemprego
+6 W:poutignat|teorias da etnicidade Teorias da etnicidade 1998 Poutignat, Philippe; Jocelyne Streiff-Fenart
+
+7 W:portelli|o que faz a historia oral diferente O que faz a história oral diferente 1997 Portelli, Alessandro
+w-237370 [1969] Veleno di piombo sul muro. Le canzoni del Black power / w-237359 [1975] La canzone popolare in America : la rivoluzione musicale di Woody Guthrie / w-1105135 [1978] Interpretazioni di Twain / w-237365 [1979] Il re nascosto : saggio su Washington Irving / w-1105137 [1979] Saggi sulla cultura afro-americana / w-524714 [1980] The Three Laws of Robotics: Laws of the Text, Laws of Production, Laws of Society (Les Trois Lois de la Robotique: lois du texte, lois de la production, lois de la société) / w-2659 [1981] Alessandro Portelli, “The Peculiarities of Oral History,” History Workshop 12 (1 / w-237357 [1985] Biografia di una città : storia e racconto : Terni 1830-1985 / w-1128272 [1986] Social change and new modes of expression : the United States, 1910-1930 / w-237360 [1990] The death of Luigi Trastulli, and other stories : form and meaning in oral history / w-237366 [1991] Taccuini americani / w-237367 [1992] Il testo e la voce : oralità, letteratura e democrazia in America / w-237368 [1994] The text and the voice : writing, speaking, and democracy in American literature / w-237356 [1997] The battle of Valle Giulia : oral history and the art of dialogue / w-237364 [1999] L'ordine è già stato eseguito : Roma, le Fosse Ardeatine, la memoria / w-1105134 [1999] La formazione di una cultura nazionale : la letteratura degli Stati Uniti dall'indipendenza all'età di Jackson, 1776-1850 / w-237354 [2002] America, dopo : immaginario e immaginazione / w-237363 [2003] The order has been carried out : history, memory, and meaning of a Nazi massacre in Rome / w-237358 [2004] Canoni americani : oralità, letteratura, cinema, musica / w-237353 [2008] Acciai speciali : Terni, la ThyssenKrupp, la globalizzazione / w-237355 [2011] America profonda : due secoli raccontati da Harlan County, Kentucky / w-237362 [2011] Note americane : musica e culture negli Stati Uniti / w-237369 [2011] They say in Harlan County : an oral history / w-237361 [2012] Desiderio di altri mondi : memoria in forma di articoli / w-527441 [2021] Alessandro Portelli : une vie passée à écouter
+8 W:rousseau|emile ou de leducation Emile 1762 Rousseau, Jean-Jacques
+w-172848 [1743] Dissertation sur la musique moderne / w-172834 [1755] Discours sur l'origine & les fondements de l'inégalité parmi les hommes / w-172832 [1755] Discours sur l'origine et les fondemens de l'inegalité parmi les hommes / w-172876 [1758] J.J. Rousseau citoyen de Genève, a Mr. d'Alembert ... : sur son article Genève dans le VIIme volume de l'Encyclope et particulierement sur le projet d'établir un théatre de comédie en cette ville / w-172844 [1761] A discourse upon the origin and foundation of the inequality among mankind / w-172917 [1762] Principes du droit politique / w-172849 [1763] Du contrat social; ou, Principes du droit politique / w-172880 [1763] Jean Jaques Rousseau, citoyen de Genève, a Christophe de Beaumont, Archevêque de Paris, Duc de St. Cloud, Pair de France, Commandeur de l'Ordre du St. Esprit, Proviseur de Sorbonne, &c / w-172818 [1766] Contrat social, ou, Principes du droit politique / w-172860 [1767] Emilius and Sophia: or, A new system of education / w-172898 [1767] The miscellaneous works of Mr. J. J. Rousseau / w-172825 [1768] Dictionnaire de musique / w-172904 [1781] La nouvelle Héloïse, ou Lettres de deux amans, habitans d'une petite ville au pied des Alpes / w-172946 [1781] Traités sur la musique / w-172853 [1789] Emil; oder, Über die erziehung / w-172887 [1789] Lettres élémentaires sur la botanique / w-172850 [1791] Du contrat social, ou, Principes du droit politique : suivi des Considérations sur le gouvernement de Pologne, et sur sa réformation projettée / w-172847 [1797] A dissertation on political economy : to which is added, A treatise on the social compact, or, The principles of politic law / w-172805 [1805] La botanique de J. J. Rousseau / w-172824 [1810] Le devin du village : intermede / w-172918 [1814] Principios del derecho político / w-172854 [1817] Émile; ou, De l'éducation / w-172951 [1819] Œuvres de J. J. Rousseau, avec des notes historiques / w-172851 [1825] Écrits sur la musique / w-172911 [1826] Pensées d'un esprit droit, et sentimens d'un coeur vertueux. Par J. J. Rousseau. Ouvrage inédit, imprime sur le manuscrit autographe de l'auteur; suivi d'un autre opuscule de Rousseau intitulé : Moeurs, caractère / w-172950 [1835] Œuvres complètes de J. J. Rousseau, avec des notes historiques / w-172815 [1856] The Confessions of J.J. Rousseau / w-172930 [1857] Rousseau juge de Jean-Jacques ; Écrits sur la musique / w-172877 [1878] J.-J. Rousseau et Isabelle d'Ivernois / w-172881 [1880] Julie; ou, La nouvelle Heĺois̈e / w-172812 [1891] Les confessions de J.-J. Rousseau / w-172888 [1892] Lettres inédites de Jean-Jacques Rousseau / w-172941 [1893] The social contract: or, Principles of political law. Also, A project for a perpetual peace / w-172816 [1901] The confessions of Jean Jacques Rousseau / w-172811 [1911] Les confessions; extraits suivis illustrés, notices et annotations / w-172933 [1911] Rousseau's Émile, or, Treatise on education / w-172925 [1912] Les rêveries du promeneur solitaire / w-172879 [1913] Jean-Jacques Rousseau / w-172935 [1914] Rousseaus bekenntnisse aus seiner jugend / w-172804 [1916] Bekenntnisse. Nach der Übersetzung von Levin Schücking / w-172865 [1920] L'état de guerre and Projet de paix perpétuelle / w-172952 [1921] Vie et œuvres de J.J. Rousseau / w-172896 [1923] Matériaux pour la correspondance de J.J. Rousseau / w-172821 [1924] Correspondance générale de J.-J. Rousseau / w-172903 [1925] La nouvelle Héloïse / w-172926 [1927] The reveries of a solitary / w-172899 [1933] Morceaux choisis / w-172919 [1937] La profession de foi du vicaire savoyard / w-172900 [1937] Muʻāhidah-yi ʻimrānī, yā, Uṣūl-i qānūn-i siyāsī yaʻnī, Frānsīsī Ḥakīm Zhān Zhāk Rūsau kī taṣnīf "Kūntrā sūsiyāl" ka Urdū tarjamah / w-172938 [1937] Selections from The confessions and Rêveries d'un promeneur solitaire / w-172910 [1938] Les pages immortelles de J.-J. Rousseau / w-172892 [1939] The living thoughts of Rousseau / w-172833 [1941] Discours sur l'origine et les fondements de l'inégalitè parmi les hommes / w-172859 [1942] Emilio; o, Dell'educazione; pagine scelte / w-172822 [1945] Del contrato social / w-172836 [1945] Discours sur les sciences et les arts, suivi de Du contrat social / w-172846 [1946] Discurso sobre el origen de la desigualdad entre los hombres / w-172817 [1947] Considerations on the government of Poland / w-172886 [1948] Lettre à Mr. d'Alembert sur les spectacles / w-172902 [1950] Le nouveau dédale / w-172855 [1956] Émile for today; the Émile of Jean Jacques Rousseau / w-172949 [1959] Œuvres complètes / w-172916 [1960] Politics and the arts, letter to M. d'Alembert on the theatre / w-172835 [1961] Discours sur les sciences et les arts.  Deux lettres à Malesherbes.  Les rêveries du promeneur solitaire / w-172924 [1962] A la rencontre de Jean-Jacques Rousseau / w-172890 [1962] Lettres sur la botanique / w-172897 [1962] Minor educational writings / w-172914 [1962] Political writings / w-172874 [1963] Introduction à l'étude de J. J. Rousseau: Les confessions, L. I-IV (texte du manuscrit de Neuchâtel) / w-172867 [1964] The first and second discourses / w-172820 [1965] Correspondance complète de Jean Jacques Rousseau : édition critique / w-172948 [1966] Umowa społeczna ; oraz, Uwagi o rządzie polskim ; Przedmowa do "Narcyza" ; List o widowiskach ; List o opatrzności ; Listy moralne ; List do arcybiskupa de Beaumont ; Listy do Malesherbesa / w-172831 [1967] Discours sur l'origine de l'inégalité. Essai sur l'origine des langues / w-172885 [1967] Lettre à M. D'Alembert sur son article Genève / w-172828 [1968] Discours. Les Sciences et les arts. L'Origine de l'inégalité / w-172878 [1968] J.-J. Roussseau ou l'Impossible unité / w-172928 [1968] Rousseau / w-172912 [1969] Il pensiero di Jean-Jacques Rousseau. Una antologia dagli scritti / w-172937 [1969] Sedan et le pays sedanais; vingt siècles d'histoire / w-172947 [1969] Traktaty. [Perevody] / w-172813 [1970] Les Confessions de Jean-Jacques Rousseau / w-172923 [1970] Religious writings [of] Rousseau / w-172814 [1971] Confessions, extraits / w-172871 [1971] L'homme / w-172915 [1971] The political writings of Jean Jacques Rousseau / w-172870 [1972] The government of Poland / w-172861 [1973] Essai sur l'origine des langues / w-172939 [1973] Selections from the works of Jean-Jacques Rousseau / w-172942 [1973] The social contract; and, Discourses / w-172808 [1974] Le citoyen / w-172889 [1974] Lettres philosophiques / w-172863 [1974] The essential Rousseau: The social contract, Discourse on the origin of inequality, Discourse on the arts and sciences, The creed of a Savoyard priest / w-172810 [1975] A complete dictionary of music : consisting of a copious explanation of all words necessary to a true knowledge and understanding of music / w-172936 [1975] Sahoe kyeyangnon / w-172801 [1977] Antologia di scritti politici / w-172823 [1977] Deux lettres à M. le Mareschal Duc de Luxembourg (20 et 28 janvier 1763), contenant une description de la Suisse, de la Principauté de Neuchâtel et du Val-de-Travers : reprod. de la copie autographe conservée à la Bibliothèque de Neuchâtel / w-172827 [1977] Dictionnaire de musique ; [Écrits sur la musique] / w-172909 [1978] On the social contract, with Geneva manuscript and Political economy / w-172872 [1979] The indispensable Rousseau / w-172927 [1979] The reveries of the solitary walker / w-172940 [1980] She hui qi yue lun : yi ming : Zheng zhi quan li de yuan li / w-172841 [1982] A discourse on the origin of inequality ; A discourse on political economy ; The social contract / w-172893 [1982] Lun ren lei bu ping deng de qi yuan he ji chu / w-172920 [1982] Project concerning new symbols for music : 1742 / w-172800 [1982] al-Iʻtirāfāt / w-172806 [1983] Le botaniste sans maître, ou, Manière d'apprendre seul la botanique : fragments pour un dictionnaire des termes d'usage en botanique / w-172908 [1983] On the social contract ; Discourse on the origin of inequality ; Discourse on political economy / w-172837 [1984] A discourse on inequality / w-172875 [1984] J.J. Rousseau : la profesión de fe del filósofo / w-172905 [1984] Of the social contract, or, Principles of political right & Discourse on political economy / w-172807 [1986] Chan hui lu / w-172868 [1986] The first and second discourses together with the replies to critics and Essay on the origin of languages / w-172803 [1987] Basic political writings / w-172907 [1988] On the social contract / w-172934 [1988] Rousseau's political writings : new translations, interpretive notes, backgrounds, commentaries / w-172852 [1989] Eloisa, or, A series of original letters / w-172929 [1990] Rousseau, judge of Jean-Jacques, dialogues / w-172809 [1990] The collected writings of Rousseau / w-172819 [1991] Correspondance : Jean-Jacques Rousseau, Chrétien-Guillaume de Lamoignon de Malesherbes / w-172931 [1991] Rousseau on international relations / w-172840 [1992] Discourse on the origin of inequality / w-172842 [1992] Discourse on the origins of inequality (second discourse) ; Polemics ; and, Political economy / w-172843 [1992] Discourse on the sciences and arts (first discourse) ; and, Polemics / w-172944 [1993] The social contract ; and, The discourses / w-172838 [1994] Discourse on political economy ; and, The social contract / w-172945 [1994] Social contract ; Discourse on the virtue most necessary for a hero ; Political fragments ; and, Geneva manuscript / w-172882 [1997] Julie, or, The new Heloise : letters of two lovers who live in a small town at the foot of the Alps / w-172894 [1997] Lusuo zhe li mei wen ji / w-172845 [1997] The discourses and other political writings / w-172943 [1997] The social contract and other later political writings / w-172862 [1998] Essay on the origin of languages and writings related to music / w-172873 [1999] Institutions chimiques / w-172921 [2000] Projet de constitution pour la Corse / w-172883 [2001] Letter to Beaumont, letters written from the mountain, and related writings / w-172829 [2002] Discours sur l'économie politique / w-172857 [2003] Emile, or, Treatise on education / w-172830 [2004] Le discours sur l'inégalité de Rousseau / w-172884 [2004] Letter to D'Alembert and writings for the theater / w-172913 [2005] The plan for perpetual peace, On the government of Poland, and other writings on history and politics / w-172802 [2006] Autobiographical, scientific, religious, moral, and literary writings / w-172906 [2007] On philosophy, morality, and religion / w-172826 [2008] Le dictionnaire de musique de Jean-Jacques Rousseau : une édition critique / w-172901 [2008] Narcisse, ou, L'amant de lui-même : comédie. Et préface de Narcisse / w-172869 [2009] Friedensschriften : Französisch-Deutsch / w-172932 [2009] Rousseau on women, love, and family / w-172856 [2010] Emile, or, On education : includes Emile and Sophie, or, The solitaries / w-172891 [2010] Le Lévite d'Ephraïm / w-172839 [2011] Discourse on the origin and foundations of inequality among men / w-172866 [2012] Faut-il aller vivre dans les bois? : lettre de J.-J. Rousseau à monsieur Philopolis / w-172922 [2012] Pygmalion / w-172895 [2012] The major political writings of Jean-Jacques Rousseau : the two Discourses and the Social contract / w-172864 [2013] The essential writings of Rousseau
+9 W:benjamin|theses on the philosophy of history|a Theses on the Philosophy of History 1968 Benjamin, Walter
+w-249351 [1965] Zur Kritik der Gewalt und andere Aufsätze / w-249327 [1968] Illuminations / w-503064 [1969] Paris: Capital of the Nineteenth Century / w-249345 [1969] Über Literatur / w-249324 [1972] Gesammelte Schriften / w-249316 [1973] Charles Baudelaire: a lyric poet in the era of high capitalism / w-249310 [1973] Der Begriff der Kunstkritik in der deutschen Romantik / w-249346 [1973] Understanding Brecht / w-249319 [1974] Denkbilder / w-249325 [1974] L'homme, le langage et la culture : essais / w-528000 [1975] Eduard Fuchs: Collector and Historian / w-249320 [1975] Il dramma barocco tedesco / w-249309 [1977] Aussichten : illustrierte Aufsätze / w-249326 [1977] Illuminationen : ausgew. Schriften / w-249336 [1977] The origin of German tragic drama / w-249339 [1978] Reflections : essays, aphorisms, autobiographical writings / w-249335 [1979] One-way street, and other writings / w-249315 [1980] Briefwechsel 1933-1940 / w-249332 [1980] Moskauer Tagebuch / w-249311 [1981] Benjamin über Kafka : Texte, Briefzeugnisse, Aufzeichnungen / w-249337 [1983] Das Passagen-Werk / w-249307 [1984] Allegorien kultureller Erfahrung : Ausgewählte Schriften, 1920-1940 / w-529273 [1985] Moscow Diary / w-249331 [1986] Moscow diary / w-249342 [1986] Sonette / w-249314 [1987] Briefe an Siegfried Kracauer : mit vier Briefen von Siegfried Kracauer an Walter Benjamin / w-249318 [1989] The correspondence of Walter Benjamin and Gershom Scholem, 1932-1940 / w-249317 [1994] The correspondence of Walter Benjamin, 1910-1940 / w-249323 [1995] Gesammelte Briefe / w-249308 [1999] The arcades project / w-249313 [2000] Berliner Kindheit um neunzehnhundert : Giessener Fassung / w-529352 [2001] The Work of Walter Benjamin in the Age of Information / w-249347 [2001] Uparānta : Viśvavikhyāta Jarmana cintaka aura Mārksavādī vicāraka Vālṭara Baiñjāmina ke mr̥tyuparānta prakāśita nibandha / w-249330 [2002] Medienästhetische Schriften / w-249341 [2002] Selected writings / w-249340 [2004] Schrift, Bilder, Denken : Walter Benjamin und die Künste / w-249312 [2006] Berlin childhood around 1900 / w-249333 [2006] On hashish / w-249343 [2006] Strada a senso unico / w-249350 [2006] The writer of modern life : essays on Charles Baudelaire / w-249348 [2007] Walter Benjamin's Archive : images, texts, signs / w-249349 [2008] The work of art in the age of its technological reproducibility, and other writings on media / w-249322 [2009] Einbahnstrasse / w-249344 [2010] Über den Begriff der Geschichte / w-249321 [2011] Early writings, 1910-1917 / w-249328 [2011] Kritiken und Rezensionen / w-249329 [2013] Das Kunstwerk im Zeitalter seiner technischen Reproduzierbarkeit / w-249338 [2014] Radio Benjamin / w-249334 [2016] One-way street
+10 W:luthi|sino soviet split The Sino-Soviet Split: Cold War in the Communist World 2008 Lüthi, Lorenz M
+
+11 W:bienvenue|quand la jeunesse entre en scene Quand la jeunesse entre en scène. L’Action catholique avant la Révolution tranquille 2003 Bienvenue, Louise
+
+12 W:bede|historia ecclesiastica gentis anglorum Historia ecclesiastica gentis Anglorum 1969 Bede
+
+13 W:price|maroon societies Maroon Societies: Rebel Slave Communities in the Americas 1996 Price, Richard
+
+14 W:edmundo|o rio de janeiro do meu tempo O Rio de Janeiro do meu tempo 2003 EDMUNDO, Luiz
+
+15 W:zander|fornstora dagar moderna tider Fornstora dagar, moderna tider. Bruk av och debatter om svensk historia från sekelskifte till sekelskifte 2001 Zander, Ulf
+w-433009 [2003] Echoes of the Holocaust:  Historical Cultures in Contemporary Europe / Klas-Göran Karlsson, Ulf Zander / w-398914 [2012] Förintelsens röda nejlika : Raoul Wallenberg som historiekulturell symbol / w-398393 [2015] Perspectives on the entangled history of communism and Nazism : a comnaz analysis
+16 W:castells|o poder da identidade O poder da identidade 1999 Castells, Manuel
+w-225654 [1972] La estructura de clases sociales en Chile, 1970 / w-225675 [1972] La question urbaine / w-225661 [1973] Luttes urbaines et pouvoir politique / w-225674 [1973] Problemas de investigacion en sociologia urbana / w-225663 [1974] Monopolville : analyse des rapports entre l'entreprise, l'État et l'urbain à partir d'une enquête sur la croissance industrielle et urbaine de la région de Dunkerque / w-225660 [1975] La lucha de clases en Chile / w-225662 [1975] Metodología y epistemología de las ciencias sociales / w-225671 [1975] Participación y cambio social en la problemática contemporánea / w-225673 [1975] Prática epistemológica e ciências sociais / w-225678 [1975] Sociologie de l'espace industriel / w-225649 [1976] La crise économique et la société américaine / w-225651 [1976] La cuestión urbana / w-225664 [1976] Movimientos sociales urbanos en América Latina : tendencias históricas y problemas teóricos / w-225645 [1977] Ciudad, democracia y socialismo : la experiencia de las asociaciones de vecinos en Madrid / w-225683 [1977] The urban question : a Marxist approach / w-225644 [1978] City, class, and power / w-225665 [1980] Multinational capital, national states, and local communities / w-225652 [1980] The economic crisis and American society / w-225641 [1981] Capital multinacional, estados nacionales y comunidades locales / w-225650 [1981] Crisis urbana y cambio social / w-225656 [1981] Housing policy and urban trade unionism : the grands ensembles of Paris / w-225643 [1983] The city and the grassroots : a cross-cultural theory of urban social movements / w-225681 [1984] Towards the informational city? : high technology, economic change, and spatial structure : some exploratory hypotheses / w-1103248 [1985] High technology, space, and society / w-1103247 [1987] Global restructuring and territorial development / w-225669 [1988] Nuevas tecnologias, economia y sociedad / w-1112585 [1989] The Informal economy : studies in advanced and less developed countries / w-225658 [1989] The informational city : information technology, economic restructuring, and the urban-regional process / w-1123027 [1991] Dual city : restructuring New York / w-225667 [1991] La nueva dependencia : cambio tecnológico y reestructuración socioeconómica en América Latina / w-225668 [1992] La nueva revolución rusa / w-225680 [1994] Technopoles of the world : the making of twenty-first-century industrial complexes / w-225646 [1995] The collapse of Soviet communism : a view from the information society / w-225677 [1996] The rise of the network society / w-225672 [1997] The power of identity / w-225653 [1998] End of millennium / w-225682 [1999] La transformación del trabajo / w-513065 [2000] Toward a Sociology of the Network Society / w-225679 [2001] Suomen tietoyhteiskuntamalli / w-225659 [2001] The Internet galaxy : reflections on the Internet, business, and society / w-1115154 [2002] Muslim Europe or Euro-Islam : politics, culture, and citizenship in the age of globalization / w-225642 [2002] The Castells reader on cities and social theory / w-225657 [2002] The information society and the welfare state : the Finnish model / w-225648 [2003] Conversations with Manuel Castells / w-1103246 [2004] Europa en construcción : integración, identidades y seguridad / w-1103249 [2004] The network society : a cross-cultural perspective / w-225655 [2005] Globalización, desarrollo y democracia : Chile en el contexto mundial / w-225670 [2006] Observatorio global : crónicas de principio de siglo / w-225647 [2009] Communication power / w-1103244 [2012] Aftermath : the cultures of the economic crisis / w-225666 [2012] Networks of outrage and hope : social movements in the Internet Age / w-225676 [2014] Reconceptualizing development in the global information age
+17 W:graham|gra bretanha e o inicio da modernizacao no brasil Grã-Bretanha e o início da modernização no Brasil 1973 Graham, Richard
+w-510822 [1966] Causes for the Abolition of Negro Slavery in Brazil: An Interpretive Essay / w-128982 [1968] Britain and the onset of modernization in Brazil 1850-1914 / w-128983 [1969] A century of Brazilian history since 1865: issues and problems / w-128981 [1969] Brazil in the London Times, 1850-1905; a guide / w-128985 [1969] Cornell-Brazil Project; an experiment in learning / w-128989 [1972] Independence in Latin America / w-128991 [1974] New approaches to Latin American history / w-128990 [1978] The Jesuit Antonio Vieira and his plans for the economic rehabilitation of seventeenth-century Portugal / w-128987 [1979] Escravidão, reforma e imperialismo / w-503736 [1981] Slavery and Economic Development: Brazil and the United States South in the Nineteenth Century / w-128992 [1990] Patronage and politics in nineteenth-century Brazil / w-1090705 [1990] The Idea of race in Latin America, 1870-1940 / w-1090704 [1991] Brazil and the world system / w-128984 [1997] Clientelismo e política no Brasil do século XIX / w-1090706 [1999] Machado de Assis : reflections on a Brazilian master writer / w-128988 [2010] Feeding the city : from street market to liberal reform in Salvador, Brazil, 1780-1860 / w-128986 [None] Ensaios sobre a política e a economia da Provincia Fluminense no século XIX [coordenação e introdução de Richard Graham]
+18 W:hobsbawm|sao paulo São Paulo: Companhia das Letras, 1995 1995 Hobsbawm, Eric
+w-242125 [1948] Labour's turning point, 1880-1900 ; extracts from contemporary sources / w-511814 [1952] Economic Fluctuations and Some Social Movements Since 1800 / w-3183 [1957] E. J. Hobsbawm, “The British Standard of Living 1790–1850,” Economic History Rev / w-242135 [1959] Primitive rebels : studies in archaic forms of social movements in the 19th and 20th centuries / w-242139 [1960] Social bandits and primitive rebels; studies in archaic forms of social movement in the 19th and 20th centuries / w-511849 [1963] The Standard of Living during the Industrial Revolution: A Discussion / w-242126 [1964] Labouring men; studies in the history of labour / w-170965 [1964] Pre-capitalist economic formations / w-242112 [1968] Captain Swing / w-242121 [1968] Industry and empire; the making of modern English society, 1750 to the present day / w-242110 [1969] Bandits / w-242120 [1969] Industrie und Empire. Britische Wirtschaftsgeschichte seit 1750 / w-242108 [1969] The age of revolution: Europe 1789-1848 / w-242113 [1970] La Convención, un caso de neofeudalismo / w-505030 [1971] From Social History to the History of Society / w-193993 [1972] Historical studies today / w-503707 [1972] Social Bandits: Reply / w-525757 [1973] DALLA STORIA SOCIALE ALLA STORIA DELLA SOCIETA’ / w-242137 [1973] Revolutionaries : contemporary essays / w-242105 [1975] The age of capital, 1848-1875 / w-242114 [1975] The crisis & the outlook / w-242117 [1976] Giorgio Napolitano : intervista sul PCI / w-242134 [1976] La Politique du Parti communiste italien : entretien avec Eric J. Hobsbawm / w-242123 [1977] The Italian road to socialism : an interview / w-514816 [1978] Capitalisme et agriculture: les réformateurs écossais au XVIIIe siècle / w-242136 [1978] Revolución industrial y revuelta agraria : el capitán Swing / w-1105864 [1980] Peasants in history : essays in honour of Daniel Thorner / w-1105863 [1982] Marxism in Marx's day / w-1105861 [1982] The History of Marxism / w-1105862 [1983] The Invention of tradition / w-511981 [1984] Artisan or Labour Aristocrat? / w-242141 [1984] Workers : worlds of labor / w-242142 [1984] Worlds of labour : further studies in the history of labour / w-242106 [1987] The age of empire, 1875-1914 / w-242133 [1989] Politics for a rational left : political writing, 1977-1988 / w-522957 [1989] The Making of a "Bourgeois Revolution" / w-242115 [1990] Echoes of the Marseillaise : two centuries look back on the French Revolution / w-1462 [1990] Eric Hobsbawm, Nations and Nationalism since 1780: Programme, Myth, Reality (199 / w-517705 [1992] Ethnicity and Nationalism in Europe Today / w-512188 [1992] LIBÉRALISME ET SOCIALISME : LE CAS ANGLAIS / w-242124 [1993] The jazz scene / w-242107 [1994] The age of extremes : a history of the world, 1914-1991 / w-522981 [1996] Language, Culture, and National Identity / w-242109 [1996] The age of revolution 1789-1848 / w-242130 [1997] On history / w-242140 [1998] Uncommon people : resistance, rebellion and jazz / w-242111 [1999] Behind the times : the decline and fall of the twentieth-century avant-gardes / w-242118 [2000] L'historien engagé / w-242131 [2000] On the edge of the new century / w-242138 [2002] Shi xue jia : li shi shen hua de zhong jie zhe / w-242122 [2003] Interesting times : a twentieth-century life / w-242132 [2003] L'optimisme de la volonté : d'un siècle à l'autre / w-242127 [2005] Nationen und Nationalismus : Mythos und Realität seit 1780 / w-506440 [2006] Faire une "révolution bourgeoise" / w-242129 [2008] On empire : America, war, and global supremacy / w-242119 [2011] How to change the world : Marx and Marxism, 1840-2011 / w-242116 [2013] Fractured times : culture and society in the twentieth century
+19 W:machado|danacao da norma Danação da norma: a medicina social e constituição da psiquiatria no Brasil 1978 MACHADO, Roberto
+
+
+exec
+/bin/bash -lc "python - <<'PY'
+import json
+x=next(x for x in json.load(open('../groups.json')) if x['id']=='g015')
+for i,t in enumerate(x['items']):print(i,t['id'],t['cited_title'],t['cited_year'],t['cited_authors'])
+for t in x['items'][5:9]:
+ print('\\n',t['id'])
+ for p in t['candidates']:
+  for w in p['works']:
+   if 'rousseau' not in t['id'] or any(s in w['title'].lower() for s in ['contrat','contract','emile','émile']):print(w)
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 42ms:
+0 W:mauss|ensaio sobre a dadiva Ensaio sobre a dádiva 2003 Mauss, Marcel
+1 W:catroga|memoria historia e historiografia Memória, história e historiografia 2001 Catroga, Fernando
+2 W:pollak|memoria esquecimento silencio|a Memória, esquecimento, silêncio 1989 Pollak, Michael
+3 W:villalta|reformismo ilustrado censura e praticas de leitura Reformismo ilustrado, censura e práticas de leitura 1999 Villalta, Luiz Carlos
+4 W:brasil|decreto n Decreto n 1890 BRASIL, COLEÇÃO DE LEIS DO
+5 W:singer|desenvolvimento economico e evolucao urbana Desenvolvimento econômico e evolução urbana 1977 Singer, Paul
+6 W:poutignat|teorias da etnicidade Teorias da etnicidade 1998 Poutignat, Philippe; Jocelyne Streiff-Fenart
+7 W:portelli|o que faz a historia oral diferente O que faz a história oral diferente 1997 Portelli, Alessandro
+8 W:rousseau|emile ou de leducation Emile 1762 Rousseau, Jean-Jacques
+9 W:benjamin|theses on the philosophy of history|a Theses on the Philosophy of History 1968 Benjamin, Walter
+10 W:luthi|sino soviet split The Sino-Soviet Split: Cold War in the Communist World 2008 Lüthi, Lorenz M
+11 W:bienvenue|quand la jeunesse entre en scene Quand la jeunesse entre en scène. L’Action catholique avant la Révolution tranquille 2003 Bienvenue, Louise
+12 W:bede|historia ecclesiastica gentis anglorum Historia ecclesiastica gentis Anglorum 1969 Bede
+13 W:price|maroon societies Maroon Societies: Rebel Slave Communities in the Americas 1996 Price, Richard
+14 W:edmundo|o rio de janeiro do meu tempo O Rio de Janeiro do meu tempo 2003 EDMUNDO, Luiz
+15 W:zander|fornstora dagar moderna tider Fornstora dagar, moderna tider. Bruk av och debatter om svensk historia från sekelskifte till sekelskifte 2001 Zander, Ulf
+16 W:castells|o poder da identidade O poder da identidade 1999 Castells, Manuel
+17 W:graham|gra bretanha e o inicio da modernizacao no brasil Grã-Bretanha e o início da modernização no Brasil 1973 Graham, Richard
+18 W:hobsbawm|sao paulo São Paulo: Companhia das Letras, 1995 1995 Hobsbawm, Eric
+19 W:machado|danacao da norma Danação da norma: a medicina social e constituição da psiquiatria no Brasil 1978 MACHADO, Roberto
+
+ W:singer|desenvolvimento economico e evolucao urbana
+{'work': 'w-1177560', 'kind': 'book', 'year': 1968, 'title': 'Desenvolvimento e crise'}
+{'work': 'w-1177567', 'kind': 'book', 'year': 1971, 'title': 'Fôrça de trabalho e emprêgo no Brasil: 1920-1969'}
+{'work': 'w-195415', 'kind': 'book', 'year': 1972, 'title': 'A cidade e o campo'}
+{'work': 'w-1177572', 'kind': 'book', 'year': 1972, 'title': 'O "milagre brasileiro": causas e consequências'}
+{'work': 'w-1177563', 'kind': 'book', 'year': 1973, 'title': 'Economia política da urbanização; [ensaios'}
+{'work': 'w-1177566', 'kind': 'book', 'year': 1973, 'title': 'Estrutura do emprego e trabalho feminino no Brasil : 1920-1970'}
+{'work': 'w-1177558', 'kind': 'book', 'year': 1975, 'title': 'Curso de introdução à economia política'}
+{'work': 'w-1177557', 'kind': 'book', 'year': 1976, 'title': 'A crise do "milagre" : [interpretação crítica da economia brasileira]'}
+{'work': 'w-1177559', 'kind': 'book', 'year': 1976, 'title': 'Demanda por alimentos na área metropolitana de Salvador'}
+{'work': 'w-1177565', 'kind': 'book', 'year': 1976, 'title': 'Elementos para una teoría del empleo aplicable a los países no desarrollados'}
+{'work': 'w-1177574', 'kind': 'book', 'year': 1978, 'title': 'Prevenir e curar : o controle social através dos serviços de saúde'}
+{'work': 'w-1177573', 'kind': 'book', 'year': 1980, 'title': 'O que é socialismo, hoje'}
+{'work': 'w-1177576', 'kind': 'book', 'year': 1980, 'title': 'São Paulo, o povo em movimento'}
+{'work': 'w-1177561', 'kind': 'book', 'year': 1981, 'title': 'Dominação e desigualdade : estrutura de classes e repartição da renda no Brasil'}
+{'work': 'w-1177556', 'kind': 'book', 'year': 1983, 'title': 'Aprender economia'}
+{'work': 'w-1177562', 'kind': 'book', 'year': 1985, 'title': 'A economia mundial e o Brasil em crise'}
+{'work': 'w-1177568', 'kind': 'book', 'year': 1986, 'title': 'A formação da classe operária'}
+{'work': 'w-1177575', 'kind': 'book', 'year': 1986, 'title': 'Repartição da renda : pobres e ricos sob o regime militar'}
+{'work': 'w-1177571', 'kind': 'book', 'year': 1987, 'title': 'O dia da lagarta : democratização e conflito distributivo no Brasil do cruzado'}
+{'work': 'w-1177577', 'kind': 'book', 'year': 1996, 'title': 'Um governo de esquerda para todos : Luiza Erundina na prefeitura de São Paulo, 1989-92'}
+{'work': 'w-1177569', 'kind': 'book', 'year': 1998, 'title': 'Globalização e desemprego : diagnóstico e alternativas'}
+{'work': 'w-1177570', 'kind': 'book', 'year': 1999, 'title': 'O Brasil na crise : perigos e oportunidades'}
+{'work': 'w-1177564', 'kind': 'book', 'year': 2000, 'title': 'A economia solidária no Brasil : a autogestão como resposta ao desemprego'}
+
+ W:poutignat|teorias da etnicidade
+
+ W:portelli|o que faz a historia oral diferente
+{'work': 'w-237370', 'kind': 'book', 'year': 1969, 'title': 'Veleno di piombo sul muro. Le canzoni del Black power'}
+{'work': 'w-237359', 'kind': 'book', 'year': 1975, 'title': 'La canzone popolare in America : la rivoluzione musicale di Woody Guthrie'}
+{'work': 'w-1105135', 'kind': 'book', 'year': 1978, 'title': 'Interpretazioni di Twain'}
+{'work': 'w-237365', 'kind': 'book', 'year': 1979, 'title': 'Il re nascosto : saggio su Washington Irving'}
+{'work': 'w-1105137', 'kind': 'book', 'year': 1979, 'title': 'Saggi sulla cultura afro-americana'}
+{'work': 'w-524714', 'kind': 'article', 'year': 1980, 'title': 'The Three Laws of Robotics: Laws of the Text, Laws of Production, Laws of Society (Les Trois Lois de la Robotique: lois du texte, lois de la production, lois de la société)'}
+{'work': 'w-2659', 'kind': 'article', 'year': 1981, 'title': 'Alessandro Portelli, “The Peculiarities of Oral History,” History Workshop 12 (1'}
+{'work': 'w-237357', 'kind': 'book', 'year': 1985, 'title': 'Biografia di una città : storia e racconto : Terni 1830-1985'}
+{'work': 'w-1128272', 'kind': 'book', 'year': 1986, 'title': 'Social change and new modes of expression : the United States, 1910-1930'}
+{'work': 'w-237360', 'kind': 'book', 'year': 1990, 'title': 'The death of Luigi Trastulli, and other stories : form and meaning in oral history'}
+{'work': 'w-237366', 'kind': 'book', 'year': 1991, 'title': 'Taccuini americani'}
+{'work': 'w-237367', 'kind': 'book', 'year': 1992, 'title': 'Il testo e la voce : oralità, letteratura e democrazia in America'}
+{'work': 'w-237368', 'kind': 'book', 'year': 1994, 'title': 'The text and the voice : writing, speaking, and democracy in American literature'}
+{'work': 'w-237356', 'kind': 'book', 'year': 1997, 'title': 'The battle of Valle Giulia : oral history and the art of dialogue'}
+{'work': 'w-237364', 'kind': 'book', 'year': 1999, 'title': "L'ordine è già stato eseguito : Roma, le Fosse Ardeatine, la memoria"}
+{'work': 'w-1105134', 'kind': 'book', 'year': 1999, 'title': "La formazione di una cultura nazionale : la letteratura degli Stati Uniti dall'indipendenza all'età di Jackson, 1776-1850"}
+{'work': 'w-237354', 'kind': 'book', 'year': 2002, 'title': 'America, dopo : immaginario e immaginazione'}
+{'work': 'w-237363', 'kind': 'book', 'year': 2003, 'title': 'The order has been carried out : history, memory, and meaning of a Nazi massacre in Rome'}
+{'work': 'w-237358', 'kind': 'book', 'year': 2004, 'title': 'Canoni americani : oralità, letteratura, cinema, musica'}
+{'work': 'w-237353', 'kind': 'book', 'year': 2008, 'title': 'Acciai speciali : Terni, la ThyssenKrupp, la globalizzazione'}
+{'work': 'w-237355', 'kind': 'book', 'year': 2011, 'title': 'America profonda : due secoli raccontati da Harlan County, Kentucky'}
+{'work': 'w-237362', 'kind': 'book', 'year': 2011, 'title': 'Note americane : musica e culture negli Stati Uniti'}
+{'work': 'w-237369', 'kind': 'book', 'year': 2011, 'title': 'They say in Harlan County : an oral history'}
+{'work': 'w-237361', 'kind': 'book', 'year': 2012, 'title': 'Desiderio di altri mondi : memoria in forma di articoli'}
+{'work': 'w-527441', 'kind': 'article', 'year': 2021, 'title': 'Alessandro Portelli : une vie passée à écouter'}
+
+ W:rousseau|emile ou de leducation
+{'work': 'w-172849', 'kind': 'book', 'year': 1763, 'title': 'Du contrat social; ou, Principes du droit politique'}
+{'work': 'w-172818', 'kind': 'book', 'year': 1766, 'title': 'Contrat social, ou, Principes du droit politique'}
+{'work': 'w-172850', 'kind': 'book', 'year': 1791, 'title': 'Du contrat social, ou, Principes du droit politique : suivi des Considérations sur le gouvernement de Pologne, et sur sa réformation projettée'}
+{'work': 'w-172854', 'kind': 'book', 'year': 1817, 'title': "Émile; ou, De l'éducation"}
+{'work': 'w-172941', 'kind': 'book', 'year': 1893, 'title': 'The social contract: or, Principles of political law. Also, A project for a perpetual peace'}
+{'work': 'w-172933', 'kind': 'book', 'year': 1911, 'title': "Rousseau's Émile, or, Treatise on education"}
+{'work': 'w-172822', 'kind': 'book', 'year': 1945, 'title': 'Del contrato social'}
+{'work': 'w-172836', 'kind': 'book', 'year': 1945, 'title': 'Discours sur les sciences et les arts, suivi de Du contrat social'}
+{'work': 'w-172855', 'kind': 'book', 'year': 1956, 'title': 'Émile for today; the Émile of Jean Jacques Rousseau'}
+{'work': 'w-172942', 'kind': 'book', 'year': 1973, 'title': 'The social contract; and, Discourses'}
+{'work': 'w-172863', 'kind': 'book', 'year': 1974, 'title': 'The essential Rousseau: The social contract, Discourse on the origin of inequality, Discourse on the arts and sciences, The creed of a Savoyard priest'}
+{'work': 'w-172909', 'kind': 'book', 'year': 1978, 'title': 'On the social contract, with Geneva manuscript and Political economy'}
+{'work': 'w-172841', 'kind': 'book', 'year': 1982, 'title': 'A discourse on the origin of inequality ; A discourse on political economy ; The social contract'}
+{'work': 'w-172908', 'kind': 'book', 'year': 1983, 'title': 'On the social contract ; Discourse on the origin of inequality ; Discourse on political economy'}
+{'work': 'w-172905', 'kind': 'book', 'year': 1984, 'title': 'Of the social contract, or, Principles of political right & Discourse on political economy'}
+{'work': 'w-172907', 'kind': 'book', 'year': 1988, 'title': 'On the social contract'}
+{'work': 'w-172944', 'kind': 'book', 'year': 1993, 'title': 'The social contract ; and, The discourses'}
+{'work': 'w-172838', 'kind': 'book', 'year': 1994, 'title': 'Discourse on political economy ; and, The social contract'}
+{'work': 'w-172945', 'kind': 'book', 'year': 1994, 'title': 'Social contract ; Discourse on the virtue most necessary for a hero ; Political fragments ; and, Geneva manuscript'}
+{'work': 'w-172943', 'kind': 'book', 'year': 1997, 'title': 'The social contract and other later political writings'}
+{'work': 'w-172857', 'kind': 'book', 'year': 2003, 'title': 'Emile, or, Treatise on education'}
+{'work': 'w-172856', 'kind': 'book', 'year': 2010, 'title': 'Emile, or, On education : includes Emile and Sophie, or, The solitaries'}
+{'work': 'w-172895', 'kind': 'book', 'year': 2012, 'title': 'The major political writings of Jean-Jacques Rousseau : the two Discourses and the Social contract'}
+
+web search: 
+web search: Catroga "Memória, história e historiografia" ISBN 2001 ...
+web search: 
+web search: "Memória, história e historiografia" "ISBN" ...
+codex
+The group has 20 items. A few need special care: one is a doctoral thesis, two citations lack a usable title, and some essays appear inside candidate collections. I’m checking those distinctions before assigning work IDs.
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Quand la jeunesse entre en scène" ISBN
+web search: "Théories de l’ethnicité" Poutignat 1995 ISBN
+web search: "Portelli" "O que faz a história oral diferente" "Peculiarities"
+web search: "The Sino-Soviet Split" 2008 site:press.princeton.edu
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Quand la jeunesse entre en scène" site:septentrion.qc.ca
+web search: "Théories de l'ethnicité" site:puf.com
+web search: "Memória, história e historiografia" site:catalogo.bnportugal.gov.pt
+web search: "Bede" "Ecclesiastical History" "1969" ISBN site:global.oup.com
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Memória, história e historiografia" "2001" biblioteca ISBN
+web search: "Historia ecclesiastica gentis Anglorum" "1969" ISBN
+web search: "Quand la jeunesse entre en scène" ISBN 2003
+web search: "Théories de l'ethnicité" ISBN 1995
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Danação da norma" ISBN biblioteca
+web search: "Memória, história e historiografia" "2001" "ISBN" -site:scribd.com
+web search: "O Rio de Janeiro do meu tempo" "2003" biblioteca ISBN
+web search: "Fornstora dagar, moderna tider" ISBN
+web search: "Maroon Societies" "1996" publisher
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: https://lccn.loc.gov/71397688
+web search: https://catalog.loc.gov/vwebv/holdingsInfo?bibId=1285818
+web search: https://lccn.loc.gov/80132467
+web search: https://catalog.folger.edu/record/86132
+web search: https://revistas.pucsp.br/index.php/revph/article/view/11233
+web search: https://biblioteca.ipsantarem.pt/Opac/Pages/Search/Results.aspx?Database=105200_GLOBAL&SearchText=ISBN%3D9728717091
+web search: https://www.editionsboreal.qc.ca/catalogue/livres/t-quand-jeunesse-entre-scene-2758.html
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "The power of identity" 1997 Castells publisher
+web search: "Essai sur le don" "1925" Mauss
+web search: "Reformismo ilustrado, censura e práticas de leitura" "doi"
+web search: "Über den Begriff der Geschichte" "Theses on the Philosophy of History"
+web search: "Grã-Bretanha e o início da modernização no Brasil" "Britain"
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Émile" "1762" site:catalogue.bnf.fr
+web search: "Era dos extremos" "1995" site:companhiadasletras.com.br
+web search: "Memória, esquecimento, silêncio" site:periodicos.fgv.br
+web search: "Decreto" "1890" "Coleção de Leis" site:camara.leg.br
+web search: "O Rio de Janeiro do meu tempo" "1938" "OCLC"
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: https://teses.usp.br/teses/disponiveis/8/8138/tde-14122009-115825/pt-br.html
+web search: https://www.press.jhu.edu/books/title/1940/maroon-societies
+web search: https://ci.nii.ac.jp/ncid/BA22523243?l=en
+web search: https://ci.nii.ac.jp/ncid/BA41933898
+web search: https://biblioteca.ipsantarem.pt/Opac/Pages/Search/Results.aspx?Database=105200_GLOBAL&SearchText=CDU%3D%22930.2%22
+web search: https://periodicos.fgv.br/reh/article/view/2278
+codex
+The checks confirm matches for Mauss, Portelli, Rousseau, Benjamin, Castells, and Graham. I’ll leave “Decreto n” and the Hobsbawm publisher-only citation as unclear, with notes explaining what can be inferred.
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Desenvolvimento econômico e evolução urbana" site:search.worldcat.org
+web search: "O Rio de Janeiro do meu tempo" site:search.worldcat.org
+web search: "Memória, história e historiografia" "972-8717-09-1" biblioteca
+web search: "Maroon societies" "1973" "LCCN"
+web search: "Danação da norma" site:catalog.loc.gov
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Desenvolvimento economico e evolucao urbana" "300060"
+web search: "Rio de Janeiro do meu tempo" "OCLC"
+web search: "Rio de Janeiro do meu tempo" "LCCN"
+web search: "Danação da norma" "17061183"
+web search: 
+web search: https://kansalliskirjasto.finna.fi/Record/helka.9910044943506253
+exec
+/bin/bash -lc "python - <<'PY'
+import requests,concurrent.futures
+urls=['https://lccn.loc.gov/71397688','https://lccn.loc.gov/80132467','https://lccn.loc.gov/73083603','https://openlibrary.org/search.json?title=O%20Rio%20de%20Janeiro%20do%20meu%20tempo&limit=5&fields=key,title,first_publish_year,edition_key']
+def f(u):
+ try:
+  r=requests.get(u,timeout=20);return u,r.status_code,r.text[:5000]
+ except Exception as e:return u,str(e)
+for x in concurrent.futures.ThreadPoolExecutor().map(f,urls):print(x)
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 910ms:
+('https://lccn.loc.gov/71397688', 200, '<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="EBSCO Locate"/><meta name="application-name" content="EBSCO Locate"/><title>Library of Congress Catalog</title><script type="module" crossorigin src="/assets/index-Bg8YcCuP.js"></script><link rel="stylesheet" crossorigin href="/assets/index-BxnMqiKC.css"><script src="https://assets.adobedtm.com/f94f5647937d/624e2240e90d/launch-0610ec681aff.min.js" async></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>')
+('https://lccn.loc.gov/80132467', 200, '<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="EBSCO Locate"/><meta name="application-name" content="EBSCO Locate"/><title>Library of Congress Catalog</title><script type="module" crossorigin src="/assets/index-Bg8YcCuP.js"></script><link rel="stylesheet" crossorigin href="/assets/index-BxnMqiKC.css"><script src="https://assets.adobedtm.com/f94f5647937d/624e2240e90d/launch-0610ec681aff.min.js" async></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>')
+('https://lccn.loc.gov/73083603', 200, '<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="EBSCO Locate"/><meta name="application-name" content="EBSCO Locate"/><title>Library of Congress Catalog</title><script type="module" crossorigin src="/assets/index-Bg8YcCuP.js"></script><link rel="stylesheet" crossorigin href="/assets/index-BxnMqiKC.css"><script src="https://assets.adobedtm.com/f94f5647937d/624e2240e90d/launch-0610ec681aff.min.js" async></script></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>')
+('https://openlibrary.org/search.json?title=O%20Rio%20de%20Janeiro%20do%20meu%20tempo&limit=5&fields=key,title,first_publish_year,edition_key', 200, '{"numFound":1,"start":0,"numFoundExact":true,"num_found":1,"documentation_url":"https://openlibrary.org/dev/docs/api/search","q":"","offset":null,"docs":[{"edition_key":["OL6391330M","OL2136458M","OL21768528M"],"first_publish_year":1938,"key":"/works/OL4730609W","title":"O Rio de Janeiro do meu tempo"}]}')
+
+web search: 
+web search: 
+web search: 
+web search: "O Rio de Janeiro do meu tempo" ISBN -site:scribd.com -site:dokumen.pub
+web search: "The peculiarities of oral history" site:academic.oup.com
+web search: "O Rio de Janeiro do meu tempo" catalog library Edmundo
+exec
+/bin/bash -lc "python - <<'PY'
+import requests,concurrent.futures
+urls=['https://openlibrary.org/books/OL6391330M.json','https://openlibrary.org/books/OL2136458M.json','https://openlibrary.org/books/OL21768528M.json']
+def f(u):
+ try:
+  r=requests.get(u,timeout=20);d=r.json();return {k:d.get(k) for k in ['key','title','publish_date','publishers','lccn','oclc_numbers','isbn_10','isbn_13','identifiers','source_records']}
+ except Exception as e:return str(e)
+for x in concurrent.futures.ThreadPoolExecutor().map(f,urls):print(x)
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 376ms:
+{'key': '/books/OL6391330M', 'title': 'O Rio de Janeiro do meu tempo', 'publish_date': '1938', 'publishers': ['Imprensa nacional'], 'lccn': ['39022636'], 'oclc_numbers': ['2850698'], 'isbn_10': None, 'isbn_13': None, 'identifiers': None, 'source_records': ['marc:marc_loc_2016/BooksAll.2016.part03.utf8:176748648:1119', 'marc:marc_columbia/Columbia-extract-20221130-002.mrc:569861226:1516', 'marc:harvard_bibliographic_metadata/20220215_039.bib.mrc:140752894:2072']}
+{'key': '/books/OL2136458M', 'title': 'O Rio de Janeiro do meu tempo', 'publish_date': '1987', 'publishers': ['Xenon'], 'lccn': ['88203147'], 'oclc_numbers': None, 'isbn_10': None, 'isbn_13': None, 'identifiers': None, 'source_records': ['marc:marc_loc_2016/BooksAll.2016.part19.utf8:42729470:940']}
+{'key': '/books/OL21768528M', 'title': 'O Rio de Janeiro do meu tempo', 'publish_date': '1957', 'publishers': ['Conquista'], 'lccn': None, 'oclc_numbers': None, 'isbn_10': None, 'isbn_13': None, 'identifiers': None, 'source_records': ['marc:marc_university_of_toronto/uoft.marc:3165037313:1437']}
+
+web search: 
+web search: https://catalogue.bnf.fr/ark:/12148/cb119663320
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: https://openlibrary.org/books/OL6391330M/O_Rio_de_Janeiro_do_meu_tempo
+web search: https://search.worldcat.org/title/2850698
+web search: https://search.worldcat.org/title/17061183
+web search: https://ndlsearch.ndl.go.jp/books/R100000136-I1970867909764761104
+web search: https://search.worldcat.org/title/300060
+web search: 
+web search: 
+web search: 
+web search: 
+exec
+/bin/bash -lc "python - <<'PY'
+import requests,fitz,concurrent.futures
+urls=['https://revistas.pucsp.br/index.php/revph/article/download/11233/8240/27359','https://periodicos.fgv.br/reh/article/download/2278/1417/3757']
+def f(u):
+ try:
+  r=requests.get(u,timeout=20);d=fitz.open(stream=r.content,filetype='pdf');return u,d[0].get_text()[:5000],d[-1].get_text()[-4000:]
+ except Exception as e:return u,str(e)
+for x in concurrent.futures.ThreadPoolExecutor().map(f,urls):print(x)
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 3520ms:
+('https://revistas.pucsp.br/index.php/revph/article/download/11233/8240/27359', '', '')
+('https://periodicos.fgv.br/reh/article/download/2278/1417/3757', '403 Forbidden\nnginx\n', '403 Forbidden\nnginx\n')
+
+web search: 
+web search: 
+web search: "Sulla specificità della storia orale" Portelli 1979
+web search: "Sulla diversità della storia orale" Portelli 1979
+web search: 
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "Über den Begriff der Geschichte" "1942" site:suhrkamp.de
+web search: "Ensaio sobre a dádiva" site:cosacnaify.com.br
+web search: "Über den Begriff der Geschichte" "2010" site:suhrkamp.de
+web search: "O poder da identidade" "The power of identity" editora
+web search: "Theses on the Philosophy of History" "1942" first published
+exec
+/bin/bash -lc 'ls -la' in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 0ms:
+total 184
+drwxr-xr-x  6 jic823 jic823   4096 Nov  3 20:47 .
+drwxr-xr-x 20 jic823 jic823   4096 Nov  3 20:47 ..
+dr-xr-xr-x  2 jic823 jic823     40 Nov  3 20:47 .agents
+dr-xr-xr-x  2 jic823 jic823     40 Nov  3 20:47 .aws
+dr-xr-xr-x  2 jic823 jic823     40 Nov  3 20:47 .codex
+dr-xr-xr-x  2 jic823 jic823     40 Nov  3 20:47 .git
+-rw-r--r--  1 jic823 jic823 179496 Nov  3 20:47 codex.log
+
+web search: 
+web search: 
+web search: 
+web search: 
+web search: "O Rio de Janeiro do meu tempo" "39022636"
+web search: "Pollak" "Mémoire, oubli, silence"
+web search: "Memória, esquecimento, silêncio" "tradução" "original"
+web search: "Théories de l'ethnicité" "2-13-046627-3" site:ci.nii.ac.jp
+web search: 
+web search: 
+web search: 
+web search: "Mémoire, oubli, silence" "1989" Pollak
+web search: "Théories de l'ethnicité" "1995" "ISBN" site:catalogue.bnf.fr
+web search: "Mémoire, oubli, silence" site:shs.cairn.info
+web search: 
+web search: https://lier-fyt.ehess.fr/system/files/2022-04/Memoire%2C%20oubli%2C%20silence%20%281993%29.pdf
+web search: 
+web search: Coleção de Leis do Brasil 1890 site:bd.camara.leg.br
+exec
+/bin/bash -lc "python - <<'PY'
+import requests,concurrent.futures
+from bs4 import BeautifulSoup
+urls=['https://openlibrary.org/books/OL6391330M','https://kansalliskirjasto.finna.fi/Record/helka.9910044943506253','https://ci.nii.ac.jp/ncid/BA22523243?l=en']
+def f(u):
+ try:
+  r=requests.get(u,timeout=20);s=BeautifulSoup(r.text,'html.parser');t=s.get_text(' ',strip=True);p=t.find('ISBN');return u,r.status_code,t[max(0,p-100):p+800] if p>=0 else t[:400]
+ except Exception as e:return u,str(e)
+for x in concurrent.futures.ThreadPoolExecutor().map(f,urls):print(x)
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 1110ms:
+('https://openlibrary.org/books/OL6391330M', 200, "Human Verification | Open Library Skip to main content It looks like you're offline. Donate ♥ English العربية Azərbaycanca Čeština Deutsch English Español Français हिंदी Hrvatski Italiano 한국어 Português Română Sardu తెలుగు Українська 中文 Filipino Page Status My Books Browse Subjects Browse books by topic Trending Most popular right now Library Explorer Browse the virtual shelves Lists Reader-curated")
+('https://kansalliskirjasto.finna.fi/Record/helka.9910044943506253', 403, 'Just a moment... Enable JavaScript and cookies to continue')
+('https://ci.nii.ac.jp/ncid/BA22523243?l=en', 200, ' Title Match Include Uniform Titles Author Include Alias Names Author ID Uniform Title ID Publisher ISBN ISSN NCID Subject Classification Note Format Any Formats Book and Journal Cartographic Material Braill Printed Music Manuscript Text Manuscript Map Manuscript Music Projected Graphic Microform Non-projected Graphic Motion Picture Musical Sound Recording Non-musical Sound Recording Videorecording Computer File 3D Artcraft or Naturally Occurring Object Kit Language Any Languages Japanese English German French Chinese Russian Spanish Italian Korean Arabic Year from to Library ID Organization ID Area Any Areas Hokkaido Tohoku Region Aomori Iwate Miyagi Akita Yamagata Fukushima Kanto Region Ibaraki Tochigi Gunma Saitama Chiba Tokyo Kanagawa Hokuriku/Koshinetsu Region Niigata Toyama Ishikawa Fukui Yamanashi Nagano Tokai Region Gifu Shizuoka Aichi Mie Kansai Region Shiga Kyoto Osaka Hyogo Na')
+
+codex
+I’ve finished the bibliographic checks. I’ll write 20 verdicts in the supplied order, marking the two incomplete citations as unclear and noting that Villalta’s thesis falls outside the schema’s listed document types.
+exec
+/bin/bash -lc "python - <<'PY'
+import json
+from pathlib import Path
+items=next(g for g in json.load(open('../groups.json')) if g['id']=='g015')['items']
+base=dict(work=None,relation='none',original_title='',original_year=None,original_language='',kind='book',lccn='',isbn='',oclc='',doi='',container='',source_url='',note='')
+rows=[]
+def add(i,**kw):
+ assert i==len(rows)
+ rows.append(dict(id=items[i]['id'],**(base|kw)))
+add(0,work='w-515650',relation='translation',original_title=\"Essai sur le don : forme et raison de l'échange dans les sociétés archaïques\",original_year=1925,original_language='fr',kind='article',container=\"L'Année sociologique, nouvelle série, 1 (1923–1924), 1925, pp. 30–186\",source_url='https://catalogue.bnf.fr/ark:/12148/cb12414462z',note='Portuguese translation of the essay itself. Prefer the French article to Die Gabe or the containing Sociologie et anthropologie. Candidate year 1923 reflects the journal volume; publication was 1925.')
+add(1,original_title='Memória, história e historiografia',original_year=2001,original_language='pt',isbn='9728717091',source_url='https://biblioteca.ipsantarem.pt/Opac/Pages/Search/Results.aspx?Database=105200_GLOBAL&SearchText=CDU%3D%22930.2%22',note='Coimbra: Quarteto, 2001, 72 pp., Opúsculos 1. None of the Catroga candidates is this book.')
+add(2,original_title='Mémoire, oubli, silence',original_year=1989,original_language='fr',kind='article',container='Estudos Históricos, 2(3), 1989, pp. 3–15',source_url='https://www.bds.unb.br/handle/123456789/1288',note='First published in Portuguese as Memória, esquecimento, silêncio (translation by Dora Rocha Flaksman). A later French version appears in Une identité blessée (1993), pp. 13–39; its prefatory note confirms the 1989 Portuguese first version. No candidate matches.')
+add(3,original_title='Reformismo Ilustrado, censura e práticas de leitura: usos do livro na América Portuguesa',original_year=1999,original_language='pt',doi='10.11606/T.8.1999.tde-14122009-115825',container='Universidade de São Paulo, FFLCH, doctoral thesis in História Social, 1999',source_url='https://teses.usp.br/teses/disponiveis/8/8138/tde-14122009-115825/pt-br.html',note='A doctoral thesis, absent from the candidates. The required schema has no thesis kind, so book is used as the nearest monograph category; the DOI identifies the thesis, not one of the candidate books.')
+add(4,relation='unclear',original_title='Decreto [número não preservado]',original_year=1890,original_language='pt',kind='chapter',container='Collecção das Leis da Republica dos Estados Unidos do Brazil de 1890',source_url='https://bd.camara.leg.br/bd/items/08045f22-5128-4e18-853d-e4f4cb2995aa/full',note='A truncated citation to a Brazilian decree in the annual laws collection. Number, date and subject are missing, preventing identification of a specific act. Chapter is only a schema approximation for an act within a compilation; the linked collection is not the individual work.')
+add(5,original_title='Desenvolvimento econômico e evolução urbana: análise da evolução econômica de São Paulo, Blumenau, Pôrto Alegre, Belo Horizonte e Recife',original_year=1968,original_language='pt',lccn='71397688',source_url='https://openlibrary.org/books/OL5766551M',note='The 1977 citation is a later edition of the 1968 book. It is distinct from Desenvolvimento e crise, Economia política da urbanização and A cidade e o campo. LCCN confirmed in the catalogue record for the original.')
+add(6,original_title=\"Théories de l'ethnicité, suivi de Les groupes ethniques et leurs frontières, de Fredrik Barth\",original_year=1995,original_language='fr',isbn='2130466273',source_url='https://kansalliskirjasto.finna.fi/Record/helka.9910044943506253',note='Poutignat and Streiff-Fenart, Paris: PUF, 1995; Portuguese translation by Elcio Fernandes, UNESP, 1998. The appended Barth essay was already included in the French book; this is not a Portuguese-only selection. No candidates supplied.')
+add(7,work='w-2659',relation='translation',original_title='Sulla diversità della storia orale',original_year=1979,original_language='it',kind='article',doi='10.1093/hwj/12.1.96',container='Primo Maggio, 13, 1979, pp. 54–60; English version: History Workshop Journal, 12(1), 1981, pp. 96–107',source_url='https://academic.oup.com/hwj/article-abstract/12/1/96/562764',note='The 1997 Projeto História translation is the essay also published as The Peculiarities of Oral History and What Makes Oral History Different. The 1981 article candidate matches; the containing Death of Luigi Trastulli collection does not. The Italian first version is also cited as Sulla specificità della storia orale.')
+add(8,work='w-172854',relation='edition',original_title=\"Émile, ou De l'éducation\",original_year=1762,original_language='fr',source_url='https://catalogue.bnf.fr/ark:/12148/cb31257464x',note='The French 1817 candidate is an edition of the 1762 work. Prefer this original-language record to the English translations and the 2010 volume containing Émile et Sophie as well.')
+add(9,work='w-249344',relation='translation',original_title='Über den Begriff der Geschichte',original_year=1942,original_language='de',kind='chapter',container='Walter Benjamin zum Gedächtnis, 1942; English translation in Illuminations, 1968',source_url='https://catalogue.bnf.fr/ark:/12148/cb119663320',note='Written in 1940, first printed posthumously in 1942. The English title names the same essay as the standalone German critical edition (2010). Match that work, not the containing Illuminations anthology. Chapter denotes the essay in its original publication context.')
+add(10,original_title='The Sino-Soviet Split: Cold War in the Communist World',original_year=2008,original_language='en',isbn='9780691135908',source_url='https://assets.press.princeton.edu/catalogs/polisci08text.pdf',note='Lorenz M. Lüthi, Princeton University Press, 2008. Original paperback ISBN confirmed in the publisher catalogue. No candidates supplied.')
+add(11,original_title='Quand la jeunesse entre en scène: l’Action catholique avant la Révolution tranquille',original_year=2003,original_language='fr',isbn='9782764602010',source_url='https://www.editionsboreal.qc.ca/media/pdf/catalogue-general-2010.pdf',note='Louise Bienvenue, Montréal: Boréal, 2003. Title, year and ISBN confirmed in the publisher catalogue. No candidates supplied.')
+add(12,original_title='Historia ecclesiastica gentis Anglorum',original_year=731,original_language='la',oclc='504164239',source_url='https://search.worldcat.org/title/504164239',note='Bede’s eighth-century work, completed in 731. The 1969 date points to the Colgrave–Mynors Clarendon edition, Bede’s Ecclesiastical History of the English People; OCLC identifies that edition. No candidates supplied.')
+add(13,original_title='Maroon Societies: Rebel Slave Communities in the Americas',original_year=1973,original_language='en',lccn='73083603',source_url='https://ci.nii.ac.jp/ncid/BA9037166X?l=en',note='An anthology edited by Richard Price, first published by Anchor Press in 1973; the cited Johns Hopkins 1996 edition is the third edition. Original LCCN confirmed in the library catalogue. No candidates supplied.')
+add(14,original_title='O Rio de Janeiro do meu tempo',original_year=1938,original_language='pt',lccn='39022636',source_url='https://openlibrary.org/books/OL6391330M.json',note='Luís Edmundo’s original Imprensa Nacional book appeared in 1938; 2003 is the Senado Federal reissue. Original LCCN confirmed in the catalogue metadata. No candidates supplied.')
+add(15,original_title='Fornstora dagar, moderna tider: bruk av och debatter om svensk historia från sekelskifte till sekelskifte',original_year=2001,original_language='sv',isbn='9789189116238',source_url='https://nordicacademicpress.se/product/fornstora-dagar-moderna-tider/',note='Ulf Zander, Lund: Nordic Academic Press, 2001. Publisher confirms title, year and ISBN. None of the three candidate works matches.')
+add(16,work='w-225672',relation='translation',original_title='The Power of Identity',original_year=1997,original_language='en',container='The Information Age: Economy, Society and Culture, volume II',source_url='https://search.worldcat.org/title/The-power-of-identity/oclc/35298606',note='Portuguese translation of the second volume of the Information Age trilogy, not The Rise of the Network Society or End of Millennium.')
+add(17,work='w-128982',relation='translation',original_title='Britain and the Onset of Modernization in Brazil, 1850–1914',original_year=1968,original_language='en',source_url='https://ci.nii.ac.jp/ncid/BB06486595',note='The catalogue explicitly identifies the 1973 Brasiliense edition, translated by Roberto Machado de Almeida, as the Portuguese version of the 1968 English work.')
+add(18,relation='unclear',original_title='The Age of Extremes: A History of the World, 1914–1991',original_year=1994,original_language='en',source_url='https://www.companhiadasletras.com.br/livro/9788571644687/era-dos-extremos',note='Only place, publisher and date survive; this is not a title. Most likely Era dos extremos, published by Companhia das Letras in 1995, whose English original is candidate w-242107. The imprint alone is insufficient for a secure match, so work remains null; original metadata is provisional.')
+add(19,original_title='Danação da norma: medicina social e constituição da psiquiatria no Brasil',original_year=1978,original_language='pt',lccn='80132467',source_url='https://openlibrary.org/books/OL4152683M.json',note='Rio de Janeiro: Graal, 1978. Coauthored by Roberto Machado, Ângela Loureiro, Rogério Luz and Kátia Muricy. Original LCCN confirmed in the catalogue record. No candidates supplied.')
+assert len(rows)==len(items)==20
+assert [r['id'] for r in rows]==[i['id'] for i in items]
+for item,row in zip(items,rows):
+ if row['work']:
+  assert row['work'] in {w['work'] for p in item['candidates'] for w in p['works']}
+ assert row['relation'] in {'translation','edition','same','none','unclear'}
+ assert row['kind'] in {'book','article','chapter','book_selection'}
+Path('verdicts.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\\n')
+print('Wrote verdicts.json: 20 ordered verdicts; 6 matches, 12 unmatched, 2 unclear.')
+PY" in /home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g015
+ succeeded in 0ms:
+Wrote verdicts.json: 20 ordered verdicts; 6 matches, 12 unmatched, 2 unclear.
+
+codex
+Created [verdicts.json](verdicts.json) with 20 ordered verdicts: 6 matches, 12 unmatched works, and 2 unclear citations.
+tokens used
+145,653
+Created [verdicts.json](verdicts.json) with 20 ordered verdicts: 6 matches, 12 unmatched works, and 2 unclear citations.

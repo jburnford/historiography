@@ -8,9 +8,11 @@ and one g*/verdicts.json per group (BRIEF.md there), or round folders laid out t
   - `lccn`: the record is in LC's 2016 file (local index) and its title agrees with the original's or the cited
     title (key_lc_works.title_key: equal, or one the start of the other) and a 100/700 heading on it has a cited
     author's family name;
-  - `isbn`: an ISBN LC's file holds is its record (checked as above); else Open Library's record of the ISBN, with
-    the same title and author checks;
+  - `isbn`: an ISBN LC's file holds is its record (checked as above); else LC's catalogue now (SRU, cached; also
+    for an LCCN the 2016 file lacks), else Open Library's record, with the same title and author checks;
   - `doi`: Crossref's record, with the same title and author checks;
+  - a valid ISBN no catalogue here holds, for a book, with the page Sol confirmed it on (`source_url`): kept at the
+    lower tier (`recorded`, the basis names the page);
   - an `oclc` number alone, or a failed check, goes to review.json, not the proposal.
   A checked identifier that a key already holds maps the cited work to that key; otherwise the work is minted
   (`lccn:`, `isbn:<13 digits>` or `doi:` anchor, member `year:`), and each key holding a cited author's corpus id
@@ -35,9 +37,12 @@ import duckdb
 
 from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from key_lc_works import title_key
+from lc_authority_pilot import SRU, Fetcher, bib_headings
+from lc_catalogue_harvest import record_facts
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 LC_INDEX = Path('/mnt/e/lc-bib-2016/index')
+SRU_CACHE = Path('/mnt/e/lc-authorities/sru')
 UA = 'historiography-research/1.0 (mailto:jic823@usask.ca)'
 
 
@@ -46,6 +51,8 @@ def fold(s):
 
 
 def titles_agree(record_title, *wanted):
+    dash = lambda t: re.sub('[\u2010-\u2015]', '-', t or '')
+    record_title, wanted = dash(record_title), [dash(w) for w in wanted]
     r = title_key((record_title or '').split(':')[0]), title_key(record_title or '')
     for w in wanted:
         for k in (title_key((w or '').split(':')[0]), title_key(w or '')):
@@ -55,6 +62,16 @@ def titles_agree(record_title, *wanted):
                 if x and (x == k or (len(min(x, k, key=len).split()) >= 2 and (x.startswith(k) or k.startswith(x)))):
                     return True
     return False
+
+
+def same_family(a, b):
+    """'garcia canclini' ~ 'canclini', "o'brien" ~ 'obrien', 'de ste croix' ~ 'ste croix'."""
+    a, b = (re.sub(r'[^a-z ]', '', fold(x).replace('-', ' ')).split() for x in (a, b))
+    return bool(a and b) and (''.join(a) == ''.join(b) or a[-1] == b[-1])
+
+
+def isbn_valid(i13):
+    return len(i13) == 13 and i13.isdigit() and sum((3 if k % 2 else 1) * int(c) for k, c in enumerate(i13)) % 10 == 0
 
 
 def norm_lccn(s):
@@ -124,7 +141,26 @@ def main():
         fams = {fold(f) for (f,) in db.execute(f"SELECT family FROM read_parquet('{LC_INDEX}/headings-*.parquet') WHERE trim(control) = '{r[0]}'").fetchall()}
         return dict(anchor=f'lccn:{r[0]}', title=r[1], year=(r[2] or '')[:4], families=fams, source='LC 2016 record')
 
+    fetch = Fetcher(SRU_CACHE, 3.0)
+
+    def lc_live(lccn=None, isbn=None):
+        """LC's catalogue now (SRU), for books after or outside the 2016 file (2026-11-03: Open Library refused
+        connections from here)."""
+        r = fetch.get(SRU + urllib.parse.quote(f'bath.lccn={lccn}' if lccn else f'bath.isbn={isbn}'))
+        if not r.get('status') or r['status'] != 200:
+            return None
+        heads, n = bib_headings(r['body'])
+        facts = record_facts(r['body']) if n else {}
+        if not facts.get('lccn') and not facts.get('control'):
+            return None
+        return dict(anchor=f'lccn:{facts.get("lccn") or facts["control"]}', title=facts.get('title', ''), year='',
+                    families={fold(h['family']) for h in heads}, source='LC catalogue record')
+
+    ol_up = get_json('https://openlibrary.org/isbn/9780812248227.json') is not None   # one probe, not three retries an ISBN
+
     def openlibrary(isbn):
+        if not ol_up:
+            return None
         d = get_json(f'https://openlibrary.org/api/books?bibkeys=ISBN:{isbn}&format=json&jscmd=data')
         rec = (d or {}).get(f'ISBN:{isbn}')
         if not rec:
@@ -165,21 +201,41 @@ def main():
         rec, tried = None, []
         if v.get('lccn'):
             tried.append('lccn')
-            rec = lc_record(lccn=norm_lccn(v['lccn']))
+            rec = lc_record(lccn=norm_lccn(v['lccn'])) or lc_live(lccn=norm_lccn(v['lccn']))
         if not rec and isbn13(v.get('isbn')):
             tried.append('isbn')
-            rec = lc_record(isbn=isbn13(v['isbn'])) or openlibrary(isbn13(v['isbn']))
+            i13 = isbn13(v['isbn'])
+            rec = lc_record(isbn=i13) or lc_live(isbn=i13) or openlibrary(i13)
         if not rec and v.get('doi'):
             tried.append('doi')
             rec = crossref(v['doi'].strip().removeprefix('https://doi.org/'))
+        if not rec and isbn_valid(isbn13(v.get('isbn'))) and (v.get('source_url') or '').startswith('http') \
+                and rel != 'unclear' and v.get('kind') in ('book', 'book_selection'):
+            # no catalogue here holds it (Brazilian, Portuguese and French editions LC never bought): Sol's ISBN, with
+            # the catalogue or publisher page Sol confirmed it on, at the lower tier
+            i13 = isbn13(v['isbn'])
+            report['sol_sourced_isbn'] += 1
+            rows.append((it['id'], f'isbn:{i13}'))
+            if f'isbn:{i13}' not in state.anchor:
+                clusters.append(dict(type='work', label=(v.get('original_title') or it['cited_title'])[:250], anchors={f'isbn:{i13}'},
+                                     members={f'year:{v["original_year"]}'} if v.get('original_year') else set(), aliases=set(),
+                                     resolution='recorded', basis=f'Sol named it the work cited as {it["cited_title"]} ({it["id"]}) and '
+                                                                  f'confirmed the ISBN at {v["source_url"]}; no catalogue checked here holds it'))
+            for p in sorted(people[it['id']]):
+                c = f'verdict-authored:isbn:{i13}:{p}'
+                if state.anchor.get(f'diss-person:{p}') and c not in state.anchor:
+                    claims.append(dict(anchor=c, subject=f'diss-person:{p}', object=f'isbn:{i13}'))
+            continue
         if not rec:
             review.append(dict(v, why=f'no identifier found ({", ".join(tried) or "none given"})'))
             continue
         fams = families(it)
-        if not titles_agree(rec['title'], v.get('original_title'), it['cited_title']):
+        if not rec['title'] and rec['source'] == 'Crossref record' and any(same_family(f, g) for f in fams for g in rec['families']):
+            pass                                       # a chapter DOI whose record carries no title: the authors decide
+        elif not titles_agree(rec['title'], v.get('original_title'), it['cited_title']):
             review.append(dict(v, why=f'{rec["source"]} title differs: {rec["title"]}'))
             continue
-        if not (fams & rec['families']):
+        if not any(same_family(f, g) for f in fams for g in rec['families']):
             review.append(dict(v, why=f'{rec["source"]} has none of the cited authors {sorted(fams)}: {sorted(rec["families"])[:5]}'))
             continue
         report[f'checked:{rec["source"]}'] += 1
@@ -193,7 +249,7 @@ def main():
         for p in sorted(people[it['id']]):
             holder = state.anchor.get(f'diss-person:{p}')
             c = f'verdict-authored:{rec["anchor"]}:{p}'
-            if holder and fold(p.split('|')[0]) in rec['families'] and c not in state.anchor:
+            if holder and any(same_family(p.split('|')[0], g) for g in rec['families']) and c not in state.anchor:
                 claims.append(dict(anchor=c, subject=f'diss-person:{p}', object=rec['anchor']))
     seen = set()                                       # two cited forms of one work: one cluster
     clusters = [c for c in clusters if not (min(c['anchors']) in seen or seen.add(min(c['anchors'])))]

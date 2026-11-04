@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with all 20 entries in order. JSON validation and source-host checks passed.

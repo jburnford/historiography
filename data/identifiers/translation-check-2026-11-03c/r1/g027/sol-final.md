@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 20 verdicts in order. Identifier verification limitations are noted in affected entries. JSON and source-host checks passed.

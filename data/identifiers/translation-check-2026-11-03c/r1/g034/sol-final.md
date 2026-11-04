@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 verdicts: 10 graph matches. Unverified identifiers are noted explicitly.

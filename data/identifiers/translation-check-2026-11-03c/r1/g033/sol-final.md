@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with 20 verdicts and 7 matches. Validation passed. Two unconfirmed identifiers are left empty and explained in notes.

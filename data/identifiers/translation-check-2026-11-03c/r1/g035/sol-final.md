@@ -1,0 +1,1 @@
+Created and validated `verdicts.json` with all four g035 items in order. No other files written.

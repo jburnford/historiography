@@ -1,0 +1,1 @@
+Wrote [verdicts.json](./verdicts.json) with 20 validated entries: 13 matches, six absent works, and one unclear attribution.

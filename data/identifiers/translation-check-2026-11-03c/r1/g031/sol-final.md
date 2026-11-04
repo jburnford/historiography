@@ -1,0 +1,1 @@
+Wrote and validated all 20 verdicts in [verdicts.json](verdicts.json). No other files were written.

@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/translation-check-2026-11-03c/r1/g006/verdicts.json) with 20 validated verdicts. No other files were written.

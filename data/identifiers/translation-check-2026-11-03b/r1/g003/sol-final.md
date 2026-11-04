@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts in the required order. JSON, schema, candidate IDs, and ISBN checksums validated.

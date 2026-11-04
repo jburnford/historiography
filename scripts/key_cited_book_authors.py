@@ -16,7 +16,8 @@ authority gains `diss-person:<corpus id>`, or a new key is minted with `lcnaf:<i
 (established: a public PID); a key that holds the corpus id but no LC authority gains the authority (Rotundo,
 Lyotard), and when another key holds that authority the two are held for review, not merged. Books the ranked list
 files as primary sources are taken too (Brazilian bibliographies mark translated classics as sources). Corpus ids given as variants of one author ('bullock|alan', 'bullock|allan') go onto
-the one key; a corpus id naming no one in particular ('curtis', 'davis|j') is skipped. The next key_lc_works run then keys their LC books, and the crosswalk their citations.
+the one key; a corpus id naming no one in particular ('curtis', 'davis|j') is skipped, and so is one whose
+already-grounded citations reach works of another person of that family (--crosswalk; thompson|edward). The next key_lc_works run then keys their LC books, and the crosswalk their citations.
 
     python3 scripts/key_cited_book_authors.py --ranked data/identifiers/ungrounded-works-2026-11-03c/ranked.csv.gz \\
         --out data/identifiers/cited-book-authors-2026-11-03
@@ -60,6 +61,8 @@ def main():
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--min', type=int, default=5)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--crosswalk', type=Path, nargs='*', default=[],
+                    help='crosswalks of cited works already grounded: an id also cited for another keyed person is a mix')
     ap.add_argument('--candidates-only', action='store_true', help='write candidates.json and stop (no key log load)')
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
@@ -140,6 +143,22 @@ def main():
     print(json.dumps(report))
     if args.candidates_only:
         return
+    # 2026-11-03: thompson|edward was cited for E. J. Thompson's India books and for E. P. Thompson's Grid of Inheritance;
+    # an id whose grounded citations already reach works of another person of that family names no one in particular
+    others = defaultdict(set)                          # corpus id -> keys of other people its grounded works belong to
+    if args.crosswalk:
+        files = ', '.join(f"'{x}'" for x in args.crosswalk)
+        graph = ROOT / 'build/graph'
+        for p, key, label in db.execute(f"""
+                WITH x AS (SELECT DISTINCT work_id, key FROM read_csv([{files}], all_varchar=true, union_by_name=true)),
+                anc AS (SELECT a, key AS wk FROM (SELECT key, unnest(anchors) AS a FROM '{graph}/work.parquet')),
+                xk AS (SELECT x.work_id, coalesce(w.key, anc.wk) AS wk FROM x LEFT JOIN '{graph}/work.parquet' w ON w.key = x.key
+                       LEFT JOIN anc ON anc.a = x.key),
+                au AS (SELECT "from" AS pk, "to" AS wk FROM '{graph}/authored.parquet' UNION SELECT "from", "to" FROM '{graph}/edited.parquet')
+                SELECT DISTINCT a.person_key, au.pk, pp.label FROM read_csv('{CORPUS}/authored.csv.gz') a JOIN xk USING (work_id)
+                JOIN au ON au.wk = xk.wk JOIN '{graph}/person.parquet' pp ON pp.key = au.pk""").fetchall():
+            if fold(p.split('|')[0]) == fold(label.split(',')[0] if ',' in label else (label.split() or [''])[-1]):
+                others[p].add(key)
     state = State.load(args.state)
     by_lc = defaultdict(list)                        # one key per authority: 'bullock|alan' and 'bullock|allan' are one man
     for c in cands:
@@ -149,6 +168,9 @@ def main():
             report['weak_corpus_id'] += 1
             continue
         holder = state.anchor.get(f'diss-person:{c["person"]}')
+        if others.get(c['person'], set()) - {state.anchor.get(f'lcnaf:{c["lc"][0]}'), holder}:
+            report['id_cited_for_another_person'] += 1
+            continue
         if holder and any(a.startswith('lcnaf:') for a in state.keys[holder]['anchors']):
             report['corpus_id_keyed_with_lc'] += 1
             continue

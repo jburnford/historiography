@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with 20 verdicts: 6 matches and 14 absent works. Validation passed.

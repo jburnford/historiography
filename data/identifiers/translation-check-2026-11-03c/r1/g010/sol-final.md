@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with 20 verdicts, including 8 graph matches. Validated format, identifiers, and source routes.
