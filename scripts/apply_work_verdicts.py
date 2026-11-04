@@ -10,7 +10,9 @@ and one g*/verdicts.json per group (BRIEF.md there), or round folders laid out t
     author's family name;
   - `isbn`: an ISBN LC's file holds is its record (checked as above); else LC's catalogue now (SRU, cached; also
     for an LCCN the 2016 file lacks), else Open Library's record, with the same title and author checks;
-  - `doi`: Crossref's record, with the same title and author checks;
+  - `doi`: Crossref's record, with the same title and author checks (a chapter record with no title: its book);
+  - `url`: the publisher's or repository's page, by its citation_* metadata, with the same checks; a reviewed
+    thesis, article or chapter whose only home is a file without metadata is kept at the lower tier;
   - a valid ISBN no catalogue here holds, for a book, with the page Sol confirmed it on (`source_url`): kept at the
     lower tier (`recorded`, the basis names the page);
   - an `oclc` number alone, or a failed check, goes to review.json, not the proposal.
@@ -175,8 +177,23 @@ def main():
         if not m:
             return None
         year = str(((m.get('issued') or {}).get('date-parts') or [[None]])[0][0] or '')
-        return dict(anchor=f'doi:{doi.lower()}', title=(m.get('title') or [''])[0], year=year,
+        return dict(anchor=f'doi:{doi.lower()}', title=(m.get('title') or [''])[0], year=year, container=(m.get('container-title') or [''])[0],
                     families={fold(a.get('family', '')) for a in m.get('author', [])}, source='Crossref record')
+
+    def page(url):
+        """A publisher's or repository's article page: its citation_* metadata (Highwire tags), else nothing."""
+        req = urllib.request.Request(url, headers={'User-Agent': UA})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                html = r.read(400000).decode('utf-8', 'replace')
+        except Exception:
+            return None
+        meta = lambda n: re.findall(rf'name="{n}" content="([^"]*)"', html)
+        if not meta('citation_title'):
+            return None
+        year = (re.search(r'\d{4}', (meta('citation_date') or meta('citation_publication_date') or [''])[0]) or [''])[0]
+        return dict(anchor=f'url:{url}', title=meta('citation_title')[0], year=year, source='publisher page',
+                    families={fold(a.split(',')[0] if ',' in a else (a.split() or [''])[-1]) for a in meta('citation_author')})
 
     state = State.load(args.state)
     report, rows, review, clusters, claims = Counter(), [], [], [], []
@@ -209,6 +226,18 @@ def main():
         if not rec and v.get('doi'):
             tried.append('doi')
             rec = crossref(v['doi'].strip().removeprefix('https://doi.org/'))
+        if not rec and v.get('url'):
+            tried.append('url')
+            rec = page(v['url'])
+            if not rec and v.get('kind') in ('thesis', 'article', 'chapter') and v.get('decided_by') == 'review':
+                # a reviewed item whose only home is a file without metadata (Monteiro's livre-docência PDF)
+                report['reviewed_url'] += 1
+                rows.append((it['id'], f'url:{v["url"]}'))
+                if f'url:{v["url"]}' not in state.anchor:
+                    clusters.append(dict(type='work', label=(v.get('original_title') or it['cited_title'])[:250], anchors={f'url:{v["url"]}'},
+                                         members={f'year:{v["original_year"]}'} if v.get('original_year') else set(), aliases=set(),
+                                         resolution='recorded', basis=f'reviewed: {v.get("note", "")}'))
+                continue
         if not rec and isbn_valid(isbn13(v.get('isbn'))) and (v.get('source_url') or '').startswith('http') \
                 and rel != 'unclear' and v.get('kind') in ('book', 'book_selection'):
             # no catalogue here holds it (Brazilian, Portuguese and French editions LC never bought): Sol's ISBN, with
@@ -230,7 +259,9 @@ def main():
             review.append(dict(v, why=f'no identifier found ({", ".join(tried) or "none given"})'))
             continue
         fams = families(it)
-        if not rec['title'] and rec['source'] == 'Crossref record' and any(same_family(f, g) for f in fams for g in rec['families']):
+        if not rec['title'] and rec['source'] == 'Crossref record' and (
+                any(same_family(f, g) for f in fams for g in rec['families'])
+                or (v.get('container') and titles_agree(rec.get('container', ''), v['container']))):
             pass                                       # a chapter DOI whose record carries no title: the authors decide
         elif not titles_agree(rec['title'], v.get('original_title'), it['cited_title']):
             review.append(dict(v, why=f'{rec["source"]} title differs: {rec["title"]}'))
