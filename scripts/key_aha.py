@@ -45,6 +45,7 @@ records.csv, genealogy/advisor-links.csv), the AHA historian directory
 import argparse
 import csv
 import json
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -145,8 +146,9 @@ def own_book(record, cands):
         return hits
     for k, label, works in cands.get(' '.join(content(family)) or family.lower(), ()):
         fam, _, giv = label.partition(', ') if ', ' in label else (label.split()[-1], '', ' '.join(label.split()[:-1]))
-        if not (compatible(person, giv, fam) and given_agrees(given, giv)):
-            continue
+        fuller = re.search(r'\(([^)]+)\)', giv)                # LC's fuller form: 'C. J. (Christopher J.)'
+        if not (compatible(person, giv, fam) and given_agrees(given, fuller.group(1) if fuller else giv)):
+            continue                                           # 2026-11-03: 'Chase' is not 'C. J. (Christopher J.)' 
         for c, y in works:
             shared = len(c & d)
             if shared >= 3 and shared >= 0.6 * min(len(c), len(d)) and (y is None or year is None or y >= year - 1):

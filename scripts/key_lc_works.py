@@ -109,13 +109,19 @@ EDITING = re.compile(r'\b(edited|editors?|eds?\.|compiled|compilers?|hrsg|heraus
 
 def editor_by_statement(tag, relators, family, responsibility):
     """An added entry without a relator is an editor when the record's statement of responsibility (245 $c) speaks
-    of editing and names the person ('edited by Eric Hobsbawm and Terence Ranger'; 2026-11-03: older records give
-    collections no relators, so their editors were left out)."""
+    of editing and names the person in that same part of the statement ('edited by Eric Hobsbawm and Terence Ranger';
+    not 'edited by John T. Greenwood ; with Von Hardesty'; 2026-11-03: older records give collections no relators,
+    so their editors were left out)."""
     if tag != '700' or relators or not responsibility or not family:
         return None
     fam = unicodedata.normalize('NFKD', family).encode('ascii', 'ignore').decode().lower().strip(' ,.')
-    text = unicodedata.normalize('NFKD', responsibility).encode('ascii', 'ignore').decode().lower()
-    return 'edited' if EDITING.search(responsibility) and len(fam) > 1 and re.search(r'\b' + re.escape(fam) + r'\b', text) else None
+    if len(fam) < 2:
+        return None
+    for part in responsibility.split(';'):           # 'edited by John T. Greenwood ; with Von Hardesty': only the first part
+        text = unicodedata.normalize('NFKD', part).encode('ascii', 'ignore').decode().lower()
+        if EDITING.search(part) and re.search(r'\b' + re.escape(fam) + r'\b', text):
+            return 'edited'
+    return None
 
 
 def catalogue_roles(index, names, bases=None):
