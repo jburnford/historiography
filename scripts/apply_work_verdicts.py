@@ -15,7 +15,9 @@ and one g*/verdicts.json per group (BRIEF.md there), or round folders laid out t
     thesis, article or chapter whose only home is a file without metadata is kept at the lower tier;
   - a valid ISBN no catalogue here holds, for a book, with the page Sol confirmed it on (`source_url`): kept at the
     lower tier (`recorded`, the basis names the page);
-  - an `oclc` number alone, or a failed check, goes to review.json, not the proposal.
+  - an `oclc` number alone, or a failed check, goes to review.json, not the proposal; a verdict marked
+    `decided_by: review` (checked by hand: Hebe Mattos catalogued as Castro, a chapter DOI with no authors) skips the
+    author check.
   A checked identifier that a key already holds maps the cited work to that key; otherwise the work is minted
   (`lccn:`, `isbn:<13 digits>` or `doi:` anchor, member `year:`), and each key holding a cited author's corpus id
   gets an `authored` claim (`verdict-authored:<anchor>:<corpus id>`, recorded).
@@ -266,7 +268,7 @@ def main():
         elif not titles_agree(rec['title'], v.get('original_title'), it['cited_title']):
             review.append(dict(v, why=f'{rec["source"]} title differs: {rec["title"]}'))
             continue
-        if not any(same_family(f, g) for f in fams for g in rec['families']):
+        if not any(same_family(f, g) for f in fams for g in rec['families']) and v.get('decided_by') != 'review':
             review.append(dict(v, why=f'{rec["source"]} has none of the cited authors {sorted(fams)}: {sorted(rec["families"])[:5]}'))
             continue
         report[f'checked:{rec["source"]}'] += 1
