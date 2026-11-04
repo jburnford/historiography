@@ -13,7 +13,8 @@ identifies its author (identity by works): for each such book cited by at least 
   .resolve: $0, authorised heading, or an earlier form with the same dates).
 When all the cited author's matching records give one authority, the author is that person: the key holding the
 authority gains `diss-person:<corpus id>`, or a new key is minted with `lcnaf:<id>` and `diss-person:<corpus id>`
-(established: a public PID). The next key_lc_works run then keys their LC books, and the crosswalk their citations.
+(established: a public PID). Corpus ids given as variants of one author ('bullock|alan', 'bullock|allan') go onto
+the one key; a corpus id naming no one in particular ('curtis', 'davis|j') is skipped. The next key_lc_works run then keys their LC books, and the crosswalk their citations.
 
     python3 scripts/key_cited_book_authors.py --ranked data/identifiers/ungrounded-works-2026-11-03c/ranked.csv.gz \\
         --out data/identifiers/cited-book-authors-2026-11-03
@@ -34,10 +35,21 @@ from lc_resolve_authorities import load_names, resolve
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 LC_INDEX = Path('/mnt/e/lc-bib-2016/index')
 LC_NAMES = Path('/mnt/e/lc-authorities/personal-names.parquet')
+# LC's 2016 record of the book carries a heading LC has since replaced with a new authority (checked on id.loc.gov)
+LC_CORRECTIONS = {
+    'rosen|hannah': ('no2009177673', 'Rosen, Hannah (Hannah R.)'),  # 2008029870 is under Rosén, Hannah (n84020424)
+}
 
 
 def fold(s):
     return unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower().strip(' ,.')
+
+
+def weak_corpus_id(person):
+    """A corpus id that names no one in particular: family name only, initials only, or a year caught in the name
+    ('curtis', 'davis|j', 'meiggs|1960 r'); anchoring it would send every such citation to one person."""
+    family, _, given = person.partition('|')
+    return not given or any(ch.isdigit() for ch in given) or all(len(t) == 1 for t in given.split())
 
 
 def main():
@@ -113,8 +125,11 @@ def main():
     theses = {r[0]: r[3] for r in books}
     for p, ids in sorted(by_person.items()):
         ws = sorted({w for (w, q) in found if q == p}, key=lambda w: -theses[w])
-        cands.append(dict(person=p, lc=sorted(ids), label=names[0][next(iter(ids))]['label'] if len(ids) == 1 else '',
-                          works=ws, theses=sum(theses[w] for w in ws)))
+        label = names[0][next(iter(ids))]['label'] if len(ids) == 1 else ''
+        if p in LC_CORRECTIONS:
+            lcid, label = LC_CORRECTIONS[p]
+            ids = {lcid}
+        cands.append(dict(person=p, lc=sorted(ids), label=label, works=ws, theses=sum(theses[w] for w in ws)))
     (args.out / 'candidates.json').write_text(json.dumps(cands, ensure_ascii=False, indent=1) + '\n')
     report = Counter(books=len(books), lc_records=len(hits), people_found=len(by_person),
                      one_authority=sum(1 for c in cands if len(c['lc']) == 1), several=sum(1 for c in cands if len(c['lc']) > 1))
@@ -122,28 +137,34 @@ def main():
     if args.candidates_only:
         return
     state = State.load(args.state)
-    clusters = []
+    by_lc = defaultdict(list)                        # one key per authority: 'bullock|alan' and 'bullock|allan' are one man
     for c in cands:
         if len(c['lc']) != 1:
             continue
-        lc = c['lc'][0]
-        anchor = f'diss-person:{c["person"]}'
-        if anchor in state.anchor:
+        if weak_corpus_id(c['person']):
+            report['weak_corpus_id'] += 1
+            continue
+        if f'diss-person:{c["person"]}' in state.anchor:
             report['corpus_id_already_keyed'] += 1
             continue
+        by_lc[c['lc'][0]].append(c)
+    clusters = []
+    for lc, cs in sorted(by_lc.items()):
         report['attach' if f'lcnaf:{lc}' in state.anchor else 'mint'] += 1
-        clusters.append(dict(type='person', label=c['label'], anchors={f'lcnaf:{lc}', anchor}, members=set(), aliases=set(),
-                             resolution='established', basis=f'author of the cited book {c["works"][0]} (corpus id {c["person"]}): '
-                                                             f'LC catalogues it under {c["label"]} ({lc})'))
+        report['corpus_ids'] += len(cs)
+        clusters.append(dict(type='person', label=cs[0]['label'], members=set(), aliases=set(), resolution='established',
+                             anchors={f'lcnaf:{lc}'} | {f'diss-person:{c["person"]}' for c in cs},
+                             basis='; '.join(f'author of the cited book {c["works"][0]} (corpus id {c["person"]})' for c in cs)
+                                   + f': LC catalogues it under {cs[0]["label"]} ({lc})'))
     ops, assign, held = plan(state, clusters)
     materialise(state, dict(basis='cited book authors', ops=ops), 'dry-run', 'dry-run')
     (args.out / 'proposal.json').write_text(json.dumps(dict(
         basis="authors of much-cited books no key held, identified by LC's record of the book", decided_by='rule', ops=ops),
         ensure_ascii=False) + '\n')
     (args.out / 'review-queue.json').write_text(json.dumps(held, ensure_ascii=False, indent=1, default=sorted) + '\n')
-    report.update(ops=dict(Counter(o['event'] for o in ops)), held=len(held))
-    (args.out / 'report.json').write_text(json.dumps(dict(report), indent=1) + '\n')
-    print(json.dumps(dict(report)))
+    report = dict(report, ops=dict(Counter(o['event'] for o in ops)), held=len(held))
+    (args.out / 'report.json').write_text(json.dumps(report, indent=1) + '\n')
+    print(json.dumps(report))
 
 
 if __name__ == '__main__':
