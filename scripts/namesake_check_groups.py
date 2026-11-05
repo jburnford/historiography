@@ -70,8 +70,11 @@ def main():
     ap.add_argument('--size', type=int, default=10)
     ap.add_argument('--works', type=int, default=15)
     ap.add_argument('--persons', nargs='*', default=[], help="corpus ids to check whatever their names (two runs named different LC people)")
+    ap.add_argument('--persons-file', type=Path, help='JSON list of corpus ids, added to --persons')
     ap.add_argument('--judged', type=Path, nargs='*', default=[], help='round dirs whose g*/verdicts.json already answer an id')
     args = ap.parse_args()
+    if args.persons_file:
+        args.persons += json.loads(args.persons_file.read_text())
     names = {r['person_key']: r for r in csv.DictReader(open(CORPUS / 'cited-people.csv'))}
     db = duckdb.connect()
     keyed = {a.split(':', 1)[1]: (k, label, list(anchors)) for k, label, anchors, a in db.execute(
@@ -87,6 +90,9 @@ def main():
                     p = a.split(':', 1)[1]
                     c = cands.get(p, {})
                     anchored.setdefault(p, (c.get('label') or op.get('label') or '', c.get('lc'), c.get('works', [])))
+    for p in args.persons:                             # ids anchored by any route (2026-11-05: corpus-claim recheck)
+        if p not in anchored and p in keyed:
+            anchored[p] = ('', None, [])
     items = []
     for p, (lc_label, lc, books) in sorted(anchored.items()):
         # the run's LC heading, and the label of the key holding the id now (a later run's candidate can name

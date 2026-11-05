@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 10 items in order. Validated fields and source URLs. No other files written.

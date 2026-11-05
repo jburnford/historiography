@@ -1,0 +1,1 @@
+Created [verdicts.json](./verdicts.json) with all 10 verdicts, validated for schema and order.

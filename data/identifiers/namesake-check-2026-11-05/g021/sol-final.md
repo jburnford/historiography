@@ -1,0 +1,1 @@
+Wrote `verdicts.json` with all 10 items in order and validated the JSON structure.

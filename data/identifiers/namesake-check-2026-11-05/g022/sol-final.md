@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 10 entries in order. JSON structure and required fields validated.

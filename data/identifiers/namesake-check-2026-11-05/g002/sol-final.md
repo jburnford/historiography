@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all 10 entries in the required order. No other files were written.

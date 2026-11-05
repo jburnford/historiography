@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 10 verdicts in order. Validated the schema, citation shares, and source hosts.
