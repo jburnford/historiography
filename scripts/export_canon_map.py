@@ -18,7 +18,9 @@ with these additions:
   data/person-facts/life-dates.csv. Birth years appear only for the dead (a recorded death, a reviewed
   deceased status, or born more than 120 years ago; user decision 2026-10-30); the repository keeps them all.
 - ``nodes[].label``: the name with initials written out ('Thompson, E. P', 'Du Bois, W.e.b' become
-  'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it.
+  'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it. When the person's key holds an
+  LC authority whose given names disagree with ``name`` (one citation's form, sometimes a namesake's), the label is
+  the key's heading without dates.
 Each sub-graph (``SCOPES``) gets its own file, ``site/canon-map-<CC>.json``, from the page that
 ``historian_cocitation_network.py --country CC`` writes; ``scope`` and ``scopes`` let the site switch.
 The output hash, the source hash and the snapshot go into data/dissertation-layer/manifest.json under
@@ -72,6 +74,7 @@ def attach_keys(nodes, pairs=None):
     People deferred for merge review have no key yet and carry neither field."""
     from identifiers import State
     from key_canon_map import canon_keys
+    from namesake_check_groups import given_names_agree
     state = State.load(ROOT / 'data/identifiers')
     graph_key = canon_keys(nodes, *([pairs] if pairs else []))
     with (ROOT / 'data/person-facts/life-dates.csv').open(newline='', encoding='utf-8') as f:
@@ -96,6 +99,12 @@ def attach_keys(nodes, pairs=None):
             lc = [a.split(':', 1)[1] for a in state.keys[found[0]]['anchors'] if a.startswith('lcnaf:')]
             if len(lc) == 1:
                 n['lc'] = lc[0]
+                # The graph's display name is one citation's form and can name someone else ('Silva, Maria
+                # Aparecida de Aquino' for Maria Beatriz Nizza da Silva's books; namesake-check-2026-11-04): when
+                # its given names disagree with the LC-anchored key's, the key's heading is shown.
+                head = re.sub(r'\s*\([^)]*\)|,\s*(?:approximately\s+|active\s+)?\d{3,4}\??-.*$', '', state.keys[found[0]]['label']).strip()
+                if not given_names_agree(n['name'], head):
+                    n['label'] = head
             row = lives.get(found[0])
             if row and (life := life_years(row)):
                 n['life'] = life
