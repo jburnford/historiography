@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/namesake-check-2026-11-04/g003/verdicts.json) with all 10 verdicts in the required order. Validated the JSON; wrote no other files.

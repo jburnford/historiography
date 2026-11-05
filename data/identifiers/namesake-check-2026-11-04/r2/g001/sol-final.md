@@ -1,0 +1,1 @@
+Created and validated [verdicts.json](verdicts.json) with both g001 verdicts. No other files written.

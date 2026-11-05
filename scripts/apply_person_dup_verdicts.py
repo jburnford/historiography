@@ -16,7 +16,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-from identifiers import DEFAULT_DIR, State, materialise
+from identifiers import DEFAULT_DIR, PUBLIC_SCHEMES, State, materialise
 
 
 def main():
@@ -72,6 +72,12 @@ def main():
         label = next((lc_label[k] for k in sorted(members | {survivor}) if k in lc_label), None)
         if label and not any(a.startswith('atlas:') for a in state.keys[survivor]['anchors']) and state.keys[survivor]['label'] != label:
             ops.append(dict(event='relabel', key=survivor, label=label, basis='LC authorised heading'))
+        # a merge does not pass through identifiers.plan, which raises the tier on attach (promote_established.py
+        # fixed the 2026-11-04 survivors that kept `recorded` while holding the merged key's LC authority)
+        joined = set().union(*(state.keys[k]['anchors'] for k in members | {survivor}))
+        if state.keys[survivor]['resolution'] == 'recorded' and {a.split(':', 1)[0] for a in joined} & PUBLIC_SCHEMES:
+            ops.append(dict(event='status', key=survivor, resolution='established', decided_by='rule',
+                            basis='holds a public identifier after the merge'))
     materialise(state, dict(basis='dry run', ops=ops), 'dry-run', 'dry-run')
     (args.dir / 'proposal.json').write_text(json.dumps(dict(
         basis='keys judged the same person by their works (Sol, person_dup_pairs round)', decided_by='review', ops=ops),

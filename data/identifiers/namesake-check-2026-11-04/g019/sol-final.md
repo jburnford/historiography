@@ -1,0 +1,1 @@
+Wrote and validated `verdicts.json` with all 10 entries in order. All verdicts are `same`. No other files were written.

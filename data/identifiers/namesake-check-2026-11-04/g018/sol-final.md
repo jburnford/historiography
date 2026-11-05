@@ -1,0 +1,1 @@
+Created [verdicts.json](verdicts.json) with all 10 entries in order: nine `same`, one `mostly`. Validated the JSON structure.

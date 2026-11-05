@@ -7,7 +7,9 @@ identifies its author (identity by works): for each such book cited by at least 
 - the record's main title (key_lc_works.title_key, before the first colon) equals the cited main title, three
   words or more, or the whole titles are equal;
 - a 100/700 heading on it has the cited author's family name (accents ignored) and a compatible given name
-  (key_registry.names_compatible);
+  (key_registry.names_compatible), and every given name of the shorter form is in the longer one
+  (namesake_check_groups.given_names_agree: the 2026-11-03 runs tied pooled ids like 'silva|maria' and 'lopes|jose'
+  to the one Maria or José whose book LC had; namesake-check-2026-11-04 holds Sol's reading of those ties);
 - the record's year is within five of the cited year (editions and reprints);
 - that heading resolves to exactly one live, differentiated LC personal-name authority (lc_resolve_authorities
   .resolve: $0, authorised heading, or an earlier form with the same dates).
@@ -34,6 +36,7 @@ from identifiers import DEFAULT_DIR, ROOT, State, materialise, plan
 from key_lc_works import former_heading, title_key
 from key_registry import names_compatible
 from lc_resolve_authorities import load_names, resolve
+from namesake_check_groups import given_names_agree
 
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 LC_INDEX = Path('/mnt/e/lc-bib-2016/index')
@@ -123,7 +126,8 @@ def main():
             continue                                   # another person's 'see from' form as often as not
         for w in hits[control]:
             for p, display in people.get(w, ()):
-                if fold(family) == fold(display.split(',')[0]) and names_compatible(names[0][lcid]['label'], display):
+                if fold(family) == fold(display.split(',')[0]) and names_compatible(names[0][lcid]['label'], display) \
+                        and given_names_agree(names[0][lcid]['label'], display):
                     found[w, p].add(lcid)
     by_person = defaultdict(set)
     for (w, p), ids in found.items():
