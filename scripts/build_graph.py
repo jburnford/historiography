@@ -12,6 +12,8 @@ is untracked) and writes to build/graph/ (git-ignored):
 - `ADVISED` (Person -> Person), derived: a thesis's supervisor -> its author (with the claim and thesis keys),
   and the log's person-to-person `advised` claims (Wikidata's doctoral advisors where the student's thesis is
   not in the log; thesis empty);
+- `COAUTHORED` (Person -> Person, stored once per pair, lower key first), derived: people who authored the same
+  works, with the number of works, the first and last year and the work keys (user, 2026-11-05: a count matters);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py).
@@ -148,6 +150,24 @@ def main():
     report['ADVISED'] = write('advised', [{'from': a, 'to': b, 'claim': c, 'thesis': t} for (a, b), (c, t) in sorted(advised.items())],
                               pa.schema([('from', s), ('to', s), ('claim', s), ('thesis', s)]))
 
+    # co-authors: people who authored the same works, once per pair, with how many works, the years and the
+    # works (user, 2026-11-05: a count matters; several joint articles are an ongoing collaboration, not a one-off)
+    year = {w['key']: w['year'] for w in works}
+    shared = defaultdict(set)
+    for w, people_of in authors.items():
+        for a in people_of:
+            for b in people_of:
+                if a < b:
+                    shared[a, b].add(w)
+    rows = []
+    for (a, b), ws in sorted(shared.items()):
+        ys = sorted(y for w in ws if (y := year.get(w)))
+        rows.append({'from': a, 'to': b, 'works': len(ws), 'first_year': ys[0] if ys else None,
+                     'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
+    report['COAUTHORED'] = write('coauthored', rows, pa.schema([('from', s), ('to', s), ('works', pa.int32()),
+                                                                ('first_year', pa.int32()), ('last_year', pa.int32()),
+                                                                ('work_keys', L)]))
+
     awarded = []
     for w in works:
         for m in state.members.get(w['key'], ()):
@@ -194,11 +214,14 @@ def load_db(report):
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
+    conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, first_year INT32, last_year INT32, '
+                 'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
+                        ('COAUTHORED', 'coauthored'),
                         ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
