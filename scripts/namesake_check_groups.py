@@ -29,7 +29,8 @@ CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 RUNS = ['cited-book-authors-2026-11-03', 'cited-book-authors-2026-11-03b']
 LETTERS = str.maketrans({'ł': 'l', 'Ł': 'L', 'ø': 'o', 'Ø': 'O', 'đ': 'd', 'Đ': 'D', 'ß': 'ss', 'æ': 'ae', 'œ': 'oe'})
 PARTICLES = {'de', 'da', 'do', 'dos', 'das', 'e', 'van', 'von', 'der', 'den', 'la', 'le', 'du', 'di', 'del', 'y', 'jr',
-             'sr', 'ii', 'iii', 'dr', 'orgs', 'org', 'ed', 'eds'}
+             'sr', 'ii', 'iii', 'dr', 'orgs', 'org', 'ed', 'eds', 'mr', 'mrs', 'ms', 'miss', 'sir', 'rev', 'prof', 'hon',
+             'lord', 'lady', 'dame', 'fr', 'sra', 'sr', 'dom', 'dona'}
 
 
 def given_words(label):
@@ -52,9 +53,14 @@ def given_names_agree(a, b):
         return True
     short, long_ = (wa, wb) if len(wa) <= len(wb) else (wb, wa)
 
+    def skeleton(w):
+        return re.sub(r'[aeiouy]+', '', w)
+
     def same(s, t):
         lo, hi = sorted((s, t), key=len)
-        return s == t or (len(lo) == 1 or len(lo) >= 3) and hi.startswith(lo)
+        # transliterations keep their consonants ('Mahmoud' / 'Maḥmūd', 'Mohammed' / 'Muhammad' do not: d vs dd)
+        return (s == t or (len(lo) == 1 or len(lo) >= 3) and hi.startswith(lo)
+                or len(lo) >= 4 and skeleton(s) == skeleton(t))
     return all(any(same(s, t) for t in long_) for s in short)
 
 
