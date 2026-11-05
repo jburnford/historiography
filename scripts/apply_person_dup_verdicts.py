@@ -76,7 +76,7 @@ def main():
         for k in sorted(members - {survivor}, key=lambda k: int(k[2:])):
             why = next((e[0] for (x, y), e in evidence.items() if k in (x, y)), '')
             ops.append(dict(event='merge', key=k, into=survivor,
-                            basis=f'reviewed 2026-11-03 (Sol, by works): {why}'[:600]))
+                            basis=f'reviewed (Sol, by works; {args.dir.name}): {why}'[:600]))
             report['merged'] += 1
         label = next((lc_label[k] for k in sorted(members | {survivor}) if k in lc_label), None)
         if label and not any(a.startswith('atlas:') for a in state.keys[survivor]['anchors']) and state.keys[survivor]['label'] != label:
