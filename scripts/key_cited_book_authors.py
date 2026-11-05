@@ -19,12 +19,14 @@ authority gains `diss-person:<corpus id>`, or a new key is minted with `lcnaf:<i
 Lyotard), and when another key holds that authority the two are held for review, not merged. Books the ranked list
 files as primary sources are taken too (Brazilian bibliographies mark translated classics as sources). Corpus ids given as variants of one author ('bullock|alan', 'bullock|allan') go onto
 the one key; a corpus id naming no one in particular ('curtis', 'davis|j') is skipped, and so is one whose
-already-grounded citations reach works of another person of that family (--crosswalk; thompson|edward). The next key_lc_works run then keys their LC books, and the crosswalk their citations.
+already-grounded citations reach works of another person of that family (--crosswalk; thompson|edward). An id cited by 10+
+theses whose matched books carry under --min-share of them is held in minor-share.json (a pooled id: reis|jose). The next key_lc_works run then keys their LC books, and the crosswalk their citations.
 
     python3 scripts/key_cited_book_authors.py --ranked data/identifiers/ungrounded-works-2026-11-03c/ranked.csv.gz \\
         --out data/identifiers/cited-book-authors-2026-11-03
 """
 import argparse
+import csv
 import json
 import unicodedata
 from collections import Counter, defaultdict
@@ -66,6 +68,8 @@ def main():
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     ap.add_argument('--crosswalk', type=Path, nargs='*', default=[],
                     help='crosswalks of cited works already grounded: an id also cited for another keyed person is a mix')
+    ap.add_argument('--min-share', type=float, default=0.25,
+                    help="hold an id when its matched books carry less than this share of the theses citing it")
     ap.add_argument('--candidates-only', action='store_true', help='write candidates.json and stop (no key log load)')
     args = ap.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
@@ -163,6 +167,12 @@ def main():
                 JOIN au ON au.wk = xk.wk JOIN '{graph}/person.parquet' pp ON pp.key = au.pk""").fetchall():
             if fold(p.split('|')[0]) == fold(label.split(',')[0] if ',' in label else (label.split() or [''])[-1]):
                 others[p].add(key)
+    # 2026-11-04 namesake check: a minor book pulled a much-cited pooled id onto its author (reis|jose, 9 of the
+    # 222 citations José Carlos Reis's books draw; mello|maria 7 of 51; johnson|samuel's Yoruba history beside Dr
+    # Johnson). Ids whose matched books carry less than --min-share of their citing theses go to minor-share.json.
+    with open(CORPUS / 'cited-people.csv', newline='', encoding='utf-8') as f:
+        id_theses = {r['person_key']: int(r['cited_by_dissertations'] or 0) for r in csv.DictReader(f)}
+    minor = []
     state = State.load(args.state)
     by_lc = defaultdict(list)                        # one key per authority: 'bullock|alan' and 'bullock|allan' are one man
     for c in cands:
@@ -178,7 +188,13 @@ def main():
         if holder and any(a.startswith('lcnaf:') for a in state.keys[holder]['anchors']):
             report['corpus_id_keyed_with_lc'] += 1
             continue
+        total = id_theses.get(c['person'], 0)
+        if total >= 10 and c['theses'] < args.min_share * total:
+            report['minor_share'] += 1
+            minor.append(dict(c, id_theses=total))
+            continue
         by_lc[c['lc'][0]].append(c)
+    (args.out / 'minor-share.json').write_text(json.dumps(minor, ensure_ascii=False, indent=1) + '\n')
     clusters = []
     for lc, cs in sorted(by_lc.items()):
         anchors = {f'lcnaf:{lc}'} | {f'diss-person:{c["person"]}' for c in cs}
