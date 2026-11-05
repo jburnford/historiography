@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) for all six pairs, in order: three `different`, three `mixed`. No other files were written.

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](verdicts.json) with all 15 pairs in order: 1 same, 5 different, 7 mixed, and 2 unclear.

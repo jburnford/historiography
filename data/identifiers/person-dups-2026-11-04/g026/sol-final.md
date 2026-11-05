@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 verdicts in order: 10 mixed, 5 different. Format and source-host checks passed.

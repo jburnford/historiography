@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](/home/jic823/historiography/data/identifiers/person-dups-2026-11-04/g013/verdicts.json): 15 pairs in order, with evidence and source URLs.

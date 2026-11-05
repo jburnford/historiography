@@ -5,7 +5,8 @@ key without an LC authority with the same family and first given name) and Sol j
 (BRIEF.md in the round directory). Here every `same` verdict joins its two keys; joins chain (Abreu's LC key, his
 UFMG thesis key and his CAPES key are one person) and each group merges into its oldest key, as identifiers.plan
 does. The survivor takes the LC authorised heading as its label unless it is an atlas person (the atlas keeps its
-own form of the name). `different` and `unclear` change nothing. Keys a verdict names that are no longer live
+own form of the name; the label of whichever key holds an LC authority). `different`, `mixed` and `unclear` change
+nothing; a `same` pair whose keys hold different LC or Wikidata identifiers is held in held.json, not merged. Keys a verdict names that are no longer live
 (merged since) are followed to their current key.
 
     python3 scripts/apply_person_dup_verdicts.py --dir data/identifiers/person-dups-2026-11-03
@@ -41,7 +42,7 @@ def main():
         while parent.get(k, k) != k:
             k = parent[k]
         return k
-    report, evidence, lc_label = Counter(), defaultdict(list), {}
+    report, evidence, lc_label, held = Counter(), defaultdict(list), {}, []
     for v in verdicts:
         p = pairs.get(v.get('id'))
         if not p:
@@ -54,7 +55,15 @@ def main():
         if not a or not b or a == b:
             report['already_one_or_gone'] += 1
             continue
-        lc_label[a] = p['a']['label']
+        ids = {x: {an for an in state.keys[x]['anchors'] if an.startswith(('lcnaf:', 'wd:'))} for x in (a, b)}
+        if any({i for i in ids[a] if i.startswith(s)} and {i for i in ids[b] if i.startswith(s)}
+               and {i for i in ids[a] if i.startswith(s)} != {i for i in ids[b] if i.startswith(s)} for s in ('lcnaf:', 'wd:')):
+            report['held_two_authorities'] += 1        # 2026-11-04: Bender, Thomas: one person to Sol, two LC records
+            held.append(dict(pair=v.get('id'), a=a, b=b, ids=sorted(ids[a] | ids[b]), evidence=v.get('evidence', '')))
+            continue
+        lab = next((p[x]['label'] for x in ('a', 'b') if any(an.startswith('lcnaf:') for an in state.keys[live(p[x]['key'])]['anchors'])), None)
+        if lab:
+            lc_label[a] = lab
         ra, rb = root(a), root(b)
         if ra != rb:
             parent[max(ra, rb, key=lambda k: int(k[2:]))] = min(ra, rb, key=lambda k: int(k[2:]))
@@ -83,6 +92,7 @@ def main():
         basis='keys judged the same person by their works (Sol, person_dup_pairs round)', decided_by='review', ops=ops),
         ensure_ascii=False, indent=1) + '\n')
     (args.dir / 'report.json').write_text(json.dumps(dict(report), indent=1) + '\n')
+    (args.dir / 'held.json').write_text(json.dumps(held, ensure_ascii=False, indent=1) + '\n')
     print(json.dumps(dict(report)))
 
 

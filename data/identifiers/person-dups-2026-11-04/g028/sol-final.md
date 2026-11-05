@@ -1,0 +1,1 @@
+Wrote [verdicts.json](verdicts.json) with all 15 pairs in order: 7 `different`, 8 `mixed`. Validated the schema, order, and source links.

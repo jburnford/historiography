@@ -1,0 +1,1 @@
+Created [verdicts.json](/home/jic823/historiography/data/identifiers/person-dups-2026-11-04/g003/verdicts.json) with all 15 verdicts in order. Validated format and source restrictions. No other files written.

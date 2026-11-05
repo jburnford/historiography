@@ -43,7 +43,9 @@ def name_key(label):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('--proposals', type=Path, nargs='+', required=True, help='book-author proposals whose mints are checked')
+    ap.add_argument('--proposals', type=Path, nargs='+', default=[], help='book-author proposals whose mints are checked')
+    ap.add_argument('--pairs', type=Path, help='JSON list of {a, b} keys to judge instead (2026-11-04: keys that author a '
+                                                'cited person\'s matched works, same family and given names)')
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--size', type=int, default=15)
     args = ap.parse_args()
@@ -69,6 +71,21 @@ def main():
     for k, _, _, anchors in people:
         have = {w['title'] for w in works[k]}
         works[k] += [thesis[a] for a in anchors if a in thesis and thesis[a]['title'] not in have]
+    show = lambda a: [x for x in a if not x.startswith(('lc-', 'cited-', 'verdict-'))][:12]
+    if args.pairs:
+        by_key = {p[0]: p for p in people}
+        pairs = []
+        for pr in json.loads(args.pairs.read_text()):
+            if pr['a'] not in by_key or pr['b'] not in by_key:
+                continue
+            (k, label, _, anchors), (k2, label2, _, anchors2) = by_key[pr['a']], by_key[pr['b']]
+            pairs.append(dict(id=f'{k}~{k2}', a=dict(key=k, label=label, anchors=show(anchors), works=works[k][:30]),
+                              b=dict(key=k2, label=label2, anchors=show(anchors2), works=works[k2][:30])))
+        groups = [dict(id=f'g{i // args.size + 1:03d}', pairs=pairs[i:i + args.size]) for i in range(0, len(pairs), args.size)]
+        args.out.mkdir(parents=True, exist_ok=True)
+        (args.out / 'groups.json').write_text(json.dumps(groups, ensure_ascii=False, indent=1) + '\n')
+        print(json.dumps(dict(pairs=len(pairs), groups=len(groups))))
+        return
     new = [p for p in people if p[2] and f'lcnaf:{p[2]}' in minted]
     old = defaultdict(list)
     for p in people:

@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](/home/jic823/historiography/data/identifiers/person-dups-2026-11-04/g010/verdicts.json): 15 verdicts in order—2 same, 5 different, 8 mixed. No other files written.

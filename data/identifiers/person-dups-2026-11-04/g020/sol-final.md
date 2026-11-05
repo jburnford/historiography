@@ -1,0 +1,1 @@
+Wrote [verdicts.json](/home/jic823/historiography/data/identifiers/person-dups-2026-11-04/g020/verdicts.json) with all 15 pairs in order: 9 `different`, 6 `mixed`. Validated the JSON structure, IDs, and source links.

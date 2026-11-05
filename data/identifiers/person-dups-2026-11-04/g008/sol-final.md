@@ -1,0 +1,1 @@
+Wrote and validated [verdicts.json](./verdicts.json) with all 15 pairs in order.
