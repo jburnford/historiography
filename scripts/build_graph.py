@@ -13,7 +13,8 @@ is untracked) and writes to build/graph/ (git-ignored):
   and the log's person-to-person `advised` claims (Wikidata's doctoral advisors where the student's thesis is
   not in the log; thesis empty);
 - `COAUTHORED` (Person -> Person, stored once per pair, lower key first), derived: people who authored the same
-  works, with the number of works, the first and last year and the work keys (user, 2026-11-05: a count matters);
+  works, with the number of works, of distinct titles (an editorial co-signed in many journals has one DOI per
+  journal: 147 works, 1 title), the first and last year and the work keys (user, 2026-11-05: a count matters);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py).
@@ -29,6 +30,7 @@ import argparse
 import csv
 import gzip
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -153,6 +155,8 @@ def main():
     # co-authors: people who authored the same works, once per pair, with how many works, the years and the
     # works (user, 2026-11-05: a count matters; several joint articles are an ongoing collaboration, not a one-off)
     year = {w['key']: w['year'] for w in works}
+    from key_lc_works import title_key
+    title = {w['key']: title_key(re.sub(r'\s+—\s+.*$', '', w['label'] or '')) or w['key'] for w in works}
     shared = defaultdict(set)
     for w, people_of in authors.items():
         for a in people_of:
@@ -162,9 +166,10 @@ def main():
     rows = []
     for (a, b), ws in sorted(shared.items()):
         ys = sorted(y for w in ws if (y := year.get(w)))
-        rows.append({'from': a, 'to': b, 'works': len(ws), 'first_year': ys[0] if ys else None,
+        rows.append({'from': a, 'to': b, 'works': len(ws), 'titles': len({title.get(w, w) for w in ws}),
+                     'first_year': ys[0] if ys else None,
                      'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
-    report['COAUTHORED'] = write('coauthored', rows, pa.schema([('from', s), ('to', s), ('works', pa.int32()),
+    report['COAUTHORED'] = write('coauthored', rows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
                                                                 ('first_year', pa.int32()), ('last_year', pa.int32()),
                                                                 ('work_keys', L)]))
 
@@ -214,7 +219,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
-    conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, first_year INT32, last_year INT32, '
+    conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
