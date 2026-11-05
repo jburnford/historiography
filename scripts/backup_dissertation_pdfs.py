@@ -98,7 +98,9 @@ def cmd_list2(args):
 
 def cmd_copy(args):
     log = OUT / 'transfer.log'
+    # BatchMode: never wait at a password prompt when the shared connection has gone (2026-11-05: a drop at 12:21)
     rc = subprocess.call(['rsync', '-a', '--partial', '--files-from', str(OUT / args.files), '--mkpath',
+                          '-e', 'ssh -o BatchMode=yes -o ServerAliveInterval=30 -o ServerAliveCountMax=4',
                           '--out-format', '%t|%n|%l', '--log-file', str(OUT / 'rsync-run.log'),
                           f'{SRC}/', f'{HOST}:{DEST}/'], stdout=log.open('a'), stderr=subprocess.STDOUT)
     print(json.dumps(dict(rsync_exit=rc)))
@@ -126,7 +128,7 @@ def cmd_manifest(args):
               '        print(json.dumps([rel, os.path.getsize(p), h.hexdigest()]), flush=True)\n'
               '    except FileNotFoundError:\n'
               '        print(json.dumps([rel, None, None]), flush=True)\n')
-    proc = subprocess.run(['ssh', HOST, 'python3', '-c', script], input=''.join(f'{r}\n' for r in files),
+    proc = subprocess.run(['ssh', '-o', 'BatchMode=yes', HOST, 'python3', '-c', script], input=''.join(f'{r}\n' for r in files),
                           capture_output=True, text=True, check=True)
     remote = {r: (s, h) for r, s, h in map(json.loads, proc.stdout.splitlines())}
     when = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
