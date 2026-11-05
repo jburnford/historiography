@@ -7,6 +7,8 @@ is untracked) and writes to build/graph/ (git-ignored):
 - relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS` and
   `REVIEWS` (Work -> Work: a review and the book it reviews), with the claim key and its resolution; claims
   whose endpoints do not resolve to one key each are left out and counted;
+- `PART_OF` (Work -> Work): a chapter and the volume it is in; `EDITOR_OF` (Person -> Person), derived: a
+  volume's editor -> each author of a chapter in it (with the chapter and volume keys; user, 2026-11-05);
 - `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
   the review and book keys (user, 2026-11-02: edges between reviewers and the authors of the books);
 - `ADVISED` (Person -> Person), derived: a thesis's supervisor -> its author (with the claim and thesis keys),
@@ -136,7 +138,7 @@ def main():
             continue
         rels[pred.upper()].append({'from': a, 'to': b, 'claim': claim, 'resolution': state.keys[claim]['resolution']})
     rel_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s)])
-    for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS', 'REVIEWS'):
+    for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS', 'REVIEWS', 'PART_OF'):
         report[name] = write(name.lower(), rels[name], rel_schema)
     authors = defaultdict(set)
     for r in rels['AUTHORED']:
@@ -145,6 +147,15 @@ def main():
                        for b in authors[r['to']] if a != b})
     report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk} for a, b, rv, bk in reviewed],
                                pa.schema([('from', s), ('to', s), ('review', s), ('book', s)]))
+    # editor -> contributor: a volume's editors -> the authors of a chapter in it (user, 2026-11-05: editors of
+    # books I've published in)
+    editors = defaultdict(set)
+    for r in rels['EDITED']:
+        editors[r['to']].add(r['from'])
+    editor_of = sorted({(e, a, r['from'], r['to']) for r in rels['PART_OF'] for e in editors[r['to']]
+                        for a in authors[r['from']] if e != a})
+    report['EDITOR_OF'] = write('editor_of', [{'from': e, 'to': a, 'chapter': c, 'volume': v} for e, a, c, v in editor_of],
+                                pa.schema([('from', s), ('to', s), ('chapter', s), ('volume', s)]))
     # advisor -> student: a supervised thesis's authors, and Wikidata's person-to-person advised claims
     advised = {(r['from'], b): (r['claim'], r['to']) for r in rels['SUPERVISED'] for b in authors[r['to']] if b != r['from']}
     for r in rels['ADVISED']:
@@ -217,6 +228,8 @@ def load_db(report):
         conn.execute(f'CREATE REL TABLE {name}(FROM Person TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE PUBLISHED_AS(FROM Work TO Work, claim STRING, resolution STRING)')
     conn.execute('CREATE REL TABLE REVIEWS(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE PART_OF(FROM Work TO Work, claim STRING, resolution STRING)')
+    conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
@@ -225,7 +238,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
-                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
+                        ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'),
                         ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
