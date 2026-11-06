@@ -18,6 +18,7 @@ Nothing is deleted. The manifest marks each file `ok` (remote size equals local 
 transferred file against its checksum), `missing` or `size_mismatch`; a later deletion step may read only `ok` rows.
 """
 import argparse
+import base64
 import csv
 import gzip
 import json
@@ -128,7 +129,10 @@ def cmd_manifest(args):
               '        print(json.dumps([rel, os.path.getsize(p), h.hexdigest()]), flush=True)\n'
               '    except FileNotFoundError:\n'
               '        print(json.dumps([rel, None, None]), flush=True)\n')
-    proc = subprocess.run(['ssh', '-o', 'BatchMode=yes', HOST, 'python3', '-c', script], input=''.join(f'{r}\n' for r in files),
+    # ssh hands the remote shell one command string, which breaks the script's quoting: send it base64-encoded
+    encoded = base64.b64encode(script.encode()).decode()
+    proc = subprocess.run(['ssh', '-o', 'BatchMode=yes', HOST,
+                           f'python3 -c "import base64; exec(base64.b64decode(\'{encoded}\'))"'], input=''.join(f'{r}\n' for r in files),
                           capture_output=True, text=True, check=True)
     remote = {r: (s, h) for r, s, h in map(json.loads, proc.stdout.splitlines())}
     when = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
