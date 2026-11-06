@@ -24,6 +24,9 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--dir', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--require-basis', nargs='*', default=None,
+                    help="merge only `same` verdicts whose `basis` is one of these (2026-11-05: works career pid; "
+                         "'topic', a shared name plus the reviewed book's subject, never merges)")
     args = ap.parse_args()
     pairs = {p['id']: p for g in json.loads((args.dir / 'groups.json').read_text()) for p in g['pairs']}
     verdicts = [v for f in sorted(args.dir.glob('g*/verdicts.json')) for v in json.loads(f.read_text())]
@@ -50,6 +53,10 @@ def main():
             continue
         report[v.get('verdict')] += 1
         if v.get('verdict') != 'same':
+            continue
+        if args.require_basis is not None and v.get('basis') not in args.require_basis:
+            report[f"same_basis_{v.get('basis')}_not_merged"] += 1
+            held.append(dict(pair=v.get('id'), basis=v.get('basis'), evidence=v.get('evidence', '')))
             continue
         a, b = live(p['a']['key']), live(p['b']['key'])
         if not a or not b or a == b:
