@@ -1,0 +1,2381 @@
+[
+  {
+    "name": "DNB",
+    "url": "https://portal.dnb.de/",
+    "oai_endpoint": "https://services.dnb.de/oai/repository",
+    "history_filter": "SRU: hss=diss* AND publication year 2000–2025 AND union of sgt history classes and full DDC history prefixes. Exclude 910–929 as automatic subject matches. OAI observed sets dnb:sg900, dnb:sg930, dnb:sg940, dnb:sg943, dnb:sg950–990; filter dissertation type, degree institution and publication year locally. OAI sets are not arbitrary Boolean searches.",
+    "open_pdf": {
+      "assessment": "Free links occur in MARC 856 and access flags in 506; urn:nbn is a persistent identifier, not proof of open access. Prefer original repository or licensed publisher full text. Reject contents/abstract PDFs.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://portal.dnb.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://portal.dnb.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /audioplayer",
+          "Disallow: /bookviewer",
+          "Disallow: /gndSupport"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      },
+      {
+        "url": "https://services.dnb.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://services.dnb.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /fize-service"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 17435,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": null
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 3378,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": null
+    },
+    "notes": "SRU is the strongest national discovery route. Counts are records, with print/electronic editions and publisher reissues; not unique works or guaranteed History degrees. OAI Identify succeeds; authenticated/large-record access was not tested. Use SRU for targeted initial extraction. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*))",
+        "number_of_records": 17435,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and location=onlinefree",
+        "number_of_records": 3378,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://blog.dnb.de/neu-im-dnblab-tool-zur-sru-schnittstellenabfrage-und-mehr/",
+      "https://blog.dnb.de/promotionen-und-hochschulschriftenvermerk/",
+      "https://services.dnb.de/oai/repository?verb=Identify"
+    ],
+    "national_sample": {
+      "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+location%3Donlinefree&maximumRecords=20&recordSchema=MARC21-xml",
+      "records_returned": 20,
+      "random_sample": false,
+      "note": "Title/subject contamination and degree-year mismatch were observed; do not extrapolate an acceptance percentage.",
+      "example_degree_year_mismatch": {
+        "id": "1423641388",
+        "degree_year": 2026,
+        "catalogue_publication_window": "2000–2025"
+      }
+    }
+  },
+  {
+    "name": "DART-Europe",
+    "url": "https://www.dart-europe.org/",
+    "oai_endpoint": null,
+    "history_filter": "No current search or OAI harvest; former country/institution/year facets are historical.",
+    "open_pdf": {
+      "assessment": "Formerly linked to repository full texts; portal permanently closed.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://www.dart-europe.org/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://www.ucl.ac.uk/library/dart-europe-e-theses-portal-has-closed-down",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "Request redirected to closure notice HTML, not a valid robots file; retired route."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "notes": "UCL and LIBER date closure to 2025-02-03. The former host now redirects to the UCL closure notice. No historical total is treated as a current German History count. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "closed",
+    "count_evidence": [],
+    "sample_evidence": null,
+    "sources": [
+      "https://www.ucl.ac.uk/library/dart-europe-e-theses-portal-has-closed-down",
+      "https://libereurope.eu/article/dart-europe/"
+    ]
+  },
+  {
+    "name": "BASE",
+    "url": "https://www.base-search.net/",
+    "oai_endpoint": "https://oai.base-search.net/oai",
+    "history_filter": "After approved API access only: proposed dynamic set country:de AND typenorm:183 AND oa:1 AND year:[2000 TO 2025] AND (classcode:90* OR classcode:93* OR classcode:94* OR classcode:95* OR classcode:96* OR classcode:97* OR classcode:98* OR classcode:99*). Reconcile 3-digit class normalization and manually distinguish doctoral from postdoctoral theses.",
+    "open_pdf": {
+      "assessment": "Metadata/link aggregator; oa:1 advertises OA at the original source, not a file hosted by BASE.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://www.base-search.net/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://www.base-search.net/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 2,
+        "default_rules": [
+          "Crawl-delay: 2",
+          "Disallow: /Admin",
+          "Disallow: /AJAX",
+          "Disallow: /Alphabrowse",
+          "Disallow: /Browse",
+          "Disallow: /Combined",
+          "Disallow: /EDS",
+          "Disallow: /EdsRecord",
+          "Disallow: /MyResearch",
+          "Disallow: /Record",
+          "Disallow: /Search/History",
+          "Disallow: /Search/Results",
+          "Disallow: /Summon",
+          "Disallow: /SummonRecord",
+          "Disallow: /themes/base/assets",
+          "Disallow: /themes/base/css",
+          "Disallow: /themes/base/data",
+          "Disallow: /themes/base/images",
+          "Disallow: /themes/base/js",
+          "Disallow: /themes/base/scss",
+          "Disallow: /Admin/",
+          "Disallow: /AJAX/",
+          "Disallow: /Alphabrowse/",
+          "Disallow: /Browse/",
+          "Disallow: /Combined/",
+          "Disallow: /EDS/",
+          "Disallow: /EdsRecord/",
+          "Disallow: /MyResearch/",
+          "Disallow: /Record/",
+          "Disallow: /Search/History/",
+          "Disallow: /Search/Results/",
+          "Disallow: /Summon/",
+          "Disallow: /SummonRecord/",
+          "Disallow: /themes/base/assets/",
+          "Disallow: /themes/base/css/",
+          "Disallow: /themes/base/data/",
+          "Disallow: /themes/base/images/",
+          "Disallow: /themes/base/js/",
+          "Disallow: /themes/base/scss/"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      },
+      {
+        "url": "https://oai.base-search.net/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://oai.base-search.net/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Body contains a literal escaped newline before Disallow: /. Interpret conservatively as restricted; API also returned 403."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "notes": "OAI/API access is IP-restricted; API probe returned 403. Website robots carries an explicit prohibition on automated retrieval without express permission, excludes result/record paths and named AI clients, and gives Crawl-delay 2. Do not scrape the website. typenorm:183 includes habilitations. Proposed dynamic set was not executed. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "restricted",
+    "count_evidence": [],
+    "sample_evidence": null,
+    "sources": [
+      "https://oai.base-search.net/index.html",
+      "https://www.base-search.net/robots.txt"
+    ]
+  },
+  {
+    "name": "OATD",
+    "url": "https://oatd.org/",
+    "oai_endpoint": null,
+    "history_filter": "Human discovery by university/country, date and History keywords; confirm doctorate at source. No supported export endpoint.",
+    "open_pdf": {
+      "assessment": "Links to original university repositories; includes both master's and doctoral theses.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://oatd.org/robots.txt",
+        "http_status": 403,
+        "returned_url": "https://oatd.org/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": null,
+      "proxy_scope": null,
+      "institution_filter": null
+    },
+    "notes": "Official FAQ explicitly says no bulk download and no OAI-PMH export. robots.txt returned a 403 bot challenge; stopped. Unknown counts, no harvesting recommendation. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "blocked",
+    "count_evidence": [],
+    "sample_evidence": null,
+    "sources": [
+      "https://oatd.org/faq.html"
+    ]
+  },
+  {
+    "name": "HU Berlin edoc",
+    "url": "https://edoc.hu-berlin.de/",
+    "oai_endpoint": "https://edoc.hu-berlin.de/server/oai/request",
+    "history_filter": "Observed sets doc-type:doctoralThesis, open_access, ddc:900, ddc:930, ddc:940, ddc:943, ddc:950, ddc:960 and ddc:970. Union relevant subject sets, then intersect doctoral/open status and Fach Geschichte in each record; first ListSets page was not exhaustive.",
+    "open_pdf": {
+      "assessment": "Repository advertises open-access publications; current file availability not checked.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://edoc.hu-berlin.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://edoc.hu-berlin.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /entities/*?f",
+          "Disallow: /collections/*?f",
+          "Disallow: /communities/*?spc.page",
+          "Disallow: /statistics",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 574,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Humboldt*"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 109,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Humboldt*"
+    },
+    "notes": "Legacy /oai/request redirects to /server/oai/request. Default robots disallows discovery/search; named ChatGPT and GPT clients are denied. No ListRecords request made. Do not switch client identity to evade named-agent exclusions. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_metadata_only",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHumboldt%2A%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Humboldt*)",
+        "number_of_records": 574,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHumboldt%2A%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Humboldt*) and location=onlinefree",
+        "number_of_records": 109,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://edoc.hu-berlin.de/server/oai/request?verb=ListSets",
+      "https://edoc.hu-berlin.de/server/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "FU Berlin Refubium",
+    "url": "https://refubium.fu-berlin.de/",
+    "oai_endpoint": "https://refubium.fu-berlin.de/oai/request",
+    "history_filter": "Observed doc-type:doctoralThesis, open_access and ddc:900/930/940/943/950/960/970; use union of History sets with local doctorate/department/date checks. First ddc:900 page includes non-theses and archaeology.",
+    "open_pdf": {
+      "assessment": "Sample has open_access membership and application/pdf metadata; no file GET.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://refubium.fu-berlin.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://refubium.fu-berlin.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /discover",
+          "Disallow: /search-filter",
+          "Disallow: /export",
+          "Disallow: /handle/fub188/*/discover",
+          "Disallow: /handle/fub188/*/search-filter",
+          "Disallow: /handle/fub188/*/export"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 501,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=\"Freie Universität Berlin\""
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 211,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=\"Freie Universität Berlin\""
+    },
+    "notes": "Official documentation still advertises /oai/dini; that path returned 400. /oai/request works. ddc:900 has 1,901 records of all types/years; first 100 contain 12 doctoral-tagged records, 11 passing a coarse publication-year test. These are candidates, not verified History doctorates. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3D%22Freie+Universit%C3%A4t+Berlin%22%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=\"Freie Universität Berlin\")",
+        "number_of_records": 501,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3D%22Freie+Universit%C3%A4t+Berlin%22%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=\"Freie Universität Berlin\") and location=onlinefree",
+        "number_of_records": 211,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://refubium.fu-berlin.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A900",
+      "total_in_set": 1901,
+      "page_records": 100,
+      "doctoral_tagged_in_page": 12,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://www.fu-berlin.de/sites/ub/publizieren/refubium/nutzen/oai-schnittstelle.html",
+      "https://refubium.fu-berlin.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "LMU München",
+    "url": "https://edoc.ub.uni-muenchen.de/",
+    "oai_endpoint": "https://edoc.ub.uni-muenchen.de/cgi/oai2",
+    "history_filter": "Potential EPrints thesis type plus DDC 900–909/930–990. Static browse /view/subjects/fak09.html is allowed and lists Faculty of History and the Arts; faculty alone needs art/music/theatre exclusions. Exact OAI set specifications not tested.",
+    "open_pdf": {
+      "assessment": "Static thesis records advertise full text; no PDF request.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://edoc.ub.uni-muenchen.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://edoc.ub.uni-muenchen.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /cgi/"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 1073,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=München"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 170,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=München"
+    },
+    "notes": "robots disallows /cgi/, including the advertised OAI endpoint and CGI search/export. Faculty browse lists 238 entries across all years and several disciplines; not 238 History doctorates in 2000–2025. Use DNB discovery or obtain operator clarification for OAI. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "robots_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DM%C3%BCnchen%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=München)",
+        "number_of_records": 1073,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DM%C3%BCnchen%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=München) and location=onlinefree",
+        "number_of_records": 170,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://edoc.ub.uni-muenchen.de/view/subjects/fak09.html",
+      "https://edoc.ub.uni-muenchen.de/view/ddc/"
+    ]
+  },
+  {
+    "name": "Heidelberg heiDOK",
+    "url": "https://archiv.ub.uni-heidelberg.de/volltextserver/",
+    "oai_endpoint": "https://archiv.ub.uni-heidelberg.de/volltextserver/cgi/oai2",
+    "history_filter": "Advertised EPrints OAI endpoint; type dissertation plus History subject/DDC/department locally. Browse /volltextserver/view/subjects/ for the current vocabulary; OAI sets not verified.",
+    "open_pdf": {
+      "assessment": "Institutional full texts are available for some records; presence of a dissertation abstract is insufficient.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://archiv.ub.uni-heidelberg.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://archiv.ub.uni-heidelberg.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /volltextserver/cgi/",
+          "Disallow: /artdok/cgi/",
+          "Disallow: /propylaeumdok/cgi/"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 751,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Heidelberg"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 260,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Heidelberg"
+    },
+    "notes": "Library explicitly documents /volltextserver/cgi/oai2, but robots disallows /volltextserver/cgi/. No OAI request. Medical-history Dr. med. and art/archaeology need exclusion unless the degree is History. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "robots_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHeidelberg%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Heidelberg)",
+        "number_of_records": 751,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHeidelberg%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Heidelberg) and location=onlinefree",
+        "number_of_records": 260,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://www.ub.uni-heidelberg.de/helios/kataloge/datenschnittstellen.html"
+    ]
+  },
+  {
+    "name": "Göttingen eDiss",
+    "url": "https://ediss.uni-goettingen.de/",
+    "oai_endpoint": "https://ediss.uni-goettingen.de/oai/request",
+    "history_filter": "Observed col_11858_3527 ('Philosophie') is a broad humanities thesis collection, including History; com_11858_10 is humanities/theology. Filter dc:type doctoralThesis AND dc:subject Geschichte or History DDC AND degree subject/institution/year. The collection name does not mean all records are philosophy degrees.",
+    "open_pdf": {
+      "assessment": "Many sampled records advertise application/pdf; rights often use a legacy repository policy URL rather than an explicit OA flag.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://ediss.uni-goettingen.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://ediss.uni-goettingen.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /discover",
+          "Disallow: /handle/*/*/discover",
+          "Disallow: /search-filter",
+          "Disallow: /browse",
+          "Disallow: /handle/*/*/browse",
+          "Disallow: /forgot",
+          "Disallow: /feedback",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /contact",
+          "Disallow: /statistics",
+          "Disallow: /metadata",
+          "Disallow: /bitstream/id/*"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 366,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Göttingen"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 64,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Göttingen"
+    },
+    "notes": "A broad unfiltered sample exceeded a bounded response cap and was not used for counts. The targeted collection returned 300 records without a resumption token; contains many non-History theses and mixed creation/publication/defence dates. No full harvest. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DG%C3%B6ttingen%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Göttingen)",
+        "number_of_records": 366,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DG%C3%B6ttingen%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Göttingen) and location=onlinefree",
+        "number_of_records": 64,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://ediss.uni-goettingen.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=col_11858_3527",
+      "total_in_set": 300,
+      "page_records": 300,
+      "doctoral_tagged_in_page": 294,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://ediss.uni-goettingen.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Tübingen TOBIAS-lib",
+    "url": "https://publikationen.uni-tuebingen.de/",
+    "oai_endpoint": "https://publikationen.uni-tuebingen.de/oai/request",
+    "history_filter": "Observed com_10900_42126 (TOBIAS-lib publications/dissertations) and col_10900_42131 (Philosophische Fakultät); col_10900_35958 is a different bibliography collection. Filter PhDThesis/doctoralThesis plus History subject and issued/defence date locally.",
+    "open_pdf": {
+      "assessment": "PDF MIME type is present for some sampled theses; embargo/future publication records also occur.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://publikationen.uni-tuebingen.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://publikationen.uni-tuebingen.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /discover",
+          "Disallow: /search-filter",
+          "Disallow: /advanced-search",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /*discover*"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 675,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Tübingen"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 217,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Tübingen"
+    },
+    "notes": "Faculty collection completeListSize=1,781, all types/years. First 100 include 28 doctoral-tagged records. A record has accession dates in 2025 but issued date 2027-06-05 and no PDF format: do not count accession year as publication or infer immediate access. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DT%C3%BCbingen%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Tübingen)",
+        "number_of_records": 675,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DT%C3%BCbingen%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Tübingen) and location=onlinefree",
+        "number_of_records": 217,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://publikationen.uni-tuebingen.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=col_10900_42131",
+      "total_in_set": 1781,
+      "page_records": 100,
+      "doctoral_tagged_in_page": 28,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://publikationen.uni-tuebingen.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Münster miami",
+    "url": "https://miami.uni-muenster.de/",
+    "oai_endpoint": "https://repositorium.uni-muenster.de/oai/miami",
+    "history_filter": "Public OAI endpoint Identify succeeds; ListSets returned 500, so no set specifications verified. Request oai_dc or a richer supported format after service recovery; filter doctorate, DDC History and Historisches Seminar locally.",
+    "open_pdf": {
+      "assessment": "Official guidelines permit campus-only and time-limited distribution; therefore mixed availability.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://miami.uni-muenster.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://miami.uni-muenster.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /vufind/AJAX",
+          "Disallow: /vufind/Alphabrowse",
+          "Disallow: /vufind/Browse",
+          "Disallow: /vufind/Combined",
+          "Disallow: /vufind/EDS",
+          "Disallow: /vufind/EdsRecord",
+          "Disallow: /vufind/Search/Results",
+          "Disallow: /vufind/Summon",
+          "Disallow: /vufind/SummonRecord",
+          "Disallow: /vufind/AJAX/",
+          "Disallow: /vufind/Alphabrowse/",
+          "Disallow: /vufind/Browse/",
+          "Disallow: /vufind/Combined/",
+          "Disallow: /vufind/EDS/",
+          "Disallow: /vufind/EdsRecord/",
+          "Disallow: /vufind/Search/Results/",
+          "Disallow: /vufind/Summon/",
+          "Disallow: /vufind/SummonRecord/",
+          "Disallow: /vufind/Record/",
+          "Disallow: /Record/"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      },
+      {
+        "url": "https://repositorium.uni-muenster.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://repositorium.uni-muenster.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow:"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 543,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Münster"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 84,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Münster"
+    },
+    "notes": "The public endpoint is repositorium.uni-muenster.de/oai/miami, not the miami discovery UI /oai page. Identify advertises an internal :8443 baseURL; keep the public endpoint and do not follow that internal address. UI robots excludes /vufind/Search/Results. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_identify_only",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DM%C3%BCnster%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Münster)",
+        "number_of_records": 543,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DM%C3%BCnster%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Münster) and location=onlinefree",
+        "number_of_records": 84,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://www.uni-muenster.de/Publizieren/en/dienstleistungen/repository/leitlinien.html",
+      "https://repositorium.uni-muenster.de/oai/miami?verb=Identify"
+    ]
+  },
+  {
+    "name": "Bielefeld PUB",
+    "url": "https://pub.uni-bielefeld.de/",
+    "oai_endpoint": "https://pub.uni-bielefeld.de/oai",
+    "history_filter": "Observed bi_dissertation (local dissertations), dissertationFtxt (dissertations with full text), doc-type:doctoralThesis, open_access and History DDC sets. Prefer bi_dissertation with local History/OA filters; use dissertationFtxt for an access-oriented cross-check and verify degree institution.",
+    "open_pdf": {
+      "assessment": "OAI records include public download URLs and openAccess flags; later UI access hit a bot challenge.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://pub.uni-bielefeld.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://pub.uni-bielefeld.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 1.5,
+        "default_rules": [
+          "Allow: /record/",
+          "Allow: /person/",
+          "Allow: /pubtheses/",
+          "Allow: /docs/",
+          "Allow: /siteindex.xml",
+          "Allow: /sitemap",
+          "Disallow: /auth",
+          "Disallow: /record/*.mods",
+          "Disallow: /record/*.datacite",
+          "Disallow: /record/*.rtf",
+          "Disallow: /record/*.dc",
+          "Disallow: /record/*.json",
+          "Disallow: /record/*.jsonl",
+          "Disallow: /record/*.bibtex",
+          "Disallow: /record/*.yaml",
+          "Disallow: /record/*.csl_json",
+          "Disallow: /record/*.dc_json",
+          "Disallow: /record/*.aref",
+          "Disallow: /record/*.ris",
+          "Disallow: /record?",
+          "Disallow: /embed",
+          "Disallow: /export",
+          "Disallow: /metrics",
+          "Disallow: /rc",
+          "Disallow: /feed",
+          "Disallow: /marked",
+          "Disallow: /*?style=",
+          "Disallow: /*?fmt=",
+          "Disallow: /*?start=",
+          "Disallow: /*?limit=",
+          "Crawl-delay: 1.5"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 145,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bielefeld"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 20,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bielefeld"
+    },
+    "notes": "ddc:900 has 300 records of all types/years; first page contains 200 records and six doctoral/date/History candidates, all with OA/download metadata. GUI /pubtheses/ returned an Anubis challenge; stopped, no bypass. Robots Crawl-delay is 1.5 seconds; use at least 2. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_oai_ui_challenge",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBielefeld%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bielefeld)",
+        "number_of_records": 145,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBielefeld%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bielefeld) and location=onlinefree",
+        "number_of_records": 20,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://pub.uni-bielefeld.de/oai?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A900",
+      "total_in_set": 300,
+      "page_records": 200,
+      "doctoral_date_candidates_in_page": 6,
+      "oa_pdf_advertised_candidates": 6,
+      "extrapolated": false
+    },
+    "sources": [
+      "https://pub.uni-bielefeld.de/oai?verb=Identify"
+    ]
+  },
+  {
+    "name": "Freiburg FreiDok plus",
+    "url": "https://freidok.uni-freiburg.de/",
+    "oai_endpoint": "https://freidok.uni-freiburg.de/oai/oai2.php",
+    "history_filter": "Observed pub-type:doctoral_thesis, ddc:900 and detailed ddc:901–909/930–999 sets plus hasFile:true. Select History subject sets and screen doctorate, Freiburg degree institution, year and file rights. Standard OAI permits one set per request.",
+    "open_pdf": {
+      "assessment": "Records carry format pdf, rights free and download identifiers; HEAD on one advertised download returned 405, so file delivery unverified.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://freidok.uni-freiburg.de/robots.txt",
+        "http_status": 404,
+        "returned_url": "https://freidok.uni-freiburg.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "No robots file (404); this is not a grant of content reuse rights."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 513,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Freiburg"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 87,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Freiburg"
+    },
+    "notes": "Correct endpoint /oai/oai2.php, not /oai directory. ddc:900 completeListSize=2,051, all types/years; first 100 include 16 doctoral-tagged records, 11 coarse 2000–2025 candidates. Official interfaces page authorizes API use at max 10 requests/s and asks clients not to automate other website pages. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DFreiburg%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Freiburg)",
+        "number_of_records": 513,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DFreiburg%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Freiburg) and location=onlinefree",
+        "number_of_records": 87,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://freidok.uni-freiburg.de/oai/oai2.php?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A900",
+      "total_in_set": 2051,
+      "page_records": 100,
+      "doctoral_tagged_in_page": 16,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://freidok.uni-freiburg.de/_/site/interfaces",
+      "https://freidok.uni-freiburg.de/oai/oai2.php?verb=Identify"
+    ],
+    "head_check": {
+      "name": "Freiburg example",
+      "url": "https://freidok.uni-freiburg.de/dnb/download/110",
+      "method": "HEAD",
+      "status": 405,
+      "body_read": false
+    }
+  },
+  {
+    "name": "Hamburg ediss",
+    "url": "https://ediss.sub.uni-hamburg.de/",
+    "oai_endpoint": "https://ediss.sub.uni-hamburg.de/oai/request",
+    "history_filter": "Observed doc-type:doctoralThesis, open_access and ddc:930/940/943/950/960/970. Union relevant sets; locally confirm Fach Geschichte, not only historical title or subject.",
+    "open_pdf": {
+      "assessment": "All ten ddc:940 records returned have OA metadata; nine have publication dates in 2000–2025. No PDF GET or file-format confirmation.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://ediss.sub.uni-hamburg.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://ediss.sub.uni-hamburg.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /discover",
+          "Disallow: /simple-search",
+          "Disallow: /browse",
+          "Disallow: /statistics",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /password-login",
+          "Disallow: /Shibboleth.sso",
+          "Disallow: */simple-search*",
+          "Disallow: */browse*",
+          "Disallow: /cris",
+          "Disallow: /dspace-cris"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 570,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Hamburg"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 149,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Hamburg"
+    },
+    "notes": "ddc:940 returned ten records without a token: an exact subset count, not Hamburg's full History total. Identify's baseURL uses ediss2.sub.uni-hamburg.de; it was not adopted without checking that host's robots. Public ediss host works. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHamburg%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Hamburg)",
+        "number_of_records": 570,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHamburg%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Hamburg) and location=onlinefree",
+        "number_of_records": 149,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://ediss.sub.uni-hamburg.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A940",
+      "total_in_set": 10,
+      "page_records": 10,
+      "doctoral_tagged_in_page": 10,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://ediss.sub.uni-hamburg.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Leipzig Qucosa",
+    "url": "https://ul.qucosa.de/",
+    "oai_endpoint": "https://www.qucosa.de/oai/",
+    "history_filter": "Observed institutional set qucosa:ubl (UBL, not HTWK Leipzig), doc-type:doctoralThesis, open_access and History DDC sets on the shared endpoint. Harvest an institution set and filter History/doctoral/year locally; do not invent an intersected OAI set.",
+    "open_pdf": {
+      "assessment": "Shared repository exposes an open_access set; current Leipzig files were not requested.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://ul.qucosa.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://ul.qucosa.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 30,
+        "default_rules": [
+          "Crawl-delay: 30",
+          "Disallow: /fileadmin/_temp_/",
+          "Disallow: /fileadmin/logs/",
+          "Disallow: /fileadmin/scripts/",
+          "Disallow: /fileadmin/templates/",
+          "Disallow: /fileadmin/users/",
+          "Disallow: /typo3/",
+          "Disallow: /typo3_src/",
+          "Disallow: /typo3conf/",
+          "Disallow: /typo3temp/",
+          "Allow: /typo3conf/ext/*/Resources/Public/*",
+          "Allow: /typo3temp/*/*.css",
+          "Allow: /typo3temp/*/*.js"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      },
+      {
+        "url": "https://www.qucosa.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://www.qucosa.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 30,
+        "default_rules": [
+          "Crawl-delay: 30",
+          "Disallow: /fileadmin/_temp_/",
+          "Disallow: /fileadmin/logs/",
+          "Disallow: /fileadmin/scripts/",
+          "Disallow: /fileadmin/templates/",
+          "Disallow: /fileadmin/users/",
+          "Disallow: /typo3/",
+          "Disallow: /typo3_src/",
+          "Disallow: /typo3conf/",
+          "Disallow: /typo3temp/",
+          "Allow: /typo3conf/ext/*/Resources/Public/*",
+          "Allow: /typo3temp/*/*.css",
+          "Allow: /typo3temp/*/*.js"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 440,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Leipzig"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 104,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Leipzig"
+    },
+    "notes": "Shared endpoint also serves Dresden and other Saxon institutions. Both portal and API host robots specify 30-second Crawl-delay. Identify and ListSets checked with sequential shared-host calls; no ListRecords request. qucosa:htwk-leipzig is not Universität Leipzig. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges. Robots also explicitly denies GPTBot and ChatGPT-User/1.0. Do not use this AI client for record retrieval or change its identity to evade those exclusions; a permitted independent research harvester must obey the 30-second default delay. Scouting-method limitation: the preliminary connectivity batch used route-level concurrency, so separation of duplicate shared-host probes cannot be certified. Subsequent shared-endpoint metadata checks were sequential. Future harvesting must serialize by canonical host.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_shared_named_client_hold",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DLeipzig%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Leipzig)",
+        "number_of_records": 440,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DLeipzig%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Leipzig) and location=onlinefree",
+        "number_of_records": 104,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://www.qucosa.de/oai/?verb=Identify"
+    ]
+  },
+  {
+    "name": "Köln KUPS",
+    "url": "https://kups.ub.uni-koeln.de/",
+    "oai_endpoint": "https://kups.ub.uni-koeln.de/cgi/oai2",
+    "history_filter": "EPrints OAI endpoint is advertised externally; doctorate plus History subject/Historisches Institut, not just Philosophische Fakultät. Actual set names unverified because /cgi/ is excluded.",
+    "open_pdf": {
+      "assessment": "University describes KUPS as both OA publishing server and bibliography; records can be metadata only or dissertation abstracts.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://kups.ub.uni-koeln.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://kups.ub.uni-koeln.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /cgi/"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 581,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Köln"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 193,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Köln"
+    },
+    "notes": "robots disallows /cgi/, including OAI/search. No OAI request. DNB supplies an independently discoverable Köln doctoral candidate with a KUPS full-text link; original file access remains to be checked under current rules. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "robots_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DK%C3%B6ln%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Köln)",
+        "number_of_records": 581,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DK%C3%B6ln%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Köln) and location=onlinefree",
+        "number_of_records": 193,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": []
+  },
+  {
+    "name": "Frankfurt",
+    "url": "https://publikationen.ub.uni-frankfurt.de/",
+    "oai_endpoint": "https://publikationen.ub.uni-frankfurt.de/oai",
+    "history_filter": "OPUS OAI Identify works. A bounded ListSets response was incomplete; a later call timed out. Doctoral type, DDC History, Historisches Seminar and Goethe-Universität must be filtered locally; exact subject/type sets not asserted verified.",
+    "open_pdf": {
+      "assessment": "OPUS is an institutional publication/bibliography service; verify actual full text and access status per record.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://publikationen.ub.uni-frankfurt.de/robots.txt",
+        "http_status": 404,
+        "returned_url": "https://publikationen.ub.uni-frankfurt.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "No robots file (404); this is not a grant of content reuse rights."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 368,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Frankfurt not hss=Oder"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 71,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Frankfurt not hss=Oder"
+    },
+    "notes": "robots.txt returned 404 (no published robots directives observed). Identify advertises an HTTP baseURL while HTTPS works. DNB city proxy excludes Oder to reduce confusion with Viadrina, but can still include other Frankfurt institutions. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_identify_sets_incomplete",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DFrankfurt+not+hss%3DOder%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Frankfurt not hss=Oder)",
+        "number_of_records": 368,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DFrankfurt+not+hss%3DOder%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Frankfurt not hss=Oder) and location=onlinefree",
+        "number_of_records": 71,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://publikationen.ub.uni-frankfurt.de/oai?verb=Identify"
+    ]
+  },
+  {
+    "name": "Bonn bonndoc",
+    "url": "https://bonndoc.ulb.uni-bonn.de/",
+    "oai_endpoint": "https://bonndoc.ulb.uni-bonn.de/oai/request",
+    "history_filter": "Observed doc-type:doctoralThesis, open_access and History DDC sets including 940/943. Require Bonn as degree-granting institution; bonndoc also contains reprints and other publication types.",
+    "open_pdf": {
+      "assessment": "The complete ddc:940 response includes 16 doctoral/date candidates with openAccess and application/pdf metadata; no file GET.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://bonndoc.ulb.uni-bonn.de/robots.txt",
+        "http_status": 404,
+        "returned_url": "https://bonndoc.ulb.uni-bonn.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "No robots file (404); this is not a grant of content reuse rights."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 581,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bonn"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 184,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bonn"
+    },
+    "notes": "ddc:940 returned 40 records without a token, including 18 doctoral-tagged records (all dates); 16 pass a coarse 2000–2025 year screen. This omits other History classes and unclassified records. robots.txt returned 404. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBonn%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bonn)",
+        "number_of_records": 581,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBonn%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bonn) and location=onlinefree",
+        "number_of_records": 184,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://bonndoc.ulb.uni-bonn.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A940",
+      "total_in_set": 40,
+      "page_records": 40,
+      "doctoral_tagged_in_page": 18,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://www.ulb.uni-bonn.de/de/forschen-und-publizieren/publikationsserver-bonndoc/publikationsserver-bonndoc",
+      "https://bonndoc.ulb.uni-bonn.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Konstanz KOPS",
+    "url": "https://kops.uni-konstanz.de/",
+    "oai_endpoint": "https://kops.uni-konstanz.de/oai/request",
+    "history_filter": "Advertised DSpace OAI route /oai/request; current canonical path and exact sets not tested. Use doctoral type plus History department/DDC and degree year after operator-approved access.",
+    "open_pdf": {
+      "assessment": "Known institutional OA service; current files unverified.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://kops.uni-konstanz.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://kops.uni-konstanz.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 20,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /entities/*?f",
+          "Crawl-delay: 20"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 122,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Konstanz"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 26,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Konstanz"
+    },
+    "notes": "Default robots has Crawl-delay 20 and excludes /search; named ChatGPT, OpenAI and GPT clients are denied for all paths. No OAI request. Treat as a hold for this scout, rather than change user agent. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "named_client_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKonstanz%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Konstanz)",
+        "number_of_records": 122,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKonstanz%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Konstanz) and location=onlinefree",
+        "number_of_records": 26,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": []
+  },
+  {
+    "name": "Mainz Gutenberg Open Science",
+    "url": "https://openscience.ub.uni-mainz.de/",
+    "oai_endpoint": "https://openscience.ub.uni-mainz.de/server/oai/request",
+    "history_filter": "Observed doc-type:doctoralThesis, open_access and ddc:930/940/943/950. Apply History subject/degree/year locally; first set page not exhaustive.",
+    "open_pdf": {
+      "assessment": "Institutional OA platform; file delivery not checked.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://openscience.ub.uni-mainz.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://openscience.ub.uni-mainz.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /entities/*?f",
+          "Disallow: /collections/*?f",
+          "Disallow: /communities/*?spc.page"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 430,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Mainz"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 88,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Mainz"
+    },
+    "notes": "Legacy /oai/request redirects to /server/oai/request. Official guidelines describe CC0 metadata. Observed robots excludes /search and facet paths but does not list a named ChatGPT/GPT exclusion. No ListRecords request was made; exact open-PDF availability remains unverified. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_metadata_only",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMainz%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Mainz)",
+        "number_of_records": 430,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMainz%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Mainz) and location=onlinefree",
+        "number_of_records": 88,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://openscience.ub.uni-mainz.de/help/guidelines",
+      "https://openscience.ub.uni-mainz.de/server/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Erlangen-Nürnberg OPUS",
+    "url": "https://open.fau.de/",
+    "oai_endpoint": "https://open.fau.de/server/oai/request",
+    "history_filter": "Legacy OPUS URL redirects to OPEN FAU. Current candidate OAI endpoint is /server/oai/request; metadata sets not tested under the current robots exclusions. Filter doctorate and Fach Geschichte, with Philosophy/Arts faculty as a broad prefilter only.",
+    "open_pdf": {
+      "assessment": "OPEN FAU advertises freely accessible publications; per-file availability remains unverified.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://opus4.kobv.de/robots.txt",
+        "http_status": 404,
+        "returned_url": "https://opus4.kobv.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "No robots file (404); this is not a grant of content reuse rights."
+      },
+      {
+        "url": "https://open.fau.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://open.fau.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /statistics",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /*bbm.page=",
+          "Disallow: /*?page=",
+          "Disallow: /*&page="
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 196,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Erlangen*"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 24,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Erlangen*"
+    },
+    "notes": "Current robots lists ChatGPT-User and GPTBot among denied clients and excludes /search and paging patterns. Stopped after robots on the new host; did not use the blocked legacy URL as a workaround. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "migrated_named_client_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DErlangen%2A%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Erlangen*)",
+        "number_of_records": 196,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DErlangen%2A%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Erlangen*) and location=onlinefree",
+        "number_of_records": 24,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://ub.fau.de/haeufig-gestellte-fragen-faq/open-fau/"
+    ]
+  },
+  {
+    "name": "Bochum",
+    "url": "https://hss-opus.ub.ruhr-uni-bochum.de/",
+    "oai_endpoint": "https://hss-opus.ub.ruhr-uni-bochum.de/opus4/oai",
+    "history_filter": "Advertised OPUS endpoint /opus4/oai; doctoral type plus Fach Geschichte/Historisches Institut and History DDC. Sets unverified.",
+    "open_pdf": {
+      "assessment": "RUB library describes its repository as full-text dissertations/habilitations plus OA publications; live file access unverified.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://hss-opus.ub.ruhr-uni-bochum.de/robots.txt",
+        "http_status": null,
+        "returned_url": null,
+        "error": "HTTPSConnectionPool(host='hss-opus.ub.ruhr-uni-bochum.de', port=443): Max retries exceeded with url: /robots.txt (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection ",
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 280,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bochum"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 63,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Bochum"
+    },
+    "notes": "robots retrieval timed out with TLS verification enabled, so no API request. Institutional source is Ruhr-Universität Bochum; do not substitute Hochschule Bochum or the research-data repository. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "unreachable",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBochum%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bochum)",
+        "number_of_records": 280,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DBochum%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Bochum) and location=onlinefree",
+        "number_of_records": 63,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://www.ub.ruhr-uni-bochum.de/en/search-and-find/catalogs-and-search-engines",
+      "https://www.ruhr-uni-bochum.de/oa/publish.html.en"
+    ]
+  },
+  {
+    "name": "Halle Share_it",
+    "url": "https://opendata.uni-halle.de/",
+    "oai_endpoint": "https://opendata.uni-halle.de/oai/request",
+    "history_filter": "Observed doc-type:DoctoralThesis (capital D), open_access and History DDC sets. Prefer doctoral set then require Martin-Luther-Universität Halle-Wittenberg and Fach Geschichte; shared platform also has historical digitizations and other institutions.",
+    "open_pdf": {
+      "assessment": "open_access is available, but historical digitized books dominate the first History-subject sample; no thesis PDF GET.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://opendata.uni-halle.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://opendata.uni-halle.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /discover",
+          "Disallow: /simple-search",
+          "Disallow: /handle/*/*/simple-search",
+          "Disallow: /handle/*/*/discover",
+          "Disallow: /browse",
+          "Disallow: /handle/*/*/browse",
+          "Disallow: /statistics",
+          "Disallow: /handle/*/*/statistics",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /password-login",
+          "Disallow: /help",
+          "Disallow: /mydspace",
+          "Disallow: /internal-error",
+          "Disallow: /explore",
+          "Disallow: /external_explore",
+          "Disallow: /export"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 175,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Halle"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 30,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Halle"
+    },
+    "notes": "ddc:940 completeListSize=222; first 25 records were not doctoral-tagged. Zero in that page does not imply zero History doctorates. Case of the type set differs from many DSpace repositories. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHalle%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Halle)",
+        "number_of_records": 175,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DHalle%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Halle) and location=onlinefree",
+        "number_of_records": 30,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://opendata.uni-halle.de/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A940",
+      "total_in_set": 222,
+      "page_records": 25,
+      "doctoral_tagged_in_page": 0,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://opendata.uni-halle.de/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Jena Digitale Bibliothek Thüringen",
+    "url": "https://www.db-thueringen.de/",
+    "oai_endpoint": "https://www.db-thueringen.de/servlets/OAIDataProvider",
+    "history_filter": "Advertised MyCoRe endpoint /servlets/OAIDataProvider; exact current sets not checked. Filter university Jena rather than all Thuringian institutions, then doctorate and Fach Geschichte/History DDC.",
+    "open_pdf": {
+      "assessment": "Regional platform contains openly published theses; current file availability not tested.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://www.db-thueringen.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://www.db-thueringen.de/rep-pow-challenge?redirect_uri=%2frobots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 352,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Jena"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 64,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Jena"
+    },
+    "notes": "robots request redirected to a proof-of-work challenge; stopped without solving it. DNB can identify regional thesis records without accessing the challenged host. Do not attribute every regional record to Jena. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "blocked",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DJena%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Jena)",
+        "number_of_records": 352,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DJena%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Jena) and location=onlinefree",
+        "number_of_records": 64,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": []
+  },
+  {
+    "name": "Kiel MACAU",
+    "url": "https://macau.uni-kiel.de/",
+    "oai_endpoint": "https://macau.uni-kiel.de/servlets/OAIDataProvider",
+    "history_filter": "Observed doc-type:DoctoralThesis, doc-type:PhDThesis, open_access and ddc:9/900/930/940/943/948/950/960/970/980/990. ddc:9 includes geography/biography; filter narrower classes and Kiel degree institution locally.",
+    "open_pdf": {
+      "assessment": "One advertised PDF answered HEAD 200, application/pdf, 6,356,644 bytes; no body read. This is a delivery check for one candidate, not degree or whole-corpus validation.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://macau.uni-kiel.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://macau.uni-kiel.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Allow: /servlets/MCRFileNodeServlet/",
+          "Allow: /receive/",
+          "Disallow: /authorization/",
+          "Disallow: /rsc/",
+          "Disallow: /api/",
+          "Disallow: /oai",
+          "Disallow: /browse/",
+          "Disallow: /servlets/solr/",
+          "Disallow: /servlets/MCRBasketServlet",
+          "Disallow: /servlets/MCRZipServlet",
+          "Disallow: /*?XSL.Transformer=*",
+          "Disallow: /*?XSL.Style=*",
+          "Disallow: /*?r=*"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 334,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Kiel"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 63,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Kiel"
+    },
+    "notes": "ddc:9 completeListSize=711; first 100 include imported/subject-service publications and non-theses. A political-science-looking dissertation illustrates subject contamination. robots permits /servlets/OAIDataProvider and /servlets/MCRFileNodeServlet/ but disallows /oai, /api, /rsc and /servlets/solr/. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKiel%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Kiel)",
+        "number_of_records": 334,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKiel%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Kiel) and location=onlinefree",
+        "number_of_records": 63,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://macau.uni-kiel.de/servlets/OAIDataProvider?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A9",
+      "total_in_set": 711,
+      "page_records": 100,
+      "doctoral_tagged_in_page": 4,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://macau.uni-kiel.de/servlets/OAIDataProvider?verb=Identify"
+    ],
+    "head_check": {
+      "name": "Kiel example",
+      "url": "https://macau.uni-kiel.de/servlets/MCRFileNodeServlet/macau_derivate_00000405/undorf.pdf",
+      "method": "HEAD",
+      "status": 200,
+      "content_type": "application/pdf",
+      "content_length": 6356644,
+      "body_read": false
+    }
+  },
+  {
+    "name": "Trier OPUS",
+    "url": "https://ubt.opus.hbz-nrw.de/",
+    "oai_endpoint": "https://ubt.opus.hbz-nrw.de/oai",
+    "history_filter": "Observed doc-type:doctoralThesis and ddc:900/930/940/943/960/970/980 plus legacy ddc:90. Union relevant subject sets; locally confirm History doctorate, issued year, not deposit-date-only.",
+    "open_pdf": {
+      "assessment": "Twelve doctoral/date candidates in ddc:900 have OA/PDF-link metadata. One file HEAD returned 302 to a legacy HTTP deliver route; no body or redirect followed.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://ubt.opus.hbz-nrw.de/robots.txt",
+        "http_status": 404,
+        "returned_url": "https://ubt.opus.hbz-nrw.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "No robots file (404); this is not a grant of content reuse rights."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 203,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Trier"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 45,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Trier"
+    },
+    "notes": "ddc:900 returned 42 records without a token. Some files have pre-2000 dates despite 2004 metadata dates: degree-year screen remains unresolved. robots returned 404. Check target path/robots before a later downloader follows redirects. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DTrier%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Trier)",
+        "number_of_records": 203,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DTrier%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Trier) and location=onlinefree",
+        "number_of_records": 45,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://ubt.opus.hbz-nrw.de/oai?verb=ListRecords&metadataPrefix=oai_dc&set=ddc%3A900",
+      "total_in_set": 42,
+      "page_records": 42,
+      "doctoral_deposit_date_candidates": 12,
+      "oa_pdf_advertised_candidates": 12,
+      "extrapolated": false,
+      "note": "Some degree/file years predate 2000; deposit year does not validate target degree-year window."
+    },
+    "sources": [
+      "https://ubt.opus.hbz-nrw.de/oai?verb=Identify"
+    ],
+    "head_check": {
+      "name": "Trier example",
+      "url": "https://ubt.opus.hbz-nrw.de/files/13/20020625.pdf",
+      "method": "HEAD",
+      "status": 302,
+      "location": "http://ubt.opus.hbz-nrw.de/frontdoor/deliver/index/docId/13/file/20020625.pdf",
+      "body_read": false
+    }
+  },
+  {
+    "name": "Mannheim MADOC",
+    "url": "https://madoc.bib.uni-mannheim.de/",
+    "oai_endpoint": "https://madoc.bib.uni-mannheim.de/cgi/oai2",
+    "history_filter": "Advertised EPrints endpoint /cgi/oai2; exact sets not probed. Filter doctoral type plus History department/DDC and Universität Mannheim.",
+    "open_pdf": {
+      "assessment": "Institutional publication records may link OA PDFs; current access not checked.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://madoc.bib.uni-mannheim.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://madoc.bib.uni-mannheim.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /cgi/"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 124,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Mannheim"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 29,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Mannheim"
+    },
+    "notes": "robots includes /cgi/ exclusion and bot-specific blanket denial. No OAI request. Use DNB discovery pending operator clarification; do not infer the service is empty. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "robots_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMannheim%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Mannheim)",
+        "number_of_records": 124,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMannheim%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Mannheim) and location=onlinefree",
+        "number_of_records": 29,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": []
+  },
+  {
+    "name": "Gießen JLUpub",
+    "url": "https://jlupub.ub.uni-giessen.de/",
+    "oai_endpoint": "https://jlupub.ub.uni-giessen.de/server/oai/request",
+    "history_filter": "Current endpoint /server/oai/request. Observed OpenAccess and col_jlupub_64 (Dissertationen/Habilitationen). Filter doctoral type to exclude habilitations and then History degree/DDC. com_jlupub_1035 is not the dissertation collection.",
+    "open_pdf": {
+      "assessment": "Institutional repository includes full texts; first faculty-related sample was mostly journal parts, not doctoral evidence.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://jlupub.ub.uni-giessen.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://jlupub.ub.uni-giessen.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /entities/*?f",
+          "Disallow: /collections/*?f",
+          "Disallow: /communities/*?spc.page",
+          "Disallow: /browse/*",
+          "Disallow: /statistics",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register"
+        ],
+        "named_ai_client_denial": false,
+        "note": "Default research-client path not excluded in this probe; see named-client and route notes."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 222,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Gießen"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 58,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Gießen"
+    },
+    "notes": "Old /oai/request returned 404. Second ListSets page exposed col_jlupub_64. First 100 sets of 603 are not exhaustive. com_jlupub_1035 had seven non-doctoral records; do not use it as a count of History dissertations. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges. The dissertation/habilitation set has completeListSize=7,867; the sampled 100 records were doctoral-tagged but none matched the narrow History DDC screen. This page is not a random sample.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DGie%C3%9Fen%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Gießen)",
+        "number_of_records": 222,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DGie%C3%9Fen%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Gießen) and location=onlinefree",
+        "number_of_records": 58,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": {
+      "url": "https://jlupub.ub.uni-giessen.de/server/oai/request?verb=ListRecords&metadataPrefix=oai_dc&set=col_jlupub_64",
+      "total_in_set": 7867,
+      "page_records": 100,
+      "doctoral_tagged_in_page": 100,
+      "extrapolated": false,
+      "note": "All types/years unless locally screened. Page order is not random; dc:date contains migration, deposit, issued or defence dates. No ratio is extrapolated to the repository."
+    },
+    "sources": [
+      "https://www.uni-giessen.de/ub/de/publizieren/jlupub?set_language=de",
+      "https://jlupub.ub.uni-giessen.de/server/oai/request?verb=Identify"
+    ]
+  },
+  {
+    "name": "Marburg",
+    "url": "https://archiv.ub.uni-marburg.de/",
+    "oai_endpoint": "https://archiv.ub.uni-marburg.de/oai/provider",
+    "history_filter": "Advertised OAI endpoint /oai/provider; historical alternate paths are not verified. Screen doctoral thesis, Fachbereich 06/Geschichte, degree institution and year when access recovers.",
+    "open_pdf": {
+      "assessment": "Institutional repository is intended for open publications; current files unverified.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://archiv.ub.uni-marburg.de/robots.txt",
+        "http_status": null,
+        "returned_url": null,
+        "error": "HTTPSConnectionPool(host='archiv.ub.uni-marburg.de', port=443): Max retries exceeded with url: /robots.txt (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY",
+        "crawl_delay_seconds": null,
+        "default_rules": [],
+        "named_ai_client_denial": false,
+        "note": "Blocked, challenged, or unable to establish robots; do not auto-fetch."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 331,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Marburg"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 37,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Marburg"
+    },
+    "notes": "robots TLS certificate verification failed, so no metadata request; verification was not disabled. The initially guessed /ubfind/OAI/Server path is not recommended. Repository count unknown. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "tls_failure",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMarburg%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Marburg)",
+        "number_of_records": 331,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DMarburg%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Marburg) and location=onlinefree",
+        "number_of_records": 37,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://sdsn-gr.openaire.eu/search/dataprovider?datasourceId=opendoar____%3A%3Ac51ce410c124a10e0db5e4b97fc2af39"
+    ]
+  },
+  {
+    "name": "Kassel KOBRA",
+    "url": "https://kobra.uni-kassel.de/",
+    "oai_endpoint": "https://kobra.uni-kassel.de/oai/request",
+    "history_filter": "Advertised legacy DSpace /oai/request is explicitly excluded by robots. Exact current sets not probed. Filter doctoral type plus Geschichte within humanities after approved access.",
+    "open_pdf": {
+      "assessment": "Institutional OA repository; individual PDF availability not tested.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://kobra.uni-kassel.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://kobra.uni-kassel.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": null,
+        "default_rules": [
+          "Disallow: /search",
+          "Disallow: /admin/*",
+          "Disallow: /processes",
+          "Disallow: /submit",
+          "Disallow: /workspaceitems",
+          "Disallow: /profile",
+          "Disallow: /workflowitems",
+          "Disallow: /entities/*?f",
+          "Disallow: /communities/*?f",
+          "Disallow: /collections/*?f",
+          "Disallow: /communities/*?spc",
+          "Disallow: /collections/*?spc",
+          "Disallow: /statistics",
+          "Disallow: /browse",
+          "Disallow: /browse/author",
+          "Disallow: /browse/title",
+          "Disallow: /browse/dateaccessioned",
+          "Disallow: /browse/dateissued",
+          "Disallow: /browse/*",
+          "Disallow: /contact",
+          "Disallow: /feedback",
+          "Disallow: /forgot",
+          "Disallow: /login",
+          "Disallow: /register",
+          "Disallow: /handle",
+          "Disallow: /handle/*",
+          "Disallow: /simple-search",
+          "Disallow: /simple-search/*",
+          "Disallow: /password-login",
+          "Disallow: /oai",
+          "Disallow: /oai/request"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 104,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Kassel"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 16,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Kassel"
+    },
+    "notes": "robots disallows /oai, /oai/request, /handle, /browse, /search and various facet paths, and denies named ChatGPT clients. Do not try a /server variant to route around the explicit OAI restriction. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "robots_disallowed",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKassel%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Kassel)",
+        "number_of_records": 104,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DKassel%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Kassel) and location=onlinefree",
+        "number_of_records": 16,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": []
+  },
+  {
+    "name": "Dresden Qucosa",
+    "url": "https://tud.qucosa.de/",
+    "oai_endpoint": "https://www.qucosa.de/oai/",
+    "history_filter": "Observed qucosa:tud (TU Dresden), doc-type:doctoralThesis, open_access and History DDC sets. Exclude qucosa:slub and other institutions unless degree metadata positively identifies TU Dresden. Apply one set at a time with local intersections.",
+    "open_pdf": {
+      "assessment": "Qucosa advertises OA documents and supports embargoes; current Dresden files not requested.",
+      "dissertation_pdf_gets": 0
+    },
+    "robots": [
+      {
+        "url": "https://tud.qucosa.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://tud.qucosa.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 30,
+        "default_rules": [
+          "Crawl-delay: 30",
+          "Disallow: /fileadmin/_temp_/",
+          "Disallow: /fileadmin/logs/",
+          "Disallow: /fileadmin/scripts/",
+          "Disallow: /fileadmin/templates/",
+          "Disallow: /fileadmin/users/",
+          "Disallow: /typo3/",
+          "Disallow: /typo3_src/",
+          "Disallow: /typo3conf/",
+          "Disallow: /typo3temp/",
+          "Allow: /typo3conf/ext/*/Resources/Public/*",
+          "Allow: /typo3temp/*/*.css",
+          "Allow: /typo3temp/*/*.js"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      },
+      {
+        "url": "https://www.qucosa.de/robots.txt",
+        "http_status": 200,
+        "returned_url": "https://www.qucosa.de/robots.txt",
+        "error": null,
+        "crawl_delay_seconds": 30,
+        "default_rules": [
+          "Crawl-delay: 30",
+          "Disallow: /fileadmin/_temp_/",
+          "Disallow: /fileadmin/logs/",
+          "Disallow: /fileadmin/scripts/",
+          "Disallow: /fileadmin/templates/",
+          "Disallow: /fileadmin/users/",
+          "Disallow: /typo3/",
+          "Disallow: /typo3_src/",
+          "Disallow: /typo3conf/",
+          "Disallow: /typo3temp/",
+          "Allow: /typo3conf/ext/*/Resources/Public/*",
+          "Allow: /typo3temp/*/*.css",
+          "Allow: /typo3temp/*/*.js"
+        ],
+        "named_ai_client_denial": true,
+        "note": "Named AI clients are denied; default rules for an independent research harvester differ. Do not change client identity to evade these exclusions."
+      }
+    ],
+    "est_history_phds": {
+      "value": null,
+      "unit": "unique History doctorates",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 167,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Dresden"
+    },
+    "est_open": {
+      "value": null,
+      "unit": "unique History doctorates with a currently downloadable open PDF",
+      "period": "2000–2025; target degree year remains unverified",
+      "candidate_proxy": 27,
+      "proxy_scope": "DNB catalogue records matching History classification and dissertation note and location=onlinefree; publication years 2000–2025; not a measured repository inventory",
+      "institution_filter": "hss=Dresden"
+    },
+    "notes": "Same shared endpoint and record namespace as Leipzig. Use a single queue per API host at >=30 seconds between requests. Never add both institutions' shared-endpoint totals or the whole Saxony total as separate doctoral inventories. Unless stated otherwise no numeric rate limit was established in consulted material; use one request at a time per host, at least two seconds apart, or the larger published delay. Respect Retry-After and stop on access challenges. Robots also explicitly denies GPTBot and ChatGPT-User/1.0. Do not use this AI client for record retrieval or change its identity to evade those exclusions; a permitted independent research harvester must obey the 30-second default delay. Scouting-method limitation: the preliminary connectivity batch used route-level concurrency, so separation of duplicate shared-host probes cannot be certified. Subsequent shared-endpoint metadata checks were sequential. Future harvesting must serialize by canonical host.",
+    "checked_at": "2026-11-06",
+    "endpoint_status": "verified_shared_named_client_hold",
+    "count_evidence": [
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DDresden%29&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Dresden)",
+        "number_of_records": 167,
+        "maximum_records_returned": 0,
+        "free_link_filter": false
+      },
+      {
+        "url": "https://services.dnb.de/sru/dnb?version=1.1&operation=searchRetrieve&query=hss%3Ddiss%2A+and+jhr+within+%222000+2025%22+and+%28%28sgt%3D900+or+sgt%3D930+or+sgt%3D940+or+sgt%3D943+or+sgt%3D950+or+sgt%3D960+or+sgt%3D970+or+sgt%3D980+or+sgt%3D990%29+or+%28ddc%3D90%2A+or+ddc%3D93%2A+or+ddc%3D94%2A+or+ddc%3D95%2A+or+ddc%3D96%2A+or+ddc%3D97%2A+or+ddc%3D98%2A+or+ddc%3D99%2A%29%29+and+%28hss%3DDresden%29+and+location%3Donlinefree&maximumRecords=0&recordSchema=MARC21-xml",
+        "query": "hss=diss* and jhr within \"2000 2025\" and ((sgt=900 or sgt=930 or sgt=940 or sgt=943 or sgt=950 or sgt=960 or sgt=970 or sgt=980 or sgt=990) or (ddc=90* or ddc=93* or ddc=94* or ddc=95* or ddc=96* or ddc=97* or ddc=98* or ddc=99*)) and (hss=Dresden) and location=onlinefree",
+        "number_of_records": 27,
+        "maximum_records_returned": 0,
+        "free_link_filter": true
+      }
+    ],
+    "sample_evidence": null,
+    "sources": [
+      "https://tud.qucosa.de/en/about-qucosa/",
+      "https://www.qucosa.de/oai/?verb=Identify"
+    ]
+  }
+]
