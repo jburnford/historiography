@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The historiography knowledge graph: scope and depth</title>
+<style>
+.viz-root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface-1: #fcfcfb;
+  --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,0.10);
+  --series-1: #2a78d6; --track: #cde2fb;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) .viz-root {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface-1: #1a1a19;
+    --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+    --series-1: #3987e5; --track: #184f95;
+  }
+}
+:root[data-theme="dark"] .viz-root {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface-1: #1a1a19;
+  --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,0.10);
+  --series-1: #3987e5; --track: #184f95;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.viz-root { background: var(--page); color: var(--text-primary); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; min-height: 100vh; padding: 32px 20px 60px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+header h1 { font-size: 24px; font-weight: 600; margin: 0 0 4px; }
+header p { margin: 0; color: var(--text-secondary); }
+.toggle { float: right; background: none; border: 1px solid var(--ring); color: var(--text-secondary); border-radius: 6px; padding: 4px 10px; cursor: pointer; font: inherit; font-size: 13px; }
+.hero { margin: 28px 0 8px; }
+.hero .value { font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -0.01em; }
+.hero .label { color: var(--text-secondary); margin-top: 6px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin: 20px 0 28px; }
+.card { background: var(--surface-1); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; }
+.tile .label { color: var(--text-secondary); font-size: 13px; }
+.tile .value { font-size: 28px; font-weight: 600; margin-top: 2px; }
+.tile .sub { color: var(--text-muted); font-size: 12.5px; margin-top: 2px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr)); gap: 16px; margin-bottom: 16px; }
+h2 { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
+.card > p.note { margin: 0 0 14px; color: var(--text-secondary); font-size: 13px; }
+.bars { display: grid; grid-template-columns: minmax(150px, 38%) 1fr; gap: 2px 12px; align-items: center; }
+.bars .name { font-size: 13px; color: var(--text-primary); text-align: right; line-height: 1.2; padding: 3px 0; }
+.bars .name small { display: block; color: var(--text-muted); font-size: 11.5px; }
+.bars .row { position: relative; min-height: 26px; padding-right: 84px; display: flex; align-items: center; cursor: default; outline: none; }
+.bars .track { position: relative; width: 100%; height: 14px; }
+.bars .row:focus-visible { box-shadow: 0 0 0 2px var(--series-1); border-radius: 4px; }
+.bars .bar { position: absolute; left: 0; top: 0; height: 14px; background: var(--series-1); border-radius: 0 4px 4px 0; min-width: 2px; }
+.bars .val { position: absolute; top: 50%; transform: translateY(-50%); margin-left: 8px; font-size: 12.5px; color: var(--text-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.group { grid-column: 1 / -1; font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 10px; padding-bottom: 2px; border-bottom: 1px solid var(--grid); }
+.group:first-child { margin-top: 0; }
+.meter { margin: 0 0 16px; outline: none; }
+.meter:focus-visible { box-shadow: 0 0 0 2px var(--series-1); border-radius: 4px; }
+.meter .top { display: flex; justify-content: space-between; gap: 12px; font-size: 13.5px; }
+.meter .top b { font-weight: 600; }
+.meter .track { height: 8px; background: var(--track); border-radius: 4px; margin: 6px 0 4px; overflow: hidden; }
+.meter .fill { height: 100%; background: var(--series-1); border-radius: 4px; }
+.meter .sub { color: var(--text-muted); font-size: 12.5px; }
+.tip { position: fixed; pointer-events: none; background: var(--surface-1); color: var(--text-primary); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); max-width: 300px; display: none; z-index: 10; }
+.tip b { font-weight: 600; }
+details { margin-top: 16px; }
+summary { cursor: pointer; color: var(--text-secondary); font-size: 14px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; margin-top: 10px; }
+th, td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--grid); }
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="viz-root">
+<div class="wrap">
+  <header>
+    <button class="toggle" id="theme" type="button">Toggle dark</button>
+    <h1>The historiography knowledge graph: scope and depth</h1>
+    <p id="subtitle"></p>
+  </header>
+  <div class="hero"><div class="value" id="hero"></div><div class="label" id="hero-label"></div></div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="grid2">
+    <section class="card"><h2>Who the people are</h2><p class="note">Person keys by the evidence found for each, not a census of historians. Duplicate keys still count separately here.</p><div class="bars" id="roles"></div><div id="dupnote" style="margin-top:16px"></div></section>
+    <section class="card"><h2>Evidence found for each person key</h2><p class="note">Keys showing each signal; one key can show several. A historian with none of the historian signals on record is not yet counted as one.</p><div class="bars" id="signals"></div></section>
+  </div>
+  <div class="grid2">
+    <section class="card"><h2>Works by kind</h2><p class="note">Every work node in the graph, by kind.</p><div class="bars" id="works"></div></section>
+    <section class="card"><h2>Relations by kind</h2><p class="note">Edges between people, works and institutions, grouped by what they record.</p><div class="bars" id="edges"></div></section>
+  </div>
+  <div class="grid2">
+    <section class="card"><h2>How much is grounded</h2><p class="note">Share of each layer tied to a person or work key, or to a public identifier. The rest stays in the graph as printed names and unmatched references.</p><div id="meters"></div></section>
+    <section class="card"><h2>People: public identifiers held</h2><p class="note">People holding each identifier. One person can hold several.</p><div class="bars" id="ids"></div></section>
+  </div>
+  <div class="grid2">
+    <section class="card"><h2>Dissertations read in full, by country</h2><p class="note">History PhDs in the citation analysis, with bibliographies extracted from the full text. Theses and their text are never published; only counts and citation links are.</p><div class="bars" id="countries"></div></section>
+    <section class="card"><h2>From bibliographies to the graph</h2><p class="note">How the dissertations' reference lists reach the graph.</p><div class="bars" id="funnel"></div></section>
+  </div>
+
+  <details class="card"><summary>Table view: every figure on this page</summary><div id="table"></div></details>
+  <footer id="footer"></footer>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+</div>
+<script>
+const S = {"people": {"total": 203759, "with_public_id": 114999, "established": 119171, "recorded": 84278, "unresolved": 310, "ids": {"Library of Congress": 93903, "GND (German National Library)": 54456, "VIAF": 54405, "ISNI": 51889, "Wikidata": 49831, "ORCID": 24642, "IdRef (France)": 383}, "roles": {"historian": 128092, "other scholar": 46678, "unknown": 19052, "primary source": 9937}, "signals": {"reviewer": 44594, "wikidata-historian": 22382, "early": 2700, "orcid": 24642, "supervisor-or-aha-directory": 16333, "cited-as-scholarship": 48105, "articles": 37251, "cited-as-primary": 10403, "history-phd": 71809}, "duplicates": {"candidate_pairs": 88341, "keys_in_pairs": 50107, "clusters": 17377, "surplus_upper_bound": 32730, "pair_kinds": {"review+review": 56305, "lc+review": 10696, "aha-phd+lc": 8437, "aha-phd+review": 5095, "aha-phd+orcid": 1469, "lc+orcid": 1405, "orcid+review": 1370, "aha-phd+other": 1269, "lc+other": 1164, "other+review": 451, "orcid+other": 315, "other+other": 188, "aha-phd+cited": 99, "cited+lc": 45, "cited+review": 19, "cited+other": 8, "cited+orcid": 6}}}, "works": {"total": 1510503, "by_kind": {"Books (LC catalogue)": 578098, "Journal articles": 289548, "Works listed on ORCID records (type not given)": 288061, "Book reviews": 265550, "Doctoral theses": 71376, "Books reviewed on H-Net": 13596, "Atlas sources": 2333, "Other": 1941}, "articles_recorded": 27865}, "institutions": 1235, "edges": {"ADVISED": 35787, "AUTHORED": 1333707, "AWARDED_BY": 65104, "CITES": 784512, "COAUTHORED": 22080, "COEDITED": 20141, "EDITED": 145227, "EDITOR_OF": 8077, "PART_OF": 9312, "PUBLISHED_AS": 7196, "REVIEWED": 48278, "REVIEWS": 266413, "SUPERVISED": 36685}, "reviews": {"total": 265550, "with_keyed_reviewer": 41469, "printed_reviewer_names": 209035}, "corpus": {"records": 16785, "parsed": 15797, "in_analysis": 13996, "bibliography_entries": 5470106, "by_country": {"US": 3088, "GB": 2656, "BR": 2618, "CA": 2249, "FR": 1453, "MX": 591, "SE": 287, "DE": 224, "IT": 174, "ES": 131, "AU": 130, "ZZ": 104, "BE": 101, "PT": 41, "CO": 37, "GR": 24, "FI": 20, "ZA": 15, "LV": 14, "AR": 10, "PL": 8, "HU": 7, "IE": 5, "MT": 3, "TR": 3, "CH": 2, "KZ": 1}, "distinct_cited_works": 2443998, "corpus_citations": 3050449, "theses_citing_in_graph": 11825, "keyed_cited_works": 201601}, "built": "2026-11-06"};
+const fmt = n => n.toLocaleString('en-US');
+const compact = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 2).replace(/\.?0+$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : fmt(n);
+const pct = (a, b) => (100 * a / b).toFixed(a / b < 0.1 ? 1 : 0) + '%';
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const tableRows = [];
+const tip = document.getElementById('tip');
+function bindTip(node, html) {
+  const show = (x, y) => { tip.innerHTML = html; tip.style.display = 'block';
+    const r = tip.getBoundingClientRect(); tip.style.left = Math.min(x + 14, innerWidth - r.width - 8) + 'px'; tip.style.top = Math.min(y + 14, innerHeight - r.height - 8) + 'px'; };
+  node.addEventListener('mousemove', e => show(e.clientX, e.clientY));
+  node.addEventListener('mouseleave', () => tip.style.display = 'none');
+  node.addEventListener('focus', () => { const r = node.getBoundingClientRect(); show(r.left + r.width / 2, r.bottom); });
+  node.addEventListener('blur', () => tip.style.display = 'none');
+  node.tabIndex = 0;
+}
+// ranked bars: items = [{name, sub, value, group, tip}]
+function bars(id, section, items, total) {
+  const host = document.getElementById(id), max = Math.max(...items.map(i => i.value));
+  let group = null;
+  for (const it of items) {
+    if (it.group && it.group !== group) { group = it.group; host.append(el('div', 'group', group)); }
+    host.append(el('div', 'name', it.name + (it.sub ? `<small>${it.sub}</small>` : '')));
+    const row = el('div', 'row'), track = el('div', 'track'), bar = el('div', 'bar'), val = el('span', 'val', fmt(it.value));
+    const w = (100 * it.value / max).toFixed(2);
+    bar.style.width = w + '%'; val.style.left = w + '%';
+    track.append(bar, val); row.append(track);
+    row.setAttribute('aria-label', `${it.name}: ${fmt(it.value)}`);
+    bindTip(row, `<b>${it.name}</b><br>${fmt(it.value)}${total ? ` (${pct(it.value, total)} of ${fmt(total)})` : ''}${it.tip ? `<br>${it.tip}` : ''}`);
+    host.append(row);
+    tableRows.push([section, (it.group ? it.group + ': ' : '') + it.name, it.value]);
+  }
+}
+function meter(label, part, whole, sub) {
+  const m = el('div', 'meter');
+  m.innerHTML = `<div class="top"><span>${label}</span><b>${pct(part, whole)}</b></div>
+    <div class="track"><div class="fill" style="width:${(100 * part / whole).toFixed(2)}%"></div></div>
+    <div class="sub">${fmt(part)} of ${fmt(whole)}${sub ? ' · ' + sub : ''}</div>`;
+  m.setAttribute('aria-label', `${label}: ${fmt(part)} of ${fmt(whole)}, ${pct(part, whole)}`);
+  bindTip(m, `<b>${label}</b><br>${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})<br>Not yet: ${fmt(whole - part)}`);
+  document.getElementById('meters').append(m);
+  tableRows.push(['Grounding', label, `${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})`]);
+}
+
+const E = S.edges, edgeTotal = Object.values(E).reduce((a, b) => a + b, 0);
+const nodes = S.people.total + S.works.total + S.institutions;
+document.getElementById('subtitle').textContent = `People, works and institutions keyed by their works and public identifiers, never by name alone. Build of ${S.built}.`;
+document.getElementById('hero').textContent = compact(edgeTotal) + ' relations';
+document.getElementById('hero-label').textContent = `${fmt(edgeTotal)} edges among ${fmt(nodes)} nodes`;
+tableRows.push(['Totals', 'Relations (edges)', edgeTotal], ['Totals', 'Nodes', nodes]);
+
+const kpis = [
+  ['Person keys', S.people.total, `${fmt(S.people.roles.historian)} with historian evidence; up to ${fmt(S.people.duplicates.surplus_upper_bound)} may be duplicates`],
+  ['Works', S.works.total, 'books, articles, reviews, theses'],
+  ['Institutions', S.institutions, 'with ROR identifiers'],
+  ['Dissertations read in full', S.corpus.in_analysis, `${fmt(S.corpus.bibliography_entries)} bibliography entries`],
+];
+for (const [l, v, sub] of kpis) {
+  const t = el('div', 'card tile', `<div class="label">${l}</div><div class="value">${fmt(v)}</div><div class="sub">${sub}</div>`);
+  document.getElementById('kpis').append(t);
+  tableRows.push(['Totals', l, v]);
+}
+
+const ROLE = { 'historian': ['Historians', 'a history PhD, supervision, AHA listing or review on record; or Wikidata historian after 1900'],
+  'other scholar': ['Other scholars', 'ORCID, articles, or cited as scholarship; no history signal yet'],
+  'primary source': ['Primary-source people', 'dated before 1900, or cited mostly in primary-source sections'],
+  'unknown': ['Not yet known', 'mostly LC book authors with no other facts'] };
+bars('roles', 'People by role', Object.entries(S.people.roles).map(([r, v]) => ({ name: ROLE[r][0], sub: ROLE[r][1], value: v, tip: ROLE[r][1] })), S.people.total);
+const SIG = { 'history-phd': 'History PhD on record (AHA, corpus, CAPES)', 'reviewer': 'Wrote a book review',
+  'supervisor-or-aha-directory': 'Supervisor, or in the AHA directory', 'wikidata-historian': 'Wikidata occupation: historian',
+  'cited-as-scholarship': 'Cited in theses as scholarship', 'articles': 'Journal articles on record', 'orcid': 'ORCID',
+  'cited-as-primary': 'Cited in theses mostly as a primary source', 'early': 'Dated before 1900' };
+bars('signals', 'Signals', Object.keys(SIG).map(k => ({ name: SIG[k], value: S.people.signals[k] || 0, group: k === 'cited-as-scholarship' ? 'Scholar or primary-source signals' : k === 'history-phd' ? 'Historian signals' : undefined })), S.people.total);
+{ const d = S.people.duplicates, m = el('div', 'meter');
+  m.innerHTML = `<div class="top"><span>Possible duplicate keys</span><b>up to ${fmt(d.surplus_upper_bound)}</b></div>
+    <div class="track"><div class="fill" style="width:${(100 * d.surplus_upper_bound / S.people.total).toFixed(2)}%"></div></div>
+    <div class="sub">${pct(d.surplus_upper_bound, S.people.total)} of person keys: ${fmt(d.clusters)} same-name clusters with no conflicting identifier. An upper bound: real namesakes fall in these clusters too.</div>`;
+  bindTip(m, `<b>Possible duplicate keys</b><br>up to ${fmt(d.surplus_upper_bound)} surplus keys in ${fmt(d.clusters)} clusters`);
+  document.getElementById('dupnote').append(m);
+  tableRows.push(['People by role', 'Possible duplicate keys (upper bound)', d.surplus_upper_bound]); }
+
+bars('works', 'Works', Object.entries(S.works.by_kind).map(([name, value]) => ({ name, value })), S.works.total);
+
+const EDGE = {
+  'Authorship': [['AUTHORED', 'person wrote a work'], ['EDITED', 'person edited a volume']],
+  'Citation': [['CITES', 'dissertation cites a keyed work']],
+  'Reviewing': [['REVIEWS', 'review discusses a book'], ['REVIEWED', 'reviewer reviewed an author (both keyed)']],
+  'Training': [['AWARDED_BY', 'thesis awarded by an institution'], ['SUPERVISED', 'person supervised a thesis'], ['ADVISED', 'supervisor to student (derived)']],
+  'Collaboration': [['COAUTHORED', 'pairs who wrote together (derived, with counts)'], ['COEDITED', 'pairs who edited together (derived)'], ['EDITOR_OF', 'volume editor to contributor (derived)']],
+  'Works to works': [['PART_OF', 'chapter in a volume'], ['PUBLISHED_AS', 'thesis published as a book']],
+};
+const edgeItems = [];
+for (const [group, list] of Object.entries(EDGE))
+  for (const [k, sub] of list.sort((a, b) => E[b[0]] - E[a[0]])) edgeItems.push({ name: k, sub, value: E[k], group, tip: sub });
+bars('edges', 'Relations', edgeItems, edgeTotal);
+
+const P = S.people, R = S.reviews, C = S.corpus;
+meter('People with a public identifier', P.with_public_id, P.total, 'LC, GND, VIAF, ISNI, Wikidata, ORCID or IdRef');
+meter('People established on two or more sources', P.established, P.total, `${fmt(P.recorded)} rest on one source`);
+meter('Book reviews whose reviewer is keyed', R.with_keyed_reviewer, R.total, 'the rest carry the reviewer as a printed name');
+meter('Corpus citations linked to keyed works', E.CITES, C.corpus_citations, 'thesis-to-work citations');
+meter('Distinct cited works keyed in the graph', C.keyed_cited_works, C.distinct_cited_works, 'many are archival sources, newspapers and other primary material');
+
+bars('ids', 'Public identifiers', Object.entries(P.ids).map(([name, value]) => ({ name, value })), P.total);
+
+const by = Object.entries(C.by_country), named = { US: 'United States', GB: 'United Kingdom', BR: 'Brazil', CA: 'Canada', FR: 'France', MX: 'Mexico', SE: 'Sweden', DE: 'Germany' };
+const shown = by.filter(([c]) => named[c]), rest = by.filter(([c]) => !named[c]);
+bars('countries', 'Dissertations by country', [...shown.map(([c, v]) => ({ name: named[c], value: v })),
+  { name: 'Other', sub: `${rest.length} countries and unknown`, value: rest.reduce((a, [, v]) => a + v, 0) }], C.in_analysis);
+
+bars('funnel', 'Bibliographies', [
+  { name: 'Bibliography entries extracted', value: C.bibliography_entries, tip: `from ${fmt(C.parsed)} theses` },
+  { name: 'Citations after cleaning', sub: 'thesis-to-work, in the analysis', value: C.corpus_citations },
+  { name: 'Distinct works cited', value: C.distinct_cited_works },
+  { name: 'Citations to keyed works', sub: 'CITES edges in the graph', value: E.CITES },
+  { name: 'Keyed works cited', value: C.keyed_cited_works },
+]);
+
+const tbl = el('table'); tbl.innerHTML = '<thead><tr><th>Section</th><th>Item</th><th>Count</th></tr></thead>';
+const tb = el('tbody');
+for (const [s, i, v] of tableRows) tb.append(el('tr', null, `<td>${s}</td><td>${i}</td><td class="n">${typeof v === 'number' ? fmt(v) : v}</td>`));
+tbl.append(tb); document.getElementById('table').append(tbl);
+document.getElementById('footer').textContent = `Sources: the key log (data/identifiers) built by scripts/build_graph.py, and the dissertation corpus tables (counts only). Derived relations (COAUTHORED, COEDITED, EDITOR_OF, REVIEWED, ADVISED) are computed at build time from the keyed ones. Built ${S.built}.`;
+document.getElementById('theme').onclick = () => {
+  const r = document.documentElement, dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = dark ? 'light' : 'dark';
+};
+</script>
+</body>
+</html>

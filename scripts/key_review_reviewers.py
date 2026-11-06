@@ -9,7 +9,8 @@ review's journal (the works-in-this-journal rule of that review):
   initial-only keys, no initial-only printed names) and compatible further names (namesake_check_groups.given_names_agree);
 - the key has published in the same journal (articles or reviews), within ten years of the review: its works there
   come from the key's own identifiers (Crossref's works under the key's ORCID, the key's ORCID record, the JSTOR
-  record of the key's keyed works, and review works already credited to the key: a rerun extends a journal's
+  record of the key's keyed works, Wikidata's items naming the key's QID as author (P50, with P1433), OpenAlex's
+  works under the key's ORCID (algorithmic author profiles; such links name `openalex` in their basis), and review works already credited to the key: a rerun extends a journal's
   linked reviewer to their other reviews there, each chain starting from a non-name fact);
 - no other key with an agreeing name has any work in that journal.
 The reviewer then gets an `authored` claim on the review work (`journal-reviewer:<review work>:<key>`, recorded);
@@ -34,6 +35,8 @@ GRAPH = ROOT / 'build/graph'
 CROSSREF_ORCID = Path('/mnt/e/crossref-orcid')
 ORCID_RECORDS = ROOT / 'data/orcid-2026-09-21/records'
 JSTOR = Path('/mnt/e/jstor-index.parquet')
+WIKIDATA_VENUES = Path('/mnt/e/wikidata-venues-2026-11-06.json')   # scripts/harvest_wikidata_venues.py
+OPENALEX_VENUES = Path('/mnt/e/openalex-venues-2026-11-06.json')   # scripts/harvest_openalex_venues.py
 
 
 def fold(s):
@@ -50,6 +53,57 @@ def family(label):
     return fold(label.split(',')[0] if ',' in label else (label.split() or [''])[-1]).strip()
 
 
+def journal_profiles(db, people):
+    """key -> journal key -> {year: {sources}}: the journals each key has published in, from its own identifiers.
+
+    Sources: crossref-orcid, orcid-record, jstor, wikidata-p50, openalex (algorithmic author profiles), credited-review."""
+    journals = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))
+
+    def add(k, j, y, src):
+        if j and y:
+            journals[k][journal_key(j)][int(y)].add(src)
+    orcid_key = {o: k for k, _, o in people if o}
+    for f in glob.glob(str(CROSSREF_ORCID / '*.json')):
+        k = orcid_key.get(Path(f).stem)
+        if not k:
+            continue
+        for it in json.loads(Path(f).read_text()):
+            add(k, ((it.get('container-title') or ['']) or [''])[0],
+                ((it.get('issued') or {}).get('date-parts') or [[None]])[0][0], 'crossref-orcid')
+    for o, k in orcid_key.items():
+        p = ORCID_RECORDS / f'{o}.json'
+        if not p.exists():
+            continue
+        for g in ((json.loads(p.read_text()).get('activities-summary') or {}).get('works') or {}).get('group') or []:
+            s = g['work-summary'][0]
+            y = (((s.get('publication-date') or {}) or {}).get('year') or {}).get('value')
+            if (y or '').isdigit():
+                add(k, ((s.get('journal-title') or {}) or {}).get('value'), y, 'orcid-record')
+    for k, container, year in db.execute(f"""
+            SELECT a."from", j.container, j.year FROM '{GRAPH}/authored.parquet' a
+            JOIN (SELECT key, unnest(anchors) AS an FROM '{GRAPH}/work.parquet') w ON w.key = a."to"
+            JOIN '{JSTOR}' j ON 'doi:' || j.doi = w.an
+            WHERE w.an LIKE 'doi:10.2307/%' AND j.kind = 'article'""").fetchall():
+        add(k, container, year, 'jstor')
+    # Wikidata items naming the key's QID as author (P50), with their venue (P1433) and date
+    if WIKIDATA_VENUES.exists():
+        venues = json.loads(WIKIDATA_VENUES.read_text())
+        for k, w in db.execute(f"SELECT key, wd FROM '{GRAPH}/person.parquet' WHERE wd IS NOT NULL").fetchall():
+            for j, y in venues.get(w, ()):
+                add(k, j, y, 'wikidata-p50')
+    # OpenAlex's works under the key's ORCID (algorithmic author profiles: the basis names this source)
+    if OPENALEX_VENUES.exists():
+        venues = json.loads(OPENALEX_VENUES.read_text())
+        for o, k in orcid_key.items():
+            for j, y in venues.get(o, ()):
+                add(k, j, y, 'openalex')
+    # reviews already credited to the key (by ORCID, or by this rule on an earlier run) show it publishes there too
+    for k, j, y in db.execute(f"""SELECT a."from", w.journal, w.year FROM '{GRAPH}/authored.parquet' a
+            JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE w.journal IS NOT NULL AND w.year IS NOT NULL""").fetchall():
+        add(k, j, y, 'credited-review')
+    return journals
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, required=True)
@@ -63,39 +117,7 @@ def main():
         g = given_words(label or '')
         if g and len(g[0]) > 1:                     # no initial-only keys
             by_family[family(label)].append((k, label))
-    # the journals each key has published in, from its own identifiers
-    journals = defaultdict(lambda: defaultdict(set))   # key -> journal -> {years}
-    orcid_key = {o: k for k, _, o in people if o}
-    for f in glob.glob(str(CROSSREF_ORCID / '*.json')):
-        k = orcid_key.get(Path(f).stem)
-        if not k:
-            continue
-        for it in json.loads(Path(f).read_text()):
-            j = ((it.get('container-title') or ['']) or [''])[0]
-            y = ((it.get('issued') or {}).get('date-parts') or [[None]])[0][0]
-            if j and y:
-                journals[k][journal_key(j)].add(y)
-    for o, k in orcid_key.items():
-        p = ORCID_RECORDS / f'{o}.json'
-        if not p.exists():
-            continue
-        for g in ((json.loads(p.read_text()).get('activities-summary') or {}).get('works') or {}).get('group') or []:
-            s = g['work-summary'][0]
-            j = ((s.get('journal-title') or {}) or {}).get('value')
-            y = (((s.get('publication-date') or {}) or {}).get('year') or {}).get('value')
-            if j and (y or '').isdigit():
-                journals[k][journal_key(j)].add(int(y))
-    for k, container, year in db.execute(f"""
-            SELECT a."from", j.container, j.year FROM '{GRAPH}/authored.parquet' a
-            JOIN (SELECT key, unnest(anchors) AS an FROM '{GRAPH}/work.parquet') w ON w.key = a."to"
-            JOIN '{JSTOR}' j ON 'doi:' || j.doi = w.an
-            WHERE w.an LIKE 'doi:10.2307/%' AND j.kind = 'article'""").fetchall():
-        if container and year:
-            journals[k][journal_key(container)].add(year)
-    # reviews already credited to the key (by ORCID, or by this rule on an earlier run) show it publishes there too
-    for k, j, y in db.execute(f"""SELECT a."from", w.journal, w.year FROM '{GRAPH}/authored.parquet' a
-            JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE w.journal IS NOT NULL AND w.year IS NOT NULL""").fetchall():
-        journals[k][journal_key(j)].add(y)
+    journals = journal_profiles(db, people)
     reviews = db.execute(f"""SELECT key, reviewer_names, journal, year FROM '{GRAPH}/work.parquet'
                              WHERE len(reviewer_names) > 0 AND journal IS NOT NULL""").fetchall()
     report = Counter(reviews=len(reviews), keys_with_journals=len(journals))
@@ -125,14 +147,18 @@ def main():
                 report['claim_exists'] += 1
                 continue
             report['linked'] += 1
+            years = journals[k][jk]
+            near_years = sorted(y for y in years if not year or abs(y - year) <= args.window)
+            srcs = sorted({src for y in near_years for src in years[y]})
+            report['by:' + '+'.join(srcs)] += 1
             ops.append(dict(event='mint', key=f'new:{len(ops)}', type='claim', label='', resolution='recorded',
                             anchors=[anchor], relation=dict(subject=k, predicate='authored', object=wk),
                             basis=f"review in {journal} ({year}) printed as by {n}; the key's own works include "
-                                  f"{journal} ({', '.join(str(y) for y in sorted(journals[k][jk])[:3])}) and no other "
-                                  f"key of that name has work there"))
+                                  f"{journal} ({', '.join(str(y) for y in near_years[:3])}; from {', '.join(srcs)}) and no "
+                                  f"other key of that name has work there"))
             if len(sample) < 60:
                 sample.append(dict(review=wk, journal=journal, year=year, printed=n, key=k,
-                                   label=dict(cands)[k], journal_years=sorted(journals[k][jk])[:5]))
+                                   label=dict(cands)[k], journal_years=near_years[:5], sources=srcs))
     materialise(state, dict(basis='dry run', ops=ops), 'dry-run', 'dry-run')
     args.out.mkdir(parents=True, exist_ok=True)
     (args.out / 'proposal.json').write_text(json.dumps(dict(
