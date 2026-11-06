@@ -114,14 +114,18 @@ def main():
             people.append(dict(base, **{s: first(anchors, s) for s in SCHEMES if s != 'ror'}))
         elif v['type'] == 'work':
             works.append(dict(base, kind=work_kind(anchors), lccn=first(anchors, 'lccn'),
-                              year=year_of(members, 'year:') or year_of(members, 'lc-first-year:')))
+                              year=year_of(members, 'year:') or year_of(members, 'lc-first-year:'),
+                              # a review's reviewers as printed (key_jstor_reviews: no name-only person keys)
+                              reviewer_names=sorted(m.split(':', 1)[1] for m in members if m.startswith('reviewer-name:')),
+                              journal=next((m.split(':', 1)[1] for m in members if m.startswith('journal:')), None)))
         elif v['type'] == 'institution':
             insts.append(dict(base, ror=first(anchors, 'ror')))
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
                                                         [(x, s) for x in SCHEMES if x != 'ror']))
     report['Work'] = write('work', works, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L),
-                                                    ('kind', s), ('lccn', s), ('year', pa.int32())]))
+                                                    ('kind', s), ('lccn', s), ('year', pa.int32()),
+                                                    ('reviewer_names', L), ('journal', s)]))
     report['Institution'] = write('institution', insts, pa.schema([('key', s), ('label', s), ('resolution', s),
                                                                   ('anchors', L), ('ror', s)]))
     types = {k: v['type'] for k, v in live.items()}
@@ -221,7 +225,7 @@ def load_db(report):
     ids = 'anchors STRING[], lcnaf STRING, wd STRING, orcid STRING, gnd STRING, viaf STRING, isni STRING, idref STRING'
     conn.execute(f'CREATE NODE TABLE Person(key STRING, label STRING, resolution STRING, {ids}, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Work(key STRING, label STRING, resolution STRING, anchors STRING[], kind STRING, '
-                 'lccn STRING, year INT32, PRIMARY KEY (key))')
+                 'lccn STRING, year INT32, reviewer_names STRING[], journal STRING, PRIMARY KEY (key))')
     conn.execute('CREATE NODE TABLE Institution(key STRING, label STRING, resolution STRING, anchors STRING[], '
                  'ror STRING, PRIMARY KEY (key))')
     for name in ('AUTHORED', 'EDITED', 'SUPERVISED'):
