@@ -1,0 +1,139 @@
+[
+ {
+  "case_index": 0,
+  "decision": "same person (Wolfgang König, 1949-2025, TU Berlin historian of technology): detach the undifferentiated GND and the pooled LC record, then merge p-107313 into p-105739",
+  "actions": [
+   {"op": "detach", "key": "p-107313", "anchor": "gnd:1055777202"},
+   {"op": "detach", "key": "p-105739", "anchor": "lcnaf:n78097402"},
+   {"op": "merge", "key": "p-107313", "into": "p-105739"}
+  ],
+  "evidence": "Wikidata Q2590339 (German historian of technology, b. 1949-01-10, d. 2025-01-18) carries LC n81098445, GND 120799871, VIAF 94799286, ISNI 0000000109269813. GND 120799871 (key a) is that historian (TU Berlin, Technikhistoriker), and DNB credits to it both of key a's works (Universitätsreform in Bayern 1977; Der Gelehrte und der Manager 2014) and key b's Künstler und Strichezieher, Geschichte der Konsumgesellschaft, Bahnen und Berge, Kultur und Technik, Wilhelm II. und die Moderne. LC n81098445 (König, Wolfgang, 1949-) cites Technik, Ingenieure und Gesellschaft 1981 and Das Kondom 2016. GND 1055777202 on key b is an undifferentiated name record ('Die verschiedenen Personen dieses Namens sind nicht voneinander getrennt': Göttingen economist, Frankfurt business informatics, agricultural engineer, etc.). LC n78097402 on key a began with the 1977 book but now also cites a WIAS Berlin mathematician's Mathematical results in quantum mechanics (2015) and lists mathematical physics/quantum theory, so it pools two people; the merged key keeps the clean LC n81098445. Follow-up, no op given: key b's Gewerbeansiedlung und Facharbeitermangel (1983), Technikbewertung Wärmepumpe (1985) and Carl Sigmund Luber (2006) are not in DNB's list for the historian and look like works by people of the same name that came in with the undifferentiated GND; review them before or after the merge.",
+  "source_urls": [
+   "https://www.wikidata.org/wiki/Q2590339",
+   "https://lobid.org/gnd/120799871",
+   "https://lobid.org/gnd/1055777202",
+   "https://id.loc.gov/authorities/names/n81098445.html",
+   "https://id.loc.gov/authorities/names/n78097402.html",
+   "https://lobid.org/resources/search?q=contribution.agent.id:%22https://d-nb.info/gnd/120799871%22"
+  ]
+ },
+ {
+  "case_index": 1,
+  "decision": "same person (Emma Anderson, b. 1970, University of Ottawa historian of religion): merge p-122814 into p-20139",
+  "actions": [
+   {"op": "merge", "key": "p-122814", "into": "p-20139"}
+  ],
+  "evidence": "Wikidata Q59654475 (Emma Anderson, b. 1970-02-09) carries both key a's LC n2007013629/GND/ISNI/VIAF and key b's ORCID 0000-0002-8390-4683. LC n2007013629 cites The betrayal of faith (2007; assistant professor of religious studies, University of Ottawa; Harvard PhD) and The death and afterlife of the North American martyrs (2013). Crossref lists the 2026 Journal of Jesuit Studies article on the Mohawk Valley martyr sites under this ORCID with the affiliation Classics and Religious Studies, University of Ottawa, the same subject as her 2013 book. Follow-up: w-1484797 (Dianion diagnostics in DESIREE, Rev. Sci. Instrum. 2018) is not hers. In Crossref the ORCID sits on author K. C. Chartkunchand (Stockholm physics), a publisher tagging error, so that work should be withdrawn from the merged key.",
+  "source_urls": [
+   "https://www.wikidata.org/wiki/Q59654475",
+   "https://id.loc.gov/authorities/names/n2007013629.html",
+   "https://api.crossref.org/works?filter=orcid:0000-0002-8390-4683",
+   "https://doi.org/10.1163/22141332-12340023-01",
+   "https://doi.org/10.1063/1.5010077"
+  ]
+ },
+ {
+  "case_index": 2,
+  "decision": "same person (Nicolas Berg, b. 1967, Dubnow Institute Leipzig): merge p-114433 into p-16536",
+  "actions": [
+   {"op": "merge", "key": "p-114433", "into": "p-16536"}
+  ],
+  "evidence": "LC n97028442 (key a, matching Wikidata Q23879188) is Nicolas Berg, b. 1967, senior researcher at the Simon-Dubnow-Institut für Jüdische Geschichte und Kultur, Leipzig, working on German-Jewish history and historiography. Key b's only work, 'Why Was Goethe the Patron Saint of German Jews? ... George L. Mosse' (Journal of Contemporary History 2021), carries ORCID 0000-0002-5058-4775 with the affiliation Leibniz Institute for Jewish History and Culture - Simon Dubnow, Leipzig University; OpenAlex gives the ORCID the Dubnow/Leipzig affiliations for 2017-2024. Caveat: the ORCID record also lists a 2025 MDPI Healthcare geriatrics paper by a Nicolas Berg at University Hospital Liège, probably a publisher-entered wrong ORCID. Not in the graph. Keep the ORCID but don't credit that paper.",
+  "source_urls": [
+   "https://id.loc.gov/authorities/names/n97028442.html",
+   "https://www.wikidata.org/wiki/Q23879188",
+   "https://pub.orcid.org/v3.0/0000-0002-5058-4775/record",
+   "https://doi.org/10.1177/00220094211018500",
+   "https://api.openalex.org/authors/orcid:0000-0002-5058-4775"
+  ]
+ },
+ {
+  "case_index": 3,
+  "decision": "same person (Peter Robert Campbell, b. 1955, historian of Old Regime France, Sussex then Boğaziçi): merge p-25119 into p-1797",
+  "actions": [
+   {"op": "merge", "key": "p-25119", "into": "p-1797"}
+  ],
+  "evidence": "LC n87887897 (key a; Wikidata Q112383255) = Campbell, Peter Robert, 1955- (The ancien régime in France 1988; lecturer in history, University of Sussex). His Boğaziçi University history department CV gives Peter Robert Campbell, Professor of European History, Sussex 1990-2010, author of Power and Politics in Old Regime France. ORCID 0000-0003-2947-1386 (key b) is Peter R. Campbell at Boğaziçi; OpenAlex lists under it 'Malesherbes and the Crisis of 1787-8' (French History 2021), 'Perceptions of conspiracy on the eve of the French Revolution' (MUP) and the 2024 EHQ article on printing in Rodez under the ancien régime. Not the Queen's historian of the Canadian left split off earlier.",
+  "source_urls": [
+   "https://id.loc.gov/authorities/names/n87887897.html",
+   "https://www.wikidata.org/wiki/Q112383255",
+   "https://hist.bogazici.edu.tr/node/325",
+   "https://hist.bogazici.edu.tr/sites/hist.boun.edu.tr/files/petercampbell_18.04.2023_cv.pdf",
+   "https://api.openalex.org/works?filter=author.orcid:0000-0003-2947-1386",
+   "https://doi.org/10.1177/02656914241236652"
+  ]
+ },
+ {
+  "case_index": 4,
+  "decision": "same person (Jane Martin, b. 1959, historian of education, University of Birmingham): merge p-142367 into p-20655",
+  "actions": [
+   {"op": "merge", "key": "p-142367", "into": "p-20655"}
+  ],
+  "evidence": "Wikidata Q141555126 (Jane Martin, b. 1959-03-05, Emeritus Professor in the School of Education, University of Birmingham) carries key a's LC n97124811 (Martin, Jane, 1959-; Women and the politics of schooling in Victorian and Edwardian England). ORCID 0000-0002-8886-9952 (key b) is Jane Martin, employed at the University of Birmingham, and its works are all history of education in England (comprehensive education, Caroline Benn and Labour policy intellectuals, historiography of women's higher education). These continue key a's books on women, education and socialist politics (Making socialists, 2010).",
+  "source_urls": [
+   "https://www.wikidata.org/wiki/Q141555126",
+   "https://id.loc.gov/authorities/names/n97124811.html",
+   "https://pub.orcid.org/v3.0/0000-0002-8886-9952/record"
+  ]
+ },
+ {
+  "case_index": 5,
+  "decision": "detach all five anchors (none is the 1912-1974 historian's); keep p-120438 as Georg Eckert 1912-1974, whose works are the majority. No key in the graph holds his identifiers.",
+  "actions": [
+   {"op": "detach", "key": "p-120438", "anchor": "lcnaf:nr2004024796"},
+   {"op": "detach", "key": "p-120438", "anchor": "wd:Q129825977"},
+   {"op": "detach", "key": "p-120438", "anchor": "gnd:142406937"},
+   {"op": "detach", "key": "p-120438", "anchor": "viaf:287677001"},
+   {"op": "detach", "key": "p-120438", "anchor": "isni:0000000434948537"}
+  ],
+  "evidence": "LC nr2004024796 = the Vienna corporate-law scholar (WU Wien; Internationales Gesellschaftsrecht 2010). Wikidata Q129825977 = Georg Eckert, Professor of competition law at WU Wien (GND 138232474, Jurist). GND 142406937 is a third person, an ophthalmologist and investment adviser (Augenarzt; DNB work Die Privatanlegerbibel 2017; Wikidata Q129825650), which GND wrongly links to the lawyer's LC. Wikidata gives VIAF 287677001 and ISNI 0000000434948537 to the younger historian Georg Eckert (b. 1983, Q95349334, GND 138077509, LC no2013116357), but VIAF also clusters them with the eye doctor's GND and the lawyer's LC. Either way they are not the 1912-1974 historian's. The 1912-1974 historian is Wikidata Q1504098 / GND 120241072 / LC n85148834 / VIAF 60517872 / ISNI 0000000110652692: these anchors could be attached to p-120438 (no op for that), and no current key holds them. Works: 6 are clearly his (Braunschweig labour movement 1961; Hundert Jahre deutsche Sozialdemokratie 1963; 100 Jahre Braunschweiger Sozialdemokratie 1965; the two Briefwechsel editions 1963/1973; Über Politik und Philosophie 1968). The Trimborn Festschrift (1961) and Index de références (1962) are plausibly his (he trained in ethnology; Schulbuch work). w-411002 (Michael Ramsay 2009), w-1156528 (Zwischen Macht und Ohnmacht 2013) and w-411001 (Julikrise 1914, 2014) belong to the younger historian: DNB credits all three to GND 138077509. w-410999 (Internationales Gesellschaftsrecht 2010) is the lawyer's (DNB GND 138232474). w-411000 (Isenheimer Altar 1973) is unattributed. The review-credit key p-170275 (H-Soz-u-Kult 2012 review of a book on Alsatian Lutherans) is probably the younger historian, but the review gives no affiliation, so nothing is credited to it.",
+  "source_urls": [
+   "https://id.loc.gov/authorities/names/nr2004024796.html",
+   "https://www.wikidata.org/wiki/Q129825977",
+   "https://lobid.org/gnd/142406937",
+   "https://lobid.org/gnd/138232474",
+   "https://www.wikidata.org/wiki/Q95349334",
+   "https://lobid.org/gnd/138077509",
+   "https://www.wikidata.org/wiki/Q1504098",
+   "https://lobid.org/gnd/120241072",
+   "https://www.h-net.org/reviews/showrev.php?id=35660"
+  ]
+ },
+ {
+  "case_index": 6,
+  "decision": "keep both anchors (no actions): the ORCID most likely belongs to Robert Hogg, a University of Queensland historian of gender and sexuality, and the JMIR papers carry it in error",
+  "actions": [],
+  "evidence": "The public ORCID record 0000-0002-7481-4010 gives the name 'Robert Hogg' and shows no works, employment or biography. It was created 2018-01-23 by member referral, and the owner has claimed it. In Crossref the only item that also gives an affiliation is the Journal of Religious History review (online 2018-03-12) of de Groot and Morgan, Sex, Gender and the Sacred, by 'Robert Hogg, University of Queensland'. That fits Robert Hogg, UQ lecturer in Australian Studies and historian of masculinity and sexuality (Men and Manliness on the Frontier: Queensland and British Columbia, Palgrave 2012, from his 2007 UQ thesis). The JMIR papers (2018-2021, Vancouver gay and bisexual men's health studies) name 'Robert S Hogg', the BC Centre for Excellence in HIV/AIDS epidemiologist, who already has his own ORCID 0000-0003-3463-5488. None of the JMIR ORCID assertions is authenticated, so they are publisher-entered errors. So the key's person is a historian, but the six JMIR works (w-1483711 to w-1483716) should be withdrawn from p-19156. Wikidata Q88294536 is a bot item built from this ORCID: it carries only the ORCID, and its label 'Robert S Hogg' copies the mis-tagged papers. It names the same ORCID holder, so it is not detached, but its label is unreliable. Not certain enough to detach anything. p-47762 (AHA PhD 'Hogg, Robert') was not examined.",
+  "source_urls": [
+   "https://pub.orcid.org/v3.0/0000-0002-7481-4010/record",
+   "https://api.crossref.org/works?filter=orcid:0000-0002-7481-4010",
+   "https://doi.org/10.1111/1467-9809.12504",
+   "https://www.wikidata.org/wiki/Q88294536",
+   "https://research.usq.edu.au/item/q21zw/men-and-manliness-on-the-frontier-queensland-and-british-columbia-in-the-mid-nineteenth-century-by-robert-hogg",
+   "https://uq.academia.edu/RobertHogg"
+  ]
+ },
+ {
+  "case_index": 7,
+  "decision": "historian's key is p-179723 (Laurence Cole, b. 1968, Habsburg/Tyrol historian); all five withdrawn claims are already credited to it in the current build, so no new actions",
+  "actions": [],
+  "evidence": "p-179723's review credit is H-Net review 5176 of Schober, Von der Revolution zur Konstitution: Tirol in der Ära des Neoabsolutismus (1849/51-1860). LC no96000493 (Cole, Laurence, 1968-) cites Andreas Hofer (1994) and Different paths to the nation (2007), so the Tyrol/Habsburg subject matches him. build/graph already has p-179723 authored w-429426 (c-1782994), w-436950 (c-1782995), w-440112 (c-1782998) and edited w-429426 (c-1782996), w-436950 (c-1782997). These are exactly the five claims withdrawn from p-117966 (c-460847, c-461348, c-1313497, c-1313499, c-466424). Crediting again would duplicate them. Optional: w-440112 (Glanz-Gewalt-Gehorsam, 'eds') is an edited volume and could carry an edited claim rather than authored. p-179723 could also take lcnaf:no96000493 (no attach op given).",
+  "source_urls": [
+   "https://id.loc.gov/authorities/names/no96000493.html",
+   "https://id.loc.gov/authorities/names/no2009009145.html",
+   "https://www.h-net.org/reviews/showrev.php?id=5176"
+  ]
+ },
+ {
+  "case_index": 8,
+  "decision": "credit the 1953 Gorman biography (w-401539) to p-217234, John R. Lambert Jr., Princeton History PhD 1947",
+  "actions": [
+   {"op": "credit", "key": "p-217234", "work": "w-401539", "role": "authored"}
+  ],
+  "evidence": "p-217234 holds aha-phd:34807: Lambert, John, Princeton Univ. Dept. of History, completed 1947, 'Arthur Pue Gorman: Practical Politician' (w-27851). w-401539 'Arthur Pue Gorman' (LCCN 53013452) is John R. Lambert [Jr.], Louisiana State University Press 1953, Southern Biography Series. It is the published biography of the same Maryland senator, the thesis become a book, and it currently has no claim in the build. Not the sociologist John R. Lambert of p-53199 (LC no2008070846 cites only Crime, police, and race relations, 1970, Birmingham).",
+  "source_urls": [
+   "https://openlibrary.org/search.json?q=Arthur+Pue+Gorman",
+   "https://id.loc.gov/authorities/names/no2008070846.html"
+  ]
+ }
+]
