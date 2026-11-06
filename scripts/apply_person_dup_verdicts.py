@@ -28,6 +28,9 @@ def main():
                     help="a `career` verdict merges only with a source_url, or when key b's own record carries the "
                          "affiliation (review credit with an institution, supervisor, CAPES, AHA or thesis record); "
                          "2026-11-05: some agents answered career from memory")
+    ap.add_argument('--check-credit-name', action='store_true',
+                    help="a pair carrying hsozkult_credits merges only when a credit's reviewer name has key b's family "
+                         "name (2026-11-05: some H-Net pages link several H-Soz-Kult reviews; the harvest took the wrong one)")
     ap.add_argument('--require-basis', nargs='*', default=None,
                     help="merge only `same` verdicts whose `basis` is one of these (2026-11-05: works career pid; "
                          "'topic', a shared name plus the reviewed book's subject, never merges)")
@@ -58,6 +61,21 @@ def main():
         report[v.get('verdict')] += 1
         if v.get('verdict') != 'same':
             continue
+        if args.check_credit_name and p.get('hsozkult_credits') and v.get('verdict') == 'same':
+            import unicodedata
+            fold = lambda x: unicodedata.normalize('NFKD', x or '').encode('ascii', 'ignore').decode().lower()
+            lab = p['b'].get('label') or ''
+            fam = fold(lab.split(',')[0] if ',' in lab else (lab.split() or [''])[-1])
+            mine = [c for c in p['hsozkult_credits'] if fam and fam in fold(c.get('credit', '').split(',')[0])]
+            if not mine:
+                report['credit_names_someone_else'] += 1
+                held.append(dict(pair=v.get('id'), basis='credit-name-mismatch', evidence=v.get('evidence', '')))
+                continue
+            # a bare city ('Berlin', 'München') names no institution: held (2026-11-05, H-Soz-Kult re-judge)
+            if not any(len(c.get('credit', '').split(',', 1)[-1].split()) >= 2 for c in mine if ',' in c.get('credit', '')):
+                report['credit_city_only'] += 1
+                held.append(dict(pair=v.get('id'), basis='credit-city-only', evidence=v.get('evidence', '')))
+                continue
         if args.career_needs_source and v.get('basis') == 'career' and not v.get('source_url'):
             b_anchors = p['b'].get('anchors', [])
             documented = any(a.startswith(('repo-advisor:', 'capes-person:', 'aha-phd:', 'aha:', 'diss-author:')) or
