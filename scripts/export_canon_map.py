@@ -20,7 +20,8 @@ with these additions:
 - ``nodes[].label``: the name with initials written out ('Thompson, E. P', 'Du Bois, W.e.b' become
   'Thompson, E. P.' and 'Du Bois, W. E. B.'); ``name`` stays as the graph keys it. When the person's key holds an
   LC authority whose given names disagree with ``name`` (one citation's form, sometimes a namesake's), the label is
-  the key's heading without dates.
+  the key's heading without dates. When two nodes resolve to one key, the most-cited keeps it and the other
+  carries ``same_person_as``.
 Each sub-graph (``SCOPES``) gets its own file, ``site/canon-map-<CC>.json``, from the page that
 ``historian_cocitation_network.py --country CC`` writes; ``scope`` and ``scopes`` let the site switch.
 The output hash, the source hash and the snapshot go into data/dissertation-layer/manifest.json under
@@ -108,6 +109,21 @@ def attach_keys(nodes, pairs=None):
             row = lives.get(found[0])
             if row and (life := life_years(row)):
                 n['life'] = life
+    # two graph names of one person (the corpus split 'Smith, Anthony D' and 'Smith, Anthony'; merged by works
+    # 2026-11-05) resolve to one key: the most-cited node keeps it, the other names it as `same_person_as`
+    by_key = defaultdict(list)
+    for n in nodes:
+        if n.get('key'):
+            by_key[n['key']].append(n)
+    for k, ns in by_key.items():
+        if len(ns) > 1:
+            top = max(ns, key=lambda n: n.get('cited') or 0)
+            for n in ns:
+                if n is not top:
+                    for f in ('key', 'key_status', 'lc', 'life'):
+                        n.pop(f, None)
+                    n['same_person_as'] = top['name']
+                    keyed -= 1
     return keyed
 
 

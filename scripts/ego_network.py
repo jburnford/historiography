@@ -3,7 +3,7 @@
 User, 2026-11-05: "show me my network of co-authors, people I've reviewed, students, supervisors etc everyone with an
 edge ... editors of books I've published in"; "the goal of course would be to build these networks for a lot of the
 historians in our graph". Reads build/graph (scripts/build_graph.py) and writes, for each key, a Markdown section:
-- co-authors (COAUTHORED: shared titles, first and last year);
+- co-authors (COAUTHORED: shared titles, first and last year) and co-editors (COEDITED);
 - reviewed their books: keyed reviewers (REVIEWED) and the reviewers of their books named on review works but not
   keyed (JSTOR/Crossref names as printed, key_jstor_reviews: no person keys by name);
 - they reviewed (REVIEWED from the key);
@@ -29,7 +29,7 @@ def main():
     ap.add_argument('--out', type=Path, required=True)
     args = ap.parse_args()
     db = duckdb.connect()
-    for t in ('person', 'work', 'coauthored', 'reviewed', 'reviews', 'authored', 'advised', 'editor_of'):
+    for t in ('person', 'work', 'coauthored', 'coedited', 'reviewed', 'reviews', 'authored', 'advised', 'editor_of'):
         db.execute(f"CREATE VIEW {t} AS SELECT * FROM '{G}/{t}.parquet'")
     label = lambda k: (db.execute('SELECT label FROM person WHERE key = ?', [k]).fetchone() or [k])[0]
     wlabel = lambda w: (db.execute('SELECT label, year FROM work WHERE key = ?', [w]).fetchone() or [w, None])
@@ -42,6 +42,11 @@ def main():
         out.append(f'**Co-authors** ({len(rows)})\n')
         out += [f'- {label(o)} — {t} shared title{"s" if t != 1 else ""} ({a}–{b})' if a != b else
                 f'- {label(o)} — {t} shared title{"s" if t != 1 else ""} ({a})' for o, t, a, b in rows] or ['- none in the graph']
+        ce = db.execute("""SELECT CASE WHEN "from" = ? THEN "to" ELSE "from" END, titles, first_year, last_year FROM coedited
+                             WHERE "from" = ? OR "to" = ? ORDER BY titles DESC, first_year""", [k, k, k]).fetchall()
+        out.append(f'\n**Co-editors** ({len(ce)})\n')
+        out += [f'- {label(o)} — {t} volume{"s" if t != 1 else ""} ({a}–{b})' if a != b else
+                f'- {label(o)} — {t} volume{"s" if t != 1 else ""} ({a})' for o, t, a, b in ce] or ['- none in the graph']
         rev = db.execute("""SELECT DISTINCT "from", book FROM reviewed WHERE "to" = ?""", [k]).fetchall()
         named = db.execute("""SELECT DISTINCT w.key, w.reviewer_names, w.journal, w.year, b.label FROM authored a JOIN reviews r ON r."to" = a."to"
                               JOIN work w ON w.key = r."from" JOIN work b ON b.key = a."to"

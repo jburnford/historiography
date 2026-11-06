@@ -70,7 +70,7 @@ class DissertationExportTests(unittest.TestCase):
             status = {r['key']: r['status'] for r in csv.DictReader(f)}
         for n in data['nodes']:
             self.assertLessEqual(set(n), {'name', 'label', 'qid', 'cited', 'lean', 'shares', 'top', 'reading',
-                                          'key', 'key_status', 'lc', 'life'})
+                                          'key', 'key_status', 'lc', 'life', 'same_person_as'})
             if 'lc' in n:
                 self.assertRegex(n['lc'], r'^n[a-z]?[0-9]+$')
             # life years only for the dead, so no living person's birth year is published (user 2026-10-30)

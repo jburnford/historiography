@@ -7,6 +7,7 @@ is untracked) and writes to build/graph/ (git-ignored):
 - relations from the log's claims: `AUTHORED`, `EDITED`, `SUPERVISED` (Person -> Work), `PUBLISHED_AS` and
   `REVIEWS` (Work -> Work: a review and the book it reviews), with the claim key and its resolution; claims
   whose endpoints do not resolve to one key each are left out and counted;
+- `COEDITED` (Person -> Person, once per pair), derived as COAUTHORED from shared EDITED volumes;
 - `PART_OF` (Work -> Work): a chapter and the volume it is in; `EDITOR_OF` (Person -> Person), derived: a
   volume's editor -> each author of a chapter in it (with the chapter and volume keys; user, 2026-11-05);
 - `REVIEWED` (Person -> Person), derived: the author of a review -> each author of the book it reviews, with
@@ -184,6 +185,23 @@ def main():
         rows.append({'from': a, 'to': b, 'works': len(ws), 'titles': len({title.get(w, w) for w in ws}),
                      'first_year': ys[0] if ys else None,
                      'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
+    # co-editors: people who edited the same volume, built as COAUTHORED is (user, 2026-11-05: editors in the network)
+    eds_of = defaultdict(set)
+    for r in rels['EDITED']:
+        eds_of[r['to']].add(r['from'])
+    co_ed = defaultdict(set)
+    for w, people_of in eds_of.items():
+        for a in people_of:
+            for b in people_of:
+                if a < b:
+                    co_ed[a, b].add(w)
+    erows = []
+    for (a, b), ws in sorted(co_ed.items()):
+        ys = sorted(y for w in ws if (y := year.get(w)))
+        erows.append({'from': a, 'to': b, 'works': len(ws), 'titles': len({title.get(w, w) for w in ws}),
+                      'first_year': ys[0] if ys else None, 'last_year': ys[-1] if ys else None, 'work_keys': sorted(ws)})
+    report['COEDITED'] = write('coedited', erows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
+                                                           ('first_year', pa.int32()), ('last_year', pa.int32()), ('work_keys', L)]))
     report['COAUTHORED'] = write('coauthored', rows, pa.schema([('from', s), ('to', s), ('works', pa.int32()), ('titles', pa.int32()),
                                                                 ('first_year', pa.int32()), ('last_year', pa.int32()),
                                                                 ('work_keys', L)]))
@@ -236,6 +254,8 @@ def load_db(report):
     conn.execute('CREATE REL TABLE EDITOR_OF(FROM Person TO Person, chapter STRING, volume STRING)')
     conn.execute('CREATE REL TABLE REVIEWED(FROM Person TO Person, review STRING, book STRING)')
     conn.execute('CREATE REL TABLE ADVISED(FROM Person TO Person, claim STRING, thesis STRING)')
+    conn.execute('CREATE REL TABLE COEDITED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
+                 'work_keys STRING[])')
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
@@ -243,7 +263,7 @@ def load_db(report):
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
-                        ('COAUTHORED', 'coauthored'),
+                        ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
                         ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
