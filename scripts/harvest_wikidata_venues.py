@@ -60,9 +60,11 @@ def main():
                 continue
             q = b['p']['value'].rsplit('/', 1)[-1]
             done[q].append([b['vl']['value'], int(float(b['y']['value']))])
-        args.out.write_text(json.dumps(done, ensure_ascii=False))
+        tmp = args.out.with_suffix('.tmp')       # write then rename: a dropped drive cannot leave half a file
+        tmp.write_text(json.dumps(done, ensure_ascii=False))
+        tmp.replace(args.out)
         print(f'{i + len(batch)}/{len(todo)} rows {len(rows)}', flush=True)
-        time.sleep(10)
+        time.sleep(20)
     print(json.dumps(dict(qids=len(done), with_venues=sum(1 for v in done.values() if v),
                           pairs=sum(len(v) for v in done.values()))))
 

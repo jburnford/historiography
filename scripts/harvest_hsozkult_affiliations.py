@@ -18,7 +18,9 @@ import html
 import json
 import re
 import time
+import urllib.error
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor
 import urllib.request
 from pathlib import Path
 
@@ -30,60 +32,81 @@ CREDIT = re.compile(r'(?:Rezensiert für|Rezensiert fuer|Reviewed for|Bericht vo
 
 
 def get(url):
-    for wait in (0, 5, 30):
+    """(text, final url); (None, None) when the archive has no copy (404) or keeps failing."""
+    for wait in (0, 30, 120, 600):           # Wayback refuses connections for minutes when pushed
         time.sleep(wait)
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=60) as r:
-                return r.read().decode('utf-8', 'replace')
+                return r.read().decode('utf-8', 'replace'), r.geturl()
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return None, None
         except Exception:
             pass
-    return None
+    return None, None
 
 
-def hsk_url(hnet_id):
+def hsk_urls(hnet_id):
+    """The review's hsozkult.de address and, when the H-Net page gives it, the older hu-berlin.de address
+    (reviews from before about 2012 were archived only there)."""
     p = PAGES / f'{hnet_id}.html.gz'
     if not p.exists():
-        return None
+        return []
     t = gzip.open(p, 'rt', errors='replace').read()
+    urls = []
     m = NEW.search(t)
     if m:
-        return f'hsozkult.de/{m.group(1)}/id/{m.group(2)}'
+        urls.append(f'hsozkult.de/{m.group(1)}/id/{m.group(2)}')
     m = OLD.search(t)
     if m:
         kind = 'publicationreview/id/rezbuecher' if m.group(1) == 'rezensionen' else 'conferencereport/id/tagungsberichte'
-        return f'hsozkult.de/{kind}-{m.group(2)}'
-    return None
+        if not urls:
+            urls.append(f'hsozkult.de/{kind}-{m.group(2)}')
+        urls.append(m.group(0))
+    return urls
+
+
+def one(i):
+    urls = hsk_urls(i)
+    rec = dict(url=urls[0] if urls else None, snapshot=None)
+    for url in urls:
+        # one request per address: the Wayback raw-content form redirects to the nearest snapshot
+        page, final = get('https://web.archive.org/web/2026id_/http://' + url)
+        time.sleep(2)
+        if page:
+            rec['snapshot'] = final
+            text = html.unescape(re.sub(r'<[^>]+>', '\n', page))
+            text = re.sub(r'[ \t]+', ' ', text)
+            m = CREDIT.search(re.sub(r'\n\s*', '  ', text))
+            rec['credit'] = m.group(1).strip(' ,|') if m else None
+            if rec['credit']:
+                break
+    return i, rec
+
+
+def save(path, done):
+    tmp = path.with_suffix('.tmp')
+    tmp.write_text(json.dumps(done, ensure_ascii=False, indent=0))
+    tmp.replace(path)
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--ids', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
+    ap.add_argument('--workers', type=int, default=1)
     args = ap.parse_args()
     ids = sorted(set(json.loads(args.ids.read_text())))
     done = json.loads(args.out.read_text()) if args.out.exists() else {}
-    for n, i in enumerate(ids):
-        if i in done:
-            continue
-        url = hsk_url(i)
-        rec = dict(url=url)
-        if url:
-            avail = get('https://archive.org/wayback/available?url=' + urllib.parse.quote(url))
-            snap = ((json.loads(avail).get('archived_snapshots') or {}).get('closest') or {}).get('url') if avail else None
-            rec['snapshot'] = snap
-            if snap:
-                page = get(snap)
-                if page:
-                    text = html.unescape(re.sub(r'<[^>]+>', '\n', page))
-                    text = re.sub(r'[ \t]+', ' ', text)
-                    m = CREDIT.search(re.sub(r'\n\s*', '  ', text))
-                    rec['credit'] = m.group(1).strip(' ,|') if m else None
-            time.sleep(1)
-        done[i] = rec
-        if n % 50 == 0:
-            args.out.write_text(json.dumps(done, ensure_ascii=False, indent=0))
-            print(f'{n}/{len(ids)}', flush=True)
-    args.out.write_text(json.dumps(done, ensure_ascii=False, indent=0))
+    # misses from the faster 2026-11-06 run (new address only, connections refused) are tried once more
+    todo = [i for i in ids if i not in done or (done[i].get('url') and not done[i].get('snapshot') and not done[i].get('retried'))]
+    with ThreadPoolExecutor(args.workers) as pool:
+        for n, (i, rec) in enumerate(pool.map(one, todo), 1):
+            done[i] = dict(rec, retried=True) if i in done else rec
+            if n % 50 == 0:
+                save(args.out, done)
+                print(f'{len(done)}/{len(ids)}', flush=True)
+    save(args.out, done)
     print(json.dumps(dict(ids=len(ids), with_url=sum(1 for r in done.values() if r.get('url')),
                           with_credit=sum(1 for r in done.values() if r.get('credit')))))
 
