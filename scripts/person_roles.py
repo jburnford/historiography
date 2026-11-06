@@ -12,6 +12,11 @@ if you are in the AHA or British directories". Signals, from the graph build and
   1450 to 1879 (ORCID-listed works are left out: their dates include page numbers, such as 584);
 - cited as a primary source: in the dissertations, cited mostly in primary-source bibliography sections;
 - scholar: an ORCID, cited mostly as scholarship, or a journal article on record.
+Confidence: score = 2 per public identifier family (LC with VIAF/ISNI/GND/IdRef, Wikidata, ORCID) + 1 per
+historian signal + 1 each for 5, 20 and 100 distinct theses citing the key's works + 1 each for 3 and 10 works +
+1 each for 1, 5 and 20 network partners (reviews given or received, supervision, advising, co-authors, co-editors,
+volume editors). strong >= 6, supported 3-5, thin <= 2; and thin whenever fewer than 5 theses cite the key and it has
+no public identifier and no partner (user, 2026-11-06: such people weigh "well below people with lots of edges").
 Role, in order: any modern historian signal -> historian; early -> primary source; Wikidata historian -> historian;
 cited mostly as a primary source -> primary source; a scholar signal -> other scholar; otherwise unknown (mostly
 LC book authors with no other facts). Roles describe evidence found, not identity: a historian with no PhD,
@@ -63,7 +68,22 @@ def main():
             sum(coalesce(TRY_CAST(json_extract(w.cited_as, '$.secondary') AS INT), 0))
             FROM read_csv_auto('{CORPUS}/authored.csv.gz') a JOIN read_csv_auto('{CORPUS}/works.csv') w USING (work_id)
             GROUP BY 1""").fetchall()}
-    rows, roles, signal_counts = [], Counter(), Counter()
+    # evidence weight: distinct theses citing the key's works, works authored, distinct network partners
+    citing = dict(db.execute(f"""SELECT a."from", count(DISTINCT c."from") FROM '{G}/authored.parquet' a
+            JOIN '{G}/cites.parquet' c ON c."to" = a."to" GROUP BY 1""").fetchall())
+    works = dict(db.execute(f"""SELECT "from", count(DISTINCT "to") FROM '{G}/authored.parquet' GROUP BY 1""").fetchall())
+    partners = defaultdict(set)
+    for t in ('reviewed', 'advised', 'coauthored', 'coedited', 'editor_of'):
+        for a, b in db.execute(f"""SELECT "from", "to" FROM '{G}/{t}.parquet'""").fetchall():
+            if a != b:
+                partners[a].add(b)
+                partners[b].add(a)
+    for a, b in db.execute(f"""SELECT s."from", a."from" FROM '{G}/supervised.parquet' s
+            JOIN '{G}/authored.parquet' a ON a."to" = s."to\"""").fetchall():
+        if a != b:
+            partners[a].add(b)
+            partners[b].add(a)
+    rows, roles, signal_counts, tiers = [], Counter(), Counter(), Counter()
     for k, label, anchors, wd, orcid in people:
         schemes = {a.split(':', 1)[0] for a in anchors}
         sig = []
@@ -104,14 +124,26 @@ def main():
             role = 'other scholar'
         else:
             role = 'unknown'
+        hist = len(modern | ({'wikidata-historian'} & set(sig)))
+        pid = (bool(schemes & {'lcnaf', 'viaf', 'isni', 'gnd', 'idref'}) + bool(wd) + bool(orcid))
+        cites, nw, links = citing.get(k, 0), works.get(k, 0), len(partners.get(k, ()))
+        score = (2 * pid + hist + (cites >= 5) + (cites >= 20) + (cites >= 100) + (nw >= 3) + (nw >= 10)
+                 + (links >= 1) + (links >= 5) + (links >= 20))
+        if cites < 5 and not pid and not links:        # the user's thin rule, whatever else is on record
+            conf = 'thin'
+        else:
+            conf = 'strong' if score >= 6 else 'supported' if score >= 3 else 'thin'
         roles[role] += 1
+        tiers[role, conf] += 1
         signal_counts.update(sig)
-        rows.append((k, role, ';'.join(sig)))
+        rows.append((k, role, ';'.join(sig), hist, pid, cites, nw, links, score, conf))
     with gzip.open(OUT, 'wt', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
-        w.writerow(['key', 'role', 'signals'])
+        w.writerow(['key', 'role', 'signals', 'historian_signals', 'pid_families', 'citing_theses', 'works', 'partners',
+                    'score', 'confidence'])
         w.writerows(sorted(rows, key=lambda r: int(r[0].split('-')[1])))
-    print(json.dumps(dict(roles=roles, signals=signal_counts), indent=1))
+    print(json.dumps(dict(roles=roles, signals=signal_counts,
+                          confidence={f'{r} / {c}': n for (r, c), n in sorted(tiers.items())}), indent=1))
 
 
 if __name__ == '__main__':

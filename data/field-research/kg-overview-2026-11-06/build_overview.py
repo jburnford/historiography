@@ -49,6 +49,8 @@ def main():
     signals = db.execute(f"""SELECT s, count(*) FROM (SELECT unnest(string_split(signals, ';')) s
         FROM read_csv_auto('{ROOT}/data/person-facts/person-roles.csv.gz', all_varchar=true) WHERE signals IS NOT NULL) GROUP BY 1""").fetchall()
     s['people']['roles'] = dict(roles)
+    s['people']['confidence'] = {f'{r}|{c}': n for r, c, n in db.execute(f"""SELECT role, confidence, count(*)
+        FROM read_csv_auto('{ROOT}/data/person-facts/person-roles.csv.gz', all_varchar=true) GROUP BY 1, 2""").fetchall()}
     s['people']['signals'] = dict(signals)
     s['people']['duplicates'] = json.loads((HERE / 'dup-bound.json').read_text())
     s['institutions'] = report['Institution']
