@@ -4,7 +4,7 @@ For key_review_reviewers.py: a printed reviewer is linked to a key only when the
 journal, from the key's own identifiers. For keys holding a QID, Wikidata's items naming that QID as author (P50)
 give the venue (P1433, "published in") and date (P577). Those author statements are mostly made with the Author
 Disambiguator tool or from ORCID by bots (QID-to-work links, not name strings). Queried on QLever in batches of
-QIDs. Output: JSON {qid: [[venue label, year], ...]}; resumable.
+QIDs (`--endpoint wdqs` uses Wikidata's own query service; QLever refused with 429 on 2026-11-06). Output: JSON {qid: [[venue label, year], ...]}; resumable.
 
     python3 scripts/harvest_wikidata_venues.py --out /mnt/e/wikidata-venues-2026-11-06.json
 """
@@ -18,7 +18,8 @@ from pathlib import Path
 import duckdb
 
 ROOT = Path(__file__).resolve().parents[1]
-ENDPOINT = 'https://qlever.dev/api/wikidata'
+ENDPOINTS = {'qlever': 'https://qlever.dev/api/wikidata', 'wdqs': 'https://query.wikidata.org/sparql'}
+ENDPOINT = ENDPOINTS['qlever']
 PREFIXES = ('PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> '
             'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ')
 
@@ -29,7 +30,7 @@ def qlever(query):
         time.sleep(wait)
         try:
             req = urllib.request.Request(ENDPOINT, data=data, headers={
-                'Accept': 'application/sparql-results+json', 'User-Agent': 'historiography-research/1.0'})
+                'Accept': 'application/sparql-results+json', 'User-Agent': 'historiography-research/1.0 (https://github.com/jburnford/historiography)'})
             with urllib.request.urlopen(req, timeout=300) as r:
                 return json.load(r)['results']['bindings']
         except Exception as e:
@@ -41,7 +42,11 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--batch', type=int, default=150)
+    ap.add_argument('--endpoint', choices=sorted(ENDPOINTS), default='qlever')
+    ap.add_argument('--sleep', type=float, default=20)
     args = ap.parse_args()
+    global ENDPOINT
+    ENDPOINT = ENDPOINTS[args.endpoint]
     qids = sorted({w for (w,) in duckdb.connect().execute(
         f"SELECT wd FROM '{ROOT}/build/graph/person.parquet' WHERE wd IS NOT NULL").fetchall()})
     done = json.loads(args.out.read_text()) if args.out.exists() else {}
@@ -64,7 +69,7 @@ def main():
         tmp.write_text(json.dumps(done, ensure_ascii=False))
         tmp.replace(args.out)
         print(f'{i + len(batch)}/{len(todo)} rows {len(rows)}', flush=True)
-        time.sleep(20)
+        time.sleep(args.sleep)
     print(json.dumps(dict(qids=len(done), with_venues=sum(1 for v in done.values() if v),
                           pairs=sum(len(v) for v in done.values()))))
 

@@ -4,8 +4,8 @@ User, 2026-11-06: the 203,759 person keys are not 203,759 historians; "if you've
 probably not a primary source author; if you've supervised a student; if your dissertation is in the AHA database;
 if you are in the AHA or British directories". Signals, from the graph build and git-tracked lists:
 - historian, modern: a history PhD on record (`aha-phd:` AHA dissertation, `diss-author:` our corpus,
-  `capes-person:` CAPES), a supervisor (SUPERVISED or ADVISED edges, `repo-advisor:`, `aha:` AHA genealogy and
-  directory tokens), a reviewer (an authored review work, or `review-credit:`);
+  `capes-person:` CAPES), a supervisor or a listed teacher of history (SUPERVISED or ADVISED edges,
+  `repo-advisor:`, `aha:` AHA genealogy and directory tokens, `ihr:` the IHR's Teachers of History 2002-04), a reviewer (an authored review work, or `review-credit:`);
 - historian, Wikidata: occupation historian (Q201788; data/wikidata/historians-qlever-2026-09-17). Wikidata also
   calls Diderot and Racine historians, so this signal counts only for people not dated before 1900;
 - early: died before 1900, born before 1840 (data/person-facts/life-dates.csv), or first catalogued book (LC) from
@@ -89,8 +89,8 @@ def main():
         sig = []
         if schemes & {'aha-phd', 'diss-author', 'capes-person'}:
             sig.append('history-phd')
-        if k in supervisors or schemes & {'repo-advisor', 'aha'}:
-            sig.append('supervisor-or-aha-directory')
+        if k in supervisors or schemes & {'repo-advisor', 'aha', 'ihr'}:
+            sig.append('supervisor-or-staff-list')
         if k in reviewers or 'review-credit' in schemes:
             sig.append('reviewer')
         born, died = lives.get(k, (None, None))
@@ -111,7 +111,7 @@ def main():
             sig.append('orcid')
         if k in articles:
             sig.append('articles')
-        modern = {'history-phd', 'supervisor-or-aha-directory', 'reviewer'} & set(sig)
+        modern = {'history-phd', 'supervisor-or-staff-list', 'reviewer'} & set(sig)
         if modern:
             role = 'historian'
         elif early:

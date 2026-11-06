@@ -180,7 +180,7 @@ const ROLE = { 'historian': ['Historians', 'a history PhD, supervision, AHA list
   'unknown': ['Not yet known', 'mostly LC book authors with no other facts'] };
 bars('roles', 'People by role', Object.entries(S.people.roles).map(([r, v]) => ({ name: ROLE[r][0], sub: ROLE[r][1], value: v, tip: ROLE[r][1] })), S.people.total);
 const SIG = { 'history-phd': 'History PhD on record (AHA, corpus, CAPES)', 'reviewer': 'Wrote a book review',
-  'supervisor-or-aha-directory': 'Supervisor, or in the AHA directory', 'wikidata-historian': 'Wikidata occupation: historian',
+  'supervisor-or-staff-list': 'Supervisor, or on a staff list (AHA directory, IHR Teachers of History)', 'wikidata-historian': 'Wikidata occupation: historian',
   'cited-as-scholarship': 'Cited in theses as scholarship', 'articles': 'Journal articles on record', 'orcid': 'ORCID',
   'cited-as-primary': 'Cited in theses mostly as a primary source', 'early': 'Dated before 1900' };
 bars('signals', 'Signals', Object.keys(SIG).map(k => ({ name: SIG[k], value: S.people.signals[k] || 0, group: k === 'cited-as-scholarship' ? 'Scholar or primary-source signals' : k === 'history-phd' ? 'Historian signals' : undefined })), S.people.total);
