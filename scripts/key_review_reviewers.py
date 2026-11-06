@@ -9,7 +9,8 @@ review's journal (the works-in-this-journal rule of that review):
   initial-only keys, no initial-only printed names) and compatible further names (namesake_check_groups.given_names_agree);
 - the key has published in the same journal (articles or reviews), within ten years of the review: its works there
   come from the key's own identifiers (Crossref's works under the key's ORCID, the key's ORCID record, the JSTOR
-  record of the key's keyed works);
+  record of the key's keyed works, and review works already credited to the key: a rerun extends a journal's
+  linked reviewer to their other reviews there, each chain starting from a non-name fact);
 - no other key with an agreeing name has any work in that journal.
 The reviewer then gets an `authored` claim on the review work (`journal-reviewer:<review work>:<key>`, recorded);
 REVIEWED (reviewer -> the book's authors) follows in the graph build. Everything else stays a printed name.
@@ -91,6 +92,10 @@ def main():
             WHERE w.an LIKE 'doi:10.2307/%' AND j.kind = 'article'""").fetchall():
         if container and year:
             journals[k][journal_key(container)].add(year)
+    # reviews already credited to the key (by ORCID, or by this rule on an earlier run) show it publishes there too
+    for k, j, y in db.execute(f"""SELECT a."from", w.journal, w.year FROM '{GRAPH}/authored.parquet' a
+            JOIN '{GRAPH}/work.parquet' w ON w.key = a."to" WHERE w.journal IS NOT NULL AND w.year IS NOT NULL""").fetchall():
+        journals[k][journal_key(j)].add(y)
     reviews = db.execute(f"""SELECT key, reviewer_names, journal, year FROM '{GRAPH}/work.parquet'
                              WHERE len(reviewer_names) > 0 AND journal IS NOT NULL""").fetchall()
     report = Counter(reviews=len(reviews), keys_with_journals=len(journals))
