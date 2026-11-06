@@ -24,6 +24,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--dir', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--career-needs-source', action='store_true',
+                    help="a `career` verdict merges only with a source_url, or when key b's own record carries the "
+                         "affiliation (review credit with an institution, supervisor, CAPES, AHA or thesis record); "
+                         "2026-11-05: some agents answered career from memory")
     ap.add_argument('--require-basis', nargs='*', default=None,
                     help="merge only `same` verdicts whose `basis` is one of these (2026-11-05: works career pid; "
                          "'topic', a shared name plus the reviewed book's subject, never merges)")
@@ -54,6 +58,15 @@ def main():
         report[v.get('verdict')] += 1
         if v.get('verdict') != 'same':
             continue
+        if args.career_needs_source and v.get('basis') == 'career' and not v.get('source_url'):
+            b_anchors = p['b'].get('anchors', [])
+            documented = any(a.startswith(('repo-advisor:', 'capes-person:', 'aha-phd:', 'aha:', 'diss-author:')) or
+                             (a.startswith('review-credit:') and '|' in a and not a.startswith('review-credit:hnet-review:'))
+                             for a in b_anchors)
+            if not documented:
+                report['career_from_memory_not_merged'] += 1
+                held.append(dict(pair=v.get('id'), basis='career-undocumented', evidence=v.get('evidence', '')))
+                continue
         if args.require_basis is not None and v.get('basis') not in args.require_basis:
             report[f"same_basis_{v.get('basis')}_not_merged"] += 1
             held.append(dict(pair=v.get('id'), basis=v.get('basis'), evidence=v.get('evidence', '')))
