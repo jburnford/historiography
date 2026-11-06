@@ -38,7 +38,12 @@ def main():
     ap.add_argument('--dir', type=Path, required=True)
     ap.add_argument('--extra', type=Path, help='JSON list of {key, anchor, reason}: anchors named in prose')
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--withdraw-orcid', action='store_true',
+                    help="also withdraw flagged ORCID-sourced credits (orcid-claim, crossref-orcid): another person's "
+                         "papers in a historian's ORCID record (graphene, clinical trials; mixed-keys-2026-11-05d)")
+    ap.add_argument('--exclude-keys', nargs='*', default=[], help='keys whose verdicts are held for review')
     args = ap.parse_args()
+    withdraw = WITHDRAW | ({'orcid-claim', 'crossref-orcid'} if args.withdraw_orcid else set())
     dossier = {k['key']: k for f in sorted(args.dir.glob('batch*.json')) for k in json.loads(f.read_text())}
     works = {w['claim']: dict(w, key=k) for k, d in dossier.items() for w in d['works']}
     verdicts = [v for f in sorted(args.dir.glob('verdicts*.json')) for v in json.loads(f.read_text())]
@@ -51,6 +56,9 @@ def main():
 
     for v in verdicts:
         k = v['key']
+        if k in args.exclude_keys:
+            review.append(dict(key=k, reason='held for review (--exclude-keys)', person=v.get('person')))
+            continue
         if v.get('no_dominant_person'):
             review.append(dict(key=k, reason='no dominant person', person=v.get('person')))
         for n in v.get('not_theirs', []):
@@ -59,7 +67,7 @@ def main():
                 report['claim_not_in_batch'] += 1
                 continue
             why = f"{w['title'][:90]} ({w['year']}) is {n.get('belongs_to', 'another person')}'s: {n.get('reason', '')}"[:400]
-            if w['source'] in WITHDRAW:
+            if w['source'] in withdraw:
                 if w['claim'] in seen or state.keys.get(w['claim'], {}).get('status') != 'active':
                     report['claim_gone'] += 1
                     continue
@@ -69,6 +77,11 @@ def main():
                 to = re.findall(r'\bp-\d+\b', n.get('belongs_to', ''))
                 if len(set(to)) == 1 and to[0] != k and to[0] in state.keys and state.keys[to[0]]['status'] == 'active':
                     role = 'edited' if w['role'] == 'edited' else 'authored'
+                    credit = f"reviewed-{role}:{w['work']}:{to[0]}"
+                    if credit in state.anchor or credit in seen:
+                        report['credit_exists'] += 1       # two flagged claims of one work, or credited before
+                        continue
+                    seen.add(credit)
                     ops.append(dict(event='mint', key=f'new:c{len(ops)}', type='claim', label='', resolution='recorded',
                                     anchors=[f"reviewed-{role}:{w['work']}:{to[0]}"],
                                     relation=dict(subject=to[0], predicate=role, object=w['work']),
