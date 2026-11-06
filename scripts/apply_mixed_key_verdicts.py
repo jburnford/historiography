@@ -11,7 +11,8 @@ Here:
 - a flagged thesis credited through the key's own thesis record (`aha-auth`, `diss-auth`: the subject is an
   `aha-phd:` or `diss-author:` anchor) means that record is a namesake's: the anchor is detached and becomes a new
   key (recorded), so the thesis keeps its author;
-- flagged `diss-person:` ids are detached; flagged `aha-phd:`, `review-credit:` and `diss-author:` anchors are
+- flagged `diss-person:` ids are detached (the key's own works credited through one, those not flagged, are
+  credited to the key directly first); flagged `aha-phd:`, `review-credit:` and `diss-author:` anchors are
   detached and split off as above; `--extra` adds anchors the agents named in prose (a namesake's LC or Wikidata
   record on the key), detached;
 - a self-claim (ORCID) is never withdrawn here (a wrong one means a wrong ORCID anchor: listed in review.json);
@@ -83,11 +84,21 @@ def main():
             (split if a.startswith(SPLIT) else detach).setdefault(a, (k, f"names someone other than {v.get('person', k)[:120]}"))
     for x in json.loads(args.extra.read_text()) if args.extra else []:
         (split if x['anchor'].startswith(SPLIT) else detach).setdefault(x['anchor'], (x['key'], x['reason']))
+    flagged = {n.get('claim') for v in verdicts for n in v.get('not_theirs', [])}
     for a, (k, why) in sorted(detach.items()):
         h = holder(a)
         if not h:
             report['anchor_gone'] += 1
             continue
+        # the key's own works credited through the detached id stay credited to the key (2026-11-05: an agent
+        # judged gilmartin|christina k's cited works David Gilmartin's own)
+        for w in dossier.get(h, {}).get('works', []):
+            if w['via'] == a and w['claim'] not in flagged:
+                role = 'edited' if w['role'] == 'edited' else 'authored'
+                ops.append(dict(event='mint', key=f'new:k{len(ops)}', type='claim', label='', resolution='recorded',
+                                anchors=[f"reviewed-{role}:{w['work']}:{h}"], relation=dict(subject=h, predicate=role, object=w['work']),
+                                basis=f'{w["title"][:90]}: the key\'s own work, credited through {a}, which is detached (mixed-keys round, Claude agent by works)'))
+                report['kept_credit'] += 1
         ops.append(dict(event='detach', key=h, anchors=[a], members=[], basis=f'{why} (mixed-keys-2026-11-05, Claude agent by works)'))
         report['detach'] += 1
     for a, (k, why) in sorted(split.items()):
