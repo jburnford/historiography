@@ -406,7 +406,9 @@ def eligibility(d, index, overrides=None):
     status = scope or 'unchecked'
     if d.get('eligibility_basis'):
         status += f"; {d['eligibility_basis']}"
-    return ('history_phd' if scope.startswith('explicit_history') else 'needs_review'), status
+    # User decision 2026-11-04: "History of science is history" (Harvard, Oklahoma departments).
+    return ('history_phd' if scope.startswith('explicit_history') or scope == 'history_of_science_department'
+            else 'needs_review'), status
 
 
 def dissertation_year(d):

@@ -698,8 +698,31 @@ def adapter_brazil_capes(src, d):
         yield candidate(entry, files)
 
 
+def adapter_mexico_records(src, d):
+    """Mexican History doctorates (data/field-research/mexico-theses-2026-11-04): records.jsonl from
+    scripts/register_mexico_theses.py, which keeps a thesis when its title page names the History
+    doctorate (or, where the title page is illegible, the repository record names it: UNAM's 'Título
+    otorgado', Ibero, Colegio de San Luis). Repositories: UNAM (TesiUNAM OAI, ru.dgb.unam.mx), Instituto
+    Mora, El Colegio de Michoacán, El Colegio de San Luis, Ibero; several PDFs of one record are its
+    parts, in the repository's order."""
+    out = resolve(src['root'], d)
+    harvest = rel_root(out)
+    for r in read_jsonl(out / 'records.jsonl'):
+        entry = dict(institution=r['institution'], id=r['id'], title=r['title'], authors=r['authors'],
+                     advisors=r['advisors'], issued_dates=[r['year']] if r.get('year') else [], graduation_dates=[],
+                     copyright_dates=[], history_scope='explicit_history_discipline', language=r['language'],
+                     item_url=r['item_url'], source_harvest=harvest, country='MX', eligibility_basis=r['eligibility_basis'],
+                     access_category='open_pdf', year=int(r['year']) if r.get('year') else None, degree=['doctorado'],
+                     awarding_institution=r['awarding_institution'], committee=r.get('committee') or [])
+        multi = len(r['files']) > 1
+        files = [file_spec(Path(f['path']), f['bytes'], f['sha256'], n if multi else None, Path(f['path']).name,
+                           r.get('checked_at')) for n, f in enumerate(r['files'], 1)]
+        yield candidate(entry, files)
+
+
 ADAPTERS = {
     'brazil_capes': adapter_brazil_capes,
+    'mexico_records': adapter_mexico_records,
     'france_thesesfr': adapter_france_thesesfr,
     'uk_openaire': adapter_uk_openaire,
     'oxford_ora': adapter_oxford_ora,

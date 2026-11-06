@@ -1,39 +1,39 @@
 {
  "louvain_settings": "min_cited 15, cosine >= 0.12, pair support >= 3, 40 Louvain runs at resolution 1.5, 80% consensus",
- "louvain_fields": 13,
- "louvain_clustered": 1490,
- "louvain_vocabulary": 1617,
- "nmf_vocabulary": 1617,
- "shared_works": 1490,
+ "louvain_fields": 14,
+ "louvain_clustered": 1491,
+ "louvain_vocabulary": 1616,
+ "nmf_vocabulary": 1616,
+ "shared_works": 1491,
  "work_assignment_agreement": {
-  "adjusted_rand": 0.387,
-  "nmi": 0.564,
+  "adjusted_rand": 0.39,
+  "nmi": 0.562,
   "note": "NMF top family vs Louvain field, over works clustered by Louvain and in the NMF vocabulary"
  },
- "entropy_vs_louvain_link_split_spearman": 0.309,
+ "entropy_vs_louvain_link_split_spearman": 0.306,
  "families": [
   {
    "family": 0,
-   "label": "Sevcenko · Carvalho — literatura, tropical, imprensa, raízes",
-   "dominated": 268,
-   "member_works": 181,
+   "label": "Sevcenko · Carvalho — literatura, tropical, raízes, revista",
+   "dominated": 270,
+   "member_works": 187,
    "best_by_member_works": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.367,
-    "field_size": 288
+    "jaccard": 0.397,
+    "field_size": 274
    },
    "best_by_top25": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.076,
+    "jaccard": 0.079,
     "top25_inside": 0.88
    },
    "best_by_dissertations": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.223,
-    "engaged": 1008
+    "jaccard": 0.233,
+    "engaged": 962
    },
    "top25_spread": [
     [
@@ -44,51 +44,13 @@
   },
   {
    "family": 1,
-   "label": "Chartier · Certeau · Kossoy — fotografia, cultural, arte, história",
-   "dominated": 190,
-   "member_works": 139,
-   "best_by_member_works": {
-    "field": "Burke · KOSSOY · BARTHES",
-    "field_id": 11,
-    "jaccard": 0.157,
-    "field_size": 23
-   },
-   "best_by_top25": {
-    "field": "Burke · KOSSOY · BARTHES",
-    "field_id": 11,
-    "jaccard": 0.263,
-    "top25_inside": 0.4
-   },
-   "best_by_dissertations": {
-    "field": "Burke · KOSSOY · BARTHES",
-    "field_id": 11,
-    "jaccard": 0.222,
-    "engaged": 58
-   },
-   "top25_spread": [
-    [
-     "Burke · KOSSOY · BARTHES",
-     0.4
-    ],
-    [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.36
-    ],
-    [
-     "HOLANDA · SEVCENKO · SCHWARCZ",
-     0.2
-    ]
-   ]
-  },
-  {
-   "family": 2,
    "label": "Novais · Hespanha · Alencastro — contemporâneo, portugal, antigo, ouro",
-   "dominated": 188,
-   "member_works": 193,
+   "dominated": 195,
+   "member_works": 195,
    "best_by_member_works": {
     "field": "NOVAIS · ALENCASTRO · PRADO Júnior",
     "field_id": 3,
-    "jaccard": 0.538,
+    "jaccard": 0.533,
     "field_size": 133
    },
    "best_by_top25": {
@@ -100,7 +62,7 @@
    "best_by_dissertations": {
     "field": "NOVAIS · ALENCASTRO · PRADO Júnior",
     "field_id": 3,
-    "jaccard": 0.418,
+    "jaccard": 0.431,
     "engaged": 406
    },
    "top25_spread": [
@@ -115,27 +77,27 @@
    ]
   },
   {
-   "family": 3,
+   "family": 2,
    "label": "Skidmore · Alves · Gaspari — ditadura, guarda, populismo, goulart",
-   "dominated": 178,
-   "member_works": 107,
+   "dominated": 181,
+   "member_works": 105,
    "best_by_member_works": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.391,
-    "field_size": 206
+    "jaccard": 0.379,
+    "field_size": 215
    },
    "best_by_top25": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.116,
+    "jaccard": 0.111,
     "top25_inside": 0.96
    },
    "best_by_dissertations": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.214,
-    "engaged": 753
+    "jaccard": 0.21,
+    "engaged": 783
    },
    "top25_spread": [
     [
@@ -145,104 +107,14 @@
    ]
   },
   {
-   "family": 4,
-   "label": "Koselleck · Bloch · Certeau — futuro, tempo, passado, escrita",
-   "dominated": 159,
-   "member_works": 125,
-   "best_by_member_works": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.3,
-    "field_size": 230
-   },
-   "best_by_top25": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.104,
-    "top25_inside": 0.96
-   },
-   "best_by_dissertations": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.106,
-    "engaged": 1361
-   },
-   "top25_spread": [
-    [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.96
-    ]
-   ]
-  },
-  {
-   "family": 5,
-   "label": "Halbwachs · Le Goff · Bosi — memória, oral, manual, esquecimento",
-   "dominated": 139,
-   "member_works": 71,
-   "best_by_member_works": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.209,
-    "field_size": 230
-   },
-   "best_by_top25": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.104,
-    "top25_inside": 0.96
-   },
-   "best_by_dissertations": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.094,
-    "engaged": 1361
-   },
-   "top25_spread": [
-    [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.96
-    ]
-   ]
-  },
-  {
-   "family": 6,
-   "label": "Carvalho · MATTOS · Neves — construção, império, nação, independência",
-   "dominated": 133,
-   "member_works": 125,
-   "best_by_member_works": {
-    "field": "CARVALHO · FAORO · MATTOS",
-    "field_id": 4,
-    "jaccard": 0.769,
-    "field_size": 128
-   },
-   "best_by_top25": {
-    "field": "CARVALHO · FAORO · MATTOS",
-    "field_id": 4,
-    "jaccard": 0.186,
-    "top25_inside": 0.96
-   },
-   "best_by_dissertations": {
-    "field": "CARVALHO · FAORO · MATTOS",
-    "field_id": 4,
-    "jaccard": 0.325,
-    "engaged": 372
-   },
-   "top25_spread": [
-    [
-     "CARVALHO · FAORO · MATTOS",
-     0.96
-    ]
-   ]
-  },
-  {
-   "family": 7,
+   "family": 3,
    "label": "Chalhoub · Slenes · Mattos — senzala, cores, escrava, silêncio",
-   "dominated": 130,
-   "member_works": 145,
+   "dominated": 132,
+   "member_works": 144,
    "best_by_member_works": {
     "field": "FREYRE · CHALHOUB · DIAS",
     "field_id": 5,
-    "jaccard": 0.667,
+    "jaccard": 0.671,
     "field_size": 125
    },
    "best_by_top25": {
@@ -254,7 +126,7 @@
    "best_by_dissertations": {
     "field": "FREYRE · CHALHOUB · DIAS",
     "field_id": 5,
-    "jaccard": 0.337,
+    "jaccard": 0.342,
     "engaged": 370
    },
    "top25_spread": [
@@ -265,27 +137,117 @@
    ]
   },
   {
-   "family": 8,
+   "family": 4,
+   "label": "Carvalho · MATTOS · Neves — construção, império, nação, independência",
+   "dominated": 131,
+   "member_works": 120,
+   "best_by_member_works": {
+    "field": "CARVALHO · FAORO · MATTOS",
+    "field_id": 4,
+    "jaccard": 0.764,
+    "field_size": 127
+   },
+   "best_by_top25": {
+    "field": "CARVALHO · FAORO · MATTOS",
+    "field_id": 4,
+    "jaccard": 0.188,
+    "top25_inside": 0.96
+   },
+   "best_by_dissertations": {
+    "field": "CARVALHO · FAORO · MATTOS",
+    "field_id": 4,
+    "jaccard": 0.325,
+    "engaged": 371
+   },
+   "top25_spread": [
+    [
+     "CARVALHO · FAORO · MATTOS",
+     0.96
+    ]
+   ]
+  },
+  {
+   "family": 5,
+   "label": "Halbwachs · Le Goff · Bosi — memória, oral, manual, esquecimento",
+   "dominated": 128,
+   "member_works": 63,
+   "best_by_member_works": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.192,
+    "field_size": 223
+   },
+   "best_by_top25": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.107,
+    "top25_inside": 0.96
+   },
+   "best_by_dissertations": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.089,
+    "engaged": 1319
+   },
+   "top25_spread": [
+    [
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.96
+    ]
+   ]
+  },
+  {
+   "family": 6,
+   "label": "Chartier · Certeau · Hall — cultural, cotidiano, invenção, diferença",
+   "dominated": 110,
+   "member_works": 94,
+   "best_by_member_works": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.153,
+    "field_size": 223
+   },
+   "best_by_top25": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.083,
+    "top25_inside": 0.76
+   },
+   "best_by_dissertations": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.074,
+    "engaged": 1319
+   },
+   "top25_spread": [
+    [
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.76
+    ]
+   ]
+  },
+  {
+   "family": 7,
    "label": "Furtado · Mello · Suzigan — econômica, industrialização, concentração, industrial",
-   "dominated": 106,
-   "member_works": 75,
+   "dominated": 105,
+   "member_works": 74,
    "best_by_member_works": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.216,
-    "field_size": 206
+    "jaccard": 0.209,
+    "field_size": 215
    },
    "best_by_top25": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.111,
+    "jaccard": 0.106,
     "top25_inside": 0.92
    },
    "best_by_dissertations": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.12,
-    "engaged": 753
+    "jaccard": 0.116,
+    "engaged": 783
    },
    "top25_spread": [
     [
@@ -295,27 +257,27 @@
    ]
   },
   {
-   "family": 9,
-   "label": "Marx · Gramsci · Hobsbawm — capital, imperialismo, manifesto, comunista",
-   "dominated": 105,
-   "member_works": 60,
+   "family": 8,
+   "label": "Marx · Gramsci · Hobsbawm — capital, imperialismo, comunista, manifesto",
+   "dominated": 104,
+   "member_works": 62,
    "best_by_member_works": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.204,
-    "field_size": 206
+    "jaccard": 0.199,
+    "field_size": 215
    },
    "best_by_top25": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.105,
+    "jaccard": 0.101,
     "top25_inside": 0.88
    },
    "best_by_dissertations": {
     "field": "FURTADO · COSTA · Marx",
     "field_id": 2,
-    "jaccard": 0.111,
-    "engaged": 753
+    "jaccard": 0.105,
+    "engaged": 783
    },
    "top25_spread": [
     [
@@ -325,57 +287,87 @@
    ]
   },
   {
-   "family": 10,
+   "family": 9,
    "label": "Anderson · Bhabha · Said — áfrica, nacionalismo, desde, nações",
-   "dominated": 102,
-   "member_works": 55,
+   "dominated": 100,
+   "member_works": 47,
    "best_by_member_works": {
     "field": "Bhabha · Said · Pratt",
     "field_id": 10,
-    "jaccard": 0.455,
+    "jaccard": 0.532,
     "field_size": 25
    },
    "best_by_top25": {
     "field": "Bhabha · Said · Pratt",
     "field_id": 10,
-    "jaccard": 0.515,
-    "top25_inside": 0.68
+    "jaccard": 0.613,
+    "top25_inside": 0.76
    },
    "best_by_dissertations": {
     "field": "Bhabha · Said · Pratt",
     "field_id": 10,
-    "jaccard": 0.333,
+    "jaccard": 0.348,
     "engaged": 86
    },
    "top25_spread": [
     [
      "Bhabha · Said · Pratt",
-     0.68
+     0.76
+    ]
+   ]
+  },
+  {
+   "family": 10,
+   "label": "Certeau · Bloch · Le Goff — escrita, história, archaeology, tempo",
+   "dominated": 98,
+   "member_works": 80,
+   "best_by_member_works": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.222,
+    "field_size": 223
+   },
+   "best_by_top25": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.093,
+    "top25_inside": 0.84
+   },
+   "best_by_dissertations": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.064,
+    "engaged": 1319
+   },
+   "top25_spread": [
+    [
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.84
     ]
    ]
   },
   {
    "family": 11,
-   "label": "Ortiz · Napolitano · Ridenti — música, canção, popular, cinema",
-   "dominated": 96,
-   "member_works": 52,
+   "label": "Ortiz · Napolitano · Ridenti — canção, música, cinema, popular",
+   "dominated": 97,
+   "member_works": 51,
    "best_by_member_works": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.168,
-    "field_size": 288
+    "jaccard": 0.173,
+    "field_size": 274
    },
    "best_by_top25": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.087,
+    "jaccard": 0.091,
     "top25_inside": 1.0
    },
    "best_by_dissertations": {
     "field": "HOLANDA · SEVCENKO · SCHWARCZ",
     "field_id": 0,
-    "jaccard": 0.092,
-    "engaged": 1008
+    "jaccard": 0.097,
+    "engaged": 962
    },
    "top25_spread": [
     [
@@ -387,105 +379,101 @@
   {
    "family": 12,
    "label": "Foucault — archaeology, discurso, ordem, medicina",
-   "dominated": 91,
-   "member_works": 50,
+   "dominated": 88,
+   "member_works": 54,
    "best_by_member_works": {
     "field": "Foucault · CHALHOUB",
     "field_id": 7,
-    "jaccard": 0.373,
+    "jaccard": 0.371,
     "field_size": 90
    },
    "best_by_top25": {
     "field": "Foucault · CHALHOUB",
     "field_id": 7,
-    "jaccard": 0.173,
-    "top25_inside": 0.68
+    "jaccard": 0.198,
+    "top25_inside": 0.76
    },
    "best_by_dissertations": {
     "field": "Foucault · CHALHOUB",
     "field_id": 7,
-    "jaccard": 0.158,
+    "jaccard": 0.157,
     "engaged": 333
    },
    "top25_spread": [
     [
      "Foucault · CHALHOUB",
-     0.68
-    ],
-    [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.28
+     0.76
     ]
    ]
   },
   {
    "family": 13,
-   "label": "Le Goff · Baschet — medieval, média, ocidente, feudal",
-   "dominated": 86,
-   "member_works": 49,
+   "label": "Koselleck · Pocock · Hartog — futuro, político, passado, tempo",
+   "dominated": 82,
+   "member_works": 70,
    "best_by_member_works": {
-    "field": "BLOCH · Kantorowicz · WILLIAMS",
-    "field_id": 9,
-    "jaccard": 0.558,
-    "field_size": 32
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.097,
+    "field_size": 223
    },
    "best_by_top25": {
-    "field": "BLOCH · Kantorowicz · WILLIAMS",
-    "field_id": 9,
-    "jaccard": 0.629,
-    "top25_inside": 0.88
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.055,
+    "top25_inside": 0.52
    },
    "best_by_dissertations": {
-    "field": "BLOCH · Kantorowicz · WILLIAMS",
-    "field_id": 9,
-    "jaccard": 0.486,
-    "engaged": 73
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.046,
+    "engaged": 1319
    },
    "top25_spread": [
     [
-     "BLOCH · Kantorowicz · WILLIAMS",
-     0.88
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.52
+    ],
+    [
+     "CARVALHO · FAORO · MATTOS",
+     0.16
     ]
    ]
   },
   {
    "family": 14,
-   "label": "Thompson — classe, trabalho, invenção, cultura",
-   "dominated": 78,
-   "member_works": 49,
+   "label": "Le Goff · Baschet — medieval, média, idade, ocidente",
+   "dominated": 79,
+   "member_works": 42,
    "best_by_member_works": {
-    "field": "HOLANDA · SEVCENKO · SCHWARCZ",
-    "field_id": 0,
-    "jaccard": 0.034,
-    "field_size": 288
+    "field": "BLOCH · Kantorowicz · WILLIAMS",
+    "field_id": 9,
+    "jaccard": 0.622,
+    "field_size": 31
    },
    "best_by_top25": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.02,
-    "top25_inside": 0.2
+    "field": "BLOCH · Kantorowicz · WILLIAMS",
+    "field_id": 9,
+    "jaccard": 0.697,
+    "top25_inside": 0.92
    },
    "best_by_dissertations": {
-    "field": "FURTADO · COSTA · Marx",
-    "field_id": 2,
-    "jaccard": 0.047,
-    "engaged": 753
+    "field": "BLOCH · Kantorowicz · WILLIAMS",
+    "field_id": 9,
+    "jaccard": 0.505,
+    "engaged": 76
    },
    "top25_spread": [
     [
-     "HOLANDA · SEVCENKO · SCHWARCZ",
-     0.24
-    ],
-    [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.2
+     "BLOCH · Kantorowicz · WILLIAMS",
+     0.92
     ]
    ]
   },
   {
    "family": 15,
    "label": "Almeida · Monteiro — índios, indígenas, religião, nas",
-   "dominated": 75,
+   "dominated": 78,
    "member_works": 56,
    "best_by_member_works": {
     "field": "MONTEIRO · HOLANDA",
@@ -502,8 +490,8 @@
    "best_by_dissertations": {
     "field": "MONTEIRO · HOLANDA",
     "field_id": 8,
-    "jaccard": 0.266,
-    "engaged": 253
+    "jaccard": 0.275,
+    "engaged": 256
    },
    "top25_spread": [
     [
@@ -514,43 +502,47 @@
   },
   {
    "family": 16,
-   "label": "Bourdieu · Bardin — trocas, economia, poder, sagrado",
-   "dominated": 70,
-   "member_works": 45,
+   "label": "Kossoy · Dubois · Burke — fotografia, arte, cidades, imagens",
+   "dominated": 77,
+   "member_works": 49,
    "best_by_member_works": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.083,
-    "field_size": 230
+    "field": "Burke · KOSSOY · BARTHES",
+    "field_id": 11,
+    "jaccard": 0.412,
+    "field_size": 23
    },
    "best_by_top25": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.062,
-    "top25_inside": 0.6
+    "field": "Burke · KOSSOY · BARTHES",
+    "field_id": 11,
+    "jaccard": 0.548,
+    "top25_inside": 0.68
    },
    "best_by_dissertations": {
-    "field": "LE GOFF · CHARTIER · BOURDIEU",
-    "field_id": 1,
-    "jaccard": 0.038,
-    "engaged": 1361
+    "field": "Burke · KOSSOY · BARTHES",
+    "field_id": 11,
+    "jaccard": 0.421,
+    "engaged": 58
    },
    "top25_spread": [
     [
-     "LE GOFF · CHARTIER · BOURDIEU",
-     0.6
+     "Burke · KOSSOY · BARTHES",
+     0.68
+    ],
+    [
+     "HOLANDA · SEVCENKO · SCHWARCZ",
+     0.2
     ]
    ]
   },
   {
    "family": 17,
    "label": "Butler · Perrot · Beauvoir — mulheres, feminismo, gênero, sexo",
-   "dominated": 70,
-   "member_works": 40,
+   "dominated": 75,
+   "member_works": 41,
    "best_by_member_works": {
     "field": "Foucault · CHALHOUB",
     "field_id": 7,
-    "jaccard": 0.368,
+    "jaccard": 0.379,
     "field_size": 90
    },
    "best_by_top25": {
@@ -562,7 +554,7 @@
    "best_by_dissertations": {
     "field": "Foucault · CHALHOUB",
     "field_id": 7,
-    "jaccard": 0.196,
+    "jaccard": 0.211,
     "engaged": 333
    },
    "top25_spread": [
@@ -571,84 +563,152 @@
      0.96
     ]
    ]
+  },
+  {
+   "family": 18,
+   "label": "Thompson — classe, trabalho, cultura, cidade",
+   "dominated": 74,
+   "member_works": 48,
+   "best_by_member_works": {
+    "field": "FURTADO · COSTA · Marx",
+    "field_id": 2,
+    "jaccard": 0.044,
+    "field_size": 215
+   },
+   "best_by_top25": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.021,
+    "top25_inside": 0.2
+   },
+   "best_by_dissertations": {
+    "field": "FURTADO · COSTA · Marx",
+    "field_id": 2,
+    "jaccard": 0.046,
+    "engaged": 783
+   },
+   "top25_spread": [
+    [
+     "HOLANDA · SEVCENKO · SCHWARCZ",
+     0.2
+    ],
+    [
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.2
+    ],
+    [
+     "FURTADO · COSTA · Marx",
+     0.16
+    ]
+   ]
+  },
+  {
+   "family": 19,
+   "label": "Bourdieu — trocas, economia, poder, práticas",
+   "dominated": 60,
+   "member_works": 34,
+   "best_by_member_works": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.08,
+    "field_size": 223
+   },
+   "best_by_top25": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.074,
+    "top25_inside": 0.68
+   },
+   "best_by_dissertations": {
+    "field": "LE GOFF · CHARTIER · BOURDIEU",
+    "field_id": 1,
+    "jaccard": 0.033,
+    "engaged": 1319
+   },
+   "top25_spread": [
+    [
+     "LE GOFF · CHARTIER · BOURDIEU",
+     0.68
+    ]
+   ]
   }
  ],
  "louvain_to_nmf": [
   {
    "field": "HOLANDA · SEVCENKO · SCHWARCZ",
    "field_id": 0,
-   "works": 288,
+   "works": 274,
    "best_family": 0,
-   "family_label": "Sevcenko · Carvalho — literatura, tropical, imprensa, raízes",
-   "jaccard": 0.367,
+   "family_label": "Sevcenko · Carvalho — literatura, tropical, raízes, revista",
+   "jaccard": 0.397,
    "work_spread": [
     [
      0,
-     126
+     131
     ],
     [
      11,
-     49
+     48
     ],
     [
-     1,
-     47
+     6,
+     18
     ],
     [
-     4,
-     22
+     13,
+     14
     ]
    ]
   },
   {
    "field": "LE GOFF · CHARTIER · BOURDIEU",
    "field_id": 1,
-   "works": 230,
-   "best_family": 4,
-   "family_label": "Koselleck · Bloch · Certeau — futuro, tempo, passado, escrita",
-   "jaccard": 0.3,
+   "works": 223,
+   "best_family": 10,
+   "family_label": "Certeau · Bloch · Le Goff — escrita, história, archaeology, tempo",
+   "jaccard": 0.222,
    "work_spread": [
     [
-     4,
-     82
+     10,
+     55
     ],
     [
      5,
-     52
+     46
     ],
     [
-     1,
-     35
+     6,
+     42
     ],
     [
-     16,
-     21
+     13,
+     26
     ]
    ]
   },
   {
    "field": "FURTADO · COSTA · Marx",
    "field_id": 2,
-   "works": 206,
-   "best_family": 3,
+   "works": 215,
+   "best_family": 2,
    "family_label": "Skidmore · Alves · Gaspari — ditadura, guarda, populismo, goulart",
-   "jaccard": 0.391,
+   "jaccard": 0.379,
    "work_spread": [
     [
-     3,
+     2,
      88
     ],
     [
-     8,
+     7,
      50
     ],
     [
-     9,
-     45
+     8,
+     46
     ],
     [
-     0,
-     8
+     18,
+     11
     ]
    ]
   },
@@ -656,24 +716,24 @@
    "field": "NOVAIS · ALENCASTRO · PRADO Júnior",
    "field_id": 3,
    "works": 133,
-   "best_family": 2,
+   "best_family": 1,
    "family_label": "Novais · Hespanha · Alencastro — contemporâneo, portugal, antigo, ouro",
-   "jaccard": 0.538,
+   "jaccard": 0.533,
    "work_spread": [
     [
-     2,
+     1,
      114
     ],
     [
+     14,
+     7
+    ],
+    [
      13,
-     11
+     5
     ],
     [
-     9,
-     2
-    ],
-    [
-     10,
+     8,
      2
     ]
    ]
@@ -681,25 +741,25 @@
   {
    "field": "CARVALHO · FAORO · MATTOS",
    "field_id": 4,
-   "works": 128,
-   "best_family": 6,
+   "works": 127,
+   "best_family": 4,
    "family_label": "Carvalho · MATTOS · Neves — construção, império, nação, independência",
-   "jaccard": 0.769,
+   "jaccard": 0.764,
    "work_spread": [
     [
-     6,
-     110
-    ],
-    [
      4,
-     6
+     107
     ],
     [
-     0,
+     13,
+     11
+    ],
+    [
+     1,
      3
     ],
     [
-     2,
+     0,
      2
     ]
    ]
@@ -708,24 +768,24 @@
    "field": "FREYRE · CHALHOUB · DIAS",
    "field_id": 5,
    "works": 125,
-   "best_family": 7,
+   "best_family": 3,
    "family_label": "Chalhoub · Slenes · Mattos — senzala, cores, escrava, silêncio",
-   "jaccard": 0.667,
+   "jaccard": 0.671,
    "work_spread": [
     [
-     7,
+     3,
      108
     ],
     [
-     8,
+     4,
      4
     ],
     [
-     6,
+     7,
      4
     ],
     [
-     2,
+     1,
      2
     ]
    ]
@@ -734,25 +794,25 @@
    "field": "FRAGOSO · ANTONIL · FARIA",
    "field_id": 6,
    "works": 116,
-   "best_family": 2,
+   "best_family": 1,
    "family_label": "Novais · Hespanha · Alencastro — contemporâneo, portugal, antigo, ouro",
-   "jaccard": 0.217,
+   "jaccard": 0.224,
    "work_spread": [
     [
-     2,
-     55
+     1,
+     57
+    ],
+    [
+     3,
+     27
     ],
     [
      7,
-     28
-    ],
-    [
-     8,
-     7
+     6
     ],
     [
      0,
-     5
+     4
     ]
    ]
   },
@@ -760,24 +820,24 @@
    "field": "Foucault · CHALHOUB",
    "field_id": 7,
    "works": 90,
-   "best_family": 12,
-   "family_label": "Foucault — archaeology, discurso, ordem, medicina",
-   "jaccard": 0.373,
+   "best_family": 17,
+   "family_label": "Butler · Perrot · Beauvoir — mulheres, feminismo, gênero, sexo",
+   "jaccard": 0.379,
    "work_spread": [
     [
      12,
-     38
+     39
     ],
     [
      17,
-     35
+     36
     ],
     [
-     0,
+     3,
      3
     ],
     [
-     14,
+     18,
      3
     ]
    ]
@@ -795,15 +855,15 @@
      50
     ],
     [
-     1,
-     11
+     16,
+     8
     ],
     [
      0,
-     6
+     7
     ],
     [
-     8,
+     7,
      5
     ]
    ]
@@ -811,25 +871,21 @@
   {
    "field": "BLOCH · Kantorowicz · WILLIAMS",
    "field_id": 9,
-   "works": 32,
-   "best_family": 13,
-   "family_label": "Le Goff · Baschet — medieval, média, ocidente, feudal",
-   "jaccard": 0.558,
+   "works": 31,
+   "best_family": 14,
+   "family_label": "Le Goff · Baschet — medieval, média, idade, ocidente",
+   "jaccard": 0.622,
    "work_spread": [
     [
-     13,
-     29
+     14,
+     28
     ],
     [
-     14,
-     1
+     6,
+     2
     ],
     [
      12,
-     1
-    ],
-    [
-     4,
      1
     ]
    ]
@@ -838,12 +894,12 @@
    "field": "Bhabha · Said · Pratt",
    "field_id": 10,
    "works": 25,
-   "best_family": 10,
+   "best_family": 9,
    "family_label": "Anderson · Bhabha · Said — áfrica, nacionalismo, desde, nações",
-   "jaccard": 0.455,
+   "jaccard": 0.532,
    "work_spread": [
     [
-     10,
+     9,
      25
     ]
    ]
@@ -852,13 +908,17 @@
    "field": "Burke · KOSSOY · BARTHES",
    "field_id": 11,
    "works": 23,
-   "best_family": 1,
-   "family_label": "Chartier · Certeau · Kossoy — fotografia, cultural, arte, história",
-   "jaccard": 0.157,
+   "best_family": 16,
+   "family_label": "Kossoy · Dubois · Burke — fotografia, arte, cidades, imagens",
+   "jaccard": 0.412,
    "work_spread": [
     [
-     1,
-     22
+     16,
+     21
+    ],
+    [
+     6,
+     1
     ],
     [
      0,
@@ -867,12 +927,38 @@
    ]
   },
   {
-   "field": "FREIRE · ROMANELLI · NAGLE",
+   "field": "Darnton · Chartier",
    "field_id": 12,
+   "works": 15,
+   "best_family": 6,
+   "family_label": "Chartier · Certeau · Hall — cultural, cotidiano, invenção, diferença",
+   "jaccard": 0.048,
+   "work_spread": [
+    [
+     0,
+     5
+    ],
+    [
+     6,
+     5
+    ],
+    [
+     10,
+     3
+    ],
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "field": "FREIRE · ROMANELLI · NAGLE",
+   "field_id": 13,
    "works": 10,
    "best_family": 5,
    "family_label": "Halbwachs · Le Goff · Bosi — memória, oral, manual, esquecimento",
-   "jaccard": 0.066,
+   "jaccard": 0.074,
    "work_spread": [
     [
      5,
@@ -883,7 +969,7 @@
      2
     ],
     [
-     1,
+     6,
      1
     ],
     [
@@ -895,24 +981,35 @@
  ],
  "louvain_unclustered_works": [
   {
+   "title": "Microfísica do poder",
+   "first_author": "Foucault, Michel",
+   "citing": 252,
+   "entropy": 0.197,
+   "nmf_top": 12,
+   "nmf_top_share": 0.87,
+   "nmf_second": 6,
+   "nmf_second_share": 0.04,
+   "louvain": "unclustered"
+  },
+  {
    "title": "O processo civilizador",
    "first_author": "Elias, Norbert",
    "citing": 210,
-   "entropy": 0.692,
-   "nmf_top": 1,
-   "nmf_top_share": 0.31,
+   "entropy": 0.748,
+   "nmf_top": 6,
+   "nmf_top_share": 0.2,
    "nmf_second": 0,
-   "nmf_second_share": 0.17,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "Era dos extremos",
    "first_author": "Hobsbawm, Eric",
    "citing": 207,
-   "entropy": 0.627,
-   "nmf_top": 9,
+   "entropy": 0.63,
+   "nmf_top": 8,
    "nmf_top_share": 0.38,
-   "nmf_second": 3,
+   "nmf_second": 2,
    "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
@@ -920,21 +1017,21 @@
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
    "citing": 181,
-   "entropy": 0.417,
-   "nmf_top": 10,
-   "nmf_top_share": 0.63,
-   "nmf_second": 4,
-   "nmf_second_share": 0.14,
+   "entropy": 0.407,
+   "nmf_top": 9,
+   "nmf_top_share": 0.6,
+   "nmf_second": 13,
+   "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   {
    "title": "A formação da classe operária inglesa",
    "first_author": "Thompson, Edward P",
    "citing": 174,
-   "entropy": 0.088,
-   "nmf_top": 14,
+   "entropy": 0.085,
+   "nmf_top": 18,
    "nmf_top_share": 0.94,
-   "nmf_second": 7,
+   "nmf_second": 3,
    "nmf_second_share": 0.04,
    "louvain": "unclustered"
   },
@@ -942,22 +1039,33 @@
    "title": "Por uma história política",
    "first_author": "Rémond, René",
    "citing": 165,
-   "entropy": 0.649,
-   "nmf_top": 3,
-   "nmf_top_share": 0.35,
+   "entropy": 0.624,
+   "nmf_top": 2,
+   "nmf_top_share": 0.33,
    "nmf_second": 0,
-   "nmf_second_share": 0.19,
+   "nmf_second_share": 0.16,
    "louvain": "unclustered"
   },
   {
    "title": "História da Imprensa no Brasil",
    "first_author": "Sodré, Nelson Werneck",
    "citing": 144,
-   "entropy": 0.473,
+   "entropy": 0.472,
    "nmf_top": 0,
-   "nmf_top_share": 0.54,
-   "nmf_second": 6,
-   "nmf_second_share": 0.22,
+   "nmf_top_share": 0.52,
+   "nmf_second": 4,
+   "nmf_second_share": 0.21,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "A ordem do discurso",
+   "first_author": "Foucault, Michel",
+   "citing": 136,
+   "entropy": 0.247,
+   "nmf_top": 12,
+   "nmf_top_share": 0.79,
+   "nmf_second": 10,
+   "nmf_second_share": 0.12,
    "louvain": "unclustered"
   },
   {
@@ -965,20 +1073,31 @@
    "first_author": "Thompson, Edward P",
    "citing": 129,
    "entropy": 0.062,
-   "nmf_top": 14,
-   "nmf_top_share": 0.96,
+   "nmf_top": 18,
+   "nmf_top_share": 0.95,
    "nmf_second": 15,
-   "nmf_second_share": 0.04,
+   "nmf_second_share": 0.05,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "The Archaeology of Knowledge",
+   "first_author": "Foucault, Michel",
+   "citing": 119,
+   "entropy": 0.299,
+   "nmf_top": 12,
+   "nmf_top_share": 0.6,
+   "nmf_second": 10,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
    "title": "Segredos internos",
    "first_author": "Schwartz, Stuart B",
    "citing": 117,
-   "entropy": 0.428,
-   "nmf_top": 2,
+   "entropy": 0.413,
+   "nmf_top": 1,
    "nmf_top_share": 0.4,
-   "nmf_second": 7,
+   "nmf_second": 3,
    "nmf_second_share": 0.32,
    "louvain": "unclustered"
   },
@@ -986,10 +1105,10 @@
    "title": "Cidadania no Brasil: o longo caminho",
    "first_author": "Carvalho, José Murilo de",
    "citing": 115,
-   "entropy": 0.669,
+   "entropy": 0.647,
    "nmf_top": 0,
    "nmf_top_share": 0.24,
-   "nmf_second": 6,
+   "nmf_second": 4,
    "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
@@ -997,98 +1116,76 @@
    "title": "Cidade febril",
    "first_author": "Chalhoub, Sidney",
    "citing": 114,
-   "entropy": 0.421,
+   "entropy": 0.417,
    "nmf_top": 0,
-   "nmf_top_share": 0.48,
+   "nmf_top_share": 0.47,
    "nmf_second": 12,
-   "nmf_second_share": 0.28,
+   "nmf_second_share": 0.29,
    "louvain": "unclustered"
   },
   {
    "title": "A invenção das tradições",
    "first_author": "Hobsbawm, Eric",
    "citing": 110,
-   "entropy": 0.651,
-   "nmf_top": 1,
-   "nmf_top_share": 0.23,
-   "nmf_second": 10,
-   "nmf_second_share": 0.21,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Da diáspora",
-   "first_author": "Hall, Stuart",
-   "citing": 96,
-   "entropy": 0.5,
-   "nmf_top": 10,
-   "nmf_top_share": 0.46,
-   "nmf_second": 14,
-   "nmf_second_share": 0.21,
+   "entropy": 0.605,
+   "nmf_top": 6,
+   "nmf_top_share": 0.34,
+   "nmf_second": 9,
+   "nmf_second_share": 0.17,
    "louvain": "unclustered"
   },
   {
    "title": "Nações e nacionalismo desde 1780",
    "first_author": "Hobsbawm, Eric",
    "citing": 93,
-   "entropy": 0.51,
-   "nmf_top": 10,
-   "nmf_top_share": 0.48,
-   "nmf_second": 6,
-   "nmf_second_share": 0.16,
+   "entropy": 0.509,
+   "nmf_top": 9,
+   "nmf_top_share": 0.47,
+   "nmf_second": 0,
+   "nmf_second_share": 0.15,
    "louvain": "unclustered"
   },
   {
-   "title": "História do Brasil",
-   "first_author": "Fausto, Boris",
-   "citing": 91,
-   "entropy": 0.657,
-   "nmf_top": 0,
-   "nmf_top_share": 0.29,
-   "nmf_second": 5,
-   "nmf_second_share": 0.23,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Economia e sociedade",
-   "first_author": "Weber, Max",
-   "citing": 89,
-   "entropy": 0.651,
-   "nmf_top": 16,
+   "title": "The Order of Things: An Archaeology of the Human Sciences",
+   "first_author": "Foucault, Michel",
+   "citing": 92,
+   "entropy": 0.524,
+   "nmf_top": 12,
    "nmf_top_share": 0.46,
-   "nmf_second": 9,
-   "nmf_second_share": 0.12,
+   "nmf_second": 10,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "Os intelectuais e a organização da cultura",
    "first_author": "Gramsci, Antonio",
    "citing": 79,
-   "entropy": 0.609,
+   "entropy": 0.611,
    "nmf_top": 0,
-   "nmf_top_share": 0.23,
-   "nmf_second": 9,
-   "nmf_second_share": 0.23,
+   "nmf_top_share": 0.22,
+   "nmf_second": 8,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "Mitos e mitologias políticas",
    "first_author": "Girardet, Raoul",
    "citing": 78,
-   "entropy": 0.549,
-   "nmf_top": 3,
-   "nmf_top_share": 0.35,
-   "nmf_second": 16,
-   "nmf_second_share": 0.26,
+   "entropy": 0.538,
+   "nmf_top": 2,
+   "nmf_top_share": 0.33,
+   "nmf_second": 13,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "As peculiaridades dos ingleses e outros artigos",
    "first_author": "Thompson, Edward P",
    "citing": 78,
-   "entropy": 0.153,
-   "nmf_top": 14,
-   "nmf_top_share": 0.89,
-   "nmf_second": 9,
+   "entropy": 0.166,
+   "nmf_top": 18,
+   "nmf_top_share": 0.88,
+   "nmf_second": 8,
    "nmf_second_share": 0.06,
    "louvain": "unclustered"
   },
@@ -1096,150 +1193,139 @@
    "title": "Nação e consciência nacional",
    "first_author": "Anderson, Benedict",
    "citing": 65,
-   "entropy": 0.617,
+   "entropy": 0.629,
    "nmf_top": 0,
-   "nmf_top_share": 0.36,
-   "nmf_second": 10,
-   "nmf_second_share": 0.24,
+   "nmf_top_share": 0.35,
+   "nmf_second": 9,
+   "nmf_second_share": 0.21,
    "louvain": "unclustered"
   },
   {
    "title": "A cultura no plural",
    "first_author": "Certeau, Michel de",
    "citing": 55,
-   "entropy": 0.629,
-   "nmf_top": 1,
-   "nmf_top_share": 0.33,
-   "nmf_second": 11,
-   "nmf_second_share": 0.23,
+   "entropy": 0.457,
+   "nmf_top": 6,
+   "nmf_top_share": 0.48,
+   "nmf_second": 10,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
    "title": "O Brasil Republicano",
    "first_author": "Ferreira, Jorge Luiz",
    "citing": 53,
-   "entropy": 0.541,
+   "entropy": 0.512,
    "nmf_top": 0,
    "nmf_top_share": 0.35,
-   "nmf_second": 3,
+   "nmf_second": 2,
    "nmf_second_share": 0.33,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Os parceiros do Rio Bonito",
-   "first_author": "Candido, Antonio",
-   "citing": 48,
-   "entropy": 0.602,
-   "nmf_top": 14,
-   "nmf_top_share": 0.26,
-   "nmf_second": 11,
-   "nmf_second_share": 0.25,
    "louvain": "unclustered"
   },
   {
    "title": "Rio de Janeiro: Civilização Brasileira, 2005",
    "first_author": "Ferreira, Marieta de Moraes",
    "citing": 48,
-   "entropy": 0.568,
+   "entropy": 0.553,
    "nmf_top": 5,
-   "nmf_top_share": 0.34,
-   "nmf_second": 3,
+   "nmf_top_share": 0.35,
+   "nmf_second": 2,
    "nmf_second_share": 0.26,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Marxismo e filosofia da linguagem",
+   "first_author": "Bakhtin, Mikhail",
+   "citing": 43,
+   "entropy": 0.706,
+   "nmf_top": 18,
+   "nmf_top_share": 0.23,
+   "nmf_second": 12,
+   "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   {
    "title": "Constituição da República Federativa do Brasil",
    "first_author": "BRASIL., Constituição",
    "citing": 43,
-   "entropy": 0.498,
+   "entropy": 0.514,
    "nmf_top": 5,
-   "nmf_top_share": 0.56,
-   "nmf_second": 16,
-   "nmf_second_share": 0.22,
+   "nmf_top_share": 0.54,
+   "nmf_second": 19,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
    "title": "O grande massacre de gatos e outros episódios da história cultural francesa",
    "first_author": "Darnton, Robert",
    "citing": 42,
-   "entropy": 0.712,
-   "nmf_top": 1,
-   "nmf_top_share": 0.35,
-   "nmf_second": 10,
-   "nmf_second_share": 0.13,
+   "entropy": 0.562,
+   "nmf_top": 6,
+   "nmf_top_share": 0.51,
+   "nmf_second": 9,
+   "nmf_second_share": 0.1,
    "louvain": "unclustered"
   },
   {
    "title": "Culturas do povo",
    "first_author": "Davis, Natalie Zemon",
    "citing": 41,
-   "entropy": 0.767,
-   "nmf_top": 14,
-   "nmf_top_share": 0.21,
-   "nmf_second": 1,
-   "nmf_second_share": 0.13,
+   "entropy": 0.655,
+   "nmf_top": 6,
+   "nmf_top_share": 0.35,
+   "nmf_second": 18,
+   "nmf_second_share": 0.17,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Cotidiano e cultura: história, cidade e trabalho",
+   "first_author": "Matos, Maria Izilda Santos de",
+   "citing": 39,
+   "entropy": 0.421,
+   "nmf_top": 6,
+   "nmf_top_share": 0.57,
+   "nmf_second": 18,
+   "nmf_second_share": 0.2,
    "louvain": "unclustered"
   },
   {
    "title": "Terras devolutas e latifúndio: efeitos da lei de 1850",
    "first_author": "SILVA, Lígia Osório",
    "citing": 39,
-   "entropy": 0.474,
-   "nmf_top": 8,
+   "entropy": 0.463,
+   "nmf_top": 7,
    "nmf_top_share": 0.51,
-   "nmf_second": 7,
-   "nmf_second_share": 0.23,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "O povo brasileiro",
-   "first_author": "Ribeiro, Darcy",
-   "citing": 38,
-   "entropy": 0.757,
-   "nmf_top": 10,
-   "nmf_top_share": 0.2,
-   "nmf_second": 15,
-   "nmf_second_share": 0.2,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Dicionário do folclore brasileiro",
-   "first_author": "Cascudo, Luís da Câmara",
-   "citing": 37,
-   "entropy": 0.7,
-   "nmf_top": 11,
-   "nmf_top_share": 0.2,
-   "nmf_second": 1,
-   "nmf_second_share": 0.18,
+   "nmf_second": 3,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "Por uma história do político",
    "first_author": "Rosanvallon, Pierre",
    "citing": 37,
-   "entropy": 0.614,
-   "nmf_top": 6,
-   "nmf_top_share": 0.29,
-   "nmf_second": 3,
-   "nmf_second_share": 0.25,
+   "entropy": 0.526,
+   "nmf_top": 13,
+   "nmf_top_share": 0.36,
+   "nmf_second": 2,
+   "nmf_second_share": 0.22,
    "louvain": "unclustered"
   },
   {
    "title": "Ensaios de Sociologia",
    "first_author": "Weber, Max",
    "citing": 37,
-   "entropy": 0.678,
-   "nmf_top": 16,
-   "nmf_top_share": 0.32,
+   "entropy": 0.675,
+   "nmf_top": 19,
+   "nmf_top_share": 0.3,
    "nmf_second": 5,
-   "nmf_second_share": 0.2,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "História dos, nos e por meio dos periódicos",
    "first_author": "Tânia R De Luca",
    "citing": 36,
-   "entropy": 0.559,
+   "entropy": 0.547,
    "nmf_top": 0,
    "nmf_top_share": 0.31,
    "nmf_second": 17,
@@ -1247,91 +1333,91 @@
    "louvain": "unclustered"
   },
   {
+   "title": "Paisagens imaginárias",
+   "first_author": "Sarlo, Beatriz",
+   "citing": 36,
+   "entropy": 0.512,
+   "nmf_top": 18,
+   "nmf_top_share": 0.43,
+   "nmf_second": 9,
+   "nmf_second_share": 0.2,
+   "louvain": "unclustered"
+  },
+  {
    "title": "Os aprendizes do poder",
    "first_author": "Adorno, Sérgio",
    "citing": 35,
-   "entropy": 0.451,
+   "entropy": 0.446,
    "nmf_top": 0,
    "nmf_top_share": 0.4,
-   "nmf_second": 6,
-   "nmf_second_share": 0.38,
+   "nmf_second": 4,
+   "nmf_second_share": 0.39,
    "louvain": "unclustered"
   },
   {
    "title": "Mundos do Trabalho",
    "first_author": "Hobsbawm, Eric",
    "citing": 34,
-   "entropy": 0.062,
-   "nmf_top": 14,
+   "entropy": 0.061,
+   "nmf_top": 18,
    "nmf_top_share": 0.96,
-   "nmf_second": 8,
+   "nmf_second": 7,
    "nmf_second_share": 0.04,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Análise de discurso",
+   "first_author": "Orlandi, Eni Puccinelli",
+   "citing": 34,
+   "entropy": 0.438,
+   "nmf_top": 12,
+   "nmf_top_share": 0.63,
+   "nmf_second": 5,
+   "nmf_second_share": 0.14,
    "louvain": "unclustered"
   },
   {
    "title": "Sociologia e Antropologia",
    "first_author": "Mauss, Marcel",
    "citing": 33,
-   "entropy": 0.604,
-   "nmf_top": 13,
-   "nmf_top_share": 0.38,
+   "entropy": 0.621,
+   "nmf_top": 14,
+   "nmf_top_share": 0.35,
    "nmf_second": 5,
-   "nmf_second_share": 0.26,
+   "nmf_second_share": 0.25,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "Cultura e materialismo",
+   "first_author": "Williams, Raymond",
+   "citing": 33,
+   "entropy": 0.636,
+   "nmf_top": 18,
+   "nmf_top_share": 0.26,
+   "nmf_second": 16,
+   "nmf_second_share": 0.19,
    "louvain": "unclustered"
   },
   {
    "title": "O Império do Divino",
    "first_author": "Abreu, Martha Campos",
    "citing": 32,
-   "entropy": 0.593,
-   "nmf_top": 7,
-   "nmf_top_share": 0.39,
-   "nmf_second": 0,
-   "nmf_second_share": 0.15,
+   "entropy": 0.542,
+   "nmf_top": 3,
+   "nmf_top_share": 0.37,
+   "nmf_second": 6,
+   "nmf_second_share": 0.3,
    "louvain": "unclustered"
   },
   {
-   "title": "Fronteira: a degradação do outro nos confins do humano",
-   "first_author": "Martins, José de Souza",
+   "title": "Mimesis",
+   "first_author": "Auerbach, Erich",
    "citing": 32,
-   "entropy": 0.533,
-   "nmf_top": 14,
-   "nmf_top_share": 0.41,
-   "nmf_second": 15,
-   "nmf_second_share": 0.29,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Ciência e política: duas vocações",
-   "first_author": "Weber, Max",
-   "citing": 32,
-   "entropy": 0.682,
-   "nmf_top": 16,
-   "nmf_top_share": 0.26,
-   "nmf_second": 12,
-   "nmf_second_share": 0.21,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "A fabricação do rei",
-   "first_author": "Burke, Peter",
-   "citing": 31,
-   "entropy": 0.642,
-   "nmf_top": 1,
-   "nmf_top_share": 0.26,
-   "nmf_second": 2,
-   "nmf_second_share": 0.19,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "Nem tudo era italiano",
-   "first_author": "Santos, Carlos Nelson Ferreira dos",
-   "citing": 31,
-   "entropy": 0.656,
-   "nmf_top": 8,
-   "nmf_top_share": 0.26,
-   "nmf_second": 0,
-   "nmf_second_share": 0.22,
+   "entropy": 0.554,
+   "nmf_top": 10,
+   "nmf_top_share": 0.42,
+   "nmf_second": 14,
+   "nmf_second_share": 0.16,
    "louvain": "unclustered"
   }
  ],
@@ -1340,366 +1426,366 @@
    "title": "Imagined Communities: Reflections on the Origin and Spread of Nationalism",
    "first_author": "Anderson, Benedict",
    "citing": 181,
-   "entropy": 0.417,
-   "nmf_top": 10,
-   "nmf_top_share": 0.63,
-   "nmf_second": 4,
-   "nmf_second_share": 0.14,
+   "entropy": 0.407,
+   "nmf_top": 9,
+   "nmf_top_share": 0.6,
+   "nmf_second": 13,
+   "nmf_second_share": 0.18,
    "louvain": "unclustered"
   },
   "Orientalism": {
    "title": "Orientalism",
    "first_author": "Said, Edward",
    "citing": 84,
-   "entropy": 0.146,
-   "nmf_top": 10,
-   "nmf_top_share": 0.88,
-   "nmf_second": 13,
-   "nmf_second_share": 0.1,
+   "entropy": 0.185,
+   "nmf_top": 9,
+   "nmf_top_share": 0.86,
+   "nmf_second": 14,
+   "nmf_second_share": 0.09,
    "louvain": "Bhabha · Said · Pratt"
   },
   "Discipline and Punish": {
    "title": "Discipline and Punish: The Birth of the Prison",
    "first_author": "Foucault, Michel",
    "citing": 196,
-   "entropy": 0.256,
+   "entropy": 0.282,
    "nmf_top": 12,
-   "nmf_top_share": 0.84,
-   "nmf_second": 3,
-   "nmf_second_share": 0.06,
+   "nmf_top_share": 0.82,
+   "nmf_second": 2,
+   "nmf_second_share": 0.05,
    "louvain": "Foucault · CHALHOUB"
   }
  },
  "bridges_top30": [
   {
-   "title": "O queijo e os vermes",
-   "first_author": "Ginzburg, Carlo",
-   "citing": 186,
-   "entropy": 0.836,
-   "nmf_top": 1,
-   "nmf_top_share": 0.21,
-   "nmf_second": 14,
-   "nmf_second_share": 0.15,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
-  },
-  {
    "title": "Obras escolhidas",
    "first_author": "Benjamin, Walter",
    "citing": 58,
-   "entropy": 0.824,
-   "nmf_top": 4,
-   "nmf_top_share": 0.2,
-   "nmf_second": 1,
-   "nmf_second_share": 0.13,
+   "entropy": 0.82,
+   "nmf_top": 6,
+   "nmf_top_share": 0.16,
+   "nmf_second": 10,
+   "nmf_second_share": 0.12,
    "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
    "title": "História concisa do Brasil",
    "first_author": "Fausto, Boris",
    "citing": 34,
-   "entropy": 0.816,
-   "nmf_top": 3,
-   "nmf_top_share": 0.15,
-   "nmf_second": 8,
-   "nmf_second_share": 0.13,
+   "entropy": 0.773,
+   "nmf_top": 2,
+   "nmf_top_share": 0.14,
+   "nmf_second": 16,
+   "nmf_second_share": 0.14,
    "louvain": "FRAGOSO · ANTONIL · FARIA"
   },
   {
-   "title": "Raízes do Brasil",
-   "first_author": "Holanda, Sergio Buarque de",
-   "citing": 209,
-   "entropy": 0.798,
-   "nmf_top": 0,
-   "nmf_top_share": 0.25,
-   "nmf_second": 2,
-   "nmf_second_share": 0.16,
-   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
-  },
-  {
-   "title": "Dialética da colonização",
-   "first_author": "Bosi, Alfredo",
-   "citing": 99,
-   "entropy": 0.793,
-   "nmf_top": 0,
-   "nmf_top_share": 0.26,
-   "nmf_second": 15,
-   "nmf_second_share": 0.15,
-   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
-  },
-  {
-   "title": "Mitos, emblemas, sinais: morfologia e história",
-   "first_author": "Ginzburg, Carlo",
-   "citing": 193,
-   "entropy": 0.793,
-   "nmf_top": 4,
-   "nmf_top_share": 0.22,
+   "title": "São Paulo: Editora UNESP, 2009",
+   "first_author": "Silva, Regina Helena Alves da",
+   "citing": 32,
+   "entropy": 0.766,
+   "nmf_top": 2,
+   "nmf_top_share": 0.2,
    "nmf_second": 1,
-   "nmf_second_share": 0.22,
+   "nmf_second_share": 0.16,
+   "louvain": "FRAGOSO · ANTONIL · FARIA"
+  },
+  {
+   "title": "A micro-história e outros ensaios",
+   "first_author": "Ginzburg, Carlo",
+   "citing": 64,
+   "entropy": 0.765,
+   "nmf_top": 1,
+   "nmf_top_share": 0.19,
+   "nmf_second": 10,
+   "nmf_second_share": 0.18,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
    "title": "Jogos de escalas",
    "first_author": "Revel, Jacques",
    "citing": 79,
-   "entropy": 0.792,
-   "nmf_top": 7,
-   "nmf_top_share": 0.19,
-   "nmf_second": 2,
+   "entropy": 0.762,
+   "nmf_top": 3,
+   "nmf_top_share": 0.18,
+   "nmf_second": 1,
    "nmf_second_share": 0.15,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "O retorno de Martin Guerre",
-   "first_author": "Davis, Natalie Zemon",
-   "citing": 30,
-   "entropy": 0.787,
-   "nmf_top": 4,
-   "nmf_top_share": 0.18,
-   "nmf_second": 17,
-   "nmf_second_share": 0.14,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+   "title": "Raízes do Brasil",
+   "first_author": "Holanda, Sergio Buarque de",
+   "citing": 209,
+   "entropy": 0.757,
+   "nmf_top": 0,
+   "nmf_top_share": 0.25,
+   "nmf_second": 1,
+   "nmf_second_share": 0.16,
+   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
+  },
+  {
+   "title": "As identidades do Brasil",
+   "first_author": "Reis, José Carlos",
+   "citing": 59,
+   "entropy": 0.752,
+   "nmf_top": 0,
+   "nmf_top_share": 0.31,
+   "nmf_second": 6,
+   "nmf_second_share": 0.13,
+   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
    "title": "Dicionário de Política",
    "first_author": "Bobbio, Norberto",
    "citing": 108,
-   "entropy": 0.78,
-   "nmf_top": 3,
-   "nmf_top_share": 0.29,
-   "nmf_second": 14,
-   "nmf_second_share": 0.14,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
-  },
-  {
-   "title": "A micro-história e outros ensaios",
-   "first_author": "Ginzburg, Carlo",
-   "citing": 64,
-   "entropy": 0.778,
+   "entropy": 0.749,
    "nmf_top": 2,
-   "nmf_top_share": 0.19,
-   "nmf_second": 1,
-   "nmf_second_share": 0.16,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
-  },
-  {
-   "title": "História e Ciências Sociais",
-   "first_author": "Braudel, Fernand",
-   "citing": 45,
-   "entropy": 0.777,
-   "nmf_top": 4,
-   "nmf_top_share": 0.18,
-   "nmf_second": 5,
+   "nmf_top_share": 0.28,
+   "nmf_second": 18,
    "nmf_second_share": 0.13,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
-  },
-  {
-   "title": "Culturas do povo",
-   "first_author": "Davis, Natalie Zemon",
-   "citing": 41,
-   "entropy": 0.767,
-   "nmf_top": 14,
-   "nmf_top_share": 0.21,
-   "nmf_second": 1,
-   "nmf_second_share": 0.13,
-   "louvain": "unclustered"
-  },
-  {
-   "title": "O povo brasileiro",
-   "first_author": "Ribeiro, Darcy",
-   "citing": 38,
-   "entropy": 0.757,
-   "nmf_top": 10,
-   "nmf_top_share": 0.2,
-   "nmf_second": 15,
-   "nmf_second_share": 0.2,
-   "louvain": "unclustered"
   },
   {
    "title": "A instituição imaginária da sociedade",
    "first_author": "Castoriadis, Cornelius",
    "citing": 44,
-   "entropy": 0.755,
+   "entropy": 0.749,
    "nmf_top": 12,
-   "nmf_top_share": 0.23,
-   "nmf_second": 10,
-   "nmf_second_share": 0.15,
+   "nmf_top_share": 0.2,
+   "nmf_second": 6,
+   "nmf_second_share": 0.14,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "Rio de Janeiro",
-   "first_author": "Silva, Alberto da Costa e",
-   "citing": 31,
-   "entropy": 0.753,
-   "nmf_top": 7,
+   "title": "O processo civilizador",
+   "first_author": "Elias, Norbert",
+   "citing": 210,
+   "entropy": 0.748,
+   "nmf_top": 6,
    "nmf_top_share": 0.2,
-   "nmf_second": 3,
-   "nmf_second_share": 0.14,
-   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
-  },
-  {
-   "title": "A micro-história italiana: escalas, indícios e singularidades",
-   "first_author": "Lima, Henrique Espada",
-   "citing": 30,
-   "entropy": 0.751,
-   "nmf_top": 7,
-   "nmf_top_share": 0.25,
-   "nmf_second": 5,
-   "nmf_second_share": 0.21,
-   "louvain": "FRAGOSO · ANTONIL · FARIA"
+   "nmf_second": 0,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
   },
   {
    "title": "Brasil: mito fundador e sociedade autoritária",
    "first_author": "Chauí, Marilena",
    "citing": 40,
-   "entropy": 0.75,
-   "nmf_top": 1,
-   "nmf_top_share": 0.26,
+   "entropy": 0.748,
+   "nmf_top": 6,
+   "nmf_top_share": 0.28,
    "nmf_second": 5,
-   "nmf_second_share": 0.17,
+   "nmf_second_share": 0.13,
    "louvain": "FURTADO · COSTA · Marx"
   },
   {
-   "title": "O espelho de Próspero",
-   "first_author": "Morse, Richard",
-   "citing": 33,
+   "title": "O retorno de Martin Guerre",
+   "first_author": "Davis, Natalie Zemon",
+   "citing": 30,
    "entropy": 0.746,
-   "nmf_top": 10,
-   "nmf_top_share": 0.18,
-   "nmf_second": 6,
+   "nmf_top": 6,
+   "nmf_top_share": 0.19,
+   "nmf_second": 10,
    "nmf_second_share": 0.16,
-   "louvain": "MONTEIRO · HOLANDA"
-  },
-  {
-   "title": "A História Nova",
-   "first_author": "Le Goff, Jacques",
-   "citing": 64,
-   "entropy": 0.744,
-   "nmf_top": 5,
-   "nmf_top_share": 0.21,
-   "nmf_second": 13,
-   "nmf_second_share": 0.17,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "São Paulo: Editora UNESP, 2009",
-   "first_author": "Silva, Regina Helena Alves da",
-   "citing": 32,
-   "entropy": 0.743,
-   "nmf_top": 3,
-   "nmf_top_share": 0.2,
-   "nmf_second": 2,
+   "title": "Dialética da colonização",
+   "first_author": "Bosi, Alfredo",
+   "citing": 99,
+   "entropy": 0.746,
+   "nmf_top": 0,
+   "nmf_top_share": 0.24,
+   "nmf_second": 6,
    "nmf_second_share": 0.17,
-   "louvain": "FRAGOSO · ANTONIL · FARIA"
+   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
    "title": "Por uma geografia do poder",
    "first_author": "Raffestin, Claude",
    "citing": 31,
    "entropy": 0.742,
-   "nmf_top": 5,
-   "nmf_top_share": 0.24,
-   "nmf_second": 16,
-   "nmf_second_share": 0.23,
+   "nmf_top": 19,
+   "nmf_top_share": 0.22,
+   "nmf_second": 5,
+   "nmf_second_share": 0.2,
    "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
-   "title": "Domínios da História",
-   "first_author": "Cardoso, Ciro Flamarion Santana",
-   "citing": 71,
-   "entropy": 0.739,
-   "nmf_top": 1,
-   "nmf_top_share": 0.29,
+   "title": "O desafio biográfico",
+   "first_author": "Dosse, François",
+   "citing": 52,
+   "entropy": 0.742,
+   "nmf_top": 16,
+   "nmf_top_share": 0.21,
    "nmf_second": 13,
-   "nmf_second_share": 0.15,
+   "nmf_second_share": 0.17,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "As identidades do Brasil",
-   "first_author": "Reis, José Carlos",
-   "citing": 59,
+   "title": "O espelho de Próspero",
+   "first_author": "Morse, Richard",
+   "citing": 33,
+   "entropy": 0.738,
+   "nmf_top": 13,
+   "nmf_top_share": 0.17,
+   "nmf_second": 1,
+   "nmf_second_share": 0.16,
+   "louvain": "MONTEIRO · HOLANDA"
+  },
+  {
+   "title": "A ilusão biográfica",
+   "first_author": "Bourdieu, Pierre",
+   "citing": 32,
    "entropy": 0.735,
-   "nmf_top": 0,
-   "nmf_top_share": 0.31,
-   "nmf_second": 4,
-   "nmf_second_share": 0.14,
+   "nmf_top": 13,
+   "nmf_top_share": 0.22,
+   "nmf_second": 0,
+   "nmf_second_share": 0.2,
    "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
-   "title": "Formação histórica de São Paulo",
-   "first_author": "Morse, Richard",
-   "citing": 30,
-   "entropy": 0.731,
-   "nmf_top": 8,
-   "nmf_top_share": 0.25,
-   "nmf_second": 1,
-   "nmf_second_share": 0.21,
-   "louvain": "unclustered"
+   "title": "Rio de Janeiro",
+   "first_author": "Silva, Alberto da Costa e",
+   "citing": 31,
+   "entropy": 0.732,
+   "nmf_top": 3,
+   "nmf_top_share": 0.19,
+   "nmf_second": 6,
+   "nmf_second_share": 0.15,
+   "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
   },
   {
    "title": "Dialética do esclarecimento",
    "first_author": "Adorno, Theodor W",
    "citing": 40,
-   "entropy": 0.727,
+   "entropy": 0.731,
    "nmf_top": 11,
    "nmf_top_share": 0.26,
-   "nmf_second": 10,
-   "nmf_second_share": 0.15,
+   "nmf_second": 9,
+   "nmf_second_share": 0.14,
    "louvain": "HOLANDA · SEVCENKO · SCHWARCZ"
-  },
-  {
-   "title": "A condição humana",
-   "first_author": "Arendt, Hannah",
-   "citing": 55,
-   "entropy": 0.726,
-   "nmf_top": 4,
-   "nmf_top_share": 0.22,
-   "nmf_second": 5,
-   "nmf_second_share": 0.2,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
    "title": "São Paulo: Companhia das Letras, 1993",
    "first_author": "Schwarcz, Lilia M",
    "citing": 46,
-   "entropy": 0.726,
+   "entropy": 0.72,
    "nmf_top": 0,
-   "nmf_top_share": 0.23,
+   "nmf_top_share": 0.21,
    "nmf_second": 5,
    "nmf_second_share": 0.2,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "A invenção do Nordeste e outras artes",
-   "first_author": "Albuquerque Júnior, Durval Muniz de",
-   "citing": 40,
-   "entropy": 0.725,
-   "nmf_top": 1,
-   "nmf_top_share": 0.36,
-   "nmf_second": 17,
-   "nmf_second_share": 0.15,
-   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+   "title": "Formação histórica de São Paulo",
+   "first_author": "Morse, Richard",
+   "citing": 30,
+   "entropy": 0.72,
+   "nmf_top": 7,
+   "nmf_top_share": 0.25,
+   "nmf_second": 6,
+   "nmf_second_share": 0.19,
+   "louvain": "unclustered"
   },
   {
    "title": "Era dos extremos",
    "first_author": "Hobsbawm, Eric",
    "citing": 53,
-   "entropy": 0.722,
-   "nmf_top": 3,
-   "nmf_top_share": 0.21,
-   "nmf_second": 11,
+   "entropy": 0.72,
+   "nmf_top": 11,
+   "nmf_top_share": 0.22,
+   "nmf_second": 2,
    "nmf_second_share": 0.2,
    "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   },
   {
-   "title": "A herança imaterial",
-   "first_author": "Levi, Giovanni",
-   "citing": 73,
+   "title": "Mitos, emblemas, sinais: morfologia e história",
+   "first_author": "Ginzburg, Carlo",
+   "citing": 193,
    "entropy": 0.719,
-   "nmf_top": 7,
+   "nmf_top": 10,
+   "nmf_top_share": 0.36,
+   "nmf_second": 6,
+   "nmf_second_share": 0.12,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "A história cultural entre práticas e representações",
+   "first_author": "Chartier, Roger",
+   "citing": 68,
+   "entropy": 0.718,
+   "nmf_top": 0,
+   "nmf_top_share": 0.19,
+   "nmf_second": 10,
+   "nmf_second_share": 0.19,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "História e Ciências Sociais",
+   "first_author": "Braudel, Fernand",
+   "citing": 45,
+   "entropy": 0.714,
+   "nmf_top": 10,
+   "nmf_top_share": 0.28,
+   "nmf_second": 7,
+   "nmf_second_share": 0.13,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "O queijo e os vermes",
+   "first_author": "Ginzburg, Carlo",
+   "citing": 186,
+   "entropy": 0.71,
+   "nmf_top": 6,
+   "nmf_top_share": 0.3,
+   "nmf_second": 10,
+   "nmf_second_share": 0.15,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "Marxismo e filosofia da linguagem",
+   "first_author": "Bakhtin, Mikhail",
+   "citing": 43,
+   "entropy": 0.706,
+   "nmf_top": 18,
+   "nmf_top_share": 0.23,
+   "nmf_second": 12,
+   "nmf_second_share": 0.18,
+   "louvain": "unclustered"
+  },
+  {
+   "title": "O pequeno x",
+   "first_author": "Loriga, Sabina",
+   "citing": 37,
+   "entropy": 0.706,
+   "nmf_top": 0,
+   "nmf_top_share": 0.19,
+   "nmf_second": 4,
+   "nmf_second_share": 0.18,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "Rio de Janeiro: Paz e Terra, 1988",
+   "first_author": "Hobsbawm, Eric",
+   "citing": 30,
+   "entropy": 0.702,
+   "nmf_top": 8,
+   "nmf_top_share": 0.19,
+   "nmf_second": 0,
+   "nmf_second_share": 0.19,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
+  },
+  {
+   "title": "A sociedade dos indivíduos",
+   "first_author": "Elias, Norbert",
+   "citing": 75,
+   "entropy": 0.7,
+   "nmf_top": 6,
    "nmf_top_share": 0.27,
-   "nmf_second": 2,
-   "nmf_second_share": 0.17,
-   "louvain": "FRAGOSO · ANTONIL · FARIA"
+   "nmf_second": 19,
+   "nmf_second_share": 0.22,
+   "louvain": "LE GOFF · CHARTIER · BOURDIEU"
   }
  ]
 }

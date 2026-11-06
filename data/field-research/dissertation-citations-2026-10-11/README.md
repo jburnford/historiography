@@ -467,6 +467,37 @@ Early Germans* and E. M. Thompson's *The Carthusian Order in England*.
   - The main graph went from 13,204 to 13,346 strict.
   - The United States sub-graph has 3,006 strict, and Chicago adds 142, from 1990 to 2026.
 
+### Mexico (2026-11-04/05)
+
+- **Source.** [mexico-theses-2026-11-04](../mexico-theses-2026-11-04/README.md).
+  - UNAM's TesiUNAM (OAI) lists 508 Doctorado en Historia theses, all open access. The PDFs come from
+    ru.dgb.unam.mx.
+  - Instituto Mora, El Colegio de Michoacán, El Colegio de San Luis and Ibero come through DSpace OAI.
+  - El Colegio de México's 348 History doctorates are harvested as records only, since its PDFs sit
+    behind a captcha for scripts.
+  - User, 2026-11-04: "stick with history for now". History doctorates only, which leaves Mexico below
+    the 2,000 needed for a sub-graph.
+- **Screen.** `scripts/register_mexico_theses.py` reads each title page offline, with OCR where the text
+  layer names no degree.
+  - 706 are registered: 625 by the title page, 81 by the repository record where the title page is
+    illegible.
+  - 59 are held in the folder's `held.jsonl`. They include Mora's Doctorado en Estudios del Desarrollo,
+    El Colegio de Michoacán's Doctorado en Ciencias Sociales, and UNAM title pages naming Historia del
+    Arte, Letras or Estudios Latinoamericanos.
+- **Ingest.** Source `mexico_records` (adapter `mexico_records`, `country: MX`): manifest 16,823 → 17,530.
+  - That is 701 Mexican theses (5 repository duplicates dropped) and 6 French theses downloaded after
+    the France ingest.
+  - Extraction (with OCR, 35 minutes) gave bibliographies for 565 Mexican theses, about 167k entries.
+    Most of the rest are older UNAM theses with no bibliography heading.
+- **Rebuild.** Build, link, rebuild, summaries and TF-IDF ran on Plato as job 6009983, a CPU job with
+  no `--gres` (about 2 hours).
+  - The main graph went from 13,346 to 13,996 strict.
+  - Mexico counts 591 strict theses: 565 from this round, 26 from earlier sources. They date from 1940
+    to 2026, with a median of 2015.
+  - The same build applied the History of Science rule in `eligibility()` (user decision, 2026-11-04:
+    "History of science is history"). This added the AHA-matched Harvard and Oklahoma History of
+    Science theses, and the United States went from 3,006 to 3,088.
+
 ## Corpus and eligibility
 
 Canadian doctoral records come from four harvests:
@@ -839,6 +870,7 @@ absolute, `data/...` from the repository root, or bare names in this directory; 
 | `us_browser` | `browser_manifest` | `E:\historiography-dissertation-pdfs\us-browser\manifest.csv` (columns in `../us-dissertations-browser-handoff-2026-10-20/README.md`); matched to the AHA directory on surname, title similarity ≥ 0.9 and year ±1 |
 | `japan` | `japan_records` | `../japan-dissertations-2026-10-20/records.jsonl` and its PDF logs. `"ingest": false` until the extractor reads Japanese headings (参考文献, 文献目録, 引用文献) |
 | `base` | `base_clusters` | `../base-history-theses-2026-10-19/clusters.jsonl` and `downloads-base.jsonl`; only `history_label: history`; country from the cluster's repository country, else the link's country-code domain |
+| `mexico_records` | `mexico_records` | `../mexico-theses-2026-11-04/records.jsonl` from `scripts/register_mexico_theses.py` (title-page check); each record carries its PDF parts with SHA-256 |
 
 To add a source: add an entry to the registry. If its inputs are of a new kind, also write a small
 adapter function that yields `candidate(entry, files)` and add it to `ADAPTERS`. The entry is the
