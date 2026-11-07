@@ -68,9 +68,11 @@ Hand checks of random rows against the text around the signature:
 The accepted strings cover 2,010 distinct ROR organisations. A further 29,000 signatures carry institution strings printed only once, which are not grounded.
 
 **Audits:** random accepted strings, weighted by signatures:
-- the earlier round found 2/30 wrong (Lancaster went to the Ghana campus, New Orleans to LSU); the display-name rule fixed Lancaster;
+- the earlier round found 1/30 wrong (Lancaster went to the Ghana campus), fixed by the display-name rule;
 - a fresh round after that: 30/30 right.
 
 **Known residue:**
-- `University of New Orleans` (39 signatures) still goes to LSU New Orleans; ROR seems to hold that name only as LSU's alias.
+- `University of New Orleans` (39 signatures) goes to ROR 034mtvk83, displayed as `LSU New Orleans`. This is correct: the record
+  is the University of New Orleans (founded 1958; Wikidata Q1474157; its Wikipedia link is the UNO article), which ROR now
+  lists under its LSU New Orleans brand. I reported it as an error earlier; it is not one.
 - Ambiguous system names (`University of Texas`, `University of Wisconsin`, `University of Maryland`) stay in review.
