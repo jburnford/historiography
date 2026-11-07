@@ -56,6 +56,9 @@ def main():
     s['institutions'] = report['Institution']
     # relations
     s['edges'] = {k: v for k, v in report.items() if k.isupper()}
+    # citations by citing kind: thesis bibliographies and JSTOR research-article notes (2026-11-07)
+    s['citations'] = {kind: dict(edges=n, citing=c) for kind, n, c in db.execute(f"""SELECT w.kind, count(*), count(DISTINCT c."from")
+        FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c."from" GROUP BY 1""").fetchall()}
     # reviews
     s['reviews'] = dict(total=s['works']['by_kind']['Book reviews'],
                         with_keyed_reviewer=one(f"SELECT count(DISTINCT review) FROM '{G}/reviewed.parquet'")[0],
@@ -74,7 +77,7 @@ def main():
         jstor_articles_citing=one(f"SELECT count(DISTINCT c.\"from\") FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
         jstor_cites=one(f"SELECT count(*) FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
         keyed_cited_works=one(f"SELECT count(DISTINCT \"to\") FROM '{G}/cites.parquet'")[0])
-    s['built'] = '2026-11-06'
+    s['built'] = __import__('datetime').date.today().isoformat()
     (HERE / 'stats.json').write_text(json.dumps(s, indent=1, ensure_ascii=False) + '\n')
     page = (HERE / 'template.html').read_text().replace('/*STATS*/null', json.dumps(s, ensure_ascii=False))
     (HERE / 'kg-overview.html').write_text(page)

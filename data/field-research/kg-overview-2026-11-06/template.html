@@ -167,6 +167,7 @@ const kpis = [
   ['Works', S.works.total, 'books, articles, reviews, theses'],
   ['Institutions', S.institutions, 'with ROR identifiers'],
   ['Dissertations read in full', S.corpus.in_analysis, `${fmt(S.corpus.bibliography_entries)} bibliography entries`],
+  ['JSTOR articles cited from', S.citations.article.citing, `${fmt(S.citations.article.edges)} citations from their notes to keyed works`],
 ];
 for (const [l, v, sub] of kpis) {
   const t = el('div', 'card tile', `<div class="label">${l}</div><div class="value">${fmt(v)}</div><div class="sub">${sub}</div>`);
@@ -177,7 +178,7 @@ for (const [l, v, sub] of kpis) {
 const ROLE = { 'historian': ['Historians', 'a history PhD, supervision, AHA listing or review on record; or Wikidata historian after 1900'],
   'other scholar': ['Other scholars', 'ORCID, articles, or cited as scholarship; no history signal yet'],
   'primary source': ['Primary-source people', 'dated before 1900, or cited mostly in primary-source sections'],
-  'unknown': ['Not yet known', 'mostly LC book authors with no other facts'] };
+  'unknown': ['Not yet known', 'mostly LC authors of books reviewed in JSTOR, with no other facts yet'] };
 bars('roles', 'People by role', Object.entries(S.people.roles).map(([r, v]) => ({ name: ROLE[r][0], sub: ROLE[r][1], value: v, tip: ROLE[r][1] })), S.people.total);
 const SIG = { 'history-phd': 'History PhD on record (AHA, corpus, CAPES)', 'reviewer': 'Wrote a book review',
   'supervisor-or-staff-list': 'Supervisor, or on a staff list (AHA directory, IHR Teachers of History)', 'wikidata-historian': 'Wikidata occupation: historian',
@@ -211,7 +212,7 @@ bars('works', 'Works', Object.entries(S.works.by_kind).map(([name, value]) => ({
 
 const EDGE = {
   'Authorship': [['AUTHORED', 'person wrote a work'], ['EDITED', 'person edited a volume']],
-  'Citation': [['CITES', 'dissertation cites a keyed work']],
+  'Citation': [['CITES', 'thesis or JSTOR article cites a keyed work']],
   'Reviewing': [['REVIEWS', 'review discusses a book'], ['REVIEWED', 'reviewer reviewed an author (both keyed)']],
   'Training': [['AWARDED_BY', 'thesis awarded by an institution'], ['SUPERVISED', 'person supervised a thesis'], ['ADVISED', 'supervisor to student (derived)']],
   'Collaboration': [['COAUTHORED', 'pairs who wrote together (derived, with counts)'], ['COEDITED', 'pairs who edited together (derived)'], ['EDITOR_OF', 'volume editor to contributor (derived)']],
@@ -226,7 +227,7 @@ const P = S.people, R = S.reviews, C = S.corpus;
 meter('People with a public identifier', P.with_public_id, P.total, 'LC, GND, VIAF, ISNI, Wikidata, ORCID or IdRef');
 meter('People established on two or more sources', P.established, P.total, `${fmt(P.recorded)} rest on one source`);
 meter('Book reviews whose reviewer is keyed', R.with_keyed_reviewer, R.total, 'the rest carry the reviewer as a printed name');
-meter('Corpus citations linked to keyed works', E.CITES, C.corpus_citations, 'thesis-to-work citations');
+meter('Thesis citations linked to keyed works', S.citations.thesis.edges, C.corpus_citations, 'thesis-to-work citations; JSTOR article citations are counted separately');
 meter('Distinct cited works keyed in the graph', C.keyed_cited_works, C.distinct_cited_works, 'many are archival sources, newspapers and other primary material');
 
 bars('ids', 'Public identifiers', Object.entries(P.ids).map(([name, value]) => ({ name, value })), P.total);
@@ -240,7 +241,7 @@ bars('funnel', 'Bibliographies', [
   { name: 'Bibliography entries extracted', value: C.bibliography_entries, tip: `from ${fmt(C.parsed)} theses` },
   { name: 'Citations after cleaning', sub: 'thesis-to-work, in the analysis', value: C.corpus_citations },
   { name: 'Distinct works cited', value: C.distinct_cited_works },
-  { name: 'Citations to keyed works', sub: 'CITES edges in the graph', value: E.CITES },
+  { name: 'Citations to keyed works', sub: 'thesis CITES edges in the graph', value: S.citations.thesis.edges },
   { name: 'Keyed works cited', value: C.keyed_cited_works },
 ]);
 
