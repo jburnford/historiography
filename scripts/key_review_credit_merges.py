@@ -170,6 +170,7 @@ def hsk_institution(credit, label):
 
 
 SIGNATURES = Path('/mnt/e/jstor-fulltext-2026-11-06/review-signatures-rules.jsonl.gz')   # JSTOR session, 2026-11-06
+QWEN_REVIEWERS = Path('/mnt/e/jstor-fulltext-2026-11-06/review-reviewers-qwen.parquet')
 JSTOR_RECORDS = Path('/mnt/e/JSTOR_history_citation_graph/records.sqlite')
 
 
@@ -188,6 +189,16 @@ def jstor_signatures():
             if r.get('institution') and (r.get('conf') or 0) >= 0.75 and r['iid'] in doi:
                 d, y = doi[r['iid']]
                 out[d] = (r['creator'], r['institution'], y)
+    # the Qwen re-read (2026-11-07): reviewers the rules missed ('new') or read differently ('changed'), kept only
+    # where Qwen located the signature in the text ('where' set) and printed an institution; the rules win where
+    # both give one
+    if QWEN_REVIEWERS.exists():
+        db = duckdb.connect()
+        for iid, name, inst in db.execute(f"""SELECT iid, name, institution FROM '{QWEN_REVIEWERS}'
+                WHERE status IN ('new', 'changed') AND "where" IS NOT NULL AND institution IS NOT NULL AND name IS NOT NULL""").fetchall():
+            if iid in doi and doi[iid][0] not in out:
+                d, y = doi[iid]
+                out[d] = (' '.join(name.split()), inst, y)
     return out
 
 
