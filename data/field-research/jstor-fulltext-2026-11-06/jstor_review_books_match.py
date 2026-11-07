@@ -2,7 +2,7 @@
 
 Input: review-headings-rules.jsonl.gz (jstor_review_headings.py). Works and the matching are those of
 jstor_match_candidates.py (title_key of the main title + family name of an author or editor, LC titles for works
-with an LCCN; basis strong / no_year / edition? / title+year). A heading's authors are JSTOR's metadata names that
+with an LCCN; basis strong / no_year / edition? / title+year). Thesis, article and review works are never targets. A heading's authors are JSTOR's metadata names that
 the heading prints. A heading title is tried first; for a review with one heading and a JSTOR title, the JSTOR
 title is tried as well (the heading's main title can be cut short).
 
@@ -29,6 +29,7 @@ import jstor_match_candidates as M  # noqa: E402
 E = '/mnt/e/jstor-fulltext-2026-11-06'
 SRC = f'{E}/review-headings-rules.jsonl.gz'
 OUT = f'{E}/review-book-candidates.parquet'
+NOT_BOOKS = {'thesis', 'article', 'review'}
 
 
 def main():
@@ -63,7 +64,10 @@ def main():
                 if not M.usable(tk):
                     continue
                 for fam in fams or ['']:
-                    pick, basis = M.lookup(idx, tk, fam, b['year']) if fam else M.lookup(idx, tk, '\0', b['year'])
+                    pick, basis = M.lookup(idx, tk, fam or '\0', b['year'])
+                    # a review is of a book: not of the thesis it grew from, a journal piece or another review
+                    # (KG session, 2026-11-06: 115 thesis and 107 JSTOR-article targets held, Bloch's Annales 1932)
+                    pick = [w for w in pick if w[1] not in NOT_BOOKS]
                     if pick:
                         break
                 if pick:

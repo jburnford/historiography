@@ -116,3 +116,13 @@ Books are grouped on (main-title key, family name of the first author or editor)
 An LC lookup that needs title and author to agree will drop most of it. Leading page numbers and prices are stripped.
 Multi-volume series (`The Papers of Woodrow Wilson. Vol. 11`) head the list by review count, since each volume is
 reviewed separately.
+
+## Rerun without thesis, article and review targets (2026-11-06, late)
+
+After the KG session's holds (115 rows on thesis records, 107 on JSTOR journal pieces, one self-match: Bloch,
+*Annales* 1932), the matcher no longer offers thesis, article or review works as reviewed books. Both E: files were
+rebuilt:
+- `review-book-candidates.parquet`: strong 92,092 rows; edition? 7,466; no_year 3,543; title+year 767.
+- `review-books-unmatched.parquet`: 159,773 books, 108,338 of them lookup-ready.
+
+The rows the KG session already ingested are unaffected apart from the ones it held.
