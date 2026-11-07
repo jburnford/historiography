@@ -145,6 +145,9 @@ def match(args, db):
 
 def propose(args, db):
     state = State.load(args.state)
+    # anchors of claims withdrawn by review (a wrong namesake, a festschrift honoree): a withdrawn key releases
+    # its anchors, and a rerun must not mint the same claim again (2026-11-07)
+    withdrawn = {a for k, v in state.keys.items() if v['type'] == 'claim' and v['status'] == 'withdrawn' for a in v['anchors']}
     matches = [json.loads(l) for l in gzip.open(args.out / 'matches.jsonl.gz', 'rt', encoding='utf-8')]
     report = Counter(matches=len(matches))
     controls = sorted({c for m in matches for c in m['controls']})
@@ -219,13 +222,16 @@ def propose(args, db):
                 roles[lcid, role].add(lccn)
         for (lcid, role), lccns in sorted(roles.items()):
             pa = f'lcnaf:{lcid}'
+            claim_anchors = [f'lc-{role}:{x}:{lcid}' for x in sorted(lccns)]
+            if any(a in withdrawn for a in claim_anchors):
+                report[f'{role}_withdrawn_by_review'] += 1
+                continue
             if pa not in state.anchor and lcid not in new_people:
                 new_people[lcid] = len(ops)
                 ops.append(dict(event='mint', key=f'new:p{len(ops)}', type='person', label=names[0][lcid]['label'],
                                 resolution='established', anchors=[pa], aliases=[], members=[],
                                 basis='LC name authority of the author or editor of a book reviewed in JSTOR'))
                 report['people_minted'] += 1
-            claim_anchors = [f'lc-{role}:{x}:{lcid}' for x in sorted(lccns)]
             if any(a in state.anchor or a in seen_claims for a in claim_anchors):
                 report[f'{role}_exists'] += 1
                 continue
