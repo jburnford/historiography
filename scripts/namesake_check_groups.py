@@ -64,6 +64,30 @@ def given_names_agree(a, b):
     return all(any(same(s, t) for t in long_) for s in short)
 
 
+def names_agree_strict(a, b):
+    """given_names_agree, and the shorter form's first given name, when written out, matches the other form's first
+    given name or one of its later names written out, never only an initial: 'Jaime Sánchez' is not 'Mark J. Sanchez',
+    'Ben Shepherd' is not 'Gillian B. Shepherd'; 'Arne Westad' is 'Odd Arne Westad', 'Hugh Brogan' is
+    'D. Hugh V. Brogan' (2026-11-06)."""
+    if not given_names_agree(a, b):
+        return False
+    wa, wb = given_words(a), given_words(b)
+    if not wa or not wb:
+        return True
+    short, long_ = (wa, wb) if len(wa) <= len(wb) else (wb, wa)
+    s0 = short[0]
+    if len(s0) == 1:
+        return long_[0].startswith(s0) or any(t.startswith(s0) for t in long_[1:])
+
+    def full_same(s, t):
+        lo, hi = sorted((s, t), key=len)
+        return s == t or len(lo) >= 3 and hi.startswith(lo) or len(lo) >= 4 and re.sub(r'[aeiouy]+', '', s) == re.sub(r'[aeiouy]+', '', t)
+    first = long_[0]
+    if len(first) == 1:
+        return first == s0[0] or any(len(t) > 1 and full_same(s0, t) for t in long_[1:])
+    return full_same(s0, first) or any(len(t) > 1 and full_same(s0, t) for t in long_[1:])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, required=True)

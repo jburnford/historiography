@@ -3,7 +3,8 @@
 The IHR listed the people teaching history in UK universities in its annual 'Teachers of History' (Wayback copies
 of the 2002-2004 editions; data/field-research/historian-positions-2026-10-29, source 'ihr'). Each listing
 names a person and an institution. A listing joins a person key when:
-- the names agree (same family name, compatible given names: namesake_check_groups.given_names_agree);
+- the names agree (same family name, compatible given names, first given names agreeing beyond an initial:
+  namesake_check_groups.names_agree_strict; 'Ben Shepherd' is not 'Gillian B. Shepherd');
 - the key's own record places the person at the same institution: an affiliation printed on one of its review
   credits (`review-credit:<name>|<affiliation>`), or an employment on its ORCID record that is not over before
   1998 or begun after 2006 (cached records, data/orcid-2026-09-21/records and the 2026-10-29 ORCID employment
@@ -32,7 +33,7 @@ sys.path.insert(0, str(ROOT / 'data/field-research/historian-affiliations-2026-1
 from identifiers import DEFAULT_DIR, State, materialise, plan  # noqa: E402
 from key_review_reviewers import family  # noqa: E402
 from merge_guard import guarded  # noqa: E402
-from namesake_check_groups import given_names_agree, given_words  # noqa: E402
+from namesake_check_groups import given_words, names_agree_strict as given_names_agree  # noqa: E402
 from orcid_ground import inst_tokens  # noqa: E402
 
 POSITIONS = ROOT / 'data/field-research/historian-positions-2026-10-29/positions.csv'
