@@ -68,3 +68,29 @@ Names are as printed. As before, do not mint reviewer keys from them.
 104,836 Qwen books with status `new` or `changed` have no graph candidate. Their titles and authors are usually
 cleaner than the rule headings', with OCR corrected and subtitles complete. Publisher, place and year are in
 `review-books-qwen.parquet`.
+
+## Adjudication of the unconfirmed rule links (2026-11-07, later)
+
+The KG session asked for a verdict per link so that wrong links can be withdrawn instead of held. File (E:, not
+committed): `review-rules-adjudicated.parquet`, one row per (iid, work), 1,082 rows (the 1,087 rows had duplicates).
+
+**Fields:** iid, doi, work, verdict, basis, corrected_title, corrected_authors, corrected_year, source.
+- `basis` cites heading fields only.
+- `corrected_*` give the book this review does review, where `verdict` is `qwen_right`.
+
+| verdict | links | meaning |
+|---|---:|---|
+| `rule_right` | 840 | the item reviews the work; keep |
+| `both` | 143 | multi-book heading, review-essay list or review section; keep |
+| `qwen_right` | 94 | the rule took a title the item does not review; withdraw (90 with a corrected book) |
+| `neither` | 5 | neither reading holds or the text cannot tell; hold |
+
+**How the verdicts were reached:**
+- **Settled without an agent:** 376 links where Qwen named the same book, with an OCR-damaged title ('I399-1485') or a shorter title form.
+- **Sonnet first pass:** the remaining 706 links, in chunks of 50. Each agent saw the item's opening text and the text around where the rule found the title.
+- **Sonnet second pass:** 392 risky verdicts were judged again with sharper instructions.
+  - The risky ones were untitled items, or a rule heading found partway into the text, judged rule_right, both or neither.
+  - The instructions: an untitled item is one review; its creators are the book's author and the reviewer, matched by full name; headings for the reviews before and after it on the same page are neighbours.
+  - The second pass changed 103 `both` verdicts to `rule_right` and 18 `both` verdicts to `qwen_right`.
+- **Hand checks:** 12 of 12 random `qwen_right` rows are right. Their usual cause is a book cited in a footnote whose author is among the item's JSTOR names, often the reviewer citing their own book (Loudon, Kloppenberg, Berrios). 11 pilot rows were also checked.
+- **`both` does not confirm Qwen's book.** In untitled items, Qwen's book can be the previous review's. So `both` speaks only for the rule link.
