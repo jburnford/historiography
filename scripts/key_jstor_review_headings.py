@@ -42,13 +42,18 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--candidates', type=Path, default=CANDIDATES,
+                    help="candidate table; the Qwen table (review-book-candidates-qwen.parquet) adds a status column, "
+                         "and only its 'new' and 'changed' rows are read (2026-11-07)")
     args = ap.parse_args()
     state = State.load(args.state)
     db = duckdb.connect()
     db.execute('SET enable_progress_bar = false')
-    rows = db.execute(f"""SELECT iid, lower(trim(doi)), work, basis, book_year, untitled FROM '{CANDIDATES}'
+    cols = {c[0] for c in db.execute(f"DESCRIBE SELECT * FROM '{args.candidates}'").fetchall()}
+    status = "AND status IN ('new', 'changed')" if 'status' in cols else ''
+    rows = db.execute(f"""SELECT iid, lower(trim(doi)), work, basis, book_year, untitled FROM '{args.candidates}'
         WHERE basis IN ('strong', 'title+year') AND n_works = 1 AND NOT known AND doi IS NOT NULL AND work IS NOT NULL
-        ORDER BY iid, book, work""").fetchall()
+        {status} ORDER BY iid, book, work""").fetchall()
     kind, jstor_piece = {}, set()
     for k, kd, anchors in db.execute(f"SELECT key, kind, anchors FROM '{GRAPH}/work.parquet'").fetchall():
         for cur in state.lookup(k):
