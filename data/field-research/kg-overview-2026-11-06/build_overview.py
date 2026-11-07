@@ -70,7 +70,9 @@ def main():
         by_country=dict(db.execute(f"SELECT coalesce(country, '?'), count(*) FROM {d} WHERE in_analysis GROUP BY 1 ORDER BY 2 DESC").fetchall()),
         distinct_cited_works=one(f"SELECT count(*) FROM read_csv_auto('{CORPUS}/works.csv')")[0],
         corpus_citations=one(f"SELECT count(*) FROM read_csv_auto('{CORPUS}/strict-citations.csv.gz')")[0],
-        theses_citing_in_graph=one(f"SELECT count(DISTINCT \"from\") FROM '{G}/cites.parquet'")[0],
+        theses_citing_in_graph=one(f"SELECT count(DISTINCT c.\"from\") FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind = 'thesis'")[0],
+        jstor_articles_citing=one(f"SELECT count(DISTINCT c.\"from\") FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
+        jstor_cites=one(f"SELECT count(*) FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
         keyed_cited_works=one(f"SELECT count(DISTINCT \"to\") FROM '{G}/cites.parquet'")[0])
     s['built'] = '2026-11-06'
     (HERE / 'stats.json').write_text(json.dumps(s, indent=1, ensure_ascii=False) + '\n')

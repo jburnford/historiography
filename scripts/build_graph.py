@@ -20,7 +20,8 @@ is untracked) and writes to build/graph/ (git-ignored):
   journal: 147 works, 1 title), the first and last year and the work keys (user, 2026-11-05: a count matters);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
-  the corpus by scripts/export_citations.py).
+  the corpus by scripts/export_citations.py), and a JSTOR article, review essay or review article citing one in
+  its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06).
 With --db, the Parquet tables are loaded into a LadybugDB database (build/graph/historiography.lbug), queried in
 Cypher:
 
@@ -47,6 +48,7 @@ from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 
 OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
+JSTOR_CITES = ROOT / 'data/graph/jstor-cites.csv.gz'   # scripts/export_jstor_citations.py (JSTOR article notes)
 SCHEMES = ('lcnaf', 'wd', 'orcid', 'gnd', 'viaf', 'isni', 'idref', 'ror')
 PERSON_RELATIONS = ('authored', 'edited', 'supervised')
 
@@ -100,7 +102,7 @@ def main():
     ap.add_argument('--db', action='store_true', help='also load the tables into LadybugDB')
     args = ap.parse_args()
     shards = sorted(args.state.glob('events-*.jsonl*'))
-    require_tracked(shards + [CITES])
+    require_tracked(shards + [CITES] + ([JSTOR_CITES] if JSTOR_CITES.exists() else []))
     state = State.load(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -223,6 +225,15 @@ def main():
                 cites.add((a[0], b[0]))
             else:
                 report['cites_unresolved'] += 1
+    if JSTOR_CITES.exists():        # JSTOR articles citing keyed works (the article's own work key -> the cited work)
+        with gzip.open(JSTOR_CITES, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                a, b = state.lookup(r['citing_work']), state.lookup(r['cited_work'])
+                if len(a) == 1 and len(b) == 1 and types.get(a[0]) == types.get(b[0]) == 'work' and a[0] != b[0]:
+                    report['cites_from_jstor'] += (a[0], b[0]) not in cites
+                    cites.add((a[0], b[0]))
+                else:
+                    report['jstor_cites_unresolved'] += 1
     report['CITES'] = write('cites', [{'from': a, 'to': b} for a, b in sorted(cites)], pa.schema([('from', s), ('to', s)]))
 
     if args.db:

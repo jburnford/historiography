@@ -100,12 +100,39 @@ GEO = {'alabama', 'alaska', 'arizona', 'arkansas', 'california', 'colorado', 'co
        'lisbon', 'frankfurt', 'koln', 'cologne', 'jerusalem', 'tel', 'aviv', 'delhi', 'cairo'}
 
 
+ROR_TABLE = ROOT / 'data/field-research/jstor-fulltext-2026-11-06/signature-institutions/signature-institutions.csv'
+ROR_WRONG = set()      # strings whose grounding is known to be wrong (none: UNO -> ror 034mtvk83 is right, 2026-11-06)
+_ror = None
+
+
+def ror_of(s):
+    """The ROR organisation of an institution string, from the JSTOR session's accepted groundings of printed
+    signature institutions (exact string, normalised), or None."""
+    global _ror
+    if _ror is None:
+        import csv
+        _ror = {}
+        if ROR_TABLE.exists():
+            with ROR_TABLE.open(newline='', encoding='utf-8') as f:
+                for r in csv.DictReader(f):
+                    if r['decision'] == 'accepted' and r['ror']:
+                        for t in (r['string'], r['cleaned']):
+                            k = ' '.join(norm(t).split())
+                            if k and k not in ROR_WRONG:
+                                _ror[k] = r['ror']
+    return _ror.get(' '.join(norm(s).split()))
+
+
 def agree(a, b):
-    """Same institution: the same distinctive words, or one name's words inside the other's when the extra words
+    """Same institution: the same ROR organisation when both strings are grounded (two different RORs never agree);
+    otherwise the same distinctive words, or one name's words inside the other's when the extra words
     name no other institution ('Historisches Seminar, Universität Hamburg' / 'Universität Hamburg'; 'Michigan State'
     is not 'Michigan'). When the shorter name is only a place ('Chicago', 'Washington', 'South Africa') its words must
     open the longer one, with only a campus or town after them ('Missouri' / 'Missouri, Columbia'; 'Chicago' is not
     'Loyola Chicago' or 'Illinois at Chicago', 'South Africa' is not 'Monash South Africa')."""
+    ra, rb = ror_of(a), ror_of(b)
+    if ra and rb:
+        return ra == rb
     oa, ob = ordered(a), ordered(b)
     ta, tb = frozenset(oa), frozenset(ob)
     if not ta or not tb:

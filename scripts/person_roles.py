@@ -13,9 +13,10 @@ if you are in the AHA or British directories". Signals, from the graph build and
 - cited as a primary source: in the dissertations, cited mostly in primary-source bibliography sections;
 - scholar: an ORCID, cited mostly as scholarship, or a journal article on record.
 Confidence: score = 2 per public identifier family (LC with VIAF/ISNI/GND/IdRef, Wikidata, ORCID) + 1 per
-historian signal + 1 each for 5, 20 and 100 distinct theses citing the key's works + 1 each for 3 and 10 works +
+historian signal + 1 each for 5, 20 and 100 distinct works citing the key's works (doctoral theses, and JSTOR
+articles from their notes) + 1 each for 3 and 10 works +
 1 each for 1, 5 and 20 network partners (reviews given or received, supervision, advising, co-authors, co-editors,
-volume editors). strong >= 6, supported 3-5, thin <= 2; and thin whenever fewer than 5 theses cite the key and it has
+volume editors). strong >= 6, supported 3-5, thin <= 2; and thin whenever fewer than 5 theses or articles cite the key and it has
 no public identifier and no partner (user, 2026-11-06: such people weigh "well below people with lots of edges").
 Role, in order: any modern historian signal -> historian; early -> primary source; Wikidata historian -> historian;
 cited mostly as a primary source -> primary source; a scholar signal -> other scholar; otherwise unknown (mostly
@@ -69,8 +70,12 @@ def main():
             FROM read_csv_auto('{CORPUS}/authored.csv.gz') a JOIN read_csv_auto('{CORPUS}/works.csv') w USING (work_id)
             GROUP BY 1""").fetchall()}
     # evidence weight: distinct theses citing the key's works, works authored, distinct network partners
-    citing = dict(db.execute(f"""SELECT a."from", count(DISTINCT c."from") FROM '{G}/authored.parquet' a
-            JOIN '{G}/cites.parquet' c ON c."to" = a."to" GROUP BY 1""").fetchall())
+    # citing works: doctoral theses (the corpus) and, from 2026-11-06, JSTOR articles (their notes); both count
+    citing_by_kind = db.execute(f"""SELECT a."from", count(DISTINCT c."from") FILTER (WHERE cw.kind = 'thesis'),
+            count(DISTINCT c."from") FILTER (WHERE cw.kind <> 'thesis') FROM '{G}/authored.parquet' a
+            JOIN '{G}/cites.parquet' c ON c."to" = a."to" JOIN '{G}/work.parquet' cw ON cw.key = c."from" GROUP BY 1""").fetchall()
+    citing = {k: t + o for k, t, o in citing_by_kind}
+    citing_split = {k: (t, o) for k, t, o in citing_by_kind}
     works = dict(db.execute(f"""SELECT "from", count(DISTINCT "to") FROM '{G}/authored.parquet' GROUP BY 1""").fetchall())
     partners = defaultdict(set)
     for t in ('reviewed', 'advised', 'coauthored', 'coedited', 'editor_of'):
@@ -136,10 +141,11 @@ def main():
         roles[role] += 1
         tiers[role, conf] += 1
         signal_counts.update(sig)
-        rows.append((k, role, ';'.join(sig), hist, pid, cites, nw, links, score, conf))
+        ct, ca = citing_split.get(k, (0, 0))
+        rows.append((k, role, ';'.join(sig), hist, pid, ct, ca, nw, links, score, conf))
     with gzip.open(OUT, 'wt', newline='', encoding='utf-8') as f:
         w = csv.writer(f)
-        w.writerow(['key', 'role', 'signals', 'historian_signals', 'pid_families', 'citing_theses', 'works', 'partners',
+        w.writerow(['key', 'role', 'signals', 'historian_signals', 'pid_families', 'citing_theses', 'citing_articles', 'works', 'partners',
                     'score', 'confidence'])
         w.writerows(sorted(rows, key=lambda r: int(r[0].split('-')[1])))
     print(json.dumps(dict(roles=roles, signals=signal_counts,
