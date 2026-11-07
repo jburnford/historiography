@@ -523,13 +523,13 @@ def citations(pieces):
             am0 = AUTHOR_EDS.match(part) or INIT_LIST.match(part) or AUTHOR.match(part)
             if ARCHIVAL.search(part[:60]) and not (am0 and plausible_author(am0.group('a'))) and not re.match(r'^\s*[“"«‘]', part):
                 row.update(rule='archival', kind='primary', conf=0.6, year=(years_in(part) or [None])[0])
-                out.append(row); continue
+                out.append(row); last_full = len(out) - 1; continue
             c = strip_lead(part)
             r = parse_one(c)
             if r is None or r['rule'] == 'unparsed':
                 if ARCHIVAL.search(c):
                     row.update(rule='archival', kind='primary', conf=0.6, year=(years_in(c) or [None])[0])
-                    out.append(row); continue
+                    out.append(row); last_full = len(out) - 1; continue
                 d = N.parse_citation([(c, False)], None)
                 if d and d.get('title') and d.get('surnames') and d.get('kind') not in ('other', 'web'):
                     row.update(rule='diss_fallback', kind={'unstyled': 'book', 'book_or_serial': 'book'}.get(d['kind'], d['kind']),
@@ -541,7 +541,7 @@ def citations(pieces):
                 row.update(rule='unparsed', kind='other', conf=0.0)
                 out.append(row); continue
             if idem_auth and not r['authors']:
-                r['authors'], r['surnames'] = idem_auth
+                r['authors'], r['surnames'] = idem_auth[0] or [], idem_auth[1] or []
                 r['rule'] = 'idem+' + r['rule']
             row.update(r)
             if r['kind'] == 'short' or r['rule'] == 'opcit':
@@ -553,14 +553,16 @@ def citations(pieces):
                 row['conf'] = 0.5
                 out.append(row); continue
             row['conf'] = 0.6 if row['kind'] == 'primary' else confidence(row)
-            if not row['surnames'] and row['title']:   # fragment: maybe the full form appeared earlier in the item
+            if not row.get('surnames') and row.get('title'):   # fragment: maybe the full form appeared earlier in the item
                 prev = resolve_title(out, works, row['title'])
                 if prev is not None:
                     row['ref'] = prev
             out.append(row)
-            if row['title'] and row['kind'] not in ('primary', 'web'):
+            if row['kind'] == 'primary':
+                last_full = len(out) - 1
+            elif row['title'] and row['kind'] != 'web':
                 works.append(len(out) - 1); last_full = len(out) - 1
-                for s in row['surnames'][:1]:
+                for s in (row.get('surnames') or [])[:1]:
                     by_sur.setdefault(fold(s), []).append(len(out) - 1)
     for i in authordate_refs:
         r = out[i]
