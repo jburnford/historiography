@@ -25,6 +25,7 @@ rows = db.execute("""select e."from", p.label, e."to", w.label, e.claim from 'bu
     join 'build/graph/work.parquet' w on w.key = e."to" join 'build/graph/person.parquet' p on p.key = e."from" """).fetchall()
 from identifiers import State, DEFAULT_DIR
 state = State.load(DEFAULT_DIR)
+LC = dict(db.execute("select lcid, label from '/mnt/e/lc-authorities/personal-names.parquet'").fetchall())
 hits = []
 for f, pl, w, wl, c in rows:
     h = honoree(wl)
@@ -43,9 +44,15 @@ for f, pl, w, wl, c in rows:
     if state.keys[c]['status'] in ('withdrawn', 'merged'): continue
     anchors = sorted(state.keys[c]['anchors'])
     if not any(a.startswith('lc-edited:') for a in anchors): continue
+    # the LC authority's fuller form decides when the key's label has no middle name ('Thomas, Lewis' is
+    # 'Thomas, Lewis H. (Lewis Herbert)'; added after the first run withdrew his claim in error)
+    lcid = anchors[0].rsplit(':', 1)[1]
+    lc_giv = person_names(LC.get(lcid, pl))[1]
+    if len(lc_giv) > 1 and mid_h and mid_h[0][0] != lc_giv[1][0]: continue
     hits.append(dict(person=f, label=pl, work=w, title=wl, honoree=h, claim=c, anchor=anchors[0]))
 out = 'data/identifiers/festschrift-honorees-2026-11-07'
 with open(out + '/honorees.csv', 'w', newline='') as fh:
+    if not hits: raise SystemExit('no honorees')
     wtr = csv.DictWriter(fh, fieldnames=list(hits[0])); wtr.writeheader(); wtr.writerows(hits)
 ops = [dict(event='withdraw', key=h['claim'], basis=f"festschrift honoree read as editor: '{h['title'][:120]}' honours {h['label']}; LC's added entry for the honoree carries no relator (festschrift-honorees-2026-11-07)") for h in hits]
 json.dump(dict(basis='edited claims withdrawn where the person is the festschrift honoree', decided_by='rule', ops=ops), open(out + '/proposal.json', 'w'), ensure_ascii=False, indent=0)
