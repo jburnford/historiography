@@ -77,7 +77,7 @@ def keys_of(title):
 
 def match(args, db):
     rows = db.execute(f"""SELECT row_number() OVER () AS rid, title, authors, editors, year, reviews, untitled_reviews, iids
-        FROM '{UNMATCHED}' WHERE mean_conf >= 0.9 AND NOT initials_only AND len(authors) > 0 AND year IS NOT NULL""").fetchall()
+        FROM '{args.unmatched}' WHERE mean_conf >= 0.9 AND NOT initials_only AND len(authors) > 0 AND year IS NOT NULL""").fetchall()
     report = Counter(rows=len(rows))
     by_key = defaultdict(list)
     for rid, title, authors, editors, year, *_ in rows:
@@ -347,6 +347,9 @@ def main():
     ap.add_argument('--phase', choices=('match', 'propose'), required=True)
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
+    ap.add_argument('--unmatched', type=Path, default=UNMATCHED,
+                    help='unmatched-books table (match phase); the Qwen re-read: review-books-qwen-unmatched.parquet '
+                         '(scripts/jstor_qwen_unmatched_books.py)')
     args = ap.parse_args()
     db = duckdb.connect()
     db.execute('SET enable_progress_bar = false')
