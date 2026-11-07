@@ -45,3 +45,32 @@ Hand checks of random rows against the text around the signature:
 - **Reviews without a match** include unsigned short notices, reviewer initials only (`G. L.`, `M. S.`, matched only when the metadata also has initials), and texts where OCR damaged the name.
 - **For linking:** institution plus review date is a dated career fact. Join it with the existing reviewer-name route (`scripts/key_review_reviewers.py`) and staff lists (`scripts/key_ihr_staff.py`); never join on the name alone.
 - **Next:** the LLM pilot (Nibi job 26351198, 464 reviews) adds the reviewed books' headings (author/editor, title, translator, place, publisher, year, pages, price, ISBN). When it runs I will also compare its signatures with these.
+
+## Institutions grounded to ROR (added 2026-11-06 evening)
+
+**File (committed; institution strings as printed, no review text):** `signature-institutions/signature-institutions.csv`, made by `jstor_ground_signature_institutions.py`. One row per printed institution string that appears at least twice: `string`, `cleaned`, `rows` (signatures), `ror`, `ror_name`, `ror_country`, `wikidata`, `score`, `decision`, `basis`. Join it to `review-signatures-rules.jsonl.gz` on `institution` = `string`.
+
+**How a string is matched:**
+1. Clean it: drop role words (`Assistant Professor,`, `emeritus`) and put all-caps text in title case.
+2. Set aside stubs: cut-off strings (`University of`), `Independent Scholar` and copyright lines (`© Economic History Society`).
+3. Try an exact ROR name, in both orders (`University of Lancaster` = `Lancaster University`). A record's display name beats another record's alias.
+4. When several organisations share the exact name, the one that the unambiguous strings (with a town or campus) already hold at least five times as often wins; Northwestern, York and Georgia resolve this way.
+5. Otherwise use ROR's affiliation matcher, with the acceptance rule of `scripts/ground_institutions.py`.
+6. Generic names without a town or campus (`The Open University`, `Queens College`, `Trinity College`, `American University`, `Concordia University`) always go to review.
+
+| decision | strings | signatures |
+|---|---:|---:|
+| accepted | 5,081 | 126,365 |
+| review | 4,135 | 26,153 |
+| stub | 116 | 2,438 |
+| no match | 95 | 1,343 |
+
+The accepted strings cover 2,010 distinct ROR organisations. A further 29,000 signatures carry institution strings printed only once, which are not grounded.
+
+**Audits:** random accepted strings, weighted by signatures:
+- the earlier round found 2/30 wrong (Lancaster went to the Ghana campus, New Orleans to LSU); the display-name rule fixed Lancaster;
+- a fresh round after that: 30/30 right.
+
+**Known residue:**
+- `University of New Orleans` (39 signatures) still goes to LSU New Orleans; ROR seems to hold that name only as LSU's alias.
+- Ambiguous system names (`University of Texas`, `University of Wisconsin`, `University of Maryland`) stay in review.

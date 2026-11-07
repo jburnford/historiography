@@ -12,7 +12,7 @@ and OUT/summary.json. Read-only candidates for the KG session (institution keys 
 
     python3 jstor_ground_signature_institutions.py --out data/field-research/jstor-fulltext-2026-11-06/signature-institutions
 """
-import argparse, csv, gzip, json, re, sys, urllib.parse
+import argparse, csv, gzip, json, re, sys, unicodedata, urllib.parse
 from collections import Counter
 from pathlib import Path
 
@@ -27,6 +27,31 @@ _FIELD = r"(?:\s+(?:of|in)\s+(?:the\s+)?[A-Z][a-z]+(?:\s+(?:and|&)\s+[A-Z][a-z]+
 ROLE = re.compile(rf"^(?:(?:emerit\w*|retired|(?:assistant|associate|visiting|adjunct|full|distinguished|research)?\s*professor(?:\s+emerit\w*)?{_FIELD}|"
                   rf"(?:senior\s+)?lecturer{_FIELD}|reader{_FIELD}|(?:research\s+|senior\s+)?fellow(?=\s*,)|director(?=\s*,)|"
                   rf"graduate student{_FIELD}|ph\.?\s?d\.? candidate{_FIELD})[\s,]+)+", re.I)
+
+
+def nkey(s):
+    """Exact-name key: case, accents, '&' and a leading 'The' do not count."""
+    s = unicodedata.normalize('NFKD', s or '').encode('ascii', 'ignore').decode().lower().replace('&', ' and ')
+    s = re.sub(r'[^a-z0-9]+', ' ', s).strip()
+    return re.sub(r'^the ', '', s)
+
+
+STUB = re.compile(r'^(?:the\s+)?(?:department of [a-z ]+,?\s*)?(?:university|college|institute|school)(?:\s+of)?$|'
+                  r'^(?:independent scholar|independent researcher|retired|emerit\w*)$|©|\bcopyright\b', re.I)
+
+
+# names that several institutions carry and that no matcher can settle without a town or campus: 'Open University'
+# (ROR's matcher chooses Universidade Aberta), 'Queens College', 'Trinity College', 'King's College'
+FORM_WORDS = {'university', 'college', 'the', 'of', 'institute', 'school', 'and'}
+AMBIGUOUS = {'open', 'trinity', 'queens', 'queen', 'kings', 'king', 'union', 'national', 'central', 'american', 'international',
+             'catholic', 'technical', 'state', 'city', 'metropolitan', 'christian', 'methodist', 'baptist', 'lutheran',
+             'wesleyan', 'st', 'saint', 'john', 'johns', 'mary', 'marys', 'concordia', 'westminster', 'victoria', 'federal',
+             'royal', 'imperial', 'new', 'free', 'polytechnic', 'normal', 'pacific', 'northern', 'southern', 'eastern', 'western'}
+
+
+def ambiguous(name):
+    words = set(nkey(name).split()) - FORM_WORDS
+    return bool(words) and words <= AMBIGUOUS
 
 
 def clean(s):
@@ -48,10 +73,40 @@ def main():
         if r.get('institution'):
             counts[r['institution']] += 1
     ror = G.load_ror(ROR)
+    exact, display = {}, {}
+    for org, rec in ror.items():
+        if rec['status'] == 'active':
+            display.setdefault(nkey(rec['name']), set()).add(org)
+            for nm in rec['names']:
+                exact.setdefault(nkey(nm), set()).add(org)
     state, out, stats = {'last': 0.0}, [], Counter()
     todo = [(s, n) for s, n in counts.most_common() if n >= args.min]
     for i, (raw, n) in enumerate(todo, 1):
         name = clean(raw)
+        row = dict(string=raw, cleaned=name, rows=n, ror='', ror_name='', ror_country='', wikidata='', score='', decision='no_match', basis='')
+        if STUB.search(name.strip()) or STUB.search(raw) or len(nkey(name)) < 4:
+            row.update(decision='stub', basis='no institution named (cut-off string, independent scholar, copyright line)')
+            stats['stub'] += 1; out.append(row)
+            continue
+        # an exact ROR name or alias held by one active organisation (a university when several share it):
+        # 'Princeton University', 'Ohio State University', where the affiliation matcher ties or strays
+        # both name orders ('University of Lancaster' / 'Lancaster University'); a display name beats another record's
+        # alias (ROR lists 'University of Lancaster' as an alias of Lancaster University Ghana)
+        k = nkey(name)
+        m = re.match(r'^university of ([a-z ]+)$', k)
+        m2 = re.match(r'^([a-z ]+) university$', k)
+        keys = [k] + ([f'{m.group(1)} university'] if m else [f'university of {m2.group(1)}'] if m2 else [])
+        hits = set().union(*(display.get(x, set()) for x in keys)) or set().union(*(exact.get(x, set()) for x in keys))
+        if len(hits) > 1:
+            hits = {o for o in hits if 'education' in ror[o]['types']} or hits
+        if len(hits) > 1:
+            row['_ties'] = sorted(hits)   # settled after the pass by the organisations' other accepted signatures
+        if len(hits) == 1:
+            org = next(iter(hits)); rec = ror[org]
+            row.update(ror=org, ror_name=rec['name'], ror_country=rec['country'], wikidata=rec['wikidata'], score=1.0,
+                       decision='accepted', basis='exact ROR name')
+            stats['accepted'] += 1; out.append(row)
+            continue
         forms = [name] + [f for f in G.segments(name) if f != name]
         forms += [x for x in (G.expand(f) for f in list(forms)) if x not in forms]
         best = {}
@@ -66,7 +121,6 @@ def main():
         top = (named or cands or [None])[0]
         rest = [it for it in (named or cands)[1:] if it is not top]
         second = rest[0]['score'] if rest else 0.0
-        row = dict(string=raw, cleaned=name, rows=n, ror='', ror_name='', ror_country='', wikidata='', score='', decision='no_match', basis='')
         if top:
             rec = ror.get(top['organization']['id'], {})
             row.update(ror=top['organization']['id'], ror_name=rec.get('name', ''), ror_country=rec.get('country', ''),
@@ -83,6 +137,25 @@ def main():
         out.append(row)
         if i % 500 == 0:
             print(f'{i}/{len(todo)} {dict(stats)}', flush=True)
+    # exact-name ties ('Northwestern University' in the US and the Philippines): the organisation that the
+    # unambiguous strings ('Northwestern University, Evanston') already hold at least five times as often wins
+    prior = Counter()
+    for r in out:
+        if r['decision'] == 'accepted':
+            prior[r['ror']] += r['rows']
+    for r in out:
+        ties = r.pop('_ties', None)
+        if ties and r['decision'] != 'accepted':
+            ranked = sorted(ties, key=lambda o: -prior[o])
+            if prior[ranked[0]] >= 5 * max(prior[ranked[1]], 1):
+                rec = ror[ranked[0]]
+                stats[r['decision']] -= 1; stats['accepted'] += 1
+                r.update(ror=ranked[0], ror_name=rec['name'], ror_country=rec['country'], wikidata=rec['wikidata'], score=1.0,
+                         decision='accepted', basis=f"exact name shared by {len(ties)}; chosen by {prior[ranked[0]]} other accepted signatures")
+    for r in out:
+        if r['decision'] == 'accepted' and ambiguous(r['cleaned']):
+            stats['accepted'] -= 1; stats['review'] += 1
+            r.update(decision='review', basis='ambiguous name without a town or campus; ' + r['basis'])
     tmp = args.out / 'signature-institutions.csv.tmp'
     with tmp.open('w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=list(out[0]))

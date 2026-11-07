@@ -102,7 +102,7 @@ def find_sig(text, ftext, name, start_at):
 
 
 _CAP = r"(?!(?:The|A|An|Le|La|Les|Die|Der|Das|Il|Lo|El|Los|Las|Some|This|These|Un|Une|Ein|Eine)\b)[A-ZÀ-Ý][\w'’.&\-]*"
-_CONN = r"(?i:of|at|for|de|di|du|des|in|für|del|della|of the|de la|d'|d’|voor|van|zu|zur|per|do|da|e|y)"
+_CONN = r"(?i:of|at|for|and|&|de|di|du|des|in|für|del|della|of the|de la|d'|d’|voor|van|zu|zur|per|do|da|e|y)"
 INST_PHRASE = re.compile(
     rf"(?:(?:{_CAP}|of|the|and|&|for|de|di|du|des|la|für|on)\s+){{0,6}}?"           # 'Department of History, ' / 'Brigham Young '
     rf"(?i:{INST.pattern[2:]})[\w'’]*"                                                  # the institution word (any case)
