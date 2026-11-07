@@ -3,12 +3,14 @@
 Citations: rule rows on E: (rules/part-*.jsonl.gz, textnotes-rules.jsonl.gz) of kind book, article, chapter, thesis or
 periodical with a title and an author. Each full citation carries a weight: 1 + the back-references (Ibid., short
 forms, author-date) the parser resolved to it in the same article.
-Works: build/graph/work.parquet with authors from authored.parquet -> person.parquet (read-only).
+Works: build/graph/work.parquet with authors and editors (authored.parquet, edited.parquet -> person.parquet), read-only.
 
 Match on (title_key, first-author family name), title_key as in build_dissertation_citation_graph (main title,
 leading articles dropped). Only titles of 2+ words and 10+ characters. Basis:
-  strong   - title + author + year within 1 (or a year missing on one side)
-  edition? - title + author, years further apart (reprints, translations, later editions)
+  strong     - title + author (or editor) + year within 1 (or a year missing on one side)
+  edition?   - title + author, years further apart (reprints, translations, later editions)
+  title+year - a graph work with no person on it ('Seeing Like a State' without an authored edge): title of 3+ words,
+               held by that one work only, year within 1
 `n_works` > 1 marks a key shared by several works (duplicates or namesakes): the KG session decides.
 The citing JSTOR item is mapped to its own graph work through its DOI where the graph holds it.
 
@@ -46,24 +48,48 @@ def usable(tk):
 
 def work_index():
     db = duckdb.connect(); db.execute("SET memory_limit = '4GB'")
+    # authors and editors (an edited volume's people are in edited.parquet: 'The Invention of Tradition')
     rows = db.execute(f"""
-        select w.key, w.label, w.kind, w.year, list(p.label) as authors
+        with people as (select "to" as work, "from" as person from '{GRAPH}/authored.parquet'
+                        union all select "to", "from" from '{GRAPH}/edited.parquet')
+        select w.key, w.label, w.kind, w.year, list(p.label) filter (where p.label is not null) as names
         from '{GRAPH}/work.parquet' w
-        join '{GRAPH}/authored.parquet' a on a."to" = w.key
-        join '{GRAPH}/person.parquet' p on p.key = a."from"
+        left join people x on x.work = w.key
+        left join '{GRAPH}/person.parquet' p on p.key = x.person
         where w.label is not null
         group by all""").fetchall()
     idx = defaultdict(list)
-    for key, label, kind, year, authors in rows:
+    nameless = defaultdict(list)   # works with no person at all ('Seeing Like a State' as w-428793): title + year only
+    for key, label, kind, year, names in rows:
         tk = title_key(label)
         if not usable(tk):
             continue
-        for fam in {family(a) for a in authors if a}:
-            if len(fam) >= 2:
-                idx[(tk, fam)].append((key, kind, year))
+        fams = {family(a) for a in names or [] if a}
+        fams = {f for f in fams if len(f) >= 2}
+        for fam in fams:
+            idx[(tk, fam)].append((key, kind, year))
+        if not fams and len(tk.split()) >= 3:
+            nameless[tk].append((key, kind, year))
+    idx[NAMELESS] = nameless
     doi = dict(db.execute(f"""select lower(substr(a, 5)), key from (select key, unnest(anchors) a from '{GRAPH}/work.parquet')
                               where a like 'doi:%'""").fetchall())
     return idx, doi
+
+
+NAMELESS = ('', '')   # slot in the index for the title-only table of works without people
+
+
+def lookup(idx, tk, fam, year):
+    """-> (candidates, basis). Title + author first; a work without people only on title + year within 1, and only
+    when that title belongs to one such work."""
+    cands = idx.get((tk, fam))
+    if cands:
+        strong = [w for w in cands if not year or not w[2] or abs(w[2] - year) <= 1]
+        return (strong, 'strong') if strong else (cands, 'edition?')
+    nl = idx[NAMELESS].get(tk, [])
+    if len(nl) == 1 and year and nl[0][2] and abs(nl[0][2] - year) <= 1:
+        return nl, 'title+year'
+    return [], None
 
 
 def citations():
@@ -105,12 +131,10 @@ def main():
                 if not usable(tk) or len(fam) < 2:
                     stats['too_short'] += 1
                     continue
-                cands = idx.get((tk, fam))
-                if not cands:
-                    continue
                 y = r.get('year')
-                strong = [w for w in cands if not y or not w[2] or abs(w[2] - y) <= 1]
-                pick, basis = (strong, 'strong') if strong else (cands, 'edition?')
+                pick, basis = lookup(idx, tk, fam, y)
+                if not pick:
+                    continue
                 stats['matched_' + basis] += 1
                 for key, kind, wy in pick:
                     o.write(json.dumps(dict(iid=iid, cit=i, citing_work=citing, work=key, work_kind=kind, work_year=wy,
