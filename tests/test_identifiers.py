@@ -288,6 +288,15 @@ class RelationTests(unittest.TestCase):
         apply_proposal(self.dir, dict(ops=[dict(event="withdraw", key="c-1")]), commit="t", date="d")
         self.assertEqual(list(State.load(self.dir).relations()), [])
 
+    def test_a_rule_cannot_mint_a_claim_withdrawn_on_review(self):
+        apply_proposal(self.dir, dict(ops=[dict(event="withdraw", key="c-1")]), commit="t", date="d")
+        again = dict(event="mint", key="new:c", type="claim", label="", resolution="recorded", anchors=["aha-sup:9:1"],
+                     relation=dict(subject="aha:1", predicate="supervised", object="aha-diss:9"))
+        apply_proposal(self.dir, dict(decided_by="rule", ops=[again]), commit="t", date="d")
+        self.assertEqual(list(State.load(self.dir).relations()), [])
+        apply_proposal(self.dir, dict(decided_by="review", ops=[again]), commit="t", date="d")
+        self.assertEqual(list(State.load(self.dir).relations()), [("c-2", ["p-1"], "supervised", ["w-1"])])
+
     def test_bad_relations_are_refused(self):
         for typ, rel in (("claim", dict(subject="aha:1", predicate="admired", object="aha-diss:9")),
                          ("claim", dict(subject="", predicate="supervised", object="aha-diss:9")),

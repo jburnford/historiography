@@ -266,11 +266,30 @@ class State:
 # vocabulary; a mint op names a placeholder ("new:<anything>") instead of a key, and later ops in the same
 # proposal may refer to that placeholder (e.g. split successors). The minter assigns real numbers.
 
+def withdrawn_claim_anchors(state):
+    """Anchors of claims withdrawn on review. A withdraw releases its anchors, so a rerun of the rule that made
+    the claim would mint it again; rule and build proposals skip these (2026-11-07: a festschrift honoree's
+    editor credit and a namesake's book credit came back on the next LC pass)."""
+    return {a for v in state.keys.values() if v['type'] == 'claim' and v['status'] == 'withdrawn' for a in v['anchors']}
+
+
 def materialise(state, proposal, commit, date):
-    """Turn a proposal into numbered events, validated against a scratch copy of the state."""
+    """Turn a proposal into numbered events, validated against a scratch copy of the state. Claim mints from a
+    rule or build proposal whose anchors were withdrawn on review are dropped (reported on stderr); a review
+    proposal may mint them again."""
     nxt = Counter(state.top)
     names, events, seq = {}, [], state.seq
     ops = proposal['ops']
+    if proposal.get('decided_by', 'build') in ('rule', 'build') and any(
+            op['event'] == 'mint' and op.get('type') == 'claim' for op in ops):
+        gone = withdrawn_claim_anchors(state)
+        if gone:
+            keep = [op for op in ops if not (op['event'] == 'mint' and op.get('type') == 'claim'
+                                             and op.get('decided_by', 'build') != 'review'
+                                             and any(a in gone for a in op.get('anchors', [])))]
+            if len(keep) < len(ops):
+                print(f'skipped {len(ops) - len(keep)} claim mints withdrawn on review', file=sys.stderr)
+            ops = keep
     for op in ops:
         if op['event'] == 'mint':
             p = PREFIX[op['type']]
