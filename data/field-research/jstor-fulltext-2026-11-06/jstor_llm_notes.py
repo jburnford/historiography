@@ -5,7 +5,8 @@ consecutive note pieces of one article in note order and `first` is the index of
 every citation in each piece (works, Ibid./short/author-date back-references, primary sources). Back-references are
 resolved afterwards in Python (jstor_notes.py logic), across the whole article.
 
-Writes answers.jsonl (id, iid, first, citations: [...], ok, raw on failure) and summary.json. Resumable.
+Writes answers.jsonl (id, iid, first, citations: [...], ok, raw on failure) and summary.json. Resumable: a rerun skips
+requests with an ok answer and retries failed ones (append-only, so a reader keeps the last ok row per id).
 
 Compact answers (2026-11-07, after pilot 26350911 spent about 115 output tokens per piece, mostly on null fields):
 the model omits null and empty fields, gives no volume or pages, and gives a primary source as its type, piece and a
@@ -48,14 +49,15 @@ def prompt(r):
 
 
 def parse(text):
-    m = re.search(r'\{.*\}', text, re.S)
+    # vLLM 0.17 on Fir (2026-11-07): about 5% of answers are a bare list of citations, not {"citations": [...]}
+    m = re.search(r'[\[{].*[\]}]', text, re.S)
     if not m:
         return None
     try:
         d = json.loads(m.group())
     except json.JSONDecodeError:
         return None
-    c = d.get('citations')
+    c = d if isinstance(d, list) else d.get('citations') if isinstance(d, dict) else None
     if not isinstance(c, list):
         return None
     out = []
@@ -91,7 +93,8 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     path = out / 'answers.jsonl'
-    done = {json.loads(l)['id'] for l in open(path)} if path.exists() else set()
+    # a rerun redoes failed requests too; a retried request gets a new row, and readers keep the last ok row per id
+    done = {d['id'] for d in map(json.loads, open(path)) if d.get('ok')} if path.exists() else set()
     todo = [r for r in recs if r['id'] not in done]
     report = Counter()
     t0 = time.time(); pieces = 0
