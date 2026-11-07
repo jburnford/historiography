@@ -83,3 +83,36 @@ minted on `doi:`, as `key_jstor_reviews.py` does.
   before: keep names as printed and do not mint reviewer keys.
 - Unmatched headings (about 198k books) are candidates for new book works. They have publisher, place and year for
   an LC lookup. I have not built that table; I can on request.
+
+## Unmatched heading books, for LC lookups (added 2026-11-06, KG session's request)
+
+**File (E:, not committed):** `/mnt/e/jstor-fulltext-2026-11-06/review-books-unmatched.parquet`, made by
+`jstor_review_books_unmatched.py`. It has one row per book named in a heading that has no candidate row of any basis.
+Books are grouped on (main-title key, family name of the first author or editor). Fields:
+- `title_key`, `family`;
+- `title`, `authors` and `publisher` (most frequent forms), `editors`, `place`;
+- `year` (most frequent), `year_min`, `year_max`;
+- `reviews`, `untitled_reviews`, `mean_conf`;
+- `initials_only`: the heading names only initials, such as the *Revue historique* bulletins signed 'Ch. B.';
+- `iids`: the reviews, for linking once a work is keyed.
+
+| | count |
+|---|---:|
+| heading books unmatched (rows grouped) | 170,571, giving 158,653 books |
+| with an author or editor | 156,559 |
+| with publisher | 112,881 |
+| with year | 139,578 |
+| reviewed 2+ times | 9,073 |
+| from untitled reviews | 56,382 |
+| `mean_conf` ≥ 0.9, author present, not initials-only ("lookup-ready") | 107,435 |
+| headings dropped for a title under 2 words or 10 characters | 23,119 |
+
+**Quality:** a sample of lookup-ready rows was about 2/3 clean. The noise types are:
+- review prose taken as a title;
+- a capitalised name before the title (`McMAHON Kingsmill Plantations`);
+- a title fragment with a given name as author (`COUNTESS OF MINTO`, `[Mary]`);
+- OCR damage.
+
+An LC lookup that needs title and author to agree will drop most of it. Leading page numbers and prices are stripped.
+Multi-volume series (`The Papers of Woodrow Wilson. Vol. 11`) head the list by review count, since each volume is
+reviewed separately.
