@@ -67,13 +67,21 @@ SUBJECTS = {'history', 'historical', 'classics', 'classical', 'philosophy', 'rel
             'global', 'world', 'women', 'gender', 'jewish', 'asian', 'latin', 'department', 'dept', 'school', 'faculty',
             'universitaet', 'universitat', 'universite', 'universita', 'universidad', 'universidade', 'universiteit',
             'uniwersytet', 'zu', 'di', 'des', 'du', 'del', 'degli', 'studi', 'coll', 'univ', 'inst',
-            'centre', 'center', 'institute', 'program', 'programme', 'division', 'unit', 'graduate', 'college'}
+            'centre', 'center', 'institute', 'program', 'programme', 'division', 'unit', 'graduate', 'college',
+            # German department words ('Bereich Alte Geschichte, HU-Berlin' / 'Institut für Geschichtswissenschaften der HU')
+            'institut', 'fur', 'fuer', 'der', 'die', 'und', 'bereich', 'arbeitsbereich', 'geschichte',
+            'geschichtswissenschaften', 'geschichtswissenschaft', 'seminar', 'historisches', 'historische', 'lehrstuhl',
+            'fachbereich', 'abteilung', 'fb', 'professur', 'alte', 'neuere', 'neueste', 'mittelalterliche'}
+
+
+# German university abbreviations as signed ('Institut für Geschichtswissenschaften der HU Berlin', 'FMI, FU-Berlin')
+ABBREV = {'hu': ['humboldt'], 'fu': ['freie'], 'tu': ['technische'], 'lmu': ['ludwig', 'maximilians']}
 
 
 def ordered(s):
     """The distinctive words of an institution name, in order (generic, status and subject words dropped)."""
     out = []
-    for t in norm(s).split():
+    for t in [w for t in norm(s).split() for w in ABBREV.get(t, [t])]:
         t = 'kings' if t in ('king', 'kings') else t
         if t in STOP or t in STATUS or t in SUBJECTS or t in GENERIC_WORDS or t in out:
             continue
@@ -156,6 +164,8 @@ def hsk_institution(credit, label):
     if fold(family(label)) not in fold(name):
         return None
     rest = re.sub(r'\s*(E-Mail|Email|<|\[).*$', '', rest).strip(' ,.')
+    if rest and set(fold(rest).split()) <= set(fold(name).split()) | set(fold(label).replace(',', ' ').split()):
+        return None             # 'Gerhard Wettig, Gerhard': a piece of the name, not an institution
     return rest or None
 
 
