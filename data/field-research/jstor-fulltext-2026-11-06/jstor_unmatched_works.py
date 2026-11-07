@@ -38,7 +38,7 @@ def main():
             for i, r in enumerate(rows):
                 if r.get('kind') not in M.KINDS or not r.get('title') or not r.get('surnames'):
                     continue
-                tk, fam = M.title_key(r['title']), M.family(r['surnames'][0])
+                tk, fam = M.cited_key(r['title']), M.family(r['surnames'][0])
                 if not M.usable(tk) or len(fam) < 2 or M.lookup(idx, tk, fam, r.get('year'))[0]:
                     continue
                 o.write(json.dumps(dict(tk=tk, fam=fam, iid=iid, title=r['title'][:300], author=(r.get('authors') or r['surnames'])[0],

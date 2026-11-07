@@ -3,11 +3,13 @@
 Citations: rule rows on E: (rules/part-*.jsonl.gz, textnotes-rules.jsonl.gz) of kind book, article, chapter, thesis or
 periodical with a title and an author. Each full citation carries a weight: 1 + the back-references (Ibid., short
 forms, author-date) the parser resolved to it in the same article.
-Works: build/graph/work.parquet with authors and editors (authored.parquet, edited.parquet -> person.parquet), read-only.
+Works: build/graph/work.parquet with authors and editors (authored.parquet, edited.parquet -> person.parquet), read-only;
+a work with an LCCN is also keyed by its LC title (/mnt/e/lc-bib-2016 records), since some labels are citation strings.
 
 Match on (title_key, first-author family name), title_key as in build_dissertation_citation_graph (main title,
 leading articles dropped). Only titles of 2+ words and 10+ characters. Basis:
-  strong     - title + author (or editor) + year within 1 (or a year missing on one side)
+  strong     - title + author (or editor) + year within 1 (or no year on the graph work)
+  no_year    - title + author, the citation gives no year (main titles can be shared, so weaker than strong)
   edition?   - title + author, years further apart (reprints, translations, later editions)
   title+year - a graph work with no person on it ('Seeing Like a State' without an authored edge): title of 3+ words,
                held by that one work only, year within 1
@@ -31,15 +33,26 @@ from build_dissertation_citation_graph import fold, title_key  # noqa: E402
 
 E = '/mnt/e/jstor-fulltext-2026-11-06'
 GRAPH = ROOT / 'build/graph'
+LC_INDEX = '/mnt/e/lc-bib-2016/index'
 KINDS = {'book', 'article', 'chapter', 'thesis', 'periodical'}
 
 
 def family(label):
+    """The last word of the folded family name, the same from either side: 'Von Eschen, Penny M.' (graph),
+    'Eschen, Penny M. Von' and 'Penny M. Von Eschen' (notes) are all 'eschen'; 'Bertoloni Meli' is 'meli'."""
     label = re.sub(r',?\s+(?:Jr|Sr|II|III|IV)\.?$', '', (label or '').strip())
-    if ',' in label:
-        return fold(label.split(',')[0])
-    toks = label.split()
-    return fold(toks[-1]) if toks else ''
+    part = label.split(',')[0] if ',' in label else (label.split() or [''])[-1]
+    words = fold(part).split()
+    return words[-1] if words else ''
+
+
+CITED_VOLUME = re.compile(r',?\s*\b(?:vol(?:ume)?s?|tome|t|bd|band)\.?\s*(?:[ivxlc]+|\d+)\b.*$', re.I)
+
+
+def cited_key(title):
+    """title_key of a cited title, with a volume part inside it dropped ('The History of Sexuality, vol. 1, An
+    Introduction' -> 'history of sexuality'), as title_key already does for a volume at the end of a graph label."""
+    return title_key(CITED_VOLUME.sub('', title or '') or title)
 
 
 def usable(tk):
@@ -52,24 +65,33 @@ def work_index():
     rows = db.execute(f"""
         with people as (select "to" as work, "from" as person from '{GRAPH}/authored.parquet'
                         union all select "to", "from" from '{GRAPH}/edited.parquet')
-        select w.key, w.label, w.kind, w.year, list(p.label) filter (where p.label is not null) as names
+        select w.key, w.label, w.kind, w.year, list(p.label) filter (where p.label is not null) as names, any_value(w.lccn) as lccn
         from '{GRAPH}/work.parquet' w
         left join people x on x.work = w.key
         left join '{GRAPH}/person.parquet' p on p.key = x.person
         where w.label is not null
-        group by all""").fetchall()
+        group by w.key, w.label, w.kind, w.year""").fetchall()
+    # a work with an LCCN also answers to its LC title: atlas-keyed works carry citation strings as labels
+    # ('E. P. Thompson: The Making of ...'), which title_key on the label misses (KG session, 2026-11-06)
+    lc = dict(db.execute(f"""
+        select trim(r.control), coalesce(r.title_a, r.title) from read_parquet('{LC_INDEX}/records-*.parquet') r
+        where trim(r.control) in (select trim(lccn) from '{GRAPH}/work.parquet' where lccn is not null)""").fetchall())
     idx = defaultdict(list)
     nameless = defaultdict(list)   # works with no person at all ('Seeing Like a State' as w-428793): title + year only
-    for key, label, kind, year, names in rows:
-        tk = title_key(label)
-        if not usable(tk):
+    for key, label, kind, year, names, lccn in rows:
+        tks = {title_key(label)}
+        if lccn and lc.get(lccn.strip()):
+            tks.add(title_key(lc[lccn.strip()]))
+        tks = {tk for tk in tks if usable(tk)}
+        if not tks:
             continue
         fams = {family(a) for a in names or [] if a}
         fams = {f for f in fams if len(f) >= 2}
-        for fam in fams:
-            idx[(tk, fam)].append((key, kind, year))
-        if not fams and len(tk.split()) >= 3:
-            nameless[tk].append((key, kind, year))
+        for tk in tks:
+            for fam in fams:
+                idx[(tk, fam)].append((key, kind, year))
+            if not fams and len(tk.split()) >= 3:
+                nameless[tk].append((key, kind, year))
     idx[NAMELESS] = nameless
     doi = dict(db.execute(f"""select lower(substr(a, 5)), key from (select key, unnest(anchors) a from '{GRAPH}/work.parquet')
                               where a like 'doi:%'""").fetchall())
@@ -84,7 +106,9 @@ def lookup(idx, tk, fam, year):
     when that title belongs to one such work."""
     cands = idx.get((tk, fam))
     if cands:
-        strong = [w for w in cands if not year or not w[2] or abs(w[2] - year) <= 1]
+        if not year:   # no year to check: two works can share a main title ('Beyond Kinder, Kueche, Kirche: ...' 1973 / 1976)
+            return cands, 'no_year'
+        strong = [w for w in cands if not w[2] or abs(w[2] - year) <= 1]
         return (strong, 'strong') if strong else (cands, 'edition?')
     nl = idx[NAMELESS].get(tk, [])
     if len(nl) == 1 and year and nl[0][2] and abs(nl[0][2] - year) <= 1:
@@ -127,7 +151,7 @@ def main():
                 if r.get('kind') not in KINDS or not r.get('title') or not r.get('surnames'):
                     continue
                 stats['citations'] += 1
-                tk, fam = title_key(r['title']), family(r['surnames'][0])
+                tk, fam = cited_key(r['title']), family(r['surnames'][0])
                 if not usable(tk) or len(fam) < 2:
                     stats['too_short'] += 1
                     continue

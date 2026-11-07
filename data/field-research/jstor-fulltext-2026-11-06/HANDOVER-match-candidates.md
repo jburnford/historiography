@@ -11,36 +11,49 @@ For the KG session. These are read-only candidates: the KG session decides what 
 | `cit` | row index of the citation within the item's rule rows (`rules/part-*.jsonl.gz`, `textnotes-rules.jsonl.gz`) |
 | `work`, `work_kind`, `work_year` | the matched graph work |
 | `cited_kind`, `cited_year` | as parsed from the note |
-| `basis` | `strong`: title + first author's or editor's family name + year within 1; `edition?`: title + author with the years further apart (reprints, translations, editions); `title+year`: a graph work with no person on it, matched only when its title (3+ words) belongs to that one work and the year is within 1 |
+| `basis` | `strong`: title + first author's or editor's family name + year within 1; `no_year`: title + author, no year in the citation; `edition?`: title + author with the years further apart (reprints, translations, editions); `title+year`: a graph work with no person on it, matched only when its title (3+ words) belongs to that one work and the year is within 1 |
 | `n_works` | number of graph works sharing the key (more than 1 means duplicates or namesakes) |
 | `weight` | 1 + the Ibid./short-form/author-date references in the same article that resolve to this citation |
 | `conf` | rule-parser confidence of the citation |
 | `source` | `list` (JSTOR note list) or `text` (notes cut from page text) |
 
-## Counts
+## Counts (final run, 2026-11-06 evening)
 
-Second run, with editors from `edited.parquet` and the `title+year` basis added:
+This run reads `build/graph` as rebuilt at 19:51 (KG commit f17881d), in which every JSTOR research article, review essay and review article has a work key. Changes since the first run:
+
+**Graph side:**
+- editors from `edited.parquet` count as a work's people;
+- for works with an LCCN, the LC title is a second key;
+- family names compare by their last word on both sides (`Von Eschen`, `Bertoloni Meli`).
+
+**Citation side:**
+- a volume part inside a cited title is dropped;
+- the rule parser now splits author from title correctly before a colon. It used to read `Gail Bederman, Manliness and Civilization: …` and `Theda Skocpol, Protecting Soldiers and Mothers: …` as several authors with the subtitle as the title. The full rule pass was rerun.
+
+**Bases:** a `title+year` basis, and a separate `no_year` basis where the citation gives no year.
 
 | | count |
 |---|---:|
-| parsed citations with a title and an author | 3,011,466 |
-| titles too short to match | 301,093 |
-| matched `strong` | 488,923 |
-| matched `edition?` | 82,533 |
-| matched `title+year` | 4,736 |
-| candidate rows | 583,886 |
-| distinct graph works cited | 151,655 |
-| citing JSTOR items | 66,777 |
-| weighted citations | 849,023 |
-| rows with a single candidate work | 568,988 |
+| parsed citations with a title and an author | 3,015,001 |
+| titles too short to match | 303,577 |
+| matched `strong` | 529,690 |
+| matched `edition?` | 91,588 |
+| matched `title+year` | 58,677 |
+| matched `no_year` | 1,299 |
+| candidate rows | 690,334 |
+| distinct graph works cited | 184,254 |
+| citing JSTOR items | 69,872 |
+| citing items with their own graph work (`citing_work`) | 68,302 |
+| weighted citations | 996,362 |
+| rows with a single candidate work | 672,789 |
 
-About 81% of parsed citations match no graph work (see the last section).
+About 80% of parsed citations match no graph work (see the last section).
 
-The `title+year` matches include *Seeing Like a State* (w-428793 has no authored edge), "The Tragedy of the Commons" and *The Transportation Revolution*. Adding these people to their works would turn the matches into `strong`.
+**What the `title+year` basis does:** it matches works that have no person attached. Since 19:51 it also links citations to the newly minted JSTOR article works, which gives article-to-article edges. A hand audit found 28/28 right (for example "The Urban History of a Rural Place" and "Joe Beef of Montreal").
 
 ## Audit
 
-45 random matches checked by hand: 45/45 are the same work. The `edition?` rows are mostly reprints or translations, so the KG session should treat that tag as "same work, different edition", not as a merge.
+Hand audits: 45/45 in the first run. In the final run, 28/30 `strong`/`edition?` rows were right: one `edition?` row joins a book to a different book with the same main title (Morgan, *The Stamp Act Crisis*), and one year-less citation joined the wrong article that shares its main title (Bridenthal). Year-less matches are now `no_year`. The `edition?` rows are mostly reprints or translations, so the KG session should treat that tag as "same work, different edition", not as a merge.
 
 ## Most-cited graph works (single-candidate matches, by citing items)
 
@@ -73,23 +86,24 @@ The `title+year` matches include *Seeing Like a State* (w-428793 has no authored
 
 | kind | works | cited by 2+ items | cited by 5+ items |
 |---|---:|---:|---:|
-| books | 958,638 | 119,128 | 17,169 |
-| articles | 466,095 | 60,603 | 6,961 |
-| chapters | 174,102 | 24,208 | 2,438 |
-| periodicals | 48,225 | 1,060 | 31 |
-| theses | 3,669 | 255 | 4 |
+| books | 935,538 | 114,224 | 15,525 |
+| articles | 442,000 | 50,392 | 4,948 |
+| chapters | 173,151 | 23,982 | 2,439 |
+| periodicals | 48,166 | 1,081 | 32 |
+| theses | 3,632 | 247 | 5 |
 
-**The head is canonical work the graph lacks:**
-- Thompson, *The Making of the English Working Class* (455 items);
+**Head after the third run** (before the final run; the final head starts the same way, without Bederman and Skocpol, which now match). These are works the graph lacks, or holds under another title. For example, Foucault's *Discipline and Punish* is cited as *The Birth of the Prison* (163 items):
 - Mitchell, *Abstract of British Historical Statistics* (192);
-- Cronon, *Changes in the Land* (189);
-- Hughes, *Networks of Power* (177);
-- Curtin, *The Atlantic Slave Trade: A Census* (174);
-- Foucault, *Discipline and Punish*, cited by its alternative English title *The Birth of the Prison* (163);
-- James C. Scott, *Weapons of the Weak* (159);
-- Chakrabarty, *Provincializing Europe* (157);
-- Joan Scott, *Gender and the Politics of History* (144);
-- Collingwood, *The Idea of History* (140).
+- Eric Williams, *Capitalism and Slavery* (123);
+- Bederman, *Manliness and Civilization* (98);
+- D'Emilio and Freedman, *Intimate Matters* (94);
+- Dunn, *Sugar and Slaves* (81);
+- Bidwell and Falconer, *History of Agriculture in the Northern United States* (80);
+- Chandler, *Scale and Scope* (79);
+- Boyd, ed., *The Papers of Thomas Jefferson* (78);
+- Skocpol, *Protecting Soldiers and Mothers* (78);
+- Mintz, *Sweetness and Power* (78);
+- Braverman, *Labor and Monopoly Capital* (75).
 
 **Cautions:**
 - Short-title variants and OCR errors split one work over several rows. Group by `author_family` and the start of `title_key` before minting.

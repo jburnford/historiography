@@ -78,12 +78,39 @@ def parse_xml(raw):
 PARTICLE = r"(?:de|du|des|la|le|van|von|der|den|di|da|dos|del|della|y|ten|ter|St\.|d'|d’)"
 TOK = rf"(?:[A-ZÀ-ÝĀ-Ž][\w'’\-–]*\.?|[A-ZÀ-Ý]\.(?:-?[A-ZÀ-Ý]\.)*|{PARTICLE})"
 NAME = rf"(?:{TOK}(?:(?:\s+|(?<=\.)){TOK}){{0,5}}(?:,?\s+(?:Jr|Sr|II|III|IV)\.?)?)"
-NAMES = rf"{NAME}(?:(?:,\s*|\s+)(?:and|et|&|und|u\.|y|e)\s+{NAME}|,\s*{NAME}(?=(?:,\s*|\s+)(?:and|et|&|und|u\.|y|e)\s)){{0,6}}(?:,?\s+et\s+al\.?)?"
+# a co-author after a comma is a full name (given name or initials + surname): 'Gail Bederman, Manliness and
+# Civilization: A Cultural History ...' is one author and a title, not three authors (2026-11-06)
+NAME2 = rf"(?:{TOK}(?:(?:\s+|(?<=\.)){TOK}){{1,5}}(?:,?\s+(?:Jr|Sr|II|III|IV)\.?)?)"
+NAMES = rf"{NAME}(?:(?:,\s*|\s+)(?:and|et|&|und|u\.|y|e)\s+{NAME}|,\s*{NAME2}(?=(?:,\s*|\s+)(?:and|et|&|und|u\.|y|e)\s)){{0,6}}(?:,?\s+et\s+al\.?)?"
 # 'F. de Potter, J. Broeckaert, Title': a comma list of initialled names (a title rarely starts 'J. Name,')
 INIT_NAME = rf"[A-ZÀ-Ý]\.(?:\s?-?[A-ZÀ-Ý]\.)*\s+(?:{PARTICLE}\s+)?[A-ZÀ-ÝĀ-Ž][\w'’\-–]+"
 INIT_LIST = re.compile(rf"^(?P<a>{INIT_NAME}(?:\s*,\s*{INIT_NAME}){{1,5}}(?:,?\s*(?:and|et|&|und|y|e)\s+{INIT_NAME})?)\s*,\s+")
 EDS = r"(?:,?\s*\(?(?:eds?|éds?|dir|dirs|coords?|comps?|Hg|Hrsg|a cura di|trans|tr)\.?\)?)?"
-AUTHOR = re.compile(rf"^(?P<a>{NAMES}){EDS}\s*(?:[,:]\s+|\s(?=[“\"«]))")   # also 'Marion Johnson "News from Nowhere"'
+# a list of names ends with a comma (or a quoted title follows); a colon ends only a single name (German 'Hans Müller:
+# Titel'): 'Theda Skocpol, Protecting Soldiers and Mothers: The Political Origins ...' is one author and a title
+_AUTHOR = re.compile(rf"^(?:(?P<a>{NAMES}){EDS}\s*(?:,\s+|\s(?=[“\"«]))|(?P<a1>{NAME}){EDS}\s*:\s+)")   # also 'Marion Johnson "News from Nowhere"'
+class _AuthorMatch:
+    """A match of _AUTHOR whose group('a') is the name list from either branch."""
+    def __init__(self, m):
+        self.m = m
+
+    def group(self, g=0):
+        return (self.m.group('a') or self.m.group('a1')) if g == 'a' else self.m.group(g)
+
+    def start(self, *g):
+        return self.m.start(*g)
+
+    def end(self, *g):
+        return self.m.end(*g)
+
+
+class _AuthorRe:
+    def match(self, s, pos=0):
+        m = _AUTHOR.match(s, pos)
+        return _AuthorMatch(m) if m else None
+
+
+AUTHOR = _AuthorRe()
 # 'Georges Duby, Michelle Perrot (éd.), Titre' / 'Friedrich Edelmayer, Maximilian Lanzinner, Peter Rauscher (éd.),': a comma list only with an editor mark
 AUTHOR_EDS = re.compile(rf"^(?P<a>{NAME}(?:\s*,\s*{NAME}){{1,6}}(?:,?\s*(?:and|et|&|und|y|e)\s+{NAME})?)\s*,?\s*\(?(?:eds?|éds?|dir|dirs|coords?|Hg|Hrsg|a cura di)\.?\)?\s*[,:]\s+")
 SPLIT = re.compile(r'\s*(?:,\s*(?:and|et|&|und|u\.|y|e)\s+|\s+(?:and|et|&|und|u\.|y|e)\s+|,\s*(?=[A-ZÀ-Ý]))')
