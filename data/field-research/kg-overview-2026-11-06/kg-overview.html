@@ -63,6 +63,15 @@ h2 { font-size: 17px; font-weight: 600; margin: 0 0 2px; }
 .meter .track { height: 8px; background: var(--track); border-radius: 4px; margin: 6px 0 4px; overflow: hidden; }
 .meter .fill { height: 100%; background: var(--series-1); border-radius: 4px; }
 .meter .sub { color: var(--text-muted); font-size: 12.5px; }
+.hist svg { display: block; width: 100%; height: auto; overflow: visible; }
+.hist .col { fill: var(--series-1); }
+.hist .hit { fill: transparent; cursor: default; outline: none; }
+.hist .hit:hover + .col, .hist .hit:focus-visible + .col { fill: var(--text-primary); }
+.hist .grid line { stroke: var(--grid); stroke-width: 1; }
+.hist .base { stroke: var(--axis); stroke-width: 1; }
+.hist text { fill: var(--text-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.hist text.peak { fill: var(--text-secondary); }
+.hist .foot { color: var(--text-muted); font-size: 12.5px; margin-top: 6px; }
 .tip { position: fixed; pointer-events: none; background: var(--surface-1); color: var(--text-primary); border: 1px solid var(--ring); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); max-width: 300px; display: none; z-index: 10; }
 .tip b { font-weight: 600; }
 details { margin-top: 16px; }
@@ -97,6 +106,14 @@ footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
     <section class="card"><h2>Relations by kind</h2><p class="note">Edges between people, works and institutions, grouped by what they record.</p><div class="bars" id="edges"></div></section>
   </div>
   <div class="grid2">
+    <section class="card"><h2>Historians born</h2><p class="note">Historian keys with a birth year on record (reviewed life dates, the LC authority or Wikidata), in five-year bins. The fall after 1950 is partly coverage: LC and Wikidata record fewer birth years for younger historians.</p><div class="hist" id="h-births"></div></section>
+    <section class="card"><h2>Dissertations defended</h2><p class="note">Doctoral theses in the graph by year of the degree: AHA's directory of history PhDs and the theses read in full.</p><div class="hist" id="h-theses"></div></section>
+  </div>
+  <div class="grid2">
+    <section class="card"><h2>Books published</h2><p class="note">Book works by first year of publication: reviewed or cited books and the books of keyed authors. Most come from LC's catalogue copy, which ends in 2016, so recent years are thin.</p><div class="hist" id="h-books"></div></section>
+    <section class="card"><h2>Articles published</h2><p class="note">Journal articles by year, book reviews excluded. The recent peak is ORCID and Crossref records of living scholars; JSTOR adds the older run.</p><div class="hist" id="h-articles"></div></section>
+  </div>
+  <div class="grid2">
     <section class="card"><h2>How much is grounded</h2><p class="note">Share of each layer tied to a person or work key, or to a public identifier. The rest stays in the graph as printed names and unmatched references.</p><div id="meters"></div></section>
     <section class="card"><h2>People: public identifiers held</h2><p class="note">People holding each identifier. One person can hold several.</p><div class="bars" id="ids"></div></section>
   </div>
@@ -111,7 +128,7 @@ footer { color: var(--text-muted); font-size: 12.5px; margin-top: 20px; }
 <div class="tip" id="tip" role="tooltip"></div>
 </div>
 <script>
-const S = {"people": {"total": 230198, "with_public_id": 143238, "established": 146947, "recorded": 82943, "unresolved": 308, "ids": {"Library of Congress": 122369, "GND (German National Library)": 54455, "VIAF": 54404, "ISNI": 51888, "Wikidata": 49831, "ORCID": 24637, "IdRef (France)": 383}, "roles": {"historian": 128357, "unknown": 46732, "other scholar": 45187, "primary source": 9922}, "confidence": {"other scholar|strong": 11787, "primary source|supported": 5059, "historian|thin": 80940, "unknown|thin": 25125, "primary source|strong": 2718, "other scholar|supported": 24743, "historian|supported": 15318, "unknown|supported": 17737, "other scholar|thin": 8657, "unknown|strong": 3870, "primary source|thin": 2145, "historian|strong": 32099}, "signals": {"history-phd": 71808, "supervisor-or-staff-list": 16752, "wikidata-historian": 22382, "early": 2718, "reviewer": 49344, "orcid": 24637, "cited-as-primary": 10403, "cited-as-scholarship": 48105, "articles": 42150}, "duplicates": {"candidate_pairs": 83662, "keys_in_pairs": 48029, "clusters": 16741, "surplus_upper_bound": 31288, "pair_kinds": {"review+review": 53039, "lc+review": 10358, "aha-phd+lc": 8161, "aha-phd+review": 4691, "aha-phd+orcid": 1453, "lc+orcid": 1301, "orcid+review": 1298, "aha-phd+other": 1223, "lc+other": 1063, "other+review": 415, "orcid+other": 307, "other+other": 183, "aha-phd+cited": 99, "cited+lc": 44, "cited+review": 13, "cited+other": 8, "cited+orcid": 6}}}, "works": {"total": 1813200, "by_kind": {"Books (LC catalogue)": 630214, "Book reviews": 416275, "Journal articles": 389404, "Works listed on ORCID records (type not given)": 288061, "Doctoral theses": 71376, "Books reviewed on H-Net": 13596, "Atlas sources": 2333, "Other": 1941}, "articles_recorded": 128099}, "institutions": 1235, "edges": {"ADVISED": 35785, "AUTHORED": 1405860, "AWARDED_BY": 65104, "CITES": 1357416, "COAUTHORED": 22732, "COEDITED": 20434, "EDITED": 146388, "EDITOR_OF": 8062, "PART_OF": 9312, "PUBLISHED_AS": 7196, "REVIEWED": 85821, "REVIEWS": 431685, "SUPERVISED": 36685}, "citations": {"article": {"edges": 572904, "citing": 65327}, "thesis": {"edges": 784512, "citing": 11825}}, "reviews": {"total": 416275, "with_keyed_reviewer": 75903, "printed_reviewer_names": 309166}, "corpus": {"records": 16785, "parsed": 15797, "in_analysis": 13996, "bibliography_entries": 5470106, "by_country": {"US": 3088, "GB": 2656, "BR": 2618, "CA": 2249, "FR": 1453, "MX": 591, "SE": 287, "DE": 224, "IT": 174, "ES": 131, "AU": 130, "ZZ": 104, "BE": 101, "PT": 41, "CO": 37, "GR": 24, "FI": 20, "ZA": 15, "LV": 14, "AR": 10, "PL": 8, "HU": 7, "IE": 5, "TR": 3, "MT": 3, "CH": 2, "KZ": 1}, "distinct_cited_works": 2443998, "corpus_citations": 3050449, "theses_citing_in_graph": 11825, "jstor_articles_citing": 65327, "jstor_cites": 572904, "keyed_cited_works": 279509}, "built": "2026-11-07"};
+const S = {"people": {"total": 230198, "with_public_id": 143238, "established": 146947, "recorded": 82943, "unresolved": 308, "ids": {"Library of Congress": 122369, "GND (German National Library)": 54455, "VIAF": 54404, "ISNI": 51888, "Wikidata": 49831, "ORCID": 24637, "IdRef (France)": 383}, "roles": {"historian": 128357, "unknown": 46732, "other scholar": 45187, "primary source": 9922}, "confidence": {"other scholar|strong": 11787, "primary source|supported": 5059, "unknown|strong": 3870, "primary source|thin": 2145, "unknown|supported": 17737, "other scholar|thin": 8657, "unknown|thin": 25125, "primary source|strong": 2718, "other scholar|supported": 24743, "historian|supported": 15318, "historian|strong": 32099, "historian|thin": 80940}, "signals": {"reviewer": 49344, "supervisor-or-staff-list": 16752, "history-phd": 71808, "orcid": 24637, "cited-as-scholarship": 48105, "cited-as-primary": 10403, "articles": 42150, "wikidata-historian": 22382, "early": 2718}, "duplicates": {"candidate_pairs": 83662, "keys_in_pairs": 48029, "clusters": 16741, "surplus_upper_bound": 31288, "pair_kinds": {"review+review": 53039, "lc+review": 10358, "aha-phd+lc": 8161, "aha-phd+review": 4691, "aha-phd+orcid": 1453, "lc+orcid": 1301, "orcid+review": 1298, "aha-phd+other": 1223, "lc+other": 1063, "other+review": 415, "orcid+other": 307, "other+other": 183, "aha-phd+cited": 99, "cited+lc": 44, "cited+review": 13, "cited+other": 8, "cited+orcid": 6}}}, "works": {"total": 1813200, "by_kind": {"Books (LC catalogue)": 630214, "Book reviews": 416275, "Journal articles": 389404, "Works listed on ORCID records (type not given)": 288061, "Doctoral theses": 71376, "Books reviewed on H-Net": 13596, "Atlas sources": 2333, "Other": 1941}, "articles_recorded": 128099}, "institutions": 1235, "edges": {"ADVISED": 35785, "AUTHORED": 1405860, "AWARDED_BY": 65104, "CITES": 1357416, "COAUTHORED": 22732, "COEDITED": 20434, "EDITED": 146388, "EDITOR_OF": 8062, "PART_OF": 9312, "PUBLISHED_AS": 7196, "REVIEWED": 85821, "REVIEWS": 431685, "SUPERVISED": 36685}, "citations": {"thesis": {"edges": 784512, "citing": 11825}, "article": {"edges": 572904, "citing": 65327}}, "reviews": {"total": 416275, "with_keyed_reviewer": 75903, "printed_reviewer_names": 309166}, "corpus": {"records": 16785, "parsed": 15797, "in_analysis": 13996, "bibliography_entries": 5470106, "by_country": {"US": 3088, "GB": 2656, "BR": 2618, "CA": 2249, "FR": 1453, "MX": 591, "SE": 287, "DE": 224, "IT": 174, "ES": 131, "AU": 130, "ZZ": 104, "BE": 101, "PT": 41, "CO": 37, "GR": 24, "FI": 20, "ZA": 15, "LV": 14, "AR": 10, "PL": 8, "HU": 7, "IE": 5, "TR": 3, "MT": 3, "CH": 2, "KZ": 1}, "distinct_cited_works": 2443998, "corpus_citations": 3050449, "theses_citing_in_graph": 11825, "jstor_articles_citing": 65327, "jstor_cites": 572904, "keyed_cited_works": 279509}, "years": {"births": {"start": 1800, "width": 5, "bins": [0, 3, 2, 3, 6, 4, 9, 10, 22, 27, 47, 65, 85, 99, 123, 131, 157, 197, 218, 249, 394, 383, 453, 481, 834, 954, 1129, 1631, 2351, 2481, 2241, 2164, 2376, 2312, 2029, 1557, 996, 428, 110, 14, 68], "before": 41, "after": 0, "total": 26884, "of": 128357}, "books": {"start": 1800, "width": 5, "bins": [346, 282, 312, 362, 422, 493, 624, 726, 729, 854, 1026, 970, 1053, 1084, 1107, 1230, 1437, 1753, 2090, 2661, 3462, 3171, 3915, 3702, 5014, 6301, 7327, 7822, 7422, 8435, 9311, 10634, 16014, 29306, 36175, 40104, 41378, 48046, 54213, 60445, 64547, 64184, 58380, 12021, 2259, 241], "before": 5122, "after": 0, "total": 628512, "of": 630250, "partial_last": true}, "articles": {"start": 1800, "width": 5, "bins": [0, 0, 2, 2, 0, 1, 2, 3, 103, 81, 34, 188, 140, 119, 188, 446, 443, 682, 884, 1150, 965, 1090, 1398, 1222, 1241, 1870, 2435, 2707, 2333, 2639, 3193, 3630, 4777, 5446, 6642, 7444, 8274, 9251, 10688, 12766, 16050, 24284, 36588, 64478, 107676, 43243], "before": 28, "after": 0, "total": 386826, "of": 389404, "partial_last": true}, "theses": {"start": 1800, "width": 5, "bins": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 11, 29, 59, 95, 108, 130, 147, 162, 234, 442, 717, 818, 725, 754, 1564, 1505, 2024, 3681, 5782, 4784, 3187, 2806, 3625, 4954, 5194, 5371, 6935, 7790, 6052, 1297], "before": 0, "after": 0, "total": 70990, "of": 71376, "partial_last": true}}, "built": "2026-11-07"};
 const fmt = n => n.toLocaleString('en-US');
 const compact = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 2).replace(/\.?0+$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : fmt(n);
 const pct = (a, b) => (100 * a / b).toFixed(a / b < 0.1 ? 1 : 0) + '%';
@@ -153,6 +170,41 @@ function meter(label, part, whole, sub) {
   bindTip(m, `<b>${label}</b><br>${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})<br>Not yet: ${fmt(whole - part)}`);
   document.getElementById('meters').append(m);
   tableRows.push(['Grounding', label, `${fmt(part)} of ${fmt(whole)} (${pct(part, whole)})`]);
+}
+
+// column histogram: H = {start, width, bins, before, after, total, of}
+function hist(id, section, H, noun) {
+  const host = document.getElementById(id), W = 480, Ht = 190, padL = 44, padB = 22, padT = 18, n = H.bins.length;
+  const max = Math.max(...H.bins), step = (W - padL) / n, bw = Math.max(1, step - 2), r = Math.min(4, bw / 2);
+  const y = v => padT + (Ht - padT - padB) * (1 - v / max);
+  const nice = m => { const p = 10 ** Math.floor(Math.log10(m)), f = m / p; return (f <= 2 ? 0.5 : f <= 5 ? 1 : 2) * p; };
+  const tick = nice(max);
+  let g = '<g class="grid">';
+  for (let v = tick; v <= max; v += tick) g += `<line x1="${padL}" x2="${W}" y1="${y(v)}" y2="${y(v)}"/><text x="${padL - 6}" y="${y(v) + 4}" text-anchor="end">${compact(v)}</text>`;
+  g += '</g>';
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgNS, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${W} ${Ht}`);
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', `${section}: ${fmt(H.bins.reduce((a, b) => a + b, 0))} ${noun}, ${H.start} to ${H.start + n * H.width - 1}, in ${H.width}-year bins`);
+  let body = g + `<line class="base" x1="${padL}" x2="${W}" y1="${Ht - padB}" y2="${Ht - padB}"/>`;
+  const peak = H.bins.indexOf(max);
+  H.bins.forEach((v, i) => {
+    const x = padL + i * step + 1, top = y(v), h = Ht - padB - top, from = H.start + i * H.width;
+    if ((from % 25) === 0) body += `<text x="${x + bw / 2}" y="${Ht - 6}" text-anchor="middle">${from}</text>`;
+    if (i === peak) body += `<text class="peak" x="${x + bw / 2}" y="${top - 5}" text-anchor="middle">${fmt(v)}</text>`;
+    body += `<rect class="hit" data-i="${i}" x="${x - 1}" y="${padT}" width="${step}" height="${Ht - padT - padB}"/>`;
+    const rr = Math.min(r, h);
+    body += v ? `<path class="col" d="M${x},${Ht - padB} V${top + rr} Q${x},${top} ${x + rr},${top} H${x + bw - rr} Q${x + bw},${top} ${x + bw},${top + rr} V${Ht - padB} Z"/>` : '<g></g>';
+    tableRows.push([section, `${from}–${from + H.width - 1}`, v]);
+  });
+  svg.innerHTML = body;
+  host.append(svg);
+  svg.querySelectorAll('.hit').forEach(h => { const i = +h.dataset.i, from = H.start + i * H.width;
+    h.setAttribute('aria-label', `${from} to ${from + H.width - 1}: ${fmt(H.bins[i])}`);
+    bindTip(h, `<b>${from}–${from + H.width - 1}</b><br>${fmt(H.bins[i])} ${noun}${H.partial_last && i === H.bins.length - 1 ? '<br>to date: the bin is not complete' : ''}`); });
+  const shown = H.total - H.before - H.after, last = H.start + (n - 1) * H.width;
+  host.append(el('div', 'foot', `${fmt(shown)} ${noun} shown${H.before ? ` · ${fmt(H.before)} before ${H.start}` : ''}${H.after ? ` · ${fmt(H.after)} after ${H.start + n * H.width - 1}` : ''} · ${fmt(H.of - H.total)} of ${fmt(H.of)} have no year on record${H.partial_last ? ` · the ${last}–${last + H.width - 1} bin runs to ${S.built.slice(0, 4)} only` : ''}`));
 }
 
 const E = S.edges, edgeTotal = Object.values(E).reduce((a, b) => a + b, 0);
@@ -222,6 +274,11 @@ const edgeItems = [];
 for (const [group, list] of Object.entries(EDGE))
   for (const [k, sub] of list.sort((a, b) => E[b[0]] - E[a[0]])) edgeItems.push({ name: k, sub, value: E[k], group, tip: sub });
 bars('edges', 'Relations', edgeItems, edgeTotal);
+
+hist('h-births', 'Historians born', S.years.births, 'historians');
+hist('h-theses', 'Dissertations defended', S.years.theses, 'theses');
+hist('h-books', 'Books published', S.years.books, 'books');
+hist('h-articles', 'Articles published', S.years.articles, 'articles');
 
 const P = S.people, R = S.reviews, C = S.corpus;
 meter('People with a public identifier', P.with_public_id, P.total, 'LC, GND, VIAF, ISNI, Wikidata, ORCID or IdRef');

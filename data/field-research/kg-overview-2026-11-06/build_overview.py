@@ -18,6 +18,41 @@ G = ROOT / 'build/graph'
 CORPUS = ROOT / 'data/field-research/dissertation-citations-2026-10-11'
 
 
+LIFE_YEARS = ROOT / 'data/person-facts/life-years.csv.gz'   # scripts/build_life_years.py
+
+
+def histogram(values, start, end, width=5):
+    """Counts in `width`-year bins from `start` to `end` (inclusive), plus how many fall before and after."""
+    bins = [0] * ((end - start + 1) // width)
+    before = after = 0
+    for v in values:
+        if v < start:
+            before += 1
+        elif v > end:
+            after += 1
+        else:
+            bins[(v - start) // width] += 1
+    return dict(start=start, width=width, bins=bins, before=before, after=after, total=len(values))
+
+
+def years(db):
+    """Year histograms (2026-11-07): historians' birth years (data/person-facts/life-years.csv.gz),
+    books (LC first year), research articles (reviews excluded) and doctoral theses. Binned only."""
+    hist = db.execute(f"""SELECT r.key, try_cast(l.birth AS INT)
+        FROM read_csv_auto('{ROOT}/data/person-facts/person-roles.csv.gz') r
+        LEFT JOIN read_csv_auto('{LIFE_YEARS}', all_varchar=true) l USING (key) WHERE r.role = 'historian'""").fetchall()
+    born = [b for k, b in hist if b]
+    out = dict(births=dict(histogram(born, 1800, 2004), of=len(hist)))
+    reviews = f"(SELECT \"from\" FROM '{G}/reviews.parquet')"
+    for name, where in (('books', "kind = 'book'"),
+                        ('articles', f"kind = 'article' AND len(reviewer_names) = 0 AND key NOT IN {reviews}"),
+                        ('theses', "kind = 'thesis'")):
+        ys = [y for (y,) in db.execute(f"SELECT year FROM '{G}/work.parquet' WHERE {where} AND year BETWEEN 1000 AND 2030").fetchall()]
+        n = db.execute(f"SELECT count(*) FROM '{G}/work.parquet' WHERE {where}").fetchone()[0]
+        out[name] = dict(histogram(ys, 1800, 2029), of=n, partial_last=True)
+    return out
+
+
 def main():
     db = duckdb.connect()
     one = lambda q: db.execute(q).fetchone()
@@ -77,6 +112,7 @@ def main():
         jstor_articles_citing=one(f"SELECT count(DISTINCT c.\"from\") FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
         jstor_cites=one(f"SELECT count(*) FROM '{G}/cites.parquet' c JOIN '{G}/work.parquet' w ON w.key = c.\"from\" WHERE w.kind <> 'thesis'")[0],
         keyed_cited_works=one(f"SELECT count(DISTINCT \"to\") FROM '{G}/cites.parquet'")[0])
+    s['years'] = years(db)
     s['built'] = __import__('datetime').date.today().isoformat()
     (HERE / 'stats.json').write_text(json.dumps(s, indent=1, ensure_ascii=False) + '\n')
     page = (HERE / 'template.html').read_text().replace('/*STATS*/null', json.dumps(s, ensure_ascii=False))

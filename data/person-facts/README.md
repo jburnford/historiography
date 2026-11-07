@@ -50,3 +50,18 @@ the sources each side cites: LC's 670 notes, and the references and ranks on Wik
 
 **Living people.** The graph keeps living people's birth years (user, 2026-10-30). Site exports must
 withhold them with `scripts/historian_life_review.withhold_living_birth`.
+
+## life-years.csv.gz
+
+Built by `scripts/build_life_years.py` (2026-11-07) from `life-dates.csv`, the LC authority dump and Wikidata
+(`scripts/wd_life_years.py`, P569/P570 from QLever, cached on E:). Birth and death **years** for every person key
+that holds an LC authority or a Wikidata item, beside the reviewed full dates above.
+
+- Columns: `key`, `birth`, `death`, `birth_check`, `death_check`, `birth_sources`, `death_sources`.
+- `*_check`: `reviewed` (the value from life-dates.csv, which always wins), `agree` (LC and Wikidata give the same
+  year), `single_source`, or `conflict` (they differ; Wikidata's year is kept, as in build_life_dates' source order).
+- `*_sources`: `source=year` pairs (`lcnaf:n…`, `wd:Q…`, `life-dates.csv`).
+
+These are public LC and Wikidata facts and the graph keeps them all, living people's included (user,
+2026-11-07). The website does not put living people's birth years front and centre
+(`scripts/historian_life_review.withhold_living_birth`).
