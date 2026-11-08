@@ -62,7 +62,8 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     path = out / 'answers.jsonl'
-    done = {json.loads(l)['id'] for l in open(path)} if path.exists() else set()
+    # a rerun redoes failed requests too (append-only; readers keep the last ok row per id)
+    done = {d['id'] for d in map(json.loads, open(path)) if d.get('ok')} if path.exists() else set()
     todo = [r for r in recs if r['id'] not in done]
     report = Counter()
     t0 = time.time(); pieces = 0
