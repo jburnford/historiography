@@ -51,21 +51,25 @@ def main():
         GROUP BY 1, 2"""
     # an online-first match through a later cited author can be another author's same-title reply ('The Economic
     # Depression of the Renaissance' 1962/1964): online_first only through the first cited author (JSTOR session, 2026-11-08)
-    cols = {d[0] for d in db.execute(f"SELECT * FROM '{args.matches}' LIMIT 0").description}
-    rules = (f"(SELECT * FROM '{args.matches}' WHERE NOT (route = 'online_first' AND author_rank > 0))"
-             if {'route', 'author_rank'} <= cols else f"'{args.matches}'")
-    report['skipped_online_first_later_author'] = (db.execute(
-        f"SELECT count(*) FROM '{args.matches}' WHERE route = 'online_first' AND author_rank > 0").fetchone()[0]
-        if {'route', 'author_rank'} <= cols else 0)
+    def source(path, name):
+        cols = {d[0] for d in db.execute(f"SELECT * FROM '{path}' LIMIT 0").description}
+        if not {'route', 'author_rank'} <= cols:
+            return f"'{path}'"
+        report[f'{name}_skipped_online_first_later_author'] = db.execute(
+            f"SELECT count(*) FROM '{path}' WHERE route = 'online_first' AND author_rank > 0").fetchone()[0]
+        return f"(SELECT * FROM '{path}' WHERE NOT (route = 'online_first' AND coalesce(author_rank, 0) > 0))"
+    rules = source(args.matches, 'rules')
     parts = [clean.format(rules)]
+    qwen = None
     if args.qwen and str(args.qwen) and args.qwen.exists():
-        parts.append(clean.format(f"'{args.qwen}'"))
+        qwen = source(args.qwen, 'qwen')
+        parts.append(clean.format(qwen))
         report['qwen_clean_pairs'] = db.execute(f"SELECT count(*) FROM ({parts[1]})").fetchone()[0]
         report['rules_clean_pairs'] = db.execute(f"SELECT count(*) FROM ({parts[0]})").fetchone()[0]
     edition = """SELECT citing_work, work, sum(coalesce(weight, 1))::INT AS n FROM {}
         WHERE basis = 'edition?' AND n_works = 1 AND citing_work IS NOT NULL AND citing_work <> work
           AND cited_year > work_year GROUP BY 1, 2"""
-    eparts = [edition.format(p) for p in [rules] + ([f"'{args.qwen}'"] if len(parts) > 1 else [])]
+    eparts = [edition.format(p) for p in [rules] + ([qwen] if qwen else [])]
     rows = db.execute(f"""WITH m AS (SELECT citing_work, work, max(n) n FROM ({' UNION ALL '.join(parts)}) GROUP BY 1, 2),
         e AS (SELECT citing_work, work, max(n) n FROM ({' UNION ALL '.join(eparts)}) GROUP BY 1, 2)
         SELECT citing_work, work, n, 'match' FROM m
