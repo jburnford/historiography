@@ -20,7 +20,7 @@ G = ROOT / 'build/graph'
 DB = G / 'explorer.duckdb'
 STATIC = ROOT / 'explorer'
 EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'awarded_by', 'coauthored', 'coedited',
-         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same']
+         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same', 'affiliated_with']
 
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
@@ -40,6 +40,7 @@ REL = {
         ('cited_by_people', 'Cited by (people)', None, None, None, None),
         ('cites_people', 'Cites (people)', None, None, None, None),
         ('possibly_same', 'Possibly the same person', 'possibly_same', None, None, None),
+        ('affiliations', 'Affiliations', None, None, None, None),
     ],
     'work': [
         ('authors', 'Authors', 'authored', 'to', 'from', None),
@@ -56,6 +57,7 @@ REL = {
         ('published_from', 'Published from', 'published_as', 'to', 'from', None),
     ],
     'institution': [
+        ('faculty', 'Faculty and affiliated people', None, None, None, None),
         ('advisors_here', 'Advised PhDs here', None, None, None, None),
         ('theses', 'Theses awarded', 'awarded_by', 'to', 'from', None),
     ],
@@ -153,6 +155,18 @@ class Graph:
         if rid == 'possibly_same':        # same name, timelines fit, not confirmed (scripts/key_possible_same.py)
             return ('''SELECT "to" k, 1 n, 'same name, timelines fit; not confirmed' d FROM e_possibly_same_f WHERE "from" = $k
                        UNION SELECT "from", 1, 'same name, timelines fit; not confirmed' FROM e_possibly_same_t WHERE "to" = $k''')
+        if rid in ('faculty', 'affiliations'):     # dated affiliations, all sources in one line
+            me, other = ('to', 'from') if rid == 'faculty' else ('from', 'to')
+            side = 't' if me == 'to' else 'f'
+            return (f'''SELECT "{other}" k, count(*) n, string_agg(CASE source WHEN 'aha_directory' THEN 'AHA directory'
+                        WHEN 'aha_advisor' THEN 'advised PhDs' WHEN 'ihr' THEN 'IHR staff list' WHEN 'orcid' THEN 'ORCID'
+                        WHEN 'wikidata' THEN 'Wikidata' WHEN 'review_credit' THEN 'review credit'
+                        WHEN 'jstor_signature' THEN 'JSTOR review signature' WHEN 'lc_373' THEN 'LC authority' ELSE source END
+                        || CASE WHEN first_year IS NULL AND last_year IS NULL THEN ''
+                                WHEN first_year = last_year OR first_year IS NULL THEN ' ' || last_year
+                                WHEN last_year IS NULL THEN ' ' || first_year || '–'
+                                ELSE ' ' || first_year || '–' || last_year END, '; ' ORDER BY last_year DESC NULLS LAST) d
+                        FROM e_affiliated_with_{side} WHERE "{me}" = $k GROUP BY 1''')
         if rid == 'advisors_here':        # supervisors of theses this institution awarded
             return ('''SELECT s."from" k, count(*) n, count(*) || ' theses, ' || min(w.year) || '–' || max(w.year) d
                        FROM e_awarded_by_t a JOIN e_supervised_t s ON s."to" = a."from" JOIN nodes w ON w.key = a."from"

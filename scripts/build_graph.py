@@ -19,6 +19,9 @@ is untracked) and writes to build/graph/ (git-ignored):
   works, with the number of works, of distinct titles (an editorial co-signed in many journals has one DOI per
   journal: 147 works, 1 title), the first and last year and the work keys (user, 2026-11-05: a count matters);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
+- `AFFILIATED_WITH` (Person -> Institution): dated affiliations by source (AHA directory and advising, IHR staff
+  lists, ORCID, Wikidata, review credits, JSTOR review signatures, LC 373) from data/graph/affiliations.csv.gz
+  (scripts/export_affiliations.py; user, 2026-11-08: departments should show the faculty who taught there);
 - `POSSIBLY_SAME` (Person -> Person, once per pair, lower key first) from `possible-same:` members: same name and
   fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
@@ -51,6 +54,7 @@ from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
 JSTOR_CITES = ROOT / 'data/graph/jstor-cites.csv.gz'   # scripts/export_jstor_citations.py (JSTOR article notes)
+AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
 SCHEMES = ('lcnaf', 'wd', 'orcid', 'gnd', 'viaf', 'isni', 'idref', 'ror')
 PERSON_RELATIONS = ('authored', 'edited', 'supervised')
 
@@ -104,7 +108,7 @@ def main():
     ap.add_argument('--db', action='store_true', help='also load the tables into LadybugDB')
     args = ap.parse_args()
     shards = sorted(args.state.glob('events-*.jsonl*'))
-    require_tracked(shards + [CITES] + ([JSTOR_CITES] if JSTOR_CITES.exists() else []))
+    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()])
     state = State.load(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -226,6 +230,25 @@ def main():
                 o = state.lookup(m.split(':', 1)[1])
                 if len(o) == 1 and o[0] != person["key"] and types.get(o[0]) == 'person':
                     possible.add(tuple(sorted((person["key"], o[0]))))
+    aff = {}
+    if AFFILIATIONS.exists():
+        with gzip.open(AFFILIATIONS, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                pk, ik = state.lookup(r['person']), state.lookup(r['institution'])
+                if len(pk) != 1 or len(ik) != 1 or types.get(pk[0]) != 'person' or types.get(ik[0]) != 'institution':
+                    report['affiliations_unresolved'] += 1
+                    continue
+                yv = lambda v: int(v) if v else None
+                akey = (pk[0], ik[0], r['source'])
+                old = aff.get(akey)
+                y0 = min([v for v in (yv(r['first_year']), old and old['first_year']) if v] or [None])
+                y1 = max([v for v in (yv(r['last_year']), old and old['last_year']) if v] or [None])
+                aff[akey] = {'from': pk[0], 'to': ik[0], 'source': r['source'], 'first_year': y0, 'last_year': y1,
+                            'n': int(r['n']) + (old['n'] if old else 0), 'rank': r['rank'] or (old and old['rank']) or None,
+                            'department': r['department'] or (old and old['department']) or None}
+    report['AFFILIATED_WITH'] = write('affiliated_with', list(aff.values()), pa.schema([
+        ('from', s), ('to', s), ('source', s), ('first_year', pa.int32()), ('last_year', pa.int32()), ('n', pa.int32()),
+        ('rank', s), ('department', s)]))
     report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b} for a, b in sorted(possible)],
                                     pa.schema([('from', s), ('to', s)]))
 
@@ -283,12 +306,15 @@ def load_db(report):
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
     conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person)')
+    conn.execute('CREATE REL TABLE AFFILIATED_WITH(FROM Person TO Institution, source STRING, first_year INT32, '
+                 'last_year INT32, n INT32, rank STRING, department STRING)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
-                        ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('CITES', 'cites')):
+                        ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('AFFILIATED_WITH', 'affiliated_with'),
+                        ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
 
