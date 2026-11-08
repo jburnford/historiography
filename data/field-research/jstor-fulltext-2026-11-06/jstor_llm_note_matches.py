@@ -6,7 +6,8 @@ Inputs (E:):
 - llm-note-items/part-*.jsonl, for the article, era and journal of each request.
 
 Per article, back-references (ibid / short / author-date) are resolved in note order as in jstor_llm_eval.resolve. A
-`work` citation with a title and an author is matched as jstor_match_candidates.py matches the rule rows: the main
+`work` citation with a title and an author is matched as jstor_match_candidates.py matches the rule rows
+(match_citation: every author tried, spaceless titles, online-first article years): the main
 title key plus an author family; LC titles for works with an LCCN; basis strong / edition? / no_year / title+year. The
 row weight is 1 plus the number of resolved back-references to the citation, as for the rules.
 
@@ -73,22 +74,21 @@ def main():
                 if not x.get('title') or not au:
                     continue
                 C['work_citations'] += 1
-                tk = M.cited_key(x['title'])
-                fam = M.family(au[0] if isinstance(au[0], str) else '')
-                if not M.usable(tk) or len(fam) < 2:
-                    C['too_short'] += 1
-                    continue
                 y = x.get('year') if isinstance(x.get('year'), int) else None
-                pick, basis = M.lookup(idx, tk, fam, y)
+                names = [a for a in au if isinstance(a, str)]
+                pick, basis, route, rank = M.match_citation(idx, x['title'], names, y, x.get('kind'))
                 if not pick:
                     continue
                 C['matched_' + basis] += 1
+                C['route_' + route] += 1
+                C['later_author'] += bool(rank)
                 for key, kind, wy in pick:
-                    rows.append((iid, i, citing, key, kind, wy, x.get('kind'), y, basis, len(pick), 1 + weight[i], None, 'qwen'))
+                    rows.append((iid, i, citing, key, kind, wy, x.get('kind'), y, basis, len(pick), 1 + weight[i], None, 'qwen', route))
         print(name, len(rows), round(time.time() - t0), 's', flush=True)
     db.execute("""create table q (iid varchar, cit int, citing_work varchar, work varchar, work_kind varchar, work_year int,
-                  cited_kind varchar, cited_year int, basis varchar, n_works int, weight int, conf double, source varchar)""")
-    db.executemany("insert into q values (?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
+                  cited_kind varchar, cited_year int, basis varchar, n_works int, weight int, conf double, source varchar,
+                  route varchar)""")
+    db.executemany("insert into q values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
     db.execute("create table a (iid varchar)"); db.executemany("insert into a values (?)", [(i,) for i in arts])
     db.execute(f"""create table r as select distinct iid::varchar iid, work from '{E}/match-candidates.parquet'
                    where iid::varchar in (select iid from a) and basis in ('strong','title+year') and n_works = 1""")

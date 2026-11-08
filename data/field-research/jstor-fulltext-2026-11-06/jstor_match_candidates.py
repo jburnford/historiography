@@ -49,10 +49,20 @@ def family(label):
 CITED_VOLUME = re.compile(r',?\s*\b(?:vol(?:ume)?s?|tome|t|bd|band)\.?\s*(?:[ivxlc]+|\d+)\b.*$', re.I)
 
 
+# a colon with no space after it still ends the main title ('The urban periphery and the rural fringe:West Ham's hybrid
+# landscape'; KG session 2026-11-08); letters on both sides, so 'http://' and '12:3' are left alone
+COLON_TIGHT = re.compile(r'(?<=[^\W\d_]):(?=[^\W\d_])')
+
+
+def tkey(title):
+    """title_key with a tight colon opened up: the key for graph labels and cited titles alike."""
+    return title_key(COLON_TIGHT.sub(': ', title or ''))
+
+
 def cited_key(title):
     """title_key of a cited title, with a volume part inside it dropped ('The History of Sexuality, vol. 1, An
     Introduction' -> 'history of sexuality'), as title_key already does for a volume at the end of a graph label."""
-    return title_key(CITED_VOLUME.sub('', title or '') or title)
+    return tkey(CITED_VOLUME.sub('', title or '') or title)
 
 
 # one-word main titles that name a part or a genre, not a work
@@ -91,20 +101,21 @@ def work_index():
         select trim(r.control), coalesce(r.title_a, r.title) from read_parquet('{LC_INDEX}/records-*.parquet') r
         where trim(r.control) in (select trim(lccn) from '{GRAPH}/work.parquet' where lccn is not null)""").fetchall())
     idx = defaultdict(list)
+    nospace = defaultdict(list)    # title key without spaces + family: 'Westham' = 'West Ham' (KG session, 2026-11-08)
     nameless = defaultdict(list)   # works with no person at all ('Seeing Like a State' as w-428793): title + year only
     for key, label, kind, year, names, lccn in rows:
-        tks = {title_key(label)}
+        tks = {tkey(label)}
         if lccn and lc.get(lccn.strip()):
-            tks.add(title_key(lc[lccn.strip()]))
+            tks.add(tkey(lc[lccn.strip()]))
         # citation-string labels ('Patrick Wolfe, "Settler Colonialism and the Elimination of the Native," Journal of
         # Genocide Research …'; 'E. P. Thompson: The Making of …'): index the quoted title, and the part after a
         # leading author name (2026-11-08: about 2,400 such works, the canonical articles among them)
         q = QUOTED.search(label)
         if q:
-            tks.add(title_key(q.group(1)))
+            tks.add(tkey(q.group(1)))
         m = LEAD_NAME.match(label)
         if m and any(family(a) and family(a) in fold(m.group(1)) for a in names or []):
-            tks.add(title_key(m.group(2)))
+            tks.add(tkey(m.group(2)))
         tks = {tk for tk in tks if usable(tk)}
         if not tks:
             continue
@@ -113,9 +124,11 @@ def work_index():
         for tk in tks:
             for fam in fams:
                 idx[(tk, fam)].append((key, kind, year))
+                nospace[(tk.replace(' ', ''), fam)].append((key, kind, year))
             if not fams and len(tk.split()) >= 3:
                 nameless[tk].append((key, kind, year))
     idx[NAMELESS] = nameless
+    idx[NOSPACE] = nospace
     doi = dict(db.execute(f"""select lower(substr(a, 5)), key from (select key, unnest(anchors) a from '{GRAPH}/work.parquet')
                               where a like 'doi:%'""").fetchall())
     return idx, doi
@@ -123,6 +136,7 @@ def work_index():
 
 QUOTED = re.compile(r'["\u201c\u2018]([^"\u201d\u2019]{8,}?)[,.]?["\u201d\u2019]')
 LEAD_NAME = re.compile(r'^([^,:"\u201c]{3,80}?)[,:]\s+(?!\d)(.{8,})$')
+NOSPACE = ('', 'nospace')   # slot for the spaceless fallback index
 NAMELESS = ('', '')   # slot in the index for the title-only table of works without people
 
 
@@ -139,6 +153,65 @@ def lookup(idx, tk, fam, year):
     if len(nl) == 1 and year and nl[0][2] and abs(nl[0][2] - year) <= 1:
         return nl, 'title+year'
     return [], None
+
+
+def match_citation(idx, title, surnames, year, cited_kind):
+    """-> (candidates, basis, route, family_rank). The rules for both the rule rows and the Qwen citations:
+    - every cited author's family is tried in order, the first hit kept (KG session, 2026-11-08: 'Maitland's Moment'
+      cited as Burns, Clifford, Peace; the graph work has Clifford only); family_rank is the 0-based position used;
+    - no hit on the title key: the same key without spaces, with a family and the year within 1 ('Westham' / 'West
+      Ham'): basis strong, route 'nospace';
+    - a journal piece (cited as article, chapter or periodical) cited 1-2 years after a graph article's (or ORCID
+      'other' work's) year is the print issue of an online-first article ('Soap and ghost acres': ORCID 2019, cited
+      2021): basis strong, route 'online_first'. Books keep 'edition?'."""
+    tk = cited_key(title)
+    if not usable(tk):
+        return [], None, None, None
+    fams = list(dict.fromkeys(f for f in (family(a) for a in surnames or []) if len(f) >= 2))
+    pick, basis, rank = [], None, None
+    for n, fam in enumerate(fams or ['\0']):
+        pick, basis = lookup(idx, tk, fam, year)
+        if pick:
+            rank = n
+            break
+    if not pick:
+        if year:
+            ns = tk.replace(' ', '')
+            for n, fam in enumerate(fams):
+                c = [w for w in idx[NOSPACE].get((ns, fam), []) if w[2] and abs(w[2] - year) <= 1]
+                if c:
+                    return c, 'strong', 'nospace', n
+        return [], None, None, None
+    if basis == 'edition?' and cited_kind in ('article', 'chapter', 'periodical') and year:
+        # the rule parser often calls a journal article 'chapter' ('…', Social Science History 45); ORCID-keyed
+        # articles are kind 'other'. Books never: a book cited later is an edition.
+        p2 = [w for w in pick if w[1] in ('article', 'other') and w[2] and 1 <= year - w[2] <= 2]
+        if p2:
+            return p2, 'strong', 'online_first', rank
+    return pick, basis, 'title', rank
+
+
+DOI_RE = re.compile(r'\b10\.\d{4,9}/[^\s"<>]+', re.I)
+
+
+def note_dois():
+    """(iid, doi) for every distinct DOI printed in an item's notes: the JSTOR note lists and the notes cut from page
+    text. Trailing punctuation is dropped."""
+    for fn, field in ((f'{E}/references.jsonl.gz', 'references'), (f'{E}/textnotes-pieces.jsonl.gz', 'pieces')):
+        if not os.path.exists(fn):
+            continue
+        with gzip.open(fn, 'rt', encoding='utf-8') as f:
+            for line in f:
+                if '10.' not in line:
+                    continue
+                r = json.loads(line)
+                seen = set()
+                for p in r[field]:
+                    for m in DOI_RE.finditer(p if isinstance(p, str) else json.dumps(p)):
+                        d = m.group().rstrip('.,;:)]}\'').lower()
+                        if d not in seen:
+                            seen.add(d)
+                            yield r['iid'], d
 
 
 def citations():
@@ -176,19 +249,29 @@ def main():
                 if r.get('kind') not in KINDS or not r.get('title') or not r.get('surnames'):
                     continue
                 stats['citations'] += 1
-                tk, fam = cited_key(r['title']), family(r['surnames'][0])
-                if not usable(tk) or len(fam) < 2:
-                    stats['too_short'] += 1
-                    continue
                 y = r.get('year')
-                pick, basis = lookup(idx, tk, fam, y)
+                pick, basis, route, rank = match_citation(idx, r['title'], r['surnames'], y, r['kind'])
                 if not pick:
                     continue
                 stats['matched_' + basis] += 1
+                stats['route_' + route] += 1
+                if rank:
+                    stats['later_author'] += 1
+                    stats['later_author_ambiguous'] += len(pick) > 1
                 for key, kind, wy in pick:
                     o.write(json.dumps(dict(iid=iid, cit=i, citing_work=citing, work=key, work_kind=kind, work_year=wy,
                                             cited_kind=r['kind'], cited_year=y, basis=basis, n_works=len(pick),
-                                            weight=1 + weight[i], conf=r.get('conf'), source=r.get('source', 'list'))) + '\n')
+                                            weight=1 + weight[i], conf=r.get('conf'), source=r.get('source', 'list'),
+                                            route=route, author_rank=rank)) + '\n')
+        # DOIs printed in the notes (user, 2026-11-08: recent notes carry them; a route where they exist, not the base)
+        for iid, doi in note_dois():
+            w = doi_work.get(doi)
+            if not w or doi == item_doi.get(iid):
+                continue
+            stats['route_doi'] += 1
+            o.write(json.dumps(dict(iid=iid, cit=None, citing_work=doi_work.get(item_doi.get(iid, '')), work=w,
+                                    work_kind=None, work_year=None, cited_kind=None, cited_year=None, basis='doi',
+                                    n_works=1, weight=1, conf=None, source='doi', route='doi', author_rank=None)) + '\n')
     os.replace(out + '.tmp', out)
     db = duckdb.connect()
     db.execute(f"copy (select * from read_json_auto('{out}', sample_size=-1)) to '{E}/match-candidates.parquet.tmp' (format parquet)")
