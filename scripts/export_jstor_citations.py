@@ -13,6 +13,11 @@ work:
 The citing work is the JSTOR item's own work key (key_jstor_articles.py); keys resolve through merges at build
 time (scripts/build_graph.py). `citations` counts the notes citing the work, Ibid. and short forms included.
 
+Qwen re-read (2026-11-07, --qwen): the session's Qwen pass over the notes of the 49,782 articles the rules parse badly
+(match-candidates-qwen.parquet, HANDOVER-note-citations-qwen.md; 24/24 Qwen-only pairs right in its hand check).
+Its clean pairs are added and the rules' pairs kept (rules-only pairs stay); a pair both give counts the larger
+of the two citation counts, not their sum.
+
     python3 scripts/export_jstor_citations.py --out data/graph/jstor-cites.csv.gz
 """
 import argparse
@@ -25,19 +30,27 @@ from pathlib import Path
 import duckdb
 
 MATCHES = Path('/mnt/e/jstor-fulltext-2026-11-06/match-candidates.parquet')
+QWEN = Path('/mnt/e/jstor-fulltext-2026-11-06/match-candidates-qwen.parquet')
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--matches', type=Path, default=MATCHES)
+    ap.add_argument('--qwen', type=Path, default=QWEN, help="Qwen candidate table; '' to leave it out")
     ap.add_argument('--out', type=Path, required=True)
     args = ap.parse_args()
     db = duckdb.connect()
     db.execute('SET enable_progress_bar = false')
     report = Counter(dict(db.execute(f"SELECT basis, count(*) FROM '{args.matches}' GROUP BY 1").fetchall()))
-    rows = db.execute(f"""SELECT citing_work, work, sum(coalesce(weight, 1))::INT FROM '{args.matches}'
+    clean = """SELECT citing_work, work, sum(coalesce(weight, 1))::INT AS n FROM '{}'
         WHERE basis IN ('strong', 'title+year') AND n_works = 1 AND citing_work IS NOT NULL AND citing_work <> work
-        GROUP BY 1, 2 ORDER BY 1, 2""").fetchall()
+        GROUP BY 1, 2"""
+    parts = [clean.format(args.matches)]
+    if args.qwen and str(args.qwen) and args.qwen.exists():
+        parts.append(clean.format(args.qwen))
+        report['qwen_clean_pairs'] = db.execute(f"SELECT count(*) FROM ({parts[1]})").fetchone()[0]
+        report['rules_clean_pairs'] = db.execute(f"SELECT count(*) FROM ({parts[0]})").fetchone()[0]
+    rows = db.execute(f"""SELECT citing_work, work, max(n) FROM ({' UNION ALL '.join(parts)}) GROUP BY 1, 2 ORDER BY 1, 2""").fetchall()
     report['skipped_no_citing_work'] = db.execute(f"SELECT count(*) FROM '{args.matches}' WHERE citing_work IS NULL").fetchone()[0]
     report['skipped_several_works'] = db.execute(f"SELECT count(*) FROM '{args.matches}' WHERE n_works > 1 AND basis <> 'edition?'").fetchone()[0]
     with gzip.open(args.out, 'wt', newline='', encoding='utf-8') as f:
