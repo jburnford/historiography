@@ -83,12 +83,12 @@ def main():
                 C['route_' + route] += 1
                 C['later_author'] += bool(rank)
                 for key, kind, wy in pick:
-                    rows.append((iid, i, citing, key, kind, wy, x.get('kind'), y, basis, len(pick), 1 + weight[i], None, 'qwen', route))
+                    rows.append((iid, i, citing, key, kind, wy, x.get('kind'), y, basis, len(pick), 1 + weight[i], None, 'qwen', route, rank))
         print(name, len(rows), round(time.time() - t0), 's', flush=True)
     db.execute("""create table q (iid varchar, cit int, citing_work varchar, work varchar, work_kind varchar, work_year int,
                   cited_kind varchar, cited_year int, basis varchar, n_works int, weight int, conf double, source varchar,
-                  route varchar)""")
-    db.executemany("insert into q values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
+                  route varchar, author_rank int)""")
+    db.executemany("insert into q values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
     db.execute("create table a (iid varchar)"); db.executemany("insert into a values (?)", [(i,) for i in arts])
     db.execute(f"""create table r as select distinct iid::varchar iid, work from '{E}/match-candidates.parquet'
                    where iid::varchar in (select iid from a) and basis in ('strong','title+year') and n_works = 1""")
