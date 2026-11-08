@@ -56,8 +56,10 @@ Rules:
 Write `verdict.json` in your working directory, and nothing anywhere else. It holds one JSON object:
 
 ```json
-{"item": "lcnaf:…", "verdict": "same" | "none" | "unclear", "key": "p-…", "evidence": [{"url": "…", "says": "≤200 chars, what the page states"}], "basis": "one or two sentences", "confidence": "high" | "medium"}
+{"item": "lcnaf:…", "verdict": "same" | "none" | "unclear", "key": "p-…", "other_keys": ["p-…"], "evidence": [{"url": "…", "says": "≤200 chars, what the page states"}], "basis": "one or two sentences", "confidence": "high" | "medium"}
 ```
+
+- `other_keys` (optional): any OTHER candidate keys that your evidence shows to be this same person. For example, two candidates that are one historian whose books were catalogued separately. The same works rule applies: a name alone is not enough. Leave it out or use [] when there are none.
 
 - `key` is the candidate's key, and only when `verdict` is `same`. Otherwise use null.
 - `item` is the entry's `item` field (`lcnaf:…`), not its `id`.
