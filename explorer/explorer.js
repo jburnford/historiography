@@ -126,7 +126,7 @@ function renderGraph() {
       const a = a0 + step * (i + 0.5);
       const f = tight && i % 2 ? 0.8 : 1;
       const [x, y] = pos(a, f);
-      const path = s('path', { class: 'edge', d: `M${cx},${cy}Q${lx},${ly} ${x},${y}`,
+      const path = s('path', { class: g.id === 'possibly_same' ? 'edge maybe' : 'edge', d: `M${cx},${cy}Q${lx},${ly} ${x},${y}`,
         'stroke-width': e.it ? Math.min(4, 0.8 + Math.log2(e.it.n || 1)) : 0.8, 'stroke-opacity': 0.7 });
       gEdges.append(path);
       const right = Math.cos(a) >= 0;

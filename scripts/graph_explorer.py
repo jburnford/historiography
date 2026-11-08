@@ -20,7 +20,7 @@ G = ROOT / 'build/graph'
 DB = G / 'explorer.duckdb'
 STATIC = ROOT / 'explorer'
 EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'awarded_by', 'coauthored', 'coedited',
-         'edited', 'editor_of', 'part_of', 'published_as']
+         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same']
 
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
@@ -39,6 +39,7 @@ REL = {
         ('in_volumes_of', 'Chapters in volumes edited by', 'editor_of', 'to', 'from', None),
         ('cited_by_people', 'Cited by (people)', None, None, None, None),
         ('cites_people', 'Cites (people)', None, None, None, None),
+        ('possibly_same', 'Possibly the same person', 'possibly_same', None, None, None),
     ],
     'work': [
         ('authors', 'Authors', 'authored', 'to', 'from', None),
@@ -55,6 +56,7 @@ REL = {
         ('published_from', 'Published from', 'published_as', 'to', 'from', None),
     ],
     'institution': [
+        ('advisors_here', 'Advised PhDs here', None, None, None, None),
         ('theses', 'Theses awarded', 'awarded_by', 'to', 'from', None),
     ],
 }
@@ -148,6 +150,13 @@ class Graph:
                         ELSE works || ' works, ' || first_year || '–' || last_year END d FROM e_{table}_f WHERE "from" = $k
                         UNION SELECT "from", works, CASE WHEN first_year IS NULL THEN works || ' works'
                         ELSE works || ' works, ' || first_year || '–' || last_year END FROM e_{table}_t WHERE "to" = $k""")
+        if rid == 'possibly_same':        # same name, timelines fit, not confirmed (scripts/key_possible_same.py)
+            return ('''SELECT "to" k, 1 n, 'same name, timelines fit; not confirmed' d FROM e_possibly_same_f WHERE "from" = $k
+                       UNION SELECT "from", 1, 'same name, timelines fit; not confirmed' FROM e_possibly_same_t WHERE "to" = $k''')
+        if rid == 'advisors_here':        # supervisors of theses this institution awarded
+            return ('''SELECT s."from" k, count(*) n, count(*) || ' theses, ' || min(w.year) || '–' || max(w.year) d
+                       FROM e_awarded_by_t a JOIN e_supervised_t s ON s."to" = a."from" JOIN nodes w ON w.key = a."from"
+                       WHERE a."to" = $k GROUP BY 1''')
         if rid == 'cited_by_people':      # people whose works cite this person's works
             return ("""SELECT a2."from" k, count(DISTINCT c."from") n, count(DISTINCT c."from") || ' citing works' d
                        FROM e_authored_f a JOIN e_cites_t c ON c."to" = a."to" JOIN e_authored_t a2 ON a2."to" = c."from"

@@ -41,6 +41,7 @@ main { flex: 1; display: flex; min-height: 0; }
 #viz { flex: 1; width: 100%; min-height: 0; }
 #viz .edge { stroke: var(--edge); fill: none; }
 #viz .edge.hi { stroke: var(--text-2); }
+#viz .edge.maybe { stroke: var(--accent); stroke-dasharray: 5 4; stroke-opacity: 1; }
 #viz .node { cursor: pointer; }
 #viz .node .mark { stroke: var(--surface); stroke-width: 2; }
 #viz .node:hover .mark, #viz .node:focus .mark { stroke: var(--text); }

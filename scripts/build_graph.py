@@ -19,6 +19,8 @@ is untracked) and writes to build/graph/ (git-ignored):
   works, with the number of works, of distinct titles (an editorial co-signed in many journals has one DOI per
   journal: 147 works, 1 title), the first and last year and the work keys (user, 2026-11-05: a count matters);
 - `AWARDED_BY` (Work -> Institution) from the works' `awarded-by:` members;
+- `POSSIBLY_SAME` (Person -> Person, once per pair, lower key first) from `possible-same:` members: same name and
+  fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py), and a JSTOR article, review essay or review article citing one in
   its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06).
@@ -217,6 +219,16 @@ def main():
                     awarded.append({'from': w['key'], 'to': i[0]})
     report['AWARDED_BY'] = write('awarded_by', awarded, pa.schema([('from', s), ('to', s)]))
 
+    possible = set()
+    for person in people:
+        for m in state.members.get(person["key"], ()):
+            if m.startswith('possible-same:'):
+                o = state.lookup(m.split(':', 1)[1])
+                if len(o) == 1 and o[0] != person["key"] and types.get(o[0]) == 'person':
+                    possible.add(tuple(sorted((person["key"], o[0]))))
+    report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b} for a, b in sorted(possible)],
+                                    pa.schema([('from', s), ('to', s)]))
+
     cites = set()
     with gzip.open(CITES, 'rt', newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
@@ -270,12 +282,13 @@ def load_db(report):
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
+    conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
                         ('COAUTHORED', 'coauthored'), ('COEDITED', 'coedited'),
-                        ('AWARDED_BY', 'awarded_by'), ('CITES', 'cites')):
+                        ('AWARDED_BY', 'awarded_by'), ('POSSIBLY_SAME', 'possibly_same'), ('CITES', 'cites')):
         conn.execute(f"COPY {table} FROM '{OUT / (file + '.parquet')}'")
     report['db'] = str(path.relative_to(ROOT))
 
