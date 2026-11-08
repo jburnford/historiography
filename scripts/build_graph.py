@@ -26,7 +26,9 @@ is untracked) and writes to build/graph/ (git-ignored):
   fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py), and a JSTOR article, review essay or review article citing one in
-  its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06).
+  its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06). `edition` is true when
+  the only evidence is a JSTOR note citing a later edition or translation of the work (2026-11-08); counts may
+  include or leave these out.
 With --db, the Parquet tables are loaded into a LadybugDB database (build/graph/historiography.lbug), queried in
 Cypher:
 
@@ -252,12 +254,12 @@ def main():
     report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b} for a, b in sorted(possible)],
                                     pa.schema([('from', s), ('to', s)]))
 
-    cites = set()
+    cites = {}                      # (citing, cited) -> edition only (True) or a direct match (False)
     with gzip.open(CITES, 'rt', newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
             a, b = state.lookup(f'diss-thesis:{r["dissertation_id"]}'), state.lookup(r['work_key'])
             if len(a) == 1 and len(b) == 1 and types.get(a[0]) == types.get(b[0]) == 'work' and a[0] != b[0]:
-                cites.add((a[0], b[0]))
+                cites[(a[0], b[0])] = False
             else:
                 report['cites_unresolved'] += 1
     if JSTOR_CITES.exists():        # JSTOR articles citing keyed works (the article's own work key -> the cited work)
@@ -266,10 +268,14 @@ def main():
                 a, b = state.lookup(r['citing_work']), state.lookup(r['cited_work'])
                 if len(a) == 1 and len(b) == 1 and types.get(a[0]) == types.get(b[0]) == 'work' and a[0] != b[0]:
                     report['cites_from_jstor'] += (a[0], b[0]) not in cites
-                    cites.add((a[0], b[0]))
+                    ed = r.get('basis') == 'edition'      # cites a later edition or translation of the work
+                    cites[(a[0], b[0])] = cites.get((a[0], b[0]), True) and ed
+                    report['jstor_cites_edition'] += ed
                 else:
                     report['jstor_cites_unresolved'] += 1
-    report['CITES'] = write('cites', [{'from': a, 'to': b} for a, b in sorted(cites)], pa.schema([('from', s), ('to', s)]))
+    report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': e} for (a, b), e in sorted(cites.items())],
+                            pa.schema([('from', s), ('to', s), ('edition', pa.bool_())]))
+    report['CITES_edition_only'] = sum(cites.values())
 
     if args.db:
         load_db(report)
@@ -308,7 +314,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person)')
     conn.execute('CREATE REL TABLE AFFILIATED_WITH(FROM Person TO Institution, source STRING, first_year INT32, '
                  'last_year INT32, n INT32, rank STRING, department STRING)')
-    conn.execute('CREATE REL TABLE CITES(FROM Work TO Work)')
+    conn.execute('CREATE REL TABLE CITES(FROM Work TO Work, edition BOOL)')
     for table, file in (('Person', 'person'), ('Work', 'work'), ('Institution', 'institution'),
                         ('AUTHORED', 'authored'), ('EDITED', 'edited'), ('SUPERVISED', 'supervised'),
                         ('PUBLISHED_AS', 'published_as'), ('REVIEWS', 'reviews'), ('PART_OF', 'part_of'), ('EDITOR_OF', 'editor_of'), ('REVIEWED', 'reviewed'), ('ADVISED', 'advised'),
