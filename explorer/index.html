@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graph explorer · Historiography</title>
+<link rel="stylesheet" href="explorer.css">
+</head>
+<body>
+<header class="bar">
+  <h1>Graph explorer</h1>
+  <div class="search">
+    <input id="q" type="search" placeholder="Search people, works, institutions, or an ID (Q266185, ORCID, LC n…, DOI)" autocomplete="off" aria-label="Search the graph">
+    <ul id="results" role="listbox" hidden></ul>
+  </div>
+  <span id="meta" class="muted"></span>
+</header>
+<nav id="trail" aria-label="Visited nodes"></nav>
+<main>
+  <section class="stage">
+    <div class="controls">
+      <label>In view per group <input id="per" type="range" min="3" max="24" value="10"> <output id="perv">10</output></label>
+      <span class="seg" role="group" aria-label="Order">
+        <button data-sort="weight" class="on">Most connected</button><button data-sort="year">Newest</button>
+      </span>
+      <span class="legend" id="legend"></span>
+    </div>
+    <svg id="viz" role="img" aria-label="Ego graph of the selected node"></svg>
+    <div id="tip" class="tip" hidden></div>
+  </section>
+  <aside id="panel" aria-live="polite"></aside>
+</main>
+<script type="module" src="explorer.js"></script>
+</body>
+</html>
