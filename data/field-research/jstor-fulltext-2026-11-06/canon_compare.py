@@ -15,11 +15,12 @@ Caveats, preliminary:
   bibliographies and LC, so the overlap is biased upward;
 - person keys are not fully deduplicated; POSSIBLY_SAME edges are ignored.
 
-Output: canon-compare-2010-2020.csv (counts only) beside this script, and a summary on stdout.
+Output: canon-compare-2010-2020.csv (counts only) beside this script, and a summary on stdout. With --no-editions,
+CITES edges with edition = true (a later edition or translation cited) are left out: canon-compare-2010-2020-no-editions.csv.
 
-    python3 canon_compare.py
+    python3 canon_compare.py [--no-editions]
 """
-import csv, re
+import csv, re, sys
 from pathlib import Path
 
 import duckdb
@@ -54,7 +55,11 @@ def ilang(inst):
 
 
 def main():
+    editions = '--no-editions' not in sys.argv
     db = duckdb.connect(); db.execute("SET memory_limit = '5GB'")
+    # CITES with edition = true: a later edition or translation of the work was cited (KG session, 2026-11-08)
+    db.execute(f"""create view cites as select * from '{G}/cites.parquet' {'' if editions else 'where not coalesce(edition, false)'}""")
+    print('editions included' if editions else 'editions left out')
     db.create_function('jlang', jlang, ['VARCHAR'], 'VARCHAR')
     db.create_function('ilang', ilang, ['VARCHAR'], 'VARCHAR')
     QC = {'laval', 'montreal', 'uqam', 'sherbrooke', 'uqtr', 'uqac', 'uqar'}
@@ -72,12 +77,12 @@ def main():
         left join (select key, unnest(anchors) an from '{G}/work.parquet' where kind = 'thesis') wa on wa.key = w.key
         left join dl on dl.anchor = wa.an
         where w.kind in ('thesis', 'article') and w.year between 2010 and 2020
-          and w.key in (select "from" from '{G}/cites.parquet')
+          and w.key in (select "from" from cites)
         group by w.key, w.kind, w.journal""")
     print(db.execute("select kind, lang, count(*) from items group by all order by 1, 3 desc").fetchall())
     db.execute(f"""create table hits as
         select distinct it.key item, it.kind, it.lang, au."from" person
-        from items it join '{G}/cites.parquet' c on c."from" = it.key
+        from items it join cites c on c."from" = it.key
         join '{G}/authored.parquet' au on au."to" = c."to" """)
     db.execute("create table tot as select kind, lang, count(*) n from items group by all")
     db.execute(f"""create table shares as
@@ -86,7 +91,8 @@ def main():
         group by all""")
     rows = db.execute("""select kind, lang, person, label, items, round(sh, 5) from shares
                          where items >= 3 order by kind, lang, sh desc""").fetchall()
-    with open(OUT, 'w', newline='') as f:
+    out = OUT if editions else OUT.with_name(OUT.stem + '-no-editions.csv')
+    with open(out, 'w', newline='') as f:
         w = csv.writer(f); w.writerow(['kind', 'lang', 'person', 'label', 'citing_items', 'share']); w.writerows(rows)
     for lang in ('en', 'fr'):
         print(f'\n=== {lang}: theses vs articles, top 40 by thesis share, with article rank and share ===')
