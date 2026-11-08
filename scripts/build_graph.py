@@ -28,7 +28,8 @@ is untracked) and writes to build/graph/ (git-ignored):
   the corpus by scripts/export_citations.py), and a JSTOR article, review essay or review article citing one in
   its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06). `edition` is true when
   the only evidence is a JSTOR note citing a later edition or translation of the work (2026-11-08); counts may
-  include or leave these out.
+  include or leave these out. Crossref reference lists of journal articles add more (data/graph/crossref-cites.csv.gz,
+  scripts/crossref_citations.py; 2026-11-08), above all after the JSTOR runs end (about 2020).
 With --db, the Parquet tables are loaded into a LadybugDB database (build/graph/historiography.lbug), queried in
 Cypher:
 
@@ -56,6 +57,7 @@ from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
 JSTOR_CITES = ROOT / 'data/graph/jstor-cites.csv.gz'   # scripts/export_jstor_citations.py (JSTOR article notes)
+CROSSREF_CITES = ROOT / 'data/graph/crossref-cites.csv.gz'   # scripts/crossref_citations.py (Crossref reference lists)
 AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
 SCHEMES = ('lcnaf', 'wd', 'orcid', 'gnd', 'viaf', 'isni', 'idref', 'ror')
 PERSON_RELATIONS = ('authored', 'edited', 'supervised')
@@ -83,7 +85,10 @@ def year_of(members, prefix):
     return int(vals[0][:4]) if vals else None
 
 
-def work_kind(anchors):
+def work_kind(anchors, members=()):
+    stated = [m.split(':', 1)[1] for m in members if m.startswith('kind:')]   # a kind stated on review (DOI-only books)
+    if len(stated) == 1:
+        return stated[0]
     schemes = {a.split(':', 1)[0] for a in anchors}
     if schemes & {'aha-diss', 'diss-thesis', 'wrap'}:
         return 'thesis'
@@ -110,7 +115,7 @@ def main():
     ap.add_argument('--db', action='store_true', help='also load the tables into LadybugDB')
     args = ap.parse_args()
     shards = sorted(args.state.glob('events-*.jsonl*'))
-    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()])
+    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, CROSSREF_CITES, AFFILIATIONS) if p.exists()])
     state = State.load(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -124,7 +129,7 @@ def main():
         if v['type'] == 'person':
             people.append(dict(base, **{s: first(anchors, s) for s in SCHEMES if s != 'ror'}))
         elif v['type'] == 'work':
-            works.append(dict(base, kind=work_kind(anchors), lccn=first(anchors, 'lccn'),
+            works.append(dict(base, kind=work_kind(anchors, members), lccn=first(anchors, 'lccn'),
                               year=year_of(members, 'year:') or year_of(members, 'lc-first-year:'),
                               # a review's reviewers as printed (key_jstor_reviews: no name-only person keys)
                               reviewer_names=sorted(m.split(':', 1)[1] for m in members if m.startswith('reviewer-name:')),
@@ -262,17 +267,19 @@ def main():
                 cites[(a[0], b[0])] = False
             else:
                 report['cites_unresolved'] += 1
-    if JSTOR_CITES.exists():        # JSTOR articles citing keyed works (the article's own work key -> the cited work)
-        with gzip.open(JSTOR_CITES, 'rt', newline='', encoding='utf-8') as f:
+    for name, path in (('jstor', JSTOR_CITES), ('crossref', CROSSREF_CITES)):   # journal articles citing keyed works
+        if not path.exists():
+            continue
+        with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
                 a, b = state.lookup(r['citing_work']), state.lookup(r['cited_work'])
                 if len(a) == 1 and len(b) == 1 and types.get(a[0]) == types.get(b[0]) == 'work' and a[0] != b[0]:
-                    report['cites_from_jstor'] += (a[0], b[0]) not in cites
+                    report[f'cites_from_{name}'] += (a[0], b[0]) not in cites
                     ed = r.get('basis') == 'edition'      # cites a later edition or translation of the work
                     cites[(a[0], b[0])] = cites.get((a[0], b[0]), True) and ed
-                    report['jstor_cites_edition'] += ed
+                    report[f'{name}_cites_edition'] += ed
                 else:
-                    report['jstor_cites_unresolved'] += 1
+                    report[f'{name}_cites_unresolved'] += 1
     report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': e} for (a, b), e in sorted(cites.items())],
                             pa.schema([('from', s), ('to', s), ('edition', pa.bool_())]))
     report['CITES_edition_only'] = sum(cites.values())
