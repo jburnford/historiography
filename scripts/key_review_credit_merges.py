@@ -202,43 +202,115 @@ def jstor_signatures():
     return out
 
 
-def key_institutions(live, db):
-    """key -> [(institution as recorded, source)] from the key's own records (see the module docstring)."""
+# university systems: a bare system name places nobody, whatever the campus (2026-11-07, Fable review: the senior
+# James Lockhart's 1969-2003 reviews reached a 2016 PhD through 'University of California')
+SYSTEMS = [frozenset(x.split()) for x in ('california', 'wisconsin', 'london', 'wales', 'paris', 'quebec',
+           'state new york', 'suny', 'cuny', 'city new york', 'puerto rico')]   # flagship names ('Minnesota') are not systems
+
+
+def is_system(s):
+    return inst(s) in SYSTEMS
+
+
+SLACK = 10       # years either side of a dated fact (user, 2026-11-07: use dates wherever possible)
+
+
+def year_of(v):
+    m = re.match(r'^\s*(\d{4})', str(v or ''))
+    return int(m.group(1)) if m else None
+
+
+def dated(year, fact, window=None):
+    """A fact (institution, source, lo, hi) places the key at an event in `year`, using the best dates the key has
+    (user, 2026-11-07: use dates wherever possible):
+    - the key has a career window (PhD year, life years; career_window.py): the year must fall inside it; the place
+      may be recorded at any point of that career (long tenures: a 2015 credit at Swarthmore places a 1982 reviewer
+      there);
+    - the key has no dates: the fact itself must be dated, within SLACK years of the event.
+    The career window is what separates generations of namesakes (the 2016 PhD James Lockhart is not the reviewer of
+    1969-2003)."""
+    from career_window import in_window
+    _, _, lo, hi = fact
+    if year is None:
+        return False
+    if window is not None and any(x is not None for x in window):
+        return in_window(year, window)
+    if lo is None and hi is None:
+        return False
+    lo = lo if lo is not None else hi
+    hi = hi if hi is not None else lo
+    return lo - SLACK <= year <= hi + SLACK
+
+
+def overlap(a, b):
+    """Two dated facts overlap within SLACK years; an undated side never refuses here (the merge also needs the names
+    and no conflicting identifiers)."""
+    a0, a1 = (a[0] if a[0] is not None else a[1]), (a[1] if a[1] is not None else a[0])
+    b0, b1 = (b[0] if b[0] is not None else b[1]), (b[1] if b[1] is not None else b[0])
+    if None in (a0, a1, b0, b1):
+        return True
+    return a0 - SLACK <= b1 and b0 - SLACK <= a1
+
+
+def key_institutions(live, db, state=None):
+    """key -> [(institution as recorded, source, first year, last year)] from the key's own records (see the module
+    docstring). Years (2026-11-07): ORCID employment start/end; the AHA supervision year and the IHR staff-list year;
+    LC 373 start/end; the years of the reviews printed with a review credit; the H-Soz-Kult review's year. The AHA
+    directory is the 2026 snapshot, taken back to the PhD year (career_window + 8) or forty years; supervision is the
+    span of the theses supervised there. A review this route linked earlier is never a placing fact (no cascade)."""
     facts = defaultdict(list)
-    pos = defaultdict(set)
-    for ref, institution in db.execute(f"""SELECT DISTINCT person_ref, institution FROM read_csv_auto('{POSITIONS}', all_varchar=true)
+    span = defaultdict(list)      # (ref, institution, source) -> years observed there
+    for ref, institution, src, obs in db.execute(f"""SELECT person_ref, institution, source, observed_year
+            FROM read_csv_auto('{POSITIONS}', all_varchar=true)
             WHERE institution IS NOT NULL AND source IN ('ihr', 'aha_directory', 'aha_advisor')""").fetchall():
-        pos[ref].add(institution)
+        span[ref, institution, src].append(year_of(obs) or (2026 if src == 'aha_directory' else None))
+    from career_window import career_windows
+    windows = career_windows(state) if state is not None else {}
+    pos = defaultdict(list)
+    for (ref, institution, src), ys in span.items():
+        ys = [y for y in ys if y]
+        lo, hi = (min(ys), max(ys)) if ys else (None, None)
+        pos[ref].append((institution, src, lo, hi))
     hsk = json.loads(HSK.read_text()) if HSK.exists() else {}
     emp = orcid_employment()
+    # review years under each review-credit anchor (the claims whose subject is the anchor)
+    credit_years = defaultdict(set)
+    if state is not None:
+        wy = dict(db.execute(f"SELECT key, year FROM '{ROOT}/build/graph/work.parquet' WHERE year IS NOT NULL").fetchall())
+        for c, r in state.relation.items():
+            if r['subject'].startswith('review-credit:') and state.keys[c]['status'] not in ('withdrawn', 'merged'):
+                for w in state.lookup(r['object']):
+                    if wy.get(w):
+                        credit_years[r['subject']].add(wy[w])
     lc_want = {a[6:]: k for k, r in live.items() for a in r['anchors'] if a.startswith('lcnaf:')}
     db.register('want', db.execute('SELECT unnest(?) AS lcid', [list(lc_want)]).df())
     for lcid, affs in db.execute(f"SELECT lcid, affiliations FROM read_parquet('{LC_NOTES}') JOIN want USING (lcid) WHERE len(affiliations) > 0").fetchall():
         for a in affs:
             if a['org']:
-                facts[lc_want[lcid]].append((a['org'], 'LC 373'))
+                facts[lc_want[lcid]].append((a['org'], 'LC 373', year_of(a['start']), year_of(a['end'])))
     for k, r in live.items():
         for a in r['anchors']:
             scheme, _, value = a.partition(':')
+            ys = sorted(credit_years.get(a, ()))
+            lo, hi = (ys[0], ys[-1]) if ys else (None, None)
             if scheme == 'review-credit' and '|' in value:
-                facts[k].append((value.split('|', 1)[1], 'review credit'))
+                facts[k].append((value.split('|', 1)[1], 'review credit', lo, hi))
             elif scheme == 'review-credit' and value.startswith('hnet-review:'):
                 i = hsk_institution((hsk.get(value.split(':', 1)[1]) or {}).get('credit'), r['label'])
                 if i:
-                    facts[k].append((i, 'H-Soz-Kult signature'))
+                    facts[k].append((i, 'H-Soz-Kult signature', lo, hi))
             elif scheme in ('ihr', 'aha') and a in pos:
-                facts[k].extend((i, 'IHR Teachers of History' if scheme == 'ihr' else 'AHA directory/supervision') for i in pos[a])
+                for i, src, plo, phi in pos[a]:
+                    if src == 'aha_directory':
+                        # the 2026 directory: at the institution now; taken back to the start of the career when the key
+                        # dates it (PhD year, age 20), else forty years
+                        wlo = (windows.get(k) or (None, None))[0]
+                        plo = (wlo + 8) if wlo is not None else 1986
+                    facts[k].append((i, {'ihr': 'IHR Teachers of History', 'aha_directory': 'AHA directory',
+                                         'aha_advisor': 'AHA supervision'}[src], plo, phi))
             elif scheme == 'orcid':
-                facts[k].extend((org, 'ORCID employment') for org, _, _ in emp.get(value, []))
-    # JSTOR review signatures on reviews already credited to the key (institution printed under the review)
-    sigs = jstor_signatures()
-    if sigs:
-        for k, an in db.execute(f"""SELECT a."from", w.an FROM '{ROOT}/build/graph/authored.parquet' a
-                JOIN (SELECT key, unnest(anchors) AS an FROM '{ROOT}/build/graph/work.parquet' WHERE len(reviewer_names) > 0) w
-                ON w.key = a."to" WHERE w.an LIKE 'doi:%'""").fetchall():
-            sig = sigs.get(an[4:].lower())
-            if sig and k in live and given_names_agree(sig[0], live[k]['label']):
-                facts[k].append((sig[1], f'JSTOR review signature {sig[2] or ""}'.strip()))
+                facts[k].extend((org, 'ORCID employment', year_of(st), year_of(en) or (2026 if year_of(st) else None))
+                                for org, st, en in emp.get(value, []))
     return facts
 
 
@@ -251,7 +323,7 @@ def main():
     live = {k: r for k, r in state.keys.items() if r['type'] == 'person' and r['status'] in ('active', 'provisional')}
     db = duckdb.connect()
     db.execute('SET enable_progress_bar = false')
-    facts = key_institutions(live, db)
+    facts = key_institutions(live, db, state)
     # candidate pairs: a key holding only review credits, and a key of the same name, sharing an institution
     only_rc = {k for k, r in live.items() if r['anchors'] and all(a.startswith('review-credit:') for a in r['anchors'])}
     by_family = defaultdict(list)
@@ -274,7 +346,8 @@ def main():
                     continue
                 if not given_names_agree(live[k]['label'], live[t]['label']):
                     continue
-                hit = next(((i, s, j, u) for i, s in facts[k] for j, u in facts[t] if agree(i, j)), None)
+                hit = next(((i, s, j, u) for i, s, a0, a1 in facts[k] for j, u, b0, b1 in facts[t]
+                            if agree(i, j) and not is_system(i) and not is_system(j) and overlap((a0, a1), (b0, b1))), None)
                 if hit:
                     edges.append((k, t))
                     why[k][t] = hit

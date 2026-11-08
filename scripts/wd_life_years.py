@@ -1,4 +1,4 @@
-"""Birth and death years (P569, P570) of the Wikidata items on person keys, from QLever (2026-11-07). A cache
+"""Birth and death years (P569, P570, year precision or finer) of the Wikidata items on person keys, from QLever (2026-11-07). A cache
 for scripts/build_life_years.py, refreshed incrementally: QIDs already fetched are skipped.
 
     python3 scripts/wd_life_years.py /mnt/e/kg-facts/wd-life-years.json
@@ -24,9 +24,14 @@ def ask(q):
     raise SystemExit('gave up')
 for i in range(0, len(todo), 500):
     batch = todo[i:i + 500]
-    q = ("PREFIX wd: <http://www.wikidata.org/entity/> PREFIX wdt: <http://www.wikidata.org/prop/direct/> "
+    # year precision or finer only (wikibase:timePrecision >= 9): Wikidata stores '1950s' as 1950 and '20th century'
+    # as 2000, which read as years gave 1,014 births in 1950 and 117 in 2000 (2026-11-07)
+    q = ("PREFIX wd: <http://www.wikidata.org/entity/> PREFIX p: <http://www.wikidata.org/prop/> "
+         "PREFIX psv: <http://www.wikidata.org/prop/statement/value/> PREFIX wikibase: <http://wikiba.se/ontology#> "
          "SELECT ?q (MIN(YEAR(?b)) AS ?born) (MIN(YEAR(?d)) AS ?died) WHERE { VALUES ?q { %s } "
-         "OPTIONAL { ?q wdt:P569 ?b } OPTIONAL { ?q wdt:P570 ?d } } GROUP BY ?q" % ' '.join('wd:' + x for x in batch))
+         "OPTIONAL { ?q p:P569/psv:P569 ?bv . ?bv wikibase:timeValue ?b ; wikibase:timePrecision ?bp . FILTER(?bp >= 9) } "
+         "OPTIONAL { ?q p:P570/psv:P570 ?dv . ?dv wikibase:timeValue ?d ; wikibase:timePrecision ?dp . FILTER(?dp >= 9) } "
+         "} GROUP BY ?q" % ' '.join('wd:' + x for x in batch))
     got = {}
     for b in ask(q)['results']['bindings']:
         got[b['q']['value'].rsplit('/', 1)[1]] = [int(float(b[k]['value'])) if k in b else None for k in ('born', 'died')]
