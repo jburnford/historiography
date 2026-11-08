@@ -55,8 +55,22 @@ def cited_key(title):
     return title_key(CITED_VOLUME.sub('', title or '') or title)
 
 
+# one-word main titles that name a part or a genre, not a work
+ONE_WORD_STOP = {'introduction', 'conclusion', 'conclusions', 'preface', 'foreword', 'epilogue', 'afterword', 'prologue',
+                 'commentary', 'correspondence', 'memoirs', 'collected', 'selected', 'documents', 'papers', 'letters',
+                 'writings', 'essays', 'history', 'histoire', 'geschichte', 'storia', 'historia', 'review', 'reviews',
+                 'bibliography', 'appendix', 'chapter', 'proceedings', 'reports', 'report', 'journal', 'diary', 'notes',
+                 'oeuvres', 'werke', 'opere', 'obras', 'works', 'complete', 'editorial', 'introduccion', 'einleitung'}
+
+
 def usable(tk):
-    return len(tk) >= 10 and len(tk.split()) >= 2
+    """Two or more words and 10+ characters; or one word of 7+ letters that is not a part or genre name
+    ('orientalism', 'capital', 'distinction', 2026-11-08: one-word titles were never matched). A work is only looked up
+    with an author family (and NAMELESS needs 3 words), so a one-word title never matches on its own."""
+    words = tk.split()
+    if len(words) >= 2:
+        return len(tk) >= 10
+    return len(words) == 1 and len(tk) >= 7 and tk.isalpha() and tk not in ONE_WORD_STOP
 
 
 def work_index():
@@ -82,6 +96,15 @@ def work_index():
         tks = {title_key(label)}
         if lccn and lc.get(lccn.strip()):
             tks.add(title_key(lc[lccn.strip()]))
+        # citation-string labels ('Patrick Wolfe, "Settler Colonialism and the Elimination of the Native," Journal of
+        # Genocide Research …'; 'E. P. Thompson: The Making of …'): index the quoted title, and the part after a
+        # leading author name (2026-11-08: about 2,400 such works, the canonical articles among them)
+        q = QUOTED.search(label)
+        if q:
+            tks.add(title_key(q.group(1)))
+        m = LEAD_NAME.match(label)
+        if m and any(family(a) and family(a) in fold(m.group(1)) for a in names or []):
+            tks.add(title_key(m.group(2)))
         tks = {tk for tk in tks if usable(tk)}
         if not tks:
             continue
@@ -98,6 +121,8 @@ def work_index():
     return idx, doi
 
 
+QUOTED = re.compile(r'["\u201c\u2018]([^"\u201d\u2019]{8,}?)[,.]?["\u201d\u2019]')
+LEAD_NAME = re.compile(r'^([^,:"\u201c]{3,80}?)[,:]\s+(?!\d)(.{8,})$')
 NAMELESS = ('', '')   # slot in the index for the title-only table of works without people
 
 
