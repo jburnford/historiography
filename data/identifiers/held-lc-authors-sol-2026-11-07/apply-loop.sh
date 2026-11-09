@@ -5,6 +5,9 @@
 # the key-log lock (/home/jic823/historiography/.keylog.lock) shared with the OpenAlex shard applier, so key-log loads
 # never overlap (memory) and commits never interleave.
 set -u
+memwait() {   # 2026-11-09: three WSL crashes during key-log loads; wait for 12 GB available before taking the lock
+  while [ "$(awk '/MemAvailable/ {print int($2/1048576)}' /proc/meminfo)" -lt 12 ]; do sleep 30; done
+}
 cd /home/jic823/historiography
 D=data/identifiers/held-lc-authors-sol-2026-11-07
 I=/mnt/e/kg-review/held-lc-authors-for-review.jsonl
@@ -18,12 +21,13 @@ while true; do
   if [ ${#NEW[@]} -gt 0 ]; then
     tag=$(IFS=-; echo "${NEW[*]}")
     files=(); for n in "${NEW[@]}"; do files+=("$D/verdicts-$n.jsonl"); done
-    exec 9>/home/jic823/historiography/.keylog.lock; flock 9
+    memwait; exec 9>/home/jic823/historiography/.keylog.lock; flock 9
     echo "$(date +%T) applying batches $tag"
     out=$(python3 scripts/apply_held_lc_verdicts.py "${files[@]}" --items $I --out $D/applied-$tag) || { echo "build failed"; exit 1; }
     echo "$out"
     python3 scripts/identifiers.py apply $D/applied-$tag/proposal.json | tail -1 || { echo "apply failed"; exit 1; }
     ev=$(git status --short data/identifiers/events-*.jsonl | awk '{print $2}')
+    git add $ev   # a new events-NNNN.jsonl shard is untracked until added (2026-11-09: commits failed on events-0041)
     git add "${files[@]}" $D/applied-$tag
     git commit -q -m "Held LC authors, Terra batches $tag: $out
 

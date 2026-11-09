@@ -4,6 +4,9 @@
 # commit each group with explicit paths. A batch counts as finished when run-terra.log has its summary line. Applied
 # batches are listed in applied-batches.txt. Checks every 30 minutes; stops after batch 097 or on a failure.
 set -u
+memwait() {   # 2026-11-09: three WSL crashes during key-log loads; wait for 12 GB available before taking the lock
+  while [ "$(awk '/MemAvailable/ {print int($2/1048576)}' /proc/meminfo)" -lt 12 ]; do sleep 30; done
+}
 cd /home/jic823/historiography
 D=data/identifiers/possible-same-review-2026-11-09
 touch $D/applied-batches.txt
@@ -15,12 +18,13 @@ while true; do
   if [ ${#NEW[@]} -gt 0 ]; then
     tag="${NEW[0]}-${NEW[-1]}"
     files=(); for n in "${NEW[@]}"; do files+=("$D/verdicts-$n.jsonl"); done
-    exec 9>/home/jic823/historiography/.keylog.lock; flock 9
+    memwait; exec 9>/home/jic823/historiography/.keylog.lock; flock 9
     echo "$(date +%T) applying batches ${NEW[*]}"
     out=$(python3 scripts/apply_possible_same_verdicts.py "${files[@]}" --out $D/applied-$tag) || { echo "build failed"; exit 1; }
     echo "$out"
     python3 scripts/identifiers.py apply $D/applied-$tag/proposal.json | tail -1 || { echo "apply failed"; exit 1; }
     ev=$(git status --short data/identifiers/events-*.jsonl | awk '{print $2}')
+    git add $ev   # a new events-NNNN.jsonl shard is untracked until added (2026-11-09: commits failed on events-0041)
     git add "${files[@]}" $D/applied-$tag
     git commit -q -m "POSSIBLY_SAME pairs, Terra batches $tag: $out
 

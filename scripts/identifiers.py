@@ -273,10 +273,12 @@ def withdrawn_claim_anchors(state):
     return {a for v in state.keys.values() if v['type'] == 'claim' and v['status'] == 'withdrawn' for a in v['anchors']}
 
 
-def materialise(state, proposal, commit, date):
+def materialise(state, proposal, commit, date, inplace=False):
     """Turn a proposal into numbered events, validated against a scratch copy of the state. Claim mints from a
     rule or build proposal whose anchors were withdrawn on review are dropped (reported on stderr); a review
-    proposal may mint them again."""
+    proposal may mint them again. inplace=True validates on `state` itself (no deep copy, half the memory): for a
+    caller that discards the state afterwards, as apply_proposal does (2026-11-09: the copy doubled an apply to
+    ~15 GB on a 4.6M-key log and three WSL crashes followed)."""
     nxt = Counter(state.top)
     names, events, seq = {}, [], state.seq
     ops = proposal['ops']
@@ -311,7 +313,7 @@ def materialise(state, proposal, commit, date):
         ev.update(seq=seq, date=date, commit=commit, decided_by=op.get('decided_by', proposal.get('decided_by', 'build')),
                   basis=op.get('basis', proposal.get('basis', '')))
         events.append(dict(sorted(ev.items())))
-    scratch = copy.deepcopy(state)
+    scratch = state if inplace else copy.deepcopy(state)
     for ev in events:
         scratch.apply(ev)
     return events, names
@@ -370,7 +372,7 @@ def apply_proposal(directory, proposal, commit=None, date=None, limit=SHARD_BYTE
     with locked(directory):
         state = State.load(directory)
         events, names = materialise(state, proposal, git_commit() if commit is None else commit,
-                                    date or datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'))
+                                    date or datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), inplace=True)
         _append(directory, [json.dumps(e, ensure_ascii=False) + '\n' for e in events], limit)
     return names
 
