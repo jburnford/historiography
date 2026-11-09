@@ -7,7 +7,9 @@ people. This table extends year-level dates to every key that holds an LC author
   /mnt/e/lc-authorities/personal-names.parquet);
 - `wd`: Wikidata P569/P570 (scripts/wd_life_years.py cache).
 When LC and Wikidata give different years, Wikidata's is kept (as in build_life_dates' source order) and the row
-is flagged `conflict`. Columns: key, birth, death, birth_check, death_check, birth_sources, death_sources
+is flagged `conflict`; but a birth year less than 15 years before the key's earliest dated work is impossible, so a
+conflict where only one source passes that test takes that source (`conflict_works`; 2026-11-09: James A. Henretta,
+LC 1940 / Wikidata 1955, holds a 1965 article). Columns: key, birth, death, birth_check, death_check, birth_sources, death_sources
 (`source=year` pairs). Checks: `reviewed` (life-dates.csv), `agree`, `single_source`, `conflict`.
 
 The graph keeps every date, including living people's (user, 2026-11-07: these are public LC and Wikidata facts;
@@ -35,13 +37,17 @@ def year(v):
     return int(m.group(1)) if m else None
 
 
-def choose(reviewed, lc, wd, lc_id, wd_id):
+def choose(reviewed, lc, wd, lc_id, wd_id, first_work=None):
     srcs = [f'{s}={y}' for s, y in ((lc_id, lc), (wd_id, wd)) if y is not None]
     if reviewed is not None:
         return reviewed, 'reviewed', ' '.join(['life-dates.csv=' + str(reviewed)] + srcs)
     if lc is None and wd is None:
         return None, '', ''
     if lc is not None and wd is not None:
+        if lc != wd and first_work:
+            fits = [y for y in (wd, lc) if y <= first_work - 15]
+            if len(fits) == 1:
+                return fits[0], 'conflict_works', ' '.join(srcs) + f' first_work={first_work}'
         return wd, 'agree' if lc == wd else 'conflict', ' '.join(srcs)
     return (wd if wd is not None else lc), 'single_source', ' '.join(srcs)
 
@@ -55,6 +61,9 @@ def main():
     lc = {i: (year(b), year(d)) for i, b, d in db.execute(
         f"SELECT lcid, birth, death FROM '{LC_NAMES}' WHERE coalesce(birth, '') <> '' OR coalesce(death, '') <> ''").fetchall()}
     wd = json.loads(args.wd.read_text())
+    first = dict(db.execute(f"""SELECT a."from", min(w.year) FROM '{ROOT}/build/graph/authored.parquet' a
+                                JOIN '{ROOT}/build/graph/work.parquet' w ON w.key = a."to"
+                                WHERE w.year BETWEEN 1500 AND 2100 GROUP BY 1""").fetchall())
     reviewed = {}
     with open(ROOT / 'data/person-facts/life-dates.csv', newline='', encoding='utf-8') as f:
         for r in csv.DictReader(f):
@@ -65,7 +74,7 @@ def main():
         lb, ld = lc.get(lcid, (None, None)) if lcid else (None, None)
         qid = (qid or '').removeprefix('wd:')
         wb, wdd = (wd.get(qid) or [None, None]) if qid else (None, None)
-        b, bc, bs = choose(rb, lb, wb, f'lcnaf:{lcid}', f'wd:{qid}')
+        b, bc, bs = choose(rb, lb, wb, f'lcnaf:{lcid}', f'wd:{qid}', first.get(key))
         d, dc, ds = choose(rd, ld, wdd, f'lcnaf:{lcid}', f'wd:{qid}')
         if b is None and d is None:
             continue
