@@ -4,18 +4,23 @@
 # key-log load + commit holds the lock shared with the held-LC apply loop (/home/jic823/historiography/.keylog.lock).
 # Resumable: shards already applied are listed in applied-shards.txt. Stops at the first failure.
 set -u
+memwait() {   # 2026-11-09: three WSL crashes during key-log loads; wait for 12 GB available before taking the lock
+  while [ "$(awk '/MemAvailable/ {print int($2/1048576)}' /proc/meminfo)" -lt 12 ]; do sleep 30; done
+}
 cd /home/jic823/historiography
 O=data/identifiers/openalex-person-works-2026-11-09
 touch $O/applied-shards.txt
+# 2026-11-09 12:52 third crash, with a piece loading next to Terra agents: pieces wait until no codex agents run
+while ps -eo args | awk '$1 ~ /codex$/' | grep -q .; do sleep 120; done   # codex agents
 if [ ! -s $O/report.json ]; then
-  exec 9>/home/jic823/historiography/.keylog.lock; flock 9
+  memwait; exec 9>/home/jic823/historiography/.keylog.lock; flock 9
   echo "$(date +%T) building shards"
   python3 scripts/openalex_people_works.py propose --out $O || { echo "propose failed"; exit 1; }
   flock -u 9; exec 9>&-
 fi
 for f in $O/proposal-*.json.gz; do
   grep -qx "$(basename $f)" $O/applied-shards.txt && continue
-  exec 9>/home/jic823/historiography/.keylog.lock; flock 9
+  memwait; exec 9>/home/jic823/historiography/.keylog.lock; flock 9
   echo "$(date +%T) applying $f"
   python3 scripts/identifiers.py apply "$f" | tail -1 || { echo "apply failed on $f"; exit 1; }
   ev=$(git status --short data/identifiers/events-*.jsonl | awk '{print $2}')
