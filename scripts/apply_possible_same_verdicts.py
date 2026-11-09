@@ -7,10 +7,12 @@ scripts/export_possible_same_review.py, brief data/identifiers/possible-same-rev
   or when either key is gone (already merged elsewhere): those are listed in held.json.
 - `different` at high confidence: both keys drop `possible-same:<other>` and record `not-same:<other>`, so the pair is
   not proposed again.
-- `same` at medium confidence (strong but inferred: thesis and book titles and the university line up): no merge;
-  both keys swap `possible-same:<other>` for `very-likely-same:<other>`, which scripts/build_graph.py writes as
-  POSSIBLY_SAME with likelihood 'very_likely' (user, 2026-11-09: "merge the medium data and just create an edge that
-  hedges very_likely").
+- `same` at medium confidence (strong but inferred: thesis and book titles and the university line up): merged like
+  high, unless Terra's own wording says a key is mixed or needs splitting (held). User, 2026-11-09, after the KG
+  session read the top 25 by joint citations and a random 25 of the 801 medium 'same' verdicts (all one person;
+  dissertation-to-book, ORCID, or a review byline's institution at the review date matching the scholar's post):
+  "merge all that are the same person". (Earlier the same day they became `very-likely-same:` edges; those stay
+  on the merged key, where they point at itself and the build ignores them.) --hedge-medium restores the edge.
 - everything else (medium `different`, `unclear`) stays as it is and is listed in held.json for later passes.
 --medium-only processes only the medium `same` verdicts (for batches applied before the rule).
 
@@ -28,6 +30,7 @@ ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
 ap.add_argument('verdicts', type=Path, nargs='+')
 ap.add_argument('--out', type=Path, required=True)
 ap.add_argument('--medium-only', action='store_true')
+ap.add_argument('--hedge-medium', action='store_true', help="medium 'same' as very-likely-same edges, not merges")
 args = ap.parse_args()
 state = keylog_snapshot.read_state()  # the SQLite cache (2026-11-09)
 blocked = blocked_keys(state)
@@ -57,6 +60,12 @@ for vf in args.verdicts:
         medium_same = v['verdict'] == 'same' and v.get('confidence') == 'medium'
         if args.medium_only and not medium_same:
             continue
+        text = v['basis'] + ' ' + ' '.join(e.get('says', '') for e in v.get('evidence', []))
+        if medium_same and (re.search(r'mixed key|needs? split|splitting|conflat|two different (people|scholars)', text, re.I) or re.search(r'a different [A-Z][a-z]+ [A-Z]', text)):
+            res['held_medium_same_mixed_key'] += 1; held.append(dict(v, why="medium same, but Terra says a key is mixed")); continue
+        if medium_same and not args.hedge_medium:
+            v = dict(v, confidence='high', basis='medium confidence, merged by the 2026-11-09 review rule: ' + v['basis'])
+            medium_same = False
         if medium_same:
             if any(len(x) != 1 for x in live):
                 res['held_key_gone'] += 1; held.append(dict(v, why='a key is no longer live')); continue
