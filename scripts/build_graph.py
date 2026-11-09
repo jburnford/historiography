@@ -23,7 +23,10 @@ is untracked) and writes to build/graph/ (git-ignored):
   lists, ORCID, Wikidata, review credits, JSTOR review signatures, LC 373) from data/graph/affiliations.csv.gz
   (scripts/export_affiliations.py; user, 2026-11-08: departments should show the faculty who taught there);
 - `POSSIBLY_SAME` (Person -> Person, once per pair, lower key first) from `possible-same:` members: same name and
-  fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge;
+  fitting timelines, not confirmed (scripts/key_possible_same.py; user, 2026-11-08); dropped once the two merge.
+  `likelihood` is 'possible' for those, 'very_likely' from `very-likely-same:` members: an outside reviewer (Terra)
+  found strong but inferred evidence that they are one person (user, 2026-11-09: "merge the medium data and just
+  create an edge that hedges very_likely"); `not-same:` members drop the edge;
 - `CITES` (Work -> Work): a corpus dissertation citing a keyed work (data/graph/cites.csv.gz, exported from
   the corpus by scripts/export_citations.py), and a JSTOR article, review essay or review article citing one in
   its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06). `edition` is true when
@@ -230,13 +233,23 @@ def main():
                     awarded.append({'from': w['key'], 'to': i[0]})
     report['AWARDED_BY'] = write('awarded_by', awarded, pa.schema([('from', s), ('to', s)]))
 
-    possible = set()
+    possible = {}                   # (a, b) -> likelihood
     for person in people:
+        mem = state.members.get(person["key"], ())
+        for m in mem:
+            for prefix, like in (('possible-same:', 'possible'), ('very-likely-same:', 'very_likely')):
+                if m.startswith(prefix):
+                    o = state.lookup(m.split(':', 1)[1])
+                    if len(o) == 1 and o[0] != person["key"] and types.get(o[0]) == 'person':
+                        pair = tuple(sorted((person["key"], o[0])))
+                        if possible.get(pair) != 'very_likely':
+                            possible[pair] = like
+    for person in people:           # a recorded 'not the same' outweighs either
         for m in state.members.get(person["key"], ()):
-            if m.startswith('possible-same:'):
+            if m.startswith('not-same:'):
                 o = state.lookup(m.split(':', 1)[1])
-                if len(o) == 1 and o[0] != person["key"] and types.get(o[0]) == 'person':
-                    possible.add(tuple(sorted((person["key"], o[0]))))
+                if len(o) == 1:
+                    possible.pop(tuple(sorted((person["key"], o[0]))), None)
     aff = {}
     if AFFILIATIONS.exists():
         with gzip.open(AFFILIATIONS, 'rt', newline='', encoding='utf-8') as f:
@@ -256,8 +269,9 @@ def main():
     report['AFFILIATED_WITH'] = write('affiliated_with', list(aff.values()), pa.schema([
         ('from', s), ('to', s), ('source', s), ('first_year', pa.int32()), ('last_year', pa.int32()), ('n', pa.int32()),
         ('rank', s), ('department', s)]))
-    report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b} for a, b in sorted(possible)],
-                                    pa.schema([('from', s), ('to', s)]))
+    report['POSSIBLY_SAME'] = write('possibly_same', [{'from': a, 'to': b, 'likelihood': l} for (a, b), l in sorted(possible.items())],
+                                    pa.schema([('from', s), ('to', s), ('likelihood', s)]))
+    report['POSSIBLY_SAME_very_likely'] = sum(1 for l in possible.values() if l == 'very_likely')
 
     cites = {}                      # (citing, cited) -> edition only (True) or a direct match (False)
     with gzip.open(CITES, 'rt', newline='', encoding='utf-8') as f:
@@ -318,7 +332,7 @@ def load_db(report):
     conn.execute('CREATE REL TABLE COAUTHORED(FROM Person TO Person, works INT32, titles INT32, first_year INT32, last_year INT32, '
                  'work_keys STRING[])')
     conn.execute('CREATE REL TABLE AWARDED_BY(FROM Work TO Institution)')
-    conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person)')
+    conn.execute('CREATE REL TABLE POSSIBLY_SAME(FROM Person TO Person, likelihood STRING)')
     conn.execute('CREATE REL TABLE AFFILIATED_WITH(FROM Person TO Institution, source STRING, first_year INT32, '
                  'last_year INT32, n INT32, rank STRING, department STRING)')
     conn.execute('CREATE REL TABLE CITES(FROM Work TO Work, edition BOOL)')

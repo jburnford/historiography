@@ -7,7 +7,12 @@ scripts/export_possible_same_review.py, brief data/identifiers/possible-same-rev
   or when either key is gone (already merged elsewhere): those are listed in held.json.
 - `different` at high confidence: both keys drop `possible-same:<other>` and record `not-same:<other>`, so the pair is
   not proposed again.
-- everything else (medium, unclear) stays as it is and is listed in held.json for later passes.
+- `same` at medium confidence (strong but inferred: thesis and book titles and the university line up): no merge;
+  both keys swap `possible-same:<other>` for `very-likely-same:<other>`, which scripts/build_graph.py writes as
+  POSSIBLY_SAME with likelihood 'very_likely' (user, 2026-11-09: "merge the medium data and just create an edge that
+  hedges very_likely").
+- everything else (medium `different`, `unclear`) stays as it is and is listed in held.json for later passes.
+--medium-only processes only the medium `same` verdicts (for batches applied before the rule).
 
     python3 scripts/apply_possible_same_verdicts.py <verdicts.jsonl> [...] --out <dir>
 """
@@ -21,6 +26,7 @@ from merge_guard import blocked_keys
 ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
 ap.add_argument('verdicts', type=Path, nargs='+')
 ap.add_argument('--out', type=Path, required=True)
+ap.add_argument('--medium-only', action='store_true')
 args = ap.parse_args()
 state = State.load(DEFAULT_DIR)
 blocked = blocked_keys(state)
@@ -47,6 +53,21 @@ for vf in args.verdicts:
         a, b = item['a']['key'], item['b']['key']
         src = '; '.join(f"{e['url']} ({e['says'][:120]})" for e in v.get('evidence', [])[:3])
         live = [state.lookup(k) for k in (a, b)]
+        medium_same = v['verdict'] == 'same' and v.get('confidence') == 'medium'
+        if args.medium_only and not medium_same:
+            continue
+        if medium_same:
+            if any(len(x) != 1 for x in live):
+                res['held_key_gone'] += 1; held.append(dict(v, why='a key is no longer live')); continue
+            ka, kb = live[0][0], live[1][0]
+            if ka == kb:
+                res['already_one_key'] += 1; continue
+            for k, o in ((ka, kb), (kb, ka)):
+                ops.append(dict(event='detach', key=k, anchors=[], aliases=[], members=[f'possible-same:{o}']))
+                ops.append(dict(event='attach', key=k, anchors=[], aliases=[], members=[f'very-likely-same:{o}'],
+                                basis=f"outside review (Terra, web sources), medium confidence: very likely one person with {o}: {v['basis'][:300]} Evidence: {src}"[:900]))
+            res['very_likely_recorded'] += 1
+            continue
         if v.get('confidence') != 'high' or v['verdict'] not in ('same', 'different'):
             res[f"held_{v['verdict']}_{v.get('confidence')}"] += 1; held.append(dict(v, why='not high-confidence same/different')); continue
         if any(len(x) != 1 for x in live) or a in gone or b in gone:
