@@ -100,6 +100,81 @@ def shards(directory):
     return found
 
 
+_intern = sys.intern
+
+
+class Anchors(tuple):
+    """A key's anchors or aliases: a tuple (no per-key set; 2026-11-09 memory) that still answers the set operators
+    older scripts use on records (pids | rec['anchors'], rec['anchors'] - theirs, & ...); results are plain sets."""
+    __slots__ = ()
+
+    def __or__(self, o): return set(self) | set(o)
+    def __ror__(self, o): return set(o) | set(self)
+    def __and__(self, o): return set(self) & set(o)
+    def __rand__(self, o): return set(o) & set(self)
+    def __sub__(self, o): return set(self) - set(o)
+    def __rsub__(self, o): return set(o) - set(self)
+    def union(self, *o): return set(self).union(*o)
+    def intersection(self, *o): return set(self).intersection(*o)
+    def difference(self, *o): return set(self).difference(*o)
+    def isdisjoint(self, o): return set(self).isdisjoint(o)
+    def issubset(self, o): return set(self).issubset(o)
+    def copy(self): return set(self)
+
+
+NOTHING = Anchors()
+
+
+class Rec:
+    """One key's record, read like the dict it used to be (rec['label'], rec.get('status'), rec.update(...)), held in
+    about a third of the memory (2026-11-09: 4.6M keys made State.load 7.8 GB and three WSL crashes followed): slots
+    instead of a dict, interned type/status/resolution, anchors as a tuple, aliases and replaced_by as a shared empty
+    tuple until used. Only State changes records; readers see tuples, so `in`, iteration, len() and sorted() work as
+    they did on the sets."""
+    __slots__ = ('key', 'type', 'label', 'status', 'resolution', 'anchors', 'aliases', 'replaced_by')
+    FIELDS = __slots__
+
+    def __init__(self, key, type, label, status, resolution):
+        self.key, self.type, self.label = key, _intern(type), label
+        self.status, self.resolution = _intern(status), _intern(resolution)
+        self.anchors = self.aliases = self.replaced_by = NOTHING
+
+    def __getitem__(self, f):
+        if f not in self.FIELDS:
+            raise KeyError(f)
+        return getattr(self, f)
+
+    def __setitem__(self, f, v):
+        if f not in self.FIELDS:
+            raise KeyError(f)
+        setattr(self, f, _intern(v) if f in ('type', 'status', 'resolution') and isinstance(v, str) else v)
+
+    def get(self, f, default=None):
+        return getattr(self, f) if f in self.FIELDS else default
+
+    def update(self, **kw):
+        for f, v in kw.items():
+            self[f] = v
+
+    def __contains__(self, f):
+        return f in self.FIELDS
+
+    def keys(self):
+        return list(self.FIELDS)
+
+    def items(self):
+        return [(f, getattr(self, f)) for f in self.FIELDS]
+
+    def __iter__(self):
+        return iter(self.FIELDS)
+
+    def __eq__(self, other):
+        return isinstance(other, Rec) and all(getattr(self, f) == getattr(other, f) for f in self.FIELDS)
+
+    def __repr__(self):
+        return 'Rec(' + ', '.join(f'{f}={getattr(self, f)!r}' for f in self.FIELDS) + ')'
+
+
 class State:
     """Current state derived from the event log. `apply` validates one event and mutates the state."""
 
@@ -142,17 +217,23 @@ class State:
             owner = self.anchor.get(a)
             if owner and owner != key:
                 raise LogError(f'anchor {a} already belongs to {owner}')
+        rec = self.keys[key]
+        new = tuple(a for a in dict.fromkeys(anchors) if a not in rec.anchors)
         for a in anchors:
             self.anchor[a] = key
-            self.keys[key]['anchors'].add(a)
+        if new:
+            rec.anchors = Anchors(rec.anchors + new)
 
     def _claim_aliases(self, key, aliases):
         for a in aliases:
             if self.alias.get(a, key) != key:
                 raise LogError(f'alias {a} already names {self.alias[a]}')
+        rec = self.keys[key]
+        new = tuple(a for a in dict.fromkeys(aliases) if a not in rec.aliases)
         for a in aliases:
             self.alias[a] = key
-            self.keys[key]['aliases'].add(a)
+        if new:
+            rec.aliases = Anchors(rec.aliases + new)
 
     def _release(self, key):
         k = self.keys[key]
@@ -179,36 +260,41 @@ class State:
                                   or not (r.get('subject') and r.get('object'))):
                 raise LogError(f'bad relation on {key}: {r}')
             self.top[m.group(1)] = int(m.group(2))
-            self.keys[key] = dict(key=key, type=ev['type'], label=ev.get('label', ''), status=ev.get('status', 'active'),
-                                  resolution=ev['resolution'], anchors=set(), aliases=set(), replaced_by=[])
+            self.keys[key] = Rec(key, ev['type'], ev.get('label', ''), ev.get('status', 'active'), ev['resolution'])
             if self.keys[key]['status'] not in LIFECYCLE - RETIRED:
                 raise LogError(f'bad initial status for {key}')
             self._claim_anchors(key, ev.get('anchors', []))
             self._claim_aliases(key, ev.get('aliases', []))
-            self.members[key].update(ev.get('members', []))
+            if ev.get('members'):                       # no empty member set per key (members is a defaultdict)
+                self.members[key].update(ev['members'])
             if r:
-                self.relation[key] = dict(subject=r['subject'], predicate=r['predicate'], object=r['object'])
+                self.relation[key] = dict(subject=r['subject'], predicate=_intern(r['predicate']), object=r['object'])
         elif kind == 'attach':
             self._live(key)
             self._claim_anchors(key, ev.get('anchors', []))
             self._claim_aliases(key, ev.get('aliases', []))
-            self.members[key].update(ev.get('members', []))
+            if ev.get('members'):
+                self.members[key].update(ev['members'])
         elif kind == 'detach':
             k = self._live(key)
-            for a in ev.get('anchors', []):
+            gone = set(ev.get('anchors', []))
+            for a in gone:
                 if self.anchor.get(a) == key:
                     del self.anchor[a]
-                k['anchors'].discard(a)
-            self.members[key].difference_update(ev.get('members', []))
+            if gone & set(k.anchors):
+                k.anchors = Anchors(a for a in k.anchors if a not in gone)
+            if ev.get('members') and key in self.members:
+                self.members[key].difference_update(ev['members'])
         elif kind == 'merge':
             k, into = self._live(key), self._live(ev['into'])
             if k['type'] != into['type'] or key == ev['into']:
                 raise LogError(f'cannot merge {key} into {ev["into"]}')
-            anchors = set(k['anchors'])
+            anchors = tuple(k['anchors'])
             self._release(key)
             k.update(status='merged', replaced_by=[ev['into']])
             self._claim_anchors(ev['into'], anchors)
-            self.members[ev['into']] |= self.members[key]
+            if self.members.get(key):
+                self.members[ev['into']] |= self.members[key]
         elif kind in ('split', 'retype'):
             k = self._live(key)
             succ = ev['successors']
