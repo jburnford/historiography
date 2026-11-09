@@ -19,6 +19,7 @@ for f in $O/proposal-*.json.gz; do
   echo "$(date +%T) applying $f"
   python3 scripts/identifiers.py apply "$f" | tail -1 || { echo "apply failed on $f"; exit 1; }
   ev=$(git status --short data/identifiers/events-*.jsonl | awk '{print $2}')
+    git add $ev   # a new events-NNNN.jsonl shard is untracked until added (2026-11-09: commits failed on events-0041)
   git add "$f" $O/report.json $O/run-apply.sh $O/applied-shards.txt
   git commit -q -m "OpenAlex person works, $(basename $f): works and authored claims for graph people, tied through OpenAlex authors who share works the graph already credits to them (scripts/openalex_people_works.py)
 
