@@ -66,8 +66,8 @@ def journals(min_works=None, min_share=0.01):
     return [j[:3] for j in out]
 
 
-def query(issn, since, rows, cursor=None):
-    f = f'from-pub-date:{since},has-references:true'
+def query(issn, since, rows, cursor=None, until=None):
+    f = f'from-pub-date:{since},has-references:true' + (f',until-pub-date:{until}' if until else '')
     q = dict(filter=f, rows=rows, select=SELECT)
     if cursor:
         q['cursor'] = cursor
@@ -79,12 +79,14 @@ def main():
     ap.add_argument('phase', choices=('count', 'harvest'))
     ap.add_argument('--since', default='2000')
     ap.add_argument('--only', help='comma-separated ISSNs (pilot)')
+    ap.add_argument('--until', help='last publication date; with it, files are named journal_<id>-<since>-<until>.jsonl.gz so an\n'
+                    'earlier window (e.g. --since 1900 --until 1999, CSSH 2026-11-09) sits beside the 2000+ harvest')
     ap.add_argument('--min-works', type=int, help='add OpenAlex history venues with at least this many history works')
     ap.add_argument('--min-share', type=float, default=0.01, help='least share of a venue\'s works that are history')
     ap.add_argument('--workers', type=int, default=3)
     args = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
-    counts_file = OUT / f'counts-{args.since}.json'
+    counts_file = OUT / (f'counts-{args.since}-{args.until}.json' if args.until else f'counts-{args.since}.json')
     counts = json.loads(counts_file.read_text()) if counts_file.exists() else {}
     js = journals(args.min_works, args.min_share)
     if args.only:
@@ -96,7 +98,7 @@ def main():
                 continue
             best = (0, None)
             for issn in issns:                       # print and online ISSN usually answer alike; keep the larger
-                d = query(issn, args.since, 0)
+                d = query(issn, args.since, 0, until=args.until)
                 n = d['message']['total-results'] if d else 0
                 best = max(best, (n, issn), key=lambda x: x[0])
             counts[jid] = dict(title=title, issn=best[1], with_refs=best[0])
@@ -109,7 +111,7 @@ def main():
         return
     def one(j):
         jid, title, issns = j
-        dest = OUT / f'{jid}.jsonl.gz'
+        dest = OUT / (f'{jid}-{args.since}-{args.until}.jsonl.gz' if args.until else f'{jid}.jsonl.gz')
         if dest.exists():
             return None
         tmp = dest.with_suffix('.part')
@@ -118,7 +120,7 @@ def main():
             for issn in issns:                       # print and online ISSN usually answer alike: the first with records
                 cursor = '*'
                 while True:
-                    d = query(issn, args.since, 500, cursor)
+                    d = query(issn, args.since, 500, cursor, args.until)
                     items = d['message']['items'] if d else []
                     for it in items:
                         it['_journal'] = jid
