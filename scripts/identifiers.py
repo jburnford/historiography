@@ -356,6 +356,8 @@ def withdrawn_claim_anchors(state):
     """Anchors of claims withdrawn on review. A withdraw releases its anchors, so a rerun of the rule that made
     the claim would mint it again; rule and build proposals skip these (2026-11-07: a festschrift honoree's
     editor credit and a namesake's book credit came back on the next LC pass)."""
+    if hasattr(state, 'withdrawn_claim_anchors'):         # the SQLite cache answers with one query
+        return state.withdrawn_claim_anchors()
     return {a for v in state.keys.values() if v['type'] == 'claim' and v['status'] == 'withdrawn' for a in v['anchors']}
 
 
@@ -456,10 +458,18 @@ def apply_proposal(directory, proposal, commit=None, date=None, limit=SHARD_BYTE
     """The only writer. Validates the whole proposal, then appends all its events or none."""
     directory = log_dir(directory)
     with locked(directory):
-        state = State.load(directory)
+        snap = os.environ.get('KEYLOG_SNAPSHOT', '1') != '0'   # the cache; KEYLOG_SNAPSHOT=0 replays the whole log instead
+        if snap:                    # the SQLite cache (scripts/keylog_snapshot.py): read only what the proposal touches
+            import keylog_snapshot
+            state = keylog_snapshot.open_state(directory)
+        else:
+            state = State.load(directory)
         events, names = materialise(state, proposal, git_commit() if commit is None else commit,
                                     date or datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), inplace=True)
         _append(directory, [json.dumps(e, ensure_ascii=False) + '\n' for e in events], limit)
+        if snap:                    # the log is written and fsynced first; the cache follows (a crash here: the
+            state.flush(keylog_snapshot.log_end(directory))   # next open replays the tail)
+            state.con.close()
     return names
 
 
