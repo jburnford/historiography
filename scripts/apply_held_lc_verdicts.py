@@ -4,7 +4,7 @@ when the key is still live, holds no LC authority and is not behind the merge gu
 `rejected:lcnaf:<id>` on every candidate key, so the LC routes stop holding that author against them. Everything else
 is listed in held.json for hand review.
 
-    python3 scripts/apply_held_lc_verdicts.py <verdicts.jsonl> <items.jsonl> --out <dir>
+    python3 scripts/apply_held_lc_verdicts.py <verdicts.jsonl> <items.jsonl> --out <dir> [--reviewer Terra]
 """
 import argparse, json, sys
 from collections import Counter
@@ -14,6 +14,7 @@ from merge_guard import blocked_keys
 
 ap = argparse.ArgumentParser()
 ap.add_argument('verdicts', type=Path); ap.add_argument('items', type=Path); ap.add_argument('--out', type=Path, required=True)
+ap.add_argument('--reviewer', default='Sol', help='the model that wrote the verdicts (Sol, Terra; 2026-11-09 the queue moved to Terra)')
 args = ap.parse_args()
 items = {json.loads(l)['item']: json.loads(l) for l in open(args.items)}
 state = State.load(DEFAULT_DIR); blocked = blocked_keys(state)
@@ -32,18 +33,18 @@ for line in open(args.verdicts):
         if k in blocked or any(a.startswith('lcnaf:') for a in state.keys[k]['anchors']):
             res['same_guard_or_has_lc'] += 1; held.append(dict(v, why='merge guard, or the key holds an LC authority')); continue
         ops.append(dict(event='attach', key=k, anchors=[v['item']], aliases=[], members=[],
-                        basis=f"outside review (Sol, web sources): {v['basis'][:300]} Evidence: {src}"[:900]))
+                        basis=f"outside review ({args.reviewer}, web sources): {v['basis'][:300]} Evidence: {src}"[:900]))
         res['same_attached'] += 1
     elif v['verdict'] == 'none' and v.get('confidence') == 'high':
         for c in it['candidates']:
             for k in state.lookup(c['key']):
                 ops.append(dict(event='attach', key=k, anchors=[], aliases=[], members=[f"rejected:lcnaf:{v['item'][6:]}"],
-                                basis=f"outside review (Sol, web sources): LC authority {v['item']} is a namesake: {v['basis'][:300]} Evidence: {src}"[:900]))
+                                basis=f"outside review ({args.reviewer}, web sources): LC authority {v['item']} is a namesake: {v['basis'][:300]} Evidence: {src}"[:900]))
         res['none_recorded'] += 1
     else:
         res[f"held_{v['verdict']}_{v.get('confidence')}"] += 1; held.append(dict(v, why='not high-confidence same/none'))
 args.out.mkdir(parents=True, exist_ok=True)
-json.dump(dict(basis='held LC authors: outside review verdicts (Sol), high confidence only', decided_by='review', ops=ops),
+json.dump(dict(basis=f'held LC authors: outside review verdicts ({args.reviewer}), high confidence only', decided_by='review', ops=ops),
           open(args.out / 'proposal.json', 'w'), ensure_ascii=False, indent=0)
 json.dump(held, open(args.out / 'held.json', 'w'), ensure_ascii=False, indent=1)
 print(dict(res))
