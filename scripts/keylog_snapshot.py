@@ -20,7 +20,7 @@ leaves the cache untouched (the overlay is dropped).
     python3 scripts/keylog_snapshot.py status
     python3 scripts/keylog_snapshot.py check         # cache == full replay?
 """
-import argparse, gzip, hashlib, json, sqlite3, sys, time
+import argparse, gzip, hashlib, json, os, sqlite3, sys, time
 from collections import Counter
 from pathlib import Path
 
@@ -364,6 +364,19 @@ def open_state(directory=I.DEFAULT_DIR, path=None, write=True):
         if state.seq != last_seq(directory):
             raise I.LogError(f'rebuilt cache at seq {state.seq}, log ends at {last_seq(directory)}')
         return state
+
+
+def read_state(directory=I.DEFAULT_DIR):
+    """For scripts that read the state to build a proposal (lookups, anchors, records): the cache, read-only, with any
+    newer log events applied in memory only; a full replay when the cache is missing or stale. Writes to the
+    returned state stay in memory (only apply_proposal, holding the log lock, writes the cache)."""
+    if os.environ.get('KEYLOG_SNAPSHOT', '1') == '0':
+        return I.State.load(directory)
+    try:
+        return open_state(directory, write=False)
+    except (SnapshotStale, sqlite3.Error) as e:
+        print(f'key-log cache not usable ({e}); full replay', file=sys.stderr)
+        return I.State.load(directory)
 
 
 def rebuild(directory=I.DEFAULT_DIR, path=None):

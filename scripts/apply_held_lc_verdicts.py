@@ -22,6 +22,7 @@ from collections import Counter
 from pathlib import Path
 from identifiers import State, DEFAULT_DIR
 from merge_guard import blocked_keys
+import keylog_snapshot
 
 ap = argparse.ArgumentParser()
 ap.add_argument('verdicts', type=Path, nargs='+'); ap.add_argument('--items', type=Path, required=True); ap.add_argument('--out', type=Path, required=True)
@@ -29,7 +30,7 @@ ap.add_argument('--medium-only', action='store_true')
 ap.add_argument('--reviewer', default='auto', help="the model that wrote the verdicts (Sol, Terra); 'auto' reads it from each item's <id>/codex.log beside the verdicts file (2026-11-09 the queue moved to Terra)")
 args = ap.parse_args()
 items = {json.loads(l)['item']: json.loads(l) for l in open(args.items)}
-state = State.load(DEFAULT_DIR); blocked = blocked_keys(state)
+state = keylog_snapshot.read_state(); blocked = blocked_keys(state)   # the SQLite cache (2026-11-09)
 ops, held, res = [], [], Counter()
 MODELS = {'gpt-6.1-sol': 'Sol', 'gpt-6.1-terra': 'Terra'}
 HEDGE = re.compile(r'conflat|namesake|\bmay\b|\bif\b.{0,40}\b(error|mistake|typo)|uncertain|cannot confirm', re.I)

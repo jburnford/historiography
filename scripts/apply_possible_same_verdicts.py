@@ -22,13 +22,14 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from identifiers import State, DEFAULT_DIR, PUBLIC_SCHEMES
 from merge_guard import blocked_keys
+import keylog_snapshot
 
 ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
 ap.add_argument('verdicts', type=Path, nargs='+')
 ap.add_argument('--out', type=Path, required=True)
 ap.add_argument('--medium-only', action='store_true')
 args = ap.parse_args()
-state = State.load(DEFAULT_DIR)
+state = keylog_snapshot.read_state()  # the SQLite cache (2026-11-09)
 blocked = blocked_keys(state)
 ops, held, res = [], [], Counter()
 gone = set()
