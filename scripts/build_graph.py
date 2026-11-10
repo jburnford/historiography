@@ -32,7 +32,9 @@ is untracked) and writes to build/graph/ (git-ignored):
   its notes (data/graph/jstor-cites.csv.gz, scripts/export_jstor_citations.py; 2026-11-06). `edition` is true when
   the only evidence is a JSTOR note citing a later edition or translation of the work (2026-11-08); counts may
   include or leave these out. Crossref reference lists of journal articles add more (data/graph/crossref-cites.csv.gz,
-  scripts/crossref_citations.py; 2026-11-08), above all after the JSTOR runs end (about 2020).
+  scripts/crossref_citations.py; 2026-11-08), above all after the JSTOR runs end (about 2020). A citing article the
+  key log does not hold is a Work node from data/graph/crossref-cites/articles/ with key `doi:<doi>` and resolution
+  `unkeyed` (two layers: the 4.43M harvested articles are not minted as keys; 2026-11-10).
 The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
 caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
 --replay replays it instead (the old path, for checking one against the other).
@@ -67,6 +69,8 @@ OUT = ROOT / 'build/graph'
 CITES = ROOT / 'data/graph/cites.csv.gz'
 JSTOR_CITES = ROOT / 'data/graph/jstor-cites.csv.gz'   # scripts/export_jstor_citations.py (JSTOR article notes)
 CROSSREF_CITES = ROOT / 'data/graph/crossref-cites.csv.gz'   # scripts/crossref_citations.py (Crossref reference lists)
+CROSSREF_PARTS = ROOT / 'data/graph/crossref-cites'           # the same in parts (2026-11-10), and articles/: its
+CROSSREF_ARTICLES = CROSSREF_PARTS / 'articles'                # unkeyed citing articles (doi, title, year, journal)
 AFFILIATIONS = ROOT / 'data/graph/affiliations.csv.gz'  # scripts/export_affiliations.py (dated person -> institution)
 SCHEMES = ('lcnaf', 'wd', 'orcid', 'gnd', 'viaf', 'isni', 'idref', 'ror')
 PERSON_RELATIONS = ('authored', 'edited', 'supervised')
@@ -225,6 +229,40 @@ class CacheView:
         return out
 
 
+def crossref_cites(cites, parts, state, types, unkeyed, report, schema):
+    """CITES with the Crossref parts (tens of millions of rows) joined in DuckDB, not a Python dict: each distinct name
+    is resolved once (State.lookup; an unkeyed citing article is its own node), then the edges are joined, folded with
+    the dissertation and JSTOR edges (edition only when every source says edition) and written straight to Parquet."""
+    import duckdb
+    db = duckdb.connect()
+    db.execute(f"SET memory_limit = '4GB'; SET temp_directory = '{OUT}/duckdb-tmp'; SET preserve_insertion_order = false")
+    files = [str(p) for p in parts]
+    db.execute(f"""CREATE TABLE xr AS SELECT citing_work, cited_work, basis = 'edition' AS ed FROM read_csv({files}, header = true,
+                   columns = {{'citing_work': 'VARCHAR', 'cited_work': 'VARCHAR', 'citations': 'INTEGER', 'basis': 'VARCHAR'}})""")
+    names, keys = [], []
+    for (n,) in db.execute('SELECT DISTINCT citing_work FROM xr UNION SELECT DISTINCT cited_work FROM xr').fetchall():
+        k = state.lookup(n) or ([n] if n in unkeyed else [])
+        if len(k) == 1 and types.get(k[0]) == 'work':
+            names.append(n); keys.append(k[0])
+    db.register('name_map', pa.table({'name': names, 'key': keys}))
+    del names, keys
+    db.execute("""CREATE TABLE xr2 AS SELECT m1.key AS a, m2.key AS b, ed FROM xr
+                  JOIN name_map m1 ON m1.name = xr.citing_work JOIN name_map m2 ON m2.name = xr.cited_work WHERE m1.key <> m2.key""")
+    n_xr, n_xr2 = db.execute('SELECT count(*) FROM xr').fetchone()[0], db.execute('SELECT count(*) FROM xr2').fetchone()[0]
+    report['crossref_cites_unresolved'] = n_xr - n_xr2
+    report['crossref_cites_edition'] = db.execute('SELECT count(*) FROM xr2 WHERE ed').fetchone()[0]
+    db.execute('DROP TABLE xr')
+    db.register('base', pa.table({'a': [a for a, _ in cites], 'b': [b for _, b in cites], 'ed': list(cites.values())}))
+    report['cites_from_crossref'] = db.execute("""SELECT count(*) FROM (SELECT DISTINCT a, b FROM xr2) x
+                                                  ANTI JOIN base USING (a, b)""").fetchone()[0]
+    db.execute(f"""COPY (SELECT a AS "from", b AS "to", bool_and(ed) AS edition FROM (SELECT * FROM base UNION ALL SELECT * FROM xr2)
+                   GROUP BY 1, 2 ORDER BY 1, 2) TO '{OUT}/cites.parquet' (FORMAT parquet)""")
+    report['CITES'], report['CITES_edition_only'] = db.execute(
+        f"SELECT count(*), count(*) FILTER (WHERE edition) FROM '{OUT}/cites.parquet'").fetchone()
+    db.close()
+    shutil.rmtree(OUT / 'duckdb-tmp', ignore_errors=True)
+
+
 def write(name, rows, schema):
     table = pa.Table.from_pylist(rows, schema=schema)
     pq.write_table(table, OUT / f'{name}.parquet')
@@ -244,7 +282,9 @@ def main():
             sys.exit('--db writes build/graph/historiography.lbug; leave --out off')
         OUT = args.out
     shards = sorted(args.state.glob('events-*.jsonl*'))
-    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, CROSSREF_CITES, AFFILIATIONS) if p.exists()])
+    article_parts = sorted(CROSSREF_ARTICLES.glob('part-*.csv.gz'))
+    crossref_parts = ([CROSSREF_CITES] if CROSSREF_CITES.exists() else []) + sorted(CROSSREF_PARTS.glob('part-*.csv.gz'))
+    require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts)
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -266,6 +306,21 @@ def main():
                               journal=next((m.split(':', 1)[1] for m in members if m.startswith('journal:')), None)))
         elif t == 'institution':
             insts.append(dict(base, ror=first(anchors, 'ror')))
+    # unkeyed citing articles (Crossref): a node unless the key log has since keyed the DOI (then the key stands)
+    unkeyed = set()
+    for part in article_parts:
+        with gzip.open(part, 'rt', newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                k = f"doi:{r['doi']}"
+                if state.lookup(k) or k in unkeyed:
+                    report['crossref_articles_keyed_since'] += 1
+                    continue
+                unkeyed.add(k)
+                types[k] = 'work'
+                works.append(dict(key=k, label=r['title'] or None, resolution='unkeyed', anchors=[k], kind='article',
+                                  lccn=None, year=int(r['year']) if r['year'] else None, reviewer_names=[],
+                                  journal=r['journal'] or None))
+    report['Work_unkeyed_articles'] = len(unkeyed)
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
                                                         [(x, s) for x in SCHEMES if x != 'ror']))
@@ -406,10 +461,9 @@ def main():
                 cites[(a[0], b[0])] = False
             else:
                 report['cites_unresolved'] += 1
-    for name, path in (('jstor', JSTOR_CITES), ('crossref', CROSSREF_CITES)):   # journal articles citing keyed works
-        if not path.exists():
-            continue
-        with gzip.open(path, 'rt', newline='', encoding='utf-8') as f:
+    name = 'jstor'                  # JSTOR articles citing keyed works
+    if JSTOR_CITES.exists():
+        with gzip.open(JSTOR_CITES, 'rt', newline='', encoding='utf-8') as f:
             for r in csv.DictReader(f):
                 a, b = state.lookup(r['citing_work']), state.lookup(r['cited_work'])
                 if len(a) == 1 and len(b) == 1 and types.get(a[0]) == types.get(b[0]) == 'work' and a[0] != b[0]:
@@ -419,9 +473,12 @@ def main():
                     report[f'{name}_cites_edition'] += ed
                 else:
                     report[f'{name}_cites_unresolved'] += 1
-    report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': e} for (a, b), e in sorted(cites.items())],
-                            pa.schema([('from', s), ('to', s), ('edition', pa.bool_())]))
-    report['CITES_edition_only'] = sum(cites.values())
+    cites_schema = pa.schema([('from', s), ('to', s), ('edition', pa.bool_())])
+    if not crossref_parts:
+        report['CITES'] = write('cites', [{'from': a, 'to': b, 'edition': e} for (a, b), e in sorted(cites.items())], cites_schema)
+        report['CITES_edition_only'] = sum(cites.values())
+    else:
+        crossref_cites(cites, crossref_parts, state, types, unkeyed, report, cites_schema)
 
     if args.db:
         load_db(report)

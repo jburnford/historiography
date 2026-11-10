@@ -115,6 +115,8 @@ def stale():
 
 
 def node_type(key):
+    if key.startswith('doi:'):          # an unkeyed Crossref citing article (build_graph, 2026-11-10)
+        return 'work'
     return {'p': 'person', 'w': 'work', 'i': 'institution'}.get(key[:1])
 
 
