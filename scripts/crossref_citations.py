@@ -177,12 +177,20 @@ def export(args):
     """Streams: each record's edges and (if unkeyed) its metadata go to work files on E:, then DuckDB folds duplicate
     records (one article in two journal files) and writes the tracked parts. 4.43M records: nothing held in memory
     but the matcher's index."""
-    import duckdb
-    m = matcher()
-    idx, doi_work = m.work_index()
-    titles = {r['id']: r['title'] for r in csv.DictReader(open(CATALOGUE, encoding='utf-8'))}
     rep = collections.Counter()
     work = Path(args.work); work.mkdir(parents=True, exist_ok=True)
+    if args.fold_only:                                          # the read pass finished; fold its work files again
+        rep.update(json.loads((work / 'read-report.json').read_text()))
+    else:
+        m = matcher()
+        idx, doi_work = m.work_index()
+        titles = {r['id']: r['title'] for r in csv.DictReader(open(CATALOGUE, encoding='utf-8'))}
+        read_pass(args, m, idx, doi_work, titles, rep, work)
+        del idx, doi_work
+    fold(args, rep, work)
+
+
+def read_pass(args, m, idx, doi_work, titles, rep, work):
     ef = gzip.open(work / 'edges-raw.csv.gz', 'wt', newline='', encoding='utf-8')
     af = gzip.open(work / 'articles-raw.csv.gz', 'wt', newline='', encoding='utf-8')
     ew, aw = csv.writer(ef), csv.writer(af)
@@ -244,18 +252,22 @@ def export(args):
             aw.writerow((doi, re.sub(r'\s+', ' ', ' '.join(it.get('title') or [])).strip()[:400], year_of(it) or '',
                          titles.get(it.get('_journal'), (it.get('container-title') or [''])[0])))
     ef.close(); af.close()
+    (work / 'read-report.json').write_text(json.dumps(dict(sorted(rep.items())), indent=1) + '\n')
     print(json.dumps(dict(sorted(rep.items()))), file=sys.stderr, flush=True)
-    del idx, doi_work
+
+
+def fold(args, rep, work):
+    import duckdb
     db = duckdb.connect(str(work / 'fold.duckdb'))
     db.execute(f"SET memory_limit = '6GB'; SET temp_directory = '{work}/duckdb-tmp'; SET preserve_insertion_order = false")
     db.execute(f"""CREATE OR REPLACE TABLE edges AS SELECT citing AS citing_work, cited AS cited_work, sum(n)::INTEGER AS citations,
                    CASE WHEN bool_and(edition = 1) THEN 'edition' ELSE 'match' END AS basis
-                   FROM read_csv('{work}/edges-raw.csv.gz', header=true, all_varchar=false,
+                   FROM read_csv('{work}/edges-raw.csv.gz', header=true, quote='"', escape='"', delim=',',
                                  columns={{'citing': 'VARCHAR', 'cited': 'VARCHAR', 'n': 'INTEGER', 'edition': 'INTEGER'}})
                    GROUP BY 1, 2""")
     db.execute(f"""CREATE OR REPLACE TABLE articles AS SELECT doi, any_value(title) AS title, min(year) AS year,
                    any_value(journal) AS journal
-                   FROM read_csv('{work}/articles-raw.csv.gz', header=true,
+                   FROM read_csv('{work}/articles-raw.csv.gz', header=true, quote='"', escape='"', delim=',',
                                  columns={{'doi': 'VARCHAR', 'title': 'VARCHAR', 'year': 'INTEGER', 'journal': 'VARCHAR'}})
                    GROUP BY 1""")
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
@@ -284,6 +296,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('phase', choices=('bridge', 'export'))
     ap.add_argument('--out', type=Path, help='bridge: the proposal folder; export: the parts folder (default data/graph/crossref-cites)')
+    ap.add_argument('--fold-only', action='store_true', help='export: skip the read pass, fold the work files again')
     ap.add_argument('--work', default='/mnt/e/crossref-export-2026-11-10', help='export: work files on E:')
     ap.add_argument('--files', default='journal_*.jsonl.gz', help='harvest files to read (a pilot: journal_<id>*.jsonl.gz)')
     args = ap.parse_args()
