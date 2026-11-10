@@ -33,6 +33,9 @@ is untracked) and writes to build/graph/ (git-ignored):
   the only evidence is a JSTOR note citing a later edition or translation of the work (2026-11-08); counts may
   include or leave these out. Crossref reference lists of journal articles add more (data/graph/crossref-cites.csv.gz,
   scripts/crossref_citations.py; 2026-11-08), above all after the JSTOR runs end (about 2020).
+The key-log state comes from the SQLite cache (build/keylog-state.sqlite, scripts/keylog_snapshot.py; 2026-11-10),
+caught up to the log's last event first and then read in bulk, so the build no longer replays the whole log (10 GB);
+--replay replays it instead (the old path, for checking one against the other).
 With --db, the Parquet tables are loaded into a LadybugDB database (build/graph/historiography.lbug), queried in
 Cypher:
 
@@ -40,6 +43,7 @@ Cypher:
 
     python3 scripts/build_graph.py            # Parquet tables only
     python3 scripts/build_graph.py --db       # and the LadybugDB database
+    python3 scripts/build_graph.py --replay --out /tmp/graph-replay   # full log replay (check against the cache build)
 """
 import argparse
 import csv
@@ -47,6 +51,7 @@ import gzip
 import json
 import re
 import shutil
+import sqlite3
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -55,6 +60,7 @@ from pathlib import Path
 import pyarrow as pa
 import pyarrow.parquet as pq
 
+import identifiers as I
 from identifiers import DEFAULT_DIR, PREDICATES, RETIRED, ROOT, State
 
 OUT = ROOT / 'build/graph'
@@ -106,6 +112,119 @@ def work_kind(anchors, members=()):
     return 'other'
 
 
+# Member prefixes the build reads (works: dates, kind, reviewers, journal, degree-granting institution; people: the
+# possibly-same and not-same marks). The cache view loads only these.
+MEMBER_PREFIXES = ('year:', 'lc-first-year:', 'kind:', 'reviewer-name:', 'journal:', 'awarded-by:',
+                   'possible-same:', 'very-likely-same:', 'not-same:')
+NODE_TYPES = ('person', 'work', 'institution')
+
+
+class ReplayView:
+    """The build's reads from a full replay of the log (identifiers.State.load: about 10 GB for 5.5M events)."""
+
+    def __init__(self, directory):
+        self.state = State.load(directory)
+
+    def nodes(self):
+        """Live person, work and institution keys: (key, type, label, resolution, anchors)."""
+        for k, v in self.state.keys.items():
+            if v['status'] not in RETIRED and v['type'] in NODE_TYPES:
+                yield k, v['type'], v['label'], v['resolution'], v['anchors']
+
+    def members(self, k):
+        return self.state.members.get(k, ())
+
+    def relations(self):
+        for claim, subj, pred, obj in self.state.relations():
+            yield claim, subj, pred, obj, self.state.keys[claim]['resolution']
+
+    def lookup(self, name):
+        return self.state.lookup(name)
+
+
+class CacheView:
+    """The same reads from the SQLite cache, in bulk: node records and the needed members in one scan each, relation
+    claims in one join; names resolved by indexed lookups, following retirements as State.lookup does. The cache is
+    brought up to the log's last event (or rebuilt) under the log lock first; the reads then share one snapshot."""
+
+    def __init__(self, directory):
+        import keylog_snapshot as K
+        directory = I.log_dir(directory)
+        with I.locked(directory):
+            st = K.open_state(directory, write=True)
+            self.seq = st.seq
+            st.con.close()
+        self.con = K.connect(K.cache_path(directory), readonly=True)
+        self.con.execute('BEGIN')                     # one read snapshot for the whole build
+        self.con.execute('SELECT 1 FROM meta LIMIT 1').fetchone()
+        seq = int(self.con.execute("SELECT v FROM meta WHERE k = 'seq'").fetchone()[0])
+        if seq != self.seq:
+            sys.exit(f'key-log cache moved from seq {self.seq} to {seq} while opening; rerun')
+        retired = tuple(RETIRED)
+        q = ','.join('?' * len(retired))
+        # retired key -> its successors (replaced_by), and the live types of non-claim keys: enough to resolve
+        # any key name without a query
+        self.next = {k: json.loads(rb) for k, rb in
+                     self.con.execute(f'SELECT key, replaced_by FROM keys WHERE status IN ({q})', retired)}
+        self.type = dict(self.con.execute(f"SELECT key, type FROM keys WHERE type <> 'claim' AND status NOT IN ({q})", retired))
+        self.mem = defaultdict(set)
+        cond = ' OR '.join(f"member GLOB '{p}*'" for p in MEMBER_PREFIXES)
+        for k, m in self.con.execute(f'SELECT key, member FROM members WHERE {cond}'):
+            self.mem[k].add(m)
+        self._memo = {}
+
+    def nodes(self):
+        q = ','.join('?' * len(NODE_TYPES))
+        for k, t, label, res, anchors in self.con.execute(
+                f'SELECT key, type, label, resolution, anchors FROM keys WHERE type IN ({q}) AND status NOT IN '
+                f'({",".join("?" * len(RETIRED))}) ORDER BY key', NODE_TYPES + tuple(RETIRED)):
+            yield k, t, label, res, json.loads(anchors)
+
+    def members(self, k):
+        return self.mem.get(k, ())
+
+    def relations(self):
+        retired = tuple(RETIRED)
+        for claim, subj, pred, obj, res in self.con.execute(
+                f'SELECT r.claim, r.subject, r.predicate, r.object, k.resolution FROM relation r JOIN keys k ON k.key = r.claim '
+                f'WHERE k.status NOT IN ({",".join("?" * len(retired))}) ORDER BY r.claim', retired):
+            yield claim, self.lookup(subj), pred, self.lookup(obj), res
+
+    def _key(self, name):
+        """The key a name names (a key itself, an active anchor, or an alias), as State.lookup's first step."""
+        if name in self.type or name in self.next:
+            return name
+        c = self.con
+        for sql in ('SELECT key FROM keys WHERE key = ?', 'SELECT key FROM anchor WHERE anchor = ?',
+                    'SELECT key FROM alias WHERE alias = ?'):
+            row = c.execute(sql, (name,)).fetchone()
+            if row and row[0]:
+                return row[0]
+        return None
+
+    def lookup(self, name):
+        hit = self._memo.get(name)
+        if hit is not None:
+            return hit
+        key = self._key(name)
+        if not key:
+            out = []
+        else:
+            out, todo, seen = [], [key], set()
+            while todo:
+                k = todo.pop()
+                if k in seen:
+                    continue
+                seen.add(k)
+                nxt = self.next.get(k, [])
+                out.extend([] if nxt else [k])
+                todo.extend(nxt)
+            out.sort()
+        if len(self._memo) < 3_000_000:
+            self._memo[name] = out
+        return out
+
+
 def write(name, rows, schema):
     table = pa.Table.from_pylist(rows, schema=schema)
     pq.write_table(table, OUT / f'{name}.parquet')
@@ -116,28 +235,36 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--state', type=Path, default=DEFAULT_DIR)
     ap.add_argument('--db', action='store_true', help='also load the tables into LadybugDB')
+    ap.add_argument('--replay', action='store_true', help='replay the whole log instead of reading the SQLite cache')
+    ap.add_argument('--out', type=Path, help='write the tables here instead of build/graph (a check build)')
     args = ap.parse_args()
+    global OUT
+    if args.out:
+        if args.db:
+            sys.exit('--db writes build/graph/historiography.lbug; leave --out off')
+        OUT = args.out
     shards = sorted(args.state.glob('events-*.jsonl*'))
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, CROSSREF_CITES, AFFILIATIONS) if p.exists()])
-    state = State.load(args.state)
+    state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
 
-    live = {k: v for k, v in state.keys.items() if v['status'] not in RETIRED}
+    types = {}
     people, works, insts = [], [], []
-    for k, v in live.items():
-        anchors = sorted(v['anchors'])
-        members = state.members.get(k, set())
-        base = dict(key=k, label=v['label'], resolution=v['resolution'], anchors=anchors)
-        if v['type'] == 'person':
+    for k, t, label, resolution, anchors in state.nodes():
+        types[k] = t
+        anchors = sorted(anchors)
+        members = state.members(k)
+        base = dict(key=k, label=label, resolution=resolution, anchors=anchors)
+        if t == 'person':
             people.append(dict(base, **{s: first(anchors, s) for s in SCHEMES if s != 'ror'}))
-        elif v['type'] == 'work':
+        elif t == 'work':
             works.append(dict(base, kind=work_kind(anchors, members), lccn=first(anchors, 'lccn'),
                               year=year_of(members, 'year:') or year_of(members, 'lc-first-year:'),
                               # a review's reviewers as printed (key_jstor_reviews: no name-only person keys)
                               reviewer_names=sorted(m.split(':', 1)[1] for m in members if m.startswith('reviewer-name:')),
                               journal=next((m.split(':', 1)[1] for m in members if m.startswith('journal:')), None)))
-        elif v['type'] == 'institution':
+        elif t == 'institution':
             insts.append(dict(base, ror=first(anchors, 'ror')))
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
@@ -147,10 +274,9 @@ def main():
                                                     ('reviewer_names', L), ('journal', s)]))
     report['Institution'] = write('institution', insts, pa.schema([('key', s), ('label', s), ('resolution', s),
                                                                   ('anchors', L), ('ror', s)]))
-    types = {k: v['type'] for k, v in live.items()}
 
     rels = defaultdict(list)
-    for claim, subj, pred, obj in state.relations():
+    for claim, subj, pred, obj, resolution in state.relations():
         if len(subj) != 1 or len(obj) != 1:
             report[f'{pred}_unresolved'] += 1
             continue
@@ -159,7 +285,7 @@ def main():
         if (types.get(a), types.get(b)) != want:
             report[f'{pred}_wrong_types'] += 1
             continue
-        rels[pred.upper()].append({'from': a, 'to': b, 'claim': claim, 'resolution': state.keys[claim]['resolution']})
+        rels[pred.upper()].append({'from': a, 'to': b, 'claim': claim, 'resolution': resolution})
     rel_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s)])
     for name in ('AUTHORED', 'EDITED', 'SUPERVISED', 'PUBLISHED_AS', 'REVIEWS', 'PART_OF'):
         report[name] = write(name.lower(), rels[name], rel_schema)
@@ -226,7 +352,7 @@ def main():
 
     awarded = []
     for w in works:
-        for m in state.members.get(w['key'], ()):
+        for m in state.members(w['key']):
             if m.startswith('awarded-by:'):
                 i = state.lookup(m.split(':', 1)[1])
                 if len(i) == 1 and types.get(i[0]) == 'institution':
@@ -235,8 +361,7 @@ def main():
 
     possible = {}                   # (a, b) -> likelihood
     for person in people:
-        mem = state.members.get(person["key"], ())
-        for m in mem:
+        for m in state.members(person["key"]):
             for prefix, like in (('possible-same:', 'possible'), ('very-likely-same:', 'very_likely')):
                 if m.startswith(prefix):
                     o = state.lookup(m.split(':', 1)[1])
@@ -245,7 +370,7 @@ def main():
                         if possible.get(pair) != 'very_likely':
                             possible[pair] = like
     for person in people:           # a recorded 'not the same' outweighs either
-        for m in state.members.get(person["key"], ()):
+        for m in state.members(person["key"]):
             if m.startswith('not-same:'):
                 o = state.lookup(m.split(':', 1)[1])
                 if len(o) == 1:
