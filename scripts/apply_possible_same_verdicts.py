@@ -15,6 +15,10 @@ scripts/export_possible_same_review.py, brief data/identifiers/possible-same-rev
   on the merged key, where they point at itself and the build ignores them.) --hedge-medium restores the edge.
 - everything else (medium `different`, `unclear`) stays as it is and is listed in held.json for later passes.
 --medium-only processes only the medium `same` verdicts (for batches applied before the rule).
+The merge guard here ignores single-key Wikidata checks (an LC-to-Wikidata check that failed on birth year or name, a
+GND link to a different QID): a pair merge neither settles nor depends on them, and they stay open on the merged key
+(user, 2026-11-10, releasing 18 held pairs). A held 'merge candidate' item on the very pair is settled by recording
+the Terra verdict in review-decisions.json.
 
     python3 scripts/apply_possible_same_verdicts.py <verdicts.jsonl> [...] --out <dir>
 """
@@ -23,7 +27,7 @@ from collections import Counter
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from identifiers import State, DEFAULT_DIR, PUBLIC_SCHEMES
-from merge_guard import blocked_keys
+from merge_guard import SINGLE_KEY_CHECKS, blocked_keys
 import keylog_snapshot
 
 ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -33,7 +37,7 @@ ap.add_argument('--medium-only', action='store_true')
 ap.add_argument('--hedge-medium', action='store_true', help="medium 'same' as very-likely-same edges, not merges")
 args = ap.parse_args()
 state = keylog_snapshot.read_state()  # the SQLite cache (2026-11-09)
-blocked = blocked_keys(state)
+blocked = blocked_keys(state, ignore_single=SINGLE_KEY_CHECKS)
 ops, held, res = [], [], Counter()
 gone = set()
 

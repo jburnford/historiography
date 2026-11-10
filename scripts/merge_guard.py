@@ -14,6 +14,9 @@ Probable links ('probable_dissertation_qid_agrees', 'registry_phd_tie_probable')
 conflicts, and do not block. Queues listed in `superseded-queues.json` (a later run of the same build
 re-evaluated them) are ignored, and a conflict whose keys now resolve to one key is settled (2026-11-01:
 stale items from four AHA runs and three LC-to-Wikidata runs blocked 278 keys).
+A reviewed pair merge may pass `ignore_single`: conflict kinds that ask a question about one key alone (did its
+Wikidata item check out?) which merging that key with another neither settles nor depends on; the question stays
+open on the merged key (user, 2026-11-10: the POSSIBLY_SAME pairs held by LC/Wikidata and GND check failures).
 
     from merge_guard import guarded
     ops, assign, held = plan(state, clusters, guarded(state, merge_ok))
@@ -56,7 +59,10 @@ def decided(path=DECISIONS):
     return {(d['kind'], tuple(sorted(d['keys']))) for d in json.loads(path.read_text())}
 
 
-def conflict_keys(state, queues=QUEUES, decisions=DECISIONS, exclude=None):
+SINGLE_KEY_CHECKS = frozenset({'check_failed', 'key_holds_different_qid'})
+
+
+def conflict_keys(state, queues=QUEUES, decisions=DECISIONS, exclude=None, ignore_single=frozenset()):
     """Current keys named in open identity conflicts in the committed review queues. `exclude`: the running
     build's own output directory, whose earlier queue is the question it is re-evaluating (a merge held once
     must not block itself on every rerun)."""
@@ -77,14 +83,16 @@ def conflict_keys(state, queues=QUEUES, decisions=DECISIONS, exclude=None):
             text = json.dumps(item, ensure_ascii=False)
             keys = {c for k in KEY.findall(text) for c in state.lookup(k)}
             keys |= {state.anchor[a] for a in ANCHOR.findall(text) if a in state.anchor}
+            if len(keys) == 1 and item['kind'] in ignore_single:
+                continue
             if len(keys) > 1 or item['kind'] not in ('merge_candidate', 'shared_lcnaf', 'qid_on_several_canon_keys'):
                 if (item['kind'], tuple(sorted(keys))) not in done:
                     out |= keys
     return out
 
 
-def blocked_keys(state, exclude=None):
-    return pooled_keys(state) | conflict_keys(state, exclude=exclude)
+def blocked_keys(state, exclude=None, ignore_single=frozenset()):
+    return pooled_keys(state) | conflict_keys(state, exclude=exclude, ignore_single=ignore_single)
 
 
 def guarded(state, merge_ok, blocked=None, exclude=None):
