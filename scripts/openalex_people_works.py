@@ -16,6 +16,7 @@ report  The ties per (OpenAlex author, person); an OpenAlex author tied to two p
         candidates.parquet, and the people asked about.
 
     python3 scripts/openalex_people_works.py link --workers 4
+    python3 scripts/openalex_people_works.py doi-lookup [--max-calls 30000]   # graph DOIs outside the harvest
     python3 scripts/openalex_people_works.py report [--show p-145261,p-...]
     python3 scripts/openalex_people_works.py propose --out data/identifiers/openalex-person-works-2026-11-09 [--shard 90000]
 
@@ -123,6 +124,59 @@ def do_file(path):
     return len(cols['author'])
 
 
+def doi_lookup(args):
+    """Graph works with a DOI that the History/HPS harvest does not hold (OpenAlex files them under other topics: Ben
+    Bradley's UBC Press book, 2026-11-09) are fetched from OpenAlex by DOI, 50 per list call, so their authorships can
+    tie an OpenAlex author to the person. Writes doi-lookup/part-NNNNN.jsonl.gz on E: (resumable), then turns them into
+    authorship rows like the harvest files. --max-calls caps the spend (about $0.0001 per call)."""
+    import duckdb, urllib.parse, urllib.request
+    t0 = time.time()
+    setup()
+    db = duckdb.connect(); db.execute("SET memory_limit = '4GB'")
+    have = {d for (d,) in db.execute(f"select distinct doi from read_parquet('{OUT}/rows/*.parquet', union_by_name=true) where doi <> ''").fetchall()}
+    want = sorted(d for d in DOI_WORK if d not in have)
+    calls = (len(want) + 49) // 50
+    print(f'{len(DOI_WORK):,} graph DOIs, {len(want):,} outside the harvest: {calls:,} calls (~${calls * 0.0001:.2f})', flush=True)
+    if calls > args.max_calls:
+        sys.exit(f'more than --max-calls {args.max_calls}; rerun with a higher cap')
+    key = Path(os.path.expanduser('~/.config/openalex/key')).read_text().strip()
+    d = OUT / 'doi-lookup'
+    d.mkdir(parents=True, exist_ok=True)
+    sel = 'id,doi,title,publication_year,type,authorships,primary_location'
+    per_file = 2000
+    for f0 in range(0, len(want), per_file):
+        dest = d / f'part-{f0 // per_file:05d}.jsonl.gz'
+        if dest.exists():
+            continue
+        tmp = dest.with_suffix('.part')
+        with gzip.open(tmp, 'wt', encoding='utf-8') as out:
+            chunk = want[f0:f0 + per_file]
+            for i in range(0, len(chunk), 50):
+                q = dict(filter='doi:' + '|'.join(chunk[i:i + 50]), select=sel, per_page=50, api_key=key)
+                for t in range(6):
+                    try:
+                        with urllib.request.urlopen(urllib.request.Request('https://api.openalex.org/works?' + urllib.parse.urlencode(q),
+                                                                           headers={'User-Agent': 'historiography-kg/0.1'}), timeout=120) as r:
+                            res = json.load(r)['results']
+                        break
+                    except Exception as e:
+                        if getattr(e, 'code', None) in (400, 401, 403):
+                            res = []                     # a malformed DOI in the batch: skip the batch, keep going
+                            break
+                        time.sleep(2 * 2 ** t)
+                else:
+                    res = []
+                for w in res:
+                    out.write(json.dumps(w, ensure_ascii=False) + '\n')
+        os.replace(tmp, dest)
+        print(f'{dest.name}: {time.time() - t0:.0f}s', flush=True)
+    n = 0
+    with mp.get_context('fork').Pool(args.workers) as pool:
+        for r in pool.imap_unordered(do_file, sorted(glob.glob(str(d / 'part-*.jsonl.gz')))):
+            n += r
+    print(f'doi lookup: {n:,} authorship rows added, {time.time() - t0:.0f}s', flush=True)
+
+
 def link(args):
     t0 = time.time()
     setup()
@@ -171,8 +225,10 @@ def screen(db):
             join '{GRAPH}/work.parquet' w on w.key = x.wk
             where x.person in (select distinct person from cand)""").fetchall():
         own[person].append((key, words(label)))
-    strong = {(a, p) for a, p, w, k in db.execute("select author, person, works, tie_kinds from oa_ties").fetchall()
-              if w >= 2 or any('orcid' in t for t in k)}
+    # strong: two or more shared works, the person's ORCID, or one work matched by its exact DOI (2026-11-09, Ben
+    # Bradley: his UBC Press book is his only work OpenAlex files under an author id; names must still agree in propose)
+    strong = {(a, p) for a, p, w, k, m in db.execute("select author, person, works, tie_kinds, matches from oa_ties").fetchall()
+              if w >= 2 or any('orcid' in t for t in k) or 'doi' in m}
     rows = db.execute("select person, author, work, doi, wtype, year, title from cand").fetchall()
     out, rep = [], collections.Counter()
     for person, author, work, doi, wtype, year, title in rows:
@@ -209,7 +265,8 @@ def report(args):
     db = duckdb.connect(); db.execute("SET memory_limit = '8GB'")
     R = f"read_parquet('{OUT}/rows/*.parquet', union_by_name=true)"
     db.execute(f"""create temp table oa_ties as
-        select author, person, count(distinct work) works, list(distinct tie) tie_kinds, min(year) y0, max(year) y1
+        select author, person, count(distinct work) works, list(distinct tie) tie_kinds, list(distinct match) matches,
+               min(year) y0, max(year) y1
         from {R} where person <> '' and author <> '' group by author, person""")
     db.execute("""create temp table clean as select * from oa_ties where author in
                   (select author from oa_ties group by author having count(distinct person) = 1)""")
@@ -347,13 +404,14 @@ def propose(args):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument('phase', choices=('link', 'report', 'propose'))
+    ap.add_argument('phase', choices=('link', 'doi-lookup', 'report', 'propose'))
+    ap.add_argument('--max-calls', type=int, default=30000, help='doi-lookup: refuse to spend more calls than this')
     ap.add_argument('--out', type=Path)
     ap.add_argument('--shard', type=int, default=90000, help='ops per proposal shard (propose)')
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--show')
     args = ap.parse_args()
-    dict(link=link, report=report, propose=propose)[args.phase](args)
+    {'link': link, 'doi-lookup': doi_lookup, 'report': report, 'propose': propose}[args.phase](args)
 
 
 if __name__ == '__main__':
