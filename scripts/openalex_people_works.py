@@ -328,7 +328,8 @@ def propose(args):
     rows = db.execute(f"""select person, author, work, doi, wtype, year, title, venue, name, status, existing from {C}
                           where status in ('add', 'existing?') and wtype not in ('book-review', 'review')""").fetchall()
     db.close(); del db                  # don't hold DuckDB's memory while the key log loads (Fable review, 2026-11-09)
-    state = State.load(DEFAULT_DIR)
+    import keylog_snapshot
+    state = keylog_snapshot.read_state()   # the SQLite cache, read-only (2026-11-10; was a full replay)
     rep, ops, work_new, seen_claim = collections.Counter(), [], {}, set()
 
     def subject(p):
@@ -397,7 +398,7 @@ def propose(args):
         with gzip.open(args.out / f'proposal-{n:02d}.json.gz', 'wt', encoding='utf-8') as f:
             f.write(body)
         if n == 1:          # validate the first shard (the rest follow the same code path)
-            materialise(State.load(DEFAULT_DIR), dict(basis='dry run', ops=ops[i:i + size]), 'dry-run', 'dry-run', inplace=True)
+            materialise(keylog_snapshot.read_state(), dict(basis='dry run', ops=ops[i:i + size]), 'dry-run', 'dry-run', inplace=True)
     rep['shards'] = n
     (args.out / 'report.json').write_text(json.dumps(dict(rep), indent=1) + '\n')
     print('written', len(ops), 'ops in', n, 'shards')
