@@ -144,15 +144,16 @@ def doi_lookup(args):
     d.mkdir(parents=True, exist_ok=True)
     sel = 'id,doi,title,publication_year,type,authorships,primary_location'
     per_file = 2000
-    for f0 in range(0, len(want), per_file):
+    def fetch_file(f0):
         dest = d / f'part-{f0 // per_file:05d}.jsonl.gz'
         if dest.exists():
-            continue
+            return
         tmp = dest.with_suffix('.part')
         with gzip.open(tmp, 'wt', encoding='utf-8') as out:
             chunk = want[f0:f0 + per_file]
             for i in range(0, len(chunk), 50):
                 q = dict(filter='doi:' + '|'.join(chunk[i:i + 50]), select=sel, per_page=50, api_key=key)
+                res = []
                 for t in range(6):
                     try:
                         with urllib.request.urlopen(urllib.request.Request('https://api.openalex.org/works?' + urllib.parse.urlencode(q),
@@ -161,15 +162,15 @@ def doi_lookup(args):
                         break
                     except Exception as e:
                         if getattr(e, 'code', None) in (400, 401, 403):
-                            res = []                     # a malformed DOI in the batch: skip the batch, keep going
-                            break
+                            break                        # a malformed DOI in the batch: skip it, keep going
                         time.sleep(2 * 2 ** t)
-                else:
-                    res = []
                 for w in res:
                     out.write(json.dumps(w, ensure_ascii=False) + '\n')
         os.replace(tmp, dest)
         print(f'{dest.name}: {time.time() - t0:.0f}s', flush=True)
+    import concurrent.futures as cf
+    with cf.ThreadPoolExecutor(6) as ex:                 # six requests in flight, as the harvest ran
+        list(ex.map(fetch_file, range(0, len(want), per_file)))
     n = 0
     with mp.get_context('fork').Pool(args.workers) as pool:
         for r in pool.imap_unordered(do_file, sorted(glob.glob(str(d / 'part-*.jsonl.gz')))):
@@ -407,10 +408,13 @@ def main():
     ap.add_argument('phase', choices=('link', 'doi-lookup', 'report', 'propose'))
     ap.add_argument('--max-calls', type=int, default=30000, help='doi-lookup: refuse to spend more calls than this')
     ap.add_argument('--out', type=Path)
+    ap.add_argument('--work-dir', type=Path, default=None, help='E: folder for rows, ties, candidates (a rerun uses a new one)')
     ap.add_argument('--shard', type=int, default=90000, help='ops per proposal shard (propose)')
     ap.add_argument('--workers', type=int, default=4)
     ap.add_argument('--show')
     args = ap.parse_args()
+    if args.work_dir:
+        globals()['OUT'] = args.work_dir
     {'link': link, 'doi-lookup': doi_lookup, 'report': report, 'propose': propose}[args.phase](args)
 
 
