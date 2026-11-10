@@ -3,6 +3,13 @@
 mint:   every harvested article (Crossref type journal-article) whose DOI the key log does not hold gets a work key
         anchored on the DOI, labelled with its title, `year:` and `journal:` members (as scripts/key_jstor_articles.py
         does for JSTOR items). No person is credited here; the DOI routes do that later.
+        Same article, other DOI (2026-11-09, user: CSSH is in JSTOR under 10.2307/..., in Crossref under Cambridge's
+        10.1017/...): before minting, the publisher DOI is attached to a graph work that is already this article,
+        found by (1) the JSTOR metadata index (/mnt/e/jstor-index.parquet): same journal, year within one, the same
+        whole-title key, and one JSTOR item only, whose DOI the key log holds; else (2) the graph's title + author
+        family index (the export matcher's work_index): year within one, one article/review/other work. A work that
+        already holds a DOI with the same prefix is left alone (two DOIs from one publisher are two records), and a
+        work two harvested records point at gets neither (minted as before, counted).
 export: each reference of each harvested article is matched to one graph work:
         - 'doi': the reference carries a DOI the graph holds (publisher- or Crossref-matched);
         - otherwise the JSTOR session's matcher (data/field-research/jstor-fulltext-2026-11-06/jstor_match_candidates.py:
@@ -26,11 +33,12 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from identifiers import State, DEFAULT_DIR, materialise  # noqa: E402
 
 RAW = '/mnt/e/crossref-refs-2026-11-08'
+JSTOR_INDEX = '/mnt/e/jstor-index.parquet'
 CATALOGUE = ROOT / 'data/journal-catalogue/catalogue.csv'
 
 
-def records():
-    for p in sorted(glob.glob(f'{RAW}/journal_*.jsonl.gz')):
+def records(pattern='journal_*.jsonl.gz'):
+    for p in sorted(glob.glob(f'{RAW}/{pattern}')):
         with gzip.open(p, 'rt', encoding='utf-8') as f:
             for line in f:
                 yield json.loads(line)
@@ -43,11 +51,61 @@ def year_of(it):
         return None
 
 
+def jstor_by_journal(journals):
+    """-> {folded journal title: {whole-title key: [(jstor doi, year)]}} from the JSTOR metadata index, for the
+    harvested journals only."""
+    import duckdb
+    from build_dissertation_citation_graph import fold
+    want = {fold(j) for j in journals if j}
+    db = duckdb.connect(); db.execute("SET memory_limit = '3GB'")
+    names = [c for c, in db.execute(f"select distinct container from '{JSTOR_INDEX}' where container is not null").fetchall()
+             if fold(c) in want]
+    out = collections.defaultdict(lambda: collections.defaultdict(list))
+    if names:
+        for doi, whole, year, container in db.execute(
+                f"select doi, whole, year, container from '{JSTOR_INDEX}' where kind = 'article' and whole is not null "
+                f"and container in (select unnest(?))", [names]).fetchall():
+            out[fold(container)][whole].append((doi, year))
+    return out
+
+
+def same_work(it, title, y, j, state, jstor, idx, m):
+    """-> (live key, route) for a graph work that is this article under another identifier, else (None, reason)."""
+    from build_dissertation_citation_graph import fold
+    from key_lc_works import title_key
+    prefix = it['DOI'].strip().lower().split('/')[0]
+    cands = set()
+    hits = [d for d, jy in jstor.get(fold(j or ''), {}).get(title_key(title), []) if y and jy and abs(jy - y) <= 1]
+    if len(hits) == 1:
+        cands = set(state.lookup('doi:' + hits[0]))
+        route = 'jstor_doi'
+    if not cands:
+        tk = m.tkey(title)
+        if not m.usable(tk):
+            return None, 'title_too_short'
+        fams = {m.family(a.get('family') or '') for a in it.get('author') or []} - {''}
+        for fam in fams:
+            pick, b = m.lookup(idx, tk, fam, y)
+            if b == 'strong':
+                cands |= {k for k, kind, _ in pick if kind in ('article', 'review', 'other')}
+        cands = {c for k in cands for c in state.lookup(k)}
+        route = 'title_author_year'
+    if not cands:
+        return None, 'no_match'
+    if len(cands) > 1:
+        return None, 'two_works'
+    key, = cands
+    if any(a.startswith('doi:' + prefix + '/') for a in state.keys[key]['anchors']):
+        return None, 'same_prefix_doi'
+    return key, route
+
+
 def mint(args):
     state = State.load(DEFAULT_DIR)
     titles = {r['id']: r['title'] for r in csv.DictReader(open(CATALOGUE, encoding='utf-8'))}
     rep, ops, seen = collections.Counter(), [], set()
-    for it in records():
+    todo = []
+    for it in records(args.files):
         rep['records'] += 1
         if it.get('type') != 'journal-article':
             rep['not_journal_article'] += 1; continue
@@ -57,8 +115,33 @@ def mint(args):
         if a in seen:
             rep['duplicate'] += 1; continue
         seen.add(a)
+        todo.append(it)
+    m = matcher()
+    idx, _ = m.work_index()
+    jstor = jstor_by_journal({titles.get(it.get('_journal'), (it.get('container-title') or [''])[0]) for it in todo})
+    found = {}                                       # DOI anchor -> (key, route)
+    for it in todo:
         y, j = year_of(it), titles.get(it.get('_journal'), (it.get('container-title') or [''])[0])
         title = re.sub(r'\s+', ' ', ' '.join(it.get('title') or [])).strip()
+        key, why = same_work(it, title, y, j, state, jstor, idx, m) if title else (None, 'no_title')
+        if key:
+            found['doi:' + it['DOI'].strip().lower()] = (key, why)
+        else:
+            rep['bridge_' + why] += 1
+    per_key = collections.Counter(k for k, _ in found.values())
+    for it in todo:
+        a = 'doi:' + it['DOI'].strip().lower()
+        y, j = year_of(it), titles.get(it.get('_journal'), (it.get('container-title') or [''])[0])
+        title = re.sub(r'\s+', ' ', ' '.join(it.get('title') or [])).strip()
+        if a in found and per_key[found[a][0]] == 1:
+            key, route = found[a]
+            ops.append(dict(event='attach', key=key, anchors=[a], aliases=[], members=[],
+                            basis=f'the same journal article in {j} ({y}) under the publisher DOI, found by '
+                                  f'{route.replace("_", " ")} (scripts/crossref_citations.py)'))
+            rep['attached_' + route] += 1
+            continue
+        if a in found:
+            rep['bridge_key_wanted_twice'] += 1
         ops.append(dict(event='mint', key=f'new:{len(ops)}', type='work',
                         label=title[:400] or f'[untitled article in {j}, {y}]', resolution='recorded', anchors=[a],
                         aliases=[], members=[m for m in (f'year:{y}' if y else '', f'journal:{j}' if j else '') if m],
@@ -91,7 +174,7 @@ def export(args):
     idx, doi_work = m.work_index()
     rep = collections.Counter()
     edges = collections.defaultdict(lambda: [0, set()])         # (citing, cited) -> [references, bases]
-    for it in records():
+    for it in records(args.files):
         citing = doi_work.get(it['DOI'].strip().lower())
         if not citing:
             rep['citing_not_keyed'] += 1; continue
@@ -152,6 +235,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('phase', choices=('mint', 'export'))
     ap.add_argument('--out', type=Path, required=True)
+    ap.add_argument('--files', default='journal_*.jsonl.gz', help='harvest files to read (a pilot: journal_<id>*.jsonl.gz)')
     args = ap.parse_args()
     (mint if args.phase == 'mint' else export)(args)
 
