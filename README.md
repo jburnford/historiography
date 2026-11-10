@@ -1,5 +1,8 @@
 # History in Conversation
 
+> **Reviewing the project?** Start with [ARCHITECTURE.md](ARCHITECTURE.md): the two products (this atlas site and the
+> knowledge graph), every data silo in the repo, in `build/` and on the external drive, and how data flows between them.
+
 *Historians, ideas and debates through time.*
 
 **Public beta.** An interactive, deliberately contestable guide to historiography, from earlier

@@ -1,5 +1,7 @@
 # Project continuity
 
+For the project as a whole (atlas site and knowledge graph, data silos, data flow, rules), read `ARCHITECTURE.md` first. The knowledge graph's identity record is the key log in `data/identifiers/` (design: `PID-PLAN.md`); `MEMORY.md` below is the atlas sessions' continuity log.
+
 Read `MEMORY.md` before starting work. It records the current user direction, dataset state, and handoff for building the visualization after a context reset.
 
 Read `GRAPH-FORMAT.md` before implementing data loading or rendering relationships. Use `DEVELOPMENT.md` for design ideas and `REVISION-NOTES.md` for historical editorial decisions. Earlier counts in historical audit/revision sections are not the current dataset counts.

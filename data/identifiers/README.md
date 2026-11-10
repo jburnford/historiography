@@ -43,7 +43,14 @@ still shows its history. Scripts load the log with `State.load(<directory>)`; a 
 
 ## Commands
 
+Since 2026-11-09 `apply` and the proposal builders read a disposable SQLite cache of the state
+(`build/keylog-state.sqlite`, `scripts/keylog_snapshot.py`) instead of replaying 5.6M events. `apply` writes and
+fsyncs the log first, then updates the cache; the cache refuses to serve if it is behind the log, and `rebuild`
+recreates it from the log. Heavy jobs take `/home/jic823/historiography/.keylog.lock` (flock) one at a time.
+
 ```bash
+python3 scripts/keylog_snapshot.py status | check | rebuild   # the cache: position, compare with a full replay, rebuild
+python3 scripts/identifiers.py compress               # gzip closed shards (read back and compared first)
 python3 scripts/identifiers.py check                  # replay and validate the log; counts by type and status
 python3 scripts/identifiers.py lookup person:eric_hobsbawm   # key, anchor or alias -> current key(s)
 python3 scripts/identifiers.py apply PROPOSAL.json    # the only writer; all-or-nothing under the lock (.json.gz also read)
