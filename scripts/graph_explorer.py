@@ -116,7 +116,8 @@ def build():
                   WHERE type <> 'work' OR weight > 0 OR kind = 'thesis' ORDER BY weight DESC""")
     db.execute("CREATE TABLE anchors AS SELECT lower(unnest(anchors)) AS anchor, key FROM nodes ORDER BY anchor")
     db.execute("DROP TABLE work_w; DROP TABLE person_w")
-    db.execute(f"CREATE TABLE meta AS SELECT now() AS built, '{json.dumps(json.load(open(G / 'report.json')))}' AS report")
+    # the report is passed as a parameter: its text may hold apostrophes
+    db.execute("CREATE TABLE meta AS SELECT now() AS built, ? AS report", [json.dumps(json.load(open(G / 'report.json')))])
     db.close()
     tmp.replace(DB)
     print(f'built {DB} in {time.time() - t0:.0f}s, {DB.stat().st_size / 1e6:.0f} MB')
