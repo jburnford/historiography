@@ -1,0 +1,88 @@
+{
+ "files": {
+  "openalex-guarded.csv.gz": {
+   "rows": 258,
+   "bytes": 28796
+  },
+  "cites.csv.gz": {
+   "rows": 436322,
+   "bytes": 3813484
+  },
+  "works.csv.gz": {
+   "rows": 332183,
+   "bytes": 14733286
+  },
+  "authors.csv.gz": {
+   "rows": 316891,
+   "bytes": 8805515
+  },
+  "chapter-volumes.csv.gz": {
+   "rows": 11642,
+   "bytes": 713233
+  }
+ },
+ "openalex_guards_removed": {
+  "other_venue_raw": 987,
+  "other_venue_other_year": 249,
+  "part_differs": 8,
+  "notice": 1,
+  "total": 258
+ },
+ "corpus": {
+  "citations": 3050449,
+  "matched_before": 690825,
+  "matched_new": 438989,
+  "matched_after": 1129814,
+  "rate_before": 0.2265,
+  "rate_after": 0.3704,
+  "new_citations_by_source": {
+   "lc-full": 319537,
+   "openalex": 91553,
+   "crossref": 27899
+  },
+  "note": "citations = rows of strict-citations.csv.gz (dissertation, cited corpus work); before = the three older crosswalks behind data/graph/cites.csv.gz; after = those or this table"
+ },
+ "authors": {
+  "lc|exact": 57632,
+  "lc|linked": 4812,
+  "lc|none": 164271,
+  "lc|possible": 14759,
+  "links_duplicate_folded": 17607,
+  "links_openalex_dropped_work_taken_by_crossref": 222,
+  "links_openalex_dropped_work_taken_by_lc-full": 21,
+  "links_work_not_exported": 327,
+  "openalex|exact": 8093,
+  "openalex|linked": 23594,
+  "openalex|none": 27107,
+  "openalex|possible": 16623
+ },
+ "works_by_source_kind": {
+  "crossref|article": 25775,
+  "lc-full|book": 239045,
+  "openalex|article": 53223,
+  "openalex|book": 2536,
+  "openalex|chapter": 11604
+ },
+ "lc_comma_basis_works": 11864,
+ "counts": {
+  "agreement_both": 10,
+  "agreement_crossref": 17,
+  "agreement_different": 215,
+  "agreement_openalex": 1,
+  "agreement_reviewed": 30,
+  "agreement_unclear": 2,
+  "agreement_unreviewed": 185,
+  "cited_works": 332183,
+  "cites_pairs": 436322,
+  "components_joining_different_ids": 464,
+  "corpus_works_mapped": 354183,
+  "crossref_rows": 25884,
+  "lc_rows": 259481,
+  "new_works_also_in_old_crosswalks": 0,
+  "old_crosswalk_works": 215150,
+  "openalex_also_lc": 20,
+  "openalex_rows": 69096
+ },
+ "openalex_rows_removed_by_guards": 258,
+ "precedence": "LC > Crossref > OpenAlex; OpenAlex DOI replaced by the Crossref DOI where the agreement check differs (unless reviewed `openalex`; `both` keeps the OpenAlex DOI as an alias); OpenAlex rows after the Crossref guards (part markers, notices, other venue + other year)"
+}

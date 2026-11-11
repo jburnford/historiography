@@ -1,0 +1,4630 @@
+{
+ "date": "2026-11-10",
+ "graph": "build/graph as built 2026-11-10 10:32 (a few hours behind the key log; duplicate merges were being applied meanwhile): person keys are as of that build",
+ "round1": {
+  "params": {
+   "RARE_LC": 0,
+   "RARE_OA": 20,
+   "SPAN_BEFORE": 10,
+   "SPAN_AFTER": 40,
+   "SPAN_MIN": 1,
+   "COCITE_FACT": 0
+  },
+  "gold": {
+   "rows": {
+    "lc-authority-known": 63313,
+    "lc-no-authority": 63313,
+    "openalex-orcid-hidden": 8439
+   },
+   "left_out_name_disagrees": {
+    "lc-authority-known": 347,
+    "lc-no-authority": 347
+   },
+   "namesake_rows": {
+    "lc-namesake": 6359,
+    "openalex-namesake": 177
+   }
+  },
+  "held_out": {
+   "P": {
+    "RARE_LC": 0,
+    "RARE_OA": 20,
+    "SPAN_BEFORE": 10,
+    "SPAN_AFTER": 40,
+    "SPAN_MIN": 1,
+    "COCITE_FACT": 0
+   },
+   "by_mode": {
+    "lc-authority-known": {
+     "gold": 31860,
+     "linked": 18018,
+     "right": 18018,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.5655,
+     "possible": 13397,
+     "none": 445
+    },
+    "lc-no-authority": {
+     "gold": 31860,
+     "linked": 17927,
+     "right": 17927,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.5627,
+     "possible": 13500,
+     "none": 433
+    },
+    "openalex-orcid-hidden": {
+     "gold": 4304,
+     "linked": 3419,
+     "right": 3419,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.7944,
+     "possible": 885,
+     "none": 0
+    }
+   },
+   "namesake": {
+    "lc-namesake": {
+     "gold": 6359,
+     "linked": 7,
+     "right": 7,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.0011,
+     "possible": 4022,
+     "none": 2330
+    },
+    "openalex-namesake": {
+     "gold": 177,
+     "linked": 82,
+     "right": 82,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.4633,
+     "possible": 95,
+     "none": 0
+    }
+   },
+   "namesake_links_by_branch": {
+    "lc-namesake|unique-rare": 3,
+    "lc-namesake|unique-rare-span": 4,
+    "openalex-namesake|unique-second-fact": 72,
+    "openalex-namesake|unique-rare": 10
+   }
+  },
+  "linkage": {
+   "lc": {
+    "positions": 257394,
+    "states": {
+     "exact": {
+      "positions": 63660,
+      "works": 63660,
+      "citing_theses": 99744
+     },
+     "linked": {
+      "positions": 4515,
+      "works": 4515,
+      "citing_theses": 8083
+     },
+     "none": {
+      "positions": 172361,
+      "works": 172361,
+      "citing_theses": 185349
+     },
+     "possible": {
+      "positions": 16858,
+      "works": 16858,
+      "citing_theses": 23898
+     },
+     "possible:one-candidate": {
+      "positions": 10312,
+      "works": 10312,
+      "citing_theses": 14148
+     },
+     "possible:several": {
+      "positions": 6546,
+      "works": 6546,
+      "citing_theses": 9750
+     }
+    },
+    "branches": {
+     "no-compatible-name": 160575,
+     "only-proven-namesakes": 11786,
+     "one-candidate-none-dated": 4502,
+     "one-candidate-common-name": 4100,
+     "several-several-dated": 3626,
+     "unique-rare": 3530,
+     "several-one-dated-no-fact": 1630,
+     "several-none-dated": 1290,
+     "one-candidate-initial-name": 1120,
+     "unique-rare-span": 985,
+     "one-candidate-variant-name": 590
+    },
+    "works_by_best_state": {
+     "exact": {
+      "works": 63660,
+      "citing_theses": 99744
+     },
+     "linked": {
+      "works": 4515,
+      "citing_theses": 8083
+     },
+     "possible": {
+      "works": 16858,
+      "citing_theses": 23898
+     },
+     "none": {
+      "works": 172361,
+      "citing_theses": 185349
+     }
+    },
+    "works_with_an_author_credited": 68175,
+    "works": 257394
+   },
+   "openalex": {
+    "positions": 77677,
+    "states": {
+     "exact": {
+      "positions": 8439,
+      "works": 8076,
+      "citing_theses": 11327
+     },
+     "linked": {
+      "positions": 24030,
+      "works": 23176,
+      "citing_theses": 34172
+     },
+     "none": {
+      "positions": 27794,
+      "works": 24897,
+      "citing_theses": 28176
+     },
+     "possible": {
+      "positions": 17414,
+      "works": 16835,
+      "citing_theses": 23403
+     },
+     "possible:one-candidate": {
+      "positions": 8212,
+      "works": 8045,
+      "citing_theses": 10614
+     },
+     "possible:several": {
+      "positions": 9202,
+      "works": 9004,
+      "citing_theses": 13062
+     }
+    },
+    "branches": {
+     "no-compatible-name": 27750,
+     "unique-rare": 12952,
+     "several-several-dated": 7264,
+     "unique-second-fact": 6222,
+     "one-candidate-common-name": 4130,
+     "unique-rare-span": 3678,
+     "one-candidate-none-dated": 2213,
+     "several-one-dated-no-fact": 1430,
+     "several-one-survives": 1178,
+     "one-candidate-variant-name": 1060,
+     "one-candidate-initial-name": 809,
+     "several-none-dated": 508,
+     "only-proven-namesakes": 44
+    },
+    "works_by_best_state": {
+     "exact": {
+      "works": 8076,
+      "citing_theses": 11327
+     },
+     "linked": {
+      "works": 22766,
+      "citing_theses": 33588
+     },
+     "possible": {
+      "works": 15830,
+      "citing_theses": 21947
+     },
+     "none": {
+      "works": 22424,
+      "citing_theses": 25310
+     }
+    },
+    "works_with_an_author_credited": 30842,
+    "works": 69096
+   }
+  },
+  "candidate_duplicates": {
+   "pairs": 12776,
+   "already_possibly_same": 982,
+   "citing_theses_at_stake": 30596
+  },
+  "hand_checks": {
+   "audit": {
+    "linked": {
+     "correct": 144,
+     "wrong": 3,
+     "probably correct": 3
+    },
+    "linked-fresh": {
+     "correct": 38,
+     "probably correct": 2
+    },
+    "possible": {
+     "should link": 17,
+     "correctly held": 31,
+     "unclear": 2
+    }
+   },
+   "audit_first_draw_still_linked": {
+    "correct": 139,
+    "probably correct": 3
+   },
+   "audit_note": "'linked' was drawn before the OpenAlex-tie and double-family-name fixes, which were designed from its three wrong rows (all three are no longer linked); 'linked-fresh' was drawn after them",
+   "namesake_links_judged": {
+    "lc-namesake|false link": 4,
+    "lc-namesake|same person": 2,
+    "lc-namesake|unclear": 1,
+    "openalex-namesake|same person (54 of 54 read)": 1
+   }
+  }
+ },
+ "gold": {
+  "rows": {
+   "lc-authority-known": 63313,
+   "lc-no-authority": 63313,
+   "openalex-orcid-hidden": 8355
+  },
+  "left_out_name_disagrees": {
+   "lc-authority-known": 347,
+   "lc-no-authority": 347
+  },
+  "namesake_rows": {
+   "lc-namesake": 6359,
+   "openalex-namesake": 177,
+   "lc-masked-author": 7732,
+   "openalex-masked-author": 679
+  }
+ },
+ "round2_trials": {
+  "base": {
+   "RARE_LC": 0,
+   "RARE_OA": 20,
+   "SPAN_BEFORE": 10,
+   "SPAN_AFTER": 20,
+   "SPAN_AFTER_1": 10,
+   "SPAN_MIN": 1,
+   "COCITE_FACT": 0,
+   "FACTS": [
+    "inst",
+    "coauthor",
+    "oa-author-tie",
+    "selfcite"
+   ],
+   "TOPICAL_FULL_ONLY": true,
+   "ORCID_SOFT": true,
+   "FULLNAME": false,
+   "RARE_OA_FULL": 3,
+   "VARIANT": false,
+   "XDATE": []
+  },
+  "tuning_rows": 35556,
+  "namesake_rows": {
+   "lc-namesake": 6359,
+   "openalex-namesake": 177,
+   "lc-masked-author": 7732,
+   "openalex-masked-author": 679
+  },
+  "add_max": 0.0004,
+  "base_namesake_links": {
+   "lc-namesake": 3,
+   "openalex-namesake": 82,
+   "lc-masked-author": 4,
+   "openalex-masked-author": 3
+  },
+  "trials": {
+   "fullname (OpenAlex <= 3)": {
+    "add": {
+     "FULLNAME": true,
+     "RARE_OA_FULL": 3
+    },
+    "gold_new_links": 2978,
+    "gold_new_right": 2978,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "fullname (OpenAlex <= 10)": {
+    "add": {
+     "FULLNAME": true,
+     "RARE_OA_FULL": 10
+    },
+    "gold_new_links": 3111,
+    "gold_new_right": 3111,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "variant spelling rare": {
+    "add": {
+     "VARIANT": true
+    },
+    "gold_new_links": 2,
+    "gold_new_right": 2,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "dating: corpus span": {
+    "add": {
+     "XDATE": [
+      "corpus-span"
+     ]
+    },
+    "gold_new_links": 47,
+    "gold_new_right": 47,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "dating: supervision/affiliation years": {
+    "add": {
+     "XDATE": [
+      "sup-aff"
+     ]
+    },
+    "gold_new_links": 29,
+    "gold_new_right": 29,
+    "gold_lost": 23,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "dating: first citing year - 50": {
+    "add": {
+     "XDATE": [
+      "cites"
+     ]
+    },
+    "gold_new_links": 36,
+    "gold_new_right": 36,
+    "gold_lost": 4,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "fact: journal": {
+    "add": {
+     "FACTS": "+journal"
+    },
+    "gold_new_links": 4,
+    "gold_new_right": 4,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 1
+    },
+    "admitted": false
+   },
+   "fact: own-thesis-cites": {
+    "add": {
+     "FACTS": "+own-thesis-cites"
+    },
+    "gold_new_links": 2,
+    "gold_new_right": 2,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 1
+    },
+    "admitted": false
+   },
+   "fact: student-thesis-cites": {
+    "add": {
+     "FACTS": "+student-thesis-cites"
+    },
+    "gold_new_links": 18,
+    "gold_new_right": 18,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 1,
+     "openalex-masked-author": 0
+    },
+    "admitted": true
+   },
+   "fact: inst-name": {
+    "add": {
+     "FACTS": "+inst-name"
+    },
+    "gold_new_links": 0,
+    "gold_new_right": 0,
+    "gold_lost": 0,
+    "namesake_new_links": {
+     "lc-masked-author": 0,
+     "lc-namesake": 0,
+     "openalex-masked-author": 0
+    },
+    "admitted": false
+   }
+  }
+ },
+ "tuning": {
+  "chosen": {
+   "RARE_LC": 0,
+   "RARE_OA": 20,
+   "SPAN_BEFORE": 10,
+   "SPAN_AFTER": 20,
+   "SPAN_AFTER_1": 10,
+   "SPAN_MIN": 1,
+   "COCITE_FACT": 0,
+   "FACTS": [
+    "inst",
+    "coauthor",
+    "oa-author-tie",
+    "selfcite",
+    "student-thesis-cites"
+   ],
+   "TOPICAL_FULL_ONLY": true,
+   "ORCID_SOFT": true,
+   "FULLNAME": true,
+   "RARE_OA_FULL": 10,
+   "VARIANT": true,
+   "XDATE": [
+    "corpus-span",
+    "sup-aff",
+    "cites"
+   ]
+  },
+  "base": {
+   "RARE_LC": 0,
+   "RARE_OA": 20,
+   "SPAN_BEFORE": 10,
+   "SPAN_AFTER": 20,
+   "SPAN_AFTER_1": 10,
+   "SPAN_MIN": 1,
+   "COCITE_FACT": 0,
+   "FACTS": [
+    "inst",
+    "coauthor",
+    "oa-author-tie",
+    "selfcite"
+   ],
+   "TOPICAL_FULL_ONLY": true,
+   "ORCID_SOFT": true,
+   "FULLNAME": false,
+   "RARE_OA_FULL": 3,
+   "VARIANT": false,
+   "XDATE": []
+  }
+ },
+ "held_out": {
+  "base (round-1 choice, span after 20)": {
+   "P": {
+    "RARE_LC": 0,
+    "RARE_OA": 20,
+    "SPAN_BEFORE": 10,
+    "SPAN_AFTER": 20,
+    "SPAN_AFTER_1": 10,
+    "SPAN_MIN": 1,
+    "COCITE_FACT": 0,
+    "FACTS": [
+     "inst",
+     "coauthor",
+     "oa-author-tie",
+     "selfcite"
+    ],
+    "TOPICAL_FULL_ONLY": true,
+    "ORCID_SOFT": true,
+    "FULLNAME": false,
+    "RARE_OA_FULL": 3,
+    "VARIANT": false,
+    "XDATE": []
+   },
+   "by_mode": {
+    "lc-authority-known": {
+     "gold": 31860,
+     "linked": 16957,
+     "right": 16946,
+     "duplicate_key": 11,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9994,
+     "recall": 0.5322,
+     "possible": 13922,
+     "none": 981
+    },
+    "lc-no-authority": {
+     "gold": 31860,
+     "linked": 16881,
+     "right": 16870,
+     "duplicate_key": 11,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9993,
+     "recall": 0.5298,
+     "possible": 14014,
+     "none": 965
+    },
+    "openalex-orcid-hidden": {
+     "gold": 4252,
+     "linked": 3447,
+     "right": 3447,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.8107,
+     "possible": 805,
+     "none": 0
+    }
+   },
+   "namesake_rows": {
+    "lc-namesake": 6359,
+    "openalex-namesake": 177,
+    "lc-masked-author": 7732,
+    "openalex-masked-author": 679
+   },
+   "namesake_links": {
+    "lc-namesake": 3,
+    "openalex-namesake": 82,
+    "lc-masked-author": 4,
+    "openalex-masked-author": 3
+   },
+   "namesake_links_by_branch": {
+    "lc-namesake|unique-rare": 3,
+    "openalex-namesake|unique-second-fact": 72,
+    "openalex-namesake|unique-rare": 10,
+    "lc-masked-author|unique-rare": 4,
+    "openalex-masked-author|unique-second-fact": 3
+   }
+  },
+  "chosen": {
+   "P": {
+    "RARE_LC": 0,
+    "RARE_OA": 20,
+    "SPAN_BEFORE": 10,
+    "SPAN_AFTER": 20,
+    "SPAN_AFTER_1": 10,
+    "SPAN_MIN": 1,
+    "COCITE_FACT": 0,
+    "FACTS": [
+     "inst",
+     "coauthor",
+     "oa-author-tie",
+     "selfcite",
+     "student-thesis-cites"
+    ],
+    "TOPICAL_FULL_ONLY": true,
+    "ORCID_SOFT": true,
+    "FULLNAME": true,
+    "RARE_OA_FULL": 10,
+    "VARIANT": true,
+    "XDATE": [
+     "corpus-span",
+     "sup-aff",
+     "cites"
+    ]
+   },
+   "by_mode": {
+    "lc-authority-known": {
+     "gold": 31860,
+     "linked": 20121,
+     "right": 20106,
+     "duplicate_key": 15,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9993,
+     "recall": 0.6315,
+     "possible": 10758,
+     "none": 981
+    },
+    "lc-no-authority": {
+     "gold": 31860,
+     "linked": 19931,
+     "right": 19916,
+     "duplicate_key": 15,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9992,
+     "recall": 0.6256,
+     "possible": 10964,
+     "none": 965
+    },
+    "openalex-orcid-hidden": {
+     "gold": 4252,
+     "linked": 3408,
+     "right": 3408,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 0.8015,
+     "possible": 844,
+     "none": 0
+    }
+   },
+   "namesake_rows": {
+    "lc-namesake": 6359,
+    "openalex-namesake": 177,
+    "lc-masked-author": 7732,
+    "openalex-masked-author": 679
+   },
+   "namesake_links": {
+    "lc-namesake": 4,
+    "openalex-namesake": 83,
+    "lc-masked-author": 4,
+    "openalex-masked-author": 3
+   },
+   "namesake_links_by_branch": {
+    "lc-namesake|unique-second-fact": 1,
+    "lc-namesake|unique-rare": 3,
+    "openalex-namesake|unique-rare-fullname": 13,
+    "openalex-namesake|unique-second-fact": 60,
+    "openalex-namesake|unique-rare": 10,
+    "lc-masked-author|unique-rare": 4,
+    "openalex-masked-author|unique-second-fact": 3
+   }
+  }
+ },
+ "held_out_detail_at_99": {
+  "by_mode": {
+   "lc-authority-known": {
+    "gold": 31860,
+    "linked": 20121,
+    "right": 20106,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9993,
+    "recall": 0.6315,
+    "possible": 10758,
+    "none": 981
+   },
+   "lc-no-authority": {
+    "gold": 31860,
+    "linked": 19931,
+    "right": 19916,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9992,
+    "recall": 0.6256,
+    "possible": 10964,
+    "none": 965
+   },
+   "openalex-orcid-hidden": {
+    "gold": 4252,
+    "linked": 3408,
+    "right": 3408,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8015,
+    "possible": 844,
+    "none": 0
+   }
+  },
+  "branch_precision": {
+   "lc-authority-known": {
+    "several-one-survives": {
+     "gold": 2,
+     "linked": 2,
+     "right": 2,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 8148,
+     "linked": 8148,
+     "right": 8140,
+     "duplicate_key": 8,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.999,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-corpus-span": {
+     "gold": 37,
+     "linked": 37,
+     "right": 37,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 3057,
+     "linked": 3057,
+     "right": 3057,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 8809,
+     "linked": 8809,
+     "right": 8806,
+     "duplicate_key": 3,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9997,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-sup-aff": {
+     "gold": 49,
+     "linked": 49,
+     "right": 45,
+     "duplicate_key": 4,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9184,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 6,
+     "linked": 6,
+     "right": 6,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 13,
+     "linked": 13,
+     "right": 13,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   },
+   "openalex-orcid-hidden": {
+    "several-one-survives": {
+     "gold": 110,
+     "linked": 110,
+     "right": 110,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 1175,
+     "linked": 1175,
+     "right": 1175,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 351,
+     "linked": 351,
+     "right": 351,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 481,
+     "linked": 481,
+     "right": 481,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 3,
+     "linked": 3,
+     "right": 3,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 1288,
+     "linked": 1288,
+     "right": 1288,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   },
+   "lc-no-authority": {
+    "several-one-survives": {
+     "gold": 2,
+     "linked": 2,
+     "right": 2,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 8124,
+     "linked": 8124,
+     "right": 8116,
+     "duplicate_key": 8,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.999,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-corpus-span": {
+     "gold": 37,
+     "linked": 37,
+     "right": 37,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 2944,
+     "linked": 2944,
+     "right": 2944,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 8757,
+     "linked": 8757,
+     "right": 8754,
+     "duplicate_key": 3,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9997,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-sup-aff": {
+     "gold": 49,
+     "linked": 49,
+     "right": 45,
+     "duplicate_key": 4,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9184,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 6,
+     "linked": 6,
+     "right": 6,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 12,
+     "linked": 12,
+     "right": 12,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   }
+  },
+  "by_lc_rarity": {
+   "lc-authority-known|lc_n 0": {
+    "gold": 9,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3333,
+    "possible": 6,
+    "none": 0
+   },
+   "lc-authority-known|lc_n 1": {
+    "gold": 20552,
+    "linked": 17046,
+    "right": 17031,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9991,
+    "recall": 0.8294,
+    "possible": 2955,
+    "none": 551
+   },
+   "lc-authority-known|lc_n 2": {
+    "gold": 3489,
+    "linked": 958,
+    "right": 958,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2746,
+    "possible": 2416,
+    "none": 115
+   },
+   "lc-authority-known|lc_n 21+": {
+    "gold": 1609,
+    "linked": 251,
+    "right": 251,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.156,
+    "possible": 1299,
+    "none": 59
+   },
+   "lc-authority-known|lc_n 3-5": {
+    "gold": 3204,
+    "linked": 1026,
+    "right": 1026,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3202,
+    "possible": 2084,
+    "none": 94
+   },
+   "lc-authority-known|lc_n 6-20": {
+    "gold": 2997,
+    "linked": 837,
+    "right": 837,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2793,
+    "possible": 1998,
+    "none": 162
+   },
+   "lc-no-authority|lc_n 0": {
+    "gold": 9,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3333,
+    "possible": 6,
+    "none": 0
+   },
+   "lc-no-authority|lc_n 1": {
+    "gold": 20552,
+    "linked": 16970,
+    "right": 16955,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9991,
+    "recall": 0.8257,
+    "possible": 3033,
+    "none": 549
+   },
+   "lc-no-authority|lc_n 2": {
+    "gold": 3489,
+    "linked": 947,
+    "right": 947,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2714,
+    "possible": 2427,
+    "none": 115
+   },
+   "lc-no-authority|lc_n 21+": {
+    "gold": 1609,
+    "linked": 233,
+    "right": 233,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.1448,
+    "possible": 1325,
+    "none": 51
+   },
+   "lc-no-authority|lc_n 3-5": {
+    "gold": 3204,
+    "linked": 996,
+    "right": 996,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3109,
+    "possible": 2116,
+    "none": 92
+   },
+   "lc-no-authority|lc_n 6-20": {
+    "gold": 2997,
+    "linked": 782,
+    "right": 782,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2609,
+    "possible": 2057,
+    "none": 158
+   },
+   "openalex-orcid-hidden|lc_n 0": {
+    "gold": 549,
+    "linked": 512,
+    "right": 512,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.9326,
+    "possible": 37,
+    "none": 0
+   },
+   "openalex-orcid-hidden|lc_n 1": {
+    "gold": 2354,
+    "linked": 1978,
+    "right": 1978,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8403,
+    "possible": 376,
+    "none": 0
+   },
+   "openalex-orcid-hidden|lc_n 2": {
+    "gold": 384,
+    "linked": 319,
+    "right": 319,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8307,
+    "possible": 65,
+    "none": 0
+   },
+   "openalex-orcid-hidden|lc_n 21+": {
+    "gold": 204,
+    "linked": 60,
+    "right": 60,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2941,
+    "possible": 144,
+    "none": 0
+   },
+   "openalex-orcid-hidden|lc_n 3-5": {
+    "gold": 370,
+    "linked": 291,
+    "right": 291,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7865,
+    "possible": 79,
+    "none": 0
+   },
+   "openalex-orcid-hidden|lc_n 6-20": {
+    "gold": 391,
+    "linked": 248,
+    "right": 248,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6343,
+    "possible": 143,
+    "none": 0
+   }
+  },
+  "by_oa_rarity": {
+   "lc-authority-known|oa_n 0": {
+    "gold": 4512,
+    "linked": 3430,
+    "right": 3425,
+    "duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9985,
+    "recall": 0.7602,
+    "possible": 979,
+    "none": 103
+   },
+   "lc-authority-known|oa_n 1": {
+    "gold": 12553,
+    "linked": 9259,
+    "right": 9252,
+    "duplicate_key": 7,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9992,
+    "recall": 0.7376,
+    "possible": 2936,
+    "none": 358
+   },
+   "lc-authority-known|oa_n 2": {
+    "gold": 6305,
+    "linked": 3993,
+    "right": 3991,
+    "duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9995,
+    "recall": 0.6333,
+    "possible": 2132,
+    "none": 180
+   },
+   "lc-authority-known|oa_n 21+": {
+    "gold": 401,
+    "linked": 28,
+    "right": 28,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.0698,
+    "possible": 362,
+    "none": 11
+   },
+   "lc-authority-known|oa_n 3-5": {
+    "gold": 5369,
+    "linked": 2647,
+    "right": 2646,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9996,
+    "recall": 0.493,
+    "possible": 2540,
+    "none": 182
+   },
+   "lc-authority-known|oa_n 6-20": {
+    "gold": 2720,
+    "linked": 764,
+    "right": 764,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2809,
+    "possible": 1809,
+    "none": 147
+   },
+   "lc-no-authority|oa_n 0": {
+    "gold": 4512,
+    "linked": 3413,
+    "right": 3408,
+    "duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9985,
+    "recall": 0.7564,
+    "possible": 998,
+    "none": 101
+   },
+   "lc-no-authority|oa_n 1": {
+    "gold": 12553,
+    "linked": 9218,
+    "right": 9211,
+    "duplicate_key": 7,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9992,
+    "recall": 0.7343,
+    "possible": 2977,
+    "none": 358
+   },
+   "lc-no-authority|oa_n 2": {
+    "gold": 6305,
+    "linked": 3966,
+    "right": 3964,
+    "duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9995,
+    "recall": 0.629,
+    "possible": 2159,
+    "none": 180
+   },
+   "lc-no-authority|oa_n 21+": {
+    "gold": 401,
+    "linked": 26,
+    "right": 26,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.0648,
+    "possible": 366,
+    "none": 9
+   },
+   "lc-no-authority|oa_n 3-5": {
+    "gold": 5369,
+    "linked": 2591,
+    "right": 2590,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9996,
+    "recall": 0.4826,
+    "possible": 2604,
+    "none": 174
+   },
+   "lc-no-authority|oa_n 6-20": {
+    "gold": 2720,
+    "linked": 717,
+    "right": 717,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2636,
+    "possible": 1860,
+    "none": 143
+   },
+   "openalex-orcid-hidden|oa_n 0": {
+    "gold": 5,
+    "linked": 5,
+    "right": 5,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|oa_n 1": {
+    "gold": 1448,
+    "linked": 1244,
+    "right": 1244,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8591,
+    "possible": 204,
+    "none": 0
+   },
+   "openalex-orcid-hidden|oa_n 2": {
+    "gold": 1227,
+    "linked": 1012,
+    "right": 1012,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8248,
+    "possible": 215,
+    "none": 0
+   },
+   "openalex-orcid-hidden|oa_n 21+": {
+    "gold": 109,
+    "linked": 50,
+    "right": 50,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4587,
+    "possible": 59,
+    "none": 0
+   },
+   "openalex-orcid-hidden|oa_n 3-5": {
+    "gold": 1015,
+    "linked": 811,
+    "right": 811,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.799,
+    "possible": 204,
+    "none": 0
+   },
+   "openalex-orcid-hidden|oa_n 6-20": {
+    "gold": 448,
+    "linked": 286,
+    "right": 286,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6384,
+    "possible": 162,
+    "none": 0
+   }
+  },
+  "by_decade": {
+   "lc-authority-known|1460": {
+    "gold": 1,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-authority-known|1480": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|1490": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|1500": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|1550": {
+    "gold": 2,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|1570": {
+    "gold": 3,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6667,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-authority-known|1580": {
+    "gold": 2,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 2,
+    "none": 0
+   },
+   "lc-authority-known|1590": {
+    "gold": 9,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.1111,
+    "possible": 8,
+    "none": 0
+   },
+   "lc-authority-known|1600": {
+    "gold": 2,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 0,
+    "none": 1
+   },
+   "lc-authority-known|1610": {
+    "gold": 7,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 7,
+    "none": 0
+   },
+   "lc-authority-known|1620": {
+    "gold": 4,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.25,
+    "possible": 3,
+    "none": 0
+   },
+   "lc-authority-known|1630": {
+    "gold": 11,
+    "linked": 4,
+    "right": 4,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3636,
+    "possible": 7,
+    "none": 0
+   },
+   "lc-authority-known|1640": {
+    "gold": 4,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4,
+    "none": 0
+   },
+   "lc-authority-known|1650": {
+    "gold": 11,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2727,
+    "possible": 6,
+    "none": 2
+   },
+   "lc-authority-known|1660": {
+    "gold": 5,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2,
+    "possible": 3,
+    "none": 1
+   },
+   "lc-authority-known|1670": {
+    "gold": 17,
+    "linked": 8,
+    "right": 8,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4706,
+    "possible": 9,
+    "none": 0
+   },
+   "lc-authority-known|1680": {
+    "gold": 14,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2143,
+    "possible": 8,
+    "none": 3
+   },
+   "lc-authority-known|1690": {
+    "gold": 7,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 4,
+    "none": 0
+   },
+   "lc-authority-known|1700": {
+    "gold": 7,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2857,
+    "possible": 4,
+    "none": 1
+   },
+   "lc-authority-known|1710": {
+    "gold": 7,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 2,
+    "none": 2
+   },
+   "lc-authority-known|1720": {
+    "gold": 8,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.125,
+    "possible": 6,
+    "none": 1
+   },
+   "lc-authority-known|1730": {
+    "gold": 14,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 6,
+    "none": 2
+   },
+   "lc-authority-known|1740": {
+    "gold": 21,
+    "linked": 11,
+    "right": 11,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5238,
+    "possible": 9,
+    "none": 1
+   },
+   "lc-authority-known|1750": {
+    "gold": 11,
+    "linked": 8,
+    "right": 8,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7273,
+    "possible": 3,
+    "none": 0
+   },
+   "lc-authority-known|1760": {
+    "gold": 13,
+    "linked": 4,
+    "right": 4,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3077,
+    "possible": 9,
+    "none": 0
+   },
+   "lc-authority-known|1770": {
+    "gold": 31,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3871,
+    "possible": 18,
+    "none": 1
+   },
+   "lc-authority-known|1780": {
+    "gold": 27,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4444,
+    "possible": 15,
+    "none": 0
+   },
+   "lc-authority-known|1790": {
+    "gold": 24,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 11,
+    "none": 1
+   },
+   "lc-authority-known|1800": {
+    "gold": 33,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.1818,
+    "possible": 20,
+    "none": 7
+   },
+   "lc-authority-known|1810": {
+    "gold": 37,
+    "linked": 17,
+    "right": 17,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4595,
+    "possible": 17,
+    "none": 3
+   },
+   "lc-authority-known|1820": {
+    "gold": 43,
+    "linked": 21,
+    "right": 21,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4884,
+    "possible": 18,
+    "none": 4
+   },
+   "lc-authority-known|1830": {
+    "gold": 63,
+    "linked": 31,
+    "right": 31,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4921,
+    "possible": 29,
+    "none": 3
+   },
+   "lc-authority-known|1840": {
+    "gold": 80,
+    "linked": 50,
+    "right": 50,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.625,
+    "possible": 27,
+    "none": 3
+   },
+   "lc-authority-known|1850": {
+    "gold": 101,
+    "linked": 60,
+    "right": 60,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5941,
+    "possible": 37,
+    "none": 4
+   },
+   "lc-authority-known|1860": {
+    "gold": 102,
+    "linked": 54,
+    "right": 54,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5294,
+    "possible": 46,
+    "none": 2
+   },
+   "lc-authority-known|1870": {
+    "gold": 116,
+    "linked": 64,
+    "right": 64,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5517,
+    "possible": 43,
+    "none": 9
+   },
+   "lc-authority-known|1880": {
+    "gold": 159,
+    "linked": 85,
+    "right": 85,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5346,
+    "possible": 66,
+    "none": 8
+   },
+   "lc-authority-known|1890": {
+    "gold": 218,
+    "linked": 105,
+    "right": 105,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4817,
+    "possible": 104,
+    "none": 9
+   },
+   "lc-authority-known|1900": {
+    "gold": 333,
+    "linked": 148,
+    "right": 148,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4444,
+    "possible": 170,
+    "none": 15
+   },
+   "lc-authority-known|1910": {
+    "gold": 345,
+    "linked": 185,
+    "right": 185,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5362,
+    "possible": 144,
+    "none": 16
+   },
+   "lc-authority-known|1920": {
+    "gold": 553,
+    "linked": 315,
+    "right": 315,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5696,
+    "possible": 218,
+    "none": 20
+   },
+   "lc-authority-known|1930": {
+    "gold": 856,
+    "linked": 485,
+    "right": 485,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5666,
+    "possible": 336,
+    "none": 35
+   },
+   "lc-authority-known|1940": {
+    "gold": 857,
+    "linked": 551,
+    "right": 551,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6429,
+    "possible": 262,
+    "none": 44
+   },
+   "lc-authority-known|1950": {
+    "gold": 1275,
+    "linked": 773,
+    "right": 773,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6063,
+    "possible": 444,
+    "none": 58
+   },
+   "lc-authority-known|1960": {
+    "gold": 2769,
+    "linked": 1725,
+    "right": 1725,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.623,
+    "possible": 941,
+    "none": 103
+   },
+   "lc-authority-known|1970": {
+    "gold": 3954,
+    "linked": 2441,
+    "right": 2440,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9996,
+    "recall": 0.6173,
+    "possible": 1379,
+    "none": 134
+   },
+   "lc-authority-known|1980": {
+    "gold": 4524,
+    "linked": 2958,
+    "right": 2956,
+    "duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9993,
+    "recall": 0.6538,
+    "possible": 1456,
+    "none": 110
+   },
+   "lc-authority-known|1990": {
+    "gold": 6142,
+    "linked": 4009,
+    "right": 4008,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9998,
+    "recall": 0.6527,
+    "possible": 1983,
+    "none": 150
+   },
+   "lc-authority-known|2000": {
+    "gold": 6417,
+    "linked": 4216,
+    "right": 4210,
+    "duplicate_key": 6,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9986,
+    "recall": 0.657,
+    "possible": 2025,
+    "none": 176
+   },
+   "lc-authority-known|2010": {
+    "gold": 2612,
+    "linked": 1718,
+    "right": 1713,
+    "duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9971,
+    "recall": 0.6577,
+    "possible": 842,
+    "none": 52
+   },
+   "lc-authority-known|9990": {
+    "gold": 2,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-authority-known|no year": {
+    "gold": 4,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4,
+    "none": 0
+   },
+   "lc-no-authority|1460": {
+    "gold": 1,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-no-authority|1480": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|1490": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|1500": {
+    "gold": 1,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|1550": {
+    "gold": 2,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|1570": {
+    "gold": 3,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6667,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-no-authority|1580": {
+    "gold": 2,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 2,
+    "none": 0
+   },
+   "lc-no-authority|1590": {
+    "gold": 9,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.1111,
+    "possible": 8,
+    "none": 0
+   },
+   "lc-no-authority|1600": {
+    "gold": 2,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 0,
+    "none": 1
+   },
+   "lc-no-authority|1610": {
+    "gold": 7,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 7,
+    "none": 0
+   },
+   "lc-no-authority|1620": {
+    "gold": 4,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.25,
+    "possible": 3,
+    "none": 0
+   },
+   "lc-no-authority|1630": {
+    "gold": 11,
+    "linked": 4,
+    "right": 4,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3636,
+    "possible": 7,
+    "none": 0
+   },
+   "lc-no-authority|1640": {
+    "gold": 4,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4,
+    "none": 0
+   },
+   "lc-no-authority|1650": {
+    "gold": 11,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2727,
+    "possible": 6,
+    "none": 2
+   },
+   "lc-no-authority|1660": {
+    "gold": 5,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2,
+    "possible": 3,
+    "none": 1
+   },
+   "lc-no-authority|1670": {
+    "gold": 17,
+    "linked": 8,
+    "right": 8,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4706,
+    "possible": 9,
+    "none": 0
+   },
+   "lc-no-authority|1680": {
+    "gold": 14,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2143,
+    "possible": 8,
+    "none": 3
+   },
+   "lc-no-authority|1690": {
+    "gold": 7,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 4,
+    "none": 0
+   },
+   "lc-no-authority|1700": {
+    "gold": 7,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2857,
+    "possible": 4,
+    "none": 1
+   },
+   "lc-no-authority|1710": {
+    "gold": 7,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 2,
+    "none": 2
+   },
+   "lc-no-authority|1720": {
+    "gold": 8,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.125,
+    "possible": 6,
+    "none": 1
+   },
+   "lc-no-authority|1730": {
+    "gold": 14,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4286,
+    "possible": 6,
+    "none": 2
+   },
+   "lc-no-authority|1740": {
+    "gold": 21,
+    "linked": 11,
+    "right": 11,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5238,
+    "possible": 9,
+    "none": 1
+   },
+   "lc-no-authority|1750": {
+    "gold": 11,
+    "linked": 8,
+    "right": 8,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7273,
+    "possible": 3,
+    "none": 0
+   },
+   "lc-no-authority|1760": {
+    "gold": 13,
+    "linked": 4,
+    "right": 4,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3077,
+    "possible": 9,
+    "none": 0
+   },
+   "lc-no-authority|1770": {
+    "gold": 31,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.3871,
+    "possible": 18,
+    "none": 1
+   },
+   "lc-no-authority|1780": {
+    "gold": 27,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4444,
+    "possible": 15,
+    "none": 0
+   },
+   "lc-no-authority|1790": {
+    "gold": 24,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 12,
+    "none": 0
+   },
+   "lc-no-authority|1800": {
+    "gold": 33,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.1818,
+    "possible": 21,
+    "none": 6
+   },
+   "lc-no-authority|1810": {
+    "gold": 37,
+    "linked": 17,
+    "right": 17,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4595,
+    "possible": 17,
+    "none": 3
+   },
+   "lc-no-authority|1820": {
+    "gold": 43,
+    "linked": 21,
+    "right": 21,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4884,
+    "possible": 18,
+    "none": 4
+   },
+   "lc-no-authority|1830": {
+    "gold": 63,
+    "linked": 31,
+    "right": 31,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4921,
+    "possible": 29,
+    "none": 3
+   },
+   "lc-no-authority|1840": {
+    "gold": 80,
+    "linked": 50,
+    "right": 50,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.625,
+    "possible": 27,
+    "none": 3
+   },
+   "lc-no-authority|1850": {
+    "gold": 101,
+    "linked": 60,
+    "right": 60,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5941,
+    "possible": 37,
+    "none": 4
+   },
+   "lc-no-authority|1860": {
+    "gold": 102,
+    "linked": 54,
+    "right": 54,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5294,
+    "possible": 46,
+    "none": 2
+   },
+   "lc-no-authority|1870": {
+    "gold": 116,
+    "linked": 64,
+    "right": 64,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5517,
+    "possible": 43,
+    "none": 9
+   },
+   "lc-no-authority|1880": {
+    "gold": 159,
+    "linked": 84,
+    "right": 84,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5283,
+    "possible": 67,
+    "none": 8
+   },
+   "lc-no-authority|1890": {
+    "gold": 218,
+    "linked": 104,
+    "right": 104,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4771,
+    "possible": 105,
+    "none": 9
+   },
+   "lc-no-authority|1900": {
+    "gold": 333,
+    "linked": 144,
+    "right": 144,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.4324,
+    "possible": 174,
+    "none": 15
+   },
+   "lc-no-authority|1910": {
+    "gold": 345,
+    "linked": 184,
+    "right": 184,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5333,
+    "possible": 146,
+    "none": 15
+   },
+   "lc-no-authority|1920": {
+    "gold": 553,
+    "linked": 313,
+    "right": 313,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.566,
+    "possible": 220,
+    "none": 20
+   },
+   "lc-no-authority|1930": {
+    "gold": 856,
+    "linked": 482,
+    "right": 482,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5631,
+    "possible": 339,
+    "none": 35
+   },
+   "lc-no-authority|1940": {
+    "gold": 857,
+    "linked": 544,
+    "right": 544,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6348,
+    "possible": 269,
+    "none": 44
+   },
+   "lc-no-authority|1950": {
+    "gold": 1275,
+    "linked": 768,
+    "right": 768,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6024,
+    "possible": 450,
+    "none": 57
+   },
+   "lc-no-authority|1960": {
+    "gold": 2769,
+    "linked": 1713,
+    "right": 1713,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6186,
+    "possible": 958,
+    "none": 98
+   },
+   "lc-no-authority|1970": {
+    "gold": 3954,
+    "linked": 2422,
+    "right": 2421,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9996,
+    "recall": 0.6125,
+    "possible": 1399,
+    "none": 133
+   },
+   "lc-no-authority|1980": {
+    "gold": 4524,
+    "linked": 2920,
+    "right": 2918,
+    "duplicate_key": 2,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9993,
+    "recall": 0.6454,
+    "possible": 1495,
+    "none": 109
+   },
+   "lc-no-authority|1990": {
+    "gold": 6142,
+    "linked": 3974,
+    "right": 3973,
+    "duplicate_key": 1,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9997,
+    "recall": 0.647,
+    "possible": 2022,
+    "none": 146
+   },
+   "lc-no-authority|2000": {
+    "gold": 6417,
+    "linked": 4176,
+    "right": 4170,
+    "duplicate_key": 6,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9986,
+    "recall": 0.6508,
+    "possible": 2066,
+    "none": 175
+   },
+   "lc-no-authority|2010": {
+    "gold": 2612,
+    "linked": 1696,
+    "right": 1691,
+    "duplicate_key": 5,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9971,
+    "recall": 0.6493,
+    "possible": 864,
+    "none": 52
+   },
+   "lc-no-authority|9990": {
+    "gold": 2,
+    "linked": 1,
+    "right": 1,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5,
+    "possible": 1,
+    "none": 0
+   },
+   "lc-no-authority|no year": {
+    "gold": 4,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4,
+    "none": 0
+   },
+   "openalex-orcid-hidden|1960": {
+    "gold": 3,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.6667,
+    "possible": 1,
+    "none": 0
+   },
+   "openalex-orcid-hidden|1970": {
+    "gold": 24,
+    "linked": 23,
+    "right": 23,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.9583,
+    "possible": 1,
+    "none": 0
+   },
+   "openalex-orcid-hidden|1980": {
+    "gold": 97,
+    "linked": 82,
+    "right": 82,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8454,
+    "possible": 15,
+    "none": 0
+   },
+   "openalex-orcid-hidden|1990": {
+    "gold": 343,
+    "linked": 267,
+    "right": 267,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7784,
+    "possible": 76,
+    "none": 0
+   },
+   "openalex-orcid-hidden|2000": {
+    "gold": 1149,
+    "linked": 934,
+    "right": 934,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8129,
+    "possible": 215,
+    "none": 0
+   },
+   "openalex-orcid-hidden|2010": {
+    "gold": 2123,
+    "linked": 1698,
+    "right": 1698,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7998,
+    "possible": 425,
+    "none": 0
+   },
+   "openalex-orcid-hidden|2020": {
+    "gold": 513,
+    "linked": 402,
+    "right": 402,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7836,
+    "possible": 111,
+    "none": 0
+   }
+  },
+  "by_initial": {
+   "lc-authority-known|full": {
+    "gold": 31012,
+    "linked": 20115,
+    "right": 20100,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9993,
+    "recall": 0.6486,
+    "possible": 9940,
+    "none": 957
+   },
+   "lc-authority-known|initial": {
+    "gold": 821,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 797,
+    "none": 24
+   },
+   "lc-authority-known|variant": {
+    "gold": 27,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2222,
+    "possible": 21,
+    "none": 0
+   },
+   "lc-no-authority|full": {
+    "gold": 31012,
+    "linked": 19925,
+    "right": 19910,
+    "duplicate_key": 15,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9992,
+    "recall": 0.6425,
+    "possible": 10146,
+    "none": 941
+   },
+   "lc-no-authority|initial": {
+    "gold": 821,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 797,
+    "none": 24
+   },
+   "lc-no-authority|variant": {
+    "gold": 27,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.2222,
+    "possible": 21,
+    "none": 0
+   },
+   "openalex-orcid-hidden|full": {
+    "gold": 4104,
+    "linked": 3301,
+    "right": 3301,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.8043,
+    "possible": 803,
+    "none": 0
+   },
+   "openalex-orcid-hidden|initial": {
+    "gold": 29,
+    "linked": 17,
+    "right": 17,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.5862,
+    "possible": 12,
+    "none": 0
+   },
+   "openalex-orcid-hidden|surname-variant": {
+    "gold": 109,
+    "linked": 80,
+    "right": 80,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 0.7339,
+    "possible": 29,
+    "none": 0
+   },
+   "openalex-orcid-hidden|variant": {
+    "gold": 10,
+    "linked": 10,
+    "right": 10,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   }
+  },
+  "by_branch_all": {
+   "lc-authority-known|linked|several-one-survives": {
+    "gold": 2,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare": {
+    "gold": 8148,
+    "linked": 8148,
+    "right": 8140,
+    "duplicate_key": 8,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.999,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare-corpus-span": {
+    "gold": 37,
+    "linked": 37,
+    "right": 37,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare-fullname": {
+    "gold": 3057,
+    "linked": 3057,
+    "right": 3057,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare-span": {
+    "gold": 8809,
+    "linked": 8809,
+    "right": 8806,
+    "duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9997,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare-sup-aff": {
+    "gold": 49,
+    "linked": 49,
+    "right": 45,
+    "duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9184,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-rare-variant": {
+    "gold": 6,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|linked|unique-second-fact": {
+    "gold": 13,
+    "linked": 13,
+    "right": 13,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-authority-known|none|only-proven-namesakes": {
+    "gold": 981,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 0,
+    "none": 981
+   },
+   "lc-authority-known|possible|one-candidate-common-name": {
+    "gold": 5350,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 5350,
+    "none": 0
+   },
+   "lc-authority-known|possible|one-candidate-initial-name": {
+    "gold": 688,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 688,
+    "none": 0
+   },
+   "lc-authority-known|possible|one-candidate-none-dated": {
+    "gold": 2596,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 2596,
+    "none": 0
+   },
+   "lc-authority-known|possible|one-candidate-variant-name": {
+    "gold": 22,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 22,
+    "none": 0
+   },
+   "lc-authority-known|possible|several-none-dated": {
+    "gold": 35,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 35,
+    "none": 0
+   },
+   "lc-authority-known|possible|several-one-dated-no-fact": {
+    "gold": 578,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 578,
+    "none": 0
+   },
+   "lc-authority-known|possible|several-several-dated": {
+    "gold": 1489,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 1489,
+    "none": 0
+   },
+   "lc-no-authority|linked|several-one-survives": {
+    "gold": 2,
+    "linked": 2,
+    "right": 2,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare": {
+    "gold": 8124,
+    "linked": 8124,
+    "right": 8116,
+    "duplicate_key": 8,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.999,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare-corpus-span": {
+    "gold": 37,
+    "linked": 37,
+    "right": 37,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare-fullname": {
+    "gold": 2944,
+    "linked": 2944,
+    "right": 2944,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare-span": {
+    "gold": 8757,
+    "linked": 8757,
+    "right": 8754,
+    "duplicate_key": 3,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9997,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare-sup-aff": {
+    "gold": 49,
+    "linked": 49,
+    "right": 45,
+    "duplicate_key": 4,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 0.9184,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-rare-variant": {
+    "gold": 6,
+    "linked": 6,
+    "right": 6,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|linked|unique-second-fact": {
+    "gold": 12,
+    "linked": 12,
+    "right": 12,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "lc-no-authority|none|only-proven-namesakes": {
+    "gold": 965,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 0,
+    "none": 965
+   },
+   "lc-no-authority|possible|one-candidate-common-name": {
+    "gold": 4899,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4899,
+    "none": 0
+   },
+   "lc-no-authority|possible|one-candidate-initial-name": {
+    "gold": 627,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 627,
+    "none": 0
+   },
+   "lc-no-authority|possible|one-candidate-none-dated": {
+    "gold": 2514,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 2514,
+    "none": 0
+   },
+   "lc-no-authority|possible|one-candidate-variant-name": {
+    "gold": 22,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 22,
+    "none": 0
+   },
+   "lc-no-authority|possible|several-none-dated": {
+    "gold": 76,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 76,
+    "none": 0
+   },
+   "lc-no-authority|possible|several-one-dated-no-fact": {
+    "gold": 848,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 848,
+    "none": 0
+   },
+   "lc-no-authority|possible|several-several-dated": {
+    "gold": 1978,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 1978,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|several-one-survives": {
+    "gold": 110,
+    "linked": 110,
+    "right": 110,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|unique-rare": {
+    "gold": 1175,
+    "linked": 1175,
+    "right": 1175,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|unique-rare-fullname": {
+    "gold": 351,
+    "linked": 351,
+    "right": 351,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|unique-rare-span": {
+    "gold": 481,
+    "linked": 481,
+    "right": 481,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|unique-rare-variant": {
+    "gold": 3,
+    "linked": 3,
+    "right": 3,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|linked|unique-second-fact": {
+    "gold": 1288,
+    "linked": 1288,
+    "right": 1288,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": 1.0,
+    "precision_strict_key": 1.0,
+    "recall": 1.0,
+    "possible": 0,
+    "none": 0
+   },
+   "openalex-orcid-hidden|possible|one-candidate-common-name": {
+    "gold": 10,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 10,
+    "none": 0
+   },
+   "openalex-orcid-hidden|possible|one-candidate-none-dated": {
+    "gold": 5,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 5,
+    "none": 0
+   },
+   "openalex-orcid-hidden|possible|several-none-dated": {
+    "gold": 1,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 1,
+    "none": 0
+   },
+   "openalex-orcid-hidden|possible|several-one-dated-no-fact": {
+    "gold": 4,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 4,
+    "none": 0
+   },
+   "openalex-orcid-hidden|possible|several-several-dated": {
+    "gold": 824,
+    "linked": 0,
+    "right": 0,
+    "duplicate_key": 0,
+    "wrong": 0,
+    "precision": null,
+    "precision_strict_key": null,
+    "recall": 0.0,
+    "possible": 824,
+    "none": 0
+   }
+  },
+  "branch_recall": {
+   "lc-authority-known": {
+    "not linked": {
+     "gold": 11739,
+     "linked": 0,
+     "right": 0,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": null,
+     "precision_strict_key": null,
+     "recall": 0.0,
+     "possible": 10758,
+     "none": 981
+    },
+    "several-one-survives": {
+     "gold": 2,
+     "linked": 2,
+     "right": 2,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 8148,
+     "linked": 8148,
+     "right": 8140,
+     "duplicate_key": 8,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.999,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-corpus-span": {
+     "gold": 37,
+     "linked": 37,
+     "right": 37,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 3057,
+     "linked": 3057,
+     "right": 3057,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 8809,
+     "linked": 8809,
+     "right": 8806,
+     "duplicate_key": 3,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9997,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-sup-aff": {
+     "gold": 49,
+     "linked": 49,
+     "right": 45,
+     "duplicate_key": 4,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9184,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 6,
+     "linked": 6,
+     "right": 6,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 13,
+     "linked": 13,
+     "right": 13,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   },
+   "openalex-orcid-hidden": {
+    "not linked": {
+     "gold": 844,
+     "linked": 0,
+     "right": 0,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": null,
+     "precision_strict_key": null,
+     "recall": 0.0,
+     "possible": 844,
+     "none": 0
+    },
+    "several-one-survives": {
+     "gold": 110,
+     "linked": 110,
+     "right": 110,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 1175,
+     "linked": 1175,
+     "right": 1175,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 351,
+     "linked": 351,
+     "right": 351,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 481,
+     "linked": 481,
+     "right": 481,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 3,
+     "linked": 3,
+     "right": 3,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 1288,
+     "linked": 1288,
+     "right": 1288,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   },
+   "lc-no-authority": {
+    "not linked": {
+     "gold": 11929,
+     "linked": 0,
+     "right": 0,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": null,
+     "precision_strict_key": null,
+     "recall": 0.0,
+     "possible": 10964,
+     "none": 965
+    },
+    "several-one-survives": {
+     "gold": 2,
+     "linked": 2,
+     "right": 2,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare": {
+     "gold": 8124,
+     "linked": 8124,
+     "right": 8116,
+     "duplicate_key": 8,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.999,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-corpus-span": {
+     "gold": 37,
+     "linked": 37,
+     "right": 37,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-fullname": {
+     "gold": 2944,
+     "linked": 2944,
+     "right": 2944,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-span": {
+     "gold": 8757,
+     "linked": 8757,
+     "right": 8754,
+     "duplicate_key": 3,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9997,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-sup-aff": {
+     "gold": 49,
+     "linked": 49,
+     "right": 45,
+     "duplicate_key": 4,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 0.9184,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-rare-variant": {
+     "gold": 6,
+     "linked": 6,
+     "right": 6,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    },
+    "unique-second-fact": {
+     "gold": 12,
+     "linked": 12,
+     "right": 12,
+     "duplicate_key": 0,
+     "wrong": 0,
+     "precision": 1.0,
+     "precision_strict_key": 1.0,
+     "recall": 1.0,
+     "possible": 0,
+     "none": 0
+    }
+   }
+  }
+ },
+ "linkage": {
+  "lc": {
+   "positions": 257394,
+   "states": {
+    "exact": {
+     "positions": 63660,
+     "works": 63660,
+     "citing_theses": 99744
+    },
+    "linked": {
+     "positions": 5324,
+     "works": 5324,
+     "citing_theses": 9624
+    },
+    "none": {
+     "positions": 172748,
+     "works": 172748,
+     "citing_theses": 185882
+    },
+    "possible": {
+     "positions": 15662,
+     "works": 15662,
+     "citing_theses": 21824
+    },
+    "possible:one-candidate": {
+     "positions": 9308,
+     "works": 9308,
+     "citing_theses": 12360
+    },
+    "possible:several": {
+     "positions": 6354,
+     "works": 6354,
+     "citing_theses": 9464
+    }
+   },
+   "branches": {
+    "no-compatible-name": 160575,
+    "only-proven-namesakes": 12173,
+    "several-several-dated": 3877,
+    "one-candidate-none-dated": 3863,
+    "one-candidate-common-name": 3675,
+    "unique-rare": 3527,
+    "several-one-dated-no-fact": 1375,
+    "one-candidate-initial-name": 1193,
+    "several-none-dated": 1102,
+    "unique-rare-span": 957,
+    "one-candidate-variant-name": 575,
+    "unique-rare-fullname": 569,
+    "unique-rare-sup-aff": 220,
+    "unique-rare-variant": 26,
+    "unique-rare-corpus-span": 10,
+    "several-one-survives": 8,
+    "unique-second-fact": 7,
+    "one-candidate-surname-variant-name": 2
+   },
+   "works_by_best_state": {
+    "exact": {
+     "works": 63660,
+     "citing_theses": 99744
+    },
+    "linked": {
+     "works": 5324,
+     "citing_theses": 9624
+    },
+    "possible": {
+     "works": 15662,
+     "citing_theses": 21824
+    },
+    "none": {
+     "works": 172748,
+     "citing_theses": 185882
+    }
+   },
+   "works_with_an_author_credited": 68984,
+   "works": 257394
+  },
+  "openalex": {
+   "positions": 77677,
+   "states": {
+    "exact": {
+     "positions": 8355,
+     "works": 7995,
+     "citing_theses": 11213
+    },
+    "linked": {
+     "positions": 24386,
+     "works": 23517,
+     "citing_theses": 34682
+    },
+    "none": {
+     "positions": 27794,
+     "works": 24897,
+     "citing_theses": 28176
+    },
+    "possible": {
+     "positions": 17142,
+     "works": 16584,
+     "citing_theses": 23020
+    },
+    "possible:one-candidate": {
+     "positions": 7672,
+     "works": 7532,
+     "citing_theses": 9822
+    },
+    "possible:several": {
+     "positions": 9470,
+     "works": 9259,
+     "citing_theses": 13466
+    }
+   },
+   "branches": {
+    "no-compatible-name": 27750,
+    "unique-rare": 12962,
+    "several-several-dated": 7659,
+    "unique-second-fact": 4838,
+    "one-candidate-common-name": 3505,
+    "unique-rare-span": 3324,
+    "one-candidate-none-dated": 2350,
+    "unique-rare-fullname": 2219,
+    "several-one-dated-no-fact": 1386,
+    "several-one-survives": 935,
+    "one-candidate-initial-name": 791,
+    "one-candidate-surname-variant-name": 688,
+    "several-none-dated": 425,
+    "one-candidate-variant-name": 338,
+    "unique-rare-sup-aff": 86,
+    "only-proven-namesakes": 44,
+    "unique-rare-variant": 18,
+    "unique-rare-corpus-span": 4
+   },
+   "works_by_best_state": {
+    "exact": {
+     "works": 7995,
+     "citing_theses": 11213
+    },
+    "linked": {
+     "works": 23097,
+     "citing_theses": 34090
+    },
+    "possible": {
+     "works": 15580,
+     "citing_theses": 21559
+    },
+    "none": {
+     "works": 22424,
+     "citing_theses": 25310
+    }
+   },
+   "works_with_an_author_credited": 31092,
+   "works": 69096
+  },
+  "top_possible": [
+   {
+    "source": "lc",
+    "work_id": "W:cardoso|os metodos da historia",
+    "title": "Os métodos da história : introduc̜ão aos problemas, métodos e técnicas da história demográfica, econômica e social",
+    "year": 1983,
+    "name": "Cardoso, Ciro Flamarion Santana.",
+    "citing_theses": 44,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-130697": "Cardoso, Ciro Flamarion",
+     "p-188469": "Ciro Flamarion Santana Cardoso",
+     "p-189156": "Ciro Flamarion Santana Cardoso"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:johnson|dictionary of the english language",
+    "title": "A dictionary of the English language: in which the words are deduced from their originals, and illustrated in their different significations by examples from the best writers : to which are prefixed, a history of the language, and an English grammar",
+    "year": 1755,
+    "name": "Johnson, Samuel, 1709-1784.",
+    "citing_theses": 40,
+    "branch": "several-none-dated",
+    "candidates": {
+     "p-1251": "Samuel Johnson",
+     "p-183829": "Sam Johnson"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:streets|martial races",
+    "title": "Martial races : the military, race, and masculinity in British imperial culture, 1857-1914",
+    "year": 2004,
+    "name": "Streets-Salter, Heather.",
+    "citing_theses": 37,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-73234": "Streets-Salter, Heather",
+     "p-90377": "Heather Streets-Salter"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:santos|historia economica da amazonia 1800 1920",
+    "title": "História econômica da Amazônia (1800-1920)",
+    "year": 1980,
+    "name": "Santos, Roberto.",
+    "citing_theses": 35,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-186013": "Santos, Roberta Fernandes dos"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:porter|vertical mosaic",
+    "title": "The vertical mosaic; an analysis of social class and power in Canada",
+    "year": 1965,
+    "name": "Porter, John A.",
+    "citing_theses": 34,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-121335": "Porter, John",
+     "p-142574": "Porter, John",
+     "p-64814": "Porter, John",
+     "p-64815": "John Porter"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:silva|inventando a nacao",
+    "title": "Inventando a nação : intelectuais ilustrados e estadistas luso-brasileiros na crise do antigo regime português, 1750-1822",
+    "year": 2006,
+    "name": "Silva, Ana Rosa Cloclet da.",
+    "citing_theses": 31,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-81976": "Silva, Ana"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:benevides|udn e o udenismo",
+    "title": "A UDN e o udenismo : ambigüidades do liberalismo brasileiro, 1945-1965",
+    "year": 1981,
+    "name": "Benevides, Maria Victoria de Mesquita.",
+    "citing_theses": 30,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-132604": "Benevides, Maria Victória de Mesquita"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:smith|sacred feathers",
+    "title": "Sacred feathers : the Reverend Peter Jones (Kahkewaquonaby) & the Mississauga Indians",
+    "year": 1987,
+    "name": "Smith, Donald B.",
+    "citing_theses": 30,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-315": "Donald B. Smith",
+     "p-71355": "Smith, Donald",
+     "p-71356": "Smith, Donald",
+     "p-71357": "Smith, Donald",
+     "p-71358": "Smith, Donald",
+     "p-71359": "Smith, Donald"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:oliveira|astucia liberal",
+    "title": "A astúcia liberal : relações de mercado e projetos políticos no Rio de Janeiro, 1820-1824",
+    "year": 1999,
+    "name": "Oliveira, Cecilia Helena de Salles.",
+    "citing_theses": 29,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-188501": "Cecilia Helena Lorenzini de Salles Oliveira",
+     "p-189275": "Cecilia Helena Lorenzini de Salles Oliveira"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:benevides|o governo kubitschek",
+    "title": "O governo Kubitschek : desenvolvimento econômico e estabilidade política, 1956-1961",
+    "year": 1976,
+    "name": "Benevides, Maria Victoria de Mesquita.",
+    "citing_theses": 27,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-132604": "Benevides, Maria Victória de Mesquita"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:novinsky|cristaos novos na bahia",
+    "title": "Cristãos novos na Bahia; [história",
+    "year": 1972,
+    "name": "Novinsky, Anita.",
+    "citing_theses": 26,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-132482": "Novinsky, Anita Waingort",
+     "p-188429": "Anita Waingort Novinsky",
+     "p-189265": "Anita Waingort Novinsky"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:bellotto|autoridade e conflito no brasil colonial",
+    "title": "Autoridade e conflito no Brasil colonial : o governo do Morgado de Mateus em São Paulo, 1765-1775",
+    "year": 1979,
+    "name": "Bellotto, Heloísa Liberalli.",
+    "citing_theses": 25,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-188471": "Heloisa Liberalli Bellotto",
+     "p-189288": "Heloisa Liberalli Bellotto"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:souza|reis negros no brasil escravista",
+    "title": "Reis negros no Brasil escravista : história da festa de coroação de rei congo",
+    "year": 2002,
+    "name": "Souza, Marina de Mello e.",
+    "citing_theses": 25,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-188515": "Marina de Mello E Souza",
+     "p-189327": "Marina de Mello E Souza"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:serbin|dialogos na sombra",
+    "title": "Diálogos na sombra : bispos e militares, tortura e justiça social na ditadura",
+    "year": 2001,
+    "name": "Serbin, Ken.",
+    "citing_theses": 23,
+    "branch": "one-candidate-variant-name",
+    "candidates": {
+     "p-69931": "Serbin, Kenneth P"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:araujo|os caminhos da riqueza dos paulistanos na primeira metade do oitocentos",
+    "title": "Os caminhos da riqueza dos paulistanos na primeira metade do oitocentos",
+    "year": 2006,
+    "name": "Araújo, Maria Lucília Viveiros.",
+    "citing_theses": 22,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-187770": "Araujo, Maria Lucília Viveiros"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:nicholson|canadian expeditionary force 1914 1919",
+    "title": "Canadian Expeditionary Force, 1914-1919 : official history of the Canadian Army in the First World War",
+    "year": 1962,
+    "name": "Nicholson, Gerald W. L.",
+    "citing_theses": 22,
+    "branch": "one-candidate-initial-name",
+    "candidates": {
+     "p-459": "G. W. L. Nicholson"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:taylor|transportation revolution 1815 1860",
+    "title": "The transportation revolution, 1815-1860",
+    "year": 1951,
+    "name": "Taylor, George Rogers, 1895-",
+    "citing_theses": 22,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-21224": "Greg Taylor",
+     "p-74059": "Taylor, George",
+     "p-8906": "Greig Taylor"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:reis|amazonia e a cobica internacional",
+    "title": "A Amazônia e a cobiça internacional",
+    "year": 1960,
+    "name": "Reis, Arthur Cezar Ferreira, 1906-",
+    "citing_theses": 21,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-186278": "Reis, Arthur Ferreira"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:tyrrell|transnational nation",
+    "title": "Transnational nation : United States history in global perspective since 1789",
+    "year": 2015,
+    "name": "Tyrrell, Ian.",
+    "citing_theses": 21,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-171293": "Ian Tyrrell",
+     "p-3860": "Tyrrell, Ian"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:jones|masters of the universe",
+    "title": "Masters of the universe : Hayek, Friedman, and the birth of neoliberal politics",
+    "year": 2012,
+    "name": "Jones, Daniel Stedman.",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-15457": "Daniel Jones",
+     "p-50161": "Jones, Daniel",
+     "p-50162": "Jones, Daniel",
+     "p-50163": "Jones, Daniel",
+     "p-50164": "Jones, Daniel"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:lee|making a world after empire",
+    "title": "Making a world after empire : the Bandung moment and its political afterlives",
+    "year": 2010,
+    "name": "Lee, Christopher J.",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-144081": "Lee, Christopher J. (Christopher Joonhai)",
+     "p-162037": "Christopher Lee",
+     "p-53895": "Lee, Christopher",
+     "p-53896": "Lee, Christopher",
+     "p-6267": "Christopher J. Lee"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:leopold|sand county almanac",
+    "title": "A Sand County almanac. With other essays on conservation from Round River",
+    "year": 1966,
+    "name": "Leopold, Aldo, 1886-1948.",
+    "citing_theses": 20,
+    "branch": "one-candidate-common-name",
+    "candidates": {
+     "p-33": "Aldo Leopold"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:novinsky|inquisicao",
+    "title": "Inquisição : inventários de bens confiscados a cristãos novos : fontes para a história de Portugal e do Brasil",
+    "year": 1976,
+    "name": "Novinsky, Anita.",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-132482": "Novinsky, Anita Waingort",
+     "p-188429": "Anita Waingort Novinsky",
+     "p-189265": "Anita Waingort Novinsky"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:padilla|rural resistance in the land of zapata",
+    "title": "Rural resistance in the land of Zapata : the Jaramillista Movement and the myth of the Pax Priísta, 1940-1962",
+    "year": 2008,
+    "name": "Padilla, Tanalis, 1973-",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-122986": "Padilla, Tanalís",
+     "p-62933": "Padilla, Tanalis"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:scheer|are emotions a kind of practice and is that what makes them have a history|a",
+    "title": "ARE EMOTIONS A KIND OF PRACTICE (AND IS THAT WHAT MAKES THEM HAVE A HISTORY)? A BOURDIEUIAN APPROACH TO UNDERSTANDING EMOTION",
+    "year": 2012,
+    "name": "Monique Scheer",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-117503": "Scheer, Monique",
+     "p-164770": "Monique Scheer",
+     "p-164771": "Monique Scheer",
+     "p-172643": "Monique Scheer"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:scott|against the grain",
+    "title": "Against the Grain",
+    "year": 2017,
+    "name": "JAMES C. SCOTT",
+    "citing_theses": 20,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-636": "James C. Scott",
+     "p-69617": "Scott, James"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:adams|works of john adams",
+    "title": "The works of John Adams, second President of the United States",
+    "year": 1969,
+    "name": "Adams, John, 1735-1826.",
+    "citing_theses": 19,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-178426": "John Adams"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:brouwer|new women for god",
+    "title": "New women for God : Canadian Presbyterian women and India missions, 1876-1914",
+    "year": 1990,
+    "name": "Brouwer, Ruth Compton, 1941-",
+    "citing_theses": 19,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-1729": "Brouwer, Ruth Compton",
+     "p-31833": "Brouwer, Ruth"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:clark|working life of women in the seventeenth century",
+    "title": "Working life of women in the seventeenth century",
+    "year": 1968,
+    "name": "Clark, Alice.",
+    "citing_theses": 19,
+    "branch": "several-none-dated",
+    "candidates": {
+     "p-148988": "A. Kim Clark",
+     "p-149340": "Alice Clark",
+     "p-34672": "Clark, Alice",
+     "p-98448": "Clark, A. L. C."
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:lee|orientals",
+    "title": "Orientals : Asian Americans in popular culture",
+    "year": 1999,
+    "name": "Lee, Robert G., 1947-",
+    "citing_theses": 19,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-183465": "Robert Lee",
+     "p-53961": "Lee, Robert",
+     "p-53962": "Lee, Robert"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:lenin|collected works",
+    "title": "Collected works",
+    "year": 1960,
+    "name": "Lenin, Vladimir Il'ich, 1870-1924.",
+    "citing_theses": 19,
+    "branch": "one-candidate-initial-name",
+    "candidates": {
+     "p-1374": "V. I. Lenin"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:whyte|organization man",
+    "title": "The organization man",
+    "year": 1956,
+    "name": "Whyte, William Hollingsworth.",
+    "citing_theses": 19,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-129956": "Whyte, William H., Jr",
+     "p-190270": "William Whyte",
+     "p-3965": "Whyte, William"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:brennan|praetorship in the roman republic",
+    "title": "The praetorship in the Roman Republic",
+    "year": 2000,
+    "name": "Brennan, T. Corey.",
+    "citing_theses": 18,
+    "branch": "one-candidate-initial-name",
+    "candidates": {
+     "p-23778": "Timothy Brennan"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:carreira|as companhias pombalinas de navegacao comercio e trafico de escravos entre a cos",
+    "title": "As companhias pombalinas de navegac̜ão, comércio e tráfico de escravos entre a costa africana e o nordeste brasileiro",
+    "year": 1969,
+    "name": "Carreira, António.",
+    "citing_theses": 18,
+    "branch": "one-candidate-common-name",
+    "candidates": {
+     "p-131276": "Carreira, António"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:newitt|historia de mocambique",
+    "title": "Historia de Moçambique",
+    "year": 1997,
+    "name": "Newitt, Malyn.",
+    "citing_theses": 18,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-170880": "Malyn Newitt",
+     "p-3188": "Newitt, Malyn"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:williams|radical reformation",
+    "title": "The Radical Reformation",
+    "year": 1962,
+    "name": "Williams, George Huntston, 1914-",
+    "citing_theses": 18,
+    "branch": "one-candidate-common-name",
+    "candidates": {
+     "p-78709": "Williams, George"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:aubert|blood of france|a",
+    "title": "\"The Blood of France\": Race and Purity of Blood in the French Atlantic World",
+    "year": 2004,
+    "name": "Guillaume Aubert",
+    "citing_theses": 18,
+    "branch": "one-candidate-common-name",
+    "candidates": {
+     "p-85825": "Aubert, Guillaume"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:adams|memoirs of john quincy adams comprising portions of his diary from 1795 to 1848",
+    "title": "Memoirs of John Quincy Adams, comprising portions of his diary from 1795 to 1848",
+    "year": 1874,
+    "name": "Adams, John Quincy, 1767-1848.",
+    "citing_theses": 17,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-178426": "John Adams"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:cardoso|economia e sociedade em areas coloniais perifericas",
+    "title": "Economia e sociedade em áreas coloniais periféricas, Guiana Francesa e Pará, 1750-1817",
+    "year": 1984,
+    "name": "Cardoso, Ciro Flamarion Santana.",
+    "citing_theses": 17,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-130697": "Cardoso, Ciro Flamarion",
+     "p-188469": "Ciro Flamarion Santana Cardoso",
+     "p-189156": "Ciro Flamarion Santana Cardoso"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:cohen|reconstruction of american liberalism 1865 1914",
+    "title": "The reconstruction of American liberalism, 1865-1914",
+    "year": 2002,
+    "name": "Cohen, Nancy, 1963-",
+    "citing_theses": 17,
+    "branch": "several-one-dated-no-fact",
+    "candidates": {
+     "p-104683": "Cohen, Nancy L",
+     "p-97417": "Cohen, N"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:duguid|official history of the canadian forces in the great war 1914 1919",
+    "title": "Official history of the Canadian forces in the great war, 1914-1919. General series",
+    "year": 1938,
+    "name": "Duguid, Archer Fortescue, 1887-",
+    "citing_theses": 17,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-99": "A. Fortescue Duguid"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:tooze|statistics and the german state 1900 1945",
+    "title": "Statistics and the German state, 1900-1945 : the making of modern economic knowledge",
+    "year": 2001,
+    "name": "Tooze, J. Adam.",
+    "citing_theses": 17,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-3825": "Tooze, Adam",
+     "p-89243": "J. Adam Tooze"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:wilson|reciprocal work bees and the meaning of neighbourhood|a",
+    "title": "Reciprocal Work Bees and the Meaning of Neighbourhood",
+    "year": 2001,
+    "name": "Catharine Anne Wilson",
+    "citing_theses": 17,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-138905": "Wilson, Catherine",
+     "p-193591": "Wilson, C. Anne",
+     "p-78942": "Wilson, Catharine"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:burton|monastic and religious orders in britain 1000 1300",
+    "title": "Monastic and religious orders in Britain, 1000-1300",
+    "year": 1994,
+    "name": "Burton, Janet E.",
+    "citing_theses": 16,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-1773": "Burton, J."
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:cardoso|mexico en el siglo xix 1821 1910",
+    "title": "México en el siglo XIX (1821-1910) : historia económica y de la estructura social",
+    "year": 1980,
+    "name": "Cardoso, Ciro Flamarion Santana.",
+    "citing_theses": 16,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-130697": "Cardoso, Ciro Flamarion",
+     "p-188469": "Ciro Flamarion Santana Cardoso",
+     "p-189156": "Ciro Flamarion Santana Cardoso"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:johnson|journey to the western islands of scotland",
+    "title": "A journey to the Western islands of Scotland",
+    "year": 1775,
+    "name": "Johnson, Samuel, 1709-1784.",
+    "citing_theses": 16,
+    "branch": "several-none-dated",
+    "candidates": {
+     "p-1251": "Samuel Johnson",
+     "p-183829": "Sam Johnson"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:careless|frontierism metropolitanism and canadian history|a",
+    "title": "Frontierism, Metropolitanism, and Canadian History",
+    "year": 1954,
+    "name": "J. M. S. Careless",
+    "citing_theses": 16,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-33300": "Careless, James",
+     "p-616": "J. M. S. Careless"
+    }
+   },
+   {
+    "source": "openalex",
+    "work_id": "W:sharpe|last dying speeches|a",
+    "title": "“LAST DYING SPEECHES”: RELIGION, IDEOLOGY AND PUBLIC EXECUTION IN SEVENTEENTH-CENTURY ENGLAND\"*",
+    "year": 1985,
+    "name": "J. A. Sharpe",
+    "citing_theses": 16,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-140670": "Sharpe, Jenny",
+     "p-152474": "James Sharpe",
+     "p-3602": "Sharpe, J. A."
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:bradburn|citizenship revolution",
+    "title": "The citizenship revolution : politics and the creation of the American union, 1774-1804",
+    "year": 2009,
+    "name": "Bradburn, Douglas., 1972-",
+    "citing_theses": 15,
+    "branch": "several-several-dated",
+    "candidates": {
+     "p-152029": "Douglas Bradburn",
+     "p-31261": "Bradburn, Douglas"
+    }
+   },
+   {
+    "source": "lc",
+    "work_id": "W:lewis|empire state building",
+    "title": "Empire state-building : war & welfare in Kenya, 1925-52",
+    "year": 2000,
+    "name": "Lewis, Joanna.",
+    "citing_theses": 15,
+    "branch": "one-candidate-none-dated",
+    "candidates": {
+     "p-97809": "Lewis, J"
+    }
+   }
+  ]
+ },
+ "rule": {
+  "params": {
+   "RARE_LC": 0,
+   "RARE_OA": 20,
+   "SPAN_BEFORE": 10,
+   "SPAN_AFTER": 20,
+   "SPAN_AFTER_1": 10,
+   "SPAN_MIN": 1,
+   "COCITE_FACT": 0,
+   "FACTS": [
+    "inst",
+    "coauthor",
+    "oa-author-tie",
+    "selfcite",
+    "student-thesis-cites"
+   ],
+   "TOPICAL_FULL_ONLY": true,
+   "ORCID_SOFT": true,
+   "FULLNAME": true,
+   "RARE_OA_FULL": 10,
+   "VARIANT": true,
+   "XDATE": [
+    "corpus-span",
+    "sup-aff",
+    "cites"
+   ]
+  },
+  "text": [
+   "exact: the source's LC name authority (its URI, or its heading as LC prints it) or ORCID is on a key.",
+   "Candidates: keys with the same family name whose given names agree (name_level): 'full' = first given names written out and identical; 'variant' = a short form or transliteration (Ben/Benjamin, also Norma/Norman); 'initial' = an initial on either side. Jim and James do not agree at all.",
+   "A candidate is set aside as a different person (state none, 'only-proven-namesakes') when it holds an LC authority other than the source's, or its life years differ from the LC dates of the source by more than a year, or its PhD/works fall before the source person's age 15/20 or its articles after the source person's death.",
+   "Date test: the work's year inside the key's career window (birth+20, else PhD-10; to death+2, no upper bound for books); a key with neither, inside its own dated works widened SPAN_BEFORE/SPAN_AFTER years (SPAN_MIN works at least); a key with no dated work fails. A pooled key, a key whose birth and PhD contradict, or a key holding a different ORCID never passes (kept as possible).",
+   "linked 'unique-rare': exactly one candidate, it passes the date test, the names agree 'full', and the name is rare outside the graph: no other LC name authority bears the family + first given name (RARE_LC others) and at most RARE_OA OpenAlex History author ids do.",
+   "linked 'unique-second-fact': exactly one candidate, it passes the date test, and an independent fact ties it to the work: the printed institution's ROR is one of the key's dated affiliations (system names excluded), a co-author exact-linked on the same work is a known co-author of the key, the OpenAlex author id is tied to the key through another work the graph credits to it, or the work cites the key's own works. Needed when the name is common, 'variant' or 'initial'.",
+   "linked 'several-one-survives': several candidates, exactly one passes the date and contradiction tests, and it has such a fact.",
+   "Co-citation (theses citing both the work and the key's works) is recorded as support only: topic never links.",
+   "Everything else with a candidate is possible (candidates listed); no name-compatible key is none.",
+   "Round 2 (2026-11-10): span margin after 20 years, 10 for a key dated by a single work; 'unique-rare-fullname': the first two given names printed alike on both sides (or an initial against a name, when LC holds no other authority with that first name + initial), no other LC authority and at most 10 OpenAlex ids with them; 'unique-rare-variant': a spelling variant of 5+ letters (Sebastián/Sebastiaan), rare counting both spellings; dating for keys without window or span: the years of their works as the dissertation corpus cites them, their supervision and dated affiliations (-35/+25), or the first year a thesis cites them (-50, lower bound only); a key's supervision/affiliations/cited works before the source person was 20 prove two people; second fact added: a thesis the key supervised cites the work (not for variant/initial names, nor self-citation); a different ORCID on the key yields to a second fact; an OpenAlex ORCID whose owner agrees only by initial or variant while another key carries the printed name in full does not credit (L. H. / Lyndal Roper). Tried and not admitted: same journal (a proven namesake link), cited by the key's own thesis (a proven namesake link), printed institution name without ROR (no gold yield)."
+  ]
+ },
+ "candidate_duplicates": {
+  "pairs": 12255,
+  "already_possibly_same": 865,
+  "citing_theses_at_stake": 29714
+ },
+ "hand_checks": {
+  "audit": {
+   "round2-newly-linked": {
+    "probably correct": 3,
+    "correct": 53,
+    "source metadata": 1,
+    "wrong": 3
+   },
+   "round2-possible-one-candidate": {
+    "correctly held": 19,
+    "should link": 29,
+    "unclear": 2
+   }
+  },
+  "audit_by_state_now": {
+   "round2-newly-linked": {
+    "linked|probably correct": 3,
+    "linked|correct": 53,
+    "linked|source metadata": 1,
+    "none|wrong": 1,
+    "possible|wrong": 2
+   },
+   "round2-possible-one-candidate": {
+    "possible|correctly held": 19,
+    "possible|should link": 29,
+    "possible|unclear": 2
+   }
+  },
+  "audit_note": "round 2: 'round2-newly-linked' was drawn from links new in round 2 before the last three fixes, which were designed from its three wrong rows (state_now shows them no longer linked); the round-1 audits are under round1.hand_checks",
+  "namesake_links_judged": {
+   "lc-namesake|same person": 2,
+   "lc-namesake|false link": 1,
+   "lc-namesake|unclear": 1,
+   "lc-masked-author|unclear": 2,
+   "lc-masked-author|same person": 2,
+   "openalex-masked-author|same person": 3,
+   "openalex-namesake|same person (rows read in round 1)": 1
+  }
+ }
+}

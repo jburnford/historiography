@@ -20,7 +20,13 @@ G = ROOT / 'build/graph'
 DB = G / 'explorer.duckdb'
 STATIC = ROOT / 'explorer'
 EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'awarded_by', 'coauthored', 'coedited',
-         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same', 'affiliated_with']
+         'edited', 'editor_of', 'part_of', 'published_as', 'possibly_same', 'affiliated_with',
+         'linked_authored', 'linked_edited', 'possible_author']
+# cited works' authors outside the key log (build_graph, 2026-11-10): marked on every row
+LINKED_D = ("string_agg(DISTINCT CASE e.state WHEN 'exact' THEN 'linked by identifier' ELSE 'linked by rule' END || ' ('"
+            " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' ELSE e.source END || '); not a key-log claim', '; ')")
+POSSIBLE_D = ("'possible author (' || any_value(e.n_candidates) || ' candidate' || CASE WHEN any_value(e.n_candidates) > 1 "
+              "THEN 's' ELSE '' END || '); not credited'")
 
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
@@ -28,6 +34,9 @@ REL = {
     'person': [
         ('authored', 'Wrote', 'authored', 'from', 'to', None),
         ('edited', 'Edited', 'edited', 'from', 'to', None),
+        ('linked_authored', 'Wrote (linked, outside the key log)', 'linked_authored', 'from', 'to', LINKED_D),
+        ('linked_edited', 'Edited (linked, outside the key log)', 'linked_edited', 'from', 'to', LINKED_D),
+        ('possible_author', 'Possibly wrote (not credited)', 'possible_author', 'from', 'to', POSSIBLE_D),
         ('supervised', 'Supervised theses', 'supervised', 'from', 'to', None),
         ('students', 'Students', 'advised', 'from', 'to', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
         ('advisors', 'Advisors', 'advised', 'to', 'from', "(SELECT label FROM nodes WHERE key = any_value(e.thesis))"),
@@ -45,6 +54,9 @@ REL = {
     'work': [
         ('authors', 'Authors', 'authored', 'to', 'from', None),
         ('editors', 'Editors', 'edited', 'to', 'from', None),
+        ('linked_authors', 'Authors (linked, outside the key log)', 'linked_authored', 'to', 'from', LINKED_D),
+        ('linked_editors', 'Editors (linked, outside the key log)', 'linked_edited', 'to', 'from', LINKED_D),
+        ('possible_authors', 'Possible authors (not credited)', 'possible_author', 'to', 'from', POSSIBLE_D),
         ('supervisors', 'Supervisors', 'supervised', 'to', 'from', None),
         ('awarded_by', 'Degree from', 'awarded_by', 'from', 'to', None),
         ('cites', 'Cites', 'cites', 'from', 'to', None),
@@ -66,7 +78,7 @@ LINKS = {'wd': 'https://www.wikidata.org/wiki/{}', 'orcid': 'https://orcid.org/{
          'lcnaf': 'https://id.loc.gov/authorities/names/{}', 'viaf': 'https://viaf.org/viaf/{}',
          'gnd': 'https://d-nb.info/gnd/{}', 'isni': 'https://isni.org/isni/{}', 'idref': 'https://www.idref.fr/{}',
          'doi': 'https://doi.org/{}', 'lccn': 'https://lccn.loc.gov/{}', 'ror': 'https://ror.org/{}',
-         'ol': 'https://openlibrary.org/authors/{}'}
+         'ol': 'https://openlibrary.org/authors/{}', 'openalex': 'https://openalex.org/{}'}
 
 
 def build():
@@ -115,8 +127,8 @@ def stale():
 
 
 def node_type(key):
-    if key.startswith('doi:'):          # an unkeyed Crossref citing article (build_graph, 2026-11-10)
-        return 'work'
+    if key.startswith(('doi:', 'lccn:', 'openalex:')):   # unkeyed works: Crossref citing articles, and cited works
+        return 'work'                                       # matched to LC/OpenAlex/Crossref (build_graph, 2026-11-10)
     return {'p': 'person', 'w': 'work', 'i': 'institution'}.get(key[:1])
 
 
