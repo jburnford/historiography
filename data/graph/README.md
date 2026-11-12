@@ -53,6 +53,10 @@ every node and edge type. In brief:
 | `name-only/credits.csv.gz` | 245,690 (2026-11-12) | `scripts/link_work_people.py nameonly-extract`, `nameonly-siblings`, `nameonly-positions`, `link --nameonly`, `nameonly-report`, `nameonly-export` (report and audit in `data/identifiers/name-only-credits-2026-11-12/`) | Printed authors of works whose author list no linker had read (unkeyed works with a `doi:` / `openalex:` / `ojs:` id: the other authors of author-works records, cited-works and JSTOR-note matches from Crossref, Crossref metadata, journal metadata and OpenAlex; keyed works outside the 11-11 positions; chapters of key-log edited volumes listed by Crossref), with the work-people columns: work, role, position, printed name, source (openalex / crossref / jstor / ojs / crossref-volume), state (exact / linked / possible / ambiguous), person key, candidates, branch, signals |
 | `name-only/chapters.csv.gz` | 5,377 (2026-11-12) | the same | Chapters of key-log edited volumes that the graph lacked and that a keyed person wrote (an exact or linked position): id (`doi:`), title, year, volume, `volume_basis` (`chapter-doi`: the chapter DOI extends the book DOI; `isbn`), publisher, printed authors |
 | `edition-canonical-fixes.csv.gz` | 2,165 (2026-11-11) | the same | Canonical keys of the translation roll-up that are themselves translations while the original is known: cluster, current and proposed canonical, basis, original language and year, theses citing the current key (hand check 19 of 20) |
+| `lc-credits.csv.gz` | 7,687 (2026-11-12) | `scripts/lc_catalogue_credits.py credits` (report, held list and audit sample in `data/identifiers/lc-catalogue-credits-2026-11-12/`) | Works with an LCCN and no AUTHORED or EDITED row whose LC 2016 record names a person key by its name authority: work, person, credit (authored / edited), role and role_basis (scripts/edition_roles.py classify_record), lccn, control, lcnaf, heading, tag (100 / 700). The build loads them as linked credits (source `lc-catalogue:<tag>`, state exact) on works that still have no credit |
+| `lc-books-by-authority.csv.gz` | 2,245 (2026-11-12) | `scripts/lc_catalogue_credits.py measure` | LC 2016 books whose main entry is an authority on a person key with scholarly evidence (thesis or AHA anchor, key-log thesis, directory anchor, supervision, review) and whose LCCN no graph work held: lccn, title, year, person, lcnaf. The build makes unkeyed `lccn:` book nodes with a linked AUTHORED credit (source `lc-catalogue:authority-books`). The full measure (129,384 books for 24,662 keys, mostly primary-source authors) is in the report only |
+| `review-books.csv.gz` | 11,858 (2026-11-12) | `scripts/review_books.py` (report and held list in `data/identifiers/review-books-2026-11-12/`) | Articles that review a book: review, book, rule (`title`: an article titled exactly as a book of 3+ words by another author, 0-6 years later, in a journal; `label`: the record prints the reviewed book and its author, e.g. 'SURNAME, Given (YYYY) Title', 'Title. By Name', 'Review of'), basis, kinds, book title and year. The build sets kind `review` on unkeyed records (kind_proposed on keyed ones) and adds REVIEWS with `evidence = 'linked'` (source `review-books:<rule>`); no credit is made |
+| `prizes/` | prizes 114,867; winners 114,867; works 7,849; lc 1,670; found 478 | `scripts/prizes_harvest.py`, `scripts/prizes_link.py`, `scripts/key_cited_works_recent_books.py` (found) | Prize facts (awarding bodies' pages and Wikidata awards), winners linked to person keys, prize works matched to the graph, LC records and book records found for them. The build (scripts/graph_prizes.py) makes Prize nodes, AWARDED edges and prize work nodes, below |
 
 The cited works become Work nodes keyed by their identifier with resolution `unkeyed`, unless the key log holds one of
 their identifiers (then the key). The build adds the thesis CITES edges (`source` `thesis-matched`) and three tables
@@ -191,12 +195,40 @@ bears a compatible name and nothing was linked: the open part of the class). The
 DOI's prefix, public pool, a generic client name; a chapter is kept only when its DOI extends the book DOI or it carries
 the volume's ISBN).
 
+**Integration pass five (2026-11-12).**
+- Recent books: `cited-works/` includes the matches of `data/identifiers/cited-works-recent-books-2026-11-12` (source
+  `recent-books`, kind book, ids `doi:` / `openalex:`; Crossref book records and OpenAlex works found with no subject
+  filter for corpus books 2017+ and books before 2017 cited by 3+ theses that no crosswalk held). Precedence: older keyed
+  crosswalks > LC > Crossref (11-10) > OpenAlex > Crossref metadata > journal metadata > recent books; translations last.
+  8,568 corpus works, 8,435 cited works; thesis-citation match rate 42.14% to 42.80%.
+- Name-only authors of cited works no linker had read: `link_work_people.py nameonly-extra` adds positions for the
+  recent books (the crosswalk's printed authors; their records are listed as outside History, so a rare name alone does
+  not link) and for journal-metadata works whose OpenAlex / OJS record in the journal harvest prints full names; then
+  `link --nameonly --gold-no-oa --topic-min 20`, `nameonly-report`, `nameonly-export` as before (export reads
+  `positions*.parquet`). Crossref records of the journal harvest print family names only (1,617 works): a counted residue.
+- LC entries (`lc-credits.csv.gz`, `lc-books-by-authority.csv.gz`) and reviews (`review-books.csv.gz`): above.
+- Prizes (`prizes/`, loaded by `scripts/graph_prizes.py`): `prize.parquet` (Prize nodes: key `prize:<body>-<prize>` or
+  `prize:wd-Q…`, label, body, country, field, honours, wd, sources, rows, first and last year, `shown`); `awarded.parquet`
+  (AWARDED, Prize -> Person or Work: target, year, honours, prize row, evidence linked, source `<source_kind>:<body>`, state,
+  basis, source_url, note, co_winners, `shown`); `prize_candidates.parquet` (possible / ambiguous winners; not edges). `shown`
+  is true for an awarding body's own list or a field naming history; the explorer shows the rest under "Other honours".
+  Prize works without a node get one when the row is shown: the found record's id, else `lccn:` from a one-main-entry LC
+  record, else `prizework:<row id>` shared by rows naming one work. Authors of prize work targets that have no credit: the
+  LC main entry's key (`prizes:lc-main-entry`) or the credited winner (`prizes:winner`, book and dissertation prizes).
+  Two general rules: a jury statement taken as a title is replaced by the same winner's title at the same body within a
+  year (else the row names no work), and a one-candidate winner is linked when the same body credits that key under the
+  same printed name. Shortlists, finalists and honourable mentions are not loaded.
+- Candidates credited by any loader are no longer listed in `author_candidates` (report
+  `author_candidates_dropped_as_credited`). `BUILD_PASS5_OFF=1` builds without these layers (a baseline check build only).
+
 To refresh after the sources change:
 - **Dissertation citations:** key the corpus's new dissertations in the log, rerun `scripts/key_cited_works.py`, then `scripts/export_citations.py`.
 - **JSTOR:** rerun `scripts/export_jstor_citations.py`.
 - **Cited works (LC/OpenAlex/Crossref matches, Crossref metadata, journal metadata, translations):** rerun the matchers and `scripts/link_cited_work_authors.py`, then `scripts/export_cited_works.py`, then `scripts/link_work_people.py recheck-cited` (the export rewrites `authors.csv.gz` without the recheck).
 - **Works of keyed people, volumes, journals:** `scripts/author_works.py export`, then `scripts/export_work_containers.py export`.
-- **Name-only authors:** with `WP_SCRATCH` set to a scratch folder, `link_work_people.py nameonly-extract`, `nameonly-siblings` (Crossref, resumable), `nameonly-positions`, `link --nameonly --gold-no-oa`, `nameonly-report`, `nameonly-export`; rerun after the cited works, author works or a graph build change.
+- **LC entries, LC books by authority, reviews of books:** `scripts/lc_catalogue_credits.py credits` and `measure`, `scripts/review_books.py` (all read a graph build), then rebuild.
+- **Possible-same nicknames:** `scripts/possible_same_nicknames.py` writes a review file (`data/identifiers/possible-same-nicknames-2026-11-12/`); nothing is loaded.
+- **Name-only authors:** with `WP_SCRATCH` set to a scratch folder, `link_work_people.py nameonly-extract`, `nameonly-siblings` (Crossref, resumable), `nameonly-positions`, `nameonly-extra` (2026-11-12), `link --nameonly --gold-no-oa --topic-min 20`, `nameonly-report`, `nameonly-export`; rerun after the cited works, author works or a graph build change.
 - **JSTOR-matched cited works:** rerun `scripts/key_jstor_cited_works_full.py`, then `scripts/export_jstor_cited_works.py`.
 - **Volume editors, edition roles, first years:** `scripts/volume_editors.py export`, `scripts/edition_roles.py` and `scripts/work_first_years.py` read a graph build; rerun them after the credits or the cites they read change, then rebuild.
 - **Crossref:** run `crossref_citations.py bridge`, apply its proposal, rebuild the graph, run `crossref_citations.py export`, then `git add` the parts.

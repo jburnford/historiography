@@ -26,7 +26,8 @@ EDGES = ['authored', 'cites', 'reviews', 'reviewed', 'supervised', 'advised', 'a
 # unconfirmed name-compatible people for a work, shown as one collapsed section.
 OPTIONAL = ['edition_of',                               # translation/edition node -> canonical work (2026-11-11)
             'author_candidates',
-            'contributed']                              # foreword writers, series editors -> work (2026-11-11)
+            'contributed',                              # foreword writers, series editors -> work (2026-11-11)
+            'awarded', 'prize_candidates']              # Prize -> Person | Work, unconfirmed winners (2026-11-12)
 # columns a newer build adds; an older build gets them as NULL so the explorer still builds against it
 ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basis', 'NULL')],
          'author_candidates': [('reason', 'NULL')],
@@ -34,7 +35,9 @@ ADDED = {'part_of': [('evidence', "'keylog'"), ('source', 'NULL'), ('volume_basi
          'authored': [('role', "'author'"), ('role_basis', 'NULL')],
          'edited': [('role', "'unknown'"), ('role_basis', 'NULL')],
          # co-editor pairs resting on linked editor credits (2026-11-12)
-         'coedited': [('evidence', "'keylog'"), ('linked_works', '0')]}
+         'coedited': [('evidence', "'keylog'"), ('linked_works', '0')],
+         # reviews of a book found by title or a review-style label (2026-11-12, scripts/review_books.py)
+         'reviews': [('evidence', "'keylog'"), ('source', 'NULL')]}
 WORK_ADDED = ('issn', 'journal_source', 'kind_proposed', 'isbn', 'editors_printed', 'first_year_basis')
 WORK_ADDED_INT = ('first_year', 'first_year_catalogue')
 # credits under which a person prepared someone else's work (an edition, a translation, an introduction, a series):
@@ -62,6 +65,10 @@ LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
             " WHEN 'name-only:openalex' THEN 'OpenAlex author list' WHEN 'name-only:crossref' THEN 'Crossref author list'"
             " WHEN 'name-only:crossref-volume' THEN 'Crossref chapter list of the volume' WHEN 'name-only:jstor' THEN 'JSTOR author list'"
             " WHEN 'name-only:ojs' THEN 'journal OJS author list'"
+            " WHEN 'name-only:recent-books' THEN 'Crossref/OpenAlex book record' WHEN 'name-only:journal-meta' THEN 'journal record'"
+            " WHEN 'lc-catalogue:100' THEN 'LC main entry' WHEN 'lc-catalogue:700' THEN 'LC added entry'"
+            " WHEN 'lc-catalogue:authority-books' THEN 'LC book filed under their name authority'"
+            " WHEN 'prizes:winner' THEN 'prize winner list' WHEN 'prizes:lc-main-entry' THEN 'LC main entry of the prize work'"
             " ELSE e.source END || ')', '; ') || '; not a key-log claim' END")
 # EDITOR_OF (2026-11-12): the volume, marked when the row rests on a linked PART_OF, editor or author credit
 VOLUME_D = ("(SELECT label FROM nodes WHERE key = any_value(e.volume)) || CASE WHEN count(DISTINCT e.volume) > 1 THEN ' and others' ELSE '' END "
@@ -86,6 +93,17 @@ CONTRIB_D = ("'contributor (' || string_agg(DISTINCT CASE e.basis WHEN 'lc-forew
              "WHEN 'series-foreword-pattern' THEN 'series foreword' "
              "WHEN 'series-editor-pattern' THEN 'series editor (Crossref editor list; publisher pattern)' ELSE e.basis END, '; ') || '); linked, not an author'")
 
+PRIZE_D = ("string_agg(DISTINCT coalesce(e.year::VARCHAR, '') || ' ' || e.honours || CASE WHEN e.state IN ('exact', 'credited', 'matched') "
+           "THEN '' ELSE ' (linked: ' || e.state || ', ' || coalesce(e.basis, '') || ')' END, '; ') || ' · ' || any_value(e.source)")
+WIN_D = ("string_agg(DISTINCT coalesce(e.year::VARCHAR, '') || CASE WHEN e.state IN ('exact', 'credited', 'matched') THEN '' "
+         "WHEN e.state = 'linked' THEN ' (winner linked by rule)' WHEN e.state = 'found' THEN ' (book record found by title and winner)' "
+         "WHEN e.state = 'lc' THEN ' (LC record)' WHEN e.state = 'added' THEN ' (known from the prize list only)' ELSE ' (' || e.state || ')' END, ', ')")
+PCAND_D = "'unconfirmed winner (' || any_value(e.n_candidates) || ' candidate(s), ' || coalesce(any_value(e.branch), '') || '); not credited'"
+
+REV_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE 'linked: ' || CASE any_value(e.source) "
+         "WHEN 'review-books:title' THEN 'an article titled as the book, by another author, within six years' "
+         "WHEN 'review-books:label' THEN 'the record prints the reviewed book and its author' ELSE any_value(e.source) END "
+         "|| '; not a key-log claim' END")
 # Relations shown for each node type: (id, label, edge table, self side, other side, detail SQL over e and o)
 # `e` is the edge row, `o` the other node. Rows are grouped by the other node (n = number of edges to it).
 REL = {
@@ -108,6 +126,9 @@ REL = {
         ('cites_people', 'Cites (people)', None, None, None, None),
         ('possibly_same', 'Possibly the same person', 'possibly_same', None, None, None),
         ('affiliations', 'Affiliations', None, None, None, None),
+        ('prizes', 'Prizes', 'awarded', 'to', 'from', PRIZE_D, 'e.shown'),
+        ('prizes_other', 'Other honours (Wikidata; not history)', 'awarded', 'to', 'from', PRIZE_D, 'NOT e.shown'),
+        ('prize_candidates', 'Possible prizes (winner not confirmed)', 'prize_candidates', 'to', 'from', PCAND_D),
         ('candidates', 'Unconfirmed candidates (not credited)', 'author_candidates', 'from', 'to', POSSIBLE_D),
     ],
     'work': [
@@ -125,13 +146,20 @@ REL = {
          'edition_of', 'to', 'from', EDITION_OF_D),
         ('edition_of', 'Edition or translation of (EDITION_OF, seen from the edition)',
          'edition_of', 'from', 'to', EDITION_OF_D),
-        ('reviews', 'Review of', 'reviews', 'from', 'to', None),
-        ('reviewed_in', 'Reviewed in', 'reviews', 'to', 'from', None),
+        ('reviews', 'Review of', 'reviews', 'from', 'to', REV_D),
+        ('reviewed_in', 'Reviewed in', 'reviews', 'to', 'from', REV_D),
         ('part_of', 'Part of', 'part_of', 'from', 'to', PART_D),
         ('contains', 'Contains (chapters)', 'part_of', 'to', 'from', PART_D),
         ('published_as', 'Published as', 'published_as', 'from', 'to', None),
         ('published_from', 'Published from', 'published_as', 'to', 'from', None),
+        ('prizes', 'Prizes', 'awarded', 'to', 'from', PRIZE_D, 'e.shown'),
+        ('prizes_other', 'Other honours (Wikidata; not history)', 'awarded', 'to', 'from', PRIZE_D, 'NOT e.shown'),
         ('candidates', 'Unconfirmed candidates (not credited)', 'author_candidates', 'to', 'from', POSSIBLE_D),
+    ],
+    'prize': [
+        ('winners', 'Winners (by year)', None, None, None, None),
+        ('prize_works', 'Winning works (by year)', None, None, None, None),
+        ('prize_candidates', 'Unconfirmed winners (not credited)', 'prize_candidates', 'from', 'to', PCAND_D),
     ],
     'institution': [
         ('faculty', 'Faculty and affiliated people', None, None, None, None),
@@ -139,7 +167,8 @@ REL = {
         ('theses', 'Theses awarded', 'awarded_by', 'to', 'from', None),
     ],
 }
-EVIDENCE_TABLES = ('authored', 'edited', 'reviewed', 'coauthored', 'part_of', 'contributed', 'editor_of', 'advised')
+EVIDENCE_TABLES = ('authored', 'edited', 'reviewed', 'coauthored', 'part_of', 'contributed', 'editor_of', 'advised', 'reviews')
+# AWARDED rows are all linked (prize facts never come from the key log); not marked per row
 LINKS = {'wd': 'https://www.wikidata.org/wiki/{}', 'orcid': 'https://orcid.org/{}',
          'lcnaf': 'https://id.loc.gov/authorities/names/{}', 'viaf': 'https://viaf.org/viaf/{}',
          'gnd': 'https://d-nb.info/gnd/{}', 'isni': 'https://isni.org/isni/{}', 'idref': 'https://www.idref.fr/{}',
@@ -174,6 +203,10 @@ def build():
     wx = ', '.join([f'w.{c}' if c in wcols else f'NULL::VARCHAR AS {c}' for c in WORK_ADDED]
                    + [f'w.{c}' if c in wcols else f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
     nx = ', '.join([f'NULL::VARCHAR AS {c}' for c in WORK_ADDED] + [f'NULL::INTEGER AS {c}' for c in WORK_ADDED_INT])
+    # prizes (2026-11-12): kind = the honours most rows give, year = first year, journal = the awarding body
+    prize_sql = (f"""UNION ALL SELECT z.key, 'prize', z.label || CASE WHEN z.shown THEN '' ELSE ' (Wikidata honour)' END,
+               z.honours, z.first_year, z.body, 'unkeyed', CASE WHEN z.wd IS NULL THEN []::VARCHAR[] ELSE ['wd:' || z.wd] END,
+               z.rows, NULL, NULL, NULL, {nx} FROM '{G}/prize.parquet' z""" if (G / 'prize.parquet').exists() else '')
     db.execute(f"""CREATE TABLE nodes AS
         SELECT p.key, 'person' AS type, p.label, NULL::VARCHAR AS kind, NULL::INTEGER AS year, NULL::VARCHAR AS journal,
                p.resolution, p.anchors, coalesce(s.cited, 0) + coalesce(s.reviewed, 0) AS weight,
@@ -187,6 +220,7 @@ def build():
         SELECT i.key, 'institution', i.label, NULL, NULL, NULL, i.resolution, i.anchors,
                (SELECT count(*) FROM e_awarded_by_t a WHERE a."to" = i.key), NULL, NULL, NULL, {nx}
           FROM '{G}/institution.parquet' i
+        {prize_sql}
         ORDER BY key""")
     # a chapter's volume as one line: 'in <volume> (<year>), edited by <credited editors>; editors as printed: <names>'
     # (credited: EDITED other than edition roles, and AUTHORED credits that are volume editorships; 2026-11-12)
@@ -218,6 +252,8 @@ UNKEYED = ('doi:', 'lccn:', 'openalex:', 'corpus:', 'ojs:', 'bepress:', 'volume:
 
 
 def node_type(key):
+    if key.startswith('prize:'):
+        return 'prize'
     # unkeyed works: Crossref citing articles, cited works matched to LC/OpenAlex/Crossref (build_graph, 2026-11-10),
     # journal-metadata matches (ojs:, bepress:), author-works and their volumes (volume:; 2026-11-11). Person and
     # institution keys never hold a colon, so any other prefixed key is an unkeyed work too.
@@ -312,6 +348,14 @@ class Graph:
                        (evidence = 'linked')::INT lk""")
             return (f"""SELECT "to" k, {cols} FROM e_{table}_f WHERE "from" = $k
                         UNION SELECT "from", {cols} FROM e_{table}_t WHERE "to" = $k""")
+        if rid in ('winners', 'prize_works'):     # a prize's winners or works, newest first (n = the latest year)
+            if not self.has('awarded'):
+                return 'SELECT NULL k, 0 n, NULL d, 0 lk WHERE false'
+            tgt = 'person' if rid == 'winners' else 'work'
+            return (f"""SELECT e."to" k, max(coalesce(e.year, 0)) n, {WIN_D} d, 0 lk FROM e_awarded_f e
+                        WHERE e."from" = $k AND e.target = '{tgt}' GROUP BY 1""")
+        if rid in ('prizes', 'prizes_other', 'prize_candidates') and not self.has(table):
+            return 'SELECT NULL k, 0 n, NULL d, 0 lk WHERE false'
         if rid == 'possibly_same':        # same name, timelines fit, not confirmed (scripts/key_possible_same.py)
             return ('''SELECT "to" k, 1 n, 'same name, timelines fit; not confirmed' d FROM e_possibly_same_f WHERE "from" = $k
                        UNION SELECT "from", 1, 'same name, timelines fit; not confirmed' FROM e_possibly_same_t WHERE "to" = $k''')

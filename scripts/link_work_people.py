@@ -904,7 +904,7 @@ def load_positions(limit=None):
     import pyarrow as pa
     import pyarrow.parquet as pq
     t = pq.read_table(SCRATCH / 'positions.parquet')
-    for extra in ('positions-crossref.parquet', 'positions-title.parquet'):
+    for extra in ('positions-crossref.parquet', 'positions-title.parquet', 'positions-extra.parquet'):
         if (SCRATCH / extra).exists():
             t = pa.concat_tables([t, pq.read_table(SCRATCH / extra)])
     if limit:
@@ -3172,7 +3172,7 @@ def nameonly_export(args):
                p.source, concat_ws(';', CASE WHEN p.orcid <> '' THEN 'orcid:' || p.orcid END,
                CASE WHEN p.oa_author <> '' THEN 'openalex:' || p.oa_author END) AS source_person_id, p.year,
                r.state, r.key AS person_key, r.candidates, r.n_candidates, r.branch, r.signals
-            FROM '{S}/results.parquet' r JOIN '{S}/positions.parquet' p USING (pid) WHERE NOT r.already_credited"""
+            FROM '{S}/results.parquet' r JOIN '{S}/positions*.parquet' p USING (pid) WHERE NOT r.already_credited"""
     cols = ['work', 'role', 'position', 'n_authors', 'printed_name', 'printed_institution', 'source', 'source_person_id', 'year',
             'state', 'person_key', 'candidates', 'n_candidates', 'branch', 'signals']
 
@@ -3207,6 +3207,164 @@ def nameonly_export(args):
     print('chapters', m)
     parts = write_parts(NO_OUT / 'links', rows(''), cols)
     print('links', [(p.name, p.stat().st_size) for p in parts])
+
+
+# 2026-11-12 (integration pass five): cited works whose printed authors no linker had read after the name-only pass.
+# Class: data/graph/cited-works/authors.csv.gz has no rows for the sources crossref-meta, crossref, journal-meta,
+# lc-translations and recent-books; the name-only pass read most of them (their records were found), but not the
+# recent books (exported after it) nor the journal-metadata works whose only record is the journal harvest's own
+# (build/journal-meta-2026-11-11: OpenAlex and OJS records with full names; Crossref records there print family names
+# only and stay a counted residue). LC works (lc-translations, lc-full without authors) are credited by their LC main
+# entry's authority instead (scripts/lc_catalogue_credits.py), not here.
+RB_CROSSWALK = ROOT / 'data/identifiers/cited-works-recent-books-2026-11-12/crosswalk.csv.gz'
+JM_RECORDS = ROOT / 'build/journal-meta-2026-11-11'
+RB_NAME = re.compile(r'^(?P<fam>[^,\[]+?)(?:,\s*(?P<giv>[^\[]+?))?\s*(?:\[(?P<orcid>[0-9X-]{19})\])?$')
+
+
+def recent_book_names(s):
+    """'Luby, Brittany; Smith, A. B. [0000-0001-2345-6789]' -> [(name 'Given Family', orcid)]"""
+    out = []
+    for part in (s or '').split(';'):
+        part = part.strip()
+        if not part:
+            continue
+        m = RB_NAME.match(part)
+        if not m:
+            out.append((part, ''))
+            continue
+        nm = ' '.join(x for x in ((m.group('giv') or '').strip(), m.group('fam').strip()) if x)
+        out.append((nm, m.group('orcid') or ''))
+    return out
+
+
+def nameonly_extra(args):
+    """S/positions-extra.parquet: positions (the name-only schema, pid from 20,000,000) of the recent-books crosswalk's
+    printed authors and of journal-metadata works whose OpenAlex / OJS record in the journal harvest prints full names,
+    for works that have no position in S/positions.parquet and no row in cited-works/authors.csv.gz. Recent books are
+    looked up with no subject filter, so their OpenAlex ids (or 'CR:<doi>') are listed in S/oa/doi-lookup-extra.jsonl:
+    the guard 'outside-history-rarity-only' applies (a name rare in the History population says little outside it).
+    Then: link --nameonly --gold-no-oa --topic-min 20, nameonly-report, nameonly-export (all reading positions*.parquet)."""
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    S, G = SCRATCH, GRAPH
+    db = duck()
+    stats = Counter()
+    label = dict(db.execute(f"SELECT key, label FROM '{G}/person.parquet'").fetchall())
+    keyof = {}
+    for a, k in db.execute(f"""SELECT a, key FROM (SELECT key, unnest(anchors) a FROM '{G}/work.parquet' WHERE resolution <> 'unkeyed')
+                              WHERE a LIKE 'doi:%' OR a LIKE 'openalex:%' OR a LIKE 'ojs:%'""").fetchall():
+        keyof[a.lower() if a.startswith('doi:') else a] = k
+    have_pos = {w for (w,) in db.execute(f"SELECT DISTINCT work FROM '{S}/positions.parquet'").fetchall()}
+    cwa = {w for (w,) in db.execute(f"""SELECT DISTINCT work FROM read_csv('{ROOT / 'data/graph/cited-works/authors.csv.gz'}',
+                                         all_varchar=true)""").fetchall()}
+    cw = {r[0]: r for r in db.execute(f"""SELECT id, source, title, year, kind, container, alias_ids FROM
+            read_csv('{ROOT / 'data/graph/cited-works/works.csv.gz'}', all_varchar=true)
+            WHERE source IN ('recent-books', 'journal-meta')""").fetchall()}
+    credits = defaultdict(list)                  # node -> [(key, known)] credits already on it (not name-only)
+    for k, w, known in db.execute(f"""SELECT a."from", a."to", {KNOWN_EXACT_SQL} FROM '{G}/authored.parquet' a
+            WHERE coalesce(a.source, '') NOT LIKE 'name-only:%' AND a."to" IN (SELECT unnest(?))""",
+                                  [sorted({keyof.get(i.lower() if i.startswith('doi:') else i, i) for i in cw})]).fetchall():
+        credits[w].append((k, known))
+    rows, outside, targets = [], [], []
+
+    def node_of(wid, aliases):
+        for x in [wid] + [a for a in (aliases or '').split(';') if a]:
+            k = keyof.get(x.lower() if x.startswith('doi:') else x)
+            if k:
+                return k
+        return wid
+
+    def add(src, w, i, n, nm, orcid, meta, oa_work=''):
+        title, year, kind, journal = meta
+        row = dict(role='author', source=src, work=w, pos=i, n_auth=n, name=nm, year=year, journal=journal or '',
+                   kind=kind or '', title=(title or '')[:200], orcid=orcid or '', oa_author='', rors=[], insts=[], raw_aff=[],
+                   oa_work=oa_work, inst_printed='', inst_ror='', inst_ror_name='', sig_conf=0.0, credited='', credited_how='')
+        best = None
+        for k, known in credits.get(w, ()):
+            lev = agree_level(nm, label.get(k, ''))
+            if lev and known and (best is None or ('full', 'variant', 'initial').index(lev) < ('full', 'variant', 'initial').index(best[1])):
+                best = (k, lev)
+            elif lev and not known:
+                stats['dropped_already_linked_by_rule'] += 1
+                return
+        if best:
+            row.update(credited=best[0], credited_how='name:' + best[1])
+        rows.append(row)
+    # recent books
+    with gzip.open(RB_CROSSWALK, 'rt', newline='', encoding='utf-8') as fh:
+        rb_rows = list(csv.DictReader(fh))
+    for r in rb_rows:
+        wid = r['id'] if r['id'] in cw else next((a for a in (r['alias_ids'] or '').split(';') if a in cw), None)
+        if not wid:
+            stats['recent_books_not_exported'] += 1
+            continue
+        w = node_of(wid, cw[wid][6])
+        if w in have_pos or wid in cwa or w in cwa:
+            stats['recent_books_already_read'] += 1
+            continue
+        names = recent_book_names(r['authors'])
+        stats['recent_books_editor_names_not_read'] += len(recent_book_names(r['editors']))
+        if not names:
+            stats['recent_books_no_printed_author'] += 1
+            continue
+        have_pos.add(w)
+        yr = int(r['year']) if (r['year'] or '').isdigit() else None
+        meta = (r['title'], yr, 'book', '')
+        # the outside list is read by its first 30 characters: a Crossref-only record gets a short stand-in id
+        oa_work = r['openalex_id'] or ('CR' + L.hashlib.md5(r['doi'].lower().encode()).hexdigest()[:16] if r['doi'] else '')
+        if oa_work:
+            outside.append(oa_work)
+        targets.append((w, 'unkeyed' if w == wid else 'keyed', 'book', yr, None, r['title'], [wid]))
+        stats['recent_books_works'] += 1
+        for i, (nm, orc) in enumerate(names):
+            add('recent-books', w, i, len(names), nm, orc, meta, oa_work)
+    # journal-metadata works whose only record is the journal harvest's own
+    want = {}
+    for wid, (_, src, title, year, kind, container, aliases) in cw.items():
+        if src != 'journal-meta':
+            continue
+        w = node_of(wid, aliases)
+        if w in have_pos or wid in cwa or w in cwa:
+            stats['journal_meta_already_read'] += 1
+            continue
+        want[wid] = (w, (title, int(year) if (year or '').isdigit() else None, kind, container))
+    seen = set()
+    for sub in ('openalex', 'oai', 'crossref'):
+        for fn in sorted((JM_RECORDS / sub).glob('*')):
+            op = gzip.open if fn.name.endswith('.gz') else open
+            with op(fn, 'rt', encoding='utf-8') as f:
+                for line in f:
+                    d = json.loads(line)
+                    sid = d.get('sid')
+                    ids = [sid] + (['doi:' + d['doi'].lower()] if d.get('doi') else [])
+                    wid = next((x for x in ids if x in want), None)
+                    if not wid or wid in seen:
+                        continue
+                    names = [x for x in d.get('authors') or [] if x and x.strip(', ')]
+                    if not names:
+                        continue
+                    if not d.get('authors_are_full_names'):
+                        stats['journal_meta_family_name_only'] += 1      # Crossref records here print family names only
+                        continue
+                    seen.add(wid)
+                    w, meta = want[wid]
+                    targets.append((w, 'unkeyed' if w == wid else 'keyed', meta[2], meta[1], meta[3], meta[0], [wid]))
+                    stats['journal_meta_works'] += 1
+                    for i, nm in enumerate(names):
+                        add('journal-meta', w, i, len(names), nm, '', meta)
+    stats['journal_meta_no_full_name_record'] = len(set(want) - seen)
+    for i, r in enumerate(rows):
+        r['pid'] = 20_000_000 + i
+    schema = pq.read_schema(S / 'positions.parquet')
+    pq.write_table(pa.Table.from_pylist(rows, schema=schema), S / 'positions-extra.parquet')
+    (S / 'oa').mkdir(exist_ok=True)
+    with open(S / 'oa' / 'doi-lookup-extra.jsonl', 'w') as f:
+        for o in outside:
+            f.write(json.dumps({'work': o}) + '\n')
+    stats['positions'] = len(rows)
+    stats['positions_credited_gold'] = sum(1 for r in rows if r['credited'])
+    print(json.dumps(dict(stats), indent=1), flush=True)
+    (S / 'positions-extra-stats.json').write_text(json.dumps(dict(stats), indent=1) + '\n')
 
 
 # ---------------------------------------------------------------- main
@@ -3257,12 +3415,13 @@ def main():
     sub.add_parser('nameonly-report')
     sub.add_parser('volume-people')
     sub.add_parser('nameonly-export')
+    sub.add_parser('nameonly-extra')
     args = ap.parse_args()
     {'extract': extract, 'positions': positions, 'link': link, 'report': report, 'mints': mints, 'panel': panel, 'audit': audit, 'export': export, 'crossref': crossref, 'titlematch': titlematch, 'defects': defects,
      'recheck-cited': recheck_cited, 'contributors': contributors,
      'title-filter': title_filter, 'nameonly-extract': nameonly_extract, 'nameonly-siblings': nameonly_siblings,
      'nameonly-positions': nameonly_positions, 'nameonly-report': nameonly_report,
-     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd}[args.cmd](args)
+     'nameonly-export': nameonly_export, 'volume-people': volume_people_cmd, 'nameonly-extra': nameonly_extra}[args.cmd](args)
 
 
 if __name__ == '__main__':

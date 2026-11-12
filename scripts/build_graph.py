@@ -123,6 +123,7 @@ Cypher:
     python3 scripts/build_graph.py --out build/graph --untracked-ok         # the live build, same, until they are tracked
 """
 import argparse
+import os
 import csv
 import gzip
 import json
@@ -178,6 +179,15 @@ UNSAFE_PROFILE = AUTHOR_WORKS / 'unsafe-profile-credits.csv.gz'   # linked credi
 NAME_ONLY = ROOT / 'data/graph/name-only'   # scripts/link_work_people.py nameonly-* (2026-11-12): printed authors of works whose
                                             # author list no linker had read, linked to person keys (credits.csv.gz), and the
                                             # chapters of key-log edited volumes they wrote that the graph lacked (chapters.csv.gz)
+# 2026-11-12 (integration pass five):
+PRIZES = ROOT / 'data/graph/prizes'          # scripts/prizes_harvest.py, prizes_link.py (+ found.csv.gz, recent books):
+                                             # Prize nodes, AWARDED, prize work nodes (scripts/graph_prizes.py)
+PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'lc', 'found')]
+LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
+                                                     # for works with an LCCN and no credit
+REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
+LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
+                                                              # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
 # roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
 # 'contributor' (2026-11-12, class 23): a qualified editor ('cartographic editor', 'associate editor', 'maps edited by')
 EDITION_ROLE_SET = ('edition-editor', 'translator', 'introducer', 'series-editor', 'contributor')
@@ -826,6 +836,33 @@ def name_only_credits(state, types, rels, resolve, chapter_node, report):
     return linked, list(cands.values())
 
 
+def review_book_nodes(state, types, works, wi, unkeyed, resolve, report):
+    """Reviews filed as articles (data/graph/review-books.csv.gz, scripts/review_books.py; 2026-11-12, class 29): an
+    unkeyed article/other record that reviews a book gets kind 'review'; a keyed one gets kind_proposed 'review' (the key
+    log's kind is not changed). Returns linked REVIEWS rows (review -> book; evidence linked, source review-books:<rule>).
+    No credit is made: the reviewer is never the book's author."""
+    out, seen = [], set()
+    for r in read_rows(REVIEW_BOOKS):
+        rv, bk = resolve(r['review']), resolve(r['book'])
+        if not rv or not bk or rv == bk or rv not in wi:
+            report['review_books_unresolved'] += 1
+            continue
+        w = wi[rv]
+        if w['resolution'] == 'unkeyed' and w['kind'] in ('article', 'other'):
+            w['kind_before_review_rule'] = w['kind']
+            w['kind'] = 'review'
+            report['review_books_retyped_unkeyed'] += 1
+        elif w['resolution'] != 'unkeyed':
+            w['kind_proposed'] = 'review'
+            report['review_books_kind_proposed_keyed'] += 1
+        if (rv, bk) not in seen:
+            seen.add((rv, bk))
+            out.append({'from': rv, 'to': bk, 'claim': f"review-books:{r['rule']}:{r['basis']}", 'resolution': 'linked',
+                        'evidence': 'linked', 'source': f"review-books:{r['rule']}"})
+    report['review_books_REVIEWS_linked'] = len(out)
+    return out
+
+
 def volume_links(state, types, rels, vol_key, aw_part, resolve, report):
     """PART_OF rows with evidence linked: a chapter -> its volume, from data/graph/work-containers.csv.gz (keyed chapters;
     source orcid-container or doi-container) and author-works/works.csv.gz (author-works-container); only the bases in
@@ -1214,9 +1251,13 @@ def main():
     pass4_files = [p for p, ok in pass4.items() if ok]
     no_files = [NAME_ONLY / 'credits.csv.gz', NAME_ONLY / 'chapters.csv.gz']
     no_files = no_files if all(p.exists() for p in no_files) else []
+    prize_files = PRIZE_FILES if all(p.exists() for p in PRIZE_FILES) else []
+    p5_files = [p for p in (LC_CREDITS, REVIEW_BOOKS, LC_BOOKS) if p.exists()]
+    if os.environ.get('BUILD_PASS5_OFF'):          # a baseline build without the pass-five layers (check builds only)
+        prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files + no_files))
+                       + pass4_files + no_files + prize_files + p5_files))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -1268,6 +1309,29 @@ def main():
                                          else ({}, {}, [], set()))
     # chapters a keyed person wrote, by name only, in a key-log edited volume (data/graph/name-only, 2026-11-12)
     no_node, no_part = name_only_nodes(types, works, wi, unkeyed, resolve, report) if no_files else ({}, [])
+    # prizes (2026-11-12): Prize nodes, AWARDED, and work nodes for prize works the graph lacked (scripts/graph_prizes.py)
+    if prize_files:
+        from graph_prizes import prize_layer
+        pz = prize_layer(read_rows, PRIZES, state, types, works, wi, unkeyed, resolve, report)
+    else:
+        pz = None
+    # reviews of books (2026-11-12, class 29): unkeyed article records that review a book are retyped; book nodes made
+    rb_rows = review_book_nodes(state, types, works, wi, unkeyed, resolve, report) if REVIEW_BOOKS in p5_files else []
+    lcb_rows = []                   # LC books of keys with scholarly evidence the graph lacked (2026-11-12)
+    if LC_BOOKS in p5_files:
+        for r in read_rows(LC_BOOKS):
+            key = f"lccn:{r['lccn']}"
+            n = resolve(key)
+            if not n:
+                n = key
+                unkeyed.add(n)
+                types[n] = 'work'
+                w = dict(key=n, label=r['title'] or None, resolution='unkeyed', anchors=[n], kind='book', lccn=r['lccn'],
+                         year=int(r['year']) if (r['year'] or '').isdigit() else None, reviewer_names=[], journal=None)
+                works.append(w)
+                wi[n] = w
+                report['lc_authority_books_nodes_added'] += 1
+            lcb_rows.append(dict(work=n, person=r['person'], lcnaf=r['lcnaf'], lccn=r['lccn']))
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
@@ -1376,6 +1440,64 @@ def main():
         report['missing_authors_AUTHORED_added'] = len(add)
         linked['AUTHORED'] += add
         del have, add
+    if lcb_rows:                    # their main entry's key: exact linked AUTHORED (source lc-catalogue:authority-books)
+        have = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(x['from'], x['to']) for x in linked['AUTHORED']}
+        add = []
+        for r in lcb_rows:
+            k = person1(f"lcnaf:{r['lcnaf']}") or person1(r['person'])
+            if k and (k, r['work']) not in have:
+                have.add((k, r['work']))
+                add.append({'from': k, 'to': r['work'], 'claim': f"lc-catalogue:authority-books:{r['lcnaf']}:{r['lccn']}",
+                            'resolution': 'linked', 'source': 'lc-catalogue:authority-books', 'state': 'exact',
+                            'role': 'author', 'role_basis': 'lc-main-entry'})
+        report['lc_authority_books_AUTHORED_added'] = len(add)
+        linked['AUTHORED'] += add
+        del have, add
+    if LC_CREDITS in p5_files or pz:   # 2026-11-12: LC main / added entries on a key, and prize winners, for works with no credit
+        credited_w = ({r['to'] for r in rels['AUTHORED']} | {r['to'] for r in rels['EDITED']}
+                      | {x['to'] for x in linked['AUTHORED']} | {x['to'] for x in linked['EDITED']})
+        add_a, add_e = [], []
+        if LC_CREDITS in p5_files:
+            new_w = set()
+            for r in read_rows(LC_CREDITS):
+                k, w = person1(r['person']), resolve(r['work'])
+                if not k or not w:
+                    report['lc_credits_unresolved'] += 1
+                    continue
+                if w in credited_w and w not in new_w:
+                    report['lc_credits_work_already_credited'] += 1
+                    continue
+                new_w.add(w)
+                row = {'from': k, 'to': w, 'claim': f"lc-catalogue:{r['tag']}:{r['lcnaf']}:{r['control']}", 'resolution': 'linked',
+                       'source': f"lc-catalogue:{r['tag']}", 'state': 'exact', 'role': r['role'], 'role_basis': r['role_basis']}
+                (add_a if r['credit'] == 'authored' else add_e).append(row)
+            credited_w |= new_w
+            report['lc_credits_AUTHORED_added'] = len(add_a)
+            report['lc_credits_EDITED_added'] = len(add_e)
+        if pz:
+            new_w, lc_w, seen_p, na = set(), set(), set(), 0
+            for r in sorted(pz['authors'], key=lambda r: r['source'] != 'prizes:lc-main-entry'):
+                w = r['work']
+                if (w in credited_w and w not in new_w) or (r['person'], w) in seen_p:
+                    report['prize_authors_work_already_credited'] += 1
+                    continue
+                if r['source'] == 'prizes:winner' and w in lc_w:     # the LC main entry is the author
+                    report['prize_authors_winner_skipped_lc_main_entry'] += 1
+                    continue
+                if r['source'] == 'prizes:lc-main-entry':
+                    lc_w.add(w)
+                new_w.add(w)
+                seen_p.add((r['person'], w))
+                add_a.append({'from': r['person'], 'to': w, 'claim': f"{r['source']}:{w}", 'resolution': 'linked',
+                              'source': r['source'], 'state': r['state'], 'role': r['role'], 'role_basis': r['basis']})
+                na += 1
+            report['prize_authors_AUTHORED_added'] = na
+            credited_w |= new_w
+        linked['AUTHORED'] += add_a
+        linked['EDITED'] += add_e
+        if pz:
+            report['prizes']['prize_works_with_node_no_author'] = len(pz['targets'] - credited_w)
+        del credited_w, add_a, add_e
     if pass4[LC_CONFLICTS]:         # a linked authored credit on a book whose LC main entry is someone else: a candidate
         conf, open_keylog = {}, 0
         for r in read_rows(LC_CONFLICTS):
@@ -1477,8 +1599,16 @@ def main():
                 publisher_of.setdefault(r['volume_work'], r['container_publisher'])
         series_editor_measure(ve_loaded, publisher_of, er, contributed, report)
         del publisher_of
-    for name in ('SUPERVISED', 'PUBLISHED_AS', 'REVIEWS'):
+    for name in ('SUPERVISED', 'PUBLISHED_AS'):
         report[name] = write(name.lower(), rels[name], rel_schema)
+    # REVIEWS: the key log's claims (evidence keylog) and, from 2026-11-12, reviews of a book found by
+    # scripts/review_books.py (evidence linked; a pair the key log holds is not repeated)
+    kl_rev = {(r['from'], r['to']) for r in rels['REVIEWS']}
+    rb_rows = [r for r in rb_rows if (r['from'], r['to']) not in kl_rev]
+    report['REVIEWS'] = write('reviews', [dict(r, evidence='keylog', source=None) for r in rels['REVIEWS']] + rb_rows,
+                              pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s)]))
+    report['REVIEWS_by_evidence'] = dict(keylog=len(rels['REVIEWS']), linked=len(rb_rows))
+    del kl_rev
     # PART_OF: the key log's chapter -> volume claims (evidence keylog) and the volume links of 2026-11-11 (evidence
     # linked, source and volume_basis; identity scripts read the keylog rows only, scripts/graph_tables.py)
     part_linked = volume_links(state, types, rels, vol_key, aw_part, resolve, report) if (aw_files and fact_files) else []
@@ -1560,7 +1690,13 @@ def main():
     keyed_pairs = {name: {(x['from'], x['to']) for x in rels[name]} for name in ('AUTHORED', 'EDITED')}
     linked = {name: [r for r in linked.get(name, []) if (r['from'], r['to']) not in keyed_pairs[name]] for name in ('AUTHORED', 'EDITED')}
     del keyed_pairs
-    # candidate lists are not edges: unconfirmed name-compatible people for a work (never credited)
+    # candidate lists are not edges: unconfirmed name-compatible people for a work (never credited); a pair credited by
+    # any route (a later loader, e.g. prizes or LC entries, 2026-11-12) is not also listed as a candidate
+    cred_pairs = {(r['from'], r['to']) for r in rels['AUTHORED']} | {(r['from'], r['to']) for r in linked.get('AUTHORED', [])}
+    n0 = len(possible_authors)
+    possible_authors = [r for r in possible_authors if (r['from'], r['to']) not in cred_pairs]
+    report['author_candidates_dropped_as_credited'] = n0 - len(possible_authors)
+    del cred_pairs
     cand_rows = write('author_candidates', possible_authors, pa.schema([
         ('from', s), ('to', s), ('n_candidates', pa.int32()), ('signals', s), ('source', s), ('role', s), ('reason', s)]))
     report['candidate_lists'] = dict(author_candidates=cand_rows)
@@ -1588,7 +1724,7 @@ def main():
             lauth_editors[r['to']].add(r['from'])
     del not_author
     both_all = {w: authors.get(w, set()) | lauth_all.get(w, set()) for w in set(authors) | set(lauth_all)}
-    rl = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] for a in both_all.get(r['from'], ())
+    rl = sorted({(a, b, r['from'], r['to']) for r in rels['REVIEWS'] + rb_rows for a in both_all.get(r['from'], ())
                  for b in both_all.get(r['to'], ()) if a != b} - set(reviewed))
     report['REVIEWED'] = write('reviewed', [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'keylog'} for a, b, rv, bk in reviewed]
                                + [{'from': a, 'to': b, 'review': rv, 'book': bk, 'evidence': 'linked'} for a, b, rv, bk in rl],
@@ -1760,6 +1896,20 @@ def main():
                 if len(i) == 1 and types.get(i[0]) == 'institution':
                     awarded.append({'from': w['key'], 'to': i[0]})
     report['AWARDED_BY'] = write('awarded_by', awarded, pa.schema([('from', s), ('to', s)]))
+    if pz:                          # prizes (2026-11-12): Prize nodes, AWARDED (Prize -> Person | Work), candidates
+        i32 = pa.int32()
+        report['Prize'] = write('prize', pz['prizes'], pa.schema([
+            ('key', s), ('label', s), ('body', s), ('body_country', s), ('field', s), ('honours', s), ('wd', s), ('sources', s),
+            ('rows', i32), ('first_year', i32), ('last_year', i32), ('shown', pa.bool_())]))
+        report['AWARDED'] = write('awarded', pz['awarded'], pa.schema([
+            ('from', s), ('to', s), ('target', s), ('year', i32), ('honours', s), ('row', s), ('evidence', s), ('source', s),
+            ('state', s), ('basis', s), ('source_url', s), ('note', s), ('co_winners', s), ('shown', pa.bool_())]))
+        report['AWARDED_by_target'] = dict(Counter(r['target'] for r in pz['awarded']))
+        report['AWARDED_shown'] = sum(1 for r in pz['awarded'] if r['shown'])
+        report['candidate_lists']['prize_candidates'] = write('prize_candidates', pz['candidates'], pa.schema([
+            ('from', s), ('to', s), ('row', s), ('prize', s), ('n_candidates', i32), ('branch', s), ('signals', s),
+            ('shown', pa.bool_())]))
+        pz = None
 
     possible = {}                   # (a, b) -> likelihood
     for person in people:

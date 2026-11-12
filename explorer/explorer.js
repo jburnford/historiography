@@ -10,6 +10,7 @@ const CAT = {
   review: { label: 'Review', shape: 'down' },
   other: { label: 'Other work', shape: 'round' },
   institution: { label: 'Institution', shape: 'hex' },
+  prize: { label: 'Prize', shape: 'diamond' },
 };
 const FETCH_LIMIT = 24;
 const NS = 'http://www.w3.org/2000/svg';
@@ -235,6 +236,7 @@ function renderPanel() {
   if (node.type === 'work') stats.push(['cited by', node.cited], ['reviews', node.reviewed]);
   if (node.type === 'work' && node.cited_edition) stats.push(['of the citations, in translation or another edition', node.cited_edition]);
   if (node.type === 'institution') stats.push(['theses', node.weight]);
+  if (node.type === 'prize') stats.push(['awards listed', node.weight]);
   const card = h('div', {},
     h('div', {}, h('span', { class: 'chip' }, icon(c), ' ', meta),
       node.resolution === 'recorded' ? h('span', { class: 'chip', title: 'Known from one source only' }, 'recorded (one source)') : null),

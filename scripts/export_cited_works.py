@@ -57,6 +57,12 @@ Added 2026-11-11:
   ids that no cited work holds become works here (source `lc-translations`). Compilations (relation compilation, no
   single original) become works keyed `corpus:<work_id>` (source `compilation`) with an author row (state `linked`,
   branch `compilation`) to compilations.csv.gz's kg_person_key.
+- Recent books (2026-11-12; data/identifiers/cited-works-recent-books-2026-11-12, key_cited_works_recent_books.py;
+  source `recent-books`; ids `doi:` or `openalex:`, kind book): Crossref book records and OpenAlex works found with no
+  subject filter for corpus books 2017+ and books before 2017 cited by 3+ theses that no crosswalk held. Precedence:
+  older keyed crosswalks > LC > Crossref (11-10) > OpenAlex > Crossref metadata > journal metadata > recent books;
+  translations last. A corpus work an earlier crosswalk chose is skipped (counted); when the key log holds the DOI the
+  build cites the key. Their printed authors are read by link_work_people.py nameonly-extra.
 - editions.csv.gz: one row per corpus work moved: work_id, cited_as, canonical, relation, route, basis, confidence,
   cited_language, cited_title, cited_year, theses (the build's EDITION_OF table).
 
@@ -85,6 +91,7 @@ CR = IDS / 'cited-works-crossref-2026-11-10'
 CM = IDS / 'cited-works-crossref-meta-2026-11-11'
 JM = IDS / 'cited-works-journal-meta-2026-11-11'
 TR = IDS / 'cited-works-translations-2026-11-11'
+RB = IDS / 'cited-works-recent-books-2026-11-12'
 LINKS = IDS / 'cited-work-authors-2026-11-10/links.csv.gz'
 OLD = [IDS / 'cited-works-2026-11-04/crosswalk.csv.gz', IDS / 'cited-articles-2026-11-03b/crosswalk.csv.gz',
        IDS / 'cited-own-works-2026-11-03f/crosswalk.csv.gz']
@@ -306,6 +313,19 @@ def main():
         chosen[w] = dict(ids=[r['id']], source='journal-meta', basis=r['basis'], title=r['title'], year=intor(r['year']),
                          kind=cr_kind(r['type']), container=r['journal'], lccns=[])
         R['journal_meta_used'] += 1
+    # recent books (2026-11-12, key_cited_works_recent_books.py: Crossref book records and OpenAlex works with no
+    # subject filter, for corpus books 2017+ and books before 2017 cited by 3+ theses that no crosswalk holds): after
+    # every other crosswalk, before translations; held rows are not in the crosswalk; kind book; ids doi: / openalex:
+    for r in rd(RB / 'crosswalk.csv.gz'):
+        w = r['work_id']
+        R['recent_books_rows'] += 1
+        if w in chosen:
+            R[f"recent_books_also_{chosen[w]['source']}"] += 1
+            continue
+        ids = [r['id']] + [x for x in (r['alias_ids'] or '').split(';') if x.strip() and x != r['id']]
+        chosen[w] = dict(ids=ids, source='recent-books', basis=r['basis'], title=r['title'], year=intor(r['year']),
+                         kind='book', container='', lccns=[], recent_book=r)
+        R['recent_books_used'] += 1
     oa_removed = sum(v for k, v in guard.items() if k != 'other_venue_raw')
     report['openalex_guards_removed'] = dict(guard, total=oa_removed)
     write_csv(args.out / 'openalex-guarded.csv.gz', ['work_id', 'guard', 'cited_title', 'cited_year', 'cited_container',
@@ -322,7 +342,8 @@ def main():
 
     def rank(w):
         c = chosen[w]
-        return ({'lc-full': 0, 'crossref': 1, 'openalex': 2, 'crossref-meta': 3, 'journal-meta': 4}[c['source']], c['year'] or 9999,
+        return ({'lc-full': 0, 'crossref': 1, 'openalex': 2, 'crossref-meta': 3, 'journal-meta': 4,
+                 'recent-books': 5}[c['source']], c['year'] or 9999,
                 c['ids'][0])
     cid = {}
     works = {}
@@ -561,7 +582,8 @@ def main():
     report['counts'] = dict(sorted(R.items()))
     report['openalex_rows_removed_by_guards'] = oa_removed
     report['precedence'] = ('LC > Crossref > OpenAlex > Crossref metadata (2026-11-11; fills only works no other crosswalk '
-                            'holds, review-like matches dropped) > journal metadata (2026-11-11, same guards); OpenAlex DOI replaced by the Crossref DOI where the '
+                            'holds, review-like matches dropped) > journal metadata (2026-11-11, same guards) > recent books (2026-11-12, '
+                            'Crossref/OpenAlex book records, kind book); OpenAlex DOI replaced by the Crossref DOI where the '
                             'agreement check differs (unless reviewed `openalex`; `both` keeps the OpenAlex DOI as an alias); '
                             'OpenAlex rows after the Crossref guards (part markers, notices, other venue + other year); '
                             'translations and editions (2026-11-11) are applied after the match: the citation goes to the '

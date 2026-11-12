@@ -1,6 +1,6 @@
 {
  "date": "2026-11-12",
- "graph": "/home/jic823/historiography/build/graph-check10",
+ "graph": "/home/jic823/historiography/build/graph",
  "what": "printed author positions on works whose author list no linker had read (unkeyed works with an id, keyed works outside the 11-11 positions, chapters of key-log edited volumes listed by Crossref); see link_work_people.py, section name-only",
  "extraction": {
   "dropped_already_linked_by_rule": 222008,
@@ -143,40 +143,40 @@
  "tests": {
   "gold_rows": 20000,
   "gold": {
-   "linked": 3184,
-   "right_or_duplicate_key": 3141,
-   "wrong": 43,
-   "precision": 0.9865,
-   "recall": 0.157
+   "linked": 3174,
+   "right_or_duplicate_key": 3135,
+   "wrong": 39,
+   "precision": 0.9877,
+   "recall": 0.1568
   },
   "gold_by_how_credited": {
    "name": {
-    "rows": 141,
-    "linked": 64,
-    "right": 64,
-    "recall": 0.4539,
+    "rows": 348,
+    "linked": 139,
+    "right": 139,
+    "recall": 0.3994,
     "precision": 1.0
    },
    "orcid": {
-    "rows": 19859,
-    "linked": 3120,
-    "right": 3077,
-    "recall": 0.1549,
-    "precision": 0.9862
+    "rows": 19652,
+    "linked": 3035,
+    "right": 2996,
+    "recall": 0.1525,
+    "precision": 0.9871
    }
   },
   "gold_by_fact": {
    "(no fact: rarity)": {
-    "linked": 894,
-    "right": 871,
-    "precision": 0.9743,
-    "recall": 0.0435
+    "linked": 879,
+    "right": 853,
+    "precision": 0.9704,
+    "recall": 0.0427
    },
    "coauthor": {
-    "linked": 517,
-    "right": 516,
-    "precision": 0.9981,
-    "recall": 0.0258
+    "linked": 531,
+    "right": 531,
+    "precision": 1.0,
+    "recall": 0.0266
    },
    "coauthor-colleague": {
     "linked": 2,
@@ -185,34 +185,34 @@
     "recall": 0.0001
    },
    "coauthor-network": {
-    "linked": 65,
-    "right": 65,
+    "linked": 72,
+    "right": 72,
     "precision": 1.0,
-    "recall": 0.0032
+    "recall": 0.0036
    },
    "inst": {
-    "linked": 114,
-    "right": 114,
-    "precision": 1.0,
-    "recall": 0.0057
+    "linked": 97,
+    "right": 96,
+    "precision": 0.9897,
+    "recall": 0.0048
    },
    "selfcite": {
-    "linked": 6,
-    "right": 6,
+    "linked": 5,
+    "right": 5,
     "precision": 1.0,
     "recall": 0.0003
    },
    "topic": {
-    "linked": 1710,
-    "right": 1691,
-    "precision": 0.9889,
-    "recall": 0.0846
+    "linked": 1729,
+    "right": 1717,
+    "precision": 0.9931,
+    "recall": 0.0858
    },
    "volume-editor": {
-    "linked": 4,
-    "right": 4,
+    "linked": 3,
+    "right": 3,
     "precision": 1.0,
-    "recall": 0.0002
+    "recall": 0.0001
    },
    "volume-network": {
     "linked": 28,
@@ -223,29 +223,29 @@
   },
   "gold_links_resting_on_one_fact": {
    "coauthor": {
-    "linked": 207,
-    "right": 207,
+    "linked": 203,
+    "right": 203,
     "precision": 1.0
    },
    "coauthor-network": {
-    "linked": 6,
-    "right": 6,
+    "linked": 5,
+    "right": 5,
     "precision": 1.0
    },
    "inst": {
-    "linked": 34,
-    "right": 34,
+    "linked": 30,
+    "right": 30,
     "precision": 1.0
    },
    "selfcite": {
-    "linked": 2,
-    "right": 2,
+    "linked": 1,
+    "right": 1,
     "precision": 1.0
    },
    "topic": {
-    "linked": 616,
-    "right": 609,
-    "precision": 0.9886
+    "linked": 602,
+    "right": 598,
+    "precision": 0.9934
    },
    "volume-editor": {
     "linked": 1,
@@ -253,56 +253,56 @@
     "precision": 1.0
    },
    "volume-network": {
-    "linked": 1,
-    "right": 1,
+    "linked": 2,
+    "right": 2,
     "precision": 1.0
    }
   },
   "gold_by_branch": {
    "dupgroup:unique-rare": {
-    "linked": 88,
-    "right": 88,
+    "linked": 95,
+    "right": 95,
     "precision": 1.0
    },
    "dupgroup:unique-rare-fullname": {
-    "linked": 11,
-    "right": 11,
+    "linked": 4,
+    "right": 4,
     "precision": 1.0
    },
    "dupgroup:unique-rare-span": {
-    "linked": 5,
-    "right": 5,
+    "linked": 15,
+    "right": 15,
     "precision": 1.0
    },
    "several-dated-one-fact": {
-    "linked": 186,
-    "right": 176,
-    "precision": 0.9462
+    "linked": 180,
+    "right": 172,
+    "precision": 0.9556
    },
    "several-one-survives": {
-    "linked": 12,
-    "right": 12,
+    "linked": 13,
+    "right": 13,
     "precision": 1.0
    },
    "unique-rare": {
-    "linked": 1324,
-    "right": 1316,
-    "precision": 0.994
+    "linked": 1317,
+    "right": 1304,
+    "precision": 0.9901
    },
    "unique-rare-fullform": {
-    "linked": 2,
-    "right": 2,
+    "linked": 4,
+    "right": 4,
     "precision": 1.0
    },
    "unique-rare-fullname": {
-    "linked": 251,
-    "right": 243,
-    "precision": 0.9681
+    "linked": 276,
+    "right": 272,
+    "precision": 0.9855
    },
    "unique-rare-span": {
-    "linked": 396,
-    "right": 386,
-    "precision": 0.9747
+    "linked": 379,
+    "right": 369,
+    "precision": 0.9736
    },
    "unique-rare-variant": {
     "linked": 1,
@@ -310,217 +310,54 @@
     "precision": 1.0
    },
    "unique-second-fact": {
-    "linked": 908,
-    "right": 901,
-    "precision": 0.9923
+    "linked": 890,
+    "right": 886,
+    "precision": 0.9955
    }
   },
   "gold_not_linked": {
-   "possible|one-candidate-common-name": 5738,
-   "possible|outside-history-rarity-only": 5575,
-   "ambiguous|several-several-dated": 2570,
-   "none|no-compatible-name": 1062,
-   "possible|one-candidate-surname-variant-name": 529,
-   "none|only-date-excluded": 475,
-   "possible|review-record-rarity-only": 471,
-   "possible|one-candidate-initial-name": 171,
-   "possible|one-candidate-variant-name": 70,
-   "ambiguous|several-one-dated-no-fact": 56,
-   "possible|same-title-as-own-book": 54,
-   "possible|one-candidate-none-dated": 37,
-   "possible|several-several-dated": 7,
-   "ambiguous|several-none-dated": 1
+   "possible|one-candidate-common-name": 5760,
+   "possible|outside-history-rarity-only": 5629,
+   "ambiguous|several-several-dated": 2560,
+   "none|no-compatible-name": 1051,
+   "possible|one-candidate-surname-variant-name": 516,
+   "possible|review-record-rarity-only": 453,
+   "none|only-date-excluded": 451,
+   "possible|one-candidate-initial-name": 160,
+   "possible|one-candidate-variant-name": 69,
+   "possible|same-title-as-own-book": 59,
+   "ambiguous|several-one-dated-no-fact": 57,
+   "possible|one-candidate-none-dated": 47,
+   "possible|several-several-dated": 12,
+   "possible|several-one-dated-no-fact": 1,
+   "none|author-of-reviewed-book": 1
   },
   "namesake": {
    "masked-author": {
-    "rows": 2779,
-    "false_links": 16
+    "rows": 2794,
+    "false_links": 10
    },
    "orcid-namesake": {
-    "rows": 1149,
-    "false_links": 162
+    "rows": 1170,
+    "false_links": 164
    }
   },
   "namesake_false_links_by_fact": {
-   "topic": 39,
-   "coauthor": 20,
-   "(no fact: rarity)": 5,
+   "topic": 38,
+   "coauthor": 19,
+   "inst": 15,
+   "(no fact: rarity)": 2,
    "oa-author-tie": 130,
    "volume-network": 23,
-   "coauthor-network": 4,
-   "inst": 14
+   "coauthor-network": 4
   },
   "namesake_false_links_by_branch": {
-   "unique-second-fact": 120,
+   "unique-second-fact": 119,
    "several-dated-one-fact": 4,
-   "unique-rare-fullname": 8,
+   "unique-rare-fullname": 5,
    "unique-rare": 43,
    "unique-rare-span": 3
   }
- },
- "tests_without_new_facts": {
-  "gold_rows": 20000,
-  "gold": {
-   "linked": 1707,
-   "right_or_duplicate_key": 1683,
-   "wrong": 24,
-   "precision": 0.9859,
-   "recall": 0.0842
-  },
-  "gold_by_how_credited": {
-   "name": {
-    "rows": 141,
-    "linked": 55,
-    "right": 55,
-    "recall": 0.3901,
-    "precision": 1.0
-   },
-   "orcid": {
-    "rows": 19859,
-    "linked": 1652,
-    "right": 1628,
-    "recall": 0.082,
-    "precision": 0.9855
-   }
-  },
-  "gold_by_fact": {
-   "(no fact: rarity)": {
-    "linked": 1133,
-    "right": 1109,
-    "precision": 0.9788,
-    "recall": 0.0554
-   },
-   "coauthor": {
-    "linked": 485,
-    "right": 485,
-    "precision": 1.0,
-    "recall": 0.0243
-   },
-   "inst": {
-    "linked": 86,
-    "right": 86,
-    "precision": 1.0,
-    "recall": 0.0043
-   },
-   "selfcite": {
-    "linked": 6,
-    "right": 6,
-    "precision": 1.0,
-    "recall": 0.0003
-   }
-  },
-  "gold_links_resting_on_one_fact": {
-   "coauthor": {
-    "linked": 251,
-    "right": 251,
-    "precision": 1.0
-   },
-   "inst": {
-    "linked": 40,
-    "right": 40,
-    "precision": 1.0
-   },
-   "selfcite": {
-    "linked": 2,
-    "right": 2,
-    "precision": 1.0
-   }
-  },
-  "gold_by_branch": {
-   "dupgroup:unique-rare": {
-    "linked": 67,
-    "right": 67,
-    "precision": 1.0
-   },
-   "dupgroup:unique-rare-fullname": {
-    "linked": 10,
-    "right": 10,
-    "precision": 1.0
-   },
-   "dupgroup:unique-rare-span": {
-    "linked": 3,
-    "right": 3,
-    "precision": 1.0
-   },
-   "several-one-survives": {
-    "linked": 7,
-    "right": 7,
-    "precision": 1.0
-   },
-   "unique-rare": {
-    "linked": 827,
-    "right": 819,
-    "precision": 0.9903
-   },
-   "unique-rare-fullform": {
-    "linked": 2,
-    "right": 2,
-    "precision": 1.0
-   },
-   "unique-rare-fullname": {
-    "linked": 186,
-    "right": 178,
-    "precision": 0.957
-   },
-   "unique-rare-span": {
-    "linked": 317,
-    "right": 309,
-    "precision": 0.9748
-   },
-   "unique-rare-variant": {
-    "linked": 1,
-    "right": 1,
-    "precision": 1.0
-   },
-   "unique-second-fact": {
-    "linked": 287,
-    "right": 287,
-    "precision": 1.0
-   }
-  },
-  "gold_not_linked": {
-   "possible|one-candidate-common-name": 6356,
-   "possible|outside-history-rarity-only": 6240,
-   "ambiguous|several-several-dated": 2705,
-   "none|no-compatible-name": 1062,
-   "possible|one-candidate-surname-variant-name": 530,
-   "none|only-date-excluded": 475,
-   "possible|review-record-rarity-only": 471,
-   "possible|one-candidate-initial-name": 172,
-   "possible|one-candidate-variant-name": 73,
-   "possible|several-several-dated": 64,
-   "ambiguous|several-one-dated-no-fact": 60,
-   "possible|same-title-as-own-book": 46,
-   "possible|one-candidate-none-dated": 38,
-   "ambiguous|several-none-dated": 1
-  },
-  "namesake": {
-   "masked-author": {
-    "rows": 2779,
-    "false_links": 5
-   },
-   "orcid-namesake": {
-    "rows": 1149,
-    "false_links": 148
-   }
-  },
-  "namesake_false_links_by_fact": {
-   "coauthor": 19,
-   "(no fact: rarity)": 5,
-   "oa-author-tie": 130,
-   "inst": 14
-  },
-  "namesake_false_links_by_branch": {
-   "unique-second-fact": 99,
-   "unique-rare-fullname": 8,
-   "unique-rare": 43,
-   "unique-rare-span": 3
-  }
- },
- "ablation": {
-  "linked_only_with_new_facts": 4907,
-  "linked_only_without": 0,
-  "linked_to_another_key": 0
  },
  "openalex_author_ids": {
   "tied_to_keys_by_keylog_credits": 76196,
