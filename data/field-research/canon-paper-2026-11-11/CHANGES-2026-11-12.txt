@@ -1,0 +1,198 @@
+Canon paper: what changed when the tables were rerun on the build of 2026-11-12 (morning)
+
+The tables of 2026-11-11 evening (made on the build of 11-11 20:08) are kept in out-2026-11-11-evening/ (a copy of out/
+before this run). The tables in out/ are now from the live build/graph written 2026-11-12 about 05:00 (42.14% of thesis
+citations matched). Counts and shares only; distinct citing documents throughout; person keys are never summed.
+"People" below means person keys: they include other-field scholars and authors of primary sources, not only historians.
+
+1. What changed
+
+In the graph since the evening run:
+- Roles on AUTHORED and EDITED credits (data/graph/edition-roles.csv.gz). Edition editors, translators, introducers,
+  series editors and (from 2026-11-12) contributors, that is qualified editors such as associate, assistant, consulting
+  or picture editors, do not count as citations of the person's own work. In 00_base.py they are how = 'edition_role',
+  left out of hows(): 22,670 credits.
+- Volume editors from LC and Crossref (linked EDITED rows); first publication years on works (first_year, 62,548 works
+  whose first year differs from the key year); 1,749 canonical keys that were translations now roll up to the original
+  (edition-canonical-fixes); 227 LC-author-conflict linked credits demoted (Di Tella); co-authorship only from
+  author-role credits; the journal-metadata matches (5,572 thesis citations).
+In the scripts:
+- 00_base.py: the match flag adds the journal-metadata crosswalk last, with its guards, as export_cited_works.py does:
+  1,285,599 of 3,050,449 matched (42.14%, the build's figure; was 1,280,027, 41.96%). The roll-up key (gkey) follows
+  data/graph/edition-canonical-fixes.csv.gz as build_graph does (2,063 keys with one proposal; 3,114 corpus works now
+  point to a different original); gkey_cited is unchanged. gw.year is now coalesce(first_year, year); gw.key_year keeps
+  the key's own year. 'contributor' added to the edition roles.
+- 05_age.py: docstring only; every graph-year measure now reads gw.year, i.e. the first publication year.
+- 08_data_checks.py: anachronistic pairs counted by the first year and, as before, by the key year.
+Reconstruction check: the corpus-to-graph map gives 1,227,716 (thesis, work) pairs, 1,226,940 of them also graph CITES
+edges; the graph holds 1,240,515 thesis pairs, so 13,575 graph edges (older cites.csv.gz routes) are not rebuilt from
+the crosswalks (evening: 13,120). 10,068 matched citations (579 works) still have no live graph key.
+
+2. The five claims (FINDINGS.md numbering)
+
+Claim 1, the canon reaches far but takes little. STANDS; figures move by tenths of a point.
+- Top-100 works' share of thesis citations: corpus 0.66% before and after; graph 2.04% (1.99-2.09) -> 2.06% (2.01-2.11).
+- Theses citing a top-100 work: corpus 46.4% (unchanged), graph 56.4% -> 56.8%.
+- Theses citing one of the 100 most-cited people: graph 72.4% -> 72.3%; corpus 73.0% (unchanged).
+- Top-100 people's share of person pairs (graph): 5.80% -> 5.86%. Person pairs fall from 797,683 to 777,738 because
+  edition-role credits no longer count.
+
+Claim 2, supervisor effect. STANDS, unchanged.
+- Own supervisor cited through matched works: 48.0% (46.7-49.4) before and after; with parsed names 56.7% both.
+  Cited outside own students 47.9% -> 48.0%. Same 8,950 pairs from 7,741 theses.
+- Topical peers (same institution and decade, 3+ shared works): 10.9% -> 10.8%; ratio 4.4 (4.2-4.6) both.
+- All institution-decade peers: 2.01% -> 2.00%; ratio 23.9 -> 24.0.
+
+Claim 3, Anglophone canons overlap about a fifth. STANDS.
+- Top-100 people shared (route A): CA-US 20 -> 21, GB-US 26 -> 25, CA-GB 21 -> 22 (Jaccard 11.1-14.9% -> 11.7-14.3%).
+- Profile cosine (route A, all theses): CA-US 0.557 -> 0.556, GB-US 0.567 -> 0.566, CA-GB 0.513 -> 0.511. Equal draws:
+  CA-US 0.479 -> 0.470 (0.446-0.493), CA-GB 0.428 -> 0.420, US-GB 0.464 -> 0.457. By parsed name unchanged (CA-US 0.549).
+
+Claim 4, the periphery leans on the shared canon; France and Brazil form an axis. STANDS; route A shares slightly lower.
+- Universal share by parsed name, equal draws: FR 15.6 -> 15.5%, BR 20.4 -> 20.2%, MX 20.3 -> 20.1%, against CA 8.4 ->
+  8.3%, US 7.7 -> 7.6%, GB 8.7 -> 8.6%.
+- The same through matched works (route A): FR 12.9 -> 12.5%, BR 19.5 -> 18.9%, MX 16.4 -> 15.6%, against CA 6.8 ->
+  6.5%, US 6.0 -> 5.6%, GB 7.1 -> 6.6%. The gap between the two groups is unchanged in kind.
+- France-Brazil person cosine, equal draws: by name 0.444 -> 0.448; route A 0.435 -> 0.434 (0.412-0.459); CA-US 0.47-0.48.
+  All theses, route A: 0.464 -> 0.463.
+- Works cosine FR-BR with the roll-up 0.280 -> 0.295 (without it 0.252 both): the canonical fixes send more Brazilian
+  and French citations of translations to the same original.
+- Concentration: top-100 people's share of parsed-name person citations is corpus-side and unchanged (BR 7.2%, MX 5.9%
+  against 2.0-2.9%); through matched works on equal draws BR 23.2 -> 23.2%, MX 26.5 -> 27.0%, FR 11.8 -> 12.2%, against
+  CA 8.2 -> 8.4%, US 6.5 -> 6.3%, GB 6.0 -> 6.1%.
+
+Claim 5, bibliographies age slowly. STANDS for theses; the JSTOR article trend WEAKENS again.
+- Corpus as printed (scholarship frame), theses 2005-09 / 2010-14 / 2015-18 / 2019-26: 17 / 18 / 19 / 20 years, under-ten
+  share 27.7% -> 22.3%: unchanged (does not depend on the graph). With original years for rolled-up editions 18 / 18 /
+  19 / 21, unchanged.
+- Graph-matched, restricted (cited <= 2015, citing <= 2018, age >= 3), now by first publication year: 2005-09 20 -> 21,
+  2010-14 21 -> 21, 2015-18 22 -> 22; on the printed year of the same pairs 19 / 19 / 20 (unchanged). Reweighted
+  (inverse probability) 23 / 23 / 23 -> 24 / 24 / 24. The first year makes matched works one year older at most; the
+  slope is flat in both.
+- JSTOR articles, reweighted: 15 years (1970s, 1980s) -> 19 (2010s) before; 17 -> 20 now (observed 14-15 -> 18 before,
+  15 -> 18 now). The 1970s-80s articles cite works whose keys carried reprint years; with first years their citations
+  are older, so the rise is about three years, not four (it was seven in the morning run). Still upward, but say so with
+  the interval and the change of article set, not as a firm trend.
+
+3. The 50 most-cited people (route A: theses citing a work credited to the key log's AUTHORED/EDITED, edition roles
+   excluded; 08-top1000-people.csv). Rank now (before), label, citing theses now (before):
+
+    1 (  1)  Michel Foucault                     1909 (1909)
+    2 (  2)  Eric Hobsbawm                       1597 (1598)
+    3 (  3)  Benedict Anderson                   1267 (1267)
+    4 (  4)  Pierre Bourdieu                     1237 (1233)
+    5 (  5)  E. P. Thompson                       978 (981)
+    6 (  6)  Peter Burke                          953 (962)
+    7 (  7)  Michel de Certeau                    883 (883)
+    8 (  8)  Jacques Le Goff                      860 (859)
+    9 (  9)  Edward Said                          830 (834)
+   10 ( 10)  Carlo Ginzburg                       797 (793)
+   11 ( 11)  Roger Chartier                       740 (736)
+   12 ( 12)  Norbert Elias                        729 (729)
+   13 ( 13)  Max Weber                            721 (721)
+   14 ( 14)  James C. Scott                       716 (716)
+   15 ( 15)  Marc Bloch                           702 (707)
+   16 ( 16)  Karl Marx                            695 (696)
+   17 ( 17)  Fernand Braudel                      667 (667)
+   18 ( 18)  Reinhart Koselleck                   607 (605)
+   19 ( 19)  Carvalho, José Murilo de             595 (601)
+   20 ( 20)  Frederick Cooper                     566 (566)
+   21 ( 21)  Terence Ranger                       565 (565)
+   22 ( 22)  Paul Ricœur                          562 (562)
+   23 ( 23)  Ann Laura Stoler                     553 (553)
+   24 ( 24)  Jürgen Habermas                      546 (546)
+   25 ( 25)  Hannah Arendt                        535 (535)
+   26 ( 27)  Joan Wallach Scott                   532 (532)
+   27 ( 28)  Pierre Nora                          522 (522)
+   28 ( 30)  Raymond Williams                     511 (511)
+   29 ( 31)  Maurice Halbwachs                    493 (502)
+   30 ( 32)  Richard White                        484 (484)
+   31 ( 33)  Holanda, Sérgio Buarque de           469 (469)
+   32 ( 34)  Fausto, Boris                        463 (463)
+   33 ( 35)  Clifford Geertz                      452 (452)
+   34 ( 37)  Antonio Gramsci                      426 (426)
+   35 ( 36)  Philippe Ariès                       418 (429)
+   36 ( 38)  David Harvey                         413 (413)
+   37 ( 39)  Freyre, Gilberto                     411 (411)
+   38 ( 41)  Natalie Zemon Davis                  396 (396)
+   39 ( 43)  Robert Darnton                       390 (390)
+   40 ( 42)  Schwarcz, Lilia Moritz               390 (391)
+   41 ( 45)  Roland Barthes                       389 (389)
+   42 ( 46)  Bruno Latour                         386 (386)
+   43 ( 44)  Quentin Skinner                      385 (390)
+   44 ( 47)  Gomes, Angela Maria de Castro        378 (378)
+   45 ( 40)  Georges Duby                         377 (406)
+   46 ( 48)  William Cronon                       371 (371)
+   47 ( 49)  Henri Lefebvre                       370 (370)
+   48 ( 50)  Lynn Hunt                            370 (370)
+   49 ( 51)  Judith Butler                        366 (367)
+   50 ( 52)  Walter Benjamin                      366 (366)
+   64 ( 29)  Eric Foner                           303 (522)
+   95 ( 26)  Friedrich Engels                     250 (534)
+
+Movers:
+- Engels 26 -> 95 (534 -> 250 theses): the canonical fix moved citations of English editions of Capital to Das Kapital
+  (w-170828), on which his credit is edition-editor (he edited volumes 2 and 3); 338 theses reach him only that way now.
+  His co-authored works (the Manifesto, The German Ideology) still count. Arguable, and worth a sentence in the paper.
+- Foner 29 -> 64 (522 -> 303): 287 theses came only through his consulting-editor credits on other people's books
+  (Trachtenberg's The Incorporation of America 59, Rosenberg's Spreading the American Dream 58, Kaestle's Pillars of
+  the Republic 30): series-editor role.
+- Duby 40 -> 45 (406 -> 377): general editor of A History of Women in the West and A History of Private Life (series
+  editor; 42 theses only through these). Ariès 429 -> 418 (A History of Private Life), Halbwachs 502 -> 493 (edition
+  editor of Durkheim's L'évolution pédagogique), Burke -9 (A New Kind of History, from the writings of Febvre),
+  Carvalho -6 (his editions of nineteenth-century statesmen), Said -4 (his edition of Kim), Q. Skinner -5, Bloch -5
+  (canonical moves). Bourdieu, Ginzburg, Chartier, Koselleck +2 to +4: citations of translations moved to originals
+  credited to them.
+- Butler and Benjamin enter the top 50 only because Engels and Foner leave it; everyone else moves by two places at most.
+
+4. The faults noted on 2026-11-11, now
+
+- Edition editors in the top 500. 08 counts people whose theses come half or more through EDITED credits that still
+  count (volume editors): 26 -> 13; the remaining 13 are volume editors of collective works (Ranger, The Invention of
+  Tradition; Rémond; Brazilian collections: J. L. Ferreira, Bicalho, Gouvêa, De Luca, Delgado, M. de M. Ferreira, Soihet,
+  Jancsó, E. da Silva; Bethell; Calhoun), which is mostly real editing (not checked one by one). The edition editors of the evening list are gone from
+  the ranking: Schluchter 303 -> 7 theses, Ewald 218 -> 15, Lerner 259 -> 5, A. S. Skinner 212 -> 7, McLellan 198 -> 20,
+  Shapiro 197 -> 11, Eastman 181 -> 9, R. H. Campbell 188 -> 30, McCulloch 168 -> 12. Counting edition roles as well,
+  10 of that top 500 would get half or more of their theses only through them (Engels, Schluchter, A. S. Skinner, Ewald,
+  Shapiro, Campbell, McCulloch, Lerner, H. L. Gates, B. H. Edwards).
+- Di Tella / Guerra. Di Tella's linked credit on Guerra's Le Mexique de l'Ancien Régime is demoted (LC author conflict):
+  Mexican theses reaching him with linked credits 52 -> 0 (all theses 76 -> 13); by key-log credits 13 both. Guerra keeps
+  106 theses, 64 Mexican.
+- Works whose original year is later than the printed year of the translation cited (rolled-up corpus works): 1,117 ->
+  227 works (2,782 -> 222 citations) by first year; by the key year it would now be 1,123. The 227 left are mostly
+  corpus years misparsed from a title ('1852-1871', '1500-1700', '1815-1945').
+- Veyne, Comment on écrit l'histoire. The original no longer rolls up to the English key: French and translated citations
+  go to w-1189310 (first year 1971; 102 theses), but a second original key w-2325911 (2015 reprint, 71 theses) now takes
+  citations too: 173 theses split over two keys (class 25, duplicate original, not merged). w-2325911 is also the top
+  anachronistic work (24 theses from 1991 on).
+- Anachronistic pairs (graph work dated 2+ years after the citing thesis): 2,229 pairs / 1,567 works -> 779 / 662 by first
+  year (2,344 / 1,625 by the key year on the new build). The rest: the Veyne reprint key, DOIs of digitised reprints
+  (Persée, Érudit, Cairn), compilations dated by their Portuguese edition.
+- Duplicate person keys among the top 1,000: Thomas Bender (99 / 7 theses) and now Boyd Hilton (77 / 7).
+- 'Primary source' role in the top 200: 14 -> 15 people (the role classifier is unchanged; still not usable for a
+  'historians only' cut).
+
+5. Claims the data did not support, now
+- "Brazil ignores the international canon": still falls; Hobsbawm 28.4%, Thompson 16.6%, Le Goff 21.6%, Bourdieu 17.5%,
+  Foucault 19.5% of Brazilian theses through matched works, all unchanged.
+- "Sharp ageing in the 2020s": still not supported (corpus as printed 19 to 20; naive matched medians 21 to 24).
+- "Articles are more canonical than theses": still not supported; 2008-2020 top-100 works take 2.24% of thesis pairs and
+  1.70% of article pairs (2.2 / 1.7 before). Agreement holds: person cosine 0.749 -> 0.747; works cosine 0.578 -> 0.623
+  (the canonical fixes); English only 0.82 both.
+- Article concentration by decade: reweighted top-100 share 4.3-4.5% in every decade (was 4.4-4.7%); observed 3.6% (1960s)
+  to 2.3% (2010s). No decline should be claimed (earlier ruling stands).
+- Gini levels: still sample-size dependent.
+
+6. Robustness (07-robustness.csv, columns as before). Every headline holds in every switch; the spread is as on 11-11
+(e.g. top-100 work share 2.06 / 2.06 / 1.89 / 1.89%; FR-BR cosine 0.463 / 0.478 / 0.434 / 0.452; Brazil universal share
+18.8 / 18.9 / 17.9 / 18.2%; Le Goff in Brazil 21.6% with the roll-up and 7.9% without; Bourdieu 17.5% key log, 25.7% with
+linked credits). Dropping 'primary source' people still raises Brazil's universal share (18.8 -> 24.5%).
+
+7. Not verified
+- The contributor and series-editor roles were hand-checked on samples (30/30 contributor rows on 2026-11-12; 59/60 edition
+  editors and 56/60 volume editors on 11-11), not in full; general editors of multi-volume works (Duby, Ariès) are
+  series editors by rule, which a reader may dispute.
+- first_year rests on data/graph/work-years.csv.gz (LC notes, 008 reprint dates, edition clusters); not re-audited here.
+- The canonical fixes (hand check 19/20 in their own audit) and the LC-author-conflict demotions (not audited) were taken
+  as given.
+- 13,575 graph thesis edges and 10,068 matched citations are still not reproduced from the crosswalks (section 1).

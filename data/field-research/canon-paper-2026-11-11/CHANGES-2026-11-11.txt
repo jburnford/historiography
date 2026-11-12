@@ -1,0 +1,237 @@
+Canon paper: what changed when the tables were rerun on the evening build (2026-11-11)
+
+The morning tables (kept in out-2026-11-11-morning/) were made on build/graph-check with a 37.0% thesis match rate.
+The tables in out/ were made on the live build/graph of 2026-11-11 20:08-20:11 (41.96% matched). FINDINGS.md is
+unchanged; this note says, claim by claim, what the new figures are and whether each claim stands, strengthens,
+weakens or falls. Counts and shares only; distinct citing documents throughout; person keys are never summed.
+
+1. What was changed in the scripts
+
+- common.py: reads build/graph (no longer build/graph-check); scratch base in scratchpad/paper2; two switches,
+  PAPER_CREDITS (keylog, the default, or linked) and PAPER_ROLLUP (1, the default, or 0); PAPER_OUT for other
+  output folders. Parsed author keys with initials only ('smith|j', 'thompson|e') are now dropped from the
+  parsed-name routes (corpus person level, route B, the name-route coverage in Table 1). The morning scripts did
+  not do this; its effect is small (route B universal shares move by 0.0-0.3 points; corpus person top-100 shares
+  move by up to 0.3 points) and is part of every old-to-new difference on those routes.
+- 00_base.py: the match flag now reproduces export_cited_works.py of the evening exactly (1,280,027 rows, 41.96%):
+  the three older crosswalks plus the four translation-check crosswalks and the Qwen tail (the morning script read
+  only the first three, which is why it could not rebuild about 108k graph thesis edges), then LC > Crossref >
+  OpenAlex (with the guards and the agreement review) > Crossref metadata, then translations recovered to their
+  original. Each corpus work gets two graph keys: the rolled-up one (a translation or later edition goes to the
+  original) and the one it was matched to as cited (used for the no-roll-up sensitivity). Old crosswalk keys that
+  were merged away are followed to the live key through the key-log cache (read only). Compilations (corpus: works)
+  are mapped but not counted as matched, as in report.json. JSTOR edges are now any source starting with 'jstor'
+  (the morning rule source='jstor' would have counted the new 'jstor-matched' edges as thesis citations).
+- The adaptation of the credit tables by the other agent was checked and is right: evidence 'keylog' maps to the
+  morning's authored / edited, evidence 'linked' to linked_authored / linked_edited (251,069 and 2,531 rows). Note
+  that 'linked' is now wider than in the morning: besides the cited-works linker it holds work-people credits
+  (printed reviewers, JSTOR authors, OpenAlex co-authors), JSTOR-matched LC main entries and compilations.
+- conc.py and the analyses: the credit kinds come from one function (hows) instead of the hard-coded
+  ('authored','edited') in 02, 03, 04 and 08; thesis_work carries the printed year, the graph year and edition and
+  translation flags. 03 adds works overlap with and without the roll-up (and on equal draws); 05 adds the printed-
+  year and original-year versions; 07 adds the linked and roll-up variants and more headline numbers; 09 is new
+  (translations).
+
+Reconstruction check: the corpus-to-graph map gives 1,222,520 (thesis, work) pairs for keyed theses, 99.95% of them
+also graph CITES edges; the graph holds 1,235,325, so 13,120 graph edges (older cites.csv.gz routes) are still not
+rebuilt from the crosswalks (morning: about 108k). 10,068 matched citations (579 works) have an older-crosswalk key
+that no longer resolves to a graph node; 646 strict theses have no diss-thesis key in the graph.
+
+2. Table 1 (missingness)
+
+- Overall: 37.0% then, 41.96% now (1,280,027 of 3,050,449).
+- By country: US 52.6 to 56.6, CA 42.2 to 47.2, GB 38.4 to 42.5, BR 25.1 to 35.5, MX 27.4 to 31.2, FR 24.5 to 27.6.
+  Brazil gained most, but the ranking is unchanged.
+- By cited kind: book 60.2 to 65.1, book or serial 28.5 to 29.8, article 24.6 to 36.0, chapter 10.7 to 14.2,
+  unstyled 7.7 to 8.6, thesis 1.7 to 2.6.
+- By citing band: 1: 18.9 to 21.2; 2-4: 54.7 to 62.3; 5-9: 76.0 to 82.6; 10-49: 84.4 to 97.4; 50+: 78.7 to 99.8.
+  The dip at 50+ (the Portuguese translations) is gone.
+- By section label: secondary 52.3 to 57.1, primary 24.7 to 27.1, unspecified 24.4 to 30.4.
+- Book year: 2010-13 about 54 to about 55-59%; 2016 27 to 30%; 2017-20 about 18 to 18-23%; 2021+ 9-14 to 9-16%.
+  The post-2016 hole is unchanged in kind.
+- Scholarship frame: 32.7% of citations, matched 69.8% then, 79.6% (79.4-79.9) now; books only 77.6 to 85.8%.
+- No frame equalises countries still holds, but the gap narrowed: in the scholarship frame the US is at 89.3%
+  (was 84.9) and Brazil at 69.9% (was 45.4); max/min across the six countries 1.87 then, 1.34 now.
+- Name route: 37.8 to 37.6% of citations (initial-only names now dropped), 50.7 to 52.4% together with matched
+  works; Brazil 40.3% by name against 35.5% by match (was 40 against 25).
+- With compilations counted, the match rate is 41.98% (1,280,464 rows), not the 42.07% report.json gives:
+  2,827 of the 3,264 compilation rows were already matched by an older crosswalk and report.json counts them twice.
+
+3. The five claims
+
+Claim 1, the canon reaches far but takes little. STANDS (numbers move up a little).
+- Top-100 works' share of thesis citations: corpus level 0.66% then and now (unchanged by construction); graph level
+  1.63% (1.59-1.67) then, 2.04% (1.99-2.09) now. The graph value is still an upper bound.
+- Theses citing at least one top-100 work: 46-51% then, 46-56% now (corpus 46.4%, graph 56.4%).
+- Theses citing one of the 100 most-cited people: 68-73% then, 72-73% now (graph 72.4%, corpus 73.0%).
+- Top-100 people's share of person pairs, graph: 4.4% then, 5.8% now; the top of the person ranking now holds
+  Hobsbawm, Le Goff, de Certeau, Ginzburg, Burke and Koselleck far higher because Brazilian (and French) citations
+  of translations now reach them.
+- Random loss of matches still leaves top-100 shares unchanged (work 2.04 / 2.04 / 2.05% at 100 / 75 / 50%).
+
+Claim 2, supervisor effect. STANDS as an effect; the ratio in the stated frame STRENGTHENS from 3.6-3.7 to 4.1-4.4,
+but this is a definition effect, not a stronger finding.
+- Own-supervisor citation through matched works: 46.8% (45.4-48.2) then, 48.0% now; with parsed names 56.6 then,
+  56.7% now. Same 8,950 pairs from 7,741 theses.
+- Topical peers (same institution and decade, 3+ shared cited works): 12.7-15.9% then, 10.9-13.8% now; ratio
+  3.6-3.7 then, 4.1-4.4 (4.0-4.6) now. With more works matched, more peer theses pass the 3-shared-works bar, so
+  the topical peer set is wider and less topical. The paper should state the ratio with its coupling threshold and
+  should not read the rise as a stronger effect.
+- Against all institution-decade peers: 21-24 then, 21-24 now (unchanged).
+- By country (route A, cited outside own students): CA 46.0%, US 50.9%, GB 47.2%, FR 32.6% (125 own theses), BR
+  46.2%; peer rates 0.9-3.2%.
+
+Claim 3, Anglophone canons overlap about a fifth. STANDS (essentially unchanged).
+- Top-100 people shared: CA-US 22 then, 20 now; CA-GB 21 and 21; GB-US 26 and 26 (12-15% then, 11-15% now).
+- Profile cosine, all theses, route A: CA-US 0.559 to 0.557, CA-GB 0.508 to 0.513, US-GB 0.563 to 0.567; by name
+  the same (CA-US 0.48 on equal draws by both routes). Equal draws: CA-US 0.48 (0.45-0.50), CA-GB 0.43, US-GB 0.46.
+
+Claim 4, the periphery leans on the shared canon; France and Brazil form an axis. STRENGTHENS: what was true only by
+parsed name is now true by matched works as well.
+- Universal share (people cited in all six countries), equal draws, by name: FR 15.6%, BR 20.4%, MX 20.3% against
+  CA 8.4%, US 7.7%, GB 8.7% (then 15-20% against 8-9%): unchanged.
+- The same through matched works (route A): FR 8.2 to 12.9%, BR 5.3 to 19.5%, MX 8.3 to 16.4%, against CA 4.9 to
+  6.8%, US 4.5 to 6.0%, GB 5.1 to 7.1%. Route A now tells the same story as the name route.
+- France-Brazil cosine, equal draws: by name 0.45 (0.42-0.47) then, 0.44 (0.42-0.47) now; route A 0.15 then,
+  0.44 (0.40-0.48) now. Canada-US 0.48 by both routes. The France-Brazil axis is now as close as Canada-US by
+  both routes.
+- Concentration: top-100 people take 6.9% (BR) and 5.8% (MX) of parsed-name person citations then, 7.2% and 5.9%
+  now, against 1.7-2.8% then and 2.0-2.9% elsewhere now. By matched works the gap is the same shape (BR 23%, MX
+  26%, against 6-12%).
+- Cross-national overlap on works versus authors. Works overlap far less than authors, and the roll-up narrows the
+  gap only a little. Works cosine (all theses): FR-BR 0.252 without roll-up, 0.280 with it (person route A 0.464);
+  US-FR 0.169 to 0.199; CA-FR 0.215 to 0.238; US-BR 0.148 to 0.172; CA-US 0.461 to 0.464 and GB-US 0.423 to 0.425
+  (person 0.56-0.57). The roll-up adds 10-30% relative to cross-language work overlap and almost nothing within
+  English. Countries share authors much more than they share particular books: Brazil cites Le Goff's Storia e
+  memoria and Chartier's A historia cultural (a compilation, its own node), the US cites Imagined Communities.
+
+Claim 5, bibliographies age slowly. STANDS for theses. Which year: NAIVE and RESTRICTED use the graph work's year,
+which with the roll-up is the original's key year (itself sometimes a reprint year); CORPUS uses the year printed in
+the bibliography (the edition cited). Both are now shown, and a corpus version that replaces the printed year by
+the original's graph year for rolled-up editions (only when that year is not later than the printed one).
+- Median age, corpus as printed, theses 2005-09 / 2010-14 / 2015-18 / 2019-26: 17 / 18 / 19 / 20 then and now;
+  under-ten share 27.7% to 22.3% then and now (the corpus side does not depend on matching).
+- With original years for rolled-up editions: 18 / 18 / 19 / 21; under ten 27.2% to 22.2%. The slow ageing holds.
+- Graph-matched, restricted (cited <= 2015, citing <= 2018, age >= 3): graph year 20 / 21 / 22 (2005-09, 2010-14,
+  2015-18; was 20 / 20 / 21); printed year for the same pairs 19 / 19 / 20. The graph year now runs one or two
+  years older than the printed year because rolled-up translations carry the original's date.
+- Brazil (theses 2010-18, corpus, cited <= 2015): 16 printed, 17 with original years; others unchanged at 20-21.
+  The rolled-up citations alone are much older than their printed dates: Brazil 20 printed against 35 original;
+  US 27 against 39; GB 30 against 43; FR 28 against 42.
+- JSTOR articles, reweighted: 12 years (1970s-80s) to 19 (2010s) then; 15 to 19 now (observed 14 to 18, was
+  12-13 to 17). The JSTOR article set changed (jstor-matched edges roughly double the pairs: 817k to 1,317k), so
+  the article trend WEAKENS: still upward, but by 4 years, not 7.
+
+4. Claims the data did not support
+
+- "Brazil ignores the international canon." FALLS further, and the morning explanation needs a correction. Through
+  matched works Hobsbawm now reaches 28.4% of Brazilian theses (0.8% in the morning; 31.9% by name), Thompson
+  16.6% (0.5%; 18.2%), Le Goff 21.6% (0.6%; 27.0%), Bourdieu 17.5% (1.8%; 29.1%), Foucault 19.5% (13.5%;
+  24.7%). Most of the morning gap was not the catalogue: the morning base script left out the four translation-
+  check crosswalks and the Qwen tail that already fed the graph. Without them, Hobsbawm, Le Goff, Thompson and
+  Bourdieu reach only 1.4%, 1.0%, 0.5% and 1.8% of Brazilian theses; with them 27.8%, 21.3%, 16.4% and 16.7%. The
+  roll-up itself matters for Le Goff (7.9% without it, 21.6% with it), little for the others (Hobsbawm 28.1 to
+  28.4%). Portuguese editions counted for the original author are the reason: 6.0% of all Brazilian citations
+  and 16.9% of the matched ones go to an identified translation, and 90% of Brazilian theses cite at least one.
+  The point for the paper still holds in a weaker form: a cross-national claim on matched works is only as good as
+  the translation links behind it.
+- "Sharp ageing in the 2020s." Still not supported: matched-only medians go 21 to 24 (was 19 to 23); the corpus as
+  printed gives 19 to 20 (20 to 21 with original years).
+- Gini and top-1% levels. Still move with sample size (work Gini 0.49 to 0.40 under a random 50% loss).
+- Article concentration by decade (07-article-decade-reweighted.csv, not one of the five claims): observed top-100
+  share falls from 3.7% (1960s) to 2.3% (2010s) (morning 5.9% to 3.0%), but reweighted by the thesis match rate it is
+  now flat at 4.4-4.7% (morning 6.7% falling to 4.3%). A decline in article canon concentration should not be claimed.
+- "Articles are more canonical than theses." Still not supported, and now the sign flips: 2008-2020, the top-100
+  works take 2.2% of thesis pairs and 1.7% of article pairs (1.8 and 2.4% in the morning). Agreement holds: person
+  cosine 0.75 (0.77 then), top-100 overlap 0.27 (0.30); English only 0.82 (0.82).
+- "Historians only" results. Still not supported: 14 of the top-200 people are labelled 'primary source' (18 then);
+  Brazilian scholars and Marx/Engels among them.
+
+5. Robustness and sensitivity (07-robustness.csv; base = key-log credits, roll-up on)
+
+Four combinations of the two new switches, in the order base / + linked credits / no roll-up / + linked, no roll-up:
+- Claim 1: top-100 works' share of thesis pairs 2.04 / 2.04 / 1.90 / 1.90%; theses reaching a top-100 work 56.4 /
+  56.4 / 55.1 / 55.1%; top-100 people's share 5.80 / 5.51 / 5.68 / 5.39%; theses reaching a top-100 person 72.4 /
+  72.1 / 72.1 / 72.0%. Stands in every combination.
+- Claim 2: own-supervisor rate (route A, cited outside own students) 47.9 / 47.0 / 47.9 / 47.0%; institution-decade
+  peer rate 2.01 / 1.98 / 2.02 / 1.98%. The topical ratio with linked credits (06, A+linked) is 4.4, as with key-log
+  credits. Stands.
+- Claim 3: cosine CA-US 0.557 / 0.552 / 0.559 / 0.554, GB-US 0.567 / 0.562 / 0.569 / 0.564, CA-GB 0.513 / 0.509 /
+  0.515 / 0.511; top-100 people shared CA-US 20 / 20 / 21 / 21, GB-US 26 / 25 / 26 / 26, CA-GB 21 / 21 / 21 / 22.
+  Stands.
+- Claim 4: FR-BR cosine (route A, all theses) 0.464 / 0.473 / 0.436 / 0.448; works cosine FR-BR 0.280 (roll-up)
+  against 0.252 (none); universal share (20 draws) BR 19.3 / 19.8 / 18.5 / 18.6%, FR 12.9 / 12.2 / 12.5 / 11.8%, CA
+  6.8 / 6.8 / 6.7 / 6.7%; top-100 people's share on equal draws BR 23.2 / 22.1 / 22.4 / 21.9%, MX 26.5 / 24.0 /
+  26.1 / 23.4%, against 5.4-8.3% for CA, US and GB in every combination. Stands in every combination.
+- Brazil named shares (route A): Hobsbawm 28.4 / 28.5 / 28.1 / 28.2%; Thompson 16.6 / 17.6 / 16.6 / 17.6%; Le Goff
+  21.6 / 22.0 / 7.9 / 8.3%; Bourdieu 17.5 / 25.7 / 17.0 / 25.4%; Foucault 19.5 / 23.1 / 19.5 / 23.1%. The roll-up
+  matters for Le Goff (his Portuguese editions were matched to translation nodes not credited to him); linked
+  credits matter for Bourdieu and Foucault (the compilations O poder simbolico and Microfisica do poder are credited
+  only by linked rows). With both, route A comes within 1-4 points of the name route for all five.
+- Claim 5: graph-restricted median age, theses 2015-18: 22 / 22 / 21 / 21 on the graph year, 20 in all four on the
+  printed year; 2010-14: 21 on the graph year and 19 on the printed year in all four. The corpus figures do not
+  depend on either switch.
+- Thesis-article person cosine 2008-20: 0.749 / 0.743 / 0.756 / 0.750.
+Other switches (base otherwise): dropping JSTOR edition-flagged edges lowers the article top-100 work share from
+1.50% to 1.34% and the thesis-article cosine from 0.749 to 0.718; dropping 'primary source' people raises Brazil's
+universal share from 19.3% to 24.4% and its top-100 share from 23% to 29% (the classifier mislabels Brazilian
+scholars, as in the morning); dropping comma-title LC matches moves nothing by more than 1%; authored credits only
+lowers Hobsbawm in Brazil from 28.4% to 24.7% (The Invention of Tradition and other edited volumes) and the
+supervisor rate from 47.9% to 46.9%. All headline conclusions survive every switch.
+
+6. New tables
+
+- 09-translation-share-by-country.csv: share of citations that go to an identified translation: BR 6.0% of all
+  (16.9% of matched), MX 2.7% (8.8%), US 1.0% (1.8%), CA 0.8% (1.8%), GB 0.8% (1.8%), FR 0.5% (1.8%). Theses citing
+  at least one translation: BR 90%, MX 71%, US 57%, CA 57%, GB 48%, FR 45%. Later editions are 0.1-0.2% everywhere;
+  compilations 0.6% in Brazil, near zero elsewhere. Languages: Brazil cites Portuguese translations (23k), Mexico
+  Spanish, the Anglophone countries English, France French and English. These are lower bounds: a translation
+  counts only when the 2026-11-11 crosswalk identified it.
+- 09-top-translated-works-by-country.csv: in Brazil Le Goff's Storia e memoria (377 theses, all via translation),
+  Bloch's Apologie pour l'histoire (312), Koselleck's Vergangene Zukunft (307), de Certeau's L'ecriture de
+  l'histoire (302) and L'Invention du quotidien (295), Hobsbawm's Age of Extremes (259), Thompson's Customs in
+  Common (244); in the US, CA and GB Surveiller et punir (184 / 138 / 81 theses), Habermas's Strukturwandel,
+  Foucault's Histoire de la sexualite, Lefebvre, Fanon; in Mexico Guerra's Le Mexique de l'Ancien Regime (52) and
+  the Spanish editions of Anglophone Mexicanists (Gerhard, Gibson, Brading, Knight).
+- 09-top-translated-authors-by-country.csv (key log, and key log + linked): in Brazil Hobsbawm 707 theses via
+  translation of 744 citing him at all (95%), Chartier 600, Foucault 577, Bourdieu 571, Le Goff 551, de Certeau 515,
+  Ginzburg 469, Burke 466, Thompson 443, Elias 398; in France Foucault 100 of 225 (in English), Weber, Elias,
+  Ginzburg, Ricoeur; in the US Foucault 344 of 427, Habermas, Fanon, Lefebvre.
+
+7. Things in the new graph that look wrong from the analysis side
+
+- Translators, editors and co-authors credited with the original work. The edition-editor problem (class 15)
+  persists in the translated layer: Wolfgang Schluchter (303 theses, 296 through EDITED; Weber's editor), Francois
+  Ewald (218, 203 EDITED; Foucault's lectures), Max Lerner, Andrew Skinner, David McLellan, Ian Shapiro, Max Eastman.
+  26 of the top-500 people get half or more of their theses through EDITED credits (37 in the morning). New with the
+  linked credits: Torcuato Di Tella is credited (work-people:author, from an OpenAlex record) with Guerra's Le
+  Mexique de l'Ancien Regime, so he shows 52 Mexican theses, all via that one work. Count people by authored credits
+  only, and audit work-people author credits on books.
+- Original-year contamination. 1,117 of the 10,667 rolled-up corpus works point to an original whose key year is
+  later than the translation's printed year (Weber's Protestant Ethic key 1934 against a 1930 English translation;
+  Burke's French Historical Revolution 2015 against Portuguese editions of 1991 and 1997; Il principe 1891; Thomas's
+  Man and the Natural World 1996). Graph-year ages are unreliable for these; the 05 original-year version ignores
+  any graph year later than the printed one.
+- Anachronistic matches rose from 1,621 to 2,229 pairs (0.18% of graph pairs): reprint-year work keys (The Great
+  Plains 2022, The Sense of Power 2013) and Crossref-metadata matches to reprint DOIs (239 rows: Althusser's
+  Ideology and Ideological State Apparatuses 2024, Guha's essay 2022). Also a review keyed as a book: "The Houses
+  of History (Anna Green and Kathleen Troup)" (2016, cited by theses from 2004).
+- An original matched to its translation's key: Veyne's Comment on ecrit l'histoire (68 French citations) goes to
+  the key of the English Writing History (1984), and the roll-up does not reverse this direction.
+- Double count in report.json (see Table 1): compilation rows also matched by an older crosswalk are added twice in
+  rate_with_compilations (42.07% should be 41.98%). Edge counting in the graph itself is clean: thesis-edition edges
+  are flagged edition = false when the thesis also cites the original directly, and no (thesis, work) pair is
+  counted twice in the tables, which count distinct documents.
+- Duplicate person keys among the top 1,000: one group left (Thomas Bender, 99 and 7 theses).
+
+8. Not verified
+
+- The match flag is checked against report.json to the row, but the per-work graph key for the 2026-11-10/11
+  crosswalks is rebuilt from identifiers, not read from the build; 13,120 graph edges and 10,068 matched citations
+  are not reproduced (section 1).
+- The translation layer's precision was not re-audited here (its own audit samples are in
+  data/identifiers/cited-works-translations-2026-11-11/); the translation shares are lower bounds.
+- The work-people linked credits (JSTOR authors, reviewers, OpenAlex co-authors) were not audited; the Di Tella case
+  shows at least one wrong book credit.
+- build/graph was being rebuilt by another session during the day; these tables are from the files written
+  20:08-20:11. A later build will move the figures.

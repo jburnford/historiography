@@ -1,0 +1,10 @@
+scenario,level,items,pairs,top1pct_share,top100_share,top1000_share,gini,single_doc_items
+observed,work,539868.0,1267027.0,0.1694,0.0206,0.0731,0.4891,0.6491
+observed,person,86285.0,777738.0,0.1847,0.0586,0.1989,0.6357,0.1654
+random keep 75%,work,446324.5,950253.0,0.1557,0.0206,0.0733,0.4541,0.6747
+random keep 75%,person,81684.6,603421.4,0.1834,0.06,0.2028,0.63,0.2267
+random keep 50%,work,337075.5,633598.6,0.1374,0.0207,0.0737,0.404,0.7103
+random keep 50%,person,73551.6,418024.2,0.1784,0.0619,0.2078,0.6133,0.3048
+Table-1 pattern thinning,work,257037.8,803322.7,0.1793,0.0316,0.1115,0.5536,0.52
+Table-1 pattern thinning,person,71341.7,593965.5,0.2019,0.0721,0.2385,0.6609,0.2189
+inverse-probability weighted (estimate of the unthinned value),work,539868.0,3016992.8365,0.0933,0.0093,0.039,0.3149,
