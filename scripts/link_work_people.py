@@ -60,6 +60,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 
 GRAPH = Path(os.environ.get('WP_GRAPH', ROOT / 'build/graph'))
 OUT = ROOT / 'data/identifiers/work-people-2026-11-11'
+LC_TIES = ROOT / 'data/graph/lc-authority-ties.csv.gz'   # key_lc_authority_ties.py (class 34): authorities tied by evidence
 SCRATCH = Path(os.environ.get('WP_SCRATCH', '/tmp/claude-1000/-home-jic823-historiography/'
                               'd3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/workpeople'))
 HARVEST = Path('/mnt/e/openalex-history-2026-11-08/history')
@@ -636,6 +637,17 @@ def apos(s):
 class WPPeople(L.People):
     def __init__(self, db):
         super().__init__(db)
+        # 2026-11-12 (class 34): an LC authority tied to the key by evidence but not yet anchored
+        # (data/graph/lc-authority-ties.csv.gz, scripts/key_lc_authority_ties.py) is the key's own: it no longer counts
+        # as a namesake in the rarity tests (own_lc) and a different authority on a source is refused (lcnaf-differs).
+        # Linked evidence, not key-log: it is not added to lc_key, so it never makes an 'exact' identifier credit.
+        self.lc_tied = defaultdict(set)
+        if LC_TIES.exists() and not os.environ.get('WP_NO_LC_TIES'):
+            with gzip.open(LC_TIES, 'rt', encoding='utf-8') as f:
+                for r in csv.DictReader(f):
+                    if r['person'] in self.lcnaf and not self.lc_key.get(r['lcnaf']):
+                        self.lc_tied[r['person']].add(r['lcnaf'])
+                        self.lcnaf[r['person']] = self.lcnaf[r['person']] | {r['lcnaf']}
         self.index = defaultdict(list)
         for k, lab in self.label.items():
             for f, form, g in forms(apos(lab)):

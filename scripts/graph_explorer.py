@@ -57,7 +57,8 @@ EDITION_D = ("CASE WHEN bool_or(e.edition) OR any_value(e.cited_as) IS NOT NULL 
 EDITION_OF_D = "any_value(e.relation) || ', ' || any_value(e.theses) || ' citing theses moved to the original'"
 # rows resting only on a credit outside the key log are marked; key-log rows carry no note
 LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
-            "'linked: ' || string_agg(DISTINCT CASE e.state WHEN 'exact' THEN 'by identifier' ELSE 'by rule' END || ' ('"
+            "'linked: ' || string_agg(DISTINCT CASE WHEN e.source = 'scored-links' THEN 'scored link (score ' || round(e.score, 1) || ')' ELSE "
+            "CASE e.state WHEN 'exact' THEN 'by identifier' ELSE 'by rule' END || ' ('"
             " || CASE e.source WHEN 'lc' THEN 'LC' WHEN 'openalex' THEN 'OpenAlex' WHEN 'work-people:reviewer' THEN 'printed reviewer'"
             " WHEN 'work-people:jstor-author' THEN 'JSTOR author' WHEN 'work-people:author' THEN 'OpenAlex/Crossref author list'"
             " WHEN 'volume-editors:crossref' THEN 'Crossref editor list' WHEN 'volume-editors:lc' THEN 'LC editor statement'"
@@ -68,8 +69,12 @@ LINKED_D = ("CASE WHEN bool_or(e.evidence = 'keylog') THEN NULL ELSE "
             " WHEN 'name-only:recent-books' THEN 'Crossref/OpenAlex book record' WHEN 'name-only:journal-meta' THEN 'journal record'"
             " WHEN 'lc-catalogue:100' THEN 'LC main entry' WHEN 'lc-catalogue:700' THEN 'LC added entry'"
             " WHEN 'lc-catalogue:authority-books' THEN 'LC book filed under their name authority'"
+            " WHEN 'lc-catalogue:tied-100' THEN 'LC main entry; authority tied by evidence, not yet anchored'"
+            " WHEN 'lc-catalogue:tied-700' THEN 'LC added entry; authority tied by evidence, not yet anchored'"
+            " WHEN 'lc-catalogue:tied-authority-books' THEN 'LC book filed under a name authority tied by evidence, not yet anchored'"
             " WHEN 'prizes:winner' THEN 'prize winner list' WHEN 'prizes:lc-main-entry' THEN 'LC main entry of the prize work'"
-            " ELSE e.source END || ')', '; ') || '; not a key-log claim' END")
+            " ELSE e.source END || ')' || CASE WHEN e.score IS NOT NULL THEN ', scored link agrees (score ' || round(e.score, 1) || ')' ELSE '' END END,"
+            " '; ') || '; not a key-log claim' END")
 # EDITOR_OF (2026-11-12): the volume, marked when the row rests on a linked PART_OF, editor or author credit
 VOLUME_D = ("(SELECT label FROM nodes WHERE key = any_value(e.volume)) || CASE WHEN count(DISTINCT e.volume) > 1 THEN ' and others' ELSE '' END "
             "|| CASE WHEN bool_and(e.evidence = 'linked') THEN ' (linked: a volume link or credit outside the key log)' ELSE '' END")
@@ -305,18 +310,18 @@ class Graph:
             return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', {LINKED_D}, CASE WHEN bool_or(e.how = 'authored')
                         THEN 'editor of the volume (the source record files it as authorship: ' || any_value(e.role_basis) || ')' END) d,
                         bool_and(e.evidence = 'linked')::INT lk FROM (
-                        SELECT "from", "to", evidence, state, source, role_basis, 'edited' how FROM e_edited_{side}
+                        SELECT "from", "to", evidence, state, source, score, role_basis, 'edited' how FROM e_edited_{side}
                          WHERE "{me}" = $k AND coalesce(role, 'unknown') NOT IN {EDITION_ROLES}
-                        UNION ALL SELECT "from", "to", evidence, state, source, role_basis, 'authored' FROM e_authored_{side}
+                        UNION ALL SELECT "from", "to", evidence, state, source, score, role_basis, 'authored' FROM e_authored_{side}
                          WHERE "{me}" = $k AND role = 'volume-editor') e GROUP BY 1""")
         if rid in ('editions_prepared', 'edition_people'):    # edition editor, translator, introducer, series editor, contributor
             me, other = ('from', 'to') if rid == 'editions_prepared' else ('to', 'from')
             side = 'f' if me == 'from' else 't'
             return (f"""SELECT e."{other}" k, 1 n, concat_ws(' · ', string_agg(DISTINCT {ROLE_L}, ', '), {LINKED_D},
                         'not counted as a citation of their own work') d, bool_and(e.evidence = 'linked')::INT lk FROM (
-                        SELECT "from", "to", evidence, state, source, role FROM e_authored_{side}
+                        SELECT "from", "to", evidence, state, source, score, role FROM e_authored_{side}
                          WHERE "{me}" = $k AND role IN {EDITION_ROLES}
-                        UNION ALL SELECT "from", "to", evidence, state, source, role FROM e_edited_{side}
+                        UNION ALL SELECT "from", "to", evidence, state, source, score, role FROM e_edited_{side}
                          WHERE "{me}" = $k AND role IN {EDITION_ROLES}) e GROUP BY 1""")
         if rid == 'volume_editors':       # a chapter's volume(s): credited editors, then unconfirmed candidates
             cand = ("""UNION ALL SELECT ac."from", v.v, 'candidate', NULL, ac.source FROM v JOIN e_author_candidates_t ac

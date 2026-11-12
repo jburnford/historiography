@@ -186,6 +186,7 @@ PRIZE_FILES = [PRIZES / f'{n}.csv.gz' for n in ('prizes', 'winners', 'works', 'l
 LC_CREDITS = ROOT / 'data/graph/lc-credits.csv.gz'   # scripts/lc_catalogue_credits.py: LC main / added entries on a key
                                                      # for works with an LCCN and no credit
 REVIEW_BOOKS = ROOT / 'data/graph/review-books.csv.gz'
+SCORED_LINKS = ROOT / 'data/graph/scored-links/links.csv.gz'   # scripts/score_links.py (Fellegi-Sunter scorer), loaded by graph_scored_links.py
 LC_BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'   # lc_catalogue_credits.py measure: LC books of keys with
                                                               # scholarly evidence the graph lacked (unkeyed lccn: nodes)   # scripts/review_books.py: articles that review a book (class 29)
 # roles under which a credit is not a citation of the person's own work (class 15): they prepared someone else's work;
@@ -1257,7 +1258,7 @@ def main():
         prize_files, p5_files = [], []
     require_tracked(shards + [CITES] + [p for p in (JSTOR_CITES, AFFILIATIONS) if p.exists()] + crossref_parts + article_parts
                     + ([] if args.untracked_ok else cited_files + edition_files + jc_files + wp_files + aw_files + fact_files
-                       + pass4_files + no_files + prize_files + p5_files))
+                       + pass4_files + no_files + prize_files + p5_files + ([SCORED_LINKS] if SCORED_LINKS.exists() else [])))
     state = ReplayView(args.state) if args.replay else CacheView(args.state)
     OUT.mkdir(parents=True, exist_ok=True)
     report = Counter()
@@ -1331,13 +1332,22 @@ def main():
                 works.append(w)
                 wi[n] = w
                 report['lc_authority_books_nodes_added'] += 1
-            lcb_rows.append(dict(work=n, person=r['person'], lcnaf=r['lcnaf'], lccn=r['lccn']))
+            lcb_rows.append(dict(work=n, person=r['person'], lcnaf=r['lcnaf'], lccn=r['lccn'], link=r.get('link') or 'anchor'))
+            report[f"lc_authority_books_by|{r.get('link') or 'anchor'}|{r.get('record') or 'lc2016'}"] += 1
     if fact_files:                  # journal, ISSN, proposed kind of keyed works (export_work_containers.py)
         work_facts(state, types, wi, report)
     if pass4[WORK_YEARS]:           # first publication year beside `year` (2026-11-12)
         work_years(wi, resolve, report)
     # volume editors (2026-11-12): editors_printed on the node now; the EDITED rows are merged with the other credits
     ve_rows, ve_cands, ve_series = volume_editors(state, types, resolve, wi, report) if pass4[VOLUME_EDITORS] else ([], [], [])
+    scored_wi = {}                  # kind / proposed kind / label of the works the scored links name (graph_scored_links)
+    if SCORED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
+        for r in read_rows(SCORED_LINKS):
+            if r['decision'] in ('link', 'review'):
+                w = resolve(r['work'])
+                if w and w in wi and w not in scored_wi:
+                    x = wi[w]
+                    scored_wi[w] = dict(kind=x.get('kind'), kind_proposed=x.get('kind_proposed'), label=x.get('label'))
     del wi
     s, L = pa.string(), pa.list_(pa.string())
     report['Person'] = write('person', people, pa.schema([('key', s), ('label', s), ('resolution', s), ('anchors', L)] +
@@ -1447,8 +1457,11 @@ def main():
             k = person1(f"lcnaf:{r['lcnaf']}") or person1(r['person'])
             if k and (k, r['work']) not in have:
                 have.add((k, r['work']))
-                add.append({'from': k, 'to': r['work'], 'claim': f"lc-catalogue:authority-books:{r['lcnaf']}:{r['lccn']}",
-                            'resolution': 'linked', 'source': 'lc-catalogue:authority-books', 'state': 'exact',
+                # an authority tied to the key by evidence (key_lc_authority_ties.py), not anchored: linked, not exact
+                tied = r['link'] == 'tied' and not person1(f"lcnaf:{r['lcnaf']}")
+                src = 'lc-catalogue:tied-authority-books' if tied else 'lc-catalogue:authority-books'
+                add.append({'from': k, 'to': r['work'], 'claim': f"{src}:{r['lcnaf']}:{r['lccn']}",
+                            'resolution': 'linked', 'source': src, 'state': 'linked' if tied else 'exact',
                             'role': 'author', 'role_basis': 'lc-main-entry'})
         report['lc_authority_books_AUTHORED_added'] = len(add)
         linked['AUTHORED'] += add
@@ -1468,8 +1481,12 @@ def main():
                     report['lc_credits_work_already_credited'] += 1
                     continue
                 new_w.add(w)
-                row = {'from': k, 'to': w, 'claim': f"lc-catalogue:{r['tag']}:{r['lcnaf']}:{r['control']}", 'resolution': 'linked',
-                       'source': f"lc-catalogue:{r['tag']}", 'state': 'exact', 'role': r['role'], 'role_basis': r['role_basis']}
+                tied = (r.get('link') or 'anchor') == 'tied' and not person1(f"lcnaf:{r['lcnaf']}")
+                tag = f"tied-{r['tag']}" if tied else r['tag']
+                row = {'from': k, 'to': w, 'claim': f"lc-catalogue:{tag}:{r['lcnaf']}:{r['control']}", 'resolution': 'linked',
+                       'source': f"lc-catalogue:{tag}", 'state': 'linked' if tied else 'exact', 'role': r['role'],
+                       'role_basis': r['role_basis']}
+                report[f"lc_credits_by_link|{'tied' if tied else 'anchor'}|{r.get('record') or 'lc2016'}"] += 1
                 (add_a if r['credit'] == 'authored' else add_e).append(row)
             credited_w |= new_w
             report['lc_credits_AUTHORED_added'] = len(add_a)
@@ -1636,8 +1653,15 @@ def main():
     # volume-editors rows 'volume-editor'); AUTHORED: 'author' unless edition-roles names translator, introducer,
     # edition-editor, series-editor or volume-editor, or the volume-editors table credits the person as editor of that
     # volume (ORCID 'edited-book' records credited as authorship).
+    # scorer-only links (2026-11-12, data/graph/scored-links/, scripts/graph_scored_links.py): evidence linked, source
+    # scored-links, state scored, with the score; same-key rule rows get the score; review decisions are candidates
+    if SCORED_LINKS.exists() and not os.environ.get('BUILD_SCORED_OFF'):
+        from graph_scored_links import scored_layer
+        scored_layer(read_rows, SCORED_LINKS, person1, resolve, scored_wi, {r['from'] for r in rb_rows}, rels, linked,
+                     possible_authors, report)
+    del scored_wi
     ev_schema = pa.schema([('from', s), ('to', s), ('claim', s), ('resolution', s), ('evidence', s), ('source', s), ('state', s),
-                           ('role', s), ('role_basis', s)])
+                           ('role', s), ('role_basis', s), ('score', pa.float64())])
     role_count = Counter()
 
     def role_of(name, r):
@@ -1679,7 +1703,8 @@ def main():
                 role_count[f'{name}|{ev}|{role}'] += 1
                 rows_.append({'from': r['from'], 'to': r['to'], 'claim': r['claim'], 'resolution': r['resolution'],
                               'evidence': ev, 'source': r.get('source') if ev == 'linked' else None,
-                              'state': r.get('state') if ev == 'linked' else None, 'role': role, 'role_basis': basis})
+                              'state': r.get('state') if ev == 'linked' else None, 'role': role, 'role_basis': basis,
+                              'score': r.get('score') if ev == 'linked' else None})
         report[name] = write(name.lower(), rows_, ev_schema)
         report[f'{name}_by_evidence'] = dict(keylog=len(rels[name]), linked=len(lrows))
         report[f'{name}_by_role'] = {k.split('|', 1)[1]: v for k, v in sorted(role_count.items()) if k.startswith(name + '|')}

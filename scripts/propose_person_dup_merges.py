@@ -349,6 +349,43 @@ def positive(fa, fb, inst_cache):
 
 # ------------------------------------------------------------------ candidate pairs
 
+def minted_since(date):
+    """person keys minted on or after `date` (key-log events; a shard is skipped when the next shard's first event is
+    already older than `date`)"""
+    shards = sorted(IDS.glob('events-*.jsonl*'), key=lambda p: int(p.name.split('-')[1].split('.')[0]))
+
+    def first_date(p):
+        op = gzip.open if p.suffix == '.gz' else open
+        with op(p, 'rt', encoding='utf-8') as f:
+            return json.loads(f.readline()).get('date', '')
+    out = set()
+    for i, p in enumerate(shards):
+        if i + 1 < len(shards) and first_date(shards[i + 1]) < date:
+            continue
+        op = gzip.open if p.suffix == '.gz' else open
+        with op(p, 'rt', encoding='utf-8') as f:
+            for line in f:
+                if '"mint"' not in line or '"person"' not in line:
+                    continue
+                e = json.loads(line)
+                if e.get('event') == 'mint' and e.get('type') == 'person' and e.get('date', '') >= date:
+                    out.add(e['key'])
+    return out
+
+
+def formal_labels(la, lb):
+    """{label: same label with its nickname first given name replaced by the other's formal one} for a nickname pair"""
+    from nicknames import FORMAL, nickname_agree
+    fa = [(f, g) for f, g in name_forms(la) if g]
+    fb = [(f, g) for f, g in name_forms(lb) if g]
+    for (f1, g1) in fa:
+        for (f2, g2) in fb:
+            if f1 == f2 and nickname_agree(g1[0], g2[0]):
+                if g1[0] in FORMAL or len(g1[0]) > len(g2[0]):
+                    return {'b': re.sub(rf'(?i)\b{re.escape(g2[0])}\b', g1[0].capitalize(), lb, count=1)}
+                return {'a': re.sub(rf'(?i)\b{re.escape(g1[0])}\b', g2[0].capitalize(), la, count=1)}
+    return {}
+
 def read_pairs(people, cur):
     pairs = defaultdict(set)              # frozenset -> sources
     groups = []
@@ -388,6 +425,10 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument('--out', type=Path, default=IDS / 'person-dup-merges-2026-11-11')
     ap.add_argument('--no-validate', action='store_true')
+    ap.add_argument('--new-since', help='only pairs where one key was minted on or after this date (YYYY-MM-DD), plus '
+                                        'name-agreement pairs between each such key and the other live keys')
+    ap.add_argument('--nickname-pairs', type=Path, help='possible-same nickname pairs (pairs.csv) judged with the '
+                                                        'nickname read as the formal name; rules otherwise unchanged')
     args = ap.parse_args()
     SCRATCH.mkdir(parents=True, exist_ok=True)
     db = duckdb.connect()
@@ -411,6 +452,43 @@ def main():
     R.update({f'rc_{k}': v for k, v in rcR.items()})
     for a, b in rc_pairs.items():
         pairs[frozenset((a, b))].add('review-credit-only')
+    nick = {}
+    if args.new_since:
+        new = minted_since(args.new_since)
+        R['new_keys'] = len(new)
+        pairs = defaultdict(set, {p: v for p, v in pairs.items() if p & new})
+        for k in sorted(new):
+            if k not in live or k not in people:
+                continue
+            for fam, g in name_forms(people[k]['label']):
+                for k2, g2, res in by_family.get(fam, ()):
+                    if k2 != k and k2 in live and strict_agree(g, g2):
+                        pairs[frozenset((k, k2))].add('new-key-name')
+        R['new_key_name_pairs'] = sum(1 for v in pairs.values() if 'new-key-name' in v)
+        # a two-word family on one side whose first word is the other side's family ('Chust Calero, Manuel' / 'Manuel
+        # Chust'): Hispanic double surnames. Not a name agreement under the tier-A rule, so these pairs are judged with
+        # the first surname read for the double one and can reach B (listed with their facts), never A.
+        for k in sorted(new):
+            if k not in live or k not in people:
+                continue
+            for fam, g in name_forms(people[k]['label']):
+                parts = fam.split()
+                if len(parts) != 2 or parts[0] in ('de', 'del', 'van', 'von', 'da', 'la', 'le', 'di', 'mac', 'mc', 'st'):
+                    continue
+                for k2, g2, res in by_family.get(parts[0], ()):
+                    if k2 != k and k2 in live and strict_agree(g, g2) and frozenset((k, k2)) not in pairs:
+                        pairs[frozenset((k, k2))].add('compound-surname')
+                        nick[frozenset((k, k2))] = {k: ', '.join([parts[0].title(), ' '.join(w.title() for w in g)])}
+        R['compound_surname_pairs'] = sum(1 for v in pairs.values() if 'compound-surname' in v)
+    if args.nickname_pairs:
+        with open(args.nickname_pairs, newline='', encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                a, b = r['a'], r['b']
+                if a in people and b in people:
+                    pairs[frozenset((a, b))].add('nickname-pair')
+                    fl = formal_labels(people[a]['label'], people[b]['label'])
+                    nick[frozenset((a, b))] = {{'a': a, 'b': b}[x]: v for x, v in fl.items()}
+        R['nickname_pairs'] = len(nick)
     R['candidate_pairs'] = len(pairs)
     R['candidate_pairs_by_source'] = Counter('+'.join(sorted({s.split(':')[0] for s in v})) for v in pairs.values())
     # candidate groups = connected components of all candidate pairs (keys believed to be one person)
@@ -495,6 +573,11 @@ def main():
 
     def judge(a, b, fa, fb, grp, excl_lcids, use_marks=True):
         la, lb = people[a]['label'], people[b]['label']
+        if frozenset((a, b)) in nick and nick[frozenset((a, b))]:
+            # a nickname pair: the nickname reads as the formal name (Katie Magee Labelle as Kathryn Magee Labelle);
+            # every other test is the same, so the institution fact counts only when the rest of the name is identical
+            fl = nick[frozenset((a, b))]
+            la, lb = fl.get(a, la), fl.get(b, lb)
         ev = dict(a=a, b=b, label_a=la, label_b=lb)
         if not names_agree(la, lb):
             return 'C', 'names-do-not-agree-in-full', ev
@@ -553,6 +636,9 @@ def main():
         grp = group_of[a]
         tier, why, ev = judge(a, b, facts(a), facts(b), grp, lcids_of(grp))
         ev.update(tier=tier, why=why, sources='+'.join(sorted(srcs)))
+        if tier == 'A' and 'compound-surname' in srcs:
+            tier, why = 'B2', 'compound-surname-only;' + why
+            ev.update(tier=tier, why=why)
         rows.append(ev)
     R['pairs_judged'] = len(rows)
     R['tiers_pairs'] = Counter(r['tier'] for r in rows)
@@ -588,7 +674,8 @@ def main():
             bad = 'cluster-birth-differs'
         if not bad:
             for x, y in combinations(sorted(cl), 2):
-                if not names_agree(people[x]['label'], people[y]['label']):
+                fl = nick.get(frozenset((x, y)), {})       # a nickname pair is compared as it was judged
+                if not names_agree(fl.get(x, people[x]['label']), fl.get(y, people[y]['label'])):
                     bad = 'cluster-names-disagree'
                     break
         if bad:
@@ -602,7 +689,7 @@ def main():
             if k == into:
                 continue
             ev = next((r for r in rows if r['tier'] == 'A' and {r['a'], r['b']} & {k} and ({r['a'], r['b']} & cl)), None)
-            basis = (f"duplicate person keys (person-dup-merges-2026-11-11, tier A): {people[k]['label']} and "
+            basis = (f"duplicate person keys ({args.out.name}, tier A): {people[k]['label']} and "
                      f"{people[into]['label']}: names agree in full, no identifier or date clash, no other established key "
                      f"or LC authority with the name; facts: {'; '.join(ev['facts']) if ev else ''}")[:900]
             ops.append(dict(event='merge', key=k, into=into, decided_by='rule', basis=basis))
@@ -699,7 +786,7 @@ def main():
 
     # ---- outputs
     args.out.mkdir(parents=True, exist_ok=True)
-    proposal = dict(basis='duplicate person keys, tier A (person-dup-merges-2026-11-11): full-name agreement, no clash, '
+    proposal = dict(basis=f'duplicate person keys, tier A ({args.out.name}): full-name agreement, no clash, '
                           'dates compatible, a positive fact (shared work, shared title, same institution in an '
                           'overlapping period), no other established key or LC authority with the name', decided_by='rule',
                     ops=ops)
@@ -744,7 +831,7 @@ def main():
     for k in PROBES:
         probes[k] = [dict(other=r['b'] if r['a'] == k else r['a'], tier=r['tier'], why=r['why'], facts=r.get('facts'))
                      for r in rows if k in (r['a'], r['b'])]
-    for a, b in (('p-4256', 'p-21351'), ('p-4256', 'p-133302'), ('p-21351', 'p-133302')):
+    for a, b in (('p-4256', 'p-21351'), ('p-4256', 'p-133302'), ('p-21351', 'p-133302'), ('p-179250', 'p-53033')):
         grp = frozenset((a, b))
         t, w, ev = judge(a, b, facts(a), facts(b), group_of.get(a, grp) | grp, lcids_of(group_of.get(a, grp) | grp))
         probes[f'{a}~{b}'] = dict(tier=t, why=w, facts=ev.get('facts'), other_lc=ev.get('other_lc'),

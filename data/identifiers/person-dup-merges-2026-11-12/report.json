@@ -1,0 +1,147 @@
+{
+ "candidate_pairs": 2521,
+ "candidate_pairs_by_source": {
+  "new-key-name+work-people-group": 10,
+  "new-key-name+review-credit-only+work-people-group": 6,
+  "work-people-group": 3,
+  "new-key-name+review-credit-only": 18,
+  "new-key-name": 611,
+  "compound-surname": 974,
+  "nickname-pair": 899
+ },
+ "common_titles_ignored": 28121,
+ "compound_surname_pairs": 974,
+ "dry_run_events": 19,
+ "gold": {
+  "neg_notsame_C": 58,
+  "neg_notsame_B2": 326,
+  "neg_notsame_B1": 124,
+  "neg_review_different_B1": 135,
+  "neg_review_different_B2": 424,
+  "neg_review_different_C": 19,
+  "neg_masked_namesake_B2": 3351,
+  "neg_masked_namesake_B1": 924,
+  "neg_masked_namesake_C": 7,
+  "neg_masked_namesake_A": 12,
+  "pos_split_B1": 830,
+  "pos_split_why_no-positive-fact": 830,
+  "pos_split_A": 1699,
+  "pos_split_why_A": 1699,
+  "pos_split_C": 49,
+  "pos_split_why_names-do-not-agree-in-full": 41,
+  "pos_split_B2": 422,
+  "pos_split_why_other-lc-authority-same-name": 272,
+  "pos_split_why_other-established-key-same-name": 150,
+  "pos_split_why_activity-before-adulthood": 5,
+  "pos_split_why_activity-after-death": 3,
+  "negatives": 5380,
+  "negatives_tier_A": 12,
+  "precision_on_negatives": 0.99777,
+  "positives": 3000,
+  "recall_on_splits": 0.5663,
+  "negatives_tier_A_or_B1": 1195,
+  "precision_on_negatives_if_B1_also_merged": 0.77788,
+  "recall_on_splits_A_or_B1": 0.843
+ },
+ "keylog_seq": 5816693,
+ "lc_authorities_read": 1183971,
+ "merge_guard_blocked_keys": 219,
+ "new_key_name_pairs": 645,
+ "new_keys": 35703,
+ "nickname_pairs": 1873,
+ "pairs_judged": 2521,
+ "probes": {
+  "p-143231": [],
+  "p-151402": [],
+  "p-151403": [],
+  "p-171364": [],
+  "p-173252": [],
+  "p-96495": [],
+  "p-4256": [
+   {
+    "other": "p-250409",
+    "tier": "C",
+    "why": "lcnaf-differs",
+    "facts": null
+   }
+  ],
+  "p-21351": [
+   {
+    "other": "p-250409",
+    "tier": "B2",
+    "why": "other-established-key-same-name;other-lc-authority-same-name;no-positive-fact",
+    "facts": []
+   }
+  ],
+  "p-133302": [],
+  "p-4256~p-21351": {
+   "tier": "C",
+   "why": "outside-review-different:medium",
+   "facts": null,
+   "other_lc": null,
+   "in_candidates": false
+  },
+  "p-4256~p-133302": {
+   "tier": "C",
+   "why": "lcnaf-differs",
+   "facts": null,
+   "other_lc": null,
+   "in_candidates": false
+  },
+  "p-21351~p-133302": {
+   "tier": "C",
+   "why": "outside-review-different:medium",
+   "facts": null,
+   "other_lc": null,
+   "in_candidates": false
+  },
+  "p-179250~p-53033": {
+   "tier": "B1",
+   "why": "no-positive-fact",
+   "facts": [],
+   "other_lc": [],
+   "in_candidates": true
+  }
+ },
+ "rc_established_namesakes_0": 18768,
+ "rc_established_namesakes_1": 9744,
+ "rc_established_namesakes_2": 738,
+ "rc_review_credit_only_keys": 29250,
+ "tierA_clusters": 19,
+ "tierA_merges": 19,
+ "tiers_pairs": {
+  "B2": 1846,
+  "C": 398,
+  "B1": 258,
+  "A": 19
+ },
+ "tiers_pairs_final": {
+  "B2": 1846,
+  "C": 398,
+  "B1": 258,
+  "A": 19
+ },
+ "why_B": {
+  "other-lc-authority-same-name": 1822,
+  "no-positive-fact": 2019,
+  "merge-guard": 16,
+  "other-established-key-same-name": 194,
+  "two-orcids": 161,
+  "compound-surname-only": 10,
+  "facts:shared-title": 6,
+  "facts:shared-coauthor": 4,
+  "two-phd-years": 124
+ },
+ "why_C": {
+  "names-do-not-agree-in-full": 26,
+  "lcnaf-differs": 364,
+  "activity-before-adulthood": 2,
+  "activity-after-death": 6
+ },
+ "rule": [
+  "Candidate pairs come from three places:\n- the work-people linker's duplicate groups (data/identifiers/work-people-2026-11-11/candidate-duplicates.csv.gz:\n  every pair inside a group);\n- the cited-work author linker's pairs (data/identifiers/cited-work-authors-2026-11-10/candidate-duplicates.csv.gz);\n- review-credit-only keys (every anchor `review-credit:`) whose name agrees in full with exactly one established key.",
+  "Each pair is judged on the two keys' own facts (build/graph of the day for works, affiliations and anchors; the key-log\ncache for the current status, anchors and `not-same:` marks; data/person-facts/life-years.csv.gz):\n- **C, rejected**: the names do not agree in full (family name, a written-out first given name identical on both sides,\n  no short forms or transliterations: Jim never agrees with James; every second given name printed on both sides\n  agrees, an initial with the name it begins); different LC, Wikidata, ISNI or IdRef identifiers (GND and VIAF keep\n  duplicate records); birth or death years more than a year apart; activity on one key before the other's birth + 18\n  or reviews/articles/posts after its death + 3; a `not-same:` mark or an outside-review 'different' verdict.\n- **B, review queue**: names agree and nothing clashes, but one of: two different ORCIDs (one person can have two:\n  a review list, never an automatic merge); two PhD years more than two apart; a key behind the merge guard; an\n  outside-review 'unclear' verdict; another established key outside the candidate group, or an LC name authority on\n  no key of the group, bearing an agreeing full name; no positive fact. B1 = the last reason only (a unique name with\n  nothing against it; the owner may accept B1 wholesale); B2 = any other.\n- **A, merge now**: names agree in full, no clash, dates compatible, unique (no other established key, no other LC\n  authority), and a positive fact:\n  shared work (both credited by key-log claims on one work key), or a shared title (normalised, 20+ characters and\n  3+ words, years within two), or the same institution in an overlapping period (dated affiliations, review-credit\n  institutions dated by their reviews, the awarding institution of a key's thesis in its year; intervals widened by\n  two years), with the printed institution strings compared on their distinctive words\n  (key_review_credit_merges.agree) when not grounded to one institution key.\nA-pairs join into clusters; a cluster whose keys would bring two identifiers of a clashing scheme or two birth years\ntogether goes back to B. The survivor is the key with most public identifier families, then most works, then the\noldest number. Topic or field is never read.",
+  "Gold test (report.json `gold`): negatives are `not-same:` pairs, outside-review 'different' pairs, and namesake pairs\nof established keys with two LC authorities whose identifiers and life years are masked (the rule then sees only\nnames, works, affiliations and uniqueness); positives are artificial splits of keys holding two or more public\nidentifier families and six or more works (works and affiliations dealt alternately, identifiers divided by family).",
+  "    python3 scripts/propose_person_dup_merges.py --out data/identifiers/person-dup-merges-2026-11-11\n    # after review:  flock .keylog.lock python3 scripts/identifiers.py apply data/identifiers/person-dup-merges-2026-11-11/proposal.json\n"
+ ]
+}

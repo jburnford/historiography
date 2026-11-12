@@ -29,6 +29,11 @@ scholarly evidence (a thesis or AHA anchor, a key-log thesis, a directory anchor
 to data/graph/lc-books-by-authority.csv.gz and the build makes unkeyed `lccn:` book nodes with an exact linked AUTHORED
 credit (source lc-catalogue:authority-books). The full count (primary-source people included) stays measured only.
 
+Since 2026-11-12 (pass six) both parts also read (1) LC records after 2016 fetched through SRU (scripts/lc_sru_recent.py,
+build/lc-sru-2026-11-12/index; `record` = lc-sru) and (2) authorities tied to a key by evidence but not yet anchored
+(data/graph/lc-authority-ties.csv.gz from scripts/key_lc_authority_ties.py; `link` = tied, linked evidence: the build
+loads those credits with source lc-catalogue:tied-<tag> / tied-authority-books and state linked).
+
 Outputs:
 - data/graph/lc-credits.csv.gz: work (graph node key), person, credit (authored / edited), role, role_basis, lccn,
   control, lcnaf, heading, tag. The build loads them (evidence linked, source lc-catalogue:<tag>, state exact) where the
@@ -57,12 +62,32 @@ import edition_roles as ER  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 G = Path(os.environ.get('LCC_GRAPH', ROOT / 'build/graph'))
 LC = Path('/mnt/e/lc-bib-2016/index')
+SRU = ROOT / 'build/lc-sru-2026-11-12/index'        # scripts/lc_sru_recent.py: LC records after 2016 (SRU)
+TIES = ROOT / 'data/graph/lc-authority-ties.csv.gz'   # scripts/key_lc_authority_ties.py: authorities tied by evidence
 NAMES = Path('/mnt/e/lc-authorities/personal-names.parquet')
 SCRATCH = Path(os.environ.get('LCC_SCRATCH', '/tmp/claude-1000/-home-jic823-historiography/'
                               'd3abee1e-2938-4bf9-afec-f3685cadff31/scratchpad/lccredits'))
 TABLE = ROOT / 'data/graph/lc-credits.csv.gz'
 BOOKS = ROOT / 'data/graph/lc-books-by-authority.csv.gz'
 OUT = ROOT / 'data/identifiers/lc-catalogue-credits-2026-11-12'
+
+
+def lcsrc(kind):
+    """the LC 2016 index and, when it is there, the SRU index of later records (same columns; SRU rows carry route)"""
+    files = [f"'{LC}/{kind}-*.parquet'"]
+    if (SRU / f'{kind}-sru.parquet').exists():
+        files.append(f"'{SRU}/{kind}-sru.parquet'")
+    return f"read_parquet([{', '.join(files)}], union_by_name=true)"
+
+
+def person_authorities(c):
+    """pl: authority -> person key, n keys, link ('anchor': an lcnaf anchor on the key; 'tied': a strong or medium tie
+    from key_lc_authority_ties.py on an authority no key holds, linked evidence)"""
+    c.execute(f"""CREATE OR REPLACE TABLE pl AS SELECT substr(a, 7) lcid, any_value(key) AS pkey, count(DISTINCT key) AS n,
+                  'anchor' AS link FROM (SELECT key, unnest(anchors) a FROM '{G}/person.parquet') WHERE a LIKE 'lcnaf:%' GROUP BY 1""")
+    if TIES.exists():
+        c.execute(f"""INSERT INTO pl SELECT lcnaf, any_value(person), count(DISTINCT person), 'tied'
+                      FROM read_csv('{TIES}', all_varchar=true) WHERE lcnaf NOT IN (SELECT lcid FROM pl) GROUP BY 1""")
 
 
 def con():
@@ -93,24 +118,25 @@ def resolve_headings(c):
 
 
 def prepare(c):
+    # a credit this script made in an earlier run (source lc-catalogue:*) does not count: the table is rewritten whole
     c.execute(f"""CREATE OR REPLACE TABLE credited AS SELECT DISTINCT "to" w FROM '{G}/authored.parquet'
-                  UNION SELECT DISTINCT "to" FROM '{G}/edited.parquet'""")
+                  WHERE coalesce(source, '') NOT LIKE 'lc-catalogue:%'
+                  UNION SELECT DISTINCT "to" FROM '{G}/edited.parquet' WHERE coalesce(source, '') NOT LIKE 'lc-catalogue:%'""")
     c.execute(f"""CREATE OR REPLACE TABLE wk AS SELECT key, label, kind, year, lccn, anchors, resolution FROM '{G}/work.parquet'
         WHERE (lccn IS NOT NULL OR len(list_filter(anchors, a -> a LIKE 'lccn:%')) > 0) AND key NOT IN (SELECT w FROM credited)""")
     c.execute("""CREATE OR REPLACE TABLE wlccn AS SELECT DISTINCT key, substr(a, 6) lccn FROM (SELECT key, unnest(anchors) a
                  FROM wk) WHERE a LIKE 'lccn:%' UNION SELECT key, lccn FROM wk WHERE lccn IS NOT NULL""")
     c.execute(f"""CREATE OR REPLACE TABLE rec AS SELECT trim(r.control) control, r.lccn, r.title, r.date1, r.lang,
-        r.responsibility, r.publisher FROM '{LC}/records-*.parquet' r
+        r.responsibility, r.publisher FROM {lcsrc('records')} r
         WHERE trim(r.control) IN (SELECT lccn FROM wlccn) OR r.lccn IN (SELECT lccn FROM wlccn)""")
     c.execute(f"""CREATE OR REPLACE TABLE hd AS SELECT trim(h.control) control, h.pos, h.tag, h.heading, h.family, h.given,
-        h.uri, h.dates, h.relators FROM '{LC}/headings-*.parquet' h WHERE trim(h.control) IN (SELECT control FROM rec)""")
+        h.uri, h.dates, h.relators FROM {lcsrc('headings')} h WHERE trim(h.control) IN (SELECT control FROM rec)""")
     c.execute("""CREATE OR REPLACE TABLE wrec AS SELECT l.key, r.control FROM wlccn l JOIN rec r ON r.control = l.lccn
                  UNION SELECT l.key, r.control FROM wlccn l JOIN rec r ON r.lccn = l.lccn""")
     c.execute("""CREATE OR REPLACE TABLE lccn_ctl AS SELECT control lccn, control FROM rec UNION SELECT lccn, control FROM rec
                  WHERE lccn IS NOT NULL AND lccn <> ''""")
     resolve_headings(c)
-    c.execute(f"""CREATE OR REPLACE TABLE pl AS SELECT substr(a, 7) lcid, any_value(key) AS pkey, count(DISTINCT key) AS n
-                  FROM (SELECT key, unnest(anchors) a FROM '{G}/person.parquet') WHERE a LIKE 'lcnaf:%' GROUP BY 1""")
+    person_authorities(c)
     for t in ('wk', 'wrec', 'rec', 'hd', 'hres', 'pl'):
         print(t, c.execute(f'SELECT count(*) FROM {t}').fetchone()[0], flush=True)
 
@@ -161,6 +187,9 @@ def credits(args):
     prepare(c)
     L = ER.LCData(c)
     pkey = {lcid: key for lcid, key, n in c.execute('SELECT lcid, pkey, n FROM pl').fetchall() if n == 1}
+    plink = dict(c.execute('SELECT lcid, link FROM pl').fetchall())
+    sru = {r[0] for r in c.execute(f"SELECT DISTINCT trim(control) FROM '{SRU}/records-sru.parquet'").fetchall()} \
+        if (SRU / 'records-sru.parquet').exists() else set()
     rep = Counter()
     rows, held = [], []
     wkinfo = {k: (lab, kind, res) for k, lab, kind, res in c.execute('SELECT key, label, kind, resolution FROM wk').fetchall()}
@@ -187,7 +216,8 @@ def credits(args):
                 if h['tag'] == '100' and cr == 'authored':
                     main_keys[k].add(ctl)
                 found.setdefault((k, cr), dict(work=w, person=k, credit=cr, role=role, role_basis=basis, lccn=ctl, control=ctl,
-                                               lcnaf=h['lcid'], heading=h['heading'], tag=h['tag']))
+                                               lcnaf=h['lcid'], heading=h['heading'], tag=h['tag'],
+                                               link=plink.get(h['lcid'], 'anchor'), record='lc-sru' if ctl in sru else 'lc2016'))
         if len(main_keys) > 1:
             # two main entries on different keys: fine when each record names the other key too (co-authors), else held
             ks = set(main_keys)
@@ -199,10 +229,11 @@ def credits(args):
             rows.append(r)
             rep[f"credit|{r['credit']}|{r['role']}"] += 1
             rep[f"credit_on|{'unkeyed' if wkinfo[w][2] == 'unkeyed' else 'keyed'}"] += 1
+            rep[f"credit_by|{r['link']}|{r['record']}"] += 1
     rep['works_credited'] = len({r['work'] for r in rows})
     rep['works_credited_keyed'] = len({r['work'] for r in rows if wkinfo[r['work']][2] != 'unkeyed'})
     rep['people_credited'] = len({r['person'] for r in rows})
-    cols = ['work', 'person', 'credit', 'role', 'role_basis', 'lccn', 'control', 'lcnaf', 'heading', 'tag']
+    cols = ['work', 'person', 'credit', 'role', 'role_basis', 'lccn', 'control', 'lcnaf', 'heading', 'tag', 'link', 'record']
     with gzip.open(TABLE, 'wt', newline='', encoding='utf-8') as f:
         wr = csv.DictWriter(f, fieldnames=cols)
         wr.writeheader()
@@ -236,8 +267,7 @@ def credits(args):
 def measure(args):
     """LC books by an authority on a person key that the graph lacks (not loaded)"""
     c = con()
-    c.execute(f"""CREATE OR REPLACE TABLE pl AS SELECT substr(a, 7) lcid, any_value(key) AS pkey, count(DISTINCT key) AS n
-                  FROM (SELECT key, unnest(anchors) a FROM '{G}/person.parquet') WHERE a LIKE 'lcnaf:%' GROUP BY 1""")
+    person_authorities(c)
     c.execute(f"""CREATE OR REPLACE TABLE pev AS SELECT key, orcid IS NOT NULL has_orcid,
             len(list_filter(anchors, a -> a LIKE 'aha-phd:%' OR a LIKE 'diss-author:%' OR a LIKE 'capes-person:%')) > 0 thesis_or_aha,
             len(list_filter(anchors, a -> a LIKE 'ihr:%' OR a LIKE 'aha:%' OR a LIKE 'repo-advisor:%')) > 0 directory,
@@ -250,15 +280,19 @@ def measure(args):
             p.key IN (SELECT "from" FROM '{G}/authored.parquet' a JOIN '{G}/work.parquet' w ON w.key = a."to"
                       WHERE a.evidence = 'keylog' AND w.kind = 'thesis') thesis_author
             FROM pev p""")
-    c.execute(f"""CREATE OR REPLACE TABLE glccn AS SELECT DISTINCT substr(a, 6) lccn FROM (SELECT unnest(anchors) a FROM
-                  '{G}/work.parquet') WHERE a LIKE 'lccn:%' UNION SELECT lccn FROM '{G}/work.parquet' WHERE lccn IS NOT NULL""")
+    # the lccn: nodes an earlier run of this table added are not 'held by the graph' (the table is rewritten whole)
+    prev = f"(SELECT 'lccn:' || lccn FROM read_csv('{BOOKS}', all_varchar=true))" if BOOKS.exists() else "(SELECT NULL)"
+    c.execute(f"""CREATE OR REPLACE TABLE glccn AS SELECT DISTINCT substr(a, 6) lccn FROM (SELECT key, unnest(anchors) a FROM
+                  '{G}/work.parquet' WHERE NOT (resolution = 'unkeyed' AND key IN {prev})) WHERE a LIKE 'lccn:%'
+                  UNION SELECT lccn FROM '{G}/work.parquet' WHERE lccn IS NOT NULL AND NOT (resolution = 'unkeyed' AND key IN {prev})""")
     # the authority of each LC 100: $0, else the unique authorised label (resolve only headings of keyed authorities' labels)
     c.execute(f"""CREATE OR REPLACE TABLE hd AS SELECT trim(h.control) control, h.pos, h.tag, h.heading, h.family, h.given, h.uri,
-                  h.dates, h.relators FROM '{LC}/headings-*.parquet' h WHERE h.tag = '100'""")
+                  h.dates, h.relators FROM {lcsrc('headings')} h WHERE h.tag = '100'""")
     resolve_headings(c)
-    c.execute(f"""CREATE OR REPLACE TABLE bk AS SELECT trim(r.control) control, r.lccn, r.title, r.date1, h.heading, x.lcid, pl.pkey AS person
+    c.execute(f"""CREATE OR REPLACE TABLE bk AS SELECT trim(r.control) control, r.lccn, r.title, r.date1, h.heading, x.lcid,
+            pl.pkey AS person, pl.link, {"CASE WHEN r.route IS NULL THEN 'lc2016' ELSE 'lc-sru' END" if (SRU / 'records-sru.parquet').exists() else "'lc2016'"} AS record
             FROM hd h JOIN hres x USING (heading) JOIN pl ON pl.lcid = x.lcid AND pl.n = 1
-            JOIN '{LC}/records-*.parquet' r ON trim(r.control) = h.control
+            JOIN {lcsrc('records')} r ON trim(r.control) = h.control
             WHERE trim(r.control) NOT IN (SELECT lccn FROM glccn) AND coalesce(r.lccn, '') NOT IN (SELECT lccn FROM glccn)
               AND NOT list_has_any(h.relators, ['ed', 'editor', 'comp', 'compiler', 'tr', 'translator'])""")
     q = lambda s: c.execute(s).fetchall()
@@ -285,7 +319,11 @@ def measure(args):
                   TO '{OUT / 'books-by-authority.csv.gz'}' (HEADER, COMPRESSION gzip)""")
     # the restricted set is loaded (data/graph/lc-books-by-authority.csv.gz): keys with scholarly evidence only, so the
     # authors of primary sources (Voltaire, Lope de Vega, Gorky: hundreds of LC books each) do not pull in their editions
-    c.execute(f"""COPY (SELECT b.control lccn, any_value(b.title) title, any_value(b.date1) AS year, b.person, any_value(b.lcid) lcnaf
+    rep['by_link_and_record'] = q("""SELECT b.link, b.record, count(DISTINCT b.control), count(DISTINCT b.person) FROM bk b
+        JOIN pev2 p ON p.key = b.person WHERE p.thesis_or_aha OR p.thesis_author OR p.directory OR p.supervisor OR p.reviewer
+        OR p.review_anchor GROUP BY ALL ORDER BY ALL""")
+    c.execute(f"""COPY (SELECT b.control lccn, any_value(b.title) title, any_value(b.date1) AS year, b.person, any_value(b.lcid) lcnaf,
+                  any_value(b.link) link, any_value(b.record) record
                   FROM bk b JOIN pev2 p ON p.key = b.person
                   WHERE p.thesis_or_aha OR p.thesis_author OR p.directory OR p.supervisor OR p.reviewer OR p.review_anchor
                   GROUP BY b.control, b.person ORDER BY b.person, b.control) TO '{BOOKS}' (HEADER, COMPRESSION gzip)""")

@@ -23,7 +23,9 @@ General rules applied here (counted in the report):
   one such sibling exists (rule `title-from-sibling-row`), else the row names no work;
 - one-candidate winner promotion: a winner row left `possible` with exactly one candidate becomes `linked`
   (branch `same-body-credited-name`) when another row of the same awarding body, printing the same folded name, is
-  credited (exact / credited / linked) to that same key.
+  credited (exact / credited / linked) to that same key and to no other key. Wikidata rows (no body) are grouped by
+  their Wikidata person instead, and a row with neither is not promoted (tightened 2026-11-12 after the masked test,
+  see promotion_group).
 """
 import re
 import unicodedata
@@ -54,6 +56,20 @@ def intor(v):
         return int(str(v)[:4])
     except (TypeError, ValueError):
         return None
+
+
+def promotion_group(r, winner):
+    """The group inside which one printed name is taken as one person for the one-candidate promotion: the awarding
+    body and the folded name. Wikidata rows have no body (they are not one list), so for them the group is the
+    Wikidata person of the row; a row with neither is never promoted (body None). Tested 2026-11-12 (masked: of
+    credited rows with a same-group credited sibling, 4,261 of 4,263 with a body share its key; with the empty body
+    as one group, 18 of 11,152 did not: Richard Wagner the composer and the writer, Henri Carre, Christian Pfister;
+    Alain Gerard, Q24690598, was promoted onto Q60836195's key)."""
+    if r['body']:
+        return (fold(winner), r['body'])
+    if r.get('wd_person'):
+        return (fold(winner), 'wd:' + r['wd_person'])
+    return (fold(winner), None)
 
 
 def prize_layer(read_rows, P, state, types, works, wi, unkeyed, resolve, report):
@@ -101,13 +117,20 @@ def prize_layer(read_rows, P, state, types, works, wi, unkeyed, resolve, report)
             k = person(w['key'])
             if k:
                 wstate[i] = (k, w['state'], w['branch'])
-                cred[(fold(w['winner']), rows[i]['body'])].add(k)
+                cred[promotion_group(rows[i], w['winner'])].add(k)
             else:
                 R['winner_key_unresolved'] += 1
     for i, w in win.items():
         if w['state'] == 'possible' and w['n_candidates'] == '1':
             k = person(w['candidates'].split('|')[0])
-            if k and k in cred.get((fold(w['winner']), rows[i]['body']), ()):
+            g = promotion_group(rows[i], w['winner'])
+            if not k or k not in cred.get(g, ()):
+                continue
+            if g[1] is None:
+                R['winner_not_promoted_no_body_no_wd_person'] += 1
+            elif len(cred[g]) > 1:
+                R['winner_not_promoted_name_credited_to_two_keys'] += 1
+            else:
                 wstate[i] = (k, 'linked', 'same-body-credited-name')
                 R['winner_promoted_same_body_credited_name'] += 1
     # prize nodes
